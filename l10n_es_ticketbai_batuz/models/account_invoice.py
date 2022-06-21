@@ -2,7 +2,11 @@
 # Copyright 2021 Digital5, S.L.
 # Copyright 2021 KERNET INTERNET Y NUEVAS TECNOLOGIAS S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import api, exceptions, fields, models, _
+import json
+from collections import OrderedDict
+
+from odoo import _, api, exceptions, fields, models
+
 from odoo.addons.l10n_es_ticketbai_api.models.ticketbai_invoice import (
     RefundCode,
     RefundType,
@@ -14,8 +18,6 @@ from odoo.addons.l10n_es_ticketbai_api_batuz.models.lroe_operation import (
     LROEModelEnum,
     LROEOperationEnum,
 )
-from collections import OrderedDict
-import json
 
 LROE_COUNTRY_CODE_MAPPING = {
     "RE": "FR",
@@ -108,23 +110,22 @@ class AccountInvoice(models.Model):
         copy=True,
     )
     lroe_invoice_dict = fields.Text(
-        string="LROE last content sent",
-        copy=False,
-        readonly=True,
+        string="LROE last content sent", copy=False, readonly=True,
     )
 
     @api.depends(
-        'tbai_invoice_ids',
-        'tbai_invoice_ids.state',
-        'tbai_cancellation_ids',
-        'tbai_cancellation_ids.state')
+        "tbai_invoice_ids",
+        "tbai_invoice_ids.state",
+        "tbai_cancellation_ids",
+        "tbai_cancellation_ids.state",
+    )
     def _compute_lroe_response_line_ids(self):
         for record in self:
-            response_line_model = self.env['lroe.operation.response.line']
-            response_ids = record.tbai_invoice_ids.mapped('tbai_response_ids').ids
-            response_ids += record.tbai_cancellation_ids.mapped('tbai_response_ids').ids
+            response_line_model = self.env["lroe.operation.response.line"]
+            response_ids = record.tbai_invoice_ids.mapped("tbai_response_ids").ids
+            response_ids += record.tbai_cancellation_ids.mapped("tbai_response_ids").ids
             response_lines = response_line_model.search(
-                [('tbai_response_id', 'in', response_ids)]
+                [("tbai_response_id", "in", response_ids)]
             )
             record.lroe_response_line_ids = [(6, 0, response_lines.ids)]
 
@@ -198,7 +199,7 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         description = self.number
         if self.name:
-            description += ' | ' + self.name
+            description += " | " + self.name
         return description
 
     def batuz_get_supplier_serie_factura(self):
@@ -213,13 +214,9 @@ class AccountInvoice(models.Model):
         """Convertimos el importe amount a la moneda de la compañía."""
         if self.currency_id != self.company_id.currency_id:
             currency = self.currency_id.with_context(
-                date=self._get_currency_rate_date(),
-                company_id=self.company_id.id
-                )
-            amount_cur = currency.compute(
-                amount,
-                self.company_id.currency_id
-                )
+                date=self._get_currency_rate_date(), company_id=self.company_id.id
+            )
+            amount_cur = currency.compute(amount, self.company_id.currency_id)
         else:
             amount_cur = amount
         return amount_cur
@@ -245,22 +242,17 @@ class AccountInvoice(models.Model):
             if country_code != "ES":
                 id_type = "06" if vat == "NO_DISPONIBLE" else "02"
                 res["IDOtro"] = OrderedDict(
-                    [
-                        ("CodigoPais", country_code),
-                        ("IDType", id_type),
-                        ("ID", vat),
-                    ]
+                    [("CodigoPais", country_code), ("IDType", id_type), ("ID", vat),]
                 )
             else:
                 res["NIF"] = vat[2:] if vat.startswith(country_code) else vat
         elif idtype:
-            res["IDOtro"] = OrderedDict([
-                ("CodigoPais", country_code),
-                ("IDType", idtype),
-                ("ID", vat),
-            ])
-        res["ApellidosNombreRazonSocial"] = \
-            partner.tbai_get_value_apellidos_nombre_razon_social()
+            res["IDOtro"] = OrderedDict(
+                [("CodigoPais", country_code), ("IDType", idtype), ("ID", vat),]
+            )
+        res[
+            "ApellidosNombreRazonSocial"
+        ] = partner.tbai_get_value_apellidos_nombre_razon_social()
         return res
 
     @api.multi
@@ -316,30 +308,44 @@ class AccountInvoice(models.Model):
             origin = self.refund_invoice_id
             origin_date = self._change_date_format(self.refund_invoice_id.date_invoice)
             header["FacturaRectificativa"] = OrderedDict(
-                [
-                    ("Codigo", self.tbai_refund_key),
-                    ("Tipo", self.tbai_refund_type),
-                ]
+                [("Codigo", self.tbai_refund_key), ("Tipo", self.tbai_refund_type),]
             )
             if self.tbai_refund_type == "S":
-                header["FacturaRectificativa"]["ImporteRectificacionSustitutiva"] = \
-                    OrderedDict([
+                header["FacturaRectificativa"][
+                    "ImporteRectificacionSustitutiva"
+                ] = OrderedDict(
+                    [
                         ("BaseRectificada", abs(origin.amount_untaxed_signed)),
-                        ("CuotaRectificada", abs(
-                            origin._get_amount_company_currency(origin.amount_total) -
-                            origin.amount_untaxed_signed
-                        )),
+                        (
+                            "CuotaRectificada",
+                            abs(
+                                origin._get_amount_company_currency(origin.amount_total)
+                                - origin.amount_untaxed_signed
+                            ),
+                        ),
                         # (CuotaRecargoRectificada, False),
-                    ])
-            header["FacturasRectificadasSustituidas"] = OrderedDict([
-                ("IDFacturaRectificadaSustituida",
-                    OrderedDict([
-                        ("SerieFactura",
-                            origin.batuz_get_supplier_serie_factura()[:20]),
-                        ("NumFactura", origin.batuz_get_supplier_num_factura()[:20]),
-                        ("FechaExpedicionFactura", origin_date)
-                    ])),
-            ])
+                    ]
+                )
+            header["FacturasRectificadasSustituidas"] = OrderedDict(
+                [
+                    (
+                        "IDFacturaRectificadaSustituida",
+                        OrderedDict(
+                            [
+                                (
+                                    "SerieFactura",
+                                    origin.batuz_get_supplier_serie_factura()[:20],
+                                ),
+                                (
+                                    "NumFactura",
+                                    origin.batuz_get_supplier_num_factura()[:20],
+                                ),
+                                ("FechaExpedicionFactura", origin_date),
+                            ]
+                        ),
+                    ),
+                ]
+            )
         return header
 
     @api.multi
@@ -370,9 +376,11 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         tbai_maps = self.env["tbai.tax.map"].search([("code", "in", codes)])
         tax_templates = tbai_maps.mapped("tax_template_ids")
-        return self.env['l10n.es.aeat.report'].new(
-            {'company_id': self.company_id.id}).get_taxes_from_templates(
-                tax_templates)
+        return (
+            self.env["l10n.es.aeat.report"]
+            .new({"company_id": self.company_id.id})
+            .get_taxes_from_templates(tax_templates)
+        )
 
     @api.multi
     def _get_lroe_sign(self):
@@ -545,14 +553,19 @@ class AccountInvoice(models.Model):
     @api.multi
     def _get_lroe_invoice_data(self, amount_total):
         self.ensure_one()
-        res = OrderedDict([
-            ("DescripcionOperacion", self._get_batuz_description()[:250]),
-            ("Claves", self._get_lroe_claves()),
-            ("ImporteTotalFactura",
-             amount_total or self._get_amount_company_currency(self.amount_total)),
-            # Base imponible a coste (para grupos de IVA – nivel avanzado (240))
-            # ("BaseImponibleACoste", False),
-        ])
+        res = OrderedDict(
+            [
+                ("DescripcionOperacion", self._get_batuz_description()[:250]),
+                ("Claves", self._get_lroe_claves()),
+                (
+                    "ImporteTotalFactura",
+                    amount_total
+                    or self._get_amount_company_currency(self.amount_total),
+                ),
+                # Base imponible a coste (para grupos de IVA – nivel avanzado (240))
+                # ("BaseImponibleACoste", False),
+            ]
+        )
         return res
 
     # SPECIFIC LROE CHAPTER METHODS
@@ -568,17 +581,28 @@ class AccountInvoice(models.Model):
             invoice_date = self._change_date_format(self.date_invoice)
             lroe_identifier = self._get_lroe_identifier()
             lroe_identifier.pop("ApellidosNombreRazonSocial")
-            id_gasto = OrderedDict([
-                ("IDGasto", OrderedDict([
-                    ("SerieFactura", self.batuz_get_supplier_serie_factura()[:20]),
-                    ("NumFactura", self.batuz_get_supplier_num_factura[:20]),
-                    ("FechaExpedicionFactura", invoice_date),
-                    ("EmisorFacturaRecibida", lroe_identifier),
-                ]))
-            ])
-            inv_dict = OrderedDict([
-                ("Gasto", id_gasto)
-            ])
+            id_gasto = OrderedDict(
+                [
+                    (
+                        "IDGasto",
+                        OrderedDict(
+                            [
+                                (
+                                    "SerieFactura",
+                                    self.batuz_get_supplier_serie_factura()[:20],
+                                ),
+                                (
+                                    "NumFactura",
+                                    self.batuz_get_supplier_num_factura[:20],
+                                ),
+                                ("FechaExpedicionFactura", invoice_date),
+                                ("EmisorFacturaRecibida", lroe_identifier),
+                            ]
+                        ),
+                    )
+                ]
+            )
+            inv_dict = OrderedDict([("Gasto", id_gasto)])
         else:
             # Check if refund type is "By differences". Negative amounts!
             sign = self._get_lroe_sign()
@@ -587,15 +611,25 @@ class AccountInvoice(models.Model):
                 abs(self._get_amount_company_currency(self.amount_total))
                 - not_in_amount_total
             ) * sign
-            inv_dict = OrderedDict([
-                ("Gasto", OrderedDict([
-                    ("EmisorFacturaRecibida", self._get_lroe_identifier()),
-                    ("CabeceraFactura", self._get_lroe_invoice_header()),
-                    ("DatosFactura", self._get_lroe_invoice_data(amount_total)),
-                    ("RentaIVA", taxes_dict["RentaIVA"]),
-                    # ("OtraInformacionTrascendenciaTributaria", False),
-                ]))
-            ])
+            inv_dict = OrderedDict(
+                [
+                    (
+                        "Gasto",
+                        OrderedDict(
+                            [
+                                ("EmisorFacturaRecibida", self._get_lroe_identifier()),
+                                ("CabeceraFactura", self._get_lroe_invoice_header()),
+                                (
+                                    "DatosFactura",
+                                    self._get_lroe_invoice_data(amount_total),
+                                ),
+                                ("RentaIVA", taxes_dict["RentaIVA"]),
+                                # ("OtraInformacionTrascendenciaTributaria", False),
+                            ]
+                        ),
+                    )
+                ]
+            )
         return inv_dict
 
     @api.multi
@@ -618,11 +652,9 @@ class AccountInvoice(models.Model):
                 id_recibida["NumFacturaFin"] = last_number[:20]
             id_recibida["FechaExpedicionFactura"] = invoice_date
             id_recibida["EmisorFacturaRecibida"] = lroe_identifier
-            inv_dict = OrderedDict([
-                ("FacturaRecibida", OrderedDict([(
-                    "IDRecibida", id_recibida)
-                ]))
-            ])
+            inv_dict = OrderedDict(
+                [("FacturaRecibida", OrderedDict([("IDRecibida", id_recibida)]))]
+            )
         else:
             # Check if refund type is "By differences". Negative amounts!
             sign = self._get_lroe_sign()
@@ -631,15 +663,25 @@ class AccountInvoice(models.Model):
                 abs(self._get_amount_company_currency(self.amount_total))
                 - not_in_amount_total
             ) * sign
-            inv_dict = OrderedDict([
-                ("FacturaRecibida", OrderedDict([
-                    ("EmisorFacturaRecibida", self._get_lroe_identifier()),
-                    ("CabeceraFactura", self._get_lroe_invoice_header()),
-                    ("DatosFactura", self._get_lroe_invoice_data(amount_total)),
-                    ("IVA", taxes_dict["IVA"]),
-                    # ("OtraInformacionTrascendenciaTributaria", False),
-                ]))
-            ])
+            inv_dict = OrderedDict(
+                [
+                    (
+                        "FacturaRecibida",
+                        OrderedDict(
+                            [
+                                ("EmisorFacturaRecibida", self._get_lroe_identifier()),
+                                ("CabeceraFactura", self._get_lroe_invoice_header()),
+                                (
+                                    "DatosFactura",
+                                    self._get_lroe_invoice_data(amount_total),
+                                ),
+                                ("IVA", taxes_dict["IVA"]),
+                                # ("OtraInformacionTrascendenciaTributaria", False),
+                            ]
+                        ),
+                    )
+                ]
+            )
         return inv_dict
 
     # COMMON LROE METHODS
@@ -667,9 +709,9 @@ class AccountInvoice(models.Model):
         }
         if subchapter:
             subchapter_id = self.env["lroe.chapter"].search([("code", "=", subchapter)])
-            res.update({
-                "lroe_subchapter_id": subchapter_id.id,
-            })
+            res.update(
+                {"lroe_subchapter_id": subchapter_id.id,}
+            )
         if company_id:
             res.update({"company_id": company_id})
         return res
@@ -719,16 +761,16 @@ class AccountInvoice(models.Model):
             action = subchapter.replace(".", "_") if subchapter else chapter
             model = invoice.company_id.lroe_model
             if hasattr(invoice, "_get_lroe_%s_%s_dict" % (model, action,)):
-                inv_dict = getattr(
-                    invoice, "_get_lroe_%s_%s_dict" % (model, action,))(cancel)
+                inv_dict = getattr(invoice, "_get_lroe_%s_%s_dict" % (model, action,))(
+                    cancel
+                )
             else:
                 raise exceptions.ValidationError(
                     _("LROE Build: method for model %s chapter %s not implemented!")
                     % (model, chapter)
                 )
             round_by_keys(
-                inv_dict,
-                KEYS_TO_ROUND,
+                inv_dict, KEYS_TO_ROUND,
             )
             lroe_operation = invoice._get_lroe_operation(operation_type=operation_type)
             inv_vals = {
@@ -809,7 +851,8 @@ class AccountInvoice(models.Model):
         res = super().action_cancel()
         lroe_invoices = self.sudo().filtered(
             lambda x: x.tbai_enabled
-            and x.date and x.date >= x.journal_id.tbai_active_date
+            and x.date
+            and x.date >= x.journal_id.tbai_active_date
             and x.lroe_state not in ("error")
             and (
                 x.type == "in_invoice"
@@ -847,7 +890,8 @@ class AccountInvoice(models.Model):
         res = super(AccountInvoice, self).invoice_validate()
         lroe_invoices = self.sudo().filtered(
             lambda x: x.tbai_enabled
-            and x.date and x.date >= x.journal_id.tbai_active_date
+            and x.date
+            and x.date >= x.journal_id.tbai_active_date
             and (
                 x.type == "in_invoice"
                 or (
@@ -884,8 +928,9 @@ class AccountInvoice(models.Model):
             description=description,
             journal_id=journal_id,
         )
-        supplier_invoice_number_refund = \
-            self.env.context.get("batuz_supplier_invoice_number")
+        supplier_invoice_number_refund = self.env.context.get(
+            "batuz_supplier_invoice_number"
+        )
         if supplier_invoice_number_refund:
             res["reference"] = supplier_invoice_number_refund
         return res

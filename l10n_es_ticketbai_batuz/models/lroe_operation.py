@@ -1,22 +1,21 @@
 # Copyright 2021 Digital5, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import api, exceptions, fields, models, _
+import logging
 
-from odoo.addons.l10n_es_ticketbai_api_batuz.models.lroe_operation import (
-    LROEOperationStateEnum,
-    LROEOperationEnum,
-)
+from odoo import _, api, exceptions, fields, models
+from odoo.modules.registry import Registry
+
+from odoo.addons.l10n_es_ticketbai_api_batuz.lroe.lroe_api import LROETicketBaiApi
 from odoo.addons.l10n_es_ticketbai_api_batuz.lroe.lroe_xml_schema import (
     LROEXMLSchemaModeNotSupported,
+)
+from odoo.addons.l10n_es_ticketbai_api_batuz.models.lroe_operation import (
+    LROEOperationEnum,
+    LROEOperationStateEnum,
 )
 from odoo.addons.l10n_es_ticketbai_api_batuz.models.lroe_operation_response import (
     LROEOperationResponseState,
 )
-from odoo.addons.l10n_es_ticketbai_api_batuz.lroe.lroe_api import LROETicketBaiApi
-
-from odoo.modules.registry import Registry
-
-import logging
 
 _logger = logging.getLogger(__name__)
 
