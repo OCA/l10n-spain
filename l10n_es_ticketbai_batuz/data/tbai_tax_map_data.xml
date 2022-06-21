@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2021 Digital5, S.L.
+     Copyright 2022 Landoo Sistemas de Informacion SL
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
 
@@ -11,12 +12,12 @@
             ref('l10n_es.account_tax_template_p_iva21_sc'),
             ref('l10n_es.account_tax_template_p_iva10_sc'),
             ref('l10n_es.account_tax_template_p_iva4_sc'),
-            ref('l10n_es.account_tax_template_p_iva21_sp_ex_2'),
-            ref('l10n_es.account_tax_template_p_iva10_sp_ex_2'),
-            ref('l10n_es.account_tax_template_p_iva4_sp_ex_2'),
-            ref('l10n_es.account_tax_template_p_iva21_sp_in_2'),
-            ref('l10n_es.account_tax_template_p_iva10_sp_in_2'),
-            ref('l10n_es.account_tax_template_p_iva4_sp_in_2'),
+            ref('l10n_es.account_tax_template_p_iva21_sp_ex'),
+            ref('l10n_es.account_tax_template_p_iva10_sp_ex'),
+            ref('l10n_es.account_tax_template_p_iva4_sp_ex'),
+            ref('l10n_es.account_tax_template_p_iva21_sp_in'),
+            ref('l10n_es.account_tax_template_p_iva10_sp_in'),
+            ref('l10n_es.account_tax_template_p_iva4_sp_in'),
             ref('l10n_es.account_tax_template_p_iva0_ns'),
             ref('l10n_es.account_tax_template_p_iva0_ns_b'),
         ])]"
@@ -34,9 +35,9 @@
             ref('l10n_es.account_tax_template_p_iva10_bc'),
             ref('l10n_es.account_tax_template_p_iva4_bc'),
             ref('l10n_es.account_tax_template_p_iva0_bc'),
-            ref('l10n_es.account_tax_template_p_iva21_ic_bc_1'),
-            ref('l10n_es.account_tax_template_p_iva10_ic_bc_1'),
-            ref('l10n_es.account_tax_template_p_iva4_ic_bc_1'),
+            ref('l10n_es.account_tax_template_p_iva21_ic_bc'),
+            ref('l10n_es.account_tax_template_p_iva10_ic_bc'),
+            ref('l10n_es.account_tax_template_p_iva4_ic_bc'),
             ref('l10n_es.account_tax_template_p_iva21_ibc'),
             ref('l10n_es.account_tax_template_p_iva10_ibc'),
             ref('l10n_es.account_tax_template_p_iva4_ibc'),
@@ -53,9 +54,9 @@
             ref('l10n_es.account_tax_template_p_iva21_bi'),
             ref('l10n_es.account_tax_template_p_iva10_bi'),
             ref('l10n_es.account_tax_template_p_iva4_bi'),
-            ref('l10n_es.account_tax_template_p_iva21_ic_bi_1'),
-            ref('l10n_es.account_tax_template_p_iva10_ic_bi_1'),
-            ref('l10n_es.account_tax_template_p_iva4_ic_bi_1'),
+            ref('l10n_es.account_tax_template_p_iva21_ic_bi'),
+            ref('l10n_es.account_tax_template_p_iva10_ic_bi'),
+            ref('l10n_es.account_tax_template_p_iva4_ic_bi'),
             ref('l10n_es.account_tax_template_p_iva21_ibi'),
             ref('l10n_es.account_tax_template_p_iva10_ibi'),
             ref('l10n_es.account_tax_template_p_iva4_ibi'),
@@ -80,12 +81,12 @@
         <field
             name="tax_template_ids"
             eval="[(6, 0, [
-            ref('l10n_es.account_tax_template_p_iva21_isp_1'),
-            ref('l10n_es.account_tax_template_p_iva10_isp_1'),
-            ref('l10n_es.account_tax_template_p_iva4_isp_1'),
-            ref('l10n_es.account_tax_template_p_iva21_sp_ex_2'),
-            ref('l10n_es.account_tax_template_p_iva10_sp_ex_2'),
-            ref('l10n_es.account_tax_template_p_iva4_sp_ex_2'),
+            ref('l10n_es.account_tax_template_p_iva21_isp'),
+            ref('l10n_es.account_tax_template_p_iva10_isp'),
+            ref('l10n_es.account_tax_template_p_iva4_isp'),
+            ref('l10n_es.account_tax_template_p_iva21_sp_ex'),
+            ref('l10n_es.account_tax_template_p_iva10_sp_ex'),
+            ref('l10n_es.account_tax_template_p_iva4_sp_ex'),
         ])]"
         />
         <field name="name">Facturas Recibidas ISP</field>
@@ -137,24 +138,34 @@
             ref('l10n_es.account_tax_template_p_irpf21t'),
             ref('l10n_es.account_tax_template_p_irpf21td'),
             ref('l10n_es.account_tax_template_p_irpf21te'),
-            ref('l10n_es.account_tax_template_p_iva21_isp_2'),
-            ref('l10n_es.account_tax_template_p_iva10_isp_2'),
-            ref('l10n_es.account_tax_template_p_iva4_isp_2'),
-            ref('l10n_es.account_tax_template_p_iva21_sp_ex_1'),
-            ref('l10n_es.account_tax_template_p_iva10_sp_ex_1'),
-            ref('l10n_es.account_tax_template_p_iva4_sp_ex_1'),
-            ref('l10n_es.account_tax_template_p_iva4_sp_in_1'),
-            ref('l10n_es.account_tax_template_p_iva10_sp_in_1'),
-            ref('l10n_es.account_tax_template_p_iva21_sp_in_1'),
-            ref('l10n_es.account_tax_template_p_iva4_ic_bc_2'),
-            ref('l10n_es.account_tax_template_p_iva10_ic_bc_2'),
-            ref('l10n_es.account_tax_template_p_iva21_ic_bc_2'),
-            ref('l10n_es.account_tax_template_p_iva4_ic_bi_2'),
-            ref('l10n_es.account_tax_template_p_iva10_ic_bi_2'),
-            ref('l10n_es.account_tax_template_p_iva21_ic_bi_2'),
         ])]"
         />
         <field name="name">Impuestos no incluidos en Importe Total</field>
+    </record>
+
+    <record id="tbai_tax_map_NotIncludedInTotalNegative" model="tbai.tax.map">
+        <field name="code">NotIncludedInTotalNegative</field>
+        <field
+            name="tax_template_ids"
+            eval="[(6, 0, [
+            ref('l10n_es.account_tax_template_p_iva21_isp'),
+            ref('l10n_es.account_tax_template_p_iva10_isp'),
+            ref('l10n_es.account_tax_template_p_iva4_isp'),
+            ref('l10n_es.account_tax_template_p_iva21_sp_ex'),
+            ref('l10n_es.account_tax_template_p_iva10_sp_ex'),
+            ref('l10n_es.account_tax_template_p_iva4_sp_ex'),
+            ref('l10n_es.account_tax_template_p_iva4_sp_in'),
+            ref('l10n_es.account_tax_template_p_iva10_sp_in'),
+            ref('l10n_es.account_tax_template_p_iva21_sp_in'),
+            ref('l10n_es.account_tax_template_p_iva4_ic_bc'),
+            ref('l10n_es.account_tax_template_p_iva10_ic_bc'),
+            ref('l10n_es.account_tax_template_p_iva21_ic_bc'),
+            ref('l10n_es.account_tax_template_p_iva4_ic_bi'),
+            ref('l10n_es.account_tax_template_p_iva10_ic_bi'),
+            ref('l10n_es.account_tax_template_p_iva21_ic_bi'),
+        ])]"
+        />
+        <field name="name">Impuestos no incluidos en Importe Total (negativos)</field>
     </record>
 
 </odoo>

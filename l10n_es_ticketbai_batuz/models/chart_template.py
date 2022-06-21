@@ -1,6 +1,6 @@
 # Copyright 2021 Digital5, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class AccountFiscalPosition(models.Model):
@@ -32,7 +32,6 @@ class AccountFiscalPosition(models.Model):
 class AccountChartTemplate(models.Model):
     _inherit = "account.chart.template"
 
-    @api.multi
     def _get_fp_vals(self, company, position):
         res = super()._get_fp_vals(company, position)
         res.update(
