@@ -1,5 +1,5 @@
 from . import ticketbai_invoice
-from . import account_invoice
+from . import account_move
 from . import account_fiscal_position
 from . import chart_template
 from . import lroe_operation

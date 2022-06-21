@@ -1,4 +1,5 @@
 # Copyright 2021 Digital5, S.L.
+# Copyright 2022 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import logging
 
@@ -56,14 +57,12 @@ class LROEOperation(models.Model):
                 )
         return super().create(vals)
 
-    @api.multi
     def get_lroe_api(self, **kwargs):
         self.ensure_one()
         cert = self.company_id.tbai_certificate_get_public_key()
         key = self.company_id.tbai_certificate_get_private_key()
         return LROETicketBaiApi(self.api_url, cert=cert, key=key, **kwargs)
 
-    @api.multi
     def send(self, **kwargs):
         self.ensure_one()
         error_msg = ""
@@ -89,7 +88,6 @@ class LROEOperation(models.Model):
         if values:
             return self.env["lroe.operation.response"].create(values)
 
-    @api.multi
     def send_one_operation(self):
         lroe_response = self.send()
         if lroe_response.state == LROEOperationResponseState.CORRECT.value:
@@ -103,11 +101,9 @@ class LROEOperation(models.Model):
             self.mark_as_error()
 
     @job(default_channel="root.invoice_send_lroe")
-    @api.multi
     def send_one_operation_job(self):
         self.send_one_operation()
 
-    @api.multi
     def process(self):
         self.ensure_one()
         # Decide when/how to send lroe_operation
@@ -132,7 +128,9 @@ class LROEOperation(models.Model):
                 new_cr = Registry(self.env.cr.dbname).cursor()
                 env = api.Environment(new_cr, self.env.uid, self.env.context)
                 lroe_operation = env["lroe.operation"].browse(self.id)
-                lroe_operation.write({"state": LROEOperationStateEnum.ERROR.value})
+                lroe_operation.sudo().write(
+                    {"state": LROEOperationStateEnum.ERROR.value}
+                )
                 # If an operation has been sent successfully to the Tax Agency we need
                 # to make sure that the current state is saved in case an exception
                 # occurs in the following invoices.
@@ -151,7 +149,7 @@ class LROEOperation(models.Model):
             self.sudo().jobs_ids |= job
 
     invoice_ids = fields.Many2many(
-        comodel_name="account.invoice",
+        comodel_name="account.move",
         relation="account_invoice_lroe_operation_rel",
         column1="lroe_operation_id",
         column2="invoice_id",
@@ -166,7 +164,6 @@ class LROEOperation(models.Model):
         copy=False,
     )
 
-    @api.multi
     @api.depends(
         "company_id",
         "company_id.tbai_tax_agency_id",
@@ -200,27 +197,23 @@ class LROEOperation(models.Model):
                 )
             record.api_url = url
 
-    @api.multi
     def _cancel_jobs(self):
         for queue in self.sudo().mapped("jobs_ids"):
             if queue.state == "started":
                 return False
             elif queue.state in ("pending", "enqueued", "failed"):
                 queue.unlink()
-                self.write({"state": LROEOperationStateEnum.CANCEL.value})
+                self.sudo().write({"state": LROEOperationStateEnum.CANCEL.value})
         return True
 
-    @api.multi
     def mark_as_error(self):
         self.invoice_ids.set_lroe_state_error()
-        self.write({"state": LROEOperationStateEnum.ERROR.value})
+        self.sudo().write({"state": LROEOperationStateEnum.ERROR.value})
 
-    @api.multi
     def mark_as_warning(self):
         self.invoice_ids.set_lroe_state_recorded_warning()
-        self.write({"state": LROEOperationStateEnum.RECORDED_WARNING.value})
+        self.sudo().write({"state": LROEOperationStateEnum.RECORDED_WARNING.value})
 
-    @api.multi
     def mark_as_recorded(self):
         self.invoice_ids.set_lroe_state_recorded()
-        self.write({"state": LROEOperationStateEnum.RECORDED.value})
+        self.sudo().write({"state": LROEOperationStateEnum.RECORDED.value})
