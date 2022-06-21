@@ -231,8 +231,6 @@ class LROEOperationResponse(models.Model):
                         )
                     ],
                 }
-                for key in kwargs:
-                    tbai_response_dict[key] = kwargs[key]
                 tbai_response_obj = tbai_response_model.create(tbai_response_dict)
             response_line_ids.append(
                 (
@@ -265,8 +263,6 @@ class LROEOperationResponse(models.Model):
                     LROEOperationResponseState.REQUEST_ERROR.value
                 ),
             }
-            for key in kwargs:
-                tbai_response_dict[key] = kwargs[key]
             tbai_response_obj = tbai_response_model.create(tbai_response_dict)
             values.update(
                 {
@@ -359,8 +355,6 @@ class LROEOperationResponse(models.Model):
                             lroe_srv_response_type
                         ),
                     }
-                    for key in kwargs:
-                        tbai_response_dict[key] = kwargs[key]
                     tbai_response_obj = tbai_response_model.create(tbai_response_dict)
                 values.update(
                     {
@@ -431,3 +425,5 @@ class LROEOperationResponseLine(models.Model):
                 response_line.response_message = response_line.code
             elif response_line.description:
                 response_line.response_message = response_line.description
+            else:
+                response_line.response_message = ""
