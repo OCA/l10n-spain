@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2021 Binovo IT Human Project SL
      Copyright 2021 Digital5, S.L.
+     Copyright 2022 Landoo Sistemas de Informacion SL
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
 
-    <record id="view_invoice_form_tbai_batuz" model="ir.ui.view">
-        <field name="name">view.invoice.form.tbai.batuz</field>
-        <field name="model">account.invoice</field>
-        <field name="inherit_id" ref="l10n_es_ticketbai.invoice_form_inherit" />
+    <record id="view_move_form_tbai_batuz" model="ir.ui.view">
+        <field name="name">view.move.form.tbai.batuz</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="l10n_es_ticketbai.view_move_form_inherit" />
         <field name="arch" type="xml">
             <xpath
                 expr="//page[@name='ticketbai']/group[@name='tbai_responses']"
@@ -50,46 +51,43 @@
         </field>
     </record>
 
-    <record
-        id="invoice_supplier_form_inherit_l10n_es_ticketbai_batuz"
-        model="ir.ui.view"
-    >
-        <field name="name">account.invoice.supplier.form</field>
-        <field name="model">account.invoice</field>
-        <field name="inherit_id" ref="account.invoice_supplier_form" />
+    <record id="move_supplier_form_inherit_l10n_es_ticketbai_batuz" model="ir.ui.view">
+        <field name="name">account.move.supplier.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
-            <button name="action_invoice_draft" position="after">
+            <button name="button_draft" position="after">
                 <field name="lroe_state" invisible="1" />
                 <button
                     type="object"
                     string="Resend to LROE"
                     name="action_send_lroe_manually"
                     groups="l10n_es_aeat.group_account_aeat"
-                    attrs="{'invisible': [('lroe_state', 'not in', ['error','recorded_warning'])]}"
+                    attrs="{'invisible': ['|', ('type', 'not in', ['in_invoice', 'in_refund']), ('lroe_state', 'not in', ['error','recorded_warning'])]}"
                 />
             </button>
             <xpath expr="//notebook" position="inside">
                 <page
                     name='lroe_result'
                     string="LROE"
-                    attrs="{'invisible': [('tbai_enabled', '=', False)]}"
+                    attrs="{'invisible': ['|', ('type', 'not in', ['in_invoice', 'in_refund']), ('tbai_enabled', '=', False)]}"
                 >
                     <field name="tbai_enabled" invisible="1" />
                     <group
                         name="lroe_refund"
                         string="Refund"
-                        attrs="{'invisible': [('type', '!=', 'in_refund')]}"
+                        attrs="{'invisible': ['|', '|', ('tbai_enabled', '!=', True), ('tbai_refund_origin_ids', '!=', []), ('type', '!=', 'in_refund')]}"
                     >
                         <field
-                            name="refund_invoice_id"
-                            attrs="{'required': [('type', '=', 'in_refund')]}"
+                            name="reversed_entry_id"
+                            attrs="{'required': [('tbai_enabled', '!=', True), ('type', '=', 'in_refund'), ('tbai_refund_origin_ids', '=', [])], 'readonly': [('state', '!=', 'draft')]}"
                         />
                     </group>
                     <group>
                         <group name="tbai_vat_purchase_regimes" string="VAT Regimes">
                             <field
                                 name="tbai_vat_regime_purchase_key"
-                                attrs="{'required': [('tbai_enabled', '=', True)], 'readonly': [('state', '!=', 'draft')]}"
+                                attrs="{'required': [('tbai_enabled', '=', True), ('type', 'in', ['in_invoice', 'in_refund'])], 'readonly': [('state', '!=', 'draft')]}"
                                 options="{'no_open': True,'no_create': True}"
                             />
                             <field
@@ -104,6 +102,35 @@
                             />
                         </group>
                     </group>
+                    <group
+                        name="tbai_refund_origin_invoices_data"
+                        string="Origin Invoices Data"
+                        colspan="4"
+                        attrs="{'invisible': ['|', '|', ('tbai_enabled', '!=', True), ('reversed_entry_id', '!=', False), ('type', '!=', 'in_refund')]}"
+                    >
+                            <field
+                            name="tbai_refund_origin_ids"
+                            nolabel="1"
+                            attrs="{'readonly': [('state', '!=', 'draft')]}"
+                        >
+                                <tree editable="bottom">
+                                    <field
+                                    name="account_refund_invoice_id"
+                                    invisible="1"
+                                />
+                                    <field
+                                    name="number_prefix"
+                                    string="Invoice Serial"
+                                />
+                                    <field name="number" string="Invoice Number" />
+                                    <field
+                                    name="expedition_date"
+                                    string="Invoice Date"
+                                />
+                                </tree>
+                            </field>
+                    </group>
+
                     <group
                         name="lroe_operations"
                         string="LROE Operations"
@@ -164,20 +191,20 @@
                 </page>
             </xpath>
 
-            <field name="reference" position="attributes">
+            <field name="ref" position="attributes">
                 <attribute
                     name="attrs"
-                >{'required':[('state','not in',['open','paid','cancel'])]}</attribute>
+                >{'required':[('type', 'in', ['in_invoice', 'in_refund']), ('state','not in',['posted','cancel'])]}</attribute>
             </field>
         </field>
     </record>
 
     <record
-        id="view_account_invoice_filter_inherit_l10n_es_ticketbai_batuz"
+        id="view_account_move_filter_inherit_l10n_es_ticketbai_batuz"
         model="ir.ui.view"
     >
-        <field name="name">account.invoice.select.batuz</field>
-        <field name="model">account.invoice</field>
+        <field name="name">account.move.select.batuz</field>
+        <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_account_invoice_filter" />
         <field name="arch" type="xml">
             <filter name="late" position="after">

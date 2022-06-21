@@ -1,6 +1,7 @@
 # Copyright (2021) Binovo IT Human Project SL
 # Copyright 2021 Digital5, S.L.
 # Copyright 2021 KERNET INTERNET Y NUEVAS TECNOLOGIAS S.L.
+# Copyright 2022 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import json
 from collections import OrderedDict
@@ -25,7 +26,6 @@ LROE_COUNTRY_CODE_MAPPING = {
     "MQ": "FR",
     "GF": "FR",
 }
-LROE_VALID_INVOICE_STATES = ["open", "in_payment", "paid"]
 LROE_STATES = [
     ("not_sent", "Not recorded"),
     ("pending", "Registration in LROE planned"),
@@ -68,8 +68,8 @@ def round_by_keys(elem, search_keys, prec=2):
             round_by_keys(value, search_keys)
 
 
-class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+class AccountMove(models.Model):
+    _inherit = "account.move"
 
     lroe_response_line_ids = fields.Many2many(
         comodel_name="lroe.operation.response.line",
@@ -142,20 +142,27 @@ class AccountInvoice(models.Model):
             != self.env.ref("l10n_es_ticketbai_api_batuz.tbai_tax_agency_bizkaia").id
         ):
             return super().create(vals)
-        if "refund" in vals.get("type", ""):
-            if not vals.get("tbai_refund_type"):
-                vals["tbai_refund_type"] = RefundType.differences.value
-            if "tbai_refund_key" not in vals:
-                vals["tbai_refund_key"] = RefundCode.R1.value
+        invoice_type = vals.get("type", False) or self._context.get(
+            "default_type", False
+        )
+        refund_method = (
+            self._context.get("refund_method", False) or invoice_type == "in_refund"
+        )
+        if refund_method and invoice_type:
+            if "in_refund" == invoice_type:
+                if not vals.get("tbai_refund_type", False):
+                    vals["tbai_refund_type"] = RefundType.differences.value
+                if not vals.get("tbai_refund_key", False):
+                    vals["tbai_refund_key"] = RefundCode.R1.value
         if "name" in vals and vals["name"]:
             vals["tbai_description_operation"] = vals["name"]
 
-        invoice = super(AccountInvoice, self).create(vals)
+        invoice = super(AccountMove, self).create(vals)
         if vals.get("fiscal_position_id"):
             invoice.onchange_fiscal_position_id_lroe_vat_regime_key()
         return invoice
 
-    @api.onchange("fiscal_position_id")
+    @api.onchange("fiscal_position_id", "partner_id")
     def onchange_fiscal_position_id_lroe_vat_regime_key(self):
         if self.fiscal_position_id and ("in" in self.type):
             self.tbai_vat_regime_purchase_key = (
@@ -168,7 +175,6 @@ class AccountInvoice(models.Model):
                 self.fiscal_position_id.tbai_vat_regime_purchase_key3.id
             )
 
-    @api.multi
     def _get_chapter_subchapter(self):
         """ Identificamos el capitulo y subcapitulo """
         self.ensure_one()
@@ -182,7 +188,6 @@ class AccountInvoice(models.Model):
             )
             return chapter.code, subchapter.code
 
-    @api.multi
     def _get_lroe_country_code(self):
         self.ensure_one()
         country_code = (
@@ -191,16 +196,12 @@ class AccountInvoice(models.Model):
         ).upper()
         return LROE_COUNTRY_CODE_MAPPING.get(country_code, country_code)
 
-    @api.multi
     def _get_batuz_description(self):
         """Concatenamos la referencia/descripción de la factura con el
         número interno de la misma. De esta forma es más sencillo identificarla
         en el sistema de hacienda."""
         self.ensure_one()
-        description = self.number
-        if self.name:
-            description += " | " + self.name
-        return description
+        return self.name
 
     def batuz_get_supplier_serie_factura(self):
         """Consultamos a hacienda cómo extraer la serie de una factura de proveedor.
@@ -208,23 +209,11 @@ class AccountInvoice(models.Model):
         como serie y el resto como número.
         Aunque la serie no es obligatoria en facturas recibidas,
         sí lo es en las rectificativas, por lo que es necesario informarla siempre."""
-        return self.reference[:3]
-
-    def _get_amount_company_currency(self, amount=0.0):
-        """Convertimos el importe amount a la moneda de la compañía."""
-        if self.currency_id != self.company_id.currency_id:
-            currency = self.currency_id.with_context(
-                date=self._get_currency_rate_date(), company_id=self.company_id.id
-            )
-            amount_cur = currency.compute(amount, self.company_id.currency_id)
-        else:
-            amount_cur = amount
-        return amount_cur
+        return self.ref[:3]
 
     def batuz_get_supplier_num_factura(self):
-        return self.reference[3:]
+        return self.ref[3:]
 
-    @api.multi
     def _get_lroe_identifier(self):
         """Get the LROE structure for a partner identifier.
         [('1', 'National'), ('2', 'Intracom'), ('3', 'Export')]
@@ -242,20 +231,19 @@ class AccountInvoice(models.Model):
             if country_code != "ES":
                 id_type = "06" if vat == "NO_DISPONIBLE" else "02"
                 res["IDOtro"] = OrderedDict(
-                    [("CodigoPais", country_code), ("IDType", id_type), ("ID", vat),]
+                    [("CodigoPais", country_code), ("IDType", id_type), ("ID", vat)]
                 )
             else:
                 res["NIF"] = vat[2:] if vat.startswith(country_code) else vat
         elif idtype:
             res["IDOtro"] = OrderedDict(
-                [("CodigoPais", country_code), ("IDType", idtype), ("ID", vat),]
+                [("CodigoPais", country_code), ("IDType", idtype), ("ID", vat)]
             )
         res[
             "ApellidosNombreRazonSocial"
         ] = partner.tbai_get_value_apellidos_nombre_razon_social()
         return res
 
-    @api.multi
     def _is_lroe_simplified_invoice(self):
         """Inheritable method to allow control when an
         invoice are simplified or normal"""
@@ -263,20 +251,17 @@ class AccountInvoice(models.Model):
         is_simplified = partner.lroe_simplified_invoice
         return is_simplified
 
-    @api.multi
     def _get_operation_date(self):
         """ Inheritable method to allow set operation date of an invoice """
         self.ensure_one()
         return False
 
-    @api.multi
     def _get_last_move_number(self):
         """Inheritable method to allow set the last number of the move when an
         invoice is move summary"""
         self.ensure_one()
         return False
 
-    @api.multi
     def _change_date_format(self, date):
         if not date:
             return False
@@ -284,10 +269,9 @@ class AccountInvoice(models.Model):
         new_date = datetime_object.strftime("%d-%m-%Y")
         return new_date
 
-    @api.multi
     def _get_lroe_invoice_header(self):
         self.ensure_one()
-        invoice_date = self._change_date_format(self.date_invoice)
+        invoice_date = self._change_date_format(self.invoice_date)
         operation_date = self._change_date_format(self._get_operation_date())
         reception_date = self._change_date_format(self.date)
         tipo_factura = "F2" if self._is_lroe_simplified_invoice() else "F1"
@@ -304,51 +288,53 @@ class AccountInvoice(models.Model):
             header["FechaOperacion"] = operation_date
         header["FechaRecepcion"] = reception_date
         header["TipoFactura"] = tipo_factura
-        if self.type == "in_refund" and self.refund_invoice_id:
-            origin = self.refund_invoice_id
-            origin_date = self._change_date_format(self.refund_invoice_id.date_invoice)
+        if self.type == "in_refund":
             header["FacturaRectificativa"] = OrderedDict(
-                [("Codigo", self.tbai_refund_key), ("Tipo", self.tbai_refund_type),]
+                [("Codigo", self.tbai_refund_key), ("Tipo", self.tbai_refund_type)]
             )
-            if self.tbai_refund_type == "S":
-                header["FacturaRectificativa"][
-                    "ImporteRectificacionSustitutiva"
-                ] = OrderedDict(
+            if self.reversed_entry_id:
+                origin = self.reversed_entry_id
+                origin_date = self._change_date_format(
+                    self.reversed_entry_id.invoice_date
+                )
+                header["FacturasRectificadasSustituidas"] = OrderedDict(
                     [
-                        ("BaseRectificada", abs(origin.amount_untaxed_signed)),
                         (
-                            "CuotaRectificada",
-                            abs(
-                                origin._get_amount_company_currency(origin.amount_total)
-                                - origin.amount_untaxed_signed
+                            "IDFacturaRectificadaSustituida",
+                            OrderedDict(
+                                [
+                                    (
+                                        "SerieFactura",
+                                        origin.batuz_get_supplier_serie_factura()[:20],
+                                    ),
+                                    (
+                                        "NumFactura",
+                                        origin.batuz_get_supplier_num_factura()[:20],
+                                    ),
+                                    ("FechaExpedicionFactura", origin_date),
+                                ]
                             ),
                         ),
-                        # (CuotaRecargoRectificada, False),
                     ]
                 )
-            header["FacturasRectificadasSustituidas"] = OrderedDict(
-                [
-                    (
-                        "IDFacturaRectificadaSustituida",
-                        OrderedDict(
-                            [
-                                (
-                                    "SerieFactura",
-                                    origin.batuz_get_supplier_serie_factura()[:20],
-                                ),
-                                (
-                                    "NumFactura",
-                                    origin.batuz_get_supplier_num_factura()[:20],
-                                ),
-                                ("FechaExpedicionFactura", origin_date),
-                            ]
-                        ),
-                    ),
-                ]
-            )
+            elif self.tbai_refund_origin_ids:
+                origins = list()
+                for refund_origin_id in self.tbai_refund_origin_ids:
+                    vals = list()
+                    if refund_origin_id.number_prefix:
+                        vals.append(("SerieFactura", refund_origin_id.number_prefix))
+                    vals.append(("NumFactura", refund_origin_id.number))
+                    vals.append(
+                        ("FechaExpedicionFactura", refund_origin_id.expedition_date)
+                    )
+
+                    origins.append(
+                        ("IDFacturaRectificadaSustituida", OrderedDict(vals)),
+                    )
+                header["FacturasRectificadasSustituidas"] = OrderedDict(origins)
+
         return header
 
-    @api.multi
     def _get_lroe_purchase_key_codes(self):
         self.ensure_one()
         regime_keys = (
@@ -365,7 +351,6 @@ class AccountInvoice(models.Model):
             res["IDClave"].append({"ClaveRegimenIvaOpTrascendencia": key})
         return res
 
-    @api.multi
     def _get_lroe_taxes_map(self, codes):
         """Return the codes that correspond to that LROE map line codes.
 
@@ -376,18 +361,8 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         tbai_maps = self.env["tbai.tax.map"].search([("code", "in", codes)])
         tax_templates = tbai_maps.mapped("tax_template_ids")
-        return (
-            self.env["l10n.es.aeat.report"]
-            .new({"company_id": self.company_id.id})
-            .get_taxes_from_templates(tax_templates)
-        )
+        return self.company_id.get_taxes_from_templates(tax_templates)
 
-    @api.multi
-    def _get_lroe_sign(self):
-        self.ensure_one()
-        return -1.0 if self.tbai_refund_type == "I" and "refund" in self.type else 1.0
-
-    @api.multi
     def _get_lroe_tax_line_req(self, tax):
         """Get the invoice tax line for 'Recargo equivalencia'.
 
@@ -397,46 +372,42 @@ class AccountInvoice(models.Model):
         """
         self.ensure_one()
         taxes_re = self._get_lroe_taxes_map(["RE"])
-        inv_lines = self.invoice_line_ids.filtered(
-            lambda x: tax in x.mapped("invoice_line_tax_ids")
+        re_lines = self.line_ids.filtered(
+            lambda x: tax in x.tax_ids and x.tax_ids & taxes_re
         )
-        re_tax = inv_lines.mapped("invoice_line_tax_ids").filtered(
-            lambda x: x in taxes_re
-        )
+        re_tax = re_lines.mapped("tax_ids") & taxes_re
         if len(re_tax) > 1:
             raise exceptions.UserError(
                 _("There's a mismatch in taxes for RE. Check them.")
             )
-        return self.tax_line_ids.filtered(lambda x: x.tax_id == re_tax)
+        return re_tax
 
     @api.model
-    def _get_lroe_tax_dict(self, tax_line, sign, deductible=True):
+    def _get_lroe_tax_dict(self, tax_line, tax_lines, deductible=True):
         """Get the LROE tax dictionary for the passed tax line.
         :param self: Single invoice record.
         :param tax_line: Tax line that is being analyzed.
-        :param sign: Sign of the operation (only refund by differences is
-          negative).
         :param deductible: is deductible or not
         :return: A dictionary with the corresponding LROE tax values.
         """
-        tax = tax_line.tax_id
+        tax = tax_line["tax"]
         if tax.amount_type == "group":
             tax_type = abs(tax.children_tax_ids.filtered("amount")[:1].amount)
         else:
             tax_type = abs(tax.amount)
 
-        base = self._get_amount_company_currency(tax_line.base)
-        cuota = self._get_amount_company_currency(tax_line.amount_total)
+        base = tax_line["base"]
+        cuota = tax_line["amount"]
 
         if self.company_id.lroe_model == "240":
             tax_dict = OrderedDict(
                 [
                     ("CompraBienesCorrientesGastosBienesInversion", "C"),  # C, G o I
                     ("InversionSujetoPasivo", "N"),
-                    ("BaseImponible", sign * base),
+                    ("BaseImponible", base),
                     ("TipoImpositivo", str(tax_type)),
-                    ("CuotaIVASoportada", sign * cuota),
-                    ("CuotaIVADeducible", (sign * cuota) * int(deductible)),
+                    ("CuotaIVASoportada", cuota),
+                    ("CuotaIVADeducible", cuota * int(deductible)),
                 ]
             )
         else:
@@ -448,32 +419,32 @@ class AccountInvoice(models.Model):
                     # TODO: 140 - ReferenciaBien
                     ("InversionSujetoPasivo", "N"),
                     # TODO: 140 - OperacionEnRecargoDeEquivalenciaORegimenSimplificado
-                    ("BaseImponible", sign * base),
+                    ("BaseImponible", base),
                     ("TipoImpositivo", str(tax_type)),
-                    ("CuotaIVASoportada", sign * cuota),
-                    ("CuotaIVADeducible", (sign * cuota) * int(deductible)),
+                    ("CuotaIVASoportada", cuota),
+                    ("CuotaIVADeducible", cuota * int(deductible)),
                     # TODO: 140 - ImporteGastoIRPF
                     # TODO: 140 - CriterioCobrosYPagos
                 ]
             )
             # Recargo de equivalencia
-            re_tax_line = self._get_lroe_tax_line_req(tax)
-            if re_tax_line:
-                tax_dict["TipoRecargoEquivalencia"] = abs(re_tax_line.tax_id.amount)
-                tax_dict["CuotaRecargoEquivalencia"] = sign * re_tax_line.amount
+            req_tax = self._get_lroe_tax_line_req(tax)
+            if req_tax:
+                tax_dict["TipoRecargoEquivalencia"] = req_tax.amount
+                tax_dict["CuotaRecargoEquivalencia"] = tax_lines[req_tax]["amount"]
         return tax_dict
 
-    @api.multi
-    def _get_lroe_in_taxes(self, sign):
+    def _get_lroe_in_taxes(self):
         """Get taxes for purchase invoices
         :param self: invoice record
         """
         self.ensure_one()
         lroe_model = self.company_id.lroe_model
-        if lroe_model == "240":
-            taxes_dict = {"IVA": {"DetalleIVA": []}}
-        elif lroe_model == "140":
-            taxes_dict = {"RentaIVA": {"DetalleRentaIVA": []}}
+        taxes_dict = (
+            {"IVA": {"DetalleIVA": []}}
+            if lroe_model == "240"
+            else {"RentaIVA": {"DetalleRentaIVA": []}}
+        )
         # Facturas Recibidas Servicios
         taxes_frs = self._get_lroe_taxes_map(["FRS"])
         # Facturas Recibidas Bienes Corrientes
@@ -490,17 +461,23 @@ class AccountInvoice(models.Model):
         taxes_frnd = self._get_lroe_taxes_map(["FRND"])
         # Impuestos no incluidos en Importe Total
         taxes_not_in_total = self._get_lroe_taxes_map(["NotIncludedInTotal"])
+        # Impuestos no incluidos en Importe Total (negativos)
+        taxes_not_in_total_negative = self._get_lroe_taxes_map(
+            ["NotIncludedInTotalNegative"]
+        )
         tax_amount = 0.0
         not_in_amount_total = 0.0
-        for tax_line in self.tax_line_ids:
-            tax = tax_line.tax_id
-            deductible = False
-            if tax in taxes_frisp + taxes_frs + taxes_frbc + taxes_frbi:
-                deductible = True
-            tax_dict = self._get_lroe_tax_dict(tax_line, sign, deductible)
+        tax_lines = self._get_tax_info().values()
+        for tax_line in tax_lines:
+            tax = tax_line["tax"]
+            deductible = tax in taxes_frisp + taxes_frs + taxes_frbc + taxes_frbi
+            tax_dict = self._get_lroe_tax_dict(tax_line, tax_lines, deductible)
             if tax in taxes_not_in_total:
-                amount = self._get_amount_company_currency(tax_line.amount_total)
+                amount = tax_line["amount"]
                 not_in_amount_total += amount
+            elif tax in taxes_not_in_total_negative:
+                amount = tax_line["amount"]
+                not_in_amount_total -= amount
 
             if tax in taxes_frisp:
                 tax_dict["InversionSujetoPasivo"] = "S"
@@ -518,16 +495,15 @@ class AccountInvoice(models.Model):
                 # No informar de DetalleIVA sobre IRPF
                 continue
 
-            if lroe_model == "240":
-                if tax in taxes_frbc:
-                    tax_dict["CompraBienesCorrientesGastosBienesInversion"] = "C"
-                elif tax in taxes_frs:
-                    tax_dict["CompraBienesCorrientesGastosBienesInversion"] = "G"
-                elif tax in taxes_frbi:
-                    tax_dict["CompraBienesCorrientesGastosBienesInversion"] = "I"
+            if tax in taxes_frbc and lroe_model == "240":
+                tax_dict["CompraBienesCorrientesGastosBienesInversion"] = "C"
+            elif tax in taxes_frs and lroe_model == "240":
+                tax_dict["CompraBienesCorrientesGastosBienesInversion"] = "G"
+            elif tax in taxes_frbi and lroe_model == "240":
+                tax_dict["CompraBienesCorrientesGastosBienesInversion"] = "I"
 
             if tax in taxes_frisp + taxes_frs + taxes_frbc:
-                tax_amount += self._get_amount_company_currency(tax_line.amount_total)
+                tax_amount += tax_line["amount"]
 
             if tax in taxes_frns:
                 tax_dict.pop("TipoImpositivo")
@@ -550,18 +526,37 @@ class AccountInvoice(models.Model):
                 taxes_dict["RentaIVA"]["DetalleRentaIVA"].append(tax_dict)
         return taxes_dict, tax_amount, not_in_amount_total
 
-    @api.multi
+    def _get_tax_info(self):
+        self.ensure_one()
+        res = {}
+        for line in self.line_ids:
+            sign = -1 if self.type[:3] == "out" else 1
+            for tax in line.tax_ids:
+                res.setdefault(tax, {"tax": tax, "base": 0, "amount": 0})
+                res[tax]["base"] += line.balance * sign
+            if line.tax_line_id:
+                tax = line.tax_line_id
+                if "invoice" in self.type:
+                    repartition_lines = tax.invoice_repartition_line_ids
+                else:
+                    repartition_lines = tax.refund_repartition_line_ids
+                if (
+                    len(repartition_lines) > 2
+                    and line.tax_repartition_line_id.factor_percent < 0
+                ):
+                    # taxes with more than one "tax" repartition line must be discarded
+                    continue
+                res.setdefault(tax, {"tax": tax, "base": 0, "amount": 0})
+                res[tax]["amount"] += line.balance * sign
+        return res
+
     def _get_lroe_invoice_data(self, amount_total):
         self.ensure_one()
         res = OrderedDict(
             [
                 ("DescripcionOperacion", self._get_batuz_description()[:250]),
                 ("Claves", self._get_lroe_claves()),
-                (
-                    "ImporteTotalFactura",
-                    amount_total
-                    or self._get_amount_company_currency(self.amount_total),
-                ),
+                ("ImporteTotalFactura", amount_total or self.amount_total),
                 # Base imponible a coste (para grupos de IVA – nivel avanzado (240))
                 # ("BaseImponibleACoste", False),
             ]
@@ -569,7 +564,6 @@ class AccountInvoice(models.Model):
         return res
 
     # SPECIFIC LROE CHAPTER METHODS
-    @api.multi
     def _get_lroe_140_2_1_dict(self, cancel=False):
         """
         :param cancel: It indicates if the dictionary is for sending a
@@ -578,7 +572,7 @@ class AccountInvoice(models.Model):
         """
         self.ensure_one()
         if cancel:
-            invoice_date = self._change_date_format(self.date_invoice)
+            invoice_date = self._change_date_format(self.invoice_date)
             lroe_identifier = self._get_lroe_identifier()
             lroe_identifier.pop("ApellidosNombreRazonSocial")
             id_gasto = OrderedDict(
@@ -605,12 +599,8 @@ class AccountInvoice(models.Model):
             inv_dict = OrderedDict([("Gasto", id_gasto)])
         else:
             # Check if refund type is "By differences". Negative amounts!
-            sign = self._get_lroe_sign()
-            taxes_dict, tax_amount, not_in_amount_total = self._get_lroe_in_taxes(sign)
-            amount_total = (
-                abs(self._get_amount_company_currency(self.amount_total))
-                - not_in_amount_total
-            ) * sign
+            taxes_dict, tax_amount, not_in_amount_total = self._get_lroe_in_taxes()
+            amount_total = -self.amount_total_signed - not_in_amount_total
             inv_dict = OrderedDict(
                 [
                     (
@@ -632,7 +622,6 @@ class AccountInvoice(models.Model):
             )
         return inv_dict
 
-    @api.multi
     def _get_lroe_240_2_dict(self, cancel=False):
         """
         :param cancel: It indicates if the dictionary is for sending a
@@ -641,7 +630,7 @@ class AccountInvoice(models.Model):
         """
         self.ensure_one()
         if cancel:
-            invoice_date = self._change_date_format(self.date_invoice)
+            invoice_date = self._change_date_format(self.invoice_date)
             lroe_identifier = self._get_lroe_identifier()
             lroe_identifier.pop("ApellidosNombreRazonSocial")
             last_number = self._get_last_move_number()
@@ -657,12 +646,8 @@ class AccountInvoice(models.Model):
             )
         else:
             # Check if refund type is "By differences". Negative amounts!
-            sign = self._get_lroe_sign()
-            taxes_dict, tax_amount, not_in_amount_total = self._get_lroe_in_taxes(sign)
-            amount_total = (
-                abs(self._get_amount_company_currency(self.amount_total))
-                - not_in_amount_total
-            ) * sign
+            taxes_dict, tax_amount, not_in_amount_total = self._get_lroe_in_taxes()
+            amount_total = -self.amount_total_signed - not_in_amount_total
             inv_dict = OrderedDict(
                 [
                     (
@@ -687,36 +672,33 @@ class AccountInvoice(models.Model):
     # COMMON LROE METHODS
     @api.model
     def _prepare_lroe_operation_values(
-        self, company_id=False, type=None, chapter=None, subchapter=None
+        self, company_id=False, operation_type=None, chapter=None, subchapter=None
     ):
         """
         Buscamos lroe.operation pendiente de envío con misma operacion (type)
         y mismo capítulo + subcapítulo
         :param company_id: (int) company id
-        :param type: LROEOperationEnum.value
+        :param operation_type: LROEOperationEnum.value
         :param chapter: LROEChapterEnum.value
         :param subchapter: LROEChapterEnum.value
         :return: lroe.operation object if any
         """
-        if not chapter or not type:
+        if not chapter or not operation_type:
             raise exceptions.ValidationError(
                 _("Chapter and type are required for search a pending LROE Operation")
             )
         chapter_id = self.env["lroe.chapter"].search([("code", "=", chapter)], limit=1)
         res = {
             "lroe_chapter_id": chapter_id.id,
-            "type": type.value,
+            "type": operation_type.value,
         }
         if subchapter:
             subchapter_id = self.env["lroe.chapter"].search([("code", "=", subchapter)])
-            res.update(
-                {"lroe_subchapter_id": subchapter_id.id,}
-            )
+            res.update({"lroe_subchapter_id": subchapter_id.id})
         if company_id:
             res.update({"company_id": company_id})
         return res
 
-    @api.multi
     def _get_lroe_operation(self, operation_type=None):
         """
         Creamos lroe.operation con operation_type y mismo capítulo + subcapítulo
@@ -728,14 +710,13 @@ class AccountInvoice(models.Model):
         chapter, subchapter = self._get_chapter_subchapter()
         vals = self._prepare_lroe_operation_values(
             company_id=self.company_id.id,
-            type=operation_type,
+            operation_type=operation_type,
             chapter=chapter,
             subchapter=subchapter,
         )
         lroe_operation = lroe_model.sudo().create(vals)
         return lroe_operation
 
-    @api.multi
     def _prepare_invoice_for_lroe(self, operation_type=None):
         """Se genera y guarda el diccionario correspondiente a la factura en base al
         capítulo/subcapítulo. Se crea un objeto lroe.operation por cada factura.
@@ -781,7 +762,6 @@ class AccountInvoice(models.Model):
             invoice.set_lroe_state_pending()
             lroe_operation.process()
 
-    @api.multi
     def action_send_lroe_manually(self):
         lroe_invoices = self.sudo().filtered(
             lambda x: x.tbai_enabled
@@ -789,7 +769,7 @@ class AccountInvoice(models.Model):
                 x.type == "in_invoice"
                 or (
                     x.type == "in_refund"
-                    and x.refund_invoice_id
+                    and (x.reversed_entry_id or x.tbai_refund_origin_ids)
                     and x.tbai_refund_type
                     in (RefundType.differences.value, RefundType.substitution.value)
                 )
@@ -810,37 +790,29 @@ class AccountInvoice(models.Model):
                 )
 
     # LROE STATE MANAGEMENT
-    @api.multi
     def set_lroe_state_pending(self):
         self.write({"lroe_state": "pending"})
 
-    @api.multi
     def set_lroe_state_error(self):
         self.write({"lroe_state": "error"})
 
-    @api.multi
     def set_lroe_state_recorded(self):
         self.write({"lroe_state": "recorded"})
 
-    @api.multi
     def set_lroe_state_recorded_warning(self):
         self.write({"lroe_state": "recorded_warning"})
 
-    @api.multi
     def set_lroe_state_recorded_modified(self):
         self.write({"lroe_state": "recorded_modified"})
 
-    @api.multi
     def set_lroe_state_cancel(self):
         self.write({"lroe_state": "cancel"})
 
-    @api.multi
     def set_lroe_state_cancel_modified(self):
         self.write({"lroe_state": "cancel_modified"})
 
     # INHERITED INVOICE METHODS
-    @api.multi
-    def action_cancel(self):
+    def button_cancel(self):
         if not self.mapped("lroe_operation_ids")._cancel_jobs():
             raise exceptions.Warning(
                 _(
@@ -848,17 +820,15 @@ class AccountInvoice(models.Model):
                     " there is a job running!"
                 )
             )
-        res = super().action_cancel()
+        res = super().button_cancel()
         lroe_invoices = self.sudo().filtered(
             lambda x: x.tbai_enabled
-            and x.date
-            and x.date >= x.journal_id.tbai_active_date
             and x.lroe_state not in ("error")
             and (
                 x.type == "in_invoice"
                 or (
                     x.type == "in_refund"
-                    and x.refund_invoice_id
+                    and (x.reversed_entry_id or x.tbai_refund_origin_ids)
                     and x.tbai_refund_type
                     in (RefundType.differences.value, RefundType.substitution.value)
                 )
@@ -874,7 +844,6 @@ class AccountInvoice(models.Model):
         lroe_invoices._prepare_invoice_for_lroe(operation_type=LROEOperationEnum.cancel)
         return res
 
-    @api.multi
     def action_invoice_draft(self):
         if not self.sudo().mapped("lroe_operation_ids")._cancel_jobs():
             raise exceptions.Warning(
@@ -885,18 +854,15 @@ class AccountInvoice(models.Model):
             )
         return super().action_invoice_draft()
 
-    @api.multi
-    def invoice_validate(self):
-        res = super(AccountInvoice, self).invoice_validate()
+    def post(self):
+        res = super(AccountMove, self).post()
         lroe_invoices = self.sudo().filtered(
             lambda x: x.tbai_enabled
-            and x.date
-            and x.date >= x.journal_id.tbai_active_date
             and (
                 x.type == "in_invoice"
                 or (
                     x.type == "in_refund"
-                    and x.refund_invoice_id
+                    and (x.reversed_entry_id or x.tbai_refund_origin_ids)
                     and x.tbai_refund_type
                     in (RefundType.differences.value, RefundType.substitution.value)
                 )
@@ -918,19 +884,20 @@ class AccountInvoice(models.Model):
         return res
 
     @api.model
-    def _prepare_refund(
-        self, invoice, date_invoice=None, date=None, description=None, journal_id=None
-    ):
-        res = super(AccountInvoice, self)._prepare_refund(
-            invoice,
-            date_invoice=date_invoice,
-            date=date,
-            description=description,
-            journal_id=journal_id,
+    def _reverse_moves(self, default_values_list=None, cancel=False):
+        # OVERRIDE
+        if not default_values_list:
+            default_values_list = [{} for move in self]
+        for move, default_values in zip(self, default_values_list):
+            extra_dict = {}
+            supplier_invoice_number_refund = move.env.context.get(
+                "batuz_supplier_invoice_number", False
+            )
+            if supplier_invoice_number_refund:
+                extra_dict["ref"] = supplier_invoice_number_refund
+            if extra_dict:
+                default_values.update(extra_dict)
+        res = super()._reverse_moves(
+            default_values_list=default_values_list, cancel=cancel,
         )
-        supplier_invoice_number_refund = self.env.context.get(
-            "batuz_supplier_invoice_number"
-        )
-        if supplier_invoice_number_refund:
-            res["reference"] = supplier_invoice_number_refund
         return res
