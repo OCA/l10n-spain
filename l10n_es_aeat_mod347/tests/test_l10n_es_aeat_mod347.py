@@ -34,12 +34,14 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
         cls.customer_4 = cls.customer.copy(
             {"name": "Test customer 4", "vat": "ESB29805314"}
         )
+        # TODO: Zip set is not necessary https://github.com/odoo/odoo/pull/94333
         cls.customer_5 = cls.customer.copy(
             {
                 "name": "Test customer 5",
                 # For testing spanish states mapping
                 "country_id": cls.env.ref("base.es").id,
                 "vat": "12345678Z",
+                "zip": 28001,
             }
         )
         cls.customer_6 = cls.customer.copy(
@@ -47,6 +49,7 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
                 "name": "Test customer 6",
                 "country_id": cls.env.ref("base.es").id,
                 "vat": "B29805314",
+                "zip": 28001,
             }
         )
         cls.supplier_2 = cls.supplier.copy({"name": "Test supplier 2"})
