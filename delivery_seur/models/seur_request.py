@@ -118,6 +118,13 @@ class SeurRequest(object):
         else:
             # Para el resto es obligado
             goods = "400"
+        # peso
+        if self.record.package_ids:
+            weight = 0
+            for package in self.record.package_ids:
+                weight += max(package.shipping_weight, package.weight)
+        else:
+            weight = self.record.shipping_weight
         return {
             "ci": self.integration_code,
             "nif": self.vat,
@@ -130,10 +137,8 @@ class SeurRequest(object):
             # below that weight will be invoiced with a minimum of 1kg.
             # http://ayuda.seur.com
             # /faq/tamano-peso-de-los-paquetes-a-enviar-a-traves-de-seur-com
-            "total_kilos": self.record.shipping_weight or 1,
-            "pesoBulto": (
-                (self.record.shipping_weight / self.record.number_of_packages or 1) or 1
-            ),
+            "total_kilos": weight or 1,
+            "pesoBulto": ((weight / self.record.number_of_packages or 1) or 1),
             "observaciones": self.record.note,
             "referencia_expedicion": self.record.name,
             "ref_bulto": "",
