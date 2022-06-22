@@ -5,13 +5,9 @@
     "version": "12.0.1.0.0",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
-    "author": "Landoo Sistemas de Información S.L, "
-              "Odoo Community Association (OCA)",
+    "author": "Landoo Sistemas de Información S.L, " "Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "depends": [
-        "l10n_es_ticketbai_batuz",
-        "l10n_es_dua",
-    ],
+    "depends": ["l10n_es_ticketbai_batuz", "l10n_es_dua",],
     "data": [
         "data/account_fiscal_position_template_data.xml",
         "data/tax_code_map_dua_ticketbai_data.xml",
