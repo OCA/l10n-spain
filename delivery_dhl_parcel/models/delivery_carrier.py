@@ -93,8 +93,14 @@ class DeliveryCarrier(models.Model):
         :returns dict values for the connector
         """
         self.ensure_one()
+        if picking.package_ids:
+            weight = 0
+            for package in picking.package_ids:
+                weight += max(package.shipping_weight, package.weight)
+        else:
+            weight = picking.shipping_weight
         # El peso debe tener 2 decimales para evitar errores en el cierre del día
-        weight = round(picking.shipping_weight, 2)
+        weight = round(weight, 2)
         # El peso del envío tiene que ser como mínimo 1 kilo o como máximo 99999 kilos
         if float_compare(weight, 1, precision_digits=2) == -1:
             weight = 1
