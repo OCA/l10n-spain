@@ -4,8 +4,8 @@
 from odoo import api, fields, models, tools
 
 
-class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+class AccountMove(models.Model):
+    _inherit = "account.move"
 
     tbai_dua_invoice = fields.Boolean(
         "TBAI DUA Invoice", compute="_compute_dua_invoice"
@@ -31,18 +31,14 @@ class AccountInvoice(models.Model):
             .id
         )
 
-    @api.depends("company_id", "fiscal_position_id", "tax_line_ids")
+    @api.depends("company_id", "fiscal_position_id", "invoice_line_ids.tax_ids")
     def _compute_dua_invoice(self):
         for invoice in self:
-            tbai_dua_map = self.env["tbai.tax.map"].search([("code", "=", "DUA")])
-            dua_taxes = invoice.company_id.get_taxes_from_templates(
-                tbai_dua_map.mapped("tax_template_ids")
-            )
-            invoice.tbai_dua_invoice = invoice.tax_line_ids.filtered(
-                lambda x: x.tax_id in dua_taxes
+            taxes = invoice._get_lroe_taxes_map(["DUA"])
+            invoice.tbai_dua_invoice = invoice.invoice_line_ids.filtered(
+                lambda x: any([tax in taxes for tax in x.tax_ids])
             )
 
-    @api.multi
     def _get_lroe_invoice_header(self):
         self.ensure_one()
         header = super()._get_lroe_invoice_header()
@@ -56,10 +52,9 @@ class AccountInvoice(models.Model):
             header["TipoFactura"] = "F6"
         return header
 
-    @api.multi
-    def _get_lroe_in_taxes(self, sign):
+    def _get_lroe_in_taxes(self):
         self.ensure_one()
-        taxes_dict, tax_amount, not_in_amount_total = super()._get_lroe_in_taxes(sign)
+        taxes_dict, tax_amount, not_in_amount_total = super()._get_lroe_in_taxes()
         dua_fiscal_position_id = self._get_dua_fiscal_position_id(self.company_id)
         if (
             self.type == "in_invoice"
@@ -67,8 +62,9 @@ class AccountInvoice(models.Model):
             and not self.tbai_dua_invoice
         ):
             lroe_model = self.company_id.lroe_model
-            for tax_line in self.tax_line_ids:
-                tax_dict = self._get_lroe_tax_dict(tax_line, sign)
+            tax_lines = self._get_tax_info().values()
+            for tax_line in tax_lines:
+                tax_dict = self._get_lroe_tax_dict(tax_line, tax_lines)
                 tax_dict.pop("CuotaIVASoportada")
                 if lroe_model == "240":
                     taxes_dict["IVA"]["DetalleIVA"].append(tax_dict)
