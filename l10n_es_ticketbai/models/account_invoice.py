@@ -213,9 +213,17 @@ class AccountInvoice(models.Model):
             'number': self.tbai_get_value_num_factura(),
             'expedition_date': self.tbai_get_value_fecha_expedicion_factura(),
             'expedition_hour': self.tbai_get_value_hora_expedicion_factura(),
+            'simplified_invoice': self.tbai_get_value_simplified_invoice(),
             'substitutes_simplified_invoice':
                 self.tbai_get_value_factura_emitida_sustitucion_simplificada(),
-            'tbai_customer_ids': [(0, 0, {
+            'description': self.tbai_description_operation[:250],
+            'amount_total': "%.2f" % self.amount_total_company_signed,
+            'vat_regime_key': self.tbai_vat_regime_key.code,
+            'vat_regime_key2': self.tbai_vat_regime_key2.code,
+            'vat_regime_key3': self.tbai_vat_regime_key3.code
+        }
+        if partner and not partner.aeat_anonymous_cash_customer:
+            vals['tbai_customer_ids'] = [(0, 0, {
                 'name': partner.tbai_get_value_apellidos_nombre_razon_social(),
                 'country_code': partner.tbai_get_partner_country_code(),
                 'nif': partner.tbai_get_value_nif(),
@@ -224,13 +232,7 @@ class AccountInvoice(models.Model):
                 'idtype': partner.tbai_partner_idtype,
                 'address': partner.tbai_get_value_direccion(),
                 'zip': partner.zip
-            })],
-            'description': self.tbai_description_operation[:250],
-            'amount_total': "%.2f" % self.amount_total_company_signed,
-            'vat_regime_key': self.tbai_vat_regime_key.code,
-            'vat_regime_key2': self.tbai_vat_regime_key2.code,
-            'vat_regime_key3': self.tbai_vat_regime_key3.code
-        }
+            })]
         retencion_soportada = self.tbai_get_value_retencion_soportada()
         if retencion_soportada:
             vals['tax_retention_amount_total'] = retencion_soportada
@@ -447,6 +449,13 @@ class AccountInvoice(models.Model):
         date = fields.Datetime.context_timestamp(self, fields.Datetime.from_string(
             invoice_datetime))
         return date.strftime("%H:%M:%S")
+
+    def tbai_get_value_simplified_invoice(self):
+        if self.partner_id.aeat_anonymous_cash_customer:
+            res = SiNoType.S.value
+        else:
+            res = SiNoType.N.value
+        return res
 
     def tbai_get_value_factura_emitida_sustitucion_simplificada(self):
         if self.tbai_substitute_simplified_invoice:
