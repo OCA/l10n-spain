@@ -30,6 +30,9 @@ class AccountMoveL10nEsFacturaeListener(Component):
             if not backend:
                 continue
             exchange_type = "l10n_es_facturae"
+            # We check fields now to raise an error to the user, otherwise the
+            # error will be raising silently in the queue job.
+            record.validate_facturae_fields()
             if record._has_exchange_record(exchange_type, backend):
                 continue
             exchange_record = backend.create_record(
