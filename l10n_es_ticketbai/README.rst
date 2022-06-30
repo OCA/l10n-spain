@@ -70,10 +70,6 @@ Usage
 * Factura de cliente
 
   * Se genera el fichero y se firma al validar la factura.
-* Factura de cliente simplificada: marcando el cliente como cliente anónimo
-
-  * Se genera el fichero como factura simplificada
-  * No se envían datos del cliente
 * Factura de cliente rectificativa
 
   * Diferencias (total o parcial)
