@@ -245,10 +245,18 @@ class AccountMove(models.Model):
             "number": self.tbai_get_value_num_factura(),
             "expedition_date": self.tbai_get_value_fecha_exp_factura(),
             "expedition_hour": self.tbai_get_value_hora_exp_factura(),
+            "simplified_invoice": self.tbai_get_value_simplified_invoice(),
             "substitutes_simplified_invoice": (
                 self.tbai_get_value_factura_emitida_sustitucion_simplificada()
             ),
-            "tbai_customer_ids": [
+            "description": self.tbai_description_operation[:250],
+            "amount_total": "%.2f" % self.amount_total_signed,
+            "vat_regime_key": self.tbai_vat_regime_key.code,
+            "vat_regime_key2": self.tbai_vat_regime_key2.code,
+            "vat_regime_key3": self.tbai_vat_regime_key3.code,
+        }
+        if partner and not partner.aeat_anonymous_cash_customer:
+            vals["tbai_customer_ids"] = [
                 (
                     0,
                     0,
@@ -264,13 +272,7 @@ class AccountMove(models.Model):
                         "zip": partner.zip,
                     },
                 )
-            ],
-            "description": self.tbai_description_operation[:250],
-            "amount_total": "%.2f" % self.amount_total_signed,
-            "vat_regime_key": self.tbai_vat_regime_key.code,
-            "vat_regime_key2": self.tbai_vat_regime_key2.code,
-            "vat_regime_key3": self.tbai_vat_regime_key3.code,
-        }
+            ]
         retencion_soportada = self.tbai_get_value_retencion_soportada()
         if retencion_soportada:
             vals["tax_retention_amount_total"] = retencion_soportada
@@ -316,59 +318,59 @@ class AccountMove(models.Model):
         exclude_taxes = self.company_id.get_taxes_from_templates(
             tbai_maps.mapped("tax_template_ids")
         )
-        for tax in self.invoice_line_ids.filtered(lambda x: x.tax_ids).mapped(
-            "tax_ids"
+        for tax in (
+            self.invoice_line_ids.filtered(lambda x: x.tax_ids)
+            .mapped("tax_ids")
+            .filtered(lambda t: t not in exclude_taxes)
         ):
-            if tax not in exclude_taxes:
-                tax_subject_to = tax.tbai_is_subject_to_tax()
-                not_subject_to_cause = (
-                    not tax_subject_to and tax.tbai_get_value_causa(self) or ""
-                )
-                is_exempted = tax_subject_to and tax.tbai_is_tax_exempted() or False
-                not_exempted_type = (
-                    tax_subject_to
-                    and not is_exempted
-                    and tax.tbai_get_value_tipo_no_exenta()
-                    or ""
-                )
-                exemption = ""
-                if tax.tbai_is_tax_exempted():
-                    if self.fiscal_position_id:
-                        exemption = self.fiscal_position_id.tbai_vat_exemption_ids.filtered(
-                            lambda e: e.tax_id.id == tax["id"]
-                        )
-                        if len(exemption) == 1:
-                            exemption = exemption.tbai_vat_exemption_key.code
-                    else:
-                        exemption = self.env["tbai.vat.exemption.key"].search(
-                            [("code", "=", "E1")], limit=1
-                        )
-                        exemption = exemption.code
-                taxes.append(
-                    (
-                        0,
-                        0,
-                        {
-                            "base": tax.tbai_get_value_base_imponible(self),
-                            "is_subject_to": tax_subject_to,
-                            "not_subject_to_cause": not_subject_to_cause,
-                            "is_exempted": is_exempted,
-                            "exempted_cause": is_exempted and exemption or "",
-                            "not_exempted_type": not_exempted_type,
-                            "amount": "%.2f" % abs(tax.amount),
-                            "amount_total": tax.tbai_get_value_cuota_impuesto(self),
-                            "re_amount": tax.tbai_get_value_tipo_recargo_equiv(self)
-                            or "",
-                            "re_amount_total": (
-                                tax.tbai_get_value_cuota_recargo_equiv(self) or ""
-                            ),
-                            "surcharge_or_simplified_regime": (
-                                tax.tbai_get_value_op_recargo_equiv_o_reg_simpl(self)
-                            ),
-                            "type": tax.tbai_get_value_tax_type(),
-                        },
+            tax_subject_to = tax.tbai_is_subject_to_tax()
+            not_subject_to_cause = (
+                not tax_subject_to and tax.tbai_get_value_causa(self) or ""
+            )
+            is_exempted = tax_subject_to and tax.tbai_is_tax_exempted() or False
+            not_exempted_type = (
+                tax_subject_to
+                and not is_exempted
+                and tax.tbai_get_value_tipo_no_exenta()
+                or ""
+            )
+            exemption = ""
+            if tax.tbai_is_tax_exempted():
+                if self.fiscal_position_id:
+                    exemption = self.fiscal_position_id.tbai_vat_exemption_ids.filtered(
+                        lambda e: e.tax_id.id == tax["id"]
                     )
+                    if len(exemption) == 1:
+                        exemption = exemption.tbai_vat_exemption_key.code
+                else:
+                    exemption = self.env["tbai.vat.exemption.key"].search(
+                        [("code", "=", "E1")], limit=1
+                    )
+                    exemption = exemption.code
+            taxes.append(
+                (
+                    0,
+                    0,
+                    {
+                        "base": tax.tbai_get_value_base_imponible(self),
+                        "is_subject_to": tax_subject_to,
+                        "not_subject_to_cause": not_subject_to_cause,
+                        "is_exempted": is_exempted,
+                        "exempted_cause": is_exempted and exemption or "",
+                        "not_exempted_type": not_exempted_type,
+                        "amount": "%.2f" % abs(tax.amount),
+                        "amount_total": tax.tbai_get_value_cuota_impuesto(self),
+                        "re_amount": tax.tbai_get_value_tipo_recargo_equiv(self) or "",
+                        "re_amount_total": (
+                            tax.tbai_get_value_cuota_recargo_equiv(self) or ""
+                        ),
+                        "surcharge_or_simplified_regime": (
+                            tax.tbai_get_value_op_recargo_equiv_o_reg_simpl(self)
+                        ),
+                        "type": tax.tbai_get_value_tax_type(),
+                    },
                 )
+            )
         vals["tbai_tax_ids"] = taxes
         return vals
 
@@ -515,6 +517,13 @@ class AccountMove(models.Model):
             self, fields.Datetime.from_string(invoice_datetime)
         )
         return date.strftime("%H:%M:%S")
+
+    def tbai_get_value_simplified_invoice(self):
+        if self.partner_id.aeat_anonymous_cash_customer:
+            res = SiNoType.S.value
+        else:
+            res = SiNoType.N.value
+        return res
 
     def tbai_get_value_factura_emitida_sustitucion_simplificada(self):
         if self.tbai_substitute_simplified_invoice:
