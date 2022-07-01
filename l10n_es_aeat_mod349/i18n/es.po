@@ -328,6 +328,11 @@ msgid "Error Count"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record__error_text
+msgid "Error Text"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__export_config_id
 msgid "Export config"
 msgstr "Exportar configuración"
@@ -961,6 +966,24 @@ msgstr "Mensajes del sitio Web"
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__website_message_ids
 msgid "Website communication history"
 msgstr "Historial de comunicación del sitio Web"
+
+#. module: l10n_es_aeat_mod349
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
+#, python-format
+msgid "Without Country"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
+#, python-format
+msgid "Without Total Operation Amount"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
+#, python-format
+msgid "Without VAT"
+msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund__year
