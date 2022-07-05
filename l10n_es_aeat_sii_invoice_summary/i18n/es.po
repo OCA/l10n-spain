@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-26 19:46+0000\n"
-"PO-Revision-Date: 2022-05-26 21:48+0200\n"
+"POT-Creation-Date: 2022-06-30 05:57+0000\n"
+"PO-Revision-Date: 2022-06-30 07:59+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1\n"
 
 #. module: l10n_es_aeat_sii_invoice_summary
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_move__display_name
@@ -67,29 +67,5 @@ msgstr "El cliente no tiene un CIF/NIF configurado."
 #. module: l10n_es_aeat_sii_invoice_summary
 #: code:addons/l10n_es_aeat_sii_invoice_summary/models/account_move.py:0
 #, python-format
-msgid "The supplier number invoice is required"
-msgstr "El nº de factura del proveedor es obligatorio"
-
-#. module: l10n_es_aeat_sii_invoice_summary
-#: code:addons/l10n_es_aeat_sii_invoice_summary/models/account_move.py:0
-#, python-format
-msgid "This company doesn't have SII enabled."
-msgstr "Esta compañía no tiene el SII habilitado."
-
-#. module: l10n_es_aeat_sii_invoice_summary
-#: code:addons/l10n_es_aeat_sii_invoice_summary/models/account_move.py:0
-#, python-format
-msgid "This invoice is not SII enabled."
-msgstr "Esta compañía no tiene el SII habilitado."
-
-#. module: l10n_es_aeat_sii_invoice_summary
-#: code:addons/l10n_es_aeat_sii_invoice_summary/models/account_move.py:0
-#, python-format
-msgid "You can't make a supplier simplified invoice."
-msgstr "No puede realizar una factura simplificada a un proveedor."
-
-#. module: l10n_es_aeat_sii_invoice_summary
-#: code:addons/l10n_es_aeat_sii_invoice_summary/models/account_move.py:0
-#, python-format
-msgid "You have to select what account chart template use this company."
-msgstr "Debe seleccionar el plan de cuentas que está utilizando esta compañía."
+msgid "You can't make a supplier summary invoice."
+msgstr "No puede realizar una factura resumen a un proveedor."
