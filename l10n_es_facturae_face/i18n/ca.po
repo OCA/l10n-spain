@@ -69,11 +69,6 @@ msgid "Company %s cannot be processed"
 msgstr "La companyia %s no pot processar-se"
 
 #. module: l10n_es_facturae_face
-#: model:ir.model,name:l10n_es_facturae_face.model_res_config_settings
-msgid "Config Settings"
-msgstr "Ajustos de configuració"
-
-#. module: l10n_es_facturae_face
 #: code:addons/l10n_es_facturae_face/components/edi_webservice_receive_face_l10n_es_facturae_face_update.py:0
 #: code:addons/l10n_es_facturae_face/components/webservice_face.py:0
 #, python-format
@@ -123,20 +118,17 @@ msgid "Exchange record cannot be found for FACe"
 msgstr "FACe no pot trobar el registre d'intercanvi"
 
 #. module: l10n_es_facturae_face
+#: model:ir.actions.server,name:l10n_es_facturae_face.update_face_job_ir_actions_server
+#: model:ir.cron,cron_name:l10n_es_facturae_face.update_face_job
+#: model:ir.cron,name:l10n_es_facturae_face.update_face_job
+msgid "FACE update Job"
+msgstr ""
+
+#. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__res_partner__l10n_es_facturae_sending_code__face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__webservice_backend__protocol__face
 msgid "FACe"
 msgstr "FACe"
-
-#. module: l10n_es_facturae_face
-#: model_terms:ir.ui.view,arch_db:l10n_es_facturae_face.res_config_settings_view_form
-msgid "FACe Configuration"
-msgstr "Configuració FACe"
-
-#. module: l10n_es_facturae_face
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_config_settings__face_server
-msgid "FACe server location"
-msgstr "Ubicació servidor FACe"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_company__face_email
@@ -286,3 +278,12 @@ msgstr "Cal definir el NIF per a enviar per FACe"
 #: model:ir.model,name:l10n_es_facturae_face.model_webservice_backend
 msgid "WebService Backend"
 msgstr "WebService Backend"
+
+#~ msgid "Config Settings"
+#~ msgstr "Ajustos de configuració"
+
+#~ msgid "FACe Configuration"
+#~ msgstr "Configuració FACe"
+
+#~ msgid "FACe server location"
+#~ msgstr "Ubicació servidor FACe"
