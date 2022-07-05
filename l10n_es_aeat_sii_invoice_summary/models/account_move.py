@@ -14,11 +14,11 @@ class AccountMove(models.Model):
 
     def _get_sii_invoice_dict_out(self, cancel=False):
         inv_dict = super(AccountMove, self)._get_sii_invoice_dict_out(cancel=cancel)
-        if self.is_invoice_summary and self.move_type == "out_invoice":
+        if self.is_invoice_summary and self.move_type in ("out_invoice", "out_refund"):
             tipo_factura = "F4"
             if self.sii_invoice_summary_start:
                 if self.sii_invoice_summary_start == self.sii_invoice_summary_end:
-                    tipo_factura = "F2"
+                    tipo_factura = "F2" if self.move_type == "out_invoice" else "R5"
                 else:
                     inv_dict["IDFactura"][
                         "NumSerieFacturaEmisor"
@@ -31,36 +31,26 @@ class AccountMove(models.Model):
                     inv_dict["FacturaExpedida"]["TipoFactura"] = tipo_factura
                 if "Contraparte" in inv_dict["FacturaExpedida"]:
                     del inv_dict["FacturaExpedida"]["Contraparte"]
+                if (
+                    "TipoRectificativa" in inv_dict["FacturaExpedida"]
+                    and tipo_factura == "F4"
+                ):
+                    del inv_dict["FacturaExpedida"]["TipoRectificativa"]
 
         return inv_dict
 
     def _sii_check_exceptions(self):
         """Inheritable method for exceptions control when sending SII invoices."""
-        self.ensure_one()
-        gen_type = self._get_sii_gen_type()
-        partner = self._sii_get_partner()
-        country_code = self._get_sii_country_code()
-        is_simplified_invoice = self._is_sii_simplified_invoice()
+        try:
+            super(AccountMove, self)._sii_check_exceptions()
+        except exceptions.UserError as e:
+            if (
+                e.args[0] == _("The partner has not a VAT configured.")
+                and self.is_invoice_summary
+            ):
+                pass
+            else:
+                raise
 
-        if is_simplified_invoice and self.move_type[:2] == "in":
-            raise exceptions.UserError(
-                _("You can't make a supplier simplified invoice.")
-            )
-        if (
-            (gen_type != 3 or country_code == "ES")
-            and not partner.vat
-            and not is_simplified_invoice
-            and not self.is_invoice_summary
-        ):
-            raise exceptions.UserError(_("The partner has not a VAT configured."))
-
-        if not self.company_id.chart_template_id:
-            raise exceptions.UserError(
-                _("You have to select what account chart template use this" " company.")
-            )
-        if not self.company_id.sii_enabled:
-            raise exceptions.UserError(_("This company doesn't have SII enabled."))
-        if not self.sii_enabled:
-            raise exceptions.UserError(_("This invoice is not SII enabled."))
-        if not self.ref and self.move_type in ["in_invoice", "in_refund"]:
-            raise exceptions.UserError(_("The supplier number invoice is required"))
+        if self.is_invoice_summary and self.move_type[:2] == "in":
+            raise exceptions.UserError(_("You can't make a supplier summary invoice."))
