@@ -157,12 +157,20 @@ class LROEOperationResponse(models.Model):
         if hasattr(
             LROEOperationTypeEnum,
             "%s_%s_%s"
-            % (lroe_operation_type, lroe_operation_chapter, lroe_operation_model,),
+            % (
+                lroe_operation_type,
+                lroe_operation_chapter,
+                lroe_operation_model,
+            ),
         ):
             operation_type = getattr(
                 LROEOperationTypeEnum,
                 "%s_%s_%s"
-                % (lroe_operation_type, lroe_operation_chapter, lroe_operation_model,),
+                % (
+                    lroe_operation_type,
+                    lroe_operation_chapter,
+                    lroe_operation_model,
+                ),
             ).value
             xml_schema = LROEXMLSchema(operation_type)
         else:
