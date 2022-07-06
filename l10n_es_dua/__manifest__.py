@@ -7,7 +7,7 @@
 {
     "name": "Importaciones con DUA",
     "category": "Localization/Account Charts",
-    "version": "13.0.1.0.0",
+    "version": "13.0.1.1.0",
     "depends": ["l10n_es"],
     "data": [
         "data/tax_group_data.xml",
