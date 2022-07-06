@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2022-07-06 09:08+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -23,21 +24,24 @@ msgstr ""
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
 msgid ""
-"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae\"\n"
+"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae"
+"\"\n"
 "            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
 msgstr ""
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
 msgid ""
-"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2014/v3.2.1/Facturae\"\n"
+"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2014/v3.2.1/"
+"Facturae\"\n"
 "            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
 msgstr ""
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
 msgid ""
-"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.gob.es/formato/Versiones/Facturaev3_2_2.xml\"\n"
+"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.gob.es/formato/Versiones/"
+"Facturaev3_2_2.xml\"\n"
 "            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
 msgstr ""
 
@@ -399,10 +403,8 @@ msgstr "Facturae sense signar"
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
-msgid ""
-"Facturae start and end dates are both required if one of them is filled"
+msgid "Facturae start and end dates are both required if one of them is filled"
 msgstr "Si s'omple data inicial o final de Facturae, cal omplir ambdues"
 
 #. module: l10n_es_facturae
@@ -459,8 +461,8 @@ msgstr "IE: Impostos especials"
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__10
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__10
 msgid ""
-"IECDPCAC: Impuesto especial sobre los combustibles derivados del petróleo en"
-" la Comunidad Autonoma Canaria"
+"IECDPCAC: Impuesto especial sobre los combustibles derivados del petróleo en "
+"la Comunidad Autonoma Canaria"
 msgstr ""
 "IECDPCAC: Impost especial sobre els combustibles derivats del petroli a la "
 "Comunitat Autònoma Canària"
@@ -475,19 +477,18 @@ msgstr "IGIC: Impost general indirecte de Canàries"
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__09
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__09
 msgid ""
-"IGTECM: Impuesto general sobre el tráfico de empresas que se aplica en Ceuta"
-" y Melilla"
+"IGTECM: Impuesto general sobre el tráfico de empresas que se aplica en Ceuta "
+"y Melilla"
 msgstr "IGTECM: Impost general sobre el tràfic d'empreses Ceuta i Melilla"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__11
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__11
 msgid ""
-"IIIMAB: Impuesto sobre las instalaciones que inciden sobre el medio ambiente"
-" en la Baleares"
+"IIIMAB: Impuesto sobre las instalaciones que inciden sobre el medio ambiente "
+"en la Baleares"
 msgstr ""
-"IIIMAB: Impost sobre les instal·lacions que afecten el medi ambient a "
-"Balears"
+"IIIMAB: Impost sobre les instal·lacions que afecten el medi ambient a Balears"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__15
@@ -770,7 +771,6 @@ msgstr "Sèrie de la factura"
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Start date cannot be later than end date"
 msgstr "La data inicial no pot ser posterior a la final"
@@ -813,8 +813,8 @@ msgid ""
 msgstr ""
 "El fitxer XML generat no és vàlid segons l'esquema XML oficial. S'han "
 "enregistrat al log del servidor el fitxer XML generat i l'error complet. "
-"Aquí teniu l'error, el qual us pot donar una idea de la causa del problema :"
-" %s"
+"Aquí teniu l'error, el qual us pot donar una idea de la causa del problema : "
+"%s"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__thirdparty_invoice
