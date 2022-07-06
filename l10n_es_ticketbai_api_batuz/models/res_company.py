@@ -19,5 +19,6 @@ class ResCompany(models.Model):
         default=LROEModelEnum.model_pj_240.value,
     )
     main_activity_iae = fields.Char(
-        string="Epígrafe I.A.E. actividad principal", size=7,
+        string="Epígrafe I.A.E. actividad principal",
+        size=7,
     )
