@@ -8,7 +8,7 @@ import os
 
 from lxml import etree
 
-from odoo.tests import common
+from odoo.tests.common import tagged
 
 from odoo.addons.l10n_es_ticketbai_api.tests.common import TestL10nEsTicketBAIAPI
 
@@ -63,8 +63,7 @@ TestL10nEsTicketBAIAPI.catalogs.append(
 )
 
 
-@common.at_install(False)
-@common.post_install(True)
+@tagged("post_install", "-at_install")
 class TestL10nEsTicketBAIAPIBatuz(TestL10nEsTicketBAIAPI):
     def create_tbai_cancel_invoice(self, str_number):
         uid = self.tech_user.id
