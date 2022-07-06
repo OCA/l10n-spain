@@ -206,7 +206,8 @@ class LROEOperation(models.Model):
         comodel_name="lroe.chapter", string="Chapter", required=True
     )
     lroe_subchapter_id = fields.Many2one(
-        comodel_name="lroe.chapter", string="Subchapter",
+        comodel_name="lroe.chapter",
+        string="Subchapter",
     )
 
     @api.depends("model", "type")
@@ -473,8 +474,8 @@ class LROEOperation(models.Model):
         return res_dict, lroe_xml_schema
 
     def get_lroe_operations_xml(self):
-        """ Se concatena el modelo + capitulo/subcatpitulo y se busca el
-        metodo especifico para crear el xml """
+        """Se concatena el modelo + capitulo/subcatpitulo y se busca el
+        metodo especifico para crear el xml"""
         self.ensure_one()
         subchapter = self.lroe_subchapter_id
         action = (
@@ -482,9 +483,21 @@ class LROEOperation(models.Model):
             if subchapter
             else self.lroe_chapter_id.code
         )
-        if hasattr(self, "build_xml_%s_%s" % (self.model, action,),):
+        if hasattr(
+            self,
+            "build_xml_%s_%s"
+            % (
+                self.model,
+                action,
+            ),
+        ):
             my_ordered_dict, lroe_xml_schema = getattr(
-                self, "build_xml_%s_%s" % (self.model, action,),
+                self,
+                "build_xml_%s_%s"
+                % (
+                    self.model,
+                    action,
+                ),
             )()
         else:
             raise LROEXMLSchemaModeNotSupported("Batuz LROE XML model not supported!")
