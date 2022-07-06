@@ -5,12 +5,12 @@ import json
 from requests import exceptions
 
 from odoo.tests import common
+from odoo.tests.common import tagged
 
 from ..lroe.lroe_api import LROETicketBaiApi
 
 
-@common.at_install(False)
-@common.post_install(True)
+@tagged("post_install", "-at_install")
 class TestLroeTicketBaiApi(common.TransactionCase):
     def test_get_request_headers(self):
         api = LROETicketBaiApi(None)
