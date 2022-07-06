@@ -108,8 +108,8 @@ msgstr "Registre d'intercanvi EDI"
 
 #. module: l10n_es_facturae_face
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae_face.edi_l10n_es_facturae_face_cancel_form_view
-msgid "Edi L10n Es Facturae Face Cancel"
-msgstr "Cancelar l10n es Facturae FACe"
+msgid "Edi L10n Es Facturae FACe Cancel"
+msgstr ""
 
 #. module: l10n_es_facturae_face
 #: code:addons/l10n_es_facturae_face/components/account_move_l10n_es_facturae_face_listener.py:0
@@ -118,17 +118,17 @@ msgid "Exchange record cannot be found for FACe"
 msgstr "FACe no pot trobar el registre d'intercanvi"
 
 #. module: l10n_es_facturae_face
-#: model:ir.actions.server,name:l10n_es_facturae_face.update_face_job_ir_actions_server
-#: model:ir.cron,cron_name:l10n_es_facturae_face.update_face_job
-#: model:ir.cron,name:l10n_es_facturae_face.update_face_job
-msgid "FACE update Job"
-msgstr ""
-
-#. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__res_partner__l10n_es_facturae_sending_code__face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__webservice_backend__protocol__face
 msgid "FACe"
 msgstr "FACe"
+
+#. module: l10n_es_facturae_face
+#: model:ir.actions.server,name:l10n_es_facturae_face.update_face_job_ir_actions_server
+#: model:ir.cron,cron_name:l10n_es_facturae_face.update_face_job
+#: model:ir.cron,name:l10n_es_facturae_face.update_face_job
+msgid "FACe update Job"
+msgstr ""
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_company__face_email
@@ -233,8 +233,8 @@ msgstr "OK"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__account_move__l10n_es_facturae_status__face-2500
-msgid "Payed"
-msgstr "Pagat"
+msgid "Paid"
+msgstr ""
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_webservice_backend__protocol
@@ -278,6 +278,12 @@ msgstr "Cal definir el NIF per a enviar per FACe"
 #: model:ir.model,name:l10n_es_facturae_face.model_webservice_backend
 msgid "WebService Backend"
 msgstr "WebService Backend"
+
+#~ msgid "Edi L10n Es Facturae Face Cancel"
+#~ msgstr "Cancelar l10n es Facturae FACe"
+
+#~ msgid "Payed"
+#~ msgstr "Pagat"
 
 #~ msgid "Config Settings"
 #~ msgstr "Ajustos de configuració"
