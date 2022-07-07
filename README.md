@@ -47,7 +47,7 @@ addon | version | maintainers | summary
 [l10n_es_facturae_efact](l10n_es_facturae_efact/) | 14.0.1.1.0 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Envío de Facturae a e.FACT
 [l10n_es_facturae_face](l10n_es_facturae_face/) | 14.0.1.2.1 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Envío de Facturae a FACe
 [l10n_es_facturae_sale_stock](l10n_es_facturae_sale_stock/) | 14.0.1.0.0 |  | Entregas en Factura-e
-[l10n_es_intrastat_report](l10n_es_intrastat_report/) | 14.0.2.1.0 |  | Spanish Intrastat Product Declaration
+[l10n_es_intrastat_report](l10n_es_intrastat_report/) | 14.0.3.0.0 |  | Spanish Intrastat Product Declaration
 [l10n_es_irnr](l10n_es_irnr/) | 14.0.1.0.0 |  | Retenciones IRNR (No residentes)
 [l10n_es_location_nuts](l10n_es_location_nuts/) | 14.0.1.0.0 |  | NUTS specific options for Spain
 [l10n_es_mis_report](l10n_es_mis_report/) | 14.0.1.3.1 |  | Plantillas MIS Builder para informes contables españoles
