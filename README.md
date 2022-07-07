@@ -52,7 +52,7 @@ addon | version | maintainers | summary
 [l10n_es_facturae](l10n_es_facturae/) | 13.0.2.2.2 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Creación de Factura-e
 [l10n_es_facturae_efact](l10n_es_facturae_efact/) | 13.0.2.0.1 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Envío de Factura-e a e.FACT
 [l10n_es_facturae_face](l10n_es_facturae_face/) | 13.0.2.0.3 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Envío de Factura-e a FACe
-[l10n_es_intrastat_report](l10n_es_intrastat_report/) | 13.0.2.1.0 |  | Spanish Intrastat Product Declaration
+[l10n_es_intrastat_report](l10n_es_intrastat_report/) | 13.0.3.0.0 |  | Spanish Intrastat Product Declaration
 [l10n_es_irnr](l10n_es_irnr/) | 13.0.1.0.2 |  | Retenciones IRNR (No residentes)
 [l10n_es_mis_report](l10n_es_mis_report/) | 13.0.1.2.1 |  | Plantillas MIS Builder para informes contables españoles
 [l10n_es_partner](l10n_es_partner/) | 13.0.1.0.2 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Adaptación de los clientes, proveedores y bancos para España
