@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_category_form_view" model="ir.ui.view">
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <field name="property_account_expense_categ_id" position="after">
+                <field name="property_account_refund_in_categ_id"/>
+                <field name="property_account_refund_out_categ_id"/>
+            </field>
+        </field>
+    </record>
+</odoo>

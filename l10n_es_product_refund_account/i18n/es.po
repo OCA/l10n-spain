@@ -1,0 +1,57 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_product_refund_account
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-20 10:32+0000\n"
+"PO-Revision-Date: 2022-06-20 12:34+0200\n"
+"Last-Translator: cubells <vicent@vcubells.net>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: l10n_es_product_refund_account
+#: model:ir.model,name:l10n_es_product_refund_account.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Línea de factura"
+
+#. module: l10n_es_product_refund_account
+#: model:ir.model.fields,help:l10n_es_product_refund_account.field_product_category__property_account_refund_in_categ_id
+#: model:ir.model.fields,help:l10n_es_product_refund_account.field_product_category__property_account_refund_out_categ_id
+#: model:ir.model.fields,help:l10n_es_product_refund_account.field_product_product__property_account_refund_in_id
+#: model:ir.model.fields,help:l10n_es_product_refund_account.field_product_product__property_account_refund_out_id
+#: model:ir.model.fields,help:l10n_es_product_refund_account.field_product_template__property_account_refund_in_id
+#: model:ir.model.fields,help:l10n_es_product_refund_account.field_product_template__property_account_refund_out_id
+msgid "Keep this field empty to use the default value from the product category."
+msgstr "Mantenga este campo vacío para usar el valor predeterminado de la categoría de producto."
+
+#. module: l10n_es_product_refund_account
+#: model:ir.model,name:l10n_es_product_refund_account.model_product_category
+msgid "Product Category"
+msgstr "Categoría de producto"
+
+#. module: l10n_es_product_refund_account
+#: model:ir.model,name:l10n_es_product_refund_account.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: l10n_es_product_refund_account
+#: model:ir.model.fields,field_description:l10n_es_product_refund_account.field_product_category__property_account_refund_in_categ_id
+#: model:ir.model.fields,field_description:l10n_es_product_refund_account.field_product_product__property_account_refund_in_id
+#: model:ir.model.fields,field_description:l10n_es_product_refund_account.field_product_template__property_account_refund_in_id
+msgid "Refund In Account"
+msgstr "Cuenta de devoluciones para los ingresos"
+
+#. module: l10n_es_product_refund_account
+#: model:ir.model.fields,field_description:l10n_es_product_refund_account.field_product_category__property_account_refund_out_categ_id
+#: model:ir.model.fields,field_description:l10n_es_product_refund_account.field_product_product__property_account_refund_out_id
+#: model:ir.model.fields,field_description:l10n_es_product_refund_account.field_product_template__property_account_refund_out_id
+msgid "Refund Out Account"
+msgstr "Cuenta de devoluciones para los gastos"
