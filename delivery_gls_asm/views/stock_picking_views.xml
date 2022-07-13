@@ -29,6 +29,10 @@
                     name="gls_asm_public_tracking_ref"
                     attrs="{'invisible':[('gls_asm_public_tracking_ref', '!=', 'False')]}"
                 />
+                <field
+                    name="gls_asm_picking_ref"
+                    attrs="{'invisible':[('gls_asm_picking_ref', '=', False)]}"
+                />
             </xpath>
             <xpath expr="//header" position='inside'>
                 <button
