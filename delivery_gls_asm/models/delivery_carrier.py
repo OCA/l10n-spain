@@ -13,6 +13,7 @@ from .gls_asm_master_data import (
     GLS_POSTAGE_TYPE,
     GLS_SHIPMENT_TYPE_STATES,
     GLS_SHIPPING_TIMES,
+    GLS_TRACKING_LINKS,
 )
 from .gls_asm_request import GlsAsmRequest
 
@@ -96,11 +97,18 @@ class DeliveryCarrier(models.Model):
 
     def gls_asm_get_tracking_link(self, picking):
         """Provide tracking link for the customer"""
-        tracking_url = (
-            "http://www.asmred.com/extranet/public/"
-            "ExpedicionASM.aspx?codigo={}&cpDst={}"
-        )
-        return tracking_url.format(picking.carrier_tracking_ref, picking.partner_id.zip)
+        # International
+        if picking.gls_asm_picking_ref:
+            if picking.partner_id.country_id.code == "PT":
+                base_link = GLS_TRACKING_LINKS.get("INT_PT")
+            else:
+                base_link = GLS_TRACKING_LINKS.get("INT")
+            tracking_url = base_link.format(picking.gls_asm_picking_ref)
+        else:
+            tracking_url = GLS_TRACKING_LINKS.get("ASM").format(
+                picking.carrier_tracking_ref, picking.partner_id.zip
+            )
+        return tracking_url
 
     def _prepare_gls_asm_shipping(self, picking):
         """Convert picking values for asm api
