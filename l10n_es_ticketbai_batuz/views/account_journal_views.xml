@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2021 Landoo Sistemas de Informacion SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <data>
+        <record id="view_account_journal_form_batuz" model="ir.ui.view">
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="l10n_es_ticketbai.view_account_journal_form_inherit" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tbai_active_date']" position="attributes">
+                    <attribute name="attrs">
+                        {'invisible': ['|', ('type', 'not in', ('sale', 'purchase')), ('tbai_enabled', '=', False)]}
+                    </attribute>
+                </xpath>
+                <xpath expr="//field[@name='tbai_send_invoice']" position="attributes">
+                    <attribute name="attrs">
+                        {'invisible': ['|', ('type', 'not in', ('sale', 'purchase')), ('tbai_enabled', '=', False)]}
+                    </attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

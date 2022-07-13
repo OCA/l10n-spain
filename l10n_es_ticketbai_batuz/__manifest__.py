@@ -38,6 +38,7 @@
         "views/res_company_views.xml",
         "views/res_partner_views.xml",
         "views/tbai_vat_regime_key_views.xml",
+        "views/account_journal_views.xml",
     ],
     "post_init_hook": "post_init_hook",
 }
