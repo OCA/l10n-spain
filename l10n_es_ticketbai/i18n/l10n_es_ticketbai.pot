@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 11.0+e\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-13 12:27+0000\n"
+"PO-Revision-Date: 2022-07-13 12:27+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,6 +28,11 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_l10n_es_aeat_certificate_tbai_p12_friendlyname
 msgid "Alias"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai.view_account_invoice_filter_inherit_l10n_es_ticketbai
+msgid "Already sent to TicketBAI"
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -69,9 +76,14 @@ msgid "Cancel and recreate"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:309
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:323
 #, python-format
 msgid "Cancellation"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: selection:account.invoice,tbai_state:0
+msgid "Cancelled"
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -180,6 +192,11 @@ msgid "Expedition Date"
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#: selection:account.invoice,tbai_state:0
+msgid "Failed"
+msgstr ""
+
+#. module: l10n_es_ticketbai
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_form
 msgid "File"
 msgstr ""
@@ -227,6 +244,11 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_account_invoice_tbai_state
+msgid "Indicates the state of this invoice in relation with the presentation at TicketBAI Tax Agency"
+msgstr ""
+
+#. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_invoice
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_invoice_id
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_form
@@ -234,7 +256,7 @@ msgid "Invoice"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:71
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:85
 #, python-format
 msgid "Invoice %s. You cannot change to draft a numbered invoice!"
 msgstr ""
@@ -331,6 +353,16 @@ msgid "Name"
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai.view_account_invoice_filter_inherit_l10n_es_ticketbai
+msgid "Never sent to TicketBAI"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: selection:account.invoice,tbai_state:0
+msgid "Not sent"
+msgstr ""
+
+#. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin_number
 msgid "Number"
 msgstr ""
@@ -361,7 +393,17 @@ msgid "Origin Invoices Data"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:358
+#: selection:account.invoice,tbai_state:0
+msgid "Pending"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai.view_account_invoice_filter_inherit_l10n_es_ticketbai
+msgid "Pending to be sent to TicketBAI"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:372
 #, python-format
 msgid "Please, specify data for the original invoices that are going to be refunded"
 msgstr ""
@@ -406,18 +448,23 @@ msgid "Responses"
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#: selection:account.invoice,tbai_state:0
+msgid "Sent"
+msgstr ""
+
+#. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info_software
 msgid "Software"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:372
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:386
 #, python-format
 msgid "Some of the original invoices have related tbai cancelled invoices"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:367
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:381
 #, python-format
 msgid "Some of the original invoices have related tbai invoices in inconsistent state please fix them beforehand."
 msgstr ""
@@ -435,6 +482,11 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_res_company_tbai_protected_data_txt
 msgid "Substitution Text"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_invoice_tbai_state
+msgid "TBAI send state"
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -498,6 +550,11 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_chart_template
 msgid "Templates for Account Chart"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai.view_account_invoice_filter_inherit_l10n_es_ticketbai
+msgid "The last attemp to sent to TicketBAI has failed"
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -649,20 +706,45 @@ msgid "TicketBAI active date"
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai.view_account_invoice_filter_inherit_l10n_es_ticketbai
+msgid "TicketBAI failed"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai.view_account_invoice_filter_inherit_l10n_es_ticketbai
+msgid "TicketBAI filters"
+msgstr ""
+
+#. module: l10n_es_ticketbai
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.view_ticketbai_info_form
 msgid "TicketBAI is disabled."
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:155
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai.view_account_invoice_filter_inherit_l10n_es_ticketbai
+msgid "TicketBAI not sent"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:169
 #, python-format
 msgid "TicketBAI refund by differences only available for Customer Credit Notes."
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:145
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:159
 #, python-format
 msgid "TicketBAI refund by substitution is not supported."
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai.view_account_invoice_filter_inherit_l10n_es_ticketbai
+msgid "TicketBAI sent"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai.view_account_invoice_filter_inherit_l10n_es_ticketbai
+msgid "TicketBAI state"
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -713,21 +795,21 @@ msgid "VAT Regimes"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:144
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:154
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:158
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:168
 #, python-format
 msgid "Warning"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:339
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:353
 #, python-format
 msgid "You cannot cancel an invoice while being sent to the Tax Agency.\n"
 "Related invoices: %s"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:330
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:344
 #, python-format
 msgid "You cannot cancel an invoice with non cancelled credit notes.\n"
 "Related invoices: %s"
@@ -740,7 +822,7 @@ msgid "You cannot change the active date from this journal, because at least one
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:79
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:93
 #, python-format
 msgid "You cannot delete an invoice which is not draft. You should create a credit note instead."
 msgstr ""

@@ -103,5 +103,34 @@
                 </page>
             </field>
         </record>
+        <record id="view_account_invoice_filter_inherit_l10n_es_ticketbai" model="ir.ui.view">
+            <field name="name">account.invoice.filter.ticketbai</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter" />
+            <field name="arch" type="xml">
+                <filter name="late" position="after">
+                    <group string="TicketBAI filters">
+                        <separator />
+                        <filter name="tbai_not_sent" string="TicketBAI not sent"
+                            domain="[('tbai_state', '=', 'draft'), ('date', '>=', '2022-01-01')]"
+                            help="Never sent to TicketBAI" />
+                        <filter name="tbai_pending" string="Pending to be sent to TicketBAI"
+                            domain="[('tbai_state', '=', 'pending')]"/>
+                        <filter name="tbai_sent" string="TicketBAI sent"
+                            domain="[('tbai_state', '=', 'sent')]"
+                            help="Already sent to TicketBAI"/>
+                        <filter name="tbai_failed" string="TicketBAI failed"
+                            domain="[('tbai_state', '=', 'error')]"
+                            help="The last attemp to sent to TicketBAI has failed"/>
+                    </group>
+                </filter>
+                <xpath expr="//group" position="inside">
+                    <separator/>
+                    <filter string="TicketBAI state" name="tbai_state"
+                            context="{'group_by':'tbai_state'}"
+                    />
+                </xpath>
+            </field>
+        </record>
     </data>
 </odoo>
