@@ -85,6 +85,8 @@ Known issues / Roadmap
   posiciones fiscales.
 
   Más información en https://www.boe.es/diario_boe/txt.php?id=BOE-A-2014-12329
+* No se han mapeado las ventas con el nuevo IVA a la electricidad del 5%, a la
+  espera de si Hacienda cambia el modelo para alojar dicho valor.
 
 Bug Tracker
 ===========
