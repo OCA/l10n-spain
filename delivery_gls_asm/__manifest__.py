@@ -20,4 +20,5 @@
         "views/stock_picking_views.xml",
         "wizard/gls_asm_manifest_wizard_views.xml",
     ],
+    "maintainers": ["chienandalu", "hildickethan-S73"],
 }

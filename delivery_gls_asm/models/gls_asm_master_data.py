@@ -323,3 +323,16 @@ GLS_PICKUP_ERROR_CODES = {
     -603: "Shipment References, tipo not exists.",
     -676: "Collection Zipcode is wrong, not exists.",
 }
+
+GLS_TRACKING_LINKS = {
+    "ASM": (
+        "http://www.asmred.com/extranet/public/ExpedicionASM.aspx?codigo={}&cpDst={}"
+    ),
+    "INT": (
+        "https://www.gls-spain.es/en/receiving-parcels/shipping-tracking/"
+        "?match={}&international=1"
+    ),
+    "INT_PT": (
+        "https://www.gls-portugal.pt/pt/seguimiento-envio/?match={}&international=1"
+    ),
+}
