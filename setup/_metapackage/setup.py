@@ -43,6 +43,7 @@ setuptools.setup(
         'odoo14-addon-l10n_es_pos',
         'odoo14-addon-l10n_es_ticketbai',
         'odoo14-addon-l10n_es_ticketbai_api',
+        'odoo14-addon-l10n_es_ticketbai_api_batuz',
         'odoo14-addon-l10n_es_toponyms',
         'odoo14-addon-l10n_es_vat_book',
         'odoo14-addon-l10n_es_vat_book_oss',
