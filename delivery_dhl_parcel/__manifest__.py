@@ -3,7 +3,7 @@
 {
     "name": "Delivery DHL Parcel",
     "summary": "Delivery Carrier implementation for DHL Parcel using their API",
-    "version": "14.0.1.4.3",
+    "version": "14.0.1.4.4",
     "category": "Stock",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Studio73, Odoo Community Association (OCA)",
@@ -17,4 +17,5 @@
         "views/stock_picking_views.xml",
         "wizard/dhl_parcel_end_day_wizard_views.xml",
     ],
+    "maintainers": ["hildickethan-S73"],
 }
