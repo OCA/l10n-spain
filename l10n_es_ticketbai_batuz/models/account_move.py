@@ -144,8 +144,8 @@ class AccountMove(models.Model):
             != self.env.ref("l10n_es_ticketbai_api_batuz.tbai_tax_agency_bizkaia").id
         ):
             return super().create(vals)
-        invoice_type = vals.get("type", False) or self._context.get(
-            "default_type", False
+        invoice_type = vals.get("move_type", False) or self._context.get(
+            "default_move_type", False
         )
         refund_method = (
             self._context.get("refund_method", False) or invoice_type == "in_refund"
@@ -166,7 +166,7 @@ class AccountMove(models.Model):
 
     @api.onchange("fiscal_position_id", "partner_id")
     def onchange_fiscal_position_id_lroe_vat_regime_key(self):
-        if self.fiscal_position_id and ("in" in self.type):
+        if self.fiscal_position_id and ("in" in self.move_type):
             self.tbai_vat_regime_purchase_key = (
                 self.fiscal_position_id.tbai_vat_regime_purchase_key.id
             )
@@ -290,7 +290,7 @@ class AccountMove(models.Model):
             header["FechaOperacion"] = operation_date
         header["FechaRecepcion"] = reception_date
         header["TipoFactura"] = tipo_factura
-        if self.type == "in_refund":
+        if self.move_type == "in_refund":
             header["FacturaRectificativa"] = OrderedDict(
                 [("Codigo", self.tbai_refund_key), ("Tipo", self.tbai_refund_type)]
             )
@@ -532,13 +532,13 @@ class AccountMove(models.Model):
         self.ensure_one()
         res = {}
         for line in self.line_ids:
-            sign = -1 if self.type[:3] == "out" else 1
+            sign = -1 if self.move_type[:3] == "out" else 1
             for tax in line.tax_ids:
                 res.setdefault(tax, {"tax": tax, "base": 0, "amount": 0})
                 res[tax]["base"] += line.balance * sign
             if line.tax_line_id:
                 tax = line.tax_line_id
-                if "invoice" in self.type:
+                if "invoice" in self.move_type:
                     repartition_lines = tax.invoice_repartition_line_ids
                 else:
                     repartition_lines = tax.refund_repartition_line_ids
@@ -781,9 +781,9 @@ class AccountMove(models.Model):
         lroe_invoices = self.sudo().filtered(
             lambda x: x.tbai_enabled
             and (
-                x.type == "in_invoice"
+                x.move_type == "in_invoice"
                 or (
-                    x.type == "in_refund"
+                    x.move_type == "in_refund"
                     and (x.reversed_entry_id or x.tbai_refund_origin_ids)
                     and x.tbai_refund_type
                     in (RefundType.differences.value, RefundType.substitution.value)
@@ -840,9 +840,9 @@ class AccountMove(models.Model):
             lambda x: x.tbai_enabled
             and x.lroe_state not in ("error")
             and (
-                x.type == "in_invoice"
+                x.move_type == "in_invoice"
                 or (
-                    x.type == "in_refund"
+                    x.move_type == "in_refund"
                     and (x.reversed_entry_id or x.tbai_refund_origin_ids)
                     and x.tbai_refund_type
                     in (RefundType.differences.value, RefundType.substitution.value)
@@ -869,14 +869,14 @@ class AccountMove(models.Model):
             )
         return super().action_invoice_draft()
 
-    def post(self):
-        res = super(AccountMove, self).post()
+    def _post(self, soft=True):
+        res = super(AccountMove, self)._post(soft)
         lroe_invoices = self.sudo().filtered(
             lambda x: x.tbai_enabled
             and (
-                x.type == "in_invoice"
+                x.move_type == "in_invoice"
                 or (
-                    x.type == "in_refund"
+                    x.move_type == "in_refund"
                     and (x.reversed_entry_id or x.tbai_refund_origin_ids)
                     and x.tbai_refund_type
                     in (RefundType.differences.value, RefundType.substitution.value)
