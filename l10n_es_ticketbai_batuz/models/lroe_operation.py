@@ -100,7 +100,6 @@ class LROEOperation(models.Model):
         ):
             self.mark_as_error()
 
-    @job(default_channel="root.invoice_send_lroe")
     def send_one_operation_job(self):
         self.send_one_operation()
 
