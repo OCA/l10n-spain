@@ -409,7 +409,9 @@ class LROEOperation(models.Model):
     def build_facturas_recibidas(self):
         self.ensure_one()
         facturas_recibidas = []
-        if self.invoice_ids.filtered(lambda ai: ai.type in ("in_invoice", "in_refund")):
+        if self.invoice_ids.filtered(
+            lambda ai: ai.move_type in ("in_invoice", "in_refund")
+        ):
             if self.type in (
                 LROEOperationEnum.create.value,
                 LROEOperationEnum.update.value,
