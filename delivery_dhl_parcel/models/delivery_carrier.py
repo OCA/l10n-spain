@@ -46,6 +46,15 @@ class DeliveryCarrier(models.Model):
         default="PDF",
         string="Label format",
     )
+    dhl_parcel_cash_on_delivery = fields.Boolean(
+        string="Cash on delivery",
+        help=(
+            "If checked, it means that the carrier is paid with cash. It assumes "
+            "there is a sale order linked and it will use that "
+            "total amount as the value to be paid. "
+            "It will also exclude this carrier from the e-commerce checkout."
+        ),
+    )
 
     def dhl_parcel_get_tracking_link(self, picking):
         """Provide tracking link for the customer"""
@@ -102,7 +111,7 @@ class DeliveryCarrier(models.Model):
         # El peso del envío tiene que ser como mínimo 1 kilo o como máximo 99999 kilos
         if float_compare(weight, 1, precision_digits=2) == -1:
             weight = 1
-        return {
+        vals = {
             "Customer": self.dhl_parcel_customer_code,
             "Receiver": self._get_dhl_parcel_receiver_info(picking),
             "Sender": self._get_dhl_parcel_sender_info(picking),  # [optional]
@@ -130,6 +139,17 @@ class DeliveryCarrier(models.Model):
             "tracking_number": False,
             "exact_price": 0,
         }
+        if self.dhl_parcel_cash_on_delivery and picking.sale_id:
+            sale = picking.sale_id
+            mapped_expenses = {"CPT": "P", "EXW": "D"}
+            vals.update(
+                {
+                    "CODAmount": sale.amount_total,
+                    "CODExpenses": mapped_expenses.get(self.dhl_parcel_incoterm, "P"),
+                    "CODCurrency": sale.currency_id.name,
+                }
+            )
+        return vals
 
     def dhl_parcel_send_shipping(self, pickings):
         """Send the package to DHL Parcel
