@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-30 10:29+0000\n"
-"PO-Revision-Date: 2021-10-30 10:29+0000\n"
+"POT-Creation-Date: 2022-07-15 08:58+0000\n"
+"PO-Revision-Date: 2022-07-15 08:58+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: \n"
@@ -35,6 +35,11 @@ msgstr "Producto B2C"
 #: model_terms:ir.ui.view,arch_db:delivery_dhl_parcel.delivery_endday_wizard_form
 msgid "Cancel"
 msgstr "Cancelar"
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_cash_on_delivery
+msgid "Cash on delivery"
+msgstr "Contra reembolso"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__create_uid
@@ -162,6 +167,7 @@ msgstr "Producto DHL"
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__display_name
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__display_name
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_sale_order__display_name
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_stock_picking__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
@@ -196,9 +202,22 @@ msgstr "Retener envío DHL Parcel"
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__id
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__id
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_sale_order__id
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_stock_picking__id
 msgid "ID"
 msgstr "ID"
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields,help:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_cash_on_delivery
+msgid ""
+"If checked, it means that the carrier is paid with cash. It assumes there is "
+"a sale order linked and it will use that total amount as the value to be "
+"paid. It will also exclude this carrier from the e-commerce checkout."
+msgstr ""
+"Si está marcado, significa que el transportista se paga a la hora de "
+"entregar. Asume que hay un pedido de venta relacionado del cual usará la "
+"cantidad total como el valor a pagar. También excluirá este método de envío "
+"de los disponibles en la web."
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,help:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__customer_accounts
@@ -222,7 +241,9 @@ msgid "Label format"
 msgstr "Formato de etiqueta"
 
 #. module: delivery_dhl_parcel
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier____last_update
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard____last_update
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_sale_order____last_update
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_stock_picking____last_update
 msgid "Last Modified on"
 msgstr "Última modificación el"
@@ -272,6 +293,11 @@ msgstr "Liberar envío DHL Parcel"
 #, python-format
 msgid "Released shipment for {}"
 msgstr "Envío {} liberado"
+
+#. module: delivery_dhl_parcel
+#: model:ir.model,name:delivery_dhl_parcel.model_sale_order
+msgid "Sales Order"
+msgstr ""
 
 #. module: delivery_dhl_parcel
 #: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
