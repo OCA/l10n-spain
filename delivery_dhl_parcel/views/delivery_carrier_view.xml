@@ -36,6 +36,9 @@
                                 name="dhl_parcel_label_format"
                                 attrs="{'required': [('delivery_type', '=', 'dhl_parcel')]}"
                             />
+                        </group>
+                        <group>
+                            <field name="dhl_parcel_cash_on_delivery" />
                             <field
                                 name="dhl_parcel_last_end_day_report"
                                 filename="dhl_parcel_last_end_day_report_name"
