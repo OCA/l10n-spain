@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="invoice_sii_form_group" model="ir.ui.view">
+        <field name="name">account.invoice.sii.form.group</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="l10n_es_aeat_sii.invoice_sii_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page" position="attributes">
+                <attribute name="groups">l10n_es_aeat.group_account_aeat</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="invoice_supplier_sii_match_form" model="ir.ui.view">
+        <field name="name">account.invoice.supplier.sii.match.form</field>
+        <field name="model">account.invoice</field>
+        <field name="groups_id" eval="[(4, ref('l10n_es_aeat.group_account_aeat'))]"/>
+        <field name="inherit_id" ref="l10n_es_aeat_sii.invoice_supplier_sii_form" />
+        <field name="arch" type="xml">
+            <field name="sii_enabled" position="after">
+                <button type="object" string="Contrast with AEAT"
+                        name="contrast_aeat" colspan="2"
+                        groups="l10n_es_aeat.group_account_aeat"
+                        attrs="{'invisible': ['|','|',
+                            ('state', 'not in', ['open','paid']),
+                            ('sii_enabled', '=', False),
+                            ('sii_csv', '=', False)]}" />
+            </field>
+            <field name="sii_state" position="after">
+                <field name="sii_match_state" />
+                <field name="sii_contrast_state" />
+            </field>
+            <field name="sii_csv" position="after">
+                <group col="1" colspan="2"
+                       attrs="{'invisible': [('sii_match_difference_ids', '=', [])]}">
+                    <label for="sii_match_difference_ids" colspan="2" />
+                    <field name="sii_match_difference_ids" colspan="2" nolabel="1">
+                        <tree>
+                            <field name="sii_field" />
+                            <field name="sii_return_field_value" />
+                            <field name="sii_sent_field_value" />
+                        </tree>
+                    </field>
+                </group>
+            </field>
+            <field name="sii_return" position="after">
+                <group><label for="sii_match_sent" /></group>
+                <field name="sii_match_sent" />
+                <group><label for="sii_match_return" /></group>
+                <field name="sii_match_return" />
+            </field>
+        </field>
+    </record>
+
+    <record id="invoice_sii_match_form" model="ir.ui.view">
+        <field name="name">account.invoice.sii.match.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="l10n_es_aeat_sii.invoice_sii_form" />
+        <field name="groups_id" eval="[(4, ref('l10n_es_aeat.group_account_aeat'))]"/>
+        <field name="arch" type="xml">
+            <field name="sii_enabled" position="after">
+                <button type="object" string="Contrast with AEAT"
+                        name="contrast_aeat" colspan="2"
+                        groups="l10n_es_aeat.group_account_aeat"
+                        attrs="{'invisible': ['|','|',
+                            ('state', 'not in', ['open','paid']),
+                            ('sii_enabled', '=', False),
+                            ('sii_csv', '=', False)]}" />
+            </field>
+            <field name="sii_state" position="after">
+                <field name="sii_match_state" />
+                <field name="sii_contrast_state" />
+            </field>
+            <field name="sii_csv" position="after">
+                 <group col="1" colspan="2"
+                        attrs="{'invisible': [('sii_match_difference_ids', '=', [])]}">
+                    <label for="sii_match_difference_ids" colspan="2" />
+                    <field name="sii_match_difference_ids" colspan="2" nolabel="1">
+                        <tree>
+                            <field name="sii_field" />
+                            <field name="sii_return_field_value" />
+                            <field name="sii_sent_field_value" />
+                        </tree>
+                    </field>
+                </group>
+            </field>
+            <field name="sii_return" position="after">
+                <group><label for="sii_match_sent" /></group>
+                <field name="sii_match_sent" />
+                <group><label for="sii_match_return" /></group>
+                <field name="sii_match_return" />
+            </field>
+        </field>
+    </record>
+
+    <record id="invoice_sii_match_tree" model="ir.ui.view">
+        <field name="name">account.invoice.sii.match.tree</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_tree" />
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <!-- We add the fields to tree view to see the value of the
+                     selection instead of the key when grouping -->
+                <field name="sii_match_state" invisible="1" />
+                <field name="sii_contrast_state" invisible="1" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_invoice_sii_match_filter" model="ir.ui.view">
+        <field name="name">account.invoice.sii.match.filter</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="inside">
+                <separator/>
+                <filter name="sii_match_state" string="SII match state"
+                        context="{'group_by':'sii_match_state'}"/>
+                <filter name="sii_contrast_state" string="AEAT contrast state"
+                        context="{'group_by':'sii_contrast_state'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_contrast_aeat" model="ir.actions.server">
+        <field name="name">Contrast Invoices with AEAT</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="account.model_account_invoice" />
+        <field name="binding_model_id" ref="model_account_invoice" />
+        <field name="state">code</field>
+        <field name="code">
+            records.contrast_aeat()
+        </field>
+    </record>
+</odoo>
+
+
