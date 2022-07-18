@@ -400,8 +400,6 @@ msgstr ""
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_company__tbai_enabled
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_config_settings__tbai_enabled
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_partner__tbai_enabled
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_users__tbai_enabled
 msgid "Enable TicketBAI"
 msgstr "Habilitar TicketBAI"
 
@@ -948,6 +946,12 @@ msgid "Tax agency cannot be modified after a TicketBAI invoice has been sent."
 msgstr ""
 "Número de identificación fiscal. Llénelo si la compañía está sujeta a "
 "impuestos. Usado por algunos documentos legales."
+
+#. module: l10n_es_ticketbai_api
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_partner__tbai_enabled
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_users__tbai_enabled
+msgid "Tbai Enabled"
+msgstr ""
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_company__tbai_installation_id
