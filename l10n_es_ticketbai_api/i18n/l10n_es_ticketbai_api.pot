@@ -376,8 +376,6 @@ msgstr ""
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_company__tbai_enabled
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_config_settings__tbai_enabled
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_partner__tbai_enabled
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_users__tbai_enabled
 msgid "Enable TicketBAI"
 msgstr ""
 
@@ -917,6 +915,12 @@ msgstr ""
 #: code:addons/l10n_es_ticketbai_api/models/res_company.py:0
 #, python-format
 msgid "Tax agency cannot be modified after a TicketBAI invoice has been sent."
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_partner__tbai_enabled
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_users__tbai_enabled
+msgid "Tbai Enabled"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
