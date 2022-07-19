@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_opening_closing_xlsx" model="ir.actions.report">
+        <field name="name">Opening/Closing XLSX</field>
+        <field name="model">report_trial_balance</field>
+        <field name="type">ir.actions.report</field>
+        <field name="report_name">o_c.report_opening_closing_xlsx</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_file">opening_closing_move</field>
+    </record>
+</odoo>

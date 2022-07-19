@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="trial_balance_wizard" model="ir.ui.view">
+        <field name="model">trial.balance.report.wizard</field>
+        <field name="inherit_id" ref="account_financial_report.trial_balance_wizard"/>
+        <field name="arch" type="xml">
+            <field name="foreign_currency" position="after">
+                <field name="opening_closing_move"/>
+                <field name="move_type" attrs="{'invisible' : [('opening_closing_move', '=', False)], 'required': [('opening_closing_move', '=', True)]}"/>
+            </field>
+            <xpath expr='//field[@name="hide_account_at_0"]' position="attributes">
+                <attribute name="attrs">{'invisible': [('opening_closing_move', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr='//field[@name="show_partner_details"]' position="attributes">
+                <attribute name="attrs">{'invisible': [('opening_closing_move', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr='//field[@name="hierarchy_on"]' position="attributes">
+                <attribute name="attrs">{'invisible':['|', ('show_partner_details','=',True), ('opening_closing_move', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr='//field[@name="limit_hierarchy_level"]' position="attributes">
+                <attribute name="attrs">{'invisible':['|', '|', ('hierarchy_on','=','none'), ('show_partner_details','=',True), ('opening_closing_move', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr='//field[@name="show_hierarchy_level"]' position="attributes">
+                <attribute name="attrs">{'invisible':['|', ('limit_hierarchy_level','=', False), ('opening_closing_move', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr='//field[@name="hide_parent_hierarchy_level"]' position="attributes">
+                <attribute name="attrs">{'invisible':['|', ('limit_hierarchy_level','=', False), ('opening_closing_move', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr='//field[@name="foreign_currency"]' position="attributes">
+                <attribute name="attrs">{'invisible': [('opening_closing_move', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr='//label[@for="journal_ids"]' position="attributes">
+                <attribute name="attrs">{'invisible': [('opening_closing_move', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr='//field[@name="journal_ids"]' position="attributes">
+                <attribute name="attrs">{'invisible': [('opening_closing_move', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr='//label[@for="account_ids"]' position="attributes">
+                <attribute name="attrs">{'invisible': [('opening_closing_move', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr='//field[@name="account_ids"]' position="attributes">
+                <attribute name="attrs">{'invisible': [('opening_closing_move', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr='//field[@name="receivable_accounts_only"]' position="attributes">
+                <attribute name="attrs">{'invisible': [('opening_closing_move', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr='//field[@name="payable_accounts_only"]' position="attributes">
+                <attribute name="attrs">{'invisible': [('opening_closing_move', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr='//button[@name="button_export_html"]/..' position="attributes">
+                <attribute name="attrs">{'invisible': ['|', ('not_only_one_unaffected_earnings_account', '=', True), ('opening_closing_move', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr='//button[@name="button_export_html"]/..' position="after">
+                <div attrs="{'invisible': [('opening_closing_move', '=', False)]}">
+                    <button name="button_create_move" class="oe_highlight" string="Export Move to XLSX" type="object"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

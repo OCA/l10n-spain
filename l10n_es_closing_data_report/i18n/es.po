@@ -1,0 +1,128 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_closing_data_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-19 15:42+0000\n"
+"PO-Revision-Date: 2022-07-19 17:45+0200\n"
+"Last-Translator: cubells <vicent@vcubells.net>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: l10n_es_closing_data_report
+#: code:addons/l10n_es_closing_data_report/reports/opening_closing_xlsx.py:21
+#, python-format
+msgid "Account"
+msgstr "Cuenta"
+
+#. module: l10n_es_closing_data_report
+#: selection:report_trial_balance,move_type:0
+#: selection:trial.balance.report.wizard,move_type:0
+msgid "Closing"
+msgstr "Cierre"
+
+#. module: l10n_es_closing_data_report
+#: code:addons/l10n_es_closing_data_report/reports/opening_closing_xlsx.py:15
+#, python-format
+msgid "Closing Move"
+msgstr "Asiento de cierre"
+
+#. module: l10n_es_closing_data_report
+#: code:addons/l10n_es_closing_data_report/reports/opening_closing_xlsx.py:20
+#, python-format
+msgid "Code"
+msgstr "Código"
+
+#. module: l10n_es_closing_data_report
+#: code:addons/l10n_es_closing_data_report/reports/opening_closing_xlsx.py:56
+#, python-format
+msgid "Company must have a profit loss account."
+msgstr "La compañía debe tener una cuenta de pérdidas y ganancias."
+
+#. module: l10n_es_closing_data_report
+#: code:addons/l10n_es_closing_data_report/reports/opening_closing_xlsx.py:26
+#, python-format
+msgid "Credit"
+msgstr "Haber"
+
+#. module: l10n_es_closing_data_report
+#: code:addons/l10n_es_closing_data_report/reports/opening_closing_xlsx.py:22
+#, python-format
+msgid "Debit"
+msgstr "Debe"
+
+#. module: l10n_es_closing_data_report
+#: model:ir.model.fields,field_description:l10n_es_closing_data_report.field_report_o_c_report_opening_closing_xlsx__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: l10n_es_closing_data_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_closing_data_report.trial_balance_wizard
+msgid "Export Move to XLSX"
+msgstr "Exportar movimiento a XLSX"
+
+#. module: l10n_es_closing_data_report
+#: model:ir.model.fields,field_description:l10n_es_closing_data_report.field_report_o_c_report_opening_closing_xlsx__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_closing_data_report
+#: model:ir.model.fields,field_description:l10n_es_closing_data_report.field_report_o_c_report_opening_closing_xlsx____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: l10n_es_closing_data_report
+#: model:ir.model.fields,field_description:l10n_es_closing_data_report.field_report_trial_balance__move_type
+#: model:ir.model.fields,field_description:l10n_es_closing_data_report.field_trial_balance_report_wizard__move_type
+msgid "Move Type"
+msgstr "Tipo de movimiento"
+
+#. module: l10n_es_closing_data_report
+#: selection:report_trial_balance,move_type:0
+#: selection:trial.balance.report.wizard,move_type:0
+msgid "Opening"
+msgstr "Apertura"
+
+#. module: l10n_es_closing_data_report
+#: code:addons/l10n_es_closing_data_report/reports/opening_closing_xlsx.py:13
+#, python-format
+msgid "Opening Move"
+msgstr "Asiento de apertura"
+
+#. module: l10n_es_closing_data_report
+#: model:ir.model.fields,field_description:l10n_es_closing_data_report.field_trial_balance_report_wizard__opening_closing_move
+msgid "Opening/Closing Move"
+msgstr "Asientos de apertura/cierre"
+
+#. module: l10n_es_closing_data_report
+#: model:ir.actions.report,name:l10n_es_closing_data_report.action_report_opening_closing_xlsx
+msgid "Opening/Closing XLSX"
+msgstr "Asientos de apertura/cierre en XLSX"
+
+#. module: l10n_es_closing_data_report
+#: model:ir.model,name:l10n_es_closing_data_report.model_trial_balance_report_wizard
+msgid "Trial Balance Report Wizard"
+msgstr "Asistente del informe de balance de sumas y saldos"
+
+#. module: l10n_es_closing_data_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_closing_data_report.trial_balance_wizard
+msgid "or"
+msgstr "o"
+
+#. module: l10n_es_closing_data_report
+#: model:ir.model,name:l10n_es_closing_data_report.model_report_o_c_report_opening_closing_xlsx
+msgid "report.o_c.report_opening_closing_xlsx"
+msgstr "report.o_c.report_opening_closing_xlsx"
+
+#. module: l10n_es_closing_data_report
+#: model:ir.model,name:l10n_es_closing_data_report.model_report_trial_balance
+msgid "report_trial_balance"
+msgstr "report_trial_balance"

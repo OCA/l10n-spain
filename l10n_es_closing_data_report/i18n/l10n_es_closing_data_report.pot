@@ -1,0 +1,127 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_es_closing_data_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-19 15:42+0000\n"
+"PO-Revision-Date: 2022-07-19 15:42+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_closing_data_report
+#: code:addons/l10n_es_closing_data_report/reports/opening_closing_xlsx.py:21
+#, python-format
+msgid "Account"
+msgstr ""
+
+#. module: l10n_es_closing_data_report
+#: selection:report_trial_balance,move_type:0
+#: selection:trial.balance.report.wizard,move_type:0
+msgid "Closing"
+msgstr ""
+
+#. module: l10n_es_closing_data_report
+#: code:addons/l10n_es_closing_data_report/reports/opening_closing_xlsx.py:15
+#, python-format
+msgid "Closing Move"
+msgstr ""
+
+#. module: l10n_es_closing_data_report
+#: code:addons/l10n_es_closing_data_report/reports/opening_closing_xlsx.py:20
+#, python-format
+msgid "Code"
+msgstr ""
+
+#. module: l10n_es_closing_data_report
+#: code:addons/l10n_es_closing_data_report/reports/opening_closing_xlsx.py:56
+#, python-format
+msgid "Company must have a profit loss account."
+msgstr ""
+
+#. module: l10n_es_closing_data_report
+#: code:addons/l10n_es_closing_data_report/reports/opening_closing_xlsx.py:26
+#, python-format
+msgid "Credit"
+msgstr ""
+
+#. module: l10n_es_closing_data_report
+#: code:addons/l10n_es_closing_data_report/reports/opening_closing_xlsx.py:22
+#, python-format
+msgid "Debit"
+msgstr ""
+
+#. module: l10n_es_closing_data_report
+#: model:ir.model.fields,field_description:l10n_es_closing_data_report.field_report_o_c_report_opening_closing_xlsx__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_es_closing_data_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_closing_data_report.trial_balance_wizard
+msgid "Export Move to XLSX"
+msgstr ""
+
+#. module: l10n_es_closing_data_report
+#: model:ir.model.fields,field_description:l10n_es_closing_data_report.field_report_o_c_report_opening_closing_xlsx__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_es_closing_data_report
+#: model:ir.model.fields,field_description:l10n_es_closing_data_report.field_report_o_c_report_opening_closing_xlsx____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_es_closing_data_report
+#: model:ir.model.fields,field_description:l10n_es_closing_data_report.field_report_trial_balance__move_type
+#: model:ir.model.fields,field_description:l10n_es_closing_data_report.field_trial_balance_report_wizard__move_type
+msgid "Move Type"
+msgstr ""
+
+#. module: l10n_es_closing_data_report
+#: selection:report_trial_balance,move_type:0
+#: selection:trial.balance.report.wizard,move_type:0
+msgid "Opening"
+msgstr ""
+
+#. module: l10n_es_closing_data_report
+#: code:addons/l10n_es_closing_data_report/reports/opening_closing_xlsx.py:13
+#, python-format
+msgid "Opening Move"
+msgstr ""
+
+#. module: l10n_es_closing_data_report
+#: model:ir.model.fields,field_description:l10n_es_closing_data_report.field_trial_balance_report_wizard__opening_closing_move
+msgid "Opening/Closing Move"
+msgstr ""
+
+#. module: l10n_es_closing_data_report
+#: model:ir.actions.report,name:l10n_es_closing_data_report.action_report_opening_closing_xlsx
+msgid "Opening/Closing XLSX"
+msgstr ""
+
+#. module: l10n_es_closing_data_report
+#: model:ir.model,name:l10n_es_closing_data_report.model_trial_balance_report_wizard
+msgid "Trial Balance Report Wizard"
+msgstr ""
+
+#. module: l10n_es_closing_data_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_closing_data_report.trial_balance_wizard
+msgid "or"
+msgstr ""
+
+#. module: l10n_es_closing_data_report
+#: model:ir.model,name:l10n_es_closing_data_report.model_report_o_c_report_opening_closing_xlsx
+msgid "report.o_c.report_opening_closing_xlsx"
+msgstr ""
+
+#. module: l10n_es_closing_data_report
+#: model:ir.model,name:l10n_es_closing_data_report.model_report_trial_balance
+msgid "report_trial_balance"
+msgstr ""
+
