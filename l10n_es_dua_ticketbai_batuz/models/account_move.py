@@ -43,10 +43,10 @@ class AccountMove(models.Model):
         self.ensure_one()
         header = super()._get_lroe_invoice_header()
         dua_fiscal_position_id = self._get_dua_fiscal_position_id(self.company_id)
-        if self.type == "in_invoice" and self.tbai_dua_invoice:
+        if self.move_type == "in_invoice" and self.tbai_dua_invoice:
             header["TipoFactura"] = "F5"
         elif (
-            self.type == "in_invoice"
+            self.move_type == "in_invoice"
             and self.fiscal_position_id.id == dua_fiscal_position_id
         ):
             header["TipoFactura"] = "F6"
@@ -57,7 +57,7 @@ class AccountMove(models.Model):
         taxes_dict, tax_amount, not_in_amount_total = super()._get_lroe_in_taxes()
         dua_fiscal_position_id = self._get_dua_fiscal_position_id(self.company_id)
         if (
-            self.type == "in_invoice"
+            self.move_type == "in_invoice"
             and self.fiscal_position_id.id == dua_fiscal_position_id
             and not self.tbai_dua_invoice
         ):
