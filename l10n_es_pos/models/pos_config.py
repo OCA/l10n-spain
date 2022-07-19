@@ -19,6 +19,13 @@ class PosConfig(models.Model):
                 seq._get_prefix_suffix()[0])
             pos.l10n_es_simplified_invoice_padding = seq.padding
 
+    def _compute_last_pos_order(self):
+        for pos in self:
+            pos.l10n_es_last_pos_order = self.env['pos.order'].search([
+                ('config_id', '=', pos.id),
+                ('is_l10n_es_simplified_invoice', '=', True)
+            ], order='id DESC', limit=1).pos_reference
+
     iface_l10n_es_simplified_invoice = fields.Boolean(
         string='Use simplified invoices for this POS',
     )
@@ -54,6 +61,11 @@ class PosConfig(models.Model):
         readonly=True,
         compute='_compute_simplified_invoice_sequence',
         oldname='simple_invoice_number',
+    )
+    l10n_es_last_pos_order = fields.Char(
+        'Last Order',
+        readonly=True,
+        compute='_compute_last_pos_order'
     )
 
     @api.model
