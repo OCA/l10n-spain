@@ -15,6 +15,7 @@
     "installable": True,
     "auto_install": False,
     "development_status": "Beta",
+    "maintainers": ["ao-landoo"],
     "depends": ["l10n_es_pos", "l10n_es_ticketbai", "pos_order_mgmt"],
     "data": [
         "security/ir.model.access.csv",
