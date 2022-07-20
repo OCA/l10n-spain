@@ -15,7 +15,7 @@
     "installable": True,
     "auto_install": False,
     "development_status": "Alpha",
-    "maintainers": ["Binovo"],
+    "maintainers": ["ao-landoo"],
     "depends": ["l10n_es_ticketbai_api"],
     "external_dependencies": {"python": ["xmltodict", "requests_pkcs12"]},
     "data": [
