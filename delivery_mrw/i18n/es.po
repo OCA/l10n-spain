@@ -1,0 +1,761 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* delivery_mrw
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-27 07:06+0000\n"
+"PO-Revision-Date: 2022-10-27 07:06+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,help:delivery_mrw.field_delivery_carrier__mrw_api_information_type
+msgid "0 for Basic Information; 1 for Detailed"
+msgstr "0 para Información Básica, 1 para Detallado"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,help:delivery_mrw.field_delivery_carrier__mrw_api_filter_type
+msgid "0 for tracking number; 1 for reference; 2 package reference"
+msgstr ""
+"0 para número de seguimiento; 1 para referencia; 2 para referncia de paquete"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,help:delivery_mrw.field_delivery_carrier__mrw_api_language
+msgid "3082 for Spanish; 2070 for Portuguese"
+msgstr "3082 para Español; 2070 para Portugués"
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0220
+msgid "48 Horas Portugal"
+msgstr ""
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
+msgid "<br/>(Kg.)"
+msgstr ""
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
+msgid "<br/>(Packages)"
+msgstr "<br/>(Bultos)"
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
+msgid ""
+"<span>\n"
+"                                        <strong>Carrier Signature / Stamp</strong>\n"
+"                                    </span>"
+msgstr ""
+"<span>\n"
+"                                        <strong>Firma del Transportista / Sello</strong>\n"
+"                                    </span>"
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
+msgid "<span>TOTAL EXPEDITIONS: </span>"
+msgstr "<span>TOTAL ENVÍOS: </span>"
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
+msgid "<strong>Company:</strong>"
+msgstr "<strong>Compañía:</strong>"
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
+msgid "<strong>Date of printing</strong>"
+msgstr "<strong>Fecha de impresión</strong>"
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
+msgid "<strong>MRW MANIFEST</strong>"
+msgstr "<strong>MANIFIESTO MRW</strong>"
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
+msgid "<strong>Manifest Date:</strong>"
+msgstr "<strong>Fecha de Manifiesto:</strong>"
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
+msgid "<strong>Printed by</strong>"
+msgstr "<strong>Imprimido por</strong>"
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
+msgid "<strong>TOTAL</strong>"
+msgstr ""
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
+msgid "Address"
+msgstr "Dirección"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_stock_immediate_transfer__mrw_to_address
+msgid "Address sent to MRW"
+msgstr "Dirección enviada a MRW"
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_notification_type__3
+msgid "Aviso de entrega en franquicia"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0235
+msgid "Bag 14"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0230
+msgid "Bag 19"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0480
+msgid "Caja Express 3 Kilos"
+msgstr ""
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.delivery_mrw_manifest_wizard_form
+msgid "Cancelar"
+msgstr ""
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_view_immediate_transfer
+msgid ""
+"Check that the address sent to MRW is correct, otherwise you should\n"
+"                    change it in the partner form. Try to put street and number in the\n"
+"                    first address line, and floor and door number in the second one."
+msgstr ""
+"Comprueba que la dirección enviada a MRW es correcta, en caso contrario debería\n"
+"                    cambiarla en el formulario de contacto. Prueba de poner calle y número\n"
+"                    en la primera línea de dirección, y piso y puerta en la segunda"
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
+msgid "City"
+msgstr "Ciudad"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_client_code
+msgid "Client Code"
+msgstr "Código de Abonado"
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
+msgid "Comments"
+msgstr "Observaciones"
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_en_franquicia__e
+msgid "Con entrega en franquicia."
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_en_franquicia__r
+msgid "Con recogida en franquicia."
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_en_franquicia__a
+msgid "Con recogida y entrega en franquicia"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_reembolso__d
+msgid "Con reembolso comisión en destino"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_reembolso__o
+msgid "Con reembolso comisión en origen"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_notification_type__1
+msgid "Confirmación de entrega (solo SMS)"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields,help:delivery_mrw.field_delivery_carrier__mrw_notification_type
+msgid ""
+"Confirmación de entrega: informa de la entrega del envío en destino.Nota: Solo para SMS.\n"
+"Seguimiento de envío: informa los diferentes estados de tránsitodel envío.\n"
+"Aviso de entrega en franquicia: informa al destinatario del envíoque la mercancía está disponible en la franquicia de destino. Solotendrá sentido para entrega en franquicia, y será obligatorio.\n"
+"Preaviso de entrega: informa al destinatario del envío de la fechade entrega de la mercancía. Solo tendrá sentido cuando NO seaentrega en franquicia.\n"
+"Confirmación de recogida: informa al destinatario que el envío hasido recogido en origen. Solo tendrá sentido cuando NO seaentrega en franquicia. Nota: Solo para SMS.\n"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_notification_type__5
+msgid "Confirmación de recogida (solo SMS)"
+msgstr ""
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_view_delivery_carrier_form
+msgid "Connection"
+msgstr "Conexión"
+
+#. module: delivery_mrw
+#: code:addons/delivery_mrw/models/delivery_carrier.py:0
+#, python-format
+msgid "Couldn't find partner %s street"
+msgstr "No se ha encontrado la calle del cliente %s"
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_integration_level__ship
+msgid "Create Shipping"
+msgstr "Crear envío"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_mrw_manifest_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_mrw_manifest_wizard__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_international_service__doc
+msgid "DOCUMENTOS"
+msgstr ""
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
+msgid "Date"
+msgstr "Fecha"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_mrw_manifest_wizard__date_from
+msgid "Date From"
+msgstr "Fecha"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_department_code
+msgid "Department Code"
+msgstr "Código de Depto."
+
+#. module: delivery_mrw
+#: code:addons/delivery_mrw/models/stock_picking.py:0
+#, python-format
+msgid ""
+"Destination country doesn't match carrier service type, international = %s "
+"and partner country = %s"
+msgstr ""
+"El país de destino no concuerda con el tipo de servicio de "
+"proveedor,internacional = %s y el país de cliente = %s"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__display_name
+#: model:ir.model.fields,field_description:delivery_mrw.field_mrw_manifest_wizard__display_name
+#: model:ir.model.fields,field_description:delivery_mrw.field_stock_immediate_transfer__display_name
+#: model:ir.model.fields,field_description:delivery_mrw.field_stock_picking__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0490
+msgid "Documentos 14"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_international_service__box25
+msgid "ECOBOX25"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_international_service__ecomm
+msgid "ECOMMERCE"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_international_service__euro2
+msgid "EURO 2KG"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_international_service__europ
+msgid "EUROPAQ"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0800
+msgid "Ecommerce"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0300
+msgid "Economico"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0350
+msgid "Economico Interinsular"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0310
+msgid "Economico Mas 40 Kilos"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_notification_channel__1
+msgid "Email"
+msgstr ""
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_view_delivery_carrier_form
+msgid "En Franquicia"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0450
+msgid "Express 2 Kilos"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0400
+msgid "Express Documentos"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_api_filter_type
+msgid "Filter Type"
+msgstr "Tipo de filtro"
+
+#. module: delivery_mrw
+#: code:addons/delivery_mrw/models/delivery_carrier.py:0
+#, python-format
+msgid ""
+"For the moment MRW only supports:\n"
+"- Sin recogida ni entrega en franquicia.\n"
+"- Con entrega en franquicia. "
+msgstr ""
+"Por el momento MRW solo soporta:\n"
+"- Sin recogida ni entrega en franquicia.\n"
+"- Con entrega en franquicia. "
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_franquicia_code
+msgid "Franquicia Code"
+msgstr "Código de Franquicia"
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.delivery_mrw_manifest_wizard_form
+msgid "Get Manifest"
+msgstr "Descargar Manifiesto"
+
+#. module: delivery_mrw
+#: model:ir.model,name:delivery_mrw.model_mrw_manifest_wizard
+msgid "Get the MRW Manifest for the given date"
+msgstr "Manifiesto de MRW para la fecha seleccionada"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__id
+#: model:ir.model.fields,field_description:delivery_mrw.field_mrw_manifest_wizard__id
+#: model:ir.model.fields,field_description:delivery_mrw.field_stock_immediate_transfer__id
+#: model:ir.model.fields,field_description:delivery_mrw.field_stock_picking__id
+msgid "ID"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields,help:delivery_mrw.field_mrw_manifest_wizard__carrier_id
+msgid ""
+"If no service is selected, all MRW type shippment methods will be printed"
+msgstr ""
+"Si no se selecciona un servicio se imprimirán todos los envíos de MRW."
+
+#. module: delivery_mrw
+#: model:ir.model,name:delivery_mrw.model_stock_immediate_transfer
+msgid "Immediate Transfer"
+msgstr "Transferencia inmediata"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,help:delivery_mrw.field_delivery_carrier__mrw_en_franquicia
+msgid "Indicador de entrega en franquicia."
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields,help:delivery_mrw.field_delivery_carrier__mrw_reembolso
+msgid ""
+"Indicador de reembolso. El importe del reembolso será cogido del pedido de "
+"venta."
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_api_information_type
+msgid "Information Type"
+msgstr "Tipo de información"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_integration_level
+msgid "Integration Level"
+msgstr "Nivel de Integración"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__international_shipping
+msgid "International Shipping"
+msgstr "Envío Internacional"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_invoice_policy
+msgid "Invoice Policy"
+msgstr "Política de Facturación"
+
+#. module: delivery_mrw
+#: code:addons/delivery_mrw/wizard/mrw_manifest_wizard.py:0
+#, python-format
+msgid ""
+"It wasn't possible to get the manifest. Maybe there aren'tdeliveries for the"
+" selected date."
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_api_language
+msgid "Language Code"
+msgstr "Código de lenguaje"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier____last_update
+#: model:ir.model.fields,field_description:delivery_mrw.field_mrw_manifest_wizard____last_update
+#: model:ir.model.fields,field_description:delivery_mrw.field_stock_immediate_transfer____last_update
+#: model:ir.model.fields,field_description:delivery_mrw.field_stock_picking____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_mrw_manifest_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_mrw_manifest_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__delivery_type__mrw
+msgid "MRW"
+msgstr ""
+
+#. module: delivery_mrw
+#: code:addons/delivery_mrw/models/delivery_carrier.py:0
+#: code:addons/delivery_mrw/models/delivery_carrier.py:0
+#: model:ir.model.fields,help:delivery_mrw.field_delivery_carrier__mrw_invoice_policy
+#, python-format
+msgid ""
+"MRW API doesn't provide methods to compute delivery rates, now it isconfigured as the shippment product price set in the SO's Pricelist.\n"
+"Zero price can also be set in order to invoice it later to the customer: check the field 'Free if order amount is above' and put Import=0."
+msgstr ""
+"La API de MRW no proporciona métodos para calcular las tarifas de envío, ahora la tarifa está configurada como el precio del producto de envío en la Tarifa seleccionada en el Pedido de Venta \n"
+".Un precio de 0 también se puede configurar,para facturarlo más tarde, seleccionando el campo'Gratuito si el importe del pedido es', y poner Importe = 0."
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_view_delivery_carrier_form
+msgid "MRW Configuration"
+msgstr "Configuración de MRW"
+
+#. module: delivery_mrw
+#: model:ir.ui.menu,name:delivery_mrw.menu_mrw_manifest
+msgid "MRW Deliveries Manifest"
+msgstr "Manifiesto de Envíos MRW"
+
+#. module: delivery_mrw
+#: code:addons/delivery_mrw/models/delivery_carrier.py:0
+#, python-format
+msgid "MRW Error: %s)Mensaje"
+msgstr ""
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.view_picking_withcarrier_out_form
+msgid "MRW Label"
+msgstr "Etiqueta MRW"
+
+#. module: delivery_mrw
+#: code:addons/delivery_mrw/models/delivery_carrier.py:0
+#: model:ir.actions.act_window,name:delivery_mrw.action_delivery_mrw_manifest_wizard
+#: model:ir.actions.report,name:delivery_mrw.mrw_manifest_report
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.delivery_mrw_manifest_wizard_form
+#, python-format
+msgid "MRW Manifest"
+msgstr "Manifiesto MRW"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_international_service
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_national_service
+#: model:ir.model.fields,field_description:delivery_mrw.field_mrw_manifest_wizard__carrier_id
+msgid "MRW Service"
+msgstr "Servicio"
+
+#. module: delivery_mrw
+#: code:addons/delivery_mrw/models/delivery_carrier.py:0
+#: code:addons/delivery_mrw/models/stock_picking.py:0
+#, python-format
+msgid "MRW Shipping Label:"
+msgstr "Etiqueta de Envío de MRW"
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_view_delivery_carrier_form
+msgid "Manifest"
+msgstr "Manifiesto"
+
+#. module: delivery_mrw
+#: code:addons/delivery_mrw/models/delivery_carrier.py:0
+#, python-format
+msgid "MensajeSeguimiento"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_en_franquicia
+msgid "Mrw En Franquicia"
+msgstr "En Franquicia"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_horario_from
+msgid "Mrw Horario From"
+msgstr "Horario Desde"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_horario_to
+msgid "Mrw Horario To"
+msgstr "Horario Hasta"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_label_left_margin
+msgid "Mrw Label Left Margin"
+msgstr "Margen izquierdo de etiqueta"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_label_top_margin
+msgid "Mrw Label Top Margin"
+msgstr "Margen superior de etiqueta"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_reembolso
+msgid "Mrw Reembolso"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_retorno
+msgid "Mrw Retorno"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_notification_channel
+msgid "Notification Channel"
+msgstr "Canal de Notificación"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_notification_type
+msgid "Notification Type"
+msgstr "Tipo de Notificación"
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_view_delivery_carrier_form
+msgid "Notifications"
+msgstr "Notificaciones"
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_international_service__pac
+msgid "PAQUETES"
+msgstr ""
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
+msgid "Packages"
+msgstr "Bultos"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_password
+msgid "Password"
+msgstr "Contraseña"
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_notification_type__4
+msgid "Preaviso de entrega"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0010
+msgid "Promociones"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__delivery_type
+msgid "Provider"
+msgstr "Proveedor"
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_view_delivery_carrier_form
+msgid "Reembolso"
+msgstr ""
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
+msgid "Ref."
+msgstr ""
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
+msgid "Refund"
+msgstr "Reemb."
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_view_delivery_carrier_form
+msgid "Retorno"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_retorno__d
+msgid "Retorno de albarán cobro en destino"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_retorno__s
+msgid "Retorno de mercancia"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_notification_channel__2
+msgid "SMS"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_international_service__sc
+msgid "SUPERCITY"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_notification_type__2
+msgid "Seguimiento de envío"
+msgstr ""
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_view_delivery_carrier_form
+msgid "Service"
+msgstr "Servicio"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,help:delivery_mrw.field_delivery_carrier__mrw_international_service
+#: model:ir.model.fields,help:delivery_mrw.field_delivery_carrier__mrw_national_service
+msgid "Set the MRW Service"
+msgstr "Seleccionar el servicio de MRW"
+
+#. module: delivery_mrw
+#: model:ir.model,name:delivery_mrw.model_delivery_carrier
+msgid "Shipping Methods"
+msgstr "Métodos de envío"
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
+msgid "Shipping Num."
+msgstr "Núm. Envío"
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_en_franquicia__n
+msgid "Sin recogida ni entrega en franquicia."
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_reembolso__n
+msgid "Sin reembolso"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_retorno__n
+msgid "Sin retorno"
+msgstr ""
+
+#. module: delivery_mrw
+#: code:addons/delivery_mrw/models/delivery_carrier.py:0
+#, python-format
+msgid ""
+"Solamente se permiten caracteres numéricos en el campo número de la "
+"dirección. Número: %s"
+msgstr ""
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
+msgid "State"
+msgstr "Província"
+
+#. module: delivery_mrw
+#: code:addons/delivery_mrw/models/delivery_carrier.py:0
+#, python-format
+msgid "This carrier is only for shipments coming from Spain"
+msgstr "Este proveedor es solo para envíos desde España"
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_view_delivery_carrier_form
+msgid "Time Frame"
+msgstr "Franja horaria"
+
+#. module: delivery_mrw
+#: model:ir.model,name:delivery_mrw.model_stock_picking
+msgid "Transfer"
+msgstr "Albarán"
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0000
+msgid "Urgente 10"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0100
+msgid "Urgente 12"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0110
+msgid "Urgente 14"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0200
+msgid "Urgente 19"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0210
+msgid "Urgente 19 Mas 40 Kilos"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0120
+msgid "Urgente 22"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0005
+msgid "Urgente Hoy"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_username
+msgid "Username"
+msgstr "Usuario"
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
+msgid "Weight"
+msgstr "Peso"
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
+msgid "ZIP Code"
+msgstr "C.P."
