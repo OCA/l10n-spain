@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_picking_withcarrier_out_form" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form" />
+        <field name="groups_id" eval="[(4, ref('base.group_no_one'))]" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='tracking']" position="inside">
+                <!-- extra button that is visible outside of "done" to cancel pickups -->
+                <button
+                    type='object'
+                    class="fa fa-arrow-right oe_link"
+                    name="cancel_shipment"
+                    string="Cancel"
+                    attrs="{'invisible':[
+                        '|',
+                        '|',
+                        '|',
+                        ('carrier_tracking_ref','=',False),
+                        ('delivery_type','in', ['fixed', 'base_on_rule']),
+                        ('delivery_type','=',False),
+                        ('state','=','done')]
+                    }"
+                />
+            </xpath>
+            <xpath expr="//header" position='inside'>
+                <button
+                    name="mrw_get_label"
+                    string="MRW Label"
+                    type="object"
+                    attrs="{
+                        'invisible':[
+                            '|',
+                            '|',
+                            ('delivery_type', '!=', 'mrw'),
+                            ('carrier_tracking_ref', '=', False),
+                            ('state', '!=', 'done')
+                        ]
+                    }"
+                />
+            </xpath>
+            <field name="date_delivered" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="tracking_state" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="tracking_state_history" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <button name="tracking_state_update" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </button>
+        </field>
+    </record>
+</odoo>

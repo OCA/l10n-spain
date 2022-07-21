@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="open_mrw_wh_dpt_map" model="ir.actions.act_window">
+        <field name="name">MRW Warehouse-Department Mapping</field>
+        <field name="res_model">mrw.department.wh.map</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No data yet!
+            </p><p>
+                Map here Warehouse and Departments to make MRW shipments.
+            </p>
+        </field>
+    </record>
+
+    <record id="mrw_view_delivery_carrier_form" model="ir.ui.view">
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
+        <field name="arch" type="xml">
+            <field name="integration_level" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('delivery_type', 'in', ('fixed','mrw', 'base_on_rule'))]}</attribute>
+            </field>
+            <field name="integration_level" position="after">
+                <field
+                    name="mrw_integration_level"
+                    attrs="{'invisible': [('delivery_type', '!=', 'mrw')]}"
+                />
+            </field>
+            <field name="invoice_policy" position="attributes">
+                 <attribute name="attrs">{'invisible': [('delivery_type', '=', 'mrw')]}
+                 </attribute>
+            </field>
+            <field name="invoice_policy" position="after">
+                <field
+                    name="mrw_invoice_policy"
+                    attrs="{'invisible': [('delivery_type', '!=', 'mrw')]}"
+                />
+            </field>
+            <xpath expr="//notebook/page[1]" position='before'>
+                <page
+                    string="MRW Configuration"
+                    attrs="{'invisible': [('delivery_type', '!=', 'mrw')]}"
+                >
+                    <group>
+                        <group string="Connection">
+                            <field
+                                name="mrw_username"
+                                attrs="{'required': [('delivery_type', '=', 'mrw'), ('prod_environment', '!=', False)]}"
+                            />
+                            <field
+                                name="mrw_password"
+                                password="True"
+                                attrs="{'required': [('delivery_type', '=', 'mrw'), ('prod_environment', '!=', False)]}"
+                            />
+                            <field
+                                name="mrw_client_code"
+                                attrs="{'required': [('delivery_type', '=', 'mrw'), ('prod_environment', '!=', False)]}"
+                            />
+
+                            <field
+                                name="mrw_franquicia_code"
+                                attrs="{'required': [('delivery_type', '=', 'mrw'), ('prod_environment', '!=', False)]}"
+                            />
+
+                            <button
+                                name="%(delivery_mrw.open_mrw_wh_dpt_map)d"
+                                icon="fa-arrow-right"
+                                type="action"
+                                string="Set Warehouse-Department Mappings"
+                                class="btn-link"
+                                width="300"
+                            />
+                        </group>
+                        <group string="Service">
+<!--                            we make international shipping invisible because it's not supported-->
+                            <field
+                                name="international_shipping"
+                                invisible="1"
+                                attrs="{'required': [('delivery_type', '=', 'mrw')],}"
+                            />
+                            <field
+                                name="mrw_national_service"
+                                attrs="{'required': [('delivery_type', '=', 'mrw'), ('international_shipping', '=', False)],
+                                'invisible': [('international_shipping', '=', True)]}"
+                            />
+                            <field
+                                name="mrw_international_service"
+                                attrs="{'required': [('delivery_type', '=', 'mrw'), ('international_shipping', '=', True)],
+                                'invisible': [('international_shipping', '=', False)]}"
+                            />
+                            <label
+                                for="mrw_horario_from"
+                                string="Time Frame"
+                                attrs="{'invisible': [('international_shipping', '=', True)]}"
+                            />
+                            <div
+                                attrs="{'invisible': [('international_shipping', '=', True)]}"
+                            >
+                                <field
+                                    name="mrw_horario_from"
+                                    class="oe_inline"
+                                    widget="float_time"
+                                    attrs="{'required': [('delivery_type', '=', 'mrw'), ('international_shipping', '=', False)],
+                                'invisible': [('international_shipping', '=', True)]}"
+                                />
+                                a
+                             <field
+                                    name="mrw_horario_to"
+                                    class="oe_inline"
+                                    widget="float_time"
+                                    attrs="{'required': [('delivery_type', '=', 'mrw'), ('international_shipping', '=', False)],
+                                'invisible': [('international_shipping', '=', True)]}"
+                                />
+                            </div>
+                            <field
+                                name="mrw_en_franquicia"
+                                string="En Franquicia"
+                                attrs="{'required': [('delivery_type', '=', 'mrw')],
+                                'invisible': [('international_shipping', '=', True)]}"
+                            />
+                            <field
+                                name="mrw_reembolso"
+                                string="Reembolso"
+                                attrs="{'required': [('delivery_type', '=', 'mrw')],
+                                'invisible': [('international_shipping', '=', True)]}"
+                            />
+                            <field
+                                name="mrw_retorno"
+                                string="Retorno"
+                                attrs="{'required': [('delivery_type', '=', 'mrw')],
+                                'invisible': [('international_shipping', '=', True)]}"
+                            />
+
+                        </group>
+                        <group string="Notifications">
+                            <field name="mrw_notification_channel" />
+                            <field
+                                name="mrw_notification_type"
+                                attrs="{'required': [('mrw_notification_channel', '!=', False)]}"
+                            />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//button[@name='toggle_prod_environment']" position="before">
+                <button
+                    name="action_get_manifest"
+                    string="Manifest"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-file-text-o"
+                    attrs="{'invisible': [('delivery_type', '!=', 'mrw')]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

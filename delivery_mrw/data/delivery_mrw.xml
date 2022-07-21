@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--change to 1-->
+<odoo noupdate="0">
+    <!-- Current values. They could change, so it's good to have them configurable -->
+    <record id="mrw_api_user_demo_franquicia_code" model="ir.config_parameter">
+        <field name="key">delivery_mrw.user_demo_franquicia_code</field>
+        <field name="value">00626</field>
+    </record>
+    <record id="mrw_api_user_demo_client_code" model="ir.config_parameter">
+        <field name="key">delivery_mrw.user_demo_client_code</field>
+        <field name="value">008048</field>
+    </record>
+    <record id="mrw_api_user_demo_department_code" model="ir.config_parameter">
+        <field name="key">delivery_mrw.user_demo_department_code</field>
+        <field name="value" />
+    </record>
+    <record id="mrw_api_user_demo_username" model="ir.config_parameter">
+        <field name="key">delivery_mrw.user_demo_username</field>
+        <field name="value">SAGEC00626PORTAL</field>
+    </record>
+     <record id="mrw_api_user_demo_password" model="ir.config_parameter">
+        <field name="key">delivery_mrw.user_demo_password</field>
+        <field name="value">SAGEC00626PORTAL</field>
+    </record>
+</odoo>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrw_department_wh_map_views_tree" model="ir.ui.view">
+        <field name="name">mrw.department.wh.map.tree</field>
+        <field name="model">mrw.department.wh.map</field>
+        <field name="arch" type="xml">
+           <tree string="MRW Warehouse-Department Mapping" editable="top">
+               <field name="warehouse_id" options="{'no_create': True}" />
+               <field name="department_number" />
+           </tree>
+        </field>
+    </record>
+
+    <record id="action_mrw_wh_dpt_map_view" model="ir.actions.act_window">
+        <field name="name">MRW Warehouse-Department Mapping</field>
+        <field name="res_model">mrw.department.wh.map</field>
+        <field
+            name="view_ids"
+            eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('delivery_mrw.mrw_department_wh_map_views_tree')})]"
+        />
+    </record>
+
+    <menuitem
+        id="menu_mrw_wh_dpt_map"
+        sequence="20"
+        name="MRW Warehouse-Department Map"
+        parent="delivery.menu_delivery"
+        action="action_mrw_wh_dpt_map_view"
+        groups="stock.group_stock_manager"
+    />
+
+</odoo>
