@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="mrw_view_immediate_transfer" model="ir.ui.view">
+        <field name="model">stock.immediate.transfer</field>
+        <field
+            name="inherit_id"
+            ref="delivery_package_number.view_immediate_transfer"
+        />
+        <field name="arch" type="xml">
+
+            <xpath expr="//footer" position="before">
+                <p
+                    name="mrw_address_text"
+                    attrs="{'invisible': [('mrw_to_address', '=', False)]}"
+                >
+                    Check that the address sent to MRW is correct, otherwise you should
+                    change it in the partner form. Try to put street and number in the
+                    first address line, and floor and door number in the second one.
+                </p>
+                <group
+                    name="mrw_address"
+                    attrs="{'invisible': [('mrw_to_address', '=', False)]}"
+                >
+                    <field name="mrw_to_address" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
