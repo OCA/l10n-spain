@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="l10n_es_aeat_sii.aeat_sii_map_line_SFESS" model="aeat.sii.map.lines">
+        <field name="taxes" eval="[(4, ref('l10n_es_extra_data.account_tax_template_s_iva5s'))]"/>
+    </record>
+    <record id="l10n_es_aeat_sii.aeat_sii_map_line_SFRS" model="aeat.sii.map.lines">
+        <field name="taxes" eval="[(4, ref('l10n_es_extra_data.account_tax_template_p_iva5_sc'))]"/>
+    </record>
+</odoo>
