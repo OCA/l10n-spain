@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="TrackingService" targetNamespace="http://tempuri.org/">
+  <wsp:Policy wsu:Id="ServiceEndPoint_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false"/>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256/>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict/>
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Mrw.TrackingService.Contracts.FrqAbonado"/>
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Mrw.TrackingService.Contracts.FrqAbonadoDpto"/>
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Mrw.TrackingService.Contracts.ValueList"/>
+      <xs:element name="GetEnvios">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="login" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pass" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="codigoIdioma" type="xs:int"/>
+            <xs:element minOccurs="0" name="tipoFiltro" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="valorFiltroDesde" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="valorFiltroHasta" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="fechaDesde" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="fechaHasta" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="tipoInformacion" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="codigoAbonado" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="codigoFranquicia" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetEnviosResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Mrw.TrackingService.Contracts.FrqAbonado" minOccurs="0" name="GetEnviosResult" nillable="true" type="q1:InfoSeguimiento"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetEnviosByDepartamento">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="login" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pass" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="codigoIdioma" type="xs:int"/>
+            <xs:element minOccurs="0" name="tipoFiltro" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="valorFiltroDesde" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="valorFiltroHasta" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="fechaDesde" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="fechaHasta" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="tipoInformacion" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetEnviosByDepartamentoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Mrw.TrackingService.Contracts.FrqAbonadoDpto" minOccurs="0" name="GetEnviosByDepartamentoResult" nillable="true" type="q2:InfoSeguimiento"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="TESTS_GetSeguimientoEnviosByFechas">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="login" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pass" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="codigoIdioma" type="xs:int"/>
+            <xs:element minOccurs="0" name="fechaDesde" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="fechaHasta" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="TESTS_GetSeguimientoEnviosByFechasResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Mrw.TrackingService.Contracts.ValueList" minOccurs="0" name="TESTS_GetSeguimientoEnviosByFechasResult" nillable="true" type="q3:InfoSeguimiento"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/">
+      <xs:element name="anyType" nillable="true" type="xs:anyType"/>
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+      <xs:element name="boolean" nillable="true" type="xs:boolean"/>
+      <xs:element name="byte" nillable="true" type="xs:byte"/>
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+      <xs:element name="decimal" nillable="true" type="xs:decimal"/>
+      <xs:element name="double" nillable="true" type="xs:double"/>
+      <xs:element name="float" nillable="true" type="xs:float"/>
+      <xs:element name="int" nillable="true" type="xs:int"/>
+      <xs:element name="long" nillable="true" type="xs:long"/>
+      <xs:element name="QName" nillable="true" type="xs:QName"/>
+      <xs:element name="short" nillable="true" type="xs:short"/>
+      <xs:element name="string" nillable="true" type="xs:string"/>
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+      <xs:element name="char" nillable="true" type="tns:char"/>
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int"/>
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration"/>
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid"/>
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName"/>
+      <xs:attribute name="Id" type="xs:ID"/>
+      <xs:attribute name="Ref" type="xs:IDREF"/>
+    </xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/Mrw.TrackingService.Contracts.FrqAbonado" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Mrw.TrackingService.Contracts.FrqAbonado">
+      <xs:complexType name="InfoSeguimiento">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MensajeSeguimiento" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Seguimiento" nillable="true" type="tns:ArrayOfAbonado"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="InfoSeguimiento" nillable="true" type="tns:InfoSeguimiento"/>
+      <xs:complexType name="ArrayOfAbonado">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Abonado" nillable="true" type="tns:Abonado"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfAbonado" nillable="true" type="tns:ArrayOfAbonado"/>
+      <xs:complexType name="Abonado">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="InformacionAbonado" nillable="true" type="tns:Cliente"/>
+          <xs:element minOccurs="0" name="SeguimientoAbonado" nillable="true" type="tns:ArrayOfSeguimiento"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Abonado" nillable="true" type="tns:Abonado"/>
+      <xs:complexType name="Cliente">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Aplicacion" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="CodigoAbonado" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Franquicia" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="NombreAbonado" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Cliente" nillable="true" type="tns:Cliente"/>
+      <xs:complexType name="ArrayOfSeguimiento">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Seguimiento" nillable="true" type="tns:Seguimiento"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfSeguimiento" nillable="true" type="tns:ArrayOfSeguimiento"/>
+      <xs:complexType name="Seguimiento">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Estado" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="EstadoDescripcion" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="FechaEntrega" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="HoraEntrega" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Intentos" type="xs:int"/>
+          <xs:element minOccurs="0" name="NumAlbaran" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="PersonaEntrega" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Publicado" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Seguimiento" nillable="true" type="tns:Seguimiento"/>
+    </xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/Mrw.TrackingService.Contracts.FrqAbonadoDpto" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Mrw.TrackingService.Contracts.FrqAbonadoDpto">
+      <xs:complexType name="InfoSeguimiento">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MensajeSeguimiento" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Seguimiento" nillable="true" type="tns:ArrayOfAbonado"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="InfoSeguimiento" nillable="true" type="tns:InfoSeguimiento"/>
+      <xs:complexType name="ArrayOfAbonado">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Abonado" nillable="true" type="tns:Abonado"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfAbonado" nillable="true" type="tns:ArrayOfAbonado"/>
+      <xs:complexType name="Abonado">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="InformacionAbonado" nillable="true" type="tns:Cliente"/>
+          <xs:element minOccurs="0" name="SeguimientoAbonado" nillable="true" type="tns:ArrayOfSeguimiento"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Abonado" nillable="true" type="tns:Abonado"/>
+      <xs:complexType name="Cliente">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Aplicacion" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="CodigoAbonado" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="DepartamentoCodigo" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="DepartamentoNombre" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Franquicia" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="NombreAbonado" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Cliente" nillable="true" type="tns:Cliente"/>
+      <xs:complexType name="ArrayOfSeguimiento">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Seguimiento" nillable="true" type="tns:Seguimiento"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfSeguimiento" nillable="true" type="tns:ArrayOfSeguimiento"/>
+      <xs:complexType name="Seguimiento">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CantidadBultos" type="xs:int"/>
+          <xs:element minOccurs="0" name="DireccionTextualEntrega" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Estado" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="EstadoDescripcion" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="FechaEntrega" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="HoraEntrega" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Intentos" type="xs:int"/>
+          <xs:element minOccurs="0" name="NumAlbaran" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Observaciones1" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Observaciones2" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="PersonaEntrega" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Publicado" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="ReferenciaClienteEntrega" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Seguimiento" nillable="true" type="tns:Seguimiento"/>
+    </xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/Mrw.TrackingService.Contracts.ValueList" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Mrw.TrackingService.Contracts.ValueList">
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:complexType name="InfoSeguimiento">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ClienteEnvios" nillable="true" type="tns:ArrayOfClienteEnvios"/>
+          <xs:element minOccurs="0" name="MensajeSeguimiento" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="InfoSeguimiento" nillable="true" type="tns:InfoSeguimiento"/>
+      <xs:complexType name="ArrayOfClienteEnvios">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ClienteEnvios" nillable="true" type="tns:ClienteEnvios"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfClienteEnvios" nillable="true" type="tns:ArrayOfClienteEnvios"/>
+      <xs:complexType name="ClienteEnvios">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Cliente" nillable="true" type="q1:ArrayOfKeyValueOfstringstring"/>
+          <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Envios" nillable="true" type="q2:ArrayOfKeyValueOfstringstring"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ClienteEnvios" nillable="true" type="tns:ClienteEnvios"/>
+    </xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+      <xs:complexType name="ArrayOfKeyValueOfstringstring">
+        <xs:annotation>
+          <xs:appinfo>
+            <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringstring">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Key" nillable="true" type="xs:string"/>
+                <xs:element name="Value" nillable="true" type="xs:string"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfKeyValueOfstringstring" nillable="true" type="tns:ArrayOfKeyValueOfstringstring"/>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ITrackingService_GetEnvios_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEnvios"/>
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_GetEnvios_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEnviosResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_GetEnviosByDepartamento_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEnviosByDepartamento"/>
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_GetEnviosByDepartamento_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEnviosByDepartamentoResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_TESTS_GetSeguimientoEnviosByFechas_InputMessage">
+    <wsdl:part name="parameters" element="tns:TESTS_GetSeguimientoEnviosByFechas"/>
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_TESTS_GetSeguimientoEnviosByFechas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TESTS_GetSeguimientoEnviosByFechasResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="ITrackingService">
+    <wsdl:operation name="GetEnvios">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackingService/GetEnvios" message="tns:ITrackingService_GetEnvios_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackingService/GetEnviosResponse" message="tns:ITrackingService_GetEnvios_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetEnviosByDepartamento">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackingService/GetEnviosByDepartamento" message="tns:ITrackingService_GetEnviosByDepartamento_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackingService/GetEnviosByDepartamentoResponse" message="tns:ITrackingService_GetEnviosByDepartamento_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="TESTS_GetSeguimientoEnviosByFechas">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackingService/TESTS_GetSeguimientoEnviosByFechas" message="tns:ITrackingService_TESTS_GetSeguimientoEnviosByFechas_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackingService/TESTS_GetSeguimientoEnviosByFechasResponse" message="tns:ITrackingService_TESTS_GetSeguimientoEnviosByFechas_OutputMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceEndPoint" type="tns:ITrackingService">
+    <wsp:PolicyReference URI="#ServiceEndPoint_policy"/>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetEnvios">
+      <soap:operation soapAction="http://tempuri.org/ITrackingService/GetEnvios" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEnviosByDepartamento">
+      <soap:operation soapAction="http://tempuri.org/ITrackingService/GetEnviosByDepartamento" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TESTS_GetSeguimientoEnviosByFechas">
+      <soap:operation soapAction="http://tempuri.org/ITrackingService/TESTS_GetSeguimientoEnviosByFechas" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TrackingService">
+    <wsdl:port name="ServiceEndPoint" binding="tns:ServiceEndPoint">
+      <soap:address location="https://trackingservice.mrw.es/TrackingService.svc/TrackingServices"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
