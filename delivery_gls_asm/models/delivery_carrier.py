@@ -160,7 +160,7 @@ class DeliveryCarrier(models.Model):
             "destinatario_codigo": "",
             "destinatario_plaza": "",
             "destinatario_nombre": (
-                escape(consignee.name) or escape(consignee.commercial_partner_id.name)
+                escape(consignee.name or consignee.commercial_partner_id.name or "")
             ),
             "destinatario_direccion": escape(consignee.street or ""),
             "destinatario_poblacion": escape(consignee.city or ""),
