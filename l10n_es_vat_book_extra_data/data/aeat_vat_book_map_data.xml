@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="l10n_es_vat_book.aeat_vat_book_map_line_s_iva" model="aeat.vat.book.map.line">
+        <field name="tax_tmpl_ids" eval="[(4, ref('l10n_es_extra_data.account_tax_template_s_iva5s'))]"/>
+    </record>
+    <record id="l10n_es_vat_book.aeat_vat_book_map_line_p_iva" model="aeat.vat.book.map.line">
+        <field name="tax_tmpl_ids" eval="[(4, ref('l10n_es_extra_data.account_tax_template_p_iva5_sc'))]"/>
+    </record>
+</odoo>
