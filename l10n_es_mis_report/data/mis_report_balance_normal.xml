@@ -36,7 +36,7 @@
             />
             <field
                 name="expression"
-            > +es11110 +es11120 +es11130 +es11140 +es11150 +es11160 +es11170</field>
+            > +es11110 +es11120 +es11130 +es11140 +es11150 +es11160 +es11170 +es11180 +es11190</field>
         </record>
         <record id="mis_report_kpi_es_balance_normal_11110" model="mis.report.kpi">
             <field name="report_id" ref="mis_report_es_balance_normal" />
@@ -99,7 +99,7 @@
             <field name="sequence">60</field>
             <field name="name">es11140</field>
             <field name="description">4. Fondo de comercio</field>
-            <field name="expression">+bale[204%]</field>
+            <field name="expression">+bale[204%,2804%,2904%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
                 name="auto_expand_accounts_style_id"
@@ -152,7 +152,43 @@
             <field name="compare_method">pct</field>
             <field name="sequence">90</field>
             <field name="name">es11170</field>
-            <field name="description">7. Otro inmovilizado intangible</field>
+            <field name="description">7. Propiedad intelectual</field>
+            <field name="expression"/>
+            <field name="auto_expand_accounts">True</field>
+            <field
+                name="auto_expand_accounts_style_id"
+                ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+            />
+            <field
+                name="style_id"
+                ref="l10n_es_mis_report.mis_report_style_l10n_es_l4"
+            />
+        </record>
+        <record id="mis_report_kpi_es_balance_normal_11180" model="mis.report.kpi">
+            <field name="report_id" ref="mis_report_es_balance_normal" />
+            <field name="type">num</field>
+            <field name="compare_method">pct</field>
+            <field name="sequence">100</field>
+            <field name="name">es11180</field>
+            <field name="description">8. Derechos de emisión de gases de efecto invernadero</field>
+            <field name="expression"/>
+            <field name="auto_expand_accounts">True</field>
+            <field
+                name="auto_expand_accounts_style_id"
+                ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+            />
+            <field
+                name="style_id"
+                ref="l10n_es_mis_report.mis_report_style_l10n_es_l4"
+            />
+        </record>
+        <record id="mis_report_kpi_es_balance_normal_11190" model="mis.report.kpi">
+            <field name="report_id" ref="mis_report_es_balance_normal" />
+            <field name="type">num</field>
+            <field name="compare_method">pct</field>
+            <field name="sequence">110</field>
+            <field name="name">es11190</field>
+            <field name="description">9. Otro inmovilizado intangible</field>
             <field name="expression">+bale[205%,209%,2805%,2905%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
@@ -308,7 +344,7 @@
             <field name="sequence">180</field>
             <field name="name">es11410</field>
             <field name="description">1. Instrumentos de patrimonio</field>
-            <field name="expression">+bale[2403%,2404%,2493%,2494%,293%]</field>
+            <field name="expression">+bale[2403%,2404%,2493%,2494%,2933%,2934%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
                 name="auto_expand_accounts_style_id"
@@ -420,7 +456,7 @@
             <field name="sequence">250</field>
             <field name="name">es11510</field>
             <field name="description">1. Instrumentos de patrimonio</field>
-            <field name="expression">+bale[2405%,2495%,250%,259%]</field>
+            <field name="expression">+bale[2405%,2495%,250%,259%,2935%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
                 name="auto_expand_accounts_style_id"
@@ -895,7 +931,7 @@
             <field name="sequence">510</field>
             <field name="name">es12330</field>
             <field name="description">3. Deudores varios</field>
-            <field name="expression">+bale[44%,5531%,5533%]</field>
+            <field name="expression">+bale[44%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
                 name="auto_expand_accounts_style_id"
@@ -951,7 +987,7 @@
             <field
                 name="description"
             >6. Otros créditos con las Administraciones Públicas</field>
-            <field name="expression">+bale[4700%,4708%,471%,472%,473%]</field>
+            <field name="expression">+bale[4700%,4708%,471%,472%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
                 name="auto_expand_accounts_style_id"
@@ -1201,7 +1237,7 @@
             <field name="description">5. Otros activos financieros</field>
             <field
                 name="expression"
-            >+bale[5355%,545%,548%,565%,566%] + pbale[550%] + pbale[551%] + pbale[554%] + pbale[5525%]</field>
+            >+bale[5355%,545%,548%,565%,566%] + pbale[551%] + pbale[554%] + pbale[5525%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
                 name="auto_expand_accounts_style_id"
@@ -1423,7 +1459,7 @@
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l3"
             />
-            <field name="expression"> +es21310 +es21320 +es21330</field>
+            <field name="expression"> +es21310 +es21320 +es21330 +es21340</field>
         </record>
         <record id="mis_report_kpi_es_balance_normal_21310" model="mis.report.kpi">
             <field name="report_id" ref="mis_report_es_balance_normal" />
@@ -1469,7 +1505,25 @@
             <field name="compare_method">pct</field>
             <field name="sequence">835</field>
             <field name="name">es21330</field>
-            <field name="description">3. Reserva de capitalización</field>
+            <field name="description">3. Reserva de revalorización</field>
+            <field name="expression"/>
+            <field name="auto_expand_accounts">True</field>
+            <field
+                name="auto_expand_accounts_style_id"
+                ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+            />
+            <field
+                name="style_id"
+                ref="l10n_es_mis_report.mis_report_style_l10n_es_l4"
+            />
+        </record>
+        <record id="mis_report_kpi_es_balance_normal_21340" model="mis.report.kpi">
+            <field name="report_id" ref="mis_report_es_balance_normal" />
+            <field name="type">num</field>
+            <field name="compare_method">pct</field>
+            <field name="sequence">836</field>
+            <field name="name">es21340</field>
+            <field name="description">4. Reserva de capitalización</field>
             <field name="expression">-bale[1146%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
@@ -2098,7 +2152,7 @@
             <field name="sequence">1180</field>
             <field name="name">es32200</field>
             <field name="description">II. Provisiones a corto plazo</field>
-            <field name="expression">-bale[499%,529%]</field>
+            <field name="expression">-bale[499%,529%] +es32210 +es32220</field>
             <field name="auto_expand_accounts">True</field>
             <field
                 name="auto_expand_accounts_style_id"
@@ -2107,6 +2161,42 @@
             <field
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l3"
+            />
+        </record>
+        <record id="mis_report_kpi_es_balance_normal_32210" model="mis.report.kpi">
+            <field name="report_id" ref="mis_report_es_balance_normal" />
+            <field name="type">num</field>
+            <field name="compare_method">pct</field>
+            <field name="sequence">1181</field>
+            <field name="name">es32210</field>
+            <field name="description">1. Provisiones por derechos de emisión de gases de efecto invernadero</field>
+            <field name="expression"/>
+            <field name="auto_expand_accounts">True</field>
+            <field
+                name="auto_expand_accounts_style_id"
+                ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+            />
+            <field
+                name="style_id"
+                ref="l10n_es_mis_report.mis_report_style_l10n_es_l4"
+            />
+        </record>
+        <record id="mis_report_kpi_es_balance_normal_32220" model="mis.report.kpi">
+            <field name="report_id" ref="mis_report_es_balance_normal" />
+            <field name="type">num</field>
+            <field name="compare_method">pct</field>
+            <field name="sequence">1182</field>
+            <field name="name">es32220</field>
+            <field name="description">2. Otras provisiones</field>
+            <field name="expression"/>
+            <field name="auto_expand_accounts">True</field>
+            <field
+                name="auto_expand_accounts_style_id"
+                ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+            />
+            <field
+                name="style_id"
+                ref="l10n_es_mis_report.mis_report_style_l10n_es_l4"
             />
         </record>
         <record id="mis_report_kpi_es_balance_normal_32300" model="mis.report.kpi">
@@ -2207,7 +2297,7 @@
             <field name="description">5. Otros pasivos financieros</field>
             <field
                 name="expression"
-            >-bale[1034%,1044%,190%,192%,194%,509%,5115%,5135%,5145%,521%,522%,523%,525%,526%,528%,5530%,5532%,555%,5565%,5566%,560%,561%,569%] - nbale[550%%] - nbale[551%] - nbale[554%] - nbale[5525%]</field>
+            >-bale[1034%,1044%,190%,192%,194%,509%,5115%,5135%,5145%,521%,522%,523%,525%,526%,528%,555%,5565%,5566%,560%,561%,569%] - nbale[550%%] - nbale[551%] - nbale[554%] - nbale[5525%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
                 name="auto_expand_accounts_style_id"
@@ -2398,7 +2488,7 @@
             <field
                 name="description"
             >6. Otras deudas con las Administraciones Públicas</field>
-            <field name="expression">-bale[4750%,4751%,4758%,4759%,476%,477%]</field>
+            <field name="expression">-bale[4750%,4751%,4758%,476%,477%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
                 name="auto_expand_accounts_style_id"
