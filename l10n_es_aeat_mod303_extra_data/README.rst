@@ -25,25 +25,21 @@ AEAT modelo 303 - Datos extra
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-Módulo que nos permite configurar cualquier cambio del plan contable en la
-version 12.0 de la localización española, ya que Odoo no permite modificaciones
-en versiones no mantenidas.
+Módulo para la presentación del modelo 303 (IVA - Autodeclaración) de la
+Agencia Española de Administración Tributaria.
+
+En este módulo se añaden los nuevos impuestos que se han introducido en el
+módulo `l10n_es_extra_data`.
 
 **Table of contents**
 
 .. contents::
    :local:
 
-Usage
-=====
-
-Instalar el módulo y ejecutar el actualizador del plan contable disponible en
-el módulo *account_chart_update*.
-
 Changelog
 =========
 
-12.0.1.0.0 (2022-07-20)
+12.0.1.0.0 (2022-07-21)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [NEW] Module added to v12. Añadido nuevo impuesto del 5% de las eléctricas.
