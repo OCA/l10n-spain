@@ -11,21 +11,6 @@
             >
                 <attribute name="invisible">True</attribute>
             </button>
-            <header position="after">
-                <div
-                    class="alert alert-warning text-center"
-                    attrs="{'invisible': [('error_count', '=', 0)]}"
-                    role="alert"
-                >
-                    <span>
-                        You have <strong class="text-danger"><field
-                                name="error_count"
-                            /> errors</strong> in this report.
-                        You will not be able to <strong
-                        >confirm and submit</strong> it until they are resolved.
-                    </span>
-                </div>
-            </header>
             <header position="inside">
                 <button
                     name="view_issued_invoices"
