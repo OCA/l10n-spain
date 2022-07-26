@@ -460,8 +460,10 @@ class AccountMove(models.Model):
         refund_invoices = self.sudo().filtered(
             lambda x: x.tbai_enabled
             and "out_refund" == x.type
-            and not x.tbai_refund_type
-            or x.tbai_refund_type == RefundType.differences.value
+            and (
+                not x.tbai_refund_type
+                or x.tbai_refund_type == RefundType.differences.value
+            )
             and x.tbai_send_invoice
         )
 
