@@ -33,7 +33,6 @@ class L10nEsVatBookLine(models.Model):
     invoice_date = fields.Date(string="Invoice Date")
 
     partner_id = fields.Many2one(comodel_name="res.partner", string="Empresa")
-
     vat_number = fields.Char(string="NIF")
 
     vat_book_id = fields.Many2one(comodel_name="l10n.es.vat.book", string="Vat Book id")
