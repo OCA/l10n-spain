@@ -35,6 +35,32 @@ class TestL10nEsAeat(SavepointCase):
         self.assertEqual(identifier_type, "")
         self.assertEqual(vat_number, "12345678Z")
 
+    def test_parse_vat_info_aeat_identification(self):
+        # Test ormcache
+        self.partner.vat = "ES12345678Z"
+        self.partner.aeat_identification_type = "03"
+        self.partner.aeat_identification = "MY_PASSPORT_03"
+        country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
+        self.assertEqual(country_code, "ES")
+        self.assertEqual(identifier_type, "03")
+        self.assertEqual(vat_number, "MY_PASSPORT_03")
+
+        # Test aeat_identification_type empty
+        self.partner.aeat_identification_type = False
+        self.partner.aeat_identification = "MY_PASSPORT_FALSE"
+        country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
+        self.assertEqual(country_code, "ES")
+        self.assertEqual(identifier_type, "")
+        self.assertEqual(vat_number, "12345678Z")
+
+        # Test aeat_identification empty
+        self.partner.aeat_identification_type = "05"
+        self.partner.aeat_identification = False
+        country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
+        self.assertEqual(country_code, "ES")
+        self.assertEqual(identifier_type, "")
+        self.assertEqual(vat_number, "12345678Z")
+
     def test_parse_vat_info_es_passport_exception(self):
         with self.assertRaises(exceptions.ValidationError):
             self.partner.write(
