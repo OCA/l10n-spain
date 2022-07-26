@@ -1,12 +1,12 @@
 # Copyright 2021 Binovo IT Human Project SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.tests import common
+from odoo import exceptions
+from odoo.tests.common import tagged
 
 from .common import TestL10nEsTicketBAIPoSCommon
 
 
-@common.at_install(False)
-@common.post_install(True)
+@tagged("-at_install", "post_install")
 class TestL10nEsTicketBAIPoSOrder(TestL10nEsTicketBAIPoSCommon):
     def setUp(self):
         super().setUp()
@@ -54,7 +54,6 @@ class TestL10nEsTicketBAIPoSOrder(TestL10nEsTicketBAIPoSCommon):
         pos_order = self.create_pos_order(self.account_billing.id)
         self.assertFalse(pos_order.tbai_invoice_id)
         pos_order.sudo()._tbai_build_invoice()
-        pos_order.sudo()._prepare_done_order_for_pos()
         self.assertEqual("paid", pos_order.state)
         self.assertEqual("pending", pos_order.tbai_invoice_id.state)
 
@@ -66,8 +65,24 @@ class TestL10nEsTicketBAIPoSOrder(TestL10nEsTicketBAIPoSCommon):
         self.assertEqual("paid", pos_order.state)
         self.assertEqual("pending", pos_order.tbai_invoice_id.state)
         pos_order.sudo().with_context(
-            force_company=pos_order.company_id.id, pos_picking_id=pos_order.picking_id
+            with_company=pos_order.company_id.id
         ).action_pos_order_invoice()
         self.assertEqual("invoiced", pos_order.state)
         self.assertEqual("posted", pos_order.account_move.state)
+        self.assertTrue(pos_order.account_move.tbai_substitute_simplified_invoice)
         self.assertEqual("pending", pos_order.account_move.tbai_invoice_id.state)
+
+    def test_open_session_error_seq(self):
+        with self.assertRaises(exceptions.ValidationError):
+            self.pos_config.iface_l10n_es_simplified_invoice = False
+            self.pos_config.open_session_cb()
+
+        with self.assertRaises(exceptions.ValidationError):
+            self.pos_config.iface_l10n_es_simplified_invoice = True
+            self.pos_config.open_session_cb()
+            self.pos_config.iface_l10n_es_simplified_invoice = False
+            self.pos_config.open_existing_session_cb()
+
+        self.pos_config.iface_l10n_es_simplified_invoice = True
+        self.pos_config.open_session_cb()
+        self.pos_config.open_existing_session_cb()

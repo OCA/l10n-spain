@@ -25,15 +25,19 @@
                 />
                 <script
                     type="text/javascript"
-                    src="/l10n_es_ticketbai_pos/static/src/js/screens.js"
-                />
-                <script
-                    type="text/javascript"
-                    src="/l10n_es_ticketbai_pos/static/src/js/widgets.js"
-                />
-                <script
-                    type="text/javascript"
                     src="/l10n_es_ticketbai_pos/static/src/js/db.js"
+                />
+                <script
+                    type="text/javascript"
+                    src="/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js"
+                />
+                <script
+                    type="text/javascript"
+                    src="/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js"
+                />
+                <script
+                    type="text/javascript"
+                    src="/l10n_es_ticketbai_pos/static/src/js/Screens/ProductScreen/ProductScreen.js"
                 />
             </xpath>
         </template>
