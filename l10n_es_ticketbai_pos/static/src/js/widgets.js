@@ -6,10 +6,10 @@
 odoo.define("l10n_es_ticketbai_pos.widgets", function (require) {
     "use strict";
 
-    var widgets = require("pos_order_mgmt.widgets");
+    var screens = require("point_of_sale.OrderManagementScreen");
     var tbai_models = require("l10n_es_ticketbai_pos.tbai_models");
 
-    widgets.OrderListScreenWidget.include({
+    screens.OrderList.include({
         _prepare_order_from_order_data: function (order_data, action) {
             var order = this._super(order_data, action);
             if (this.pos.company.tbai_enabled) {
