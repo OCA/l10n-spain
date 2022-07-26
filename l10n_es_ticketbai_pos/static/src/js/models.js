@@ -106,7 +106,11 @@ odoo.define("l10n_es_ticketbai_pos.models", function (require) {
                         args: [configs[0].id],
                     })
                     .then(function (args) {
-                        return tbai.TbaiSigner.fromBuffer(atob(args[0]), args[1]).then(
+                        return tbai.TbaiSigner.fromBuffer(
+                            atob(args[0]),
+                            args[1],
+                            args[2]
+                        ).then(
                             function (signer) {
                                 self.tbai_signer = signer;
                             },
@@ -287,6 +291,16 @@ odoo.define("l10n_es_ticketbai_pos.models", function (require) {
             this.tbai_simplified_invoice = null;
             this.tbai_current_invoice = $.when();
             order_super.initialize.apply(this, arguments);
+            if (this.pos.company.tbai_enabled && "json" in arguments[1]) {
+                this.tbai_simplified_invoice = new tbai_models.TicketBAISimplifiedInvoice(
+                    {},
+                    {
+                        pos: this.pos,
+                        tbai_identifier: arguments[1].json.tbai_identifier,
+                        tbai_qr_src: arguments[1].json.tbai_qr_src,
+                    }
+                );
+            }
             return this;
         },
         check_products_have_taxes: function () {

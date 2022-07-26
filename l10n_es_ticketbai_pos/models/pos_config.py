@@ -2,8 +2,21 @@
 # Copyright 2022 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import base64
+import logging
 
-from odoo import _, api, exceptions, fields, models
+from odoo import _, exceptions, fields, models
+
+_logger = logging.getLogger(__name__)
+
+
+try:
+    from cryptography.hazmat.primitives.serialization import (
+        BestAvailableEncryption,
+        NoEncryption,
+        pkcs12,
+    )
+except (ImportError, IOError) as err:
+    _logger.error(err)
 
 
 class PosConfig(models.Model):
@@ -27,18 +40,37 @@ class PosConfig(models.Model):
         record = self.sudo()
         if record.tbai_enabled:
             if record.tbai_certificate_id:
+                # Serialize new PKCS12 unencrypted object
                 p12 = record.tbai_certificate_id.get_p12()
-                tbai_p12 = base64.b64encode(p12.export())
-                tbai_p12_friendlyname = p12.get_friendlyname()
-            else:
-                tbai_p12 = record.company_id.tbai_aeat_certificate_id.tbai_p12
-                tbai_p12_friendlyname = (
-                    record.company_id.tbai_aeat_certificate_id.tbai_p12_friendlyname
+                p12_priv_key = p12[0]
+                p12_cert = p12[1]
+                p12_friendlyname = record.tbai_certificate_id.name.encode("utf-8")
+                p12_password = record.tbai_certificate_id.password.encode()
+                p12_encryption = BestAvailableEncryption(p12_password)
+                certificate = pkcs12.serialize_key_and_certificates(
+                    p12_friendlyname, p12_priv_key, p12_cert, None, p12_encryption
                 )
+
+                tbai_p12 = base64.b64encode(certificate)
+                tbai_p12_friendlyname = p12_friendlyname
+            else:
+                p12 = record.company_id.tbai_aeat_certificate_id.get_p12()
+                p12_priv_key = p12[0]
+                p12_cert = p12[1]
+                p12_friendlyname = (
+                    record.company_id.tbai_aeat_certificate_id.name.encode("utf-8")
+                )
+                p12_encryption = NoEncryption()
+                p12_password = False
+                certificate = pkcs12.serialize_key_and_certificates(
+                    p12_friendlyname, p12_priv_key, p12_cert, None, p12_encryption
+                )
+                tbai_p12 = base64.b64encode(certificate)
+                tbai_p12_friendlyname = p12_friendlyname
         else:
             tbai_p12 = None
             tbai_p12_friendlyname = None
-        return tbai_p12, tbai_p12_friendlyname
+        return tbai_p12, tbai_p12_friendlyname, p12_password
 
     def open_ui(self):
         self.ensure_one()
@@ -63,9 +95,3 @@ class PosConfig(models.Model):
                 _("Simplified Invoice IDs Sequence is required")
             )
         return super().open_existing_session_cb()
-
-    @api.model
-    def _get_allowed_change_fields(self):
-        allowed_fields = super(PosConfig, self)._get_allowed_change_fields()
-        allowed_fields.append("tbai_last_invoice_id")
-        return allowed_fields
