@@ -3,7 +3,7 @@
    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 */
 
-odoo.define("l10n_es_ticketbai_pos.screens", function(require) {
+odoo.define("l10n_es_ticketbai_pos.screens", function (require) {
     "use strict";
 
     var screens = require("point_of_sale.screens");
@@ -11,7 +11,7 @@ odoo.define("l10n_es_ticketbai_pos.screens", function(require) {
     var _t = core._t;
 
     screens.ProductScreenWidget.include({
-        click_product: function(product) {
+        click_product: function (product) {
             var res = true;
             if (this.pos.company.tbai_enabled) {
                 if (product.taxes_id.length !== 1) {
@@ -32,7 +32,7 @@ odoo.define("l10n_es_ticketbai_pos.screens", function(require) {
     });
 
     screens.PaymentScreenWidget.include({
-        order_is_valid: function(force_validation) {
+        order_is_valid: function (force_validation) {
             var res = this._super(force_validation);
             if (this.pos.company.tbai_enabled && res === true) {
                 var error_msgs = [];
@@ -89,7 +89,7 @@ odoo.define("l10n_es_ticketbai_pos.screens", function(require) {
             }
             return res;
         },
-        validate_order: function(force_validation) {
+        validate_order: function (force_validation) {
             var self = this;
             var order = this.pos.get_order();
             if (this.pos.company.tbai_enabled && !order.is_to_invoice()) {
@@ -98,7 +98,7 @@ odoo.define("l10n_es_ticketbai_pos.screens", function(require) {
                 } else {
                     order = this.pos.get_order();
                     order.tbai_build_invoice();
-                    order.tbai_current_invoice.then(function(tbai_inv) {
+                    order.tbai_current_invoice.then(function (tbai_inv) {
                         order.tbai_simplified_invoice = tbai_inv;
                         self.validate_order("tbai_inv_up_to_date");
                     });
@@ -110,7 +110,7 @@ odoo.define("l10n_es_ticketbai_pos.screens", function(require) {
     });
 
     screens.ClientListScreenWidget.include({
-        line_select: function(event, $line, id) {
+        line_select: function (event, $line, id) {
             var res = true;
             if (this.pos.company.tbai_enabled) {
                 var customer = this.pos.db.get_partner_by_id(id);
