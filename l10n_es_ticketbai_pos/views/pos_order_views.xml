@@ -10,10 +10,7 @@
             <field name="inherit_id" ref="point_of_sale.view_pos_pos_form" />
             <field name="arch" type="xml">
                 <button name="refund" position="attributes">
-                    <attribute
-                        name="attrs"
-                    >{'invisible':['|', '|', ('state','=','draft'),
-                                                        ('returned_order_id', '!=', False),
+                    <attribute name="attrs">{'invisible':['|', ('state','=','draft'),
                                                         ('tbai_enabled', '=', True)]}
                     </attribute>
                 </button>

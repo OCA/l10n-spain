@@ -6,8 +6,7 @@ from odoo.tests import common
 from odoo.addons.l10n_es_ticketbai.tests.common import TestL10nEsTicketBAI
 
 
-@common.at_install(False)
-@common.post_install(True)
+@common.tagged("-at_install", "post_install")
 class TestL10nEsTicketBAIPoSCommon(TestL10nEsTicketBAI):
     def create_pos_order_from_ui(
         self, user, partner_id=False, fp=False, to_invoice=False
@@ -48,6 +47,7 @@ class TestL10nEsTicketBAIPoSCommon(TestL10nEsTicketBAI):
                     ],
                     "name": "TBAI Simplified Invoice Test - 00001-065-0016",
                     "simplified_invoice": "Shop0001",
+                    "l10n_es_unique_id": "Shop0001",
                     "partner_id": partner_id,
                     "pos_session_id": self.pos_config.current_session_id.id,
                     "sequence_number": 1,
@@ -120,6 +120,7 @@ class TestL10nEsTicketBAIPoSCommon(TestL10nEsTicketBAI):
                     "name": "TBAI Simplified Invoice Test - 00001-065-0017",
                     "tbai_previous_order_pos_reference": "Main0001",
                     "simplified_invoice": "Shop0002",
+                    "l10n_es_unique_id": "Shop0002",
                     "partner_id": partner_id,
                     "pos_session_id": self.pos_config.current_session_id.id,
                     "sequence_number": 1,
@@ -160,6 +161,7 @@ class TestL10nEsTicketBAIPoSCommon(TestL10nEsTicketBAI):
             vat_regime_key = self.env.ref("l10n_es_ticketbai.tbai_vat_regime_01").id
         vals = {
             "pos_reference": "Shop0001",
+            "l10n_es_unique_id": "Shop0001",
             "company_id": self.main_company.id,
             "session_id": self.pos_config.current_session_id.id,
             "partner_id": self.partner.id,

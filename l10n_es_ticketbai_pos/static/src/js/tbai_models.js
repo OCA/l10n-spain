@@ -1,5 +1,6 @@
 /* Copyright 2021 Binovo IT Human Project SL
    Copyright 2022 Landoo Sistemas de Informacion SL
+   Copyright 2022 Advanced Programming Solu SL
    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 */
 
@@ -58,7 +59,11 @@ odoo.define("l10n_es_ticketbai_pos.tbai_models", function (require) {
             this.previous_tbai_invoice = this.pos.get_tbai_last_invoice_data();
             this.expedition_date = new Date();
             simplified_invoice =
-                this.order.simplified_invoice || this.pos.get_simple_inv_next_number();
+                this.order.simplified_invoice ||
+                this.pos.config.l10n_es_simplified_invoice_prefix +
+                    this.pos.get_padding_simple_inv(
+                        this.pos.config.l10n_es_simplified_invoice_number
+                    );
             this.number_prefix = this.pos.config.l10n_es_simplified_invoice_prefix;
             this.number = simplified_invoice.slice(this.number_prefix.length);
 
@@ -117,7 +122,7 @@ odoo.define("l10n_es_ticketbai_pos.tbai_models", function (require) {
                     );
                 } catch (e) {
                     console.error(e);
-                    self.pos.gui.show_popup("error", {
+                    this.showPopup("ErrorPopup", {
                         title: _t("TicketBAI"),
                         body: e.message,
                     });
@@ -190,9 +195,7 @@ odoo.define("l10n_es_ticketbai_pos.tbai_models", function (require) {
                     },
                     lines: this.get_tbai_lines_from_json(order_json.lines),
                     total: field_utils.parse.float(
-                        self.pos.chrome.format_currency_no_symbol(
-                            order_json.amount_total
-                        )
+                        self.pos.format_currency_no_symbol(order_json.amount_total)
                     ),
                     vatKeys: vat_keys,
                 };
@@ -264,26 +267,22 @@ odoo.define("l10n_es_ticketbai_pos.tbai_models", function (require) {
                     description: description_line,
                     quantity: line.qty,
                     price: field_utils.parse.float(
-                        self.pos.chrome.format_currency_no_symbol(line.tbai_price_unit)
+                        self.pos.format_currency_no_symbol(line.tbai_price_unit)
                     ),
                     discount: field_utils.parse.float(
-                        self.pos.chrome.format_currency_no_symbol(line.discount)
+                        self.pos.format_currency_no_symbol(line.discount)
                     ),
                     discountAmount: field_utils.parse.float(
-                        self.pos.chrome.format_currency_no_symbol(
+                        self.pos.format_currency_no_symbol(
                             (line.qty * line.tbai_price_unit * line.discount) / 100.0
                         )
                     ),
                     vat: line.tbai_vat_amount,
                     amount: field_utils.parse.float(
-                        self.pos.chrome.format_currency_no_symbol(
-                            line.tbai_price_without_tax
-                        )
+                        self.pos.format_currency_no_symbol(line.tbai_price_without_tax)
                     ),
                     amountWithVat: field_utils.parse.float(
-                        self.pos.chrome.format_currency_no_symbol(
-                            line.tbai_price_with_tax
-                        )
+                        self.pos.format_currency_no_symbol(line.tbai_price_with_tax)
                     ),
                 });
             });
@@ -298,13 +297,11 @@ odoo.define("l10n_es_ticketbai_pos.tbai_models", function (require) {
                     var vatLine = vatLineJson[2];
                     vatLines.push({
                         base: field_utils.parse.float(
-                            self.pos.chrome.format_currency_no_symbol(
-                                vatLine.baseAmount
-                            )
+                            self.pos.format_currency_no_symbol(vatLine.baseAmount)
                         ),
                         rate: vatLine.tax.amount,
                         amount: field_utils.parse.float(
-                            self.pos.chrome.format_currency_no_symbol(vatLine.amount)
+                            self.pos.format_currency_no_symbol(vatLine.amount)
                         ),
                     });
                 });
@@ -312,9 +309,7 @@ odoo.define("l10n_es_ticketbai_pos.tbai_models", function (require) {
                 var fline = order_json.lines[0][2];
                 vatLines.push({
                     base: field_utils.parse.float(
-                        self.pos.chrome.format_currency_no_symbol(
-                            order_json.amount_total
-                        )
+                        self.pos.format_currency_no_symbol(order_json.amount_total)
                     ),
                     rate: fline.tbai_vat_amount,
                     amount: 0,

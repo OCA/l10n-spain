@@ -64,7 +64,7 @@ class PosOrder(models.Model):
             "company_id": self.company_id.id,
             "simplified_invoice": SiNoType.S.value,
             "pos_order_id": self.id,
-            "name": self.pos_reference,
+            "name": self.l10n_es_unique_id,
             "number_prefix": prefix,
             "number": number,
             "expedition_date": expedition_date,
@@ -99,7 +99,7 @@ class PosOrder(models.Model):
             )
             if previous_order_pos_reference:
                 tbai_previous_order = self.search(
-                    [("pos_reference", "=", previous_order_pos_reference)]
+                    [("l10n_es_unique_id", "=", previous_order_pos_reference)]
                 )
                 vals[
                     "previous_tbai_invoice_id"
@@ -108,7 +108,7 @@ class PosOrder(models.Model):
             vals.update(
                 {
                     "datas": datas,
-                    "datas_fname": "%s.xsig" % self.pos_reference.replace("/", "-"),
+                    "datas_fname": "%s.xsig" % self.l10n_es_unique_id.replace("/", "-"),
                     "file_size": len(datas),
                     "signature_value": pos_order["data"]["tbai_signature_value"],
                 }
@@ -199,21 +199,18 @@ class PosOrder(models.Model):
             order.config_id.tbai_last_invoice_id = order.tbai_invoice_id
         return order.id
 
-    def _prepare_done_order_for_pos(self):
-        res = super()._prepare_done_order_for_pos()
-        if self.tbai_enabled and self.tbai_invoice_id:
-            res.update(
-                {
-                    "tbai_identifier": self.tbai_invoice_id.tbai_identifier,
-                    "tbai_qr_src": "data:image/png;base64,"
-                    + str(self.tbai_invoice_id.qr.decode("UTF-8")),
-                    "tbai_qr_url": self.tbai_invoice_id.qr_url,
-                }
+    def _export_for_ui(self, order):
+        res = super()._export_for_ui(order)
+        tbai_invoice_id = order.tbai_invoice_id
+        if tbai_invoice_id:
+            res["tbai_identifier"] = tbai_invoice_id.tbai_identifier
+            res["tbai_qr_src"] = "data:image/png;base64," + str(
+                order.tbai_invoice_id.qr.decode("UTF-8")
             )
         return res
 
-    def _prepare_invoice(self):
-        res = super(PosOrder, self)._prepare_invoice()
+    def _prepare_invoice_vals(self):
+        res = super(PosOrder, self)._prepare_invoice_vals()
         if self.tbai_enabled:
             vat_regime_key_id = False
             if self.tbai_vat_regime_key:
@@ -221,10 +218,9 @@ class PosOrder(models.Model):
             elif self.fiscal_position_id:
                 vat_regime_key_id = self.fiscal_position_id.tbai_vat_regime_key.id
             elif self.partner_id:
-                fp_id = self.env["account.fiscal.position"].get_fiscal_position(
+                fp = self.env["account.fiscal.position"].get_fiscal_position(
                     self.partner_id.id
                 )
-                fp = self.env["account.fiscal.position"].browse(fp_id)
                 vat_regime_key_id = fp.tbai_vat_regime_key.id
             if not vat_regime_key_id:
                 vat_regime_key_id = self.env.ref(
@@ -252,14 +248,14 @@ class PosOrder(models.Model):
 
     def tbai_get_value_num_factura(self):
         invoice_number_prefix = self.tbai_get_value_serie_factura()
-        if invoice_number_prefix and not self.pos_reference.startswith(
+        if invoice_number_prefix and not self.l10n_es_unique_id.startswith(
             invoice_number_prefix
         ):
             raise exceptions.ValidationError(
                 _("Simplified Invoice Number Prefix %s is not part of Number %s!")
-                % (invoice_number_prefix, self.pos_reference)
+                % (invoice_number_prefix, self.l10n_es_unique_id)
             )
-        return self.pos_reference[len(invoice_number_prefix) :]
+        return self.l10n_es_unique_id[len(invoice_number_prefix) :]
 
     def tbai_get_value_fecha_expedicion_factura(self):
         date = fields.Datetime.context_timestamp(
