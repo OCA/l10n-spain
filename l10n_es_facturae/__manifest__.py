@@ -26,6 +26,7 @@
         "base_vat",
         "report_xml",
         "report_qweb_parameter",
+        "stock_picking_invoice_link",
     ],
     "data": [
         "data/account_tax_template.xml",

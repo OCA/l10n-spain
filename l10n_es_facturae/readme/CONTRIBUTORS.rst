@@ -8,3 +8,4 @@
 * Javi Melendez <javimelex@gmail.com>
 * Enric Tobella <etobella@creublanca.es>
 * Adrián Gómez <adrian.gomez@pesol.es>
+* Isaac Gallart <igallart@puntsistemes.es>

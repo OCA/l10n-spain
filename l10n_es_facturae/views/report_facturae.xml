@@ -438,6 +438,7 @@
                             t-as="line"
                         >
                             <t t-set="withheld" t-value="False" />
+                            <t t-set="pickings" t-value="line.move_line_ids.picking_id" />
                             <t t-foreach="line.tax_ids" t-as="line_tax">
                                 <t t-if="line_tax.amount &lt; 0">
                                     <t t-set="withheld" t-value="True" />
@@ -489,7 +490,18 @@
                                 t-esc="line.facturae_file_date"
                             />
                             <SequenceNumber t-if="False" />
-                            <DeliveryNotesReferences t-if="False" />
+                            <DeliveryNotesReferences t-if="pickings">
+                                <DeliveryNote t-foreach="pickings" t-as="picking">
+                                    <DeliveryNoteNumber
+                                            t-length="30"
+                                            t-field="picking.name"
+                                    />
+                                    <DeliveryNoteDate
+                                            t-field="picking.date_done"
+                                            t-options="{'widget': 'date','format': 'yyyy-MM-dd'}"
+                                    />
+                                </DeliveryNote>
+                            </DeliveryNotesReferences>
                             <ItemDescription t-length="2500" t-esc="line.name" />
                             <Quantity t-esc="line.quantity" />
                             <UnitOfMeasure t-if="False" />
