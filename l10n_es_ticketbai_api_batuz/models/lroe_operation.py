@@ -182,9 +182,9 @@ class LROEOperation(models.Model):
         string="TBai Customer Invoices")
     xml_datas = fields.Binary()
     xml_datas_fname = fields.Char('XML File Name')
-    xml_file_size = fields.Integer('File Size')
+    xml_file_size = fields.Integer('XML File Size')
     trx_gzip_file = fields.Binary()
-    trx_gzip_fname = fields.Char('XML File Name')
+    trx_gzip_fname = fields.Char('File Name')
     trx_gzip_fsize = fields.Integer('File Size')
     response_ids = fields.One2many(comodel_name='lroe.operation.response',
                                    inverse_name='lroe_operation_id',
