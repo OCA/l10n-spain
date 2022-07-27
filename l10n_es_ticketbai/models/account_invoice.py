@@ -2,7 +2,7 @@
 # Copyright 2021 Landoo Sistemas de Informacion SL
 # Copyright 2021 Digital5, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import models, fields, exceptions, _, api
+from odoo import models, fields, exceptions, _, api, tools
 from odoo.addons.l10n_es_ticketbai_api.models.ticketbai_invoice \
     import RefundCode, RefundType, SiNoType, TicketBaiInvoiceState
 from odoo.addons.l10n_es_ticketbai_api.ticketbai.xml_schema \
@@ -395,20 +395,34 @@ class AccountInvoice(models.Model):
         refund_common_fields.append('company_id')
         return refund_common_fields
 
+    @api.model
+    @tools.ormcache('company')
+    def _get_fiscal_position_template_id(self, company):
+        fp_name = self.fiscal_position_id.name
+        fp_template_id = self.env['account.fiscal.position.template'].search([
+            ('name', '=', fp_name),
+            ('chart_template_id', '=', company.chart_template_id.id),
+        ], limit=1)
+        return fp_template_id
+
     def _prepare_tax_line_vals(self, line, tax):
         vals = super()._prepare_tax_line_vals(line, tax)
         tax_record = self.env['account.tax'].browse(tax['id'])
         if tax_record.tbai_is_tax_exempted():
             if self.fiscal_position_id:
-                exemption = self.fiscal_position_id.tbai_vat_exemption_ids.filtered(
-                    lambda e: e.tax_id.id == tax['id'])
+                fp_template_id = self._get_fiscal_position_template_id(self.company_id)
+
+                exemption = self.env['account.fp.tbai.tax_template'].search(
+                    [
+                     ('position_id', '=', fp_template_id.id)]
+                )
+
                 if len(exemption) == 1:
                     vals['tbai_vat_exemption_key'] = exemption.tbai_vat_exemption_key.id
             else:
                 exemption = self.env['tbai.vat.exemption.key'].search(
                     [('code', '=', 'E1')], limit=1)
                 vals['tbai_vat_exemption_key'] = exemption.id
-
         return vals
 
     def tbai_is_invoice_refund(self):
