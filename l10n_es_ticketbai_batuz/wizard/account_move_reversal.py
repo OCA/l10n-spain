@@ -10,7 +10,9 @@ class AccountMoveReversal(models.TransientModel):
     def _default_batuz_supplier_invoice_number_required(self):
         invoices = (
             self.env["account.move"]
-            .browse(self.env.context.get("active_ids"),)
+            .browse(
+                self.env.context.get("active_ids"),
+            )
             .filtered(lambda x: x.type == "in_invoice")
         )
         return any(invoices.mapped("company_id.tbai_enabled"))
@@ -19,7 +21,9 @@ class AccountMoveReversal(models.TransientModel):
         string="Is Supplier Invoice Number Required?",
         default=_default_batuz_supplier_invoice_number_required,
     )
-    batuz_supplier_invoice_number = fields.Char(string="Supplier Invoice Number",)
+    batuz_supplier_invoice_number = fields.Char(
+        string="Supplier Invoice Number",
+    )
 
     def reverse_moves(self):
         wizard = self.with_context(
