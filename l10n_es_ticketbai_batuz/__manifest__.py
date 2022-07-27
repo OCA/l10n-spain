@@ -6,7 +6,7 @@
     "name": "TicketBAI - Batuz - "
     "declaración de todas las operaciones de venta realizadas por las personas "
     "y entidades que desarrollan actividades económicas en Bizkaia",
-    "version": "13.0.1.1.0",
+    "version": "13.0.1.1.1",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Binovo," "Digital5," "Odoo Community Association (OCA)",
