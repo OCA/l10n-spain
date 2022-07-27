@@ -64,6 +64,5 @@ class AccountChartTemplate(models.Model):
                         'tax_id': tax.id,
                         'tbai_vat_exemption_key': exemption.tbai_vat_exemption_key.id
                     }))
-            if tbai_vat_exemptions:
-                fiscal_position.tbai_vat_exemption_ids = tbai_vat_exemptions
+
         return res_id
