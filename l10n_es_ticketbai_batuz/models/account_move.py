@@ -110,7 +110,9 @@ class AccountMove(models.Model):
         copy=True,
     )
     lroe_invoice_dict = fields.Text(
-        string="LROE last content sent", copy=False, readonly=True,
+        string="LROE last content sent",
+        copy=False,
+        readonly=True,
     )
 
     @api.depends(
@@ -176,7 +178,7 @@ class AccountMove(models.Model):
             )
 
     def _get_chapter_subchapter(self):
-        """ Identificamos el capitulo y subcapitulo """
+        """Identificamos el capitulo y subcapitulo"""
         self.ensure_one()
         if self.company_id.lroe_model == LROEModelEnum.model_pj_240.value:
             chapter = self.env.ref("l10n_es_ticketbai_api_batuz.lroe_chapter_pj_240_2")
@@ -252,7 +254,7 @@ class AccountMove(models.Model):
         return is_simplified
 
     def _get_operation_date(self):
-        """ Inheritable method to allow set operation date of an invoice """
+        """Inheritable method to allow set operation date of an invoice"""
         self.ensure_one()
         return False
 
@@ -741,17 +743,30 @@ class AccountMove(models.Model):
             chapter, subchapter = invoice._get_chapter_subchapter()
             action = subchapter.replace(".", "_") if subchapter else chapter
             model = invoice.company_id.lroe_model
-            if hasattr(invoice, "_get_lroe_%s_%s_dict" % (model, action,)):
-                inv_dict = getattr(invoice, "_get_lroe_%s_%s_dict" % (model, action,))(
-                    cancel
-                )
+            if hasattr(
+                invoice,
+                "_get_lroe_%s_%s_dict"
+                % (
+                    model,
+                    action,
+                ),
+            ):
+                inv_dict = getattr(
+                    invoice,
+                    "_get_lroe_%s_%s_dict"
+                    % (
+                        model,
+                        action,
+                    ),
+                )(cancel)
             else:
                 raise exceptions.ValidationError(
                     _("LROE Build: method for model %s chapter %s not implemented!")
                     % (model, chapter)
                 )
             round_by_keys(
-                inv_dict, KEYS_TO_ROUND,
+                inv_dict,
+                KEYS_TO_ROUND,
             )
             lroe_operation = invoice._get_lroe_operation(operation_type=operation_type)
             inv_vals = {
@@ -898,6 +913,7 @@ class AccountMove(models.Model):
             if extra_dict:
                 default_values.update(extra_dict)
         res = super()._reverse_moves(
-            default_values_list=default_values_list, cancel=cancel,
+            default_values_list=default_values_list,
+            cancel=cancel,
         )
         return res
