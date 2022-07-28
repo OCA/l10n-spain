@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -100,8 +100,36 @@ msgid "Delay time"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_chart_template__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position_template__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move_reversal__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_lroe_operation__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_company__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_partner__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_tbai_invoice__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_tbai_vat_regime_key__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_es_ticketbai_batuz
 #: model:ir.model,name:l10n_es_ticketbai_batuz.model_account_fiscal_position
 msgid "Fiscal Position"
+msgstr ""
+
+#. module: l10n_es_ticketbai_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_chart_template__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position_template__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move_reversal__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_lroe_operation__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_company__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_partner__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_tbai_invoice__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_tbai_vat_regime_key__id
+msgid "ID"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
@@ -111,7 +139,9 @@ msgid "In hours"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
+#: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_account_bank_statement_line__lroe_state
 #: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_account_move__lroe_state
+#: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_account_payment__lroe_state
 msgid "Indicates the state of this invoice in relation with LROE/Batuz"
 msgstr ""
 
@@ -143,7 +173,7 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model,name:l10n_es_ticketbai_batuz.model_account_move
-msgid "Journal Entries"
+msgid "Journal Entry"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
@@ -180,7 +210,9 @@ msgid "LROE Operation %s: XML schema not supported!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_bank_statement_line__lroe_operation_ids
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__lroe_operation_ids
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_payment__lroe_operation_ids
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.move_supplier_form_inherit_l10n_es_ticketbai_batuz
 msgid "LROE Operations"
 msgstr ""
@@ -197,7 +229,9 @@ msgid "LROE failed"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_bank_statement_line__lroe_invoice_dict
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__lroe_invoice_dict
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_payment__lroe_invoice_dict
 msgid "LROE last content sent"
 msgstr ""
 
@@ -212,9 +246,25 @@ msgid "LROE sent"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_bank_statement_line__lroe_state
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__lroe_state
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_payment__lroe_state
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_move_filter_inherit_l10n_es_ticketbai_batuz
 msgid "LROE state"
+msgstr ""
+
+#. module: l10n_es_ticketbai_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_chart_template____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position_template____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move_reversal____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_lroe_operation____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_company____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_partner____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_tbai_invoice____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_tbai_vat_regime_key____last_update
+msgid "Last Modified on"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
@@ -248,17 +298,23 @@ msgid "Purchase"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_bank_statement_line__tbai_vat_regime_purchase_key2
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__tbai_vat_regime_purchase_key2
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_payment__tbai_vat_regime_purchase_key2
 msgid "Purchase VAT Regime 2nd Key"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_bank_statement_line__tbai_vat_regime_purchase_key3
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__tbai_vat_regime_purchase_key3
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_payment__tbai_vat_regime_purchase_key3
 msgid "Purchase VAT Regime 3rd Key"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_bank_statement_line__tbai_vat_regime_purchase_key
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__tbai_vat_regime_purchase_key
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_payment__tbai_vat_regime_purchase_key
 msgid "Purchase VAT Regime Key"
 msgstr ""
 
@@ -298,7 +354,9 @@ msgid "Resend to LROE"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_bank_statement_line__lroe_response_line_ids
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__lroe_response_line_ids
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_payment__lroe_response_line_ids
 msgid "Responses"
 msgstr ""
 
