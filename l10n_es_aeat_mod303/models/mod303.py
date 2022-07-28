@@ -94,6 +94,7 @@ class L10nEsAeatMod303Report(models.Model):
         compute="_compute_regularizacion_anual",
         readonly=False,
         store=True,
+        default=0.0,
         help="In the last auto settlement of the year, shall be recorded "
         "(the fourth period or 12th month), with the appropriate sign, "
         "the result of the annual adjustment as have the laws by the "
