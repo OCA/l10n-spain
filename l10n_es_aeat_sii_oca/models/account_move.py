@@ -6,6 +6,7 @@
 # Copyright 2011-2021 Tecnativa - Pedro M. Baeza
 # Copyright 2020 Valentin Vinagre <valent.vinagre@sygel.es>
 # Copyright 2021 Tecnativa - João Marques
+# Copyright 2022 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import json
@@ -241,6 +242,7 @@ class AccountMove(models.Model):
         states={"draft": [("readonly", False)]},
         copy=False,
         help="Número de la factura emitida por un tercero.",
+        tracking=True,
     )
     invoice_jobs_ids = fields.Many2many(
         comodel_name="queue.job",
@@ -346,7 +348,16 @@ class AccountMove(models.Model):
                         "invoice and create a new one with the correct date"
                     )
                 )
-            if invoice.type in ["in_invoice", "in refund"]:
+            elif "thirdparty_number" in vals:
+                raise exceptions.Warning(
+                    _(
+                        "You cannot change the third-party number of "
+                        "an invoice already registered at the SII. You must "
+                        "cancel the invoice and create a new one with the "
+                        "correct number"
+                    )
+                )
+            if invoice.type in ["in_invoice", "in_refund"]:
                 if "partner_id" in vals:
                     correct_partners = invoice.partner_id.commercial_partner_id
                     correct_partners |= correct_partners.child_ids

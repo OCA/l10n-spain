@@ -444,3 +444,22 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         doc = etree.XML(view["arch"])
         self.assertTrue(doc.xpath("//field[@name='thirdparty_number']"))
         self.assertTrue(doc.xpath("//field[@name='thirdparty_invoice']"))
+        self.invoice.thirdparty_number = "thirdparty_number"
+
+    def test_account_move_sii_write_exceptions(self):
+        # out_invoice
+        self.invoice.sii_state = "sent"
+        with self.assertRaises(exceptions.Warning):
+            self.invoice.write({"invoice_date": "2022-01-01"})
+        with self.assertRaises(exceptions.Warning):
+            self.invoice.write({"thirdparty_number": "CUSTOM"})
+        # in_invoice
+        in_invoice = self.invoice.copy(
+            {"type": "in_invoice", "journal_id": self.journal_purchase.id, "ref": "REF"}
+        )
+        in_invoice.sii_state = "sent"
+        partner = self.partner.copy()
+        with self.assertRaises(exceptions.Warning):
+            in_invoice.write({"partner_id": partner.id})
+        with self.assertRaises(exceptions.Warning):
+            in_invoice.write({"ref": "REF2"})
