@@ -14,7 +14,7 @@ class AccountFiscalPosition(models.Model):
         comodel_name='tbai.vat.regime.key', string='VAT Regime 3rd Key', copy=False)
 
 
-class AccountFiscalPositionTicketBAITax(models.Model):
+"""class AccountFiscalPositionTicketBAITax(models.Model):
     _name = 'account.fp.tbai.tax'
     _description = 'TicketBAI - Fiscal Position Tax Exemptions'
     _rec_name = 'tbai_vat_exemption_key'
@@ -29,3 +29,4 @@ class AccountFiscalPositionTicketBAITax(models.Model):
         ('position_tax_uniq', 'UNIQUE(position_id,tax_id)',
          _('Tax must be unique per fiscal position!'))
     ]
+"""
