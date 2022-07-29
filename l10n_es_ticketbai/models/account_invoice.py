@@ -398,23 +398,22 @@ class AccountInvoice(models.Model):
     @api.model
     @tools.ormcache('company')
     def _get_fiscal_position_template_id(self, company):
-        fp_name = self.fiscal_position_id.name
-        fp_template_id = self.env['account.fiscal.position.template'].search([
-            ('name', '=', fp_name),
-            ('chart_template_id', '=', company.chart_template_id.id),
-        ], limit=1)
-        return fp_template_id
+        fp_external_id = self.fiscal_position_id.get_external_id()[1]
+        ft_external_id = fp_external_id.replace(
+            'l10n_es.' + str(company.id) + '_','l10n_es.') 
+        ft_id = self.env.ref(ft_external_id, raise_if_not_found=False)
+        return ft_id
 
     def _prepare_tax_line_vals(self, line, tax):
         vals = super()._prepare_tax_line_vals(line, tax)
         tax_record = self.env['account.tax'].browse(tax['id'])
         if tax_record.tbai_is_tax_exempted():
             if self.fiscal_position_id:
-                fp_template_id = self._get_fiscal_position_template_id(self.company_id)
+                ft_id = self._get_fiscal_position_template_id(self.company_id)
 
                 exemption = self.env['account.fp.tbai.tax_template'].search(
                     [
-                     ('position_id', '=', fp_template_id.id)]
+                     ('position_id', '=', ft_id.id)]
                 )
 
                 if len(exemption) == 1:
