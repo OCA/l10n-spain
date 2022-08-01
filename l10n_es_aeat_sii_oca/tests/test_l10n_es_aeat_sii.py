@@ -424,6 +424,8 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             self.invoice.write({"invoice_date": "2022-01-01"})
         with self.assertRaises(exceptions.UserError):
             self.invoice.write({"thirdparty_number": "CUSTOM"})
+        with self.assertRaises(exceptions.UserError):
+            self.invoice.write({"name": "NEW-NUMBER"})
         # in_invoice
         in_invoice = self.invoice.copy(
             {

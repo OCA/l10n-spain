@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-29 06:13+0000\n"
-"PO-Revision-Date: 2022-07-29 08:14+0200\n"
+"POT-Creation-Date: 2022-08-01 07:12+0000\n"
+"PO-Revision-Date: 2022-08-01 09:17+0200\n"
 "Last-Translator: Josep M <jmyepes@mac.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -661,7 +661,7 @@ msgstr "SII CSV"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_registration_key_code
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_registration_key_code
 msgid "SII Code"
-msgstr ""
+msgstr "Código SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_header_customer
@@ -796,8 +796,9 @@ msgstr "Clave de registro SII"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_registration_key_domain
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_registration_key_domain
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_registration_key_domain
+#, fuzzy
 msgid "SII registration key domain"
-msgstr ""
+msgstr "Clave de registro SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_send_failed
@@ -1131,43 +1132,11 @@ msgstr "No puede realizar una factura simplificada a un proveedor."
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid ""
-"You cannot change the invoice date of an invoice already registered at the "
-"SII. You must cancel the invoice and create a new one with the correct date"
+"You cannot change the %s of an invoice already registered at the SII. You "
+"must cancel the invoice and create a new one with the correct value"
 msgstr ""
-"No puede cambiar la fecha de factura de una factura enviada al SII. Debe "
-"cancelar la factura y crear una nueva con la fecha correcta"
-
-#. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
-#, python-format
-msgid ""
-"You cannot change the supplier invoice number of an invoice already "
-"registered at the SII. You must cancel the invoice and create a new one with "
-"the correct number"
-msgstr ""
-"No puede cambiar el número de factura del proveedor de una factura enviada "
-"al SII. Debe cancelar la factura y crear una nueva con el número correcto"
-
-#. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
-#, python-format
-msgid ""
-"You cannot change the supplier of an invoice already registered at the SII. "
-"You must cancel the invoice and create a new one with the correct supplier"
-msgstr ""
-"No puede cambiar el proveedor de una factura enviada al SII. Debe cancelar "
-"la factura y crear una nueva con el proveedor correcto"
-
-#. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
-#, python-format
-msgid ""
-"You cannot change the third-party number of an invoice already registered at "
-"the SII. You must cancel the invoice and create a new one with the correct "
-"number"
-msgstr ""
-"No puede cambiar el número de factura de terceros de una factura enviada al "
-"SII. Debe cancelar la factura y crear una nueva con el número correcto"
+"No puede cambiar el %s de una factura enviada al SII. Debe cancelar la "
+"factura y crear una nueva con el valor correcto"
 
 #. module: l10n_es_aeat_sii_oca
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
@@ -1253,3 +1222,33 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__product_template__sii_exempt_cause__e6
 msgid "[E6] Otros"
 msgstr "[E6] Otros"
+
+#. module: l10n_es_aeat_sii_oca
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
+#, python-format
+msgid "invoice date"
+msgstr "fecha de la factura"
+
+#. module: l10n_es_aeat_sii_oca
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
+#, python-format
+msgid "invoice number"
+msgstr "número de la factura"
+
+#. module: l10n_es_aeat_sii_oca
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
+#, python-format
+msgid "supplier"
+msgstr "proveedor"
+
+#. module: l10n_es_aeat_sii_oca
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
+#, python-format
+msgid "supplier invoice number"
+msgstr "número de factura del proveedor"
+
+#. module: l10n_es_aeat_sii_oca
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
+#, python-format
+msgid "third-party number"
+msgstr "número de factura de terceros"
