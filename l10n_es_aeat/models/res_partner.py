@@ -1,4 +1,5 @@
 # Copyright 2019 Tecnativa - Carlos Dauden
+# Copyright 2022 Moduon - Eduardo de Miguel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields, models
@@ -49,7 +50,9 @@ class ResPartner(models.Model):
             )
         return europe.country_ids.mapped("code")
 
-    @ormcache("self.vat, self.country_id")
+    @ormcache(
+        "self.vat, self.country_id, self.aeat_identification, self.aeat_identification_type"
+    )
     def _parse_aeat_vat_info(self):
         """Return tuple with split info (country_code, identifier_type and
         vat_number) from vat and country partner
@@ -72,8 +75,7 @@ class ResPartner(models.Model):
                 identifier_type = "04"
         if country_code == "ES":
             identifier_type = ""
-        return (
-            country_code,
-            self.aeat_identification_type or identifier_type,
-            self.aeat_identification if self.aeat_identification_type else vat_number,
-        )
+        if self.aeat_identification_type:
+            identifier_type = self.aeat_identification_type
+            vat_number = self.aeat_identification
+        return country_code, identifier_type, vat_number
