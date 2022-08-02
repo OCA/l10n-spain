@@ -168,7 +168,6 @@ class LROEOperation(models.Model):
             (LROEOperationEnum.update.value, "Update"),
             (LROEOperationEnum.query.value, "Query"),
         ],
-        string="Type",
         required=True,
         default=LROEOperationEnum.create.value,
     )
@@ -183,7 +182,6 @@ class LROEOperation(models.Model):
             (LROEOperationStateEnum.RECORDED_WARNING.value, "Recorded Warning"),
             (LROEOperationStateEnum.RECORDED.value, "Recorded"),
         ],
-        string="State",
         default=LROEOperationStateEnum.DRAFT.value,
     )
     tbai_invoice_ids = fields.One2many(
