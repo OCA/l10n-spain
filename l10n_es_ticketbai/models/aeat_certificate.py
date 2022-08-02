@@ -1,7 +1,6 @@
 # Copyright 2021 Binovo IT Human Project SL
 # Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-import base64
 import logging
 
 from odoo import api, fields, models
@@ -41,10 +40,7 @@ class L10nEsAeatCertificate(models.Model):
                 p12 = (pkey, cert, [])
         return p12
 
-    @api.depends("public_key", "private_key", "tbai_p12_friendlyname")
+    @api.depends("public_key", "private_key")
     def _compute_tbai_p12(self):
         for record in self:
-            p12 = record.get_p12()
-            if record.tbai_p12_friendlyname:  # Set on Certificate Password Wizard
-                p12.set_friendlyname(record.tbai_p12_friendlyname.encode("utf-8"))
-            record.tbai_p12 = base64.b64encode(p12.export())
+            return record.get_p12()

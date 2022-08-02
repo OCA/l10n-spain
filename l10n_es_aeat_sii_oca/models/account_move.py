@@ -7,6 +7,7 @@
 # Copyright 2020 Valentin Vinagre <valent.vinagre@sygel.es>
 # Copyright 2021 Tecnativa - João Marques
 # Copyright 2022 ForgeFlow - Lois Rilo
+# Copyright 2022 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import json
@@ -235,6 +236,7 @@ class AccountMove(models.Model):
         states={"draft": [("readonly", False)]},
         copy=False,
         help="Número de la factura emitida por un tercero.",
+        tracking=True,
     )
     invoice_jobs_ids = fields.Many2many(
         comodel_name="queue.job",
@@ -328,6 +330,16 @@ class AccountMove(models.Model):
             invoice.onchange_fiscal_position_id_l10n_es_aeat_sii()
         return invoice
 
+    def _raise_exception_sii(self, field_name):
+        raise exceptions.UserError(
+            _(
+                "You cannot change the %s of an invoice "
+                "already registered at the SII. You must cancel the "
+                "invoice and create a new one with the correct value"
+            )
+            % field_name
+        )
+
     def write(self, vals):
         """For supplier invoices the SII primary key is the supplier
         VAT/ID Otro and the supplier invoice number. Cannot let change these
@@ -336,35 +348,20 @@ class AccountMove(models.Model):
             lambda x: x.is_invoice() and x.sii_state != "not_sent"
         ):
             if "invoice_date" in vals:
-                raise exceptions.UserError(
-                    _(
-                        "You cannot change the invoice date of an invoice "
-                        "already registered at the SII. You must cancel the "
-                        "invoice and create a new one with the correct date"
-                    )
-                )
-            if invoice.move_type in ["in_invoice", "in refund"]:
+                self._raise_exception_sii(_("invoice date"))
+            elif "thirdparty_number" in vals:
+                self._raise_exception_sii(_("third-party number"))
+            if invoice.move_type in ["in_invoice", "in_refund"]:
                 if "partner_id" in vals:
                     correct_partners = invoice._sii_get_partner()
                     correct_partners |= correct_partners.child_ids
                     if vals["partner_id"] not in correct_partners.ids:
-                        raise exceptions.UserError(
-                            _(
-                                "You cannot change the supplier of an invoice "
-                                "already registered at the SII. You must cancel "
-                                "the invoice and create a new one with the "
-                                "correct supplier"
-                            )
-                        )
+                        self._raise_exception_sii(_("supplier"))
                 elif "ref" in vals:
-                    raise exceptions.UserError(
-                        _(
-                            "You cannot change the supplier invoice number of "
-                            "an invoice already registered at the SII. You must "
-                            "cancel the invoice and create a new one with the "
-                            "correct number"
-                        )
-                    )
+                    self._raise_exception_sii(_("supplier invoice number"))
+            elif invoice.move_type in ["out_invoice", "out_refund"]:
+                if "name" in vals:
+                    self._raise_exception_sii(_("invoice number"))
         # Fill sii_refund_type if not set previously. It happens on sales
         # order invoicing process for example.
         if (
