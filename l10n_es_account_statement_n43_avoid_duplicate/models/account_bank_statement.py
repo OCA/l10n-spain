@@ -11,18 +11,11 @@ class AccountBankStatement(models.Model):
     def create(self, vals):
         res = super().create(vals)
         for line_id in res.line_ids:
-            amount = round(line_id.amount, 2)
-            raw_line = line_id.transaction_raw_register
-            start_balance = round(line_id.start_balance, 2)
-            if start_balance == 0:
-                start_balance = False
-            end_balance = round(line_id.end_balance, 2)
+            transaction_hash = line_id.transaction_hash
             same_line_id = (
                 self.env["account.bank.statement.line"].search(
                     [
-                        ("transaction_raw_register", "=", raw_line),
-                        ("start_balance", "=", start_balance),
-                        ("end_balance", "=", end_balance),
+                        ("transaction_hash", "=", transaction_hash),
                     ]
                 )
                 - line_id
@@ -45,20 +38,22 @@ class AccountBankStatement(models.Model):
 class AccountBankStatementLine(models.Model):
     _inherit = "account.bank.statement.line"
 
-    transaction_raw_register = fields.Char("N43 transaction register")
-    start_balance = fields.Monetary("Balance before transaction")
-    end_balance = fields.Monetary("Balance after transaction")
+    transaction_hash = fields.Char("N43 transaction register")
 
     @api.model
     def create(self, vals):
+        transaction_raw_register = vals.pop('transaction_raw_register')
         res = super().create(vals)
         stmt_id = res.statement_id
         if stmt_id.actual_balance:
-            res.start_balance = stmt_id.actual_balance
+            start_balance = stmt_id.actual_balance
             stmt_id.actual_balance += res.amount
-            res.end_balance = stmt_id.actual_balance
+            end_balance = stmt_id.actual_balance
         else:
-            res.start_balance = stmt_id.balance_start
+            start_balance = stmt_id.balance_start
             stmt_id.actual_balance = stmt_id.balance_start + res.amount
-            res.end_balance = stmt_id.actual_balance
+            end_balance = stmt_id.actual_balance
+        res.transaction_hash = hash(
+            (transaction_raw_register, start_balance, end_balance),
+        )
         return res

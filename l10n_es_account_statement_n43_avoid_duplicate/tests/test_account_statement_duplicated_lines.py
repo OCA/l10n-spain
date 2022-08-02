@@ -34,10 +34,11 @@ class AccountStatementDuplicatedLines(common.SavepointCase):
             }
         )
         n43_file_path = get_module_resource(
-            "l10n_es_duplicated_line_n43", "tests", "test.n43"
+            "l10n_es_account_statement_n43_avoid_duplicate", "tests", "test.n43"
         )
         n43_duplicated_path = get_module_resource(
-            "l10n_es_duplicated_line_n43", "tests", "test_duplicated_lines.n43"
+            "l10n_es_account_statement_n43_avoid_duplicate",
+            "tests", "test_duplicated_lines.n43"
         )
         n43_file = base64.b64encode(open(n43_file_path, "rb").read())
         n43_duplicated_file = base64.b64encode(open(n43_duplicated_path, "rb").read())
