@@ -1,0 +1,78 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_statement_duplicated_line
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-26 09:43+0000\n"
+"PO-Revision-Date: 2022-07-26 09:43+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_statement_duplicated_line
+#: model:ir.model.fields,field_description:account_statement_duplicated_line.field_account_bank_statement__actual_balance
+msgid "Balance after last transaction"
+msgstr "Saldo tras última transacción"
+
+#. module: account_statement_duplicated_line
+#: model:ir.model.fields,field_description:account_statement_duplicated_line.field_account_bank_statement_line__end_balance
+msgid "Balance after transaction"
+msgstr "Saldo tras transacción"
+
+#. module: account_statement_duplicated_line
+#: model:ir.model.fields,field_description:account_statement_duplicated_line.field_account_bank_statement_line__start_balance
+msgid "Balance before transaction"
+msgstr "Saldo antes de transacción"
+
+#. module: account_statement_duplicated_line
+#: model:ir.model,name:account_statement_duplicated_line.model_account_bank_statement
+msgid "Bank Statement"
+msgstr "Extracto bancario"
+
+#. module: account_statement_duplicated_line
+#: model:ir.model,name:account_statement_duplicated_line.model_account_bank_statement_line
+msgid "Bank Statement Line"
+msgstr "Línea de extracto bancario"
+
+#. module: account_statement_duplicated_line
+#: model:ir.model.fields,field_description:account_statement_duplicated_line.field_account_bank_statement__display_name
+#: model:ir.model.fields,field_description:account_statement_duplicated_line.field_account_bank_statement_line__display_name
+#: model:ir.model.fields,field_description:account_statement_duplicated_line.field_account_statement_import__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: account_statement_duplicated_line
+#: model:ir.model.fields,field_description:account_statement_duplicated_line.field_account_bank_statement__id
+#: model:ir.model.fields,field_description:account_statement_duplicated_line.field_account_bank_statement_line__id
+#: model:ir.model.fields,field_description:account_statement_duplicated_line.field_account_statement_import__id
+msgid "ID"
+msgstr ""
+
+#. module: account_statement_duplicated_line
+#: model:ir.model,name:account_statement_duplicated_line.model_account_statement_import
+msgid "Import Bank Statement Files"
+msgstr "Importar extracto bancario"
+
+#. module: account_statement_duplicated_line
+#: model:ir.model.fields,field_description:account_statement_duplicated_line.field_account_bank_statement____last_update
+#: model:ir.model.fields,field_description:account_statement_duplicated_line.field_account_bank_statement_line____last_update
+#: model:ir.model.fields,field_description:account_statement_duplicated_line.field_account_statement_import____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: account_statement_duplicated_line
+#: model:ir.model.fields,field_description:account_statement_duplicated_line.field_account_bank_statement_line__transaction_raw_register
+msgid "N43 transaction register"
+msgstr "Registro de transacción N43"
+
+#. module: account_statement_duplicated_line
+#: model:ir.model.fields,field_description:account_statement_duplicated_line.field_account_bank_statement__removed_transactions
+#: model_terms:ir.ui.view,arch_db:account_statement_duplicated_line.deleted_bank_statement_lines_form
+msgid "Removed transactions"
+msgstr "Transacciones eliminadas"
