@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # © 2021 Binovo IT Human Project SL
+# Copyright 2022 Soluciones Tecnológicas Freedoo S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import odoo

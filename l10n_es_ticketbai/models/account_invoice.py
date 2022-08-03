@@ -1,6 +1,7 @@
 # Copyright 2021 Binovo IT Human Project SL
 # Copyright 2021 Landoo Sistemas de Informacion SL
 # Copyright 2021 Digital5, S.L.
+# Copyright 2022 Soluciones Tecnológicas Freedoo S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import models, fields, exceptions, _, api, tools
 from odoo.addons.l10n_es_ticketbai_api.models.ticketbai_invoice \
