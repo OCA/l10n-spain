@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-13 13:50+0000\n"
-"PO-Revision-Date: 2021-07-08 13:50+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2022-08-03 09:06+0000\n"
+"Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_invoice_schema
@@ -177,12 +178,12 @@ msgstr "AnulaTicketBai"
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_company_tbai_pro_available
 msgid "Are Production URLs Available"
-msgstr ""
+msgstr "Están disponibles los URLs de producción"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_company_tbai_test_available
 msgid "Are Tests URLs Available"
-msgstr ""
+msgstr "Están disponibles las URLs de pruebas"
 
 #. module: l10n_es_ticketbai_api
 #: selection:tbai.invoice,refund_code:0
@@ -869,12 +870,12 @@ msgstr "Servicios"
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_tax_agency_sign_file_hash
 msgid "Sign File HASH"
-msgstr ""
+msgstr "Firmar archivo HASH"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_tax_agency_sign_file_url
 msgid "Sign File URL"
-msgstr ""
+msgstr "Firmar archivo URL"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_signature_value
