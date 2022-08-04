@@ -208,7 +208,6 @@ class LROEOperation(models.Model):
                 return False
             elif queue.state in ("pending", "enqueued", "failed"):
                 queue.unlink()
-                self.write({"state": LROEOperationStateEnum.CANCEL.value})
         return True
 
     @api.multi
