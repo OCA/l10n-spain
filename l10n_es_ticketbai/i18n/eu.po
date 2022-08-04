@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-03 14:06+0000\n"
+"PO-Revision-Date: 2022-08-04 13:06+0000\n"
 "Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
 "Language-Team: none\n"
 "Language: eu\n"
@@ -117,7 +117,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_exemption_key_create_uid
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_regime_key_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Nork sortua"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax_create_date
@@ -128,7 +128,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_exemption_key_create_date
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_regime_key_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Noiz sortua"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_invoice_refund
@@ -138,23 +138,23 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
 msgid "Customer Cancellations"
-msgstr ""
+msgstr "Bezeroen ezeztapenak"
 
 #. module: l10n_es_ticketbai
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
 msgid "Customer Invoices"
-msgstr ""
+msgstr "Bezeroen Fakturak"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info_developer_id
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info_name
 msgid "Developer"
-msgstr ""
+msgstr "Garatzailea"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info_device_serial_number
 msgid "Device Serial Number"
-msgstr ""
+msgstr "Gailuaren Serie zenbakia"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax_display_name
@@ -165,34 +165,34 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_exemption_key_display_name
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_regime_key_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Izena erakutsi"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_invoice_tbai_enabled
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_journal_tbai_enabled
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_ir_sequence_tbai_enabled
 msgid "Enable TicketBAI"
-msgstr ""
+msgstr "Gaitu TicketBAI"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_tbai_invoice_refund_origin_expedition_date
 msgid "Expected string date format: %dd-%mm-%yyyy"
-msgstr ""
+msgstr "Espero den katearen data formatua: %dd-%mm-%yyyy"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin_expedition_date
 msgid "Expedition Date"
-msgstr ""
+msgstr "Espedizio Data"
 
 #. module: l10n_es_ticketbai
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_form
 msgid "File"
-msgstr ""
+msgstr "Fitxategia"
 
 #. module: l10n_es_ticketbai
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
 msgid "Files Sent"
-msgstr ""
+msgstr "Bidalitako Fitxategiak"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_fiscal_position
@@ -213,7 +213,7 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model:ir.ui.menu,name:l10n_es_ticketbai.menu_finance_ticketbai_general_info
 msgid "General Info"
-msgstr ""
+msgstr "Informazio Orokorra"
 
 #. module: l10n_es_ticketbai
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_search
@@ -229,45 +229,45 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_exemption_key_id
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_regime_key_id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_invoice
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_invoice_id
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_form
 msgid "Invoice"
-msgstr ""
+msgstr "Faktura"
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_invoice.py:71
 #, python-format
 msgid "Invoice %s. You cannot change to draft a numbered invoice!"
-msgstr ""
+msgstr "%s Faktura. Ezin duzu aldatu zenbakidun faktura zirriborrora!"
 
 #. module: l10n_es_ticketbai
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
 msgid "Invoice Date"
-msgstr ""
+msgstr "Fakturaren Data"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_invoice_line
 msgid "Invoice Line"
-msgstr ""
+msgstr "Faktura lerroa"
 
 #. module: l10n_es_ticketbai
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
 msgid "Invoice Number"
-msgstr ""
+msgstr "Faktura Zenbakia"
 
 #. module: l10n_es_ticketbai
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
 msgid "Invoice Serial"
-msgstr ""
+msgstr "Fakturaren Seriea"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_invoice_tax
 msgid "Invoice Tax"
-msgstr ""
+msgstr "Fakturaren Zerga"
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:119
@@ -278,7 +278,7 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model:ir.ui.menu,name:l10n_es_ticketbai.menu_tbai_invoice
 msgid "Invoices"
-msgstr ""
+msgstr "Fakturak"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_journal
@@ -288,7 +288,7 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
 msgid "Key/Type"
-msgstr ""
+msgstr "Gakoa/Mota"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax___last_update
@@ -326,65 +326,67 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
 msgid "Messages"
-msgstr ""
+msgstr "Mezuak"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_tax_map_name
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_exemption_key_name
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_regime_key_name
 msgid "Name"
-msgstr ""
+msgstr "Izena"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin_number
 msgid "Number"
-msgstr ""
+msgstr "Zenbakia"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin_number_prefix
 msgid "Number Prefix"
-msgstr ""
+msgstr "Zenbakiaren aurrizkia"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_tbai_invoice_refund_origin_number_prefix
 msgid "Number prefix of this invoice name e.g. if the invoice name is INV/2021/00001 then the prefix is INV/2021/, ending back slash included"
 msgstr ""
+"Adibidez, faktura honen zenbakiaren aurrizkia, fakturaren izena INV/2021/"
+"00001 bada aurrizkia INV/2021/ da, amaierako barra barne"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_invoice_tbai_date_operation
 msgid "Operation Date"
-msgstr ""
+msgstr "Eragiketa Data"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_invoice_tbai_description_operation
 msgid "Operation Description"
-msgstr ""
+msgstr "Eragiketaren Deskribapena"
 
 #. module: l10n_es_ticketbai
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
 msgid "Origin Invoices Data"
-msgstr ""
+msgstr "Jatorrizko Fakturaren Datuak"
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_invoice.py:358
 #, python-format
 msgid "Please, specify data for the original invoices that are going to be refunded"
-msgstr ""
+msgstr "Mesedez, zehaztu itzuliko diren jatorrizko fakturen datuak"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_res_company_tbai_protected_data
 msgid "Protected Data"
-msgstr ""
+msgstr "Babestutako Datuak"
 
 #. module: l10n_es_ticketbai
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_form
 msgid "QR Code"
-msgstr ""
+msgstr "QR Kodea"
 
 #. module: l10n_es_ticketbai
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
 msgid "Refund"
-msgstr ""
+msgstr "Itzulketa"
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:95
@@ -408,12 +410,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_invoice_tbai_response_ids
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
 msgid "Responses"
-msgstr ""
+msgstr "Erantzunak"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info_software
 msgid "Software"
-msgstr ""
+msgstr "Softwarea"
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_invoice.py:372
@@ -430,24 +432,24 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_account_journal_tbai_active_date
 msgid "Start date for sending invoices to the tax authorities"
-msgstr ""
+msgstr "Zerga-erakundeei fakturak bidaltzeko hasiera-data"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_invoice_tbai_substitute_simplified_invoice
 msgid "Substitute Simplified Invoice"
-msgstr ""
+msgstr "Ordezko Faktura Sinplifikatua"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_res_company_tbai_protected_data_txt
 msgid "Substitution Text"
-msgstr ""
+msgstr "Ordezko Textua"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_tax
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax_tax_id
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax_template_tax_id
 msgid "Tax"
-msgstr ""
+msgstr "Zerga"
 
 #. module: l10n_es_ticketbai
 #: sql_constraint:account.fp.tbai.tax:0
@@ -462,7 +464,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_tax_map_tax_template_ids
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_tax_map_view_form
 msgid "Taxes"
-msgstr ""
+msgstr "Zergak"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_invoice_tbai_datetime_invoice
