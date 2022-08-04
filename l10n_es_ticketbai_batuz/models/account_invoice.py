@@ -72,7 +72,7 @@ class AccountInvoice(models.Model):
     lroe_response_line_ids = fields.Many2many(
         comodel_name="lroe.operation.response.line",
         compute="_compute_lroe_response_line_ids",
-        string="Responses",
+        string="LROE Responses",
     )
     lroe_operation_ids = fields.Many2many(
         comodel_name="lroe.operation",
