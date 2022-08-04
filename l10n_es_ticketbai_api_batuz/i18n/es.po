@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_ticketbai_api_batuz
+# 	* l10n_es_ticketbai_api_batuz
 #
 msgid ""
 msgstr ""
@@ -25,8 +25,7 @@ msgid "Build error"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
-#: selection:lroe.operation,state:0
-#: selection:lroe.operation,type:0
+#: selection:lroe.operation,state:0 selection:lroe.operation,type:0
 msgid "Cancel"
 msgstr ""
 
@@ -141,8 +140,12 @@ msgid "File"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation__trx_gzip_fname
+msgid "File Name"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation__trx_gzip_fsize
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation__xml_file_size
 msgid "File Size"
 msgstr ""
 
@@ -238,14 +241,12 @@ msgid "LROE Operation required!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
-#: selection:lroe.chapter,model:0
-#: selection:res.company,lroe_model:0
+#: selection:lroe.chapter,model:0 selection:res.company,lroe_model:0
 msgid "LROE PF 140"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
-#: selection:lroe.chapter,model:0
-#: selection:res.company,lroe_model:0
+#: selection:lroe.chapter,model:0 selection:res.company,lroe_model:0
 msgid "LROE PJ 240"
 msgstr ""
 
@@ -498,10 +499,14 @@ msgid "XML File"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation__trx_gzip_fname
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation__xml_datas_fname
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_response__xml_fname
 msgid "XML File Name"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation__xml_file_size
+msgid "XML File Size"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
