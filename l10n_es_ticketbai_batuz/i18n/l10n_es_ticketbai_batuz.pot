@@ -167,6 +167,7 @@ msgid "LROE Operations"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_invoice__lroe_response_line_ids
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.invoice_supplier_form_inherit_l10n_es_ticketbai_batuz
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_invoice_form_tbai_batuz
 msgid "LROE Responses"
@@ -271,11 +272,6 @@ msgstr ""
 #. module: l10n_es_ticketbai_batuz
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.invoice_supplier_form_inherit_l10n_es_ticketbai_batuz
 msgid "Resend to LROE"
-msgstr ""
-
-#. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_invoice__lroe_response_line_ids
-msgid "Responses"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
