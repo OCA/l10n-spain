@@ -140,8 +140,12 @@ msgid "File"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation__trx_gzip_fname
+msgid "File Name"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation__trx_gzip_fsize
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation__xml_file_size
 msgid "File Size"
 msgstr ""
 
@@ -497,10 +501,14 @@ msgid "XML File"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation__trx_gzip_fname
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation__xml_datas_fname
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_response__xml_fname
 msgid "XML File Name"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation__xml_file_size
+msgid "XML File Size"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
