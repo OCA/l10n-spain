@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "At least one product does not have a tax."
 msgstr ""
@@ -39,6 +39,14 @@ msgid "Device Serial Number"
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_tbai_invoice__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_es_ticketbai_pos
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__tbai_enabled
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order__tbai_enabled
 msgid "Enable TicketBAI"
@@ -50,8 +58,24 @@ msgid "Files Sent"
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_tbai_invoice__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_es_ticketbai_pos
 #: model:ir.model,name:l10n_es_ticketbai_pos.model_account_move
-msgid "Journal Entries"
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_move____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_tbai_invoice____last_update
+msgid "Last Modified on"
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
@@ -60,7 +84,9 @@ msgid "Last TicketBAI Invoice sent"
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,help:l10n_es_ticketbai_pos.field_account_bank_statement_line__tbai_substitution_pos_order_id
 #: model:ir.model.fields,help:l10n_es_ticketbai_pos.field_account_move__tbai_substitution_pos_order_id
+#: model:ir.model.fields,help:l10n_es_ticketbai_pos.field_account_payment__tbai_substitution_pos_order_id
 msgid "Link between a validated Customer Invoice and its substitute."
 msgstr ""
 
@@ -71,8 +97,8 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "Non spanish customers are not supported for Simplified Invoice."
 msgstr ""
@@ -84,28 +110,35 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/xml/pos.xml:0
+#, python-format
+msgid "PRO FORMA"
+msgstr ""
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "Please set Company VAT."
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
 #, python-format
 msgid "Please set Country for customer %s."
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "Please set VAT Regime Key for fiscal position %s."
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
 #, python-format
 msgid ""
 "Please set VAT or TicketBAI Partner Identification Number for customer %s."
@@ -113,7 +146,7 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid ""
 "Please set VAT or TicketBAI Partner Identification Number for customer."
@@ -121,8 +154,8 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ProductScreen/ProductScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/models.js:0
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
 #, python-format
 msgid "Please set a tax for product %s."
 msgstr ""
@@ -168,18 +201,20 @@ msgid "Simplified Invoice Number Prefix %s is not part of Number %s!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_bank_statement_line__tbai_substitution_pos_order_id
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_move__tbai_substitution_pos_order_id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_payment__tbai_substitution_pos_order_id
 msgid "Tbai Substitution Pos Order"
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ProductScreen/ProductScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/models.js:0
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/tbai_models.js:0
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
@@ -206,7 +241,7 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "TicketBAI Invoice not built yet. Please try again."
 msgstr ""
@@ -224,7 +259,7 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "TicketBAI certificate not loaded!"
 msgstr ""
