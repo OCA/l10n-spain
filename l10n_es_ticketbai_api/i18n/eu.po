@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-08-04 13:06+0000\n"
+"Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
 "Language-Team: none\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_invoice_schema
@@ -100,24 +102,24 @@ msgstr ""
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_customer_address
 msgid "Address"
-msgstr ""
+msgstr "Helbidea"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_tax_amount
 msgid "Amount (%)"
-msgstr ""
+msgstr "Zenbatekoa (%)"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_amount_total
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_line_amount_total
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_tax_amount_total
 msgid "Amount Total"
-msgstr ""
+msgstr "Zenbatekoa Guztira"
 
 #. module: l10n_es_ticketbai_api
 #: selection:tbai.invoice,schema:0
 msgid "AnulaTicketBai"
-msgstr ""
+msgstr "TicketBai Ezeztatu"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_company_tbai_pro_available
