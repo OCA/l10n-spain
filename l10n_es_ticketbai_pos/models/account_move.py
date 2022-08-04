@@ -15,7 +15,7 @@ class AccountMove(models.Model):
 
     def tbai_prepare_invoice_values(self):
         res = super().tbai_prepare_invoice_values()
-        if not res.get("tbai.vat.regime.key", False):
+        if not res.get("vat_regime_key", False):
             res["vat_regime_key"] = (
                 self.env["tbai.vat.regime.key"]
                 .search([("code", "=", "01")], limit=1)
