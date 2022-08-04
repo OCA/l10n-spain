@@ -181,6 +181,7 @@ msgid "LROE Operations"
 msgstr "Operaciones LROE"
 
 #. module: l10n_es_ticketbai_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_invoice__lroe_response_line_ids
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.invoice_supplier_form_inherit_l10n_es_ticketbai_batuz
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_invoice_form_tbai_batuz
 msgid "LROE Responses"
@@ -286,11 +287,6 @@ msgstr "Registro en LROE planificado"
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.invoice_supplier_form_inherit_l10n_es_ticketbai_batuz
 msgid "Resend to LROE"
 msgstr "Reenviar LROE"
-
-#. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_invoice__lroe_response_line_ids
-msgid "Responses"
-msgstr "Respuestas"
 
 #. module: l10n_es_ticketbai_batuz
 #: selection:tbai.vat.regime.key,type:0
@@ -428,6 +424,9 @@ msgid "You can not set to draft this invoice because there is a job running!"
 msgstr ""
 "¡En este momento no puede poner en borrador esta factura porque hay un "
 "trabajo ejecutándose!"
+
+#~ msgid "Responses"
+#~ msgstr "Respuestas"
 
 #~ msgid "Templates for Account Chart"
 #~ msgstr "Plantillas de plan contable"
