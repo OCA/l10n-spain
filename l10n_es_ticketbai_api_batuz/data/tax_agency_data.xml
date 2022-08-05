@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2021 Binovo IT Human Project SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="tbai_tax_agency_bizkaia" model="tbai.tax.agency">
+            <field name="name">Hacienda Foral de Bizkaia</field>
+        <field
+            name="sign_file_url"
+        >https://www.batuz.eus/fitxategiak/batuz/ticketbai/sinadura_elektronikoaren_zehaztapenak_especificaciones_de_la_firma_electronica_v1_0.pdf</field>
+        <field
+            name="sign_file_hash"
+        >Quzn98x3PMbSHwbUzaj5f5KOpiH0u8bvmwbbbNkO9Es=</field>
+    </record>
+    <record id="tbai_tax_agency_bizkaia_1_2" model="tbai.tax.agency.version">
+        <field name="tbai_tax_agency_id" ref="tbai_tax_agency_bizkaia" />
+        <field name="version">1.2</field>
+        <field name="qr_base_url">https://batuz.eus/QRTBAI/</field>
+        <field name="test_qr_base_url">https://batuz.eus/QRTBAI/</field>
+        <field
+            name="rest_url_invoice"
+        >https://sarrerak.bizkaia.eus/N3B4000M/aurkezpena</field>
+        <field
+            name="test_rest_url_invoice"
+        >https://pruesarrerak.bizkaia.eus/N3B4000M/aurkezpena</field>
+        <field
+            name="rest_url_cancellation"
+        >https://sarrerak.bizkaia.eus/N3B4000M/aurkezpena</field>
+        <field
+            name="test_rest_url_cancellation"
+        >https://pruesarrerak.bizkaia.eus/N3B4000M/aurkezpena</field>
+    </record>
+</odoo>
