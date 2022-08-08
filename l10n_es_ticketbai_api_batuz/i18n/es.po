@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-02 16:06+0000\n"
+"PO-Revision-Date: 2022-08-08 10:07+0000\n"
 "Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -64,7 +64,7 @@ msgstr "Compañía"
 #: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:298
 #, python-format
 msgid "Company %s VAT number should not be empty!"
-msgstr ""
+msgstr "El NIF de la compañia %s no debe de estar vacío!"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: selection:lroe.operation.response,state:0
@@ -177,7 +177,7 @@ msgstr "Incorrecto"
 #: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation_response.py:94
 #, python-format
 msgid "Internal API or Operation error"
-msgstr ""
+msgstr "API interna o error de operación"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_operation_form_view
@@ -206,7 +206,7 @@ msgstr "Modelo LROE"
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_chapter_tree_view
 msgid "LROE OpeChapterration"
-msgstr ""
+msgstr "Capítulo Operativo LROE"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model,name:l10n_es_ticketbai_api_batuz.model_lroe_operation
@@ -214,100 +214,100 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_operation_search_view
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_operation_tree_view
 msgid "LROE Operation"
-msgstr ""
+msgstr "Operación LROE"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_operation_form_view
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_operation_response_form_view
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_operation_response_tree_view
 msgid "LROE Operation Global Response"
-msgstr ""
+msgstr "Respuesta global de la operación LROE"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model,name:l10n_es_ticketbai_api_batuz.model_lroe_operation_response
 msgid "LROE Operation Response"
-msgstr ""
+msgstr "Respuesta de la operación LROE"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model,name:l10n_es_ticketbai_api_batuz.model_lroe_operation_response_line
 msgid "LROE Operation Response Line"
-msgstr ""
+msgstr "Línea de respuesta de operación LROE"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation_response.py:129
 #, python-format
 msgid "LROE Operation required!"
-msgstr ""
+msgstr "¡Operación LROE requerida!"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: selection:lroe.chapter,model:0
 #: selection:res.company,lroe_model:0
 msgid "LROE PF 140"
-msgstr ""
+msgstr "LROE PF 140"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: selection:lroe.chapter,model:0
 #: selection:res.company,lroe_model:0
 msgid "LROE PJ 240"
-msgstr ""
+msgstr "LROE PJ 240"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_response_line_response_message
 msgid "LROE Response Message"
-msgstr ""
+msgstr "Mensaje de respuesta de LROE"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_operation_form_view
 msgid "LROE Responses"
-msgstr ""
+msgstr "Respuestas LROE"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_operation_form_view
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_operation_response_form_view
 msgid "LROE source Operation"
-msgstr ""
+msgstr "Operación de fuente LROE"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation_response.py:110
 #, python-format
 msgid "LROEOperationResponseLineState not VALID !"
-msgstr ""
+msgstr "¡El estado de la línea de respuesta de la operación LROE no es VÁLIDO!"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:219
 #, python-format
 msgid "LROE_model_pf_140_cancel"
-msgstr ""
+msgstr "LROE_model_pf_140_cancel"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:217
 #, python-format
 msgid "LROE_model_pf_140_create"
-msgstr ""
+msgstr "LROE_model_pf_140_create"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:221
 #, python-format
 msgid "LROE_model_pf_140_update"
-msgstr ""
+msgstr "LROE_model_pf_140_update"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:212
 #, python-format
 msgid "LROE_model_pj_240_cancel"
-msgstr ""
+msgstr "LROE_model_pj_240_cancel"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:210
 #, python-format
 msgid "LROE_model_pj_240_create"
-msgstr ""
+msgstr "LROE_model_pj_240_create"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:214
 #, python-format
 msgid "LROE_model_pj_240_update"
-msgstr ""
+msgstr "LROE_model_pj_240_update"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_chapter___last_update
@@ -315,7 +315,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_response___last_update
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_response_line___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación el"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_chapter_write_uid
@@ -323,7 +323,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_response_write_uid
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualización por"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_chapter_write_date
@@ -331,105 +331,105 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_response_write_date
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultima actualización en"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_response_line_lroe_operation_id
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_response_lroe_operation_id
 msgid "Lroe Operation"
-msgstr ""
+msgstr "Operación Lroe"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_response_lroe_record_id
 msgid "Lroe Record"
-msgstr ""
+msgstr "Registro de Lroe"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_response_lroe_record_date
 msgid "Lroe Record Date"
-msgstr ""
+msgstr "Fecha de registro de Lroe"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_response_lroe_record_number
 msgid "Lroe Record Number"
-msgstr ""
+msgstr "Número de registro de Lroe"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_response_line_lroe_response_id
 msgid "Lroe Response"
-msgstr ""
+msgstr "Respuesta de Lroe"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_chapter_search_view
 msgid "Model"
-msgstr ""
+msgstr "Modelo"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_chapter_name
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_name
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_response_ids
 msgid "Operation global responses"
-msgstr ""
+msgstr "Respuestas globales de la operación"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.ui.menu,name:l10n_es_ticketbai_api_batuz.menu_lroe_operations
 msgid "Operations"
-msgstr ""
+msgstr "Operaciones"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_chapter_lroe_chapter_id
 msgid "Parent chapter"
-msgstr ""
+msgstr "Capítulo principal"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: selection:lroe.operation.response,state:0
 msgid "Partially correct"
-msgstr ""
+msgstr "Parcialmente correcto"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_operation_form_view
 msgid "QR Code"
-msgstr ""
+msgstr "Código QR"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: selection:lroe.operation,type:0
 msgid "Query"
-msgstr ""
+msgstr "Consulta"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: selection:lroe.operation,state:0
 msgid "Recorded"
-msgstr ""
+msgstr "Grabada"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: selection:lroe.operation,state:0
 msgid "Recorded Warning"
-msgstr ""
+msgstr "Advertencia grabada"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: selection:lroe.operation.response,state:0
 msgid "Request error"
-msgstr ""
+msgstr "Solicitud de error"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_operation_form_view
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_operation_response_form_view
 msgid "Responde data"
-msgstr ""
+msgstr "Datos de respuesta"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_response_response_line_ids
 msgid "Response Line"
-msgstr ""
+msgstr "Línea de respuesta"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_operation_form_view
 msgid "Response Lines"
-msgstr ""
+msgstr "Líneas de respuesta"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_response_line_state
@@ -437,81 +437,81 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_state
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_operation_search_view
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_lroe_subchapter_id
 msgid "Subchapter"
-msgstr ""
+msgstr "Subcapítulo"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_operation_form_view
 msgid "TBAI Customer Invoices"
-msgstr ""
+msgstr "Facturas de clientes TBAI"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_tbai_invoice_ids
 msgid "TBai Customer Invoices"
-msgstr ""
+msgstr "Facturas de clientes de TBAI"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_response_line_tbai_invoice_id
 msgid "Tbai Invoice"
-msgstr ""
+msgstr "Factura Tbai"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_response_line_tbai_response_id
 msgid "Tbai Response"
-msgstr ""
+msgstr "Respuesta de Tbai"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model,name:l10n_es_ticketbai_api_batuz.model_tbai_invoice
 msgid "TicketBAI Invoices"
-msgstr ""
+msgstr "Facturas TicketBAI"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.actions.act_window,name:l10n_es_ticketbai_api_batuz.action_lroe_operation
 msgid "TicketBAI LROE - Operations"
-msgstr ""
+msgstr "TicketBAI LROE - Operaciones"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_tbai_invoice_lroe_operation_id
 msgid "TicketBAI-Batuz LROE Operation"
-msgstr ""
+msgstr "TicketBAI-Batuz Operación LROE"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_trx_gzip_file
 msgid "Trx Gzip File"
-msgstr ""
+msgstr "Archivo TRX Gzip"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_type
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: selection:lroe.operation,type:0
 msgid "Update"
-msgstr ""
+msgstr "Actualizar"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_operation_form_view
 msgid "XML File"
-msgstr ""
+msgstr "Archivo XML"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_response_xml_fname
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_trx_gzip_fname
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_xml_datas_fname
 msgid "XML File Name"
-msgstr ""
+msgstr "Nombre de archivo XML"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_response_xml
 msgid "XML Response"
-msgstr ""
+msgstr "Respuesta XML"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_xml_datas
 msgid "Xml Datas"
-msgstr ""
+msgstr "Datos XML"
