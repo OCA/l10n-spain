@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-04 13:06+0000\n"
+"PO-Revision-Date: 2022-08-08 14:07+0000\n"
 "Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
 "Language-Team: none\n"
 "Language: eu\n"
@@ -29,7 +29,7 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_l10n_es_aeat_certificate_tbai_p12_friendlyname
 msgid "Alias"
-msgstr ""
+msgstr "Ezizena"
 
 #. module: l10n_es_ticketbai
 #: selection:account.invoice,tbai_refund_key:0
@@ -94,19 +94,19 @@ msgstr "Kodea"
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Enpresak"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info_company_id
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_search
 msgid "Company"
-msgstr ""
+msgstr "Enpresa"
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_invoice_tax.py:103
 #, python-format
 msgid "Country code for partner %s not found!"
-msgstr ""
+msgstr "%s bazkidearen herrialde-kodea ez da aurkitu!"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax_create_uid
@@ -218,7 +218,7 @@ msgstr "Informazio Orokorra"
 #. module: l10n_es_ticketbai
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_search
 msgid "Group By"
-msgstr ""
+msgstr "Taldekatu"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax_id
@@ -299,7 +299,7 @@ msgstr "Gakoa/Mota"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_exemption_key___last_update
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_regime_key___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Azken aldaketa eguna"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax_template_write_uid
@@ -310,7 +310,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_exemption_key_write_uid
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_regime_key_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Nork eguneratua azkena"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax_template_write_date
@@ -321,7 +321,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_exemption_key_write_date
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_regime_key_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Noiz eguneratua azkena"
 
 #. module: l10n_es_ticketbai
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
@@ -421,13 +421,15 @@ msgstr "Softwarea"
 #: code:addons/l10n_es_ticketbai/models/account_invoice.py:372
 #, python-format
 msgid "Some of the original invoices have related tbai cancelled invoices"
-msgstr ""
+msgstr "Jatorrizko faktura batzuek baliogabetutako tbai fakturak dituzte"
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_invoice.py:367
 #, python-format
 msgid "Some of the original invoices have related tbai invoices in inconsistent state please fix them beforehand."
 msgstr ""
+"Jatorrizko faktura batzuek erlazionatutako fakturak dituzte egoera "
+"inkoherentean, mesedez konpondu aldez aurretik."
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_account_journal_tbai_active_date
