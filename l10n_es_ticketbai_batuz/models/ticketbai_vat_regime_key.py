@@ -7,7 +7,6 @@ class TicketBAIVATRegimeKey(models.Model):
     _inherit = "tbai.vat.regime.key"
 
     type = fields.Selection(
-        string="Type",
         selection=[("sale", "Sale"), ("purchase", "Purchase")],
         required=True,
     )
