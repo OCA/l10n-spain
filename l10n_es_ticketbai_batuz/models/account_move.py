@@ -761,8 +761,11 @@ class AccountMove(models.Model):
                 )(cancel)
             else:
                 raise exceptions.ValidationError(
-                    _("LROE Build: method for model %s chapter %s not implemented!")
-                    % (model, chapter)
+                    _(
+                        "LROE Build: method for model %(model)s "
+                        "chapter %(chapter)s not implemented!"
+                    )
+                    % {"model": model, "chapter": chapter}
                 )
             round_by_keys(
                 inv_dict,

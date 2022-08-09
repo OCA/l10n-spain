@@ -11,12 +11,10 @@ class ResCompany(models.Model):
     _inherit = "res.company"
 
     use_connector = fields.Boolean(
-        string="Use connector",
         help="Check it to use connector instead of sending the invoice "
         "directly when it's validated",
     )
     send_mode = fields.Selection(
-        string="Send mode",
         selection=[
             ("auto", "On validate"),
             ("fixed", "At fixed time"),
@@ -25,8 +23,8 @@ class ResCompany(models.Model):
         ],
         default="auto",
     )
-    sent_time = fields.Float(string="Sent time", help="In hours")
-    delay_time = fields.Float(string="Delay time", help="In hours")
+    sent_time = fields.Float(help="In hours")
+    delay_time = fields.Float(help="In hours")
 
     def _get_lroe_eta(self):
         if self.send_mode == "fixed":
