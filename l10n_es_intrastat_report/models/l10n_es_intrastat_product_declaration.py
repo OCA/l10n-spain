@@ -45,8 +45,8 @@ class L10nEsIntrastatProductDeclaration(models.Model):
             intrastat_state = inv_line.company_id.partner_id.state_id
         return intrastat_state
 
-    def _gather_invoices(self):
-        old_lines = super()._gather_invoices()
+    def _gather_invoices(self, notedict):
+        old_lines = super()._gather_invoices(notedict)
         lines = []
         product_model = self.env["product.product"]
         for line in old_lines:
@@ -82,7 +82,7 @@ class L10nEsIntrastatProductDeclaration(models.Model):
                 )
                 self._note += note
 
-    def _gather_invoices_init(self):
+    def _gather_invoices_init(self, notedict):
         if self.company_id.country_id.code != "ES":
             raise UserError(
                 _(
