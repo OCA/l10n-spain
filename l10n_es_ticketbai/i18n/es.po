@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-10 11:59+0000\n"
-"PO-Revision-Date: 2022-03-10 13:04+0100\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2022-08-11 15:07+0000\n"
+"Last-Translator: DS-Landoo <ds@landoo.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_l10n_es_aeat_certificate
@@ -41,7 +41,7 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_l10n_es_aeat_certificate__tbai_p12_friendlyname
 msgid "Alias"
-msgstr ""
+msgstr "Alias"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_move__tbai_refund_key__r4
@@ -56,12 +56,12 @@ msgstr "Art. 80.1, 80.2, 80.6 y errores fundados de derecho"
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_move__tbai_refund_key__r2
 msgid "Art. 80.3"
-msgstr ""
+msgstr "Art. 80.3"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_move__tbai_refund_key__r3
 msgid "Art. 80.4"
-msgstr ""
+msgstr "Art. 80.4"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__res_company__tbai_description_method__auto
@@ -72,10 +72,13 @@ msgstr "Automático"
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_account_bank_statement_line__tbai_refund_key
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_account_move__tbai_refund_key
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_account_payment__tbai_refund_key
+#, fuzzy
 msgid ""
 "BOE-A-1992-28740. Ley 37/1992, de 28 de diciembre, del Impuesto sobre el "
 "Valor Añadido. Artículo 80. Modificación de la base imponible."
 msgstr ""
+"BOE-A-1992-28740. Ley 37/1992, de 28 de diciembre, del Impuesto sobre el "
+"Valor Añadido. Artículo 80. Modificación de la base imponible."
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_move__tbai_refund_type__i
@@ -349,7 +352,7 @@ msgstr "Enlace entre la factura del cliente y su sustituta."
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__res_company__tbai_description_method__manual
 msgid "Manual"
-msgstr ""
+msgstr "Manual"
 
 #. module: l10n_es_ticketbai
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
@@ -506,7 +509,7 @@ msgstr "Secuencia"
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info__software
 msgid "Software"
-msgstr ""
+msgstr "Software"
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_move.py:0
@@ -634,7 +637,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_partner_property_form_inherit
 msgid "TicketBAI"
-msgstr ""
+msgstr "TicketBAI"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_fp_tbai_tax
