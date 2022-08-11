@@ -197,6 +197,11 @@ msgid "MULTIPACK"
 msgstr ""
 
 #. module: delivery_seur
+#: model_terms:ir.ui.view,arch_db:delivery_seur.view_delivery_carrier_form
+msgid "Misc"
+msgstr ""
+
+#. module: delivery_seur
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_service_code__019
 msgid "NETEXPRESS"
 msgstr ""
@@ -326,6 +331,11 @@ msgstr ""
 #. module: delivery_seur
 #: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_send_sms
 msgid "This feature has delivery cost"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_use_packages_from_picking
+msgid "Use packages from picking"
 msgstr ""
 
 #. module: delivery_seur
