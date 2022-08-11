@@ -16,6 +16,6 @@
         "l10n_es_extra_data",
     ],
     "data": [
-        "data/2021-07/l10n_es_aeat_map_tax_line.xml",
+        "data/l10n_es_aeat_map_tax_line.xml",
     ],
 }
