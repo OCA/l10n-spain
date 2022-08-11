@@ -37,6 +37,9 @@ class DeliveryCarrier(models.Model):
         help="Postage type, usually 'Prepaid'",
         default="P",
     )
+    gls_asm_use_packages_from_picking = fields.Boolean(
+        string="Use packages from picking"
+    )
 
     def _gls_asm_uid(self):
         """The carrier can be put in test mode. The tests user must be set.
@@ -72,13 +75,17 @@ class DeliveryCarrier(models.Model):
         )
         consignee = picking.partner_id
         consignee_entity = picking.partner_id.commercial_partner_id
+        if self.gls_asm_use_packages_from_picking and picking.package_ids:
+            weight = sum([p.shipping_weight or p.weight for p in picking.package_ids])
+        else:
+            weight = picking.shipping_weight
         return {
             "fecha": fields.Date.today().strftime("%d/%m/%Y"),
             "portes": self.gls_asm_postage_type,
             "servicio": self.gls_asm_service,
             "horario": self.gls_asm_shiptime,
             "bultos": picking.number_of_packages,
-            "peso": round(picking.shipping_weight, 3),
+            "peso": round(weight, 3),
             "volumen": "",  # [optional] Volume, in m3
             "declarado": "",  # [optional]
             "dninomb": "0",  # [optional]

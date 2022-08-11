@@ -29,6 +29,7 @@
                                 name="gls_asm_postage_type"
                                 attrs="{'required': [('delivery_type', '=', 'gls_asm'), ('prod_environment', '!=', False)]}"
                             />
+                            <field name="gls_asm_use_packages_from_picking" />
                         </group>
                     </group>
                 </page>
