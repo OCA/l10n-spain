@@ -7,20 +7,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-13 09:00+0000\n"
-"PO-Revision-Date: 2022-01-13 10:01+0100\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2022-08-11 15:07+0000\n"
+"Last-Translator: DS-Landoo <ds@landoo.es>\n"
 "Language-Team: \n"
-"Language: es_ES\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model,name:l10n_es_ticketbai_batuz.model_account_chart_template
 msgid "Account Chart Template"
-msgstr ""
+msgstr "Plantilla de Plan Contable"
 
 #. module: l10n_es_ticketbai_batuz
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_invoice_filter_inherit_l10n_es_ticketbai_batuz
@@ -265,7 +265,7 @@ msgstr "Aceptado con errores"
 #. module: l10n_es_ticketbai_batuz
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.invoice_supplier_form_inherit_l10n_es_ticketbai_batuz
 msgid "Refund"
-msgstr ""
+msgstr "Reembolso"
 
 #. module: l10n_es_ticketbai_batuz
 #: selection:account.invoice,lroe_state:0
@@ -363,7 +363,7 @@ msgstr "Usar conector"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position__tbai_vat_regime_key2
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position_template__tbai_vat_regime_key2
 msgid "VAT Regime 2nd Key"
-msgstr ""
+msgstr "2ª clave de regímenes de IVA"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position__tbai_vat_regime_purchase_key2
@@ -375,7 +375,7 @@ msgstr "2ª clave de regímenes de IVA para compras"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position__tbai_vat_regime_key3
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position_template__tbai_vat_regime_key3
 msgid "VAT Regime 3rd Key"
-msgstr ""
+msgstr "3ª clave de regímenes de IVA"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position__tbai_vat_regime_purchase_key3
@@ -387,7 +387,7 @@ msgstr "3ª clave de regímenes de IVA para compras"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position__tbai_vat_regime_key
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position_template__tbai_vat_regime_key
 msgid "VAT Regime Key"
-msgstr ""
+msgstr "Clave de regímenes de IVA"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position__tbai_vat_regime_purchase_key
