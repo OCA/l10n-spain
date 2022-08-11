@@ -103,6 +103,7 @@ class DeliveryCarrier(models.Model):
         string="Printer",
         default="ZEBRA:LP2844-Z",
     )
+    seur_use_packages_from_picking = fields.Boolean(string="Use packages from picking")
 
     def seur_test_connection(self):
         self.ensure_one()
