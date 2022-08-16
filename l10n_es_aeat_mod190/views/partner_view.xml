@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <data>
         <record id="view_partner_mod190_form" model="ir.ui.view">
             <field name="name">res.partner.mod190.form.inherit</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form" />
             <field
-                name="groups_id"
-                eval="[(4, ref('l10n_es_aeat.group_account_aeat'))]"
-            />
+            name="groups_id"
+            eval="[(4, ref('l10n_es_aeat.group_account_aeat'))]"
+        />
             <field name="arch" type="xml">
                 <field name="ref" position="after">
                     <field name="incluir_190" />
                 </field>
                 <page name="sales_purchases" position="after">
                     <page
-                        string="Modelo 190"
-                        name="mod190"
-                        attrs="{'invisible':[('incluir_190', '=', False)]}"
-                    >
+                    string="Modelo 190"
+                    name="mod190"
+                    attrs="{'invisible':[('incluir_190', '=', False)]}"
+                >
                         <group string="Performance key" name="acc_sale">
                             <field name="aeat_perception_key_id" widget="selection" />
                             <field
-                                name="aeat_perception_subkey_id"
-                                widget="selection"
-                                attrs="{'invisible': ['|', ('aeat_perception_key_id', '=', %(l10n_es_aeat_mod190.aeat_m190_perception_key_01)s), ('aeat_perception_key_id', '=', False)]}"
-                            />
+                            name="aeat_perception_subkey_id"
+                            widget="selection"
+                            attrs="{'invisible': ['|', ('aeat_perception_key_id', '=', %(l10n_es_aeat_mod190.aeat_m190_perception_key_01)s), ('aeat_perception_key_id', '=', False)]}"
+                        />
                             <field name="ad_required" invisible="1" />
                         </group>
                         <group string="Perception data">
@@ -58,9 +57,9 @@
                             </group>
                         </group>
                         <group
-                            string="Sons and other decendents with discapacity"
-                            col="3"
-                        >
+                        string="Sons and other decendents with discapacity"
+                        col="3"
+                    >
                             <group string="Between 33% and 65%">
                                 <field name="hijos_y_desc_discapacidad_33" />
                                 <field name="hijos_y_desc_discapacidad_entero_33" />
@@ -102,5 +101,4 @@
                 </page>
             </field>
         </record>
-    </data>
 </odoo>

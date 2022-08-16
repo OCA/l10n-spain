@@ -127,8 +127,6 @@ class ResPartner(models.Model):
             ),
             ("4", "4 - Relación esporádica propia de los trabajadores manuales"),
         ],
-        string="Contrato o relacion",
-        size=1,
         help="""Solo para percepciones correspondientes a la clave A.
             Tratándose de empleados por cuenta ajena en activo, se
             hará constar el dígito numérico indicativo del tipo de

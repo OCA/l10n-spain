@@ -21,7 +21,6 @@ class L10nEsAeatMod190Report(models.Model):
         comodel_name="l10n.es.aeat.mod190.report.line",
         inverse_name="report_id",
         string="Partner records",
-        ondelete="cascade",
     )
     registro_manual = fields.Boolean(string="Manual records", default=False)
     calculado = fields.Boolean(string="Calculated", default=False)
@@ -114,9 +113,9 @@ class L10nEsAeatMod190Report(models.Model):
                             if not rp.aeat_perception_key_id:
                                 raise exceptions.UserError(
                                     _(
-                                        "The perception key of the partner, %s. "
-                                        "Must be filled." % rp.name
+                                        "The perception key of the partner, %s. Must be filled."
                                     )
+                                    % rp.name
                                 )
                             tax_line_vals[rp.id][key_id.id][
                                 subkey_id.id
@@ -405,7 +404,6 @@ class L10nEsAeatMod190ReportLine(models.Model):
             ("4", "4 - Sporadic relationship of manual workers"),
         ],
         string="Contract or relationship",
-        size=1,
     )
     movilidad_geografica = fields.Selection(
         [("0", "NO"), ("1", "SI")], string="Geographical mobility"
