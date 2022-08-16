@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-29 08:08+0000\n"
-"PO-Revision-Date: 2022-05-26 16:05+0000\n"
-"Last-Translator: Luis D. Lafaurie <luislafaurie@hotmail.com>\n"
+"PO-Revision-Date: 2022-08-16 14:07+0000\n"
+"Last-Translator: DS-Landoo <ds@landoo.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -150,6 +150,8 @@ msgid ""
 "<span class=\"fa fa-lg fa-desktop\" title=\"Values set here are company-"
 "specific\" groups=\"base.group_multi_company\"/>"
 msgstr ""
+"<span class=\"fa fa-lg fa-desktop\" title=\"Los valores establecidos aquí "
+"son específicos de la compañía\" groups=\"base.group_multi_company\"/>"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_customer__address
@@ -1012,7 +1014,7 @@ msgstr "Hacienda TicketBAI"
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_tax_agency_version__test_qr_base_url
 msgid "Test - QR Base URL"
-msgstr ""
+msgstr "Test - QR URL Base"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_tax_agency__test_rest_url_cancellation
@@ -1029,7 +1031,7 @@ msgstr "Entorno de pruebas - REST API URL para facturas"
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_tax_agency__test_qr_base_url
 msgid "Test QR Base URL"
-msgstr ""
+msgstr "Test QR URL Base"
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
@@ -1069,7 +1071,7 @@ msgstr "TicketBAI - Enviar facturas pendientes"
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice__api_url
 msgid "TicketBAI API URL"
-msgstr ""
+msgstr "TicketBAI API URL"
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_response.py:0
@@ -1144,6 +1146,9 @@ msgid ""
 "Already exists a TicketBAI Invoice with the  same link to itsprevious "
 "TicketBAI Invoice."
 msgstr ""
+"Factura TicketBAI %s:\n"
+"Ya existe una factura TicketBAI con el mismo link que su anterior factura "
+"TicketBAI."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
@@ -1723,7 +1728,7 @@ msgstr "TicketBAI versión"
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai_api.selection__tbai_invoice__schema__ticketbai
 msgid "TicketBai"
-msgstr ""
+msgstr "TicketBai"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_tax__type
@@ -1733,7 +1738,7 @@ msgstr "Tipo"
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice__qr_url
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_response.py:0
