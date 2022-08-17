@@ -6,70 +6,75 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-08-17 14:07+0000\n"
+"Last-Translator: DS-Landoo <ds@landoo.es>\n"
 "Language-Team: none\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_invoice_filter_inherit_l10n_es_ticketbai_batuz
 msgid "Already sent to LROE. It includes cancelled invoices"
-msgstr ""
+msgstr "Dagoeneko LROEra bidalia. Bertan behera utzitako fakturak sartzen dira."
 
 #. module: l10n_es_ticketbai_batuz
 #: selection:account.invoice,lroe_state:0
 msgid "Cancel"
-msgstr ""
+msgstr "Utzi"
 
 #. module: l10n_es_ticketbai_batuz
 #: selection:account.invoice,lroe_state:0
 msgid "Cancelled in LROE but last modifications not recorded"
-msgstr ""
+msgstr "LROEn bertan behera utzi da baina azken aldaketak ez dira erregistratu"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.lroe_operation_search_view_inherit_batuz
 msgid "Chapter"
-msgstr ""
+msgstr "Kapitulua"
 
 #. module: l10n_es_ticketbai_batuz
 #: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:661
 #, python-format
 msgid "Chapter and type are required for search a pending LROE Operation"
 msgstr ""
+"Kapitulua eta mota beharrezkoak dira zain dagoen LROE Eragiketa bat bilatzeko"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_res_partner_lroe_simplified_invoice
 #: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_res_users_lroe_simplified_invoice
 msgid "Checking this mark, invoices done to this partner will be sent to LROE as simplified invoices."
 msgstr ""
+"Marka hau markatuta, bazkide honi egindako fakturak LROEra bidaliko dira "
+"faktura sinplifikatu gisa."
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model,name:l10n_es_ticketbai_batuz.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Enpresak"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_lroe_operation_jobs_ids
 msgid "Connector Jobs"
-msgstr ""
+msgstr "Konektore-lanak"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_company_form_inherit_batuz
 msgid "Connector config"
-msgstr ""
+msgstr "Konektorearen konfigurazioa"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model,name:l10n_es_ticketbai_batuz.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Kontaktua"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model,name:l10n_es_ticketbai_batuz.model_account_invoice_refund
 msgid "Credit Note"
-msgstr ""
+msgstr "Kreditu Oharra"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model,name:l10n_es_ticketbai_batuz.model_account_fiscal_position
@@ -79,33 +84,33 @@ msgstr ""
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_account_invoice_lroe_state
 msgid "Indicates the state of this invoice in relation with LROE/Batuz"
-msgstr ""
+msgstr "Faktura honen egoera adierazten du LROE/Batuz-ekin lotuta"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model,name:l10n_es_ticketbai_batuz.model_account_invoice
 msgid "Invoice"
-msgstr ""
+msgstr "Faktura"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_lroe_operation_invoice_ids
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.lroe_operation_form_view_inherit_batuz
 msgid "Invoices"
-msgstr ""
+msgstr "Fakturak"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_invoice_refund_batuz_supplier_invoice_number_required
 msgid "Is Supplier Invoice Number Required?"
-msgstr ""
+msgstr "Beharrezkoa al da hornitzaileen faktura-zenbakia?"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.invoice_supplier_form_inherit_l10n_es_ticketbai_batuz
 msgid "LROE"
-msgstr ""
+msgstr "LROE"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_lroe_operation_api_url
 msgid "LROE API URL"
-msgstr ""
+msgstr "LROE API URL"
 
 #. module: l10n_es_ticketbai_batuz
 #: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:726
@@ -117,12 +122,12 @@ msgstr ""
 #: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:707
 #, python-format
 msgid "LROE Build: operation type is necessary!"
-msgstr ""
+msgstr "LROE Eraikitzea: eragiketa mota beharrezkoa da!"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model,name:l10n_es_ticketbai_batuz.model_lroe_operation
 msgid "LROE Operation"
-msgstr ""
+msgstr "LROE Eragiketa"
 
 #. module: l10n_es_ticketbai_batuz
 #: code:addons/l10n_es_ticketbai_batuz/models/lroe_operation.py:200
@@ -134,33 +139,33 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_invoice_lroe_operation_ids
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.invoice_supplier_form_inherit_l10n_es_ticketbai_batuz
 msgid "LROE Operations"
-msgstr ""
+msgstr "LROE Eragiketak"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.invoice_supplier_form_inherit_l10n_es_ticketbai_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_invoice_form_tbai_batuz
 msgid "LROE Responses"
-msgstr ""
+msgstr "LROE erantzunak"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_invoice_filter_inherit_l10n_es_ticketbai_batuz
 msgid "LROE failed"
-msgstr ""
+msgstr "LROEk huts egin du"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_invoice_lroe_invoice_dict
 msgid "LROE last content sent"
-msgstr ""
+msgstr "LROE bidalitako azken edukia"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_invoice_filter_inherit_l10n_es_ticketbai_batuz
 msgid "LROE not sent"
-msgstr ""
+msgstr "LROE ez da bidali"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_invoice_filter_inherit_l10n_es_ticketbai_batuz
 msgid "LROE sent"
-msgstr ""
+msgstr "LROE bidali da"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_invoice_lroe_state
