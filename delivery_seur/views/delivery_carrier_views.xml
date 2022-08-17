@@ -41,9 +41,6 @@ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
                             <field name="seur_label_format" />
                             <field name="seur_label_size" />
                         </group>
-                        <group string="Misc">
-                            <field name="seur_use_packages_from_picking" />
-                        </group>
                     </group>
                 </page>
             </xpath>
