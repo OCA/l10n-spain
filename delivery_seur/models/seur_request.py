@@ -40,7 +40,6 @@ class SeurRequest(object):
         self.product_code = self.carrier.seur_product_code
         self.send_sms = self.carrier.seur_send_sms
         self.label_format = self.carrier.seur_label_format
-        self.use_packages_from_picking = self.carrier.seur_use_packages_from_picking
 
     def wsdl_get(self, service):
         if service in ["ImprimirECBWebService", "IntAppletWebService"]:
@@ -120,12 +119,7 @@ class SeurRequest(object):
             # Para el resto es obligado
             goods = "400"
         # peso
-        if self.use_packages_from_picking and self.record.package_ids:
-            weight = 0
-            for package in self.record.package_ids:
-                weight += max(package.shipping_weight, package.weight)
-        else:
-            weight = self.record.shipping_weight
+        weight = self.record.shipping_weight
         return {
             "ci": self.integration_code,
             "nif": self.vat,
