@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright 2020 Trey, Kilobytes de Soluciones
+Copyright 2020 FactorLibre
+License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="view_delivery_carrier_form" model="ir.ui.view">
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page
+                    string="Integration"
+                    attrs="{'invisible': ['|', ('delivery_type', '!=', 'seur'), ('integration_level', '!=', 'rate_and_ship')]}"
+                >
+                    <group
+                        attrs="{'required': [('delivery_type', '=', 'seur'), ('integration_level', '=', 'rate_and_ship')]}"
+                    >
+                        <group string="Identification">
+                            <field name="seur_vat" />
+                            <field name="seur_franchise_code" />
+                            <field name="seur_accounting_code" />
+                            <field name="seur_integration_code" />
+                        </group>
+                        <group string="CIT Credentials">
+                            <field name="seur_cit_username" />
+                            <field name="seur_cit_password" />
+                        </group>
+                        <group string="Service">
+                            <field name="seur_service_code" />
+                            <field name="seur_product_code" />
+                            <field name="seur_send_sms" />
+                        </group>
+                        <group string="WS Credentials">
+                            <field name="seur_ws_username" />
+                            <field name="seur_ws_password" />
+                        </group>
+                        <group string="Label">
+                            <field name="seur_printer" />
+                            <field name="seur_label_format" />
+                            <field name="seur_label_size" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
