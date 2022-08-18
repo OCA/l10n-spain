@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-11 14:07+0000\n"
-"Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
+"PO-Revision-Date: 2022-08-18 14:07+0000\n"
+"Last-Translator: DS-Landoo <ds@landoo.es>\n"
 "Language-Team: none\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
@@ -1566,58 +1566,58 @@ msgstr ""
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_tbai_invoice_line_ids
 msgid "TicketBAI Invoice Details"
-msgstr ""
+msgstr "TicketBAI fakturaren xehetasunak"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_tbai_customer_ids
 msgid "TicketBAI Invoice Recipients"
-msgstr ""
+msgstr "TicketBAI fakturen hartzaileak"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_tbai_tax_ids
 msgid "TicketBAI Invoice Taxes"
-msgstr ""
+msgstr "TicketBAI Faktura Zergak"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model,name:l10n_es_ticketbai_api.model_tbai_invoice_line
 msgid "TicketBAI Invoice details/lines"
-msgstr ""
+msgstr "TicketBAI fakturaren xehetasunak/lerroak"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_invoice_is_invoice_refund
 msgid "TicketBAI Invoice is a refund (Substitution or Differences)."
-msgstr ""
+msgstr "TicketBAI faktura itzulketa bat da (Ordezkatzea edo Aldeak)."
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model,name:l10n_es_ticketbai_api.model_tbai_invoice_customer
 msgid "TicketBAI Invoice recipients"
-msgstr ""
+msgstr "TicketBAI fakturen hartzaileak"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model,name:l10n_es_ticketbai_api.model_tbai_invoice_tax
 msgid "TicketBAI Invoice taxes"
-msgstr ""
+msgstr "TicketBAI Fakturaren zergak"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model,name:l10n_es_ticketbai_api.model_tbai_invoice
 msgid "TicketBAI Invoices"
-msgstr ""
+msgstr "TicketBAI fakturak"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_partner_tbai_partner_identification_number
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_users_tbai_partner_identification_number
 msgid "TicketBAI Partner Identification Number"
-msgstr ""
+msgstr "TicketBAI Bazkidearen Identifikazio Zenbakia"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model,name:l10n_es_ticketbai_api.model_tbai_invoice_refund
 msgid "TicketBAI Refunded Invoices"
-msgstr ""
+msgstr "TicketBAI Itzulitako Fakturak"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model,name:l10n_es_ticketbai_api.model_tbai_tax_agency
 msgid "TicketBAI Tax Agency"
-msgstr ""
+msgstr "TicketBAI Zerga Agentzia"
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_tax_agency.py:76
@@ -1636,50 +1636,52 @@ msgstr ""
 #. module: l10n_es_ticketbai_api
 #: model:ir.model,name:l10n_es_ticketbai_api.model_tbai_tax_agency_version
 msgid "TicketBAI Tax Agency - version"
-msgstr ""
+msgstr "TicketBAI Zerga Agentzia - bertsioa"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model,name:l10n_es_ticketbai_api.model_tbai_response
 msgid "TicketBAI Tax Agency Invoice response"
-msgstr ""
+msgstr "TicketBAI Zerga Agentziaren fakturaren erantzuna"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model,name:l10n_es_ticketbai_api.model_tbai_response_message
 msgid "TicketBAI Tax Agency Invoice response messages"
-msgstr ""
+msgstr "TicketBAI Zerga Agentzia Fakturaren erantzun mezuak"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_tax_agency_version
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_tax_agency_version_version
 msgid "TicketBAI version"
-msgstr ""
+msgstr "TicketBAI bertsioa"
 
 #. module: l10n_es_ticketbai_api
 #: selection:tbai.invoice,schema:0
 msgid "TicketBai"
-msgstr ""
+msgstr "TicketBai"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_tax_type
 msgid "Type"
-msgstr ""
+msgstr "Mota"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_qr_url
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_response.py:143
 #, python-format
 msgid "Unknown TicketBAI response code."
-msgstr ""
+msgstr "TicketBAI erantzun-kode ezezaguna."
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_res_partner_tbai_partner_identification_number
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_res_users_tbai_partner_identification_number
 msgid "Used when the identification type code is not VAT identification number."
 msgstr ""
+"Identifikazio motaren kodea IFZaren identifikazio-zenbakia ez denean "
+"erabiltzen da."
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_vat_regime_key
@@ -1690,30 +1692,30 @@ msgstr ""
 #: selection:res.partner,tbai_partner_idtype:0
 #: selection:tbai.invoice.customer,idtype:0
 msgid "VAT identification number"
-msgstr ""
+msgstr "IFZaren identifikazio zenbakia"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_res_company_tbai_software_version
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_installation_version
 msgid "Version of the software."
-msgstr ""
+msgstr "Softwarearen bertsioa."
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_response_xml
 msgid "XML Response"
-msgstr ""
+msgstr "XML Erantzuna"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_customer_zip
 msgid "ZIP Code"
-msgstr ""
+msgstr "Posta Kodea"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model,name:l10n_es_ticketbai_api.model_res_config_settings
 msgid "res.config.settings"
-msgstr ""
+msgstr "res.config.settings"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model,name:l10n_es_ticketbai_api.model_tbai_installation
 msgid "tbai.installation"
-msgstr ""
+msgstr "tbai.installation"
