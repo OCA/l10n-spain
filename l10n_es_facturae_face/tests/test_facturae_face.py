@@ -345,7 +345,7 @@ class EDIBackendTestCase(
         self.move.refresh()
         self.assertIn(
             str(self.face_update_type.id),
-            self.move.expected_edi_configuration,
+            self.move.edi_config,
         )
         try:
             self.move.edi_create_exchange_record(self.face_update_type.id)
