@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-18 14:07+0000\n"
-"Last-Translator: DS-Landoo <ds@landoo.es>\n"
+"PO-Revision-Date: 2022-08-23 12:08+0000\n"
+"Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
 "Language-Team: none\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
@@ -62,7 +62,7 @@ msgstr ""
 "    OT:\n"
 "      - Ez dago BEZaren Foru Arauaren 7. artikuluaren menpe. Ez "
 "menpekotasuneko beste hipotesi batzuk.\n"
-"    RL:\n"
+"RL:\n"
 "      - Ez dago kokapen arauen menpe.\n"
 "    "
 
@@ -1555,13 +1555,13 @@ msgstr "%s TicketBAI faktura: BEZaren erregimenaren gakoa ez da baliozkoa."
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:452
 #, python-format
 msgid "TicketBAI Invoice %s: XML Invoice schema not supported!"
-msgstr ""
+msgstr "%s TicketBAI faktura: XML fakturaren eskema ez da onartzen!"
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:664
 #, python-format
 msgid "TicketBAI Invoice %s: XML schema not supported!"
-msgstr ""
+msgstr "%s TicketBAI faktura: XML eskema ez da onartzen!"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_tbai_invoice_line_ids
@@ -1625,6 +1625,8 @@ msgstr "TicketBAI Zerga Agentzia"
 msgid "TicketBAI Tax Agency %s:\n"
 "TicketBAI version %s max size is 5 characters."
 msgstr ""
+"%s TicketBAI Zerga Agentzia:\n"
+"TicketBAI bertsioaren %s gehienezko tamaina 5 karaktere da."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_tax_agency.py:108
@@ -1632,6 +1634,9 @@ msgstr ""
 msgid "TicketBAI Tax Agency %s:\n"
 "Version %s dates of the record overlap with an existing record."
 msgstr ""
+"%s TicketBAI Zerga Agentzia:\n"
+"Erregistroaren %s bertsioaren datak lehendik dagoen erregistro batekin "
+"gainjartzen dira."
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model,name:l10n_es_ticketbai_api.model_tbai_tax_agency_version
@@ -1686,7 +1691,7 @@ msgstr ""
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_vat_regime_key
 msgid "VAT Regime Key"
-msgstr ""
+msgstr "BEZaren erregimenaren gakoa"
 
 #. module: l10n_es_ticketbai_api
 #: selection:res.partner,tbai_partner_idtype:0
