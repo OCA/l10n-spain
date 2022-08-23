@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-18 15:07+0000\n"
-"Last-Translator: DS-Landoo <ds@landoo.es>\n"
+"PO-Revision-Date: 2022-08-23 13:07+0000\n"
+"Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
 "Language-Team: none\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
@@ -283,7 +283,7 @@ msgstr "%s Enpresaren TicketBAI Zerga Agentzia beharrezkoa da."
 #. module: l10n_es_ticketbai_api
 #: model:ir.model,name:l10n_es_ticketbai_api.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Konfigurazio ezarpenak"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model,name:l10n_es_ticketbai_api.model_res_partner
@@ -299,7 +299,7 @@ msgstr "Herrialde kodea"
 #: code:addons/l10n_es_ticketbai_api/models/res_partner.py:48
 #, python-format
 msgid "Country for %s is required for the Tax Agency!"
-msgstr ""
+msgstr "%s-ren herrialdea behar da Zerga Agentziarako!"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_certificate__create_uid
@@ -886,7 +886,7 @@ msgstr "Espainiako Identifikazio Fiskaleko Zenbakia"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice__state
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_response__state
 msgid "Status"
-msgstr ""
+msgstr "Egoera"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_invoice_line__amount_total
@@ -961,13 +961,13 @@ msgstr "Zerga Agentziaren bertsioa"
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_tax_agency__name
 msgid "Tax Agency name"
-msgstr ""
+msgstr "Zerga Agentziaren izena"
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/res_company.py:101
 #, python-format
 msgid "Tax agency cannot be modified after a TicketBAI invoice has been sent."
-msgstr ""
+msgstr "Zerga agentzia ezin da aldatu TicketBAI faktura bidali ondoren."
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_company__tbai_installation_id
@@ -1018,7 +1018,7 @@ msgstr "Proba - REST API URL fakturentzat"
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_tax_agency__test_qr_base_url
 msgid "Test QR Base URL"
-msgstr ""
+msgstr "Test QR Base URL"
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:628
@@ -1030,6 +1030,8 @@ msgstr "%s enpresaren BEZ zenbakia beharrezkoa da."
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_installation__vat
 msgid "The Tax Identification Number. Complete it if the contact is subjected to government taxes. Used in some legal statements."
 msgstr ""
+"Identifikazio Fiskaleko Zenbakia. Osatu kontaktua gobernuaren zergen menpe "
+"badago. Zenbait lege adierazpenetan erabiltzen da."
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice__vat_regime_key3
@@ -1555,13 +1557,13 @@ msgstr "%s TicketBAI faktura: BEZaren erregimenaren gakoa ez da baliozkoa."
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:452
 #, python-format
 msgid "TicketBAI Invoice %s: XML Invoice schema not supported!"
-msgstr ""
+msgstr "%s TicketBAI faktura: XML fakturaren eskema ez da onartzen!"
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:668
 #, python-format
 msgid "TicketBAI Invoice %s: XML schema not supported!"
-msgstr ""
+msgstr "%s TicketBAI faktura: XML eskema ez da onartzen!"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice__tbai_invoice_line_ids
@@ -1626,6 +1628,8 @@ msgstr "TicketBAI Zerga Agentzia"
 msgid "TicketBAI Tax Agency %s:\n"
 "TicketBAI version %s max size is 5 characters."
 msgstr ""
+"%s TicketBAI Zerga Agentzia:\n"
+"TicketBAI bertsioaren %s gehienezko tamaina 5 karaktere da."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_tax_agency.py:109
@@ -1633,6 +1637,9 @@ msgstr ""
 msgid "TicketBAI Tax Agency %s:\n"
 "Version %s dates of the record overlap with an existing record."
 msgstr ""
+"%s TicketBAI Zerga Agentzia:\n"
+"Erregistroaren %s bertsioaren datak lehendik dagoen erregistro batekin "
+"gainjartzen dira."
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model,name:l10n_es_ticketbai_api.model_tbai_tax_agency_version
@@ -1652,7 +1659,7 @@ msgstr "TicketBAI Zerga Agentzia Fakturaren erantzun mezuak"
 #. module: l10n_es_ticketbai_api
 #: model:ir.model,name:l10n_es_ticketbai_api.model_tbai_installation
 msgid "TicketBAI installation"
-msgstr ""
+msgstr "TicketBAI instalazioa"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_tax_agency__version
@@ -1692,7 +1699,7 @@ msgstr ""
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice__vat_regime_key
 msgid "VAT Regime Key"
-msgstr ""
+msgstr "Zerga erregimenaren gakoa"
 
 #. module: l10n_es_ticketbai_api
 #: selection:res.partner,tbai_partner_idtype:0
