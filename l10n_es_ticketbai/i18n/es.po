@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-10 11:59+0000\n"
-"PO-Revision-Date: 2022-08-17 11:07+0000\n"
-"Last-Translator: DS-Landoo <ds@landoo.es>\n"
+"PO-Revision-Date: 2022-08-29 10:07+0000\n"
+"Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgstr "Revocación de movimiento en cuenta"
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin__account_refund_invoice_id
 msgid "Account Refund Invoice"
-msgstr "Cuenta de reembolso de la factura"
+msgstr "Cuenta de reembolso de factura"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_l10n_es_aeat_certificate__tbai_p12_friendlyname
@@ -122,7 +122,7 @@ msgstr "Compañía"
 #: code:addons/l10n_es_ticketbai/models/account_tax.py:0
 #, python-format
 msgid "Country code for partner %s not found!"
-msgstr "Código de país para la empresa %s no encontrado."
+msgstr "Código de país para la empresa %s no encontrado!"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax__create_uid
@@ -461,7 +461,7 @@ msgid ""
 "Should be 20 characters max.!"
 msgstr ""
 "Factura rectificativa %(name)s. Prefijo %(prefix)s más largo de lo esperado. "
-"Debería de contener 20 caracteres como máximo."
+"Debería de contener 20 caracteres como máximo!"
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
@@ -477,7 +477,7 @@ msgid ""
 "max.!"
 msgstr ""
 "Factura rectificativa número %s más largo de lo esperado. Debería de "
-"contener 20 caracteres como máximo"
+"contener 20 caracteres como máximo!"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_resequence_wizard
@@ -554,7 +554,7 @@ msgstr "Impuesto"
 #: model:ir.model.constraint,message:l10n_es_ticketbai.constraint_account_fp_tbai_tax_template_position_tax_uniq
 #, python-format
 msgid "Tax must be unique per fiscal position!"
-msgstr "El impuesto debe ser único por posición fiscal."
+msgstr "El impuesto debe ser único por posición fiscal!"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_tax_map__tax_template_ids
@@ -861,7 +861,7 @@ msgstr "Asistente para cargar el certificado AEAT"
 #: code:addons/l10n_es_ticketbai/models/account_move.py:0
 #, python-format
 msgid "You cannot change to draft a TicketBAI invoice!"
-msgstr "No es posible cambiar el estado a borrador de una factura TicketBAI."
+msgstr "No es posible cambiar el estado a borrador de una factura TicketBAI!"
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_resequence.py:0
