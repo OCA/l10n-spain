@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-29 10:07+0000\n"
+"PO-Revision-Date: 2022-08-29 13:07+0000\n"
 "Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
 "Language-Team: none\n"
 "Language: eu\n"
@@ -65,7 +65,7 @@ msgstr ""
 "    OT:\n"
 "      - Ez dago BEZaren Foru Arauaren 7. artikuluaren menpe. Ez "
 "menpekotasuneko beste hipotesi batzuk.\n"
-"    RL:\n"
+"RL:\n"
 "      - Ez dago kokapen arauen menpe.\n"
 "    "
 
@@ -1321,7 +1321,7 @@ msgstr "%(name)s TicketBAI faktura: %(desc)s lerroaren prezio-unitatea"
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_line.py:0
 #, python-format
 msgid "TicketBAI Invoice %(name)s: Line %(desc)s Quantity"
-msgstr ""
+msgstr "%(name)s TicketBAI faktura: %(desc)s lerroaren kopurua"
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
@@ -1330,6 +1330,8 @@ msgid ""
 "TicketBAI Invoice %s:\n"
 " Invoice Description is required."
 msgstr ""
+"%s TicketBAI faktura:\n"
+" Fakturaren Deskribapena beharrezkoa da."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
@@ -1338,6 +1340,8 @@ msgid ""
 "TicketBAI Invoice %s:\n"
 " Invoice Tax Retention Total Amount"
 msgstr ""
+"%s TicketBAI faktura:\n"
+"Fakturaren Zerga Atxikipenaren Zenbateko osoa"
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
@@ -1346,6 +1350,8 @@ msgid ""
 "TicketBAI Invoice %s:\n"
 " Substituted Invoice Tax Amount Total"
 msgstr ""
+"%s TicketBAI faktura:\n"
+"Ordezkatutako fakturaren gaineko zergaren zenbatekoa guztira"
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
@@ -1652,7 +1658,7 @@ msgstr "TicketBAI fakturak"
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:0
 #, python-format
 msgid "TicketBAI License Key is required."
-msgstr ""
+msgstr "TicketBAI lizentzia-giltza behar da."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:0
@@ -1660,6 +1666,8 @@ msgstr ""
 msgid ""
 "TicketBAI License Key longer than expected. Should be 20 characters max.!"
 msgstr ""
+"TicketBAI lizentzia-gakoa espero baino luzeagoa da. Gehienez 20 karaktere "
+"izan behar ditu!"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_partner__tbai_partner_identification_number
@@ -1676,7 +1684,7 @@ msgstr "TicketBAI Itzulitako Fakturak"
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:0
 #, python-format
 msgid "TicketBAI Software Name is required."
-msgstr ""
+msgstr "TicketBAI softwarearen izena behar da."
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model,name:l10n_es_ticketbai_api.model_tbai_tax_agency
@@ -1690,6 +1698,8 @@ msgid ""
 "TicketBAI Tax Agency %(agency)s:\n"
 "TicketBAI version %(version)s max size is 5 characters."
 msgstr ""
+"%(agency)s TicketBAI Zerga Agentzia:\n"
+"%(version)s TicketBAI bertsioaren gehienezko tamaina 5 karaktere da."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_tax_agency.py:0
@@ -1698,6 +1708,9 @@ msgid ""
 "TicketBAI Tax Agency %(agency)s:\n"
 "Version %(version)s dates of the record overlap with an existing record."
 msgstr ""
+"%(agency)s TicketBAI Zerga Agentzia:\n"
+"%(version)s bertsioaren erregistro datak lehendik dagoen erregistro batekin "
+"gainjartzen dira."
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model,name:l10n_es_ticketbai_api.model_tbai_tax_agency_version
