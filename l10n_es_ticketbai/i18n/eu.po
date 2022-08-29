@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-19 11:07+0000\n"
-"Last-Translator: DS-Landoo <ds@landoo.es>\n"
+"PO-Revision-Date: 2022-08-29 10:07+0000\n"
+"Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
 "Language-Team: none\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "AEAT Ziurtagiria"
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_chart_template
 msgid "Account Chart Template"
-msgstr ""
+msgstr "Kontu-diagrama txantiloia"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_move_reversal
@@ -278,6 +278,8 @@ msgid ""
 "Invoice: number %(name)s prefix %(prefix)s invoice_date %(date)s exists. "
 "Create a credit note from this invoice."
 msgstr ""
+"Faktura: %(name)s zenbakia %(prefix)s aurrizkia %(date)s faktura_data "
+"existitzen da. Sortu kreditu-ohar bat faktura honetatik."
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_journal
@@ -343,7 +345,7 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__res_company__tbai_description_method__manual
 msgid "Manual"
-msgstr ""
+msgstr "Eskuz"
 
 #. module: l10n_es_ticketbai
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
@@ -358,6 +360,12 @@ msgid ""
 "- Fixed: the description write on the below field 'TBAI   Description'\n"
 "- Manual (by default): It will be necessary to manually enter   the description on each invoice"
 msgstr ""
+"TicketBAI fakturen deskribapena egiteko metodoa hauetako bat izan daiteke:\n"
+"- Automatikoa: deskribapena faktura-lerroen deskribapenaren batzea izango "
+"da\n"
+"- Aurrez definitua: deskribapena idatzi beheko eremuan 'TBAI Deskribapena'\n"
+"- Eskuz (lehenespenez): beharrezkoa izango da faktura bakoitzean "
+"deskribapena eskuz sartzea"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_tax_map__name
@@ -442,6 +450,8 @@ msgid ""
 "Refunded Invoice %(name)s Number Prefix %(prefix)s longer than expected. "
 "Should be 20 characters max.!"
 msgstr ""
+"Itzulitako faktura %(name)s Aurrizki zenbakia espero baino %(prefix)s "
+"luzeagoa. Gehienez 20 karaktere izan behar ditu!"
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
@@ -698,6 +708,8 @@ msgid ""
 "TicketBAI Invoice %(name)s Error: Tax %(tax)s contains multiple Equivalence "
 "Surcharge Taxes"
 msgstr ""
+"%(name)s TicketBAI faktura Errorea: %(tax)s zergak errekargu-zerga "
+"baliokidetasun ugari ditu"
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_tax.py:0
@@ -706,6 +718,8 @@ msgid ""
 "TicketBAI Invoice %(name)s Error: the Invoice should have one tax line for "
 "Tax %(tax)s"
 msgstr ""
+"%(name)s TicketBAI faktura Errorea: fakturak zerga-lerro bat izan behar du "
+"%(tax)s zergarako"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_tbai_invoice
@@ -824,7 +838,7 @@ msgstr "Zerga Erregimenak"
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_l10n_es_aeat_certificate_password
 msgid "Wizard to Load AEAT Certificate"
-msgstr ""
+msgstr "AEAT ziurtagiria kargatzeko morroia"
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_move.py:0
