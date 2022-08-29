@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-19 11:07+0000\n"
-"Last-Translator: DS-Landoo <ds@landoo.es>\n"
+"PO-Revision-Date: 2022-08-29 10:07+0000\n"
+"Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
 "Language-Team: none\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
@@ -19,27 +19,27 @@ msgstr ""
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model,name:l10n_es_ticketbai_batuz.model_account_chart_template
 msgid "Account Chart Template"
-msgstr ""
+msgstr "Kontu-diagrama txantiloia"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model,name:l10n_es_ticketbai_batuz.model_account_move_reversal
 msgid "Account Move Reversal"
-msgstr ""
+msgstr "Apunte Kontablearen Alderantzikatzea"
 
 #. module: l10n_es_ticketbai_batuz
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_move_filter_inherit_l10n_es_ticketbai_batuz
 msgid "Already sent to LROE. It includes cancelled invoices"
-msgstr "Dagoeneko LROEra bidalia. Bertan behera utzitako fakturak sartzen dira."
+msgstr "Dagoeneko LROEra bidalia. Bertan behera utzitako fakturak sartzen dira"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai_batuz.selection__res_company__send_mode__fixed
 msgid "At fixed time"
-msgstr ""
+msgstr "Ordutegi finkoan"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai_batuz.selection__res_company__send_mode__end_quarter
 msgid "At the end of the quarter"
-msgstr ""
+msgstr "Hiruhilekoaren amaieran"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai_batuz.selection__account_move__lroe_state__cancel
@@ -69,6 +69,8 @@ msgid ""
 "Check it to use connector instead of sending the invoice directly when it's "
 "validated"
 msgstr ""
+"Markatu konektorea erabiltzeko, faktura balioztatutakoan zuzenean bidali "
+"beharrean"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_res_partner__lroe_simplified_invoice
@@ -103,7 +105,7 @@ msgstr "Kontaktua"
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_company__delay_time
 msgid "Delay Time"
-msgstr ""
+msgstr "Atzerapen-denbora"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model,name:l10n_es_ticketbai_batuz.model_account_fiscal_position
@@ -114,7 +116,7 @@ msgstr "Jarrera Fiskala"
 #: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_res_company__delay_time
 #: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_res_company__sent_time
 msgid "In hours"
-msgstr ""
+msgstr "Orduetan"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_account_bank_statement_line__lroe_state
@@ -126,17 +128,17 @@ msgstr "Faktura honen egoera adierazten du LROE/Batuz-ekin lotuta"
 #. module: l10n_es_ticketbai_batuz
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.move_supplier_form_inherit_l10n_es_ticketbai_batuz
 msgid "Invoice Date"
-msgstr ""
+msgstr "Fakturaren data"
 
 #. module: l10n_es_ticketbai_batuz
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.move_supplier_form_inherit_l10n_es_ticketbai_batuz
 msgid "Invoice Number"
-msgstr ""
+msgstr "Faktura zenbakia"
 
 #. module: l10n_es_ticketbai_batuz
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.move_supplier_form_inherit_l10n_es_ticketbai_batuz
 msgid "Invoice Serial"
-msgstr ""
+msgstr "Fakturaren Seriea"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_lroe_operation__invoice_ids
@@ -152,7 +154,7 @@ msgstr "Beharrezkoa al da hornitzaileen faktura-zenbakia?"
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model,name:l10n_es_ticketbai_batuz.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Egunkari Sarrera"
 
 #. module: l10n_es_ticketbai_batuz
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.move_supplier_form_inherit_l10n_es_ticketbai_batuz
@@ -170,6 +172,8 @@ msgstr "LROE API URL"
 msgid ""
 "LROE Build: method for model %(model)s chapter %(chapter)s not implemented!"
 msgstr ""
+"LROE Eraikuntza: %(model)s kapituluaren %(chapter)s eredurako metodoa ez da "
+"inplementatu!"
 
 #. module: l10n_es_ticketbai_batuz
 #: code:addons/l10n_es_ticketbai_batuz/models/account_move.py:0
@@ -186,7 +190,7 @@ msgstr "LROE Eragiketa"
 #: code:addons/l10n_es_ticketbai_batuz/models/lroe_operation.py:0
 #, python-format
 msgid "LROE Operation %s: XML schema not supported!"
-msgstr ""
+msgstr "%s LROE eragiketa: XML eskema ez da onartzen!"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_bank_statement_line__lroe_operation_ids
@@ -245,12 +249,12 @@ msgstr "Grabatu gabe"
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai_batuz.selection__res_company__send_mode__auto
 msgid "On validate"
-msgstr ""
+msgstr "Balioztatzen"
 
 #. module: l10n_es_ticketbai_batuz
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.move_supplier_form_inherit_l10n_es_ticketbai_batuz
 msgid "Origin Invoices Data"
-msgstr ""
+msgstr "Jatorrizko fakturen datuak"
 
 #. module: l10n_es_ticketbai_batuz
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_move_filter_inherit_l10n_es_ticketbai_batuz
@@ -267,21 +271,21 @@ msgstr "Erosketa"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__tbai_vat_regime_purchase_key2
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_payment__tbai_vat_regime_purchase_key2
 msgid "Purchase VAT Regime 2nd Key"
-msgstr ""
+msgstr "Erosketa BEZaren 2. Erregimen Gakoa"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_bank_statement_line__tbai_vat_regime_purchase_key3
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__tbai_vat_regime_purchase_key3
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_payment__tbai_vat_regime_purchase_key3
 msgid "Purchase VAT Regime 3rd Key"
-msgstr ""
+msgstr "Erosketa BEZaren 3. Erregimen Gakoa"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_bank_statement_line__tbai_vat_regime_purchase_key
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__tbai_vat_regime_purchase_key
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_payment__tbai_vat_regime_purchase_key
 msgid "Purchase VAT Regime Key"
-msgstr ""
+msgstr "Erosketa BEZaren erregimen gakoa"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai_batuz.selection__account_move__lroe_state__recorded
@@ -333,12 +337,12 @@ msgstr "Salmenta"
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_company__send_mode
 msgid "Send Mode"
-msgstr ""
+msgstr "Bidaltzeko modua"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_company__sent_time
 msgid "Sent Time"
-msgstr ""
+msgstr "Bidalitako Ordua"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_partner__lroe_simplified_invoice
@@ -359,7 +363,7 @@ msgstr "Teknikoa"
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model,name:l10n_es_ticketbai_batuz.model_account_fiscal_position_template
 msgid "Template for Fiscal Position"
-msgstr ""
+msgstr "Posizio Fiskalaren txantiloia"
 
 #. module: l10n_es_ticketbai_batuz
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_move_filter_inherit_l10n_es_ticketbai_batuz
@@ -380,7 +384,7 @@ msgstr "TicketBAI fakturak"
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model,name:l10n_es_ticketbai_batuz.model_tbai_vat_regime_key
 msgid "TicketBAI VAT Regime mapping keys"
-msgstr ""
+msgstr "TicketBAI BEZ Erregimenaren mapa-gakoak"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_tbai_vat_regime_key__type
@@ -390,58 +394,58 @@ msgstr "Mota"
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_company__use_connector
 msgid "Use Connector"
-msgstr ""
+msgstr "Erabili Konektorea"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position__tbai_vat_regime_key2
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position_template__tbai_vat_regime_key2
 msgid "VAT Regime 2nd Key"
-msgstr ""
+msgstr "BEZ Erregimenaren 2. gakoa"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position__tbai_vat_regime_purchase_key2
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position_template__tbai_vat_regime_purchase_key2
 msgid "VAT Regime 2nd Key for purchases"
-msgstr ""
+msgstr "Erosketetarako BEZaren 2. erregimen gakoa"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position__tbai_vat_regime_key3
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position_template__tbai_vat_regime_key3
 msgid "VAT Regime 3rd Key"
-msgstr ""
+msgstr "BEZaren 3. Erregimen Gakoa"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position__tbai_vat_regime_purchase_key3
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position_template__tbai_vat_regime_purchase_key3
 msgid "VAT Regime 3rd Key for purchases"
-msgstr ""
+msgstr "Erosketetarako BEZaren 3. erregimen gakoa"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position__tbai_vat_regime_key
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position_template__tbai_vat_regime_key
 msgid "VAT Regime Key"
-msgstr ""
+msgstr "BEZaren erregimen gakoa"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position__tbai_vat_regime_purchase_key
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position_template__tbai_vat_regime_purchase_key
 msgid "VAT Regime Key for purchases"
-msgstr ""
+msgstr "Erosketetarako BEZaren Erregimen Gakoa"
 
 #. module: l10n_es_ticketbai_batuz
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.move_supplier_form_inherit_l10n_es_ticketbai_batuz
 msgid "VAT Regimes"
-msgstr ""
+msgstr "BEZaren erregimenak"
 
 #. module: l10n_es_ticketbai_batuz
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_position_form_inherit_l10n_es_ticketbai_batuz
 msgid "VAT Regimes Purchase"
-msgstr ""
+msgstr "Erosketa BEZ Erregimenak"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai_batuz.selection__res_company__send_mode__delayed
 msgid "With delay"
-msgstr ""
+msgstr "Atzerapenarekin"
 
 #. module: l10n_es_ticketbai_batuz
 #: code:addons/l10n_es_ticketbai_batuz/models/account_move.py:0
@@ -450,6 +454,8 @@ msgid ""
 "You can not communicate this invoice at this moment because there is a job "
 "running!"
 msgstr ""
+"Une honetan ezin duzu faktura hau jakinarazi, beste lan bat martxan "
+"dagoelako!"
 
 #. module: l10n_es_ticketbai_batuz
 #: code:addons/l10n_es_ticketbai_batuz/models/account_move.py:0
@@ -457,3 +463,4 @@ msgstr ""
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr ""
+"Ezin duzu faktura hau zirriborrora aldatu, beste lan bat martxan dagoelako!"
