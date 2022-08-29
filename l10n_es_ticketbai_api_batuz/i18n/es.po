@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-17 11:07+0000\n"
-"Last-Translator: DS-Landoo <ds@landoo.es>\n"
+"PO-Revision-Date: 2022-08-29 10:07+0000\n"
+"Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,7 @@ msgstr "Compañía"
 #: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:0
 #, python-format
 msgid "Company %s VAT number should not be empty!"
-msgstr "El NIF de la compañía no debería estar vacío!"
+msgstr "El NIF %s de la compañía no debería estar vacío!"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai_api_batuz.selection__lroe_operation_response__state__correcto
