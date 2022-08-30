@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-17 08:35+0000\n"
-"PO-Revision-Date: 2022-08-16 14:07+0000\n"
-"Last-Translator: DS-Landoo <ds@landoo.es>\n"
+"PO-Revision-Date: 2022-08-30 12:07+0000\n"
+"Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -172,18 +172,18 @@ msgstr "Respuestas"
 #: code:addons/l10n_es_ticketbai_pos/models/pos_config.py:61
 #, python-format
 msgid "Simplified Invoice IDs Sequence is required"
-msgstr "Secuencia de factura simplificada requerida."
+msgstr "Secuencia de factura simplificada requerida"
 
 #. module: l10n_es_ticketbai_pos
 #: code:addons/l10n_es_ticketbai_pos/models/pos_order.py:203
 #, python-format
 msgid "Simplified Invoice Number Prefix %s is not part of Number %s!"
-msgstr "El prefijo para facturas simplificadas %s no es parte del número %s."
+msgstr "El prefijo para facturas simplificadas %s no es parte del número %s!"
 
 #. module: l10n_es_ticketbai_pos
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_invoice__tbai_substitution_pos_order_id
 msgid "Tbai Substitution Pos Order"
-msgstr "Pedidos TBAI de sustitución del TPV "
+msgstr "Pedidos TBAI de sustitución del TPV"
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
