@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-13 07:00+0000\n"
-"PO-Revision-Date: 2022-06-13 09:02+0200\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2022-08-30 11:07+0000\n"
+"Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 3.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_ticketbai_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
@@ -23,6 +23,8 @@ msgid ""
 "<span class=\"fa fa-lg fa-desktop\" title=\"Values set here are company-"
 "specific\" groups=\"base.group_multi_company\"/>"
 msgstr ""
+"<span class=\"fa fa-lg fa-desktop\" title=\"Values set here are company-"
+"specific\" groups=\"base.group_multi_company\"/>"
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
@@ -167,13 +169,13 @@ msgstr "Respuestas"
 #: code:addons/l10n_es_ticketbai_pos/models/pos_config.py:0
 #, python-format
 msgid "Simplified Invoice IDs Sequence is required"
-msgstr "Secuencia de factura simplificada requerida."
+msgstr "Secuencia de factura simplificada requerida"
 
 #. module: l10n_es_ticketbai_pos
 #: code:addons/l10n_es_ticketbai_pos/models/pos_order.py:0
 #, python-format
 msgid "Simplified Invoice Number Prefix %s is not part of Number %s!"
-msgstr "El prefijo para facturas simplificadas %s no es parte del número %s."
+msgstr "El prefijo para facturas simplificadas %s no es parte del número %s!"
 
 #. module: l10n_es_ticketbai_pos
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_move__tbai_substitution_pos_order_id
@@ -189,7 +191,7 @@ msgstr "Pedido TPV de sustitución Tbai"
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
 #, python-format
 msgid "TicketBAI"
-msgstr ""
+msgstr "TicketBAI"
 
 #. module: l10n_es_ticketbai_pos
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__tbai_certificate_id
