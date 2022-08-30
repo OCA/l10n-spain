@@ -7,13 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-08 11:34+0000\n"
-"PO-Revision-Date: 2021-11-08 11:34+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2022-08-30 11:07+0000\n"
+"Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_ticketbai_pos
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
@@ -152,13 +154,13 @@ msgstr "Respuestas"
 #: code:addons/l10n_es_ticketbai_pos/models/pos_config.py:61
 #, python-format
 msgid "Simplified Invoice IDs Sequence is required"
-msgstr "Secuencia de factura simplificada requerida."
+msgstr "Secuencia de factura simplificada requerida"
 
 #. module: l10n_es_ticketbai_pos
 #: code:addons/l10n_es_ticketbai_pos/models/pos_order.py:205
 #, python-format
 msgid "Simplified Invoice Number Prefix %s is not part of Number %s!"
-msgstr "El prefijo para facturas simplificadas %s no es parte del número %s."
+msgstr "El prefijo para facturas simplificadas %s no es parte del número %s!"
 
 #. module: l10n_es_ticketbai_pos
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_invoice_tbai_substitution_pos_order_id
@@ -234,4 +236,3 @@ msgstr "Claves de regímenes de IVA"
 #: model:ir.model,name:l10n_es_ticketbai_pos.model_pos_config
 msgid "pos.config"
 msgstr "pos.config"
-
