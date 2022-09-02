@@ -71,17 +71,32 @@ odoo.define("l10n_es_ticketbai_pos.tbai_models", function (require) {
                 var tbai_vat_regime_key = this.order.fiscal_position
                     .tbai_vat_regime_key;
                 if (tbai_vat_regime_key) {
-                    this.vat_regime_key = tbai_vat_regime_key[0];
+                    var id_vat_regime_key = this.order.fiscal_position
+                        .tbai_vat_regime_key[0];
+                    var object_vat_regime_key = self.pos.tbai_vat_regime_keys.find(
+                        (x) => x.id === id_vat_regime_key
+                    );
+                    this.vat_regime_key = object_vat_regime_key.code;
                 }
                 var tbai_vat_regime_key2 = this.order.fiscal_position
                     .tbai_vat_regime_key2;
                 if (tbai_vat_regime_key2) {
-                    this.vat_regime_key2 = tbai_vat_regime_key2[0];
+                    var id_vat_regime_key = this.order.fiscal_position
+                        .tbai_vat_regime_key2[0];
+                    var object_vat_regime_key = self.pos.tbai_vat_regime_keys.find(
+                        (x) => x.id === id_vat_regime_key
+                    );
+                    this.vat_regime_key2 = object_vat_regime_key.code;
                 }
                 var tbai_vat_regime_key3 = this.order.fiscal_position
                     .tbai_vat_regime_key3;
                 if (tbai_vat_regime_key3) {
-                    this.vat_regime_key3 = tbai_vat_regime_key3[0];
+                    var id_vat_regime_key = this.order.fiscal_position
+                        .tbai_vat_regime_key3[0];
+                    var object_vat_regime_key = self.pos.tbai_vat_regime_keys.find(
+                        (x) => x.id === id_vat_regime_key
+                    );
+                    this.vat_regime_key3 = object_vat_regime_key.code;
                 }
             }
 
