@@ -1,8 +1,10 @@
 # © 2022 FactorLibre - Javier Iniesta <javier.iniesta@factorlibre.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import base64
+from datetime import datetime
 from unittest.mock import MagicMock, patch
 from odoo import fields
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 from odoo.exceptions import AccessError
 from odoo.addons.l10n_es_aeat_sii.tests.test_l10n_es_aeat_sii import (
     CERTIFICATE_PATH,
@@ -159,11 +161,14 @@ class TestL10nEsAeatSiiMatch(TestL10nEsAeatSiiBase):
                 "DatosDescuadreContraparte": None,
             }
         ]
+        date_invoice = cls.invoice.date_invoice
+        datetime_invoice = datetime.strptime(date_invoice, DEFAULT_SERVER_DATE_FORMAT)
+
         cls.report = cls.env["l10n.es.aeat.sii.match.report"].create(
             {
                 "name": "TEST REPORT 001",
-                "period_type": "01",
-                "fiscalyear": 2018,
+                "period_type": str(datetime_invoice.month).zfill(2),
+                "fiscalyear": datetime_invoice.year,
                 "invoice_type": "out",
             }
         )
@@ -174,24 +179,7 @@ class TestL10nEsAeatSiiMatch(TestL10nEsAeatSiiBase):
                 match_vals["sii_match_result"],
                 summary,
             ) = cls.report._get_match_result_values(cls.res_line)
-            match_vals.update(
-                {
-                    "number_records": summary.get("total", 0),
-                    "number_records_both": summary.get("both", 0),
-                    "number_records_odoo": summary.get("odoo", 0),
-                    "number_records_sii": summary.get("sii", 0),
-                    "number_records_correct": summary.get("correct", 0),
-                    "number_records_no_exist": summary.get("no_exist", 0),
-                    "number_records_partially": summary.get("partially", 0),
-                    "number_records_no_test": summary.get("no_test", 0),
-                    "number_records_in_process": summary.get("in_process", 0),
-                    "number_records_not_contrasted": summary.get("not_contrasted", 0),
-                    "number_records_partially_contrasted": summary.get(
-                        "partially_contrasted", 0
-                    ),
-                    "number_records_contrasted": summary.get("contrasted", 0),
-                }
-            )
+            match_vals.update(summary)
             cls.report.sii_match_result.mapped("sii_match_difference_ids").unlink()
             cls.report.sii_match_result.unlink()
             match_vals["state"] = "calculated"

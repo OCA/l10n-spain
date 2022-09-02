@@ -175,8 +175,9 @@ class SiiMatchReport(models.Model):
                 )
                 .get_invoice_aeat()
             )
-            jb = queue_obj.search([("uuid", "=", new_delay.uuid)], limit=1)
-            match_report.sudo().sii_match_jobs_ids |= jb
+            if new_delay:
+                jb = queue_obj.search([("uuid", "=", new_delay.uuid)], limit=1)
+                match_report.sudo().sii_match_jobs_ids |= jb
 
     @api.multi
     def _get_invoice_dict(self):
@@ -191,74 +192,73 @@ class SiiMatchReport(models.Model):
         return inv_dict
 
     @api.multi
-    def _get_aeat_odoo_invoices_by_csv(self, sii_response):
+    def _get_aeat_odoo_invoices_by_csv(self, odoo_period_invoices, aeat_invoices):
+        """Get AEAT matched Invoices and non matched
+
+        Args:
+            odoo_period_invoices List(Dict): Odoo Invoices ID and SII CSV
+            {"id": X, "sii_csv": Y}
+            aeat_invoices (JSON): AEAT SII Invoices JSON
+
+        Returns:
+            Tuple(Dict, List(Dict)): AEAT matched Invoices, not matched Invoices
+        """
         matched_invoices = {}
-        left_invoices = []
-        for invoice in sii_response:
-            invoice = json.loads(json.dumps(serialize_object(invoice)))
-            csv = invoice["DatosPresentacion"]["CSV"]
-            invoice_state = invoice["EstadoFactura"]["EstadoRegistro"]
-            odoo_invoice = self.env["account.invoice"].search([("sii_csv", "=", csv)])
-            if odoo_invoice:
-                matched_invoices[odoo_invoice.id] = invoice
+        invoices_not_in_odoo = []
+        for aeat_invoice_json in aeat_invoices:
+            aeat_invoice = json.loads(json.dumps(serialize_object(aeat_invoice_json)))
+            csv = aeat_invoice["DatosPresentacion"]["CSV"]
+            invoice_state = aeat_invoice["EstadoFactura"]["EstadoRegistro"]
+            odoo_invoice_id = False
+            i = 0
+            while not odoo_invoice_id and i < len(odoo_period_invoices):
+                if odoo_period_invoices[i]["sii_csv"] == csv:
+                    odoo_invoice_id = odoo_period_invoices[i]["id"]
+                i += 1
+            if odoo_invoice_id:
+                matched_invoices[odoo_invoice_id] = aeat_invoice
             elif invoice_state != "Anulada":
-                left_invoices.append(invoice)
-        return matched_invoices, left_invoices
+                invoices_not_in_odoo.append(aeat_invoice)
+        return matched_invoices, invoices_not_in_odoo
 
     @api.multi
-    def _get_aeat_odoo_invoices_by_num(self, left_invoices, matched_invoices):
-        left_results = []
-        for invoice in left_invoices:
-            name = invoice["IDFactura"]["NumSerieFacturaEmisor"]
-            if self.invoice_type == "out":
-                odoo_invoice = self.env["account.invoice"].search(
-                    [
-                        ("number", "=", name),
-                        ("type", "in", ["out_invoice", "out_refund"]),
-                    ],
-                    limit=1,
-                )
-            else:
-                odoo_invoice = self.env["account.invoice"].search(
-                    [
-                        ("reference", "=", name),
-                        ("type", "in", ["in_invoice", "in_refund"]),
-                    ],
-                    limit=1,
-                )
-            if odoo_invoice and odoo_invoice.id not in list(matched_invoices.keys()):
-                matched_invoices[odoo_invoice.id] = invoice
-            else:
-                left_results.append(invoice)
-        return matched_invoices, left_results
+    def _get_aeat_odoo_invoices(self, odoo_period_invoices, aeat_invoices):
+        """Get all invoices dict, SII matches and update matched Invoices
 
-    @api.multi
-    def _get_aeat_odoo_invoices(self, sii_response):
-        matched_invoices, left_invoices = self._get_aeat_odoo_invoices_by_csv(
-            sii_response
+        Args:
+            odoo_period_invoices List(Dict): Odoo Invoices ID and SII CSV
+            {"id": X, "sii_csv": Y}
+            aeat_invoices (JSON): AEAT SII JSON
+
+        Returns:
+            Tuple(List(Dict), List(int), Dict): AEAT Invoices, Matched Invoice IDs,
+            Invoices to update
+        """
+        matched_invoices, invoices_not_in_odoo = self._get_aeat_odoo_invoices_by_csv(
+            odoo_period_invoices, aeat_invoices
         )
-        matched_invoices, left_invoices = self._get_aeat_odoo_invoices_by_num(
-            left_invoices, matched_invoices
-        )
-        res = []
-        invoices_list = {}
-        for odoo_inv_id, invoice in list(matched_invoices.items()):
-            name = invoice["IDFactura"]["NumSerieFacturaEmisor"]
-            csv = invoice["DatosPresentacion"]["CSV"]
-            match_state = invoice["EstadoFactura"]["EstadoCuadre"]
-            odoo_invoice = self.env["account.invoice"].browse([odoo_inv_id])
+        aeat_invoices = []
+        matched_invoice_ids = []
+        invoices_to_update = {}
+        for odoo_invoice_id, aeat_invoice in list(matched_invoices.items()):
+            matched_invoice_ids.append(odoo_invoice_id)
+            name = aeat_invoice["IDFactura"]["NumSerieFacturaEmisor"]
+            csv = aeat_invoice["DatosPresentacion"]["CSV"]
+            match_state = aeat_invoice["EstadoFactura"]["EstadoCuadre"]
             inv_location = "both"
             contrast_state = "correct"
-            diffs = odoo_invoice._get_diffs_values(invoice)
+            odoo_invoice = self.env["account.invoice"].browse(odoo_invoice_id)
+            diffs = odoo_invoice._get_diffs_values(aeat_invoice)
             if diffs:
                 contrast_state = "partially"
-            invoices_list[odoo_invoice.id] = {
-                "sii_match_return": json.dumps(str(invoice), indent=4),
+            values = {
+                "sii_match_return": json.dumps(str(aeat_invoice), indent=4),
                 "sii_match_state": match_state,
                 "sii_contrast_state": contrast_state,
                 "sii_match_difference_ids": copy.deepcopy(diffs),
             }
-            res.append(
+            invoices_to_update[odoo_invoice_id] = values
+            aeat_invoices.append(
                 {
                     "invoice": name,
                     "invoice_id": odoo_invoice.id,
@@ -269,14 +269,14 @@ class SiiMatchReport(models.Model):
                     "sii_contrast_state": contrast_state,
                 }
             )
-        for invoice in left_invoices:
-            name = invoice["IDFactura"]["NumSerieFacturaEmisor"]
-            csv = invoice["DatosPresentacion"]["CSV"]
-            match_state = invoice["EstadoFactura"]["EstadoCuadre"]
+        for aeat_invoice in invoices_not_in_odoo:
+            name = aeat_invoice["IDFactura"]["NumSerieFacturaEmisor"]
+            csv = aeat_invoice["DatosPresentacion"]["CSV"]
+            match_state = aeat_invoice["EstadoFactura"]["EstadoCuadre"]
             contrast_state = "no_exist"
             inv_location = "sii"
             diffs = []
-            res.append(
+            aeat_invoices.append(
                 {
                     "invoice": name,
                     "invoice_id": False,
@@ -287,40 +287,43 @@ class SiiMatchReport(models.Model):
                     "sii_contrast_state": contrast_state,
                 }
             )
-        return res, invoices_list
+        
+        return aeat_invoices, matched_invoice_ids, invoices_to_update
 
     @api.multi
-    def _get_not_in_sii_invoices(self, invoices):
+    def _get_not_in_sii_invoices(self, odoo_period_invoices, matched_invoice_ids):
+        """Get Odoo Invoices not sent to AEAT SII service.
+
+        Args:
+            odoo_period_invoices List(Dict): Odoo Invoices ID and SII CSV
+            {"id": X, "sii_csv": Y}
+            matched_invoice_ids (List(int)): Matched Invoices IDs
+
+        Returns:
+            List(Dict): Invoices not in SII
+        """
         self.ensure_one()
-        start_date = fields.Date.from_string(
-            "%s-%s-01" % (str(self.fiscalyear), self.period_type)
-        )
-        date_from = fields.Date.to_string(start_date)
-        date_to = fields.Date.to_string(start_date + relativedelta(months=1))
         res = []
         inv_type = (
             ["out_invoice", "out_refund"]
             if self.invoice_type == "out"
             else ["in_invoice", "in_refund"]
         )
-        invoice_ids = self.env["account.invoice"].search(
-            [
-                ("date", ">=", date_from),
-                ("date", "<", date_to),
-                ("company_id", "=", self.company_id.id),
-                ("id", "not in", list(invoices.keys())),
-                ("type", "in", inv_type),
-            ]
-        )
-        for invoice in invoice_ids.filtered("sii_enabled"):
+        invoices_not_in_sii = []
+        for invoice in odoo_period_invoices:
+            if invoice["id"] not in matched_invoice_ids:
+                invoices_not_in_sii.append(invoice)
+        for invoice in invoices_not_in_sii:
+            if not invoice["sii_enabled"]:
+                continue
             if "out_invoice" in inv_type:
-                number = invoice.number or _("Draft")
+                number = invoice["number"] or _("Draft")
             else:
-                number = invoice.reference
+                number = invoice["reference"]
             res.append(
                 {
                     "invoice": number,
-                    "invoice_id": invoice.id,
+                    "invoice_id": invoice["id"],
                     "sii_contrast_state": "no_exist",
                     "invoice_location": "odoo",
                 }
@@ -328,83 +331,114 @@ class SiiMatchReport(models.Model):
         return res
 
     @api.multi
-    def _update_odoo_invoices(self, invoices):
+    def _get_odoo_period_invoices(self):
+        """Get Odoo Invoices from set period
+
+        Returns:
+            List(Dict): Odoo Invoices ID and SII CSV {"id": X, "sii_csv": Y}
+        """
         self.ensure_one()
-        for invoice_id, values in list(invoices.items()):
-            invoice = self.env["account.invoice"].browse([invoice_id])
-            invoice.sii_match_difference_ids.unlink()
-            invoice.write(values)
-        return []
+        start_date = fields.Date.from_string(
+            "%s-%s-01" % (str(self.fiscalyear), self.period_type)
+        )
+        date_from = fields.Date.to_string(start_date)
+        date_to = fields.Date.to_string(start_date + relativedelta(months=1))
+        inv_types = (
+            ["out_invoice", "out_refund"]
+            if self.invoice_type == "out"
+            else ["in_invoice", "in_refund"]
+        )
+        return self.env["account.invoice"].search_read(
+            domain=[
+                ("date_invoice", ">=", date_from),
+                ("date_invoice", "<", date_to),
+                ("type", "in", inv_types),
+                ("state", "!=", "draft"),
+            ],
+            fields=["id", "sii_csv", "sii_enabled", "number", "reference"],
+            order="id DESC",
+        )
+
+    @api.model
+    def _build_summary(self, invoices):
+        summary = {
+            "number_records": len(invoices),
+            "number_records_both": 0,
+            "number_records_sii": 0,
+            "number_records_odoo": 0,
+            "number_records_correct": 0,
+            "number_records_no_exist": 0,
+            "number_records_partially": 0,
+            "number_records_no_test": 0,
+            "number_records_in_process": 0,
+            "number_records_not_contrasted": 0,
+            "number_records_partially_contrasted": 0,
+            "number_records_contrasted": 0,
+        }
+        for i in invoices:
+            if i["invoice_location"] == "both":
+                summary["number_records_both"] += 1
+            elif i["invoice_location"] == "sii":
+                summary["number_records_sii"] += 1
+            elif i["invoice_location"] == "odoo":
+                summary["number_records_odoo"] += 1
+
+            if i["sii_contrast_state"] == "correct":
+                summary["number_records_correct"] += 1
+            elif i["sii_contrast_state"] == "no_exist":
+                summary["number_records_no_exist"] += 1
+            elif i["sii_contrast_state"] == "partially":
+                summary["number_records_partially"] += 1
+
+            if i.get("sii_match_state", False) and i["sii_match_state"] == "1":
+                summary["number_records_no_test"] += 1
+            elif i.get("sii_match_state", False) and i["sii_match_state"] == "2":
+                summary["number_records_in_process"] += 1
+            elif i.get("sii_match_state", False) and i["sii_match_state"] == "3":
+                summary["number_records_not_contrasted"] += 1
+            elif i.get("sii_match_state", False) and i["sii_match_state"] == "4":
+                summary["number_records_partially_contrasted"] += 1
+            elif i.get("sii_match_state", False) and i["sii_match_state"] == "5":
+                summary["number_records_contrasted"] += 1
+        return summary
 
     @api.multi
-    def _get_match_result_values(self, sii_response):
+    def _get_match_result_values(self, aeat_invoices):
+        """Parse AEAT SII response and build report summary.
+
+        Args:
+            aeat_invoices (JSON): AEAT Invoices JSON
+            (RegistroRespuestaConsultaRecibidasType)
+
+        Returns:
+            Tuple(List(Dict), Dict): List of record values for model
+            'l10n.es.aeat.sii.match.result', Summary
+        """
         self.ensure_one()
-        invoices, matched_invoices = self._get_aeat_odoo_invoices(sii_response)
-        invoices += self._get_not_in_sii_invoices(matched_invoices)
-        self._update_odoo_invoices(matched_invoices)
-        summary = {
-            "total": len(invoices),
-            "both": len([i for i in invoices if i["invoice_location"] == "both"]),
-            "sii": len([i for i in invoices if i["invoice_location"] == "sii"]),
-            "odoo": len([i for i in invoices if i["invoice_location"] == "odoo"]),
-            "correct": len(
-                [i for i in invoices if i["sii_contrast_state"] == "correct"]
-            ),
-            "no_exist": len(
-                [i for i in invoices if i["sii_contrast_state"] == "no_exist"]
-            ),
-            "partially": len(
-                [i for i in invoices if i["sii_contrast_state"] == "partially"]
-            ),
-            "no_test": len(
-                [
-                    i
-                    for i in invoices
-                    if (i.get("sii_match_state", False) and i["sii_match_state"] == "1")
-                ]
-            ),
-            "in_process": len(
-                [
-                    i
-                    for i in invoices
-                    if (i.get("sii_match_state", False) and i["sii_match_state"] == "2")
-                ]
-            ),
-            "not_contrasted": len(
-                [
-                    i
-                    for i in invoices
-                    if (i.get("sii_match_state", False) and i["sii_match_state"] == "3")
-                ]
-            ),
-            "partially_contrasted": len(
-                [
-                    i
-                    for i in invoices
-                    if (i.get("sii_match_state", False) and i["sii_match_state"] == "4")
-                ]
-            ),
-            "contrasted": len(
-                [
-                    i
-                    for i in invoices
-                    if (i.get("sii_match_state", False) and i["sii_match_state"] == "5")
-                ]
-            ),
-        }
-        vals = [
+        odoo_period_invoices = self._get_odoo_period_invoices()
+        aeat_invoices, matched_invoice_ids, invoices_to_update = (
+            self._get_aeat_odoo_invoices(odoo_period_invoices, aeat_invoices))
+        self.with_delay().update_invoices(invoices_to_update)
+        invoices_not_in_sii = self._get_not_in_sii_invoices(
+            odoo_period_invoices, matched_invoice_ids
+        )
+        invoices = aeat_invoices + invoices_not_in_sii
+        summary = self._build_summary(invoices)
+        sii_match_result_values = [
             (0, 0, i)
             for i in invoices
             if (i["sii_contrast_state"] != "correct" or i["sii_match_state"] == "4")
         ]
-        return vals, summary
+        return sii_match_result_values, summary
 
     @api.multi
     def _get_invoices_from_sii(self):
+        """
+        Request all Invoices from a period to AEAT SII service and report the results.
+        """
         for sii_match_report in self.filtered(
             lambda r: r.state in ["draft", "error", "calculated"]
         ):
-
             mapping_key = "out_invoice"
             if sii_match_report.invoice_type == "in":
                 mapping_key = "in_invoice"
@@ -416,39 +450,42 @@ class SiiMatchReport(models.Model):
             header = sii_match_report._get_sii_header()
             match_vals = {}
             summary = {}
+            aeat_invoices = []
+            sii_match_result_values = []
             try:
-                inv_dict = sii_match_report._get_invoice_dict()
-                if sii_match_report.invoice_type == "out":
-                    res = serv.ConsultaLRFacturasEmitidas(header, inv_dict)
-                    res_line = res["RegistroRespuestaConsultaLRFacturasEmitidas"]
-                elif sii_match_report.invoice_type == "in":
-                    res = serv.ConsultaLRFacturasRecibidas(header, inv_dict)
-                    res_line = res["RegistroRespuestaConsultaLRFacturasRecibidas"]
-                if res_line:
+                # First request, maximum records retrieved 10000
+                should_make_new_request = True
+                pages = 1
+                last_invoice = False
+                while should_make_new_request:
+                    inv_dict = sii_match_report._get_invoice_dict()
+                    if pages > 1 and last_invoice:
+                        inv_dict["ClavePaginacion"] = last_invoice["IDFactura"]
+                    if sii_match_report.invoice_type == "out":
+                        res = serv.ConsultaLRFacturasEmitidas(header, inv_dict)
+                        res_line = res["RegistroRespuestaConsultaLRFacturasEmitidas"]
+                    elif sii_match_report.invoice_type == "in":
+                        res = serv.ConsultaLRFacturasRecibidas(header, inv_dict)
+                        res_line = res["RegistroRespuestaConsultaLRFacturasRecibidas"]
+                    if res_line:
+                        aeat_invoices += res_line
+                        last_invoice = res_line[-1]
+                    else:
+                        last_invoice = False
+                    should_make_new_request = res["IndicadorPaginacion"] == "S"
+                    if should_make_new_request:
+                        pages += 1
+                if aeat_invoices:
                     (
-                        match_vals["sii_match_result"],
+                        sii_match_result_values,
                         summary,
-                    ) = sii_match_report._get_match_result_values(res_line)
+                    ) = sii_match_report._get_match_result_values(aeat_invoices)
                 match_vals.update(
                     {
-                        "number_records": summary.get("total", 0),
-                        "number_records_both": summary.get("both", 0),
-                        "number_records_odoo": summary.get("odoo", 0),
-                        "number_records_sii": summary.get("sii", 0),
-                        "number_records_correct": summary.get("correct", 0),
-                        "number_records_no_exist": summary.get("no_exist", 0),
-                        "number_records_partially": summary.get("partially", 0),
-                        "number_records_no_test": summary.get("no_test", 0),
-                        "number_records_in_process": summary.get("in_process", 0),
-                        "number_records_not_contrasted": summary.get(
-                            "not_contrasted", 0
-                        ),
-                        "number_records_partially_contrasted": summary.get(
-                            "partially_contrasted", 0
-                        ),
-                        "number_records_contrasted": summary.get("contrasted", 0),
+                        "sii_match_result": sii_match_result_values,
                     }
                 )
+                match_vals.update(summary)
                 sii_match_report.sii_match_result.mapped(
                     "sii_match_difference_ids"
                 ).unlink()
@@ -543,6 +580,15 @@ class SiiMatchReport(models.Model):
     @api.multi
     def get_invoice_aeat(self):
         self._get_invoices_from_sii()
+
+    @job(default_channel="root.invoice_validate_sii")
+    @api.multi
+    def update_invoices(self, invoices_to_update):
+        for invoice_id, values in invoices_to_update.items():
+            invoice = self.env["account.invoice"].browse(invoice_id)
+            if invoice.sii_match_state != values["sii_match_state"] or invoice.sii_contrast_state != values["sii_contrast_state"]:
+                invoice.sii_match_difference_ids.unlink()
+                invoice.write(values)
 
 
 class SiiMatchResult(models.Model):
