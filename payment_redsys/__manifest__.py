@@ -6,10 +6,10 @@
     "category": "Payment Acquirer",
     "summary": "Payment Acquirer: Redsys Implementation",
     "version": "14.0.2.0.2",
-    "author": "Tecnativa," "Odoo Community Association (OCA)",
+    "author": "Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "depends": ["payment", "website_sale"],
-    "external_dependencies": {"python": ["pycrypto"]},
+    "external_dependencies": {"python": ["pycryptodome"]},
     "data": [
         "views/redsys.xml",
         "views/payment_acquirer.xml",
