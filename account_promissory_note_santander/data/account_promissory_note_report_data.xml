@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record
+        id="account_promissory_note_report_st_a4"
+        model="account.payment.check.report"
+    >
+        <field name="name">Santander Promissory Note</field>
+        <field
+            name="report"
+        >account_promissory_note_santander.promissory_footer_st</field>
+    </record>
+
+</odoo>
