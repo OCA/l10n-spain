@@ -23,6 +23,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [account_promissory_note_bankia](account_promissory_note_bankia/) | 13.0.1.0.0 |  | Impresión de pagaré Bankia A4
 [account_promissory_note_caixabank](account_promissory_note_caixabank/) | 13.0.1.0.1 |  | Impresión de pagaré CaixaBank A4
+[account_promissory_note_santander](account_promissory_note_santander/) | 13.0.1.0.0 | [![cubells](https://github.com/cubells.png?size=30px)](https://github.com/cubells) | Impresión de pagaré del Santander en A4
 [delivery_dhl_parcel](delivery_dhl_parcel/) | 13.0.1.3.3 |  | Delivery Carrier implementation for DHL Parcel using their API
 [delivery_gls_asm](delivery_gls_asm/) | 13.0.1.2.0 |  | Delivery Carrier implementation for GLS with ASMRed API
 [delivery_seur](delivery_seur/) | 13.0.1.2.0 |  | Integrate SEUR webservice
