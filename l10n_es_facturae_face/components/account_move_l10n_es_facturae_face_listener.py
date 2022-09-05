@@ -17,7 +17,8 @@ class AccountMoveL10nEsFacturaeFACeListener(Component):
         if exchange_record.type_id.code != "l10n_es_facturae_face_update":
             return
         related_record = move._get_exchange_record(
-            "l10n_es_facturae", self.env.ref("l10n_es_facturae_face.face_backend")
+            self.env.ref("l10n_es_facturae_face.facturae_exchange_type"),
+            self.env.ref("l10n_es_facturae_face.face_backend"),
         )
         if not related_record:
             raise UserError(_("Exchange record cannot be found for FACe"))
