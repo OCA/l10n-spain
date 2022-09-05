@@ -10,6 +10,7 @@ import json
 import logging
 import urllib
 
+from Crypto.Cipher import DES3  # pylint: disable=W7936 - No real warning
 from werkzeug import urls
 
 from odoo import _, api, exceptions, fields, http, models
@@ -19,11 +20,6 @@ from odoo.tools.float_utils import float_compare
 from odoo.addons.payment.models.payment_acquirer import ValidationError
 
 _logger = logging.getLogger(__name__)
-
-try:
-    from Crypto.Cipher import DES3
-except ImportError:
-    _logger.info("Missing dependency (pycryptodome). See README.")
 
 
 class AcquirerRedsys(models.Model):
