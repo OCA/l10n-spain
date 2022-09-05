@@ -74,7 +74,7 @@ Zz09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0KCg==</field>
         <!-- TODO: Disable when paid -->
         <field
             name="enable_snippet"
-        >result = record._has_exchange_record("l10n_es_facturae", record.env.ref("l10n_es_facturae_face.face_backend"))</field>
+        >result = record._has_exchange_record(record.env.ref("l10n_es_facturae_face.facturae_exchange_type"), record.env.ref("l10n_es_facturae_face.face_backend"))</field>
     </record>
     <record id="facturae_face_cancel_exchange_type" model="edi.exchange.type">
         <field name="name">Cancel Facturae FACe</field>
