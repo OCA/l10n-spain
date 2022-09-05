@@ -16,7 +16,8 @@ class EdiL10nEsFacturaeFaceCancel(models.TransientModel):
     def cancel_face(self):
         self.ensure_one()
         backend = self.env.ref("l10n_es_facturae_face.face_backend")
-        exchange_record = self.move_id._get_exchange_record("l10n_es_facturae", backend)
+        exchange_type = self.env.ref("l10n_es_facturae_face.facturae_exchange_type")
+        exchange_record = self.move_id._get_exchange_record(exchange_type, backend)
         exchange_record.ensure_one()
         cancel_exchange_record = backend.create_record(
             "l10n_es_facturae_face_cancel",
