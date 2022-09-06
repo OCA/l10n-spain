@@ -74,15 +74,16 @@ class TestL10nEsAeat(TransactionCase):
             {"vat": "61954506077", "country_id": self.env.ref("base.gf").id}
         )
         country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
-        self.assertEqual(country_code, "GF")
+        self.assertEqual(country_code, "FR")
+        self.assertEqual(identifier_type, "04")
         self.assertEqual(vat_number, "61954506077")
 
     def test_parse_vat_info_gf_w_prefix(self):
         self.partner.vat = "GF61954506077"
         country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
-        self.assertEqual(country_code, "GF")
-        self.assertEqual(identifier_type, "02")
-        self.assertEqual(vat_number, "61954506077")
+        self.assertEqual(country_code, "FR")
+        self.assertEqual(identifier_type, "04")
+        self.assertEqual(vat_number, "GF61954506077")
 
     def test_parse_vat_info_cu_wo_prefix(self):
         self.partner.write(
@@ -96,7 +97,7 @@ class TestL10nEsAeat(TransactionCase):
     def test_parse_vat_info_cu_w_prefix(self):
         self.partner.vat = "CU12345678Z"
         country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
-        self.assertEqual(country_code, "")
+        self.assertEqual(country_code, "CU")
         self.assertEqual(identifier_type, "04")
         self.assertEqual(vat_number, "CU12345678Z")
 
