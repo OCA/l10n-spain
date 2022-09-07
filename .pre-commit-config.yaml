@@ -111,19 +111,16 @@ repos:
       - id: flake8
         name: flake8
         additional_dependencies: ["flake8-bugbear==19.8.0"]
-  - repo: https://github.com/pre-commit/mirrors-pylint
-    rev: v2.5.3
+  - repo: https://github.com/OCA/pylint-odoo
+    rev: 7.0.0
     hooks:
-      - id: pylint
+      - id: pylint_odoo
         name: pylint with optional checks
         args:
           - --rcfile=.pylintrc
           - --exit-zero
         verbose: true
-        additional_dependencies: &pylint_deps
-          - pylint-odoo==3.5.0
-      - id: pylint
+      - id: pylint_odoo
         name: pylint with mandatory checks
         args:
           - --rcfile=.pylintrc-mandatory
-        additional_dependencies: *pylint_deps
