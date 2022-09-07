@@ -401,6 +401,14 @@ class AccountMove(models.Model):
                 )
         return super(AccountMove, self).unlink()
 
+    def _get_sii_partner(self):
+        """Method for returning the partner to be used on SII operations."""
+        partner = self.partner_id
+        if "partner_shipping_id" in self._fields.keys():
+            # Hack for having only a soft dependency on `sale` module
+            partner = self.partner_shipping_id or self.partner_id
+        return partner
+
     def _get_sii_taxes_map(self, codes):
         """Return the codes that correspond to that sii map line codes.
 
@@ -742,7 +750,7 @@ class AccountMove(models.Model):
         """
         self.ensure_one()
         gen_type = self._get_sii_gen_type()
-        partner = self.partner_id.commercial_partner_id
+        partner = self._get_sii_partner()
         country_code = self._get_sii_country_code()
         is_simplified_invoice = self._is_sii_simplified_invoice()
 
@@ -802,7 +810,7 @@ class AccountMove(models.Model):
         """
         self.ensure_one()
         invoice_date = self._change_date_format(self.invoice_date)
-        partner = self.partner_id.commercial_partner_id
+        partner = self._get_sii_partner()
         company = self.company_id
         ejercicio = fields.Date.to_date(self.date).year
         periodo = "%02d" % fields.Date.to_date(self.date).month
@@ -862,7 +870,7 @@ class AccountMove(models.Model):
             if not is_simplified_invoice:
                 # Simplified invoices don't have counterpart
                 exp_dict["Contraparte"] = {
-                    "NombreRazon": partner.name[0:120],
+                    "NombreRazon": partner.commercial_partner_id.name[0:120],
                 }
                 # Uso condicional de IDOtro/NIF
                 exp_dict["Contraparte"].update(self._get_sii_identifier())
@@ -902,10 +910,11 @@ class AccountMove(models.Model):
         }
         # Uso condicional de IDOtro/NIF
         ident = self._get_sii_identifier()
+        partner = self._get_sii_partner()
         inv_dict["IDFactura"]["IDEmisorFactura"].update(ident)
         if cancel:
             inv_dict["IDFactura"]["IDEmisorFactura"].update(
-                {"NombreRazon": (self.partner_id.commercial_partner_id.name[0:120])}
+                {"NombreRazon": (partner.commercial_partner_id.name[0:120])}
             )
         else:
             amount_total = -self.amount_total_signed - not_in_amount_total
@@ -916,7 +925,7 @@ class AccountMove(models.Model):
                 "DescripcionOperacion": self.sii_description,
                 "DesgloseFactura": desglose_factura,
                 "Contraparte": {
-                    "NombreRazon": (self.partner_id.commercial_partner_id.name[0:120])
+                    "NombreRazon": (partner.commercial_partner_id.name[0:120])
                 },
                 "FechaRegContable": reg_date,
                 "ImporteTotal": amount_total,
@@ -1335,11 +1344,8 @@ class AccountMove(models.Model):
         """
         self.ensure_one()
         gen_type = self._get_sii_gen_type()
-        (
-            country_code,
-            identifier_type,
-            identifier,
-        ) = self.commercial_partner_id._parse_aeat_vat_info()
+        partner = self._get_sii_partner()
+        country_code, identifier_type, identifier = partner._parse_aeat_vat_info()
         # Limpiar alfanum
         if identifier:
             identifier = "".join(e for e in identifier if e.isalnum()).upper()
@@ -1432,7 +1438,7 @@ class AccountMove(models.Model):
 
     def _get_sii_country_code(self):
         self.ensure_one()
-        return self.commercial_partner_id._parse_aeat_vat_info()[0]
+        return self._get_sii_partner()._parse_aeat_vat_info()[0]
 
     @api.depends(
         "invoice_line_ids", "invoice_line_ids.name", "company_id",
