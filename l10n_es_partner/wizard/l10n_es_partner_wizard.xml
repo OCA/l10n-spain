@@ -6,6 +6,7 @@
             <field name="name">l10n.es.partner.import.form</field>
             <field name="model">l10n.es.partner.import.wizard</field>
             <field name="inherit_id" ref="base.res_config_installer" />
+            <field name="priority" eval="999" />
             <field name="arch" type="xml">
                 <data>
                     <form position="inside">
