@@ -47,6 +47,7 @@ Zz09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0KCg==</field>
     <record id="face_webservice" model="webservice.backend">
         <field name="tech_name">face</field>
         <field name="name">FACe</field>
+        <field name="auth_type">none</field>
         <field
             name="url"
         >https://se-face-webservice.redsara.es/facturasspp2?wsdl</field>
