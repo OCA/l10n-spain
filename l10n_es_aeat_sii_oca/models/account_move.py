@@ -1323,9 +1323,8 @@ class AccountMove(models.Model):
         gen_type = self._get_sii_gen_type()
         if gen_type == 2:
             return "E5"
-        elif gen_type == 3:
-            return "E2"
         else:
+            exempt_cause = False
             product_exempt_causes = (
                 self.mapped("invoice_line_ids")
                 .filtered(
@@ -1343,12 +1342,15 @@ class AccountMove(models.Model):
                     _("Currently there's no support for multiple exempt " "causes.")
                 )
             if product_exempt_causes:
-                return product_exempt_causes.pop()
+                exempt_cause = product_exempt_causes.pop()
             elif (
                 self.fiscal_position_id.sii_exempt_cause
                 and self.fiscal_position_id.sii_exempt_cause != "none"
             ):
-                return self.fiscal_position_id.sii_exempt_cause
+                exempt_cause = self.fiscal_position_id.sii_exempt_cause
+            if gen_type == 3 and exempt_cause not in ["E2", "E3"]:
+                exempt_cause = "E2"
+            return exempt_cause
 
     def _get_no_taxable_cause(self):
         self.ensure_one()
