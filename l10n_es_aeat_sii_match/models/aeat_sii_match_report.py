@@ -585,7 +585,7 @@ class SiiMatchReport(models.Model):
     @api.multi
     def update_invoices(self, invoices_to_update):
         for invoice_id, values in invoices_to_update.items():
-            invoice = self.env["account.invoice"].browse(invoice_id)
+            invoice = self.env["account.invoice"].browse(int(invoice_id))
             if invoice.sii_match_state != values["sii_match_state"] or invoice.sii_contrast_state != values["sii_contrast_state"]:
                 invoice.sii_match_difference_ids.unlink()
                 invoice.write(values)
