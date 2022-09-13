@@ -160,6 +160,8 @@ Contributors
   * Valentin Vinagre
   * Manuel Regidor
 
+* Jairo Llopis (Moduon)
+
 Maintainers
 ~~~~~~~~~~~
 
