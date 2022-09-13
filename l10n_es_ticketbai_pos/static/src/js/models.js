@@ -292,14 +292,15 @@ odoo.define("l10n_es_ticketbai_pos.models", function (require) {
             this.tbai_current_invoice = $.when();
             order_super.initialize.apply(this, arguments);
             if (this.pos.company.tbai_enabled && "json" in arguments[1]) {
-                this.tbai_simplified_invoice = new tbai_models.TicketBAISimplifiedInvoice(
-                    {},
-                    {
-                        pos: this.pos,
-                        tbai_identifier: arguments[1].json.tbai_identifier,
-                        tbai_qr_src: arguments[1].json.tbai_qr_src,
-                    }
-                );
+                this.tbai_simplified_invoice =
+                    new tbai_models.TicketBAISimplifiedInvoice(
+                        {},
+                        {
+                            pos: this.pos,
+                            tbai_identifier: arguments[1].json.tbai_identifier,
+                            tbai_qr_src: arguments[1].json.tbai_qr_src,
+                        }
+                    );
             }
             return this;
         },
