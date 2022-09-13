@@ -9,11 +9,11 @@
         <field name="model">l10n.es.aeat.mod349.partner_record_detail</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="move_line_id" />
-                <field name="move_id" />
-                <field name="partner_id" />
-                <field name="amount_untaxed" />
-                <field name="date" />
+                <field name="move_line_id" optional="show" />
+                <field name="move_id" optional="show" />
+                <field name="partner_id" optional="show" />
+                <field name="amount_untaxed" optional="show" />
+                <field name="date" optional="show" />
             </tree>
         </field>
     </record>
@@ -44,11 +44,11 @@
         <field name="arch" type="xml">
             <tree decoration-danger="not partner_record_ok">
                 <field name="partner_record_ok" invisible="1" />
-                <field name="country_id" />
-                <field name="partner_vat" />
-                <field name="partner_id" />
-                <field name="operation_key" />
-                <field name="total_operation_amount" />
+                <field name="country_id" optional="show" />
+                <field name="partner_vat" optional="show" />
+                <field name="partner_id" optional="show" />
+                <field name="operation_key" optional="show" />
+                <field name="total_operation_amount" optional="show" />
                 <field
                     name="error_text"
                     attrs="{'invisible': [('partner_record_ok', '=', True)]}"
@@ -95,11 +95,11 @@
         <field name="model">l10n.es.aeat.mod349.partner_refund_detail</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="refund_line_id" />
-                <field name="move_id" />
-                <field name="partner_id" />
-                <field name="amount_untaxed" />
-                <field name="date" />
+                <field name="refund_line_id" optional="show" />
+                <field name="move_id" optional="show" />
+                <field name="partner_id" optional="show" />
+                <field name="amount_untaxed" optional="show" />
+                <field name="date" optional="show" />
             </tree>
         </field>
     </record>
@@ -130,14 +130,14 @@
         <field name="arch" type="xml">
             <tree decoration-danger="not partner_refund_ok">
                 <field name="partner_refund_ok" invisible="1" />
-                <field name="country_id" />
-                <field name="partner_vat" />
-                <field name="partner_id" />
-                <field name="operation_key" />
-                <field name="year" />
-                <field name="period_type" />
-                <field name="total_operation_amount" />
-                <field name="total_origin_amount" />
+                <field name="country_id" optional="show" />
+                <field name="partner_vat" optional="show" />
+                <field name="partner_id" optional="show" />
+                <field name="operation_key" optional="show" />
+                <field name="year" optional="show" />
+                <field name="period_type" optional="show" />
+                <field name="total_operation_amount" optional="show" />
+                <field name="total_origin_amount" optional="show" />
             </tree>
         </field>
     </record>
@@ -212,24 +212,16 @@
                         </group>
                     </page>
                     <page string="Partner records">
-                        <group name="summary_partner_records" string="Summary">
-                            <field name="partner_record_ids" nolabel="1" />
-                        </group>
-                        <group
-                            name="detail_partner_records"
-                            string="Details"
-                            create="0"
-                        >
-                            <field name="partner_record_detail_ids" nolabel="1" />
-                        </group>
+                        <separator string="Summary" />
+                        <field name="partner_record_ids" />
+                        <separator string="Details" />
+                        <field name="partner_record_detail_ids" />
                     </page>
                     <page string="Refunds from other periods">
-                        <group name="summary_refund_records" string="Summary">
-                            <field name="partner_refund_ids" nolabel="1" />
-                        </group>
-                        <group name="detail_refund_records" sting="Details" create="0">
-                            <field name="partner_refund_detail_ids" nolabel="1" />
-                        </group>
+                        <separator string="Summary" />
+                        <field name="partner_refund_ids" />
+                        <separator string="Details" />
+                        <field name="partner_refund_detail_ids" />
                     </page>
                 </notebook>
             </group>
