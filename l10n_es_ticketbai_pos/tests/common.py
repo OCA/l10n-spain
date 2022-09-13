@@ -192,10 +192,10 @@ class TestL10nEsTicketBAIPoSCommon(TestL10nEsTicketBAI):
         pos_order = self.env["pos.order"].with_user(uid).create(vals)
         payment = (
             self.env["pos.make.payment"]
-            .with_context({"active_ids": [pos_order.id], "active_id": pos_order.id})
+            .with_context(active_ids=[pos_order.id], active_id=pos_order.id)
             .create({"amount": pos_order.amount_total})
         )
-        payment.with_context({"active_id": pos_order.id}).check()
+        payment.with_context(active_id=pos_order.id).check()
         return pos_order
 
     def setUp(self):
