@@ -252,7 +252,7 @@ class PosOrder(models.Model):
             invoice_number_prefix
         ):
             raise exceptions.ValidationError(
-                _("Simplified Invoice Number Prefix %s is not part of Number %s!")
+                _("Simplified Invoice Number Prefix %s is not part of Number %%!")
                 % (invoice_number_prefix, self.l10n_es_unique_id)
             )
         return self.l10n_es_unique_id[len(invoice_number_prefix) :]
