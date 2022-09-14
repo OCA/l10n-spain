@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2022 Kernet Internet y Nuevas Tecnologias S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="l10n_es_ticketbai.tbai_tax_map_S" model="tbai.tax.map">
+        <field name="tax_template_ids" eval="[(4, ref('l10n_es_extra_data.account_tax_template_s_iva5s'))]"/>
+    </record>
+</odoo>
