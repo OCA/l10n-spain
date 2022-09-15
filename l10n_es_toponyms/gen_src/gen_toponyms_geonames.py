@@ -21,18 +21,14 @@ def filter_city(originalName):
 
 if __name__ == "__main__":
     url = "http://download.geonames.org/export/zip/ES.zip"
-    print('Comenzando descarga de %s' % url)
     res_request = requests.get(url)
     if res_request.status_code != requests.codes.ok:
-        print('Error descargando archivo: %s.' % res_request.status_code)
         exit(res_request.status_code)
     f_geonames = zipfile.ZipFile(BytesIO(res_request.content))
     tempdir = tempfile.mkdtemp(prefix='odoo')
     f_geonames.extract('ES.txt', tempdir)
-    print('Archivo descomprimido')
     data_file = open(os.path.join(tempdir, 'ES.txt'), 'r')
     data_file.seek(0)
-    print('Generando XML...')
     output = open("l10n_es_toponyms_zipcodes.xml", 'w')
     output.write('<?xml version="1.0" encoding="UTF-8"?>\n')
     output.write('<odoo noupdate="1">\n')
@@ -60,4 +56,3 @@ if __name__ == "__main__":
     data_file.close()
     output.write('</odoo>\n')
     output.close()
-    print("Proceso terminado")
