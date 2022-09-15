@@ -1,6 +1,8 @@
 # Copyright 2018 David Vidal <david.vidal@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from psycopg2 import sql
+
 
 def migrate(cr, version):
     if not version:
@@ -21,9 +23,10 @@ def migrate(cr, version):
     if not cr.fetchone():
         simplified_invoice_field = 'l10n_es_simplified_invoice_number'
     # Move simplified invoice info to pos_reference field.
-    cr.execute("""
-        UPDATE pos_order SET
-            pos_reference = %(s)s,
-            is_l10n_es_simplified_invoice = TRUE
-        WHERE COALESCE(%(s)s, '') <> '';
-    """ % {'s': simplified_invoice_field})
+    cr.execute(
+        sql.SQL(
+            """UPDATE pos_order SET
+            pos_reference = %(s)s, is_l10n_es_simplified_invoice = TRUE
+            WHERE COALESCE({}, '') != ''"""
+        ).format(sql.Identifier(simplified_invoice_field))
+    )
