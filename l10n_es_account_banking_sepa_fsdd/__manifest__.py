@@ -4,7 +4,7 @@
 
 {
     "name": "Account Banking Sepa - FSDD (Anticipos de crédito)",
-    "version": "11.0.1.0.0",
+    "version": "11.0.1.0.1",
     "author": "Tecnativa, "
               "Odoo Community Association (OCA)",
     'license': 'AGPL-3',
