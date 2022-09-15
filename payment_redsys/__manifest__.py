@@ -4,7 +4,7 @@
     'name': 'Redsys Payment Acquirer',
     'category': 'Payment Acquirer',
     'summary': 'Payment Acquirer: Redsys Implementation',
-    'version': '11.0.1.1.2',
+    'version': '11.0.1.1.3',
     'author': "Tecnativa,"
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
