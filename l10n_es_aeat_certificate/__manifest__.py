@@ -9,7 +9,7 @@
               'Odoo Community Association (OCA)',
     "website": "https://github.com/OCA/l10n-spain",
     'category': 'Accounting',
-    'version': '11.0.1.0.0',
+    'version': '11.0.1.0.1',
     'license': 'AGPL-3',
     'depends': [
         'base',
