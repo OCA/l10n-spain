@@ -5,7 +5,7 @@
     "name": "TicketBAI - API",
     "version": "11.0.0.7.4",
     "category": "Accounting & Finance",
-    "website": "http://www.binovo.es",
+    "website": "https://github.com/OCA/l10n-spain",
     "author": "Binovo,"
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",

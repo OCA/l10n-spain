@@ -5,7 +5,7 @@
     'name': 'AEAT - SOAP Webservice',
     'author': 'Acysos S.L.,'
               'Odoo Community Association (OCA)',
-    'website': 'https://odoo-community.org/',
+    "website": "https://github.com/OCA/l10n-spain",
     'category': 'Accounting',
     'version': '11.0.0.1.0',
     'license': 'AGPL-3',

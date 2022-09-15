@@ -9,7 +9,7 @@
     "author": "Spanish Localization Team, "
               "Tecnativa, "
               "Odoo Community Association (OCA)",
-    "website": "https://odoo-community.org/",
+    "website": "https://github.com/OCA/l10n-spain",
     "category": "Localization/Europe",
     "license": "AGPL-3",
     "depends": [
