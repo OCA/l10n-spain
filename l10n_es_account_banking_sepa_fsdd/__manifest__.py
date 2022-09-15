@@ -8,7 +8,7 @@
     "author": "Tecnativa, "
               "Odoo Community Association (OCA)",
     'license': 'AGPL-3',
-    "website": "http://www.comunitea.com",
+    "website": "https://github.com/OCA/l10n-spain",
     "category": "Banking addons",
     "depends": [
         "account_banking_sepa_direct_debit",

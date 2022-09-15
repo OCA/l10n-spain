@@ -7,7 +7,7 @@
             "y entidades que desarrollan actividades económicas",
     "version": "11.0.0.6.1",
     "category": "Accounting & Finance",
-    "website": "http://www.binovo.es",
+    "website": "https://github.com/OCA/l10n-spain",
     "author": "Binovo,"
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
