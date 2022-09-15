@@ -1,0 +1,26 @@
+# Do NOT update manually; changes here will be overwritten by Copier
+_commit: v1.8.0
+_src_path: gh:oca/oca-addons-repo-template
+ci: GitHub
+dependency_installation_mode: PIP
+generate_requirements_txt: false
+github_check_license: false
+github_enable_codecov: true
+github_enable_makepot: true
+github_enable_stale_action: false
+github_enforce_dev_status_compatibility: false
+include_wkhtmltopdf: false
+odoo_version: 11.0
+org_name: Odoo Community Association (OCA)
+org_slug: OCA
+rebel_module_groups: []
+repo_description: 'Repositorio de código del proyecto de la localización española
+    para el software de gestión integral Odoo. La localización española de Odoo incluye:
+    - Módulos para adaptar el sistema a los requisitos fiscales y contables españoles.
+    - Traducciones a las lenguas oficiales del país.'
+repo_name: Localización española de Odoo
+repo_slug: l10n-spain
+repo_website: https://github.com/OCA/l10n-spain
+travis_apt_packages: []
+travis_apt_sources: []
+
