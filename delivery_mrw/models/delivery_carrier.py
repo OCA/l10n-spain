@@ -151,21 +151,7 @@ class DeliveryCarrier(models.Model):
     @api.model
     def create(self, vals):
         vals["invoice_policy"] = "pricelist"
-        if not self.env["mrw.department.wh.map"].search([]) and self.prod_environment:
-            raise UserError(
-                _(
-                    "Before creating a new MRW shipment method, there has to be at "
-                    "least one Warehouse-Department mapping."
-                )
-            )
         return super().create(vals)
-
-    def write(self, vals):
-        if not self.env["mrw.department.wh.map"].search([]) and self.prod_environment:
-            raise UserError(
-                _("There has to be at least one Warehouse-Department mapping.")
-            )
-        return super().write(vals)
 
     @api.constrains("company_id")
     def check_es_country(self):
@@ -193,20 +179,6 @@ class DeliveryCarrier(models.Model):
                 )
             )
 
-    def _get_department_code(self, picking):
-        warehouse = picking.picking_type_id.warehouse_id or picking.sale_id.warehouse_id
-        rec = self.env["mrw.department.wh.map"].search(
-            [("warehouse_id", "=", warehouse.id)]
-        )
-        if not rec:
-            raise UserError(
-                _(
-                    "A Warehouse-Department mapping hasn't been specified for warehouse %s."
-                    % warehouse.name
-                )
-            )
-        return rec.department_number
-
     def _get_mrw_credentials(self, picking):
         """The carrier can be put in test mode. The tests user must be set.
         A default given by mrw is put in the config parameter data"""
@@ -216,7 +188,7 @@ class DeliveryCarrier(models.Model):
                 "username": self.mrw_username,
                 "password": self.mrw_password,
                 "client_code": self.mrw_client_code,
-                "department_code": self._get_department_code(picking),
+                "department_code": self.mrw_department_code,
                 "franquicia_code": self.mrw_franquicia_code,
                 "prod": self.prod_environment,
             }
