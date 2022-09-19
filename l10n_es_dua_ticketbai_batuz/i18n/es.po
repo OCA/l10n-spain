@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_dua_ticketbai_batuz
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2022-08-29 10:07+0000\n"
+"Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: l10n_es_dua_ticketbai_batuz
+#: model:ir.model.fields,field_description:l10n_es_dua_ticketbai_batuz.field_account_move__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: l10n_es_dua_ticketbai_batuz
+#: model:ir.model.fields,field_description:l10n_es_dua_ticketbai_batuz.field_account_move__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_dua_ticketbai_batuz
+#: model:ir.model,name:l10n_es_dua_ticketbai_batuz.model_account_move
+msgid "Journal Entry"
+msgstr "Entrada de diario"
+
+#. module: l10n_es_dua_ticketbai_batuz
+#: model:ir.model.fields,field_description:l10n_es_dua_ticketbai_batuz.field_account_move____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: l10n_es_dua_ticketbai_batuz
+#: model:ir.model.fields,field_description:l10n_es_dua_ticketbai_batuz.field_account_bank_statement_line__tbai_dua_invoice
+#: model:ir.model.fields,field_description:l10n_es_dua_ticketbai_batuz.field_account_move__tbai_dua_invoice
+#: model:ir.model.fields,field_description:l10n_es_dua_ticketbai_batuz.field_account_payment__tbai_dua_invoice
+msgid "TBAI DUA Invoice"
+msgstr "TBAI DUA Factura"

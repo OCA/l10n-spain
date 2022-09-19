@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="confirming_sabadell" model="account.payment.method">
+        <field name="name">Confirming Sabadell</field>
+        <field name="code">conf_sabadell</field>
+        <field name="payment_type">outbound</field>
+        <field name="bank_account_required" eval="False" />
+    </record>
+</odoo>
