@@ -1,0 +1,184 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_account_statement_n43_avoid_duplicate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-26 14:19+0000\n"
+"PO-Revision-Date: 2022-09-26 14:19+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_removed_account_bank_statement_line__amount
+msgid "Amount"
+msgstr "Importe"
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_account_bank_statement__actual_balance
+msgid "Balance after last transaction"
+msgstr ""
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model:ir.model,name:l10n_es_account_statement_n43_avoid_duplicate.model_account_bank_statement
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_duplicated_n43_wizard__statement_id
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_removed_account_bank_statement_line__statement_id
+msgid "Bank Statement"
+msgstr "Extracto bancario"
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model:ir.model,name:l10n_es_account_statement_n43_avoid_duplicate.model_account_bank_statement_line
+msgid "Bank Statement Line"
+msgstr "Línea de extracto bancario"
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_duplicated_n43_wizard__line_ids
+msgid "Bank Statement Records"
+msgstr ""
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_removed_account_bank_statement_line__company_id
+msgid "Company"
+msgstr ""
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_duplicated_n43_wizard__create_uid
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_removed_account_bank_statement_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_duplicated_n43_wizard__create_date
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_removed_account_bank_statement_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_removed_account_bank_statement_line__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_removed_account_bank_statement_line__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_account_bank_statement__display_name
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_account_bank_statement_line__display_name
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_account_statement_import__display_name
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_duplicated_n43_wizard__display_name
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_removed_account_bank_statement_line__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model_terms:ir.ui.view,arch_db:l10n_es_account_statement_n43_avoid_duplicate.duplicated_n43_wizard_view
+msgid "Do not remove"
+msgstr "No eliminar"
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model:ir.actions.act_window,name:l10n_es_account_statement_n43_avoid_duplicate.duplicated_n43_action
+#: model_terms:ir.ui.view,arch_db:l10n_es_account_statement_n43_avoid_duplicate.duplicated_n43_wizard_view
+msgid "Duplicated N43 Statements"
+msgstr "Transacciones duplicadas N43"
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_account_bank_statement__id
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_account_bank_statement_line__id
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_account_statement_import__id
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_duplicated_n43_wizard__id
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_removed_account_bank_statement_line__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model:ir.model,name:l10n_es_account_statement_n43_avoid_duplicate.model_account_statement_import
+msgid "Import Bank Statement Files"
+msgstr "Importar extracto bancario"
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_removed_account_bank_statement_line__payment_ref
+msgid "Label"
+msgstr "Descripción"
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_account_bank_statement____last_update
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_account_bank_statement_line____last_update
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_account_statement_import____last_update
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_duplicated_n43_wizard____last_update
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_removed_account_bank_statement_line____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_duplicated_n43_wizard__write_uid
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_removed_account_bank_statement_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_duplicated_n43_wizard__write_date
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_removed_account_bank_statement_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_account_bank_statement_line__transaction_hash
+msgid "N43 transaction register"
+msgstr ""
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model_terms:ir.ui.view,arch_db:l10n_es_account_statement_n43_avoid_duplicate.duplicated_n43_wizard_view
+msgid "Remove"
+msgstr "Eliminar"
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model_terms:ir.ui.view,arch_db:l10n_es_account_statement_n43_avoid_duplicate.deleted_bank_statement_lines_form
+msgid "Removed Statement Lines"
+msgstr "Transacciones repetidas eliminadas"
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model:ir.model.fields,field_description:l10n_es_account_statement_n43_avoid_duplicate.field_account_bank_statement__removed_transaction_ids
+msgid "Removed Transactions"
+msgstr "Transacciones eliminadas"
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model_terms:ir.ui.view,arch_db:l10n_es_account_statement_n43_avoid_duplicate.deleted_bank_statement_lines_form
+msgid "Removed transactions"
+msgstr "Transacciones eliminadas"
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model_terms:ir.ui.view,arch_db:l10n_es_account_statement_n43_avoid_duplicate.duplicated_n43_wizard_view
+msgid "Select which statements should be removed."
+msgstr "Elige que transacciones deberían ser eliminadas."
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model_terms:ir.ui.view,arch_db:l10n_es_account_statement_n43_avoid_duplicate.duplicated_n43_wizard_view
+msgid "Statement lines"
+msgstr ""
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: code:addons/addons/l10n-spain/l10n_es_account_statement_n43_avoid_duplicate/wizard/account_statement_import_n43.py:0
+#: code:addons/l10n_es_account_statement_n43_avoid_duplicate/wizard/account_statement_import_n43.py:0
+#, python-format
+msgid ""
+"You have already imported this file, or this file only contains already "
+"imported transactions."
+msgstr ""
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model:ir.model,name:l10n_es_account_statement_n43_avoid_duplicate.model_duplicated_n43_wizard
+msgid "duplicated.n43.wizard"
+msgstr ""
+
+#. module: l10n_es_account_statement_n43_avoid_duplicate
+#: model:ir.model,name:l10n_es_account_statement_n43_avoid_duplicate.model_removed_account_bank_statement_line
+msgid "removed.account.bank.statement.line"
+msgstr ""

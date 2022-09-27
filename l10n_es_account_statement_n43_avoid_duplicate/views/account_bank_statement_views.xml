@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="deleted_bank_statement_lines_form" model="ir.ui.view">
+        <field name="name">deleted.bank.statement.lines.form</field>
+        <field name="model">account.bank.statement</field>
+        <field name="inherit_id" ref="account.view_bank_statement_form" />
+        <field name="arch" type="xml">
+            <page name="statement_line_ids" position="after">
+                <page
+                    string="Removed transactions"
+                    attrs="{'invisible':[('removed_transactions_count','=',0)]}"
+                >
+                    <field name="removed_transactions_count" invisible="1" />
+                    <field name="removed_transaction_ids">
+                        <tree
+                            string="Removed Statement Lines"
+                            create="false"
+                            delete="false"
+                        >
+                            <field name="date" readonly="1" />
+                            <field name="payment_ref" readonly="1" />
+                            <field name="amount" readonly="1" />
+                        </tree>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+
+</odoo>

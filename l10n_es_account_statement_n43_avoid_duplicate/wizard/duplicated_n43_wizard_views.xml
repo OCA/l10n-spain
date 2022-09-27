@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="duplicated_n43_wizard_view" model="ir.ui.view">
+        <field name="name">Duplicated N43 Statements</field>
+        <field name="model">duplicated.n43.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Duplicated N43 Statements">
+                <div>
+                    Select which statements should be removed.
+                </div>
+                <field name="statement_id" invisible="1" />
+                <field name="line_ids" domain="[('statement_id', '=', statement_id)]">
+                    <tree
+                        string="Statement lines"
+                        editable="bottom"
+                        delete="true"
+                        create="false"
+                    >
+                        <field name="date" readonly="1" />
+                        <field name="payment_ref" readonly="1" />
+                        <field name="partner_id" readonly="1" />
+                        <field name="ref" optional="hidden" readonly="1" />
+                        <field name="transaction_type" optional="hidden" readonly="1" />
+                        <field name="narration" optional="hidden" readonly="1" />
+                        <field name="amount" readonly="1" />
+                        <field name="account_number" optional="hidden" readonly="1" />
+                    </tree>
+                </field>
+                <footer>
+                    <button
+                        name="remove_duplicated_lines"
+                        type="object"
+                        string="Remove"
+                        class="oe_highlight"
+                    />
+                    <button
+                        string="Do not remove"
+                        class="btn-secondary"
+                        special="cancel"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="duplicated_n43_action" model="ir.actions.act_window">
+        <field name="name">Duplicated N43 Statements</field>
+        <field name="res_model">duplicated.n43.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
