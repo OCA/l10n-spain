@@ -1,5 +1,7 @@
-# Copyright 2021 Tecnativa - Víctor Martínez
+# Copyright 2021-2022 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+import json
 
 from lxml import etree
 
@@ -35,14 +37,16 @@ class AccountFiscalPosition(models.Model):
                 attrs = {
                     "invisible": [("type", "not in", ("sale", "purchase"))],
                 }
+                modifiers = {"invisible": attrs["invisible"]}
                 elem = etree.Element(
-                    "field", {"name": "thirdparty_invoice", "attrs": str(attrs)}
+                    "field",
+                    {
+                        "name": "thirdparty_invoice",
+                        "attrs": str(attrs),
+                        "modifiers": json.dumps(modifiers),
+                    },
                 )
                 node.addnext(elem)
             res["arch"] = etree.tostring(doc)
-            xarch, xfields = self.env["ir.ui.view"].postprocess_and_fields(
-                etree.fromstring(res["arch"]), self._name
-            )
-            res["arch"] = xarch
-            res["fields"] = xfields
+            res["fields"].update(self.fields_get(["thirdparty_invoice"]))
         return res
