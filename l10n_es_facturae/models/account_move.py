@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import base64
+import json
 from collections import defaultdict
 
 from lxml import etree
@@ -9,11 +10,6 @@ from lxml import etree
 from odoo import _, api, fields, models, tools
 from odoo.exceptions import ValidationError
 from odoo.tools import html2plaintext
-
-from odoo.addons.base.models.ir_ui_view import (
-    transfer_modifiers_to_node,
-    transfer_node_to_modifiers,
-)
 
 
 class AccountMove(models.Model):
@@ -272,15 +268,19 @@ class AccountMove(models.Model):
                     "required": [("thirdparty_invoice", "=", True)],
                     "invisible": [("thirdparty_invoice", "=", False)],
                 }
+                modifiers = {
+                    "required": attrs["required"],
+                    "invisible": attrs["invisible"],
+                }
                 elem = etree.Element(
                     "field",
-                    {"name": "thirdparty_number", "attrs": str(attrs)},
+                    {
+                        "name": "thirdparty_number",
+                        "attrs": str(attrs),
+                        "modifiers": json.dumps(modifiers),
+                    },
                 )
-                modifiers = {}
-                transfer_node_to_modifiers(elem, modifiers)
-                transfer_modifiers_to_node(modifiers, elem)
                 node.addnext(elem)
-                res["fields"].update(self.fields_get(["thirdparty_number"]))
                 attrs = {
                     "invisible": [
                         (
@@ -290,14 +290,20 @@ class AccountMove(models.Model):
                         )
                     ],
                 }
+                modifiers = {"invisible": attrs["invisible"]}
                 elem = etree.Element(
-                    "field", {"name": "thirdparty_invoice", "attrs": str(attrs)}
+                    "field",
+                    {
+                        "name": "thirdparty_invoice",
+                        "attrs": str(attrs),
+                        "modifiers": json.dumps(modifiers),
+                    },
                 )
-                transfer_node_to_modifiers(elem, modifiers)
-                transfer_modifiers_to_node(modifiers, elem)
                 node.addnext(elem)
-                res["fields"].update(self.fields_get(["thirdparty_invoice"]))
             res["arch"] = etree.tostring(doc)
+            res["fields"].update(
+                self.fields_get(["thirdparty_number", "thirdparty_invoice"])
+            )
         return res
 
     def get_narration(self):
