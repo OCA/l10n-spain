@@ -195,8 +195,8 @@ class DeliveryCarrier(models.Model):
             res = seur_request.cancel_shipment()
             if res["estado"] == "KO":
                 raise UserWarning(
-                    _("Cancel SEUR shipment (%s): %s")
-                    % (picking.carrier_tracking_ref, res["mensaje"])
+                    _("Cancel SEUR shipment (%(ref)s): %(message)s")
+                    % ({"ref": picking.carrier_tracking_ref, "message": res["mensaje"]})
                 )
         return True
 

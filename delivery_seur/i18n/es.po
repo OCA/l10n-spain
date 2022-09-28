@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-11 08:56+0000\n"
-"PO-Revision-Date: 2022-08-11 10:58+0200\n"
+"POT-Creation-Date: 2022-10-11 09:21+0000\n"
+"PO-Revision-Date: 2022-10-11 11:22+0200\n"
 "Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: delivery_seur
 #: code:addons/delivery_seur/models/delivery_carrier.py:0
@@ -89,8 +89,8 @@ msgstr ""
 #. module: delivery_seur
 #: code:addons/delivery_seur/models/delivery_carrier.py:0
 #, python-format
-msgid "Cancel SEUR shipment (%s): %s"
-msgstr "Cancelar envío SEUR (%s): %s"
+msgid "Cancel SEUR shipment (%(ref)s): %(message)s"
+msgstr "Cancelar envío SEUR (%(ref)s): %(message)s"
 
 #. module: delivery_seur
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_printer__datamax:e_class_4203
@@ -208,11 +208,6 @@ msgid "MULTIPACK"
 msgstr "MULTIPACK"
 
 #. module: delivery_seur
-#: model_terms:ir.ui.view,arch_db:delivery_seur.view_delivery_carrier_form
-msgid "Misc"
-msgstr "Varios"
-
-#. module: delivery_seur
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_service_code__019
 msgid "NETEXPRESS"
 msgstr "NETEXPRESS"
@@ -231,6 +226,11 @@ msgstr ""
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_label_format__pdf
 msgid "PDF"
 msgstr "PDF"
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_cit_password
+msgid "Password CIT"
+msgstr "Contraseña CIT"
 
 #. module: delivery_seur
 #: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_ws_password
@@ -314,11 +314,6 @@ msgid "Seur"
 msgstr "Seur"
 
 #. module: delivery_seur
-#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_cit_password
-msgid "Seur Cit Password"
-msgstr "Seur contraseña CIT"
-
-#. module: delivery_seur
 #: model:ir.model,name:delivery_seur.model_delivery_carrier
 msgid "Shipping Methods"
 msgstr "Métodos de envío"
@@ -345,11 +340,6 @@ msgstr "TXT"
 #: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_send_sms
 msgid "This feature has delivery cost"
 msgstr "Esta funcionalidad tiene coste de envío"
-
-#. module: delivery_seur
-#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_use_packages_from_picking
-msgid "Use packages from picking"
-msgstr "Usar paquetes de picking"
 
 #. module: delivery_seur
 #: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_cit_password
