@@ -182,11 +182,13 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__create_uid
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__create_date
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment__create_date
 msgid "Created on"
 msgstr ""
 
@@ -221,6 +223,7 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__display_name
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -294,6 +297,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
 msgid "Facturae"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
+msgid "Facturae Attachment"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -401,8 +409,18 @@ msgid "Fecha/Periodo a aplicar"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment__file
+msgid "File"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__facturae_fname
 msgid "File name"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment__filename
+msgid "Filename"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -418,6 +436,7 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__id
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment__id
 msgid "ID"
 msgstr ""
 
@@ -541,17 +560,25 @@ msgid "Journal Item"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__l10n_es_facturae_attachment_ids
+msgid "L10N Es Facturae Attachment"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae____last_update
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__write_uid
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__write_date
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment__write_date
 msgid "Last Updated on"
 msgstr ""
 
@@ -564,6 +591,11 @@ msgstr ""
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__note
 msgid "Log"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment__move_id
+msgid "Move"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -898,6 +930,11 @@ msgstr ""
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "facturae"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_l10n_es_facturae_attachment
+msgid "l10n.es.facturae.attachment"
 msgstr ""
 
 #. module: l10n_es_facturae
