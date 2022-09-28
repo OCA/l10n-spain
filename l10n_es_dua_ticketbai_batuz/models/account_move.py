@@ -8,7 +8,7 @@ class AccountMove(models.Model):
     _inherit = "account.move"
 
     tbai_dua_invoice = fields.Boolean(
-        "TBAI DUA Invoice", compute="_compute_dua_invoice"
+        "TBAI DUA Invoice", compute="_compute_tbai_dua_invoice"
     )
 
     @api.model
@@ -32,7 +32,7 @@ class AccountMove(models.Model):
         )
 
     @api.depends("company_id", "fiscal_position_id", "invoice_line_ids.tax_ids")
-    def _compute_dua_invoice(self):
+    def _compute_tbai_dua_invoice(self):
         for invoice in self:
             taxes = invoice._get_lroe_taxes_map(["DUA"])
             invoice.tbai_dua_invoice = invoice.invoice_line_ids.filtered(
