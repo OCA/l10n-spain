@@ -225,6 +225,7 @@ class AccountMove(models.Model):
     def get_facturae_version(self):
         return (
             self.partner_id.facturae_version
+            or self.commercial_partner_id.facturae_version
             or self.company_id.facturae_version
             or "3_2"
         )
