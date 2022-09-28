@@ -65,11 +65,11 @@ class TestDeliverySeur(TestDeliverySeurBase):
         self.picking.action_confirm()
         self.picking.action_assign()
         self.picking.send_to_shipper()
-        self.assertEquals(self.picking.message_attachment_count, 1)
+        self.assertEqual(self.picking.message_attachment_count, 1)
         self.assertTrue(self.picking.carrier_tracking_ref)
         self.assertFalse(self.picking.tracking_state_history)
         self.picking.tracking_state_update()
-        self.assertEquals(
+        self.assertEqual(
             self.picking.tracking_state_history,
             "No existen expediciones para la búsqueda realizada",
         )
