@@ -74,6 +74,7 @@ class SiiMatchReport(models.Model):
         required=True,
         readonly=True,
         states={"draft": [("readonly", False)]},
+        help="Search invoices with the accounting date in this period."
     )
     fiscalyear = fields.Integer(
         string="Fiscal year",
@@ -350,8 +351,8 @@ class SiiMatchReport(models.Model):
         )
         return self.env["account.invoice"].search_read(
             domain=[
-                ("date_invoice", ">=", date_from),
-                ("date_invoice", "<", date_to),
+                ("date", ">=", date_from),
+                ("date", "<", date_to),
                 ("type", "in", inv_types),
                 ("state", "!=", "draft"),
             ],

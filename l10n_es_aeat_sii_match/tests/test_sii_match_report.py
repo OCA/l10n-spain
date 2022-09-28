@@ -161,7 +161,7 @@ class TestL10nEsAeatSiiMatch(TestL10nEsAeatSiiBase):
                 "DatosDescuadreContraparte": None,
             }
         ]
-        date_invoice = cls.invoice.date_invoice
+        date_invoice = cls.invoice.date
         datetime_invoice = datetime.strptime(date_invoice, DEFAULT_SERVER_DATE_FORMAT)
 
         cls.report = cls.env["l10n.es.aeat.sii.match.report"].create(
