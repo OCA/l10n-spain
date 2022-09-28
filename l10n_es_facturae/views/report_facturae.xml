@@ -39,21 +39,22 @@
             <RoleTypeCode t-esc="role_type_code" />
             <Name
                 t-length="40"
-                t-esc="partner.firstname if partner._fields.get('firstname') else partner.name"
+                t-esc="administrative_partner.firstname if administrative_partner._fields.get('firstname') else administrative_partner.name"
                 t-if="not partner.is_company"
             />
             <FirstSurname
                 t-length="40"
-                t-esc="partner.lastname if partner._fields.get('lastname') else ''"
+                t-esc="administrative_partner.lastname if administrative_partner._fields.get('lastname') else ''"
                 t-if="not partner.is_company"
             />
             <SecondSurname t-if="False" />
-            <t t-call="l10n_es_facturae.address_contact">
-                <t t-set="partner" t-value="partner" />
-            </t>
+            <t t-call="l10n_es_facturae.address_contact" />
             <PhysicalGLN t-if="False" />
             <LogicalOperationalPoint t-if="False" />
-            <CentreDescription t-length="2500" t-esc="partner.name" />
+            <CentreDescription
+                t-length="2500"
+                t-esc="administrative_partner.name or partner.name"
+            />
         </AdministrativeCentre>
     </template>
     <template id="entity">
@@ -73,25 +74,30 @@
         <PartyIdentification t-if="False" />
         <AdministrativeCentres t-if="partner.facturae">
             <t t-call="l10n_es_facturae.administrative_center">
-                <t t-set="partner" t-value="partner" />
-                <t t-set="centre_code" t-value="partner.oficina_contable" />
+                <t
+                    t-set="centre_code"
+                    t-value="administrative_partner.oficina_contable or partner.oficina_contable"
+                />
                 <t t-set="role_type_code" t-value="'01'" />
             </t>
             <t t-call="l10n_es_facturae.administrative_center">
-                <t t-set="partner" t-value="partner" />
-                <t t-set="centre_code" t-value="partner.organo_gestor" />
+                <t
+                    t-set="centre_code"
+                    t-value="administrative_partner.organo_gestor or partner.organo_gestor"
+                />
                 <t t-set="role_type_code" t-value="'02'" />
             </t>
             <t t-call="l10n_es_facturae.administrative_center">
-                <t t-set="partner" t-value="partner" />
-                <t t-set="centre_code" t-value="partner.unidad_tramitadora" />
+                <t
+                    t-set="centre_code"
+                    t-value="administrative_partner.unidad_tramitadora or partner.unidad_tramitadora"
+                />
                 <t t-set="role_type_code" t-value="'03'" />
             </t>
             <t
                 t-call="l10n_es_facturae.administrative_center"
                 t-if="partner.organo_proponente"
             >
-                <t t-set="partner" t-value="partner" />
                 <t t-set="centre_code" t-value="partner.organo_proponente" />
                 <t t-set="role_type_code" t-value="'04'" />
             </t>
@@ -118,28 +124,49 @@
         </Individual>
     </template>
     <template id="address_contact">
-        <AddressInSpain t-if="partner.country_id.code == 'ES'">
-            <Address t-length="80" t-esc="partner.street + (partner.street2 or '')" />
-            <PostCode t-length="5" t-esc="partner.zip.zfill(5)" />
-            <Town t-length="50" t-esc="partner.city" />
-            <Province t-length="20" t-esc="partner.state_id.name" />
-            <CountryCode t-esc="partner.country_id.code_alpha3" />
+        <AddressInSpain t-if="administrative_partner.country_id.code == 'ES'">
+            <Address
+                t-length="80"
+                t-esc="administrative_partner.street + (administrative_partner.street2 or '')"
+            />
+            <PostCode t-length="5" t-esc="administrative_partner.zip.zfill(5)" />
+            <Town t-length="50" t-esc="administrative_partner.city" />
+            <Province t-length="20" t-esc="administrative_partner.state_id.name" />
+            <CountryCode t-esc="administrative_partner.country_id.code_alpha3" />
         </AddressInSpain>
-        <OverseasAddress t-if="partner.country_id.code != 'ES'">
-            <Address t-length="80" t-esc="partner.street + (partner.street2 or '')" />
+        <OverseasAddress t-if="administrative_partner.country_id.code != 'ES'">
+            <Address
+                t-length="80"
+                t-esc="administrative_partner.street + (administrative_partner.street2 or '')"
+            />
             <PostCodeAndTown
                 t-length="50"
-                t-esc="(partner.zip or '') + (partner.city or '')"
+                t-esc="(administrative_partner.zip or '') + (administrative_partner.city or '')"
             />
-            <Province t-length="20" t-esc="partner.state_id.name" />
-            <CountryCode t-esc="partner.country_id.code_alpha3" />
+            <Province t-length="20" t-esc="administrative_partner.state_id.name" />
+            <CountryCode t-esc="administrative_partner.country_id.code_alpha3" />
         </OverseasAddress>
         <ContactDetails>
-            <Telephone t-length="15" t-esc="partner.phone" t-if="partner.phone" />
+            <Telephone
+                t-length="15"
+                t-esc="administrative_partner.phone"
+                t-if="administrative_partner.phone"
+            />
             <TeleFax t-length="15" t-if="False" />
-            <WebAddress t-length="60" t-esc="partner.website" t-if="partner.website" />
-            <ElectronicMail t-length="60" t-esc="partner.email" t-if="partner.email" />
-            <ContactPersons t-length="40" t-esc="partner.name" />
+            <WebAddress
+                t-length="60"
+                t-esc="administrative_partner.website"
+                t-if="administrative_partner.website"
+            />
+            <ElectronicMail
+                t-length="60"
+                t-esc="administrative_partner.email"
+                t-if="administrative_partner.email"
+            />
+            <ContactPersons
+                t-length="40"
+                t-esc="administrative_partner.name or partner.name"
+            />
             <CnoCnae t-if="False" />
             <INETownCode t-if="False" />
             <AdditionalContactDetails t-length="60" t-if="False" />
@@ -149,6 +176,7 @@
         <t t-set="move" t-value="docs[0]" />
         <t t-set="company" t-value="move.company_id" />
         <t t-set="company_partner" t-value="company.partner_id" />
+        <t t-set="move_commercial_partner" t-value="move.commercial_partner_id" />
         <t t-set="move_partner" t-value="move.partner_id" />
         <t
             t-set="euro"
@@ -175,6 +203,10 @@
                     <ThirdParty>
                         <t t-call="l10n_es_facturae.entity">
                             <t t-set="partner" t-value="company_partner" />
+                            <t
+                                t-set="administrative_partner"
+                                t-value="company_partner"
+                            />
                         </t>
                     </ThirdParty>
                 </t>
@@ -223,11 +255,13 @@
                 <SellerParty>
                     <t t-call="l10n_es_facturae.entity">
                         <t t-set="partner" t-value="company_partner" />
+                        <t t-set="administrative_partner" t-value="company_partner" />
                     </t>
                 </SellerParty>
                 <BuyerParty>
                     <t t-call="l10n_es_facturae.entity">
-                        <t t-set="partner" t-value="move_partner" />
+                        <t t-set="partner" t-value="move_commercial_partner" />
+                        <t t-set="administrative_partner" t-value="move_partner" />
                     </t>
                 </BuyerParty>
             </Parties>
