@@ -5,7 +5,7 @@
 from odoo.tests import Form, common
 
 
-class TestDeliverySeurBase(common.SavepointCase):
+class TestDeliverySeurBase(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -41,7 +41,7 @@ class TestDeliverySeurBase(common.SavepointCase):
         if self.carrier:
             delivery_wizard = Form(
                 self.env["choose.delivery.carrier"].with_context(
-                    {"default_order_id": sale.id, "default_carrier_id": self.carrier.id}
+                    default_order_id=sale.id, default_carrier_id=self.carrier.id
                 )
             ).save()
             delivery_wizard.button_confirm()

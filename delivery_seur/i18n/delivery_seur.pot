@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-11 09:21+0000\n"
+"PO-Revision-Date: 2022-10-11 09:21+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -78,7 +80,7 @@ msgstr ""
 #. module: delivery_seur
 #: code:addons/delivery_seur/models/delivery_carrier.py:0
 #, python-format
-msgid "Cancel SEUR shipment (%s): %s"
+msgid "Cancel SEUR shipment (%(ref)s): %(message)s"
 msgstr ""
 
 #. module: delivery_seur
@@ -89,11 +91,6 @@ msgstr ""
 #. module: delivery_seur
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__054
 msgid "DOCUMENTOS"
-msgstr ""
-
-#. module: delivery_seur
-#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__display_name
-msgid "Display Name"
 msgstr ""
 
 #. module: delivery_seur
@@ -129,11 +126,6 @@ msgstr ""
 #. module: delivery_seur
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_printer__hp:laserjet_ii
 msgid "HP LASERJET II"
-msgstr ""
-
-#. module: delivery_seur
-#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__id
-msgid "ID"
 msgstr ""
 
 #. module: delivery_seur
@@ -179,11 +171,6 @@ msgstr ""
 #. module: delivery_seur
 #: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_label_size
 msgid "Label size"
-msgstr ""
-
-#. module: delivery_seur
-#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: delivery_seur
