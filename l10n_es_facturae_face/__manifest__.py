@@ -17,6 +17,7 @@
         "views/account_move.xml",
         "views/res_company_view.xml",
         "views/edi_exchange_record.xml",
+        "views/res_partner.xml",
     ],
     "external_dependencies": {"python": ["OpenSSL", "zeep", "xmlsec"]},
     "installable": True,
