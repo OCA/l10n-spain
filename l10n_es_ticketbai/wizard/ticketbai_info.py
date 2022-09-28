@@ -8,15 +8,13 @@ class TicketBaiGeneralInfo(models.TransientModel):
     _name = "tbai.info"
     _description = "TicketBAI general information"
 
-    tbai_enabled = fields.Boolean(
-        default=lambda self: self.env.user.company_id.tbai_enabled
-    )
+    tbai_enabled = fields.Boolean(default=lambda self: self.env.company.tbai_enabled)
     name = fields.Char(string="Developer name", compute="_compute_name")
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",
         readonly=True,
-        default=lambda self: self.env.user.company_id,
+        default=lambda self: self.env.company,
     )
     developer_id = fields.Many2one(
         comodel_name="res.partner",
