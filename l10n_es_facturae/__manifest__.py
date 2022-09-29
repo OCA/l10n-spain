@@ -40,9 +40,7 @@
         "wizard/account_move_reversal_view.xml",
         "views/account_move_view.xml",
     ],
-    "external_dependencies": {
-        "python": ["cryptography", "pyOpenSSL", "pycountry", "xmlsig"]
-    },
+    "external_dependencies": {"python": ["pycountry", "xmlsig"]},
     "installable": True,
     "maintainers": ["etobella"],
 }
