@@ -1,0 +1,46 @@
+<odoo>
+    <record model="ir.ui.view" id="delivery_manifest_wizard_form">
+        <field name="model">cttexpress.manifest.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="CTT Express Manifest Report">
+                <field name="state" invisible="1" />
+                <group attrs="{'invisible': [('state', '=', 'done')]}">
+                    <group name="config">
+                        <field name="process_code" invisible="1" />
+                        <field name="document_type" />
+                        <field name="from_date" />
+                        <field name="to_date" />
+                        <field name="carrier_ids" widget="many2many_tags" />
+                    </group>
+                </group>
+                <group attrs="{'invisible': [('state', '!=', 'done')]}">
+                    <field name="attachment_ids" widget="many2many_binary" />
+                </group>
+                <footer attrs="{'invisible': [('state', '=', 'done')]}">
+                    <button
+                        name="get_manifest"
+                        string="Get Manifest"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <act_window
+        id="action_delivery_cttexpress_manifest_wizard"
+        name="CTT Express Manifest"
+        res_model="cttexpress.manifest.wizard"
+        view_mode="form"
+        target="new"
+    />
+    <menuitem
+        id="menu_cttexpress_manifest"
+        name="CTT Express Manifest"
+        action="action_delivery_cttexpress_manifest_wizard"
+        parent="stock.menu_warehouse_report"
+        sequence="99"
+    />
+</odoo>

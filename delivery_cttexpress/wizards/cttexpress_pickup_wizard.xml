@@ -1,0 +1,41 @@
+<odoo>
+    <record model="ir.ui.view" id="delivery_pickup_wizard_form">
+        <field name="model">cttexpress.pickup.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="CTT Express Pickup Report">
+                <field name="state" invisible="1" />
+                <group attrs="{'invisible': [('state', '=', 'done')]}">
+                    <group name="config">
+                        <field name="carrier_id" widget="selection" />
+                        <field name="delivery_date" />
+                        <field name="min_hour" widget="float_time"/>
+                        <field name="max_hour" widget="float_time"/>
+                    </group>
+                </group>
+                <group attrs="{'invisible': [('state', '!=', 'done')]}">
+                    <div>
+                        <h2>Your pickup request code:</h2>
+                    </div>
+                    <field name="code" />
+                </group>
+                <footer attrs="{'invisible': [('state', '=', 'done')]}">
+                    <button
+                        name="create_pickup_request"
+                        string="Pickup request"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <act_window
+        id="action_delivery_cttexpress_pickup_wizard"
+        name="CTT Express Pickup Request"
+        res_model="cttexpress.pickup.wizard"
+        view_mode="form"
+        target="new"
+    />
+</odoo>
