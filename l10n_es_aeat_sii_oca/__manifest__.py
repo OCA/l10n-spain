@@ -15,7 +15,7 @@
 
 {
     "name": "Suministro Inmediato de Información en el IVA",
-    "version": "15.0.2.4.0",
+    "version": "15.0.2.4.1",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Acysos S.L.,"
@@ -33,7 +33,7 @@
     "installable": True,
     "development_status": "Mature",
     "maintainers": ["pedrobaeza"],
-    "external_dependencies": {"python": ["zeep", "requests", "cryptography"]},
+    "external_dependencies": {"python": ["zeep", "requests"]},
     "depends": ["account_invoice_refund_link", "l10n_es", "l10n_es_aeat", "queue_job"],
     "data": [
         "data/aeat_sii_queue_job.xml",
