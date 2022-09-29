@@ -26,6 +26,7 @@ try:
 except (ImportError, IOError) as err:
     _logger.debug(err)
 
+# FIXME To be removed in v16, as it is now specified in the manifest
 if tuple(map(int, cryptography.__version__.split("."))) < (3, 0):
     _logger.warning(
         "Cryptography version is not supported. Upgrade to 3.0.0 or greater."
@@ -78,6 +79,7 @@ class L10nEsAeatCertificatePassword(models.TransientModel):
             record.folder,
         )
         file = base64.decodebytes(record.file)
+        # FIXME To be removed in v16, as it is now specified in the manifest
         if tuple(map(int, cryptography.__version__.split("."))) < (3, 0):
             raise exceptions.UserError(
                 _("Cryptography version is not supported. Upgrade to 3.0.0 or greater.")
