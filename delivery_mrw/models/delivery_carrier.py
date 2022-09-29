@@ -363,7 +363,8 @@ class DeliveryCarrier(models.Model):
                 "Bultos": "",
                 # Será obligatorio informar en caso que no haya desglose de bultos.
                 "NumeroBultos": picking.number_of_packages,
-                "Peso": picking.shipping_weight,
+                # El separador decimal debe de ser la coma (,).
+                "Peso": str(picking.shipping_weight).replace(".", ","),
                 "Notificaciones": self.get_notificaciones(receiving_partner)
                 # Hay más campos no obligatorios no puestos aqui
             },
