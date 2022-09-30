@@ -46,9 +46,8 @@ class L10nEsAccountStatementImportN43(common.TransactionCase):
     def test_import_n43(self):
         action = self.import_wizard.import_file_button()
         self.assertTrue(action)
-        self.assertTrue(action.get("context").get("statement_line_ids"))
-        statements = self.env["account.bank.statement.line"].browse(
-            action["context"]["statement_line_ids"]
+        statements = self.env["account.bank.statement.line"].search(
+            [("statement_id.journal_id", "=", self.journal.id)]
         )
         statement = statements[2].statement_id
         self.assertEqual(statement.date, fields.Date.to_date("2016-02-01"))
@@ -65,8 +64,7 @@ class L10nEsAccountStatementImportN43(common.TransactionCase):
         self.journal.n43_date_type = "fecha_oper"
         action = self.import_wizard.import_file_button()
         self.assertTrue(action)
-        self.assertTrue(action.get("context").get("statement_line_ids"))
-        statements = self.env["account.bank.statement.line"].browse(
-            action["context"]["statement_line_ids"]
+        statements = self.env["account.bank.statement.line"].search(
+            [("statement_id.journal_id", "=", self.journal.id)]
         )
         self.assertEqual(statements[2].date, fields.Date.to_date("2016-05-26"))
