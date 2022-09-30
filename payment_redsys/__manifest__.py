@@ -7,6 +7,7 @@
     'version': '12.0.2.0.0',
     'author': "Tecnativa,"
               "Odoo Community Association (OCA)",
+    'website': 'https://github.com/OCA/l10n-spain',
     'depends': [
         'payment',
         'website_sale',
