@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="l10n_es_aeat_mod303.aeat_mod303_202107_map_line_28" model="l10n.es.aeat.map.tax.line">
+        <field name="tax_ids" eval="[(4, ref('l10n_es_extra_data.account_tax_template_p_iva5_sc'))]"/>
+    </record>
+    <record id="l10n_es_aeat_mod303.aeat_mod303_202107_map_line_29" model="l10n.es.aeat.map.tax.line">
+        <field name="tax_ids" eval="[(4, ref('l10n_es_extra_data.account_tax_template_p_iva5_sc'))]"/>
+    </record>
+    <record id="l10n_es_aeat_mod303.aeat_mod303_202107_map_line_40" model="l10n.es.aeat.map.tax.line">
+        <field name="tax_ids" eval="[(4, ref('l10n_es_extra_data.account_tax_template_p_iva5_sc'))]"/>
+    </record>
+    <record id="l10n_es_aeat_mod303.aeat_mod303_202107_map_line_41" model="l10n.es.aeat.map.tax.line">
+        <field name="tax_ids" eval="[(4, ref('l10n_es_extra_data.account_tax_template_p_iva5_sc'))]"/>
+    </record>
+</odoo>
