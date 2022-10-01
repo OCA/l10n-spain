@@ -52,6 +52,7 @@ setuptools.setup(
         'odoo11-addon-l10n_es_ticketbai_pos',
         'odoo11-addon-l10n_es_toponyms',
         'odoo11-addon-l10n_es_vat_book',
+        'odoo11-addon-l10n_es_vat_book_extra_data',
         'odoo11-addon-l10n_es_vat_book_oss',
         'odoo11-addon-payment_redsys',
     ],
