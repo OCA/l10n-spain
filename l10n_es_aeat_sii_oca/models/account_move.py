@@ -649,6 +649,7 @@ class AccountMove(models.Model):
         taxes_sfrisp = self._get_sii_taxes_map(["SFRISP"])
         taxes_sfrns = self._get_sii_taxes_map(["SFRNS"])
         taxes_sfrnd = self._get_sii_taxes_map(["SFRND"])
+        taxes_sfrbi = self._get_sii_taxes_map(["SFRBI"])
         taxes_not_in_total = self._get_sii_taxes_map(["NotIncludedInTotal"])
         taxes_not_in_total_neg = self._get_sii_taxes_map(["NotIncludedInTotalNegative"])
         base_not_in_total = self._get_sii_taxes_map(["BaseNotIncludedInTotal"])
@@ -675,6 +676,8 @@ class AccountMove(models.Model):
             tax_dict = self._get_sii_tax_dict(tax_line, tax_lines)
             if tax in taxes_sfrisp + taxes_sfrs:
                 tax_amount += tax_line["amount"]
+            if tax in taxes_sfrbi:
+                tax_dict["BienInversion"] = "S"
             if tax in taxes_sfrns:
                 tax_dict.pop("TipoImpositivo")
                 tax_dict.pop("CuotaSoportada")
