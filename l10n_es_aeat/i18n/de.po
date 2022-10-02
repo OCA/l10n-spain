@@ -108,6 +108,7 @@ msgstr ""
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod111_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod115_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod123_report_name_uniq
+#: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod216_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod303_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod347_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod349_report_name_uniq
@@ -501,12 +502,6 @@ msgstr "Erstellt am"
 #. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__sum_type__credit
 msgid "Credit"
-msgstr ""
-
-#. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/aeat_certificate_password.py:0
-#, python-format
-msgid "Cryptography version is not supported. Upgrade to 3.0.0 or greater."
 msgstr ""
 
 #. module: l10n_es_aeat
