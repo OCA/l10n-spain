@@ -10,6 +10,7 @@ from datetime import datetime
 import pytz
 import xmlsig
 from cryptography import x509
+from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.serialization import Encoding
 from lxml import etree
@@ -110,7 +111,9 @@ class ReportFacturae(models.AbstractModel):
         xmlsig.template.x509_data_add_certificate(x509_data)
         xmlsig.template.add_key_value(key_info)
         with open(public_cert, "rb") as f:
-            certificate = x509.load_pem_x509_certificate(f.read())
+            certificate = x509.load_pem_x509_certificate(
+                f.read(), backend=default_backend()
+            )
         xmlsig.template.add_reference(
             sign,
             xmlsig.constants.TransformSha1,
@@ -229,7 +232,7 @@ class ReportFacturae(models.AbstractModel):
         ctx.public_key = certificate.public_key()
         with open(private_key, "rb") as f:
             ctx.private_key = serialization.load_pem_private_key(
-                f.read(), password=None
+                f.read(), password=None, backend=default_backend()
             )
         root.append(sign)
         ctx.sign(sign)
