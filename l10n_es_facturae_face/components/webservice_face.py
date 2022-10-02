@@ -6,6 +6,7 @@ import base64
 import logging
 
 from cryptography import x509
+from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
 
 from odoo.exceptions import UserError, ValidationError
@@ -30,9 +31,11 @@ class WebServiceFace(Component):
 
     def _get_client(self, public_crt, private_key):
         with open(public_crt, "rb") as f:
-            cert = x509.load_pem_x509_certificate(f.read())
+            cert = x509.load_pem_x509_certificate(f.read(), backend=default_backend())
         with open(private_key, "rb") as f:
-            key = serialization.load_pem_private_key(f.read(), None)
+            key = serialization.load_pem_private_key(
+                f.read(), None, backend=default_backend()
+            )
         return Client(
             wsdl=self.collection.url,
             wsse=MemorySignature(
@@ -41,7 +44,8 @@ class WebServiceFace(Component):
                 x509.load_pem_x509_certificate(
                     base64.b64decode(
                         self.env.ref("l10n_es_facturae_face.face_certificate").datas
-                    )
+                    ),
+                    backend=default_backend(),
                 ),
             ),
         )
