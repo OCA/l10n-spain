@@ -21,6 +21,7 @@ from lxml.etree import QName
 try:
     import xmlsig
     from cryptography import x509
+    from cryptography.hazmat.backends import default_backend
     from cryptography.hazmat.primitives import serialization
     from zeep import ns
     from zeep.exceptions import SignatureVerificationFailed
@@ -154,7 +155,9 @@ def verify_envelope(envelope, cert):
     security = header.find(QName(ns.WSSE, "Security"))
     signature = security.find(QName(ns.DS, "Signature"))
     key_text = security.find(QName(ns.WSSE, "BinarySecurityToken")).text
-    key = x509.load_der_x509_certificate(base64.b64decode(key_text))
+    key = x509.load_der_x509_certificate(
+        base64.b64decode(key_text), backend=default_backend()
+    )
     ctx = xmlsig.SignatureContext()
     ctx.public_key = key.public_key()
     try:
