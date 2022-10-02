@@ -4,8 +4,9 @@
 import base64
 from datetime import datetime, timedelta
 
+import cryptography
 from cryptography import x509
-from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.primitives.serialization import BestAvailableEncryption, pkcs12
 from cryptography.x509 import oid
@@ -13,13 +14,61 @@ from cryptography.x509 import oid
 from odoo import exceptions
 from odoo.tests import common
 
+CRYPTOGRAPHY_VERSION_3 = tuple(map(int, cryptography.__version__.split("."))) >= (3, 0)
+if not CRYPTOGRAPHY_VERSION_3:
+    from cryptography.hazmat.backends import default_backend
+
+    def generate_private_key(public_exponent, key_size):
+        return rsa.generate_private_key(
+            public_exponent=public_exponent,
+            key_size=key_size,
+            backend=default_backend(),
+        )
+
+    from OpenSSL import crypto
+
+    def serialize_key_and_certificates(private_key, certificate, password):
+        p12 = crypto.PKCS12()
+        p12.set_privatekey(
+            crypto.load_privatekey(
+                crypto.FILETYPE_PEM,
+                private_key.private_bytes(
+                    encoding=serialization.Encoding.PEM,
+                    format=serialization.PrivateFormat.PKCS8,
+                    encryption_algorithm=serialization.NoEncryption(),
+                ),
+            )
+        )
+        p12.set_certificate(
+            crypto.load_certificate(
+                crypto.FILETYPE_PEM,
+                certificate.public_bytes(
+                    encoding=serialization.Encoding.PEM,
+                ),
+            )
+        )
+        p12data = p12.export(password)
+        return p12data
+
+else:
+    generate_private_key = rsa.generate_private_key
+
+    def serialize_key_and_certificates(private_key, certificate, password):
+        return pkcs12.serialize_key_and_certificates(
+            None,
+            private_key,
+            certificate,
+            None,
+            BestAvailableEncryption(password),
+        )
+
 
 class TestL10nEsAeatCertificateBase(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.certificate_password = b"794613"
-        private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+        private_key = generate_private_key(public_exponent=65537, key_size=2048)
         public_key = private_key.public_key()
         builder = x509.CertificateBuilder()
         cls.certificate_name = "Test Certificate"
@@ -42,13 +91,14 @@ class TestL10nEsAeatCertificateBase(common.TransactionCase):
             .serial_number(x509.random_serial_number())
             .public_key(public_key)
         )
-        certificate = builder.sign(private_key=private_key, algorithm=hashes.SHA256())
-        content = pkcs12.serialize_key_and_certificates(
-            None,
+        sign_params = {"private_key": private_key, "algorithm": hashes.SHA256()}
+        if not CRYPTOGRAPHY_VERSION_3:
+            sign_params["backend"] = default_backend()
+        certificate = builder.sign(**sign_params)
+        content = serialize_key_and_certificates(
             private_key,
             certificate,
-            None,
-            BestAvailableEncryption(cls.certificate_password),
+            cls.certificate_password,
         )
         cls.sii_cert = cls.env["l10n.es.aeat.certificate"].create(
             {
