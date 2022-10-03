@@ -240,6 +240,13 @@ class DeliveryCarrier(models.Model):
         if not int(response["Estado"]):
             raise UserError(_("MRW Error: %s)" % response["Mensaje"]))
 
+    def remove_found_regex_from_string(self, regex, string):
+        limit_inf = regex.span()[0]
+        limit_sup = regex.span()[1]
+        string = string[:limit_inf] + string[limit_sup:]
+        regex = "0" if regex[0] in ("S/N", "s/n") else regex[0]
+        return regex, string
+
     def mrw_address(self, partner, international):
         # Method to get parameters CodigoTipoVia. Via, Numero, Resto from odoo address.
         # If street and number are in the first address line, and floor and door in the
@@ -261,29 +268,31 @@ class DeliveryCarrier(models.Model):
         numero = re.search(
             r"(?!(\d+[ºª]?-))(?!(\d+[ºª]))(?<![-\d])\d+", street
         ) or re.search(r"S\/N|s\/n", street)
-
         if not numero:
-            # there are street numbers in an interval like 1-3 that indicate
-            # the same building/house, we also search in street 2
-            numero = (
-                re.search(r"\d+-\d+", street)
-                or re.search(r"(?!(\d+[ºª]?-))(?!(\d+[ºª]))(?<![-\d])\d+", street2)
-                or re.search(r"S\/N|s\/n", street2)
-            )
+            if re.search(r"\d+-\d+", street):
+                # there are street numbers in an interval like 1-3 that indicate
+                # the same building/house. But MRW API doesn't accept them.
+                raise UserError(
+                    _(
+                        "Solamente se permiten caracteres numéricos en el campo número"
+                        " de la dirección. Número: %s"
+                    )
+                    % re.search(r"\d+-\d+", street)[0]
+                )
+            # we search in street 2
+            numero2 = re.search(
+                r"(?!(\d+[ºª]?-))(?!(\d+[ºª]))(?<![-\d])\d+", street2
+            ) or re.search(r"S\/N|s\/n", street2)
+            if numero2:
+                numero2, street2 = self.remove_found_regex_from_string(numero2, street2)
         if numero:
-            limit_inf = numero.span()[0]
-            limit_sup = numero.span()[1]
-            street = street[:limit_inf] + street[limit_sup:]
+            numero, street = self.remove_found_regex_from_string(numero, street)
             piso_puerta = re.search(r"(\d+[ºª]?[- ]?)(\d+[ºª]?)", street)
             if piso_puerta:
-                street2 = piso_puerta[0] + " " + street2
-                limit_inf = piso_puerta.span()[0]
-                limit_sup = piso_puerta.span()[1]
-                street = street[:limit_inf] + street[limit_sup:]
-            numero = (
-                "0" if numero[0] in ("S/N", "s/n") else numero[0]
-            )  # letters not supported
-
+                piso_puerta, street = self.remove_found_regex_from_string(
+                    piso_puerta, street
+                )
+                street2 = piso_puerta + " " + street2
         # check if in the beggining of the street we have something like cl/ cl. ...
         street_type = re.search(r"^[a-zA-Z]{1,4}[\/|\.]", street)
         if street_type:
@@ -294,7 +303,7 @@ class DeliveryCarrier(models.Model):
         return {
             "CodigoTipoVia": street_type or "",
             "Via": street,
-            "Numero": numero[0] or "",
+            "Numero": numero or numero2 or "",
             "Resto": street2 or "",
             "CodigoPostal": partner.zip or "",
             "Poblacion": partner.city or "",
