@@ -23,7 +23,7 @@ class TicketBaiCertificate(models.Model):
         string="Company",
         comodel_name="res.company",
         required=True,
-        default=lambda self: self.env.user.company_id.id,
+        default=lambda self: self.env.company.id,
     )
     datas = fields.Binary("P12 Certificate", required=True, attachment=True)
     password = fields.Char(default="")

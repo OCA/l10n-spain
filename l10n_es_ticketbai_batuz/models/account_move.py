@@ -134,7 +134,7 @@ class AccountMove(models.Model):
     @api.model
     def create(self, vals):
         company = self.env["res.company"].browse(
-            vals.get("company_id", self.env.user.company_id.id)
+            vals.get("company_id", self.env.company.id)
         )
         tbai_tax_agency_id = company.tbai_tax_agency_id
         if (
