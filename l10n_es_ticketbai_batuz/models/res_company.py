@@ -45,6 +45,8 @@ class ResCompany(models.Model):
             # El plazo maximo es 25 del mes siguiente a fin de trimestre
             today = datetime.now()
             quarter = int((datetime.now().month - 1) / 3 + 1)
-            return datetime(today.year, quarter * 3 + 1, 1) - timedelta(days=1)
+            return datetime(
+                today.year + ((quarter * 3 + 1) // 12), (quarter * 3 + 1) % 12, 1
+            ) - timedelta(days=1)
         else:
             return None
