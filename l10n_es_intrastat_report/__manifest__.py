@@ -12,6 +12,7 @@
     'license': 'AGPL-3',
     'summary': 'Spanish Intrastat Product Declaration',
     'author': 'FactorLibre,Noviat,Tecnativa,Odoo Community Association (OCA)',
+    'website': 'https://github.com/OCA/l10n-spain',
     'depends': [
         'intrastat_product',
         'l10n_es_aeat',
