@@ -2,7 +2,7 @@
 
 {
     "name": "AEAT modelo 130",
-    "version": "12.0.1.3.0",
+    "version": "12.0.1.3.1",
     "author": "Tecnativa, "
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
