@@ -198,7 +198,7 @@ odoo.define('l10n_es_ticketbai_pos.models', function (require) {
                 var product = this.db.get_product_by_barcode(parsed_code.base_code);
                 if (!product) {
                     res = false;
-                } else if (1 != product.taxes_id) {
+                } else if (1 !== product.taxes_id.length) {
                     ok = false;
                     this.gui.show_popup('error', {
                         title: _t('TicketBAI'),
