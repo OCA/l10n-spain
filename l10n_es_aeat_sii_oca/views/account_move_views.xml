@@ -37,11 +37,6 @@
                             name="sii_description"
                             attrs="{'required': [('sii_enabled', '=', True)]}"
                         />
-                        <field name="thirdparty_invoice" />
-                        <field
-                            name="thirdparty_number"
-                            attrs="{'required': [('thirdparty_invoice', '=', True)], 'invisible': [('thirdparty_invoice', '=', False)]}"
-                        />
                         <field
                             name="sii_refund_type"
                             attrs="{'required': [('sii_enabled', '=', True),('move_type', 'in', ('out_refund','in_refund'))], 'invisible': [('move_type', 'not in', ('out_refund','in_refund'))]}"

@@ -12,6 +12,7 @@
 import json
 import logging
 
+from lxml import etree
 from requests import Session
 
 from odoo import _, api, exceptions, fields, models
@@ -1463,3 +1464,66 @@ class AccountMove(models.Model):
 
     def cancel_one_invoice(self):
         self.sudo()._cancel_invoice_to_sii()
+
+    @api.model
+    def fields_view_get(
+        self, view_id=None, view_type="form", toolbar=False, submenu=False
+    ):
+        """Thirdparty fields are added to the form view only if they don't exist
+        previously (l10n_es_facturae addon also has the same field names).
+        """
+        res = super().fields_view_get(
+            view_id=view_id,
+            view_type=view_type,
+            toolbar=toolbar,
+            submenu=submenu,
+        )
+        if view_type == "form":
+            doc = etree.XML(res["arch"])
+            node = doc.xpath("//field[@name='thirdparty_invoice']")
+            node_facturae = doc.xpath("//field[@name='facturae']")
+            # If facturae field exists, we will let l10n_en_facturae add these fields.
+            if node or node_facturae:
+                return res
+            for node in doc.xpath("//field[@name='sii_description'][last()]"):
+                attrs = {
+                    "required": [("thirdparty_invoice", "=", True)],
+                    "invisible": [("thirdparty_invoice", "=", False)],
+                }
+                modifiers = {
+                    "required": attrs["required"],
+                    "invisible": attrs["invisible"],
+                }
+                elem = etree.Element(
+                    "field",
+                    {
+                        "name": "thirdparty_number",
+                        "attrs": str(attrs),
+                        "modifiers": json.dumps(modifiers),
+                    },
+                )
+                node.addnext(elem)
+                attrs = {
+                    "invisible": [
+                        (
+                            "move_type",
+                            "not in",
+                            ("in_invoice", "out_invoice", "out_refund", "in_refund"),
+                        )
+                    ],
+                }
+                modifiers = {"invisible": attrs["invisible"]}
+                elem = etree.Element(
+                    "field",
+                    {
+                        "name": "thirdparty_invoice",
+                        "attrs": str(attrs),
+                        "modifiers": json.dumps(modifiers),
+                    },
+                )
+                node.addnext(elem)
+            res["arch"] = etree.tostring(doc)
+            res["fields"].update(
+                self.fields_get(["thirdparty_number", "thirdparty_invoice"])
+            )
+        return res
