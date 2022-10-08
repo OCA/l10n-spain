@@ -645,7 +645,7 @@ class AccountInvoice(models.Model):
     # COMMON LROE METHODS
     @api.model
     def _prepare_lroe_operation_values(
-        self, company_id=False, type=None, chapter=None, subchapter=None
+        self, company_id=False, optn_type=None, chapter=None, subchapter=None
     ):
         """
         Buscamos lroe.operation pendiente de envío con misma operacion (type)
@@ -656,14 +656,15 @@ class AccountInvoice(models.Model):
         :param subchapter: LROEChapterEnum.value
         :return: lroe.operation object if any
         """
-        if not chapter or not type:
+        if not chapter or not optn_type:
             raise exceptions.ValidationError(
-                _("Chapter and type are required for search a pending LROE Operation")
+                _("Chapter and Operation Type are required"
+                  " for search a pending LROE Operation")
             )
         chapter_id = self.env["lroe.chapter"].search([("code", "=", chapter)], limit=1)
         res = {
             "lroe_chapter_id": chapter_id.id,
-            "type": type.value,
+            "type": optn_type.value,
         }
         if subchapter:
             subchapter_id = self.env["lroe.chapter"].search([("code", "=", subchapter)])
@@ -686,7 +687,7 @@ class AccountInvoice(models.Model):
         chapter, subchapter = self._get_chapter_subchapter()
         vals = self._prepare_lroe_operation_values(
             company_id=self.company_id.id,
-            type=operation_type,
+            optn_type=operation_type,
             chapter=chapter,
             subchapter=subchapter,
         )
@@ -769,6 +770,10 @@ class AccountInvoice(models.Model):
 
     # LROE STATE MANAGEMENT
     @api.multi
+    def set_lroe_state_not_sent(self):
+        self.write({"lroe_state": "not_sent"})
+
+    @api.multi
     def set_lroe_state_pending(self):
         self.write({"lroe_state": "pending"})
 
@@ -802,7 +807,7 @@ class AccountInvoice(models.Model):
         if not self.mapped("lroe_operation_ids")._cancel_jobs():
             raise exceptions.Warning(
                 _(
-                    "You can not set to draft this invoice because"
+                    "You can not cancel this invoice because"
                     " there is a job running!"
                 )
             )
@@ -810,7 +815,6 @@ class AccountInvoice(models.Model):
         lroe_invoices = self.sudo().filtered(
             lambda x: x.tbai_enabled
             and x.date and x.date >= x.journal_id.tbai_active_date
-            and x.lroe_state not in ("error")
             and (
                 x.type == "in_invoice"
                 or (
@@ -822,13 +826,25 @@ class AccountInvoice(models.Model):
             )
         )
         for invoice in lroe_invoices:
-            if invoice.lroe_state == "recorded":
+            # If the LORE operation hasn't been sent yet.
+            # It's not necessary a trace or register of the operation.
+            # We can cancel the invoice and remove the LROE information.
+            if invoice.lroe_state in ("pending", "error"):
+                invoice.sudo().lroe_response_line_ids.unlink()
+                invoice.sudo().lroe_operation_ids.unlink()
+                invoice.update({
+                    "lroe_state": "not_sent",
+                    'lroe_response_line_ids': False,
+                    'lroe_operation_ids': False,
+                    'lroe_invoice_dict': False,
+                })
+            elif invoice.lroe_state in (
+                    "recorded", "recorded_warning", "recorded_modified"):
                 invoice.set_lroe_state_recorded_modified()
-            elif invoice.lroe_state == "cancel_modified":
-                # Case when repoen a cancelled invoice, validate and cancel
-                # again without any LROE communication.
-                invoice.set_lroe_state_cancel()
-        lroe_invoices._prepare_invoice_for_lroe(operation_type=LROEOperationEnum.cancel)
+                lroe_invoices._prepare_invoice_for_lroe(
+                    operation_type=LROEOperationEnum.cancel
+                )
+
         return res
 
     @api.multi
