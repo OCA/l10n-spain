@@ -55,9 +55,9 @@ msgstr "Capítulo"
 #. module: l10n_es_ticketbai_batuz
 #: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:661
 #, python-format
-msgid "Chapter and type are required for search a pending LROE Operation"
+msgid ""
+"Chapter and Operation Type are required for search a pending LROE Operation"
 msgstr ""
-"El capitulo y tipo son obligatorios para buscar operaciones LROE pendientes"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_res_company__use_connector
@@ -152,13 +152,13 @@ msgid "LROE API URL"
 msgstr "LROE API URL"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:726
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:727
 #, python-format
 msgid "LROE Build: method for model %s chapter %s not implemented!"
 msgstr "¡LROE: método para modelo %s capítulo %s no implementado!"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:707
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:708
 #, python-format
 msgid "LROE Build: operation type is necessary!"
 msgstr "¡LROE: el tipo de operación es necesario!"
@@ -407,7 +407,13 @@ msgid "With delay"
 msgstr "Con retardo"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:712
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:809
+#, python-format
+msgid "You can not cancel this invoice because there is a job running!"
+msgstr ""
+
+#. module: l10n_es_ticketbai_batuz
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:713
 #, python-format
 msgid ""
 "You can not communicate this invoice at this moment because there is a job "
@@ -417,13 +423,17 @@ msgstr ""
 "ejecutándose!"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:804
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:838
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:854
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr ""
 "¡En este momento no puede poner en borrador esta factura porque hay un "
 "trabajo ejecutándose!"
+
+#~ msgid "Chapter and type are required for search a pending LROE Operation"
+#~ msgstr ""
+#~ "El capitulo y tipo son obligatorios para buscar operaciones LROE "
+#~ "pendientes"
 
 #~ msgid "Responses"
 #~ msgstr "Respuestas"

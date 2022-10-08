@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_ticketbai_batuz
+# 	* l10n_es_ticketbai_batuz
 #
 msgid ""
 msgstr ""
@@ -54,13 +54,15 @@ msgstr "Kapitulua"
 #. module: l10n_es_ticketbai_batuz
 #: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:661
 #, python-format
-msgid "Chapter and type are required for search a pending LROE Operation"
+msgid ""
+"Chapter and Operation Type are required for search a pending LROE Operation"
 msgstr ""
-"Kapitulua eta mota beharrezkoak dira zain dagoen LROE Eragiketa bat bilatzeko"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_res_company__use_connector
-msgid "Check it to use connector instead of sending the invoice directly when it's validated"
+msgid ""
+"Check it to use connector instead of sending the invoice directly when it's "
+"validated"
 msgstr ""
 "Markatu konektorea erabiltzeko, faktura balidatutakoan zuzenean bidali "
 "beharrean"
@@ -68,7 +70,9 @@ msgstr ""
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_res_partner__lroe_simplified_invoice
 #: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_res_users__lroe_simplified_invoice
-msgid "Checking this mark, invoices done to this partner will be sent to LROE as simplified invoices."
+msgid ""
+"Checking this mark, invoices done to this partner will be sent to LROE as "
+"simplified invoices."
 msgstr ""
 "Marka hau markatuta, bazkide honi egindako fakturak LROEra bidaliko dira "
 "faktura sinplifikatu gisa."
@@ -146,14 +150,14 @@ msgid "LROE API URL"
 msgstr "LROE API URL"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:726
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:727
 #, python-format
 msgid "LROE Build: method for model %s chapter %s not implemented!"
 msgstr ""
 "LROE Eraikuntza: %s eredurako %s kapitulurako metodoa ez da inplementatu!"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:707
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:708
 #, python-format
 msgid "LROE Build: operation type is necessary!"
 msgstr "LROE Eraikitzea: eragiketa mota beharrezkoa da!"
@@ -402,15 +406,27 @@ msgid "With delay"
 msgstr "Atzerapenarekin"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:712
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:809
 #, python-format
-msgid "You can not communicate this invoice at this moment because there is a job running!"
+msgid "You can not cancel this invoice because there is a job running!"
+msgstr ""
+
+#. module: l10n_es_ticketbai_batuz
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:713
+#, python-format
+msgid ""
+"You can not communicate this invoice at this moment because there is a job "
+"running!"
 msgstr ""
 "Une honetan ezin duzu faktura hau jakinarazi, lan bat martxan dagoelako!"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:804
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:838
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:854
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr "Ezin duzu faktura hau zirriborrora aldatu, lan bat martxan dagoelako!"
+
+#~ msgid "Chapter and type are required for search a pending LROE Operation"
+#~ msgstr ""
+#~ "Kapitulua eta mota beharrezkoak dira zain dagoen LROE Eragiketa bat "
+#~ "bilatzeko"
