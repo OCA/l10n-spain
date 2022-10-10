@@ -1,5 +1,6 @@
 # Copyright 2021 Binovo IT Human Project SL
 # Copyright 2021 Digital5, S.L.
+# Copyright 2022 Soluciones Tecnológicas Freedoo S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import models, fields, api, _
 
@@ -64,6 +65,5 @@ class AccountChartTemplate(models.Model):
                         'tax_id': tax.id,
                         'tbai_vat_exemption_key': exemption.tbai_vat_exemption_key.id
                     }))
-            if tbai_vat_exemptions:
-                fiscal_position.tbai_vat_exemption_ids = tbai_vat_exemptions
+
         return res_id
