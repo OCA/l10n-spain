@@ -13,7 +13,7 @@ class TestEcoembesMisc(TestEcoembesBase):
         cls.product_composition = cls.env["product.composition"]
         cls.ecoembes_material_01 = cls.env.ref("ecoembes.ecoembes_material_01")
         cls.product = cls.env["product.product"].create(
-            {"name": "Test Product", "default_code": "1234"}
+            {"name": "Test Product", "default_code": "ECOEMBES"}
         )
 
     def test_ecoembes_market_type_name_get(self):
@@ -81,10 +81,10 @@ class TestEcoembesMisc(TestEcoembesBase):
             }
         )
         self.assertEquals(record.product_tmpl_id, self.product.product_tmpl_id)
-        self.assertEquals(record.default_code, "1234")
+        self.assertEquals(record.default_code, "ECOEMBES")
         self.assertEquals(self.product.composition_ids.ids, [record.id])
         product2 = self.env["product.product"].create(
-            {"name": "Test Product2", "default_code": "1234"}
+            {"name": "Test Product2", "default_code": "ECOEMBES2"}
         )
         record.write({"product_id": product2.id})
         self.assertEquals(record.product_tmpl_id, product2.product_tmpl_id)
