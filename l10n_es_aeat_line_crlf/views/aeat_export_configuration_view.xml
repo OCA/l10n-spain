@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019 Acysos S.L. - Ignacio Ibeas Izquierdo
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="aeat_model_export_config_line_crlf_form" model="ir.ui.view">
+        <field name="name">aeat.model.export.config.line.crlf.form</field>
+        <field name="model">aeat.model.export.config.line</field>
+        <field
+            name="inherit_id"
+            ref="l10n_es_aeat.aeat_model_export_config_line_form"
+        />
+        <field name="arch" type="xml">
+            <field name="alignment" position="after">
+                <field name="line_crlf" />
+            </field>
+        </field>
+    </record>
+
+</odoo>
