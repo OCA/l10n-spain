@@ -5,9 +5,10 @@
 
 {
     "name": "Retenciones IRNR (No residentes)",
-    "version": "15.0.1.0.0",
+    "version": "15.0.1.0.1",
     "category": "Localization",
     "depends": ["l10n_es"],
+    "development_status": "Mature",
     "data": [
         "data/account_data.xml",
         "data/taxes_irnr.xml",
