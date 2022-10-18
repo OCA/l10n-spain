@@ -13,10 +13,19 @@ class StockPicking(models.Model):
         if self.delivery_type != "mrw" or not tracking_ref:
             return
         label = self.carrier_id.mrw_get_label(tracking_ref, self)
-        label_name = "schenker_label_{}.pdf".format(tracking_ref)
+        label_name = "mrw_label_{}.pdf".format(tracking_ref)
+        body = _("MRW Shipping Label:")
+        attachment = []
+        if label["EtiquetaFile"]:
+            attachment = [
+                (
+                    label_name,
+                    label["EtiquetaFile"],
+                )
+            ]
         self.message_post(
-            body=(_("MRW label for %s") % tracking_ref),
-            attachments=[(label_name, label["EtiquetaFile"])],
+            body=body,
+            attachments=attachment,
         )
         return label
 

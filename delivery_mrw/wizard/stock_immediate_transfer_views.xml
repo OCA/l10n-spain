@@ -9,12 +9,18 @@
         <field name="arch" type="xml">
 
             <xpath expr="//footer" position="before">
-                <p attrs="{'invisible': [('mrw_to_address', '=', False)]}">
+                <p
+                    name="mrw_address_text"
+                    attrs="{'invisible': [('mrw_to_address', '=', False)]}"
+                >
                     Check that the address sent to MRW is correct, otherwise you should
                     change it in the partner form. Try to put street and number in the
                     first address line, and floor and door number in the second one.
                 </p>
-                <group attrs="{'invisible': [('mrw_to_address', '=', False)]}">
+                <group
+                    name="mrw_address"
+                    attrs="{'invisible': [('mrw_to_address', '=', False)]}"
+                >
                     <field name="mrw_to_address" />
                 </group>
             </xpath>

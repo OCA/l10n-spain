@@ -5,24 +5,6 @@
         <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form" />
         <field name="groups_id" eval="[(4, ref('base.group_no_one'))]" />
         <field name="arch" type="xml">
-            <xpath expr="//div[@name='tracking']" position="inside">
-                <!-- extra button that is visible outside of "done" to cancel pickups -->
-                <button
-                    type='object'
-                    class="fa fa-arrow-right oe_link"
-                    name="cancel_shipment"
-                    string="Cancel"
-                    attrs="{'invisible':[
-                        '|',
-                        '|',
-                        '|',
-                        ('carrier_tracking_ref','=',False),
-                        ('delivery_type','in', ['fixed', 'base_on_rule']),
-                        ('delivery_type','=',False),
-                        ('state','=','done')]
-                    }"
-                />
-            </xpath>
             <xpath expr="//header" position='inside'>
                 <button
                     name="mrw_get_label"
