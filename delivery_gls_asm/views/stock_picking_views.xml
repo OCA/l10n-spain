@@ -17,9 +17,11 @@
                         '|',
                         '|',
                         '|',
+                        '|',
                         ('carrier_tracking_ref','=',False),
                         ('delivery_type','in', ['fixed', 'base_on_rule']),
                         ('delivery_type','=',False),
+                        ('delivery_type','!=','gls_asm'),
                         ('state','=','done')]
                     }"
                 />
