@@ -30,7 +30,6 @@ class TestL10nEsPartner(common.TransactionCase):
         partner_obj = self.env["res.partner"]
         self.assertTrue(partner_obj.name_search("prueba"))
         self.assertTrue(partner_obj.name_search("comercial"))
-        self.assertTrue(partner_obj.search([("name", "ilike", "comercial")]))
 
     def test_import_banks(self):
         # Then import banks
