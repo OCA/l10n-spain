@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <notebook position="inside">
                 <page
-                    string='Factura-E'
+                    string='Facturae'
                     name="page_facturae"
                     groups="base.group_erp_manager"
                 >

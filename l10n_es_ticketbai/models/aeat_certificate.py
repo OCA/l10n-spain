@@ -10,6 +10,7 @@ _logger = logging.getLogger(__name__)
 
 try:
     from cryptography import x509
+    from cryptography.hazmat.backends import default_backend
     from cryptography.hazmat.primitives import serialization
 except (ImportError, IOError) as err:
     _logger.error(err)
@@ -36,8 +37,10 @@ class L10nEsAeatCertificate(models.Model):
                 f_pem = f_pem.read()
                 if isinstance(f_pem, str):
                     f_pem = bytes(f_pem, "utf-8")
-                pkey = serialization.load_pem_private_key(f_pem, password=None)
-                cert = x509.load_pem_x509_certificate(f_crt)
+                pkey = serialization.load_pem_private_key(
+                    f_pem, password=None, backend=default_backend()
+                )
+                cert = x509.load_pem_x509_certificate(f_crt, backend=default_backend())
                 p12 = (pkey, cert, [])
         return p12
 

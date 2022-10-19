@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/batuz_TiposBasicos.xsd">
+	<!-- Cadena de 1 caracteres -->
+	<simpleType name="TextMax1Type">
+		<restriction base="string">
+			<maxLength value="1"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 2 caracteres -->
+	<simpleType name="TextMax2Type">
+		<restriction base="string">
+			<maxLength value="2"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 5 caracteres -->
+	<simpleType name="TextMax5Type">
+		<restriction base="string">
+			<maxLength value="5"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 7 caracteres -->
+	<simpleType name="TextMax7Type">
+		<restriction base="string">
+			<maxLength value="7"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 8 caracteres -->
+	<simpleType name="TextMax8Type">
+		<restriction base="string">
+			<maxLength value="8"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 9 caracteres -->
+	<simpleType name="TextMax9Type">
+		<restriction base="string">
+			<maxLength value="9"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 10 caracteres -->
+	<simpleType name="TextMax10Type">
+		<restriction base="string">
+			<maxLength value="10"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 12 caracteres -->
+	<simpleType name="TextMax12Type">
+		<restriction base="string">
+			<maxLength value="12"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 15 caracteres -->
+	<simpleType name="TextMax15Type">
+		<restriction base="string">
+			<maxLength value="15"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 16 caracteres -->
+	<simpleType name="TextMax16Type">
+		<restriction base="string">
+			<maxLength value="16"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 20 caracteres -->
+	<simpleType name="TextMax20Type">
+		<restriction base="string">
+			<maxLength value="20"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 25 caracteres -->
+	<simpleType name="TextMax25Type">
+		<restriction base="string">
+			<maxLength value="25"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 30 caracteres -->
+	<simpleType name="TextMax30Type">
+		<restriction base="string">
+			<maxLength value="30"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 34 caracteres -->
+	<simpleType name="TextMax34Type">
+		<restriction base="string">
+			<maxLength value="34"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 35 caracteres -->
+	<simpleType name="TextMax35Type">
+		<restriction base="string">
+			<maxLength value="35"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 39 caracteres -->
+	<simpleType name="TextMax39Type">
+		<restriction base="string">
+			<maxLength value="39"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 40 caracteres -->
+	<simpleType name="TextMax40Type">
+		<restriction base="string">
+			<maxLength value="40"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 50 caracteres -->
+	<simpleType name="TextMax50Type">
+		<restriction base="string">
+			<maxLength value="50"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 60 caracteres -->
+	<simpleType name="TextMax60Type">
+		<restriction base="string">
+			<maxLength value="60"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 100 caracteres -->
+	<simpleType name="TextMax100Type">
+		<restriction base="string">
+			<maxLength value="100"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 120 caracteres -->
+	<simpleType name="TextMax120Type">
+		<restriction base="string">
+			<maxLength value="120"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 135 caracteres -->
+	<simpleType name="TextMax135Type">
+		<restriction base="string">
+			<maxLength value="135"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 250 caracteres -->
+	<simpleType name="TextMax250Type">
+		<restriction base="string">
+			<maxLength value="250"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="intPositiveType">
+        <restriction base="int">
+            <minInclusive value="1"/>
+        </restriction>
+    </simpleType>
+	<simpleType name="int1to99Type">
+		<restriction base="int">
+			<minInclusive value="1"/>
+			<maxInclusive value="99"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="intPorcentajeType">
+		<restriction base="int">
+			<minInclusive value="0"/>
+			<maxInclusive value="100"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="decimalPorcentajeType">
+		<restriction base="decimal">
+			<minInclusive value="0"/>
+			<maxInclusive value="100"/>
+			<fractionDigits value="2"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="intOf3Digits">
+		<restriction base="int">
+			<pattern value="\d{1,3}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="stringOf5Digits">
+		<restriction base="string">
+			<length value="5"/>
+			<pattern value="[0-9]*">
+			</pattern>
+		</restriction>
+	</simpleType>
+	<simpleType name="stringMax2Digits">
+		<restriction base="string">
+			<maxLength value="2"/>
+			<pattern value="[0-9]*">
+			</pattern>
+		</restriction>
+	</simpleType>
+	<simpleType name="stringMax5Digits">
+		<restriction base="string">
+			<maxLength value="5"/>
+			<pattern value="[0-9]*">
+			</pattern>
+		</restriction>
+	</simpleType>
+	<simpleType name="stringMax7Digits">
+		<restriction base="string">
+			<maxLength value="7"/>
+			<pattern value="[0-9]*">
+			</pattern>
+		</restriction>
+	</simpleType>
+	<simpleType name="Importe3.2Type">
+		<restriction base="string">
+			<pattern value="\d{1,3}(\.\d{0,2})?"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ImporteSgn12.2Type">
+		<restriction base="string">
+			<pattern value="(\+|-)?\d{1,12}(\.\d{0,2})?"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="FechaType">
+		<restriction base="string">
+			<length value="10"/>
+			<pattern value="\d{2,2}-\d{2,2}-\d{4,4}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="HoraType">
+		<restriction base="string">
+			<pattern value="\d{2,2}:\d{2,2}:\d{2,2}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="FechaConHoraType">
+		<restriction base="string">
+			<length value="19"/>
+			<pattern value="\d{2,2}-\d{2,2}-\d{4,4} \d{2,2}:\d{2,2}:\d{2,2}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="YearType">
+		<annotation>
+			<documentation xml:lang="es"> Año en formato YYYY </documentation>
+		</annotation>
+		<restriction base="int">
+			<pattern value="\d{4,4}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="NIFType">
+		<annotation>
+			<documentation xml:lang="es">NIF: Secuencia de 9 dígitos o letras mayúsculas </documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="9"/>
+			<pattern
+				value="(([a-z|A-Z]{1}\d{7}[a-z|A-Z]{1})|(\d{8}[a-z|A-Z]{1})|([a-z|A-Z]{1}\d{8}))"/>
+		</restriction>
+		<!-- ([A-Z]|\d){9} -->
+	</simpleType>
+</schema>

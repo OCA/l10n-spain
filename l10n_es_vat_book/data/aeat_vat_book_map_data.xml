@@ -23,6 +23,7 @@
             (4, ref('l10n_es.account_tax_template_s_iva_ns')),
             (4, ref('l10n_es.account_tax_template_s_iva_ns_b')),
             (4, ref('l10n_es.account_tax_template_s_iva_e')),
+            (4, ref('l10n_es.account_tax_template_s_iva5s')),
         ]"
         />
     </record>
@@ -69,6 +70,8 @@
             (4, ref('l10n_es.account_tax_template_p_iva10_bi')),
             (4, ref('l10n_es.account_tax_template_p_iva21_bi')),
             (4, ref('l10n_es.account_tax_template_p_iva0_ns')),
+            (4, ref('l10n_es.account_tax_template_p_iva0_ns_b')),
+            (4, ref('l10n_es.account_tax_template_p_iva5_sc')),
         ]"
         />
     </record>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Digital5, S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="view_company_form_inherit_batuz" model="ir.ui.view">
+        <field name="name">view_company_form_inherit_batuz</field>
+        <field name="model">res.company</field>
+        <field
+            name="inherit_id"
+            ref="l10n_es_ticketbai_api.view_company_form_inherit"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='ticketbai']/group[@name='ticketbai_company_config']/field[@name='lroe_model']"
+                position="after"
+            >
+                <field
+                    name="main_activity_iae"
+                    attrs="{'invisible': [('lroe_model', '!=', '140')], 'required': [('lroe_model', '=', '140')]}"
+                />
+            </xpath>
+            <xpath
+                expr="//page[@name='ticketbai']/group[@name='ticketbai_company_config']"
+                position="after"
+            >
+                <group
+                    attrs="{'invisible': ['|', ('tbai_enabled', '=', False), ('lroe_model', '=', False)]}"
+                >
+                    <group name="lroe_connector" string="Connector config">
+                        <field name="use_connector" />
+                        <field
+                            name="send_mode"
+                            attrs="{'invisible': [('use_connector', '=', False)]}"
+                        />
+                        <field
+                            name='sent_time'
+                            widget='float_time'
+                            attrs="{'invisible': ['|', ('use_connector', '=', False), ('send_mode', '!=', 'fixed')]}"
+                        />
+                        <field
+                            name='delay_time'
+                            widget='float_time'
+                            attrs="{'invisible': ['|', ('use_connector', '=', False), ('send_mode', '!=', 'delayed')]}"
+                        />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

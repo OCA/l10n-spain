@@ -8,7 +8,7 @@ import logging
 import os
 import tempfile
 
-from odoo import _, exceptions, fields, models, release
+from odoo import fields, models, release
 from odoo.exceptions import ValidationError
 from odoo.tools import config
 
@@ -17,15 +17,27 @@ _logger = logging.getLogger(__name__)
 try:
     import cryptography
     from cryptography import x509
-    from cryptography.hazmat.primitives.serialization import (
-        Encoding,
-        NoEncryption,
-        PrivateFormat,
-        pkcs12,
+    from cryptography.hazmat.primitives import serialization
+    from cryptography.hazmat.primitives.serialization import pkcs12
+
+    CRYPTOGRAPHY_VERSION_3 = tuple(map(int, cryptography.__version__.split("."))) >= (
+        3,
+        0,
     )
+    if not CRYPTOGRAPHY_VERSION_3:
+        from cryptography.hazmat.backends import default_backend
+
+        def load_key_and_certificates(*args, **kwargs):
+            return pkcs12.load_key_and_certificates(
+                *args, **kwargs, backend=default_backend()
+            )
+
+    else:
+        load_key_and_certificates = pkcs12.load_key_and_certificates
 except (ImportError, IOError) as err:
     _logger.debug(err)
 
+# FIXME To be removed in v16, as it is now specified in the manifest
 if tuple(map(int, cryptography.__version__.split("."))) < (3, 0):
     _logger.warning(
         "Cryptography version is not supported. Upgrade to 3.0.0 or greater."
@@ -40,9 +52,9 @@ def pfx_to_pem(p12, directory=None):
         with open(t_pem.name, "wb") as f_pem:
             f_pem.write(
                 p12[0].private_bytes(
-                    Encoding.PEM,
-                    format=PrivateFormat.TraditionalOpenSSL,
-                    encryption_algorithm=NoEncryption(),
+                    serialization.Encoding.PEM,
+                    format=serialization.PrivateFormat.TraditionalOpenSSL,
+                    encryption_algorithm=serialization.NoEncryption(),
                 )
             )
             f_pem.close()
@@ -55,7 +67,7 @@ def pfx_to_crt(p12, directory=None):
         prefix="public_", suffix=".crt", delete=False, dir=directory
     ) as t_crt:
         with open(t_crt.name, "wb") as f_crt:
-            f_crt.write(p12[1].public_bytes(Encoding.PEM))
+            f_crt.write(p12[1].public_bytes(serialization.Encoding.PEM))
             f_crt.close()
         yield t_crt.name
 
@@ -78,17 +90,13 @@ class L10nEsAeatCertificatePassword(models.TransientModel):
             record.folder,
         )
         file = base64.decodebytes(record.file)
-        if tuple(map(int, cryptography.__version__.split("."))) < (3, 0):
-            raise exceptions.UserError(
-                _("Cryptography version is not supported. Upgrade to 3.0.0 or greater.")
-            )
         try:
             if directory and not os.path.exists(directory):
                 os.makedirs(directory)
             pfx_password = self.password
             if isinstance(pfx_password, str):
                 pfx_password = bytes(pfx_password, "utf-8")
-            p12 = pkcs12.load_key_and_certificates(file, pfx_password)
+            p12 = load_key_and_certificates(file, pfx_password)
             vals = self._process_certificate_vals(record, p12, directory)
             record.write(vals)
         except Exception as e:

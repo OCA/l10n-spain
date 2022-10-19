@@ -1,0 +1,865 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_ticketbai
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2022-08-29 10:07+0000\n"
+"Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
+"Language-Team: none\n"
+"Language: eu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model,name:l10n_es_ticketbai.model_l10n_es_aeat_certificate
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_res_company__tbai_aeat_certificate_id
+msgid "AEAT Certificate"
+msgstr "AEAT Ziurtagiria"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model,name:l10n_es_ticketbai.model_account_chart_template
+msgid "Account Chart Template"
+msgstr "Kontu-diagrama txantiloia"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model,name:l10n_es_ticketbai.model_account_move_reversal
+msgid "Account Move Reversal"
+msgstr "Kontua mugitu atzera egitea"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin__account_refund_invoice_id
+msgid "Account Refund Invoice"
+msgstr "Itzulketa faktura kontablea"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_l10n_es_aeat_certificate__tbai_p12_friendlyname
+msgid "Alias"
+msgstr "Ezizena"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_move__tbai_refund_key__r4
+msgid "Art. 80 - other"
+msgstr "80. Artikulua - Besteak"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_move__tbai_refund_key__r1
+msgid "Art. 80.1, 80.2, 80.6 and rights founded error"
+msgstr "80.1, 80.2, 80.6 Artikuluak eta aurkitutako eskubideen akatsa"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_move__tbai_refund_key__r2
+msgid "Art. 80.3"
+msgstr "80.3 Artikulua"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_move__tbai_refund_key__r3
+msgid "Art. 80.4"
+msgstr "80.4 Artikulua"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__res_company__tbai_description_method__auto
+msgid "Automatic"
+msgstr "Automatikoa"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_account_bank_statement_line__tbai_refund_key
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_account_move__tbai_refund_key
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_account_payment__tbai_refund_key
+msgid ""
+"BOE-A-1992-28740. Ley 37/1992, de 28 de diciembre, del Impuesto sobre el "
+"Valor Añadido. Artículo 80. Modificación de la base imponible."
+msgstr ""
+"BOE-A-1992-28740. Abenduaren 28ko, 37/1992 Legea, Balio Erantsiaren gaineko "
+"Zergari buruzkoa. 80. artikulua. Zerga-oinarriaren aldaketa."
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_move__tbai_refund_type__i
+msgid "By differences"
+msgstr "Desberdintasunen arabera"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_form
+msgid "Cancel and recreate"
+msgstr "Baliogabetu eta birsortu"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_move.py:0
+#, python-format
+msgid "Cancellation"
+msgstr "Baliogabetzea"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice__cancelled_invoice_id
+msgid "Cancelled Invoice"
+msgstr "Baliogabetutako faktura"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_tax_map__code
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_exemption_key__code
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_regime_key__code
+msgid "Code"
+msgstr "Kodea"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model,name:l10n_es_ticketbai.model_res_company
+msgid "Companies"
+msgstr "Enpresak"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info__company_id
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_search
+msgid "Company"
+msgstr "Enpresa"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_tax.py:0
+#, python-format
+msgid "Country code for partner %s not found!"
+msgstr "%s bazkidearen herrialde-kodea ez da aurkitu!"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax__create_uid
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax_template__create_uid
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info__create_uid
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin__create_uid
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_tax_map__create_uid
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_exemption_key__create_uid
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_regime_key__create_uid
+msgid "Created by"
+msgstr "Nork sortua"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax__create_date
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax_template__create_date
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info__create_date
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin__create_date
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_tax_map__create_date
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_exemption_key__create_date
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_regime_key__create_date
+msgid "Created on"
+msgstr "Noiz sortua"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
+msgid "Customer Cancellations"
+msgstr "Bezeroen ezeztapenak"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
+msgid "Customer Invoices"
+msgstr "Bezeroen Fakturak"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info__developer_id
+msgid "Developer"
+msgstr "Garatzailea"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info__name
+msgid "Developer name"
+msgstr "Garatzailearen izena"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info__device_serial_number
+msgid "Device Serial Number"
+msgstr "Gailuaren Serie zenbakia"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax_template__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_tax_map__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_exemption_key__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_regime_key__display_name
+msgid "Display Name"
+msgstr "Izena erakutsi"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_enabled
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_journal__tbai_enabled
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_enabled
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_enabled
+msgid "Enable TicketBAI"
+msgstr "Gaitu TicketBAI"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_tbai_invoice_refund_origin__expedition_date
+msgid "Expected string date format: %dd-%mm-%yyyy"
+msgstr "Espero den katearen data formatua: %dd-%mm-%yyyy"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin__expedition_date
+msgid "Expedition Date"
+msgstr "Espedizio Data"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_form
+msgid "File"
+msgstr "Fitxategia"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
+msgid "Files Sent"
+msgstr "Bidalitako Fitxategiak"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model,name:l10n_es_ticketbai.model_account_fiscal_position
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax__position_id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax_template__position_id
+msgid "Fiscal Position"
+msgstr "Posizio Fiskala"
+
+#. module: l10n_es_ticketbai
+#: model:ir.actions.act_window,name:l10n_es_ticketbai.action_tbai_account_fiscal_position_template
+#: model:ir.ui.menu,name:l10n_es_ticketbai.menu_tbai_account_fiscal_position_template
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_account_fiscal_position_template_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_account_fiscal_position_template_view_search
+msgid "Fiscal Position Template"
+msgstr "Posizio Fiskalaren Txantiloia"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__res_company__tbai_description_method__fixed
+msgid "Fixed"
+msgstr "Zuzendua"
+
+#. module: l10n_es_ticketbai
+#: model:ir.ui.menu,name:l10n_es_ticketbai.menu_finance_ticketbai_general_info
+msgid "General Info"
+msgstr "Informazio Orokorra"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_search
+msgid "Group By"
+msgstr "Taldekatu"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax_template__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_tax_map__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_exemption_key__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_regime_key__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice__invoice_id
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_form
+msgid "Invoice"
+msgstr "Faktura"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
+msgid "Invoice Date"
+msgstr "Fakturaren Data"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
+msgid "Invoice Number"
+msgstr "Faktura Zenbakia"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
+msgid "Invoice Serial"
+msgstr "Fakturaren Seriea"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
+#, python-format
+msgid ""
+"Invoice: number %(name)s prefix %(prefix)s invoice_date %(date)s exists. "
+"Create a credit note from this invoice."
+msgstr ""
+"Faktura: %(name)s zenbakia %(prefix)s aurrizkia %(date)s faktura_data "
+"existitzen da. Sortu kreditu-ohar bat faktura honetatik."
+
+#. module: l10n_es_ticketbai
+#: model:ir.model,name:l10n_es_ticketbai.model_account_journal
+msgid "Journal"
+msgstr "Egunkaria"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model,name:l10n_es_ticketbai.model_account_move
+msgid "Journal Entry"
+msgstr "Aldizkariaren Sarrera"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model,name:l10n_es_ticketbai.model_account_move_line
+msgid "Journal Item"
+msgstr "Aldizkariko elementua"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
+msgid "Key/Type"
+msgstr "Gakoa/Mota"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax_template____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_tax_map____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_exemption_key____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_regime_key____last_update
+msgid "Last Modified on"
+msgstr "Azken aldaketa eguna"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax__write_uid
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax_template__write_uid
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info__write_uid
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin__write_uid
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_tax_map__write_uid
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_exemption_key__write_uid
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_regime_key__write_uid
+msgid "Last Updated by"
+msgstr "Nork eguneratua azkena"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax__write_date
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax_template__write_date
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info__write_date
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin__write_date
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_tax_map__write_date
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_exemption_key__write_date
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_regime_key__write_date
+msgid "Last Updated on"
+msgstr "Noiz eguneratua azkena"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_account_bank_statement_line__tbai_substitution_invoice_id
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_account_move__tbai_substitution_invoice_id
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_account_payment__tbai_substitution_invoice_id
+msgid "Link between a validated Customer Invoice and its substitute."
+msgstr ""
+"Balidatutako Bezeroaren faktura baten eta haren ordezkoaren arteko lotura."
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__res_company__tbai_description_method__manual
+msgid "Manual"
+msgstr "Eskuz"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
+msgid "Messages"
+msgstr "Mezuak"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_res_company__tbai_description_method
+msgid ""
+"Method for the TicketBAI invoices description, can be one of these:\n"
+"- Automatic: the description will be the join of the invoice   lines description\n"
+"- Fixed: the description write on the below field 'TBAI   Description'\n"
+"- Manual (by default): It will be necessary to manually enter   the description on each invoice"
+msgstr ""
+"TicketBAI fakturen deskribapena egiteko metodoa hauetako bat izan daiteke:\n"
+"- Automatikoa: deskribapena faktura-lerroen deskribapenaren batzea izango "
+"da\n"
+"- Aurrez definitua: deskribapena idatzi beheko eremuan 'TBAI Deskribapena'\n"
+"- Eskuz (lehenespenez): beharrezkoa izango da faktura bakoitzean "
+"deskribapena eskuz sartzea"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_tax_map__name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_exemption_key__name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_regime_key__name
+msgid "Name"
+msgstr "Izena"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin__number
+msgid "Number"
+msgstr "Zenbakia"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin__number_prefix
+msgid "Number Prefix"
+msgstr "Zenbakiaren aurrizkia"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_tbai_invoice_refund_origin__number_prefix
+msgid ""
+"Number prefix of this invoice name e.g. if the invoice name is "
+"INV/2021/00001 then the prefix is INV/2021/, ending back slash included"
+msgstr ""
+"Adibidez, faktura honen zenbakiaren aurrizkia, fakturaren izena INV/2021/"
+"00001 bada aurrizkia INV/2021/ da, amaierako barra barne"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_date_operation
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_date_operation
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_date_operation
+msgid "Operation Date"
+msgstr "Eragiketa Data"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_description_operation
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_description_operation
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_description_operation
+msgid "Operation Description"
+msgstr "Eragiketaren Deskribapena"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
+msgid "Origin Invoices Data"
+msgstr "Jatorrizko Fakturaren Datuak"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_move.py:0
+#, python-format
+msgid ""
+"Please, specify data for the original invoices that are going to be refunded"
+msgstr "Mesedez, zehaztu itzuliko diren jatorrizko fakturen datuak"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_res_company__tbai_protected_data
+msgid "Protected Data"
+msgstr "Babestutako Datuak"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_form
+msgid "QR Code"
+msgstr "QR Kodea"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
+msgid "Refund"
+msgstr "Itzulketa"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_move.py:0
+#, python-format
+msgid ""
+"Refund invoices must be cancelled in order to cancel the original invoice."
+msgstr ""
+"Itzulketa-fakturak baliogabetu egin behar dira jatorrizko faktura bertan "
+"behera uzteko."
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
+#, python-format
+msgid ""
+"Refunded Invoice %(name)s Number Prefix %(prefix)s longer than expected. "
+"Should be 20 characters max.!"
+msgstr ""
+"Itzulitako faktura %(name)s Aurrizki zenbakia espero baino %(prefix)s "
+"luzeagoa. Gehienez 20 karaktere izan behar ditu!"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
+#, python-format
+msgid "Refunded Invoice %s Expedition Date"
+msgstr "Itzulitako %s fakturaren espedizio-data"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
+#, python-format
+msgid ""
+"Refunded Invoice Number %s longer than expected. Should be 20 characters "
+"max.!"
+msgstr ""
+"%s Itzulitako faktura zenbakia espero baino luzeagoa. Gehienez 20 karaktere "
+"izan behar ditu!"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model,name:l10n_es_ticketbai.model_account_resequence_wizard
+msgid "Remake the sequence of Journal Entries."
+msgstr "Berrikusi aldizkariko sarreren sekuentzia."
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_response_ids
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_response_ids
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_response_ids
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
+msgid "Responses"
+msgstr "Erantzunak"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_send_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_journal__tbai_send_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_send_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_send_invoice
+msgid "Send TicketBAI invoices to tax agency"
+msgstr "Bidali TicketBAI fakturak zerga agentziari"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info__software
+msgid "Software"
+msgstr "Softwarea"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_move.py:0
+#, python-format
+msgid "Some of the original invoices have related tbai cancelled invoices"
+msgstr "Jatorrizko faktura batzuek baliogabetutako tbai fakturak dituzte"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_move.py:0
+#, python-format
+msgid ""
+"Some of the original invoices have related tbai invoices in inconsistent "
+"state please fix them beforehand."
+msgstr ""
+"Jatorrizko faktura batzuek erlazionatutako fakturak dituzte egoera "
+"inkoherentean, mesedez konpondu aldez aurretik."
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_substitute_simplified_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_substitute_simplified_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_substitute_simplified_invoice
+msgid "Substitute Simplified Invoice"
+msgstr "Ordezko Faktura Sinplifikatua"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_res_company__tbai_protected_data_txt
+msgid "Substitution Text"
+msgstr "Ordezko Textua"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model,name:l10n_es_ticketbai.model_account_tax
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax__tax_id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax_template__tax_id
+msgid "Tax"
+msgstr "Zerga"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_fiscal_position.py:0
+#: code:addons/l10n_es_ticketbai/models/chart_template.py:0
+#: model:ir.model.constraint,message:l10n_es_ticketbai.constraint_account_fp_tbai_tax_position_tax_uniq
+#: model:ir.model.constraint,message:l10n_es_ticketbai.constraint_account_fp_tbai_tax_template_position_tax_uniq
+#, python-format
+msgid "Tax must be unique per fiscal position!"
+msgstr "Zerga bakarra izan behar da posizio fiskal bakoitzeko!"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_tax_map__tax_template_ids
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_tax_map_view_form
+msgid "Taxes"
+msgstr "Zergak"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_datetime_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_datetime_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_datetime_invoice
+msgid "Tbai Datetime Invoice"
+msgstr "Tbai Datetime faktura"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info__tbai_enabled
+msgid "Tbai Enabled"
+msgstr "Tbai Gaituta"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_l10n_es_aeat_certificate__tbai_p12
+msgid "Tbai P12"
+msgstr "Tbai P12"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_refund_key
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_refund_key
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_refund_key
+msgid "Tbai Refund Key"
+msgstr "Tbai Itzulketa-giltza"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_refund_type
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_refund_type
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_refund_type
+msgid "Tbai Refund Type"
+msgstr "Tbai Itzulketa Mota"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_substitution_invoice_id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_substitution_invoice_id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_substitution_invoice_id
+msgid "Tbai Substitution Invoice"
+msgstr "Tbai Ordezko Faktura"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fiscal_position__tbai_vat_exemption_ids
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fiscal_position_template__tbai_vat_exemption_ids
+msgid "Tbai Vat Exemption"
+msgstr "Tbai Zerga Salbuespena"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model,name:l10n_es_ticketbai.model_account_fiscal_position_template
+msgid "Template for Fiscal Position"
+msgstr "Posizio Fiskalaren txantiloia"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_res_company__tbai_description
+msgid ""
+"The description for invoices. Only used when the field TicketBAI Description"
+" Method is 'Fixed'."
+msgstr ""
+"Fakturen deskribapena. TicketBAI Description Method eremua \"Finkoa\" denean "
+"bakarrik erabiltzen da."
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_tbai_invoice_refund_origin__number
+msgid ""
+"The number of the invoice name e.g. if the invoice name is INV/2021/00001 "
+"then the number is 00001"
+msgstr ""
+"Fakturaren izenaren zenbakia adibidez, fakturaren izena INV/2021/00001 bada, "
+"00001 da zenbakia"
+
+#. module: l10n_es_ticketbai
+#: model:ir.ui.menu,name:l10n_es_ticketbai.menu_finance_ticketbai
+#: model:ir.ui.menu,name:l10n_es_ticketbai.menu_l10n_es_tbai_config
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_account_position_form_inherit
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_partner_property_form_inherit
+msgid "TicketBAI"
+msgstr "TicketBAI"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model,name:l10n_es_ticketbai.model_account_fp_tbai_tax
+msgid "TicketBAI - Fiscal Position Tax Exemptions"
+msgstr "TicketBAI - Posizio Fiskalaren Zerga Salbuespenak"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model,name:l10n_es_ticketbai.model_account_fp_tbai_tax_template
+msgid "TicketBAI - Fiscal Position Template Tax Exemptions"
+msgstr "TicketBAI - Posizio Fiskalaren Txantiloiaren Zerga Salbuespenak"
+
+#. module: l10n_es_ticketbai
+#: model:ir.actions.act_window,name:l10n_es_ticketbai.action_ticketbai_general_info
+msgid "TicketBAI - General Info"
+msgstr "TicketBAI - Informazio Orokorra"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_cancellation_id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_cancellation_id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_cancellation_id
+msgid "TicketBAI Cancellation"
+msgstr "TicketBAI Baliogabetzea"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_cancellation_ids
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_cancellation_ids
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_cancellation_ids
+msgid "TicketBAI Cancellations"
+msgstr "TicketBAI Baliogabetzeak"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_res_company__tbai_description
+msgid "TicketBAI Description"
+msgstr "TicketBAI Deskribapena"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_res_company__tbai_description_method
+msgid "TicketBAI Description Method"
+msgstr "TicketBAI Deskribapen Metodoa"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_account_fiscal_position_template_view_search
+msgid "TicketBAI Exemption 2nd Key"
+msgstr "TicketBAI Salbuespena 2. Gakoa"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_account_fiscal_position_template_view_search
+msgid "TicketBAI Exemption 3rd Key"
+msgstr "TicketBAI Salbuespena 3. Gakoa"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_account_fiscal_position_template_view_search
+msgid "TicketBAI Exemption Key"
+msgstr "TicketBAI Salbuespen Gakoa"
+
+#. module: l10n_es_ticketbai
+#: model:ir.actions.act_window,name:l10n_es_ticketbai.action_tbai_vat_exemption_key
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_vat_exemption_key_view_search
+msgid "TicketBAI Exemption Keys"
+msgstr "TicketBAI Salbuespen Giltzak"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_ticketbai_info_form
+msgid "TicketBAI Info"
+msgstr "TicketBAI Informazioa"
+
+#. module: l10n_es_ticketbai
+#: model:ir.ui.menu,name:l10n_es_ticketbai.menu_tbai_installation
+msgid "TicketBAI Installations"
+msgstr "TicketBAI Instalazioak"
+
+#. module: l10n_es_ticketbai
+#: model:ir.actions.act_window,name:l10n_es_ticketbai.action_tbai_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_invoice_id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_invoice_id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_invoice_id
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_search
+msgid "TicketBAI Invoice"
+msgstr "TicketBAI Faktura"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_tax.py:0
+#, python-format
+msgid ""
+"TicketBAI Invoice %(name)s Error: Tax %(tax)s contains multiple Equivalence "
+"Surcharge Taxes"
+msgstr ""
+"%(name)s TicketBAI faktura Errorea: %(tax)s zergak errekargu-zerga "
+"baliokidetasun ugari ditu"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_tax.py:0
+#, python-format
+msgid ""
+"TicketBAI Invoice %(name)s Error: the Invoice should have one tax line for "
+"Tax %(tax)s"
+msgstr ""
+"%(name)s TicketBAI faktura Errorea: fakturak zerga-lerro bat izan behar du "
+"%(tax)s zergarako"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model,name:l10n_es_ticketbai.model_tbai_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_invoice_ids
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_invoice_ids
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_invoice_ids
+#: model:ir.ui.menu,name:l10n_es_ticketbai.menu_tbai_invoices
+msgid "TicketBAI Invoices"
+msgstr "TicketBAI Fakturak"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_refund_origin_ids
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_refund_origin_ids
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_refund_origin_ids
+msgid "TicketBAI Refund Origin References"
+msgstr "TicketBAI Itzulketaren Jatorrizko Erreferentziak"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model,name:l10n_es_ticketbai.model_tbai_invoice_refund_origin
+msgid "TicketBAI Refunded Invoices Origin Invoice Data"
+msgstr "TicketBAI itzulitako fakturak Jatorrizko fakturen datuak"
+
+#. module: l10n_es_ticketbai
+#: model:ir.actions.act_window,name:l10n_es_ticketbai.action_tbai_vat_regime_key
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_vat_regime_key_view_search
+msgid "TicketBAI Registration Keys"
+msgstr "TicketBAI Erregistro-giltzak"
+
+#. module: l10n_es_ticketbai
+#: model:ir.actions.act_window,name:l10n_es_ticketbai.action_tbai_tax_map
+#: model:ir.model,name:l10n_es_ticketbai.model_tbai_tax_map
+#: model:ir.ui.menu,name:l10n_es_ticketbai.menu_tbai_tax_map
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_tax_map_view_form
+msgid "TicketBAI Tax Map"
+msgstr "TicketBAI Zerga Mapa"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model,name:l10n_es_ticketbai.model_tbai_vat_exemption_key
+#: model:ir.ui.menu,name:l10n_es_ticketbai.menu_tbai_vat_exemption_key
+msgid "TicketBAI VAT Exemption mapping keys"
+msgstr "TicketBAI Zerga Salbuespenaren mapa-gakoak"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model,name:l10n_es_ticketbai.model_tbai_vat_regime_key
+#: model:ir.ui.menu,name:l10n_es_ticketbai.menu_tbai_vat_regime_key
+msgid "TicketBAI VAT Regime mapping keys"
+msgstr "TicketBAI Zerga Erregimenaren mapa-gakoak"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model,name:l10n_es_ticketbai.model_tbai_info
+msgid "TicketBAI general information"
+msgstr "TicketBAI informazio orokorra"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_ticketbai_info_form
+msgid "TicketBAI is disabled."
+msgstr "TicketBAI desgaituta dago."
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
+#, python-format
+msgid ""
+"TicketBAI: You cannot cancel and recreate an Invoice with a state different "
+"than 'Error'."
+msgstr ""
+"TicketBAI: Ezin duzu ezeztatu eta birsortu 'Errorea' egoera ez duen faktura "
+"bat."
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax__tbai_vat_exemption_key
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax_template__tbai_vat_exemption_key
+msgid "VAT Exemption Key"
+msgstr "Zerga Salbuespenaren Gakoa"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_account_fiscal_position_template_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_account_position_form_inherit
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_account_position_template_form_inherit
+msgid "VAT Exemptions"
+msgstr "Zerga Salbuespenak"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_vat_regime_key2
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fiscal_position__tbai_vat_regime_key2
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fiscal_position_template__tbai_vat_regime_key2
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_vat_regime_key2
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_vat_regime_key2
+msgid "VAT Regime 2nd Key"
+msgstr "Zerga Erregimenaren 2. Gakoa"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_vat_regime_key3
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fiscal_position__tbai_vat_regime_key3
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fiscal_position_template__tbai_vat_regime_key3
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_vat_regime_key3
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_vat_regime_key3
+msgid "VAT Regime 3rd Key"
+msgstr "Zerga Erregimenaren 3. Gakoa"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_vat_regime_key
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fiscal_position__tbai_vat_regime_key
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fiscal_position_template__tbai_vat_regime_key
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_vat_regime_key
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_vat_regime_key
+msgid "VAT Regime Key"
+msgstr "Zerga Erregimenaren Gakoa"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_account_fiscal_position_template_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_account_position_form_inherit
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
+msgid "VAT Regimes"
+msgstr "Zerga Erregimenak"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model,name:l10n_es_ticketbai.model_l10n_es_aeat_certificate_password
+msgid "Wizard to Load AEAT Certificate"
+msgstr "AEAT ziurtagiria kargatzeko morroia"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_move.py:0
+#, python-format
+msgid "You cannot change to draft a TicketBAI invoice!"
+msgstr "Ezin duzu aldatu TicketBAI fakturaren zirriborroa!"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_resequence.py:0
+#, python-format
+msgid "You cannot resequence a customer invoice when TicketBAI is enabled."
+msgstr ""
+"Ezin duzu bezeroaren faktura bat berriro sekuentziatu TicketBAI gaituta "
+"dagoenean."
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_journal.py:0
+#, python-format
+msgid ""
+"You cannot stop sending invoices from this journal, an invoice has already "
+"been sent."
+msgstr ""
+"Ezin diozu utzi aldizkari honetatik fakturak bidaltzeari, dagoeneko faktura "
+"bat bidali da."

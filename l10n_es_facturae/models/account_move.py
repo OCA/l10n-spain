@@ -107,7 +107,7 @@ class AccountMove(models.Model):
             if bool(record.facturae_start_date) != bool(record.facturae_end_date):
                 raise ValidationError(
                     _(
-                        "FacturaE start and end dates are both required if one of "
+                        "Facturae start and end dates are both required if one of "
                         "them is filled"
                     )
                 )
@@ -189,7 +189,7 @@ class AccountMove(models.Model):
         if self.state not in self._get_valid_move_statuses():
             raise ValidationError(
                 _(
-                    "You can only create Factura-E files for "
+                    "You can only create Facturae files for "
                     "moves that have been validated."
                 )
             )
@@ -225,6 +225,7 @@ class AccountMove(models.Model):
     def get_facturae_version(self):
         return (
             self.partner_id.facturae_version
+            or self.commercial_partner_id.facturae_version
             or self.company_id.facturae_version
             or "3_2"
         )
@@ -327,7 +328,7 @@ class AccountMoveLine(models.Model):
             if bool(record.facturae_start_date) != bool(record.facturae_end_date):
                 raise ValidationError(
                     _(
-                        "FacturaE start and end dates are both required if one of "
+                        "Facturae start and end dates are both required if one of "
                         "them is filled"
                     )
                 )

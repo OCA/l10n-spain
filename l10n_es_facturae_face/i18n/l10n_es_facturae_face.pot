@@ -66,11 +66,6 @@ msgid "Company %s cannot be processed"
 msgstr ""
 
 #. module: l10n_es_facturae_face
-#: model:ir.model,name:l10n_es_facturae_face.model_res_config_settings
-msgid "Config Settings"
-msgstr ""
-
-#. module: l10n_es_facturae_face
 #: code:addons/l10n_es_facturae_face/components/edi_webservice_receive_face_l10n_es_facturae_face_update.py:0
 #: code:addons/l10n_es_facturae_face/components/webservice_face.py:0
 #, python-format
@@ -110,7 +105,7 @@ msgstr ""
 
 #. module: l10n_es_facturae_face
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae_face.edi_l10n_es_facturae_face_cancel_form_view
-msgid "Edi L10n Es Facturae Face Cancel"
+msgid "Edi L10n Es Facturae FACe Cancel"
 msgstr ""
 
 #. module: l10n_es_facturae_face
@@ -126,13 +121,10 @@ msgid "FACe"
 msgstr ""
 
 #. module: l10n_es_facturae_face
-#: model_terms:ir.ui.view,arch_db:l10n_es_facturae_face.res_config_settings_view_form
-msgid "FACe Configuration"
-msgstr ""
-
-#. module: l10n_es_facturae_face
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_config_settings__face_server
-msgid "FACe server location"
+#: model:ir.actions.server,name:l10n_es_facturae_face.update_face_job_ir_actions_server
+#: model:ir.cron,cron_name:l10n_es_facturae_face.update_face_job
+#: model:ir.cron,name:l10n_es_facturae_face.update_face_job
+msgid "FACe update Job"
 msgstr ""
 
 #. module: l10n_es_facturae_face
@@ -238,7 +230,7 @@ msgstr ""
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__account_move__l10n_es_facturae_status__face-2500
-msgid "Payed"
+msgid "Paid"
 msgstr ""
 
 #. module: l10n_es_facturae_face

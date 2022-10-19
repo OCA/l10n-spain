@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Digital5, S.L.
+     Copyright 2022 Landoo Sistemas de Informacion SL
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="view_account_move_reversal_inherit_batuz" model="ir.ui.view">
+        <field name="name">account.move.reversal.batuz.form</field>
+        <field name="model">account.move.reversal</field>
+        <field name="inherit_id" ref="account.view_account_move_reversal" />
+        <field name="arch" type="xml">
+            <field name="reason" position="before">
+                <field name="batuz_supplier_invoice_number_required" invisible="1" />
+                <field
+                    name="batuz_supplier_invoice_number"
+                    attrs="{'required': [('batuz_supplier_invoice_number_required', '=', True)], 'invisible': [('batuz_supplier_invoice_number_required', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>
