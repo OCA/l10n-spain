@@ -5,3 +5,7 @@
 * Ismael Calvo <ismael.calvo@factorlibre.com>
 * Carlos Dauden <carlos.dauden@tecnativa.com>
 * Manuel Regidor <manuel.regidor@sygel.es>
+
+* `Pesol <https://www.pesol.es>`__:
+
+  * Pedro Evaristo Gonzalez Sanchez <pedro.gonzalez@pesol.es>
