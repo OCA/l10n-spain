@@ -44,5 +44,6 @@
         name="Ecoembes"
         parent="account.menu_finance_reports"
         action="action_ecoembes_sig_report_wizard"
+        groups="group_ecoembes_manager"
     />
 </odoo>

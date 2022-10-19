@@ -1,7 +1,7 @@
-# Copyright 2021 Tecnativa - Víctor Martínez
+# Copyright 2021-2022 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import fields
-from odoo.tests.common import Form
+from odoo.tests.common import Form, users
 
 from .common import TestEcoembesBase
 
@@ -82,6 +82,7 @@ class TestEcoembesWizard(TestEcoembesBase):
             line_form.product_id = self.product_c
         return move_form.save()
 
+    @users("ecoembes_manager")
     def test_wizar_get_data(self):
         date = "1990-01-01"
         invoice = self._create_invoice(date)
@@ -96,12 +97,8 @@ class TestEcoembesWizard(TestEcoembesBase):
         self.assertTrue(
             invoice.invoice_line_ids.filtered(lambda x: x.product_id == self.product_c)
         )
-        item = (
-            self.env["ecoembes.sig.report.wizard"]
-            .with_user(self.user_system)
-            .create(
-                {"date_start": invoice.invoice_date, "date_end": invoice.invoice_date}
-            )
+        item = self.env["ecoembes.sig.report.wizard"].create(
+            {"date_start": invoice.invoice_date, "date_end": invoice.invoice_date}
         )
         items = item.get_report_items()
         self.assertEquals(len(items), 0)

@@ -16,6 +16,7 @@
         "data/ecoembes.packaging.csv",
         "data/ecoembes.sector.csv",
         "data/ecoembes.submaterial.csv",
+        "security/groups.xml",
         "security/ir.model.access.csv",
         "views/ecoembes_market_type_view.xml",
         "views/ecoembes_material_view.xml",
