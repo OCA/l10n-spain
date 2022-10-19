@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-25 10:58+0000\n"
-"PO-Revision-Date: 2021-08-25 12:59+0200\n"
+"POT-Creation-Date: 2022-10-19 07:32+0000\n"
+"PO-Revision-Date: 2022-10-19 09:34+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -15,7 +15,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: ecoembes
+#: model_terms:ir.ui.view,arch_db:ecoembes.external_layout_standard_ecoembes
+msgid "<strong>Ecoembes Inscription:</strong>"
+msgstr "<strong>Inscripción Ecoembes:</strong>"
+
+#. module: ecoembes
+#: model_terms:ir.ui.view,arch_db:ecoembes.external_layout_standard_ecoembes
+msgid "<strong>Ecoembes Partner Member:</strong>"
+msgstr ""
 
 #. module: ecoembes
 #: model:ir.model.fields,field_description:ecoembes.field_ecoembes_market_type__reference
@@ -44,8 +54,14 @@ msgstr "Cancelar"
 
 #. module: ecoembes
 #: model:ir.model.fields,field_description:ecoembes.field_product_product__ecoembes_comment
+#: model:ir.model.fields,field_description:ecoembes.field_product_template__ecoembes_comment
 msgid "Comments"
 msgstr "Comentarios"
+
+#. module: ecoembes
+#: model:ir.model,name:ecoembes.model_res_company
+msgid "Companies"
+msgstr "Compañías"
 
 #. module: ecoembes
 #: model:ir.model.fields,field_description:ecoembes.field_product_composition__composition
@@ -55,7 +71,9 @@ msgstr "Composición"
 
 #. module: ecoembes
 #: model:ir.model.fields,field_description:ecoembes.field_product_product__composition_ids
+#: model:ir.model.fields,field_description:ecoembes.field_product_template__composition_ids
 #: model_terms:ir.ui.view,arch_db:ecoembes.nan_product_pack_form
+#: model_terms:ir.ui.view,arch_db:ecoembes.product_template_only_form_view
 msgid "Compositions"
 msgstr "Composiciones"
 
@@ -88,6 +106,7 @@ msgstr "Fecha fin"
 
 #. module: ecoembes
 #: model:ir.model.fields,field_description:ecoembes.field_product_product__ecoembes_date_expiry
+#: model:ir.model.fields,field_description:ecoembes.field_product_template__ecoembes_date_expiry
 msgid "Date expiry"
 msgstr "Fecha de expiración"
 
@@ -110,10 +129,33 @@ msgid "Display Name"
 msgstr "Nombre a mostrar"
 
 #. module: ecoembes
+#: model:ir.ui.menu,name:ecoembes.menu_ecoembes_main
 #: model:ir.ui.menu,name:ecoembes.menu_ecoembes_report_sig
 #: model_terms:ir.ui.view,arch_db:ecoembes.nan_product_pack_form
+#: model_terms:ir.ui.view,arch_db:ecoembes.product_template_only_form_view
+#: model_terms:ir.ui.view,arch_db:ecoembes.view_company_sii_form
 msgid "Ecoembes"
 msgstr "Ecoembes"
+
+#. module: ecoembes
+#: model_terms:ir.ui.view,arch_db:ecoembes.view_company_sii_form
+msgid "Ecoembes Configuration"
+msgstr ""
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_res_company__ecoembes_inscription
+msgid "Ecoembes Inscription"
+msgstr ""
+
+#. module: ecoembes
+#: model:res.groups,name:ecoembes.group_ecoembes_manager
+msgid "Ecoembes Manager"
+msgstr "Gestor Ecoembes"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_res_company__ecoembes_partner_member
+msgid "Ecoembes Partner Member"
+msgstr ""
 
 #. module: ecoembes
 #: model:ir.actions.act_window,name:ecoembes.action_ecoembes_sig_report_wizard
@@ -233,6 +275,11 @@ msgid "Market Type"
 msgstr "Tipo de mercado"
 
 #. module: ecoembes
+#: model:ir.ui.menu,name:ecoembes.menu_ecoembes_market_type
+msgid "Market Types"
+msgstr "Tipos de mercado"
+
+#. module: ecoembes
 #: model:ir.model.fields,field_description:ecoembes.field_ecoembes_market_type__name
 #: model:ir.model.fields,field_description:ecoembes.field_product_composition__market_type_id
 msgid "Market type"
@@ -249,6 +296,11 @@ msgstr "Tipo de mercado"
 #: model_terms:ir.ui.view,arch_db:ecoembes.view_product_composition_search
 msgid "Material"
 msgstr "Material"
+
+#. module: ecoembes
+#: model:ir.ui.menu,name:ecoembes.menu_ecoembes_material
+msgid "Materials"
+msgstr "Materiales"
 
 #. module: ecoembes
 #: model:ir.model.fields,field_description:ecoembes.field_account_move_line_ecoembes_report__move_id
@@ -280,6 +332,11 @@ msgid "Packaging"
 msgstr "Embalaje"
 
 #. module: ecoembes
+#: model:ir.ui.menu,name:ecoembes.menu_ecoembes_packaging
+msgid "Packagings"
+msgstr "Embalajes"
+
+#. module: ecoembes
 #: model:ir.model.fields,field_description:ecoembes.field_account_move_line_ecoembes_report__period
 msgid "Period"
 msgstr "Periodo"
@@ -299,7 +356,18 @@ msgid "Product Composition"
 msgstr "Composición de producto"
 
 #. module: ecoembes
+#: model:ir.ui.menu,name:ecoembes.menu_ecoembes_product_composition
+msgid "Product Compositions"
+msgstr "Composiciones de producto"
+
+#. module: ecoembes
+#: model:ir.model,name:ecoembes.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: ecoembes
 #: model:ir.model.fields,field_description:ecoembes.field_product_product__ecoembes_product_master
+#: model:ir.model.fields,field_description:ecoembes.field_product_template__ecoembes_product_master
 msgid "Product master"
 msgstr "Maestro de producto"
 
@@ -335,6 +403,7 @@ msgstr "SIG-%s.xls"
 
 #. module: ecoembes
 #: model:ir.model.fields,field_description:ecoembes.field_product_product__ecoembes_sig
+#: model:ir.model.fields,field_description:ecoembes.field_product_template__ecoembes_sig
 msgid "SIG/NOSIG option"
 msgstr "Opción SIG/NOSIG"
 
@@ -367,6 +436,11 @@ msgid "Sector"
 msgstr "Sector"
 
 #. module: ecoembes
+#: model:ir.ui.menu,name:ecoembes.menu_ecoembes_sector
+msgid "Sectors"
+msgstr "Sectores"
+
+#. module: ecoembes
 #: code:addons/ecoembes/wizard/ecoembes_sig_report_wizard.py:0
 #: model:ir.model.fields.selection,name:ecoembes.selection__ecoembes_sig_report_wizard__state__start
 #, python-format
@@ -389,6 +463,16 @@ msgid "Submaterial"
 msgstr "Submaterial"
 
 #. module: ecoembes
+#: model:ir.ui.menu,name:ecoembes.menu_ecoembes_submaterial
+msgid "Submaterials"
+msgstr "Submateriales"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_product_composition__product_tmpl_id
+msgid "Template"
+msgstr "Plantilla"
+
+#. module: ecoembes
 #: model:ir.model.fields,field_description:ecoembes.field_product_composition__volume
 msgid "Volume (mL)"
 msgstr "Volumen (mL)"
@@ -396,5 +480,6 @@ msgstr "Volumen (mL)"
 #. module: ecoembes
 #: model:ir.model.fields,field_description:ecoembes.field_product_composition__weight
 #: model:ir.model.fields,field_description:ecoembes.field_product_product__weight_net_gram_round
+#: model:ir.model.fields,field_description:ecoembes.field_product_template__weight_net_gram_round
 msgid "Weight (g)"
 msgstr "Peso (g)"
