@@ -1,5 +1,6 @@
 # Copyright 2020 Tecnativa - David Vidal
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+import logging
 from xml.sax.saxutils import escape
 
 from odoo import _, api, fields, models
@@ -16,6 +17,8 @@ from .gls_asm_master_data import (
     GLS_TRACKING_LINKS,
 )
 from .gls_asm_request import GlsAsmRequest
+
+_logger = logging.getLogger(__name__)
 
 
 class DeliveryCarrier(models.Model):
@@ -303,8 +306,8 @@ class DeliveryCarrier(models.Model):
                     if ref.get("_tipo", "") == "N":
                         gls_asm_picking_ref = ref.get("value", "")
                         break
-            except Exception:
-                pass
+            except Exception as e:
+                _logger.warning(e)
             picking.write(
                 {
                     "gls_asm_public_tracking_ref": response.get("_codbarras"),
@@ -358,8 +361,9 @@ class DeliveryCarrier(models.Model):
             # We post an extra message in the chatter with the barcode and the
             # label because there's clean way to override the one sent by core.
             body = _(
-                "GLS Pickup extra info:<br/> Tracking number: %s<br/> Bultos: %s"
-            ) % (response.get("_codigo"), vals["bultos"])
+                "GLS Pickup extra info:<br/> "
+                "Tracking number: %(codigo)s<br/> Bultos: %(bultos)s",
+            ) % {"codigo": response.get("_codigo"), "bultos": vals["bultos"]}
             picking.message_post(body=body)
             result.append(vals)
         return result
