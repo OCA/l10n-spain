@@ -36,7 +36,8 @@ class L10nEsPartnerImportWizard(models.TransientModel):
         try:
             response = requests.get(
                 "http://www.bde.es/f/webbde/IFI/servicio/regis/ficheros/es/"
-                "REGBANESP_CONESTAB_A.XLS"
+                "REGBANESP_CONESTAB_A.XLS",
+                timeout=20,
             )
             response.raise_for_status()
             src_file.write(response.content)
