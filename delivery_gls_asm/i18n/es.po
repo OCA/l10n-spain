@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-23 09:29+0000\n"
-"PO-Revision-Date: 2022-05-23 09:29+0000\n"
-"Last-Translator: <ethan@studio73.es>\n"
+"POT-Creation-Date: 2022-10-20 12:24+0000\n"
+"PO-Revision-Date: 2022-10-20 14:26+0200\n"
+"Last-Translator: ethan@studio73.es\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__0
@@ -193,7 +193,7 @@ msgstr "COURIER"
 #. module: delivery_gls_asm
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.view_picking_form
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: delivery_gls_asm
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.delivery_manifest_wizard_form
@@ -235,8 +235,9 @@ msgstr ""
 msgid ""
 "Check this field to mark the delivery as 'With return'. This means that the "
 "customer receiving the delivery also has a package to return."
-msgstr "Marcar campo para indicar que el envío es 'Con recogida'. Esto significa que el cliente "
-"que recibe el envío también tiene un paquete para devolver."
+msgstr ""
+"Marcar campo para indicar que el envío es 'Con recogida'. Esto significa que "
+"el cliente que recibe el envío también tiene un paquete para devolver."
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_is_pickup_service
@@ -317,9 +318,7 @@ msgid "Devuelta al cliente"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__display_name
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_gls_asm_minifest_wizard__display_name
-#: model:ir.model.fields,field_description:delivery_gls_asm.field_stock_picking__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
@@ -473,11 +472,6 @@ msgid "GLS Deliveries Manifest"
 msgstr "Manifiesto de Envíos GLS"
 
 #. module: delivery_gls_asm
-#: model:ir.model.fields,field_description:delivery_gls_asm.field_stock_picking__gls_asm_picking_ref
-msgid "GLS Picking Reference"
-msgstr "Referencia albarán GLS"
-
-#. module: delivery_gls_asm
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.view_picking_form
 msgid "GLS Label"
 msgstr "Etiqueta GLS"
@@ -492,9 +486,16 @@ msgid "GLS Manifest"
 msgstr "Manifiesto GLS"
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields,field_description:delivery_gls_asm.field_stock_picking__gls_asm_picking_ref
+msgid "GLS Picking Reference"
+msgstr "Referencia albarán GLS"
+
+#. module: delivery_gls_asm
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #, python-format
-msgid "GLS Pickup extra info:<br/> Tracking number: %s<br/> Bultos: %s"
+msgid ""
+"GLS Pickup extra info:<br/> Tracking number: %(codigo)s<br/> Bultos: "
+"%(bultos)s"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -528,13 +529,13 @@ msgstr "Etiqueta GLS para% s"
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
 msgid ""
-"GLS returned an error trying to record the shipping for {}.\n"
+"GLS returned an error trying to record the shipping for %(ref).\n"
 "Error:\n"
-"{}"
+"%(error)"
 msgstr ""
-"GLS ha devuelto un error tratando de registrar la expedición para {}.\n"
+"GLS ha devuelto un error tratando de registrar la expedición para %(ref).\n"
 "Error:\n"
-"{}"
+"%(error)"
 
 #. module: delivery_gls_asm
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
@@ -556,27 +557,27 @@ msgstr "Con recogida GLS/ASM"
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
 msgid ""
-"GLS: No response from server getting state from ref {}.\n"
+"GLS: No response from server getting state from ref %(ref).\n"
 "Traceback:\n"
-"{}"
+"%(error)"
 msgstr ""
 "GLS: Si respuesta del servidor intentando recuperar el estado de la "
-"referencia {}.\n"
+"referencia %(ref).\n"
 "Traceback:\n"
-"{}"
+"%(error)"
 
 #. module: delivery_gls_asm
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
 msgid ""
-"GLS: No response from server printing label with ref {}.\n"
+"GLS: No response from server printing label with ref %(ref).\n"
 "Traceback:\n"
-"{}"
+"%(error)"
 msgstr ""
 "GLS: Sin respuesta del servidor trantando de imprimir la etiqueta con "
-"referencia {}.\n"
+"referencia %(ref)..\n"
 "Traceback:\n"
-"{}"
+"%(error)"
 
 #. module: delivery_gls_asm
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.delivery_manifest_wizard_form
@@ -599,9 +600,7 @@ msgid "IBEX"
 msgstr "IBEX"
 
 #. module: delivery_gls_asm
-#: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__id
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_gls_asm_minifest_wizard__id
-#: model:ir.model.fields,field_description:delivery_gls_asm.field_stock_picking__id
 msgid "ID"
 msgstr "ID"
 
@@ -631,6 +630,13 @@ msgid "INTERNACIONAL EXPRESS"
 msgstr "INTERNACIONAL EXPRESS"
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_asm_cash_on_delivery
+msgid ""
+"If checked, it means that the carrier is paid with cash. It assumes there is "
+"a sale order linked and it will use that total amount as the value to be paid"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__36
 msgid "Int. WEB"
 msgstr "Int. WEB"
@@ -646,9 +652,7 @@ msgstr ""
 "fecha seleccionada."
 
 #. module: delivery_gls_asm
-#: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier____last_update
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_gls_asm_minifest_wizard____last_update
-#: model:ir.model.fields,field_description:delivery_gls_asm.field_stock_picking____last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
 
@@ -698,23 +702,23 @@ msgstr ""
 msgid ""
 "No response from server getting manifisto for GLS.\n"
 "Traceback:\n"
-"{}"
+"%(error)"
 msgstr ""
 "No hay respuesta del servidor obteniendo manifisto para GLS.\n"
 "Rastrear:\n"
-"{}"
+"%(error)"
 
 #. module: delivery_gls_asm
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
 msgid ""
-"No response from server recording GLS delivery {}.\n"
+"No response from server recording GLS delivery %(ref).\n"
 "Traceback:\n"
-"{}"
+"%(error)"
 msgstr ""
-"No hay respuesta del servidor que registra la entrega de GLS {}.\n"
+"No hay respuesta del servidor que registra la entrega de GLS %(ref).\n"
 "Rastrear:\n"
-"{}"
+"%(error)"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__19
@@ -748,7 +752,6 @@ msgstr "Bultos"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__19
-#, fuzzy
 msgid "ParcelShop"
 msgstr "ParcelShop"
 
@@ -810,7 +813,6 @@ msgstr "Proveedor"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__58
-#, fuzzy
 msgid "RC. PARCEL SHOP"
 msgstr "RC. PARCEL SHOP"
 
@@ -992,7 +994,7 @@ msgstr "Establezca el tiempo de envío de las opciones de GLS"
 #. module: delivery_gls_asm
 #: model:ir.model,name:delivery_gls_asm.model_delivery_carrier
 msgid "Shipping Methods"
-msgstr ""
+msgstr "Métodos de envío"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_asm_shiptime
@@ -1044,43 +1046,3 @@ msgstr "C.P."
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__35
 msgid "dPRO"
 msgstr "dPRO"
-
-#~ msgid "Based on Rules"
-#~ msgstr "En base a reglas"
-
-#~ msgid "Delivery Methods"
-#~ msgstr "Métodos de envío"
-
-#~ msgid "Fixed Price"
-#~ msgstr "Fixed Price"
-
-#~ msgid "GLS Expedition with reference %s cancelled"
-#~ msgstr "Expedición GLS con referencia %s cancelada"
-
-#~ msgid "GLS Pickup extra info:<br/> Tracking number: %s"
-#~ msgstr ""
-#~ "Información adicional de la recogida GLS:<br/> Número de seguimiento: %s"
-
-#~ msgid "Last GLS xml request"
-#~ msgstr "Última solicitud xml de GLS"
-
-#~ msgid "Last GLS xml response"
-#~ msgstr "Última respuesta xml de GLS"
-
-#~ msgid "Seur"
-#~ msgstr "Seur"
-
-#~ msgid "Technical"
-#~ msgstr "Técnico"
-
-#~ msgid "Used for issues debugging"
-#~ msgstr "Se utiliza para la depuración de problemas"
-
-#~ msgid "Carrier"
-#~ msgstr "Transportista"
-
-#~ msgid "No carrier integration"
-#~ msgstr "Sin integración de transportista"
-
-#~ msgid "Product Packaging"
-#~ msgstr "Empaquetado del producto"
