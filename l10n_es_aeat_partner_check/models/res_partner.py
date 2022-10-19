@@ -6,6 +6,9 @@ import requests
 
 from odoo import _, api, fields, models
 
+# Info about RESULTS, section 6.3:
+# https://www.agenciatributaria.es/static_files/AEAT/Contenidos_Comunes/La_Agencia_Tributaria/Modelos_y_formularios/Declaraciones/Modelos_01_al_99/030_036_037/WS_Masivo/Manual_Tecnico_WS_Masivo_Calidad_Datos_Identificativos.pdf # noqa B950
+
 RESULTS = [
     ("NO IDENTIFICADO", _("No identificado")),
     ("IDENTIFICADO", _("Identificado")),
@@ -13,6 +16,7 @@ RESULTS = [
     ("NO IDENTIFICABLE", _("No identificable")),
     ("IDENTIFICADO-BAJA", _("Identificado, baja")),
     ("IDENTIFICADO-REVOCADO", _("Identificado, revocado")),
+    ("NO IDENTIFICADO-SIMILAR", _("No identificado-similar")),
 ]
 TYPES = [
     ("sales_equalization", _("Régimen de recargo de equivalencia")),
