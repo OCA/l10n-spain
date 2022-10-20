@@ -20,12 +20,12 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,tipo_declaracion:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod130.selection__l10n_es_aeat_mod130_report__tipo_declaracion__b
 msgid "A deducir"
 msgstr "A deduir"
 
 #. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,tipo_declaracion:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod130.selection__l10n_es_aeat_mod130_report__tipo_declaracion__i
 msgid "A ingresar"
 msgstr "A ingressar"
 
@@ -60,12 +60,12 @@ msgid "Action Needed"
 msgstr "Acció necessària"
 
 #. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,activity_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod130.selection__l10n_es_aeat_mod130_report__activity_type__primary
 msgid "Actividad agrícola, ganadera, forestal o pesquera"
 msgstr "Activitat agrícola, ramadera, forestal o pesquera"
 
 #. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,activity_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod130.selection__l10n_es_aeat_mod130_report__activity_type__other
 msgid "Actividad distinta a las anteriores"
 msgstr "Activitat diferent a les anteriors"
 
@@ -75,9 +75,19 @@ msgid "Activities"
 msgstr "Activitats"
 
 #. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_state
 msgid "Activity State"
 msgstr "Estat de l’activitat"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__allow_posting
@@ -105,11 +115,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__calculation_date
 msgid "Calculation date"
 msgstr "Data de càlcul"
-
-#. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,state:0
-msgid "Cancelled"
-msgstr "Cancel·lada"
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__casilla_01
@@ -212,16 +217,6 @@ msgid "Company bank account used for the presentation"
 msgstr "Compte bancari de l’empresa utilitzat per a la presentació"
 
 #. module: l10n_es_aeat_mod130
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__company_partner_id
-msgid "Company partner"
-msgstr "Soci de l’empresa"
-
-#. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,type:0
-msgid "Complementary"
-msgstr "Complementària"
-
-#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__contact_email
 msgid "Contact email"
 msgstr "Correu electrònic de contacte"
@@ -252,17 +247,12 @@ msgid "Currency"
 msgstr "Moneda"
 
 #. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,support_type:0
-msgid "DVD"
-msgstr "DVD"
-
-#. module: l10n_es_aeat_mod130
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
 msgid "Datos a completar"
 msgstr "Dades a completar"
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:241
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
 #, python-format
 msgid ""
 "Debe introducir una cantidad en la casilla 18 como ha marcado la casilla de "
@@ -277,22 +267,17 @@ msgid "Display Name"
 msgstr "Veure el nom"
 
 #. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,state:0
-msgid "Done"
-msgstr "Realitzat"
-
-#. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,state:0
-msgid "Draft"
-msgstr "Esborrany"
-
-#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__date_end
 msgid "Ending date"
 msgstr "Data de finalització"
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:171
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__error_count
+msgid "Error Count"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
 #, python-format
 msgid "Este tipo de actividad no está aún soportado por el módulo."
 msgstr "Aquest tipus d'activitat no està suportat pel mòdul."
@@ -316,6 +301,11 @@ msgstr "Seguidors (canals)"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_partner_ids
 msgid "Followers (Partners)"
 msgstr "Seguidors (Socis)"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__contact_name
@@ -346,17 +336,24 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_aeat_mod130
-#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_unread
-msgid "If checked new messages require your attention."
-msgstr "Si està marcat, els missatges nous requereixen la vostra atenció."
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_needaction
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Si està marcat, els missatges nous requereixen la vostra atenció."
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_has_error
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si està marcat, alguns missatges tenen un error de lliurament."
 
@@ -431,7 +428,12 @@ msgid "Must have name and surname."
 msgstr "Ha de tenir nom i cognoms."
 
 #. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,tipo_declaracion:0
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod130.selection__l10n_es_aeat_mod130_report__tipo_declaracion__n
 msgid "Negativa"
 msgstr "Negativa"
 
@@ -451,13 +453,13 @@ msgid "Next Activity Type"
 msgstr "Tipus d'activitat següent"
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:223
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
 #, python-format
 msgid "No implementado"
 msgstr "No implementat"
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:174
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
 #, python-format
 msgid ""
 "No se pueden calcular por el momento declaraciones que contengan deducciones "
@@ -467,19 +469,14 @@ msgstr ""
 "l'article 80 bis."
 
 #. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,type:0
-msgid "Normal"
-msgstr "Normal"
-
-#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_needaction_counter
 msgid "Number of Actions"
 msgstr "Nombre d'accions"
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_has_error_counter
-msgid "Number of error"
-msgstr "Nombre d'errors"
+msgid "Number of errors"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_needaction_counter
@@ -506,11 +503,6 @@ msgstr "Observacions"
 #: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__comments
 msgid "Observaciones que se adjuntarán con el modelo"
 msgstr "Observacions que s'adjuntaran amb el model"
-
-#. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,activity_state:0
-msgid "Overdue"
-msgstr "Endarrerit"
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__partner_id
@@ -570,24 +562,9 @@ msgid "Phone"
 msgstr "Telèfon"
 
 #. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,activity_state:0
-msgid "Planned"
-msgstr "Planificat"
-
-#. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,state:0
-msgid "Posted"
-msgstr "Publicat"
-
-#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__previous_number
 msgid "Previous declaration number"
 msgstr "Número de declaració prèvia"
-
-#. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,state:0
-msgid "Processed"
-msgstr "Processat"
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__name
@@ -606,6 +583,11 @@ msgid "Resultado"
 msgstr "Resultat"
 
 #. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__date_start
 msgid "Starting date"
 msgstr "Data d'inici"
@@ -616,7 +598,7 @@ msgid "State"
 msgstr "Estat"
 
 #. module: l10n_es_aeat_mod130
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__type
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__statement_type
 msgid "Statement Type"
 msgstr "Tipus declaració"
 
@@ -634,19 +616,9 @@ msgstr ""
 "Planificades: activitats futures."
 
 #. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,type:0
-msgid "Substitutive"
-msgstr "Substitutiva"
-
-#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__support_type
 msgid "Support Type"
 msgstr "Tipus de suport"
-
-#. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,support_type:0
-msgid "Telematics"
-msgstr "Telemàtica"
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__counterpart_account_id
@@ -668,9 +640,9 @@ msgid "Tipo declaración"
 msgstr "Tipus declaració"
 
 #. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,activity_state:0
-msgid "Today"
-msgstr "Avui"
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_unread
@@ -791,6 +763,54 @@ msgstr "¿Deducció per art. 80 bis?"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__has_prestamo
 msgid "¿Préstamo para vivienda habitual?"
 msgstr "¿Préstec per a habitatge habitual?"
+
+#~ msgid "Cancelled"
+#~ msgstr "Cancel·lada"
+
+#~ msgid "Company partner"
+#~ msgstr "Soci de l’empresa"
+
+#~ msgid "Complementary"
+#~ msgstr "Complementària"
+
+#~ msgid "DVD"
+#~ msgstr "DVD"
+
+#~ msgid "Done"
+#~ msgstr "Realitzat"
+
+#~ msgid "Draft"
+#~ msgstr "Esborrany"
+
+#~ msgid "If checked new messages require your attention."
+#~ msgstr "Si està marcat, els missatges nous requereixen la vostra atenció."
+
+#~ msgid "Normal"
+#~ msgstr "Normal"
+
+#~ msgid "Number of error"
+#~ msgstr "Nombre d'errors"
+
+#~ msgid "Overdue"
+#~ msgstr "Endarrerit"
+
+#~ msgid "Planned"
+#~ msgstr "Planificat"
+
+#~ msgid "Posted"
+#~ msgstr "Publicat"
+
+#~ msgid "Processed"
+#~ msgstr "Processat"
+
+#~ msgid "Substitutive"
+#~ msgstr "Substitutiva"
+
+#~ msgid "Telematics"
+#~ msgstr "Telemàtica"
+
+#~ msgid "Today"
+#~ msgstr "Avui"
 
 #~ msgid "Export Report to BOE Format"
 #~ msgstr "Exporta a fitxer BOE"
