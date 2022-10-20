@@ -413,7 +413,9 @@ class DeliveryCarrier(models.Model):
             vals["DatosServicio"]["NumeroSobre"] = ""
             vals["DatosServicio"]["Reembolso"] = self.mrw_reembolso
             vals["DatosServicio"]["ImporteReembolso"] = (
-                picking.sale_id.amount_total if self.mrw_reembolso != "N" else ""
+                str(picking.sale_id.amount_total).replace(".", ",")
+                if self.mrw_reembolso != "N"
+                else ""
             )
             vals["DatosServicio"]["Retorno"] = self.mrw_retorno
         else:
