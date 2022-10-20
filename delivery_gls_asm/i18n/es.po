@@ -275,12 +275,7 @@ msgid "Ent. Pto. ASM"
 msgstr "Ent. Pto. ASM"
 
 #. module: delivery_gls_asm
-#: selection:delivery.carrier,delivery_type:0
-msgid "Fixed Price"
-msgstr "Precio fijo"
-
-#. module: delivery_gls_asm
-#: selection:delivery.carrier,gls_asm_shiptime:0
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__9
 msgid "Franja Horaria"
 msgstr "Franja horaria"
 
@@ -561,7 +556,7 @@ msgid "Packages"
 msgstr "Bultos"
 
 #. module: delivery_gls_asm
-#: selection:delivery.carrier,gls_asm_shiptime:0
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__19
 msgid "ParcelShop"
 msgstr "Parcel Shop"
 
@@ -586,7 +581,7 @@ msgid "Provider"
 msgstr "Proveedor"
 
 #. module: delivery_gls_asm
-#: selection:delivery.carrier,gls_asm_service:0
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__58
 msgid "RC. PARCEL SHOP"
 msgstr "RC. PARCEL SHOP"
 
@@ -770,3 +765,6 @@ msgstr "Código postal"
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__35
 msgid "dPRO"
 msgstr "dPRO"
+
+#~ msgid "Fixed Price"
+#~ msgstr "Precio fijo"
