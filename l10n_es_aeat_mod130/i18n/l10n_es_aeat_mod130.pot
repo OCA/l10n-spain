@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_aeat_mod130
+# 	* l10n_es_aeat_mod130
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,12 +14,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,tipo_declaracion:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod130.selection__l10n_es_aeat_mod130_report__tipo_declaracion__b
 msgid "A deducir"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,tipo_declaracion:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod130.selection__l10n_es_aeat_mod130_report__tipo_declaracion__i
 msgid "A ingresar"
 msgstr ""
 
@@ -54,12 +54,12 @@ msgid "Action Needed"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,activity_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod130.selection__l10n_es_aeat_mod130_report__activity_type__primary
 msgid "Actividad agrícola, ganadera, forestal o pesquera"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,activity_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod130.selection__l10n_es_aeat_mod130_report__activity_type__other
 msgid "Actividad distinta a las anteriores"
 msgstr ""
 
@@ -69,8 +69,18 @@ msgid "Activities"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_state
 msgid "Activity State"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_type_icon
+msgid "Activity Type Icon"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -90,17 +100,13 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__non_justified_expenses
-msgid "Calculado como el 5% del rendimiento del periodo (ingresos - gastos reales)."
+msgid ""
+"Calculado como el 5% del rendimiento del periodo (ingresos - gastos reales)."
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__calculation_date
 msgid "Calculation date"
-msgstr ""
-
-#. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,state:0
-msgid "Cancelled"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -204,16 +210,6 @@ msgid "Company bank account used for the presentation"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__company_partner_id
-msgid "Company partner"
-msgstr ""
-
-#. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,type:0
-msgid "Complementary"
-msgstr ""
-
-#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__contact_email
 msgid "Contact email"
 msgstr ""
@@ -244,19 +240,16 @@ msgid "Currency"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,support_type:0
-msgid "DVD"
-msgstr ""
-
-#. module: l10n_es_aeat_mod130
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
 msgid "Datos a completar"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:241
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
 #, python-format
-msgid "Debe introducir una cantidad en la casilla 18 como ha marcado la casilla de declaración complementaria."
+msgid ""
+"Debe introducir una cantidad en la casilla 18 como ha marcado la casilla de "
+"declaración complementaria."
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -265,22 +258,17 @@ msgid "Display Name"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,state:0
-msgid "Done"
-msgstr ""
-
-#. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,state:0
-msgid "Draft"
-msgstr ""
-
-#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__date_end
 msgid "Ending date"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:171
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__error_count
+msgid "Error Count"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
 #, python-format
 msgid "Este tipo de actividad no está aún soportado por el módulo."
 msgstr ""
@@ -306,6 +294,11 @@ msgid "Followers (Partners)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__contact_name
 msgid "Full Name"
 msgstr ""
@@ -317,7 +310,9 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__real_expenses
-msgid "Gastos en el periodo sin contar con el 5% adicional de difícil justificación."
+msgid ""
+"Gastos en el periodo sin contar con el 5% adicional de difícil "
+"justificación."
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -331,17 +326,24 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_unread
-msgid "If checked new messages require your attention."
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_exception_icon
+msgid "Icon to indicate an exception activity."
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_needaction
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_has_error
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -416,7 +418,12 @@ msgid "Must have name and surname."
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,tipo_declaracion:0
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod130.selection__l10n_es_aeat_mod130_report__tipo_declaracion__n
 msgid "Negativa"
 msgstr ""
 
@@ -436,20 +443,17 @@ msgid "Next Activity Type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:223
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
 #, python-format
 msgid "No implementado"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:174
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
 #, python-format
-msgid "No se pueden calcular por el momento declaraciones que contengan deducciones por el artículo 80 bis."
-msgstr ""
-
-#. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,type:0
-msgid "Normal"
+msgid ""
+"No se pueden calcular por el momento declaraciones que contengan deducciones"
+" por el artículo 80 bis."
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -459,7 +463,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_has_error_counter
-msgid "Number of error"
+msgid "Number of errors"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -489,11 +493,6 @@ msgid "Observaciones que se adjuntarán con el modelo"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,activity_state:0
-msgid "Overdue"
-msgstr ""
-
-#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__partner_id
 msgid "Partner"
 msgstr ""
@@ -505,13 +504,15 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__has_prestamo
-msgid "Permite indicar si destina cantidades al pago de préstamos para la adquisición o rehabilitación de la vivienda habitual. Si marca la casilla, se podrá realiza un 2% de deducción sobre el importe de la casilla [03], con un máximo de 660,14 € por trimestre, o del 2% de la casilla [08], con un máximo de 660,14 euros anuales. \n"
+msgid ""
+"Permite indicar si destina cantidades al pago de préstamos para la adquisición o rehabilitación de la vivienda habitual. Si marca la casilla, se podrá realiza un 2% de deducción sobre el importe de la casilla [03], con un máximo de 660,14 € por trimestre, o del 2% de la casilla [08], con un máximo de 660,14 euros anuales. \n"
 "Debe consultar las excepciones para las que no se computaría la deducción a pesar del préstamo."
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__has_deduccion_80
-msgid "Permite indicar si puede beneficiarse de la deducción por obtención de rendimientos de actividades económicas a efectos del pago fraccionado por cumplir el siguiente requisito:\n"
+msgid ""
+"Permite indicar si puede beneficiarse de la deducción por obtención de rendimientos de actividades económicas a efectos del pago fraccionado por cumplir el siguiente requisito:\n"
 " Que, en el primer trimestre del ejercicio o en el primer trimestre de inicio de actividades, la suma del resultado de elevar al año el importe de la casilla 03 y/o, en su caso, el resultado de elevar al año el 25 por 100 de la casilla 08, sea igual o inferior a 12.000 euros. En los supuestos de inicio de la actividad a lo largo del ejercicio en la elevación al año se tendrán en consideración los días que resten hasta el final del año."
 msgstr ""
 
@@ -521,23 +522,8 @@ msgid "Phone"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,activity_state:0
-msgid "Planned"
-msgstr ""
-
-#. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,state:0
-msgid "Posted"
-msgstr ""
-
-#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__previous_number
 msgid "Previous declaration number"
-msgstr ""
-
-#. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,state:0
-msgid "Processed"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -557,6 +543,11 @@ msgid "Resultado"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__date_start
 msgid "Starting date"
 msgstr ""
@@ -567,21 +558,17 @@ msgid "State"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__type
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__statement_type
 msgid "Statement Type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_state
-msgid "Status based on activities\n"
+msgid ""
+"Status based on activities\n"
 "Overdue: Due date is already passed\n"
 "Today: Activity date is today\n"
 "Planned: Future activities."
-msgstr ""
-
-#. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,type:0
-msgid "Substitutive"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -590,13 +577,10 @@ msgid "Support Type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,support_type:0
-msgid "Telematics"
-msgstr ""
-
-#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__counterpart_account_id
-msgid "This account will be the counterpart for all the journal items that are regularized when posting the report."
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -610,8 +594,8 @@ msgid "Tipo declaración"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: selection:l10n.es.aeat.mod130.report,activity_state:0
-msgid "Today"
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_exception_decoration
+msgid "Type of the exception activity on record."
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -733,4 +717,3 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__has_prestamo
 msgid "¿Préstamo para vivienda habitual?"
 msgstr ""
-
