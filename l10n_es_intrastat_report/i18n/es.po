@@ -18,6 +18,34 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 
 #. module: l10n_es_intrastat_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_computation_line_view_tree
+msgid "/&gt;"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__product_origin_country_code
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__product_origin_country_code
+msgid ""
+"2 digit code of country of origin of the product except for the UK.\n"
+"Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK.\n"
+"Specify 'QU' when the country is unknown.\n"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__src_dest_country_code
+msgid ""
+"2 digit code of country of origin/destination.\n"
+"Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK."
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__src_dest_country_code
+msgid ""
+"2 digit code of country of origin/destination.\n"
+"Specify 'XI' for UK Northern Ireland."
+msgstr ""
+
+#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__amount_accessory_cost_company_currency
 msgid "Accessory Costs"
 msgstr "Costes accesorios"
@@ -113,7 +141,15 @@ msgid "Country"
 msgstr "País"
 
 #. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__src_dest_country_code
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__src_dest_country_code
+msgid "Country Code"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__product_origin_country_code
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__product_origin_country_id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__product_origin_country_code
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__product_origin_country_id
 msgid "Country of Origin of the Product"
 msgstr "País de origen del producto"
@@ -174,8 +210,6 @@ msgstr "Línea de declaración"
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__display_name
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__display_name
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__display_name
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_report_intrastat_product_product_declaration_xls__display_name
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_stock_location__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
@@ -188,11 +222,6 @@ msgstr "Valor fiscal"
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_follower_ids
 msgid "Followers"
 msgstr "Seguidores"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_channel_ids
-msgid "Followers (Channels)"
-msgstr "Seguidores (Canales)"
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_partner_ids
@@ -210,12 +239,15 @@ msgid "Generate CSV Declaration File"
 msgstr "Generar declaración en CSV"
 
 #. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__id
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__id
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__id
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__id
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_report_intrastat_product_product_declaration_xls__id
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_stock_location__id
 msgid "ID"
 msgstr "ID"
 
@@ -354,8 +386,6 @@ msgstr "Es un seguidor"
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line____last_update
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration____last_update
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line____last_update
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_report_intrastat_product_product_declaration_xls____last_update
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_stock_location____last_update
 msgid "Last Modified on"
 msgstr "Última modificación el"
 
@@ -392,15 +422,17 @@ msgstr "Mensajes"
 
 #. module: l10n_es_intrastat_report
 #: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
+#: code:addons/l10n_es_intrastat_report/tests/test_l10n_es_intrastat_report.py:0
 #, python-format
-msgid "Missing origin country on product %s."
-msgstr "Falta el país de origen en el producto %s."
+msgid "Missing origin country on product %s. "
+msgstr ""
 
 #. module: l10n_es_intrastat_report
 #: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
+#: code:addons/l10n_es_intrastat_report/tests/test_l10n_es_intrastat_report.py:0
 #, python-format
-msgid "Missing partner vat on invoice %s."
-msgstr "Falta el NIF del contacto en la factura %s."
+msgid "Missing partner vat on invoice %s. "
+msgstr ""
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__month
@@ -643,6 +675,12 @@ msgid "VAT"
 msgstr "NIF"
 
 #. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__vat
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__vat
+msgid "VAT Number"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__valid
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__valid
 msgid "Valid"
@@ -694,11 +732,20 @@ msgstr "Año y mes de la declaración."
 msgid "You can add some comments here if you want."
 msgstr "Puede añadir algunos comentarios aquí si lo prefiere."
 
-#. module: l10n_es_intrastat_report
-#: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:0
+#~ msgid "Followers (Channels)"
+#~ msgstr "Seguidores (Canales)"
+
 #, python-format
-msgid "xlrd library not found."
-msgstr "Librería xlrd no encontrada."
+#~ msgid "Missing origin country on product %s."
+#~ msgstr "Falta el país de origen en el producto %s."
+
+#, python-format
+#~ msgid "Missing partner vat on invoice %s."
+#~ msgstr "Falta el NIF del contacto en la factura %s."
+
+#, python-format
+#~ msgid "xlrd library not found."
+#~ msgstr "Librería xlrd no encontrada."
 
 #~ msgid "Used in views and methods of localization modules."
 #~ msgstr "Usado en vistas y métodos de módulos de localización."
