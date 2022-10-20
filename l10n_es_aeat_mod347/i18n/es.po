@@ -138,12 +138,12 @@ msgstr ""
 "  % if object.amount:\n"
 "  <p>\n"
 "  <strong>Importe de las operaciones:</strong> ${object.amount}<br/>\n"
-"  <strong>Operaciones primer trimestre:</strong> ${object.first_quarter}<br/>"
-"\n"
-"  <strong>Operaciones segundo trimestre:</strong> ${object.second_quarter}<"
-"br/>\n"
-"  <strong>Operaciones tercer trimestre:</strong> ${object.third_quarter}<br/>"
-"\n"
+"  <strong>Operaciones primer trimestre:</strong> ${object.first_quarter}<br/"
+">\n"
+"  <strong>Operaciones segundo trimestre:</strong> ${object.second_quarter}"
+"<br/>\n"
+"  <strong>Operaciones tercer trimestre:</strong> ${object.third_quarter}<br/"
+">\n"
 "  <strong>Operaciones cuarto trimestre:</strong> ${object.fourth_quarter}<br/"
 ">\n"
 "  </p>\n"
@@ -377,11 +377,6 @@ msgstr "Importe 3T:"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
 msgid "Amount 4Q:"
 msgstr "Importe 4T:"
-
-#. module: l10n_es_aeat_mod347
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__amount_signed
-msgid "Amount signed"
-msgstr "Cantidad firmada"
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
@@ -642,6 +637,21 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__date_end
 msgid "Ending date"
 msgstr "Fecha de finalización"
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__error_count
+msgid "Error Count"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__error_text
+msgid "Error text"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__error_text
+msgid "Errors"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__state__exception
@@ -931,11 +941,6 @@ msgstr "Modelo 347"
 #: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_move_record
 msgid "Move Record"
 msgstr "Move Record"
-
-#. module: l10n_es_aeat_mod347
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__move_type
-msgid "Move Type"
-msgstr "Tipo de movimiento"
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
@@ -1413,6 +1418,12 @@ msgid "State Code"
 msgstr "Código de provincia"
 
 #. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
+msgid "State code can only contain digits"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__statement_type
 msgid "Statement Type"
 msgstr "Tipo de declaración"
@@ -1602,6 +1613,12 @@ msgid "Unread Messages Counter"
 msgstr "Contador de mensajes no leídos"
 
 #. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
+msgid "VAT must be defined for Spanish Contacts"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__partner_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__partner_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__company_vat
@@ -1629,9 +1646,21 @@ msgid "Website communication history"
 msgstr "Historial de comunicación del sitio web"
 
 #. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
+msgid "Without country code"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_type__s/n
 msgid "Without number"
 msgstr "Sin número"
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
+msgid "Without state code"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.communication_success
@@ -1642,6 +1671,12 @@ msgstr "Ya puede cerrar esta página si así lo desea."
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__year
 msgid "Year"
 msgstr "Año"
+
+#~ msgid "Amount signed"
+#~ msgstr "Cantidad firmada"
+
+#~ msgid "Move Type"
+#~ msgstr "Tipo de movimiento"
 
 #~ msgid ""
 #~ "\n"
