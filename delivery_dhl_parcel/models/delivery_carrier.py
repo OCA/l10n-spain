@@ -1,4 +1,5 @@
 # Copyright 2021 Studio73 - Ethan Hildick <ethan@studio73.es>
+# Copyright 2022 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import base64
 
@@ -56,32 +57,33 @@ class DeliveryCarrier(models.Model):
             picking.carrier_tracking_ref, fields.Date.today().year
         )
 
-    def _get_dhl_parcel_receiver_info(self, picking):
-        partner = picking.partner_id
+    def _prepare_dhl_parcel_address_info(self, partner):
+        phone = partner.phone and partner.phone.replace(" ", "") or ""
+        mobile = partner.mobile and partner.mobile.replace(" ", "") or ""
+        address = partner.street or ""
+        if partner.street2:
+            address += " " + partner.street2
         return {
             "Name": partner.name or partner.parent_id.name or "",
-            "Address": partner.street or "",
+            "Address": address[:40],
             "City": partner.city or "",
             "PostalCode": partner.zip or "",
             "Country": partner.country_id.code or "",
-            "Phone": partner.phone or "",
+            "Phone": phone or mobile,
             "Email": partner.email or "",
         }
+
+    def _get_dhl_parcel_receiver_info(self, picking):
+        return self._prepare_dhl_parcel_address_info(picking.partner_id)
 
     def _get_dhl_parcel_sender_info(self, picking):
         """Optional, if the sender information is not
         sent, they will be fetched from DHL web Service B2B.
         """
-        partner = picking.picking_type_id.warehouse_id.partner_id
-        return {
-            "Name": partner.name or partner.parent_id.name or "",
-            "Address": partner.street or "",
-            "City": partner.city or "",
-            "PostalCode": partner.zip or "",
-            "Country": partner.country_id.code or "",
-            "Phone": partner.phone or "",
-            "Email": partner.email or "",
-        }
+        return self._prepare_dhl_parcel_address_info(
+            picking.picking_type_id.warehouse_id.partner_id
+            or picking.company_id.partner_id
+        )
 
     def _get_dhl_parcel_product(self, picking):
         product = self.dhl_parcel_product
