@@ -21,8 +21,10 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"            GLS ASM API doesn't provide methods to compute delivery rates, so\n"
-"            you should relay on another price method instead or override this\n"
+"            GLS ASM API doesn't provide methods to compute delivery rates, "
+"so\n"
+"            you should relay on another price method instead or override "
+"this\n"
 "            one in your custom code.\n"
 "        "
 msgstr ""
@@ -72,7 +74,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.gls_asm_manifest_report_view
 msgid ""
 "<span>\n"
-"                                        <strong>Carrier Signature / Stamp</strong>\n"
+"                                        <strong>Carrier Signature / Stamp</"
+"strong>\n"
 "                                    </span>"
 msgstr ""
 
@@ -352,8 +355,19 @@ msgstr ""
 #, python-format
 msgid ""
 "GLS returned an error trying to record the shipping for {}.\n"
-"Error:\n"
+"Error code {}:\n"
 "{}"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
+#, python-format
+msgid ""
+"GLS-ASM API doesn't admit a reference number higher than 15 characters. In "
+"order to handle it, they trim thereference and as the reference is unique to "
+"every customer we soon would have duplicated reference collisions. To "
+"prevent this, you should edit your picking sequence to a max of 15 "
+"characters."
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -428,18 +442,8 @@ msgstr ""
 #: code:addons/delivery_gls_asm/wizard/gls_asm_manifest_wizard.py:0
 #, python-format
 msgid ""
-"It wasn't possible to get the manifest. Maybe there aren'tdeliveries for the"
-" selected date."
-msgstr ""
-
-#. module: delivery_gls_asm
-#: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_last_request
-msgid "Last GLS xml request"
-msgstr ""
-
-#. module: delivery_gls_asm
-#: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_last_response
-msgid "Last GLS xml response"
+"It wasn't possible to get the manifest. Maybe there aren'tdeliveries for the "
+"selected date."
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -701,19 +705,19 @@ msgid "Shipping Time"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: model_terms:ir.ui.view,arch_db:delivery_gls_asm.view_delivery_carrier_form
-msgid "Technical"
-msgstr ""
-
-#. module: delivery_gls_asm
 #: model:ir.model,name:delivery_gls_asm.model_stock_picking
 msgid "Transfer"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_last_request
-#: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_last_response
-msgid "Used for issues debugging"
+#: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
+#, python-format
+msgid "Unknown"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_asm_use_packages_from_picking
+msgid "Use packages from picking"
 msgstr ""
 
 #. module: delivery_gls_asm
