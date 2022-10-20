@@ -34,7 +34,7 @@ class TestL10nEsAeatMod130Base(TestL10nEsAeatModBase):
                 "company_id": self.company.id,
                 "company_vat": "1234567890",
                 "contact_name": "Test owner",
-                "type": "N",
+                "statement_type": "N",
                 "support_type": "T",
                 "contact_phone": "911234455",
                 "year": 2019,
@@ -101,6 +101,8 @@ class TestL10nEsAeatMod130Base(TestL10nEsAeatModBase):
                 "name": "9990000002130",
                 "has_prestamo": True,
                 "activity_type": "other",
+                "date_start": "2019-01-01",
+                "date_end": "2019-03-31",
             }
         )
         model130_has_loan.button_calculate()
@@ -111,9 +113,11 @@ class TestL10nEsAeatMod130Base(TestL10nEsAeatModBase):
                 "name": "9990000003130",
                 "has_prestamo": True,
                 "activity_type": "primary",
+                "date_start": "2019-01-01",
+                "date_end": "2019-03-31",
             }
         )
-        with self.assertRaises(exceptions.Warning):
+        with self.assertRaises(exceptions.UserError):
             model130_has_loan2.button_calculate()
         # Export to BOE
         export_to_boe = self.env["l10n.es.aeat.report.export_to_boe"].create(
