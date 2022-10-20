@@ -24,11 +24,6 @@ msgid "Config ES Toponyms"
 msgstr ""
 
 #. module: l10n_es_toponyms
-#: model_terms:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
-msgid "Configure from GeoNames"
-msgstr ""
-
-#. module: l10n_es_toponyms
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__create_uid
 msgid "Created by"
 msgstr "Aangemaakt door"
@@ -51,6 +46,11 @@ msgstr "ID"
 #. module: l10n_es_toponyms
 #: model:ir.model,name:l10n_es_toponyms.model_city_zip_geonames_import
 msgid "Import City Zips from Geonames"
+msgstr ""
+
+#. module: l10n_es_toponyms
+#: model_terms:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
+msgid "Import data from GeoNames"
 msgstr ""
 
 #. module: l10n_es_toponyms

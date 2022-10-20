@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-14 10:39+0000\n"
-"PO-Revision-Date: 2021-01-14 10:43+0000\n"
+"POT-Creation-Date: 2022-10-20 19:41+0000\n"
+"PO-Revision-Date: 2022-10-20 21:42+0200\n"
 "Last-Translator: Jose Luis Algara Toledo <osotranquilo@gmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: l10n_es_toponyms
 #: model:ir.model,name:l10n_es_toponyms.model_config_es_toponyms
@@ -33,13 +33,11 @@ msgid "Created on"
 msgstr "Creado el"
 
 #. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_city_zip_geonames_import__display_name
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_city_zip_geonames_import__id
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__id
 msgid "ID"
 msgstr "ID"
@@ -55,7 +53,6 @@ msgid "Import data from GeoNames"
 msgstr "Importar datos desde GeoNames"
 
 #. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_city_zip_geonames_import____last_update
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms____last_update
 msgid "Last Modified on"
 msgstr "Modificado por última vez el"
