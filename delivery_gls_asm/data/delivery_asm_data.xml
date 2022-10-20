@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <!-- Current values. They could change, so it's good to have them configurable -->
+    <record id="gls_asm_api_user_demo" model="ir.config_parameter">
+        <field name="key">delivery_gls_asm.api_user_demo</field>
+        <field name="value">6BAB7A53-3B6D-4D5A-9450-702D2FAC0B11</field>
+    </record>
+</odoo>
