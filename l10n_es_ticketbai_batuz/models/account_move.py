@@ -874,8 +874,12 @@ class AccountMove(models.Model):
 
     def _post(self, soft=True):
         res = super(AccountMove, self)._post(soft)
+        bizkaia_tax_agency = self.env.ref(
+            "l10n_es_ticketbai_api_batuz.tbai_tax_agency_bizkaia"
+        )
         lroe_invoices = self.sudo().filtered(
             lambda x: x.tbai_enabled
+            and x.company_id.tbai_tax_agency_id == bizkaia_tax_agency
             and (
                 x.move_type == "in_invoice"
                 or (
