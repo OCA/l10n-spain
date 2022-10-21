@@ -25,11 +25,6 @@ msgid "Config ES Toponyms"
 msgstr "Configuració ES Toponims"
 
 #. module: l10n_es_toponyms
-#: model_terms:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
-msgid "Configure from GeoNames"
-msgstr "Configurar de GeoNames"
-
-#. module: l10n_es_toponyms
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__create_uid
 msgid "Created by"
 msgstr "Creat per"
@@ -53,6 +48,11 @@ msgstr "ID"
 #: model:ir.model,name:l10n_es_toponyms.model_city_zip_geonames_import
 msgid "Import City Zips from Geonames"
 msgstr "Importar Poblacions i Codis Postals des de Geonames"
+
+#. module: l10n_es_toponyms
+#: model_terms:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
+msgid "Import data from GeoNames"
+msgstr ""
 
 #. module: l10n_es_toponyms
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms____last_update
@@ -97,6 +97,9 @@ msgid ""
 "Warning! Adding this bunch of records can take a lot of time. If you are "
 "behind a SSL proxy, check your timeout."
 msgstr "Avís! Afegir més de 54000 codis postals pot tardar varis minuts."
+
+#~ msgid "Configure from GeoNames"
+#~ msgstr "Configurar de GeoNames"
 
 #~ msgid "Configure from local"
 #~ msgstr "Configuració local"
