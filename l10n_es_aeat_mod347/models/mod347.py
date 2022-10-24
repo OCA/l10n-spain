@@ -292,7 +292,7 @@ class L10nEsAeatMod347Report(models.Model):
         if not cash_journals:
             return
         domain = [
-            ("account_id.internal_type", "=", "receivable"),
+            ("account_id.account_type", "=", "asset_receivable"),
             ("journal_id", "in", cash_journals.ids),
             ("date", ">=", self.date_start),
             ("date", "<=", self.date_end),
@@ -342,7 +342,7 @@ class L10nEsAeatMod347Report(models.Model):
                 self._create_partner_records("A", KEY_TAX_MAPPING["A"])
                 self._create_partner_records("B", KEY_TAX_MAPPING["B"])
                 self._create_cash_moves()
-            self.recompute()
+            self.env.flush_all()
             report.partner_record_ids.calculate_quarter_totals()
         return True
 
