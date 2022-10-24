@@ -51,13 +51,13 @@
             >https://tbai-z.egoitza.gipuzkoa.eus/sarrerak/alta</field>
             <field
                 name="test_rest_url_invoice"
-            >https://tbai-prep.egoitza.gipuzkoa.eus/WAS/HACI/HTBRecepcionFacturasWEB/rest/recepcionFacturas/alta</field>
+            >https://tbai-z.prep.gipuzkoa.eus/sarrerak/alta</field>
             <field
                 name="rest_url_cancellation"
             >https://tbai-z.egoitza.gipuzkoa.eus/sarrerak/baja</field>
             <field
                 name="test_rest_url_cancellation"
-            >https://tbai-prep.egoitza.gipuzkoa.eus/WAS/HACI/HTBRecepcionFacturasWEB/rest/recepcionFacturas/anulacion</field>
+            >https://tbai-z.prep.gipuzkoa.eus/sarrerak/baja</field>
         </record>
     </data>
 </odoo>
