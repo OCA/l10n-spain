@@ -319,7 +319,6 @@ msgstr ""
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__message_needaction
-#: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
@@ -541,11 +540,6 @@ msgstr ""
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
-
-#. module: l10n_es_vat_book
-#: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__message_unread_counter
-msgid "Number of unread messages"
 msgstr ""
 
 #. module: l10n_es_vat_book
@@ -789,12 +783,14 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_vat_book
+#. odoo-python
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
 #, python-format
 msgid "This book has warnings. Fix it before confirm"
 msgstr ""
 
 #. module: l10n_es_vat_book
+#. odoo-python
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
 #, python-format
 msgid "This company doesn't have VAT"
@@ -828,16 +824,6 @@ msgstr ""
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__fee_type_xlsx_column
 msgid "Type xlsx column"
-msgstr ""
-
-#. module: l10n_es_vat_book
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__message_unread
-msgid "Unread Messages"
-msgstr ""
-
-#. module: l10n_es_vat_book
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__message_unread_counter
-msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: l10n_es_vat_book
@@ -915,12 +901,14 @@ msgid "Website communication history"
 msgstr ""
 
 #. module: l10n_es_vat_book
+#. odoo-python
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
 #, python-format
 msgid "Without Partner"
 msgstr ""
 
 #. module: l10n_es_vat_book
+#. odoo-python
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
 #, python-format
 msgid "Without VAT"
