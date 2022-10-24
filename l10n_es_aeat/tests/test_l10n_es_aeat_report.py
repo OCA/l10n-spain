@@ -63,7 +63,7 @@ class TestL10nEsAeatReport(common.TransactionCase):
                 "Incorrect end date for period %s: %s."
                 % (period_type, report.date_end),
             )
-            report.invalidate_cache(["date_start", "date_end"])
+            report.invalidate_recordset(["date_start", "date_end"])
 
     def test_check_complementary(self):
         report = self.AeatReport.new(
