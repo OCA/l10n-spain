@@ -1314,7 +1314,12 @@ class AccountMove(models.Model):
                     "IDOtro": {
                         "CodigoPais": country_code,
                         "IDType": identifier_type,
-                        "ID": identifier,
+                        "ID": country_code + identifier
+                        if self.commercial_partner_id._map_aeat_country_code(
+                            country_code
+                        )
+                        in self.commercial_partner_id._get_aeat_europe_codes()
+                        else identifier,
                     },
                 }
         elif gen_type == 2:
