@@ -378,11 +378,12 @@ class L10nEsAeatReport(models.AbstractModel):
             )
         return seq.next_by_id()
 
-    @api.model
-    def create(self, vals):
-        if not vals.get("name"):
-            vals["name"] = self._report_identifier_get(vals)
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if not vals.get("name"):
+                vals["name"] = self._report_identifier_get(vals)
+        return super().create(vals_list)
 
     def button_calculate(self):
         res = self.calculate()
