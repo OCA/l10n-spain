@@ -33,7 +33,9 @@ Seguimiento de envíos
 ~~~~~~~~~~~~~~~~~~~~~
 
   #. El módulo incorpora el botón 'Seguimiento' en el albarán que redirige a la página
-     de MRW del envío en cuestión.
+     de MRW del envío en cuestión. También se puede usar el botón "Actualizar estado de
+     Pedido" para cargar directamente en odoo el estado del pedido usando la API de MRW.
+
 
 Manifiesto de envíos
 ~~~~~~~~~~~~~~~~~~~~
