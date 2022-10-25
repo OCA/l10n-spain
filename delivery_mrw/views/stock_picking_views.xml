@@ -21,18 +21,15 @@
                     }"
                 />
             </xpath>
-            <field name="date_delivered" position="attributes">
+            <xpath expr="//button[@name='tracking_state_update']" position="attributes">
+                <attribute name="attrs">{
+                    'invisible': [('delivery_type', 'in', ['base_one_rule', 'fixed'])]
+                }</attribute>
+                <attribute name="class">btn fa fa-arrow-right btn-link</attribute>
+            </xpath>
+            <field name="delivery_state" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>
-            <field name="tracking_state" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </field>
-            <field name="tracking_state_history" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </field>
-            <button name="tracking_state_update" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </button>
         </field>
     </record>
 </odoo>

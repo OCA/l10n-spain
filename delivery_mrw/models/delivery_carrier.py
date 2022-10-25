@@ -2,8 +2,10 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import re
+from datetime import datetime
 
 from lxml import etree
+from zeep import helpers as ZeepHelpers
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
@@ -146,6 +148,22 @@ class DeliveryCarrier(models.Model):
             ("S", "Retorno de mercancia"),
         ],
         default="N",
+    )
+
+    mrw_api_language = fields.Char(
+        string="Language Code",
+        default="3082",
+        help="3082 for Spanish; 2070 for Portuguese",
+    )
+    mrw_api_filter_type = fields.Integer(
+        string="Filter Type",
+        default=0,
+        help="0 for tracking number; 1 for reference; 2 package reference",
+    )
+    mrw_api_information_type = fields.Integer(
+        string="Information Type",
+        default=0,
+        help="0 for Basic Information; 1 for Detailed",
     )
 
     @api.model
@@ -544,3 +562,89 @@ class DeliveryCarrier(models.Model):
             "res_id": wizard.id,
             "context": self.env.context,
         }
+
+    def _prepare_mrw_tracking(self, picking):
+        self.ensure_one()
+        credentials = self._get_mrw_credentials(picking)
+        return {
+            "login": credentials["username"],
+            "pass": credentials["password"],
+            "codigoIdioma": self.mrw_api_language,
+            "tipoFiltro": self.mrw_api_filter_type,
+            "valorFiltroDesde": picking.carrier_tracking_ref,
+            "valorFiltroHasta": picking.carrier_tracking_ref,
+            "fechaDesde": "",
+            "fechaHasta": "",
+            "tipoInformacion": self.mrw_api_information_type,
+            "codigoAbonado": credentials["client_code"],
+            "codigoFranquicia": credentials["franquicia_code"],
+        }
+
+    def _process_tracking_response(self, response):
+        def parse_date(date_str, time_str):
+            input_date = False
+            try:
+                if date_str and len(date_str) == 8:
+                    day = int(date_str[:2])
+                    month = int(date_str[2:4])
+                    year = int(date_str[4:])
+                    input_date = datetime(year, month, day)
+                    if time_str and len(time_str) == 4:
+                        hour = int(time_str[:2])
+                        minute = int(time_str[2:4])
+                        input_date = input_date.replace(hour=hour, minute=minute)
+            except Exception:
+                pass
+            return input_date
+
+        json_res = ZeepHelpers.serialize_object(response, dict)
+
+        subscribers = json_res.get("Seguimiento", {}).get("Abonado", [])
+        if not subscribers:
+            return False
+        trackings = subscribers[0].get("SeguimientoAbonado", {}).get("Seguimiento", {})
+        if not trackings:
+            return False
+        states = []
+        for tracking in trackings:
+            delivery_date = parse_date(
+                tracking.get("FechaEntrega", False), tracking.get("HoraEntrega", False)
+            )
+            if not delivery_date:
+                delivery_date = datetime.now()
+            track_dict = {
+                "state_code": tracking.get("Estado", False),
+                "description": tracking.get("EstadoDescripcion"),
+                "delivery_date": delivery_date,
+            }
+            states.append(track_dict)
+
+        return states
+
+    def mrw_tracking_state_update(self, picking):
+        """Tracking state update"""
+        self.ensure_one()
+        if not picking.carrier_tracking_ref:
+            return
+        mrw_request = MRWRequest(**self._get_mrw_credentials(picking))
+        vals = self._prepare_mrw_tracking(picking)
+        response = mrw_request._get_tracking_states(vals)
+        if response["MensajeSeguimiento"] != "Busqueda correcta por Número de Albarán.":
+            raise UserError(_(response["MensajeSeguimiento"]))
+        tracking_states = self._process_tracking_response(response)
+        if not tracking_states:
+            return
+        date_format = "%d/%m/%Y %H:%M"
+        tracking_lines = []
+        for t in tracking_states:
+            date_str = t.get("delivery_date").strftime(date_format)
+            tracking_lines.append(
+                "%s - [%s] %s" % (date_str, t.get("state_code"), t.get("description"))
+            )
+        picking.tracking_state_history = "\n".join(tracking_lines)
+        tracking = tracking_states.pop()
+        picking.tracking_state = "[{}] {}".format(
+            tracking.get("state_code"), tracking.get("description")
+        )
+        if tracking.get("state_code") == "00":
+            picking.write({"date_delivered": tracking.get("delivery_date")})

@@ -2,10 +2,12 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
+import os
 
 from zeep import Client
 from zeep.exceptions import Fault
 from zeep.plugins import HistoryPlugin
+from zeep.transports import Transport as ZeepTransport
 
 from odoo.exceptions import UserError
 
@@ -94,3 +96,18 @@ class MRWRequest:
         method = "EtiquetaEnvioInternacional" if international else "EtiquetaEnvio"
         label = self._process_reply(self.client.service[method], request=vals)
         return label
+
+    def _get_mrw_wsdl_tracking_file(self):
+        wsdl_file = "mrw-api-tracking-prod.wsdl"
+        return wsdl_file
+
+    def _get_tracking_states(self, vals):
+        """Get just tracking states from MRW info for the given reference"""
+        transport = ZeepTransport(timeout=10)
+        wsdl_file = self._get_mrw_wsdl_tracking_file()
+        wsdl_path = os.path.join(
+            os.path.dirname(os.path.realpath(__file__)), "../api/%s" % wsdl_file
+        )
+        zeep_client = Client(wsdl_path, transport=transport)
+        response = zeep_client.service.GetEnvios(**vals)
+        return response
