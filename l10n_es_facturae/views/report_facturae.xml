@@ -367,17 +367,19 @@
                             <Installment>
                                 <InstallmentDueDate t-esc="invoice.date_due or invoice.date_invoice"/>
                                 <InstallmentAmount t-esc="'%.2f' % (invoice.residual)"/>
-                                <PaymentMeans t-esc="invoice.payment_mode_id.facturae_code"/>
                                 <t t-set="partner_bank" t-value="invoice.partner_banks_to_show()[:1]"/>
                                 <t t-set="bank" t-value="partner_bank.bank_id"/>
-                                <AccountToBeDebited t-if="invoice.payment_mode_id.facturae_code == '02'">
+                                <t t-set="payment_means"
+                                   t-value="invoice.payment_mode_id.facturae_code if partner_bank or invoice.payment_mode_id.facturae_code not in ['02', '04'] else '01'"/>
+                                <PaymentMeans t-esc="payment_means"/>
+                                <AccountToBeDebited t-if="payment_means == '02'">
                                     <IBAN t-minlength="5" t-length="34" t-esc="''.join(partner_bank.acc_number.split())"/>
                                     <BankCode t-length="60" t-esc="bank.code" t-if="bank.code"/>
                                     <BranchCode t-length="60" t-if="False"/>
                                     <BIC t-minlength="11" t-length="11" t-esc="bank.bic" t-if="bank.bic"/>
                                     <PaymentReconciliationReference t-length="60" t-if="False"/>
                                 </AccountToBeDebited>
-                                <AccountToBeCredited t-if="invoice.payment_mode_id.facturae_code != '02'">
+                                <AccountToBeCredited t-if="payment_means == '04'">
                                     <IBAN t-minlength="5" t-length="34" t-esc="''.join(partner_bank.acc_number.split())"/>
                                     <BankCode t-length="60" t-esc="bank.code" t-if="bank.code"/>
                                     <BranchCode t-length="60" t-if="False"/>
