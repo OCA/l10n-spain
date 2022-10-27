@@ -88,7 +88,6 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def _get_diffs(self, odoo_values, sii_values):
-        sii_values = json.loads(json.dumps((serialize_object(sii_values))))
         dp = self.env["decimal.precision"].precision_get("Account")
         res = []
         if not DeepDiff:
@@ -98,9 +97,12 @@ class AccountInvoice(models.Model):
                     "please install it in order to use this feature"
                 )
             )
-        diff = DeepDiff(odoo_values, sii_values)
+        diff = DeepDiff(
+            odoo_values, json.loads(json.dumps((serialize_object(sii_values))))
+        )
         differences = diff.get("type_changes", {})
         differences.update(diff.get("values_changed", {}))
+        diff = None
         for label, value in list(differences.items()):
             sii_value = value["new_value"]
             odoo_value = value["old_value"]
@@ -117,11 +119,15 @@ class AccountInvoice(models.Model):
                     odoo_value = odoo_value.strip()
                 if sii_value != odoo_value:
                     res.append(
-                        {
-                            "sii_field": label,
-                            "sii_return_field_value": sii_value,
-                            "sii_sent_field_value": odoo_value,
-                        }
+                        (
+                            0,
+                            0,
+                            {
+                                "sii_field": label,
+                                "sii_return_field_value": sii_value,
+                                "sii_sent_field_value": odoo_value,
+                            },
+                        )
                     )
         return res
 
@@ -132,14 +138,14 @@ class AccountInvoice(models.Model):
         if self.sii_content_sent:
             odoo_values = json.loads(self.sii_content_sent)
             if self.type in ["out_invoice", "out_refund"]:
-                res += self._get_diffs(
+                res = self._get_diffs(
                     odoo_values["FacturaExpedida"], sii_values["DatosFacturaEmitida"]
                 )
             elif self.type in ["in_invoice", "in_refund"]:
-                res += self._get_diffs(
+                res = self._get_diffs(
                     odoo_values["FacturaRecibida"], sii_values["DatosFacturaRecibida"]
                 )
-        return list((0, 0, r) for r in res)
+        return res
 
     @api.multi
     def _invoice_started_jobs(self):
@@ -160,6 +166,7 @@ class AccountInvoice(models.Model):
                 .with_context(company_id=company.id)
                 .with_delay(
                     eta=False,
+                    max_retries=5,
                 )
                 .contrast_one_invoice()
             )
