@@ -6,14 +6,30 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-16 13:57+0000\n"
-"PO-Revision-Date: 2022-09-16 13:57+0000\n"
+"POT-Creation-Date: 2022-10-27 07:06+0000\n"
+"PO-Revision-Date: 2022-10-27 07:06+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,help:delivery_mrw.field_delivery_carrier__mrw_api_information_type
+msgid "0 for Basic Information; 1 for Detailed"
+msgstr "0 para Información Básica, 1 para Detallado"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,help:delivery_mrw.field_delivery_carrier__mrw_api_filter_type
+msgid "0 for tracking number; 1 for reference; 2 package reference"
+msgstr ""
+"0 para número de seguimiento; 1 para referencia; 2 para referncia de paquete"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,help:delivery_mrw.field_delivery_carrier__mrw_api_language
+msgid "3082 for Spanish; 2070 for Portuguese"
+msgstr "3082 para Español; 2070 para Portugués"
 
 #. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0220
@@ -105,11 +121,6 @@ msgstr ""
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0480
 msgid "Caja Express 3 Kilos"
 msgstr ""
-
-#. module: delivery_mrw
-#: model_terms:ir.ui.view,arch_db:delivery_mrw.view_picking_withcarrier_out_form
-msgid "Cancel"
-msgstr "Cancelar"
 
 #. module: delivery_mrw
 #: model_terms:ir.ui.view,arch_db:delivery_mrw.delivery_mrw_manifest_wizard_form
@@ -322,6 +333,11 @@ msgid "Express Documentos"
 msgstr ""
 
 #. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_api_filter_type
+msgid "Filter Type"
+msgstr "Tipo de filtro"
+
+#. module: delivery_mrw
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
 #, python-format
 msgid ""
@@ -381,6 +397,11 @@ msgid ""
 msgstr ""
 
 #. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_api_information_type
+msgid "Information Type"
+msgstr "Tipo de información"
+
+#. module: delivery_mrw
 #: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_integration_level
 msgid "Integration Level"
 msgstr "Nivel de Integración"
@@ -402,6 +423,11 @@ msgid ""
 "It wasn't possible to get the manifest. Maybe there aren'tdeliveries for the"
 " selected date."
 msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_api_language
+msgid "Language Code"
+msgstr "Código de lenguaje"
 
 #. module: delivery_mrw
 #: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier____last_update
@@ -477,20 +503,21 @@ msgstr "Servicio"
 
 #. module: delivery_mrw
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
+#: code:addons/delivery_mrw/models/stock_picking.py:0
 #, python-format
 msgid "MRW Shipping Label:"
 msgstr "Etiqueta de Envío de MRW"
 
 #. module: delivery_mrw
-#: code:addons/delivery_mrw/models/stock_picking.py:0
-#, python-format
-msgid "MRW label for %s"
-msgstr "Etiqueta MRW para"
-
-#. module: delivery_mrw
 #: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_view_delivery_carrier_form
 msgid "Manifest"
 msgstr "Manifiesto"
+
+#. module: delivery_mrw
+#: code:addons/delivery_mrw/models/delivery_carrier.py:0
+#, python-format
+msgid "MensajeSeguimiento"
+msgstr ""
 
 #. module: delivery_mrw
 #: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_en_franquicia
@@ -652,6 +679,14 @@ msgstr ""
 #. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_retorno__n
 msgid "Sin retorno"
+msgstr ""
+
+#. module: delivery_mrw
+#: code:addons/delivery_mrw/models/delivery_carrier.py:0
+#, python-format
+msgid ""
+"Solamente se permiten caracteres numéricos en el campo número de la "
+"dirección. Número: %s"
 msgstr ""
 
 #. module: delivery_mrw
