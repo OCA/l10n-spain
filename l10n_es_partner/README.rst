@@ -23,7 +23,7 @@ Adaptación de los clientes, proveedores y bancos para España
     :target: https://runbot.odoo-community.org/runbot/189/15.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 Incluye la siguiente funcionalidad:
 
@@ -118,7 +118,7 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-pedrobaeza| 
+|maintainer-pedrobaeza|
 
 This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/15.0/l10n_es_partner>`_ project on GitHub.
 

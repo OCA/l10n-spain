@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">Open l10 Es Partner Wizard 2</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <div data-key="account" position="inside">
+                <h2>Import Spanish Bank Data</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_left_pane" />
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Import Spanish Bank Data</span>
+                            <div class="text-muted">
+                                Import spanish bank data from internet or from local file mirror.
+                            </div>
+                            <div class="content-group">
+                                <div class="row mt16" />
+                                <div>
+                                    <button
+                                        string="Import spanish bank data"
+                                        name="%(action_l10n_es_partner_import)d"
+                                        context="{'default_company_id': company_id}"
+                                        type="action"
+                                        icon="fa-arrow-right"
+                                        class="oe_link"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+</odoo>
