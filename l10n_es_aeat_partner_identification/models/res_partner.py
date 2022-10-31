@@ -31,7 +31,8 @@ class ResPartner(models.Model):
         for record in self:
             # Passport ("03"), Residential cert. ("04") and Another document ("05")
             # are setted in aeat identificacion type.
-            # NIF/VAT ("02") are setted in partner vat field compute
+            # NIF/VAT ("02") and Official document from de original country ("04")
+            # are setted in partner vat field compute
             document = record.id_numbers.filtered(
                 lambda i: i.category_id.aeat_identification_type in ["03", "05", "06"]
             )
@@ -62,9 +63,9 @@ class ResPartner(models.Model):
         for record in self:
             if not record.parent_id:
                 document_vats = record.id_numbers.filtered(
-                    lambda i: i.category_id.aeat_identification_type == "02"
+                    lambda i: i.category_id.aeat_identification_type in ["02", "04"]
                 )
                 if document_vats and not record.vat:
-                    record.vat = document_vats[0]
+                    record.vat = document_vats[0].name
                 elif not record.vat:
                     record.vat = False

@@ -7,13 +7,12 @@ class ResPartnerIdCategory(models.Model):
     aeat_identification_type = fields.Selection(
         string="AEAT Identification type equivalent",
         help=(
-            "Used to specify an identification type to send to SII. Normally for "
-            "sending national and export invoices to SII where the customer country "
-            "is not Spain, it would calculate an identification type of 04 if the VAT "
-            "field is filled and 06 if it was not. This field is to specify "
-            "types of 03 through 05, in the event that the customer doesn't identify "
-            "with a foreign VAT and instead with their passport "
-            "or residential certificate. If there is no value it will work as before."
+            "Automatically synchronizes the type of document with the identification"
+            "fields of the aeat:"
+            'Passport ("03"), Residential cert. ("04") and Another document ("05")'
+            "are setted in partner aeat identificacion type."
+            'NIF/VAT ("02") and Official document from de original country ("04")'
+            "are setted in partner vat field"
         ),
         selection=[
             ("02", "NIF - VAT"),
