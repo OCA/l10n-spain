@@ -26,7 +26,8 @@ class ResCompany(models.Model):
     sent_time = fields.Float(string="Sent time", help="In hours")
     delay_time = fields.Float(string="Delay time", help="In hours")
 
-    def _get_lroe_eta(self):
+    def _get_lroe_eta(self, invoice_ids):
+        date = invoice_ids[0].date_invoice if len(invoice_ids) else datetime.now()
         if self.send_mode == "fixed":
             tz = self.env.context.get("tz", self.env.user.partner_id.tz)
             offset = datetime.now(pytz.timezone(tz)).strftime("%z") if tz else "+00"
@@ -40,11 +41,15 @@ class ResCompany(models.Model):
             now = now.replace(hour=hour, minute=minute)
             return now
         elif self.send_mode == "delayed":
-            return datetime.now() + timedelta(seconds=self.delay_time * 3600)
+            return date + timedelta(seconds=self.delay_time * 3600)
         elif self.send_mode == "end_quarter":
             # El plazo maximo es 25 del mes siguiente a fin de trimestre
-            today = datetime.now()
-            quarter = int((datetime.now().month - 1) / 3 + 1)
-            return datetime(today.year, quarter * 3 + 1, 1) - timedelta(days=1)
+            today = date
+            quarter = int((date.month - 1) / 3 + 1)
+            return datetime(
+                today.year + ((quarter * 3 + 1) // 12),
+                (quarter * 3 + 1) % 12,
+                1
+            ) - timedelta(days=1)
         else:
             return None

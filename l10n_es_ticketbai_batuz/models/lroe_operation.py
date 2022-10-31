@@ -141,7 +141,9 @@ class LROEOperation(models.Model):
                 new_cr.close()
                 raise
         else:
-            eta = company._get_lroe_eta()
+            eta = company._get_lroe_eta(
+                self.invoice_ids.sorted(key=lambda i: i.date_invoice)
+            )
             new_delay = (
                 self.sudo()
                 .with_context(company_id=company.id)
