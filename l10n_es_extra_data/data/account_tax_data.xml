@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="account_tax_template_p_iva5_sc" model="account.tax.template">
-        <field name="description"/> <!-- for resetting the value on existing DBs -->
+        <field name="description">P_IVA5</field>
         <field name="type_tax_use">purchase</field>
-        <field name="account_id" ref="l10n_es.account_common_472"/>
+        <field name="account_id" ref="l10n_es.pgc_472_child"/>
         <field name="name">5% IVA soportado</field>
-        <field name="refund_account_id" ref="l10n_es.account_common_472"/>
+        <field name="refund_account_id" ref="l10n_es.pgc_472_child"/>
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount" eval="5"/>
         <field name="amount_type">percent</field>
@@ -13,11 +13,11 @@
         <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_28_29'), ref('l10n_es.mod_303_40_41')])]"/>
     </record>
     <record id="account_tax_template_s_iva5s" model="account.tax.template">
-        <field name="description"/> <!-- for resetting the value on existing DBs -->
+       <field name="description">S_IVA5</field>
         <field name="type_tax_use">sale</field>
-        <field name="account_id" ref="l10n_es.account_common_477"/>
+        <field name="account_id" ref="l10n_es.pgc_477_child"/>
         <field name="name">IVA 5%</field>
-        <field name="refund_account_id" ref="l10n_es.account_common_477"/>
+        <field name="refund_account_id" ref="l10n_es.pgc_477_child"/>
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount" eval="5"/>
         <field name="amount_type">percent</field>

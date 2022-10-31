@@ -7,3 +7,8 @@
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [NEW] Module backported to v11. Añadido nuevo impuesto del 5% de las eléctricas.
+
+10.0.1.0.0 (2022-10-31)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [NEW] Module backported to v10. Añadido nuevo impuesto del 5% de las eléctricas.
