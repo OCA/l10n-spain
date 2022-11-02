@@ -162,6 +162,7 @@ class SiiMatchReport(models.Model):
     )
     sii_match_invoice_jobs_ids = fields.Many2many(
         comodel_name="queue.job",
+        relation="sii_match_inv_jobs_rel",
         column1="sii_match_id",
         column2="job_id",
         string="Connector Invoice Update Jobs",
