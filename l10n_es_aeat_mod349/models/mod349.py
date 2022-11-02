@@ -666,4 +666,5 @@ class Mod349PartnerRefundDetail(models.Model):
     date = fields.Date(
         related="refund_line_id.date",
         readonly=True,
+        store=True,  # Necessary for sorting records
     )
