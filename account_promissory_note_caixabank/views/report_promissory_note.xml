@@ -2,10 +2,12 @@
 <odoo>
     <template
         id="promissory_footer_cb"
-        inherit_id="account_check_printing_report_base.report_check_base_a4"
+        inherit_id="account_check_printing_report_base.report_check_base_a4_document"
         primary="True"
     >
         <xpath expr="//div[@id='check_body']" position="after">
+            <!-- Force the language of this part to Spanish. -->
+            <t t-set="o" t-value="o.with_context(lang='es_ES')" />
             <div style="font-size:12px;">
                 <div style="position:absolute; left:75mm; top:235mm;">
                     <span t-field="o.date_due" />
@@ -32,20 +34,30 @@
                 </div>
                 <div>
                     <div style="position:absolute; top:269mm; left:121mm;">
-                        <span t-field="o.payment_date" t-options="{'format': 'd'}" />
+                        <span t-field="o.date" t-options="{'format': 'd'}" />
                     </div>
                     <div style="position:absolute; top:269mm; left:141mm;">
                         <!-- TODO: Fix translatable -->
                         <span>de</span>
                     </div>
                     <div style="position:absolute; top:269mm; left:151mm;">
-                        <span t-field="o.payment_date" t-options="{'format': 'MMMM'}" />
+                        <span t-field="o.date" t-options="{'format': 'MMMM'}" />
                     </div>
                     <div style="position:absolute; top:269mm; left:209mm;">
-                        <span t-field="o.payment_date" t-options="{'format': 'YYYY'}" />
+                        <span t-field="o.date" t-options="{'format': 'YYYY'}" />
                     </div>
                 </div>
             </div>
         </xpath>
+    </template>
+    <template id="report_check_cb_a4">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t
+                    t-call="account_promissory_note_caixabank.promissory_footer_cb"
+                    t-lang="o.partner_id.lang"
+                />
+            </t>
+        </t>
     </template>
 </odoo>
