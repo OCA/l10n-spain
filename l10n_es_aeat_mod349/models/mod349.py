@@ -674,4 +674,5 @@ class Mod349PartnerRefundDetail(models.Model):
         related="refund_line_id.date",
         string="Date",
         readonly=True,
+        store=True,  # Necessary for sorting records
     )
