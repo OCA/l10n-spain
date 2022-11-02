@@ -3,7 +3,7 @@
 
 {
     "name": "Impresión de pagaré CaixaBank A4",
-    "version": "13.0.1.0.1",
+    "version": "15.0.1.0.0",
     "license": "AGPL-3",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "category": "Accounting",
@@ -13,7 +13,6 @@
         "account_payment_promissory_note",
     ],
     "data": [
-        "data/account_promissory_note_report_data.xml",
         "views/report_promissory_note.xml",
         "report/account_promissory_note_writing_report.xml",
     ],
