@@ -36,7 +36,6 @@ class ResPartner(models.Model):
 
     representante_legal_vat = fields.Char(
         string="NIF representante legal",
-        size=9,
         help="""Si el perceptor es menor de 14 años, se consignará en
             este campo el número de identificación fiscal de su
             representante legal (padre, madre o tutor).""",
@@ -44,14 +43,12 @@ class ResPartner(models.Model):
 
     a_nacimiento = fields.Char(
         string="Año de nacimiento",
-        size=4,
         help="""Se consignarán las cuatro cifras del año de nacimiento del
             perceptor.""",
     )
 
     ceuta_melilla = fields.Char(
         string="Ceuta o Melilla",
-        size=1,
         help="""Se consignará el número 1 en los supuestos en que, por
             tratarse de rentas obtenidas en Ceuta o Melilla con
             derecho a la deducción establecida en el artículo 68.4 de
@@ -85,7 +82,6 @@ class ResPartner(models.Model):
     )
     nif_conyuge = fields.Char(
         string="NIF del conyuge",
-        size=15,
         help="""Solo para percepciones correspondientes a las claves A,
             B.01, B.03 y C.
             Únicamente en el supuesto de que la «SITUACIÓN
@@ -128,7 +124,6 @@ class ResPartner(models.Model):
             ("4", "4 - Relación esporádica propia de los trabajadores manuales"),
         ],
         string="Contrato o relacion",
-        size=1,
         help="""Solo para percepciones correspondientes a la clave A.
             Tratándose de empleados por cuenta ajena en activo, se
             hará constar el dígito numérico indicativo del tipo de

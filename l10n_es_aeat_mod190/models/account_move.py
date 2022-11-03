@@ -43,8 +43,8 @@ class AccountMove(models.Model):
         for invoice in self:
             if set_fiscal_position:
                 delivery_partner_id = invoice._get_invoice_delivery_partner_id()
-                invoice.fiscal_position_id = FiscalPosition.with_context(
-                    force_company=invoice.company_id.id
+                invoice.fiscal_position_id = FiscalPosition.with_company(
+                    invoice.company_id.id
                 ).get_fiscal_position(
                     invoice.partner_id.id, delivery_id=delivery_partner_id
                 )
