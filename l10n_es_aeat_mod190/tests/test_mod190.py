@@ -125,9 +125,7 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
 
     def test_mod190_multikeys(self):
         self._invoice_purchase_create("2017-01-01")
-        self.supplier.with_context(
-            company_id=self.company.id, force_company=self.company.id
-        ).write(
+        self.supplier.with_company(self.company.id).write(
             {
                 "vat": "ESC2259530J",
                 "country_id": self.browse_ref("base.es").id,

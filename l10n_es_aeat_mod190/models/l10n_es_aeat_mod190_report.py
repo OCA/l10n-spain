@@ -21,7 +21,6 @@ class L10nEsAeatMod190Report(models.Model):
         comodel_name="l10n.es.aeat.mod190.report.line",
         inverse_name="report_id",
         string="Partner records",
-        ondelete="cascade",
     )
     registro_manual = fields.Boolean(string="Manual records", default=False)
     calculado = fields.Boolean(string="Calculated", default=False)
@@ -315,8 +314,8 @@ class L10nEsAeatMod190ReportLine(models.Model):
     partner_id = fields.Many2one(
         comodel_name="res.partner", string="Partner", required=True
     )
-    partner_vat = fields.Char(string="NIF", size=15)
-    representante_legal_vat = fields.Char(string="L. R. VAT", size=9)
+    partner_vat = fields.Char(string="NIF")
+    representante_legal_vat = fields.Char(string="L. R. VAT")
     aeat_perception_key_id = fields.Many2one(
         comodel_name="l10n.es.aeat.report.perception.key",
         string="Perception key",
@@ -326,8 +325,8 @@ class L10nEsAeatMod190ReportLine(models.Model):
         comodel_name="l10n.es.aeat.report.perception.subkey",
         string="Perception subkey",
     )
-    ejercicio_devengo = fields.Char(string="year", size=4)
-    ceuta_melilla = fields.Char(string="Ceuta or Melilla", size=1)
+    ejercicio_devengo = fields.Char(string="year")
+    ceuta_melilla = fields.Char(string="Ceuta or Melilla")
 
     # Percepciones y Retenciones
 
@@ -353,11 +352,11 @@ class L10nEsAeatMod190ReportLine(models.Model):
         "incapacity for work"
     )
 
-    codigo_provincia = fields.Char(string="State ISO code", size=2, help="""""")
+    codigo_provincia = fields.Char(string="State ISO code", help="""""")
 
     # DATOS ADICIONALES (solo en las claves A, B.01, B.03, C, E.01 y E.02).
 
-    a_nacimiento = fields.Char(string="Year of birth", size=4)
+    a_nacimiento = fields.Char(string="Year of birth")
     situacion_familiar = fields.Selection(
         selection=[
             (
@@ -374,7 +373,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
         ],
         string="Family situation",
     )
-    nif_conyuge = fields.Char(string="VAT of the spouse", size=15)
+    nif_conyuge = fields.Char(string="VAT of the spouse")
     discapacidad = fields.Selection(
         [
             ("0", "0 - No disability or degree of disability less than 33 percent."),
@@ -405,7 +404,6 @@ class L10nEsAeatMod190ReportLine(models.Model):
             ("4", "4 - Sporadic relationship of manual workers"),
         ],
         string="Contract or relationship",
-        size=1,
     )
     movilidad_geografica = fields.Selection(
         [("0", "NO"), ("1", "SI")], string="Geographical mobility"
