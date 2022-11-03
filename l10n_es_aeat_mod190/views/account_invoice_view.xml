@@ -17,6 +17,8 @@
                     <field
                         name="aeat_perception_subkey_id"
                         groups="l10n_es_aeat.group_account_aeat"
+                        domain="[('aeat_perception_key_id', '=', aeat_perception_key_id)]"
+                        attrs="{'invisible': ['|', ('aeat_perception_key_id', '=', %(l10n_es_aeat_mod190.aeat_m190_perception_key_01)s), ('aeat_perception_key_id', '=', False)]}"
                     />
                 </field>
             </field>

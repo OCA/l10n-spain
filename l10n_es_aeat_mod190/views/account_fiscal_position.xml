@@ -10,7 +10,11 @@
         <field name="arch" type="xml">
             <field name="name" position="after">
                 <field name="aeat_perception_key_id" />
-                <field name="aeat_perception_subkey_id" />
+                <field
+                    name="aeat_perception_subkey_id"
+                    domain="[('aeat_perception_key_id', '=', aeat_perception_key_id)]"
+                    attrs="{'invisible': ['|', ('aeat_perception_key_id', '=', %(l10n_es_aeat_mod190.aeat_m190_perception_key_01)s), ('aeat_perception_key_id', '=', False)]}"
+                />
             </field>
         </field>
     </record>
