@@ -28,6 +28,7 @@ setuptools.setup(
         'odoo-addon-l10n_es_aeat_sii_oss>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_dua>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_dua_sii>=15.0dev,<15.1dev',
+        'odoo-addon-l10n_es_dua_ticketbai_batuz>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_facturae>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_facturae_face>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_intrastat_report>=15.0dev,<15.1dev',
