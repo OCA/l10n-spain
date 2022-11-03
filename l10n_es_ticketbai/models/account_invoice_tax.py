@@ -150,10 +150,14 @@ class AccountInvoiceTax(models.Model):
         return res
 
     def tbai_get_value_cuota_recargo_equivalencia(self):
+        if RefundType.differences.value == self.invoice_id.tbai_refund_type:
+            sign = -1
+        else:
+            sign = 1
         re_invoice_tax = self.tbai_get_associated_re_tax()
         if re_invoice_tax:
             amount_total = re_invoice_tax.tbai_get_amount_total_company()
-            res = "%.2f" % amount_total
+            res = "%.2f" % (sign * amount_total)
         else:
             res = None
         return res
