@@ -543,7 +543,7 @@ class SiiMatchReport(models.Model):
                 last_invoice = None
             else:
                 # First request, consecutive ones must always pass last invoice
-                self.sii_match_result.sii_match_difference_ids.unlink()
+                self.sii_match_result.mapped("sii_match_difference_ids").unlink()
                 self.sii_match_result.unlink()
             if self.invoice_type == "out":
                 _logger.info("ConsultaLRFacturasEmitidas")
@@ -555,7 +555,9 @@ class SiiMatchReport(models.Model):
                 res_line = "RegistroRespuestaConsultaLRFacturasRecibidas"
             if res and res["IndicadorPaginacion"] == "S" and 0 < len(res[res_line]):
                 # Get before match results to be able to free up some memory
-                last_invoice = res[res_line][-1]
+                last_invoice = (
+                    json.loads(json.dumps(serialize_object(res[res_line][-1])))
+                )
             if res and 0 < len(res[res_line]):
                 sii_match_result_values = self._get_match_result_values(
                     res[res_line], summary
