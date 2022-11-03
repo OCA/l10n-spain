@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-26 12:00+0000\n"
-"PO-Revision-Date: 2022-05-26 16:05+0000\n"
-"Last-Translator: Luis D. Lafaurie <luislafaurie@hotmail.com>\n"
+"PO-Revision-Date: 2022-11-03 19:18+0000\n"
+"Last-Translator: gcobachoesment <gcobacho@esment.org>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
@@ -71,14 +71,16 @@ msgstr "3.2.2"
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_move_reversal
+#, fuzzy
 msgid "Account Move Reversal"
-msgstr ""
+msgstr "Revocación de movimiento en cuenta"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__attach_invoice_as_annex
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__attach_invoice_as_annex
+#, fuzzy
 msgid "Attach Invoice As Annex"
-msgstr ""
+msgstr "Adjuntar factura como anexo"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move__correction_method__04
@@ -270,6 +272,10 @@ msgid ""
 "Summary:\n"
 "Move number: %s\n"
 msgstr ""
+"Exportado con éxito\n"
+"\n"
+"Resumen:\n"
+"Número de movimientos: %s\n"
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_partner_form
@@ -314,8 +320,9 @@ msgstr "Facturae"
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
+#, fuzzy
 msgid "Facturae Attachment"
-msgstr ""
+msgstr "Adjunto Facturae"
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_move.py:0
@@ -423,8 +430,9 @@ msgstr "Fecha/Periodo a aplicar"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment__file
+#, fuzzy
 msgid "File"
-msgstr ""
+msgstr "Archivo"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__facturae_fname
@@ -433,8 +441,9 @@ msgstr "File name"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment__filename
+#, fuzzy
 msgid "Filename"
-msgstr ""
+msgstr "Nombre del archivo"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__create_facturae__state__first
@@ -561,14 +570,15 @@ msgstr "Identificación fiscal receptor"
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
+#, fuzzy, python-format
 msgid "Invoice %s"
-msgstr ""
+msgstr "Factura %s"
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_journal
+#, fuzzy
 msgid "Journal"
-msgstr ""
+msgstr "Diario"
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_move
@@ -582,8 +592,9 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__l10n_es_facturae_attachment_ids
+#, fuzzy
 msgid "L10N Es Facturae Attachment"
-msgstr ""
+msgstr "Adjunto l10n es Facturae"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae____last_update
@@ -616,8 +627,9 @@ msgstr "Log"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment__move_id
+#, fuzzy
 msgid "Move"
-msgstr ""
+msgstr "Movimiento"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move__facturae_refund_reason__04
@@ -795,9 +807,9 @@ msgstr "Impuesto"
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
+#, fuzzy, python-format
 msgid "Taxes not provided in move line %s"
-msgstr ""
+msgstr "No hay impuestos en la línea de factura %s"
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_tax_template
@@ -822,12 +834,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_journal__thirdparty_invoice
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__thirdparty_invoice
 msgid "Third-party invoice"
-msgstr ""
+msgstr "Factura de terceros"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__thirdparty_number
+#, fuzzy
 msgid "Third-party number"
-msgstr ""
+msgstr "Número de factura de terceros"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__unidad_tramitadora
@@ -845,13 +858,13 @@ msgstr "El número de IVA debe estar definido"
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "You can only create Factura-E files for moves that have been validated."
-msgstr ""
+msgstr "Sólo se pueden crear ficheros de Factura-E para movimientos validados."
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/wizard/create_facturae.py:0
 #, python-format
 msgid "You can only select one move to export"
-msgstr ""
+msgstr "Sólo puede seleccionar un movimiento para exportar"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_payment_mode__facturae_code__01
