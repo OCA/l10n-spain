@@ -12,7 +12,8 @@ class AccountTax(models.Model):
         compute="_compute_with_vat_prorate", store=True, readonly=False
     )
     company_with_vat_prorate = fields.Boolean(
-        related="company_id.with_vat_prorate", string="Company with VAT prorate",
+        related="company_id.with_vat_prorate",
+        string="Company with VAT prorate",
     )
 
     @api.depends("company_id.with_vat_prorate")
