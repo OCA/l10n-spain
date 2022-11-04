@@ -3,9 +3,12 @@
 
 from datetime import date
 
-from odoo.addons.account.tests.account_test_savepoint import AccountTestInvoicingCommon
+from odoo.tests.common import tagged
+
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
+@tagged("post_install", "-at_install")
 class TestVatProrate(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls):
@@ -21,7 +24,9 @@ class TestVatProrate(AccountTestInvoicingCommon):
         self.env.company.write(
             {"with_vat_prorate": False}
         )  # We want to be sure that it is executed properly
-        invoice = self.init_invoice("in_invoice")
+        invoice = self.init_invoice(
+            "in_invoice", products=[self.product_a, self.product_b]
+        )
         self.assertEqual(4, len(invoice.line_ids))
         self.assertEqual(1, len(invoice.line_ids.filtered(lambda r: r.tax_line_id)))
 
@@ -35,7 +40,9 @@ class TestVatProrate(AccountTestInvoicingCommon):
                 ],
             }
         )
-        invoice = self.init_invoice("in_invoice")
+        invoice = self.init_invoice(
+            "in_invoice", products=[self.product_a, self.product_b]
+        )
         self.assertEqual(6, len(invoice.line_ids))
         self.assertEqual(3, len(invoice.line_ids.filtered(lambda r: r.tax_line_id)))
 
@@ -52,7 +59,9 @@ class TestVatProrate(AccountTestInvoicingCommon):
                 ],
             }
         )
-        invoice = self.init_invoice("in_invoice")
+        invoice = self.init_invoice(
+            "in_invoice", products=[self.product_a, self.product_b]
+        )
         self.assertEqual(5, len(invoice.line_ids))
         self.assertEqual(2, len(invoice.line_ids.filtered(lambda r: r.tax_line_id)))
 
@@ -60,7 +69,9 @@ class TestVatProrate(AccountTestInvoicingCommon):
         self.env.company.write(
             {"with_vat_prorate": False}
         )  # We want to be sure that it is executed properly
-        invoice = self.init_invoice("in_refund")
+        invoice = self.init_invoice(
+            "in_refund", products=[self.product_a, self.product_b]
+        )
         self.assertEqual(4, len(invoice.line_ids))
         self.assertEqual(1, len(invoice.line_ids.filtered(lambda r: r.tax_line_id)))
 
@@ -74,7 +85,9 @@ class TestVatProrate(AccountTestInvoicingCommon):
                 ],
             }
         )
-        invoice = self.init_invoice("in_refund")
+        invoice = self.init_invoice(
+            "in_refund", products=[self.product_a, self.product_b]
+        )
         self.assertEqual(6, len(invoice.line_ids))
         self.assertEqual(3, len(invoice.line_ids.filtered(lambda r: r.tax_line_id)))
 
@@ -91,7 +104,9 @@ class TestVatProrate(AccountTestInvoicingCommon):
                 ],
             }
         )
-        invoice = self.init_invoice("in_refund")
+        invoice = self.init_invoice(
+            "in_refund", products=[self.product_a, self.product_b]
+        )
         self.assertEqual(5, len(invoice.line_ids))
         self.assertEqual(2, len(invoice.line_ids.filtered(lambda r: r.tax_line_id)))
 
@@ -99,7 +114,9 @@ class TestVatProrate(AccountTestInvoicingCommon):
         self.env.company.write(
             {"with_vat_prorate": False}
         )  # We want to be sure that it is executed properly
-        invoice = self.init_invoice("out_invoice")
+        invoice = self.init_invoice(
+            "out_invoice", products=[self.product_a, self.product_b]
+        )
         self.assertEqual(4, len(invoice.line_ids))
         self.assertEqual(1, len(invoice.line_ids.filtered(lambda r: r.tax_line_id)))
 
@@ -113,7 +130,9 @@ class TestVatProrate(AccountTestInvoicingCommon):
                 ],
             }
         )
-        invoice = self.init_invoice("out_invoice")
+        invoice = self.init_invoice(
+            "out_invoice", products=[self.product_a, self.product_b]
+        )
         self.assertEqual(4, len(invoice.line_ids))
         self.assertEqual(1, len(invoice.line_ids.filtered(lambda r: r.tax_line_id)))
 
@@ -121,7 +140,9 @@ class TestVatProrate(AccountTestInvoicingCommon):
         self.env.company.write(
             {"with_vat_prorate": False}
         )  # We want to be sure that it is executed properly
-        invoice = self.init_invoice("out_refund")
+        invoice = self.init_invoice(
+            "out_refund", products=[self.product_a, self.product_b]
+        )
         self.assertEqual(4, len(invoice.line_ids))
         self.assertEqual(1, len(invoice.line_ids.filtered(lambda r: r.tax_line_id)))
 
@@ -135,6 +156,8 @@ class TestVatProrate(AccountTestInvoicingCommon):
                 ],
             }
         )
-        invoice = self.init_invoice("out_refund")
+        invoice = self.init_invoice(
+            "out_refund", products=[self.product_a, self.product_b]
+        )
         self.assertEqual(4, len(invoice.line_ids))
         self.assertEqual(1, len(invoice.line_ids.filtered(lambda r: r.tax_line_id)))
