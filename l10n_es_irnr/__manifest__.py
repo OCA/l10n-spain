@@ -17,5 +17,6 @@
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
+    "development_status": "Mature",
     "installable": True,
 }
