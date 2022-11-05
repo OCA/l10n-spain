@@ -20,6 +20,7 @@ setuptools.setup(
         'odoo14-addon-l10n_es_aeat_mod123',
         'odoo14-addon-l10n_es_aeat_mod130',
         'odoo14-addon-l10n_es_aeat_mod190',
+        'odoo14-addon-l10n_es_aeat_mod216',
         'odoo14-addon-l10n_es_aeat_mod303',
         'odoo14-addon-l10n_es_aeat_mod303_oss',
         'odoo14-addon-l10n_es_aeat_mod347',
