@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="account_move_form_view">
+        <field name="name">account.move.form (in l10n_es_vat_prorate)</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='line_ids']/tree/field[@name='tax_line_id']"
+                position="after"
+            >
+                <field name="vat_prorate" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
