@@ -68,6 +68,7 @@ addon | version | maintainers | summary
 [l10n_es_toponyms](l10n_es_toponyms/) | 14.0.1.0.0 |  | Topónimos españoles
 [l10n_es_vat_book](l10n_es_vat_book/) | 14.0.2.3.0 |  | Libro de IVA
 [l10n_es_vat_book_oss](l10n_es_vat_book_oss/) | 14.0.1.0.0 |  | Libro de IVA OSS
+[l10n_es_vat_prorate](l10n_es_vat_prorate/) | 14.0.1.0.0 |  | Prorrata de IVA para la localización española
 [payment_redsys](payment_redsys/) | 14.0.2.0.3 |  | Payment Acquirer: Redsys Implementation
 
 [//]: # (end addons)
