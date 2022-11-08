@@ -355,7 +355,7 @@
                                 t-if="move.narration"
                                 t-esc="move.narration"
                             />
-                            <ReceiverTransactionReference t-length="20" t-if="False" />
+							<ReceiverTransactionReference t-length="20" t-if="move.ref" t-esc="move.ref"/>
                             <FileReference t-length="20" t-if="False" />
                             <ReceiverContractReference t-length="20" t-if="False" />
                         </t>
