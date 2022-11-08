@@ -228,6 +228,7 @@ class SiiMatchReport(models.Model):
         )
         aeat_invoices = []
         _logger.info("Getting AEAT Invoices dicts from matched...")
+        sii_match_invoice_jobs_ids = self.sii_match_invoice_jobs_ids.ids
         for odoo_invoice_id, aeat_invoice in list(matched_invoices.items()):
             name = aeat_invoice["IDFactura"]["NumSerieFacturaEmisor"]
             csv = aeat_invoice["DatosPresentacion"]["CSV"]
@@ -254,7 +255,7 @@ class SiiMatchReport(models.Model):
                 )
                 if new_delay:
                     jb = queue_obj.search([("uuid", "=", new_delay.uuid)], limit=1)
-                    self.sii_match_invoice_jobs_ids |= jb
+                    sii_match_invoice_jobs_ids.append(jb.id)
             aeat_invoices.append(
                 {
                     "invoice": name,
@@ -266,6 +267,13 @@ class SiiMatchReport(models.Model):
                     "sii_contrast_state": contrast_state,
                 }
             )
+        self.write(
+            {
+                "sii_match_invoice_jobs_ids": [
+                    (6, 0, list(set(sii_match_invoice_jobs_ids)))
+                ]
+            }
+        )
         _logger.info("Getting AEAT Invoices dicts from non matched...")
         for aeat_invoice in invoices_not_in_odoo:
             name = aeat_invoice["IDFactura"]["NumSerieFacturaEmisor"]
