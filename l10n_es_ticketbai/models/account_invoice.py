@@ -160,11 +160,18 @@ class AccountInvoice(models.Model):
             if self.company_id.tbai_protected_data \
                     and self.company_id.tbai_protected_data_txt:
                 description_line = self.company_id.tbai_protected_data_txt[:250]
+            price_unit = line.price_unit
+            for tax in line.invoice_line_tax_ids:
+                if tax.price_include:
+                    price_unit = (
+                        price_unit -
+                        (line.price_unit * tax.amount / (100 + tax.amount))
+                    )
             lines.append((0, 0, {
                 'description': description_line,
                 'quantity': line.tbai_get_value_cantidad(),
-                'price_unit': "%.8f" % line.price_unit,
-                'discount_amount': line.tbai_get_value_descuento(),
+                'price_unit': "%.8f" % price_unit,
+                'discount_amount': line.tbai_get_value_descuento(price_unit),
                 'amount_total': line.tbai_get_value_importe_total()
             }))
         return lines
@@ -543,14 +550,14 @@ class AccountInvoiceLine(models.Model):
             sign = 1
         return "%.2f" % (sign * self.quantity)
 
-    def tbai_get_value_descuento(self):
+    def tbai_get_value_descuento(self, price_unit):
         if self.discount:
             if RefundType.differences.value == self.invoice_id.tbai_refund_type:
                 sign = -1
             else:
                 sign = 1
             res = "%.2f" % \
-                (sign * self.quantity * self.price_unit * self.discount / 100.0)
+                (sign * self.quantity * price_unit * self.discount / 100.0)
         else:
             res = '0.00'
         return res
