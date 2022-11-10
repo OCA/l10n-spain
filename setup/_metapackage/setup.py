@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo14-addon-delivery_dhl_parcel',
         'odoo14-addon-delivery_gls_asm',
+        'odoo14-addon-delivery_mrw',
         'odoo14-addon-delivery_seur',
         'odoo14-addon-l10n_es_account_asset',
         'odoo14-addon-l10n_es_account_banking_sepa_fsdd',
