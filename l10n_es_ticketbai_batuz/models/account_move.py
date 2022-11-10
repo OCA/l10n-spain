@@ -469,7 +469,7 @@ class AccountMove(models.Model):
         )
         tax_amount = 0.0
         not_in_amount_total = 0.0
-        tax_lines = self._get_tax_info().values()
+        tax_lines = self._get_lroe_tax_info().values()
         for tax_line in tax_lines:
             tax = tax_line["tax"]
             deductible = tax in taxes_frisp + taxes_frs + taxes_frbc + taxes_frbi
@@ -528,7 +528,7 @@ class AccountMove(models.Model):
                 taxes_dict["RentaIVA"]["DetalleRentaIVA"].append(tax_dict)
         return taxes_dict, tax_amount, not_in_amount_total
 
-    def _get_tax_info(self):
+    def _get_lroe_tax_info(self):
         self.ensure_one()
         res = {}
         for line in self.line_ids:
