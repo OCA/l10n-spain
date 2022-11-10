@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-27 07:07+0000\n"
-"PO-Revision-Date: 2022-10-27 07:07+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -43,6 +41,12 @@ msgstr ""
 #. module: delivery_mrw
 #: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
 msgid "<br/>(Packages)"
+msgstr ""
+
+#. module: delivery_mrw
+#: code:addons/delivery_mrw/models/delivery_carrier.py:0
+#, python-format
+msgid "<br> MRW Shipping Label:"
 msgstr ""
 
 #. module: delivery_mrw
@@ -203,11 +207,6 @@ msgid "Couldn't find partner %s street"
 msgstr ""
 
 #. module: delivery_mrw
-#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_integration_level__ship
-msgid "Create Shipping"
-msgstr ""
-
-#. module: delivery_mrw
 #: model:ir.model.fields,field_description:delivery_mrw.field_mrw_manifest_wizard__create_uid
 msgid "Created by"
 msgstr ""
@@ -240,14 +239,6 @@ msgstr ""
 #. module: delivery_mrw
 #: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_department_code
 msgid "Department Code"
-msgstr ""
-
-#. module: delivery_mrw
-#: code:addons/delivery_mrw/models/stock_picking.py:0
-#, python-format
-msgid ""
-"Destination country doesn't match carrier service type, international = %s "
-"and partner country = %s"
 msgstr ""
 
 #. module: delivery_mrw
@@ -389,18 +380,8 @@ msgid "Information Type"
 msgstr ""
 
 #. module: delivery_mrw
-#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_integration_level
-msgid "Integration Level"
-msgstr ""
-
-#. module: delivery_mrw
 #: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__international_shipping
 msgid "International Shipping"
-msgstr ""
-
-#. module: delivery_mrw
-#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_invoice_policy
-msgid "Invoice Policy"
 msgstr ""
 
 #. module: delivery_mrw
@@ -442,11 +423,10 @@ msgstr ""
 #. module: delivery_mrw
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
-#: model:ir.model.fields,help:delivery_mrw.field_delivery_carrier__mrw_invoice_policy
 #, python-format
 msgid ""
-"MRW API doesn't provide methods to compute delivery rates, now it isconfigured as the shippment product price set in the SO's Pricelist.\n"
-"Zero price can also be set in order to invoice it later to the customer: check the field 'Free if order amount is above' and put Import=0."
+"MRW API doesn't provide methods to compute delivery rates so you should rely on another price method instead or override this one in your custom code.\n"
+" Zero price can also be set in order to invoice it later to the customer: check the field 'Free if order amount is above' and put Import=0."
 msgstr ""
 
 #. module: delivery_mrw
@@ -487,10 +467,14 @@ msgid "MRW Service"
 msgstr ""
 
 #. module: delivery_mrw
-#: code:addons/delivery_mrw/models/delivery_carrier.py:0
 #: code:addons/delivery_mrw/models/stock_picking.py:0
 #, python-format
 msgid "MRW Shipping Label:"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:delivery.carrier,name:delivery_mrw.mrw_carrier_test
+msgid "MRW Test"
 msgstr ""
 
 #. module: delivery_mrw
@@ -537,6 +521,11 @@ msgstr ""
 #. module: delivery_mrw
 #: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_retorno
 msgid "Mrw Retorno"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_service
+msgid "Mrw Service"
 msgstr ""
 
 #. module: delivery_mrw
@@ -677,12 +666,6 @@ msgstr ""
 #. module: delivery_mrw
 #: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
 msgid "State"
-msgstr ""
-
-#. module: delivery_mrw
-#: code:addons/delivery_mrw/models/delivery_carrier.py:0
-#, python-format
-msgid "This carrier is only for shipments coming from Spain"
 msgstr ""
 
 #. module: delivery_mrw
