@@ -14,20 +14,18 @@ Delivery MRW
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/14.0/delivery_gls_asm
+    :target: https://github.com/OCA/l10n-spain/tree/14.0/delivery_mrw
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-14-0/l10n-spain-14-0-delivery_gls_asm
+    :target: https://translation.odoo-community.org/projects/l10n-spain-14-0/l10n-spain-14-0-delivery_mrw
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/189/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
-Este módulo integra la API de MRW España con Odoo. No es válido para integraciones de
-MRW en otros países, que podrían usar otras APIs.
-
+Este módulo integra la API de MRW España con Odoo. No es válido para integraciones de MRW en otros países, que podrían usar otras APIs.
 
 **Table of contents**
 
@@ -39,6 +37,10 @@ Installation
 
 Este módulo depende de los módulos de OCA/delivery-carrier `delivery_package_number`
 y `delivery_state`.
+
+La API de MRW no facilita métodos para cotizar el coste real de los envíos de modo que
+para poder calcular los costes de envío sería recomendable instalar el módulo
+`delivery_price_method`.
 
 Configuration
 =============
@@ -54,7 +56,8 @@ Para configurar el transportista:
 Si no tiene credenciales todavía, puede usar el transportista de demo "MRW Test".
 
 Se debe tener en cuenta que este método de envío solo está disponible para envío con
-origen y destino dentro de España.
+origen y destino dentro de España y que la API no facilita métodos para cotizar el coste
+real de los envíos.
 
 Usage
 =====
@@ -97,6 +100,7 @@ Seguimiento de envíos
      de MRW del envío en cuestión. También se puede usar el botón "Actualizar estado de
      Pedido" para cargar directamente en odoo el estado del pedido usando la API de MRW.
 
+
 Manifiesto de envíos
 ~~~~~~~~~~~~~~~~~~~~
 
@@ -109,10 +113,22 @@ Manifiesto de envíos
   #. Pulse en el botón "Descargar Manifiesto" para obtener un listado en PDF de los
      envíos del servicio seleccionado.
 
+
 Depuración de errores
 ~~~~~~~~~~~~~~~~~~~~~
 
-  #. Es importante tener en cuenta que solo funcionará para envíos dentro de España.
+  #. Es importante tener en cuenta que solo funcionará para envíos desde España.
+
+Known issues / Roadmap
+======================
+
+* En la documentación SAGEC versión 2.5 se recoge la información necesaria para crear
+  un envío internacional.
+
+  Pero en la documentación más reciente (v 4.1) parece que esta funcionalidad ya no se
+  soporta. De todas formas, se ha mantenido el código por si lo volvieran a incluir y se
+  ha escondido el botón "Envío Internacional" del formulario del método de envío para
+  que no pueda ser seleccionado y evitar confusiones.
 
 Bug Tracker
 ===========
@@ -120,24 +136,9 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20delivery_gls_asm%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20delivery_mrw%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
-
-Roadmap
-=======
-
-* La API no facilita métodos para cotizar el coste real de los envíos, por lo
-  que siempre ahora se cotizan con el precio de producto de envío seleccionado
-  según la Tarifa seleccionada en el Pedido de Venta.
-
-* En la documentación SAGEC versión 2.5 se recogía la información necesaria para crear
-  un envío internacional.
-
-  Pero en la documentación más reciente (v 4.1) parece que esta funcionalidad ya no se
-  soporta. De todas formas, se ha mantenido el código por si lo volvieran a incluir y se
-  ha escondido el botón "Envío Internacional" del formulario del método de envío para
-  que no pueda ser seleccionado.
 
 Credits
 =======
@@ -145,7 +146,7 @@ Credits
 Authors
 ~~~~~~~
 
-* ForgeFlow
+* Tecnativa
 
 Contributors
 ~~~~~~~~~~~~
@@ -167,6 +168,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/14.0/delivery_gls_asm>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/14.0/delivery_mrw>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
