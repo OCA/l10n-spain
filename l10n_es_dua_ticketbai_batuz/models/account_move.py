@@ -62,7 +62,7 @@ class AccountMove(models.Model):
             and not self.tbai_dua_invoice
         ):
             lroe_model = self.company_id.lroe_model
-            tax_lines = self._get_tax_info().values()
+            tax_lines = self._get_aeat_tax_info().values()
             for tax_line in tax_lines:
                 tax_dict = self._get_lroe_tax_dict(tax_line, tax_lines)
                 tax_dict.pop("CuotaIVASoportada")
