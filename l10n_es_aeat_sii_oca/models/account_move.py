@@ -429,30 +429,6 @@ class AccountMove(models.Model):
             return True
         return False
 
-    def _get_tax_info(self):
-        self.ensure_one()
-        res = {}
-        for line in self.line_ids:
-            sign = -1 if self.move_type[:3] == "out" else 1
-            for tax in line.tax_ids:
-                res.setdefault(tax, {"tax": tax, "base": 0, "amount": 0})
-                res[tax]["base"] += line.balance * sign
-            if line.tax_line_id:
-                tax = line.tax_line_id
-                if "invoice" in self.move_type:
-                    repartition_lines = tax.invoice_repartition_line_ids
-                else:
-                    repartition_lines = tax.refund_repartition_line_ids
-                if (
-                    len(repartition_lines) > 2
-                    and line.tax_repartition_line_id.factor_percent < 0
-                ):
-                    # taxes with more than one "tax" repartition line must be discarded
-                    continue
-                res.setdefault(tax, {"tax": tax, "base": 0, "amount": 0})
-                res[tax]["amount"] += line.balance * sign
-        return res
-
     def _get_sii_out_taxes(self):  # noqa: C901
         """Get the taxes for sales invoices.
 
@@ -473,7 +449,7 @@ class AccountMove(models.Model):
         base_not_in_total = self._get_sii_taxes_map(["BaseNotIncludedInTotal"])
         not_in_amount_total = 0
         exempt_cause = self._get_sii_exempt_cause(taxes_sfesbe + taxes_sfesse)
-        tax_lines = self._get_tax_info()
+        tax_lines = self._get_aeat_tax_info()
         for tax_line in tax_lines.values():
             tax = tax_line["tax"]
             breakdown_taxes = taxes_sfesb + taxes_sfesisp + taxes_sfens + taxes_sfesbe
@@ -600,7 +576,7 @@ class AccountMove(models.Model):
         base_not_in_total = self._get_sii_taxes_map(["BaseNotIncludedInTotal"])
         tax_amount = 0.0
         not_in_amount_total = 0.0
-        tax_lines = self._get_tax_info()
+        tax_lines = self._get_aeat_tax_info()
         for tax_line in tax_lines.values():
             tax = tax_line["tax"]
             if tax in taxes_not_in_total:
