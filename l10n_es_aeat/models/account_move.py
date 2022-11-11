@@ -1,4 +1,5 @@
 # Copyright 2022 CreuBlanca
+# Copyright 2022 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
@@ -27,6 +28,11 @@ class AccountMove(models.Model):
         copy=False,
         help="Número de la factura emitida por un tercero.",
     )
+
+    @api.depends("journal_id")
+    def _compute_thirdparty_invoice(self):
+        for item in self:
+            item.thirdparty_invoice = item.journal_id.thirdparty_invoice
 
     def _get_aeat_tax_base_info(self, res, tax, line, sign):
         res.setdefault(tax, {"tax": tax, "base": 0, "amount": 0, "quote_amount": 0})
@@ -58,16 +64,3 @@ class AccountMove(models.Model):
                     continue
                 self._get_aeat_tax_quote_info(res, tax, line, sign)
         return res
-
-    def _get_tax_info(self):
-        """Deprecated, to be removed in migration"""
-        _logger.warning(
-            "Call to deprecated method '_get_tax_info', "
-            "please use '_get_aeat_tax_info' instead"
-        )
-        return self._get_aeat_tax_info()
-
-    @api.depends("journal_id")
-    def _compute_thirdparty_invoice(self):
-        for item in self:
-            item.thirdparty_invoice = item.journal_id.thirdparty_invoice
