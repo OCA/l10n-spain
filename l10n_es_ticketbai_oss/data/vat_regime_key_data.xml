@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2022 Landoo Sistemas de Informacion SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="tbai_vat_regime_17" model="tbai.vat.regime.key">
+        <field name="code">17</field>
+        <field
+            name="name"
+        >Operación acogida a alguno de los regímenes previstos en el Capítulo XI del Título IX (OSS e IOSS)</field>
+    </record>
+</odoo>
