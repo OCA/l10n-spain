@@ -547,6 +547,7 @@ msgid "Declaración"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_account_move__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_account_tax__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__display_name
@@ -781,6 +782,7 @@ msgid "Full Name"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_account_move__id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_account_tax__id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__id
@@ -898,6 +900,11 @@ msgid "Journal"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__journal_id
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__journal_id
 msgid "Journal in which post the move."
@@ -915,6 +922,7 @@ msgid "L.R. VAT number"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_account_move____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_account_tax____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line____last_update
