@@ -160,7 +160,7 @@ class L10nEsIntrastatProductDeclaration(models.Model):
         state_code = line.intrastat_state_id.code
         vals = (
             # Estado destino/origen
-            line.src_dest_country_id.code,
+            line.src_dest_country_code,
             # Provincia destino/origen
             SPANISH_STATES.get(state_code, state_code),
             # Condiciones de entrega
