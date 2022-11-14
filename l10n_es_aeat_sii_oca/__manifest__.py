@@ -34,7 +34,13 @@
     "development_status": "Mature",
     "maintainers": ["pedrobaeza"],
     "external_dependencies": {"python": ["zeep", "requests"]},
-    "depends": ["account_invoice_refund_link", "l10n_es", "l10n_es_aeat", "queue_job"],
+    "depends": [
+        "account_invoice_refund_link",
+        "l10n_es",
+        "l10n_es_aeat",
+        "queue_job",
+        "account",
+    ],
     "data": [
         "data/aeat_sii_queue_job.xml",
         "data/aeat_sii_tax_agency_data.xml",
@@ -52,6 +58,7 @@
         "views/account_fiscal_position_view.xml",
         "views/res_partner_views.xml",
         "views/aeat_tax_agency_view.xml",
+        "views/account_journal_view.xml",
     ],
     "images": ["static/description/SII_1.jpg"],
     "post_init_hook": "add_key_to_existing_invoices",
