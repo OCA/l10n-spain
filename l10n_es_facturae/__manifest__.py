@@ -27,6 +27,7 @@
         "report_xml",
         "report_qweb_parameter",
         "l10n_es_aeat",
+        "account",
     ],
     "data": [
         "security/ir.model.access.csv",
@@ -39,6 +40,7 @@
         "wizard/create_facturae_view.xml",
         "wizard/account_move_reversal_view.xml",
         "views/account_move_view.xml",
+        "views/account_journal_view.xml",
     ],
     "external_dependencies": {"python": ["pycountry", "xmlsig", "cryptography"]},
     "installable": True,
