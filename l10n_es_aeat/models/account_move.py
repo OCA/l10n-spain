@@ -1,7 +1,11 @@
 # Copyright 2022 CreuBlanca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import logging
+
 from odoo import models
+
+_logger = logging.getLogger(__name__)
 
 
 class AccountMove(models.Model):
@@ -37,3 +41,11 @@ class AccountMove(models.Model):
                     continue
                 self._get_aeat_tax_quote_info(res, tax, line, sign)
         return res
+
+    def _get_tax_info(self):
+        """Deprecated, to be removed in migration"""
+        _logger.warning(
+            "Call to deprecated method '_get_tax_info', "
+            "please use '_get_aeat_tax_info' instead"
+        )
+        return self._get_aeat_tax_info()
