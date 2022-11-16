@@ -182,6 +182,7 @@ class AccountStatementImport(models.TransientModel):
 
     def _parse(self, data_file):
         # st_data will contain data read from the file
+        result = []
         st_data = {
             "_num_records": 0,  # Number of records really counted
             "groups": [],  # Info about each of the groups (account groups)
@@ -204,6 +205,10 @@ class AccountStatementImport(models.TransientModel):
                 self._process_record_24(st_line, raw_line)
             elif code == "33":
                 self._process_record_33(st_group, raw_line)
+                result.append(st_data["groups"])
+                st_data["groups"] = []
+                st_group = {}
+                st_line = {}
             elif code == "88":
                 self._process_record_88(st_data, raw_line)
             elif ord(raw_line[0]) == 26:  # pragma: no cover
@@ -215,7 +220,7 @@ class AccountStatementImport(models.TransientModel):
                 )
             # Update the record counter
             st_data["_num_records"] += 1
-        return st_data["groups"]
+        return result
 
     @api.model
     def _get_common_file_encodings(self):
@@ -333,21 +338,19 @@ class AccountStatementImport(models.TransientModel):
 
     @api.model
     def _parse_file(self, data_file):
-        n43 = self._check_n43(data_file)
-        if not n43:  # pragma: no cover
+        n43s = self._check_n43(data_file)
+        if not n43s:  # pragma: no cover
             return super()._parse_file(data_file)
-        journal = self.env["account.journal"].browse(
-            self.env.context.get("journal_id", [])
-        )
-        if journal.bank_account_id:
-            file_bank = journal.bank_account_id.sanitized_acc_number[14:24]
-            if n43[0]["cuenta"] != file_bank:
-                raise exceptions.UserError(
-                    _(
-                        "The bank account number of the file does not match with "
-                        "the one in the journal."
-                    )
-                )
+        result = []
+        for n43 in n43s:
+            data = self._parse_single_file_n43(n43)
+            if data[2]:
+                # We should only add data if there is some transactions.
+                # Otherwise we could ignore it.
+                result.append(data)
+        return result
+
+    def _parse_single_file_n43(self, n43):
         transactions = []
         for group in n43:
             for line in group["lines"]:
@@ -357,9 +360,6 @@ class AccountStatementImport(models.TransientModel):
                         x.strip() for x in line["conceptos"][concept_line] if x.strip()
                     )
                 vals_line = {
-                    "date": fields.Date.to_string(
-                        line[journal.n43_date_type or "fecha_valor"]
-                    ),
                     "payment_ref": " ".join(conceptos)
                     or self._get_n43_ref(line)
                     or "/",
@@ -378,7 +378,7 @@ class AccountStatementImport(models.TransientModel):
             "balance_end_real": n43 and n43[-1]["saldo_fin"] or 0.0,
         }
         return (
-            journal.currency_id.name or journal.company_id.currency_id.name,
+            "EUR",  # N43 should only work for EUR
             n43 and n43[0]["cuenta"] or None,
             [vals_bank_statement],
         )
@@ -389,11 +389,14 @@ class AccountStatementImport(models.TransientModel):
         for st_vals in res:
             for line_vals in st_vals["transactions"]:
                 if line_vals.get("n43_line"):
+                    n43_line = line_vals.pop("n43_line")
                     if not line_vals.get("partner_id"):
                         line_vals["partner_id"] = self._get_n43_partner(
-                            line_vals["n43_line"],
+                            n43_line,
                         ).id
-                    del line_vals["n43_line"]
+                    line_vals["date"] = fields.Date.to_string(
+                        n43_line.get(journal.n43_date_type or "fecha_valor")
+                    )
                 # This can't be used, as Odoo doesn't present the lines
                 # that already have a counterpart account as final
                 # verification, making this very counter intuitive to the user
