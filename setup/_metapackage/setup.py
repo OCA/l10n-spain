@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo-addon-delivery_gls_asm>=15.0dev,<15.1dev',
+        'odoo-addon-delivery_seur>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_account_asset>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_account_banking_sepa_fsdd>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_account_statement_import_n43>=15.0dev,<15.1dev',
