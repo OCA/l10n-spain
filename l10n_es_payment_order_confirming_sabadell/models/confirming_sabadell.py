@@ -81,10 +81,16 @@ class ConfirmingSabadell(object):
 
     def _sab_convert_text(self, text, size, justified="right"):
         text = text if text else ""
-        if justified == "left":
-            return text[:size].ljust(size)
+        if isinstance(text, float):
+            text = str(int(round(text * 100, 0))).zfill(size)
+        elif isinstance(text, int):
+            text = str(text).zfill(size)
         else:
-            return text[:size].rjust(size)
+            if justified == "left":
+                text = text[:size].ljust(size)
+            else:
+                text = text[:size].rjust(size)
+        return text
 
     def _sab_tipo_vat(self, vat):
         if re.match(r"^ES[(0-9)]{8}$", vat):
@@ -124,7 +130,7 @@ class ConfirmingSabadell(object):
             if self.record.payment_mode_id.conf_sabadell_type == "58":
                 txt_file += self._sab_registro_04(line)
         txt_file += self._sab_registro_05()
-        return txt_file.encode("ascii"), "%s.xml" % self.record.name
+        return txt_file.encode("utf-8"), "%s.txt" % self.record.name
 
     def _sab_registro_01(self):
         # Caracteres 1 y 2-3
@@ -194,7 +200,7 @@ class ConfirmingSabadell(object):
         )
         text += self._sab_convert_text(num_factura, 15)
         # 67 - 81 Importe de la factura
-        text += self._sab_convert_text(str(line.amount_currency), 14, "left")
+        text += self._sab_convert_text(line.amount_currency, 14)
         signo_factura = "+" if line.amount_currency >= 0 else "-"
         text += signo_factura
         # 82 - 89 Fecha factura
@@ -311,12 +317,10 @@ class ConfirmingSabadell(object):
             )
         text += self._sab_convert_text(vat, 9, "left")
         # 11 - 17 Total ordenes
-        text += self._sab_convert_text(
-            str(len(self.record.payment_line_ids)), 7, "left"
-        )
+        text += self._sab_convert_text(len(self.record.payment_line_ids), 7)
         # 18 - 32  - Total importes
         total_amount = sum(self.record.payment_line_ids.mapped("amount_currency"))
-        text += self._sab_convert_text(str(total_amount), 14, "left")
+        text += self._sab_convert_text(total_amount, 14)
         importe_sign = "+" if total_amount >= 0 else "-"
         text += importe_sign
         # 60-72 - Libre
