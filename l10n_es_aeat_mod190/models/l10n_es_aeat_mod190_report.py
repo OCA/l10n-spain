@@ -69,11 +69,11 @@ class L10nEsAeatMod190Report(models.Model):
                     _("You have to recalculate the report before confirm it.")
                 )
         self._check_report_lines()
-        return super(L10nEsAeatMod190Report, self).button_confirm()
+        return super().button_confirm()
 
     # flake8: noqa: C901
     def calculate(self):
-        res = super(L10nEsAeatMod190Report, self).calculate()
+        res = super().calculate()
         for report in self:
             if not report.registro_manual:
                 report.partner_record_ids.unlink()
@@ -91,15 +91,12 @@ class L10nEsAeatMod190Report(models.Model):
                     else:
                         key_id = rp.aeat_perception_key_id
                         subkey_id = rp.aeat_perception_subkey_id
-                    check_existance = False
                     if rp.id not in tax_line_vals:
                         tax_line_vals[rp.id] = {}
                     if key_id.id not in tax_line_vals[rp.id]:
                         tax_line_vals[rp.id][key_id.id] = {}
                     if subkey_id.id not in tax_line_vals[rp.id][key_id.id]:
                         tax_line_vals[rp.id][key_id.id][subkey_id.id] = {}
-                        check_existance = True
-                    if check_existance:
                         partner_record_id = False
                         for rpr_id in report.partner_record_ids:
                             if (
@@ -113,9 +110,10 @@ class L10nEsAeatMod190Report(models.Model):
                             if not rp.aeat_perception_key_id:
                                 raise exceptions.UserError(
                                     _(
-                                        "The perception key of the partner, %s. "
-                                        "Must be filled." % rp.name
+                                        "The perception key of the partner, %(partner)s. "
+                                        "Must be filled."
                                     )
+                                    % ({"partner": rp.name})
                                 )
                             tax_line_vals[rp.id][key_id.id][
                                 subkey_id.id
@@ -557,19 +555,6 @@ class L10nEsAeatMod190ReportLine(models.Model):
 
             if self.aeat_perception_key_id:
                 self.aeat_perception_subkey_id = False
-                return {
-                    "domain": {
-                        "aeat_perception_subkey_id": [
-                            (
-                                "aeat_perception_key_id",
-                                "=",
-                                self.aeat_perception_key_id.id,
-                            )
-                        ]
-                    }
-                }
-            else:
-                return {"domain": {"aeat_perception_subkey_id": []}}
         else:
             self.partner_vat = False
             self.codigo_provincia = False
@@ -578,12 +563,3 @@ class L10nEsAeatMod190ReportLine(models.Model):
     def onchange_aeat_perception_key_id(self):
         if self.aeat_perception_key_id:
             self.aeat_perception_subkey_id = False
-            return {
-                "domain": {
-                    "aeat_perception_subkey_id": [
-                        ("aeat_perception_key_id", "=", self.aeat_perception_key_id.id)
-                    ]
-                }
-            }
-        else:
-            return {"domain": {"aeat_perception_subkey_id": []}}

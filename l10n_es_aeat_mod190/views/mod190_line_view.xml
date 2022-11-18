@@ -43,6 +43,8 @@
                             />
                             <field
                                 name="aeat_perception_subkey_id"
+                                domain="[('aeat_perception_key_id', '=', aeat_perception_key_id)]"
+                                attrs="{'invisible': [('aeat_perception_key_id', '=', False)]}"
                                 string="Subclave"
                                 options="{'no_create_edit': True, 'no_open': True}"
                             />
