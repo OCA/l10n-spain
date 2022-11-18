@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-21 10:06+0000\n"
+"PO-Revision-Date: 2022-11-21 10:06+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -27,7 +29,13 @@ msgstr ""
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,help:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_sequence_id
+#: model:ir.model.fields,help:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_sequence_id
 msgid "Autogenerate for each POS created"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model,name:l10n_es_pos.model_res_config_settings
+msgid "Config Settings"
 msgstr ""
 
 #. module: l10n_es_pos
@@ -38,7 +46,7 @@ msgid "Customer:"
 msgstr ""
 
 #. module: l10n_es_pos
-#: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.res_config_settings_view_form
 msgid "Invoice Journal"
 msgstr ""
 
@@ -54,6 +62,7 @@ msgstr ""
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,help:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_limit
+#: model:ir.model.fields,help:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_limit
 msgid "Over this amount is not legally posible to create a simplified invoice"
 msgstr ""
 
@@ -68,22 +77,29 @@ msgid "Point of Sale Orders"
 msgstr ""
 
 #. module: l10n_es_pos
+#: model:ir.model,name:l10n_es_pos.model_pos_session
+msgid "Point of Sale Session"
+msgstr ""
+
+#. module: l10n_es_pos
 #: model:ir.model,name:l10n_es_pos.model_ir_sequence
 msgid "Sequence"
 msgstr ""
 
 #. module: l10n_es_pos
-#: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.res_config_settings_view_form
 msgid "Set simplified invoice sequence for this POS"
 msgstr ""
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_limit
+#: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_limit
 msgid "Sim.Inv limit amount"
 msgstr ""
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_number
+#: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_number
 msgid "Sim.Inv number"
 msgstr ""
 
@@ -105,26 +121,29 @@ msgstr ""
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_sequence_id
+#: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_sequence_id
 msgid "Simplified Invoice IDs Sequence"
 msgstr ""
 
 #. module: l10n_es_pos
-#: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.res_config_settings_view_form
 msgid "Simplified Invoice Limit"
 msgstr ""
 
 #. module: l10n_es_pos
-#: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.res_config_settings_view_form
 msgid "Simplified Invoice Sequence"
 msgstr ""
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_padding
+#: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_padding
 msgid "Simplified Invoice padding"
 msgstr ""
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_prefix
+#: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_prefix
 msgid "Simplified Invoice prefix"
 msgstr ""
 
@@ -156,11 +175,13 @@ msgstr ""
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__iface_l10n_es_simplified_invoice
+#: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_iface_l10n_es_simplified_invoice
 msgid "Use simplified invoices for this POS"
 msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
 #, python-format
 msgid "on"
