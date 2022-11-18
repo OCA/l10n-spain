@@ -250,12 +250,3 @@ class ResPartner(models.Model):
     def onchange_aeat_perception_key_id(self):
         if self.aeat_perception_key_id:
             self.aeat_perception_subkey_id = False
-            return {
-                "domain": {
-                    "aeat_perception_subkey_id": [
-                        ("aeat_perception_key_id", "=", self.aeat_perception_key_id.id)
-                    ]
-                }
-            }
-        else:
-            return {"domain": {"aeat_perception_subkey_id": []}}
