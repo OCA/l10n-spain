@@ -61,6 +61,7 @@ class AccountMove(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
+        """Call add_keys() function only if fp not set in vals."""
         res = super().create(vals_list)
-        res.add_keys()
+        res.filtered(lambda x: not x.fiscal_position_id).add_keys()
         return res
