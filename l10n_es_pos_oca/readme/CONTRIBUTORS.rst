@@ -23,3 +23,7 @@
 * `Sygel <https://www.sygel.es>`_:
 
   * Manuel Regidor
+
+* `Factor Libre <https://factorlibre.com/>`_:
+
+  * Daniel Duque <daniel.duque@factorlibre.com>

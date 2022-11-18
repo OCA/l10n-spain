@@ -28,22 +28,34 @@
         </xpath>
         <xpath expr='//t[@t-if="receipt.cashier"]' position="after">
             <br />
-            <t t-if="receipt.client">
-                <div>Customer: <t t-esc="receipt.client.name" /></div>
-                <t t-if="receipt.client.vat">
+            <t t-if="props.order.get_partner()">
+                <div>Customer: <t t-esc="props.order.get_partner().name" /></div>
+                <t t-if="props.order.get_partner().vat">
                     <div><t t-esc="receipt.company.vat_label" />:<t
-                            t-esc="receipt.client.vat"
+                            t-esc="props.order.get_partner().vat"
                         /></div>
                 </t>
-                <t t-if="receipt.client.address != ',  , '">
-                    <div><t t-esc="receipt.client.address" /></div>
+                <t t-if="props.order.get_partner().address != ',  , '">
+                    <div><t t-esc="props.order.get_partner().address" /></div>
                 </t>
             </t>
         </xpath>
-        <xpath expr="//t[@t-esc='tax.name']" position="after">
+        <xpath
+            expr="//t[@t-if='!isTaxIncluded']/t/div/t[@t-esc='tax.name']"
+            position="after"
+        >
             <span> on <t t-esc="env.pos.format_currency(tax.base)" /></span>
         </xpath>
-        <xpath expr="//div[hasclass('pos-receipt-order-data')]" position="attributes">
+        <xpath
+            expr="//t[@t-if='isTaxIncluded']/t/div/t[@t-esc='tax.name']"
+            position="after"
+        >
+            <span> on <t t-esc="env.pos.format_currency(tax.base)" /></span>
+        </xpath>
+        <xpath
+            expr="//div[hasclass('pos-receipt')]/div[hasclass('pos-receipt-order-data')]"
+            position="attributes"
+        >
             <attribute
                 name="t-if"
             >!env.pos.config.is_simplified_config or receipt.is_to_invoice</attribute>
