@@ -6,9 +6,6 @@ odoo.define("l10n_es_pos.TicketScreen", function (require) {
 
     const L10nEsPosTicketScreen = (TicketScreen) =>
         class extends TicketScreen {
-            getSimplifiedInvoiceId(order) {
-                return order.l10n_es_unique_id ? order.l10n_es_unique_id : "";
-            }
             _getSearchFields() {
                 const fields = super._getSearchFields();
                 fields.SIMPLIFIED_INVOICE = {
