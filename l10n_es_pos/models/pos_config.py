@@ -61,22 +61,23 @@ class PosConfig(models.Model):
         for pos in self:
             pos.is_simplified_config = pos.iface_l10n_es_simplified_invoice
 
-    @api.model
-    def create(self, vals):
-        # Auto create simp. inv. sequence
-        prefix = "{}{}".format(vals["name"], self._get_default_prefix())
-        simp_inv_seq_id = self.env["ir.sequence"].create(
-            {
-                "name": _("Simplified Invoice %s") % vals["name"],
-                "implementation": "standard",
-                "padding": self._get_default_padding(),
-                "prefix": prefix,
-                "code": "pos.config.simplified_invoice",
-                "company_id": vals.get("company_id", False),
-            }
-        )
-        vals["l10n_es_simplified_invoice_sequence_id"] = simp_inv_seq_id.id
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            # Auto create simp. inv. sequence
+            prefix = "{}{}".format(vals["name"], self._get_default_prefix())
+            simp_inv_seq_id = self.env["ir.sequence"].create(
+                {
+                    "name": _("Simplified Invoice %s") % vals["name"],
+                    "implementation": "standard",
+                    "padding": self._get_default_padding(),
+                    "prefix": prefix,
+                    "code": "pos.config.simplified_invoice",
+                    "company_id": vals.get("company_id", False),
+                }
+            )
+            vals["l10n_es_simplified_invoice_sequence_id"] = simp_inv_seq_id.id
+        return super().create(vals_list)
 
     @api.onchange("iface_l10n_es_simplified_invoice")
     def _onchange_l10n_iface_l10n_es_simplified_invoice(self):
