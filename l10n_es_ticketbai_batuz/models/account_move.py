@@ -20,12 +20,6 @@ from odoo.addons.l10n_es_ticketbai_api_batuz.models.lroe_operation import (
     LROEOperationEnum,
 )
 
-LROE_COUNTRY_CODE_MAPPING = {
-    "RE": "FR",
-    "GP": "FR",
-    "MQ": "FR",
-    "GF": "FR",
-}
 LROE_STATES = [
     ("not_sent", "Not recorded"),
     ("pending", "Registration in LROE planned"),
@@ -190,14 +184,6 @@ class AccountMove(models.Model):
             )
             return chapter.code, subchapter.code
 
-    def _get_lroe_country_code(self):
-        self.ensure_one()
-        country_code = (
-            self.partner_id.commercial_partner_id.country_id.code
-            or (self.partner_id.vat or "")[:2]
-        ).upper()
-        return LROE_COUNTRY_CODE_MAPPING.get(country_code, country_code)
-
     def _get_batuz_description(self):
         """Concatenamos la referencia/descripción de la factura con el
         número interno de la misma. De esta forma es más sencillo identificarla
@@ -228,13 +214,11 @@ class AccountMove(models.Model):
             vat = "".join(e for e in partner.vat if e.isalnum()).upper()
         else:
             vat = "NO_DISPONIBLE"
-        country_code = self._get_lroe_country_code()
+        country_code = partner._parse_aeat_vat_info()[0]
         if idtype == TicketBaiCustomerIdType.T02.value:
             if country_code != "ES":
                 id_type = "06" if vat == "NO_DISPONIBLE" else "02"
-                res["IDOtro"] = OrderedDict(
-                    [("CodigoPais", country_code), ("IDType", id_type), ("ID", vat)]
-                )
+                res["IDOtro"] = OrderedDict([("IDType", id_type), ("ID", vat)])
             else:
                 res["NIF"] = vat[2:] if vat.startswith(country_code) else vat
         elif idtype:
