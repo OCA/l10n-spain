@@ -5,6 +5,7 @@
 # Copyright 2018 Juan Vicente Pascual <jvpascual@puntsistemes.es>
 # Copyright 2019 Tecnativa - Carlos Dauden
 # Copyright 2013-2021 Tecnativa - Pedro M. Baeza
+# Copyright 2022 Moduon - Eduardo de Miguel
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
 {
@@ -42,6 +43,7 @@
         "views/res_company_view.xml",
         "views/res_partner_view.xml",
         "views/aeat_certificate_view.xml",
+        "views/account_journal_view.xml",
     ],
     "installable": True,
     "maintainers": ["pedrobaeza"],
