@@ -11,6 +11,7 @@ from collections import OrderedDict
 from .ticketbai_invoice_tax import TicketBaiTaxType, VATRegimeKey
 from .ticketbai_response import TicketBaiResponseState, TicketBaiInvoiceResponseCode, \
     TicketBaiCancellationResponseCode
+from .ticketbai_invoice_customer import TicketBaiCustomerIdType
 from ..ticketbai.api import TicketBaiApi
 from ..ticketbai.xml_schema import XMLSchema, TicketBaiSchema, \
     XMLSchemaModeNotSupported
@@ -784,7 +785,10 @@ class TicketBAIInvoice(models.Model):
                 customer_res["NIF"] = customer.nif
             elif customer.idtype and customer.identification_number:
                 customer_res["IDOtro"] = OrderedDict()
-                if customer.country_code:
+                if (
+                    customer.country_code and
+                    customer.idtype != TicketBaiCustomerIdType.T02.value
+                ):
                     customer_res["IDOtro"]["CodigoPais"] = customer.country_code
                 customer_res["IDOtro"]["IDType"] = customer.idtype
                 customer_res["IDOtro"]["ID"] = customer.identification_number
