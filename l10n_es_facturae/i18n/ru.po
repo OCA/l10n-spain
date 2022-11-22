@@ -553,11 +553,6 @@ msgid "Invoice %s"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: model:ir.model,name:l10n_es_facturae.model_account_journal
-msgid "Journal"
-msgstr ""
-
-#. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_move
 msgid "Journal Entry"
 msgstr ""
@@ -807,7 +802,6 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_journal__thirdparty_invoice
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__thirdparty_invoice
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__thirdparty_invoice
 msgid "Third-party invoice"
