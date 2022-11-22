@@ -556,11 +556,6 @@ msgid "Invoice %s"
 msgstr "Factura %s"
 
 #. module: l10n_es_facturae
-#: model:ir.model,name:l10n_es_facturae.model_account_journal
-msgid "Journal"
-msgstr "Libro diario"
-
-#. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_move
 msgid "Journal Entry"
 msgstr "Asiento contable"
@@ -813,7 +808,6 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_journal__thirdparty_invoice
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__thirdparty_invoice
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__thirdparty_invoice
 msgid "Third-party invoice"
@@ -955,3 +949,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_proponente
 msgid "Órgano proponente"
 msgstr ""
+
+#~ msgid "Journal"
+#~ msgstr "Libro diario"

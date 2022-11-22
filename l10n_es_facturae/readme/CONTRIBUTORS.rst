@@ -8,3 +8,4 @@
 * Javi Melendez <javimelex@gmail.com>
 * Enric Tobella <etobella@creublanca.es>
 * Adrián Gómez <adrian.gomez@pesol.es>
+* Eduardo de Miguel (edu@moduon.team)
