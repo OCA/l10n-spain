@@ -59,7 +59,7 @@ addon | version | maintainers | summary
 [l10n_es_dua_sii](l10n_es_dua_sii/) | 12.0.1.1.2 |  | Suministro Inmediato de Información de importaciones con DUA
 [l10n_es_dua_ticketbai_batuz](l10n_es_dua_ticketbai_batuz/) | 12.0.1.0.0 |  | TicketBAI - Batuz con DUA
 [l10n_es_extra_data](l10n_es_extra_data/) | 12.0.1.0.1 | [![cubells](https://github.com/cubells.png?size=30px)](https://github.com/cubells) | Datos extra de la localización española
-[l10n_es_facturae](l10n_es_facturae/) | 12.0.3.1.0 |  | Creación de Factura-e
+[l10n_es_facturae](l10n_es_facturae/) | 12.0.3.2.0 |  | Creación de Factura-e
 [l10n_es_facturae_efact](l10n_es_facturae_efact/) | 12.0.1.0.3 |  | Envío de Factura-e a e.FACT
 [l10n_es_facturae_face](l10n_es_facturae_face/) | 12.0.1.1.0 |  | Envío de Factura-e a FACe
 [l10n_es_intrastat_report](l10n_es_intrastat_report/) | 12.0.2.0.2 |  | Spanish Intrastat Product Declaration
