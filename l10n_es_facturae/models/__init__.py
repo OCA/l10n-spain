@@ -6,5 +6,4 @@ from . import res_partner
 from . import account_tax_template
 from . import account_tax
 from . import res_currency
-from . import account_journal
 from . import account_move
