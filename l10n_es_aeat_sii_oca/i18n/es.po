@@ -426,11 +426,6 @@ msgid "Is Test Environment?"
 msgstr "¿Es un entorno de pruebas?"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model,name:l10n_es_aeat_sii_oca.model_account_journal
-msgid "Journal"
-msgstr "Diario"
-
-#. module: l10n_es_aeat_sii_oca
 #: model:ir.model,name:l10n_es_aeat_sii_oca.model_account_move
 msgid "Journal Entry"
 msgstr "Asiento contable"
@@ -1012,7 +1007,6 @@ msgstr "Hay un cruce erróneo para tasas en RE. Chequéelas."
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_journal__thirdparty_invoice
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__thirdparty_invoice
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__thirdparty_invoice
 msgid "Third-party invoice"
@@ -1227,3 +1221,6 @@ msgstr "número de factura del proveedor"
 #, python-format
 msgid "third-party number"
 msgstr "número de factura de terceros"
+
+#~ msgid "Journal"
+#~ msgstr "Diario"
