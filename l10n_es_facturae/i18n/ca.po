@@ -176,18 +176,18 @@ msgstr "Cal definir el país"
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.wizard_create_facturae
-msgid "Create Factura-E"
-msgstr "Crear Factura-E"
-
-#. module: l10n_es_facturae
-#: model:ir.actions.act_window,name:l10n_es_facturae.wizard_create_facturae_act_window
-msgid "Create Factura-E file"
-msgstr "Crear fitxer de Factura-E"
+msgid "Create Facturae"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_create_facturae
 msgid "Create Facturae Wizard"
 msgstr "Crear assistent Facturae"
+
+#. module: l10n_es_facturae
+#: model:ir.actions.act_window,name:l10n_es_facturae.wizard_create_facturae_act_window
+msgid "Create Facturae file"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__create_uid
@@ -231,7 +231,6 @@ msgid "Detalle Operación"
 msgstr "Detall operació"
 
 #. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_journal__display_name
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__display_name
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move_reversal__display_name
@@ -286,35 +285,10 @@ msgid "Factura electrónica"
 msgstr "Factura electrònica"
 
 #. module: l10n_es_facturae
-#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
-msgid "Factura-E"
-msgstr "Factura-E"
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__facturae
-msgid "Factura-E file"
-msgstr "Fitxer factura-E"
-
-#. module: l10n_es_facturae
-#: model:ir.actions.report,name:l10n_es_facturae.report_facturae_signed
-msgid "Factura-E for,adp"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: model:ir.actions.report,name:l10n_es_facturae.report_facturae
-msgid "Factura-E sin firmar"
-msgstr "Factura-E sense signar"
-
-#. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
-msgid "Facturae start and end dates are both required if one of them is filled"
-msgstr "Si s'omple data inicial o final de Facturae, cal omplir ambdues"
-
-#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_partner_form
 msgid "Facturae"
@@ -425,6 +399,27 @@ msgid "Facturae code"
 msgstr "Codi Facturae"
 
 #. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__facturae
+msgid "Facturae file"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.actions.report,name:l10n_es_facturae.report_facturae_signed
+msgid "Facturae for,adp"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.actions.report,name:l10n_es_facturae.report_facturae
+msgid "Facturae sin firmar"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Facturae start and end dates are both required if one of them is filled"
+msgstr "Si s'omple data inicial o final de Facturae, cal omplir ambdues"
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move__facturae_refund_reason__03
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move_reversal__refund_reason__03
 msgid "Fecha expedición"
@@ -463,7 +458,6 @@ msgid "ICIO: Impuesto sobre las construcciones, instalaciones y obras"
 msgstr "ICIO: Impost sobre les construccions, instal·lacions i obres"
 
 #. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_journal__id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move_line__id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move_reversal__id
@@ -588,11 +582,6 @@ msgid "Invoice %s"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: model:ir.model,name:l10n_es_facturae.model_account_journal
-msgid "Journal"
-msgstr ""
-
-#. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_move
 msgid "Journal Entry"
 msgstr ""
@@ -610,7 +599,6 @@ msgid "L10N Es Facturae Attachment"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_journal____last_update
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move____last_update
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move_line____last_update
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move_reversal____last_update
@@ -673,13 +661,6 @@ msgid "Número de la factura"
 msgstr "Número de la factura"
 
 #. module: l10n_es_facturae
-#: model:ir.model.fields,help:l10n_es_facturae.field_account_bank_statement_line__thirdparty_number
-#: model:ir.model.fields,help:l10n_es_facturae.field_account_move__thirdparty_number
-#: model:ir.model.fields,help:l10n_es_facturae.field_account_payment__thirdparty_number
-msgid "Número de la factura emitida por un tercero."
-msgstr ""
-
-#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__oficina_contable
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__oficina_contable
 msgid "Oficina contable"
@@ -690,12 +671,6 @@ msgstr "Oficina comptable"
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__05
 msgid "Otro"
 msgstr "Altre"
-
-#. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
-msgid "Partner bank is missing"
-msgstr "Falta el banc del partner"
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_move.py:0
@@ -856,21 +831,6 @@ msgstr ""
 "%s"
 
 #. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_journal__thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__thirdparty_invoice
-msgid "Third-party invoice"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__thirdparty_number
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__thirdparty_number
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__thirdparty_number
-msgid "Third-party number"
-msgstr ""
-
-#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__unidad_tramitadora
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__unidad_tramitadora
 msgid "Unidad tramitadora"
@@ -885,7 +845,7 @@ msgstr "S'ha de definir el NIF"
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
-msgid "You can only create Factura-E files for moves that have been validated."
+msgid "You can only create Facturae files for moves that have been validated."
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -990,12 +950,6 @@ msgid "[19] Pago mediante tarjeta"
 msgstr "[19] Pagament amb targeta"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/wizard/create_facturae.py:0
-#, python-format
-msgid "facturae"
-msgstr "facturae"
-
-#. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.wizard_create_facturae
 msgid "or"
 msgstr "o"
@@ -1016,6 +970,29 @@ msgstr "Òrgan gestor"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_proponente
 msgid "Órgano proponente"
 msgstr "Ôrgan proponent"
+
+#~ msgid "Create Factura-E"
+#~ msgstr "Crear Factura-E"
+
+#~ msgid "Create Factura-E file"
+#~ msgstr "Crear fitxer de Factura-E"
+
+#~ msgid "Factura-E"
+#~ msgstr "Factura-E"
+
+#~ msgid "Factura-E file"
+#~ msgstr "Fitxer factura-E"
+
+#~ msgid "Factura-E sin firmar"
+#~ msgstr "Factura-E sense signar"
+
+#, python-format
+#~ msgid "Partner bank is missing"
+#~ msgstr "Falta el banc del partner"
+
+#, python-format
+#~ msgid "facturae"
+#~ msgstr "facturae"
 
 #~ msgid ""
 #~ " * The 'Draft' status is used when a user is encoding a new and "
