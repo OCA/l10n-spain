@@ -546,13 +546,6 @@ msgid "Not sent"
 msgstr "No enviat"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_bank_statement_line__thirdparty_number
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__thirdparty_number
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_payment__thirdparty_number
-msgid "Número de la factura emitida por un tercero."
-msgstr ""
-
-#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__res_company__send_mode__auto
 msgid "On validate"
 msgstr "Al validar"
@@ -1004,20 +997,6 @@ msgstr "Cal la factura del número de proveïdor"
 #, python-format
 msgid "There's a mismatch in taxes for RE. Check them."
 msgstr "Hi ha un desajust en els impostos per a RE. Comproveu-los."
-
-#. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__thirdparty_invoice
-msgid "Third-party invoice"
-msgstr ""
-
-#. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__thirdparty_number
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__thirdparty_number
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__thirdparty_number
-msgid "Third-party number"
-msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
