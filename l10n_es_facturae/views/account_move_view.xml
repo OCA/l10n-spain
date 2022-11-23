@@ -3,9 +3,19 @@
     <record id="view_move_form" model="ir.ui.view">
         <field name="name">account.move.form</field>
         <field name="model">account.move</field>
-        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="inherit_id" ref="l10n_es_aeat.view_move_form" />
         <field name="type">form</field>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='thirdparty_invoice']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('move_type', 'not in', ('in_invoice', 'out_invoice', 'out_refund', 'in_refund'))]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='thirdparty_number']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'required': [('thirdparty_invoice', '=', True)], 'invisible': [('thirdparty_invoice', '=', False)]}</attribute>
+            </xpath>
             <field name="name" position="after">
                 <field name="facturae" invisible="1" />
             </field>

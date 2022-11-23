@@ -625,13 +625,6 @@ msgid "Número de la factura"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: model:ir.model.fields,help:l10n_es_facturae.field_account_bank_statement_line__thirdparty_number
-#: model:ir.model.fields,help:l10n_es_facturae.field_account_move__thirdparty_number
-#: model:ir.model.fields,help:l10n_es_facturae.field_account_payment__thirdparty_number
-msgid "Número de la factura emitida por un tercero."
-msgstr ""
-
-#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__oficina_contable
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__oficina_contable
 msgid "Oficina Contable"
@@ -805,20 +798,6 @@ msgstr ""
 "El fichero XML no es válido al compararlo con el definición oficial de "
 "esquema XML. El fichero XML generado y el error puede encontrarse en los "
 "logs del servidor. el error que puede dar una idea del problema es: %s"
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__thirdparty_invoice
-msgid "Third-party invoice"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__thirdparty_number
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__thirdparty_number
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__thirdparty_number
-msgid "Third-party number"
-msgstr ""
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.wizard_create_facturae
