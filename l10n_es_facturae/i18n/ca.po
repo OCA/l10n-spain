@@ -629,13 +629,6 @@ msgid "Número de la factura"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: model:ir.model.fields,help:l10n_es_facturae.field_account_bank_statement_line__thirdparty_number
-#: model:ir.model.fields,help:l10n_es_facturae.field_account_move__thirdparty_number
-#: model:ir.model.fields,help:l10n_es_facturae.field_account_payment__thirdparty_number
-msgid "Número de la factura emitida por un tercero."
-msgstr "Número de la factura emès per un tercer."
-
-#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__oficina_contable
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__oficina_contable
 msgid "Oficina Contable"
@@ -812,20 +805,6 @@ msgstr ""
 "%s"
 
 #. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__thirdparty_invoice
-msgid "Third-party invoice"
-msgstr "Factura de tercers"
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__thirdparty_number
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__thirdparty_number
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__thirdparty_number
-msgid "Third-party number"
-msgstr "Número de tercers"
-
-#. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.wizard_create_facturae
 msgid "This process will create the electronic invoice"
 msgstr ""
@@ -955,6 +934,15 @@ msgstr "[19] Pagament amb targeta"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_proponente
 msgid "Órgano proponente"
 msgstr "Ôrgan proponent"
+
+#~ msgid "Número de la factura emitida por un tercero."
+#~ msgstr "Número de la factura emès per un tercer."
+
+#~ msgid "Third-party invoice"
+#~ msgstr "Factura de tercers"
+
+#~ msgid "Third-party number"
+#~ msgstr "Número de tercers"
 
 #~ msgid "Journal"
 #~ msgstr "Diari"
