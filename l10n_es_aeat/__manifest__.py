@@ -44,6 +44,7 @@
         "views/res_partner_view.xml",
         "views/aeat_certificate_view.xml",
         "views/account_journal_view.xml",
+        "views/account_move_view.xml",
     ],
     "installable": True,
     "maintainers": ["pedrobaeza"],
