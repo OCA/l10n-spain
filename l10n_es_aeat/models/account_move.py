@@ -3,13 +3,30 @@
 
 import logging
 
-from odoo import models
+from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
 
 
 class AccountMove(models.Model):
     _inherit = "account.move"
+
+    thirdparty_invoice = fields.Boolean(
+        string="Third-party invoice",
+        copy=False,
+        compute="_compute_thirdparty_invoice",
+        store=True,
+        readonly=False,
+    )
+
+    thirdparty_number = fields.Char(
+        string="Third-party number",
+        index=True,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+        copy=False,
+        help="Número de la factura emitida por un tercero.",
+    )
 
     def _get_aeat_tax_base_info(self, res, tax, line, sign):
         res.setdefault(tax, {"tax": tax, "base": 0, "amount": 0, "quote_amount": 0})
@@ -49,3 +66,8 @@ class AccountMove(models.Model):
             "please use '_get_aeat_tax_info' instead"
         )
         return self._get_aeat_tax_info()
+
+    @api.depends("journal_id")
+    def _compute_thirdparty_invoice(self):
+        for item in self:
+            item.thirdparty_invoice = item.journal_id.thirdparty_invoice
