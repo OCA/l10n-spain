@@ -9,3 +9,4 @@
 * Enric Tobella <etobella@creublanca.es>
 * Adrián Gómez <adrian.gomez@pesol.es>
 * Eduardo de Miguel (edu@moduon.team)
+* Eric Antones (eantones@nuobit.com>
