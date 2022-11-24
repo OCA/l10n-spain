@@ -1,12 +1,10 @@
-from odoo import models, api, fields, _
+from odoo import _, fields, models
 
 
 class AccountPaymentOrder(models.Model):
     _inherit = "account.payment.order"
 
-    risk_accounting_date = fields.Date(
-        string="Accounting date",
-    )
+    risk_accounting_date = fields.Date(string="Accounting date",)
 
     def generated2uploaded(self):
         res = super(

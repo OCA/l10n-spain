@@ -7,6 +7,7 @@ from datetime import date, timedelta
 
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests.common import Form, SavepointCase
+
 from odoo.addons.account_payment_order.tests.test_payment_order_inbound import (
     TestPaymentOrderInboundBase,
 )

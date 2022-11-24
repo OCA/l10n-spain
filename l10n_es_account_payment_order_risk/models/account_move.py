@@ -1,4 +1,4 @@
-from odoo import models, api, fields, _
+from odoo import _, api, models
 
 
 class AccountMove(models.Model):

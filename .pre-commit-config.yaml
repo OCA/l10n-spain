@@ -105,7 +105,7 @@ repos:
     rev: 2.5.2
     hooks:
       - id: setuptools-odoo-make-default
-  - repo: https://gitlab.com/pycqa/flake8
+  - repo: https://github.com/pycqa/flake8
     rev: 3.7.9
     hooks:
       - id: flake8
