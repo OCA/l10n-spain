@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_payment_mode_form" model="ir.ui.view">
+        <field name="model">account.payment.mode</field>
+        <field name="inherit_id"
+               ref="account_payment_order.account_payment_mode_form"/>
+        <field name="arch" type="xml">
+            <group name="accounting-config" position="inside">
+                <field name="cancel_risk"
+                       attrs="{'invisible': [('control_risk', '=', True)]}"/>
+                <field name="control_risk"
+                       attrs="{'invisible': [('cancel_risk', '=', True)]}"/>
+                <field name="discounted_commercial_effects_id"
+                       attrs="{'invisible': [('control_risk', '=', False), ('cancel_risk', '=', False)], 'required': ['|', ('control_risk', '=', True), ('cancel_risk', '=', True)]}"
+                       options="{'no_create': True}"/>
+                <field name="debit_discounted_effects_id"
+                       attrs="{'invisible': [('control_risk', '=', False), ('cancel_risk', '=', False)], 'required': ['|', ('control_risk', '=', True), ('cancel_risk', '=', True)]}"
+                       options="{'no_create': True}"/>
+            </group>
+        </field>
+    </record>
+</odoo>
