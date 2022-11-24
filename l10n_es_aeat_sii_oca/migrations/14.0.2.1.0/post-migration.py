@@ -20,6 +20,12 @@ def _get_tax_agency_map(env):
         get_id("l10n_es_aeat_sii_oca.aeat_sii_tax_agency_bizkaia"): get_id(
             "l10n_es_aeat.aeat_tax_agency_bizkaia"
         ),
+        get_id("l10n_es_aeat_sii_oca.aeat_sii_tax_agency_spain_1_0_old"): get_id(
+            "l10n_es_aeat_sii_oca.aeat_sii_tax_agency_spain_1_0"
+        ),
+        get_id("l10n_es_aeat_sii_oca.aeat_sii_tax_agency_gipuzkoa_1_0_old"): get_id(
+            "l10n_es_aeat_sii_oca.aeat_sii_tax_agency_gipuzkoa_1_0"
+        ),
     }
     return mig_map
 
