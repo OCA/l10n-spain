@@ -111,6 +111,12 @@ msgid "1. Remanente"
 msgstr "1. Romanent"
 
 #. module: l10n_es_mis_report
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_abreviado_21350
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_pymes_21350
+msgid "1. Reserva de Capitalización"
+msgstr ""
+
+#. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_45100
 msgid "1. Subvenciones recibidas."
 msgstr "1. Subvencions rebudes."
@@ -232,8 +238,7 @@ msgstr "16. Variació de valor raonable en instruments financers"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pymes_41800
-msgid ""
-"17. Deterioro y resultado por enajenaciones de instrumentos financieros"
+msgid "17. Deterioro y resultado por enajenaciones de instrumentos financieros"
 msgstr "17. Deteriorament i resultat per alienacions d'instruments financers"
 
 #. module: l10n_es_mis_report
@@ -247,21 +252,25 @@ msgstr "17. Diferències de canvi"
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_abreviado_41800
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_normal_41800
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_41500
-msgid ""
-"18. Deterioro y resultado por enajenaciones de instrumentos financieros"
+msgid "18. Deterioro y resultado por enajenaciones de instrumentos financieros"
 msgstr "18. Deteriorament i resultat per alienacions d'instruments financers"
 
 #. module: l10n_es_mis_report
-#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pymes_41900
-msgid "18. Impuestos sobre beneficios"
-msgstr "18. Impostos sobre beneficis"
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pymes_42100
+msgid "18. Otros ingresos y gastos de carácter financiero"
+msgstr ""
 
 #. module: l10n_es_mis_report
-#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_abreviado_41900
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_normal_41900
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_43100
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pymes_41900
 msgid "19. Impuestos sobre beneficios"
 msgstr "19. Impostos sobre beneficis"
+
+#. module: l10n_es_mis_report
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_abreviado_42100
+msgid "19. Otros ingresos y gastos de carácter financiero"
+msgstr ""
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_pymes_21120
@@ -354,7 +363,9 @@ msgid "2. Materias primas y otros aprovisionamientos"
 msgstr "2. Matèries primeres i altres aprovisionaments"
 
 #. module: l10n_es_mis_report
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_abreviado_21360
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_21320
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_pymes_21360
 msgid "2. Otras reservas"
 msgstr "2. Altres reserves"
 
@@ -386,14 +397,18 @@ msgstr "2. Proveïdors, empreses del grup i associades"
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_normal_40200
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pymes_40200
 msgid ""
-"2. Variación de existencias de productos terminados y en curso de "
-"fabricación"
+"2. Variación de existencias de productos terminados y en curso de fabricación"
 msgstr "2. Variació d'existències de productes acabats i en curs de fabricació"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_40200
 msgid "2. Ventas y otros ingresos de la actividad mercantil"
 msgstr "2. Vendes i altres ingressos de l'activitat mercantil"
+
+#. module: l10n_es_mis_report
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_abreviado_41900
+msgid "20. Impuestos sobre beneficios"
+msgstr ""
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_normal_42000
@@ -470,6 +485,11 @@ msgstr "3. Productes en curs"
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_31130
 msgid "3. Provisiones por reestructuración"
 msgstr "3. Provisions per reestructuració"
+
+#. module: l10n_es_mis_report
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_21330
+msgid "3. Reserva de capitalización"
+msgstr ""
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_47100
@@ -815,8 +835,7 @@ msgstr "A.3) RESULTAT ABANS D'IMPOSTOS (A.1 + A.2)"
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_normal_49400
 msgid ""
-"A.4) RESULTADO DEL EJERCICIO PROCEDENTE DE OPERACIONES CONTINUADAS (A.3 + "
-"19)"
+"A.4) RESULTADO DEL EJERCICIO PROCEDENTE DE OPERACIONES CONTINUADAS (A.3 + 19)"
 msgstr ""
 "A.4) RESULTAT DE L'EXERCICI PROCEDENT D' OPERACIONS CONTINUADES (A.3 + 19)"
 
@@ -859,22 +878,22 @@ msgstr "B) PASSIU NO CORRENT"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pymes_49200
-msgid "B) RESULTADO FINANCIERO (13 + 14 + 15 + 16 + 17)"
-msgstr "B) RESULTAT FINANCER (13 + 14 + 15 + 16 + 17)"
+msgid "B) RESULTADO FINANCIERO (13 + 14 + 15 + 16 + 17 + 18)"
+msgstr ""
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_abreviado_49200
-msgid "B) RESULTADO FINANCIERO (14 + 15 + 16 + 17 + 18)"
-msgstr "B) RESULTAT FINANCER (14 + 15 + 16 + 17 + 18)"
+msgid "B) RESULTADO FINANCIERO (14 + 15 + 16 + 17 + 18 + 19)"
+msgstr ""
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_eiyg_normal_59200
 msgid ""
-"B) Total ingresos y gastos imputados directamente en el patrimonio neto (I +"
-" II + III + IV + V + VI + VII)"
+"B) Total ingresos y gastos imputados directamente en el patrimonio neto (I + "
+"II + III + IV + V + VI + VII)"
 msgstr ""
-"B) Total ingressos i despeses imputats directament al patrimoni net (I + II +"
-" III + IV + V + VI + VII)"
+"B) Total ingressos i despeses imputats directament al patrimoni net (I + II "
+"+ III + IV + V + VI + VII)"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_46000
@@ -932,8 +951,8 @@ msgstr "C) Reclassificacions a l'excedent de l'ejercici"
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_eiyg_normal_59300
 msgid ""
-"C) Total transferencias a la cuenta de pérdidas y ganancias (VIII + IX + X +"
-" XI + XII + XIII)"
+"C) Total transferencias a la cuenta de pérdidas y ganancias (VIII + IX + X + "
+"XI + XII + XIII)"
 msgstr ""
 "C) Total transferències al compte de pèrdues i guanys (VIII + IX + X + XI + "
 "XII + XIII)"
@@ -949,13 +968,13 @@ msgstr ""
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pymes_49500
-msgid "D) RESULTADO DEL EJERCICIO (C + 18)"
-msgstr "D) RESULTAT DE L'EXERCICI (C + 18)"
+msgid "D) RESULTADO DEL EJERCICIO (C + 19)"
+msgstr "D) RESULTAT DE L'EXERCICI (C + 19)"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_abreviado_49500
-msgid "D) RESULTADO DEL EJERCICIO (C + 19)"
-msgstr "D) RESULTAT DE L'EXERCICI (C + 19)"
+msgid "D) RESULTADO DEL EJERCICIO (C + 20)"
+msgstr ""
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_49000
@@ -1602,6 +1621,12 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_mis_report
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_abreviado_42110
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pymes_42110
+msgid "a) Incorporación al activo de gastos financieros"
+msgstr ""
+
+#. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_normal_40510
 msgid "a) Ingresos accesorios y otros de gestión corriente"
 msgstr ""
@@ -1684,8 +1709,14 @@ msgstr ""
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_normal_41620
 msgid ""
-"b) Imputación al resultado del ejercicio por activos financieros disponibles"
-" para la venta"
+"b) Imputación al resultado del ejercicio por activos financieros disponibles "
+"para la venta"
+msgstr ""
+
+#. module: l10n_es_mis_report
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_abreviado_42120
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pymes_42120
+msgid "b) Ingresos financieros derivados de convenios de acreedores"
 msgstr ""
 
 #. module: l10n_es_mis_report
@@ -1756,8 +1787,13 @@ msgstr ""
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_normal_40730
 msgid ""
-"c) Pérdidas, deterioro y variación de provisiones por operaciones "
-"comerciales"
+"c) Pérdidas, deterioro y variación de provisiones por operaciones comerciales"
+msgstr ""
+
+#. module: l10n_es_mis_report
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_abreviado_42130
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pymes_42130
+msgid "c) Resto de ingresos y gastos"
 msgstr ""
 
 #. module: l10n_es_mis_report
@@ -1767,8 +1803,7 @@ msgstr ""
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_normal_40440
-msgid ""
-"d) Deterioro de mercaderías, materias primas y otros aprovisionamientos"
+msgid "d) Deterioro de mercaderías, materias primas y otros aprovisionamientos"
 msgstr ""
 
 #. module: l10n_es_mis_report
@@ -1791,3 +1826,15 @@ msgstr ""
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_40150
 msgid "e) Reintegro de ayudas y asignaciones"
 msgstr ""
+
+#~ msgid "18. Impuestos sobre beneficios"
+#~ msgstr "18. Impostos sobre beneficis"
+
+#~ msgid "B) RESULTADO FINANCIERO (13 + 14 + 15 + 16 + 17)"
+#~ msgstr "B) RESULTAT FINANCER (13 + 14 + 15 + 16 + 17)"
+
+#~ msgid "B) RESULTADO FINANCIERO (14 + 15 + 16 + 17 + 18)"
+#~ msgstr "B) RESULTAT FINANCER (14 + 15 + 16 + 17 + 18)"
+
+#~ msgid "D) RESULTADO DEL EJERCICIO (C + 18)"
+#~ msgstr "D) RESULTAT DE L'EXERCICI (C + 18)"

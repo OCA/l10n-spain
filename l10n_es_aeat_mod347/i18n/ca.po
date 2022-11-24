@@ -140,14 +140,14 @@ msgstr ""
 "  % if object.amount:\n"
 "  <p>\n"
 "  <strong>Import de las operacions:</strong> ${object.amount}<br/>\n"
-"  <strong>Operacions primer trimestre:</strong> ${object.first_quarter}<br/>"
-"\n"
-"  <strong>Operacions segon trimestre:</strong> ${object.second_quarter}<br/>"
-"\n"
-"  <strong>Operacions tercer trimestre:</strong> ${object.third_quarter}<br/>"
-"\n"
-"  <strong>Operacions quart trimestre:</strong> ${object.fourth_quarter}<br/>"
-"\n"
+"  <strong>Operacions primer trimestre:</strong> ${object.first_quarter}<br/"
+">\n"
+"  <strong>Operacions segon trimestre:</strong> ${object.second_quarter}<br/"
+">\n"
+"  <strong>Operacions tercer trimestre:</strong> ${object.third_quarter}<br/"
+">\n"
+"  <strong>Operacions quart trimestre:</strong> ${object.fourth_quarter}<br/"
+">\n"
 "  </p>\n"
 "  % endif\n"
 "  % if object.cash_amount:\n"
@@ -381,11 +381,6 @@ msgid "Amount 4Q:"
 msgstr "Import 4T:"
 
 #. module: l10n_es_aeat_mod347
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__amount_signed
-msgid "Amount signed"
-msgstr "Import amb signe"
-
-#. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
 msgid "Amount:"
 msgstr "Import:"
@@ -533,8 +528,8 @@ msgid ""
 "Comprobación datos de modelo 347 año ${object.report_id.year} de ${user."
 "company_id.name}"
 msgstr ""
-"Comprobació dades model 347 any ${object.report_id.year} de ${user.company_id"
-".name}"
+"Comprobació dades model 347 any ${object.report_id.year} de ${user."
+"company_id.name}"
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
@@ -644,6 +639,21 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__date_end
 msgid "Ending date"
 msgstr "Data final"
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__error_count
+msgid "Error Count"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__error_text
+msgid "Error text"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__error_text
+msgid "Errors"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__state__exception
@@ -759,7 +769,8 @@ msgstr "Icona per a indicar una activitat d'excepció."
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_needaction
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_unread
 msgid "If checked, new messages require your attention."
-msgstr "Si està marcat, hi ha missatges nous que requereixen la vostra atenció."
+msgstr ""
+"Si està marcat, hi ha missatges nous que requereixen la vostra atenció."
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_has_error
@@ -934,11 +945,6 @@ msgstr "Model 347"
 #: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_move_record
 msgid "Move Record"
 msgstr "Registre d'apunt"
-
-#. module: l10n_es_aeat_mod347
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__move_type
-msgid "Move Type"
-msgstr "Tipus de moviment"
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
@@ -1420,6 +1426,12 @@ msgid "State Code"
 msgstr "Codi de província"
 
 #. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
+msgid "State code can only contain digits"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__statement_type
 msgid "Statement Type"
 msgstr "Tipus declaració"
@@ -1608,6 +1620,12 @@ msgid "Unread Messages Counter"
 msgstr "Comptador de missatges sense llegir"
 
 #. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
+msgid "VAT must be defined for Spanish Contacts"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__partner_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__partner_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__company_vat
@@ -1636,9 +1654,21 @@ msgid "Website communication history"
 msgstr "Històric de comunicació de la pàgina web"
 
 #. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
+msgid "Without country code"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_type__s/n
 msgid "Without number"
 msgstr "Sense número"
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
+msgid "Without state code"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.communication_success
@@ -1649,6 +1679,12 @@ msgstr "Podeu tancar aquesta pàgina, si ho voleu."
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__year
 msgid "Year"
 msgstr "Any"
+
+#~ msgid "Amount signed"
+#~ msgstr "Import amb signe"
+
+#~ msgid "Move Type"
+#~ msgstr "Tipus de moviment"
 
 #~ msgid "Cancelled"
 #~ msgstr "Cancel·lada"

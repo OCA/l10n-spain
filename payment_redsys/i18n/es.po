@@ -37,6 +37,11 @@ msgid "Bank Error: %s (%s)"
 msgstr "Error del banco: %s (%s)"
 
 #. module: payment_redsys
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_pay_method__z
+msgid "Bizum"
+msgstr ""
+
+#. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_merchant_lang__001
 msgid "Castellano"
 msgstr "Castellano"
@@ -202,11 +207,6 @@ msgid "Secret Key"
 msgstr "Clave secreta"
 
 #. module: payment_redsys
-#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__send_quotation
-msgid "Send quotation"
-msgstr "Enviar presupuesto"
-
-#. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_merchant_lang__008
 msgid "Sueco"
 msgstr "Sueco"
@@ -271,6 +271,9 @@ msgstr "Su pago ha sido procesado con éxito pero está esperando su aprobación
 #: model_terms:payment.acquirer,done_msg:payment_redsys.payment_acquirer_redsys
 msgid "Your payment has been successfully processed. Thank you!"
 msgstr "Su pago ha sido realizado correctamente. Gracias!"
+
+#~ msgid "Send quotation"
+#~ msgstr "Enviar presupuesto"
 
 #~ msgid "Merchant Titular"
 #~ msgstr "Titular del comerciante"

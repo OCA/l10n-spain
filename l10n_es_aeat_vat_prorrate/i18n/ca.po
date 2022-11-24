@@ -9,19 +9,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-15 03:47+0000\n"
-"PO-Revision-Date: 2018-01-15 03:47+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"PO-Revision-Date: 2022-03-21 14:17+0000\n"
+"Last-Translator: Noel estudillo <noelestudilloviera@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.l10n_es_aeat_mod303_prorrata_form
 msgid "(compute prorrate percentage)"
-msgstr ""
+msgstr "(calculeu el percentatge de prorrateig)"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model,name:l10n_es_aeat_vat_prorrate.model_l10n_es_aeat_mod303_report
@@ -36,13 +37,13 @@ msgstr "Cancel·la"
 #. module: l10n_es_aeat_vat_prorrate
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
 msgid "Compute"
-msgstr ""
+msgstr "Calcular"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.actions.act_window,name:l10n_es_aeat_vat_prorrate.action_compute_vat_prorrate
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
 msgid "Compute VAT prorrate"
-msgstr ""
+msgstr "Calcula el prorrateig de l'IVA"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate__create_uid
@@ -62,7 +63,7 @@ msgstr "Veure el nom"
 #. module: l10n_es_aeat_vat_prorrate
 #: selection:l10n.es.aeat.mod303.report,vat_prorrate_type:0
 msgid "General prorrate"
-msgstr ""
+msgstr "Prorrat general"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate__id
@@ -87,7 +88,7 @@ msgstr "Darrera Actualització el"
 #. module: l10n_es_aeat_vat_prorrate
 #: selection:l10n.es.aeat.mod303.report,vat_prorrate_type:0
 msgid "None"
-msgstr ""
+msgstr "Cap"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
@@ -95,27 +96,29 @@ msgid ""
 "Please introduce the year for which you want to compute\n"
 "                        the prorrate percentage."
 msgstr ""
+"Introduïu l'any per al qual voleu calcular\n"
+"                        el percentatge prorratejat."
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report__prorrate_regularization_account_id
 msgid "Prorrate regularization account"
-msgstr ""
+msgstr "Compte de regularització prorratejada"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report__prorrate_regularization_analytic_account_id
 msgid "Prorrate regularization analytic account"
-msgstr ""
+msgstr "Compte analític de regularització prorratejada"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model.fields,help:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report__casilla_44
 msgid "Regularización por aplicación del porcentaje definitivo de prorrata."
-msgstr ""
+msgstr "Regularització de l'aplicació del percentatge definitiu de prorrateig."
 
 #. module: l10n_es_aeat_vat_prorrate
 #: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:222
 #, python-format
 msgid "Regularización prorrata IVA"
-msgstr ""
+msgstr "Regularització prorrata IVA"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:67
@@ -124,6 +127,8 @@ msgid ""
 "There's at least one previous report in draft state. Please confirm it "
 "before making this one."
 msgstr ""
+"Hi ha almenys un informe anterior en estat d'esborrany. Si us plau, "
+"confirmeu-ho abans de fer aquest."
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model.fields,help:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report__prorrate_regularization_account_id
@@ -131,6 +136,8 @@ msgid ""
 "This account will be the one where charging the regularization of VAT "
 "prorrate."
 msgstr ""
+"Aquest compte serà el on es cobrarà la regularització del prorrateig de "
+"l'IVA."
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model.fields,help:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report__prorrate_regularization_analytic_account_id
@@ -138,6 +145,8 @@ msgid ""
 "This analytic account will be the one where charging the regularization of "
 "the VAT prorrate."
 msgstr ""
+"Aquest compte analític serà el on es cobrarà la regularització del "
+"prorrateig de l'IVA."
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
@@ -150,27 +159,36 @@ msgid ""
 "                        definitive prorrate percentage has to be calculated\n"
 "                        for that year and the difference must be compensated."
 msgstr ""
+"Aquest assistent calcularà el prorrateig de l'IVA durant un any.\n"
+"                        Heu d'utilitzar el prorrateig de l'any anterior com "
+"a\n"
+"                       valor provisional per a tots els informes de l'AEAT "
+"de la\n"
+"                        any següent fins al darrer període, en què el\n"
+"                        s'ha de calcular el percentatge de prorrateig "
+"definitiu\n"
+"                       per a aquest any i la diferència s'ha de compensar."
 
 #. module: l10n_es_aeat_vat_prorrate
 #: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:58
 #, python-format
 msgid "VAT prorrate percent must be between 0.01 and 100"
-msgstr ""
+msgstr "El percentatge de prorrateig de l'IVA ha d'estar entre 0,01 i 100"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report__vat_prorrate_percent
 msgid "VAT prorrate percentage"
-msgstr ""
+msgstr "Percentatge de prorrateig de l'IVA"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report__vat_prorrate_type
 msgid "VAT prorrate type"
-msgstr ""
+msgstr "Tipus de prorrateig d'IVA"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model,name:l10n_es_aeat_vat_prorrate.model_l10n_es_aeat_compute_vat_prorrate
 msgid "Wizard for computing VAT prorrate"
-msgstr ""
+msgstr "Assistent per calcular el prorrateig de l'IVA"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate__year
@@ -180,7 +198,7 @@ msgstr "Año"
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report__casilla_44
 msgid "[44] Regularización de la prorrata"
-msgstr ""
+msgstr "[44] Regularització de la prorrata"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form

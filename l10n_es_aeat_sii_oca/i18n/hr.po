@@ -188,6 +188,14 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__sii_lc_operation
+msgid ""
+"Check this mark if this invoice represents a complementary settlement for "
+"customs.\n"
+"The invoice number should start with LC, QZC, QRC, A01 or A02."
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__sii_macrodata
 msgid ""
 "Check to confirm that the invoice has an absolute amount greater o equal to "
@@ -259,6 +267,11 @@ msgstr "Kreirano"
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "Currently there's no support for multiple exempt causes."
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_lc_operation
+msgid "Customs - Complementary settlement"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
@@ -387,6 +400,12 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_company__delay_time
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_company__sent_time
+msgid "In hours"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__sii_send_failed
 msgid ""
 "Indicates that the last attempt to communicate this invoice to the SII has "
@@ -433,6 +452,11 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_test
 msgid "Is Test Environment?"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model,name:l10n_es_aeat_sii_oca.model_account_journal
+msgid "Journal"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
@@ -556,6 +580,11 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_state__not_sent
 msgid "Not sent"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__thirdparty_number
+msgid "Número de la factura emitida por un tercero."
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
@@ -1032,6 +1061,18 @@ msgid "There's a mismatch in taxes for RE. Check them."
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_import_journal_creation__thirdparty_invoice
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_journal__thirdparty_invoice
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__thirdparty_invoice
+msgid "Third-party invoice"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__thirdparty_number
+msgid "Third-party number"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "This company doesn't have SII enabled."
@@ -1126,6 +1167,15 @@ msgstr ""
 msgid ""
 "You cannot change the supplier of an invoice already registered at the SII. "
 "You must cancel the invoice and create a new one with the correct supplier"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
+#, python-format
+msgid ""
+"You cannot change the third-party number of an invoice already registered at "
+"the SII. You must cancel the invoice and create a new one with the correct "
+"number"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca

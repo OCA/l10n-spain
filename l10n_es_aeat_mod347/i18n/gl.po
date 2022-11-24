@@ -295,12 +295,6 @@ msgid "Amount 4Q:"
 msgstr "Importe"
 
 #. module: l10n_es_aeat_mod347
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__amount_signed
-#, fuzzy
-msgid "Amount signed"
-msgstr "Importe"
-
-#. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
 #, fuzzy
 msgid "Amount:"
@@ -558,6 +552,21 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__date_end
 msgid "Ending date"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__error_count
+msgid "Error Count"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__error_text
+msgid "Error text"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__error_text
+msgid "Errors"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -859,11 +868,6 @@ msgstr "Modelo AEAT 347"
 #, fuzzy
 msgid "Move Record"
 msgstr "Rexistro de factura"
-
-#. module: l10n_es_aeat_mod347
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__move_type
-msgid "Move Type"
-msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
@@ -1355,6 +1359,12 @@ msgid "State Code"
 msgstr "Código de provincia"
 
 #. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
+msgid "State code can only contain digits"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__statement_type
 msgid "Statement Type"
 msgstr "Tipo de declaración"
@@ -1514,6 +1524,12 @@ msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
+msgid "VAT must be defined for Spanish Contacts"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__partner_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__partner_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__company_vat
@@ -1541,9 +1557,21 @@ msgid "Website communication history"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
+msgid "Without country code"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_type__s/n
 msgid "Without number"
 msgstr "Sen número"
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
+msgid "Without state code"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.communication_success
@@ -1554,6 +1582,10 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__year
 msgid "Year"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Amount signed"
+#~ msgstr "Importe"
 
 #~ msgid "Cancelled"
 #~ msgstr "Cancelado"

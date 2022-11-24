@@ -94,8 +94,8 @@ msgid ""
 "Awards for participation in games, contests, raffles or random combinations "
 "- In kind - Amount retained"
 msgstr ""
-"Premis per participació en jocs, concursos, rifes o combinacions aleatòries -"
-" En espècies - Quantitat retinguda"
+"Premis per participació en jocs, concursos, rifes o combinacions aleatòries "
+"- En espècies - Quantitat retinguda"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_17
@@ -103,8 +103,8 @@ msgid ""
 "Awards for participation in games, contests, raffles or random combinations "
 "- In kind - Base taxable value"
 msgstr ""
-"Premis per participació en jocs, concursos, rifes o combinacions aleatòries -"
-" En espècies - Valor base imposable"
+"Premis per participació en jocs, concursos, rifes o combinacions aleatòries "
+"- En espècies - Valor base imposable"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_16
@@ -112,8 +112,8 @@ msgid ""
 "Awards for participation in games, contests, raffles or random combinations "
 "- In kind - Number of recipients"
 msgstr ""
-"Premis per participació en jocs, concursos, rifes o combinacions aleatòries -"
-" En espècies - Nombre de perceptors"
+"Premis per participació en jocs, concursos, rifes o combinacions aleatòries "
+"- En espècies - Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_15
@@ -121,8 +121,8 @@ msgid ""
 "Awards for participation in games, contests, raffles or random combinations "
 "- Monetary - Amount retained"
 msgstr ""
-"Premis per participació en jocs, concursos, rifes o combinacions aleatòries -"
-" Monetari - Quantitat retinguda"
+"Premis per participació en jocs, concursos, rifes o combinacions aleatòries "
+"- Monetari - Quantitat retinguda"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_14
@@ -130,8 +130,8 @@ msgid ""
 "Awards for participation in games, contests, raffles or random combinations "
 "- Monetary - Base taxable value"
 msgstr ""
-"Premis per participació en jocs, concursos, rifes o combinacions aleatòries -"
-" Monetari - Valor base imposable"
+"Premis per participació en jocs, concursos, rifes o combinacions aleatòries "
+"- Monetari - Valor base imposable"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_13
@@ -139,8 +139,8 @@ msgid ""
 "Awards for participation in games, contests, raffles or random combinations "
 "- Monetary - Number of recipients"
 msgstr ""
-"Premis per participació en jocs, concursos, rifes o combinacions aleatòries -"
-" Monetari - Nombre de perceptors"
+"Premis per participació en jocs, concursos, rifes o combinacions aleatòries "
+"- Monetari - Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__partner_bank_id
@@ -330,6 +330,11 @@ msgstr "Nom a mostrar"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__date_end
 msgid "Ending date"
 msgstr "Data final"
+
+#. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__error_count
+msgid "Error Count"
+msgstr ""
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__export_config_id

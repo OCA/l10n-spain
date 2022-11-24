@@ -7,21 +7,21 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-20 18:30+0000\n"
-"PO-Revision-Date: 2020-10-26 12:08+0000\n"
-"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
+"PO-Revision-Date: 2022-05-31 18:05+0000\n"
+"Last-Translator: Luis D. Lafaurie <luislafaurie@hotmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:0
 #, python-format
 msgid "%s_report_%s.txt"
-msgstr "%s_report_%s.txt"
+msgstr "%s_reporte_%s.txt"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:0
@@ -47,6 +47,12 @@ msgstr "AEAT - Cliente anónimo"
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_certificate
 msgid "AEAT Certificate"
 msgstr "Certificados AEAT"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner__aeat_identification_type
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_users__aeat_identification_type
+msgid "AEAT Identification type"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax__model
@@ -105,6 +111,8 @@ msgstr "Módulo base para declaraciones AEAT"
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod115_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod123_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod190_report_name_uniq
+#: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod216_report_name_uniq
+#: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod296_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod303_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod347_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod349_report_name_uniq
@@ -182,9 +190,15 @@ msgid "Advanced configuration"
 msgstr "Configuración avanzada"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner__aeat_identification
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_users__aeat_identification
+msgid "Aeat Identification"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_aeat_tax_agency
 msgid "Aeat Tax Agency"
-msgstr ""
+msgstr "Agencia de impuestos AEAT"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__alignment
@@ -218,6 +232,11 @@ msgstr "Alfanumérico"
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__field_type__amount
 msgid "Amount"
 msgstr "Importe"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__res_partner__aeat_identification_type__06
+msgid "Another document"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__apply_sign
@@ -569,6 +588,12 @@ msgid "Ending date"
 msgstr "Fecha final"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__error_count
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__error_count
+msgid "Error Count"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_map_tax.py:0
 #, python-format
 msgid "Error! The dates of the record overlap with an existing record."
@@ -765,6 +790,12 @@ msgid "Icon to indicate an exception activity."
 msgstr "Icono para indicar una actividad de excepción."
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_res_partner__aeat_identification
+#: model:ir.model.fields,help:l10n_es_aeat.field_res_users__aeat_identification
+msgid "Identification for AEAT purposes"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_needaction
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_unread
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_needaction
@@ -847,7 +878,7 @@ msgstr "Es un seguidor"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__journal_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__journal_id
 msgid "Journal"
-msgstr "Diari"
+msgstr "Diario"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__journal_id
@@ -1149,6 +1180,11 @@ msgid "Partner"
 msgstr "Empresa"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__res_partner__aeat_identification_type__03
+msgid "Passport"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate_password__password
 msgid "Password"
 msgstr "Contraseña"
@@ -1174,7 +1210,7 @@ msgid ""
 "line."
 msgstr ""
 "Ponga este archivo dentro de su carpeta personal de la AEAT, y úselo en el "
-"programa  <strong>Informativas</strong> o pulsando en el botón "
+"programa <strong>Informativas</strong> o pulsando en el botón "
 "<strong>Optativo: Importar datos de fichero</strong> en el formulario on-"
 "line."
 
@@ -1266,6 +1302,11 @@ msgstr "Informe"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__name
 msgid "Report identifier"
 msgstr "Identificador del informe"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__res_partner__aeat_identification_type__05
+msgid "Residential certificate"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line__res_id
@@ -1380,7 +1421,7 @@ msgstr "Impuesto"
 #: model:ir.ui.menu,name:l10n_es_aeat.aeat_tax_agency_menu
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_tax_agency_form_view
 msgid "Tax Agency"
-msgstr ""
+msgstr "Agencia de impuestos"
 
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_map_tax_line_form
@@ -1513,6 +1554,19 @@ msgid "Unread Messages Counter"
 msgstr "Contador de mensajes no leídos"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_res_partner__aeat_identification_type
+#: model:ir.model.fields,help:l10n_es_aeat.field_res_users__aeat_identification_type
+msgid ""
+"Used to specify an identification type to send to SII. Normally for sending "
+"national and export invoices to SII where the customer country is not Spain, "
+"it would calculate an identification type of 04 if the VAT field is filled "
+"and 06 if it was not. This field is to specify types of 03 through 05, in "
+"the event that the customer doesn't identify with a foreign VAT and instead "
+"with their passport or residential certificate. If there is no value it will "
+"work as before."
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__company_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__company_vat
 msgid "VAT number"
@@ -1569,6 +1623,11 @@ msgid "Year"
 msgstr "Año"
 
 #. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "You have"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:0
 #, python-format
 msgid "You must fill both journal and counterpart account."
@@ -1580,9 +1639,22 @@ msgid "compare"
 msgstr "comparar"
 
 #. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "errors"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_export_to_boe__state__get
 msgid "get"
 msgstr "obtener"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid ""
+"in this report.\n"
+"                        You will not be able to <strong>confirm and submit "
+"it</strong> until they are resolved."
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_compare_boe_file__state__open

@@ -30,13 +30,10 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"            La API de GLS ASM no proporciona métodos para calcular las tasas "
-"de \n"
-"               entrega, por lo que  debe confiar en otro método de precio en "
-"su \n"
-"               lugar \n"
-"               o anular este\n"
-"               uno en su código personalizado.\n"
+"            La API de GLS ASM no proporciona métodos para calcular los "
+"precios de\n"
+"            entrega, por lo que debe traer otro método de cálculo en su\n"
+"            lugar o anular este en su código personalizado.\n"
 "        "
 
 #. module: delivery_gls_asm
@@ -280,7 +277,7 @@ msgstr "Ent. Pto. ASM"
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__9
 msgid "Franja Horaria"
-msgstr "Franja Horaria"
+msgstr "Franja horaria"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__21
@@ -358,7 +355,7 @@ msgstr "UID GLS"
 #: code:addons/delivery_gls_asm/models/stock_picking.py:0
 #, python-format
 msgid "GLS label for %s"
-msgstr "Etiqueta GLS para% s"
+msgstr "Etiqueta GLS para %s"
 
 #. module: delivery_gls_asm
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
@@ -497,7 +494,7 @@ msgstr "Manifiesto"
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__10
 msgid "Maritimo"
-msgstr "Maritimo"
+msgstr "Marítimo"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__4
@@ -561,7 +558,7 @@ msgstr "Bultos"
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__19
 msgid "ParcelShop"
-msgstr "ParcelShop"
+msgstr "Parcel Shop"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_asm_postage_type
@@ -762,42 +759,12 @@ msgstr "Peso"
 #. module: delivery_gls_asm
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.gls_asm_manifest_report_view
 msgid "ZIP Code"
-msgstr "C.P."
+msgstr "Código postal"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__35
 msgid "dPRO"
 msgstr "dPRO"
 
-#~ msgid "Based on Rules"
-#~ msgstr "En base a reglas"
-
-#~ msgid "Delivery Methods"
-#~ msgstr "Métodos de envío"
-
 #~ msgid "Fixed Price"
-#~ msgstr "Fixed Price"
-
-#~ msgid "Last GLS xml request"
-#~ msgstr "Última solicitud xml de GLS"
-
-#~ msgid "Last GLS xml response"
-#~ msgstr "Última respuesta xml de GLS"
-
-#~ msgid "Seur"
-#~ msgstr "Seur"
-
-#~ msgid "Technical"
-#~ msgstr "Técnico"
-
-#~ msgid "Used for issues debugging"
-#~ msgstr "Se utiliza para la depuración de problemas"
-
-#~ msgid "Carrier"
-#~ msgstr "Transportista"
-
-#~ msgid "No carrier integration"
-#~ msgstr "Sin integración de transportista"
-
-#~ msgid "Product Packaging"
-#~ msgstr "Empaquetado del producto"
+#~ msgstr "Precio fijo"

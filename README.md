@@ -24,12 +24,12 @@ addon | version | maintainers | summary
 [account_promissory_note_bankia](account_promissory_note_bankia/) | 13.0.1.0.0 |  | Impresión de pagaré Bankia A4
 [account_promissory_note_caixabank](account_promissory_note_caixabank/) | 13.0.1.0.1 |  | Impresión de pagaré CaixaBank A4
 [account_promissory_note_santander](account_promissory_note_santander/) | 13.0.1.0.0 | [![cubells](https://github.com/cubells.png?size=30px)](https://github.com/cubells) | Impresión de pagaré del Santander en A4
-[delivery_dhl_parcel](delivery_dhl_parcel/) | 13.0.1.3.3 |  | Delivery Carrier implementation for DHL Parcel using their API
+[delivery_dhl_parcel](delivery_dhl_parcel/) | 13.0.1.3.4 |  | Delivery Carrier implementation for DHL Parcel using their API
 [delivery_gls_asm](delivery_gls_asm/) | 13.0.1.2.0 |  | Delivery Carrier implementation for GLS with ASMRed API
 [delivery_seur](delivery_seur/) | 13.0.1.2.0 |  | Integrate SEUR webservice
 [ecoembes](ecoembes/) | 13.0.1.3.0 |  | Add some data related to ecoembes.com
 [l10n_es_account_asset](l10n_es_account_asset/) | 13.0.1.0.2 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Gestión de activos fijos para España
-[l10n_es_account_bank_statement_import_n43](l10n_es_account_bank_statement_import_n43/) | 13.0.1.0.1 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Importación de extractos bancarios españoles (Norma 43)
+[l10n_es_account_bank_statement_import_n43](l10n_es_account_bank_statement_import_n43/) | 13.0.1.0.2 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Importación de extractos bancarios españoles (Norma 43)
 [l10n_es_account_banking_sepa_fsdd](l10n_es_account_banking_sepa_fsdd/) | 13.0.1.0.0 |  | Account Banking Sepa - FSDD (Anticipos de crédito)
 [l10n_es_aeat](l10n_es_aeat/) | 13.0.3.3.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Modulo base para declaraciones de la AEAT
 [l10n_es_aeat_mod111](l10n_es_aeat_mod111/) | 13.0.1.1.0 |  | AEAT modelo 111
@@ -44,7 +44,7 @@ addon | version | maintainers | summary
 [l10n_es_aeat_mod349](l10n_es_aeat_mod349/) | 13.0.1.2.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Modelo 349 AEAT
 [l10n_es_aeat_mod390](l10n_es_aeat_mod390/) | 13.0.2.1.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | AEAT modelo 390
 [l10n_es_aeat_mod390_oss](l10n_es_aeat_mod390_oss/) | 13.0.1.0.0 |  | AEAT modelo 390 - OSS
-[l10n_es_aeat_sii_oca](l10n_es_aeat_sii_oca/) | 13.0.2.3.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Suministro Inmediato de Información en el IVA
+[l10n_es_aeat_sii_oca](l10n_es_aeat_sii_oca/) | 13.0.2.3.1 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Suministro Inmediato de Información en el IVA
 [l10n_es_aeat_sii_oss](l10n_es_aeat_sii_oss/) | 13.0.1.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Suministro Inmediato de Información en el IVA: OSS
 [l10n_es_aeat_vat_prorrate](l10n_es_aeat_vat_prorrate/) | 13.0.1.0.0 |  | AEAT - Prorrata de IVA
 [l10n_es_aeat_vat_prorrate_asset](l10n_es_aeat_vat_prorrate_asset/) | 13.0.1.0.0 |  | AEAT - Prorrata de IVA - Extensión para los activos
@@ -54,7 +54,7 @@ addon | version | maintainers | summary
 [l10n_es_facturae](l10n_es_facturae/) | 13.0.2.4.0 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Creación de Factura-e
 [l10n_es_facturae_efact](l10n_es_facturae_efact/) | 13.0.2.0.1 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Envío de Factura-e a e.FACT
 [l10n_es_facturae_face](l10n_es_facturae_face/) | 13.0.2.1.0 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Envío de Factura-e a FACe
-[l10n_es_intrastat_report](l10n_es_intrastat_report/) | 13.0.3.0.1 |  | Spanish Intrastat Product Declaration
+[l10n_es_intrastat_report](l10n_es_intrastat_report/) | 13.0.3.0.2 |  | Spanish Intrastat Product Declaration
 [l10n_es_irnr](l10n_es_irnr/) | 13.0.1.0.2 |  | Retenciones IRNR (No residentes)
 [l10n_es_mis_report](l10n_es_mis_report/) | 13.0.1.2.1 |  | Plantillas MIS Builder para informes contables españoles
 [l10n_es_partner](l10n_es_partner/) | 13.0.1.0.4 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Adaptación de los clientes, proveedores y bancos para España
