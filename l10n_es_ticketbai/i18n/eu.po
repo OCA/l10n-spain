@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_ticketbai
+# 	* l10n_es_ticketbai
 #
 msgid ""
 msgstr ""
@@ -64,7 +64,9 @@ msgstr "Automatikoa"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_account_invoice__tbai_refund_key
-msgid "BOE-A-1992-28740. Ley 37/1992, de 28 de diciembre, del Impuesto sobre el Valor Añadido. Artículo 80. Modificación de la base imponible."
+msgid ""
+"BOE-A-1992-28740. Ley 37/1992, de 28 de diciembre, del Impuesto sobre el "
+"Valor Añadido. Artículo 80. Modificación de la base imponible."
 msgstr ""
 "BOE-A-1992-28740. Abenduaren 28ko, 37/1992 Legea, Balio Erantsiaren gaineko "
 "Zergari buruzkoa. 80. artikulua. Zerga-oinarriaren aldaketa."
@@ -80,7 +82,7 @@ msgid "Cancel and recreate"
 msgstr "Baliogabetu eta birsortu"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:300
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:307
 #, python-format
 msgid "Cancellation"
 msgstr "Baliogabetzea"
@@ -282,7 +284,9 @@ msgstr "Fakturaren Zerga"
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:120
 #, python-format
-msgid "Invoice: number %s prefix %s invoice_date %s exists. Create a credit note from this invoice."
+msgid ""
+"Invoice: number %s prefix %s invoice_date %s exists. Create a credit note "
+"from this invoice."
 msgstr ""
 "Faktura: %s zenbakia %s aurrizkia %s faktura_data existitzen da. Sortu "
 "kreditu-ohar bat faktura honetatik."
@@ -353,10 +357,13 @@ msgstr "Mezuak"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_res_company__tbai_description_method
-msgid "Method for the TicketBAI invoices description, can be one of these:\n"
-"- Automatic: the description will be the join of the invoice   lines description\n"
+msgid ""
+"Method for the TicketBAI invoices description, can be one of these:\n"
+"- Automatic: the description will be the join of the invoice   lines "
+"description\n"
 "- Fixed: the description write on the below field 'TBAI   Description'\n"
-"- Manual (by default): It will be necessary to manually enter   the description on each invoice"
+"- Manual (by default): It will be necessary to manually enter   the "
+"description on each invoice"
 msgstr ""
 "TicketBAI fakturen deskribapena egiteko metodoa hauetako bat izan daiteke:\n"
 "- Automatikoa: deskribapena faktura-lerroen deskribapenaren batzea izango "
@@ -384,10 +391,12 @@ msgstr "Zenbakiaren aurrizkia"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_tbai_invoice_refund_origin__number_prefix
-msgid "Number prefix of this invoice name e.g. if the invoice name is INV/2021/00001 then the prefix is INV/2021/, ending back slash included"
+msgid ""
+"Number prefix of this invoice name e.g. if the invoice name is "
+"INV/2021/00001 then the prefix is INV/2021/, ending back slash included"
 msgstr ""
-"Adibidez, faktura honen zenbakiaren aurrizkia, fakturaren izena INV/2021/"
-"00001 bada aurrizkia INV/2021/ da, amaierako barra barne"
+"Adibidez, faktura honen zenbakiaren aurrizkia, fakturaren izena "
+"INV/2021/00001 bada aurrizkia INV/2021/ da, amaierako barra barne"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_invoice__tbai_date_operation
@@ -405,9 +414,10 @@ msgid "Origin Invoices Data"
 msgstr "Jatorrizko Fakturaren Datuak"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:345
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:352
 #, python-format
-msgid "Please, specify data for the original invoices that are going to be refunded"
+msgid ""
+"Please, specify data for the original invoices that are going to be refunded"
 msgstr "Mesedez, zehaztu itzuliko diren jatorrizko fakturen datuak"
 
 #. module: l10n_es_ticketbai
@@ -426,9 +436,10 @@ msgid "Refund"
 msgstr "Itzulketa"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:323
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:330
 #, python-format
-msgid "Refund invoices must be cancelled in order to cancel the original invoice."
+msgid ""
+"Refund invoices must be cancelled in order to cancel the original invoice."
 msgstr ""
 "Itzulketa-fakturak baliogabetu egin behar dira jatorrizko faktura bertan "
 "behera uzteko."
@@ -442,7 +453,9 @@ msgstr "Itzulitako %s fakturaren espedizio-data"
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:86
 #, python-format
-msgid "Refunded Invoice %s Number Prefix %s longer than expected. Should be 20 characters max.!"
+msgid ""
+"Refunded Invoice %s Number Prefix %s longer than expected. Should be 20 "
+"characters max.!"
 msgstr ""
 "Itzulitako %s fakturak espero baino %s zenbaki-aurrizki luzeagoa. Gehienez "
 "20 karaktere izan behar ditu!"
@@ -450,7 +463,9 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:76
 #, python-format
-msgid "Refunded Invoice Number %s longer than expected. Should be 20 characters max.!"
+msgid ""
+"Refunded Invoice Number %s longer than expected. Should be 20 characters "
+"max.!"
 msgstr ""
 "%s Itzulitako faktura zenbakia espero baino luzeagoa. Gehienez 20 karaktere "
 "izan behar ditu!"
@@ -479,15 +494,17 @@ msgid "Software"
 msgstr "Softwarea"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:359
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:366
 #, python-format
 msgid "Some of the original invoices have related tbai cancelled invoices"
 msgstr "Jatorrizko faktura batzuek baliogabetutako tbai fakturak dituzte"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:354
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:361
 #, python-format
-msgid "Some of the original invoices have related tbai invoices in inconsistent state please fix them beforehand."
+msgid ""
+"Some of the original invoices have related tbai invoices in inconsistent "
+"state please fix them beforehand."
 msgstr ""
 "Jatorrizko faktura batzuek erlazionatutako fakturak dituzte egoera "
 "inkoherentean, mesedez konpondu aldez aurretik."
@@ -573,14 +590,18 @@ msgstr "Posizio Fiskalaren txantiloia"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_res_company__tbai_description
-msgid "The description for invoices. Only used when the field TicketBAI Description Method is 'Fixed'."
+msgid ""
+"The description for invoices. Only used when the field TicketBAI Description "
+"Method is 'Fixed'."
 msgstr ""
 "Fakturen deskribapena. TicketBAI Deskripzio metodoa \"Finkoa\" denean "
 "bakarrik erabiltzen da."
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_tbai_invoice_refund_origin__number
-msgid "The number of the invoice name e.g. if the invoice name is INV/2021/00001 then the number is 00001"
+msgid ""
+"The number of the invoice name e.g. if the invoice name is INV/2021/00001 "
+"then the number is 00001"
 msgstr ""
 "Fakturaren izenaren zenbakia adibidez, fakturaren izena INV/2021/00001 bada, "
 "00001 da zenbakia"
@@ -678,7 +699,9 @@ msgstr "TicketBAI Faktura"
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_invoice_tax.py:42
 #, python-format
-msgid "TicketBAI Invoice %s Error: Tax %s contains multiple Equivalence Surcharge Taxes"
+msgid ""
+"TicketBAI Invoice %s Error: Tax %s contains multiple Equivalence Surcharge "
+"Taxes"
 msgstr ""
 "TicketBAI %s faktura Errorea: %s zergak hainbat baliokidetasun errekargu "
 "zerga ditu"
@@ -686,7 +709,8 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_invoice_tax.py:51
 #, python-format
-msgid "TicketBAI Invoice %s Error: the Invoice should have one tax line for Tax %s"
+msgid ""
+"TicketBAI Invoice %s Error: the Invoice should have one tax line for Tax %s"
 msgstr ""
 "TicketBAI %s faktura Errorea: fakturak %s zerga lerro bat izan beharko luke"
 
@@ -754,7 +778,9 @@ msgstr "TicketBAI desgaituta dago."
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:40
 #, python-format
-msgid "TicketBAI: You cannot cancel and recreate an Invoice with a state different than 'Error'."
+msgid ""
+"TicketBAI: You cannot cancel and recreate an Invoice with a state different "
+"than 'Error'."
 msgstr ""
 "TicketBAI: Ezin duzu ezeztatu eta birsortu 'Errorea' egoera ez duen faktura "
 "bat."
@@ -814,7 +840,9 @@ msgstr "Ezin duzu aldatu TicketBAI faktura zirriborrora!"
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_journal.py:39
 #, python-format
-msgid "You cannot stop sending invoices from this journal, an invoice has already been sent."
+msgid ""
+"You cannot stop sending invoices from this journal, an invoice has already "
+"been sent."
 msgstr ""
 "Ezin diozu utzi egunkari honetako fakturak bidaltzeari, dagoeneko faktura "
 "bat bidali da."
