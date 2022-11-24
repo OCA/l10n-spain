@@ -75,7 +75,7 @@ msgid "Cancel and recreate"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:300
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:307
 #, python-format
 msgid "Cancellation"
 msgstr ""
@@ -389,7 +389,7 @@ msgid "Origin Invoices Data"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:345
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:352
 #, python-format
 msgid "Please, specify data for the original invoices that are going to be refunded"
 msgstr ""
@@ -410,7 +410,7 @@ msgid "Refund"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:323
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:330
 #, python-format
 msgid "Refund invoices must be cancelled in order to cancel the original invoice."
 msgstr ""
@@ -457,13 +457,13 @@ msgid "Software"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:359
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:366
 #, python-format
 msgid "Some of the original invoices have related tbai cancelled invoices"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:354
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:361
 #, python-format
 msgid "Some of the original invoices have related tbai invoices in inconsistent state please fix them beforehand."
 msgstr ""
