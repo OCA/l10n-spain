@@ -4,7 +4,7 @@
 # Copyright 2018 Valentin Vinagre <valentin.vinagre@qubiq.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class L10nEsAeatMod296Report(models.Model):
@@ -70,59 +70,48 @@ class L10nEsAeatMod296Report(models.Model):
         return partner_groups
 
     def calculate(self):
-        res = super(L10nEsAeatMod296Report, self).calculate()
+        res = super().calculate()
         for report in self:
             report.lines296.unlink()
             line_lst = []
-            move_lines_base = report.tax_line_ids.filtered(
+            tax_lines_number_2 = report.tax_line_ids.filtered(
                 lambda x: x.field_number == 2
-            ).mapped("move_line_ids")
-            move_lines_cuota = report.tax_line_ids.filtered(
+            )
+            tax_lines_number_3 = report.tax_line_ids.filtered(
                 lambda x: x.field_number == 3
-            ).mapped("move_line_ids")
+            )
+            move_lines_base = tax_lines_number_2.mapped("move_line_ids")
+            move_lines_cuota = tax_lines_number_3.mapped("move_line_ids")
             partner_groups = self.partner_group(
                 move_lines_base.ids, move_lines_cuota.ids
             )
             for partner_id in partner_groups:
-                partner = self.env["res.partner"].browse(partner_id)
-                line = self.env["l10n.es.aeat.mod296.report.line"].create(
-                    {
-                        "mod296_id": report.id,
-                        "partner_id": partner_id,
-                        "domicilio": partner.street,
-                        "complemento_domicilio": partner.street2,
-                        "poblacion": partner.city,
-                        "provincia": partner.state_id,
-                        "zip": partner.zip,
-                        "pais": partner.country_id,
-                        "move_line_ids": move_lines_base.filtered(
-                            lambda x: x.partner_id == partner
-                        )
-                        + move_lines_cuota.filtered(lambda x: x.partner_id == partner),
-                        "base_retenciones_ingresos": partner_groups[partner_id]["base"][
-                            "debit"
-                        ]
-                        - partner_groups[partner_id]["base"]["credit"],
-                        "retenciones_ingresos": partner_groups[partner_id]["cuota"][
-                            "credit"
-                        ]
-                        - partner_groups[partner_id]["cuota"]["debit"],
-                    }
+                move_lines_base_partner = move_lines_base.filtered(
+                    lambda x: x.partner_id.id == partner_id
                 )
-                line_lst.append(line.id)
+                move_lines_cuota_partner = move_lines_cuota.filtered(
+                    lambda x: x.partner_id.id == partner_id
+                )
+                data = self._prepare_mod296_line(
+                    partner_id,
+                    partner_groups[partner_id],
+                    (move_lines_base_partner + move_lines_cuota_partner),
+                )
+                line_lst.append((0, 0, data))
             report.lines296 = line_lst
+            report.lines296.onchange_partner()
             report.casilla_01 = len(partner_groups)
-            report.casilla_02 = sum(
-                report.tax_line_ids.filtered(lambda x: x.field_number == 2).mapped(
-                    "amount"
-                )
-            )
-            report.casilla_03 = sum(
-                report.tax_line_ids.filtered(lambda x: x.field_number == 3).mapped(
-                    "amount"
-                )
-            )
+            report.casilla_02 = sum(tax_lines_number_2.mapped("amount"))
+            report.casilla_03 = sum(tax_lines_number_3.mapped("amount"))
         return res
+
+    def _prepare_mod296_line(self, partner_id, data, move_lines):
+        return {
+            "partner_id": partner_id,
+            "move_line_ids": move_lines,
+            "base_retenciones_ingresos": data["base"]["debit"] - data["base"]["credit"],
+            "retenciones_ingresos": data["cuota"]["credit"] - data["cuota"]["debit"],
+        }
 
 
 class L10nEsAeatMod296ReportLine(models.Model):
