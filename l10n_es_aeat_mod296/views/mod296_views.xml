@@ -71,7 +71,7 @@
         <field name="name">l10n_es.aeat.mod296.report.line.tree</field>
         <field name="model">l10n.es.aeat.mod296.report.line</field>
         <field name="arch" type="xml">
-            <tree string="Detail 296">
+            <tree>
                 <field name="partner_id" />
                 <field name="base_retenciones_ingresos" />
                 <field name="retenciones_ingresos" />
