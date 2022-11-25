@@ -25,6 +25,7 @@
         "data/tbai_tax_map_data.xml",
         "wizard/account_move_reversal_views.xml",
         "views/account_fiscal_position_views.xml",
+        "views/account_journal_views.xml",
         "views/account_move_views.xml",
         "views/lroe_operation_views.xml",
         "views/res_company_views.xml",

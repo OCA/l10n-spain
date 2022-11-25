@@ -456,6 +456,7 @@ class AccountMove(models.Model):
             lambda x: x.tbai_enabled
             and "out_invoice" == x.move_type
             and x.tbai_send_invoice
+            and x.invoice_date >= x.journal_id.tbai_active_date
         )
         refund_invoices = self.sudo().filtered(
             lambda x: x.tbai_enabled
@@ -465,6 +466,7 @@ class AccountMove(models.Model):
                 or x.tbai_refund_type == RefundType.differences.value
             )
             and x.tbai_send_invoice
+            and x.invoice_date >= x.journal_id.tbai_active_date
         )
 
         validate_refund_invoices()
