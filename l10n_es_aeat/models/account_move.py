@@ -1,5 +1,6 @@
 # Copyright 2022 CreuBlanca
 # Copyright 2022 Tecnativa - Víctor Martínez
+# Copyright 2022 NuoBiT - Eric Antones
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -30,13 +31,17 @@ class AccountMove(models.Model):
             item.thirdparty_invoice = item.journal_id.thirdparty_invoice
 
     def _get_aeat_tax_base_info(self, res, tax, line, sign):
-        res.setdefault(tax, {"tax": tax, "base": 0, "amount": 0, "quote_amount": 0})
-        res[tax]["base"] += line.balance * sign
+        taxes = tax.amount_type == "group" and tax.children_tax_ids or tax
+        for tax in taxes:
+            res.setdefault(tax, {"tax": tax, "base": 0, "amount": 0, "quote_amount": 0})
+            res[tax]["base"] += line.balance * sign
 
     def _get_aeat_tax_quote_info(self, res, tax, line, sign):
-        res.setdefault(tax, {"tax": tax, "base": 0, "amount": 0, "quote_amount": 0})
-        res[tax]["amount"] += line.balance * sign
-        res[tax]["quote_amount"] += line.balance * sign
+        taxes = tax.amount_type == "group" and tax.children_tax_ids or tax
+        for tax in taxes:
+            res.setdefault(tax, {"tax": tax, "base": 0, "amount": 0, "quote_amount": 0})
+            res[tax]["amount"] += line.balance * sign
+            res[tax]["quote_amount"] += line.balance * sign
 
     def _get_aeat_tax_info(self):
         self.ensure_one()
