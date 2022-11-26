@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2022-06-07 08:56+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -101,7 +102,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel__display_name
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_company__display_name
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_partner__display_name
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_webservice_backend__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
@@ -123,7 +123,6 @@ msgstr ""
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__res_partner__l10n_es_facturae_sending_code__face
-#: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__webservice_backend__protocol__face
 msgid "FACe"
 msgstr ""
 
@@ -190,7 +189,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel__id
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_company__id
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_partner__id
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_webservice_backend__id
 msgid "ID"
 msgstr ""
 
@@ -211,7 +209,6 @@ msgstr "Asiento contable"
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel____last_update
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_company____last_update
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_partner____last_update
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_webservice_backend____last_update
 msgid "Last Modified on"
 msgstr "Última modificación el"
 
@@ -251,11 +248,6 @@ msgid "Paid"
 msgstr ""
 
 #. module: l10n_es_facturae_face
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_webservice_backend__protocol
-msgid "Protocol"
-msgstr ""
-
-#. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__account_move__l10n_es_facturae_status__face-1300
 msgid "Registered on RCF"
 msgstr ""
@@ -288,10 +280,4 @@ msgstr ""
 #: code:addons/l10n_es_facturae_face/models/res_partner.py:0
 #, python-format
 msgid "Vat must be defined in order to send to FACe"
-msgstr ""
-"El identificador fiscal debe estar definido para poder enviar por FACe"
-
-#. module: l10n_es_facturae_face
-#: model:ir.model,name:l10n_es_facturae_face.model_webservice_backend
-msgid "WebService Backend"
-msgstr ""
+msgstr "El identificador fiscal debe estar definido para poder enviar por FACe"
