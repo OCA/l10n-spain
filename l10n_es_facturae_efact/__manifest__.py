@@ -11,7 +11,7 @@
     "license": "AGPL-3",
     "depends": ["l10n_es_facturae_face"],
     "data": ["data/efact_data.xml"],
-    "external_dependencies": {"python": ["paramiko", "OpenSSL", "xmlsec"]},
+    "external_dependencies": {"python": ["paramiko", "OpenSSL"]},
     "installable": True,
     "maintainers": ["etobella"],
 }
