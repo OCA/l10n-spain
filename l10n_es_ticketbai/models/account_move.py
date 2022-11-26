@@ -298,6 +298,7 @@ class AccountMove(models.Model):
                     and self.company_id.tbai_protected_data_txt
                 ):
                     description_line = self.company_id.tbai_protected_data_txt[:250]
+                price_unit = line.tbai_get_price_unit()
                 lines.append(
                     (
                         0,
@@ -305,8 +306,10 @@ class AccountMove(models.Model):
                         {
                             "description": description_line,
                             "quantity": line.tbai_get_value_cantidad(),
-                            "price_unit": "%.8f" % line.price_unit,
-                            "discount_amount": line.tbai_get_value_descuento(),
+                            "price_unit": "%.8f" % price_unit,
+                            "discount_amount": line.tbai_get_value_descuento(
+                                price_unit
+                            ),
                             "amount_total": line.tbai_get_value_importe_total(),
                         },
                     )
@@ -616,15 +619,13 @@ class AccountMoveLine(models.Model):
             sign = 1
         return "%.2f" % (sign * self.quantity)
 
-    def tbai_get_value_descuento(self):
+    def tbai_get_value_descuento(self, price_unit):
         if self.discount:
             if RefundType.differences.value == self.move_id.tbai_refund_type:
                 sign = -1
             else:
                 sign = 1
-            res = "%.2f" % (
-                sign * self.quantity * self.price_unit * self.discount / 100.0
-            )
+            res = "%.2f" % (sign * self.quantity * price_unit * self.discount / 100.0)
         else:
             res = "0.00"
         return res
@@ -649,6 +650,14 @@ class AccountMoveLine(models.Model):
         else:
             sign = 1
         return "%.2f" % (sign * price_total)
+
+    def tbai_get_price_unit(self):
+        price_unit = self.price_unit
+        for tax in self.tax_ids.filtered(lambda t: t.price_include):
+            price_unit = price_unit - (
+                self.price_unit * tax.amount / (100 + tax.amount)
+            )
+        return price_unit
 
 
 class AccountMoveReversal(models.TransientModel):
