@@ -116,12 +116,13 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
 
         self._load_module_components(self, "component_event")
         self._load_module_components(self, "edi")
-        self._load_module_components(self, "storage_backend")
-        self._load_module_components(self, "edi_storage")
         self._load_module_components(self, "edi_account")
         self._load_module_components(self, "l10n_es_facturae")
         self._load_module_components(self, "l10n_es_facturae_face")
         self._load_module_components(self, "l10n_es_facturae_efact")
+        self.face_url = (
+            self.env["ir.config_parameter"].sudo().get_param("facturae.face.ws")
+        )
         pkcs12 = crypto.PKCS12()
         pkey = crypto.PKey()
         pkey.generate_key(crypto.TYPE_RSA, 512)
@@ -307,7 +308,7 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
 
     def test_efact_sending(self):
 
-        client = Client(wsdl=self.env.ref("l10n_es_facturae_face.face_webservice").url)
+        client = Client(wsdl=self.face_url)
         integration_code = "1234567890"
         response_ok = client.get_type("ns0:EnviarFacturaResponse")(
             client.get_type("ns0:Resultado")(codigo="0", descripcion="OK"),
@@ -352,7 +353,7 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
         self.assertEqual(self.move.l10n_es_facturae_status, "efact-DELIVERED")
 
     def test_efact_sending_error(self):
-        client = Client(wsdl=self.env.ref("l10n_es_facturae_face.face_webservice").url)
+        client = Client(wsdl=self.face_url)
         integration_code = "1234567890"
         response_ok = client.get_type("ns0:EnviarFacturaResponse")(
             client.get_type("ns0:Resultado")(codigo="0", descripcion="OK"),
