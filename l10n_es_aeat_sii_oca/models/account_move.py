@@ -215,22 +215,6 @@ class AccountMove(models.Model):
         "The invoice number should start with LC, QZC, QRC, A01 or A02.",
         copy=False,
     )
-    thirdparty_invoice = fields.Boolean(
-        string="Third-party invoice",
-        copy=False,
-        compute="_compute_thirdparty_invoice",
-        store=True,
-        readonly=False,
-    )
-    thirdparty_number = fields.Char(
-        string="Third-party number",
-        index=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
-        copy=False,
-        help="Número de la factura emitida por un tercero.",
-        tracking=True,
-    )
     invoice_jobs_ids = fields.Many2many(
         comodel_name="queue.job",
         column1="invoice_id",
@@ -239,11 +223,6 @@ class AccountMove(models.Model):
         string="Connector Jobs",
         copy=False,
     )
-
-    @api.depends("journal_id")
-    def _compute_thirdparty_invoice(self):
-        for item in self:
-            item.thirdparty_invoice = item.journal_id.thirdparty_invoice
 
     @api.depends("move_type")
     def _compute_sii_registration_key_domain(self):
