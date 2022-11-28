@@ -14,11 +14,6 @@ from lxml import etree
 from odoo import _, api, fields, models, tools
 from odoo.exceptions import ValidationError, Warning as UserError
 
-from odoo.addons.base.models.ir_ui_view import (
-    transfer_modifiers_to_node,
-    transfer_node_to_modifiers,
-)
-
 try:
     import xmlsig
     from OpenSSL import crypto
@@ -86,29 +81,9 @@ class AccountMove(models.Model):
     facturae_end_date = fields.Date(
         readonly=True, states={"draft": [("readonly", False)]},
     )
-    thirdparty_invoice = fields.Boolean(
-        string="Third-party invoice",
-        copy=False,
-        compute="_compute_thirdparty_invoice",
-        store=True,
-        readonly=False,
-    )
-    thirdparty_number = fields.Char(
-        string="Third-party number",
-        index=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
-        copy=False,
-        help="Número de la factura emitida por un tercero.",
-    )
     l10n_es_facturae_attachment_ids = fields.One2many(
         "l10n.es.facturae.attachment", inverse_name="move_id", copy=False,
     )
-
-    @api.depends("journal_id")
-    def _compute_thirdparty_invoice(self):
-        for item in self:
-            item.thirdparty_invoice = item.journal_id.thirdparty_invoice
 
     @api.constrains("facturae_start_date", "facturae_end_date")
     def _check_facturae_date(self):
@@ -467,51 +442,6 @@ class AccountMove(models.Model):
                 withheld_taxes[tax]["base"] * tax.amount / 100
             )
         return output_taxes, withheld_taxes
-
-    @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
-        """Thirdparty fields are added to the form view only if they don't exist."""
-        res = super().fields_view_get(
-            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu,
-        )
-        if view_type == "form":
-            doc = etree.XML(res["arch"])
-            node = doc.xpath("//field[@name='thirdparty_invoice']")
-            if node:
-                return res
-            for node in doc.xpath("//field[@name='ref']"):
-                attrs = {
-                    "required": [("thirdparty_invoice", "=", True)],
-                    "invisible": [("thirdparty_invoice", "=", False)],
-                }
-                elem = etree.Element(
-                    "field", {"name": "thirdparty_number", "attrs": str(attrs)},
-                )
-                modifiers = {}
-                transfer_node_to_modifiers(elem, modifiers)
-                transfer_modifiers_to_node(modifiers, elem)
-                node.addnext(elem)
-                res["fields"].update(self.fields_get(["thirdparty_number"]))
-                attrs = {
-                    "invisible": [
-                        (
-                            "type",
-                            "not in",
-                            ("in_invoice", "out_invoice", "out_refund", "in_refund"),
-                        )
-                    ],
-                }
-                elem = etree.Element(
-                    "field", {"name": "thirdparty_invoice", "attrs": str(attrs)}
-                )
-                transfer_node_to_modifiers(elem, modifiers)
-                transfer_modifiers_to_node(modifiers, elem)
-                node.addnext(elem)
-                res["fields"].update(self.fields_get(["thirdparty_invoice"]))
-            res["arch"] = etree.tostring(doc)
-        return res
 
 
 class AccountMoveLine(models.Model):
