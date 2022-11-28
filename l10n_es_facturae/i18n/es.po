@@ -575,12 +575,6 @@ msgid "Invoice %s"
 msgstr "Factura %s"
 
 #. module: l10n_es_facturae
-#: model:ir.model,name:l10n_es_facturae.model_account_journal
-#, fuzzy
-msgid "Journal"
-msgstr "Diario"
-
-#. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_move
 msgid "Journal Entries"
 msgstr ""
@@ -648,11 +642,6 @@ msgstr "Nombre y apellidos / razón social - receptor"
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move_reversal__refund_reason__01
 msgid "Número de la factura"
 msgstr "Número de la factura"
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,help:l10n_es_facturae.field_account_move__thirdparty_number
-msgid "Número de la factura emitida por un tercero."
-msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__oficina_contable
@@ -830,19 +819,6 @@ msgstr ""
 "logs del servidor. el error que puede dar una idea del problema es: %s"
 
 #. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_import_journal_creation__thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_journal__thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__thirdparty_invoice
-msgid "Third-party invoice"
-msgstr "Factura de terceros"
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__thirdparty_number
-#, fuzzy
-msgid "Third-party number"
-msgstr "Número de factura de terceros"
-
-#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__unidad_tramitadora
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__unidad_tramitadora
 msgid "Unidad tramitadora"
@@ -993,6 +969,17 @@ msgstr "Órgano gestor"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_proponente
 msgid "Órgano proponente"
 msgstr "Órgano proponente"
+
+#, fuzzy
+#~ msgid "Journal"
+#~ msgstr "Diario"
+
+#~ msgid "Third-party invoice"
+#~ msgstr "Factura de terceros"
+
+#, fuzzy
+#~ msgid "Third-party number"
+#~ msgstr "Número de factura de terceros"
 
 #~ msgid ""
 #~ " * The 'Draft' status is used when a user is encoding a new and "
