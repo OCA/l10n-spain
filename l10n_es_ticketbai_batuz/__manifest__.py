@@ -17,8 +17,8 @@
     "auto_install": False,
     "development_status": "Alpha",
     "maintainers": [
-        "Binovo",
-        "enriquemartin"
+        "enriquemartin",
+        "ao-landoo",
     ],
     "depends": [
         "l10n_es_ticketbai_api_batuz",
