@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_ticketbai_api
+# 	* l10n_es_ticketbai_api
 #
 msgid ""
 msgstr ""
@@ -18,7 +18,8 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_invoice__schema
-msgid "\n"
+msgid ""
+"\n"
 "    * TicketBai: Invoice\n"
 "    * AnulaTicketBai: Invoice Cancellation\n"
 "    "
@@ -30,7 +31,8 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_invoice_tax__exempted_cause
-msgid "\n"
+msgid ""
+"\n"
 "    E1: Exenta por el artículo 20 de la Norma Foral del IVA.\n"
 "    E2: Exenta por el artículo 21 de la Norma Foral del IVA.\n"
 "    E3: Exenta por el artículo 22 de la Norma Foral del IVA.\n"
@@ -50,9 +52,11 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_invoice_tax__not_subject_to_cause
-msgid "\n"
+msgid ""
+"\n"
 "    OT:\n"
-"      - No sujeto por el artículo 7 de la Norma Foral de IVA Otros supuestos de no\n"
+"      - No sujeto por el artículo 7 de la Norma Foral de IVA Otros supuestos "
+"de no\n"
 "      sujeción.\n"
 "    RL:\n"
 "      - No sujeto por reglas de localización.\n"
@@ -68,7 +72,8 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_invoice__substituted_invoice_amount_total_untaxed
-msgid "\n"
+msgid ""
+"\n"
 "    Original Invoice Total Amount without Taxes. E.g.:\n"
 "    - Amount Total: 121.0 €\n"
 "    - Tax Amount: 21 %\n"
@@ -86,7 +91,8 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_invoice__substituted_invoice_total_tax_amount
-msgid "\n"
+msgid ""
+"\n"
 "    Original Invoice Total Tax Amount. E.g.:\n"
 "    - Amount Total: 121.0 €\n"
 "    - Tax Amount: 21 %\n"
@@ -102,7 +108,8 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_invoice_tax__not_exempted_type
-msgid "\n"
+msgid ""
+"\n"
 "    S1: Sin inversión del sujeto pasivo.\n"
 "    S2: Con inversión del sujeto pasivo.\n"
 "    "
@@ -127,14 +134,18 @@ msgstr "%s balioak ehuneko positiboa izan behar du."
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/utils/utils.py:23
 #, python-format
-msgid "%s value must be a string of a float with maximum %d digits and %d decimal points. The decimal separator must be '.'"
+msgid ""
+"%s value must be a string of a float with maximum %d digits and %d decimal "
+"points. The decimal separator must be '.'"
 msgstr ""
 "%s balioak flotatzaile baten kate bat izan behar du, gehienez %d digitu eta "
 "%d hamartarrekin. Hamartarren bereizleak '.' izan behar du"
 
 #. module: l10n_es_ticketbai_api
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_api.res_config_settings_view_form_inherit_l10n_es_ticketbai_api
-msgid "<span class=\"fa fa-lg fa-desktop\" title=\"Values set here are company-specific\" groups=\"base.group_multi_company\"/>"
+msgid ""
+"<span class=\"fa fa-lg fa-desktop\" title=\"Values set here are company-"
+"specific\" groups=\"base.group_multi_company\"/>"
 msgstr ""
 "<span class=\"fa fa-lg fa-desktop\" title=\"Hemen ezarritako balioak "
 "konpainiarentzat espezifikoak dira\" groups=\"base.group_multi_company\"/>"
@@ -193,7 +204,9 @@ msgstr "80.4 Artikulua"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_invoice__refund_code
-msgid "BOE-A-1992-28740. Ley 37/1992, de 28 de diciembre, del Impuesto sobre el Valor Añadido. Artículo 80. Modificación de la base imponible."
+msgid ""
+"BOE-A-1992-28740. Ley 37/1992, de 28 de diciembre, del Impuesto sobre el "
+"Valor Añadido. Artículo 80. Modificación de la base imponible."
 msgstr ""
 "BOE-A-1992-28740. Abenduaren 28ko, 37/1992 Legea, Balio Erantsiaren gaineko "
 "Zergari buruzkoa. 80. artikulua. Zerga-oinarriaren aldaketa."
@@ -237,7 +250,9 @@ msgstr "Enpresa"
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/res_company.py:83
 #, python-format
-msgid "Company %s Device Serial Number longer than expected. Should be 30 characters max.!"
+msgid ""
+"Company %s Device Serial Number longer than expected. Should be 30 "
+"characters max.!"
 msgstr ""
 "%s Enpresaren gailu serie-zenbakia espero baino luzeagoa. Gehienez 30 "
 "karaktere izan behar ditu!"
@@ -263,7 +278,9 @@ msgstr "%s Enpresaren TicketBAI lizentzia-gakoa beharrezkoa da."
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/res_company.py:54
 #, python-format
-msgid "Company %s TicketBAI License Key longer than expected. Should be 20 characters max.!"
+msgid ""
+"Company %s TicketBAI License Key longer than expected. Should be 20 "
+"characters max.!"
 msgstr ""
 "%s Enpresaren TicketBAI lizentzia-gakoa espero baino luzeagoa da. Gehienez "
 "20 karaktere izan behar ditu!"
@@ -333,7 +350,9 @@ msgstr "Noiz sortua"
 
 #. module: l10n_es_ticketbai_api
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_api.res_config_settings_view_form_inherit_l10n_es_ticketbai_api
-msgid "Customer Invoicing Device Serial Number. As of TicketBAI v1.1, is not required."
+msgid ""
+"Customer Invoicing Device Serial Number. As of TicketBAI v1.1, is not "
+"required."
 msgstr ""
 "Bezeroaren fakturazio-gailuaren serie zenbakia TicketBAI v1.1etik aurrera, "
 "ez da beharrezkoa."
@@ -648,7 +667,9 @@ msgstr "OT"
 #. module: l10n_es_ticketbai_api
 #: selection:res.partner,tbai_partner_idtype:0
 #: selection:tbai.invoice.customer,idtype:0
-msgid "Official identification document issued by the country or territory of residence"
+msgid ""
+"Official identification document issued by the country or territory of "
+"residence"
 msgstr ""
 "Bizilekuko herrialdeak edo lurraldeak emandako identifikazio-agiri ofiziala"
 
@@ -671,7 +692,9 @@ msgstr "P12 Ziurtagiria"
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/res_partner.py:33
 #, python-format
-msgid "Partner Identification Number %s longer than expected. Should be 20 characters max.!"
+msgid ""
+"Partner Identification Number %s longer than expected. Should be 20 "
+"characters max.!"
 msgstr ""
 "Bazkidearen %s identifikazio-zenbakia espero baino luzeagoa da. Gehienez 20 "
 "karaktere izan behar ditu!"
@@ -798,7 +821,7 @@ msgid "Residence certificate"
 msgstr "Bizileku-ziurtagiria"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:83
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:84
 #, python-format
 msgid "Response"
 msgstr "Erantzuna"
@@ -1021,14 +1044,16 @@ msgid "Test QR Base URL"
 msgstr "Test QR Base URL"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:628
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:629
 #, python-format
 msgid "The Company %s VAT Number is required."
 msgstr "%s enpresaren BEZ zenbakia beharrezkoa da."
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_installation__vat
-msgid "The Tax Identification Number. Complete it if the contact is subjected to government taxes. Used in some legal statements."
+msgid ""
+"The Tax Identification Number. Complete it if the contact is subjected to "
+"government taxes. Used in some legal statements."
 msgstr ""
 "Identifikazio Fiskaleko Zenbakia. Osatu kontaktua gobernuaren zergen menpe "
 "badago. Zenbait lege adierazpenetan erabiltzen da."
@@ -1080,7 +1105,9 @@ msgstr "TicketBAI Ziurtagiriak"
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/res_company.py:163
 #, python-format
-msgid "TicketBAI Developer %s VAT Number or another type of identification is required."
+msgid ""
+"TicketBAI Developer %s VAT Number or another type of identification is "
+"required."
 msgstr ""
 "%s TicketBAI Garatzailearen BEZ zenbakia edo beste identifikazio mota bat "
 "beharrezkoa da."
@@ -1101,28 +1128,32 @@ msgid "TicketBAI Installations"
 msgstr "TicketBAI Instalazioak"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:802
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:806
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "Address for %s is required for the Tax Agency %s!"
 msgstr ""
 "%s TicketBAI faktura:\n"
 "%s-ren helbidea beharrezkoa da %s Zerga Agentziarentzat!"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1167
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1171
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "All Invoice recipients must be from the same country."
 msgstr ""
 "%s TicketBAI faktura:\n"
 "Faktura-hartzaile guztiek herrialde berekoak izan behar dute."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:195
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:196
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
-"Already exists a TicketBAI Invoice with the same link to its previous TicketBAI Invoice."
+msgid ""
+"TicketBAI Invoice %s:\n"
+"Already exists a TicketBAI Invoice with the same link to its previous "
+"TicketBAI Invoice."
 msgstr ""
 "%s TicketBAI faktura:\n"
 "Dagoeneko TicketBAI faktura bat dago bere aurreko TicketBAI fakturaren "
@@ -1131,7 +1162,8 @@ msgstr ""
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:108
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "Customer %s Address %s longer than expected. Should be 250 characters max.!"
 msgstr ""
 "%s TicketBAI faktura:\n"
@@ -1141,8 +1173,10 @@ msgstr ""
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:80
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
-"Customer %s Identification Number %s longer than expected. Should be 20 characters max.!"
+msgid ""
+"TicketBAI Invoice %s:\n"
+"Customer %s Identification Number %s longer than expected. Should be 20 "
+"characters max.!"
 msgstr ""
 "%s TicketBAI faktura:\n"
 "%s bezeroaren identifikazio-zenbakia espero baino %s luzeagoa da. Gehienez "
@@ -1151,7 +1185,8 @@ msgstr ""
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:87
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "Customer %s Identification Number for non spanish customers is required."
 msgstr ""
 "%s TicketBAI faktura:\n"
@@ -1161,8 +1196,10 @@ msgstr ""
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:97
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
-"Customer %s Spanish Fiscal Identification Number or Identification Number for non spanish customers is required."
+msgid ""
+"TicketBAI Invoice %s:\n"
+"Customer %s Spanish Fiscal Identification Number or Identification Number "
+"for non spanish customers is required."
 msgstr ""
 "%s TicketBAI faktura:\n"
 "%s bezeroaren Espainiako identifikazio fiskaleko zenbakia edo espainiarrak "
@@ -1171,7 +1208,8 @@ msgstr ""
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:119
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "Customer %s ZIP Code %s longer than expected. Should be 20 characters max.!"
 msgstr ""
 "%s TicketBAI faktura:\n"
@@ -1181,7 +1219,8 @@ msgstr ""
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:45
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "Customer name %s longer than expected. Should be 120 characters max.!"
 msgstr ""
 "%s TicketBAI faktura:\n"
@@ -1191,7 +1230,8 @@ msgstr ""
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_line.py:32
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "Description %s longer than expected. Should be 250 characters max.!"
 msgstr ""
 "%s TicketBAI faktura:\n"
@@ -1199,18 +1239,20 @@ msgstr ""
 "gehienez!"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:290
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:291
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "Invoice Description is required."
 msgstr ""
 "%s TicketBAI faktura:\n"
 "Fakturaren Deskribapena beharrezkoa da."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:349
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:350
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "Invoice Number Prefix longer than expected. Should be 20 characters max.!"
 msgstr ""
 "%s TicketBAI faktura:\n"
@@ -1218,9 +1260,10 @@ msgstr ""
 "karaktere izan behar ditu!"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:339
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:340
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "Invoice Number longer than expected. Should be 20 characters max.!"
 msgstr ""
 "%s TicketBAI faktura:\n"
@@ -1228,27 +1271,30 @@ msgstr ""
 "ditu!"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:279
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:280
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "Invoice Refund Reason Code is required."
 msgstr ""
 "%s TicketBAI faktura:\n"
 "Fakturaren itzulketa arrazoiaren kodea beharrezkoa da."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:359
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:360
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "Invoice Tax Retention Total Amount"
 msgstr ""
 "%s TicketBAI faktura:\n"
 "Fakturaren Zerga Atxikipenaren Zenbateko osoa"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:294
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:295
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "Invoice description longer than expected. Should be 250 characters max.!"
 msgstr ""
 "%s TicketBAI faktura:\n"
@@ -1256,65 +1302,74 @@ msgstr ""
 "ditu gehienez!"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:934
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:938
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "Invoice lines are required for the Tax Agency %s!"
 msgstr ""
 "%s TicketBAI faktura:\n"
 "%s Zerga Agentziarentzat faktura lerroak beharrezkoak dira!"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:777
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:778
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "Maximum 100 recipients allowed for each Invoice!"
 msgstr ""
 "%s TicketBAI faktura:\n"
 "Gehienez 100 hartzaile onartzen dira faktura bakoitzeko!"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1052
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1056
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "Maximum number of Invoice Lines allowed is 1000."
 msgstr ""
 "%s TicketBAI faktura:\n"
 "Onartutako faktura-lerroen gehienezko kopurua 1000 da."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:955
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:959
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "Previous Invoice signature value is required."
 msgstr ""
 "%s TicketBAI faktura:\n"
 "Aurreko fakturaren sinaduraren balioa beharrezkoa da."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1235
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1239
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "Refunded Invoice %s Expedition Date"
 msgstr ""
 "%s TicketBAI faktura:\n"
 "Itzulitako %s fakturaren espedizio-data"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1225
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1229
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
-"Refunded Invoice %s Number Prefix %s longer than expected. Should be 20 characters max.!"
+msgid ""
+"TicketBAI Invoice %s:\n"
+"Refunded Invoice %s Number Prefix %s longer than expected. Should be 20 "
+"characters max.!"
 msgstr ""
 "%s TicketBAI faktura:\n"
 "Itzulitako %s fakturak espero baino %s zenbaki-aurrizkia luzeagoa du. "
 "Gehienez 20 karaktere izan behar ditu!"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1214
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1218
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
-"Refunded Invoice Number %s longer than expected. Should be 20 characters max.!"
+msgid ""
+"TicketBAI Invoice %s:\n"
+"Refunded Invoice Number %s longer than expected. Should be 20 characters "
+"max.!"
 msgstr ""
 "%s TicketBAI faktura:\n"
 "Itzulitako faktura-zenbakia espero baino %s luzeagoa da. Gehienez 20 "
@@ -1323,62 +1378,70 @@ msgstr ""
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:69
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
-"Spanish Fiscal Identification Number or Identification Number for non spanish customers is required."
+msgid ""
+"TicketBAI Invoice %s:\n"
+"Spanish Fiscal Identification Number or Identification Number for non "
+"spanish customers is required."
 msgstr ""
 "%s TicketBAI faktura:\n"
 "Espainiako Identifikazio Fiskaleko Zenbakia edo Espainiakoak ez diren "
 "bezeroentzat Identifikazio Zenbakia beharrezkoa da."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:269
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:270
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "Substituted Invoice Tax Amount Total"
 msgstr ""
 "%s TicketBAI faktura:\n"
 "Ordezkatutako fakturaren zerga zenbatekoa guztira"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:264
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:265
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "Substituted Invoice Tax Amount Total is required."
 msgstr ""
 "%s TicketBAI faktura:\n"
 "Ordezkatutako fakturaren Zerga Zenbatekoa Guztira beharrezkoa da."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:252
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:253
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "Substituted Invoice amount total untaxed"
 msgstr ""
 "%s TicketBAI faktura:\n"
 "Ordeztutako fakturaren zenbatekoa guztira, zergarik gabe"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:247
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:248
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "Substituted Invoice amount total untaxed is required."
 msgstr ""
 "%s TicketBAI faktura:\n"
 "Ordeztutako fakturaren zenbatekoa guztira zergarik gabe beharrezkoa da."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:383
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:384
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "TBAI identifier %s should be %d characters long with CRC-8!"
 msgstr ""
 "%s TicketBAI faktura:\n"
 "%s TBAI identifikatzaileak %d karaktere izan behar ditu CRC-8-rekin!"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:374
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:375
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "TBAI identifier without CRC-8 %s should be %d characters long!"
 msgstr ""
 "%s TicketBAI faktura:\n"
@@ -1387,7 +1450,8 @@ msgstr ""
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:218
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "Tax Surcharge or Simplified Regime value should be '%s'."
 msgstr ""
 "%s TicketBAI faktura:\n"
@@ -1395,16 +1459,17 @@ msgstr ""
 "du."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:795
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:799
 #, python-format
-msgid "TicketBAI Invoice %s:\n"
+msgid ""
+"TicketBAI Invoice %s:\n"
 "ZIP code for %s is required for the Tax Agency %s!"
 msgstr ""
 "%s TicketBAI faktura:\n"
 "%s-ren posta-kodea beharrezkoa da %s Zerga Agentziarentzat!"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:330
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:331
 #, python-format
 msgid "TicketBAI Invoice %s: Amount Total"
 msgstr "%s TicketBAI faktura: Zenbatekoa guztira"
@@ -1413,7 +1478,8 @@ msgstr "%s TicketBAI faktura: Zenbatekoa guztira"
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:56
 #, python-format
 msgid "TicketBAI Invoice %s: Customer %s Country Code %s not valid."
-msgstr "%s TicketBAI faktura: %s bezeroaren %s herrialde-kodea ez da baliozkoa."
+msgstr ""
+"%s TicketBAI faktura: %s bezeroaren %s herrialde-kodea ez da baliozkoa."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:65
@@ -1428,13 +1494,13 @@ msgid "TicketBAI Invoice %s: Exempted taxes are Subject to taxes."
 msgstr "%s TicketBAI faktura : salbuetsitako zergak zergen menpe daude."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:303
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:304
 #, python-format
 msgid "TicketBAI Invoice %s: Expedition Date"
 msgstr "%s TicketBAI faktura: espedizio-data"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:312
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:313
 #, python-format
 msgid "TicketBAI Invoice %s: Expedition Hour"
 msgstr "%s TicketBAI faktura: espedizio-ordua"
@@ -1464,34 +1530,35 @@ msgid "TicketBAI Invoice %s: Line %s Quantity"
 msgstr "%s TicketBAI faktura: %s lerro kopurua"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:827
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:831
 #, python-format
 msgid "TicketBAI Invoice %s: Max. number of exempted taxes is 7!"
 msgstr "%s TicketBAI faktura: gehienez salbuetsitako zerga kopurua 7 da!"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:913
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:917
 #, python-format
 msgid "TicketBAI Invoice %s: Max. number of not subject to taxes is 2!"
 msgstr "%s TicketBAI faktura: gehienez Zergarik ez dutenen kopurua 2 da!"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:321
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:322
 #, python-format
 msgid "TicketBAI Invoice %s: Operation Date"
 msgstr "%s TicketBAI faktura: Eragiketa-data"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:236
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:237
 #, python-format
 msgid "TicketBAI Invoice %s: Refund Code and Type are required."
 msgstr "%s TicketBAI faktura: itzulketa kodea eta mota beharrezkoa dira."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:216
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:217
 #, python-format
 msgid "TicketBAI Invoice %s: Second VAT Regime Key not valid."
-msgstr "%s TicketBAI faktura: BEZaren bigarren erregimen gakoa ez da baliozkoa."
+msgstr ""
+"%s TicketBAI faktura: BEZaren bigarren erregimen gakoa ez da baliozkoa."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:173
@@ -1527,7 +1594,8 @@ msgstr "%s TicketBAI faktura: salbuetsi gabeko zerga mota beharrezkoa da."
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:135
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Not subject to cause is required."
-msgstr "%s TicketBAI faktura: arrazoiaren menpe ez dagoen zerga beharrezkoa da."
+msgstr ""
+"%s TicketBAI faktura: arrazoiaren menpe ez dagoen zerga beharrezkoa da."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:194
@@ -1542,25 +1610,25 @@ msgid "TicketBAI Invoice %s: Tax Surcharge Amount Total"
 msgstr "%s TicketBAI faktura: Zerga gainkarguen zenbatekoa guztira"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:226
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:227
 #, python-format
 msgid "TicketBAI Invoice %s: Third VAT Regime Key not valid."
 msgstr "%s TicketBAI faktura: BEZaren hirugarren gakoa ez da baliozkoa."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:207
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:208
 #, python-format
 msgid "TicketBAI Invoice %s: VAT Regime Key not valid."
 msgstr "%s TicketBAI faktura: BEZaren erregimenaren gakoa ez da baliozkoa."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:452
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:453
 #, python-format
 msgid "TicketBAI Invoice %s: XML Invoice schema not supported!"
 msgstr "%s TicketBAI faktura: XML fakturaren eskema ez da onartzen!"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:668
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:669
 #, python-format
 msgid "TicketBAI Invoice %s: XML schema not supported!"
 msgstr "%s TicketBAI faktura: XML eskema ez da onartzen!"
@@ -1625,7 +1693,8 @@ msgstr "TicketBAI Zerga Agentzia"
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_tax_agency.py:77
 #, python-format
-msgid "TicketBAI Tax Agency %s:\n"
+msgid ""
+"TicketBAI Tax Agency %s:\n"
 "TicketBAI version %s max size is 5 characters."
 msgstr ""
 "%s TicketBAI Zerga Agentzia:\n"
@@ -1634,7 +1703,8 @@ msgstr ""
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_tax_agency.py:109
 #, python-format
-msgid "TicketBAI Tax Agency %s:\n"
+msgid ""
+"TicketBAI Tax Agency %s:\n"
 "Version %s dates of the record overlap with an existing record."
 msgstr ""
 "%s TicketBAI Zerga Agentzia:\n"
@@ -1691,7 +1761,8 @@ msgstr "TicketBAI erantzun-kode ezezaguna."
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_res_partner__tbai_partner_identification_number
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_res_users__tbai_partner_identification_number
-msgid "Used when the identification type code is not VAT identification number."
+msgid ""
+"Used when the identification type code is not VAT identification number."
 msgstr ""
 "Identifikazio motaren kodea IFZaren identifikazio-zenbakia ez denean "
 "erabiltzen da."
