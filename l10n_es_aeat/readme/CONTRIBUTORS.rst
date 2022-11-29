@@ -14,3 +14,4 @@
 * Iván Antón <ozono@ozonomultimedia.com>
 * Digital5 S.L.
 * Manuel Regidor <manuel.regidor@sygel.es>
+* Eric Antones <eantones@nuobit.com>
