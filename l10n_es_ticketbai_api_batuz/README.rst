@@ -94,13 +94,13 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-.. |maintainer-Binovo| image:: https://github.com/Binovo.png?size=40px
-    :target: https://github.com/Binovo
-    :alt: Binovo
+.. |maintainer-ao-landoo| image:: https://github.com/ao-landoo.png?size=40px
+    :target: https://github.com/ao-landoo
+    :alt: ao-landoo
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-Binovo| 
+|maintainer-ao-landoo| 
 
 This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/12.0/l10n_es_ticketbai_api_batuz>`_ project on GitHub.
 
