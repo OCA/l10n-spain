@@ -64,7 +64,7 @@ class PosOrder(models.Model):
         if partner:
             vals['tbai_customer_ids'] = [(0, 0, {
                 'name': partner.tbai_get_value_apellidos_nombre_razon_social(),
-                'country_code': partner.tbai_get_partner_country_code(),
+                'country_code': partner._parse_aeat_vat_info()[0],
                 'nif': partner.tbai_get_value_nif(),
                 'identification_number':
                     partner.tbai_partner_identification_number or partner.vat,
