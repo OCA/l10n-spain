@@ -48,4 +48,5 @@
     ],
     "installable": True,
     "maintainers": ["pedrobaeza"],
+    "pre_init_hook": "pre_init_hook",
 }
