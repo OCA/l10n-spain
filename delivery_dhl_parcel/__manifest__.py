@@ -3,7 +3,7 @@
 {
     "name": "Delivery DHL Parcel",
     "summary": "Delivery Carrier implementation for DHL Parcel using their API",
-    "version": "13.0.1.3.4",
+    "version": "12.0.1.0.0",
     "category": "Delivery",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Studio73, Odoo Community Association (OCA)",

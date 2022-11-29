@@ -15,7 +15,7 @@
                     readonly="1"
                 />
             </xpath>
-            <xpath expr="//button[@name='print_return_label']/.." position='inside'>
+            <xpath expr="//button[@name='action_send_confirmation_email']/.." position='inside'>
                 <button
                     name="dhl_parcel_get_label"
                     string="DHL Parcel Label"
