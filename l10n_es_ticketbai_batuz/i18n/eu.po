@@ -52,7 +52,7 @@ msgid "Chapter"
 msgstr "Kapitulua"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:661
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:645
 #, python-format
 msgid ""
 "Chapter and Operation Type are required for search a pending LROE Operation"
@@ -150,14 +150,14 @@ msgid "LROE API URL"
 msgstr "LROE API URL"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:727
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:711
 #, python-format
 msgid "LROE Build: method for model %s chapter %s not implemented!"
 msgstr ""
 "LROE Eraikuntza: %s eredurako %s kapitulurako metodoa ez da inplementatu!"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:708
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:692
 #, python-format
 msgid "LROE Build: operation type is necessary!"
 msgstr "LROE Eraikitzea: eragiketa mota beharrezkoa da!"
@@ -329,7 +329,7 @@ msgid "The last attemp to sent to LROE has failed"
 msgstr "LROEra bidaltzeko azken saiakerak huts egin du"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:400
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:384
 #, python-format
 msgid "There's a mismatch in taxes for RE. Check them."
 msgstr "Zergetan ez datoz bat RE-rako. Egiaztatu itzazu."
@@ -406,13 +406,13 @@ msgid "With delay"
 msgstr "Atzerapenarekin"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:809
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:793
 #, python-format
 msgid "You can not cancel this invoice because there is a job running!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:713
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:697
 #, python-format
 msgid ""
 "You can not communicate this invoice at this moment because there is a job "
@@ -421,7 +421,7 @@ msgstr ""
 "Une honetan ezin duzu faktura hau jakinarazi, lan bat martxan dagoelako!"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:854
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:838
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr "Ezin duzu faktura hau zirriborrora aldatu, lan bat martxan dagoelako!"
