@@ -6,6 +6,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 from odoo import _, api, exceptions, fields, models
+from odoo.tools import float_compare
 
 _ACCOUNT_PATTERN_MAP = {
     "C": "4700",
@@ -341,7 +342,9 @@ class L10nEsAeatMod303Report(models.Model):
             tax_lines = report.tax_line_ids.filtered(
                 lambda x: x.field_number in casillas_devengado
             )
-            report.total_devengado = sum(tax_lines.mapped("amount"))
+            report.total_devengado = report.currency_id.round(
+                sum(tax_lines.mapped("amount"))
+            )
 
     @api.depends("tax_line_ids", "tax_line_ids.amount")
     def _compute_total_deducir(self):
@@ -350,25 +353,29 @@ class L10nEsAeatMod303Report(models.Model):
             tax_lines = report.tax_line_ids.filtered(
                 lambda x: x.field_number in casillas_deducir
             )
-            report.total_deducir = sum(tax_lines.mapped("amount"))
+            report.total_deducir = report.currency_id.round(
+                sum(tax_lines.mapped("amount"))
+            )
 
     @api.depends("total_devengado", "total_deducir")
     def _compute_casilla_46(self):
         for report in self:
-            report.casilla_46 = report.total_devengado - report.total_deducir
+            report.casilla_46 = report.currency_id.round(
+                report.total_devengado - report.total_deducir
+            )
 
     @api.depends("porcentaje_atribuible_estado", "casilla_46")
     def _compute_atribuible_estado(self):
         for report in self:
-            report.atribuible_estado = (
+            report.atribuible_estado = report.currency_id.round(
                 report.casilla_46 * report.porcentaje_atribuible_estado / 100.0
             )
 
     @api.depends("potential_cuota_compensar", "cuota_compensar")
     def _compute_remaining_cuota_compensar(self):
-        for record in self:
-            record.remaining_cuota_compensar = (
-                record.potential_cuota_compensar - record.cuota_compensar
+        for report in self:
+            report.remaining_cuota_compensar = report.currency_id.round(
+                report.potential_cuota_compensar - report.cuota_compensar
             )
 
     @api.depends(
@@ -376,7 +383,7 @@ class L10nEsAeatMod303Report(models.Model):
     )
     def _compute_casilla_69(self):
         for report in self:
-            report.casilla_69 = (
+            report.casilla_69 = report.currency_id.round(
                 report.atribuible_estado
                 + report.casilla_77
                 - report.cuota_compensar
@@ -386,41 +393,25 @@ class L10nEsAeatMod303Report(models.Model):
     @api.depends("casilla_69", "previous_result")
     def _compute_resultado_liquidacion(self):
         for report in self:
-            report.resultado_liquidacion = report.casilla_69 - report.previous_result
+            report.resultado_liquidacion = report.currency_id.round(
+                report.casilla_69 - report.previous_result
+            )
 
     @api.depends("tax_line_ids", "tax_line_ids.amount")
     def _compute_casilla_88(self):
+        taxes_88 = (80, 81, 83, 84, 85, 86, 93, 94, 95, 96, 97, 98, 125, 126, 127, 128)
         for report in self:
-            report.casilla_88 = sum(
-                report.tax_line_ids.filtered(
-                    lambda x: x.field_number
-                    in (
-                        80,
-                        81,
-                        83,
-                        84,
-                        85,
-                        86,
-                        93,
-                        94,
-                        95,
-                        96,
-                        97,
-                        98,
-                        125,
-                        126,
-                        127,
-                        128,
-                    )
-                ).mapped("amount")
-            ) - sum(
-                report.tax_line_ids.filtered(
-                    lambda x: x.field_number
-                    in (
-                        79,
-                        99,
-                    )
-                ).mapped("amount")
+            report.casilla_88 = report.currency_id.round(
+                sum(
+                    report.tax_line_ids.filtered(
+                        lambda x: x.field_number in taxes_88
+                    ).mapped("amount")
+                )
+                - sum(
+                    report.tax_line_ids.filtered(
+                        lambda x: x.field_number in (79, 99)
+                    ).mapped("amount")
+                )
             )
 
     def _compute_allow_posting(self):
@@ -434,9 +425,14 @@ class L10nEsAeatMod303Report(models.Model):
     )
     def _compute_result_type(self):
         for report in self:
-            if report.resultado_liquidacion == 0:
+            result = float_compare(
+                report.resultado_liquidacion,
+                0,
+                precision_digits=report.currency_id.decimal_places,
+            )
+            if result == 0:
                 report.result_type = "N"
-            elif report.resultado_liquidacion > 0:
+            elif result == 1:
                 report.result_type = "I"
             else:
                 if report.devolucion_mensual or report.period_type in ("4T", "12"):
