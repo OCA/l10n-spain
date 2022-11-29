@@ -16,7 +16,7 @@
     "auto_install": False,
     "development_status": "Alpha",
     "maintainers": [
-        'Binovo'
+        "ao-landoo",
     ],
     "depends": [
         "l10n_es_ticketbai_api",

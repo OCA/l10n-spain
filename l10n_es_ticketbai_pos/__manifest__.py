@@ -16,6 +16,9 @@
     "installable": True,
     "auto_install": False,
     "development_status": "Beta",
+    "maintainers": [
+        "ao-landoo",
+    ],
     "depends": [
         "l10n_es_pos",
         "l10n_es_ticketbai",

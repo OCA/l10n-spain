@@ -16,8 +16,7 @@
     "auto_install": False,
     "development_status": "Beta",
     "maintainers": [
-        'ljsalvatierra-binovo',
-        'ao-landoo'
+        "ao-landoo",
     ],
     "depends": [
         "base_vat",

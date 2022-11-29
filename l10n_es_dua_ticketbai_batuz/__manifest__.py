@@ -8,6 +8,9 @@
     "author": "Landoo Sistemas de Información S.L, "
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
+    "maintainers": [
+        "ao-landoo",
+    ],
     "depends": [
         "l10n_es_ticketbai_batuz",
         "l10n_es_dua",

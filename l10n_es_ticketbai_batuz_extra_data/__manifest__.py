@@ -13,7 +13,8 @@
     "installable": True,
     "auto_install": False,
     "maintainers": [
-        "Kernet Internet y Nuevas Tecnologias S.L.",
+        "xAdrianC-Kernet",
+        "ao-landoo",
     ],
     "depends": [
         "l10n_es_extra_data",
