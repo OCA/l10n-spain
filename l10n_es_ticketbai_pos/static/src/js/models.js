@@ -17,7 +17,8 @@ odoo.define('l10n_es_ticketbai_pos.models', function (require) {
 
     models.load_fields('res.company', [
         'tbai_enabled', 'tbai_test_enabled', 'tbai_license_key', 'tbai_developer_id',
-        'tbai_software_name', 'tbai_tax_agency_id', 'tbai_protected_data', 'tbai_protected_data_txt'
+        'tbai_software_name', 'tbai_tax_agency_id', 'tbai_protected_data', 'tbai_protected_data_txt',
+        'tbai_software_version'
     ]);
 
     models.load_fields('res.country', ['code']);
@@ -88,7 +89,7 @@ odoo.define('l10n_es_ticketbai_pos.models', function (require) {
         },
         {
             model: 'tbai.tax.agency',
-            fields: ['version', 'qr_base_url', 'test_qr_base_url'],
+            fields: ['qr_base_url', 'test_qr_base_url'],
             condition: function (self, tmp) {
                 return self.company.tbai_enabled;
             },
@@ -96,7 +97,6 @@ odoo.define('l10n_es_ticketbai_pos.models', function (require) {
                 return [['id', '=', self.company.tbai_tax_agency_id[0]]];
             },
             loaded: function (self, tax_agencies) {
-                self.tbai_version = tax_agencies[0].version;
                 if (self.company.tbai_test_enabled) {
                     self.tbai_qr_base_url = tax_agencies[0].test_qr_base_url;
                 } else {
@@ -121,7 +121,6 @@ odoo.define('l10n_es_ticketbai_pos.models', function (require) {
 
     models.PosModel = models.PosModel.extend({
         initialize: function (session, attributes) {
-            this.tbai_version = null;
             this.tbai_signer = null;
             this.tbai_qr_base_url = null;
             this.tbai_vat_regime_keys = null;

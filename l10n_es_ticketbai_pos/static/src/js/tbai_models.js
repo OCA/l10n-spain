@@ -196,7 +196,7 @@ odoo.define('l10n_es_ticketbai_pos.tbai_models', function (require) {
                     license: company.tbai_license_key,
                     developerIrsId: this.get_tbai_partner_vat(company.tbai_developer_id[0]),
                     name: company.tbai_software_name,
-                    version: this.pos.tbai_version,
+                    version: company.tbai_software_version,
                 };
             }
             return tbai;
