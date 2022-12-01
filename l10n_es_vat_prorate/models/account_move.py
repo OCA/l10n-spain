@@ -8,6 +8,11 @@ class AccountMove(models.Model):
 
     _inherit = "account.move"
 
+    def _get_aeat_tax_quote_info(self, res, tax, line, sign):
+        super()._get_aeat_tax_quote_info(res, tax, line, sign)
+        if line.vat_prorate:
+            res[tax]["quote_amount"] -= line.balance * sign
+
     def _recompute_tax_lines(
         self, recompute_tax_base_amount=False, tax_rep_lines_to_recompute=None
     ):
