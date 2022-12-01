@@ -110,8 +110,8 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
         return invoice
 
     @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
+    def _setup_records(cls):
+        # This hook is used in other modules that might need this test
         cls.maxDiff = None  # needed for the dict comparison
         cls.partner = cls.env["res.partner"].create(
             {"name": "Test partner", "vat": "ESF35999705"}
@@ -153,6 +153,11 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
                 "tax_agency_id": cls.env.ref("l10n_es_aeat.aeat_tax_agency_spain"),
             }
         )
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls._setup_records()
 
 
 class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
