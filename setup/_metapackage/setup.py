@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-l10n-spain Odoo addons",
     version=version,
     install_requires=[
+        'odoo-addon-account_promissory_note_cajamar>=15.0dev,<15.1dev',
         'odoo-addon-delivery_gls_asm>=15.0dev,<15.1dev',
         'odoo-addon-delivery_seur>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_account_asset>=15.0dev,<15.1dev',
