@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template
+        id="promissory_footer_cm"
+        inherit_id="account_check_printing_report_base.report_check_base_a4_document"
+        primary="True"
+    >
+        <xpath expr="//div[@id='check_body']" position="after">
+            <!-- Force the language of this part to Spanish. -->
+            <t t-set="o" t-value="o.with_context(lang='es_ES')" />
+            <div style="font-size:16px;">
+                <div>
+                    <div style="position:absolute; top:229mm; left:82mm;">
+                        <span t-field="o.date_due" t-options="{'format': 'd'}" />
+                    </div>
+                    <div style="position:absolute; top:229mm; left:98mm;">
+                        <span t-field="o.date_due" t-options="{'format': 'MMMM'}" />
+                    </div>
+                    <div style="position:absolute; top:229mm; left:141mm;">
+                        <span t-field="o.date_due" t-options="{'format': 'YYYY'}" />
+                    </div>
+                </div>
+                <div>
+                    <span
+                        style="position:absolute; top:229mm; left:190mm;"
+                        t-esc="o.amount"
+                        t-options="{'widget': 'float', 'precision': 2}"
+                    />
+                </div>
+                <div>
+                    <span
+                        style="position:absolute; top:239mm; left:65mm; width:140mm;"
+                        t-field="o.partner_id.name"
+                    />
+                </div>
+                <div style="position:absolute; left:65mm; top:245mm">
+                    <strong>
+                        <span t-esc="fill_stars(num2words(o.amount))" />
+                    </strong>
+                </div>
+                <div>
+                    <div style="position:absolute; top:255mm; left:160mm;">
+                        <span t-field="o.date" t-options="{'format': 'd'}" />
+                    </div>
+                    <div style="position:absolute; top:255mm; left:175mm;">
+                        <span t-field="o.date" t-options="{'format': 'MMMM'}" />
+                    </div>
+                    <div style="position:absolute; top:255mm; left:230mm;">
+                        <span t-field="o.date" t-options="{'format': 'YYYY'}" />
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+    <template id="report_check_cm_a4">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t
+                    t-call="account_promissory_note_cajamar.promissory_footer_cm"
+                    t-lang="o.partner_id.lang"
+                />
+            </t>
+        </t>
+    </template>
+</odoo>
