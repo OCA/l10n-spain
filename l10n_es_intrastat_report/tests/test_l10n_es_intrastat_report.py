@@ -25,7 +25,10 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
         )
         move_form.ref = "ABCDE"
         move_form.partner_id = partner
-        move_form.partner_shipping_id = partner
+        partner_shipping = partner.child_ids.filtered(lambda x: x.type == "delivery")
+        move_form.partner_shipping_id = (
+            partner_shipping if partner_shipping else partner
+        )
         move_form.invoice_date = datetime.today()
         with move_form.invoice_line_ids.new() as line_form:
             line_form.name = "test"
@@ -59,7 +62,15 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
         cls.env.user.company_id.incoterm_id = cls.env.ref("account.incoterm_FCA").id
         # Create Intrastat partners
         cls.partner_1 = cls.env["res.partner"].create(
-            {"name": "Test Partner FR", "country_id": cls.env.ref("base.fr").id}
+            {"name": "Test Partner FR", "country_id": cls.env.ref("base.es").id}
+        )
+        cls.env["res.partner"].create(
+            {
+                "name": "Test Partner FR",
+                "country_id": cls.env.ref("base.fr").id,
+                "parent_id": cls.partner_1.id,
+                "type": "delivery",
+            }
         )
         cls.partner_2 = cls.env["res.partner"].create(
             {"name": "Test Partner PT", "country_id": cls.env.ref("base.pt").id}
