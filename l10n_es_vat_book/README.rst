@@ -126,6 +126,7 @@ Contributors
   * Carlos Dauden
   * Ernesto Tejeda
 * Omar Castiñeira <omar@comunitea.com>
+* Eduardo de miguel <edu@moduon.team>
 
 Maintainers
 ~~~~~~~~~~~
