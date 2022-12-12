@@ -405,9 +405,11 @@ msgstr "Mezuak"
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_res_company__tbai_description_method
 msgid ""
 "Method for the TicketBAI invoices description, can be one of these:\n"
-"- Automatic: the description will be the join of the invoice   lines description\n"
+"- Automatic: the description will be the join of the invoice   lines "
+"description\n"
 "- Fixed: the description write on the below field 'TBAI   Description'\n"
-"- Manual (by default): It will be necessary to manually enter   the description on each invoice"
+"- Manual (by default): It will be necessary to manually enter   the "
+"description on each invoice"
 msgstr ""
 "TicketBAI fakturen deskribapena egiteko metodoa hauetako bat izan daiteke:\n"
 "- Automatikoa: deskribapena faktura-lerroen deskribapenaren batzea izango "
@@ -439,8 +441,8 @@ msgid ""
 "Number prefix of this invoice name e.g. if the invoice name is "
 "INV/2021/00001 then the prefix is INV/2021/, ending back slash included"
 msgstr ""
-"Adibidez, faktura honen zenbakiaren aurrizkia, fakturaren izena INV/2021/"
-"00001 bada aurrizkia INV/2021/ da, amaierako barra barne"
+"Adibidez, faktura honen zenbakiaren aurrizkia, fakturaren izena "
+"INV/2021/00001 bada aurrizkia INV/2021/ da, amaierako barra barne"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_date_operation
@@ -566,6 +568,11 @@ msgstr ""
 "inkoherentean, mesedez konpondu aldez aurretik."
 
 #. module: l10n_es_ticketbai
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_account_journal__tbai_active_date
+msgid "Start date for sending invoices to the tax authorities"
+msgstr ""
+
+#. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_substitute_simplified_invoice
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_substitute_simplified_invoice
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_substitute_simplified_invoice
@@ -651,8 +658,8 @@ msgstr "Posizio Fiskalaren txantiloia"
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_res_company__tbai_description
 msgid ""
-"The description for invoices. Only used when the field TicketBAI Description"
-" Method is 'Fixed'."
+"The description for invoices. Only used when the field TicketBAI Description "
+"Method is 'Fixed'."
 msgstr ""
 "Fakturen deskribapena. TicketBAI Description Method eremua \"Finkoa\" denean "
 "bakarrik erabiltzen da."
@@ -824,6 +831,11 @@ msgstr "TicketBAI Zerga Salbuespenaren mapa-gakoak"
 #: model:ir.ui.menu,name:l10n_es_ticketbai.menu_tbai_vat_regime_key
 msgid "TicketBAI VAT Regime mapping keys"
 msgstr "TicketBAI Zerga Erregimenaren mapa-gakoak"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_journal__tbai_active_date
+msgid "TicketBAI active date"
+msgstr ""
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_tbai_info
