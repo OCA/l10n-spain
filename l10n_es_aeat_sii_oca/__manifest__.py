@@ -14,7 +14,7 @@
 
 {
     "name": "Suministro Inmediato de Información en el IVA",
-    "version": "13.0.2.4.0",
+    "version": "13.0.2.4.1",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Acysos S.L.,"
