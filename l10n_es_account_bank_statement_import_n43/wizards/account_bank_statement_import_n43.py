@@ -358,7 +358,7 @@ class AccountBankStatementImport(models.TransientModel):
             for line_vals in st_vals['transactions']:
                 if not line_vals.get('partner_id') and line_vals.get('note'):
                     line_vals['partner_id'] = self._get_partner(
-                        line_vals['note'],
+                        line_vals,
                     ).id
                 # This can't be used, as Odoo doesn't present the lines
                 # that already have a counterpart account as final
