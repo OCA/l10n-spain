@@ -22,7 +22,7 @@
                                        attrs="{'invisible': [('tbai_invoice_id', '=', False)]}"/>
                                 <field name="tbai_cancellation_id" readonly="1" options="{'no_create':True}"
                                        attrs="{'invisible': [('tbai_cancellation_id', '=', False)]}"/>
-                                <field name="tbai_date_operation" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="date" string="Operation Date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                                 <field name="tbai_description_operation" widget="char" attrs="{'required': [('tbai_enabled', '=', True)], 'readonly': [('state', '!=', 'draft')]}"/>
                             </group>
                         </group>

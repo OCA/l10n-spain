@@ -42,7 +42,7 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
             'account_id': self.account_receivable.id,
             'type': invoice_type,
             'date_invoice': date.today(),
-            'tbai_date_operation': date.today(),
+            'date': date.today(),
             'fiscal_position_id': fp.id,
             'company_id': company_id or self.main_company.id
         })

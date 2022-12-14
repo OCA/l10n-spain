@@ -1,7 +1,7 @@
 # Copyright 2021 Binovo IT Human Project SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import logging
-from datetime import date
+from datetime import date, timedelta
 from odoo import exceptions
 from odoo.tests import common
 from .common import TestL10nEsTicketBAI
@@ -33,6 +33,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
     def test_invoice_out_of_term(self):
         invoice = self.create_draft_invoice(
             self.account_billing.id, self.fiscal_position_national)
+        invoice.date = date(2021, 12, 31)
         invoice.date_invoice = date(2021, 12, 31)
         invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
         invoice.compute_taxes()
@@ -495,3 +496,9 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         for journal in journals:
             self.assertEqual(journal.sequence_id.suffix, '')
             self.assertEqual(journal.refund_sequence, True)
+
+    def test_invoice_out_check_dates(self):
+        invoice = self.create_draft_invoice(
+            self.account_billing.id, self.fiscal_position_national)
+        with self.assertRaises(exceptions.ValidationError):
+            invoice.date = date.today() + timedelta(days=45)

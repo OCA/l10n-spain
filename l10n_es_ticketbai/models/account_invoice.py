@@ -4,7 +4,7 @@
 from datetime import datetime
 import re
 from odoo import models, fields, exceptions, _, api
-from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 from odoo.addons.l10n_es_ticketbai_api.models.ticketbai_invoice import RefundCode, \
     RefundType, SiNoType, TicketBaiInvoiceState
 from odoo.addons.l10n_es_ticketbai_api.ticketbai.xml_schema import TicketBaiSchema
@@ -33,7 +33,6 @@ class AccountInvoice(models.Model):
         string='Responses')
     tbai_datetime_invoice = fields.Datetime(
         compute='_compute_tbai_datetime_invoice', store=True, copy=False)
-    tbai_date_operation = fields.Datetime('Operation Date', copy=False)
     tbai_description_operation = fields.Text(
         'Operation Description', default="/", copy=False)
     tbai_substitute_simplified_invoice = fields.Boolean(
@@ -71,6 +70,18 @@ class AccountInvoice(models.Model):
                 raise exceptions.ValidationError(_(
                     "Invoice %s. You cannot change to draft a numbered invoice!"
                 ) % record.number)
+
+    @api.multi
+    @api.constrains('date', 'date_invoice')
+    def _check_dates(self):
+        for record in self:
+            if record.type in ('out_invoice', 'out_refund') and \
+                record.tbai_enabled and \
+                (record.date and record.date_invoice and
+                    record.date > record.date_invoice):
+                raise exceptions.ValidationError(
+                    _('The operation date cannot be greater than the invoice date.')
+                )
 
     @api.multi
     def unlink(self):
@@ -437,7 +448,7 @@ class AccountInvoice(models.Model):
         return self.split_invoice_number()[1]
 
     def tbai_get_value_fecha_expedicion_factura(self):
-        invoice_date = self.date or self.date_invoice
+        invoice_date = self.date_invoice
         date = fields.Datetime.context_timestamp(self, fields.Datetime.from_string(
             invoice_date))
         return date.strftime("%d-%m-%Y")
@@ -470,17 +481,11 @@ class AccountInvoice(models.Model):
         return "%.2f" % amount
 
     def tbai_get_value_fecha_operacion(self):
-        if self.tbai_date_operation:
+        tbai_date_operation = None
+        if self.date != self.date_invoice:
             tbai_date_operation = datetime.strptime(
-                self.tbai_date_operation, DEFAULT_SERVER_DATETIME_FORMAT).strftime(
+                self.date, DEFAULT_SERVER_DATE_FORMAT).strftime(
                 "%d-%m-%Y")
-            date_invoice = datetime.strptime(
-                self.date or self.date_invoice, DEFAULT_SERVER_DATE_FORMAT).strftime(
-                "%d-%m-%Y")
-            if tbai_date_operation == date_invoice:
-                tbai_date_operation = None
-        else:
-            tbai_date_operation = None
         return tbai_date_operation
 
     def tbai_get_value_retencion_soportada(self):
