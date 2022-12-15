@@ -7,7 +7,17 @@ from zeep import Client, Plugin, helpers
 from zeep.plugins import HistoryPlugin
 from zeep.transports import Transport
 
+from odoo.fields import Datetime
+
 _logger = logging.getLogger(__name__)
+
+TRACKING_STATES = {
+    "EN TRÁNSITO": "in_transit",
+    "MERCANCÍA EN REPARTO": "in_transit",
+    "ENTREGA EFECTUADA": "customer_delivered",
+    "ENTREGADO EN PUNTO": "customer_delivered",
+    "ENTREGADO CAMBIO SIN RETORNO": "customer_delivered",
+}
 
 
 class RewritePlugin(Plugin):
@@ -227,7 +237,7 @@ class SeurRequest(object):
                 "in0": "S",
                 "in1": "",
                 "in2": "",
-                "in3": self.record.carrier_tracking_ref,
+                "in3": self.record.name,
                 "in4": "",
                 "in5": "",
                 "in6": "",
@@ -242,29 +252,37 @@ class SeurRequest(object):
             },
         )
         xml = etree.fromstring(res)
-        errors = [n.text for n in xml.xpath("//ERROR/DESCRIPCION")]
-        if errors:
-            return {"tracking_state_history": "\n".join(errors)}
-        state = xml.xpath("(//DESCRIPCION_CLIENTE)[last()]")[0].text.strip()
-        static_states = {
-            "EN TRÁNSITO": "in_transit",
-            "MERCANCÍA EN REPARTO": "in_transit",
-            "ENTREGA EFECTUADA": "customer_delivered",
-            "ENTREGADO EN PUNTO": "customer_delivered",
-            "ENTREGADO CAMBIO SIN RETORNO": "customer_delivered",
-        }
+        res_dict = {item.tag: item.text for item in xml}
+        if res_dict.get("ERROR"):
+            state = "\n{} - {} - {}".format(
+                Datetime.to_string(Datetime.now()),
+                res_dict.get("CODIGO"),
+                res_dict.get("DESCRIPCION"),
+            )
+            values = {
+                "tracking_state_history": "{}{}".format(
+                    self.record.tracking_state_history or "", state
+                )
+            }
+            # The reference isn't in the SEUR backend. Avoid further tracking calls
+            if res_dict.get("CODIGO") == "CEXP_0006":
+                values["delivery_state"] = "no_update"
+            return values
+        trackings = [{i.tag: i.text for i in sit} for sit in xml.xpath("//SIT")]
+        if not trackings:
+            return
         return {
             "tracking_state_history": "\n".join(
                 [
-                    "%s | %s"
-                    % (
-                        sit.find("FECHA_SITUACION").text,
-                        sit.find("DESCRIPCION_CLIENTE").text,
+                    "{} - {}".format(
+                        t.get("FECHA_SITUACION", ""), t.get("DESCRIPCION_CLIENTE", "")
                     )
-                    for sit in xml.xpath("//SIT")
+                    for t in trackings
                 ]
             ),
-            "delivery_state": static_states.get(state, "incidence"),
+            "delivery_state": TRACKING_STATES.get(
+                trackings.pop().get("DESCRIPCION_CLIENTE"), "incidence"
+            ),
         }
 
     def cancel_shipment(self):
