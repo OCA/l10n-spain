@@ -252,8 +252,8 @@ class SeurRequest(object):
             },
         )
         xml = etree.fromstring(res)
-        res_dict = {item.tag: item.text for item in xml}
-        if res_dict.get("ERROR"):
+        if xml.tag == "ERROR":
+            res_dict = {item.tag: item.text for item in xml}
             state = "\n{} - {} - {}".format(
                 Datetime.to_string(Datetime.now()),
                 res_dict.get("CODIGO"),
