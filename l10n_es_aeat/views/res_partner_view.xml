@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="AEAT" id="aeat">
+                    <group name="aeat_general">
+                        <field name="aeat_anonymous_cash_customer" />
+                        <field name="aeat_identification_type" />
+                        <field
+                            name="aeat_identification"
+                            attrs="{'required': [('aeat_identification_type', '!=', False)], 'invisible': [('aeat_identification_type', '=', False)]}"
+                        />
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
