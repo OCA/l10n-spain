@@ -14,9 +14,21 @@ _logger = logging.getLogger(__name__)
 TRACKING_STATES = {
     "EN TRÁNSITO": "in_transit",
     "MERCANCÍA EN REPARTO": "in_transit",
+    "PENDIENTE DE REPARTO": "in_transit",
+    "TU PEDIDO SERÁ ENVIADO A UN PUNTO SEUR": "in_transit",
+    "EL REPARTIDOR HA DEJADO EL PAQUETE EN LA TIENDA SELECCIONADA": "in_transit",
+    "YA PUEDES RECOGER TU ENVÍO EN LA TIENDA SEUR PICKUP SELECCIONADA": "in_transit",
     "ENTREGA EFECTUADA": "customer_delivered",
+    "ENTREGADO": "customer_delivered",
     "ENTREGADO EN PUNTO": "customer_delivered",
     "ENTREGADO CAMBIO SIN RETORNO": "customer_delivered",
+    "ENTREGA PARCIAL": "customer_delivered",
+    "ENTREGADO A CLIENTE EN LA TIENDA SEUR PICKUP SELECCIONADA": "customer_delivered",
+    "DOCUMENTACIÓN RECTIFICADA. DOMICILIO": "customer_delivered",
+    "DOCUMENTACIÓN RECTIFICADA. DESTINO": "customer_delivered",
+    "ENVÍO DEVUELTO": "canceled_shipment",
+    "SINIESTRO": "canceled_shipment",
+    "ENVIO ANULADO": "canceled_shipment",
 }
 
 
@@ -264,8 +276,12 @@ class SeurRequest(object):
                     self.record.tracking_state_history or "", state
                 )
             }
-            # The reference isn't in the SEUR backend. Avoid further tracking calls
-            if res_dict.get("CODIGO") == "CEXP_0006":
+            # The reference isn't in the SEUR backend. Avoid further tracking calls when
+            # the order isn't a new one.
+            if (
+                res_dict.get("CODIGO") == "CEXP_0006"
+                and self.record.delivery_state != "shipping_recorded_in_carrier"
+            ):
                 values["delivery_state"] = "no_update"
             return values
         trackings = [{i.tag: i.text for i in sit} for sit in xml.xpath("//SIT")]
