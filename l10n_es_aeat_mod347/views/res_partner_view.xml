@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- PARTNERS -->
+    <record id="view_partner_form_mod347" model="ir.ui.view">
+        <field name="name">Partners - Add 'include in 347'</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <group name="fiscal_information">
+                <field name="not_in_mod347" />
+            </group>
+        </field>
+    </record>
+</odoo>

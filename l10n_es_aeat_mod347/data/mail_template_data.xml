@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="email_template_347" model="mail.template">
+        <field name="name">Comprobación datos modelo 347</field>
+        <field
+            name="email_from"
+        >{{(user.email and '&quot;%s&quot; &lt;%s&gt;' % (user.name, user.email) or '')}}</field>
+        <field
+            name="subject"
+        >Comprobación datos de modelo 347 año {{object.report_id.year}} de {{user.company_id.name}}</field>
+        <field
+            name="partner_to"
+        >{{object.partner_id.address_get(['invoice'])['invoice']}}</field>
+        <field
+            name="model_id"
+            ref="l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_partner_record"
+        />
+        <field name="auto_delete" eval="True" />
+        <field name="report_template" ref="347_partner" />
+        <field name="report_name">347_details</field>
+        <field name="lang">{{object.partner_id.lang}}</field>
+        <field
+            name="body_html"
+        ><![CDATA[
+<p>Estimado/a <t t-out="object.partner_id.name" />
+</p>
+<p>Le comunicamos que a efectos de comprobación del modelo 347:</p>
+<p>Nuestros datos en dicha declaración son:</p>
+<p>
+  <strong>Nombre:</strong> <t t-out="object.report_id.company_id.name"/><br/>
+  <strong>NIF:</strong> <t t-out="object.report_id.company_id.vat or ''"/><br/>
+  <strong>Provincia:</strong> <t t-out="object.report_id.company_id.state_id.name or ''"/><br/>
+</p>
+<p>Los datos que vamos a declarar en relación a las operaciones habidas con su empresa son:</p>
+<p>
+  <strong>Nombre:</strong> <t t-out="object.partner_id.name"/><br/>
+  <strong>NIF:</strong> <t t-out="object.partner_vat"/><br/>
+  <strong>Código de país:</strong> <t t-out="object.partner_country_code"/><br/>
+  <strong>Código de provincia:</strong> <t t-out="object.partner_state_code"/><br/>
+</p>
+<p>
+  <strong>Tipo de operación:</strong> <t t-out="object.operation_key"/>
+</p>
+
+  <t t-if="object.amount">
+  <p>
+  <strong>Importe de las operaciones:</strong> <t t-out="object.amount"/><br/>
+  <strong>Operaciones primer trimestre:</strong> <t t-out="object.first_quarter"/><br/>
+  <strong>Operaciones segundo trimestre:</strong> <t t-out="object.second_quarter"/><br/>
+  <strong>Operaciones tercer trimestre:</strong> <t t-out="object.third_quarter"/><br/>
+  <strong>Operaciones cuarto trimestre:</strong> <t t-out="object.fourth_quarter"/><br/>
+  </p>
+  </t>
+  <t t-if="object.cash_amount">
+  <p>
+  <strong>Importe recibido en efectivo:</strong> <t t-out="object.cash_amount"/><br/>
+  </p>
+</t>
+  <t t-if="object.real_estate_transmissions_amount">
+  <p>
+  <strong>Importe de transmisión de inmueble:</strong> <t t-out="object.real_estate_transmissions_amount"/><br/>
+  <strong>Inmuebles primer trimestre:</strong> <t t-out="object.first_quarter_real_estate_transmission"/><br/>
+  <strong>Inmuebles segundo trimestre:</strong> <t t-out="object.second_quarter_real_estate_transmission"/><br/>
+  <strong>Inmuebles tercer trimestre:</strong> <t t-out="object.third_quarter_real_estate_transmission"/><br/>
+  <strong>Inmuebles cuarto trimestre:</strong> <t t-out="object.fourth_quarter_real_estate_transmission"/><br/>
+  </p>
+</t>
+  <p>En el documento adjunto se incluyen las facturas en base a las cuales se obtienen los importes anteriores.</p>
+  <p>Si los datos son correctos puede indicar su conformidad en el siguiente botón:</p>
+  <br><br>
+  <center>
+      <a style="background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;"
+              class="o_default_snippet_text"
+              t-att-href="object.get_confirm_url()">
+          Aceptar datos del 347
+      </a>
+  </center>
+  <br><br>
+  <p>Si los importes no son correctos, puede pulsar en este botón para que nos pongamos en contacto posteriormente, o responder a este correo indicando el problema:</p>
+  <br><br>
+  <center>
+      <a style="background-color: #d55937; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;"
+              class="o_default_snippet_text"
+              t-att-href="object.get_reject_url()">
+          Rechazar datos del 347
+      </a>
+  </center>
+  <br><br>
+  <p>Para cualquier otra pregunta, no dude en contactar con nosotros respondiendo a este correo.</p>
+<p style="color:#888888">
+    <t t-if="user and user.signature">
+    <t t-out="user.signature"/>
+    </t>
+</p>
+]]>
+        </field>
+    </record>
+</odoo>
