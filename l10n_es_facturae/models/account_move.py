@@ -93,10 +93,14 @@ class AccountMove(models.Model):
     @api.depends("partner_id.facturae", "move_type")
     def _compute_facturae(self):
         for record in self:
-            record.facturae = record.partner_id.facturae and record.move_type in [
-                "out_invoice",
-                "out_refund",
-            ]
+            record.facturae = (
+                record.commercial_partner_id.facturae
+                and record.move_type
+                in [
+                    "out_invoice",
+                    "out_refund",
+                ]
+            )
 
     def get_exchange_rate(self, euro_rate, currency_rate):
         if not euro_rate and not currency_rate:

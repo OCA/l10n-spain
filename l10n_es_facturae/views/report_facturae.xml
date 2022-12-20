@@ -96,9 +96,12 @@
             </t>
             <t
                 t-call="l10n_es_facturae.administrative_center"
-                t-if="partner.organo_proponente"
+                t-if="administrative_partner.organo_proponente or partner.organo_proponente"
             >
-                <t t-set="centre_code" t-value="partner.organo_proponente" />
+                <t
+                    t-set="centre_code"
+                    t-value="administrative_partner.organo_proponente or partner.organo_proponente"
+                />
                 <t t-set="role_type_code" t-value="'04'" />
             </t>
         </AdministrativeCentres>
