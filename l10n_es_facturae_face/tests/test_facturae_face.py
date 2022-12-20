@@ -6,6 +6,7 @@ import logging
 import mock
 
 from odoo import exceptions
+from odoo.tests.common import Form
 
 from odoo.addons.component.tests.common import SavepointComponentRegistryCase
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
@@ -20,6 +21,23 @@ except (ImportError, IOError) as err:
 
 
 _logger = logging.getLogger(__name__)
+
+
+class DemoService(object):
+    def __init__(self, value):
+        self.value = value
+
+    def enviarFactura(self, *args):
+        return self.value
+
+    def anularFactura(self, *args):
+        return self.value
+
+    def consultarFactura(self, *args):
+        return self.value
+
+    def consultarListadoFacturas(self, *args):
+        return self.value
 
 
 class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegistryCase):
@@ -80,6 +98,18 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
                 "unidad_tramitadora": "U00000038",
                 "oficina_contable": "U00000038",
                 "l10n_es_facturae_sending_code": "face",
+            }
+        )
+        self.child = self.env["res.partner"].create(
+            {
+                "name": "Cliente de prueba",
+                "type": "invoice",
+                "street": "C/ Ejemplo, 13",
+                "zip": "13700",
+                "city": "Tomelloso",
+                "state_id": self.state.id,
+                "country_id": self.env.ref("base.es").id,
+                "parent_id": self.partner.id,
             }
         )
         main_company = self.env.ref("base.main_company")
@@ -258,23 +288,41 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
         exchange_record.backend_id.exchange_send(exchange_record)
         self.assertEqual(exchange_record.edi_exchange_state, "output_error_on_send")
 
+    def test_facturae_face_child(self):
+        self._activate_certificate(self.certificate_password)
+        client = Client(
+            wsdl=self.env["ir.config_parameter"].sudo().get_param("facturae.face.ws")
+        )
+        integration_code = "1234567890"
+        response_ok = client.get_type("ns0:EnviarFacturaResponse")(
+            client.get_type("ns0:Resultado")(codigo="0", descripcion="OK"),
+            client.get_type("ns0:EnviarFactura")(numeroRegistro=integration_code),
+        )
+        self.assertFalse(self.move.exchange_record_ids)
+        with Form(self.move) as f:
+            f.partner_id = self.child
+        with mock.patch("zeep.client.ServiceProxy") as mock_client:
+            mock_client.return_value = DemoService(response_ok)
+
+            self.move.with_context(
+                force_edi_send=True, test_queue_job_no_delay=True
+            ).action_post()
+            self.move.name = "2999/99998"
+            mock_client.assert_not_called()
+            exchange_record = self.move.exchange_record_ids.with_context(
+                _edi_send_break_on_error=True
+            )
+            self.assertEqual(exchange_record.edi_exchange_state, "output_pending")
+            exchange_record.backend_id.exchange_send(exchange_record)
+            self.assertEqual(
+                exchange_record.edi_exchange_state, "output_sent_and_processed"
+            )
+            mock_client.assert_called_once()
+        self.move.refresh()
+        self.assertTrue(self.move.exchange_record_ids)
+        exchange_record = self.move.exchange_record_ids
+
     def test_facturae_face(self):
-        class DemoService(object):
-            def __init__(self, value):
-                self.value = value
-
-            def enviarFactura(self, *args):
-                return self.value
-
-            def anularFactura(self, *args):
-                return self.value
-
-            def consultarFactura(self, *args):
-                return self.value
-
-            def consultarListadoFacturas(self, *args):
-                return self.value
-
         self._activate_certificate(self.certificate_password)
         client = Client(
             wsdl=self.env["ir.config_parameter"].sudo().get_param("facturae.face.ws")
