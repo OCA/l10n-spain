@@ -182,35 +182,36 @@
                             attrs="{'readonly': [('statement_type', '!=', 'C')], 'required': [('statement_type', '=', 'C')]}"
                         />
                     </group>
-                </group>
                 <group
-                    class="oe_subtotal_footer oe_right"
-                    attrs="{'invisible': [('state', '=', 'draft')]}"
-                    colspan="2"
-                >
+                        class="oe_subtotal_footer oe_right"
+                        attrs="{'invisible': [('state', '=', 'draft')]}"
+                        colspan="2"
+                    >
                     <field
-                        name="resultado_liquidacion"
-                        class="oe_subtotal_footer_separator"
-                        widget="monetary"
-                        options="{'currency_field': 'currency_id'}"
-                    />
+                            name="resultado_liquidacion"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
                     <field
-                        name="casilla_88"
-                        class="oe_subtotal_footer_separator"
-                        widget="monetary"
-                        attrs="{'invisible': [('exonerated_390', '=', '2')]}"
-                        options="{'currency_field': 'currency_id'}"
-                    />
+                            name="casilla_88"
+                            class="oe_subtotal_footer_separator"
+                            widget="monetary"
+                            attrs="{'invisible': [('exonerated_390', '=', '2')]}"
+                            options="{'currency_field': 'currency_id'}"
+                        />
                     <field name="result_type" />
                 </group>
-                <group
-                    string="Tax lines"
-                    name="group_tax_lines"
-                    colspan="4"
-                    attrs="{'invisible': [('state', '=', 'draft')]}"
-                >
-                    <field name="tax_line_ids" nolabel="1" readonly="1" />
                 </group>
+                <separator
+                    string="Tax lines"
+                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                />
+                    <field
+                    name="tax_line_ids"
+                    nolabel="1"
+                    readonly="1"
+                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                />
             </group>
             <form position="inside">
                 <div class="oe_chatter">
