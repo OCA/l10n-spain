@@ -22,26 +22,54 @@ msgid "<span>de</span>"
 msgstr "<span>de</span>"
 
 #. module: account_promissory_note_caixabank
-#: model:ir.model.fields,field_description:account_promissory_note_caixabank.field_report_account_promissory_note_caixabank_promissory_footer_cb__display_name
-msgid "Display Name"
-msgstr "Mostrar Nom"
+#: model:ir.model.fields,field_description:account_promissory_note_caixabank.field_account_journal__account_check_printing_layout
+#: model:ir.model.fields,field_description:account_promissory_note_caixabank.field_res_company__account_check_printing_layout
+msgid "Check Layout"
+msgstr ""
 
 #. module: account_promissory_note_caixabank
-#: model:ir.model.fields,field_description:account_promissory_note_caixabank.field_report_account_promissory_note_caixabank_promissory_footer_cb__id
-msgid "ID"
-msgstr "ID"
+#: model:ir.model,name:account_promissory_note_caixabank.model_res_company
+msgid "Companies"
+msgstr ""
 
 #. module: account_promissory_note_caixabank
-#: model:ir.model.fields,field_description:account_promissory_note_caixabank.field_report_account_promissory_note_caixabank_promissory_footer_cb____last_update
-msgid "Last Modified on"
-msgstr "Darrera modificació el"
+#: model:ir.model,name:account_promissory_note_caixabank.model_account_journal
+msgid "Journal"
+msgstr ""
 
 #. module: account_promissory_note_caixabank
 #: model:ir.actions.report,name:account_promissory_note_caixabank.action_report_promissory_footer_cb
-msgid "Payment Promissory Note Caixa Bank"
-msgstr "Pagament de pagaré Caixa Bank"
+msgid "Payment Promissory Note CaixaBank"
+msgstr ""
 
 #. module: account_promissory_note_caixabank
-#: model:ir.model,name:account_promissory_note_caixabank.model_report_account_promissory_note_caixabank_promissory_footer_cb
+#: model:ir.model,name:account_promissory_note_caixabank.model_report_account_promissory_note_caixabank_report_check_cb_a4
 msgid "Promissory Note CaixaBank"
 msgstr "Pagaré CaixaBank"
+
+#. module: account_promissory_note_caixabank
+#: model:ir.model.fields.selection,name:account_promissory_note_caixabank.selection__account_journal__account_check_printing_layout__account_promissory_note_caixabank_action_report_promissory_footer_cb
+#: model:ir.model.fields.selection,name:account_promissory_note_caixabank.selection__res_company__account_check_printing_layout__account_promissory_note_caixabank_action_report_promissory_footer_cb
+msgid "Promissory note CaixaBank"
+msgstr ""
+
+#. module: account_promissory_note_caixabank
+#: model:ir.model.fields,help:account_promissory_note_caixabank.field_account_journal__account_check_printing_layout
+#: model:ir.model.fields,help:account_promissory_note_caixabank.field_res_company__account_check_printing_layout
+msgid ""
+"Select the format corresponding to the check paper you will be printing your "
+"checks on.\n"
+"In order to disable the printing feature, select 'None'."
+msgstr ""
+
+#~ msgid "Display Name"
+#~ msgstr "Mostrar Nom"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Darrera modificació el"
+
+#~ msgid "Payment Promissory Note Caixa Bank"
+#~ msgstr "Pagament de pagaré Caixa Bank"
