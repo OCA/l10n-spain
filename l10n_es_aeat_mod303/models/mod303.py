@@ -287,7 +287,7 @@ class L10nEsAeatMod303Report(models.Model):
     # pylint:disable=missing-return
     @api.depends("date_start", "cuota_compensar")
     def _compute_exception_msg(self):
-        super(L10nEsAeatMod303Report, self)._compute_exception_msg()
+        super()._compute_exception_msg()
         for mod303 in self.filtered(lambda x: x.state != "draft"):
             # Get result from previous declarations, in order to identify if
             # there is an amount to compensate.
@@ -446,7 +446,7 @@ class L10nEsAeatMod303Report(models.Model):
             self.previous_result = 0
 
     def calculate(self):
-        res = super(L10nEsAeatMod303Report, self).calculate()
+        res = super().calculate()
         for mod303 in self:
             prev_reports = mod303._get_previous_fiscalyear_reports(
                 mod303.date_start
@@ -475,7 +475,7 @@ class L10nEsAeatMod303Report(models.Model):
                 msg = _("Select an account for receiving the money")
         if msg:
             raise exceptions.UserError(msg)
-        return super(L10nEsAeatMod303Report, self).button_confirm()
+        return super().button_confirm()
 
     @api.constrains("potential_cuota_compensar", "cuota_compensar")
     def check_qty(self):
@@ -501,7 +501,7 @@ class L10nEsAeatMod303Report(models.Model):
                 or self.period_type not in ("4T", "12")
             ):
                 return self.env["account.move.line"]
-        return super(L10nEsAeatMod303Report, self)._get_tax_lines(
+        return super()._get_tax_lines(
             date_start,
             date_end,
             map_line,
@@ -516,7 +516,7 @@ class L10nEsAeatMod303Report(models.Model):
         if 79 <= map_line.field_number <= 99 or map_line.field_number == 125:
             date_start = date_start.replace(day=1, month=1)
             date_end = date_end.replace(day=31, month=12)
-        return super(L10nEsAeatMod303Report, self)._get_move_line_domain(
+        return super()._get_move_line_domain(
             date_start,
             date_end,
             map_line,
