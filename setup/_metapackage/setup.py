@@ -33,6 +33,7 @@ setuptools.setup(
         'odoo12-addon-l10n_es_aeat_mod347',
         'odoo12-addon-l10n_es_aeat_mod349',
         'odoo12-addon-l10n_es_aeat_mod390',
+        'odoo12-addon-l10n_es_aeat_mod390_vat_prorate',
         'odoo12-addon-l10n_es_aeat_partner_check',
         'odoo12-addon-l10n_es_aeat_sii',
         'odoo12-addon-l10n_es_aeat_sii_extra_data',
