@@ -441,7 +441,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_needaction
-#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
@@ -452,6 +451,7 @@ msgid "If checked, some messages have a delivery error."
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod303/models/mod303.py:0
 #, python-format
 msgid ""
@@ -626,11 +626,6 @@ msgid "Number of messages with delivery error"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_unread_counter
-msgid "Number of unread messages"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form
 msgid "Otras - 1ª actividad"
 msgstr ""
@@ -721,6 +716,7 @@ msgid "SMS Delivery error"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod303/models/mod303.py:0
 #, python-format
 msgid "Select an account for receiving the money"
@@ -775,6 +771,7 @@ msgstr ""
 "común. Os demáis suxeitos pasivos consignarán nesta casa o 100%"
 
 #. module: l10n_es_aeat_mod303
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod303/models/mod303.py:0
 #, python-format
 msgid "The fee to compensate must be indicated as a positive number."
@@ -807,16 +804,6 @@ msgstr "A devolver"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_unread
-msgid "Unread Messages"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_unread_counter
-msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
