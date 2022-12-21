@@ -88,7 +88,24 @@ class AccountStatementImport(models.TransientModel):
         """23 - Registros complementarios de concepto (opcionales y hasta un
         máximo de 5)"""
         conceptos = st_line.setdefault("conceptos", {})
-        conceptos[line[2:4]] = (line[4:39].strip(), line[39:].strip())
+        if line[2:4] == "01":
+            conceptos[line[2:4]] = (line[4:70].strip(), line[70:].strip())
+        if line[2:4] == "02":
+            conceptos[line[2:4]] = (line[4:39].strip(), line[39:].strip())
+        if line[2:4] == "03":
+            conceptos[line[2:4]] = (
+                line[4:8].strip(),
+                line[8:12].strip(),
+                line[12:].strip(),
+            )
+        if line[2:4] == "04":
+            conceptos[line[2:4]] = (line[4:76].strip(), line[76:].strip())
+        if line[2:4] == "05":
+            conceptos[line[2:4]] = (
+                line[4:6].strip(),
+                line[6:40].strip(),
+                line[40:].strip(),
+            )
         return st_line
 
     def _process_record_24(self, st_line, line):
