@@ -58,14 +58,16 @@
                         />
                     </group>
                 </group>
-                <group
+                <separator
                     string="Tax lines"
-                    name="group_tax_lines"
-                    colspan="4"
                     attrs="{'invisible': [('state', '=', 'draft')]}"
-                >
-                    <field name="tax_line_ids" nolabel="1" readonly="1" />
-                </group>
+                />
+                <field
+                    name="tax_line_ids"
+                    nolabel="1"
+                    readonly="1"
+                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                />
             </group>
             <form position="inside">
                 <div class="oe_chatter">

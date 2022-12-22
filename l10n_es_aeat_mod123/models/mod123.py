@@ -90,7 +90,7 @@ class L10nEsAeatMod123Report(models.Model):
             report.casilla_08 = report.casilla_06 + report.casilla_07
 
     def calculate(self):
-        pred = super(L10nEsAeatMod123Report, self).calculate()
+        pred = super().calculate()
         move_lines02 = self.tax_line_ids.filtered(lambda r: r.field_number == 2)
         move_lines03 = self.tax_line_ids.filtered(lambda r: r.field_number == 3)
         self.casilla_02 = move_lines02.amount
