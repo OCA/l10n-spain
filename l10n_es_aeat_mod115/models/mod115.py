@@ -135,11 +135,11 @@ class L10nEsAeatMod115Report(models.Model):
                 )
         if msg:
             raise UserError(msg)
-        return super(L10nEsAeatMod115Report, self).button_confirm()
+        return super().button_confirm()
 
     def calculate(self):
-        res = super(L10nEsAeatMod115Report, self).calculate()
-        self.refresh()
+        res = super().calculate()
+        self.invalidate_recordset()
         for rec in self:
             if rec.casilla_05 <= 0.0:
                 rec.tipo_declaracion = "N"
