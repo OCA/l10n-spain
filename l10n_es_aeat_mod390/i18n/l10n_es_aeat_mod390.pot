@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -277,6 +277,7 @@ msgid "Código actividad principal"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod390/models/mod390.py:0
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__first_representative_notary
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__second_representative_notary
@@ -394,7 +395,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_needaction
-#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
@@ -533,6 +533,7 @@ msgid "Nombre del tercer representante"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod390/models/mod390.py:0
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__first_representative_name
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__second_representative_name
@@ -574,11 +575,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
-
-#. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_unread_counter
-msgid "Number of unread messages"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
@@ -725,6 +721,7 @@ msgid "Tercer representante"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod390/models/mod390.py:0
 #, python-format
 msgid ""
@@ -743,16 +740,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
-
-#. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_unread
-msgid "Unread Messages"
-msgstr ""
-
-#. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_unread_counter
-msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
@@ -776,6 +763,7 @@ msgid "Year"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod390/models/mod390.py:0
 #, python-format
 msgid "You cannot make complementary reports for this model."
