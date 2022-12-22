@@ -5,10 +5,10 @@
 
 {
     "name": "AEAT modelo 115",
-    "version": "15.0.1.0.0",
+    "version": "16.0.1.0.0",
     "development_status": "Mature",
     "category": "Localisation/Accounting",
-    "author": "AvanzOSC," "Tecnativa," "Odoo Community Association (OCA)",
+    "author": "AvanzOSC, Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "depends": ["l10n_es", "l10n_es_aeat"],
