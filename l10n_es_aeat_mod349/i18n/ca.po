@@ -138,6 +138,7 @@ msgid "Aeat 349 Map Line"
 msgstr "Línia de mapa Aeat 349"
 
 #. module: l10n_es_aeat_mod349
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #, python-format
 msgid "All partner records fields (country, VAT number) must be filled."
@@ -145,6 +146,7 @@ msgstr ""
 "S'han d'omplir tots els camps dels registres de socis (país, número d'IVA)."
 
 #. module: l10n_es_aeat_mod349
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #, python-format
 msgid "All partner refunds fields (country, VAT number) must be filled."
@@ -219,6 +221,7 @@ msgid "Contact Email"
 msgstr "Correu electrònic de contacte"
 
 #. module: l10n_es_aeat_mod349
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #, python-format
 msgid "Contact name (Full name) must have name and surname"
@@ -409,7 +412,6 @@ msgstr "Icona per indicar una activitat d'excepció."
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_needaction
-#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Si està marcat, els missatges nous requereixen la vostra atenció."
 
@@ -529,11 +531,6 @@ msgid "Messages"
 msgstr "Missatges"
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__model_id
-msgid "Model"
-msgstr "Model"
-
-#. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__number
 msgid "Model number"
 msgstr "Número de model"
@@ -569,6 +566,7 @@ msgid "Next Activity Type"
 msgstr "Tipus d'activitat següent"
 
 #. module: l10n_es_aeat_mod349
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #, python-format
 msgid "No Tax Mapping was found"
@@ -593,11 +591,6 @@ msgstr "Número de missatges que requereixen una acció"
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr "Número de missatges amb error d'enviament"
-
-#. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_unread_counter
-msgid "Number of unread messages"
-msgstr "Número de missatges no llegits"
 
 #. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_record_head
@@ -860,12 +853,6 @@ msgid "Templates for Taxes"
 msgstr "Plantilles per a impostos"
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__move_id
-#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_detail__move_id
-msgid "The move of this entry line."
-msgstr "El moviment d'aquesta línia d'entrada."
-
-#. module: l10n_es_aeat_mod349
 #: model:ir.model.constraint,message:l10n_es_aeat_mod349.constraint_aeat_349_map_line_unique_operation_key
 msgid "There's already another record with the same operation key"
 msgstr "Ja hi ha un altre registre amb la mateixa clau d'operació"
@@ -926,16 +913,6 @@ msgid "Type of the exception activity on record."
 msgstr "Tipus d'activitat d'excepció registrada."
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_unread
-msgid "Unread Messages"
-msgstr "Missatges no llegits"
-
-#. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Comptador de missatges no llegits"
-
-#. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record__partner_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund__partner_vat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_record_head
@@ -964,18 +941,21 @@ msgid "Website communication history"
 msgstr "Historial de comunicacions de la web"
 
 #. module: l10n_es_aeat_mod349
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #, python-format
 msgid "Without Country"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #, python-format
 msgid "Without Total Operation Amount"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #, python-format
 msgid "Without VAT"
@@ -991,3 +971,18 @@ msgstr "Any"
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod349.action_aeat_349_mapping
 msgid "aeat 349 Map"
 msgstr "Mapa AEAT 349"
+
+#~ msgid "Model"
+#~ msgstr "Model"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Número de missatges no llegits"
+
+#~ msgid "The move of this entry line."
+#~ msgstr "El moviment d'aquesta línia d'entrada."
+
+#~ msgid "Unread Messages"
+#~ msgstr "Missatges no llegits"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Comptador de missatges no llegits"
