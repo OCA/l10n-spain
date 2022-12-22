@@ -319,7 +319,6 @@ msgstr "Icona per indicar una activitat d’excepció."
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__message_needaction
-#: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 "Si està marcat, hi ha missatges nous que requereixen la vostra atenció."
@@ -543,11 +542,6 @@ msgstr "Nombre de missatges que requereixen una acció"
 #: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr "Nombre de missatges amb error d'enviament"
-
-#. module: l10n_es_vat_book
-#: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__message_unread_counter
-msgid "Number of unread messages"
-msgstr "Nombre de missatges sense llegir"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__partner_id
@@ -796,12 +790,14 @@ msgstr ""
 "regularitzen quan es publica l'informe."
 
 #. module: l10n_es_vat_book
+#. odoo-python
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
 #, python-format
 msgid "This book has warnings. Fix it before confirm"
 msgstr "Aquest llibre té avisos. Corregiu-los abans de confirmar"
 
 #. module: l10n_es_vat_book
+#. odoo-python
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
 #, python-format
 msgid "This company doesn't have VAT"
@@ -836,16 +832,6 @@ msgstr "Tipus d'activitat d'excepció registrada."
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__fee_type_xlsx_column
 msgid "Type xlsx column"
 msgstr "Columna xlsx tipus"
-
-#. module: l10n_es_vat_book
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__message_unread
-msgid "Unread Messages"
-msgstr "Missatges sense llegir"
-
-#. module: l10n_es_vat_book
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Comptador de missatges sense llegir"
 
 #. module: l10n_es_vat_book
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
@@ -922,12 +908,14 @@ msgid "Website communication history"
 msgstr "Historial de comunicació del web"
 
 #. module: l10n_es_vat_book
+#. odoo-python
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
 #, python-format
 msgid "Without Partner"
 msgstr "Sense partner"
 
 #. module: l10n_es_vat_book
+#. odoo-python
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
 #, python-format
 msgid "Without VAT"
@@ -942,6 +930,15 @@ msgstr "Any"
 #: model:ir.actions.report,print_report_name:l10n_es_vat_book.l10n_es_vat_book_xlsx
 msgid "object.get_report_file_name()"
 msgstr "object.get_report_file_name()"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Nombre de missatges sense llegir"
+
+#~ msgid "Unread Messages"
+#~ msgstr "Missatges sense llegir"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Comptador de missatges sense llegir"
 
 #~ msgid "You have"
 #~ msgstr "Teniu"
