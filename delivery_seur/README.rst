@@ -46,6 +46,13 @@ You have to set Seur carrier in the stock picking you want to ship:
 
  * When the picking is 'Transferred', it appears a *Create Shipping Label* button. Just push it, and if all went well the label will be 'attached'
 
+Known issues / Roadmap
+======================
+
+- As soon as the legacy API is shutdown it will be removed from the module and all
+  the common methods will be merged in a final refactor. Not much will be left from
+  the original.
+
 Bug Tracker
 ===========
 
@@ -64,6 +71,7 @@ Authors
 
 * Trey (www.trey.es)
 * FactorLibre
+* Tecnativa
 
 Contributors
 ~~~~~~~~~~~~

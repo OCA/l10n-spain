@@ -9,11 +9,39 @@ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
         <field name="model">delivery.carrier</field>
         <field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
         <field name="arch" type="xml">
+            <field name="delivery_type" position="after">
+                <field
+                    name="seur_api"
+                    attrs="{'invisible': [('delivery_type', '!=', 'seur')]}"
+                />
+            </field>
             <xpath expr="//notebook" position="inside">
                 <page
                     string="Integration"
                     attrs="{'invisible': ['|', ('delivery_type', '!=', 'seur'), ('integration_level', '!=', 'rate_and_ship')]}"
                 >
+                    <group
+                        attrs="{'invisible': [('seur_api', '!=', 'atlas')], 'required': [('delivery_type', '=', 'seur'), ('seur_api', '=', 'atlas'), ('integration_level', '=', 'rate_and_ship')]}"
+                    >
+                        <group string="ATLAS Credentials">
+                            <field name="seur_atlas_username" />
+                            <field name="seur_atlas_password" widget="password" />
+                            <field name="seur_atlas_secret" widget="password" />
+                            <field name="seur_atlas_client" />
+                        </group>
+                    </group>
+                    <group
+                        attrs="{'invisible': [('seur_api', '!=', 'legacy')], 'required': [('delivery_type', '=', 'seur'), ('seur_api', '=', 'legacy'), ('integration_level', '=', 'rate_and_ship')]}"
+                    >
+                        <group string="CIT Credentials">
+                            <field name="seur_cit_username" />
+                            <field name="seur_cit_password" />
+                        </group>
+                        <group string="WS Credentials">
+                            <field name="seur_ws_username" />
+                            <field name="seur_ws_password" />
+                        </group>
+                    </group>
                     <group
                         attrs="{'required': [('delivery_type', '=', 'seur'), ('integration_level', '=', 'rate_and_ship')]}"
                     >
@@ -23,18 +51,10 @@ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
                             <field name="seur_accounting_code" />
                             <field name="seur_integration_code" />
                         </group>
-                        <group string="CIT Credentials">
-                            <field name="seur_cit_username" />
-                            <field name="seur_cit_password" />
-                        </group>
                         <group string="Service">
                             <field name="seur_service_code" />
                             <field name="seur_product_code" />
                             <field name="seur_send_sms" />
-                        </group>
-                        <group string="WS Credentials">
-                            <field name="seur_ws_username" />
-                            <field name="seur_ws_password" />
                         </group>
                         <group string="Label">
                             <field name="seur_printer" />

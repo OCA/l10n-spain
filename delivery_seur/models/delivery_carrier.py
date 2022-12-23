@@ -5,9 +5,13 @@
 import base64
 import logging
 
-from odoo import _, exceptions, fields, models
+from dateutil.parser import isoparse
 
+from odoo import _, api, exceptions, fields, models
+
+from .seur_master_data import TRACKING_STATES_MAP
 from .seur_request import SeurRequest
+from .seur_request_atlas import SeurAtlasRequest
 
 _logger = logging.getLogger(__name__)
 
@@ -17,6 +21,10 @@ class DeliveryCarrier(models.Model):
 
     delivery_type = fields.Selection(
         selection_add=[("seur", "Seur")], ondelete={"seur": "set default"}
+    )
+    seur_api = fields.Selection(
+        selection=[("atlas", "Atlas"), ("legacy", "Legacy")],
+        default="atlas",
     )
     seur_vat = fields.Char(
         string="VAT",
@@ -65,6 +73,10 @@ class DeliveryCarrier(models.Model):
         default="031",
         string="Service code",
     )
+    seur_atlas_username = fields.Char()
+    seur_atlas_password = fields.Char()
+    seur_atlas_secret = fields.Char()
+    seur_atlas_client = fields.Char()
     seur_product_code = fields.Selection(
         selection=[
             ("002", "ESTANDAR"),
@@ -103,6 +115,10 @@ class DeliveryCarrier(models.Model):
         default="2C",
         string="Label size",
     )
+    seur_atlas_label_format = fields.Selection(
+        selection=[("PDF", "PDF"), ("ZPL", "ZPL"), ("A4_3", "Die-cut A4")],
+        default="PDF",
+    )
     seur_printer = fields.Selection(
         selection=[
             ("DATAMAX:E CLASS 4203", "DATAMAX E CLASS 4203"),
@@ -116,6 +132,29 @@ class DeliveryCarrier(models.Model):
         string="Printer",
         default="ZEBRA:LP2844-Z",
     )
+
+    def _seur_atlas_request(self):
+        """Get the credentials for SEUR ATLAS API
+
+        :return SeurAtlasRequest: SEUR Atlas Request object
+        """
+        return SeurAtlasRequest(
+            user=self.seur_atlas_username,
+            password=self.seur_atlas_password,
+            secret=self.seur_atlas_secret,
+            client_id=self.seur_atlas_client,
+            acc_number=self.seur_accounting_code,
+            id_number=self.seur_vat,
+        )
+
+    @api.model
+    def _seur_atlas_log_request(self, seur_atlas_request):
+        """When debug is active requests/responses will be logged in ir.logging
+
+        :param seur_atlas_request seur_atlas_request: ATLAS Express request object
+        """
+        self.log_xml(seur_atlas_request.last_request, "seur_request")
+        self.log_xml(seur_atlas_request.last_response, "seur_response")
 
     def seur_test_connection(self):
         self.ensure_one()
@@ -134,8 +173,91 @@ class DeliveryCarrier(models.Model):
         """
         return label
 
-    def seur_create_shipping(self, picking):
-        self.ensure_one()
+    def _prepare_seur_atlas_shipping(self, picking):
+        """The payload isn't compatible with the legacy API so a brand new method
+        has to be made"""
+        partner = picking.partner_id
+        partner_name = partner.display_name
+        # When we get a specific delivery address we want to prioritize its
+        # name over the commercial one
+        if partner.parent_id and partner.type == "delivery" and partner.name:
+            partner_name = "{} ({})".format(
+                partner.name, partner.commercial_partner_id.name
+            )
+        partner_att = (
+            partner.name if partner.parent_id and partner.type == "contact" else ""
+        )
+        company = picking.company_id
+        phone = partner.phone and partner.phone.replace(" ", "") or ""
+        mobile = partner.mobile and partner.mobile.replace(" ", "") or ""
+        weight = picking.shipping_weight
+        return {
+            "serviceCode": int(self.seur_service_code),
+            "productCode": int(self.seur_product_code),
+            "charges": "P",  # ??
+            "reference": f"picking.name-{fields.Datetime.now().strftime('%Y%m%d%H%M%S')}",
+            "receiver": {
+                "name": partner_name,
+                "email": partner.email,
+                "phone": phone or mobile,
+                "contactName": partner_att,
+                "address": {
+                    "streetName": " ".join(
+                        [s for s in [partner.street, partner.street2] if s]
+                    ),
+                    "cityName": partner.city,
+                    "postalCode": partner.zip,
+                    "country": (partner.country_id and partner.country_id.code or ""),
+                },
+            },
+            "sender": {
+                "name": company.name,
+                "email": company.email,
+                "phone": company.phone,
+                "accountNumber": self.seur_accounting_code,
+                "contactName": company.name,
+                "address": {
+                    "streetName": " ".join(
+                        [s for s in [company.street, company.street2] if s]
+                    ),
+                    "cityName": company.city,
+                    "postalCode": company.zip,
+                    "country": "ES",
+                },
+            },
+            "comments": picking.note,
+            "parcels": [{"weight": weight, "width": 1, "height": 1, "length": 1}],
+        }
+
+    def seur_atlas_labels(self, code, seur_request=None):
+        """"""
+        # Allow to reuse the request, like when we create the shipping
+        if not seur_request:
+            seur_request = self._seur_atlas_request()
+        response = {}
+        try:
+            response = seur_request.labels(code=code)
+        except Exception as e:
+            raise (e)
+        finally:
+            self._seur_atlas_log_request(seur_request)
+        return response
+
+    def seur_atlas_create_shipping(self, picking):
+        """"""
+        payload = self._prepare_seur_atlas_shipping(picking)
+        seur_request = self._seur_atlas_request()
+        response = {}
+        try:
+            response = seur_request.shipments(payload=payload)
+        except Exception as e:
+            raise (e)
+        finally:
+            self._seur_atlas_log_request(seur_request)
+        return response
+
+    def seur_legacy_create_shipping(self, picking):
+        """Use legacy"""
         seur_request = SeurRequest(self, picking)
         res = seur_request.create_shipping()
         # The error message could be more complex than a simple 'ERROR' string.
@@ -144,16 +266,26 @@ class DeliveryCarrier(models.Model):
         error = res["mensaje"] == "ERROR" or not res.get("ECB", {}).get("string", [])
         if error:
             raise exceptions.UserError(_("SEUR exception: %s") % res["mensaje"])
-        picking.carrier_tracking_ref = res["ECB"]["string"][0]
+        return {
+            "shipmentCode": res["ECB"]["string"][0],
+            "label": (
+                res.get("traza") if self.seur_label_format == "txt" else res.get("PDF")
+            ),
+        }
+
+    def seur_create_shipping(self, picking):
+        self.ensure_one()
+        res = getattr(self, f"seur_{self.seur_api}_create_shipping")(picking)
+        picking.carrier_tracking_ref = res["shipmentCode"]
         if self.seur_label_format == "txt":
-            label_content = self._zebra_label_custom(res["traza"])
+            label_content = self._zebra_label_custom(res["zebra_label"])
             # SEUR sends the label in spanish format (^CI10) so we need
             # to encode the file in such ISO as well so special characters
             # print fine
             label_content = label_content.encode("iso-8859-15")
             label_content = base64.b64encode(label_content)
         else:
-            label_content = res["PDF"]
+            label_content = res["pdf_label"]
         filename = "seur_{}.{}".format(
             picking.carrier_tracking_ref, self.seur_label_format
         )
@@ -175,19 +307,46 @@ class DeliveryCarrier(models.Model):
         res["exact_price"] = 0
         return res
 
+    @api.model
+    def _seur_format_tracking(self, tracking):
+        """Helper to forma tracking history strings
+
+        :param dict tracking: SEUR tracking values
+        :return str: Tracking line
+        """
+        return "{} - [{}] {}".format(
+            fields.Datetime.to_string(isoparse(tracking["situationDate"])),
+            tracking["eventCode"],
+            tracking["description"],
+        )
+
     def seur_tracking_state_update(self, picking):
         self.ensure_one()
-        if not self.seur_ws_username:
+        if self.seur_api == "legacy":
             picking.tracking_state_history = _(
                 "Status cannot be checked, enter webservice carrier credentials"
             )
             return
-
-        seur_request = SeurRequest(self, picking)
-        res = seur_request.tracking_state_update()
-        picking.tracking_state_history = res["tracking_state_history"]
-        if "delivery_state" in res:
-            picking.delivery_state = res["delivery_state"]
+        seur_request = self._seur_atlas_request()
+        try:
+            trackings = seur_request.tracking_services__extended(
+                **{"refType": "REFERENCE", "ref": picking.name}
+            )
+        except Exception as e:
+            raise (e)
+        finally:
+            self._seur_atlas_log_request(seur_request)
+        # We won't have tracking states when the shipping is just created
+        if not trackings:
+            return
+        picking.tracking_state_history = "\n".join(
+            [self._seur_format_tracking(tracking) for tracking in trackings]
+        )
+        current_tracking = trackings.pop()
+        picking.tracking_state = self._seur_format_tracking(current_tracking)
+        picking.delivery_state = TRACKING_STATES_MAP.get(
+            current_tracking["eventCode"], "incidence"
+        )
 
     def seur_cancel_shipment(self, pickings):
         for picking in pickings:
@@ -206,7 +365,7 @@ class DeliveryCarrier(models.Model):
         )
 
     def seur_rate_shipment(self, order):
-        """There's no public API so another price method should be used"""
+        """TODO: Implement rate shipments with ATLAS API"""
         raise NotImplementedError(
             _(
                 """

@@ -1,10 +1,12 @@
 # Copyright 2020 Trey, Kilobytes de Soluciones
 # Copyright 2020 FactorLibre
+# Copyright 2020-22 Tecnativa
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Delivery SEUR",
     "summary": "Integrate SEUR webservice",
-    "author": "Trey (www.trey.es), FactorLibre, Odoo Community Association (OCA)",
+    "author": "Trey (www.trey.es), FactorLibre, Tecnativa, "
+    "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "category": "Delivery",
