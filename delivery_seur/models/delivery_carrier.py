@@ -5,9 +5,13 @@
 import base64
 import logging
 
-from odoo import _, exceptions, fields, models
+from dateutil.parser import isoparse
 
+from odoo import _, api, exceptions, fields, models
+
+from .seur_master_data import TRACKING_STATES_MAP
 from .seur_request import SeurRequest
+from .seur_request_atlas import SeurAtlasRequest
 
 _logger = logging.getLogger(__name__)
 
@@ -53,6 +57,11 @@ class DeliveryCarrier(models.Model):
         default="031",
         string="Service code",
     )
+    seur_atlas_username = fields.Char()
+    seur_atlas_password = fields.Char()
+    seur_atlas_secret = fields.Char()
+    seur_atlas_client = fields.Char()
+    seur_atlas_enabled = fields.Boolean(compute="_compute_seur_atlas_enabled")
     seur_product_code = fields.Selection(
         selection=[
             ("002", "ESTANDAR"),
@@ -104,6 +113,40 @@ class DeliveryCarrier(models.Model):
         default="ZEBRA:LP2844-Z",
     )
     seur_use_packages_from_picking = fields.Boolean(string="Use packages from picking")
+
+    def _seur_atlas_request(self):
+        """Get the credentials for SEUR ATLAS API
+
+        :return SeurAtlasRequest: SEUR Atlas Request object
+        """
+        return SeurAtlasRequest(
+            user=self.seur_atlas_username,
+            password=self.seur_atlas_password,
+            secret=self.seur_atlas_secret,
+            client_id=self.seur_atlas_client,
+            acc_number=self.seur_accounting_code,
+            id_number=self.seur_vat,
+        )
+
+    @api.model
+    def _seur_atlas_log_request(self, seur_atlas_request):
+        """When debug is active requests/responses will be logged in ir.logging
+
+        :param seur_atlas_request seur_atlas_request: ATLAS Express request object
+        """
+        self.log_xml(seur_atlas_request.last_request, "seur_request")
+        self.log_xml(seur_atlas_request.last_response, "seur_response")
+
+    def _compute_seur_atlas_enabled(self):
+        """Whether or not the carrier can do operations with ATLAS"""
+        self.seur_atlas_enabled = False
+        for carrier in self:
+            carrier.seur_atlas_enabled = (
+                carrier.seur_atlas_username
+                and carrier.seur_atlas_password
+                and carrier.seur_atlas_secret
+                and carrier.seur_atlas_client
+            )
 
     def seur_test_connection(self):
         self.ensure_one()
@@ -163,22 +206,47 @@ class DeliveryCarrier(models.Model):
         res["exact_price"] = 0
         return res
 
+    @api.model
+    def _seur_format_tracking(self, tracking):
+        """Helper to forma tracking history strings
+
+        :param dict tracking: SEUR tracking values
+        :return str: Tracking line
+        """
+        return "{} - [{}] {}".format(
+            fields.Datetime.to_string(isoparse(tracking["situationDate"])),
+            tracking["eventCode"],
+            tracking["description"],
+        )
+
     def seur_tracking_state_update(self, picking):
         self.ensure_one()
-        if not self.seur_ws_username:
+        if not self.seur_atlas_enabled:
             picking.tracking_state_history = _(
                 "Status cannot be checked, enter webservice carrier credentials"
             )
             return
 
-        seur_request = SeurRequest(self, picking)
-        res = seur_request.tracking_state_update()
+        seur_request = self._seur_atlas_request()
+        try:
+            trackings = seur_request.tracking_services__extended(
+                **{"refType": "REFERENCE", "ref": picking.name}
+            )
+        except Exception as e:
+            raise (e)
+        finally:
+            self._seur_atlas_log_request(seur_request)
         # We won't have tracking states when the shipping is just created
-        if not res:
+        if not trackings:
             return
-        picking.tracking_state_history = res["tracking_state_history"]
-        if "delivery_state" in res:
-            picking.delivery_state = res["delivery_state"]
+        picking.tracking_state_history = "\n".join(
+            [self._seur_format_tracking(tracking) for tracking in trackings]
+        )
+        current_tracking = trackings.pop()
+        picking.tracking_state = self._seur_format_tracking(current_tracking)
+        picking.delivery_state = TRACKING_STATES_MAP.get(
+            current_tracking["eventCode"], "incidence"
+        )
 
     def seur_cancel_shipment(self, pickings):
         for picking in pickings:
@@ -197,7 +265,7 @@ class DeliveryCarrier(models.Model):
         )
 
     def seur_rate_shipment(self, order):
-        """There's no public API so another price method should be used"""
+        """TODO: Implement rate shipments with ATLAS API"""
         raise NotImplementedError(
             _(
                 """

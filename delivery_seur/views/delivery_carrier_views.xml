@@ -27,6 +27,12 @@ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
                             <field name="seur_cit_username" />
                             <field name="seur_cit_password" />
                         </group>
+                        <group string="ATLAS Credentials">
+                            <field name="seur_atlas_username" />
+                            <field name="seur_atlas_password" widget="password" />
+                            <field name="seur_atlas_secret" widget="password" />
+                            <field name="seur_atlas_client" />
+                        </group>
                         <group string="Service">
                             <field name="seur_service_code" />
                             <field name="seur_product_code" />
