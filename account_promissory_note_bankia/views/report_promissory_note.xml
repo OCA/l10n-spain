@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <template
-        id="promissory_footer_bkia"
-        inherit_id="account_check_printing_report_base.report_check_base_a4"
+        id="promissory_footer_bkia_document"
+        inherit_id="account_check_printing_report_base.report_check_base_a4_document"
         primary="True"
     >
         <xpath expr="//div[@id='check_body']" position="after">
+            <!-- Force the language of this part to Spanish. -->
+            <t t-set="o" t-value="o.with_context(lang='es_ES')" />
             <div style="font-size:12px;">
                 <!-- TODO: set due date -->
                 <t t-set="due_date" t-value="o.date_due" />
@@ -45,16 +47,26 @@
                         <span t-field="o.company_id.city" />
                     </div>
                     <div style="position:absolute; top:259mm; left:158mm;">
-                        <span t-field="o.payment_date" t-options="{'format': 'd'}" />
+                        <span t-field="o.date" t-options="{'format': 'd'}" />
                     </div>
                     <div style="position:absolute; top:259mm; left:173mm;">
-                        <span t-field="o.payment_date" t-options="{'format': 'MMMM'}" />
+                        <span t-field="o.date" t-options="{'format': 'MMMM'}" />
                     </div>
                     <div style="position:absolute; top:259mm; left:228mm;">
-                        <span t-field="o.payment_date" t-options="{'format': 'YYYY'}" />
+                        <span t-field="o.date" t-options="{'format': 'YYYY'}" />
                     </div>
                 </div>
             </div>
         </xpath>
+    </template>
+    <template id="promissory_footer_bkia">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t
+                    t-call="account_promissory_note_bankia.promissory_footer_bkia_document"
+                    t-lang="o.partner_id.lang"
+                />
+            </t>
+        </t>
     </template>
 </odoo>
