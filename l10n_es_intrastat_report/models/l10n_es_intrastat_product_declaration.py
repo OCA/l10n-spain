@@ -48,27 +48,26 @@ class L10nEsIntrastatProductDeclaration(models.Model):
     def _gather_invoices(self, notedict):
         old_lines = super()._gather_invoices(notedict)
         lines = []
-        product_model = self.env["product.product"]
+        move_line_model = self.env["account.move.line"]
         for line in old_lines:
             if self.type == "dispatches" and int(self.year) >= 2022:
                 if not line["product_origin_country_id"]:
-                    product = product_model.browse(line["product_id"])
-                    note = (
-                        "\n"
-                        + _("Missing origin country on product %s.")
-                        % product.name_get()[0][1]
-                    )
-                    self._note += note
+                    inv_line = move_line_model.browse(line["invoice_line_id"])
+                    line_notes = [
+                        _("Missing origin country on product %s. ")
+                        % (inv_line.product_id.display_name)
+                    ]
+                    self._format_line_note(inv_line, notedict, line_notes)
                     continue
             lines.append(line)
         return lines
 
-    def _update_computation_line_vals(self, inv_line, line_vals):
-        super()._update_computation_line_vals(inv_line, line_vals)
+    def _update_computation_line_vals(self, inv_line, line_vals, notedict):
+        super()._update_computation_line_vals(inv_line, line_vals, notedict)
         intrastat_state = self._get_intrastat_state(inv_line)
         if intrastat_state:
             line_vals["intrastat_state_id"] = intrastat_state.id
-        incoterm_id = self._get_incoterm(inv_line)
+        incoterm_id = self._get_incoterm(inv_line, notedict)
         if incoterm_id:
             line_vals["incoterm_id"] = incoterm_id.id
         if self.type == "dispatches" and int(self.year) >= 2022:
@@ -76,11 +75,14 @@ class L10nEsIntrastatProductDeclaration(models.Model):
                 inv_line.move_id.partner_shipping_id.vat or "QV999999999999"
             )
             if not inv_line.move_id.partner_shipping_id.vat:
-                note = (
-                    "\n"
-                    + _("Missing partner vat on invoice %s.") % inv_line.move_id.name
-                )
-                self._note += note
+                note = [
+                    (
+                        "\n"
+                        + _("Missing partner vat on invoice %s.")
+                        % inv_line.move_id.name
+                    )
+                ]
+                self._format_line_note(inv_line, notedict, note)
 
     def _gather_invoices_init(self, notedict):
         if self.company_id.country_id.code != "ES":
