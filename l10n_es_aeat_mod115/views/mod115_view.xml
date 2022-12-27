@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_l10n_es_aeat_mod115_report_tree" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod115.report.tree</field>
+        <field name="model">l10n.es.aeat.mod115.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree" />
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="string">AEAT 115 reports</attribute>
+            </tree>
+            <field name="period_type" position="after">
+                <field name="casilla_03" />
+                <field name="casilla_04" />
+                <field name="casilla_05" />
+            </field>
+        </field>
+    </record>
+    <record id="view_l10n_es_aeat_mod115_report_form" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod115.report.form</field>
+        <field name="model">l10n.es.aeat.mod115.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
+        <field name="arch" type="xml">
+            <field name="previous_number" position="after">
+                <field
+                    name="tipo_declaracion_positiva"
+                    string="Result type"
+                    attrs="{'invisible': [('casilla_05', '&lt;=', 0.0)]}"
+                />
+                <field
+                    name="tipo_declaracion_negativa"
+                    string="Result type"
+                    attrs="{'invisible': [('casilla_05', '&gt;', 0.0)]}"
+                />
+                <field name="tipo_declaracion" invisible="True" />
+            </field>
+            <group name="group_declaration" position="after">
+                <group
+                    string="Result"
+                    name="group_result"
+                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    colspan="4"
+                >
+                    <group string="Amounts retained">
+                        <field name="casilla_01" />
+                        <field
+                            name="casilla_03"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                    <group string="Totals">
+                        <field
+                            name="casilla_04"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                            attrs="{'readonly': ['|', ('state', '!=', 'calculated'), ('statement_type', '!=', 'C')]}"
+                        />
+                        <field
+                            name="casilla_05"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                    <separator
+                        string="Tax lines"
+                        attrs="{'invisible': [('state', '=', 'draft')]}"
+                    />
+                    <field
+                        name="tax_line_ids"
+                        nolabel="1"
+                        readonly="1"
+                        attrs="{'invisible': [('state', '=', 'draft')]}"
+                    />
+                </group>
+            </group>
+            <field name="partner_bank_id" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'required': [('tipo_declaracion', 'in', ('U', 'N',))]}</attribute>
+            </field>
+            <form position="inside">
+                <div class="oe_chatter">
+                    <field
+                        name="message_follower_ids"
+                        widget="mail_followers"
+                        groups="base.group_user"
+                    />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="action_l10n_es_aeat_mod115_report" model="ir.actions.act_window">
+        <field name="name">AEAT model 115</field>
+        <field name="res_model">l10n.es.aeat.mod115.report</field>
+        <field name="view_mode">form,tree</field>
+        <field name="help">Create and query AEAT Model 115 reports.</field>
+    </record>
+    <record
+        id="action_l10n_es_aeat_mod115_report_tree"
+        model="ir.actions.act_window.view"
+    >
+        <field name="sequence" eval="2" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod115_report_tree" />
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod115_report" />
+    </record>
+    <record
+        id="action_l10n_es_aeat_mod115_report_form"
+        model="ir.actions.act_window.view"
+    >
+        <field name="sequence" eval="3" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod115_report_form" />
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod115_report" />
+    </record>
+    <menuitem
+        id="menu_aeat_mod115_report"
+        parent="l10n_es_aeat.menu_root_aeat"
+        action="action_l10n_es_aeat_mod115_report"
+        sequence="115"
+        name="AEAT 115 model"
+    />
+</odoo>
