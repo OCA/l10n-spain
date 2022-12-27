@@ -450,7 +450,6 @@ msgstr "Icona per indicar una activitat d'excepció."
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_needaction
-#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Si està marcat, els missatges nous requereixen la vostra atenció."
 
@@ -461,6 +460,7 @@ msgid "If checked, some messages have a delivery error."
 msgstr "Si està marcat, alguns missatges tenen un error d'entrega."
 
 #. module: l10n_es_aeat_mod303
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod303/models/mod303.py:0
 #, python-format
 msgid ""
@@ -644,11 +644,6 @@ msgid "Number of messages with delivery error"
 msgstr "Número de missatges amb error d'enviament"
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_unread_counter
-msgid "Number of unread messages"
-msgstr "Número de missatges no llegits"
-
-#. module: l10n_es_aeat_mod303
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form
 msgid "Otras - 1ª actividad"
 msgstr "Altres - 1a activitat"
@@ -739,6 +734,7 @@ msgid "SMS Delivery error"
 msgstr "Error d'entrega d'SMS"
 
 #. module: l10n_es_aeat_mod303
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod303/models/mod303.py:0
 #, python-format
 msgid "Select an account for receiving the money"
@@ -798,6 +794,7 @@ msgstr ""
 "el 100%"
 
 #. module: l10n_es_aeat_mod303
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod303/models/mod303.py:0
 #, python-format
 msgid "The fee to compensate must be indicated as a positive number."
@@ -831,16 +828,6 @@ msgstr "A retornar"
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__activity_exception_decoration
 msgid "Type of the exception activity on record."
 msgstr "Tipus d'activitat d'excepció registrada."
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_unread
-msgid "Unread Messages"
-msgstr "Missatges no llegits"
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Comptador de missatges no llegits"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__company_vat
@@ -969,6 +956,15 @@ msgstr "SII voluntari?"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__has_operation_volume
 msgid "¿Volumen de operaciones?"
 msgstr "Volumen d'operacions?"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Número de missatges no llegits"
+
+#~ msgid "Unread Messages"
+#~ msgstr "Missatges no llegits"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Comptador de missatges no llegits"
 
 #~ msgid "Allow posting"
 #~ msgstr "Permetre publicar"
