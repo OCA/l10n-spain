@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="aeat_303_company_rule" model="ir.rule">
+        <field name="name">AEAT 303 multi-company</field>
+        <field name="model_id" ref="model_l10n_es_aeat_mod303_report" />
+        <field name="global" eval="True" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

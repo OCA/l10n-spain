@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_l10n_es_aeat_mod303_report_tree" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod303.report.tree</field>
+        <field name="model">l10n.es.aeat.mod303.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree" />
+        <field name="arch" type="xml">
+            <tree position="attributes">
+            <attribute name="string">AEAT 303 reports</attribute>
+        </tree>
+            <field name="period_type" position="after">
+                <field name="total_devengado" />
+                <field name="total_deducir" />
+                <field name="porcentaje_atribuible_estado" />
+                <field name="resultado_liquidacion" />
+            </field>
+        </field>
+    </record>
+    <record id="view_l10n_es_aeat_mod303_report_form" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod303.report.form</field>
+        <field name="model">l10n.es.aeat.mod303.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
+        <field name="arch" type="xml">
+            <field name="partner_bank_id" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('result_type', 'not in', ('D', 'B', 'I'))], 'required': [('result_type', '=', 'D')]}</attribute>
+            </field>
+            <field name="previous_number" position="after">
+                <field name="devolucion_mensual" />
+                <field
+                    name="exonerated_390"
+                    attrs="{'invisible': [('period_type', 'not in', ('4T', '12'))]}"
+                />
+            </field>
+            <group name="group_declaration" position="after">
+                <group
+                    string="Datos extra exonerados modelo 390"
+                    name="group_exonerated_390"
+                    attrs="{'invisible': [('exonerated_390', '=', '2')]}"
+                >
+                    <group>
+                        <group string="Actividad principal" name="group_main_activity">
+                            <field
+                                name="main_activity_code"
+                                widget="selection"
+                                attrs="{'required': [('exonerated_390', '!=', '2')]}"
+                            />
+                            <field
+                                name="main_activity_iae"
+                                attrs="{'required': [('exonerated_390', '!=', '2')]}"
+                            />
+                        </group>
+                        <group name="group_others_390" string="Otros">
+                            <field name="has_operation_volume" />
+                            <field name="has_347" />
+                            <field name="is_voluntary_sii" />
+                        </group>
+                    </group>
+                    <group col="3">
+                        <group
+                            string="Otras - 1ª actividad"
+                            name="group_other_first_activity"
+                        >
+                            <field
+                                name="other_first_activity_code"
+                                widget="selection"
+                            />
+                            <field name="other_first_activity_iae" />
+                        </group>
+                        <group
+                            string="Otras - 2ª actividad"
+                            name="group_other_second_activity"
+                        >
+                            <field
+                                name="other_second_activity_code"
+                                widget="selection"
+                            />
+                            <field name="other_second_activity_iae" />
+                        </group>
+                        <group
+                            string="Otras - 3ª actividad"
+                            name="group_other_third_activity"
+                        >
+                            <field
+                                name="other_third_activity_code"
+                                widget="selection"
+                            />
+                            <field name="other_third_activity_iae" />
+                        </group>
+                        <group
+                            string="Otras - 4ª actividad"
+                            name="group_other_fourth_activity"
+                        >
+                            <field
+                                name="other_fourth_activity_code"
+                                widget="selection"
+                            />
+                            <field name="other_fourth_activity_iae" />
+                        </group>
+                        <group
+                            string="Otras - 5ª actividad"
+                            name="group_other_fifth_activity"
+                        >
+                            <field
+                                name="other_fifth_activity_code"
+                                widget="selection"
+                            />
+                            <field name="other_fifth_activity_iae" />
+                        </group>
+                    </group>
+                </group>
+                <group
+                    string="Resultado"
+                    name="group_result"
+                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    col="3"
+                >
+                    <group>
+                        <field
+                            name="total_devengado"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="total_deducir"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="casilla_46"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                    <group>
+                        <field name="porcentaje_atribuible_estado" />
+                        <field
+                            name="atribuible_estado"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="potential_cuota_compensar"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="cuota_compensar"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="remaining_cuota_compensar"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                    <group>
+                        <field
+                            name="regularizacion_anual"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                            attrs="{'readonly': [('period_type', 'not in', ('4T', '12'))]}"
+                        />
+                        <field
+                            name="casilla_77"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="casilla_69"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="previous_result"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                            attrs="{'readonly': [('statement_type', '!=', 'C')], 'required': [('statement_type', '=', 'C')]}"
+                        />
+                    </group>
+                <group
+                        class="oe_subtotal_footer oe_right"
+                        attrs="{'invisible': [('state', '=', 'draft')]}"
+                        colspan="2"
+                    >
+                    <field
+                            name="resultado_liquidacion"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    <field
+                            name="casilla_88"
+                            class="oe_subtotal_footer_separator"
+                            widget="monetary"
+                            attrs="{'invisible': [('exonerated_390', '=', '2')]}"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    <field name="result_type" />
+                </group>
+                </group>
+                <separator
+                    string="Tax lines"
+                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                />
+                    <field
+                    name="tax_line_ids"
+                    nolabel="1"
+                    readonly="1"
+                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                />
+            </group>
+            <form position="inside">
+                <div class="oe_chatter">
+                    <field
+                        name="message_follower_ids"
+                        widget="mail_followers"
+                        groups="base.group_user"
+                    />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="action_l10n_es_aeat_mod303_report" model="ir.actions.act_window">
+        <field name="name">AEAT model 303</field>
+        <field name="res_model">l10n.es.aeat.mod303.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help">Create and query AEAT Model 303 reports</field>
+    </record>
+    <record
+        model="ir.actions.act_window.view"
+        id="action_l10n_es_aeat_mod303_report_tree"
+    >
+        <field name="sequence" eval="2" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod303_report_tree" />
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod303_report" />
+    </record>
+    <record
+        model="ir.actions.act_window.view"
+        id="action_l10n_es_aeat_mod303_report_form"
+    >
+        <field name="sequence" eval="3" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod303_report_form" />
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod303_report" />
+    </record>
+    <menuitem
+        id="menu_aeat_mod303_report"
+        parent="l10n_es_aeat.menu_root_aeat"
+        action="action_l10n_es_aeat_mod303_report"
+        sequence="303"
+        name="AEAT 303 model"
+    />
+</odoo>
