@@ -6,7 +6,7 @@
     "author": "Acysos S.L., Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Accounting",
-    "version": "15.0.1.1.0",
+    "version": "16.0.1.0.0",
     "license": "AGPL-3",
     "depends": ["base", "base_vat", "l10n_es_aeat"],
     "data": [
