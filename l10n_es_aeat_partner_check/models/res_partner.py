@@ -101,18 +101,14 @@ class ResPartner(models.Model):
                     partner.aeat_check_partner()
         return res
 
-    @api.model
-    def create(self, vals):
-        partner = super().create(vals)
-        if "company_id" in vals:
-            company = self.env["res.company"].browse(vals["company_id"])
-        elif partner.company_id:
-            company = partner.company_id
-        else:
-            company = self.env.user.company_id
-        if company.vat_check_aeat:
-            partner.aeat_check_partner()
-        return partner
+    @api.model_create_multi
+    def create(self, vals_list):
+        res_list = super().create(vals_list)
+        for partner in res_list:
+            company = partner.company_id if partner.company_id else self.env.company
+            if company.vat_check_aeat:
+                partner.aeat_check_partner()
+        return res_list
 
     def aeat_check_re(self):
         url = (
@@ -132,7 +128,9 @@ class ResPartner(models.Model):
                     "l10n.es.aeat.certificate"
                 ].get_certificates()
             request = {"nif": vat_number, "apellido": partner.name}
-            res = requests.post(url, params=request, cert=(public_crt, private_key))
+            res = requests.post(
+                url, params=request, cert=(public_crt, private_key), timeout=20
+            )
             vals = {"aeat_last_checked": fields.Datetime.now()}
             if b"NIF sometido" in res.content:
                 vals.update({"aeat_partner_type": "sales_equalization"})
