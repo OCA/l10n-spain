@@ -24,6 +24,14 @@ class TestResPartner(common.SingleTransactionCase):
             }
         )
 
+        cls.partner_in = cls.env["res.partner"].create(
+            {
+                "name": "Block no. 401",
+                "country_id": cls.env.ref("base.in").id,
+                "vat": "36BBBFF5679L8ZR",
+            }
+        )
+
     @mock.patch(
         "%s.send_soap" % soap_model,
         return_value=[
@@ -52,3 +60,21 @@ class TestResPartner(common.SingleTransactionCase):
         redirect_mock.return_value.content = b"aihjsb NIF sometido asjidnasdhsb"
         self.partner.aeat_check_re()
         self.assertEqual(self.partner.aeat_partner_type, "sales_equalization")
+
+    @mock.patch(
+        "%s.send_soap" % soap_model,
+        return_value=[
+            {
+                "Nombre": "Block no. 401",
+                "Nif": "36BBBFF5679L8ZR",
+                "Resultado": "IDENTIFICADO",
+            }
+        ],
+    )
+    @mock.patch(  # we ignore the aeat_check_re in this test to test it individually
+        "%s.aeat_check_re" % partner_model, return_value=True
+    )
+    def test_03_check_partner_no_spanish(self, redirect_mock, *args):
+        self.assertFalse(self.partner_in.aeat_partner_check_result)
+        self.partner_in.aeat_check_partner()
+        self.assertFalse(self.partner_in.aeat_partner_check_result)
