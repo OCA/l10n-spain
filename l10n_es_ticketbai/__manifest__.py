@@ -21,6 +21,7 @@
     "depends": [
         "base_vat",
         "l10n_es",
+        "l10n_es_extra_data",
         "l10n_es_aeat",
         "l10n_es_aeat_certificate",
         "l10n_es_ticketbai_api",

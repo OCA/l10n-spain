@@ -144,7 +144,13 @@ class AccountInvoiceTax(models.Model):
     def tbai_get_value_tipo_recargo_equivalencia(self):
         re_invoice_tax = self.tbai_get_associated_re_tax()
         if re_invoice_tax:
-            res = "%.2f" % abs(re_invoice_tax.tax_id.amount)
+            if (
+                self.env.ref("l10n_es_extra_data.tax_group_recargo_0_625").id
+                == re_invoice_tax.tax_id.tax_group_id.id
+            ):
+                res = "%.3f" % abs(re_invoice_tax.tax_id.amount)
+            else:
+                res = "%.2f" % abs(re_invoice_tax.tax_id.amount)
         else:
             res = None
         return res

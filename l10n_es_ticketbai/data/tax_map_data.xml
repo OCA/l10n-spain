@@ -9,6 +9,8 @@
                 ref('l10n_es.account_tax_template_s_iva21b'),
                 ref('l10n_es.account_tax_template_s_iva4b'),
                 ref('l10n_es.account_tax_template_s_iva10b'),
+                ref('l10n_es_extra_data.account_tax_template_s_iva5b'),
+                ref('l10n_es_extra_data.account_tax_template_s_iva0b'),
             ])]"/>
             <field name="name">Bienes</field>
         </record>
@@ -74,6 +76,8 @@
                 ref('l10n_es.account_tax_template_s_req52'),
                 ref('l10n_es.account_tax_template_s_req014'),
                 ref('l10n_es.account_tax_template_s_req05'),
+                ref('l10n_es_extra_data.account_tax_template_s_req0625'),
+                ref('l10n_es_extra_data.account_tax_template_s_req0'),
             ])]"/>
             <field name="name">Recargo Equivalencia</field>
         </record>
