@@ -3,4 +3,13 @@
     <record id="tax_group_iva_5" model="account.tax.group">
         <field name="name">IVA 5%</field>
     </record>
+    <record id="tax_group_iva_0_no_e" model="account.tax.group">
+        <field name="name">IVA 0% (No exento)</field>
+    </record>
+    <record id="tax_group_recargo_0_625" model="account.tax.group">
+        <field name="name">Recargo de Equivalencia 0.625%</field>
+    </record>
+    <record id="tax_group_recargo_0" model="account.tax.group">
+        <field name="name">Recargo de Equivalencia 0%</field>
+    </record>
 </odoo>
