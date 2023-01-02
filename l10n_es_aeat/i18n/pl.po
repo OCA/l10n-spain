@@ -111,6 +111,7 @@ msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod115_report_name_uniq
+#: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod216_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod303_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod347_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod390_report_name_uniq
@@ -1136,6 +1137,13 @@ msgid "Number without decimals"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_account_bank_statement_line__thirdparty_number
+#: model:ir.model.fields,help:l10n_es_aeat.field_account_move__thirdparty_number
+#: model:ir.model.fields,help:l10n_es_aeat.field_account_payment__thirdparty_number
+msgid "Número de la factura emitida por un tercero."
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_password_wizard_view
 msgid "Obtain Keys"
@@ -1471,8 +1479,18 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_account_bank_statement_line__thirdparty_invoice
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_account_journal__thirdparty_invoice
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_account_move__thirdparty_invoice
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_account_payment__thirdparty_invoice
 msgid "Third-party invoice"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_account_bank_statement_line__thirdparty_number
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_account_move__thirdparty_number
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_account_payment__thirdparty_number
+msgid "Third-party number"
 msgstr ""
 
 #. module: l10n_es_aeat
