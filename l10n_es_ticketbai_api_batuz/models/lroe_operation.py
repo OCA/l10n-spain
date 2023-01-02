@@ -278,14 +278,9 @@ class LROEOperation(models.Model):
     def build_cabecera_ejercicio(self):
         self.ensure_one()
         if self.tbai_invoice_ids:
-            if self.type == LROEOperationEnum.create.value:
-                return str(datetime.strptime(
-                    self.tbai_invoice_ids[0].expedition_date,
-                    '%d-%m-%Y').year)
-            elif self.type == LROEOperationEnum.cancel.value:
-                return str(datetime.strptime(
-                    self.tbai_invoice_ids[0].expedition_date,
-                    '%d-%m-%Y').year)
+            return str(datetime.strptime(
+                self.tbai_invoice_ids[0].expedition_date,
+                '%d-%m-%Y').year)
         elif self.invoice_ids and self.invoice_ids[0].date:
             date = fields.Date.from_string(self.invoice_ids[0].date)
             return str(date.year)
