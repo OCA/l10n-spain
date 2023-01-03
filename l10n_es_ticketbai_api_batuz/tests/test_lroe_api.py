@@ -1,6 +1,7 @@
 # Copyright (2021) Binovo IT Human Project SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import json
+from datetime import datetime
 
 from requests import exceptions
 
@@ -24,6 +25,9 @@ class TestLroeTicketBaiApi(common.TransactionCase):
             tbai_invoice_ids = False
             company_id = Company()
             model = "MODE"
+
+            def build_cabecera_ejercicio(self):
+                return str(datetime.now().year)
 
         h = api.get_request_headers(Op())
 
