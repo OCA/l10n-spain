@@ -19,6 +19,7 @@ MRW_NATIONAL_SERVICES = [
     ("0110", "Urgente 14"),
     ("0120", "Urgente 22"),
     ("0200", "Urgente 19"),
+    ("0205", "Urgente 19 Expediciones"),
     ("0210", "Urgente 19 Mas 40 Kilos"),
     ("0220", "48 Horas Portugal"),
     ("0230", "Bag 19"),
