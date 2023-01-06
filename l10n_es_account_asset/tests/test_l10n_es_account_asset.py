@@ -10,26 +10,23 @@ from odoo import fields
 class TestL10nEsAccountAsset(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestL10nEsAccountAsset, cls).setUpClass()
+        super().setUpClass()
         cls.asset_model = cls.env["account.asset"]
         cls.journal = cls.env["account.journal"].create(
             {"name": "Test asset journal", "code": "AST", "type": "general"}
         )
-        cls.account_type = cls.env["account.account.type"].create(
-            {"name": "Test account type", "type": "other", "internal_group": "expense"}
-        )
         cls.expense_account = cls.env["account.account"].create(
             {
                 "name": "Expense test account",
-                "code": "EXP_TEST",
-                "user_type_id": cls.account_type.id,
+                "code": "EXPTEST",
+                "account_type": "expense",
             }
         )
         cls.depreciation_account = cls.env["account.account"].create(
             {
                 "name": "Depreciation test account",
-                "code": "DEP_TEST",
-                "user_type_id": cls.account_type.id,
+                "code": "DEPTEST",
+                "account_type": "asset_current",
             }
         )
         cls.profile = cls.env["account.asset.profile"].create(
