@@ -59,8 +59,8 @@ class AccountAssetAsset(models.Model):
             if new_percentage > 100:
                 new_percentage = 100
             # Only change amount when significant delta
-            if float_compare(new_percentage, self.annual_percentage, 2) != 0:
-                self.annual_percentage = new_percentage
+            if float_compare(new_percentage, asset.annual_percentage, 2) != 0:
+                asset.annual_percentage = new_percentage
 
     def _get_depreciation_stop_date(self, depreciation_start_date):
         """Compute stop date for the added method 'Percentage'."""

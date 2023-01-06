@@ -54,8 +54,8 @@ class AccountAssetProfile(models.Model):
                 / profile.METHOD_PERIOD_MAPPING.get(profile.method_period, 12)
             )
             # Only change amount when significant delta
-            if float_compare(new_percentage, self.annual_percentage, 2) != 0:
-                self.annual_percentage = new_percentage
+            if float_compare(new_percentage, profile.annual_percentage, 2) != 0:
+                profile.annual_percentage = new_percentage
 
     _sql_constraints = [
         (
