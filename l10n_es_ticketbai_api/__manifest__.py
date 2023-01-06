@@ -19,7 +19,8 @@
         "python": [
             "OpenSSL",
             "xmlsig",
-            "cryptography",
+            # for compatibility with urllib shipped with Odoo 13
+            "cryptography<39",
             "qrcode",
             "xmltodict",
             "requests_pkcs12",
