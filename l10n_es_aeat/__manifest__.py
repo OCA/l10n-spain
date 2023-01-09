@@ -11,7 +11,7 @@
 {
     "name": "AEAT Base",
     "summary": "Modulo base para declaraciones de la AEAT",
-    "version": "14.0.2.4.2",
+    "version": "14.0.2.4.3",
     "author": "Pexego, "
     "Acysos S.L., "
     "AvanzOSC, "
