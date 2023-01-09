@@ -44,7 +44,7 @@
         "views/account_journal_view.xml",
     ],
     "external_dependencies": {
-        "python": ["cryptography", "pyOpenSSL", "pycountry", "xmlsig"]
+        "python": ["cryptography<39", "pyOpenSSL", "pycountry", "xmlsig"]
     },
     "installable": True,
     "maintainers": ["etobella"],

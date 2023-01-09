@@ -22,7 +22,7 @@
     "category": "Accounting & Finance",
     "development_status": "Mature",
     "depends": ["l10n_es", "account_tax_balance"],
-    "external_dependencies": {"python": ["unidecode", "cryptography"]},
+    "external_dependencies": {"python": ["unidecode", "cryptography<39"]},
     "data": [
         "security/aeat_security.xml",
         "security/ir.model.access.csv",

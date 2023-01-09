@@ -22,7 +22,7 @@
         "account",
         "l10n_es_ticketbai_api",
     ],
-    "external_dependencies": {"python": ["cryptography"]},
+    "external_dependencies": {"python": ["cryptography<39"]},
     "data": [
         "security/ir.model.access.csv",
         "data/tax_map_data.xml",
