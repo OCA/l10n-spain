@@ -238,12 +238,12 @@ class AccountMove(models.Model):
     def _compute_macrodata(self):
         for inv in self:
             inv.sii_macrodata = (
-                True
-                if float_compare(
-                    inv.amount_total, SII_MACRODATA_LIMIT, precision_digits=2
+                float_compare(
+                    abs(inv.amount_total_signed),
+                    SII_MACRODATA_LIMIT,
+                    precision_digits=2,
                 )
                 >= 0
-                else False
             )
 
     @api.onchange("sii_refund_type")
