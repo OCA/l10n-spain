@@ -490,7 +490,9 @@ class AccountMove(models.Model):
         for line in self.line_ids:
             sign = -1 if self.move_type[:3] == "out" else 1
             for tax in line.tax_ids:
-                res.setdefault(tax, {"tax": tax, "base": 0, "amount": 0})
+                res.setdefault(tax, {
+                    "tax": tax, "base": 0, "amount": 0, "deductible_amount": 0
+                })
                 res[tax]["base"] += line.balance * sign
             if line.tax_line_id:
                 tax = line.tax_line_id
@@ -504,8 +506,14 @@ class AccountMove(models.Model):
                 ):
                     # taxes with more than one "tax" repartition line must be discarded
                     continue
-                res.setdefault(tax, {"tax": tax, "base": 0, "amount": 0})
+                res.setdefault(tax, {
+                    "tax": tax, "base": 0, "amount": 0, "deductible_amount": 0
+                })
                 res[tax]["amount"] += line.balance * sign
+                # We will only take into account as deductible amount the lines
+                # with 472 accounts
+                if line.account_id.code.startswith("472"):
+                    res[tax]["deductible_amount"] += line.balance * sign
         return res
 
     def _get_sii_out_taxes(self):  # noqa: C901
@@ -674,7 +682,7 @@ class AccountMove(models.Model):
                 continue
             tax_dict = self._get_sii_tax_dict(tax_line, tax_lines)
             if tax in taxes_sfrisp + taxes_sfrs:
-                tax_amount += tax_line["amount"]
+                tax_amount += tax_line["deductible_amount"]
             if tax in taxes_sfrns:
                 tax_dict.pop("TipoImpositivo")
                 tax_dict.pop("CuotaSoportada")
