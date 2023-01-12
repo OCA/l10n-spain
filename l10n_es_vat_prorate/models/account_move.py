@@ -8,14 +8,19 @@ class AccountMove(models.Model):
 
     _inherit = "account.move"
 
-    def _recompute_tax_lines(self, recompute_tax_base_amount=False):
+    def _recompute_tax_lines(
+        self, recompute_tax_base_amount=False, tax_rep_lines_to_recompute=None
+    ):
         # As we cannot pass the date, we have to use context
         super(
             AccountMove,
             self.with_context(
                 vat_prorate_date=self.date or self.invoice_date or fields.Date.today()
             ),
-        )._recompute_tax_lines(recompute_tax_base_amount)
+        )._recompute_tax_lines(
+            recompute_tax_base_amount=recompute_tax_base_amount,
+            tax_rep_lines_to_recompute=tax_rep_lines_to_recompute,
+        )
 
     @api.model
     def _get_tax_grouping_key_from_base_line(self, base_line, tax_vals):
