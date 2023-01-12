@@ -7,6 +7,7 @@
 # Copyright 2020 Valentin Vinagre <valent.vinagre@sygel.es>
 # Copyright 2021 Tecnativa - João Marques
 # Copyright 2022 ForgeFlow - Lois Rilo
+# Copyright 2023 QubiQ - Jan Tugores <jan.tugores@qubiq.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import json
