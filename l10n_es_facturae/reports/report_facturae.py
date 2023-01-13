@@ -115,10 +115,10 @@ class ReportFacturae(models.AbstractModel):
                 certificate = x509.load_pem_x509_certificate(
                     f.read(), backend=default_backend()
                 )
-        except FileNotFoundError:
+        except FileNotFoundError as e:
             raise ValidationError(
                 _("The provided certificate is not found in the system.")
-            )
+            ) from e
         xmlsig.template.add_reference(
             sign,
             xmlsig.constants.TransformSha1,

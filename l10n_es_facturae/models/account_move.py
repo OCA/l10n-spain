@@ -151,14 +151,14 @@ class AccountMove(models.Model):
                     "moves that have been validated."
                 )
             )
-        lines = self.line_ids.filtered(
+        lines_without_taxes = self.line_ids.filtered(
             lambda r: not r.display_type and not r.exclude_from_invoice_tab
+            and not r.tax_ids
         )
-        for line in lines:
-            if not line.tax_ids:
-                raise ValidationError(
-                    _("Taxes not provided in move line " "%s") % line.name
-                )
+        if lines_without_taxes:
+            raise ValidationError(
+                _("Taxes not provided in move lines")
+            )
         if not self.partner_id.vat:
             raise ValidationError(_("Partner vat not provided"))
         if not self.partner_id.street:
