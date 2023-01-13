@@ -63,14 +63,14 @@ class AccountMove(models.Model):
     facturae_start_date = fields.Date(
         readonly=True,
         states={"draft": [("readonly", False)]},
-        help="Sólo cuando se requiera: Servicio prestado temporalmente o "
-        "Factura Recapitulativa.",
+        help="Only when required: Temporary Service Provided or Recapitulative"
+        " Invoice.",
     )
     facturae_end_date = fields.Date(
         readonly=True,
         states={"draft": [("readonly", False)]},
-        help="Sólo cuando se requiera: Servicio prestado temporalmente o "
-        "Factura Recapitulativa.",
+        help="Only when required: Temporary Service Provided or Recapitulative"
+        " Invoice.",
     )
     l10n_es_facturae_attachment = fields.Binary(
         copy=False,

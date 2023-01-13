@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <record id="view_move_form" model="ir.ui.view">
         <field name="name">account.move.form</field>
@@ -9,12 +9,14 @@
             <xpath expr="//field[@name='thirdparty_invoice']" position="attributes">
                 <attribute
                     name="attrs"
-                >{'invisible': [('move_type', 'not in', ('in_invoice', 'out_invoice', 'out_refund', 'in_refund'))]}</attribute>
+                >{'invisible': [('move_type', 'not in', ('in_invoice', 'out_invoice',
+                    'out_refund', 'in_refund'))]}</attribute>
             </xpath>
             <xpath expr="//field[@name='thirdparty_number']" position="attributes">
                 <attribute
                     name="attrs"
-                >{'required': [('thirdparty_invoice', '=', True)], 'invisible': [('thirdparty_invoice', '=', False)]}</attribute>
+                >{'required': [('thirdparty_invoice', '=', True)], 'invisible':
+                    [('thirdparty_invoice', '=', False)]}</attribute>
             </xpath>
             <field name="name" position="after">
                 <field name="facturae" invisible="1" />
@@ -37,18 +39,18 @@
                     attrs="{'invisible': [('facturae', '=', False)]}"
                 >
                     <group>
-                        <group string="Periodo de facturación">
-                            <field name="facturae_start_date" string="Fecha de inicio"/>
-                            <field name="facturae_end_date" string="Fecha de fin"/>
+                        <group string="Invoicing Period">
+                            <field name="facturae_start_date" />
+                            <field name="facturae_end_date" />
                         </group>
                         <group name="facturae_attachment" string="Facturae Attachment">
                             <field
                                 name="l10n_es_facturae_attachment"
                                 filename="facturae_fname"
                                 readonly="1"
-                                string="Último fichero de Facturae generado"
+                                string="Last Facturae file generated"
                             />
-                            <field name="facturae_fname" invisible="1"/>
+                            <field name="facturae_fname" invisible="1" />
                         </group>
                     </group>
                 </page>
