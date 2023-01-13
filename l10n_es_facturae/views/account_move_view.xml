@@ -37,31 +37,19 @@
                     attrs="{'invisible': [('facturae', '=', False)]}"
                 >
                     <group>
-                        <field
-                            name="facturae_start_date"
-                            attrs="{'invisible': [('facturae', '=', False)]}"
-                        />
-                        <field
-                            name="facturae_end_date"
-                            attrs="{'invisible': [('facturae', '=', False)]}"
-                        />
-                    </group>
-                    <group name="facturae_attachment" string="Facturae Attachment">
-                        <field name="l10n_es_facturae_attachment_ids">
-                            <tree>
-                                <field name="move_id" invisible="1" />
-                                <field name="filename" />
-                                <field name="file" filename="filename" />
-                            </tree>
-                            <form>
-                                <sheet>
-                                    <group>
-                                        <field name="file" filename="filename" />
-                                        <field name="filename" invisible="1" />
-                                    </group>
-                                </sheet>
-                            </form>
-                        </field>
+                        <group string="Periodo de facturación">
+                            <field name="facturae_start_date" string="Fecha de inicio"/>
+                            <field name="facturae_end_date" string="Fecha de fin"/>
+                        </group>
+                        <group name="facturae_attachment" string="Facturae Attachment">
+                            <field
+                                name="l10n_es_facturae_attachment"
+                                filename="facturae_fname"
+                                readonly="1"
+                                string="Último fichero de Facturae generado"
+                            />
+                            <field name="facturae_fname" invisible="1"/>
+                        </group>
                     </group>
                 </page>
             </notebook>

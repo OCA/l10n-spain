@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="wizard_create_facturae" model="ir.ui.view">
         <field name="name">create.facturae.form</field>
@@ -14,7 +14,6 @@
                 <group attrs="{'invisible': [('state', '=', 'first')]}" colspan="4">
                     <field name="facturae" filename="facturae_fname" />
                     <field name="facturae_fname" invisible="1" />
-                    <field name="note" colspan="4" nolabel="1" />
                 </group>
                 <footer>
                     <button

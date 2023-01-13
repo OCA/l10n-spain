@@ -63,11 +63,19 @@ class AccountMove(models.Model):
     facturae_start_date = fields.Date(
         readonly=True,
         states={"draft": [("readonly", False)]},
+        help="Sólo cuando se requiera: Servicio prestado temporalmente o "
+        "Factura Recapitulativa.",
     )
     facturae_end_date = fields.Date(
         readonly=True,
         states={"draft": [("readonly", False)]},
+        help="Sólo cuando se requiera: Servicio prestado temporalmente o "
+        "Factura Recapitulativa.",
     )
+    l10n_es_facturae_attachment = fields.Binary(
+        copy=False,
+    )
+    facturae_fname = fields.Char("File name", size=64)
     l10n_es_facturae_attachment_ids = fields.One2many(
         "l10n.es.facturae.attachment",
         inverse_name="move_id",
@@ -129,6 +137,20 @@ class AccountMove(models.Model):
         return ["posted"]
 
     def validate_facturae_fields(self):
+        if not self.facturae:
+            raise ValidationError(
+                _(
+                    "You can only create the facturae file if the client have the "
+                    "facturae feature activated."
+                )
+            )
+        if self.state not in self._get_valid_move_statuses():
+            raise ValidationError(
+                _(
+                    "You can only create Facturae files for "
+                    "moves that have been validated."
+                )
+            )
         lines = self.line_ids.filtered(
             lambda r: not r.display_type and not r.exclude_from_invoice_tab
         )
@@ -139,8 +161,20 @@ class AccountMove(models.Model):
                 )
         if not self.partner_id.vat:
             raise ValidationError(_("Partner vat not provided"))
+        if not self.partner_id.street:
+            raise ValidationError(_("Partner street address is not provided"))
         if not self.company_id.partner_id.vat:
             raise ValidationError(_("Company vat not provided"))
+        if not self.company_id.partner_id.street:
+            raise ValidationError(_("Company street not provided"))
+        if not self.company_id.partner_id.city:
+            raise ValidationError(_("Company city not provided"))
+        if not self.company_id.partner_id.state_id:
+            raise ValidationError(_("Company state not provided"))
+        if not self.company_id.partner_id.country_id:
+            raise ValidationError(_("Company country not provided"))
+        if not self.company_id.partner_id.zip:
+            raise ValidationError(_("Company zip not provided"))
         if len(self.partner_id.vat) < 3:
             raise ValidationError(_("Partner vat is too small"))
         if not self.partner_id.state_id:
@@ -159,13 +193,6 @@ class AccountMove(models.Model):
                 raise ValidationError(_("Selected account BIC must be 11"))
             if partner_bank and len(partner_bank.acc_number) < 5:
                 raise ValidationError(_("Selected account is too small"))
-        if self.state not in self._get_valid_move_statuses():
-            raise ValidationError(
-                _(
-                    "You can only create Facturae files for "
-                    "moves that have been validated."
-                )
-            )
         return
 
     def _get_facturae_move_attachments(self):
