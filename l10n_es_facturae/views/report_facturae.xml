@@ -76,29 +76,29 @@
             <t t-call="l10n_es_facturae.administrative_center">
                 <t
                     t-set="centre_code"
-                    t-value="administrative_partner.oficina_contable or partner.oficina_contable"
+                    t-value="administrative_partner.facturae_accounting_office or partner.facturae_accounting_office"
                 />
                 <t t-set="role_type_code" t-value="'01'" />
             </t>
             <t t-call="l10n_es_facturae.administrative_center">
                 <t
                     t-set="centre_code"
-                    t-value="administrative_partner.organo_gestor or partner.organo_gestor"
+                    t-value="administrative_partner.facturae_managing_body or partner.facturae_managing_body"
                 />
                 <t t-set="role_type_code" t-value="'02'" />
             </t>
             <t t-call="l10n_es_facturae.administrative_center">
                 <t
                     t-set="centre_code"
-                    t-value="administrative_partner.unidad_tramitadora or partner.unidad_tramitadora"
+                    t-value="administrative_partner.facturae_processing_unit or partner.facturae_processing_unit"
                 />
                 <t t-set="role_type_code" t-value="'03'" />
             </t>
             <t
                 t-call="l10n_es_facturae.administrative_center"
-                t-if="partner.organo_proponente"
+                t-if="partner.facturae_proponent_body"
             >
-                <t t-set="centre_code" t-value="partner.organo_proponente" />
+                <t t-set="centre_code" t-value="partner.facturae_proponent_body" />
                 <t t-set="role_type_code" t-value="'04'" />
             </t>
         </AdministrativeCentres>

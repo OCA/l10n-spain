@@ -12,10 +12,10 @@ class ResPartner(models.Model):
     facturae_version = fields.Selection(
         [("3_2", "3.2"), ("3_2_1", "3.2.1"), ("3_2_2", "3.2.2")]
     )
-    organo_gestor = fields.Char(size=10)
-    unidad_tramitadora = fields.Char(size=10)
-    oficina_contable = fields.Char(size=10)
-    organo_proponente = fields.Char("Órgano proponente", size=10)
+    facturae_managing_body = fields.Char(size=10)
+    facturae_processing_unit = fields.Char(size=10)
+    facturae_accounting_office = fields.Char(size=10)
+    facturae_proponent_body = fields.Char(size=10)
     attach_invoice_as_annex = fields.Boolean()
 
     def get_facturae_residence(self):
