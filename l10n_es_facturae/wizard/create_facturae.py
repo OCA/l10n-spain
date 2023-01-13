@@ -5,6 +5,7 @@
 # Copyright 2015 Omar Castiñeira (Comunitea)
 # Copyright 2016 Serv. Tecnol. Avanzados - Pedro M. Baeza
 # Copyright 2017 Creu Blanca
+# Copyright 2023 Jan Tugores (jan.tugores@qubiq.es)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import base64

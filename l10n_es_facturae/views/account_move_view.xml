@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_move_form" model="ir.ui.view">
         <field name="name">account.move.form</field>
@@ -40,8 +40,14 @@
                 >
                     <group>
                         <group string="Invoicing Period">
-                            <field name="facturae_start_date" />
-                            <field name="facturae_end_date" />
+                            <field
+                                name="facturae_start_date"
+                                attrs="{'invisible': [('facturae', '=', False)]}"
+                            />
+                            <field
+                                name="facturae_end_date"
+                                attrs="{'invisible': [('facturae', '=', False)]}"
+                            />
                         </group>
                         <group name="facturae_attachment" string="Facturae Attachment">
                             <field
