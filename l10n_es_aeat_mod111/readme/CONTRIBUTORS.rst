@@ -8,3 +8,5 @@
 * Jose Maria Alzaga (http://www.aselcis.com)
 * Ismael Calvo (http://factorlibre.com)
 * Iván Antón (https://www.ozonomultimedia.com)
+* Arantxa Sudón (`Moduon <https://www.moduon.team/>`__)
+* Rafael Blasco (`Moduon <https://www.moduon.team/>`__)
