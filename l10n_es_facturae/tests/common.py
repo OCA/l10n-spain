@@ -414,7 +414,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
             self.wizard.with_context(
                 active_ids=[self.move_02.id, self.move.id],
                 active_model="account.move",
-            ).create_facturae_file()
+            ).create({})
 
     def test_constrains_01(self):
         move = self.env["account.move"].create(
@@ -543,9 +543,8 @@ class CommonTest(TestL10nEsAeatCertificateBase):
     def _check_amounts(self, move, wo_discount, subtotal, base, tax, discount=0):
         move.action_post()
         move.name = "2999/99999"
-        self.wizard.with_context(
-            active_ids=move.ids, active_model="account.move"
-        ).create_facturae_file()
+        self.wizard.write({"move_id": move.id})
+        self.wizard.create_facturae_file()
         facturae_xml = etree.fromstring(base64.b64decode(self.wizard.facturae))
         self.assertEqual(
             facturae_xml.xpath("//InvoiceLine/TotalCost")[0].text,
