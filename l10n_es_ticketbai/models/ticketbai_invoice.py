@@ -1,15 +1,12 @@
 # Copyright 2021 Binovo IT Human Project SL
 # Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from datetime import datetime
-
 from odoo import _, api, exceptions, fields, models
 
 from odoo.addons.l10n_es_ticketbai_api.models.ticketbai_invoice import (
     TicketBaiInvoiceState,
 )
 from odoo.addons.l10n_es_ticketbai_api.ticketbai.xml_schema import TicketBaiSchema
-from odoo.addons.l10n_es_ticketbai_api.utils import utils as tbai_utils
 
 
 class TicketBAIInvoice(models.Model):
@@ -75,9 +72,7 @@ class TicketBAIInvoiceRefundOrigin(models.Model):
         " INV/2021/00001 then the prefix is INV/2021/, "
         "ending back slash included",
     )
-    expedition_date = fields.Char(
-        required=True, help="Expected string date format: %dd-%mm-%yyyy"
-    )
+    expedition_date = fields.Date(required=True)
 
     @api.constrains("number")
     def _check_number(self):
@@ -102,42 +97,3 @@ class TicketBAIInvoiceRefundOrigin(models.Model):
                     )
                     % {"name": record.number, "prefix": record.number_prefix}
                 )
-
-    @api.constrains("expedition_date")
-    def _check_expedition_date(self):
-        for record in self:
-            tbai_utils.check_date(
-                _("Refunded Invoice %s Expedition Date") % record.number,
-                record.expedition_date,
-            )
-
-    @api.constrains("number", "number_prefix", "expedition_date")
-    def _check_account_invoice_exists(self):
-        for record in self:
-            invoice_number = ""
-            if record.number_prefix:
-                invoice_number = record.number_prefix
-            if record.number:
-                invoice_number += record.number
-            if invoice_number and record.expedition_date:
-                record._check_expedition_date()
-                invoice_date = datetime.strptime(record.expedition_date, "%d-%m-%Y")
-                date_invoice = invoice_date.date().strftime("%Y-%m-%d")
-                domain_invoice = [
-                    ("name", "=", invoice_number),
-                    ("invoice_date", "=", date_invoice),
-                ]
-                account_invoice = self.sudo().env["account.move"].search(domain_invoice)
-                if account_invoice:
-                    raise exceptions.ValidationError(
-                        _(
-                            "Invoice: number %(name)s prefix %(prefix)s "
-                            "invoice_date %(date)s exists. "
-                            "Create a credit note from this invoice."
-                        )
-                        % {
-                            "name": record.number,
-                            "prefix": record.number_prefix,
-                            "date": record.expedition_date,
-                        }
-                    )

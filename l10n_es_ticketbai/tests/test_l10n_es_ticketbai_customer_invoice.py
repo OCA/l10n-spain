@@ -595,7 +595,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
                 {
                     "number_prefix": "INV_XYZ/2021/",
                     "number": "001",
-                    "expedition_date": "01-01-1901",
+                    "expedition_date": "1901-01-01",
                 },
             )
         ]
@@ -645,7 +645,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
                     {
                         "number_prefix": "INV_XYZ/2021/",
                         "number": "000000000000000000001",
-                        "expedition_date": "01-01-1901",
+                        "expedition_date": "1901-01-01",
                     },
                 )
             ]
@@ -666,37 +666,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
                     {
                         "number_prefix": "S00000000000000000000",
                         "number": "01",
-                        "expedition_date": "01-01-1901",
-                    },
-                )
-            ]
-
-    def test_invoice_out_refund_from_origin_invoice_exists(self):
-        invoice = self.create_draft_invoice(
-            self.account_billing.id,
-            self.fiscal_position_national,
-            self.partner.id,
-        )
-        invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
-        invoice.invoice_date = "1901-01-01"
-        invoice.action_post()
-        number_prefix = "/".join(invoice.name.split("/")[:-1]) + "/"
-        number = invoice.name.split("/")[-1]
-        refund = self.create_draft_invoice(
-            self.account_billing.id,
-            self.fiscal_position_national,
-            self.partner.id,
-            invoice_type="out_refund",
-        )
-        with self.assertRaises(exceptions.ValidationError):
-            refund.sudo().tbai_refund_origin_ids = [
-                (
-                    0,
-                    0,
-                    {
-                        "number_prefix": number_prefix,
-                        "number": number,
-                        "expedition_date": "01-01-1901",
+                        "expedition_date": "1901-01-01",
                     },
                 )
             ]
