@@ -15,3 +15,4 @@
 * Digital5 S.L.
 * Manuel Regidor <manuel.regidor@sygel.es>
 * Eric Antones <eantones@nuobit.com>
+* kilian Niubo <kniubo@nuobit.com>
