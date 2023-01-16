@@ -34,7 +34,7 @@ class CreateFacturae(models.TransientModel):
 
     @api.model
     def create(self, vals):
-        if not vals.get('move_id', False):
+        if not vals.get("move_id", False):
             move = self._get_move_from_context()
             vals.update(
                 {
