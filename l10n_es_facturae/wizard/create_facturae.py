@@ -34,12 +34,13 @@ class CreateFacturae(models.TransientModel):
 
     @api.model
     def create(self, vals):
-        move = self._get_move_from_context()
-        vals.update(
-            {
-                "move_id": move.id,
-            }
-        )
+        if not vals.get('move_id', False):
+            move = self._get_move_from_context()
+            vals.update(
+                {
+                    "move_id": move.id,
+                }
+            )
         res = super().create(vals)
         return res
 

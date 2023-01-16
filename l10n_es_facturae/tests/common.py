@@ -215,7 +215,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         self.partner.country_id = self.env.ref("base.us")
         self.partner.state_id = self.env.ref("base.state_us_2")
         self.main_company = self.env.ref("base.main_company")
-        self.wizard = self.env["create.facturae"].create({})
+        self.wizard = self.env["create.facturae"].create({'move_id': self.move.id})
         self.fe = "http://www.facturae.es/Facturae/2009/v3.2/Facturae"
         self.first_check_amount = ["190.310000", "190.310000", "190.31", "39.97"]
         self.second_check_amount = [
