@@ -47,7 +47,8 @@ class CreateFacturae(models.TransientModel):
     def create_facturae_file(self):
         # Validating mandatory fields
         self.move_id.validate_facturae_fields()
-        if self.firmar_facturae:
+        skip_signature = self.env.context.get("skip_signature", False)
+        if self.firmar_facturae and not skip_signature:
             move_file = self.env.ref("l10n_es_facturae.report_facturae_signed")._render(
                 self.move_id.ids
             )[0]

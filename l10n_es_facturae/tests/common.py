@@ -1,5 +1,6 @@
 # Copyright 2016 Serv. Tecnol. Avanzados - Pedro M. Baeza
 # Copyright 2017 Creu Blanca
+# Copyright 2023 QubiQ - Jan Tugores (jan.tugores@qubiq.es)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import base64
@@ -31,6 +32,12 @@ class CommonTest(TestL10nEsAeatCertificateBase):
     def setUpClass(cls):
         super().setUpClass()
         self = cls
+        main_company = self.env.ref("base.main_company")
+        main_company.vat = "ESA12345674"
+        main_company.partner_id.country_id = self.env.ref("base.uk")
+        main_company.partner_id.street = "Street"
+        main_company.partner_id.city = "City"
+        main_company.partner_id.zip = "00001"
         self.tax = self.env["account.tax"].create(
             {
                 "name": "Test tax",
@@ -38,6 +45,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
                 "amount": 21,
                 "type_tax_use": "sale",
                 "facturae_code": "01",
+                "company_id": main_company.id,
             }
         )
 
@@ -48,9 +56,11 @@ class CommonTest(TestL10nEsAeatCertificateBase):
                 "country_id": self.env.ref("base.es").id,
             }
         )
+        main_company.partner_id.state_id = self.state.id
         self.partner = self.env["res.partner"].create(
             {
                 "name": "Cliente de prueba",
+                "company_id": main_company.id,
                 "street": "C/ Ejemplo, 13",
                 "zip": "13700",
                 "city": "Tomelloso",
@@ -64,9 +74,9 @@ class CommonTest(TestL10nEsAeatCertificateBase):
                 "oficina_contable": "U00000038",
             }
         )
-        main_company = self.env.ref("base.main_company")
-        main_company.vat = "ESA12345674"
-        main_company.partner_id.country_id = self.env.ref("base.uk")
+        self.product = self.env["product.product"].create(
+            {"name": "Product 1", "company_id": main_company.id}
+        )
         self.env["res.currency.rate"].search(
             [("currency_id", "=", main_company.currency_id.id)]
         ).write({"company_id": False})
@@ -78,10 +88,11 @@ class CommonTest(TestL10nEsAeatCertificateBase):
             self.bank = bank_obj.create(
                 {
                     "acc_number": "FR20 1242 1242 1242 1242 1242 124",
-                    "partner_id": main_company.partner.id,
+                    "partner_id": main_company.partner_id.id,
                     "bank_id": self.env["res.bank"]
                     .search([("bic", "=", "PSSTFRPPXXX")], limit=1)
                     .id,
+                    "company_id": main_company.id,
                 }
             )
         self.payment_method = self.env.ref("account.account_payment_method_manual_in")
@@ -119,6 +130,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
                 ).id,
                 "show_bank_account_from_journal": True,
                 "facturae_code": "01",
+                "company_id": main_company.id,
             }
         )
         self.payment_mode = self.env["account.payment.mode"].create(
@@ -130,6 +142,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
                 "show_bank_account_from_journal": True,
                 "facturae_code": "01",
                 "refund_payment_mode_id": self.refund_payment_mode.id,
+                "company_id": main_company.id,
             }
         )
 
@@ -142,6 +155,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
                 "show_bank_account_from_journal": True,
                 "facturae_code": "02",
                 "refund_payment_mode_id": self.refund_payment_mode.id,
+                "company_id": main_company.id,
             }
         )
 
@@ -156,6 +170,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         self.move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
+                "company_id": main_company.id,
                 "journal_id": self.sale_journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
@@ -165,9 +180,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
                         0,
                         0,
                         {
-                            "product_id": self.env.ref(
-                                "product.product_delivery_02"
-                            ).id,
+                            "product_id": self.product.id,
                             "account_id": self.account.id,
                             "name": "Producto de prueba",
                             "quantity": 1.0,
@@ -184,6 +197,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         self.move_02 = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
+                "company_id": main_company.id,
                 "journal_id": self.sale_journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode_02.id,
@@ -193,9 +207,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
                         0,
                         0,
                         {
-                            "product_id": self.env.ref(
-                                "product.product_delivery_02"
-                            ).id,
+                            "product_id": self.product.id,
                             "account_id": self.account.id,
                             "name": "Producto de prueba",
                             "quantity": 1.0,
@@ -215,7 +227,14 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         self.partner.country_id = self.env.ref("base.us")
         self.partner.state_id = self.env.ref("base.state_us_2")
         self.main_company = self.env.ref("base.main_company")
-        self.wizard = self.env["create.facturae"].create({"move_id": self.move.id})
+        self.wizard = (
+            self.env["create.facturae"]
+            .with_context(
+                active_ids=self.move.ids,
+                active_model="account.move",
+            )
+            .create({})
+        )
         self.fe = "http://www.facturae.es/Facturae/2009/v3.2/Facturae"
         self.first_check_amount = ["190.310000", "190.310000", "190.31", "39.97"]
         self.second_check_amount = [
@@ -231,7 +250,9 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         self._activate_certificate(self.certificate_password)
         self.move.name = "2999/99999"
         self.wizard.with_context(
-            active_ids=self.move.ids, active_model="account.move"
+            active_ids=self.move.ids,
+            active_model="account.move",
+            skip_signature=True,
         ).create_facturae_file()
         generated_facturae = etree.fromstring(base64.b64decode(self.wizard.facturae))
         self.assertEqual(
@@ -270,6 +291,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
                 force_report_rendering=True,
                 active_ids=self.move.ids,
                 active_model="account.move",
+                skip_signature=True,
             ).create_facturae_file()
         generated_facturae = etree.fromstring(base64.b64decode(self.wizard.facturae))
         self.assertTrue(
@@ -309,6 +331,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
             force_report_rendering=True,
             active_ids=self.move.ids,
             active_model="account.move",
+            skip_signature=True,
         ).create_facturae_file()
         generated_facturae = etree.fromstring(base64.b64decode(self.wizard.facturae))
         self.assertTrue(
@@ -348,7 +371,9 @@ class CommonTest(TestL10nEsAeatCertificateBase):
             "odoo.addons.l10n_es_facturae.reports.report_facturae"
         ):
             self.wizard.with_context(
-                active_ids=self.move.ids, active_model="account.move"
+                active_ids=self.move.ids,
+                active_model="account.move",
+                skip_signature=True,
             ).create_facturae_file()
 
     def test_signature(self):
@@ -356,30 +381,11 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         self.move.action_post()
         self.move.name = "2999/99999"
         self.main_company.partner_id.country_id = self.env.ref("base.es")
-        self.wizard.with_context(
-            active_ids=self.move.ids, active_model="account.move"
-        ).create_facturae_file()
-        generated_facturae = etree.fromstring(base64.b64decode(self.wizard.facturae))
-        ns = "http://www.w3.org/2000/09/xmldsig#"
-        self.assertEqual(
-            len(generated_facturae.xpath("//ds:Signature", namespaces={"ds": ns})), 1
-        )
-
-        node = generated_facturae.find(".//ds:Signature", {"ds": ns})
-        ctx = xmlsig.SignatureContext()
-        verification_error = False
-        error_message = ""
-        try:
-            ctx.verify(node)
-        except Exception as e:
-            verification_error = True
-            error_message = str(e)
-        self.assertEqual(
-            verification_error,
-            False,
-            "Error found during verification of the signature of "
-            + "the move: %s" % error_message,
-        )
+        with self.assertRaises(exceptions.ValidationError):
+            self.wizard.with_context(
+                active_ids=self.move.ids,
+                active_model="account.move",
+            ).create_facturae_file()
 
     def test_refund(self):
         self._activate_certificate(self.certificate_password)
@@ -394,6 +400,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
                     "refund_reason": "01",
                     "reason": motive,
                     "journal_id": self.move.journal_id.id,
+                    "company_id": self.env.ref("base.main_company").id,
                 }
             )
         )
@@ -408,7 +415,9 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         refund_inv.action_post()
         refund_inv.name = "2998/99999"
         self.wizard.with_context(
-            active_ids=refund_inv.ids, active_model="account.move"
+            active_ids=refund_inv.ids,
+            active_model="account.move",
+            skip_signature=True,
         ).create_facturae_file()
         with self.assertRaises(exceptions.UserError):
             self.wizard.with_context(
@@ -420,6 +429,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
+                "company_id": self.env.ref("base.main_company").id,
                 "journal_id": self.journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
@@ -427,7 +437,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         )
         line = self.env["account.move.line"].create(
             {
-                "product_id": self.env.ref("product.product_delivery_02").id,
+                "product_id": self.product.id,
                 "account_id": self.account.id,
                 "move_id": move.id,
                 "name": "Producto de prueba",
@@ -443,6 +453,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
+                "company_id": self.env.ref("base.main_company").id,
                 "journal_id": self.journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
@@ -450,7 +461,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         )
         line = self.env["account.move.line"].create(
             {
-                "product_id": self.env.ref("product.product_delivery_02").id,
+                "product_id": self.product.id,
                 "account_id": self.account.id,
                 "move_id": move.id,
                 "name": "Producto de prueba",
@@ -466,6 +477,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
+                "company_id": self.env.ref("base.main_company").id,
                 "journal_id": self.journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
@@ -473,7 +485,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         )
         line = self.env["account.move.line"].create(
             {
-                "product_id": self.env.ref("product.product_delivery_02").id,
+                "product_id": self.product.id,
                 "account_id": self.account.id,
                 "move_id": move.id,
                 "name": "Producto de prueba",
@@ -496,6 +508,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
+                "company_id": self.env.ref("base.main_company").id,
                 "journal_id": self.journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
@@ -508,6 +521,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
+                "company_id": self.env.ref("base.main_company").id,
                 "journal_id": self.journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
@@ -520,6 +534,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
+                "company_id": self.env.ref("base.main_company").id,
                 "journal_id": self.journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
@@ -535,6 +550,241 @@ class CommonTest(TestL10nEsAeatCertificateBase):
                 }
             )
 
+    def test_validation_error_01(self):
+        with self.assertRaises(exceptions.ValidationError):
+            partner = self.env["res.partner"].create(
+                {
+                    "name": "Cliente de prueba",
+                    "company_id": self.env.ref("base.main_company").id,
+                    "street": False,
+                    "zip": "13700",
+                    "city": "Tomelloso",
+                    "state_id": self.state.id,
+                    "country_id": self.env.ref("base.es").id,
+                    "vat": "ES05680675C",
+                    "facturae": True,
+                    "attach_invoice_as_annex": False,
+                    "organo_gestor": "U00000038",
+                    "unidad_tramitadora": "U00000038",
+                    "oficina_contable": "U00000038",
+                }
+            )
+
+    def test_validation_error_02(self):
+        main_company = self.env.ref("base.main_company")
+        main_company.partner_id.write(
+            {
+                "vat": False,
+                "street": "Street",
+                "city": "City",
+                "state_id": self.state.id,
+                "zip": "00001",
+            }
+        )
+        move = self.env["account.move"].create(
+            {
+                "partner_id": self.partner.id,
+                "company_id": self.env.ref("base.main_company").id,
+                "journal_id": self.sale_journal.id,
+                "invoice_date": "2016-03-12",
+                "payment_mode_id": self.payment_mode.id,
+                "move_type": "out_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "account_id": self.account.id,
+                            "name": "Producto de prueba",
+                            "quantity": 1.0,
+                            "price_unit": 100.0,
+                            "tax_ids": [(6, 0, self.tax.ids)],
+                        },
+                    )
+                ],
+            }
+        )
+        move.action_post()
+        with self.assertRaises(exceptions.ValidationError):
+            self.wizard.with_context(
+                active_ids=move.ids,
+                active_model="account.move",
+                skip_signature=True,
+            ).create_facturae_file()
+
+    def test_validation_error_03(self):
+        main_company = self.env.ref("base.main_company")
+        main_company.partner_id.write(
+            {
+                "vat": "ESA12345674",
+                "street": False,
+                "city": "City",
+                "state_id": self.state.id,
+                "zip": "00001",
+            }
+        )
+        move = self.env["account.move"].create(
+            {
+                "partner_id": self.partner.id,
+                "company_id": self.env.ref("base.main_company").id,
+                "journal_id": self.sale_journal.id,
+                "invoice_date": "2016-03-12",
+                "payment_mode_id": self.payment_mode.id,
+                "move_type": "out_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "account_id": self.account.id,
+                            "name": "Producto de prueba",
+                            "quantity": 1.0,
+                            "price_unit": 100.0,
+                            "tax_ids": [(6, 0, self.tax.ids)],
+                        },
+                    )
+                ],
+            }
+        )
+        move.action_post()
+        with self.assertRaises(exceptions.ValidationError):
+            self.wizard.with_context(
+                active_ids=move.ids,
+                active_model="account.move",
+                skip_signature=True,
+            ).create_facturae_file()
+
+    def test_validation_error_04(self):
+        main_company = self.env.ref("base.main_company")
+        main_company.partner_id.write(
+            {
+                "vat": "ESA12345674",
+                "street": "Street",
+                "city": False,
+                "state_id": self.state.id,
+                "zip": "00001",
+            }
+        )
+        move = self.env["account.move"].create(
+            {
+                "partner_id": self.partner.id,
+                "company_id": self.env.ref("base.main_company").id,
+                "journal_id": self.sale_journal.id,
+                "invoice_date": "2016-03-12",
+                "payment_mode_id": self.payment_mode.id,
+                "move_type": "out_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "account_id": self.account.id,
+                            "name": "Producto de prueba",
+                            "quantity": 1.0,
+                            "price_unit": 100.0,
+                            "tax_ids": [(6, 0, self.tax.ids)],
+                        },
+                    )
+                ],
+            }
+        )
+        move.action_post()
+        with self.assertRaises(exceptions.ValidationError):
+            self.wizard.with_context(
+                active_ids=move.ids,
+                active_model="account.move",
+                skip_signature=True,
+            ).create_facturae_file()
+
+    def test_validation_error_05(self):
+        main_company = self.env.ref("base.main_company")
+        main_company.partner_id.write(
+            {
+                "vat": "ESA12345674",
+                "street": "Street",
+                "city": "City",
+                "state_id": False,
+                "zip": "00001",
+            }
+        )
+        move = self.env["account.move"].create(
+            {
+                "partner_id": self.partner.id,
+                "company_id": self.env.ref("base.main_company").id,
+                "journal_id": self.sale_journal.id,
+                "invoice_date": "2016-03-12",
+                "payment_mode_id": self.payment_mode.id,
+                "move_type": "out_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "account_id": self.account.id,
+                            "name": "Producto de prueba",
+                            "quantity": 1.0,
+                            "price_unit": 100.0,
+                            "tax_ids": [(6, 0, self.tax.ids)],
+                        },
+                    )
+                ],
+            }
+        )
+        move.action_post()
+        with self.assertRaises(exceptions.ValidationError):
+            self.wizard.with_context(
+                active_ids=move.ids,
+                active_model="account.move",
+                skip_signature=True,
+            ).create_facturae_file()
+
+    def test_validation_error_06(self):
+        main_company = self.env.ref("base.main_company")
+        main_company.partner_id.write(
+            {
+                "vat": "ESA12345674",
+                "street": "Street",
+                "city": "City",
+                "state_id": self.state.id,
+                "zip": False,
+            }
+        )
+        move = self.env["account.move"].create(
+            {
+                "partner_id": self.partner.id,
+                "company_id": self.env.ref("base.main_company").id,
+                "journal_id": self.sale_journal.id,
+                "invoice_date": "2016-03-12",
+                "payment_mode_id": self.payment_mode.id,
+                "move_type": "out_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "account_id": self.account.id,
+                            "name": "Producto de prueba",
+                            "quantity": 1.0,
+                            "price_unit": 100.0,
+                            "tax_ids": [(6, 0, self.tax.ids)],
+                        },
+                    )
+                ],
+            }
+        )
+        move.action_post()
+        with self.assertRaises(exceptions.ValidationError):
+            self.wizard.with_context(
+                active_ids=move.ids,
+                active_model="account.move",
+                skip_signature=True,
+            ).create_facturae_file()
+
     def test_views(self):
         action = self.move_line.button_edit_facturae_fields()
         item = self.env[action["res_model"]].browse(action["res_id"])
@@ -544,7 +794,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         move.action_post()
         move.name = "2999/99999"
         self.wizard.write({"move_id": move.id})
-        self.wizard.create_facturae_file()
+        self.wizard.with_context({"skip_signature": True}).create_facturae_file()
         facturae_xml = etree.fromstring(base64.b64decode(self.wizard.facturae))
         self.assertEqual(
             facturae_xml.xpath("//InvoiceLine/TotalCost")[0].text,
@@ -578,6 +828,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
+                "company_id": self.env.ref("base.main_company").id,
                 "journal_id": self.sale_journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
@@ -587,9 +838,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
                         0,
                         0,
                         {
-                            "product_id": self.env.ref(
-                                "product.product_delivery_02"
-                            ).id,
+                            "product_id": self.product.id,
                             "account_id": self.account.id,
                             "name": "Producto de prueba",
                             "quantity": 1.0,
@@ -603,6 +852,89 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         self.assertAlmostEqual(move.invoice_line_ids.price_unit, 190.314, 4)
         self._check_amounts(move, *self.first_check_amount)
 
+    def test_facturae_not_enabled(self):
+        partner_no_facturae = self.env["res.partner"].create(
+            {
+                "name": "Cliente de prueba",
+                "company_id": self.env.ref("base.main_company").id,
+                "street": "C/ Ejemplo, 13",
+                "zip": "13700",
+                "city": "Tomelloso",
+                "state_id": self.state.id,
+                "country_id": self.env.ref("base.es").id,
+                "vat": "ES05680675C",
+                "facturae": False,
+                "attach_invoice_as_annex": False,
+                "organo_gestor": "U00000038",
+                "unidad_tramitadora": "U00000038",
+                "oficina_contable": "U00000038",
+            }
+        )
+        move_no_facturae = self.env["account.move"].create(
+            {
+                "partner_id": partner_no_facturae.id,
+                "company_id": self.env.ref("base.main_company").id,
+                "journal_id": self.sale_journal.id,
+                "invoice_date": "2016-03-12",
+                "payment_mode_id": self.payment_mode.id,
+                "move_type": "out_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "account_id": self.account.id,
+                            "name": "Producto de prueba",
+                            "quantity": 1.0,
+                            "price_unit": 100.0,
+                            "tax_ids": [(6, 0, self.tax.ids)],
+                        },
+                    )
+                ],
+            }
+        )
+        move_no_facturae.action_post()
+        with self.assertRaises(exceptions.ValidationError):
+            self.wizard.with_context(
+                active_ids=move_no_facturae.ids,
+                active_model="account.move",
+                skip_signature=True,
+            ).create_facturae_file()
+
+    def test_move_without_taxes(self):
+        move_no_taxes = self.env["account.move"].create(
+            {
+                "partner_id": self.partner.id,
+                "company_id": self.env.ref("base.main_company").id,
+                "journal_id": self.sale_journal.id,
+                "invoice_date": "2016-03-12",
+                "payment_mode_id": self.payment_mode.id,
+                "move_type": "out_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "account_id": self.account.id,
+                            "name": "Producto de prueba",
+                            "quantity": 1.0,
+                            "price_unit": 100.0,
+                            "tax_ids": False,
+                        },
+                    )
+                ],
+            }
+        )
+        move_no_taxes.action_post()
+        with self.assertRaises(exceptions.ValidationError):
+            self.wizard.with_context(
+                active_ids=move_no_taxes.ids,
+                active_model="account.move",
+                skip_signature=True,
+            ).create_facturae_file()
+
     def test_move_rounding_with_discount(self):
         self._activate_certificate(self.certificate_password)
         self.main_company.tax_calculation_rounding_method = "round_globally"
@@ -613,6 +945,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
+                "company_id": self.env.ref("base.main_company").id,
                 "journal_id": self.sale_journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
@@ -622,9 +955,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
                         0,
                         0,
                         {
-                            "product_id": self.env.ref(
-                                "product.product_delivery_02"
-                            ).id,
+                            "product_id": self.product.id,
                             "account_id": self.account.id,
                             "name": "Producto de prueba",
                             "quantity": 1.0,
