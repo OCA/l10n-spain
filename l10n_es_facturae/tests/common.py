@@ -6,7 +6,6 @@
 import base64
 from datetime import timedelta
 
-import xmlsig
 from lxml import etree
 from mock import patch
 
