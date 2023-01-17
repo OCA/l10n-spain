@@ -551,7 +551,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
 
     def test_validation_error_01(self):
         with self.assertRaises(exceptions.ValidationError):
-            partner = self.env["res.partner"].create(
+            self.env["res.partner"].create(
                 {
                     "name": "Cliente de prueba",
                     "company_id": self.env.ref("base.main_company").id,
