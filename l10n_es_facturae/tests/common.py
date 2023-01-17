@@ -793,7 +793,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         move.action_post()
         move.name = "2999/99999"
         self.wizard.write({"move_id": move.id})
-        self.wizard.with_context({"skip_signature": True}).create_facturae_file()
+        self.wizard.with_context(skip_signature=True).create_facturae_file()
         facturae_xml = etree.fromstring(base64.b64decode(self.wizard.facturae))
         self.assertEqual(
             facturae_xml.xpath("//InvoiceLine/TotalCost")[0].text,
