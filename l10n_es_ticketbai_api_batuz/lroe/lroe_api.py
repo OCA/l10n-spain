@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import json
 import logging
-from datetime import datetime
 
 from requests import exceptions
 
@@ -62,18 +61,6 @@ class LROETicketBaiApi(TicketBaiApi):
 
         def set_eus_bizkaia_n3_headers(headers):
             def set_eus_bizkaia_n3_data():
-                def get_fiscal_year():
-                    if lroe_operation.tbai_invoice_ids:
-                        return str(
-                            datetime.strptime(
-                                lroe_operation.tbai_invoice_ids[0].expedition_date,
-                                "%d-%m-%Y",
-                            )
-                            .date()
-                            .year
-                        )
-                    else:
-                        return str(datetime.now().year)
 
                 if hasattr(lroe_operation, "lroe_chapter_id"):
                     apa = (
@@ -88,7 +75,10 @@ class LROETicketBaiApi(TicketBaiApi):
                     "con": "LROE",
                     "apa": apa,
                     "inte": {"nif": nif, "nrs": lroe_operation.company_id.name},
-                    "drs": {"mode": lroe_operation.model, "ejer": get_fiscal_year()},
+                    "drs": {
+                        "mode": lroe_operation.model,
+                        "ejer": lroe_operation.build_cabecera_ejercicio(),
+                    },
                 }
                 return json.dumps(n3_dat_dict)
 
