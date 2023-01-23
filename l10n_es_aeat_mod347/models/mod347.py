@@ -234,6 +234,7 @@ class L10nEsAeatMod347Report(models.Model):
             }
 
     def _create_partner_records(self, key, map_ref, partner_record=None):
+        sign = -1 if key == "B" else 1
         partner_record_obj = self.env["l10n.es.aeat.mod347.partner_record"]
         partner_obj = self.env["res.partner"]
         map_line = self.env.ref(map_ref)
@@ -256,7 +257,7 @@ class L10nEsAeatMod347Report(models.Model):
                 "partner_id": partner.id,
                 "representative_vat": "",
                 "operation_key": key,
-                "amount": (-1 if key == "B" else 1) * group["balance"],
+                "amount": sign * group["balance"],
             }
             vals.update(self._get_partner_347_identification(partner))
             move_groups = self.env["account.move.line"].read_group(
@@ -270,7 +271,7 @@ class L10nEsAeatMod347Report(models.Model):
                     0,
                     {
                         "move_id": move_group["move_id"][0],
-                        "amount": move_group["balance"],
+                        "amount": sign * move_group["balance"],
                     },
                 )
                 for move_group in move_groups
@@ -549,28 +550,25 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
 
     @api.depends("move_record_ids.move_id.date", "report_id.year")
     def calculate_quarter_totals(self):
-        def calc_amount_by_quarter(records, sign, year, month_start):
+        def calc_amount_by_quarter(records, year, month_start):
             day_start = 1
             month_end = month_start + 2
             day_end = monthrange(year, month_end)[1]
             date_start = datetime.date(year, month_start, day_start)
             date_end = datetime.date(year, month_end, day_end)
-            return (
-                sum(
-                    records.filtered(
-                        lambda x: date_start <= x.move_id.date <= date_end
-                    ).mapped("amount")
-                )
-            ) * sign
+            return sum(
+                records.filtered(
+                    lambda x: date_start <= x.move_id.date <= date_end
+                ).mapped("amount")
+            )
 
         for record in self:
-            sign = -1 if record.operation_key == "B" else 1
             year = record.report_id.year
             moves = record.move_record_ids
-            record.first_quarter = calc_amount_by_quarter(moves, sign, year, 1)
-            record.second_quarter = calc_amount_by_quarter(moves, sign, year, 4)
-            record.third_quarter = calc_amount_by_quarter(moves, sign, year, 7)
-            record.fourth_quarter = calc_amount_by_quarter(moves, sign, year, 10)
+            record.first_quarter = calc_amount_by_quarter(moves, year, 1)
+            record.second_quarter = calc_amount_by_quarter(moves, year, 4)
+            record.third_quarter = calc_amount_by_quarter(moves, year, 7)
+            record.fourth_quarter = calc_amount_by_quarter(moves, year, 10)
 
     def action_exception(self):
         self.write({"state": "exception"})
