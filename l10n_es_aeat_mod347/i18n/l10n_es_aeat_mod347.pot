@@ -131,27 +131,34 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
-msgid "<strong class=\"text-right\">Amount 1Q:</strong>"
+msgid "<strong>Amount 1Q:</strong>"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
-msgid "<strong class=\"text-right\">Amount 2Q:</strong>"
+msgid "<strong>Amount 2Q:</strong>"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
-msgid "<strong class=\"text-right\">Amount 3Q:</strong>"
+msgid "<strong>Amount 3Q:</strong>"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
-msgid "<strong class=\"text-right\">Amount 4Q:</strong>"
+msgid "<strong>Amount 4Q:</strong>"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
-msgid "<strong class=\"text-right\">Amount:</strong>"
+msgid "<strong>Amount:</strong>"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
+msgid ""
+"<strong>Color codes: </strong> <span class=\"text-info\">Normal "
+"invoices</span> - Refund invoices"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -249,31 +256,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__total_amount
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
 msgid "Amount"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
-msgid "Amount 1Q:"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
-msgid "Amount 2Q:"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
-msgid "Amount 3Q:"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
-msgid "Amount 4Q:"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
-msgid "Amount:"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -1322,6 +1304,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__support_type
 msgid "Support Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
+msgid "Tax ID"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347

@@ -120,6 +120,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
 #, python-format
 msgid "- %(name)s %(id)s"
@@ -157,28 +158,35 @@ msgstr "4 - Extranjero"
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
-msgid "<strong class=\"text-right\">Amount 1Q:</strong>"
-msgstr "<strong class=\"text-right\">Importe 1T:</strong>"
+msgid "<strong>Amount 1Q:</strong>"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
-msgid "<strong class=\"text-right\">Amount 2Q:</strong>"
-msgstr "<strong class=\"text-right\">Importe 2T:</strong>"
+msgid "<strong>Amount 2Q:</strong>"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
-msgid "<strong class=\"text-right\">Amount 3Q:</strong>"
-msgstr "<strong class=\"text-right\">Importe 3T:</strong>"
+msgid "<strong>Amount 3Q:</strong>"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
-msgid "<strong class=\"text-right\">Amount 4Q:</strong>"
-msgstr "<strong class=\"text-right\">Importe 4T:</strong>"
+msgid "<strong>Amount 4Q:</strong>"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
-msgid "<strong class=\"text-right\">Amount:</strong>"
-msgstr "<strong class=\"text-right\">Importe:</strong>"
+msgid "<strong>Amount:</strong>"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
+msgid ""
+"<strong>Color codes: </strong> <span class=\"text-info\">Normal invoices</"
+"span> - Refund invoices"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
@@ -278,31 +286,6 @@ msgstr "Permitir Publicación"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
 msgid "Amount"
 msgstr "Importe"
-
-#. module: l10n_es_aeat_mod347
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
-msgid "Amount 1Q:"
-msgstr "Importe 1T:"
-
-#. module: l10n_es_aeat_mod347
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
-msgid "Amount 2Q:"
-msgstr "Importe 2T:"
-
-#. module: l10n_es_aeat_mod347
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
-msgid "Amount 3Q:"
-msgstr "Importe 3T:"
-
-#. module: l10n_es_aeat_mod347
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
-msgid "Amount 4Q:"
-msgstr "Importe 4T:"
-
-#. module: l10n_es_aeat_mod347
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
-msgid "Amount:"
-msgstr "Importe:"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_calification__ant
@@ -431,6 +414,7 @@ msgid "Complement (urbanization, industrial park...)"
 msgstr "Complemento (urbanización, parque industrial...)"
 
 #. module: l10n_es_aeat_mod347
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
 #, python-format
 msgid "Compose Email"
@@ -690,9 +674,7 @@ msgstr "Icono para indicar una actividad de excepción."
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_needaction
-#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_unread
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_needaction
-#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Si está marcado, los nuevos mensajes requerirán su atención."
 
@@ -911,6 +893,7 @@ msgid "Next Activity Type"
 msgstr "Siguiente tipo de actividad"
 
 #. module: l10n_es_aeat_mod347
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
 #, python-format
 msgid "No Tax Mapping was found"
@@ -961,12 +944,6 @@ msgstr "Número de mensajes que requieren una acción."
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr "Número de mensajes con error de entrega"
-
-#. module: l10n_es_aeat_mod347
-#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_unread_counter
-#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_unread_counter
-msgid "Number of unread messages"
-msgstr "Número de mensajes no leídos"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__cash_basis_operation
@@ -1062,12 +1039,14 @@ msgid "Partner record"
 msgstr "Registro de empresa"
 
 #. module: l10n_es_aeat_mod347
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
 #, python-format
 msgid "Partner record errors:\n"
 msgstr "Errores de registros de empresas:\n"
 
 #. module: l10n_es_aeat_mod347
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
 #, python-format
@@ -1100,6 +1079,7 @@ msgid "Phone"
 msgstr "Teléfono"
 
 #. module: l10n_es_aeat_mod347
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
 #, python-format
 msgid ""
@@ -1188,6 +1168,7 @@ msgid "Real estate info"
 msgstr "Información de inmuebles"
 
 #. module: l10n_es_aeat_mod347
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
 #, python-format
 msgid "Real estate record errors:\n"
@@ -1350,6 +1331,7 @@ msgid "State Code"
 msgstr "Código de provincia"
 
 #. module: l10n_es_aeat_mod347
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
 #, python-format
 msgid "State code can only contain digits"
@@ -1383,6 +1365,11 @@ msgstr "Resumen"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__support_type
 msgid "Support Type"
 msgstr "Tipo de soporte"
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
+msgid "Tax ID"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__tax_person_operation
@@ -1533,18 +1520,7 @@ msgid "Type of the exception activity on record."
 msgstr "Tipo de actividad de excepción registrada."
 
 #. module: l10n_es_aeat_mod347
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_unread
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_unread
-msgid "Unread Messages"
-msgstr "Mensajes no leídos"
-
-#. module: l10n_es_aeat_mod347
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_unread_counter
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Contador de mensajes no leídos"
-
-#. module: l10n_es_aeat_mod347
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
 #, python-format
 msgid "VAT must be defined for Spanish Contacts"
@@ -1578,6 +1554,7 @@ msgid "Website communication history"
 msgstr "Historial de comunicación del sitio web"
 
 #. module: l10n_es_aeat_mod347
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
 #, python-format
 msgid "Without country code"
@@ -1589,6 +1566,7 @@ msgid "Without number"
 msgstr "Sin número"
 
 #. module: l10n_es_aeat_mod347
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
 #, python-format
 msgid "Without state code"
@@ -1603,6 +1581,45 @@ msgstr "Ya puede cerrar esta página si así lo desea."
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__year
 msgid "Year"
 msgstr "Año"
+
+#~ msgid "<strong class=\"text-right\">Amount 1Q:</strong>"
+#~ msgstr "<strong class=\"text-right\">Importe 1T:</strong>"
+
+#~ msgid "<strong class=\"text-right\">Amount 2Q:</strong>"
+#~ msgstr "<strong class=\"text-right\">Importe 2T:</strong>"
+
+#~ msgid "<strong class=\"text-right\">Amount 3Q:</strong>"
+#~ msgstr "<strong class=\"text-right\">Importe 3T:</strong>"
+
+#~ msgid "<strong class=\"text-right\">Amount 4Q:</strong>"
+#~ msgstr "<strong class=\"text-right\">Importe 4T:</strong>"
+
+#~ msgid "<strong class=\"text-right\">Amount:</strong>"
+#~ msgstr "<strong class=\"text-right\">Importe:</strong>"
+
+#~ msgid "Amount 1Q:"
+#~ msgstr "Importe 1T:"
+
+#~ msgid "Amount 2Q:"
+#~ msgstr "Importe 2T:"
+
+#~ msgid "Amount 3Q:"
+#~ msgstr "Importe 3T:"
+
+#~ msgid "Amount 4Q:"
+#~ msgstr "Importe 4T:"
+
+#~ msgid "Amount:"
+#~ msgstr "Importe:"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Número de mensajes no leídos"
+
+#~ msgid "Unread Messages"
+#~ msgstr "Mensajes no leídos"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Contador de mensajes no leídos"
 
 #~ msgid "- %s (%s)"
 #~ msgstr "- %s (%s)"

@@ -165,7 +165,13 @@
                             </group>
                         </page>
                         <page string="Details">
-                            <div><strong>Color codes: </strong> <span
+                            <div attrs="{'invisible': [('operation_key', '!=', 'B')]}">
+                                <strong>Color codes: </strong> <span
+                                    class="text-info"
+                                >Normal invoices</span> - Refund invoices
+                            </div>
+                            <div attrs="{'invisible': [('operation_key', '=', 'B')]}">
+                                <strong>Color codes: </strong> <span
                                     class="text-info"
                                 >Refund invoices</span> - Normal invoices</div>
                             <field
