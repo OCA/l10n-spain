@@ -137,7 +137,7 @@ class ConfirmingSabadell(object):
         text = "1  "
         # 4 - 43 Nombre ordenante
         text += self._sab_convert_text(
-            self.record.company_partner_bank_id.partner_id.name, 40
+            self.record.company_partner_bank_id.partner_id.name, 40, "left"
         )
         # 44 - 51 Fecha de proceso
         fecha_planificada = (
@@ -175,14 +175,14 @@ class ConfirmingSabadell(object):
         # 1 Codigo registro
         text = "2"
         # 2 - 16 Codigo Proveedor
-        text += self._sab_convert_text(line.partner_id.ref, 15)
+        text += self._sab_convert_text(line.partner_id.ref, 15, "left")
         # 17 - 18 Tipo de documento
         text += self._sab_tipo_vat(line.partner_id.vat)
         # 19 - 30 Documento identificativo
         vat = line.partner_id.vat
         if line.partner_id.country_id.code in vat:
             vat = vat.replace(line.partner_id.country_id.code, "")
-        text += self._sab_convert_text(vat, 12)
+        text += self._sab_convert_text(vat, 12, "left")
         # 31 Forma de pago
         forma_pago_value = {"56": "T", "57": "C", "58": "E"}
         forma_pago = forma_pago_value[self.record.payment_mode_id.conf_sabadell_type]
@@ -193,12 +193,12 @@ class ConfirmingSabadell(object):
             if forma_pago == "T" and line.partner_bank_id.acc_type == "bank"
             else ""
         )
-        text += self._sab_convert_text(cuenta, 20)
+        text += self._sab_convert_text(cuenta, 20, "left")
         # 52 - 66 Num Factura
         num_factura = (
             line.move_line_id.ref if line.move_line_id.ref else line.communication
         )
-        text += self._sab_convert_text(num_factura, 15)
+        text += self._sab_convert_text(num_factura, 15, "left")
         # 67 - 81 Importe de la factura
         text += self._sab_convert_text(line.amount_currency, 14)
         signo_factura = "+" if line.amount_currency >= 0 else "-"
@@ -208,7 +208,7 @@ class ConfirmingSabadell(object):
             str(line.move_line_id.date) if line.move_line_id.date else str(line.date)
         )
         text += self._sab_convert_text(
-            fecha_factura.replace("-", "").replace("/", ""), 8
+            fecha_factura.replace("-", "").replace("/", ""), 8, "left"
         )
         # 90 - 97 Fecha vencimiento
         # fecha_vencimiento = 8 * ' '
@@ -219,14 +219,14 @@ class ConfirmingSabadell(object):
             if line.move_line_id.move_id.name
             else line.communication
         )
-        text += self._sab_convert_text(referencia_factura.replace("-", ""), 30)
+        text += self._sab_convert_text(referencia_factura.replace("-", ""), 30, "left")
         # 128 - Barrado cheque
         barrado_cheque = "S" if forma_pago == "C" else " "
         text += barrado_cheque
         # 129 - 136 fecha emision pagaré
-        text += self._sab_convert_text("", 8)
+        text += self._sab_convert_text("", 8, "left")
         # 137 -144 fecha vencimiento pagaré
-        text += self._sab_convert_text("", 8)
+        text += self._sab_convert_text("", 8, "left")
         # 145 tipo pagare
         text += " "
         # 146 - 175 IBAN
@@ -235,7 +235,7 @@ class ConfirmingSabadell(object):
             if forma_pago == "T" and line.partner_bank_id.acc_type == "iban"
             else ""
         )
-        text += self._sab_convert_text(iban, 30)
+        text += self._sab_convert_text(iban, 30, "left")
         # 176 Reservado
         text += self._sab_convert_text("", 125)
         text += "\r\n"
@@ -245,16 +245,16 @@ class ConfirmingSabadell(object):
         # 1 Codigo registro
         text = "3"
         # 2 - 40 Nombre Proveedor
-        text += self._sab_convert_text(line.partner_id.name, 40)
+        text += self._sab_convert_text(line.partner_id.name, 40, "left")
         # 42 - 43 Idioma proveedor
         idioma_pro = line.partner_id.lang[:2].upper() if line.partner_id.lang else "3"
-        text += self._sab_convert_text(idioma_pro, 2)
+        text += self._sab_convert_text(idioma_pro, 2, "left")
         # 44 - 110 Domicilio
-        text += self._sab_convert_text(line.partner_id.street, 67)
+        text += self._sab_convert_text(line.partner_id.street, 67, "left")
         # 111 - 150 Ciudad
-        text += self._sab_convert_text(line.partner_id.city, 40)
+        text += self._sab_convert_text(line.partner_id.city, 40, "left")
         # 151- 155 CP
-        text += self._sab_convert_text(line.partner_id.zip, 5)
+        text += self._sab_convert_text(line.partner_id.zip, 5, "left")
         # 156 - 161 Reservado no se utiliza
         text += self._sab_convert_text("", 6)
         # 162 - 176 Telefono
@@ -263,11 +263,11 @@ class ConfirmingSabadell(object):
             if line.partner_id.phone
             else ""
         )
-        text += self._sab_convert_text(telefono_pro, 15)
+        text += self._sab_convert_text(telefono_pro, 15, "left")
         # 177 - 191 fax
-        text += self._sab_convert_text("", 15)
+        text += self._sab_convert_text("", 15, "left")
         # 192 - 251 Correo
-        text += self._sab_convert_text(line.partner_id.email, 60)
+        text += self._sab_convert_text(line.partner_id.email, 60, "left")
         # 252 Tipo envio informacion
         # Por correo 1, por fax 2, por email 3
         text += self.record.payment_mode_id.tipo_envio_info
@@ -285,11 +285,11 @@ class ConfirmingSabadell(object):
         text = "4"
         # 2 -16 Codigo proveedor
         codigo_pro = line.partner_id.ref if line.partner_id.ref else ""
-        text += self._sab_convert_text(codigo_pro, 15)
+        text += self._sab_convert_text(codigo_pro, 15, "left")
         # 17 - 18 Codigo Pais
         text += line.partner_id.country_id.code
         # 19 - 29 SWIFT
-        text += self._sab_convert_text(line.partner_bank_id.bank_bic, 11)
+        text += self._sab_convert_text(line.partner_bank_id.bank_bic, 11, "left")
         # 30 - 63 IBAN
         iban = (
             line.partner_bank_id.acc_number.replace(" ", "")
@@ -299,7 +299,7 @@ class ConfirmingSabadell(object):
             )
             else ""
         )
-        text += self._sab_convert_text(iban, 34)
+        text += self._sab_convert_text(iban, 34, "left")
         # 64 - 69 Codigo estadistico
         text += self.record.payment_mode_id.codigo_estadistico
         # 70 Divisa
