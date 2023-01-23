@@ -11,7 +11,7 @@
         <div class="page" position="inside">
             <div
                 id="ticketbai"
-                style="padding-top:50px;"
+                style="padding-top:50px;page-break-inside:avoid;"
                 class="text-center"
                 t-if="o.tbai_enabled and o.tbai_invoice_id.tbai_identifier and o.tbai_invoice_id.qr"
             >
