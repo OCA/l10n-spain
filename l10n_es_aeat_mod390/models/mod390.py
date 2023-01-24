@@ -393,6 +393,7 @@ class L10nEsAeatMod390Report(models.Model):
                         1,
                         3,
                         5,  # Régimen ordinario
+                        702,
                         500,
                         502,
                         504,  # Intragrupo - no incluido aún
@@ -427,6 +428,7 @@ class L10nEsAeatMod390Report(models.Model):
                         2,
                         4,
                         6,  # Régimen ordinario
+                        703,
                         501,
                         503,
                         505,  # Intragrupo - no incluido aún
@@ -490,7 +492,7 @@ class L10nEsAeatMod390Report(models.Model):
         for report in self:
             report.casilla_48 = sum(
                 report.tax_line_ids.filtered(
-                    lambda x: x.field_number in (190, 192, 555, 603, 194, 557, 605)
+                    lambda x: x.field_number in (190, 192, 555, 603, 194, 557, 605, 724)
                 ).mapped("amount")
             )
 
@@ -499,7 +501,7 @@ class L10nEsAeatMod390Report(models.Model):
         for report in self:
             report.casilla_49 = sum(
                 report.tax_line_ids.filtered(
-                    lambda x: x.field_number in (191, 193, 556, 604, 195, 558, 606)
+                    lambda x: x.field_number in (191, 193, 556, 604, 195, 558, 606, 725)
                 ).mapped("amount")
             )
 
