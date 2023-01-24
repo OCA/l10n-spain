@@ -371,7 +371,7 @@ class L10nEsAeatReport(models.AbstractModel):
     @api.model
     def _report_identifier_get(self, vals):
         seq_name = "aeat%s-sequence" % self._aeat_number
-        company_id = vals.get("company_id", self.env.user.company_id.id)
+        company_id = vals.get("company_id", self.env.company.id)
         seq = self.env["ir.sequence"].search(
             [("name", "=", seq_name), ("company_id", "=", company_id)], limit=1
         )
