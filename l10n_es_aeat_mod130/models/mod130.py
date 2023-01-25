@@ -1,6 +1,7 @@
 # Copyright 2014-2019 Tecnativa - Pedro M. Baeza
 
 from odoo import _, api, exceptions, fields, models
+from odoo.tools import float_compare
 
 
 def trunc(f, n):
@@ -209,7 +210,7 @@ class L10nEsAeatMod130Report(models.Model):
     @api.depends("result")
     def _compute_tipo_declaracion(self):
         for report in self:
-            if report.result < 0:
+            if float_compare(report.result, 0, precision_digits=2) <= 0:
                 report.tipo_declaracion = "B" if report.period_type != "4T" else "N"
             else:
                 report.tipo_declaracion = "I"
