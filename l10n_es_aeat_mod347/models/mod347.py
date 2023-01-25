@@ -688,9 +688,10 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
             vals = self.report_id._get_partner_347_identification(
                 self.partner_id,
             )
-            vals.pop('community_vat', None)
-            del vals['partner_country_code']
-            self.update(vals)
+            self.update({
+                "partner_vat": vals.pop("partner_vat"),
+                "state_code": vals.pop("partner_state_code"),
+            })
 
 
 class L10nEsAeatMod347MoveRecord(models.Model):
