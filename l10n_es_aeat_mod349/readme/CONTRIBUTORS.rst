@@ -20,3 +20,7 @@
   * Ignacio Ibeas
 
 * Manuel Regidor <manuel.regidor@sygel.es>
+
+* NuoBiT (http://www.nuobit.com)
+
+  * Eric Antones <eantones@nuobit.com>
