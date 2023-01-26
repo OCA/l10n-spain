@@ -7,6 +7,8 @@
                 <field name="period_type"/>
                 <field name="code"/>
                 <field name="name"/>
+                <field name="date_start" />
+                <field name="date_end" />
             </tree>
         </field>
     </record>
