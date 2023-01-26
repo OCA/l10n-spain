@@ -137,6 +137,33 @@ msgstr ""
 "6 - Sense epígraf, corresponent a: Altres activitats no subjectes a l'IAE"
 
 #. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A01
+msgid "A01 - Arrendadores de bienes inmuebles"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A02
+msgid "A02 - Ganadería independiente"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A03
+msgid ""
+"A03 - Resto de actividades empresariales no incluidas en los dos subtipos "
+"anteriores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A04
+msgid "A04 - Actividades profesionales de carácter artístico o deportivo"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A05
+msgid "A05 - Resto de actividades profesionales"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model,name:l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_report
 msgid "AEAT 303 Report"
 msgstr "Declaración AEAT 303"
@@ -223,9 +250,41 @@ msgid "Attachment Count"
 msgstr "Recompte de fitxers adjunts"
 
 #. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B01
+msgid "B01 - Actividad agrícola"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B02
+msgid "B02 - Actividad ganadera dependiente"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B03
+msgid "B03 - Actividad forestal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B04
+msgid "B04 - Producción del mejillón en batea"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B05
+msgid ""
+"B05 - Actividad pesquera, excepto la actividad de producción de mejillón en "
+"batea"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__partner_bank_id
 msgid "Bank account"
 msgstr "Compte bancari"
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_C
+msgid "C - Actividades no iniciadas"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__calculation_date
@@ -336,6 +395,7 @@ msgstr "Nom mostrat"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__date_end
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_activity_code__date_end
 msgid "Ending date"
 msgstr "Data de finalització"
 
@@ -742,6 +802,7 @@ msgstr "Seleccioni un compte bancari per rebre els diners"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__date_start
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_activity_code__date_start
 msgid "Starting date"
 msgstr "Data d'inici"
 
