@@ -194,6 +194,9 @@ class L10nEsAeatReport(models.AbstractModel):
         string="Currency",
         readonly=True,
         related="company_id.currency_id",
+        # Needed for initializing the value on time for avoiding an error when being
+        # used for compute methods
+        default=lambda self: self.env.company.currency_id,
     )
     period_type = fields.Selection(
         selection="get_period_type_selection",

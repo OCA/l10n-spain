@@ -173,6 +173,9 @@ class DeliveryCarrier(models.Model):
 
         seur_request = SeurRequest(self, picking)
         res = seur_request.tracking_state_update()
+        # We won't have tracking states when the shipping is just created
+        if not res:
+            return
         picking.tracking_state_history = res["tracking_state_history"]
         if "delivery_state" in res:
             picking.delivery_state = res["delivery_state"]

@@ -4,7 +4,7 @@
 
 {
     "name": "TicketBAI - API",
-    "version": "13.0.1.5.5",
+    "version": "13.0.1.5.6",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Binovo," "Odoo Community Association (OCA)",
@@ -19,7 +19,8 @@
         "python": [
             "OpenSSL",
             "xmlsig",
-            "cryptography",
+            # for compatibility with urllib shipped with Odoo 13
+            "cryptography<39",
             "qrcode",
             "xmltodict",
             "requests_pkcs12",
