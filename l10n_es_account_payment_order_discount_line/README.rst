@@ -14,23 +14,51 @@ Control de riesgos financieros
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-punt-sistemes-salva%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/punt-sistemes-salva/l10n-spain/tree/13.0/l10n_es_account_payment_order_risk
+    :target: https://github.com/punt-sistemes-salva/l10n-spain/tree/13.0/l10n_es_account_payment_order_discount_line
     :alt: punt-sistemes-salva/l10n-spain
 
 |badge1| |badge2| |badge3| 
 
-Hay que configurar los modos de pago de la siguiente forma:
-
-Módulo para la gestión del riesgo contable para domiciliaciones SEPA y pagarés, con las
-cuentas contables 4311(Efectos comerciales descontados) y 5208(Deudas por efectos descontados).
-
-* Para la generación del riesgo contable en las ordenes de cobro hay que marcar el check en el modo de pago de *Control de riesgo* siendo obligatorio las cuentas contables de efectos comerciales.
-* Para la cancelación del riesgo contable crear un modo de pago y marcar el check *Cancelación de riesgo* siendo obligatorio las cuentas contables de efectos comerciales y en las ordenes de cobro filtrará las cuentas de comerciales.
+Módulo para generar la contabilidad asociada a las líneas de descuento (Adeudos SEPA), utilizando las cuentas contables 4311 (Efectos comerciales descontados) y 5208 (deudas por efectos descontado).
 
 **Table of contents**
 
 .. contents::
    :local:
+
+Configuration
+=============
+
+Control líneas de descuento:
+
+  En el modo de pago que deseamos realizar Control de líneas de descuento, en el apartado opciones de asientos contables, marcamos el check de Control líneas de descuento mostrará como campos obligatorios para rellenar.
+
+Efectos comerciales descontados:
+
+  431100 y Deudas por efectos descontado: 520800
+
+Cancelación líneas de descuento:
+
+  Creamos un Modo de pago para cancelación líneas de descuento, en el apartado opciones de asientos contables, marcamos el check de “Cancelación líneas de descuento”, mostrará como campos obligatorios para rellenar
+
+Efectos comerciales descontados:
+
+  431100 y Deudas por efectos descontado: 520800
+
+Usage
+=====
+
+Para las remesas de Adeudos SEPA y pagarés mediante ordenes de cobro,
+teniendo marcado en el modo de pago el check de Líneas de descuento,
+realizamos una remesa y se genera automáticamente para las cuentas 430
+el asiento automático contra las cuentas 4311 y 5208 configuradas en el modo,
+pasando la deuda de nuestro cliente a Efectos comerciales descontados.
+
+
+En el caso de cancelación de líneas de descuento, realizamos una remesa
+y se genera automáticamente para las cuentas 4311 el asiento automático contra
+las cuentas 5208 y 4311 configuradas en el modo, conciliando la deuda de
+nuestro cliente de las cuentas Efectos comerciales descontados.
 
 Bug Tracker
 ===========
@@ -38,7 +66,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/punt-sistemes-salva/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/punt-sistemes-salva/l10n-spain/issues/new?body=module:%20l10n_es_account_payment_order_risk%0Aversion:%2013.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/punt-sistemes-salva/l10n-spain/issues/new?body=module:%20l10n_es_account_payment_order_discount_line%0Aversion:%2013.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -76,6 +104,6 @@ Current maintainers:
 
 |maintainer-igallart@puntsistemes.es| |maintainer-portega@puntsistemes.es| |maintainer-sbenlloch@puntsistemes.es| 
 
-This module is part of the `punt-sistemes-salva/l10n-spain <https://github.com/punt-sistemes-salva/l10n-spain/tree/13.0/l10n_es_account_payment_order_risk>`_ project on GitHub.
+This module is part of the `punt-sistemes-salva/l10n-spain <https://github.com/punt-sistemes-salva/l10n-spain/tree/13.0/l10n_es_account_payment_order_discount_line>`_ project on GitHub.
 
 You are welcome to contribute.
