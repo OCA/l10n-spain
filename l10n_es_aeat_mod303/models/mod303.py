@@ -142,7 +142,13 @@ class L10nEsAeatMod303Report(models.Model):
     )
     main_activity_code = fields.Many2one(
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
-        domain="[('period_type', '=', period_type)]",
+        domain="["
+        "   '|',"
+        "   ('period_type', '=', False), ('period_type', '=', period_type),"
+        "   '&',"
+        "   '|', ('date_start', '=', False), ('date_start', '<=', date_start),"
+        "   '|', ('date_end', '=', False), ('date_end', '>=', date_end),"
+        "]",
         states=NON_EDITABLE_ON_DONE,
         string=u"Código actividad principal",
     )
@@ -450,19 +456,8 @@ class L10nEsAeatMod303ReportActivityCode(models.Model):
     _name = "l10n.es.aeat.mod303.report.activity.code"
     _order = "period_type,code,id"
 
-    period_type = fields.Selection(
-        selection=[
-            ('4T', '4T'),
-            ('12', 'December'),
-        ],
-        required=True,
-    )
-    code = fields.Integer(
-        string="Activity code",
-        required=True,
-    )
-    name = fields.Char(
-        string="Activity name",
-        translate=True,
-        required=True,
-    )
+    period_type = fields.Selection(selection=[("4T", "4T"), ("12", "December")])
+    code = fields.Char(string="Activity code", required=True)
+    name = fields.Char(string="Activity name", translate=True, required=True,)
+    date_start = fields.Date(string="Starting date")
+    date_end = fields.Date(string="Ending date")
