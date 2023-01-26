@@ -439,7 +439,7 @@ class L10nEsAeatMod303ReportActivityCode(models.Model):
         ],
         required=True,
     )
-    code = fields.Integer(
+    code = fields.Char(
         string="Activity code",
         required=True,
     )
