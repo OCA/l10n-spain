@@ -23,8 +23,14 @@ class AccountTax(models.Model):
         )
         return self not in s_iva_ns_taxes
 
-    def tbai_is_tax_exempted(self):
-        return self.tax_group_id.id == self.env.ref("l10n_es.tax_group_iva_0").id
+    def tbai_is_tax_exempted(self, company):
+        company_id = str(company.id)
+        return self.tax_group_id.id == self.env.ref(
+            "l10n_es.tax_group_iva_0"
+        ).id and self not in [
+            self.env.ref("l10n_es." + company_id + "_account_tax_template_s_iva0b"),
+            self.env.ref("l10n_es." + company_id + "_account_tax_template_s_iva0s"),
+        ]
 
     def tbai_get_exemption_cause(self, invoice_id):
         return (

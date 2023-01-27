@@ -325,7 +325,9 @@ class AccountMove(models.Model):
             not_subject_to_cause = (
                 not tax_subject_to and tax.tbai_get_value_causa(self) or ""
             )
-            is_exempted = tax_subject_to and tax.tbai_is_tax_exempted() or False
+            is_exempted = (
+                tax_subject_to and tax.tbai_is_tax_exempted(self.company_id) or False
+            )
             not_exempted_type = (
                 tax_subject_to
                 and not is_exempted
@@ -333,7 +335,7 @@ class AccountMove(models.Model):
                 or ""
             )
             exemption = ""
-            if tax.tbai_is_tax_exempted():
+            if tax.tbai_is_tax_exempted(self.company_id):
                 if self.fiscal_position_id:
                     exemption = self.fiscal_position_id.tbai_vat_exemption_ids.filtered(
                         lambda e: e.tax_id.id == tax["id"]

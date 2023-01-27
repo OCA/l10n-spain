@@ -12,6 +12,8 @@
                 ref('l10n_es.account_tax_template_s_iva21b'),
                 ref('l10n_es.account_tax_template_s_iva4b'),
                 ref('l10n_es.account_tax_template_s_iva10b'),
+                ref('l10n_es.account_tax_template_s_iva5b'),
+                ref('l10n_es.account_tax_template_s_iva0b'),
             ])]"
             />
             <field name="name">Bienes</field>
@@ -71,6 +73,7 @@
                 ref('l10n_es.account_tax_template_s_iva10s'),
                 ref('l10n_es.account_tax_template_s_iva4s'),
                 ref('l10n_es.account_tax_template_s_iva5s'),
+                ref('l10n_es.account_tax_template_s_iva0s'),
             ])]"
             />
             <field name="name">Servicios</field>
@@ -129,6 +132,8 @@
                 ref('l10n_es.account_tax_template_s_irpf21'),
                 ref('l10n_es.account_tax_template_s_irpf21a'),
                 ref('l10n_es.account_tax_template_s_irpf24'),
+                ref('l10n_es.account_tax_template_s_req0'),
+                ref('l10n_es.account_tax_template_s_req062'),
             ])]"
             />
             <field name="name">Retenciones a cuenta del IRPF</field>
