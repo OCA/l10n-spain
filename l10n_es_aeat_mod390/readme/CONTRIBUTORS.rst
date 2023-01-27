@@ -12,3 +12,7 @@
 
   * Harald Panten <harald.panten@sygel.es>
   * Valentin Vinagre <valentin.vinagre@sygel.es>
+
+* `Moduon <https://www.moduon.team>`_:
+
+  * Eduardo de Miguel <edu@moduon.team>

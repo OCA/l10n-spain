@@ -10,6 +10,7 @@
     "license": "AGPL-3",
     "depends": ["l10n_es", "l10n_es_aeat", "account_tax_balance"],
     "data": [
+        # 2019
         "data/aeat_export_mod390_2019_sub01_data.xml",
         "data/aeat_export_mod390_2019_sub02_data.xml",
         "data/aeat_export_mod390_2019_sub03_data.xml",
@@ -22,6 +23,12 @@
         # 2021
         "data/2021/aeat.model.export.config.csv",
         "data/2021/aeat.model.export.config.line.csv",
+        # 2022
+        "data/2022/aeat.model.export.config.csv",
+        "data/2022/aeat.model.export.config.line.csv",
+        "data/aeat_export_mod390_2022_sub02_data.xml",
+        "data/aeat_export_mod390_2022_sub03_data.xml",
+        # Common
         "data/tax_code_map_mod390_data.xml",
         "views/mod390_view.xml",
         "security/ir.model.access.csv",

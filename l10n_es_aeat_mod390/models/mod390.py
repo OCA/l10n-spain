@@ -1,4 +1,5 @@
 # Copyright 2017-2021 Tecnativa - Pedro M. Baeza
+# Copyright 2023 Moduon - Eduardo de Miguel
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
 from odoo import _, api, exceptions, fields, models
@@ -6,7 +7,7 @@ from odoo.tools import float_compare
 
 REQUIRED_ON_CALCULATED = {"calculated": [("required", "True"), ("readonly", "False")]}
 EDITABLE_ON_CALCULATED = {"calculated": [("readonly", "False")]}
-ACTIVITY_CODE_SELECTION = [
+ACTIVITY_CODE_SELECTION_2021 = [
     (
         "1",
         "1: Actividades sujetas al Impuesto sobre Actividades Económicas "
@@ -26,6 +27,26 @@ ACTIVITY_CODE_SELECTION = [
         "empresariales o profesionales y no estén dados de alta en el IAE",
     ),
     ("6", "6: Otras actividades no sujetas al IAE"),
+]
+ACTIVITY_CODE_SELECTION = [
+    ("A01", "Arrendadores de bienes inmuebles."),
+    ("A02", "Ganadería independiente."),
+    (
+        "A03",
+        "Resto de actividades empresariales no incluidas en los dos subtipos anteriores.",
+    ),
+    ("A04", "Actividades profesionales de carácter artístico o deportivo."),
+    ("A05", "Resto de actividades profesionales."),
+    ("B01", "Actividad agrícola."),
+    ("B02", "Actividad ganadera dependiente."),
+    ("B03", "Actividad forestal."),
+    ("B04", "Producción del mejillón en batea."),
+    (
+        "B05",
+        "Actividad pesquera, excepto la actividad de producción de "
+        "mejillón en batea.",
+    ),
+    ("C", "Actividades no iniciadas"),
 ]
 REPRESENTATIVE_HELP = _("Nombre y apellidos del representante")
 NOTARY_CODE_HELP = _(
@@ -59,6 +80,10 @@ class L10nEsAeatMod390Report(models.Model):
         states=REQUIRED_ON_CALCULATED,
     )
     main_activity_code = fields.Selection(
+        selection=ACTIVITY_CODE_SELECTION_2021,
+        string="Código actividad principal",
+    )
+    main_activity_code_2022 = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
         states=REQUIRED_ON_CALCULATED,
         string="Código actividad principal",
@@ -77,6 +102,10 @@ class L10nEsAeatMod390Report(models.Model):
         states=EDITABLE_ON_CALCULATED,
     )
     other_first_activity_code = fields.Selection(
+        selection=ACTIVITY_CODE_SELECTION_2021,
+        string="Código 1ª actividad",
+    )
+    other_first_activity_code_2022 = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
         states=EDITABLE_ON_CALCULATED,
         string="Código 1ª actividad",
@@ -95,6 +124,10 @@ class L10nEsAeatMod390Report(models.Model):
         states=EDITABLE_ON_CALCULATED,
     )
     other_second_activity_code = fields.Selection(
+        selection=ACTIVITY_CODE_SELECTION_2021,
+        string="Código 2ª actividad",
+    )
+    other_second_activity_code_2022 = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
         states=EDITABLE_ON_CALCULATED,
         string="Código 2ª actividad",
@@ -113,6 +146,10 @@ class L10nEsAeatMod390Report(models.Model):
         states=EDITABLE_ON_CALCULATED,
     )
     other_third_activity_code = fields.Selection(
+        selection=ACTIVITY_CODE_SELECTION_2021,
+        string="Código 3ª actividad",
+    )
+    other_third_activity_code_2022 = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
         states=EDITABLE_ON_CALCULATED,
         string="Código 3ª actividad",
@@ -131,6 +168,10 @@ class L10nEsAeatMod390Report(models.Model):
         states=EDITABLE_ON_CALCULATED,
     )
     other_fourth_activity_code = fields.Selection(
+        selection=ACTIVITY_CODE_SELECTION_2021,
+        string="Código 4ª actividad",
+    )
+    other_fourth_activity_code_2022 = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
         states=EDITABLE_ON_CALCULATED,
         string="Código 4ª actividad",
@@ -149,6 +190,10 @@ class L10nEsAeatMod390Report(models.Model):
         states=EDITABLE_ON_CALCULATED,
     )
     other_fifth_activity_code = fields.Selection(
+        selection=ACTIVITY_CODE_SELECTION_2021,
+        string="Código 5ª actividad",
+    )
+    other_fifth_activity_code_2022 = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
         states=EDITABLE_ON_CALCULATED,
         string="Código 5ª actividad",
@@ -392,7 +437,8 @@ class L10nEsAeatMod390Report(models.Model):
                     in (
                         1,
                         3,
-                        5,  # Régimen ordinario
+                        5,
+                        702,  # Régimen ordinario
                         500,
                         502,
                         504,  # Intragrupo - no incluido aún
@@ -426,7 +472,8 @@ class L10nEsAeatMod390Report(models.Model):
                     in (
                         2,
                         4,
-                        6,  # Régimen ordinario
+                        6,
+                        703,  # Régimen ordinario
                         501,
                         503,
                         505,  # Intragrupo - no incluido aún
@@ -490,7 +537,7 @@ class L10nEsAeatMod390Report(models.Model):
         for report in self:
             report.casilla_48 = sum(
                 report.tax_line_ids.filtered(
-                    lambda x: x.field_number in (190, 192, 555, 603, 194, 557, 605)
+                    lambda x: x.field_number in (190, 192, 555, 603, 194, 557, 605, 724)
                 ).mapped("amount")
             )
 
@@ -499,7 +546,7 @@ class L10nEsAeatMod390Report(models.Model):
         for report in self:
             report.casilla_49 = sum(
                 report.tax_line_ids.filtered(
-                    lambda x: x.field_number in (191, 193, 556, 604, 195, 558, 606)
+                    lambda x: x.field_number in (191, 193, 556, 604, 195, 558, 606, 725)
                 ).mapped("amount")
             )
 
