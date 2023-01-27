@@ -4,9 +4,11 @@
         <field name="model">l10n.es.aeat.mod303.report.activity.code</field>
         <field name="arch" type="xml">
             <tree editable="bottom">
-                <field name="period_type"/>
-                <field name="code"/>
-                <field name="name"/>
+                <field name="period_type" />
+                <field name="code" />
+                <field name="name" />
+                <field name="date_start" />
+                <field name="date_end" />
             </tree>
         </field>
     </record>
