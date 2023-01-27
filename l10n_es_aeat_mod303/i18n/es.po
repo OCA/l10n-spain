@@ -136,6 +136,33 @@ msgstr ""
 "6 - Sin epígrafe, correspondiente a: Otras actividades no sujetas al IAE"
 
 #. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A01
+msgid "A01 - Arrendadores de bienes inmuebles"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A02
+msgid "A02 - Ganadería independiente"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A03
+msgid ""
+"A03 - Resto de actividades empresariales no incluidas en los dos subtipos "
+"anteriores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A04
+msgid "A04 - Actividades profesionales de carácter artístico o deportivo"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A05
+msgid "A05 - Resto de actividades profesionales"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model,name:l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_report
 msgid "AEAT 303 Report"
 msgstr "Declaración AEAT 303"
@@ -180,6 +207,38 @@ msgstr "Nombre de la actividad"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_allow_posting
 msgid "Allow posting"
 msgstr "Permitir generar asiento"
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B01
+msgid "B01 - Actividad agrícola"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B02
+msgid "B02 - Actividad ganadera dependiente"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B03
+msgid "B03 - Actividad forestal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B04
+msgid "B04 - Producción del mejillón en batea"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B05
+msgid ""
+"B05 - Actividad pesquera, excepto la actividad de producción de mejillón en "
+"batea"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_C
+msgid "C - Actividades no iniciadas"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_casilla_77
@@ -264,6 +323,11 @@ msgid "Display Name"
 msgstr "Nombre a mostrar"
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_activity_code_date_end
+msgid "Ending date"
+msgstr "Fecha final"
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_other_first_activity_iae
 msgid "Epígrafe I.A.E. 1ª actividad"
 msgstr "Epígrafe I.A.E. 1ª actividad"
@@ -328,7 +392,7 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:264
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:270
 #, python-format
 msgid ""
 "In previous declarations this year you reported a Result Type 'To "
@@ -472,10 +536,15 @@ msgid "Resultado"
 msgstr "Resultado"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:408
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:414
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr "Seleccione una cuenta bancaria para recibir el dinero"
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_activity_code_date_start
+msgid "Starting date"
+msgstr "Fecha de inicio"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form
@@ -497,7 +566,7 @@ msgstr ""
 "esta casilla el 100%"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:419
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:425
 #, python-format
 msgid "The fee to compensate must be indicated as a positive number."
 msgstr "La cuota a compensar debe ser indicada como una cantidad positiva."
@@ -699,9 +768,6 @@ msgstr "¿Volumen de operaciones?"
 #~ msgid "Draft"
 #~ msgstr "Borrador"
 
-#~ msgid "Ending date"
-#~ msgstr "Fecha final"
-
 #~ msgid "Export config"
 #~ msgstr "Configuración de exportación"
 
@@ -815,9 +881,6 @@ msgstr "¿Volumen de operaciones?"
 
 #~ msgid "Responsible User"
 #~ msgstr "Usuario responsable"
-
-#~ msgid "Starting date"
-#~ msgstr "Fecha de inicio"
 
 #~ msgid "State"
 #~ msgstr "Estado"
