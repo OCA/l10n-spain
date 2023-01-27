@@ -25,7 +25,7 @@ repos:
       - id: oca-fix-manifest-website
         args: ["https://github.com/OCA/l10n-spain"]
   - repo: https://github.com/acsone/setuptools-odoo
-    rev: 3.0.6
+    rev: 3.1.8
     hooks:
       - id: setuptools-odoo-make-default
   - repo: https://github.com/OCA/mirrors-flake8
