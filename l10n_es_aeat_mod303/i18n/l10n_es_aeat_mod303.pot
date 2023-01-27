@@ -116,6 +116,31 @@ msgid "6 - Sin epígrafe, correspondiente a: Otras actividades no sujetas al IAE
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A01
+msgid "A01 - Arrendadores de bienes inmuebles"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A02
+msgid "A02 - Ganadería independiente"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A03
+msgid "A03 - Resto de actividades empresariales no incluidas en los dos subtipos anteriores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A04
+msgid "A04 - Actividades profesionales de carácter artístico o deportivo"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A05
+msgid "A05 - Resto de actividades profesionales"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model,name:l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_report
 msgid "AEAT 303 Report"
 msgstr ""
@@ -159,6 +184,36 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_allow_posting
 msgid "Allow posting"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B01
+msgid "B01 - Actividad agrícola"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B02
+msgid "B02 - Actividad ganadera dependiente"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B03
+msgid "B03 - Actividad forestal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B04
+msgid "B04 - Producción del mejillón en batea"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B05
+msgid "B05 - Actividad pesquera, excepto la actividad de producción de mejillón en batea"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_C
+msgid "C - Actividades no iniciadas"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -235,6 +290,11 @@ msgid "Display Name"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_activity_code_date_end
+msgid "Ending date"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_other_first_activity_iae
 msgid "Epígrafe I.A.E. 1ª actividad"
 msgstr ""
@@ -291,7 +351,7 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:264
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:270
 #, python-format
 msgid "In previous declarations this year you reported a Result Type 'To Compensate'. You might need to fill field '[67] Fees to compensate' in this declaration."
 msgstr ""
@@ -405,9 +465,14 @@ msgid "Resultado"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:408
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:414
 #, python-format
 msgid "Select an account for receiving the money"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_activity_code_date_start
+msgid "Starting date"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -421,7 +486,7 @@ msgid "Taxpayers who pay jointly to the Central Government and the Provincial Co
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:419
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:425
 #, python-format
 msgid "The fee to compensate must be indicated as a positive number."
 msgstr ""
