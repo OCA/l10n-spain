@@ -5,6 +5,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import models, fields, api, _
+from calendar import monthrange
 
 NON_EDITABLE_ON_DONE = {'done': [('readonly', True)]}
 
@@ -81,6 +82,65 @@ class L10nEsAeatMod303Report(models.Model):
         for report in self:
             report.resultado_liquidacion = (
                 report.casilla_69 - report.previous_result)
+
+    @api.onchange("period_type","fiscalyear_id")
+    def _getActivityCodeDomain(self):
+        date_start = date_end = None
+        for report in self:
+            if not report.fiscalyear_id or not report.period_type:
+                continue
+            else:
+                year = fields.Date.from_string(report.fiscalyear_id.date_start).year
+                if report.period_type in ("1T", "2T", "3T", "4T"):
+                    # Trimestral                    
+                    starting_month = 1 + (int(report.period_type[0]) - 1) * 3
+                    ending_month = starting_month + 2
+                    date_start = fields.Date.from_string(
+                        "{}-{}-01".format(year, starting_month)
+                    )
+                    date_end = fields.Date.from_string(
+                        "%s-%s-%s"
+                        % (
+                            year,
+                            ending_month,
+                            monthrange(year, ending_month)[1],
+                        )
+                    )
+                elif report.period_type in (
+                    "01",
+                    "02",
+                    "03",
+                    "04",
+                    "05",
+                    "06",
+                    "07",
+                    "08",
+                    "09",
+                    "10",
+                    "11",
+                    "12",
+                ):
+                    # Mensual
+                    month = int(report.period_type)
+                    date_start = fields.Date.from_string(
+                        "{}-{}-01".format(year, month)
+                    )
+                    date_end = fields.Date.from_string(
+                        "%s-%s-%s"
+                        % (year, month, monthrange(year, month)[1])
+                    )
+
+        activities = self.env["l10n.es.aeat.mod303.report.activity.code"].search(
+        [
+            '|',
+            ('period_type', '=', False), ('period_type', '=', self.period_type),
+            '&',
+            '|', ('date_start', '=', False), ('date_start', '<=', date_start),
+            '|', ('date_end', '=', False), ('date_end', '>=', date_end),
+        ])
+        res = {}
+        res["domain"] = {'main_activity_code': [('id','in',activities.ids)]}
+        return res
 
     currency_id = fields.Many2one(
         comodel_name='res.currency', string='Currency',
@@ -215,7 +275,6 @@ class L10nEsAeatMod303Report(models.Model):
     )
     main_activity_code = fields.Many2one(
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
-        domain="[('period_type', '=', period_type)]",
         states=NON_EDITABLE_ON_DONE,
         string=u"Código actividad principal",
     )
@@ -436,8 +495,7 @@ class L10nEsAeatMod303ReportActivityCode(models.Model):
         selection=[
             ('4T', '4T'),
             ('12', 'December'),
-        ],
-        required=True,
+        ]
     )
     code = fields.Char(
         string="Activity code",
@@ -448,3 +506,5 @@ class L10nEsAeatMod303ReportActivityCode(models.Model):
         translate=True,
         required=True,
     )
+    date_start = fields.Date(string="Starting date")
+    date_end = fields.Date(string="Ending date")
