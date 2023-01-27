@@ -257,36 +257,67 @@ msgid "Currency"
 msgstr "Moneda"
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_first_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_first_activity_code_id
 msgid "Código 1ª actividad"
 msgstr "Codi 1ª activitat"
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_second_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_first_activity_code
+msgid "Código 1ª actividad (antiguo)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_second_activity_code_id
 msgid "Código 2ª actividad"
 msgstr "Codi 2ª activitat"
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_third_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_second_activity_code
+msgid "Código 2ª actividad (antiguo)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_third_activity_code_id
 msgid "Código 3ª actividad"
 msgstr "Codi 3ª activitat"
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fourth_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_third_activity_code
+msgid "Código 3ª actividad (antiguo)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fourth_activity_code_id
 msgid "Código 4ª actividad"
 msgstr "Codi 4ª activitat"
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fifth_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fourth_activity_code
+msgid "Código 4ª actividad (antiguo)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fifth_activity_code_id
 msgid "Código 5ª actividad"
 msgstr "Codi 5ª activitat"
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__main_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fifth_activity_code
+msgid "Código 5ª actividad (antiguo)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__main_activity_code_id
 msgid "Código actividad principal"
 msgstr "Codi activitat principal"
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__main_activity_code
+msgid "Código actividad principal (antiguo)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod390/models/mod390.py:0
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__first_representative_notary
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__second_representative_notary
@@ -406,7 +437,6 @@ msgstr "Icona per a indicar una activitat d'excepció."
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_needaction
-#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Si està marcat, hi ha missatges que requereixen la vostra atenció."
 
@@ -548,6 +578,7 @@ msgid "Nombre del tercer representante"
 msgstr "Nom del tercer representant"
 
 #. module: l10n_es_aeat_mod390
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod390/models/mod390.py:0
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__first_representative_name
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__second_representative_name
@@ -590,11 +621,6 @@ msgstr "Nombre de missatges que requereixen una acció"
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr "Nombre de missatges amb error de lliurament"
-
-#. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_unread_counter
-msgid "Number of unread messages"
-msgstr "Nombre de missatges no llegits"
 
 #. module: l10n_es_aeat_mod390
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390.view_l10n_es_aeat_mod390_report_form
@@ -757,6 +783,7 @@ msgid "Tercer representante"
 msgstr "Tercer representant"
 
 #. module: l10n_es_aeat_mod390
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod390/models/mod390.py:0
 #, python-format
 msgid ""
@@ -783,16 +810,6 @@ msgid "Type of the exception activity on record."
 msgstr "Tipus d'activitat d'excepció al registre."
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_unread
-msgid "Unread Messages"
-msgstr "Missatges per llegir"
-
-#. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Nombre de missatges per llegir"
-
-#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__company_vat
 msgid "VAT number"
 msgstr "NIF"
@@ -813,6 +830,7 @@ msgid "Year"
 msgstr "Any"
 
 #. module: l10n_es_aeat_mod390
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod390/models/mod390.py:0
 #, python-format
 msgid "You cannot make complementary reports for this model."
@@ -955,6 +973,15 @@ msgstr "[98] Result. 303 darrer període a tornar"
 msgid "¿Obligación del 347?"
 msgstr "Obligació del 347?"
 <<<<<<< HEAD
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Nombre de missatges no llegits"
+
+#~ msgid "Unread Messages"
+#~ msgstr "Missatges per llegir"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Nombre de missatges per llegir"
 
 #~ msgid "Calculation date"
 #~ msgstr "Data de càlcul"
