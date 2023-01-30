@@ -46,19 +46,24 @@ class L10nEsAccountStatementImportN43(common.TransactionCase):
     def test_import_n43(self):
         action = self.import_wizard.import_file_button()
         self.assertTrue(action)
-        statements = self.env["account.bank.statement.line"].search(
+        statement_lines = self.env["account.bank.statement.line"].search(
             [("statement_id.journal_id", "=", self.journal.id)]
         )
-        statement = statements[2].statement_id
-        self.assertEqual(statement.date, fields.Date.to_date("2016-02-01"))
-        self.assertEqual(len(statements), 3)
-        self.assertTrue(statements.filtered(lambda st: str(st.date) == "2016-05-25"))
-        self.assertTrue(statements.filtered(lambda st: str(st.date) == "2016-05-16"))
-        self.assertTrue(statements.filtered(lambda st: str(st.date) == "2016-05-12"))
-        self.assertEqual(statements[2].date, fields.Date.to_date("2016-05-25"))
+        statement = statement_lines[2].statement_id
+        self.assertEqual(len(statement_lines), 3)
+        self.assertTrue(
+            statement_lines.filtered(lambda st: str(st.date) == "2016-05-25")
+        )
+        self.assertTrue(
+            statement_lines.filtered(lambda st: str(st.date) == "2016-05-16")
+        )
+        self.assertTrue(
+            statement_lines.filtered(lambda st: str(st.date) == "2016-05-12")
+        )
+        self.assertEqual(statement_lines[0].date, fields.Date.to_date("2016-05-25"))
         self.assertAlmostEqual(statement.balance_start, 0, 2)
         self.assertAlmostEqual(statement.balance_end, 101.96, 2)
-        self.assertEqual(statements[0].partner_id, self.partner)
+        self.assertEqual(statement_lines[2].partner_id, self.partner)
 
     def test_import_n43_fecha_oper(self):
         self.journal.n43_date_type = "fecha_oper"
@@ -67,4 +72,4 @@ class L10nEsAccountStatementImportN43(common.TransactionCase):
         statements = self.env["account.bank.statement.line"].search(
             [("statement_id.journal_id", "=", self.journal.id)]
         )
-        self.assertEqual(statements[2].date, fields.Date.to_date("2016-05-26"))
+        self.assertEqual(statements[0].date, fields.Date.to_date("2016-05-26"))

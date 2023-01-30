@@ -349,9 +349,7 @@ class AccountStatementImport(models.TransientModel):
                     )
                 )
         transactions = []
-        date = False
         for group in n43:
-            date = group["fecha_ini"].date()
             for line in group["lines"]:
                 conceptos = []
                 for concept_line in line["conceptos"]:
@@ -379,8 +377,6 @@ class AccountStatementImport(models.TransientModel):
             "balance_start": n43 and n43[0]["saldo_ini"] or 0.0,
             "balance_end_real": n43 and n43[-1]["saldo_fin"] or 0.0,
         }
-        if date:
-            vals_bank_statement["date"] = date
         return (
             journal.currency_id.name or journal.company_id.currency_id.name,
             n43 and n43[0]["cuenta"] or None,
