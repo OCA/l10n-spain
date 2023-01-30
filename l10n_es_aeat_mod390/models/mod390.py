@@ -60,9 +60,18 @@ class L10nEsAeatMod390Report(models.Model):
     )
     main_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
-        states=REQUIRED_ON_CALCULATED,
+        string="Código actividad principal (antiguo)",
+    )
+    main_activity_code_id = fields.Many2one(
+        comodel_name="l10n.es.aeat.mod303.report.activity.code",
+        domain="["
+        "   '|',"
+        "   ('period_type', '=', False), ('period_type', '=', period_type),"
+        "   '&',"
+        "   '|', ('date_start', '=', False), ('date_start', '<=', date_start),"
+        "   '|', ('date_end', '=', False), ('date_end', '>=', date_end),"
+        "]",
         string="Código actividad principal",
-        readonly=True,
     )
     main_activity_iae = fields.Char(
         string="Epígrafe I.A.E. actividad principal",
@@ -78,9 +87,19 @@ class L10nEsAeatMod390Report(models.Model):
     )
     other_first_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
-        states=EDITABLE_ON_CALCULATED,
-        string="Código 1ª actividad",
+        string="Código 1ª actividad (antiguo)",
         readonly=True,
+    )
+    other_first_activity_code_id = fields.Many2one(
+        comodel_name="l10n.es.aeat.mod303.report.activity.code",
+        domain="["
+        "   '|',"
+        "   ('period_type', '=', False), ('period_type', '=', period_type),"
+        "   '&',"
+        "   '|', ('date_start', '=', False), ('date_start', '<=', date_start),"
+        "   '|', ('date_end', '=', False), ('date_end', '>=', date_end),"
+        "]",
+        string="Código 1ª actividad",
     )
     other_first_activity_iae = fields.Char(
         string="Epígrafe I.A.E. 1ª actividad",
@@ -97,8 +116,19 @@ class L10nEsAeatMod390Report(models.Model):
     other_second_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
         states=EDITABLE_ON_CALCULATED,
-        string="Código 2ª actividad",
+        string="Código 2ª actividad (antiguo)",
         readonly=True,
+    )
+    other_second_activity_code_id = fields.Many2one(
+        comodel_name="l10n.es.aeat.mod303.report.activity.code",
+        domain="["
+        "   '|',"
+        "   ('period_type', '=', False), ('period_type', '=', period_type),"
+        "   '&',"
+        "   '|', ('date_start', '=', False), ('date_start', '<=', date_start),"
+        "   '|', ('date_end', '=', False), ('date_end', '>=', date_end),"
+        "]",
+        string="Código 2ª actividad",
     )
     other_second_activity_iae = fields.Char(
         string="Epígrafe I.A.E. 2ª actividad",
@@ -115,8 +145,18 @@ class L10nEsAeatMod390Report(models.Model):
     other_third_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
         states=EDITABLE_ON_CALCULATED,
+        string="Código 3ª actividad (antiguo)",
+    )
+    other_third_activity_code_id = fields.Many2one(
+        comodel_name="l10n.es.aeat.mod303.report.activity.code",
+        domain="["
+        "   '|',"
+        "   ('period_type', '=', False), ('period_type', '=', period_type),"
+        "   '&',"
+        "   '|', ('date_start', '=', False), ('date_start', '<=', date_start),"
+        "   '|', ('date_end', '=', False), ('date_end', '>=', date_end),"
+        "]",
         string="Código 3ª actividad",
-        readonly=True,
     )
     other_third_activity_iae = fields.Char(
         string="Epígrafe I.A.E. 3ª actividad",
@@ -133,8 +173,18 @@ class L10nEsAeatMod390Report(models.Model):
     other_fourth_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
         states=EDITABLE_ON_CALCULATED,
+        string="Código 4ª actividad (antiguo)",
+    )
+    other_fourth_activity_code_id = fields.Many2one(
+        comodel_name="l10n.es.aeat.mod303.report.activity.code",
+        domain="["
+        "   '|',"
+        "   ('period_type', '=', False), ('period_type', '=', period_type),"
+        "   '&',"
+        "   '|', ('date_start', '=', False), ('date_start', '<=', date_start),"
+        "   '|', ('date_end', '=', False), ('date_end', '>=', date_end),"
+        "]",
         string="Código 4ª actividad",
-        readonly=True,
     )
     other_fourth_activity_iae = fields.Char(
         string="Epígrafe I.A.E. 4ª actividad",
@@ -151,8 +201,19 @@ class L10nEsAeatMod390Report(models.Model):
     other_fifth_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
         states=EDITABLE_ON_CALCULATED,
-        string="Código 5ª actividad",
+        string="Código 5ª actividad (antiguo)",
         readonly=True,
+    )
+    other_fifth_activity_code_id = fields.Many2one(
+        comodel_name="l10n.es.aeat.mod303.report.activity.code",
+        domain="["
+        "   '|',"
+        "   ('period_type', '=', False), ('period_type', '=', period_type),"
+        "   '&',"
+        "   '|', ('date_start', '=', False), ('date_start', '<=', date_start),"
+        "   '|', ('date_end', '=', False), ('date_end', '>=', date_end),"
+        "]",
+        string="Código 5ª actividad",
     )
     other_fifth_activity_iae = fields.Char(
         string="Epígrafe I.A.E. 5ª actividad",
@@ -392,6 +453,7 @@ class L10nEsAeatMod390Report(models.Model):
                     in (
                         1,
                         3,
+                        702,
                         5,  # Régimen ordinario
                         500,
                         502,
@@ -426,6 +488,7 @@ class L10nEsAeatMod390Report(models.Model):
                     in (
                         2,
                         4,
+                        703,
                         6,  # Régimen ordinario
                         501,
                         503,
@@ -490,7 +553,7 @@ class L10nEsAeatMod390Report(models.Model):
         for report in self:
             report.casilla_48 = sum(
                 report.tax_line_ids.filtered(
-                    lambda x: x.field_number in (190, 192, 555, 603, 194, 557, 605)
+                    lambda x: x.field_number in (190, 192, 555, 603, 194, 557, 605, 724)
                 ).mapped("amount")
             )
 
@@ -499,7 +562,7 @@ class L10nEsAeatMod390Report(models.Model):
         for report in self:
             report.casilla_49 = sum(
                 report.tax_line_ids.filtered(
-                    lambda x: x.field_number in (191, 193, 556, 604, 195, 558, 606)
+                    lambda x: x.field_number in (191, 193, 556, 604, 195, 558, 606, 725)
                 ).mapped("amount")
             )
 
