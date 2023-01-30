@@ -10,9 +10,7 @@
     'website': "https://github.com/OCA/l10n-spain",
     'license': 'AGPL-3',
     'depends': [
-        'l10n_es',
-        'l10n_es_aeat',
-        'account_tax_balance',
+        'l10n_es_aeat_mod303'
     ],
     'data': [
         # 2017
@@ -55,6 +53,10 @@
         'data/aeat_export_mod390_2021_sub07_data.xml',
         'data/aeat_export_mod390_2021_sub08_data.xml',
         'data/aeat_export_mod390_2021_main_data.xml',
+        # 2022
+        'data/2022/aeat.model.export.config.csv',
+        'data/2022/aeat.model.export.config.line.csv',
+        # rest of the stuff
         'data/tax_code_map_mod390_data.xml',
         'views/mod390_view.xml',
         'security/ir.model.access.csv',

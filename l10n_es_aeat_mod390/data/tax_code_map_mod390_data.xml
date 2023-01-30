@@ -29,6 +29,28 @@
         <field name="tax_ids" eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva4b'), ref('l10n_es.account_tax_template_s_iva4s')])]"/>
     </record>
 
+    <record id="aeat_mod390_map_line_702" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map"/>
+        <field name="field_number">702</field>
+        <field name="name">Régimen ordinario - Base imponible 5%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False"/>
+        <field name="tax_ids" eval="[(6, False, [ref('l10n_es_extra_data.account_tax_template_s_iva5s')])]"/>
+    </record>
+
+    <record id="aeat_mod390_map_line_703" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map"/>
+        <field name="field_number">703</field>
+        <field name="name">Régimen ordinario - Cuota 5%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">amount</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False"/>
+        <field name="tax_ids" eval="[(6, False, [ref('l10n_es_extra_data.account_tax_template_s_iva5s')])]"/>
+    </record>
+
     <record id="aeat_mod390_map_line_03" model="l10n.es.aeat.map.tax.line">
         <field name="map_parent_id" ref="aeat_mod390_map"/>
         <field name="field_number">3</field>
@@ -382,6 +404,27 @@
         <field name="tax_ids" eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva4_sc'), ref('l10n_es.account_tax_template_p_iva4_bc'), ref('l10n_es.account_tax_template_p_iva4_sp_ex_2'), ref('l10n_es.account_tax_template_p_iva4_isp_1')])]"/>
     </record>
 
+    <record id="aeat_mod390_map_line_724" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map"/>
+        <field name="field_number">724</field>
+        <field name="name">IVA deducible en operaciones corrientes de bienes y servicios - Base 5%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True"/>
+        <field name="tax_ids" eval="[(6, False, [ref('l10n_es_extra_data.account_tax_template_p_iva5_sc')])]"/>
+    </record>
+
+    <record id="aeat_mod390_map_line_725" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map"/>
+        <field name="field_number">725</field>
+        <field name="name">IVA deducible en operaciones corrientes de bienes y servicios - Cuota 5%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">amount</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True"/>
+        <field name="tax_ids" eval="[(6, False, [ref('l10n_es_extra_data.account_tax_template_p_iva5_sc')])]"/>
+    </record>
     <record id="aeat_mod390_map_line_603" model="l10n.es.aeat.map.tax.line">
         <field name="map_parent_id" ref="aeat_mod390_map"/>
         <field name="field_number">603</field>
