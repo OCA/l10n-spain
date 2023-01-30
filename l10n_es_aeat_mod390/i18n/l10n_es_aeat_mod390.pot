@@ -241,31 +241,37 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_first_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_first_activity_code_id
 msgid "Código 1ª actividad"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_second_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_second_activity_code_id
 msgid "Código 2ª actividad"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_third_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_third_activity_code_id
 msgid "Código 3ª actividad"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fourth_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fourth_activity_code_id
 msgid "Código 4ª actividad"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fifth_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fifth_activity_code_id
 msgid "Código 5ª actividad"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__main_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__main_activity_code_id
 msgid "Código actividad principal"
 msgstr ""
 
@@ -722,7 +728,7 @@ msgid "Tercer representante"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
-#: code:addons/l10n_es_aeat_mod390/models/mod390.py:570
+#: code:addons/l10n_es_aeat_mod390/models/mod390.py:594
 #, python-format
 msgid "The result of the manual 303 summary (fields [95], [97] and [98] in the page '9. Resultado liquidaciones') doesn't match the field [86]. Please check if you have filled such fields."
 msgstr ""
@@ -768,7 +774,7 @@ msgid "Year"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
-#: code:addons/l10n_es_aeat_mod390/models/mod390.py:562
+#: code:addons/l10n_es_aeat_mod390/models/mod390.py:586
 #, python-format
 msgid "You cannot make complementary reports for this model."
 msgstr ""
