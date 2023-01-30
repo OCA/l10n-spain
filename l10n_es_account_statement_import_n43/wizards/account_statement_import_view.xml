@@ -4,7 +4,7 @@
         <field name="model">account.statement.import</field>
         <field
             name="inherit_id"
-            ref="account_statement_import.account_statement_import_form"
+            ref="account_statement_import_file.account_statement_import_form"
         />
         <field name="arch" type="xml">
             <xpath expr="//ul[@id='statement_format']" position="inside">
