@@ -27,11 +27,11 @@
                             <field name="main_activity" />
                             <field
                                 name="main_activity_code"
-                                attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)], 'required': [('year', '&lt;', 2022)]}"
+                                attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)], 'required': [('state', '=', 'calculated'), ('year', '&lt;', 2022)]}"
                             />
                             <field
                                 name="main_activity_code_id"
-                                attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)], 'required': [('year', '&gt;', 2021)]}"
+                                attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)], 'required': [('state', '=', 'calculated'), ('year', '&gt;', 2021)]}"
                             />
                             <field name="main_activity_iae" />
                         </group>
