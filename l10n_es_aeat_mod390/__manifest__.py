@@ -10,7 +10,7 @@
     'website': "https://github.com/OCA/l10n-spain",
     'license': 'AGPL-3',
     'depends': [
-        'l10n_es_aeat_mod303'
+        'l10n_es_aeat_mod303_extra_data',
     ],
     'data': [
         # 2017
