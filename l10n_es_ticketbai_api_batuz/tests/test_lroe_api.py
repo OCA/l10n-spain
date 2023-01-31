@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import json
 from requests import exceptions
+from datetime import datetime
 from odoo.tests import common
 from ..lroe.lroe_api import LROETicketBaiApi
 
@@ -22,6 +23,10 @@ class TestLroeTicketBaiApi(common.TransactionCase):
             tbai_invoice_ids = False
             company_id = Company()
             model = 'MODE'
+
+            def build_cabecera_ejercicio(self):
+                return str(datetime.now().year)
+
         h = api.get_request_headers(Op())
 
         data = json.loads(h['eus-bizkaia-n3-data'])
