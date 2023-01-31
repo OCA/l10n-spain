@@ -84,15 +84,15 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
         # Régimen ordinario - Cuota 21%
         ('6', 1738.8),
         # Adquisiciones intracomunitarias de bienes - Base 4%
-        ('21', 300.0),
+        ('21', 1000.0),
         # Adquisiciones intracomunitarias de bienes - Cuota 4%
         ('22', 12.0),
         # Adquisiciones intracomunitarias de bienes - Base 10%
-        ('23', 600.0),
+        ('23', 1400.0),
         # Adquisiciones intracomunitarias de bienes - Cuota 10%
         ('24', 60.0),
         # Adquisiciones intracomunitarias de bienes - Base 21%
-        ('25', 900.0),
+        ('25', 1800.0),
         # Adquisiciones intracomunitarias de bienes - Cuota 21%
         ('26', 189.0),
         # IVA devengado otros supuestos de inversión del sujeto pasivo - Base
