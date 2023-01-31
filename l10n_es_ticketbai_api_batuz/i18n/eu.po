@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_ticketbai_api_batuz
+# 	* l10n_es_ticketbai_api_batuz
 #
 msgid ""
 msgstr ""
@@ -27,8 +27,7 @@ msgid "Build error"
 msgstr "Eraikitzeko errorea"
 
 #. module: l10n_es_ticketbai_api_batuz
-#: selection:lroe.operation,state:0
-#: selection:lroe.operation,type:0
+#: selection:lroe.operation,state:0 selection:lroe.operation,type:0
 msgid "Cancel"
 msgstr "Kantzelatu"
 
@@ -61,7 +60,7 @@ msgid "Company"
 msgstr "Enpresa"
 
 #. module: l10n_es_ticketbai_api_batuz
-#: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:298
+#: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:293
 #, python-format
 msgid "Company %s VAT number should not be empty!"
 msgstr "%s enpresaren NIF zenbakia ez da hutsik egon behar!"
@@ -244,14 +243,12 @@ msgid "LROE Operation required!"
 msgstr "LROE Eragiketa beharrezkoa da!"
 
 #. module: l10n_es_ticketbai_api_batuz
-#: selection:lroe.chapter,model:0
-#: selection:res.company,lroe_model:0
+#: selection:lroe.chapter,model:0 selection:res.company,lroe_model:0
 msgid "LROE PF 140"
 msgstr "LROE PF 140"
 
 #. module: l10n_es_ticketbai_api_batuz
-#: selection:lroe.chapter,model:0
-#: selection:res.company,lroe_model:0
+#: selection:lroe.chapter,model:0 selection:res.company,lroe_model:0
 msgid "LROE PJ 240"
 msgstr "LROE PJ 240"
 
