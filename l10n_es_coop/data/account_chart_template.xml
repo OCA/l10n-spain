@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- © 2017 - Ignacio Ibeas - Acysos S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <!-- Plantillas de los planes contables -->
+
+    <record id="account_chart_template_coop_pyme" model="account.chart.template">
+        <field name="name">PGCE Cooperativas Pyme 2008</field>
+        <field name="complete_tax_set" eval="True" />
+        <field name="currency_id" ref="base.EUR" />
+        <field name="cash_account_code_prefix">570</field>
+        <field name="bank_account_code_prefix">572</field>
+        <field name="transfer_account_code_prefix">572999</field>
+        <field name="parent_id" ref="l10n_es.account_chart_template_pymes" />
+    </record>
+
+    <record id="account_chart_template_coop_full" model="account.chart.template">
+        <field name="name">PGCE Cooperativas Completo 2008</field>
+        <field name="complete_tax_set" eval="True" />
+        <field name="currency_id" ref="base.EUR" />
+        <field name="cash_account_code_prefix">570</field>
+        <field name="bank_account_code_prefix">572</field>
+        <field name="transfer_account_code_prefix">572999</field>
+        <field name="parent_id" ref="l10n_es.account_chart_template_full" />
+    </record>
+
+</odoo>

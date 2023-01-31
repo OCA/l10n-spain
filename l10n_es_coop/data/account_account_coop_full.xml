@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- © 2017 - Ignacio Ibeas - Acysos S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+      <!--
+        Cuentas que solo están en el PGC cooperativas:
+            (1000), (1001), (1002), (10020), (10021), (1145), (11450), (11451),
+            (1181), (148), (1502), (15020), (15021), (1530);
+            (2527);
+            (307), (317);
+            (4007), (447);
+            (5020), (507), (5210), (5211), (5212), (5213), (5214), (5298),
+            (5427), (55850);
+            (605), (617), (647), (657), (6647);
+            (737), (756), (757), (7570), (7571), (7572), (7573);
+
+        Cuentas que tienen un nombre distinto al de los otros:
+            (100), (103), (104), (1040), (1044), (107), (1070), (1071), (112),
+            (113);
+            (12);
+            (130);
+            (240), (249);
+            (490);
+            (526);
+            (65), (671), (691), (694);
+            (791), (794);
+      -->
+
+    <record id="pgc_coop_full_1000_child" model="account.account.template">
+        <field name="code">1000</field>
+        <field name="reconcile" eval="False" />
+        <field name="name">Capital social cooperativo: aportaciones obligatorias</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_1001_child" model="account.account.template">
+        <field name="code">1001</field>
+        <field name="reconcile" eval="False" />
+        <field name="name">Capital social cooperativo: aportaciones voluntarias</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_10020_child" model="account.account.template">
+        <field name="code">10020</field>
+        <field name="reconcile" eval="False" />
+        <field name="name">Socios colaboradores</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_10021_child" model="account.account.template">
+        <field name="code">10021</field>
+        <field name="reconcile" eval="False" />
+        <field name="name">Asociados o aheridos</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_11450_child" model="account.account.template">
+        <field name="code">11450</field>
+        <field name="reconcile" eval="False" />
+        <field name="name">Fondo por incorporacion de beneficios</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_11451_child" model="account.account.template">
+        <field name="code">11451</field>
+        <field name="reconcile" eval="False" />
+        <field name="name">Fondo por incorporacion de beneficios</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_1070_child" model="account.account.template">
+        <field name="code">1070</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Fondo de participaciones con vencimiento en la liquidacion</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_1071_child" model="account.account.template">
+        <field name="code">1071</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Otros fondos subordinados con vencimientos en la liquidacion</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_112_child" model="account.account.template">
+        <field name="code">112</field>
+        <field name="reconcile" eval="False" />
+        <field name="name">Fondo de reserva obligatorio</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_113_child" model="account.account.template">
+        <field name="code">113</field>
+        <field name="reconcile" eval="False" />
+        <field name="name">Fondo de reserva voluntario</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_1181_child" model="account.account.template">
+        <field name="code">1181</field>
+        <field name="reconcile" eval="False" />
+        <field name="name">Aportaciones de socios en cooperativas</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_148_child" model="account.account.template">
+        <field name="code">148</field>
+        <field name="reconcile" eval="True" />
+        <field
+            name="name"
+        >Fondo de Educación, Formación y Promoción a largo plazo</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_1500_child" model="account.account.template">
+        <field name="code">1500</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Capital Social Cooperativo a largo plazo considerado pasivo financiero aportaciones obligatorias</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_1501_child" model="account.account.template">
+        <field name="code">1501</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Capital Social Cooperativo a largo plazo considerado pasivo financiero aportaciones voluntarias</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_15020_child" model="account.account.template">
+        <field name="code">15020</field>
+        <field name="reconcile" eval="False" />
+        <field name="name">Socios colaboradores</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_15021_child" model="account.account.template">
+        <field name="code">15021</field>
+        <field name="reconcile" eval="False" />
+        <field name="name">Asociados o adheridos</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_1530_child" model="account.account.template">
+        <field name="code">1530</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Desembolso no exigos por Capital social cooperativo considerado como pasivo financiero</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_1710_child" model="account.account.template">
+        <field name="code">1710</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Deudas a largo plazo por reembolso de aportaciones a los socios</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_1711_child" model="account.account.template">
+        <field name="code">1711</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Deudas a largo plazo por reembolso de aportaciones a los socios</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_1712_child" model="account.account.template">
+        <field name="code">1712</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Acreedores por fondo de reembolso o actualizacion a largo plazo</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_1713_child" model="account.account.template">
+        <field name="code">1713</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Acreedores por fondo de reserva voluntario a largo plazo</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_1714_child" model="account.account.template">
+        <field name="code">1714</field>
+        <field name="reconcile" eval="False" />
+        <field name="name">Acreedores por fondos capitalizados a largo plazo</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_1715_child" model="account.account.template">
+        <field name="code">1715</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Retorno cooperativo y renumeracion discrecional a pagar a largo plazo</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_2527_child" model="account.account.template">
+        <field name="code">2527</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Creditos con socios por perdidas a compensar a largo plazo</field>
+        <field name="user_type_id" ref="account.data_account_type_fixed_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_307_child" model="account.account.template">
+        <field name="code">307</field>
+        <field name="reconcile" eval="False" />
+        <field name="name">Mercader&#237;as adquiridas a socios</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_317_child" model="account.account.template">
+        <field name="code">317</field>
+        <field name="reconcile" eval="False" />
+        <field name="name">Materias primas adquiridas a socios</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_4007_child" model="account.account.template">
+        <field name="code">4007</field>
+        <field name="reconcile" eval="True" />
+        <field name="name">Proveedores socios cooperativos</field>
+        <field name="user_type_id" ref="account.data_account_type_payable" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_447_child" model="account.account.template">
+        <field name="code">447</field>
+        <field name="reconcile" eval="True" />
+        <field
+            name="name"
+        >Socios deudores: creditos por operaciones efectuados con socios</field>
+        <field name="user_type_id" ref="account.data_account_type_receivable" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_5020_child" model="account.account.template">
+        <field name="code">5020</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Capital social cooperativo con caracterisiticas de deuda a corto plazo</field>
+        <field
+            name="user_type_id"
+            ref="account.data_account_type_current_liabilities"
+        />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_5210_child" model="account.account.template">
+        <field name="code">5210</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Deudas a corto plazo por reembolso de aportaciones a los socios</field>
+        <field
+            name="user_type_id"
+            ref="account.data_account_type_current_liabilities"
+        />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_5211_child" model="account.account.template">
+        <field name="code">5211</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Acreedores por fondo de reserva obligatorio a corto plazo</field>
+        <field
+            name="user_type_id"
+            ref="account.data_account_type_current_liabilities"
+        />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_5212_child" model="account.account.template">
+        <field name="code">5212</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Acreedores por fondo de reembolso o actualizacion a corto plazo</field>
+        <field
+            name="user_type_id"
+            ref="account.data_account_type_current_liabilities"
+        />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_5213_child" model="account.account.template">
+        <field name="code">5213</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Acreedores por fondo de reserva voluntario a corto plazo</field>
+        <field
+            name="user_type_id"
+            ref="account.data_account_type_current_liabilities"
+        />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_5214_child" model="account.account.template">
+        <field name="code">5214</field>
+        <field name="reconcile" eval="False" />
+        <field name="name">Acreedores por fondos capitalizados a corto plazo</field>
+        <field
+            name="user_type_id"
+            ref="account.data_account_type_current_liabilities"
+        />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_526_child" model="account.account.template">
+        <field name="code">526</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Retorno cooperativo y renumeracion discrecional a pagar a corto plazo</field>
+        <field
+            name="user_type_id"
+            ref="account.data_account_type_current_liabilities"
+        />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_5298_child" model="account.account.template">
+        <field name="code">5298</field>
+        <field name="reconcile" eval="True" />
+        <field
+            name="name"
+        >Fondo de educacion, formacion y promocion a corto plazo</field>
+        <field
+            name="user_type_id"
+            ref="account.data_account_type_current_liabilities"
+        />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_5427_child" model="account.account.template">
+        <field name="code">5427</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Cr&#233;ditos con socios por perdidas a compensar a corto plazo</field>
+        <field
+            name="user_type_id"
+            ref="account.data_account_type_current_liabilities"
+        />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_55850_child" model="account.account.template">
+        <field name="code">55850</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >«Desembolsos exigidos sobre Capital social cooperativo considerado como pasivo financiero</field>
+        <field
+            name="user_type_id"
+            ref="account.data_account_type_current_liabilities"
+        />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_605_child" model="account.account.template">
+        <field name="code">605</field>
+        <field name="reconcile" eval="False" />
+        <field name="name">Compras efectuados a socios</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_617_child" model="account.account.template">
+        <field name="code">617</field>
+        <field name="reconcile" eval="False" />
+        <field name="name">Variación de existencias adquiridas a socios</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_647_child" model="account.account.template">
+        <field name="code">647</field>
+        <field name="reconcile" eval="False" />
+        <field name="name">Retribución a los socios trabajadores</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_657_child" model="account.account.template">
+        <field name="code">657</field>
+        <field name="reconcile" eval="False" />
+        <field name="name">Dotación al Fondo de Educación, Formación y Promoción</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_6647_child" model="account.account.template">
+        <field name="code">6647</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Intereses y retorno obligatorio de las aportaciones al capital cooperativo y de otros fondos calificados con características de deuda</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_737_child" model="account.account.template">
+        <field name="code">737</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Trabajos realizados para el Fondo de Educación, Formación y Promoción</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_756_child" model="account.account.template">
+        <field name="code">756</field>
+        <field name="reconcile" eval="False" />
+        <field name="name">Ingresos por operaciones con socios</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_7570_child" model="account.account.template">
+        <field name="code">7570</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Sanciones impuestas a socios imputables al Fondo de Educación, Formación y Promoción</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_7571_child" model="account.account.template">
+        <field name="code">7571</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Subvenciones imputables al Fondo de Educación, Formación y Promoció</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_7572_child" model="account.account.template">
+        <field name="code">7572</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Donaciones imputables al Fondo de Educación, Formación y Promoción</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+    <record id="pgc_coop_full_7573_child" model="account.account.template">
+        <field name="code">7573</field>
+        <field name="reconcile" eval="False" />
+        <field
+            name="name"
+        >Otros ingresos imputables al Fondo de Educación, Formación y Promoción</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue" />
+        <field name="chart_template_id" ref="account_chart_template_coop_full" />
+    </record>
+
+</odoo>
