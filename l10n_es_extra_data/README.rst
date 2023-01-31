@@ -78,6 +78,10 @@ Contributors
 
   * Vicent Cubells
 
+* `Acysos SL <https://www.acysos.es>`__:
+
+  * Ignacio Ibeas
+
 Maintainers
 ~~~~~~~~~~~
 
