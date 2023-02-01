@@ -10,6 +10,10 @@
             <field name="fixed_value"/>
             <field name="expression">${object.casilla_44}</field>
         </record>
+        <record id="l10n_es_aeat_mod303.aeat_mod303_2022_sub01_export_line_68" model="aeat.model.export.config.line">
+            <field name="fixed_value"/>
+            <field name="expression">${object.casilla_44}</field>
+        </record>
 
     </data>
 </openerp>
