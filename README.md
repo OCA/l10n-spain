@@ -54,7 +54,7 @@ addon | version | maintainers | summary
 [l10n_es_aeat_sii](l10n_es_aeat_sii/) | 12.0.1.9.1 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Suministro Inmediato de Información en el IVA
 [l10n_es_aeat_sii_extra_data](l10n_es_aeat_sii_extra_data/) | 12.0.1.0.0 | [![cubells](https://github.com/cubells.png?size=30px)](https://github.com/cubells) | Módulo para incluir los impuestos extra en el módulo del SII.
 [l10n_es_aeat_sii_oss](l10n_es_aeat_sii_oss/) | 12.0.1.0.1 |  | Suministro Inmediato de Información en el IVA: OSS
-[l10n_es_aeat_vat_prorrate](l10n_es_aeat_vat_prorrate/) | 12.0.1.1.0 |  | AEAT - Prorrata de IVA
+[l10n_es_aeat_vat_prorrate](l10n_es_aeat_vat_prorrate/) | 12.0.1.2.0 |  | AEAT - Prorrata de IVA
 [l10n_es_aeat_vat_prorrate_asset](l10n_es_aeat_vat_prorrate_asset/) | 12.0.1.0.0 |  | AEAT - Prorrata de IVA - Extensión para los activos
 [l10n_es_dua](l10n_es_dua/) | 12.0.1.2.0 |  | Importaciones con DUA
 [l10n_es_dua_sii](l10n_es_dua_sii/) | 12.0.1.1.2 |  | Suministro Inmediato de Información de importaciones con DUA
