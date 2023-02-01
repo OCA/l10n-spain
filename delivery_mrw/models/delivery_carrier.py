@@ -48,20 +48,6 @@ MRW_INTERNATIONAL_SERVICES = [
 class DeliveryCarrier(models.Model):
     _inherit = "delivery.carrier"
 
-    delivery_type = fields.Selection(
-        selection_add=[("mrw", "MRW")], ondelete={"mrw": "set default"}
-    )
-
-    mrw_username = fields.Char(string="Username")
-    mrw_password = fields.Char(string="Password")
-    mrw_client_code = fields.Char(string="Client Code")
-    mrw_department_code = fields.Char(string="Department Code")
-    mrw_franquicia_code = fields.Char(string="Franquicia Code")
-    mrw_label_top_margin = fields.Integer(default=2)
-    mrw_label_left_margin = fields.Integer(default=2)
-
-    international_shipping = fields.Boolean(default=False)
-
     @api.depends("mrw_international_service", "mrw_national_service")
     def _compute_mrw_service(self):
         for item in self:
@@ -71,24 +57,28 @@ class DeliveryCarrier(models.Model):
                 else item.mrw_national_service
             )
 
+    delivery_type = fields.Selection(selection_add=[("mrw", "MRW")],)
+    mrw_username = fields.Char(string="Username")
+    mrw_password = fields.Char(string="Password")
+    mrw_client_code = fields.Char(string="Client Code")
+    mrw_department_code = fields.Char(string="Department Code")
+    mrw_franquicia_code = fields.Char(string="Franquicia Code")
+    mrw_label_top_margin = fields.Integer(default=2)
+    mrw_label_left_margin = fields.Integer(default=2)
+    international_shipping = fields.Boolean(default=False)
     mrw_service = fields.Char(compute="_compute_mrw_service")
-
     mrw_international_service = fields.Selection(
         selection=MRW_INTERNATIONAL_SERVICES,
-        string="MRW Service",
         help="Set the MRW Service",
         default="PAC",  # Courier
     )
     mrw_national_service = fields.Selection(
         selection=MRW_NATIONAL_SERVICES,
-        string="MRW Service",
         help="Set the MRW Service",
         default="0300",  # Courier
     )
-
     mrw_horario_from = fields.Float()
     mrw_horario_to = fields.Float(default=23.99)
-
     mrw_en_franquicia = fields.Selection(
         selection=[
             ("N", "Sin recogida ni entrega en franquicia."),
@@ -99,7 +89,6 @@ class DeliveryCarrier(models.Model):
         default="N",
         help="Indicador de entrega en franquicia.",
     )
-
     mrw_notification_channel = fields.Selection(
         string="Notification Channel", selection=[("1", "Email"), ("2", "SMS")]
     )
@@ -126,7 +115,6 @@ class DeliveryCarrier(models.Model):
         "sido recogido en origen. Solo tendrá sentido cuando NO sea"
         "entrega en franquicia. Nota: Solo para SMS.\n",
     )
-
     mrw_reembolso = fields.Selection(
         selection=[
             ("N", "Sin reembolso"),
@@ -137,7 +125,6 @@ class DeliveryCarrier(models.Model):
         help="Indicador de reembolso. El importe del reembolso será cogido"
         " del pedido de venta.",
     )
-
     mrw_retorno = fields.Selection(
         selection=[
             ("N", "Sin retorno"),
@@ -146,7 +133,6 @@ class DeliveryCarrier(models.Model):
         ],
         default="N",
     )
-
     mrw_api_language = fields.Char(
         string="Language Code",
         default="3082",
@@ -314,11 +300,7 @@ class DeliveryCarrier(models.Model):
             },
             # nodo opcional
             "DatosServicio": {
-                # fecha de servicio del envío. Si no se indica, internamente se cogerá
-                # la fecha actual del sistema.
-                "Fecha": picking.scheduled_date
-                if picking.scheduled_date > today
-                else today,
+                "Fecha": today,
                 # número opcional de referencia del envío del cliente
                 "Referencia": picking.name,
                 "CodigoServicio": self.mrw_service,
