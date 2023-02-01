@@ -8,10 +8,7 @@ class DeliveryMRWManifiestoWizard(models.TransientModel):
     _name = "mrw.manifest.wizard"
     _description = "Get the MRW Manifest for the given date"
 
-    date_from = fields.Date(
-        required=True,
-        default=fields.Date.context_today,
-    )
+    date_from = fields.Date(required=True, default=fields.Date.context_today,)
     carrier_id = fields.Many2one(
         string="MRW Service",
         help="If no service is selected, all MRW type shippment methods will"

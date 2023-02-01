@@ -16,14 +16,8 @@ class StockPicking(models.Model):
         body = _("MRW Shipping Label:")
         attachment = []
         if label["EtiquetaFile"]:
-            attachment = [
-                (
-                    label_name,
-                    label["EtiquetaFile"],
-                )
-            ]
+            attachment = [(label_name, label["EtiquetaFile"],)]
         self.message_post(
-            body=body,
-            attachments=attachment,
+            body=body, attachments=attachment,
         )
         return label

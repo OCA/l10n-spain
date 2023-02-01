@@ -17,10 +17,7 @@ class TestDeliveryMRW(common.SavepointCase):
         )
         cls.carrier_mrw = cls.env.ref("delivery_mrw.mrw_carrier_test")
         cls.carrier_mrw.write(
-            {
-                "product_id": cls.shipping_product.id,
-                "company_id": cls.env.company.id,
-            }
+            {"product_id": cls.shipping_product.id, "company_id": cls.env.company.id}
         )
         cls.product = cls.env["product.product"].create(
             {"type": "product", "name": "Test product"}

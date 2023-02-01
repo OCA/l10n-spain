@@ -405,10 +405,7 @@ class DeliveryCarrier(models.Model):
         attachment = []
         if label["EtiquetaFile"]:
             attachment = [
-                (
-                    "mrw_label_{}.pdf".format(mrw_tracking_ref),
-                    label["EtiquetaFile"],
-                )
+                ("mrw_label_{}.pdf".format(mrw_tracking_ref), label["EtiquetaFile"],)
             ]
         picking.message_post(body=body, attachments=attachment)
         return vals
