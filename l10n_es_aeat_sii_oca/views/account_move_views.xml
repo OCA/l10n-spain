@@ -2,13 +2,13 @@
 <!-- Copyright 2020 Sygel - Valentin Vinagre
      Copyright 2020 Tecnativa - Pedro M. Baeza
      Copyright 2021 Tecnativa - João Marques
+     Copyright 2023 Aures Tic - Jose Zambudio
     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
 <odoo>
     <record id="invoice_sii_form" model="ir.ui.view">
         <field name="name">account.invoice.sii.form</field>
         <field name="model">account.move</field>
         <field name="inherit_id" ref="l10n_es_aeat.view_move_form" />
-        <field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='thirdparty_invoice']" position="attributes">
                 <attribute
@@ -115,7 +115,7 @@
                         name="group_sii_result"
                         groups="l10n_es_aeat.group_account_aeat"
                     >
-                        <notebook>
+                        <notebook colspan="2">
                             <page name="page_sii_result_general" string="General">
                                 <group>
                                     <field name="sii_state" />
@@ -158,14 +158,19 @@
         <field name="name">account.invoice.sii.form - Connector</field>
         <field name="model">account.move</field>
         <field name="inherit_id" ref="invoice_sii_form" />
-        <field name="groups_id" eval="[(4, ref('l10n_es_aeat.group_account_aeat'))]" />
         <field name="arch" type="xml">
             <group name="group_sii_result" position="after">
-                <group string="Connector Jobs" name="group_sii_jobs">
+                <group
+                    string="Connector Jobs"
+                    name="group_sii_jobs"
+                    groups="l10n_es_aeat.group_account_aeat"
+                    cols="4"
+                >
                     <field
                         name="invoice_jobs_ids"
                         options="{'reload_on_button': true}"
                         nolabel="1"
+                        colspan="2"
                         readonly="1"
                         context="{'tree_view_ref': 'l10n_es_aeat_sii_oca.view_queue_job_sii'}"
                     />

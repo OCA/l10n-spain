@@ -12,11 +12,12 @@
 # Copyright 2022 ForgeFlow - Lois Rilo
 # Copyright 2022-2023 Moduon - Eduardo de Miguel
 # Copyright 2017-2023 Tecnativa - Pedro M. Baeza
+# Copyright 2023 Aures Tic - Jose Zambudio <jose@aurestic.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Suministro Inmediato de Información en el IVA",
-    "version": "15.0.2.8.0",
+    "version": "16.0.1.0.0",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Acysos S.L.,"
