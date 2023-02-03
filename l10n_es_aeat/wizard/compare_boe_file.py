@@ -73,7 +73,9 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
                 )
             )
         self.write({"line_ids": lines, "state": "compare"})
-        res = self.env.ref("l10n_es_aeat.action_wizard_compare_boe_file").read()[0]
+        res = self.env["ir.actions.act_window"]._for_xml_id(
+            "l10n_es_aeat.action_wizard_compare_boe_file"
+        )
         res["res_id"] = self.id
         return res
 
