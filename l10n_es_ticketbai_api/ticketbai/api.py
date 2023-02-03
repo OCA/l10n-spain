@@ -32,7 +32,11 @@ class TicketBaiApi:
         headers = {"Content-Type": "application/xml; charset=UTF-8"}
         if self.cert and self.key:
             response = requests.post(
-                url=self.url, data=data, headers=headers, cert=(self.cert, self.key)
+                url=self.url,
+                data=data,
+                headers=headers,
+                cert=(self.cert, self.key),
+                timeout=20,
             )
         else:
             raise exceptions.RequestException(

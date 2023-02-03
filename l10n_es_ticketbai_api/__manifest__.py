@@ -4,7 +4,7 @@
 
 {
     "name": "TicketBAI - API",
-    "version": "15.0.1.1.1",
+    "version": "16.0.1.0.0",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Binovo," "Odoo Community Association (OCA)",
