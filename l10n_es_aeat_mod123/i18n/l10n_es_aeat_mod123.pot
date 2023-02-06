@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -227,7 +227,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_needaction
-#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
@@ -368,11 +367,6 @@ msgid "Number of messages with delivery error"
 msgstr ""
 
 #. module: l10n_es_aeat_mod123
-#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_unread_counter
-msgid "Number of unread messages"
-msgstr ""
-
-#. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__partner_id
 msgid "Partner"
 msgstr ""
@@ -478,16 +472,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
-
-#. module: l10n_es_aeat_mod123
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_unread
-msgid "Unread Messages"
-msgstr ""
-
-#. module: l10n_es_aeat_mod123
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_unread_counter
-msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: l10n_es_aeat_mod123
