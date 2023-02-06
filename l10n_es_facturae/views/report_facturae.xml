@@ -417,7 +417,7 @@
                                 </TaxableBase>
                                 <t
                                     t-set="sign"
-                                    t-value="1 if move.type != 'out_invoice' else -1"
+                                    t-value="1 if move.move_type != 'out_invoice' else -1"
                                 />
                                 <TaxAmount>
                                     <TotalAmount
