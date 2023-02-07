@@ -354,6 +354,7 @@ class TxRedsys(models.Model):
             "date": fields.Datetime.now(),
         }
         state_message = ""
+        feedback_error = False
         if state == "done":
             vals["state_message"] = _("Ok: %s") % params.get("Ds_Response")
             self._set_transaction_done()
@@ -366,7 +367,7 @@ class TxRedsys(models.Model):
             self._set_transaction_cancel()
         else:
             state_message = _("Redsys: feedback error %s (%s)")
-            self._set_transaction_error(state_message)
+            feedback_error = True
         if state_message:
             vals["state_message"] = state_message % (
                 params.get("Ds_Response"),
@@ -374,6 +375,8 @@ class TxRedsys(models.Model):
             )
             if state == "error":
                 _logger.warning(vals["state_message"])
+            if feedback_error:
+                self._set_transaction_error(vals["state_message"])
         self.write(vals)
         return state != "error"
 
