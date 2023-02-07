@@ -4,6 +4,6 @@
   debe estar marcada como facturae y debe tener cubiertos los datos de
   Oficina contable, Órgano gestor y Unidad tramitadora.
 * Si se desea firmar el xml generado desde Odoo, tenemos que irnos al
-  formulario de las compañías y subir el certificado en formato .pfx y
-  escribir la contraseña de acceso al certificado.
-* Actualizar los impuestos usando su clave Facturae
+  modelo de Certificados AEAT y crear un registro con toda la información
+  necesaria.
+* Actualizar los impuestos usando su clave Facturae correspondiente
