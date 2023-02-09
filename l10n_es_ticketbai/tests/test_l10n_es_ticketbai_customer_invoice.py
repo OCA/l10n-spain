@@ -18,7 +18,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
 
     def test_invoice(self):
         invoice = self.create_draft_invoice(
-            self.account_billing.id, self.fiscal_position_national, self.partner
+            self.account_billing.id, self.fiscal_position_national, self.partner.id
         )
         invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
         invoice.action_post()
@@ -34,7 +34,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
     def test_resequence_customer(self):
         self.main_company.tbai_enabled = True
         invoice = self.create_draft_invoice(
-            self.account_billing.id, self.fiscal_position_national, self.partner
+            self.account_billing.id, self.fiscal_position_national, self.partner.id
         )
         invoice_name = "INV/2021/0001"
         resequence_wizard = (
@@ -51,7 +51,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
     def test_invoice_operation_desc(self):
         self.main_company.tbai_description_method = "manual"
         invoice = self.create_draft_invoice(
-            self.account_billing.id, self.fiscal_position_national, self.partner
+            self.account_billing.id, self.fiscal_position_national, self.partner.id
         )
         invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
         self.assertEqual(invoice.tbai_description_operation, "/")
@@ -70,7 +70,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
 
     def test_invoice_foreign_currency(self):
         invoice = self.create_draft_invoice(
-            self.account_billing.id, self.fiscal_position_national, self.partner
+            self.account_billing.id, self.fiscal_position_national, self.partner.id
         )
         usd_currency = self.env.ref("base.USD")
         if not usd_currency.active:
@@ -91,7 +91,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         invoice = self.create_draft_invoice(
             self.account_billing.id,
             self.fiscal_position_national,
-            self.partner,
+            self.partner.id,
             journal_id=self.non_tbai_journal,
         )
         # invoice.journal_id = self.non_tbai_journal
@@ -103,7 +103,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
     def test_cancel_and_recreate(self):
         # Build three invoices and check the chaining.
         invoice = self.create_draft_invoice(
-            self.account_billing.id, self.fiscal_position_national, self.partner
+            self.account_billing.id, self.fiscal_position_national, self.partner.id
         )
         invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
         invoice.action_post()
@@ -114,7 +114,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         )
 
         invoice2 = self.create_draft_invoice(
-            self.account_billing.id, self.fiscal_position_national, self.partner
+            self.account_billing.id, self.fiscal_position_national, self.partner.id
         )
         invoice2.onchange_fiscal_position_id_tbai_vat_regime_key()
         invoice2.action_post()
@@ -125,7 +125,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         )
 
         invoice3 = self.create_draft_invoice(
-            self.account_billing.id, self.fiscal_position_national, self.partner
+            self.account_billing.id, self.fiscal_position_national, self.partner.id
         )
         invoice3.onchange_fiscal_position_id_tbai_vat_regime_key()
         invoice3.action_post()

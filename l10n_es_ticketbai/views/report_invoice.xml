@@ -20,7 +20,7 @@
                 </ul>
                 <ul id="tbai_qr" class="list-inline mb4">
                     <img
-                        t-att-src="'data:image/png;base64,%s' % to_text(o.tbai_invoice_id.qr)"
+                        t-attf-src="data:image/png;base64,{{o.tbai_invoice_id.qr}}"
                         style="min-width: 30mm; max-width: 40mm"
                     />
                 </ul>

@@ -14,60 +14,68 @@
                 edit="false"
                 import="false"
             >
-                <header>
-                    <button
-                        name="cancel_and_recreate"
-                        string="Cancel and recreate"
-                        type="object"
-                        states="error"
-                        class="btn-primary"
-                        groups="account.group_account_manager"
-                    />
-                    <field name="state" widget="statusbar" readonly="1" />
-                </header>
-                <group name="invoice" string="Invoice">
-                    <field name="schema" invisible="1" />
-                    <field name="name" invisible="1" />
-                    <field name="invoice_id" readonly="1" />
-                    <field
-                        name="company_id"
-                        readonly="1"
-                        groups="base.group_multi_company"
-                    />
-                    <field
-                        name="tbai_identifier"
-                        readonly="1"
-                        attrs="{'invisible': [('schema', '!=', 'TicketBai')]}"
-                    />
-                    <field name="signature_value" readonly="1" />
-                </group>
-                <group name="file" string="File">
-                    <field
-                        name="datas"
-                        string="File"
-                        filename="datas_fname"
-                        readonly="1"
-                    />
-                    <field
-                        name="datas_fname"
-                        invisible="1"
-                        class="oe_inline oe_right"
-                    />
-                    <field name="file_size" invisible="1" />
-                </group>
-                <group
-                    name="qr"
-                    string="QR Code"
-                    attrs="{'invisible': [('schema', '!=', 'TicketBai')]}"
-                >
-                    <field name="qr_url" readonly="1" widget="url" />
-                    <field
-                        name="qr"
-                        widget="image"
-                        readonly="1"
-                        style="min-width: 30mm; max-width: 40mm"
-                    />
-                </group>
+                <sheet>
+                    <header>
+                        <button
+                            name="cancel_and_recreate"
+                            string="Cancel and recreate"
+                            type="object"
+                            states="error"
+                            class="btn-primary"
+                            groups="account.group_account_manager"
+                        />
+                        <field name="state" widget="statusbar" readonly="1" />
+                    </header>
+                    <group>
+                        <group name="invoice" string="Invoice">
+                            <field name="schema" invisible="1" />
+                            <field name="name" invisible="1" />
+                            <field name="invoice_id" readonly="1" />
+                            <field
+                                name="company_id"
+                                readonly="1"
+                                groups="base.group_multi_company"
+                            />
+                            <field
+                                name="tbai_identifier"
+                                readonly="1"
+                                attrs="{'invisible': [('schema', '!=', 'TicketBai')]}"
+                            />
+                            <field
+                                name="signature_value"
+                                readonly="1"
+                                widget="CopyClipboardChar"
+                            />
+                        </group>
+                        <group name="file" string="File">
+                            <field
+                                name="datas"
+                                string="File"
+                                filename="datas_fname"
+                                readonly="1"
+                            />
+                            <field
+                                name="datas_fname"
+                                invisible="1"
+                                class="oe_inline oe_right"
+                            />
+                            <field name="file_size" invisible="1" />
+                        </group>
+                        <group
+                            name="qr"
+                            string="QR Code"
+                            attrs="{'invisible': [('schema', '!=', 'TicketBai')]}"
+                        >
+                            <field name="qr_url" readonly="1" widget="url" />
+                            <field
+                                name="qr"
+                                widget="image"
+                                readonly="1"
+                                style="min-width: 30mm; max-width: 40mm"
+                            />
+                        </group>
+                    </group>
+                </sheet>
             </form>
         </field>
     </record>

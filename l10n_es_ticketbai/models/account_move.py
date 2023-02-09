@@ -297,7 +297,9 @@ class AccountMove(models.Model):
         tax_agency = self.company_id.tbai_tax_agency_id
         if tax_agency in (gipuzkoa_tax_agency, araba_tax_agency):
             lines = []
-            for line in self.invoice_line_ids.filtered(lambda l: not l.display_type):
+            for line in self.invoice_line_ids.filtered(
+                lambda l: l.display_type not in ["line_note", "line_section"]
+            ):
                 description_line = line.name[:250]
                 if (
                     self.company_id.tbai_protected_data
