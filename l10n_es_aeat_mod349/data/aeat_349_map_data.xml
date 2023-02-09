@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="0">
+    <record id="aeat_349_map_line_E" model="aeat.349.map.line">
+        <field name="operation_key">E</field>
+        <field
+            name="tax_tmpl_ids"
+            eval="[
+            (4, ref('l10n_es.account_tax_template_s_iva0_ic')),
+        ]"
+        />
+        <field name="physical_product">True</field>
+    </record>
+    <record id="aeat_349_map_line_A" model="aeat.349.map.line">
+        <field name="operation_key">A</field>
+        <field
+            name="tax_tmpl_ids"
+            eval="[
+            (4, ref('l10n_es.account_tax_template_p_iva21_ic_bc')),
+            (4, ref('l10n_es.account_tax_template_p_iva21_ic_bi')),
+            (4, ref('l10n_es.account_tax_template_p_iva4_ic_bc')),
+            (4, ref('l10n_es.account_tax_template_p_iva4_ic_bi')),
+            (4, ref('l10n_es.account_tax_template_p_iva10_ic_bc')),
+            (4, ref('l10n_es.account_tax_template_p_iva10_ic_bi')),
+        ]"
+        />
+        <field name="physical_product">True</field>
+    </record>
+    <record id="aeat_349_map_line_T" model="aeat.349.map.line">
+        <field name="operation_key">T</field>
+        <field name="physical_product">True</field>
+    </record>
+    <record id="aeat_349_map_line_S" model="aeat.349.map.line">
+        <field name="operation_key">S</field>
+        <field
+            name="tax_tmpl_ids"
+            eval="[
+            (4, ref('l10n_es.account_tax_template_s_iva0_sp_i')),
+        ]"
+        />
+    </record>
+    <record id="aeat_349_map_line_I" model="aeat.349.map.line">
+        <field name="operation_key">I</field>
+        <field
+            name="tax_tmpl_ids"
+            eval="[
+            (4, ref('l10n_es.account_tax_template_p_iva21_sp_in')),
+        ]"
+        />
+    </record>
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_move_form" model="ir.ui.view">
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <field name="fiscal_position_id" position="after">
+                <field
+                    name="eu_triangular_deal"
+                    groups="l10n_es_aeat.group_account_aeat"
+                />
+            </field>
+            <xpath
+                expr="//field[@name='invoice_line_ids']/tree/field[@name='tax_ids']"
+                position="after"
+            >
+                <field name="l10n_es_aeat_349_operation_key" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_move_line_form" model="ir.ui.view">
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_form" />
+        <field name="arch" type="xml">
+            <field name="tax_ids" position="after">
+                <field name="l10n_es_aeat_349_operation_key" />
+            </field>
+        </field>
+    </record>
+</odoo>

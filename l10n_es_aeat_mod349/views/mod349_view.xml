@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- #######################################
+        ### AEAT MODEL 349 PARTNER RECORD DETAIL ###
+        ######################################## -->
+    <!-- Tree view -->
+    <record id="view_l10n_ES_aeat_mod349_partner_record_detail_tree" model="ir.ui.view">
+        <field name="name">AEAT 349 Partner record detail (tree)</field>
+        <field name="model">l10n.es.aeat.mod349.partner_record_detail</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="move_line_id" optional="show" />
+                <field name="move_id" optional="show" />
+                <field name="partner_id" optional="show" />
+                <field name="amount_untaxed" optional="show" />
+                <field name="date" optional="show" />
+            </tree>
+        </field>
+    </record>
+    <!-- Form view -->
+    <record id="view_l10n_ES_aeat_mod349_partner_record_detail_form" model="ir.ui.view">
+        <field name="name">AEAT 349 Partner record detail (form)</field>
+        <field name="model">l10n.es.aeat.mod349.partner_record_detail</field>
+        <field name="arch" type="xml">
+            <form string="AEAT 349 Partner record">
+                <group>
+                    <field name="partner_record_id" />
+                    <field name="move_line_id" />
+                    <field name="partner_id" />
+                    <field name="move_id" />
+                    <field name="amount_untaxed" />
+                    <field name="date" />
+                </group>
+            </form>
+        </field>
+    </record>
+    <!-- #################################
+        ### AEAT MODEL 349 PARTNER RECORDS ###
+        ################################## -->
+    <!-- Tree view -->
+    <record id="view_l10n_ES_aeat_mod349_partner_record_tree" model="ir.ui.view">
+        <field name="name">AEAT 349 Partner record (tree)</field>
+        <field name="model">l10n.es.aeat.mod349.partner_record</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="not partner_record_ok">
+                <field name="partner_record_ok" invisible="1" />
+                <field name="country_id" optional="show" />
+                <field name="partner_vat" optional="show" />
+                <field name="partner_id" optional="show" />
+                <field name="operation_key" optional="show" />
+                <field name="total_operation_amount" optional="show" />
+                <field
+                    name="error_text"
+                    attrs="{'invisible': [('partner_record_ok', '=', True)]}"
+                    optional="show"
+                />
+            </tree>
+        </field>
+    </record>
+    <!-- Form view -->
+    <record id="view_l10n_ES_aeat_mod349_partner_record_form" model="ir.ui.view">
+        <field name="name">AEAT 349 Partner record (form)</field>
+        <field name="model">l10n.es.aeat.mod349.partner_record</field>
+        <field name="arch" type="xml">
+            <form string="AEAT 349 Partner records">
+                <notebook colspan="4">
+                    <page string="Info">
+                        <group>
+                            <field
+                                name="error_text"
+                                attrs="{'invisible': [('partner_record_ok', '=', True)]}"
+                                class="text-danger"
+                            />
+                            <field name="partner_record_ok" invisible="1" />
+                            <field name="operation_key" />
+                            <field name="partner_id" />
+                            <field name="country_id" />
+                            <field name="partner_vat" />
+                            <field name="total_operation_amount" />
+                        </group>
+                    </page>
+                    <page string="Detail lines">
+                        <field name="record_detail_ids" nolabel="1" create="0" />
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+    <!-- #######################################
+        ### AEAT MODEL 349 PARTNER REFUND DETAIL ###
+        ######################################## -->
+    <!-- Tree view -->
+    <record id="view_l10n_ES_aeat_mod349_partner_refund_detail_tree" model="ir.ui.view">
+        <field name="name">AEAT 349 Partner refund detail (tree)</field>
+        <field name="model">l10n.es.aeat.mod349.partner_refund_detail</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="refund_line_id" optional="show" />
+                <field name="move_id" optional="show" />
+                <field name="partner_id" optional="show" />
+                <field name="amount_untaxed" optional="show" />
+                <field name="date" optional="show" />
+            </tree>
+        </field>
+    </record>
+    <!-- Form view -->
+    <record id="view_l10n_ES_aeat_mod349_partner_refund_detail_form" model="ir.ui.view">
+        <field name="name">AEAT 349 Partner refund detail (form)</field>
+        <field name="model">l10n.es.aeat.mod349.partner_refund_detail</field>
+        <field name="arch" type="xml">
+            <form string="AEAT 349 Partner refund">
+                <group>
+                    <field name="refund_id" />
+                    <field name="refund_line_id" />
+                    <field name="partner_id" />
+                    <field name="move_id" />
+                    <field name="amount_untaxed" />
+                    <field name="date" />
+                </group>
+            </form>
+        </field>
+    </record>
+    <!-- #################################
+        ### AEAT MODEL 349 PARTNER REFUNDS ###
+        ################################## -->
+    <!-- Tree view -->
+    <record id="view_l10n_ES_aeat_mod349_partner_refund_tree" model="ir.ui.view">
+        <field name="name">AEAT 349 Partner refund (tree)</field>
+        <field name="model">l10n.es.aeat.mod349.partner_refund</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="not partner_refund_ok">
+                <field name="partner_refund_ok" invisible="1" />
+                <field name="country_id" optional="show" />
+                <field name="partner_vat" optional="show" />
+                <field name="partner_id" optional="show" />
+                <field name="operation_key" optional="show" />
+                <field name="year" optional="show" />
+                <field name="period_type" optional="show" />
+                <field name="total_operation_amount" optional="show" />
+                <field name="total_origin_amount" optional="show" />
+            </tree>
+        </field>
+    </record>
+    <!-- Form view -->
+    <record id="view_l10n_ES_aeat_mod349_partner_refund_form" model="ir.ui.view">
+        <field name="name">AEAT 349 Partner refund (form)</field>
+        <field name="model">l10n.es.aeat.mod349.partner_refund</field>
+        <field name="arch" type="xml">
+            <form string="AEAT 349 Partner refunds">
+                <notebook>
+                    <page string="Info">
+                        <group colspan="4">
+                            <field name="partner_refund_ok" invisible="1" />
+                            <field name="country_id" />
+                            <field name="partner_vat" />
+                            <field name="partner_id" />
+                            <field name="operation_key" />
+                            <field name="year" />
+                            <field name="period_type" />
+                            <field name="total_operation_amount" />
+                            <field name="total_origin_amount" />
+                        </group>
+                    </page>
+                    <page string="Details">
+                        <field name="refund_detail_ids" nolabel="1" create="0" />
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+    <!-- #################
+        ### AEAT MODEL 349 ###
+        ################## -->
+    <!-- Tree view -->
+    <record id="view_l10n_es_aeat_mod349_report_tree" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod349.report.tree</field>
+        <field name="model">l10n.es.aeat.mod349.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree" />
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                    <attribute name="string">AEAT 349 reports</attribute>=
+                </tree>
+            <field name="period_type" position="after">
+                <field name="total_partner_records" />
+                <field name="total_partner_records_amount" />
+                <field name="total_partner_refunds" />
+                <field name="total_partner_refunds_amount" />
+            </field>
+        </field>
+    </record>
+    <!-- Form view -->
+    <record id="view_l10n_es_aeat_mod349_report_form" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod349.report.form</field>
+        <field name="model">l10n.es.aeat.mod349.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
+        <field name="arch" type="xml">
+            <group name="group_declaration" position="after">
+                <notebook colspan="4">
+                    <page string="General">
+                        <group string="Resultado">
+                            <group>
+                                <field name="total_partner_records" />
+                                <field name="total_partner_records_amount" />
+                            </group>
+                            <group>
+                                <field name="total_partner_refunds" />
+                                <field name="total_partner_refunds_amount" />
+                            </group>
+                        </group>
+                        <group string="Options" colspan="4">
+                            <field name="frequency_change" />
+                        </group>
+                    </page>
+                    <page string="Partner records">
+                        <separator string="Summary" />
+                        <field name="partner_record_ids" />
+                        <separator string="Details" />
+                        <field name="partner_record_detail_ids" />
+                    </page>
+                    <page string="Refunds from other periods">
+                        <separator string="Summary" />
+                        <field name="partner_refund_ids" />
+                        <separator string="Details" />
+                        <field name="partner_refund_detail_ids" />
+                    </page>
+                </notebook>
+            </group>
+            <form position="inside">
+                <div class="oe_chatter">
+                    <field
+                        name="message_follower_ids"
+                        widget="mail_followers"
+                        groups="base.group_user"
+                    />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <!-- Window action -->
+    <record id="action_l10n_es_aeat_mod349_report" model="ir.actions.act_window">
+        <field name="name">AEAT Model 349</field>
+        <field name="res_model">l10n.es.aeat.mod349.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help">Create and query AEAT Model 349 reports</field>
+    </record>
+    <record
+        model="ir.actions.act_window.view"
+        id="action_l10n_es_aeat_mod303_report_tree"
+    >
+        <field name="sequence" eval="2" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod349_report_tree" />
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod349_report" />
+    </record>
+    <record
+        model="ir.actions.act_window.view"
+        id="action_l10n_es_aeat_mod349_report_form"
+    >
+        <field name="sequence" eval="3" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod349_report_form" />
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod349_report" />
+    </record>
+    <!-- ### MENU ACCESS ### -->
+    <menuitem
+        id="menu_aeat_mod349_report"
+        parent="l10n_es_aeat.menu_root_aeat"
+        action="action_l10n_es_aeat_mod349_report"
+        sequence="349"
+        name="AEAT 349 Model"
+    />
+</odoo>

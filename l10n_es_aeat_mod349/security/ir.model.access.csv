@@ -1,0 +1,16 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_l10n_es_aeat_mod349_report_user","AEAT 349 Model: Report - Account User","model_l10n_es_aeat_mod349_report","account.group_account_user",1,0,0,0
+"access_l10n_es_aeat_mod349_report_manager","AEAT 349 Model: Report - Account Manager","model_l10n_es_aeat_mod349_report","account.group_account_manager",1,1,1,1
+"access_l10n_es_aeat_mod349_partner_record_user","AEAT 349 Model: Partner record - Account User","model_l10n_es_aeat_mod349_partner_record","account.group_account_user",1,0,0,0
+"access_l10n_es_aeat_mod349_partner_record_manager","AEAT 349 Model: Partner record - Account Manager","model_l10n_es_aeat_mod349_partner_record","account.group_account_manager",1,1,1,1
+"access_l10n_es_aeat_mod349_partner_record_detail_user","AEAT 349 Model: Partner record detail - Account User","model_l10n_es_aeat_mod349_partner_record_detail","account.group_account_user",1,0,0,0
+"access_l10n_es_aeat_mod349_partner_record_detail_manager","AEAT 349 Model: Partner record detail - Account Manager","model_l10n_es_aeat_mod349_partner_record_detail","account.group_account_manager",1,1,1,1
+"access_l10n_es_aeat_mod349_partner_refund_user","AEAT 349 Model: Partner refund - Account User","model_l10n_es_aeat_mod349_partner_refund","account.group_account_user",1,0,0,0
+"access_l10n_es_aeat_mod349_partner_refund_manager","AEAT 349 Model: Partner refund - Account Manager","model_l10n_es_aeat_mod349_partner_refund","account.group_account_manager",1,1,1,1
+"access_l10n_es_aeat_mod349_partner_refund_detail_user","AEAT 349 Model: Partner refund detail - Account User","model_l10n_es_aeat_mod349_partner_refund_detail","account.group_account_user",1,0,0,0
+"access_l10n_es_aeat_mod349_partner_refund_detail_manager","AEAT 349 Model: Partner refund detail - Account Manager","model_l10n_es_aeat_mod349_partner_refund_detail","account.group_account_manager",1,1,1,1
+"access_l10n_es_aeat_mod349_aeat_349_map_line_billing","AEAT 349 Model: Operation key Map - Billing User","model_aeat_349_map_line","account.group_account_invoice",1,0,0,0
+"access_l10n_es_aeat_mod349_aeat_349_map_line_user","AEAT 349 Model: Operation key Map - Account User","model_aeat_349_map_line","account.group_account_user",1,0,0,0
+"access_l10n_es_aeat_mod349_aeat_349_map_line_manager","AEAT 349 Model: Operation key Map - Account Manager","model_aeat_349_map_line","account.group_account_manager",1,1,1,1
+"access_account_tax_template_billing","Tax Template - Billing user","model_account_tax_template","account.group_account_invoice",1,0,0,0
+"access_account_tax_template_user","Tax Template - Account user","model_account_tax_template","account.group_account_user",1,0,0,0

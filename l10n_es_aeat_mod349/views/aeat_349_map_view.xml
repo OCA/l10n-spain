@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.actions.act_window" id="action_aeat_349_mapping">
+        <field name="name">aeat 349 Map</field>
+        <field name="res_model">aeat.349.map.line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        id="menu_aeat_349_map"
+        parent="l10n_es_aeat.menu_l10n_es_aeat_config"
+        action="action_aeat_349_mapping"
+        name="Aeat 349 Map"
+    />
+    <record id="l10n_es_aeat_349_map_lines_view_tree" model="ir.ui.view">
+        <field name="name">aeat.349.map.lines.view.tree</field>
+        <field name="model">aeat.349.map.line</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="operation_key" />
+                <field name="physical_product" />
+                <field name="tax_tmpl_ids" widget="many2many_tags" />
+            </tree>
+        </field>
+    </record>
+</odoo>
