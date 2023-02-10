@@ -143,11 +143,6 @@ msgid "Company"
 msgstr "Empresa"
 
 #. module: l10n_es_vat_book
-#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
-msgid "Company Name"
-msgstr "Nom empresa"
-
-#. module: l10n_es_vat_book
 #: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__partner_bank_id
 msgid "Company bank account used for the presentation"
 msgstr "Compte bancari de l'empresa utilitzat per la presentació"
@@ -560,6 +555,11 @@ msgid "Partner"
 msgstr "Client"
 
 #. module: l10n_es_vat_book
+#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
+msgid "Partner Name"
+msgstr "Nom empresa"
+
+#. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__period_type
 msgid "Period type"
 msgstr "Tipus de període"
@@ -811,8 +811,8 @@ msgstr "Aquest llibre té avisos. Corregiu-los abans de confirmar"
 #. module: l10n_es_vat_book
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
 #, python-format
-msgid "This company doesn't have VAT"
-msgstr "Aquesta companyia no té NIF"
+msgid "This partner doesn't have VAT"
+msgstr "Aquesta empresa no té NIF"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line__total_amount
