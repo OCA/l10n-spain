@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-28 23:52+0100\n"
-"PO-Revision-Date: 2021-12-09 14:39+0000\n"
-"Last-Translator: pere-aquarian <pere@aquarian.tech>\n"
+"PO-Revision-Date: 2023-02-10 07:59+0000\n"
+"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_es_vat_book
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_summary
@@ -138,7 +138,7 @@ msgstr "Pulse para crear un nuevo libro de IVA."
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__company_id
 msgid "Company"
-msgstr "Empresa"
+msgstr "Compañía"
 
 #. module: l10n_es_vat_book
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
@@ -148,12 +148,12 @@ msgstr "Nombre Empresa"
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__partner_bank_id
 msgid "Company bank account used for the presentation"
-msgstr "Cuenta bancaria de la empresa que se usará para presentar"
+msgstr "Cuenta bancaria de la compañía que se usará para la presentación"
 
 #. module: l10n_es_vat_book
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_dates
 msgid "Company:"
-msgstr "Empresa:"
+msgstr "Compañía:"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__contact_email
@@ -229,7 +229,7 @@ msgstr "Nº entrada"
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__error_count
 msgid "Error Count"
-msgstr ""
+msgstr "Nº de errores"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line__exception_text
@@ -929,7 +929,7 @@ msgstr "Historial de comunicación del sitio web"
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
 #, python-format
 msgid "Without Partner"
-msgstr ""
+msgstr "Sin empresa"
 
 #. module: l10n_es_vat_book
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
