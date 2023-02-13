@@ -17,6 +17,7 @@ UOM_MAPPING = {
     "kg 90% sdt": "intrastat_unit_kg_90_pct_sdt",
     "m²": "intrastat_unit_m2",
     "m³": "intrastat_unit_m3",
+    "1000 m³": "intrastat_unit_1000m3",
 }
 
 
@@ -32,7 +33,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
     def _import_hs_codes(self):
         code_obj = self.env["hs.code"].with_context(active_test=False)
         path = os.path.join(
-            get_resource_path("l10n_es_intrastat_report"), "data", "Estruc_NC2022.xlsx"
+            get_resource_path("l10n_es_intrastat_report"), "data", "Estruc_NC2023.xlsx"
         )
         workbook = xlrd.open_workbook(path)
         sheet = workbook.sheet_by_index(0)
@@ -40,9 +41,9 @@ class L10nEsPartnerImportWizard(models.TransientModel):
         parents = []
         prev_level = 0
         for nrow in range(1, sheet.nrows):
-            code = sheet.cell_value(nrow, 1).replace(" ", "")
-            description = sheet.cell_value(nrow, 4).lstrip("-")
-            level = int(sheet.cell_value(nrow, 2))
+            code = sheet.cell_value(nrow, 2).replace(" ", "")
+            description = sheet.cell_value(nrow, 6).lstrip("-")
+            level = int(sheet.cell_value(nrow, 3))
             temp = prev_level
             while temp > level and parents:
                 del parents[-1]
@@ -57,7 +58,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
                 "description": " /".join(parents + [description]),
             }
             if not code_obj.search([("local_code", "=", code)]):
-                iu = sheet.cell_value(nrow, 3)
+                iu = sheet.cell_value(nrow, 5).replace("\xa0", " ")
                 if iu and iu != "-":  # specific unit
                     if iu in UOM_MAPPING:
                         iu_unit_id = self.env.ref(
