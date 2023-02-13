@@ -40,8 +40,10 @@ class AccountPaymentOrder(models.Model):
         self.ensure_one()
         if self.payment_method_id.code != 'conf_abanca':
             return super(AccountPaymentOrder, self).generate_payment_file()
-        if self.date_prefered != 'fixed':
-            raise UserError(_('Solo fecha fija'))
+        # if self.date_prefered != 'fixed':
+        #     raise UserError(_('Solo fecha fija'))
+        if not self.post_financing_date:
+            raise UserError(_('Debe rellenar el campo fecha remesa'))
         # ##################################################
         # ##################################################
         # número de orden de cada pago
@@ -89,8 +91,7 @@ class AccountPaymentOrder(models.Model):
         # 50 a 51. Alfanumérico. Libre 4
         text += ' '
         # 51 a 59. Fecha Remesa
-        date_file = fields.Date.from_string(self.date_scheduled)\
-            .strftime('%d%m%Y')
+        date_file = fields.Date.from_string(self.post_financing_date).strftime('%d%m%Y')
         text += date_file
         # 59 a 62. Moneda ISO (EUR)
         text += self.company_currency_id.name
@@ -151,8 +152,7 @@ class AccountPaymentOrder(models.Model):
                 amount = amount.replace('.', '')
                 text += amount.rjust(15, '0')
                 # 51 a 59. Fecha vto pago
-                date_post_finan = fields.Date.from_string(self.post_financing_date) \
-                    .strftime('%d%m%Y')
+                date_post_finan = fields.Date.from_string(line.date).strftime('%d%m%Y')
                 text += date_post_finan
                 # 59 a 60. Anulación Orden
                 text += ' '
@@ -282,10 +282,10 @@ class AccountPaymentOrder(models.Model):
                         fecha_factura = fields.Date.from_string(
                             pl.move_line_id.
                             date).strftime('%d%m%Y')
-                    if inv.date_invoice > self.date_scheduled:
-                        raise UserError(
-                            _("Error: La factura %s tiene una fecha mayor que \
-                              La remesa") % inv.number)
+                    # if inv.date_invoice > self.date_scheduled:
+                    #     raise UserError(
+                    #         _("Error: La factura %s tiene una fecha mayor que \
+                    #           La remesa") % inv.number)
                     text += fecha_factura
                     # De 59  a 351
                     text = text.ljust(351) + '\r\n'
