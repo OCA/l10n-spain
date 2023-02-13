@@ -794,6 +794,12 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/reports/report_facturae.py:0
+#, python-format
+msgid "The provided certificate is not found in the system."
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.wizard_create_facturae
 msgid "This process will create the electronic invoice"
 msgstr ""
