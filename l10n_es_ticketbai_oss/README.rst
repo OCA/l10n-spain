@@ -19,11 +19,11 @@ TicketBAI - OSS
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/l10n-spain-15-0/l10n-spain-15-0-l10n_es_ticketbai_oss
     :alt: Translate me on Weblate
-.. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/webui/builds.html?repo=OCA/l10n-spain&target_branch=15.0
-    :alt: Try me on Runboat
+.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
+    :target: https://runbot.odoo-community.org/runbot/189/15.0
+    :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 Este módulo contabiliza el envío a TicketBAI de las facturas de comercio B2C a los países intracomunitarios según el marco de la normativa europea One-Stop Shop (OSS).
 
@@ -91,7 +91,7 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-ao-landoo|
+|maintainer-ao-landoo| 
 
 This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/15.0/l10n_es_ticketbai_oss>`_ project on GitHub.
 
