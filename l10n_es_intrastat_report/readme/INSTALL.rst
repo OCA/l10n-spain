@@ -9,7 +9,7 @@ If any other installation method is used, you can go to
 *Settings > Technical > Actions > Configuration Wizards* on developer mode,
 and launch there the wizard called "Import Spanish Product HS Codes"
 
-The included codes are for 2022. Please check possible updates for this codes in:
+The included codes are for 2023. Please check possible updates for this codes in:
 
 https://sede.agenciatributaria.gob.es/Sede/estadisticas/estadisticas-comercio-exterior/nomenclatura-combinada-ano.html
 
