@@ -26,7 +26,7 @@
                     string="Send to SII"
                     name="send_sii"
                     groups="l10n_es_aeat.group_account_aeat"
-                    attrs="{'invisible': ['|','|',('sii_enabled', '=', False), ('state', 'not in', ['posted']), ('sii_state','in',['sent','cancelled'])]}"
+                    attrs="{'invisible': ['|','|',('sii_enabled', '=', False), ('state', 'not in', ['posted']), ('sii_state','not in',['not_sent','sent_w_errors','sent_modified','cancelled_modified'])]}"
                 />
                 <button
                     type="object"

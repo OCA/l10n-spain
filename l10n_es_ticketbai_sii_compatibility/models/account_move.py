@@ -9,13 +9,12 @@ class AccountMove(models.Model):
     sii_state = fields.Selection(selection_add=[("exempt", "Exempt")])
 
     def _process_invoice_for_sii_send(self):
-        sii_invoices = self.env["account.move"]
+        exempt_invoices = self.env["account.move"]
         for invoice in self:
             if (
                 invoice.move_type in ["out_invoice", "out_refund"]
                 and invoice.company_id.tbai_enabled
             ):
                 invoice.sii_state = "exempt"
-                continue
-            super(AccountMove, self)._process_invoice_for_sii_send()
-        return super(AccountMove, sii_invoices)._process_invoice_for_sii_send()
+                exempt_invoices += invoice
+        super(AccountMove, self - exempt_invoices)._process_invoice_for_sii_send()
