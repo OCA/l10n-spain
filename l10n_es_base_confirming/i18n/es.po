@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_es_base_confirming
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-13 10:35+0000\n"
+"PO-Revision-Date: 2023-02-13 10:35+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_base_confirming
+#: code:addons/l10n_es_base_confirming/models/account_payment_order.py:51
+#, python-format
+msgid "Error:\n"
+"\n"
+"Can not convert float number %(number).2f to fit in %(size)d characters."
+msgstr "Error:\n"
+"\n"
+"Can not convert float number %(number).2f to fit in %(size)d characters."
+
+#. module: l10n_es_base_confirming
+#: code:addons/l10n_es_base_confirming/models/account_payment_order.py:62
+#, python-format
+msgid "Error:\n"
+"\n"
+"Can not convert integer number %(number)d to fit in %(size)d characters."
+msgstr "Error:\n"
+"\n"
+"Can not convert integer number %(number)d to fit in %(size)d characters."
+
+#. module: l10n_es_base_confirming
+#: model:ir.model,name:l10n_es_base_confirming.model_account_payment_order
+msgid "Payment Order"
+msgstr "Orden de pago"
+
+#. module: l10n_es_base_confirming
+#: model:ir.model.fields,field_description:l10n_es_base_confirming.field_account_payment_order_post_financing_date
+msgid "Post Financing Date"
+msgstr "Fecha remesa"
+
+#. module: l10n_es_base_confirming
+#: model:ir.model.fields,field_description:l10n_es_base_confirming.field_account_payment_order_total_amount
+msgid "Total Amount"
+msgstr "Importe total"
+
