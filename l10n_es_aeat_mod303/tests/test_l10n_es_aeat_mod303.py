@@ -361,6 +361,7 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             "l10n_es_aeat_mod303.aeat_mod303_2021_main_export_config",
             "l10n_es_aeat_mod303.aeat_mod303_202107_main_export_config",
             "l10n_es_aeat_mod303.aeat_mod303_2022_main_export_config",
+            "l10n_es_aeat_mod303.aeat_mod303_2023_main_export_config",
         ]
         for xml_id in export_config_xml_ids:
             export_config = self.env.ref(xml_id)

@@ -279,7 +279,7 @@ class L10nEsAeatMod303Report(models.Model):
     @api.multi
     @api.depends('tax_line_ids', 'tax_line_ids.amount')
     def _compute_total_devengado(self):
-        casillas_devengado = (3, 6, 9, 11, 13, 15, 18, 21, 24, 26)
+        casillas_devengado = (152, 3, 155, 6, 9, 11, 13, 15, 158, 18, 21, 24, 26)
         for report in self:
             tax_lines = report.tax_line_ids.filtered(
                 lambda x: x.field_number in casillas_devengado)
@@ -326,6 +326,7 @@ class L10nEsAeatMod303Report(models.Model):
     @api.multi
     @api.depends('casilla_69', 'previous_result')
     def _compute_resultado_liquidacion(self):
+        # TODO: Add field 109
         for report in self:
             report.resultado_liquidacion = (
                 report.casilla_69 - report.previous_result)
