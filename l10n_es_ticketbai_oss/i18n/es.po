@@ -18,7 +18,17 @@ msgstr ""
 "X-Generator: Poedit 3.2.1\n"
 
 #. module: l10n_es_ticketbai_oss
+#: model:ir.model,name:l10n_es_ticketbai_oss.model_account_tax
+msgid "Tax"
+msgstr ""
+
+#. module: l10n_es_ticketbai_oss
 #: code:addons/l10n_es_ticketbai_oss/models/ticketbai_invoice_tax.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: VAT Regime Key not valid."
 msgstr "TicketBAI Factura %s: Primera clave de regímenes de IVA no válida."
+
+#. module: l10n_es_ticketbai_oss
+#: model:ir.model,name:l10n_es_ticketbai_oss.model_tbai_invoice
+msgid "TicketBAI Invoices"
+msgstr ""
