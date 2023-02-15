@@ -3,8 +3,8 @@
 # Copyright 2016 - Tecnativa - Angel Moya <odoo@tecnativa.com>
 # Copyright 2017 - Tecnativa - Luis M. Ontalba <luis.martinez@tecnativa.com>
 # Copyright 2017 ForgeFlow <contact@forgeflow.com>
-# Copyright 2014-2020 Tecnativa - Pedro M. Baeza
 # Copyright 2018 Tecnativa - Carlos Dauden
+# Copyright 2014-2023 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
