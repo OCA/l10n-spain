@@ -5,8 +5,8 @@
         <field
             name="tax_tmpl_ids"
             eval="[
-            (4, ref('l10n_es.account_tax_template_s_iva0_ic')),
-        ]"
+                (4, ref('l10n_es.account_tax_template_s_iva0_ic')),
+            ]"
         />
         <field name="physical_product">True</field>
     </record>
@@ -15,13 +15,15 @@
         <field
             name="tax_tmpl_ids"
             eval="[
-            (4, ref('l10n_es.account_tax_template_p_iva21_ic_bc')),
-            (4, ref('l10n_es.account_tax_template_p_iva21_ic_bi')),
-            (4, ref('l10n_es.account_tax_template_p_iva4_ic_bc')),
-            (4, ref('l10n_es.account_tax_template_p_iva4_ic_bi')),
-            (4, ref('l10n_es.account_tax_template_p_iva10_ic_bc')),
-            (4, ref('l10n_es.account_tax_template_p_iva10_ic_bi')),
-        ]"
+                (4, ref('l10n_es.account_tax_template_p_iva0_ic_bc')),
+                (4, ref('l10n_es.account_tax_template_p_iva4_ic_bc')),
+                (4, ref('l10n_es.account_tax_template_p_iva4_ic_bi')),
+                (4, ref('l10n_es.account_tax_template_p_iva5_ic_bc')),
+                (4, ref('l10n_es.account_tax_template_p_iva10_ic_bc')),
+                (4, ref('l10n_es.account_tax_template_p_iva10_ic_bi')),
+                (4, ref('l10n_es.account_tax_template_p_iva21_ic_bc')),
+                (4, ref('l10n_es.account_tax_template_p_iva21_ic_bi')),
+            ]"
         />
         <field name="physical_product">True</field>
     </record>
@@ -34,8 +36,8 @@
         <field
             name="tax_tmpl_ids"
             eval="[
-            (4, ref('l10n_es.account_tax_template_s_iva0_sp_i')),
-        ]"
+                (4, ref('l10n_es.account_tax_template_s_iva0_sp_i')),
+            ]"
         />
     </record>
     <record id="aeat_349_map_line_I" model="aeat.349.map.line">
@@ -43,8 +45,12 @@
         <field
             name="tax_tmpl_ids"
             eval="[
-            (4, ref('l10n_es.account_tax_template_p_iva21_sp_in')),
-        ]"
+                (4, ref('l10n_es.account_tax_template_p_iva0_ic_sc')),
+                (4, ref('l10n_es.account_tax_template_p_iva4_sp_in')),
+                (4, ref('l10n_es.account_tax_template_p_iva5_ic_sc')),
+                (4, ref('l10n_es.account_tax_template_p_iva10_sp_in')),
+                (4, ref('l10n_es.account_tax_template_p_iva21_sp_in')),
+            ]"
         />
     </record>
 </odoo>
