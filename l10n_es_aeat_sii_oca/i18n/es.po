@@ -247,6 +247,7 @@ msgid "Created on"
 msgstr "Creado en"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "Currently there's no support for multiple exempt causes."
@@ -316,6 +317,7 @@ msgid "Error based on law and Art. 80 One and Two LIVA (R1)"
 msgstr "Error fundado en derecho y Art. 80 Uno y Dos LIVA (R1)"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/aeat_sii_map.py:0
 #, python-format
 msgid "Error! The dates of the record overlap with an existing record."
@@ -365,12 +367,6 @@ msgstr "Agrupar por..."
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_mapping_registration_keys__id
 msgid "ID"
 msgstr "ID"
-
-#. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_company__delay_time
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_company__sent_time
-msgid "In hours"
-msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_send_failed
@@ -525,6 +521,7 @@ msgid "Never sent to SII"
 msgstr "Nunca enviadas al SII"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "No VAT configured for the company '{}'"
@@ -557,8 +554,8 @@ msgstr "Operaciones no sujetas en el TAI por reglas de localización"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model,name:l10n_es_aeat_sii_oca.model_product_template
-msgid "Product Template"
-msgstr "Plantilla de producto"
+msgid "Product"
+msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__aeat_sii_mapping_registration_keys__type__purchase
@@ -981,30 +978,35 @@ msgid "The last attemp to sent to SII has failed"
 msgstr "El último intento de envío al SII ha fallado"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "The partner has not a VAT configured."
 msgstr "La empresa no tiene un NIF establecido."
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "The supplier number invoice is required"
 msgstr "El nº de factura del proveedor es obligatorio"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "There's a mismatch in taxes for RE. Check them."
 msgstr "Hay un cruce erróneo para tasas en RE. Chequéelas."
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "This company doesn't have SII enabled."
 msgstr "Esta compañía no tiene habilitado el SII."
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "This invoice is not SII enabled."
@@ -1037,12 +1039,14 @@ msgid "With modifications not sent to SII"
 msgstr "Modificaciones no enviadas al SII"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "You can not cancel this invoice because there is a job running!"
 msgstr "¡No puede cancelar una factura porque hay un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid ""
@@ -1053,6 +1057,7 @@ msgstr ""
 "hay un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid ""
@@ -1063,6 +1068,7 @@ msgstr ""
 "ejecutándose!"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
@@ -1071,12 +1077,14 @@ msgstr ""
 "trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "You can't make a supplier simplified invoice."
 msgstr "No puede realizar una factura simplificada a un proveedor."
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid ""
@@ -1087,18 +1095,21 @@ msgstr ""
 "factura y crear una nueva con el valor correcto"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "You cannot delete an invoice already registered at the SII."
 msgstr "No puede eliminar una factura enviada al SII."
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "You have to select what account chart template use this company."
 msgstr "Debe seleccionar qué plan contable utiliza esta compañía."
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "You must have at least one refunded invoice"
@@ -1172,34 +1183,42 @@ msgid "[E6] Otros"
 msgstr "[E6] Otros"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "invoice date"
 msgstr "fecha de la factura"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "invoice number"
 msgstr "número de la factura"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "supplier"
 msgstr "proveedor"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "supplier invoice number"
 msgstr "número de factura del proveedor"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "third-party number"
 msgstr "número de factura de terceros"
+
+#~ msgid "Product Template"
+#~ msgstr "Plantilla de producto"
 
 #~ msgid "Third-party invoice"
 #~ msgstr "Factura de terceros SII"
