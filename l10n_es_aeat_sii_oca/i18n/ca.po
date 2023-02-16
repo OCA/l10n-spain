@@ -249,6 +249,7 @@ msgid "Created on"
 msgstr "Creat el"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "Currently there's no support for multiple exempt causes."
@@ -318,6 +319,7 @@ msgid "Error based on law and Art. 80 One and Two LIVA (R1)"
 msgstr "Error basat en la llei i l'art. 80 Un i dos LIVA (R1)"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/aeat_sii_map.py:0
 #, python-format
 msgid "Error! The dates of the record overlap with an existing record."
@@ -366,12 +368,6 @@ msgstr "Agrupar per..."
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_mapping_registration_keys__id
 msgid "ID"
 msgstr "ID"
-
-#. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_company__delay_time
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_company__sent_time
-msgid "In hours"
-msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_send_failed
@@ -525,6 +521,7 @@ msgid "Never sent to SII"
 msgstr "Mai enviat a SII"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "No VAT configured for the company '{}'"
@@ -557,8 +554,8 @@ msgstr "Operacions no subjectes al TAI per regles de localització"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model,name:l10n_es_aeat_sii_oca.model_product_template
-msgid "Product Template"
-msgstr "Plantilla de producte"
+msgid "Product"
+msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__aeat_sii_mapping_registration_keys__type__purchase
@@ -981,30 +978,35 @@ msgid "The last attemp to sent to SII has failed"
 msgstr "L'últim intent d'enviar a SII ha fallat"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "The partner has not a VAT configured."
 msgstr "L'empresa no té configurada cap ID d'impost."
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "The supplier number invoice is required"
 msgstr "Cal la factura del número de proveïdor"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "There's a mismatch in taxes for RE. Check them."
 msgstr "Hi ha un desajust en els impostos per a RE. Comproveu-los."
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "This company doesn't have SII enabled."
 msgstr "Aquesta empresa no té SII habilitat."
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "This invoice is not SII enabled."
@@ -1037,12 +1039,14 @@ msgid "With modifications not sent to SII"
 msgstr "Amb modificacions no enviades al SII"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "You can not cancel this invoice because there is a job running!"
 msgstr "No podeu cancel·lar aquesta factura perquè hi ha un job en curs!"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid ""
@@ -1053,6 +1057,7 @@ msgstr ""
 "hi ha un job en marxa!"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid ""
@@ -1063,6 +1068,7 @@ msgstr ""
 "marxa!"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
@@ -1071,12 +1077,14 @@ msgstr ""
 "curs!"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "You can't make a supplier simplified invoice."
 msgstr "No podeu fer una factura simplificada de proveïdor."
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid ""
@@ -1085,12 +1093,14 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "You cannot delete an invoice already registered at the SII."
 msgstr "No es pot eliminar una factura ja registrada al SII."
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "You have to select what account chart template use this company."
@@ -1099,6 +1109,7 @@ msgstr ""
 "empresa."
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "You must have at least one refunded invoice"
@@ -1172,34 +1183,42 @@ msgid "[E6] Otros"
 msgstr "[E6] Altres"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "invoice date"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "invoice number"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "supplier"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "supplier invoice number"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "third-party number"
 msgstr ""
+
+#~ msgid "Product Template"
+#~ msgstr "Plantilla de producte"
 
 #~ msgid "SII third-party invoice"
 #~ msgstr "Factura de tercers SII"
