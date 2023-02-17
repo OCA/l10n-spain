@@ -30,7 +30,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
         return self.env["intrastat.unit"].search([("name", "=", name)]).id
 
     def _import_hs_codes(self):
-        code_obj = self.env["hs.code"]
+        code_obj = self.env["hs.code"].with_context(active_test=False)
         path = os.path.join(
             get_resource_path("l10n_es_intrastat_report"), "data", "Estruc_NC2022.xlsx"
         )
