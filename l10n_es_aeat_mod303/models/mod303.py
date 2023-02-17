@@ -84,7 +84,7 @@ class L10nEsAeatMod303Report(models.Model):
                 report.casilla_69 - report.previous_result)
 
     @api.onchange("period_type","fiscalyear_id")
-    def _getActivityCodeDomain(self):
+    def _onchange_period_type_fiscalyear(self):
         date_start = date_end = None
         for report in self:
             if not report.fiscalyear_id or not report.period_type:
