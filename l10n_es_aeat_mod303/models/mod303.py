@@ -29,7 +29,7 @@ class L10nEsAeatMod303Report(models.Model):
     @api.multi
     @api.depends('tax_lines', 'tax_lines.amount')
     def _compute_total_devengado(self):
-        casillas_devengado = (3, 6, 9, 11, 13, 15, 18, 21, 24, 26)
+        casillas_devengado = (152, 3, 155, 6, 9, 11, 13, 15, 158, 18, 21, 24, 26)
         for report in self:
             tax_lines = report.tax_lines.filtered(
                 lambda x: x.field_number in casillas_devengado)
