@@ -18,178 +18,30 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 
 #. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "01"
-msgstr "01"
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "02"
-msgstr "02"
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "03"
-msgstr "03"
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "04"
-msgstr "04"
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "05"
-msgstr "05"
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "06"
-msgstr "06"
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "07"
-msgstr "07"
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "08"
-msgstr "08"
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "09"
-msgstr "09"
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "10"
-msgstr "10"
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "11"
-msgstr "11"
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "12"
-msgstr "12"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_computation_line_amount_accessory_cost_company_currency
-msgid "Accessory Costs"
-msgstr "Costes accesorios"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_declaration_action
-msgid "Action"
-msgstr "Acción"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_needaction
-msgid "Action Needed"
-msgstr "Acción necesaria"
-
-#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line_amount_company_currency
 msgid "Amount Company Currency"
 msgstr "Importe en la moneda de la compañía"
 
 #. module: l10n_es_intrastat_report
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__amount_accessory_cost_company_currency
-msgid ""
-"Amount in company currency of the accessory costs related to this invoice "
-"line (by default, these accessory costs are computed at the pro-rata of the "
-"amount of each invoice line."
-msgstr ""
-"Importe en la moneda de la compañía de los costes accesorios relacionados "
-"con esta línea de factura (por defecto, estos costes accesorios se calculan "
-"prorrateados del importe de cada línea de factura)."
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__amount_company_currency
-msgid ""
-"Amount in company currency to write in the declaration. Amount in company "
-"currency = amount in invoice currency converted to company currency with the "
-"rate of the invoice date."
-msgstr ""
-"Importe en la moneda la compañía a escribir en la declaración. Si la moneda "
-"no es la misma, se calcula con la tasa de cambio de la fecha de factura."
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_attachment_count
-msgid "Attachment Count"
-msgstr "Nº de adjuntos"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_computation_line_company_id
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_declaration_company_id
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_declaration_line_company_id
-msgid "Company"
-msgstr "Compañía"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__company_country_code
-msgid "Company Country Code"
-msgstr "Código de país de la compañía"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__company_currency_id
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__company_currency_id
-msgid "Company currency"
-msgstr "Moneda de la compañía"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__computation_line_ids
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line_computation_line_ids
 msgid "Computation Lines"
 msgstr "Líneas de cálculo"
 
 #. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_computation_line_src_dest_country_id
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_declaration_line_src_dest_country_id
-msgid "Country"
-msgstr "País"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__product_origin_country_id
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__product_origin_country_id
-msgid "Country of Origin of the Product"
-msgstr "País de origen del producto"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__src_dest_country_id
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__src_dest_country_id
-msgid "Country of Origin/Destination"
-msgstr "País de origen/destino"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__product_origin_country_id
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__product_origin_country_id
-msgid "Country of origin of the product i.e. product 'made in ____'"
-msgstr "País de origen del producto, como por ejemplo 'Hecho en ____'"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__create_uid
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__create_uid
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__create_uid
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__create_uid
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import_create_uid
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line_create_uid
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_create_uid
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line_create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__create_date
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__create_date
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__create_date
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__create_date
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import_create_date
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line_create_date
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_create_date
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line_create_date
 msgid "Created on"
 msgstr "Creado el"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_declaration_currency_id
-msgid "Currency"
-msgstr "Moneda"
 
 #. module: l10n_es_intrastat_report
 #: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:90
@@ -199,55 +51,23 @@ msgstr ""
 "La compañía actual no es española, por lo que no puede ser configurada."
 
 #. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line_declaration_line_id
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__partner_vat
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line_partner_vat
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line_partner_vat
 msgid "Customer VAT"
 msgstr "NIF del cliente"
 
 #. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__declaration_line_id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line_declaration_line_id
 msgid "Declaration Line"
 msgstr "Línea de declaración"
 
 #. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__display_name
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__display_name
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__display_name
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__display_name
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import_display_name
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line_display_name
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_display_name
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line_display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,state:0
-#: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
-#: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_search
-msgid "Done"
-msgstr "Realizado"
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,state:0
-msgid "Draft"
-msgstr "Borrador"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_computation_line_amount_company_currency
-msgid "Fiscal Value"
-msgstr "Valor fiscal"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_follower_ids
-msgid "Followers"
-msgstr "Seguidores"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_channel_ids
-msgid "Followers (Channels)"
-msgstr "Seguidores (Canales)"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_partner_ids
-msgid "Followers (Partners)"
-msgstr "Seguidores (Contactos)"
 
 #. module: l10n_es_intrastat_report
 #: model:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_form
@@ -255,27 +75,12 @@ msgid "Generate CSV Declaration File"
 msgstr "Generar declaración en CSV"
 
 #. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__id
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__id
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__id
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import_id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line_id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line_id
 msgid "ID"
 msgstr "ID"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_unread
-msgid "If checked new messages require your attention."
-msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_needaction
-msgid "If checked, new messages require your attention."
-msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_has_error
-msgid "If checked, some messages have a delivery error."
-msgstr "Si está marcado, hay mensajes que han tenido un error de entrega."
 
 #. module: l10n_es_intrastat_report
 #: model:ir.ui.view,arch_db:l10n_es_intrastat_report.view_l10n_es_intrastat_code_import
@@ -287,18 +92,6 @@ msgstr "Importar"
 #: model:ir.ui.view,arch_db:l10n_es_intrastat_report.view_l10n_es_intrastat_code_import
 msgid "Import Spanish Product HS Codes"
 msgstr "Importar Códigos HS españoles de producto"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line_incoterm_id
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line_incoterm_id
-msgid "Incoterm"
-msgstr "Incoterm"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_computation_line_hs_code_id
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_declaration_line_hs_code_id
-msgid "Intrastat Code"
-msgstr "Código Intrastat"
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_computation_line_ids
@@ -322,28 +115,10 @@ msgid "Intrastat Product Declaration for Spain"
 msgstr "Declaración de producto Intrastat para España"
 
 #. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line_region_id
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line_region_id
-msgid "Intrastat Region"
-msgstr "Región Intrastat"
-
-#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line_intrastat_state_id
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line_intrastat_state_id
 msgid "Intrastat State"
 msgstr "Provincia Intrastat"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__intrastat_unit_id
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__intrastat_unit_id
-msgid "Intrastat Supplementary Unit"
-msgstr "Unidad Suplementaria Intrastat"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_computation_line_transaction_id
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_declaration_line_transaction_id
-msgid "Intrastat Transaction"
-msgstr "Transacción Intrastat"
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model,name:l10n_es_intrastat_report.model_stock_location
@@ -351,61 +126,30 @@ msgid "Inventory Locations"
 msgstr "Ubicaciones de inventario"
 
 #. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_computation_line_invoice_id
-msgid "Invoice"
-msgstr "Factura"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__invoice_line_id
-msgid "Invoice Line"
-msgstr "Línea de factura"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_is_follower
-msgid "Is Follower"
-msgstr "Es un seguidor"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import____last_update
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line____last_update
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration____last_update
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line____last_update
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import___last_update
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line___last_update
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration___last_update
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line___last_update
 msgid "Last Modified on"
 msgstr "Última modificación el"
 
 #. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__write_uid
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__write_uid
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__write_uid
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__write_uid
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import_write_uid
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line_write_uid
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line_write_uid
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
 
 #. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__write_date
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__write_date
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__write_date
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__write_date
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import_write_date
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line_write_date
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line_write_date
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_write_date
 msgid "Last Updated on"
 msgstr "Última actualización el"
 
 #. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "Adjunto principal"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_has_error
-msgid "Message Delivery error"
-msgstr "Erro de envío de mensaje"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_ids
-msgid "Messages"
-msgstr "Mensajes"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_declaration_month
 #: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:62
 #, python-format
 msgid "Missing origin country on product %s."
@@ -418,84 +162,9 @@ msgid "Missing partner vat on invoice %s."
 msgstr "Falta el NIF del contacto en la factura %s."
 
 #. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__month
-msgid "Month"
-msgstr "Mes"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__weight
-msgid "Net weight in Kg"
-msgstr "Peso neto en kg"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_declaration_note
-#: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
-msgid "Notes"
-msgstr "Notas"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_needaction_counter
-msgid "Number of Actions"
-msgstr "Nº de acciones"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_declaration_num_decl_lines
-msgid "Number of Declaration Lines"
-msgstr "Nº de líneas de declaración"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_has_error_counter
-msgid "Number of error"
-msgstr "Nº de errores"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "Nº de mensajes que requieren una acción"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_has_error_counter
-msgid "Number of messages with delivery error"
-msgstr "Nº de mensajes con error de entrega"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_unread_counter
-msgid "Number of unread messages"
-msgstr "Nº de mensajes sin leer"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_declaration_year_month
-msgid "Period"
-msgstr "Periodo"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_computation_line_product_id
-msgid "Product"
-msgstr "Producto"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_computation_line_reporting_level
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_declaration_line_reporting_level
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_declaration_reporting_level
-msgid "Reporting Level"
-msgstr "Nivel de informe"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_declaration_revision
-msgid "Revision"
-msgstr "Revisión"
-
-#. module: l10n_es_intrastat_report
 #: model:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_search
 msgid "Search Spanish Intrastat Product Declaration"
 msgstr "Buscar declaraciones de producto Intrastat españolas"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__type
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__type
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__type
-msgid "Select the declaration type."
-msgstr "Seleccione el tipo de declaración."
 
 #. module: l10n_es_intrastat_report
 #: model:ir.actions.act_window,name:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_action
@@ -505,38 +174,6 @@ msgstr "Seleccione el tipo de declaración."
 #: model:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_tree
 msgid "Spanish Intrastat Product Declaration"
 msgstr "Declaración de producto Intrastat española"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_state
-msgid "State"
-msgstr "Provincia"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__state
-msgid ""
-"State of the declaration. When the state is set to 'Done', the parameters "
-"become read-only."
-msgstr ""
-"Estado de la declaración. Cuando el estado está como 'Realizado', los "
-"parámetros se convierten a solo lectura."
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_computation_line_intrastat_unit_id
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_declaration_line_intrastat_unit_id
-msgid "Suppl. Unit"
-msgstr "Unid. supl."
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_computation_line_suppl_unit_qty
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_declaration_line_suppl_unit_qty
-msgid "Suppl. Unit Qty"
-msgstr "Ctd. unid. supl."
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__suppl_unit_qty
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__suppl_unit_qty
-msgid "Supplementary Units Quantity"
-msgstr "Cantidad de unidades suplementarias"
 
 #. module: l10n_es_intrastat_report
 #: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:70
@@ -558,54 +195,10 @@ msgstr ""
 "local y establecerá los tipos Intrastat por defecto a nivel de compañía."
 
 #. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_declaration_total_amount
-msgid "Total Fiscal Amount"
-msgstr "Importe fiscal total"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,help:intrastat_product.field_l10n_es_intrastat_product_declaration_total_amount
-msgid "Total fiscal amount in company currency of the declaration."
-msgstr "Importe fiscal total de la declaración en la moneda de la compañía."
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_computation_line_transport_id
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_declaration_line_transport_id
-msgid "Transport Mode"
-msgstr "Modo de transporte"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_computation_line_type
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_declaration_line_type
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_declaration_type
-#: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_search
-msgid "Type"
-msgstr "Tipo"
-
-#. module: l10n_es_intrastat_report
 #: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:68
 #, python-format
 msgid "Unit not found: '%s'"
 msgstr "Unidad no encontrada: '%s'"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_unread
-msgid "Unread Messages"
-msgstr "Mensajes sin leer"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Contador de mensajes sin leer"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__company_country_code
-msgid "Used in views and methods of localization modules."
-msgstr "Usado en vistas y métodos de módulos de localización."
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__revision
-msgid "Used to keep track of changes"
-msgstr "Usado para rastrear los cambios"
 
 #. module: l10n_es_intrastat_report
 #: code:addons/l10n_es_intrastat_report/report/intrastat_product_report_xls.py:19
@@ -614,41 +207,9 @@ msgid "VAT"
 msgstr "NIF"
 
 #. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__valid
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__valid
-msgid "Valid"
-msgstr "Válido"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__website_message_ids
-msgid "Website Messages"
-msgstr "Mensajes del sitio web"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__website_message_ids
-msgid "Website communication history"
-msgstr "Historial de comunicación del sitio web"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_computation_line_weight
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_declaration_line_weight
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line_weight
 msgid "Weight"
 msgstr "Peso"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:intrastat_product.field_l10n_es_intrastat_product_declaration_year
-msgid "Year"
-msgstr "Año"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__year_month
-msgid "Year and month of the declaration."
-msgstr "Año y mes de la declaración."
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__note
-msgid "You can add some comments here if you want."
-msgstr "Puede añadir algunos comentarios aquí si lo prefiere."
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model,name:l10n_es_intrastat_report.model_l10n_es_intrastat_code_import
@@ -666,200 +227,402 @@ msgid "l10n.es.intrastat.product.declaration.line"
 msgstr "l10n.es.intrastat.product.declaration.line"
 
 #. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_report_intrastat_product_product_declaration_xls
+msgid "report.intrastat_product.product_declaration_xls"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
 #: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:32
 #, python-format
 msgid "xlrd library not found."
 msgstr "Librería xlrd no encontrada."
 
-#. module: l10n_es_intrastat_report
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:520
+#~ msgid "01"
+#~ msgstr "01"
+
+#~ msgid "02"
+#~ msgstr "02"
+
+#~ msgid "03"
+#~ msgstr "03"
+
+#~ msgid "04"
+#~ msgstr "04"
+
+#~ msgid "05"
+#~ msgstr "05"
+
+#~ msgid "06"
+#~ msgstr "06"
+
+#~ msgid "07"
+#~ msgstr "07"
+
+#~ msgid "08"
+#~ msgstr "08"
+
+#~ msgid "09"
+#~ msgstr "09"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "11"
+#~ msgstr "11"
+
+#~ msgid "12"
+#~ msgstr "12"
+
+#~ msgid "Accessory Costs"
+#~ msgstr "Costes accesorios"
+
+#~ msgid "Action"
+#~ msgstr "Acción"
+
+#~ msgid "Action Needed"
+#~ msgstr "Acción necesaria"
+
+#~ msgid ""
+#~ "Amount in company currency of the accessory costs related to this invoice "
+#~ "line (by default, these accessory costs are computed at the pro-rata of "
+#~ "the amount of each invoice line."
+#~ msgstr ""
+#~ "Importe en la moneda de la compañía de los costes accesorios relacionados "
+#~ "con esta línea de factura (por defecto, estos costes accesorios se "
+#~ "calculan prorrateados del importe de cada línea de factura)."
+
+#~ msgid ""
+#~ "Amount in company currency to write in the declaration. Amount in company "
+#~ "currency = amount in invoice currency converted to company currency with "
+#~ "the rate of the invoice date."
+#~ msgstr ""
+#~ "Importe en la moneda la compañía a escribir en la declaración. Si la "
+#~ "moneda no es la misma, se calcula con la tasa de cambio de la fecha de "
+#~ "factura."
+
+#~ msgid "Attachment Count"
+#~ msgstr "Nº de adjuntos"
+
+#~ msgid "Company"
+#~ msgstr "Compañía"
+
+#~ msgid "Company Country Code"
+#~ msgstr "Código de país de la compañía"
+
+#~ msgid "Company currency"
+#~ msgstr "Moneda de la compañía"
+
+#~ msgid "Country"
+#~ msgstr "País"
+
+#~ msgid "Country of Origin of the Product"
+#~ msgstr "País de origen del producto"
+
+#~ msgid "Country of Origin/Destination"
+#~ msgstr "País de origen/destino"
+
+#~ msgid "Country of origin of the product i.e. product 'made in ____'"
+#~ msgstr "País de origen del producto, como por ejemplo 'Hecho en ____'"
+
+#~ msgid "Currency"
+#~ msgstr "Moneda"
+
+#~ msgid "Done"
+#~ msgstr "Realizado"
+
+#~ msgid "Draft"
+#~ msgstr "Borrador"
+
+#~ msgid "Fiscal Value"
+#~ msgstr "Valor fiscal"
+
+#~ msgid "Followers"
+#~ msgstr "Seguidores"
+
+#~ msgid "Followers (Channels)"
+#~ msgstr "Seguidores (Canales)"
+
+#~ msgid "Followers (Partners)"
+#~ msgstr "Seguidores (Contactos)"
+
+#~ msgid "If checked new messages require your attention."
+#~ msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
+
+#~ msgid "If checked, new messages require your attention."
+#~ msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
+
+#~ msgid "If checked, some messages have a delivery error."
+#~ msgstr "Si está marcado, hay mensajes que han tenido un error de entrega."
+
+#~ msgid "Incoterm"
+#~ msgstr "Incoterm"
+
+#~ msgid "Intrastat Code"
+#~ msgstr "Código Intrastat"
+
+#~ msgid "Intrastat Region"
+#~ msgstr "Región Intrastat"
+
+#~ msgid "Intrastat Supplementary Unit"
+#~ msgstr "Unidad Suplementaria Intrastat"
+
+#~ msgid "Intrastat Transaction"
+#~ msgstr "Transacción Intrastat"
+
+#~ msgid "Invoice"
+#~ msgstr "Factura"
+
+#~ msgid "Invoice Line"
+#~ msgstr "Línea de factura"
+
+#~ msgid "Is Follower"
+#~ msgstr "Es un seguidor"
+
+#~ msgid "Main Attachment"
+#~ msgstr "Adjunto principal"
+
+#~ msgid "Message Delivery error"
+#~ msgstr "Erro de envío de mensaje"
+
+#~ msgid "Messages"
+#~ msgstr "Mensajes"
+
+#~ msgid "Month"
+#~ msgstr "Mes"
+
+#~ msgid "Net weight in Kg"
+#~ msgstr "Peso neto en kg"
+
+#~ msgid "Notes"
+#~ msgstr "Notas"
+
+#~ msgid "Number of Actions"
+#~ msgstr "Nº de acciones"
+
+#~ msgid "Number of Declaration Lines"
+#~ msgstr "Nº de líneas de declaración"
+
+#~ msgid "Number of error"
+#~ msgstr "Nº de errores"
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "Nº de mensajes que requieren una acción"
+
+#~ msgid "Number of messages with delivery error"
+#~ msgstr "Nº de mensajes con error de entrega"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Nº de mensajes sin leer"
+
+#~ msgid "Period"
+#~ msgstr "Periodo"
+
+#~ msgid "Product"
+#~ msgstr "Producto"
+
+#~ msgid "Reporting Level"
+#~ msgstr "Nivel de informe"
+
+#~ msgid "Revision"
+#~ msgstr "Revisión"
+
+#~ msgid "Select the declaration type."
+#~ msgstr "Seleccione el tipo de declaración."
+
+#~ msgid "State"
+#~ msgstr "Provincia"
+
+#~ msgid ""
+#~ "State of the declaration. When the state is set to 'Done', the parameters "
+#~ "become read-only."
+#~ msgstr ""
+#~ "Estado de la declaración. Cuando el estado está como 'Realizado', los "
+#~ "parámetros se convierten a solo lectura."
+
+#~ msgid "Suppl. Unit"
+#~ msgstr "Unid. supl."
+
+#~ msgid "Suppl. Unit Qty"
+#~ msgstr "Ctd. unid. supl."
+
+#~ msgid "Supplementary Units Quantity"
+#~ msgstr "Cantidad de unidades suplementarias"
+
+#~ msgid "Total Fiscal Amount"
+#~ msgstr "Importe fiscal total"
+
+#~ msgid "Total fiscal amount in company currency of the declaration."
+#~ msgstr "Importe fiscal total de la declaración en la moneda de la compañía."
+
+#~ msgid "Transport Mode"
+#~ msgstr "Modo de transporte"
+
+#~ msgid "Type"
+#~ msgstr "Tipo"
+
+#~ msgid "Unread Messages"
+#~ msgstr "Mensajes sin leer"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Contador de mensajes sin leer"
+
+#~ msgid "Used in views and methods of localization modules."
+#~ msgstr "Usado en vistas y métodos de módulos de localización."
+
+#~ msgid "Used to keep track of changes"
+#~ msgstr "Usado para rastrear los cambios"
+
+#~ msgid "Valid"
+#~ msgstr "Válido"
+
+#~ msgid "Website Messages"
+#~ msgstr "Mensajes del sitio web"
+
+#~ msgid "Website communication history"
+#~ msgstr "Historial de comunicación del sitio web"
+
+#~ msgid "Year"
+#~ msgstr "Año"
+
+#~ msgid "Year and month of the declaration."
+#~ msgstr "Año y mes de la declaración."
+
+#~ msgid "You can add some comments here if you want."
+#~ msgstr "Puede añadir algunos comentarios aquí si lo prefiere."
+
 #, python-format
-msgid "Missing H.S. code on product %s. This product is present in invoice %s."
-msgstr "Falta H.S. code en el producto %s. Presente en la factura %s."
+#~ msgid ""
+#~ "Missing H.S. code on product %s. This product is present in invoice %s."
+#~ msgstr "Falta H.S. code en el producto %s. Presente en la factura %s."
 
-#. module: l10n_es_intrastat_report
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:249
 #, python-format
-msgid "Missing unit of measure on the line with %d product(s) '%s' on invoice '%s'."
-msgstr "Falta la unidad de medida de la línea con %d '%s' en la factura '%s'."
+#~ msgid ""
+#~ "Missing unit of measure on the line with %d product(s) '%s' on invoice "
+#~ "'%s'."
+#~ msgstr ""
+#~ "Falta la unidad de medida de la línea con %d '%s' en la factura '%s'."
 
-#. module: l10n_es_intrastat_report
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:293
 #, python-format
-msgid "Missing weight on product %s."
-msgstr "Falta el peso del producto %s"
+#~ msgid "Missing weight on product %s."
+#~ msgstr "Falta el peso del producto %s"
 
-#. module: l10n_es_intrastat_report
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:296
 #, python-format
-msgid "Please correct the product record and regenerate the lines or adjust the impacted lines manually"
-msgstr "Por favor corrige el producto y regenera las líneas o ajustalas manualmente"
+#~ msgid ""
+#~ "Please correct the product record and regenerate the lines or adjust the "
+#~ "impacted lines manually"
+#~ msgstr ""
+#~ "Por favor corrige el producto y regenera las líneas o ajustalas "
+#~ "manualmente"
 
-#. module: l10n_es_intrastat_report
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:612
-#: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
-msgid "Generate Lines from Invoices"
-msgstr "Generar líneas desde facturas"
+#~ msgid "Generate Lines from Invoices"
+#~ msgstr "Generar líneas desde facturas"
 
-#. module: l10n_es_intrastat_report
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:724
-#: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
-msgid "Generate Declaration Lines"
-msgstr "Generar líneas de declaración"
+#~ msgid "Generate Declaration Lines"
+#~ msgstr "Generar líneas de declaración"
 
-#. module: l10n_es_intrastat_report
-#: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
-msgid "Excel Export"
-msgstr "Exportar Excel"
+#~ msgid "Excel Export"
+#~ msgstr "Exportar Excel"
 
-#. module: l10n_es_intrastat_report
-#: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
-msgid "Back to Draft"
-msgstr "Volver a Borrador"
+#~ msgid "Back to Draft"
+#~ msgstr "Volver a Borrador"
 
-#. module: l10n_es_intrastat_report
-#: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
-msgid "Declaration Lines"
-msgstr "Líneas de declaración"
+#~ msgid "Declaration Lines"
+#~ msgstr "Líneas de declaración"
 
-#. module: l10n_es_intrastat_report
-#: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_computation_line_view_tree
-#: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
-msgid "Transactions"
-msgstr "Transacciones"
+#~ msgid "Transactions"
+#~ msgstr "Transacciones"
 
-#. module: l10n_es_intrastat_report
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:146
 #, python-format
-msgid "Extended"
-msgstr "Extendido"
+#~ msgid "Extended"
+#~ msgstr "Extendido"
 
-#. module: l10n_es_intrastat_report
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:145
 #, python-format
-msgid "Standard"
-msgstr "Estándar"
+#~ msgid "Standard"
+#~ msgstr "Estándar"
 
-#. module: l10n_es_intrastat_report
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:137
 #, python-format
-msgid "Declaration for Arrivals"
-msgstr "Declaración para Llegadas"
+#~ msgid "Declaration for Arrivals"
+#~ msgstr "Declaración para Llegadas"
 
-#. module: l10n_es_intrastat_report
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:139
 #, python-format
-msgid "Declaration for Dispatches"
-msgstr "Declaración para Envíos"
+#~ msgid "Declaration for Dispatches"
+#~ msgstr "Declaración para Envíos"
 
-#. module: l10n_es_intrastat_report
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:151
 #, python-format
-msgid "Replace"
-msgstr "Reemplazar"
+#~ msgid "Replace"
+#~ msgstr "Reemplazar"
 
-#. module: l10n_es_intrastat_report
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:152
 #, python-format
-msgid "Append"
-msgstr "Añadir"
+#~ msgid "Append"
+#~ msgstr "Añadir"
 
-#. module: l10n_es_intrastat_report
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:153
 #, python-format
-msgid "Nihil"
-msgstr "Nihil"
+#~ msgid "Nihil"
+#~ msgstr "Nihil"
 
-#. module: l10n_es_intrastat_report
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:644
 #, python-format
-msgid "Generate lines from invoices: results"
-msgstr "Generar líneas desde facturas: resultados"
+#~ msgid "Generate lines from invoices: results"
+#~ msgstr "Generar líneas desde facturas: resultados"
 
-#. module: l10n_es_intrastat_report
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:757
 #, python-format
-msgid "No XML File has been generated."
-msgstr "No se ha generado ningún archivo XML"
+#~ msgid "No XML File has been generated."
+#~ msgstr "No se ha generado ningún archivo XML"
 
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_1
-msgid "Sea"
-msgstr "Marítimo"
+#~ msgid "Sea"
+#~ msgstr "Marítimo"
 
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_1
-msgid "Sea Transport (including wagons, motor vehicles, trailers, semi-trailers and lighters on board of a ship)"
-msgstr "Transporte marítimo (incluyendo vagones, vehiculos a motor, trailers, semi-trailers en embarcación)"
+#~ msgid ""
+#~ "Sea Transport (including wagons, motor vehicles, trailers, semi-trailers "
+#~ "and lighters on board of a ship)"
+#~ msgstr ""
+#~ "Transporte marítimo (incluyendo vagones, vehiculos a motor, trailers, "
+#~ "semi-trailers en embarcación)"
 
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_2
-msgid "Rail"
-msgstr "Ferroviario"
+#~ msgid "Rail"
+#~ msgstr "Ferroviario"
 
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_2
-msgid "Railway transport (including lorries on railway wagons)"
-msgstr "Transporte ferroviario"
+#~ msgid "Railway transport (including lorries on railway wagons)"
+#~ msgstr "Transporte ferroviario"
 
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_3
-msgid "Road"
-msgstr "Terrestre"
+#~ msgid "Road"
+#~ msgstr "Terrestre"
 
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_3
-msgid "Road Transport"
-msgstr "Transporte terrestre"
+#~ msgid "Road Transport"
+#~ msgstr "Transporte terrestre"
 
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_4
-msgid "Air"
-msgstr "Aéreo"
+#~ msgid "Air"
+#~ msgstr "Aéreo"
 
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_4
-msgid "Air Transport"
-msgstr "Transporte aéreo"
+#~ msgid "Air Transport"
+#~ msgstr "Transporte aéreo"
 
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_5
-msgid "Post"
-msgstr "Envíos postales"
+#~ msgid "Post"
+#~ msgstr "Envíos postales"
 
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_5
-msgid "Postal consignments"
-msgstr "Envíos postales"
+#~ msgid "Postal consignments"
+#~ msgstr "Envíos postales"
 
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_7"
-msgid "Fixed installations"
-msgstr "Instalaciones Fijas"
+#~ msgid "Fixed installations"
+#~ msgstr "Instalaciones Fijas"
 
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_7
-msgid "Fixed transport installations (e.g. pipelines, high-tension cables)"
-msgstr "Instalaciones fijas de transporte (e. tuberías, cables de alta tensión)"
+#~ msgid "Fixed transport installations (e.g. pipelines, high-tension cables)"
+#~ msgstr ""
+#~ "Instalaciones fijas de transporte (e. tuberías, cables de alta tensión)"
 
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_8
-msgid "Inland waterway"
-msgstr "Navegación interior"
+#~ msgid "Inland waterway"
+#~ msgstr "Navegación interior"
 
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_8
-msgid "Inland waterway transport"
-msgstr "Transporte navegación interior"
+#~ msgid "Inland waterway transport"
+#~ msgstr "Transporte navegación interior"
 
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_9
-msgid "Own propulsion"
-msgstr "Medios propios"
+#~ msgid "Own propulsion"
+#~ msgstr "Medios propios"
 
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_9
-msgid "Own propulsion (imported or exported means of transport crossing the border under their own power, e.g. aircraft, lorries, boats, etc.)"
-msgstr "Medios propios (bienes importados o exportados que han cruzado la aduana propulsados por ellos mismos, ej. barcos, coches, camiones etc.)"
+#~ msgid ""
+#~ "Own propulsion (imported or exported means of transport crossing the "
+#~ "border under their own power, e.g. aircraft, lorries, boats, etc.)"
+#~ msgstr ""
+#~ "Medios propios (bienes importados o exportados que han cruzado la aduana "
+#~ "propulsados por ellos mismos, ej. barcos, coches, camiones etc.)"
