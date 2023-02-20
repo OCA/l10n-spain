@@ -59,11 +59,10 @@ class L10nEsIntrastatProductDeclaration(models.Model):
                 ) % inv_line.invoice_id.number
                 self._note += note
             if not line_vals["product_origin_country_id"]:
-                raise UserError(
-                    _(
-                        "Missing origin country on product %s."
-                    ) % inv_line.product_id.name_get()[0][1]
-                )
+                note = "\n" + _(
+                    "Missing origin country on product %s."
+                ) % inv_line.product_id.name_get()[0][1]
+                self._note += note
 
     def _gather_invoices_init(self):
         if self.company_id.country_id.code != 'ES':
