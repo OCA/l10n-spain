@@ -402,7 +402,7 @@ class AccountMove(models.Model):
             "IDVersionSii": SII_VERSION,
             "Titular": {
                 "NombreRazon": self.company_id.name[0:120],
-                "NIF": self.company_id.vat[2:],
+                "NIF": company.partner_id._parse_aeat_vat_info()[2],
             },
         }
         if not cancellation:
@@ -776,7 +776,9 @@ class AccountMove(models.Model):
             serial_number = self.thirdparty_number[0:60]
         inv_dict = {
             "IDFactura": {
-                "IDEmisorFactura": {"NIF": company.vat[2:]},
+                "IDEmisorFactura": {
+                    "NIF": company.partner_id._parse_aeat_vat_info()[2]
+                },
                 # On cancelled invoices, number is not filled
                 "NumSerieFacturaEmisor": serial_number,
                 "FechaExpedicionFacturaEmisor": invoice_date,
