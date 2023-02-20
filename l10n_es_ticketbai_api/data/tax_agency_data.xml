@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2021 Binovo IT Human Project SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="tbai_tax_agency_araba" model="tbai.tax.agency">
+        <field name="name">Hacienda Foral de Araba</field>
+        <field name="sign_file_url">https://ticketbai.araba.eus/tbai/sinadura/</field>
+        <field
+            name="sign_file_hash"
+        >iOgvkX7/yHIDRRiPy/LYQ0UUn7QV8/11D1BFbs8yMuQ=</field>
+    </record>
+    <record id="tbai_tax_agency_gipuzkoa" model="tbai.tax.agency">
+        <field name="name">Hacienda Foral de Gipuzkoa</field>
+        <field
+            name="sign_file_url"
+        >https://www.gipuzkoa.eus/documents/2456431/12093238/TicketBAI_Pol%C3%ADtica_firma_v_1_0.pdf/3c6e5431-bb1d-34ed-5b26-206aaf085452</field>
+        <field
+            name="sign_file_hash"
+        >6NrKAm60o7u62FUQwzZew24ra2ve9PRQYwC21AM6In0=</field>
+    </record>
+    <record id="tbai_tax_agency_araba_1_2" model="tbai.tax.agency.version">
+        <field name="tbai_tax_agency_id" ref="tbai_tax_agency_araba" />
+        <field name="version">1.2</field>
+        <field name="qr_base_url">https://ticketbai.araba.eus/tbai/qrtbai/</field>
+        <field
+            name="test_qr_base_url"
+        >https://pruebas-ticketbai.araba.eus/tbai/qrtbai/</field>
+        <field
+            name="rest_url_invoice"
+        >https://ticketbai.araba.eus/TicketBAI/v1/facturas/</field>
+        <field
+            name="test_rest_url_invoice"
+        >https://pruebas-ticketbai.araba.eus/TicketBAI/v1/facturas/</field>
+        <field
+            name="rest_url_cancellation"
+        >https://ticketbai.araba.eus/TicketBAI/v1/anulaciones/</field>
+        <field
+            name="test_rest_url_cancellation"
+        >https://pruebas-ticketbai.araba.eus/TicketBAI/v1/anulaciones/</field>
+    </record>
+    <record id="tbai_tax_agency_gipuzkoa_1_2" model="tbai.tax.agency.version">
+        <field name="tbai_tax_agency_id" ref="tbai_tax_agency_gipuzkoa" />
+        <field name="version">1.2</field>
+        <field name="qr_base_url">https://tbai.egoitza.gipuzkoa.eus/qr/</field>
+        <field name="test_qr_base_url">https://tbai.prep.gipuzkoa.eus/qr/</field>
+        <field
+            name="rest_url_invoice"
+        >https://tbai-z.egoitza.gipuzkoa.eus/sarrerak/alta</field>
+        <field
+            name="test_rest_url_invoice"
+        >https://tbai-prep.egoitza.gipuzkoa.eus/WAS/HACI/HTBRecepcionFacturasWEB/rest/recepcionFacturas/alta</field>
+        <field
+            name="rest_url_cancellation"
+        >https://tbai-z.egoitza.gipuzkoa.eus/sarrerak/baja</field>
+        <field
+            name="test_rest_url_cancellation"
+        >https://tbai-prep.egoitza.gipuzkoa.eus/WAS/HACI/HTBRecepcionFacturasWEB/rest/recepcionFacturas/anulacion</field>
+    </record>
+</odoo>

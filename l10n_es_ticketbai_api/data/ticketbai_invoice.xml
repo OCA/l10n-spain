@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2021 Binovo IT Human Project SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record id="ir_cron_l10n_es_ticketbai_send_pending_invoices" model="ir.cron">
+        <field name="name">TicketBAI - Send pending invoices</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field ref="model_tbai_invoice" name="model_id" />
+        <field name="state">code</field>
+        <field name="code">model.send_pending_invoices()</field>
+    </record>
+</odoo>

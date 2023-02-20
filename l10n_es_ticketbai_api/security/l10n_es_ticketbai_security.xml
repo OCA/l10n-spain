@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Binovo IT Human Project SL
+     Copyright 2022 Landoo Sistemas de Informacion SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="l10n_es_tbai_invoice_rule" model="ir.rule">
+        <field name="name">Ticketbai Invoice Multi-Company</field>
+        <field name="model_id" ref="l10n_es_ticketbai_api.model_tbai_invoice" />
+        <field eval="True" name="global" />
+        <field
+            name="domain_force"
+        >['|',('company_id','=',False),('company_id','in',company_ids)]</field>
+    </record>
+</odoo>

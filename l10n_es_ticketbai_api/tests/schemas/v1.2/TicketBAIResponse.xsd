@@ -1,0 +1,60 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:T="urn:ticketbai:emision" targetNamespace="urn:ticketbai:emision">
+	<element  name="TicketBaiResponse">
+		<complexType>
+			<sequence>
+				<element name="Salida" type="T:Salida"/>
+			</sequence>
+		</complexType>
+	</element>
+	<complexType name="Salida">
+		<sequence>
+			<element name="IdentificadorTBAI" type="T:IdentificadorTBAIType" minOccurs="0" maxOccurs="1"/>
+			<element name="FechaRecepcion" type="T:FechaHoraType" minOccurs="1" maxOccurs="1"/>
+			<element name="Estado" type="T:EstadoType" minOccurs="1" maxOccurs="1"/>
+            <element name="Descripcion" type="T:TextMax250Type" minOccurs="1"/>
+            <element name="Azalpena" type="T:TextMax250Type" minOccurs="1"/>
+			<element name="ResultadosValidacion" type="T:ResultadosValidacion" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="CSV" type="T:TextMax40Type" minOccurs="0" maxOccurs="1"/>
+		</sequence>
+	</complexType>
+	<complexType name="ResultadosValidacion">
+		<sequence>
+			<element name="Codigo" type="T:CodigoType" minOccurs="1"/>
+			<element name="Descripcion" type="T:TextMax250Type" minOccurs="1"/>
+			<element name="Azalpena" type="T:TextMax250Type" minOccurs="1"/>
+		</sequence>
+	</complexType>
+	<simpleType name="TextMax250Type">
+		<restriction base="string">
+			<maxLength value="250"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="TextMax40Type">
+		<restriction base="string">
+			<maxLength value="40"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="EstadoType">
+		<restriction base="string">
+			<maxLength value="20"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="CodigoType">
+		<restriction base="string">
+			<length value="3"/>
+			<pattern value="[0-9]*">
+			</pattern>
+		</restriction>
+	</simpleType>
+	<simpleType name="IdentificadorTBAIType">
+		<restriction base="string">
+			<length value="39"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="FechaHoraType">
+		<restriction base="string">
+			<length value="19" />
+			<pattern value="\d{2,2}-\d{2,2}-\d{4,4} \d{2,2}:\d{2,2}:\d{2,2}"/>
+		</restriction>
+	</simpleType>
+</schema>
