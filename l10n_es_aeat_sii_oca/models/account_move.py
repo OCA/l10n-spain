@@ -1075,7 +1075,7 @@ class AccountMove(models.Model):
                 inv_vals.update(
                     {
                         "sii_send_failed": True,
-                        "sii_send_error": repr(fault)[:60],
+                        "sii_send_error": repr(fault),
                         "sii_return": repr(fault),
                     }
                 )
@@ -1169,7 +1169,7 @@ class AccountMove(models.Model):
                 inv_vals.update(
                     {
                         "sii_send_failed": True,
-                        "sii_send_error": repr(fault)[:60],
+                        "sii_send_error": repr(fault),
                         "sii_return": repr(fault),
                     }
                 )
