@@ -10,7 +10,7 @@
 
 {
     'name': "AEAT modelo 347",
-    'version': "12.0.2.0.1",
+    'version': "12.0.2.1.0",
     'author': "Tecnativa,"
               "PESOL,"
               "Odoo Community Association (OCA)",
