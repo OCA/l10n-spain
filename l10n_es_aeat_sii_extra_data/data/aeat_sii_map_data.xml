@@ -1,9 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="l10n_es_aeat_sii.aeat_sii_map_line_SFESS" model="aeat.sii.map.lines">
-        <field name="taxes" eval="[(4, ref('l10n_es_extra_data.account_tax_template_s_iva5s'))]"/>
+    <record id="l10n_es_aeat_sii.aeat_sii_map_line_SFESB" model="aeat.sii.map.lines">
+        <field name="taxes" eval="[
+        (4, ref('l10n_es_extra_data.account_tax_template_s_iva5_a')),
+        (4, ref('l10n_es_extra_data.account_tax_template_s_iva0_a')),]"/>
     </record>
+
+    <record id="l10n_es_aeat_sii.aeat_sii_map_line_SFESS" model="aeat.sii.map.lines">
+        <field name="taxes" eval="[
+        (4, ref('l10n_es_extra_data.account_tax_template_s_iva5s')),
+        (4, ref('l10n_es_extra_data.account_tax_template_s_iva0s')),]"/>
+    </record>
+
     <record id="l10n_es_aeat_sii.aeat_sii_map_line_SFRS" model="aeat.sii.map.lines">
-        <field name="taxes" eval="[(4, ref('l10n_es_extra_data.account_tax_template_p_iva5_sc'))]"/>
+        <field name="taxes" eval="[
+        (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_sc')),
+        (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_ic_a_1')),
+        (4, ref('l10n_es_extra_data.account_tax_template_p_iva0_ic_a_1')),
+        (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_ic_sc_1')),
+        (4, ref('l10n_es_extra_data.account_tax_template_p_iva0_ic_sc_1')),
+        (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_a')),
+        (4, ref('l10n_es_extra_data.account_tax_template_p_iva0_a')),]"/>
+    </record>
+
+    <record id="l10n_es_aeat_sii.aeat_sii_map_line_SFRISP" model="aeat.sii.map.lines">
+        <field name="taxes" eval="[
+        (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_isc_1')),]"/>
+    </record>
+
+    <record id="l10n_es_aeat_sii.aeat_sii_map_line_RE" model="aeat.sii.map.lines">
+        <field name="taxes" eval="[
+        (4, ref('l10n_es_extra_data.account_tax_template_p_req062')),
+        (4, ref('l10n_es_extra_data.account_tax_template_p_req0')),
+        (4, ref('l10n_es_extra_data.account_tax_template_s_req062')),
+        (4, ref('l10n_es_extra_data.account_tax_template_s_req0')),]"/>
+    </record>
+
+    <record id="l10n_es_aeat_sii.aeat_sii_map_line_NotIncludedInTotal" model="aeat.sii.map.lines">
+        <field name="taxes" eval="[
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_ic_a_2')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva0_ic_a_2')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_ic_sc_2')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva0_ic_sc_2')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_isc_2')),]"/>
     </record>
 </odoo>

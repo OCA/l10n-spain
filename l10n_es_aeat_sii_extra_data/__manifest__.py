@@ -18,4 +18,6 @@
     "data": [
         "data/aeat_sii_map_data.xml",
     ],
+    "installable": True,
+    "autoinstall": True,
 }
