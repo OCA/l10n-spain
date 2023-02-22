@@ -60,7 +60,7 @@ class TestL10nEsAeat(SavepointCase):
         self.tax_map.write({"date_from": from1, "date_to": to1})
         vals = {"model": 999, "date_from": from2, "date_to": to2}
         if raise_exception:
-            with self.assertRaises(exceptions.UserError):
+            with self.assertRaises(exceptions.ValidationError):
                 self.tax_map_model.create(vals)
             # Weird that the record is created anyway, so we remove it
             self.tax_map_model.search(
