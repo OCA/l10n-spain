@@ -143,7 +143,6 @@ Known issues / Roadmap
   en cuenta en la suma de totales.
 * No se incluye el cálculo automático de las claves de declaración
   C, D, E, F y G.
-* Permitir agrupar varios partners en un solo registro por su NIF.
 * Realizar declaración solo de proveedores.
 * No se permite marcar las operaciones como de seguro (para entidades
   aseguradoras).
