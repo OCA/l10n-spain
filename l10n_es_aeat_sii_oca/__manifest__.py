@@ -5,13 +5,13 @@
 # Copyright 2017 Studio73 - Jordi Tolsà <jordi@studio73.es>
 # Copyright 2017 Factor Libre - Ismael Calvo
 # Copyright 2017 Otherway - Pedro Rodríguez Gil
-# Copyright 2017-2021 Tecnativa - Pedro M. Baeza
 # Copyright 2018 Javi Melendez <javimelex@gmail.com>
 # Copyright 2018 Angel Moya <angel.moya@pesol.es>
 # Copyright 2020 Sygel Technology - Valentín Vinagre <valentin.vinagre@sygel.es>
 # Copyright 2021 Tecnativa - João Marques
 # Copyright 2022 ForgeFlow - Lois Rilo
 # Copyright 2022-2023 Moduon - Eduardo de Miguel
+# Copyright 2017-2023 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
@@ -47,6 +47,7 @@
         "views/res_company_view.xml",
         "views/account_move_views.xml",
         "wizards/account_move_reversal_views.xml",
+        "wizards/account_move_send_sii_views.xml",
         "views/aeat_sii_mapping_registration_keys_view.xml",
         "data/aeat_sii_mapping_registration_keys_data.xml",
         "views/aeat_sii_map_view.xml",
