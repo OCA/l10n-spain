@@ -1,4 +1,12 @@
-# See README.rst file on addon root folder for license details
+# Copyright 2018 - Praxya
+# Copyright 2018 - ForgeFlow
+# Copyright 2018 Tecnativa - Luis M. Ontalba
+# Copyright 2019 Tecnativa - David Vidal
+# Copyright 2020 Creu Blanca - Enric Tobella
+# Copyright 2020 Tecnativa - Carlos Daudén
+# Copyright 2022 Comunitea - Omar Castiñeira
+# Copyright 2018-2023 Tecnativa - Pedro M. Baeza
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     "name": "Libro de IVA",
@@ -7,7 +15,7 @@
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "category": "Accounting",
-    "depends": ["account", "base_vat", "l10n_es", "l10n_es_aeat", "report_xlsx"],
+    "depends": ["l10n_es_aeat", "report_xlsx"],
     "data": [
         "security/ir_rule.xml",
         "security/ir.model.access.csv",
