@@ -140,12 +140,15 @@ class ConfirmingSabadell(object):
             self.record.company_partner_bank_id.partner_id.name, 40, "left"
         )
         # 44 - 51 Fecha de proceso
-        fecha_planificada = (
-            str(fields.first(self.record.payment_line_ids).ml_maturity_date)
-            if self.record.date_prefered == "due"
-            else self.record.date_scheduled
-        )
-        text += fecha_planificada.replace("-", "")
+        if self.record.date_prefered == "due":
+            fecha_planificada = fields.first(
+                self.record.payment_line_ids
+            ).ml_maturity_date
+        elif self.record.date_prefered == "now":
+            fecha_planificada = fields.Date.today()
+        else:
+            fecha_planificada = self.record.date_scheduled
+        text += str(fecha_planificada).replace("-", "")
         # 52 - 60 NIF
         vat = self.record.company_partner_bank_id.partner_id.vat
         if self.record.company_partner_bank_id.partner_id.country_id.code in vat:
