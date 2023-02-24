@@ -1,8 +1,10 @@
 # Copyright 2015 Omar Castiñeira (Comunitea)
 # Copyright 2017 Creu Blanca
+# Copyright 2023 QubiQ - Jan Tugores (jan.tugores@qubiq.es)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class ResPartner(models.Model):
@@ -31,14 +33,24 @@ class ResPartner(models.Model):
                 return "U"
         return "E"
 
-    @api.constrains("facturae", "vat", "state_id", "country_id")
+    @api.constrains("facturae", "vat", "state_id", "country_id", "street")
     def check_facturae(self):
         for record in self:
             if record.facturae:
                 if not record.vat:
-                    raise exceptions.ValidationError(_("Vat must be defined"))
+                    raise ValidationError(
+                        _("Vat must be defined for factura-e enabled partners.")
+                    )
+                if not record.street:
+                    raise ValidationError(
+                        _("Street must be defined for factura-e enabled partners.")
+                    )
                 if not record.country_id:
-                    raise exceptions.ValidationError(_("Country must be defined"))
+                    raise ValidationError(
+                        _("Country must be defined for factura-e enabled partners.")
+                    )
                 if record.country_id.code_alpha3 == "ESP":
                     if not record.state_id:
-                        raise exceptions.ValidationError(_("State must be defined"))
+                        raise ValidationError(
+                            _("State must be defined for factura-e enabled partners.")
+                        )
