@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Binovo IT Human Project SL
+     Copyright 2023 Landoo Sistemas de Informacion SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_company_form_inherit" model="ir.ui.view">
+        <field name="name">res.company.form.inherit</field>
+        <field name="model">res.company</field>
+        <field
+            name="inherit_id"
+            ref="l10n_es_ticketbai_api.view_company_form_inherit"
+        />
+        <field name="arch" type="xml">
+            <field name="tbai_certificate_id" position="attributes">
+                <attribute name="attrs">{}</attribute>
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="tbai_certificate_id" position="after">
+                <field
+                    name="tbai_aeat_certificate_id"
+                    attrs="{'required': [('tbai_enabled', '=', True)]}"
+                    options="{'no_open':True,'no_create':True}"
+                />
+            </field>
+            <xpath expr="//group[@name='ticketbai_company_config']" position="inside">
+                <field name="tbai_description_method" />
+                <field
+                    name="tbai_description"
+                    attrs="{
+                        'invisible': [('tbai_description_method', '!=', 'fixed')],
+                        'required': [('tbai_description_method', '=', 'fixed')],
+                    }"
+                />
+                <field name="tbai_protected_data" />
+                <field
+                    name="tbai_protected_data_txt"
+                    attrs="{'invisible': [('tbai_protected_data', '!=', True)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

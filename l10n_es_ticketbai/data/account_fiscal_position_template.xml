@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2020 Binovo IT Human Project SL
+     Copyright 2021 Landoo Sistemas de Informacion SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- Fiscal Position Templates -->
+    <record id="l10n_es.fp_nacional" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_01" />
+    </record>
+    <record id="l10n_es.fp_intra" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_01" />
+    </record>
+    <record id="l10n_es.fp_extra" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_02" />
+    </record>
+    <record id="l10n_es.fp_not_subject_tai" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_08" />
+    </record>
+    <record id="l10n_es.fp_recargo" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_51" />
+    </record>
+    <record id="l10n_es.fp_recargo_isp" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_51" />
+    </record>
+    <record id="l10n_es.fp_irpf1" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_01" />
+    </record>
+    <record id="l10n_es.fp_irpf2" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_01" />
+    </record>
+    <record id="l10n_es.fp_irpf7" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_01" />
+    </record>
+    <record id="l10n_es.fp_irpf9" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_01" />
+    </record>
+    <record id="l10n_es.fp_irpf15" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_01" />
+    </record>
+    <record id="l10n_es.fp_irpf18" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_01" />
+    </record>
+    <record id="l10n_es.fp_irpf19" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_01" />
+    </record>
+    <record id="l10n_es.fp_irpf19a" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_11" />
+    </record>
+    <record id="l10n_es.fp_irpf195a" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_11" />
+    </record>
+    <record id="l10n_es.fp_irpf20" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_01" />
+    </record>
+    <record id="l10n_es.fp_irpf20a" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_11" />
+    </record>
+    <record id="l10n_es.fp_irpf21" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_01" />
+    </record>
+    <record id="l10n_es.fp_irpf21a" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_11" />
+    </record>
+    <record id="l10n_es.fp_irpf24" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_01" />
+    </record>
+    <record id="l10n_es.fp_ispn" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_01" />
+    </record>
+    <record id="l10n_es.fp_rnrisp" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_01" />
+    </record>
+    <record id="l10n_es.fp_reagyp_a" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_01" />
+    </record>
+    <record id="l10n_es.fp_reagyp_gp" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_01" />
+    </record>
+    <!-- Tax Templates: Régimen Nacional -->
+    <record id="tbai_fp_nacional_s_iva0" model="account.fp.tbai.tax_template">
+        <field name="position_id" ref="l10n_es.fp_nacional" />
+        <field name="tax_id" ref="l10n_es.account_tax_template_s_iva0" />
+        <field name="tbai_vat_exemption_key" ref="tbai_vat_exemption_E1" />
+    </record>
+    <!-- Tax Templates: Intracommunity -->
+    <record id="tbai_fp_intra_s_iva0_ic" model="account.fp.tbai.tax_template">
+        <field name="position_id" ref="l10n_es.fp_intra" />
+        <field name="tax_id" ref="l10n_es.account_tax_template_s_iva0_ic" />
+        <field name="tbai_vat_exemption_key" ref="tbai_vat_exemption_E5" />
+    </record>
+    <record id="tbai_fp_intra_s_iva0_sp_i" model="account.fp.tbai.tax_template">
+        <field name="position_id" ref="l10n_es.fp_intra" />
+        <field name="tax_id" ref="l10n_es.account_tax_template_s_iva0_sp_i" />
+        <field name="tbai_vat_exemption_key" ref="tbai_vat_exemption_E5" />
+    </record>
+    <!-- Tax Templates: Extracommunity -->
+    <record id="tbai_fp_extra_s_iva0_e" model="account.fp.tbai.tax_template">
+        <field name="position_id" ref="l10n_es.fp_extra" />
+        <field name="tax_id" ref="l10n_es.account_tax_template_s_iva0_e" />
+        <field name="tbai_vat_exemption_key" ref="tbai_vat_exemption_E2" />
+    </record>
+    <record id="tbai_fp_extra_s_iva_e" model="account.fp.tbai.tax_template">
+        <field name="position_id" ref="l10n_es.fp_extra" />
+        <field name="tax_id" ref="l10n_es.account_tax_template_s_iva_e" />
+        <field name="tbai_vat_exemption_key" ref="tbai_vat_exemption_E6" />
+    </record>
+    <!-- Tax Templates: ISP -->
+    <record id="tbai_fp_recargo_isp_s_iva0_isp" model="account.fp.tbai.tax_template">
+        <field name="position_id" ref="l10n_es.fp_recargo_isp" />
+        <field name="tax_id" ref="l10n_es.account_tax_template_s_iva0_isp" />
+        <field name="tbai_vat_exemption_key" ref="tbai_vat_exemption_E6" />
+    </record>
+    <record id="tbai_fp_ispn_s_iva0_isp" model="account.fp.tbai.tax_template">
+        <field name="position_id" ref="l10n_es.fp_ispn" />
+        <field name="tax_id" ref="l10n_es.account_tax_template_s_iva0_isp" />
+        <field name="tbai_vat_exemption_key" ref="tbai_vat_exemption_E6" />
+    </record>
+    <record id="tbai_fp_rnrisp_s_iva0_isp" model="account.fp.tbai.tax_template">
+        <field name="position_id" ref="l10n_es.fp_rnrisp" />
+        <field name="tax_id" ref="l10n_es.account_tax_template_s_iva0_isp" />
+        <field name="tbai_vat_exemption_key" ref="tbai_vat_exemption_E6" />
+    </record>
+    <!-- Tax Templates: IRPF -->
+    <record id="tbai_fp_irpf1_s_iva0" model="account.fp.tbai.tax_template">
+        <field name="position_id" ref="l10n_es.fp_irpf1" />
+        <field name="tax_id" ref="l10n_es.account_tax_template_s_iva0" />
+        <field name="tbai_vat_exemption_key" ref="tbai_vat_exemption_E5" />
+    </record>
+    <record id="tbai_fp_irpf2_s_iva0" model="account.fp.tbai.tax_template">
+        <field name="position_id" ref="l10n_es.fp_irpf2" />
+        <field name="tax_id" ref="l10n_es.account_tax_template_s_iva0" />
+        <field name="tbai_vat_exemption_key" ref="tbai_vat_exemption_E5" />
+    </record>
+    <record id="tbai_fp_irpf9_s_iva0" model="account.fp.tbai.tax_template">
+        <field name="position_id" ref="l10n_es.fp_irpf9" />
+        <field name="tax_id" ref="l10n_es.account_tax_template_s_iva0" />
+        <field name="tbai_vat_exemption_key" ref="tbai_vat_exemption_E5" />
+    </record>
+    <record id="tbai_fp_irpf19a_s_iva0" model="account.fp.tbai.tax_template">
+        <field name="position_id" ref="l10n_es.fp_irpf19a" />
+        <field name="tax_id" ref="l10n_es.account_tax_template_s_iva0" />
+        <field name="tbai_vat_exemption_key" ref="tbai_vat_exemption_E5" />
+    </record>
+    <record id="tbai_fp_irpf195a_s_iva0" model="account.fp.tbai.tax_template">
+        <field name="position_id" ref="l10n_es.fp_irpf195a" />
+        <field name="tax_id" ref="l10n_es.account_tax_template_s_iva0" />
+        <field name="tbai_vat_exemption_key" ref="tbai_vat_exemption_E5" />
+    </record>
+    <record id="tbai_fp_irpf20a_s_iva0" model="account.fp.tbai.tax_template">
+        <field name="position_id" ref="l10n_es.fp_irpf20a" />
+        <field name="tax_id" ref="l10n_es.account_tax_template_s_iva0" />
+        <field name="tbai_vat_exemption_key" ref="tbai_vat_exemption_E5" />
+    </record>
+    <record id="tbai_fp_irpf21a_s_iva0" model="account.fp.tbai.tax_template">
+        <field name="position_id" ref="l10n_es.fp_irpf21a" />
+        <field name="tax_id" ref="l10n_es.account_tax_template_s_iva0" />
+        <field name="tbai_vat_exemption_key" ref="tbai_vat_exemption_E5" />
+    </record>
+    <record id="tbai_fp_irpf21_s_iva0" model="account.fp.tbai.tax_template">
+        <field name="position_id" ref="l10n_es.fp_irpf21" />
+        <field name="tax_id" ref="l10n_es.account_tax_template_s_iva0" />
+        <field name="tbai_vat_exemption_key" ref="tbai_vat_exemption_E5" />
+    </record>
+    <record id="tbai_fp_irpf24_s_iva0" model="account.fp.tbai.tax_template">
+        <field name="position_id" ref="l10n_es.fp_irpf24" />
+        <field name="tax_id" ref="l10n_es.account_tax_template_s_iva0" />
+        <field name="tbai_vat_exemption_key" ref="tbai_vat_exemption_E5" />
+    </record>
+</odoo>

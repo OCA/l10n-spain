@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2020 Binovo IT Human Project SL
+     Copyright 2021 Landoo Sistemas de Informacion SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="tbai_tax_map_B" model="tbai.tax.map">
+        <field name="code">B</field>
+        <field
+            name="tax_template_ids"
+            eval="[(6, 0, [
+            ref('l10n_es.account_tax_template_s_iva21b'),
+            ref('l10n_es.account_tax_template_s_iva4b'),
+            ref('l10n_es.account_tax_template_s_iva10b'),
+        ])]"
+        />
+        <field name="name">Bienes</field>
+    </record>
+    <record id="tbai_tax_map_ISP" model="tbai.tax.map">
+        <field name="code">ISP</field>
+        <field
+            name="tax_template_ids"
+            eval="[(6, 0, [
+            ref('l10n_es.account_tax_template_s_iva0_isp'),
+            ref('l10n_es.account_tax_template_s_iva21isp'),
+        ])]"
+        />
+        <field name="name">Venta con Inversión del Sujeto Pasivo</field>
+    </record>
+    <record id="tbai_tax_map_SNS" model="tbai.tax.map">
+        <field name="code">SNS</field>
+        <field
+            name="tax_template_ids"
+            eval="[(6, 0, [
+            ref('l10n_es.account_tax_template_s_iva_e'),
+            ref('l10n_es.account_tax_template_s_iva0_sp_i'),
+            ref('l10n_es.account_tax_template_s_iva_ns'),
+        ])]"
+        />
+        <field name="name">No sujeto Repercutido (Servicios)</field>
+    </record>
+    <record id="tbai_tax_map_BNS" model="tbai.tax.map">
+        <field name="code">BNS</field>
+        <field
+            name="tax_template_ids"
+            eval="[(6, 0, [
+            ref('l10n_es.account_tax_template_s_iva_ns_b'),
+        ])]"
+        />
+        <field name="name">No sujeto Repercutido (Bienes)</field>
+    </record>
+    <record id="tbai_tax_map_SIE" model="tbai.tax.map">
+        <field name="code">SIE</field>
+        <field
+            name="tax_template_ids"
+            eval="[(6, 0, [
+            ref('l10n_es.account_tax_template_s_iva_e'),
+            ref('l10n_es.account_tax_template_s_iva0_sp_i'),
+        ])]"
+        />
+        <field
+            name="name"
+        >Prestación de servicios intracomunitario y extracomunitario</field>
+    </record>
+    <record id="tbai_tax_map_S" model="tbai.tax.map">
+        <field name="code">S</field>
+        <field
+            name="tax_template_ids"
+            eval="[(6, 0, [
+            ref('l10n_es.account_tax_template_s_iva21s'),
+            ref('l10n_es.account_tax_template_s_iva10s'),
+            ref('l10n_es.account_tax_template_s_iva4s'),
+            ref('l10n_es.account_tax_template_s_iva5s'),
+        ])]"
+        />
+        <field name="name">Servicios</field>
+    </record>
+    <record id="tbai_tax_map_IEE" model="tbai.tax.map">
+        <field name="code">IEE</field>
+        <field
+            name="tax_template_ids"
+            eval="[(6, 0, [
+            ref('l10n_es.account_tax_template_s_iva0_ic'),
+            ref('l10n_es.account_tax_template_s_iva0_e'),
+        ])]"
+        />
+        <field name="name">Entregas Intracomunitarias y Exportaciones exentas</field>
+    </record>
+    <record id="tbai_tax_map_SER" model="tbai.tax.map">
+        <field name="code">SER</field>
+        <field
+            name="tax_template_ids"
+            eval="[(6, 0, [
+            ref('l10n_es.account_tax_template_s_iva0'),
+        ])]"
+        />
+        <field name="name">Servicios Exento Repercutido</field>
+    </record>
+    <record id="tbai_tax_map_RE" model="tbai.tax.map">
+        <field name="code">RE</field>
+        <field
+            name="tax_template_ids"
+            eval="[(6, 0, [
+            ref('l10n_es.account_tax_template_s_req52'),
+            ref('l10n_es.account_tax_template_s_req014'),
+            ref('l10n_es.account_tax_template_s_req05'),
+        ])]"
+        />
+        <field name="name">Recargo Equivalencia</field>
+    </record>
+    <record id="tbai_tax_map_IRPF" model="tbai.tax.map">
+        <field name="code">IRPF</field>
+        <field
+            name="tax_template_ids"
+            eval="[(6, 0, [
+            ref('l10n_es.account_tax_template_s_irpf1'),
+            ref('l10n_es.account_tax_template_s_irpf2'),
+            ref('l10n_es.account_tax_template_s_irpf7'),
+            ref('l10n_es.account_tax_template_s_irpf9'),
+            ref('l10n_es.account_tax_template_s_irpf15'),
+            ref('l10n_es.account_tax_template_s_irpf18'),
+            ref('l10n_es.account_tax_template_s_irpf19'),
+            ref('l10n_es.account_tax_template_s_irpf19a'),
+            ref('l10n_es.account_tax_template_s_irpf195a'),
+            ref('l10n_es.account_tax_template_s_irpf20'),
+            ref('l10n_es.account_tax_template_s_irpf20a'),
+            ref('l10n_es.account_tax_template_s_irpf21'),
+            ref('l10n_es.account_tax_template_s_irpf21a'),
+            ref('l10n_es.account_tax_template_s_irpf24'),
+        ])]"
+        />
+        <field name="name">Retenciones a cuenta del IRPF</field>
+    </record>
+</odoo>

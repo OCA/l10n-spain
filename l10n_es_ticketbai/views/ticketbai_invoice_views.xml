@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2021 Binovo IT Human Project SL
+     Copyright 2021 Landoo Sistemas de Informacion SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="tbai_invoice_form" model="ir.ui.view">
+        <field name="name">tbai.invoice.view.form</field>
+        <field name="model">tbai.invoice</field>
+        <field name="arch" type="xml">
+            <form
+                string="TicketBAI Invoice"
+                create="false"
+                delete="false"
+                edit="false"
+                import="false"
+            >
+                <sheet>
+                    <header>
+                        <button
+                            name="cancel_and_recreate"
+                            string="Cancel and recreate"
+                            type="object"
+                            states="error"
+                            class="btn-primary"
+                            groups="account.group_account_manager"
+                        />
+                        <field name="state" widget="statusbar" readonly="1" />
+                    </header>
+                    <group>
+                        <group name="invoice" string="Invoice">
+                            <field name="schema" invisible="1" />
+                            <field name="name" invisible="1" />
+                            <field name="invoice_id" readonly="1" />
+                            <field
+                                name="company_id"
+                                readonly="1"
+                                groups="base.group_multi_company"
+                            />
+                            <field
+                                name="tbai_identifier"
+                                readonly="1"
+                                attrs="{'invisible': [('schema', '!=', 'TicketBai')]}"
+                            />
+                            <field
+                                name="signature_value"
+                                readonly="1"
+                                widget="CopyClipboardChar"
+                            />
+                        </group>
+                        <group name="file" string="File">
+                            <field
+                                name="datas"
+                                string="File"
+                                filename="datas_fname"
+                                readonly="1"
+                            />
+                            <field
+                                name="datas_fname"
+                                invisible="1"
+                                class="oe_inline oe_right"
+                            />
+                            <field name="file_size" invisible="1" />
+                        </group>
+                        <group
+                            name="qr"
+                            string="QR Code"
+                            attrs="{'invisible': [('schema', '!=', 'TicketBai')]}"
+                        >
+                            <field name="qr_url" readonly="1" widget="url" />
+                            <field
+                                name="qr"
+                                widget="image"
+                                readonly="1"
+                                style="min-width: 30mm; max-width: 40mm"
+                            />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="tbai_invoice_tree" model="ir.ui.view">
+        <field name="name">tbai.invoice.view.tree</field>
+        <field name="model">tbai.invoice</field>
+        <field name="arch" type="xml">
+            <tree create="false" delete="false">
+                <field name="create_date" />
+                <field name="name" />
+                <field name="schema" invisible="1" />
+                <field name="invoice_id" invisible="1" />
+                <field
+                    name="qr_url"
+                    attrs="{'invisible': [('schema', '!=', 'TicketBai')]}"
+                />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+    <record id="tbai_invoice_search" model="ir.ui.view">
+        <field name="name">tbai.invoice.view.search</field>
+        <field name="model">tbai.invoice</field>
+        <field name="arch" type="xml">
+            <search string="TicketBAI Invoice">
+                <field name="invoice_id" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <group expand="1" string="Group By">
+                    <filter
+                        string="Company"
+                        name="company_id"
+                        context="{'group_by':'company_id'}"
+                        groups="base.group_multi_company"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_tbai_invoice" model="ir.actions.act_window">
+        <field name="name">TicketBAI Invoice</field>
+        <field name="res_model">tbai.invoice</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

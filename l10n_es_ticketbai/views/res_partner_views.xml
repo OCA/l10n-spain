@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 Binovo IT Human Project SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_partner_property_form_inherit" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <group name="accounting_entries" position="after">
+                <group
+                    string="TicketBAI"
+                    name="ticketbai"
+                    attrs="{'invisible': [('tbai_enabled', '=', False)]}"
+                >
+                    <field name="tbai_enabled" invisible="1" />
+                    <field name="tbai_partner_idtype" />
+                    <field
+                        name="tbai_partner_identification_number"
+                        attrs="{'invisible': [('tbai_partner_idtype','=','02')]}"
+                    />
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>

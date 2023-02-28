@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Binovo IT Human Project SL
+     Copyright 2022 Landoo Sistemas de Informacion SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- Public available Information -->
+    <record id="menu_finance_ticketbai" model="ir.ui.menu">
+        <field name="name">TicketBAI</field>
+        <field name="sequence" eval="100" />
+        <field
+            name="parent_id"
+            search="[('child_id', 'in', ref('account.menu_finance_receivables'))]"
+        />
+    </record>
+    <!-- Configuration / Settings -->
+    <menuitem
+        id="menu_l10n_es_tbai_config"
+        parent="account.menu_finance_configuration"
+        sequence="35"
+        groups="account.group_account_manager"
+        name="TicketBAI"
+    />
+    <menuitem
+        id="menu_tbai_invoices"
+        parent="menu_l10n_es_tbai_config"
+        action="action_tbai_invoice"
+        name="TicketBAI Invoices"
+    />
+    <!-- Hide TicketBAI Certificates Menu -->
+    <record model="ir.ui.menu" id="l10n_es_ticketbai_api.menu_tbai_certificate">
+        <field name="action" eval="False" />
+    </record>
+    <!-- Hide default TicketBAI Installations Menu -->
+    <record model="ir.ui.menu" id="l10n_es_ticketbai_api.menu_tbai_installation">
+        <field name="action" eval="False" />
+    </record>
+    <!-- Add TicketBAI Installations Menu -->
+    <menuitem
+        id="menu_tbai_installation"
+        parent="menu_l10n_es_tbai_config"
+        action="l10n_es_ticketbai_api.action_tbai_installations"
+        name="TicketBAI Installations"
+    />
+</odoo>

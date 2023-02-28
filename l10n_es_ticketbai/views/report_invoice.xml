@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 Binovo IT Human Project SL
+     Copyright 2021 Landoo Sistemas de Informacion SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template
+        id="report_invoice_document"
+        inherit_id="account.report_invoice_document"
+        priority="1000"
+    >
+        <div class="page" position="inside">
+            <div
+                id="ticketbai"
+                style="padding-top:50px;page-break-inside:avoid;"
+                class="text-center"
+                t-if="o.tbai_enabled and o.tbai_invoice_id.tbai_identifier and o.tbai_invoice_id.qr"
+            >
+                <ul id="tbai_identifier" class="list-inline mb4">
+                    <strong t-field="o.tbai_invoice_id.tbai_identifier" />
+                </ul>
+                <ul id="tbai_qr" class="list-inline mb4">
+                    <img
+                        t-attf-src="data:image/png;base64,{{o.tbai_invoice_id.qr}}"
+                        style="min-width: 30mm; max-width: 40mm"
+                    />
+                </ul>
+            </div>
+        </div>
+    </template>
+</odoo>

@@ -1,0 +1,21 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tbai_tax_map_account_move,tbai.tax.map account.move,model_tbai_tax_map,account.group_account_invoice,1,0,0,0
+access_tbai_tax_map_account_manager,tbai.tax.map account.manager,model_tbai_tax_map,account.group_account_manager,1,1,1,1
+access_tbai_tax_agency_account_move,tbai.tax.agency account.move,l10n_es_ticketbai_api.model_tbai_tax_agency,account.group_account_invoice,1,0,0,0
+access_tbai_tax_agency_account_manager,tbai.tax.agency account.manager,l10n_es_ticketbai_api.model_tbai_tax_agency,account.group_account_manager,1,1,1,1
+access_tbai_tax_agency_version_account_move,tbai.tax.agency.version account.move,l10n_es_ticketbai_api.model_tbai_tax_agency_version,account.group_account_invoice,1,0,0,0
+access_tbai_tax_agency_version_account_manager,tbai.tax.agency.version account.manager,l10n_es_ticketbai_api.model_tbai_tax_agency_version,account.group_account_manager,1,1,1,1
+access_tbai_vat_regime_key_account_move,tbai.vat.regime.key account.move,model_tbai_vat_regime_key,account.group_account_invoice,1,0,0,0
+access_tbai_vat_regime_key_account_manager,tbai.vat.regime.key account.manager,model_tbai_vat_regime_key,account.group_account_manager,1,1,1,1
+access_tbai_vat_exemption_key_account_move,tbai.vat.exemption.key account.move,model_tbai_vat_exemption_key,account.group_account_invoice,1,0,0,0
+access_tbai_vat_exemption_key_account_manager,tbai.vat.exemption.key account.manager,model_tbai_vat_exemption_key,account.group_account_manager,1,1,1,1
+access_account_fiscal_position_tbai_tax_account_move,account.fp.tbai.tax account.move,model_account_fp_tbai_tax,account.group_account_invoice,1,0,0,0
+access_account_fiscal_position_tbai_tax_account_manager,account.fp.tbai.tax account.manager,model_account_fp_tbai_tax,account.group_account_manager,1,1,1,1
+access_account_fiscal_position_tbai_tax_template_account_move,account.fp.tbai.tax_template account.move,model_account_fp_tbai_tax_template,account.group_account_invoice,1,0,0,0
+access_account_fiscal_position_tbai_tax_template_account_manager,account.fp.tbai.tax_template account.manager,model_account_fp_tbai_tax_template,account.group_account_manager,1,0,0,0
+access_tbai_invoice_account_move,tbai.invoice account.move,l10n_es_ticketbai_api.model_tbai_invoice,account.group_account_invoice,1,0,1,0
+access_tbai_response_account_move,tbai.response account.move,l10n_es_ticketbai_api.model_tbai_response,account.group_account_invoice,1,0,0,0
+access_tbai_response_message_account_move,tbai.response.message account.move,l10n_es_ticketbai_api.model_tbai_response_message,account.group_account_invoice,1,0,0,0
+access_tbai_info,access_tbai_info,model_tbai_info,account.group_account_invoice,1,0,0,0
+access_tbai_invoice_refund_origin_account_user,tbai.invoice.refund.origin account.group_account_user,model_tbai_invoice_refund_origin,account.group_account_user,1,0,0,0
+access_tbai_invoice_refund_origin_account_invoice,tbai.invoice.refund.origin account.group_account_invoice,model_tbai_invoice_refund_origin,account.group_account_invoice,1,1,1,1
