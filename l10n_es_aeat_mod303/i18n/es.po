@@ -591,9 +591,29 @@ msgid "To enter"
 msgstr "A ingresar"
 
 #. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,result_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__result_type__g
+msgid "To enter - AEAT account"
+msgstr "A ingresar - Cuenta tributaria"
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__result_type__u
+msgid "To enter - Bank account debit"
+msgstr "A ingresar - Domiciliación bancaria"
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__result_type__d
 msgid "To return"
-msgstr "Negativa"
+msgstr "Devolución"
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__result_type__v
+msgid "To return - AEAT account"
+msgstr "Devolución - Cuenta tributaria"
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__result_type__x
+msgid "To return - Foreign bank account"
+msgstr "Devolución - Cuenta extranjera"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_potential_cuota_compensar
