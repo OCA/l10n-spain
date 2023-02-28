@@ -108,7 +108,7 @@
 "aeat_mod303_2022_sub03_export_line_36","aeat_mod303_2022_sub03_export_config",34,"Devolución - Dirección del Banco/ Bank address","string",35,0,"left",1,"N",0," ","X","${object.result_type == 'D' and object.partner_bank_id.bank_id.street or ''}",,,,
 "aeat_mod303_2022_sub03_export_line_37","aeat_mod303_2022_sub03_export_config",35,"Devolución - Ciudad/City","string",30,0,"left",1,"N",0," ","X","${object.result_type == 'D' and object.partner_bank_id.bank_id.city or ''}",,,,
 "aeat_mod303_2022_sub03_export_line_38","aeat_mod303_2022_sub03_export_config",36,"Devolución - Código País/Country code","string",2,0,"left",1,"N",0," ","X","${object.result_type == 'D' and object.partner_bank_id.bank_id.country.code or ''}",,,,
-"aeat_mod303_2022_sub03_export_line_39","aeat_mod303_2022_sub03_export_config",37,"Devolución - Marca SEPA","integer",1,0,"left",0,"N",0," ","X","${int(object.marca_sepa or '0')}",,,,
+"aeat_mod303_2022_sub03_export_line_39","aeat_mod303_2022_sub03_export_config",37,"Devolución - Marca SEPA","integer",1,0,"left",0,"N",0," ","X","${object.result_type in ['X', 'D'] and int(object.marca_sepa) or 0}",,,,
 "aeat_mod303_2022_sub03_export_line_40","aeat_mod303_2022_sub03_export_config",38,"Reservado para la AEAT","string",600,0,"left",1,"N",0," ","X",,,,,
 "aeat_mod303_2022_sub03_export_line_41","aeat_mod303_2022_sub03_export_config",39,"Indicador de fin de registro: </T30303>","string",12,0,"left",1,"N",0," ","X",,"</T30303000>",,,
 "aeat_mod303_2022_sub04_export_line_01","aeat_mod303_2022_sub04_export_config",1,"Constante: <T","string",2,0,"left",1,"N",0," ","X",,"<T",,,
