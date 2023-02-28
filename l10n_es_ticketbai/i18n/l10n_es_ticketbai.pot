@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -84,9 +84,15 @@ msgid "Cancel and recreate"
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#. odoo-python
 #: code:addons/l10n_es_ticketbai/models/account_move.py:0
 #, python-format
 msgid "Cancellation"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
+msgid "Cancellation Files Sent"
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -113,6 +119,7 @@ msgid "Company"
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#. odoo-python
 #: code:addons/l10n_es_ticketbai/models/account_tax.py:0
 #, python-format
 msgid "Country code for partner %s not found!"
@@ -138,16 +145,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_exemption_key__create_date
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_regime_key__create_date
 msgid "Created on"
-msgstr ""
-
-#. module: l10n_es_ticketbai
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
-msgid "Customer Cancellations"
-msgstr ""
-
-#. module: l10n_es_ticketbai
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
-msgid "Customer Invoices"
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -267,6 +264,7 @@ msgid "Invoice Serial"
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#. odoo-python
 #: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -397,6 +395,7 @@ msgid "Origin Invoices Data"
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#. odoo-python
 #: code:addons/l10n_es_ticketbai/models/account_move.py:0
 #, python-format
 msgid ""
@@ -419,6 +418,7 @@ msgid "Refund"
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#. odoo-python
 #: code:addons/l10n_es_ticketbai/models/account_move.py:0
 #, python-format
 msgid ""
@@ -426,6 +426,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#. odoo-python
 #: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -434,12 +435,14 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#. odoo-python
 #: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
 #, python-format
 msgid "Refunded Invoice %s Expedition Date"
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#. odoo-python
 #: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -479,12 +482,14 @@ msgid "Software"
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#. odoo-python
 #: code:addons/l10n_es_ticketbai/models/account_move.py:0
 #, python-format
 msgid "Some of the original invoices have related tbai cancelled invoices"
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#. odoo-python
 #: code:addons/l10n_es_ticketbai/models/account_move.py:0
 #, python-format
 msgid ""
@@ -512,6 +517,7 @@ msgid "Tax"
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#. odoo-python
 #: code:addons/l10n_es_ticketbai/models/account_fiscal_position.py:0
 #: code:addons/l10n_es_ticketbai/models/chart_template.py:0
 #: model:ir.model.constraint,message:l10n_es_ticketbai.constraint_account_fp_tbai_tax_position_tax_uniq
@@ -679,6 +685,7 @@ msgid "TicketBAI Invoice"
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#. odoo-python
 #: code:addons/l10n_es_ticketbai/models/account_tax.py:0
 #, python-format
 msgid ""
@@ -687,6 +694,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#. odoo-python
 #: code:addons/l10n_es_ticketbai/models/account_tax.py:0
 #, python-format
 msgid ""
@@ -752,6 +760,7 @@ msgid "TicketBAI is disabled."
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#. odoo-python
 #: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -812,18 +821,21 @@ msgid "Wizard to Load AEAT Certificate"
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#. odoo-python
 #: code:addons/l10n_es_ticketbai/models/account_move.py:0
 #, python-format
 msgid "You cannot change to draft a TicketBAI invoice!"
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#. odoo-python
 #: code:addons/l10n_es_ticketbai/models/account_resequence.py:0
 #, python-format
 msgid "You cannot resequence a customer invoice when TicketBAI is enabled."
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#. odoo-python
 #: code:addons/l10n_es_ticketbai/models/account_journal.py:0
 #, python-format
 msgid ""
