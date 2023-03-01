@@ -11,8 +11,12 @@ from odoo.tools import float_compare
 _ACCOUNT_PATTERN_MAP = {
     "C": "4700",
     "D": "4700",
+    "V": "4700",
+    "X": "4700",
     "N": "4700",
     "I": "4750",
+    "G": "4750",
+    "U": "4750",
 }
 NON_EDITABLE_ON_DONE = {"done": [("readonly", True)]}
 NON_EDITABLE_EXCEPT_DRAFT = {
@@ -142,7 +146,11 @@ class L10nEsAeatMod303Report(models.Model):
     result_type = fields.Selection(
         selection=[
             ("I", "To enter"),
+            ("G", "To enter - AEAT account"),
+            ("U", "To enter - Bank account debit"),
             ("D", "To return"),
+            ("V", "To return - AEAT account"),
+            ("X", "To return - Foreign bank account"),
             ("C", "To compensate"),
             ("N", "No activity/Zero result"),
         ],
@@ -275,12 +283,10 @@ class L10nEsAeatMod303Report(models.Model):
         compute="_compute_marca_sepa",
     )
 
-    @api.depends("partner_bank_id", "result_type")
+    @api.depends("partner_bank_id")
     def _compute_marca_sepa(self):
         for record in self:
-            if record.result_type != "D":
-                record.marca_sepa = "0"
-            elif record.partner_bank_id.bank_id.country == self.env.ref("base.es"):
+            if record.partner_bank_id.bank_id.country == self.env.ref("base.es"):
                 record.marca_sepa = "1"
             elif (
                 record.partner_bank_id.bank_id.country
@@ -431,6 +437,7 @@ class L10nEsAeatMod303Report(models.Model):
         "resultado_liquidacion",
         "period_type",
         "devolucion_mensual",
+        "marca_sepa",
     )
     def _compute_result_type(self):
         for report in self:
@@ -445,7 +452,7 @@ class L10nEsAeatMod303Report(models.Model):
                 report.result_type = "I"
             else:
                 if report.devolucion_mensual or report.period_type in ("4T", "12"):
-                    report.result_type = "D"
+                    report.result_type = "D" if report.marca_sepa == "1" else "X"
                 else:
                     report.result_type = "C"
 
