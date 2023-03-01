@@ -314,11 +314,7 @@ class DeliveryCarrier(models.Model):
             },
             # nodo opcional
             "DatosServicio": {
-                # fecha de servicio del envío. Si no se indica, internamente se cogerá
-                # la fecha actual del sistema.
-                "Fecha": picking.scheduled_date
-                if picking.scheduled_date > today
-                else today,
+                "Fecha": today,
                 # número opcional de referencia del envío del cliente
                 "Referencia": picking.name,
                 "CodigoServicio": self.mrw_service,
