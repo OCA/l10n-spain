@@ -323,6 +323,7 @@ class L10nEsVatBook(models.Model):
             ("date", ">=", self.date_start),
             ("date", "<=", self.date_end),
             ("parent_state", "=", "posted"),
+            ("display_type", "not in", ("line_section", "line_note")),
         ]
         if taxes:
             domain.append(("tax_ids", "in", taxes.ids))
