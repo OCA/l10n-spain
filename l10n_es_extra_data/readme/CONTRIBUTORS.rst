@@ -5,3 +5,7 @@
 * `Acysos SL <https://www.acysos.es>`__:
 
   * Ignacio Ibeas
+
+* `FactorLibre <http://factorlibre.com>`__:
+
+  * Luis J. Salvatierra
