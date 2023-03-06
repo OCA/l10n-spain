@@ -23,7 +23,7 @@ Datos Extra
     :target: https://runbot.odoo-community.org/runbot/189/11.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 Módulo que nos permite configurar cualquier cambio del plan contable en la
 version 11.0 de la localización española, ya que Odoo no permite modificaciones
@@ -43,10 +43,27 @@ el módulo *account_chart_update*.
 Changelog
 =========
 
-12.0.1.0.0 (2022-07-20)
+11.0.2.1.0 (2023-02-20)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-* [NEW] Module added to v12. Añadido nuevo impuesto del 5% de las eléctricas.
+* Backport [[13.0][FIX] l10n_es: Includes new food taxes reduction](https://github.com/odoo/odoo/pull/108868)
+
+Se mantiene el uso de los impuestos de alimentos en v11.
+
+En posteriores versiones se renombran de la siguiente manera:
+
+.. code-block:: xml
+
+    ("account_tax_template_p_iva0_a", "account_tax_template_p_iva0_s_bc")
+    ("account_tax_template_p_iva5_a", "account_tax_template_p_iva5_bc")
+    ("account_tax_template_p_iva0_ic_a", "account_tax_template_p_iva0_ic_bc")
+    ("account_tax_template_p_iva5_ic_a", "account_tax_template_p_iva5_ic_bc")
+    ("account_tax_template_p_iva0_ia", "account_tax_template_p_iva0_ibc")
+    ("account_tax_template_p_iva5_ia", "account_tax_template_p_iva5_ibc")
+    ("account_tax_template_p_req0625", "account_tax_template_p_req062")
+    ("account_tax_template_s_iva0_a", "account_tax_template_s_iva0b")
+    ("account_tax_template_s_iva5_a", "account_tax_template_s_iva5b")
+    ("account_tax_template_s_req0625", "account_tax_template_s_req062")
 
 11.0.1.0.0 (2022-08-10)
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -82,6 +99,10 @@ Contributors
 
   * Ignacio Ibeas
 
+* `FactorLibre <http://factorlibre.com>`__:
+
+  * Luis J. Salvatierra
+
 Maintainers
 ~~~~~~~~~~~
 
@@ -101,7 +122,7 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-cubells|
+|maintainer-cubells| 
 
 This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/11.0/l10n_es_extra_data>`_ project on GitHub.
 
