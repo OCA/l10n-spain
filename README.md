@@ -22,7 +22,7 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [l10n_es_account_asset](l10n_es_account_asset/) | 16.0.1.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Gestión de activos fijos para España
-[l10n_es_aeat](l10n_es_aeat/) | 16.0.2.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Modulo base para declaraciones de la AEAT
+[l10n_es_aeat](l10n_es_aeat/) | 16.0.2.0.1 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Modulo base para declaraciones de la AEAT
 [l10n_es_aeat_mod115](l10n_es_aeat_mod115/) | 16.0.1.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | AEAT modelo 115
 [l10n_es_aeat_mod123](l10n_es_aeat_mod123/) | 16.0.1.0.0 |  | AEAT modelo 123
 [l10n_es_aeat_mod216](l10n_es_aeat_mod216/) | 16.0.1.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | AEAT modelo 216
@@ -38,7 +38,7 @@ addon | version | maintainers | summary
 [l10n_es_ticketbai](l10n_es_ticketbai/) | 16.0.1.0.0 | [![ao-landoo](https://github.com/ao-landoo.png?size=30px)](https://github.com/ao-landoo) | Declaración de todas las operaciones de venta realizadas por las personas y entidades que desarrollan actividades económicas
 [l10n_es_ticketbai_api](l10n_es_ticketbai_api/) | 16.0.1.0.0 | [![ao-landoo](https://github.com/ao-landoo.png?size=30px)](https://github.com/ao-landoo) | TicketBAI - API
 [l10n_es_toponyms](l10n_es_toponyms/) | 16.0.1.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Topónimos españoles
-[l10n_es_vat_book](l10n_es_vat_book/) | 16.0.1.1.0 |  | Libro de IVA
+[l10n_es_vat_book](l10n_es_vat_book/) | 16.0.1.1.1 |  | Libro de IVA
 
 [//]: # (end addons)
 
