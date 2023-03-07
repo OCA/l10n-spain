@@ -14,7 +14,8 @@
         "l10n_eu_oss",
     ],
     "data": [
-        "data/tax_code_map_mod303_data.xml",
+        "data/2021-07/l10n_es_aeat_map_tax_line.xml",
+        "data/2023/l10n_es_aeat_map_tax_line.xml",
     ],
     "installable": True,
     'autoinstall': True,
