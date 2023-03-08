@@ -30,26 +30,13 @@ class AccountMove(models.Model):
         for item in self:
             item.thirdparty_invoice = item.journal_id.thirdparty_invoice
 
-    def _get_aeat_tax_base_info(self, res, tax, line, sign):
-        taxes = tax.amount_type == "group" and tax.children_tax_ids or tax
-        for tax in taxes:
-            res.setdefault(tax, {"tax": tax, "base": 0, "amount": 0, "quote_amount": 0})
-            res[tax]["base"] += line.balance * sign
-
-    def _get_aeat_tax_quote_info(self, res, tax, line, sign):
-        taxes = tax.amount_type == "group" and tax.children_tax_ids or tax
-        for tax in taxes:
-            res.setdefault(tax, {"tax": tax, "base": 0, "amount": 0, "quote_amount": 0})
-            res[tax]["amount"] += line.balance * sign
-            res[tax]["quote_amount"] += line.balance * sign
-
     def _get_aeat_tax_info(self):
         self.ensure_one()
         res = {}
+        sign = -1 if self.move_type[:3] == "out" else 1
         for line in self.line_ids:
-            sign = -1 if self.move_type[:3] == "out" else 1
             for tax in line.tax_ids:
-                self._get_aeat_tax_base_info(res, tax, line, sign)
+                line._process_aeat_tax_base_info(res, tax, sign)
             if line.tax_line_id:
                 tax = line.tax_line_id
                 if "invoice" in self.move_type:
@@ -62,5 +49,33 @@ class AccountMove(models.Model):
                 ):
                     # taxes with more than one "tax" repartition line must be discarded
                     continue
-                self._get_aeat_tax_quote_info(res, tax, line, sign)
+                line._process_aeat_tax_fee_info(res, tax, sign)
         return res
+
+
+class AccountMoveLine(models.Model):
+    _inherit = "account.move.line"
+
+    def _process_aeat_tax_base_info(self, res, tax, sign):
+        """It modifies the dictionary given in res for setting the base amount info
+        for the taxes dictionary obtained in ~~account.move~~._get_aeat_tax_info().
+        """
+        taxes = tax.amount_type == "group" and tax.children_tax_ids or tax
+        for tax in taxes:
+            res.setdefault(
+                tax, {"tax": tax, "base": 0, "amount": 0, "deductible_amount": 0}
+            )
+            res[tax]["base"] += self.balance * sign
+
+    def _process_aeat_tax_fee_info(self, res, tax, sign):
+        """It modifies the dictionary given in res for setting the tax amount info
+        for the taxes dictionary obtained in ~~account.move~~._get_aeat_tax_info().
+        """
+        taxes = tax.amount_type == "group" and tax.children_tax_ids or tax
+        for tax in taxes:
+            res.setdefault(
+                tax, {"tax": tax, "base": 0, "amount": 0, "deductible_amount": 0}
+            )
+            amount = self.balance * sign
+            res[tax]["amount"] += amount
+            res[tax]["deductible_amount"] += amount
