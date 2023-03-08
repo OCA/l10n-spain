@@ -596,7 +596,7 @@ class AccountMove(models.Model):
                 continue
             tax_dict = self._get_sii_tax_dict(tax_line, tax_lines)
             if tax in taxes_sfrisp + taxes_sfrs:
-                tax_amount += tax_line["amount"]
+                tax_amount += tax_line["deductible_amount"]
             if tax in taxes_sfrbi:
                 tax_dict["BienInversion"] = "S"
             if tax in taxes_sfrns:
