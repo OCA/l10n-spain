@@ -684,3 +684,49 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
                     },
                 )
             ]
+
+    def test_invoice_out_refund_from_origin_invoice_exists_rappel(self):
+        invoice = self.create_draft_invoice(
+            self.account_billing.id,
+            self.fiscal_position_national,
+            self.partner.id,
+        )
+        invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
+        invoice.invoice_date = "1901-01-01"
+        invoice.action_post()
+        number_prefix = "/".join(invoice.name.split("/")[:-1]) + "/"
+        number = invoice.name.split("/")[-1]
+        refund = self.create_draft_invoice(
+            self.account_billing.id,
+            self.fiscal_position_national,
+            self.partner.id,
+            invoice_type="out_refund",
+        )
+        refund.tbai_rappel_invoice = True
+        refund.sudo().tbai_refund_origin_ids = [
+            (
+                0,
+                0,
+                {
+                    "number_prefix": number_prefix,
+                    "number": number,
+                    "expedition_date": "01-01-1901",
+                },
+            )
+        ]
+        refund.action_post()
+        self.assertEqual(refund.state, "posted")
+        self.assertEqual(1, len(refund.tbai_refund_origin_ids))
+        self.assertEqual(1, len(refund.tbai_invoice_ids))
+        self.assertEqual(1, len(refund.tbai_invoice_ids[0].tbai_invoice_refund_ids))
+        self.assertEqual(
+            number_prefix,
+            refund.tbai_invoice_ids[0].tbai_invoice_refund_ids.number_prefix,
+        )
+        self.assertEqual(
+            number, refund.tbai_invoice_ids[0].tbai_invoice_refund_ids.number
+        )
+        self.assertEqual(
+            "01-01-1901",
+            refund.tbai_invoice_ids[0].tbai_invoice_refund_ids.expedition_date,
+        )

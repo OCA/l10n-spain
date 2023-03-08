@@ -100,6 +100,11 @@ class AccountMove(models.Model):
         inverse_name="account_refund_invoice_id",
         string="TicketBAI Refund Origin References",
     )
+    tbai_rappel_invoice = fields.Boolean(
+        string="Rappel invoice",
+        help="If rappel invoice check this field, and insert first and last "
+        "invoices from period.",
+    )
 
     @api.constrains("state")
     def _check_cancel_number_invoice(self):
@@ -176,6 +181,11 @@ class AccountMove(models.Model):
                 self.tbai_refund_type = RefundType.differences.value
             if not self.tbai_refund_key:
                 self.tbai_refund_key = RefundCode.R1.value
+
+    @api.onchange("tbai_rappel_invoice")
+    def onchange_tbai_rappel_invoice(self):
+        for refund_origin in self.tbai_refund_origin_ids:
+            refund_origin._check_account_invoice_exists()
 
     def tbai_prepare_invoice_values(self):
         def tbai_prepare_refund_values():
@@ -607,6 +617,8 @@ class AccountMove(models.Model):
                         "invoice_line_ids.ref"
                     )
                     description += " - ".join(filter(None, names))
+            if invoice.tbai_rappel_invoice:
+                description += " (rappel)"
             invoice.tbai_description_operation = (description or "")[:250] or "/"
 
 

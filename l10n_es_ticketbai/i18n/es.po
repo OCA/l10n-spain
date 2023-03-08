@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-03 15:25+0000\n"
-"PO-Revision-Date: 2022-08-29 13:07+0000\n"
-"Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
+"POT-Creation-Date: 2023-03-08 09:11+0000\n"
+"PO-Revision-Date: 2023-03-08 10:13+0100\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.2.2\n"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_l10n_es_aeat_certificate
@@ -26,7 +26,7 @@ msgstr "Certificados AEAT"
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_chart_template
 msgid "Account Chart Template"
-msgstr "Plantilla de Plan de Cuentas"
+msgstr "Plantilla de gráfico de cuentas"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_move_reversal
@@ -41,7 +41,7 @@ msgstr "Factura rectificativa"
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_l10n_es_aeat_certificate__tbai_p12_friendlyname
 msgid "Alias"
-msgstr "Alias"
+msgstr ""
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_move__tbai_refund_key__r4
@@ -56,12 +56,12 @@ msgstr "Art. 80.1, 80.2, 80.6 y errores fundados de derecho"
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_move__tbai_refund_key__r2
 msgid "Art. 80.3"
-msgstr "Art. 80.3"
+msgstr ""
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_move__tbai_refund_key__r3
 msgid "Art. 80.4"
-msgstr "Art. 80.4"
+msgstr ""
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__res_company__tbai_description_method__auto
@@ -76,8 +76,6 @@ msgid ""
 "BOE-A-1992-28740. Ley 37/1992, de 28 de diciembre, del Impuesto sobre el "
 "Valor Añadido. Artículo 80. Modificación de la base imponible."
 msgstr ""
-"BOE-A-1992-28740. Ley 37/1992, de 28 de diciembre, del Impuesto sobre el "
-"Valor Añadido. Artículo 80. Modificación de la base imponible."
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_move__tbai_refund_type__i
@@ -194,7 +192,13 @@ msgstr "Número de serie de dispositivo"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_exemption_key__display_name
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_regime_key__display_name
 msgid "Display Name"
-msgstr "Mostrar nombre"
+msgstr "Nombre mostrado"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.constraint,message:l10n_es_ticketbai.constraint_account_fp_tbai_tax_position_tax_uniq
+#: model:ir.model.constraint,message:l10n_es_ticketbai.constraint_account_fp_tbai_tax_template_position_tax_uniq
+msgid "El impuesto debe ser único por posición fiscal!"
+msgstr ""
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_enabled
@@ -280,6 +284,17 @@ msgstr "Agrupar por"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_regime_key__id
 msgid "ID"
 msgstr "Identificador"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_account_bank_statement_line__tbai_rappel_invoice
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_account_move__tbai_rappel_invoice
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_account_payment__tbai_rappel_invoice
+msgid ""
+"If rappel invoice check this field, and insert first and last invoices from "
+"period."
+msgstr ""
+"Si factura de bonificación o rappel activa el campo e inserta la primera y "
+"última factura del periodo."
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice__invoice_id
@@ -394,7 +409,7 @@ msgstr "Enlace entre la factura del cliente y su sustituta."
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__res_company__tbai_description_method__manual
 msgid "Manual"
-msgstr "Manual"
+msgstr ""
 
 #. module: l10n_es_ticketbai
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
@@ -483,6 +498,13 @@ msgid "QR Code"
 msgstr "Código QR"
 
 #. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_rappel_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_rappel_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_rappel_invoice
+msgid "Rappel invoice"
+msgstr "Factura bonificación o rappel"
+
+#. module: l10n_es_ticketbai
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
 msgid "Refund"
 msgstr "Rectificativa"
@@ -551,7 +573,7 @@ msgstr "Secuencia"
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info__software
 msgid "Software"
-msgstr "Software"
+msgstr ""
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_move.py:0
@@ -574,7 +596,7 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_account_journal__tbai_active_date
 msgid "Start date for sending invoices to the tax authorities"
-msgstr ""
+msgstr "Fecha inicio para enviar las facturas a hacienda"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_substitute_simplified_invoice
@@ -598,8 +620,6 @@ msgstr "Impuesto"
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_fiscal_position.py:0
 #: code:addons/l10n_es_ticketbai/models/chart_template.py:0
-#: model:ir.model.constraint,message:l10n_es_ticketbai.constraint_account_fp_tbai_tax_position_tax_uniq
-#: model:ir.model.constraint,message:l10n_es_ticketbai.constraint_account_fp_tbai_tax_template_position_tax_uniq
 #, python-format
 msgid "Tax must be unique per fiscal position!"
 msgstr "El impuesto debe ser único por posición fiscal!"
@@ -684,7 +704,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_partner_property_form_inherit
 msgid "TicketBAI"
-msgstr "TicketBAI"
+msgstr ""
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_fp_tbai_tax
@@ -839,7 +859,7 @@ msgstr "TicketBAI Mapeo claves de regímenes de IVA"
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_journal__tbai_active_date
 msgid "TicketBAI active date"
-msgstr ""
+msgstr "TicketBAI Fecha inicio"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_tbai_info

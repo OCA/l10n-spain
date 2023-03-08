@@ -78,6 +78,7 @@
                                 colspan="4"
                                 attrs="{'invisible': ['|', '|', ('tbai_enabled', '!=', True), ('reversed_entry_id', '!=', False), ('move_type', '!=', 'out_refund')]}"
                             >
+                                <field name="tbai_rappel_invoice" />
                                 <field
                                     name="tbai_refund_origin_ids"
                                     nolabel="1"

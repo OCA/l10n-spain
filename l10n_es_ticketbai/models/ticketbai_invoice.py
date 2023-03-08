@@ -114,6 +114,8 @@ class TicketBAIInvoiceRefundOrigin(models.Model):
     @api.constrains("number", "number_prefix", "expedition_date")
     def _check_account_invoice_exists(self):
         for record in self:
+            if record.account_refund_invoice_id.tbai_rappel_invoice:
+                continue
             invoice_number = ""
             if record.number_prefix:
                 invoice_number = record.number_prefix
