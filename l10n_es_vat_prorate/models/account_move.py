@@ -5,13 +5,7 @@ from odoo import api, fields, models
 
 
 class AccountMove(models.Model):
-
     _inherit = "account.move"
-
-    def _get_aeat_tax_quote_info(self, res, tax, line, sign):
-        super()._get_aeat_tax_quote_info(res, tax, line, sign)
-        if line.vat_prorate:
-            res[tax]["quote_amount"] -= line.balance * sign
 
     def _recompute_tax_lines(
         self, recompute_tax_base_amount=False, tax_rep_lines_to_recompute=None
@@ -47,3 +41,8 @@ class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
     vat_prorate = fields.Boolean()
+
+    def _process_aeat_tax_fee_info(self, res, tax, sign):
+        super()._process_aeat_tax_fee_info(res, tax, sign)
+        if self.vat_prorate:
+            res[tax]["deductible_amount"] -= self.balance * sign
