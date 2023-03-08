@@ -9,15 +9,12 @@ from odoo.addons.l10n_es_aeat_sii_oca.tests import test_l10n_es_aeat_sii
 @tagged("-at_install", "post_install")
 class TestSIIVatProrate(test_l10n_es_aeat_sii.TestL10nEsAeatSiiBase):
     @classmethod
-    def _setup_records(cls):
-        if cls.env["ir.module.module"].search(
+    def setUpClass(cls):
+        super().setUpClass()
+        if not cls.env["ir.module.module"].search(
             [("name", "=", "l10n_es_aeat_sii_oca"), ("state", "=", "installed")]
         ):
-            # We want to avoid the execution of tests if it is not installed.
-            # SetUpClass does not allow SkipTest properly, so we need to do it twice,
-            # one here and one in setUp
             raise SkipTest("l10n_es_aeat_sii_oca is not installed")
-        super()._setup_records()
         cls.company.write(
             {
                 "with_vat_prorate": True,
@@ -27,14 +24,6 @@ class TestSIIVatProrate(test_l10n_es_aeat_sii.TestL10nEsAeatSiiBase):
                 ],
             }
         )
-
-    def setUp(self):
-        super().setUp()
-        if not self.env["ir.module.module"].search(
-            [("name", "=", "l10n_es_aeat_sii_oca"), ("state", "=", "installed")]
-        ):
-            # We want to avoid the execution of tests if it is not installed
-            self.skipTest("l10n_es_aeat_sii_oca is not installed")
 
     def test_get_invoice_data(self):
         mapping = [
