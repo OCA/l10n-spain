@@ -9,7 +9,7 @@ from .test_l10n_es_aeat_mod_base import TestL10nEsAeatModBase
 _logger = logging.getLogger("aeat")
 
 
-class TestL10nEsAeatModBase(TestL10nEsAeatModBase):
+class TestL10nEsAeatTaxInfo(TestL10nEsAeatModBase):
     taxes_sale = {
         # tax code: (base, tax_amount)
         "S_IVA21B": (1000, 0),
@@ -31,7 +31,7 @@ class TestL10nEsAeatModBase(TestL10nEsAeatModBase):
         self.assertEqual(tax_info[tax]["amount"], -210)
 
 
-class TestL10nEsAeatTaxGroup(TestL10nEsAeatModBase):
+class TestL10nEsAeatTaxInfoGroup(TestL10nEsAeatModBase):
     taxes_sale = {
         # tax code: (base, tax_amount)
         "S_IVAG1021B": (1000, 0),
