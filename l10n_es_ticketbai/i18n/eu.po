@@ -205,11 +205,6 @@ msgid "Enable TicketBAI"
 msgstr "Gaitu TicketBAI"
 
 #. module: l10n_es_ticketbai
-#: model:ir.model.fields,help:l10n_es_ticketbai.field_tbai_invoice_refund_origin__expedition_date
-msgid "Expected string date format: %dd-%mm-%yyyy"
-msgstr "Espero den katearen data formatua: %dd-%mm-%yyyy"
-
-#. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin__expedition_date
 msgid "Expedition Date"
 msgstr "Espedizio Data"
@@ -300,16 +295,6 @@ msgstr "Faktura Zenbakia"
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
 msgid "Invoice Serial"
 msgstr "Fakturaren Seriea"
-
-#. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
-#, python-format
-msgid ""
-"Invoice: number %s prefix %s invoice_date %s exists. Create a credit note "
-"from this invoice."
-msgstr ""
-"Faktura: %s zenbakia %s aurrizkia %s faktura data existitzen da. Sortu "
-"kreditu-ohar bat faktura honetatik."
 
 #. module: l10n_es_ticketbai
 #: model:ir.ui.menu,name:l10n_es_ticketbai.menu_tbai_invoice
@@ -493,12 +478,6 @@ msgid ""
 msgstr ""
 "Itzulketa-fakturak baliogabetu egin behar dira jatorrizko faktura bertan "
 "behera uzteko."
-
-#. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
-#, python-format
-msgid "Refunded Invoice %s Expedition Date"
-msgstr "Itzulitako %s fakturaren espedizio-data"
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
@@ -932,3 +911,18 @@ msgid ""
 msgstr ""
 "Ezin diozu utzi aldizkari honetatik fakturak bidaltzeari, dagoeneko faktura "
 "bat bidali da."
+
+#~ msgid "Expected string date format: %dd-%mm-%yyyy"
+#~ msgstr "Espero den katearen data formatua: %dd-%mm-%yyyy"
+
+#, python-format
+#~ msgid ""
+#~ "Invoice: number %s prefix %s invoice_date %s exists. Create a credit note "
+#~ "from this invoice."
+#~ msgstr ""
+#~ "Faktura: %s zenbakia %s aurrizkia %s faktura data existitzen da. Sortu "
+#~ "kreditu-ohar bat faktura honetatik."
+
+#, python-format
+#~ msgid "Refunded Invoice %s Expedition Date"
+#~ msgstr "Itzulitako %s fakturaren espedizio-data"

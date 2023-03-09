@@ -201,11 +201,6 @@ msgid "Enable TicketBAI"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: model:ir.model.fields,help:l10n_es_ticketbai.field_tbai_invoice_refund_origin__expedition_date
-msgid "Expected string date format: %dd-%mm-%yyyy"
-msgstr ""
-
-#. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin__expedition_date
 msgid "Expedition Date"
 msgstr ""
@@ -295,14 +290,6 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
 msgid "Invoice Serial"
-msgstr ""
-
-#. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
-#, python-format
-msgid ""
-"Invoice: number %s prefix %s invoice_date %s exists. Create a credit note "
-"from this invoice."
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -475,12 +462,6 @@ msgstr ""
 #, python-format
 msgid ""
 "Refund invoices must be cancelled in order to cancel the original invoice."
-msgstr ""
-
-#. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
-#, python-format
-msgid "Refunded Invoice %s Expedition Date"
 msgstr ""
 
 #. module: l10n_es_ticketbai
