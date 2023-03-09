@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_ticketbai
+# 	* l10n_es_ticketbai
 #
 msgid ""
 msgstr ""
@@ -51,7 +51,9 @@ msgstr ""
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_account_invoice_tbai_refund_key
-msgid "BOE-A-1992-28740. Ley 37/1992, de 28 de diciembre, del Impuesto sobre el Valor Añadido. Artículo 80. Modificación de la base imponible."
+msgid ""
+"BOE-A-1992-28740. Ley 37/1992, de 28 de diciembre, del Impuesto sobre el "
+"Valor Añadido. Artículo 80. Modificación de la base imponible."
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -70,7 +72,7 @@ msgid "Cancel and recreate"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:309
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:311
 #, python-format
 msgid "Cancellation"
 msgstr ""
@@ -171,11 +173,6 @@ msgid "Enable TicketBAI"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: model:ir.model.fields,help:l10n_es_ticketbai.field_tbai_invoice_refund_origin_expedition_date
-msgid "Expected string date format: %dd-%mm-%yyyy"
-msgstr ""
-
-#. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin_expedition_date
 msgid "Expedition Date"
 msgstr ""
@@ -266,12 +263,6 @@ msgid "Invoice Tax"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:119
-#, python-format
-msgid "Invoice: number %s prefix %s invoice_date %s exists. Create a credit note from this invoice."
-msgstr ""
-
-#. module: l10n_es_ticketbai
 #: model:ir.ui.menu,name:l10n_es_ticketbai.menu_tbai_invoice
 msgid "Invoices"
 msgstr ""
@@ -343,7 +334,9 @@ msgstr ""
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_tbai_invoice_refund_origin_number_prefix
-msgid "Number prefix of this invoice name e.g. if the invoice name is INV/2021/00001 then the prefix is INV/2021/, ending back slash included"
+msgid ""
+"Number prefix of this invoice name e.g. if the invoice name is "
+"INV/2021/00001 then the prefix is INV/2021/, ending back slash included"
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -362,9 +355,10 @@ msgid "Origin Invoices Data"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:358
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:360
 #, python-format
-msgid "Please, specify data for the original invoices that are going to be refunded"
+msgid ""
+"Please, specify data for the original invoices that are going to be refunded"
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -383,21 +377,19 @@ msgid "Refund"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:95
+#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:83
 #, python-format
-msgid "Refunded Invoice %s Expedition Date"
+msgid ""
+"Refunded Invoice %s Number Prefix %s longer than expected. Should be 20 "
+"characters max.!"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:86
+#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:73
 #, python-format
-msgid "Refunded Invoice %s Number Prefix %s longer than expected. Should be 20 characters max.!"
-msgstr ""
-
-#. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:76
-#, python-format
-msgid "Refunded Invoice Number %s longer than expected. Should be 20 characters max.!"
+msgid ""
+"Refunded Invoice Number %s longer than expected. Should be 20 characters "
+"max.!"
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -412,15 +404,17 @@ msgid "Software"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:372
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:374
 #, python-format
 msgid "Some of the original invoices have related tbai cancelled invoices"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:367
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:369
 #, python-format
-msgid "Some of the original invoices have related tbai invoices in inconsistent state please fix them beforehand."
+msgid ""
+"Some of the original invoices have related tbai invoices in inconsistent "
+"state please fix them beforehand."
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -503,7 +497,9 @@ msgstr ""
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_tbai_invoice_refund_origin_number
-msgid "The number of the invoice name e.g. if the invoice name is INV/2021/00001 then the number is 00001"
+msgid ""
+"The number of the invoice name e.g. if the invoice name is INV/2021/00001 "
+"then the number is 00001"
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -590,13 +586,16 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_invoice_tax.py:41
 #, python-format
-msgid "TicketBAI Invoice %s Error: Tax %s contains multiple Equivalence Surcharge Taxes"
+msgid ""
+"TicketBAI Invoice %s Error: Tax %s contains multiple Equivalence Surcharge "
+"Taxes"
 msgstr ""
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_invoice_tax.py:50
 #, python-format
-msgid "TicketBAI Invoice %s Error: the Invoice should have one tax line for Tax %s"
+msgid ""
+"TicketBAI Invoice %s Error: the Invoice should have one tax line for Tax %s"
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -657,7 +656,8 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_invoice.py:155
 #, python-format
-msgid "TicketBAI refund by differences only available for Customer Credit Notes."
+msgid ""
+"TicketBAI refund by differences only available for Customer Credit Notes."
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -667,9 +667,11 @@ msgid "TicketBAI refund by substitution is not supported."
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:39
+#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:37
 #, python-format
-msgid "TicketBAI: You cannot cancel and recreate an Invoice with a state different than 'Error'."
+msgid ""
+"TicketBAI: You cannot cancel and recreate an Invoice with a state different "
+"than 'Error'."
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -721,29 +723,35 @@ msgid "Warning"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:339
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:341
 #, python-format
-msgid "You cannot cancel an invoice while being sent to the Tax Agency.\n"
+msgid ""
+"You cannot cancel an invoice while being sent to the Tax Agency.\n"
 "Related invoices: %s"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:330
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:332
 #, python-format
-msgid "You cannot cancel an invoice with non cancelled credit notes.\n"
+msgid ""
+"You cannot cancel an invoice with non cancelled credit notes.\n"
 "Related invoices: %s"
 msgstr ""
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_journal.py:25
 #, python-format
-msgid "You cannot change the active date from this journal, because at least one invoice has already been sent."
+msgid ""
+"You cannot change the active date from this journal, because at least one "
+"invoice has already been sent."
 msgstr ""
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_invoice.py:79
 #, python-format
-msgid "You cannot delete an invoice which is not draft. You should create a credit note instead."
+msgid ""
+"You cannot delete an invoice which is not draft. You should create a credit "
+"note instead."
 msgstr ""
 
 #. module: l10n_es_ticketbai
