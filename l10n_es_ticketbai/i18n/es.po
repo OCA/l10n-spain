@@ -188,11 +188,6 @@ msgid "Enable TicketBAI"
 msgstr "Habilitar TicketBAI"
 
 #. module: l10n_es_ticketbai
-#: model:ir.model.fields,help:l10n_es_ticketbai.field_tbai_invoice_refund_origin__expedition_date
-msgid "Expected string date format: %dd-%mm-%yyyy"
-msgstr "Formato de fecha esperado: %dd-%mm-%yyyy"
-
-#. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin__expedition_date
 msgid "Expedition Date"
 msgstr "Fecha de la factura"
@@ -268,17 +263,6 @@ msgstr "Número de factura"
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
 msgid "Invoice Serial"
 msgstr "Serie de factura"
-
-#. module: l10n_es_ticketbai
-#. odoo-python
-#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
-#, python-format
-msgid ""
-"Invoice: number %(name)s prefix %(prefix)s invoice_date %(date)s exists. "
-"Create a credit note from this invoice."
-msgstr ""
-"La factura con número %(name)s , prefijo %(prefix)s y fecha %(date)s existe. "
-"Crea una rectificativa partiendo de esa factura."
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_journal
@@ -457,13 +441,6 @@ msgid ""
 msgstr ""
 "Factura rectificativa %(name)s. Prefijo %(prefix)s más largo de lo esperado. "
 "Debería de contener 20 caracteres como máximo!"
-
-#. module: l10n_es_ticketbai
-#. odoo-python
-#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
-#, python-format
-msgid "Refunded Invoice %s Expedition Date"
-msgstr "Factura rectificativa %s fecha"
 
 #. module: l10n_es_ticketbai
 #. odoo-python
@@ -886,6 +863,21 @@ msgid ""
 msgstr ""
 "No puedes dejar de enviar facturas de este diario, al menos una factura ya "
 "ha sido enviada."
+
+#~ msgid "Expected string date format: %dd-%mm-%yyyy"
+#~ msgstr "Formato de fecha esperado: %dd-%mm-%yyyy"
+
+#, python-format
+#~ msgid ""
+#~ "Invoice: number %(name)s prefix %(prefix)s invoice_date %(date)s exists. "
+#~ "Create a credit note from this invoice."
+#~ msgstr ""
+#~ "La factura con número %(name)s , prefijo %(prefix)s y fecha %(date)s "
+#~ "existe. Crea una rectificativa partiendo de esa factura."
+
+#, python-format
+#~ msgid "Refunded Invoice %s Expedition Date"
+#~ msgstr "Factura rectificativa %s fecha"
 
 #~ msgid "Customer Cancellations"
 #~ msgstr "Anulaciones factura"

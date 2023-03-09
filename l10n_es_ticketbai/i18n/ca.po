@@ -183,11 +183,6 @@ msgid "Enable TicketBAI"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: model:ir.model.fields,help:l10n_es_ticketbai.field_tbai_invoice_refund_origin__expedition_date
-msgid "Expected string date format: %dd-%mm-%yyyy"
-msgstr ""
-
-#. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin__expedition_date
 msgid "Expedition Date"
 msgstr ""
@@ -262,15 +257,6 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
 msgid "Invoice Serial"
-msgstr ""
-
-#. module: l10n_es_ticketbai
-#. odoo-python
-#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
-#, python-format
-msgid ""
-"Invoice: number %(name)s prefix %(prefix)s invoice_date %(date)s exists. "
-"Create a credit note from this invoice."
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -435,13 +421,6 @@ msgstr ""
 msgid ""
 "Refunded Invoice %(name)s Number Prefix %(prefix)s longer than expected. "
 "Should be 20 characters max.!"
-msgstr ""
-
-#. module: l10n_es_ticketbai
-#. odoo-python
-#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
-#, python-format
-msgid "Refunded Invoice %s Expedition Date"
 msgstr ""
 
 #. module: l10n_es_ticketbai
