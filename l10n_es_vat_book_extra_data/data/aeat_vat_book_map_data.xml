@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+
     <record id="l10n_es_vat_book.aeat_vat_book_map_line_s_iva" model="aeat.vat.book.map.line">
-        <field name="tax_tmpl_ids" eval="[(4, ref('l10n_es_extra_data.account_tax_template_s_iva5s'))]"/>
+        <field name="tax_tmpl_ids" eval="[
+            (4, ref('l10n_es_extra_data.account_tax_template_s_iva5s')),
+            (4, ref('l10n_es_extra_data.account_tax_template_s_iva5_a')),
+            (4, ref('l10n_es_extra_data.account_tax_template_s_iva0_a')),
+            (4, ref('l10n_es_extra_data.account_tax_template_s_iva0s')),]"/>
     </record>
+
     <record id="l10n_es_vat_book.aeat_vat_book_map_line_p_iva" model="aeat.vat.book.map.line">
-        <field name="tax_tmpl_ids" eval="[(4, ref('l10n_es_extra_data.account_tax_template_p_iva5_sc'))]"/>
+        <field name="tax_tmpl_ids" eval="[
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_sc')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_ic_a_1')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva0_ic_a_1')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_ic_sc_1')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva0_ic_sc_1')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_isc_1')),]"/>
     </record>
+
+    <record id="l10n_es_vat_book.aeat_vat_book_map_line_s_req" model="aeat.vat.book.map.line">
+        <field name="tax_tmpl_ids" eval="[
+            (4, ref('l10n_es_extra_data.account_tax_template_s_req062')),
+            (4, ref('l10n_es_extra_data.account_tax_template_s_req0')),]"/>
+    </record>
+
+    <record id="l10n_es_vat_book.aeat_vat_book_map_line_p_req" model="aeat.vat.book.map.line">
+        <field name="tax_tmpl_ids" eval="[
+            (4, ref('l10n_es_extra_data.account_tax_template_p_req062')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_req0')),]"/>
+    </record>
+
 </odoo>

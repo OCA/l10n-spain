@@ -18,4 +18,6 @@
     "data": [
         "data/aeat_vat_book_map_data.xml",
     ],
+    "installable": True,
+    "autoinstall": True,
 }
