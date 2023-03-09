@@ -186,11 +186,13 @@ class AccountInvoice(models.Model):
                 if self.tbai_refund_origin_ids:
                     refund_id_dicts = []
                     for refund_origin_id in self.tbai_refund_origin_ids:
+                        expedition_date = fields.Date.from_string(
+                            refund_origin_id.expedition_date).strftime("%d-%m-%Y")
                         refund_id_dicts.append(
                             (0, 0, {
                                 'number_prefix': refund_origin_id.number_prefix,
                                 'number': refund_origin_id.number,
-                                'expedition_date': refund_origin_id.expedition_date
+                                'expedition_date': expedition_date
                             }))
                     vals.update({
                         'is_invoice_refund': True,
