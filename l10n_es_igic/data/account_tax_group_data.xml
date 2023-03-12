@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <record id="tax_group_igic_0" model="account.tax.group">
+        <field name="name">IGIC 0%</field>
+        <field name="country_id" ref="base.es" />
+    </record>
+    <record id="tax_group_igic_3" model="account.tax.group">
+        <field name="name">IGIC 3%</field>
+        <field name="country_id" ref="base.es" />
+    </record>
+    <record id="tax_group_igic_7" model="account.tax.group">
+        <field name="name">IGIC 7%</field>
+        <field name="country_id" ref="base.es" />
+    </record>
+    <record id="tax_group_igic_95" model="account.tax.group">
+        <field name="name">IGIC 9,5%</field>
+        <field name="country_id" ref="base.es" />
+    </record>
+    <record id="tax_group_igic_15" model="account.tax.group">
+        <field name="name">IGIC 15%</field>
+        <field name="country_id" ref="base.es" />
+    </record>
+    <record id="tax_group_igic_20" model="account.tax.group">
+        <field name="name">IGIC 20%</field>
+        <field name="country_id" ref="base.es" />
+    </record>
+    <record id="tax_group_igic_ex" model="account.tax.group">
+        <field name="name">IGIC EXENTO</field>
+        <field name="country_id" ref="base.es" />
+    </record>
+    <record id="tax_group_igic_re_0" model="account.tax.group">
+        <field name="name">IGIC Recargo de Equivalencia 0%</field>
+        <field name="country_id" ref="base.es" />
+    </record>
+    <record id="tax_group_igic_re_03" model="account.tax.group">
+        <field name="name">IGIC Recargo de Equivalencia 0,3%</field>
+        <field name="country_id" ref="base.es" />
+    </record>
+    <record id="tax_group_igic_re_07" model="account.tax.group">
+        <field name="name">IGIC Recargo de Equivalencia 0,7%</field>
+        <field name="country_id" ref="base.es" />
+    </record>
+    <record id="tax_group_igic_re_095" model="account.tax.group">
+        <field name="name">IGIC Recargo de Equivalencia 0,95%</field>
+        <field name="country_id" ref="base.es" />
+    </record>
+    <record id="tax_group_igic_re_15" model="account.tax.group">
+        <field name="name">IGIC Recargo de Equivalencia 1,5%</field>
+        <field name="country_id" ref="base.es" />
+    </record>
+    <record id="tax_group_igic_re_20" model="account.tax.group">
+        <field name="name">IGIC Recargo de Equivalencia 2%</field>
+        <field name="country_id" ref="base.es" />
+    </record>
+    <record id="tax_group_igic_cmino" model="account.tax.group">
+        <field name="name">IGIC Comercio Minorista</field>
+        <field name="country_id" ref="base.es" />
+    </record>
+
+</odoo>
