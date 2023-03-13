@@ -17,10 +17,10 @@
         <field name="tbai_vat_regime_key" ref="tbai_vat_regime_08" />
     </record>
     <record id="l10n_es.fp_recargo" model="account.fiscal.position.template">
-        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_51" />
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_01" />
     </record>
     <record id="l10n_es.fp_recargo_isp" model="account.fiscal.position.template">
-        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_51" />
+        <field name="tbai_vat_regime_key" ref="tbai_vat_regime_01" />
     </record>
     <record id="l10n_es.fp_irpf1" model="account.fiscal.position.template">
         <field name="tbai_vat_regime_key" ref="tbai_vat_regime_01" />
