@@ -30,15 +30,15 @@
         </xpath>
         <xpath expr='//t[@t-if="receipt.cashier"]' position="after">
             <br />
-            <t t-if="env.pos.get_client()">
-                <div>Customer: <t t-esc="env.pos.get_client().name" /></div>
-                <t t-if="env.pos.get_client().vat">
+            <t t-if="receipt.client">
+                <div>Customer: <t t-esc="receipt.client.name" /></div>
+                <t t-if="receipt.client.vat">
                     <div><t t-esc="receipt.company.vat_label" />:<t
-                            t-esc="env.pos.get_client().vat"
+                            t-esc="receipt.client.vat"
                         /></div>
                 </t>
-                <t t-if="env.pos.get_client().address != ',  , '">
-                    <div><t t-esc="env.pos.get_client().address" /></div>
+                <t t-if="receipt.client.address != ',  , '">
+                    <div><t t-esc="receipt.client.address" /></div>
                 </t>
             </t>
         </xpath>
