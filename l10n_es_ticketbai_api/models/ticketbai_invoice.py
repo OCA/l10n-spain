@@ -449,7 +449,13 @@ class TicketBAIInvoice(models.Model):
 
     @api.depends("signature_value")
     def _compute_tbai_identifier(self):
-        for record in self:
+        for record in self.filtered(
+            lambda ti: ti.state
+            in (
+                TicketBaiInvoiceState.draft.value,
+                TicketBaiInvoiceState.pending.value,
+            )
+        ):
             if record.signature_value:
                 tbai_identifier_len_without_crc = 36
                 tbai_identifier_len_with_crc = 39
@@ -501,7 +507,13 @@ class TicketBAIInvoice(models.Model):
         El nivel de corrección de errores del QR será M.
         La codificación utilizada para la generación del código será UTF-8.
         """
-        for record in self:
+        for record in self.filtered(
+            lambda ti: ti.state
+            in (
+                TicketBaiInvoiceState.draft.value,
+                TicketBaiInvoiceState.pending.value,
+            )
+        ):
             if record.tbai_identifier:
                 if record.company_id.tbai_test_enabled:
                     qr_base_url = record.company_id.tbai_tax_agency_id.test_qr_base_url
@@ -539,7 +551,13 @@ class TicketBAIInvoice(models.Model):
         "company_id.tbai_tax_agency_id.test_rest_url_cancellation",
     )
     def _compute_api_url(self):
-        for record in self:
+        for record in self.filtered(
+            lambda ti: ti.state
+            in (
+                TicketBaiInvoiceState.draft.value,
+                TicketBaiInvoiceState.pending.value,
+            )
+        ):
             if record.schema == TicketBaiSchema.TicketBai.value:
                 if record.company_id.tbai_test_enabled:
                     url = record.company_id.tbai_tax_agency_id.test_rest_url_invoice
