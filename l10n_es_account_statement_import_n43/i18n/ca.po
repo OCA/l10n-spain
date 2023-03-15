@@ -112,7 +112,8 @@ msgstr ""
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
 #, python-format
 msgid "Number of records doesn't match with the defined in the last record."
-msgstr "El nombre de registres no coincideix amb el definit a l'últim registre."
+msgstr ""
+"El nombre de registres no coincideix amb el definit a l'últim registre."
 
 #. module: l10n_es_account_statement_import_n43
 #: model:ir.model.fields.selection,name:l10n_es_account_statement_import_n43.selection__account_journal__n43_date_type__fecha_oper
@@ -126,14 +127,13 @@ msgid "Record type %s is not valid."
 msgstr "El tipus de registre %s no és vàlid."
 
 #. module: l10n_es_account_statement_import_n43
-#: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
-#, python-format
-msgid ""
-"The bank account number of the file does not match with the one in the "
-"journal."
-msgstr "El número de compte bancari del fitxer no coincideix amb el del diari."
-
-#. module: l10n_es_account_statement_import_n43
 #: model:ir.model.fields.selection,name:l10n_es_account_statement_import_n43.selection__account_journal__n43_date_type__fecha_valor
 msgid "Value Date"
 msgstr "Data de valor"
+
+#, python-format
+#~ msgid ""
+#~ "The bank account number of the file does not match with the one in the "
+#~ "journal."
+#~ msgstr ""
+#~ "El número de compte bancari del fitxer no coincideix amb el del diari."
