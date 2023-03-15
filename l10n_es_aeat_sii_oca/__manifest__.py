@@ -47,6 +47,7 @@
         "views/res_company_view.xml",
         "views/account_move_views.xml",
         "wizards/account_move_reversal_views.xml",
+        "wizards/account_move_send_sii_views.xml",
         "views/aeat_sii_mapping_registration_keys_view.xml",
         "data/aeat_sii_mapping_registration_keys_data.xml",
         "views/aeat_sii_map_view.xml",
