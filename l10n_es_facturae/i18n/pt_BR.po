@@ -598,6 +598,7 @@ msgid "Log"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__move_id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment__move_id
 msgid "Move"
 msgstr ""
@@ -824,7 +825,7 @@ msgstr ""
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/wizard/create_facturae.py:0
 #, python-format
-msgid "You can only select one move to export"
+msgid "You must select a move to export"
 msgstr ""
 
 #. module: l10n_es_facturae

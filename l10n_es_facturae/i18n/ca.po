@@ -606,6 +606,7 @@ msgid "Log"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__move_id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment__move_id
 msgid "Move"
 msgstr "Mou-te"
@@ -837,8 +838,8 @@ msgstr ""
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/wizard/create_facturae.py:0
 #, python-format
-msgid "You can only select one move to export"
-msgstr "Només podeu seleccionar un moviment per exportar"
+msgid "You must select a move to export"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_payment_mode__facturae_code__01
@@ -940,6 +941,10 @@ msgstr "[19] Pagament amb targeta"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_proponente
 msgid "Órgano proponente"
 msgstr "Ôrgan proponent"
+
+#, python-format
+#~ msgid "You can only select one move to export"
+#~ msgstr "Només podeu seleccionar un moviment per exportar"
 
 #~ msgid "Número de la factura emitida por un tercero."
 #~ msgstr "Número de la factura emès per un tercer."
