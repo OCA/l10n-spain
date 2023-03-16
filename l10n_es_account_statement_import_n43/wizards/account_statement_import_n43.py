@@ -39,6 +39,20 @@ account_mapping = {
     "99": "5720%00",
 }
 
+CURRENCY_ISO4217_MAP = {
+    978: "EUR",
+    36: "AUD",
+    840: "USD",
+    826: "GBP",
+    756: "CHF",
+    752: "SEK",
+    578: "NOK",
+    554: "NZD",
+    392: "JPY",
+    208: "DKK",
+    124: "CAD",
+}
+
 
 class AccountStatementImport(models.TransientModel):
     _inherit = "account.statement.import"
@@ -378,10 +392,20 @@ class AccountStatementImport(models.TransientModel):
             "balance_end_real": n43 and n43[-1]["saldo_fin"] or 0.0,
         }
         return (
-            "EUR",  # N43 should only work for EUR
+            self._get_currency_iso4217(int(n43[0]["divisa"])),
             n43 and n43[0]["cuenta"] or None,
             [vals_bank_statement],
         )
+
+    def _get_currency_iso4217(self, iso_currency):
+        if self.env["res.currency"]._fields.get("numeric_code"):
+            # We will use the info from base_currency_iso_4217 if it is installed
+            return (
+                self.env["res.currency"]
+                .search([("numeric_code", "=", iso_currency)])
+                .name
+            )
+        return CURRENCY_ISO4217_MAP.get(iso_currency)
 
     def _complete_stmts_vals(self, stmts_vals, journal, account_number):
         """Match partner_id if if hasn't been deducted yet."""
