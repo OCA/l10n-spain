@@ -10,3 +10,5 @@
 * `Sygel <https://www.sygel.es>`__:
 
   * Valentin Vinagre <valentin.vinagre@sygel.es>
+
+* Enric Tobella
