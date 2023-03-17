@@ -19,9 +19,9 @@ Punto de venta adaptado a la legislación española por dispositivo
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/l10n-spain-14-0/l10n-spain-14-0-l10n_es_pos_by_device
     :alt: Translate me on Weblate
-.. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/webui/builds.html?repo=OCA/l10n-spain&target_branch=14.0
-    :alt: Try me on Runboat
+.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
+    :target: https://runbot.odoo-community.org/runbot/189/14.0
+    :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
@@ -115,6 +115,14 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-ao-landoo| image:: https://github.com/ao-landoo.png?size=40px
+    :target: https://github.com/ao-landoo
+    :alt: ao-landoo
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-ao-landoo| 
 
 This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/14.0/l10n_es_pos_by_device>`_ project on GitHub.
 
