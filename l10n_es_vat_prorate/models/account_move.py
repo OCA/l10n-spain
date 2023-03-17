@@ -1,4 +1,5 @@
 # Copyright 2021 Creu Blanca
+# Copyright 2023 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -23,11 +24,14 @@ class AccountMove(models.Model):
 
     @api.model
     def _get_tax_grouping_key_from_base_line(self, base_line, tax_vals):
-        # We need to set the right account. The lines will be marked as 'vat_prorate'
+        # We need to set the right account and analytic info for prorate lines. They
+        # will be marked as 'vat_prorate'
         result = super()._get_tax_grouping_key_from_base_line(base_line, tax_vals)
-        if tax_vals.get("vat_prorate", False):
-            result["account_id"] = base_line.account_id.id
         result["vat_prorate"] = tax_vals.get("vat_prorate", False)
+        if result["vat_prorate"]:
+            result["account_id"] = base_line.account_id.id
+            result["analytic_account_id"] = base_line.analytic_account_id.id
+            result["analytic_tag_ids"] = [(6, 0, base_line.analytic_tag_ids.ids or [])]
         return result
 
     @api.model
@@ -35,6 +39,35 @@ class AccountMove(models.Model):
         result = super()._get_tax_grouping_key_from_tax_line(tax_line)
         result["vat_prorate"] = tax_line.vat_prorate
         return result
+
+    @api.onchange(
+        "line_ids",
+        "invoice_payment_term_id",
+        "invoice_date_due",
+        "invoice_cash_rounding_id",
+        "invoice_vendor_bill_id",
+    )
+    def _onchange_recompute_dynamic_lines(self):
+        """If we change any analytic information, we should drop all the taxes lines
+        for forcing a recreation of them, as only on creation, the analytic information
+        is transferred.
+
+        It has to be done here, as if putting any onchange at invoice line level, the
+        changes in other lines are not transferred when returning.
+
+        This means a bit of overhead, from both executing this more times than strictly
+        needed, and removing some stuff, but there's no other way. Anyway, the impact is
+        minimized doing it only if the invoice company has prorate, and removing only
+        the lines for the affected taxes.
+
+        """
+        if self.company_id.with_vat_prorate:
+            vat_prorate_lines = self.line_ids.filtered("vat_prorate")
+            tax_repartition_lines = vat_prorate_lines.tax_repartition_line_id
+            self.line_ids -= self.line_ids.filtered(
+                lambda x: x.tax_repartition_line_id in tax_repartition_lines
+            )
+        return super()._onchange_recompute_dynamic_lines()
 
 
 class AccountMoveLine(models.Model):
