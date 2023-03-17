@@ -49,6 +49,7 @@ setuptools.setup(
         'odoo14-addon-l10n_es_partner_mercantil',
         'odoo14-addon-l10n_es_payment_order_confirming_sabadell',
         'odoo14-addon-l10n_es_pos',
+        'odoo14-addon-l10n_es_pos_by_device',
         'odoo14-addon-l10n_es_reav',
         'odoo14-addon-l10n_es_ticketbai',
         'odoo14-addon-l10n_es_ticketbai_api',
