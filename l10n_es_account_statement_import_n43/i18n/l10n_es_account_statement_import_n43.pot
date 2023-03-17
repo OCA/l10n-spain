@@ -94,14 +94,6 @@ msgid "Record type %s is not valid."
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
-#: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
-#, python-format
-msgid ""
-"The bank account number of the file does not match with the one in the "
-"journal."
-msgstr ""
-
-#. module: l10n_es_account_statement_import_n43
 #: model:ir.model.fields.selection,name:l10n_es_account_statement_import_n43.selection__account_journal__n43_date_type__fecha_valor
 msgid "Value Date"
 msgstr ""
