@@ -400,9 +400,9 @@ el cuadro que corresponda con el diario de su banco.</li>
 <ul class="simple">
 <li>Reconocimiento de partners para otros bancos distintos del Santander,
 CaixaBank, Bankia o Sabadell.</li>
-<li>La moneda se extrae del diario con el cual se va a importar o, en su defecto,
-de la compañia, no del extracto norma 43 que se importa, para lo cual sería
-necesario usar códigos numéricos según la norma ISO 4217.</li>
+<li>La moneda se extrae del propio fichero.
+El mapeo de monedas que viene por defecto no es completo.
+Para tener el valor completo es necesario instalar el módulo <cite>base_currency_iso_4217</cite>.</li>
 <li>Los códigos de operación N43 no se utilizan para asociar una cuenta contable
 genérica, ya que Odoo no lo permite.</li>
 </ul>
@@ -440,6 +440,7 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 <li>Valentin Vinagre &lt;<a class="reference external" href="mailto:valentin.vinagre&#64;sygel.es">valentin.vinagre&#64;sygel.es</a>&gt;</li>
 </ul>
 </li>
+<li>Enric Tobella</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
