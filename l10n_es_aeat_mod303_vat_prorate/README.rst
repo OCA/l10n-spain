@@ -52,6 +52,13 @@ Usage
 #. El IVA deducible ya vendrá minorado por el porcentaje de la prorrata.
 #. En la casilla 44, se mostrará el importe de la prorrata que se minoró.
 
+Known issues / Roadmap
+======================
+
+* La prorrata especial de IVA no está contemplada.
+* No se incluye la posibilidad de las facturas de actividad diferenciada, de las
+  que te puedes deducir el 100% del IVA de la factura.
+
 Bug Tracker
 ===========
 
