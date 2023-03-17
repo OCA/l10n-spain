@@ -1,10 +1,10 @@
 # Copyright 2022 Creu Blanca
+# Copyright 2023 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Prorrata de IVA",
-    "summary": """
-        Prorrata de IVA para la localización española""",
+    "summary": "Prorrata de IVA para la localización española",
     "version": "14.0.1.0.2",
     "license": "AGPL-3",
     "author": "Creu Blanca,Odoo Community Association (OCA)",
