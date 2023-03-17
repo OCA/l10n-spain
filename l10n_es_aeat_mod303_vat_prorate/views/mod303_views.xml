@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="l10n_es_aeat_mod303_prorrata_form">
+        <field name="name">l10n.es.aeat.mod303.prorrata.form</field>
+        <field name="model">l10n.es.aeat.mod303.report</field>
+        <field
+            name="inherit_id"
+            ref="l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form"
+        />
+        <field name="arch" type="xml">
+            <field name="total_deducir" position="before">
+                <field name="with_vat_prorate" invisible="1" />
+                <field
+                    name="casilla_44"
+                    widget="monetary"
+                    options="{'currency_field': 'currency_id'}"
+                    attrs="{'invisible': ['|', ('with_vat_prorate', '=', False), ('period_type', 'not in', ['4T', '12'])]}"
+                />
+            </field>
+            <field name="statement_type" position="after">
+                <field
+                    name="vat_prorate_percent"
+                    attrs="{'invisible': ['|', ('with_vat_prorate', '=', False), ('period_type', 'not in', ['4T', '12'])], 'required': [('with_vat_prorate', '=', True), ('period_type', 'in', ['4T', '12'])]}"
+                />
+                <field
+                    name="prorate_account_id"
+                    attrs="{'invisible': ['|', ('with_vat_prorate', '=', False), ('period_type', 'not in', ['4T', '12'])], 'required': [('with_vat_prorate', '=', True), ('period_type', 'in', ['4T', '12']), ('state', 'in', 'calculated')]}"
+                />
+                <field
+                    name="prorate_analytic_account_id"
+                    attrs="{'invisible': ['|', ('with_vat_prorate', '=', False), ('period_type', 'not in', ['4T', '12'])]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
