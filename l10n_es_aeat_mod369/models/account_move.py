@@ -10,6 +10,10 @@ class AccountMove(models.Model):
     origin_country_id = fields.Many2one(
         string="Origin country", comodel_name="res.country"
     )
-    fp_outside_spain = fields.Boolean(
-        string="Outside of Spain", related="fiscal_position_id.outside_spain"
-    )
+
+    # fiscal_position_id = fields.Many2one(
+    #     string="Fiscal position", related="invoice_id.fiscal_position_id")
+
+    # fp_outside_spain = fields.Boolean(
+    #     string="Outside of Spain", related="fiscal_position_id.outside_spain"
+    # )
