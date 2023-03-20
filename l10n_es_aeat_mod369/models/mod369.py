@@ -94,9 +94,9 @@ class L10nEsAeatMod369Report(models.Model):
             for number in range(1, 897)  # 0001-0896
         ]
 
-    def _get_move_line_domain(self, date_start, date_end, map_line):
+    def _get_move_line_domain(self, codes, date_start, date_end, map_line):
         domain = super()._get_move_line_domain(
-            date_start=date_start, date_end=date_end, map_line=map_line
+            codes, date_start=date_start, date_end=date_end, map_line=map_line
         )
         # As separation of services and goods isn't supported currently
         # We disable the linking of move lines, as them being incorrect will taint
@@ -104,9 +104,9 @@ class L10nEsAeatMod369Report(models.Model):
         if map_line.service_type == "services":
             domain += [("id", "=", False)]
         if map_line.outside_spain:
-            domain += [("move_id.fp_outside_spain", "=", True)]
+            domain += [("invoice_id.fp_outside_spain", "=", True)]
         else:
-            domain += [("move_id.fp_outside_spain", "=", False)]
+            domain += [("invoice_id.fp_outside_spain", "=", False)]
         return domain
 
     def get_taxes_from_map(self, map_line):

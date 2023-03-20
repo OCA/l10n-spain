@@ -1,9 +1,10 @@
-from . import account_fiscal_position
-from . import account_move
-from . import account_tax
-from . import l10n_es_aeat_map_tax_line
-from . import l10n_es_aeat_tax_line
-from . import mod369_line_grouped
-from . import mod369_line
-from . import mod369
-from . import res_country
+from . import account_fiscal_position  # noqa
+from . import account_move  # noqa
+from . import account_invoice  # noqa
+from . import account_tax  # noqa
+from . import l10n_es_aeat_map_tax_line  # noqa
+from . import l10n_es_aeat_tax_line  # noqa
+from . import mod369_line_grouped  # noqa
+from . import mod369_line  # noqa
+from . import mod369  # noqa
+from . import res_country  # noqa

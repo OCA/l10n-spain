@@ -92,7 +92,7 @@
                     <field name="message_ids" widget="mail_thread" />
                 </div>
             </form>
-            <field name="statement_type" position="after">
+            <field name="type" position="after">
                 <field name="declaration_type" />
                 <field name="payment_type" />
                 <field name="nrc_reference" />
