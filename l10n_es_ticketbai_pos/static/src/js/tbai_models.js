@@ -55,16 +55,27 @@ odoo.define("l10n_es_ticketbai_pos.tbai_models", function (require) {
             // Addon l10n_es_pos -> Order.export_as_JSON()
             var simplified_invoice = null;
             var tbai_json = null;
-
             this.previous_tbai_invoice = this.pos.get_tbai_last_invoice_data();
             this.expedition_date = new Date();
-            simplified_invoice =
-                this.order.simplified_invoice ||
-                this.pos.config.l10n_es_simplified_invoice_prefix +
+            if (!this.pos.config.pos_sequence_by_device) {
+                this.number_prefix = this.pos.config.l10n_es_simplified_invoice_prefix;
+                simplified_invoice =
+                    this.order.simplified_invoice ||
+                    this.number_prefix +
+                        this.pos.get_padding_simple_inv(
+                            this.pos.config.l10n_es_simplified_invoice_number,
+                            this.pos.config.l10n_es_simplified_invoice_padding
+                        );
+            } else {
+                this.number_prefix =
+                    this.pos.get_device().device_simplified_invoice_prefix;
+                simplified_invoice =
+                    this.number_prefix +
                     this.pos.get_padding_simple_inv(
-                        this.pos.config.l10n_es_simplified_invoice_number
+                        this.pos.get_device().device_simplified_invoice_number,
+                        this.pos.get_device().device_simplified_invoice_padding
                     );
-            this.number_prefix = this.pos.config.l10n_es_simplified_invoice_prefix;
+            }
             this.number = simplified_invoice.slice(this.number_prefix.length);
 
             if (this.order.fiscal_position) {

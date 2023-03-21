@@ -74,23 +74,23 @@ class PosConfig(models.Model):
 
     def open_ui(self):
         self.ensure_one()
-        if self.tbai_enabled and not self.iface_l10n_es_simplified_invoice:
+        if self.tbai_enabled and not self.is_simplified_config:
             raise exceptions.ValidationError(
                 _("Simplified Invoice IDs Sequence is required")
             )
         return super().open_ui()
 
-    def open_session_cb(self):
+    def open_session_cb(self, check_coa=True):
         self.ensure_one()
-        if self.tbai_enabled and not self.iface_l10n_es_simplified_invoice:
+        if self.tbai_enabled and not self.is_simplified_config:
             raise exceptions.ValidationError(
                 _("Simplified Invoice IDs Sequence is required")
             )
-        return super().open_session_cb()
+        return super().open_session_cb(check_coa=check_coa)
 
     def open_existing_session_cb(self):
         self.ensure_one()
-        if self.tbai_enabled and not self.iface_l10n_es_simplified_invoice:
+        if self.tbai_enabled and not self.is_simplified_config:
             raise exceptions.ValidationError(
                 _("Simplified Invoice IDs Sequence is required")
             )
