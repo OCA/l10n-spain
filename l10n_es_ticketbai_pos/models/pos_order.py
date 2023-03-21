@@ -237,7 +237,10 @@ class PosOrder(models.Model):
         return res
 
     def tbai_get_value_serie_factura(self):
-        sequence = self.config_id.l10n_es_simplified_invoice_sequence_id
+        if hasattr(self.config_id, "pos_sequence_by_device") and self.pos_device_id:
+            sequence = self.pos_device_id.sequence
+        else:
+            sequence = self.config_id.l10n_es_simplified_invoice_sequence_id
         date = fields.Datetime.context_timestamp(
             self, fields.Datetime.from_string(self.date_order)
         ).strftime(DEFAULT_SERVER_DATE_FORMAT)
