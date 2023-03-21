@@ -209,21 +209,23 @@ class AccountMove(models.Model):
 
     def _get_facturae_tax_info(self):
         self.ensure_one()
+        sign = -1 if self.move_type[:3] == "out" else 1
         output_taxes = defaultdict(lambda: {"base": 0, "amount": 0})
         withheld_taxes = defaultdict(lambda: {"base": 0, "amount": 0})
         for line in self.line_ids:
-            sign = -1 if self.move_type[:3] == "out" else 1
+            base = line.balance * sign
             for tax in line.tax_ids:
+                tax_amount = base * tax.amount / 100
+                if self.company_id.tax_calculation_rounding_method == "round_per_line":
+                    tax_amount = tools.float_round(
+                        tax_amount, precision_rounding=self.currency_id.rounding
+                    )
                 if tools.float_compare(tax.amount, 0, precision_digits=2) >= 0:
-                    output_taxes[tax]["base"] += line.balance * sign
+                    output_taxes[tax]["base"] += base
+                    output_taxes[tax]["amount"] += tax_amount
                 else:
-                    withheld_taxes[tax]["base"] += line.balance * sign
-        for tax in output_taxes:
-            output_taxes[tax]["amount"] = output_taxes[tax]["base"] * tax.amount / 100
-        for tax in withheld_taxes:
-            withheld_taxes[tax]["amount"] = (
-                withheld_taxes[tax]["base"] * tax.amount / 100
-            )
+                    withheld_taxes[tax]["base"] += base
+                    withheld_taxes[tax]["amount"] += tax_amount
         return output_taxes, withheld_taxes
 
     def get_narration(self):
