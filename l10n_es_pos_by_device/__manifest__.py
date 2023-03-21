@@ -17,7 +17,6 @@
         "views/res_config_views.xml",
     ],
     "qweb": [
-        "static/src/xml/pos.xml",
         "static/src/xml/Screens/Chrome/Chrome.xml",
         "static/src/xml/Screens/Chrome/DeviceName.xml",
     ],

@@ -1,6 +1,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -46,6 +46,14 @@ class PosConfig(models.Model):
             if config.pos_sequence_by_device:
                 config._check_available_devices()
         return super(PosConfig, self)._open_session(session_id)
+
+    @api.depends("pos_sequence_by_device")
+    def _compute_simplified_config(self):
+        super()._compute_simplified_config()
+        for config in self:
+            config.is_simplified_config = (
+                config.is_simplified_config or config.pos_sequence_by_device
+            )
 
 
 class PosSession(models.Model):
