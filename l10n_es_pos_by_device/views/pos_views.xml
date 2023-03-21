@@ -48,11 +48,6 @@
                     name="attrs"
                 >{'invisible': [('pos_sequence_by_device', '=', True)]}</attribute>
             </div>
-            <div id="l10n_es_pos_simp_limit" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'invisible': [('iface_l10n_es_simplified_invoice', '=', False), ('pos_sequence_by_device', '=', False)]}</attribute>
-            </div>
             <div id="other_devices" position="after">
                 <div
                     class="col-12 col-lg-6 o_setting_box"
