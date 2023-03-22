@@ -427,8 +427,6 @@ msgstr "E6"
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_company__tbai_enabled
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_config_settings__tbai_enabled
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_partner__tbai_enabled
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_users__tbai_enabled
 msgid "Enable TicketBAI"
 msgstr "Habilitar TicketBAI"
 
@@ -859,6 +857,7 @@ msgstr "Firma"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice__simplified_invoice
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai_api.selection__tbai_invoice__refund_code__r5
 msgid "Simplified Invoice"
 msgstr "Factura simplificada"
 
@@ -981,6 +980,12 @@ msgid "Tax agency cannot be modified after a TicketBAI invoice has been sent."
 msgstr ""
 "La hacienda no puede ser modificada después de que una factura TicketBAI "
 "haya sido enviada."
+
+#. module: l10n_es_ticketbai_api
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_partner__tbai_enabled
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_users__tbai_enabled
+msgid "Tbai Enabled"
+msgstr ""
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_company__tbai_installation_id

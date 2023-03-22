@@ -43,7 +43,8 @@ msgstr ""
 msgid ""
 "\n"
 "    OT:\n"
-"      - No sujeto por el artículo 7 de la Norma Foral de IVA Otros supuestos de no\n"
+"      - No sujeto por el artículo 7 de la Norma Foral de IVA Otros supuestos "
+"de no\n"
 "      sujeción.\n"
 "    RL:\n"
 "      - No sujeto por reglas de localización.\n"
@@ -379,8 +380,6 @@ msgstr ""
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_company__tbai_enabled
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_config_settings__tbai_enabled
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_partner__tbai_enabled
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_users__tbai_enabled
 msgid "Enable TicketBAI"
 msgstr ""
 
@@ -450,8 +449,6 @@ msgid "Identification Type Code"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/utils/utils.py:0
-#: code:addons/l10n_es_ticketbai_api/utils/utils.py:0
 #: code:addons/l10n_es_ticketbai_api/utils/utils.py:0
 #, python-format
 msgid "Invalid %s format '%s'."
@@ -809,6 +806,7 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice__simplified_invoice
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai_api.selection__tbai_invoice__refund_code__r5
 msgid "Simplified Invoice"
 msgstr ""
 
@@ -920,6 +918,12 @@ msgstr ""
 #: code:addons/l10n_es_ticketbai_api/models/res_company.py:0
 #, python-format
 msgid "Tax agency cannot be modified after a TicketBAI invoice has been sent."
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_partner__tbai_enabled
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_users__tbai_enabled
+msgid "Tbai Enabled"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
@@ -1086,7 +1090,8 @@ msgstr ""
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
-"Already exists a TicketBAI Invoice with the  same link to itsprevious TicketBAI Invoice."
+"Already exists a TicketBAI Invoice with the  same link to itsprevious "
+"TicketBAI Invoice."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
@@ -1102,7 +1107,8 @@ msgstr ""
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
-"Customer %s Identification Number %s longer than expected. Should be 20 characters max.!"
+"Customer %s Identification Number %s longer than expected. Should be 20 "
+"characters max.!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
@@ -1118,7 +1124,8 @@ msgstr ""
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
-"Customer %s Spanish Fiscal Identification Number or Identification Number for non spanish customers is required."
+"Customer %s Spanish Fiscal Identification Number or Identification Number "
+"for non spanish customers is required."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
@@ -1238,7 +1245,8 @@ msgstr ""
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
-"Refunded Invoice %s Number Prefix %s longer than expected. Should be 20 characters max.!"
+"Refunded Invoice %s Number Prefix %s longer than expected. Should be 20 "
+"characters max.!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
@@ -1246,7 +1254,8 @@ msgstr ""
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
-"Refunded Invoice Number %s longer than expected. Should be 20 characters max.!"
+"Refunded Invoice Number %s longer than expected. Should be 20 characters "
+"max.!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
@@ -1254,7 +1263,8 @@ msgstr ""
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
-"Spanish Fiscal Identification Number or Identification Number for non spanish customers is required."
+"Spanish Fiscal Identification Number or Identification Number for non "
+"spanish customers is required."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api

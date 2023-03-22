@@ -55,7 +55,8 @@ msgstr ""
 msgid ""
 "\n"
 "    OT:\n"
-"      - No sujeto por el artículo 7 de la Norma Foral de IVA Otros supuestos de no\n"
+"      - No sujeto por el artículo 7 de la Norma Foral de IVA Otros supuestos "
+"de no\n"
 "      sujeción.\n"
 "    RL:\n"
 "      - No sujeto por reglas de localización.\n"
@@ -495,8 +496,6 @@ msgstr "Identifikazio motaren kodea"
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/utils/utils.py:0
-#: code:addons/l10n_es_ticketbai_api/utils/utils.py:0
-#: code:addons/l10n_es_ticketbai_api/utils/utils.py:0
 #, python-format
 msgid "Invalid %s format '%s'."
 msgstr "%s formatu '%s' baliogabea."
@@ -856,6 +855,7 @@ msgstr "Sinaduraren balioa"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice__simplified_invoice
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai_api.selection__tbai_invoice__refund_code__r5
 msgid "Simplified Invoice"
 msgstr "Faktura sinplifikatua"
 
@@ -1147,7 +1147,8 @@ msgstr ""
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
-"Already exists a TicketBAI Invoice with the  same link to itsprevious TicketBAI Invoice."
+"Already exists a TicketBAI Invoice with the  same link to itsprevious "
+"TicketBAI Invoice."
 msgstr ""
 "%s TicketBAI faktura:\n"
 "Dagoeneko TicketBAI faktura bat dago bere aurreko TicketBAI fakturaren "
@@ -1169,7 +1170,8 @@ msgstr ""
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
-"Customer %s Identification Number %s longer than expected. Should be 20 characters max.!"
+"Customer %s Identification Number %s longer than expected. Should be 20 "
+"characters max.!"
 msgstr ""
 "%s TicketBAI faktura:\n"
 "%s bezeroaren identifikazio-zenbakia espero baino %s luzeagoa. Gehienez 20 "
@@ -1191,7 +1193,8 @@ msgstr ""
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
-"Customer %s Spanish Fiscal Identification Number or Identification Number for non spanish customers is required."
+"Customer %s Spanish Fiscal Identification Number or Identification Number "
+"for non spanish customers is required."
 msgstr ""
 "%s TicketBAI faktura:\n"
 "%s bezeroaren Espainiako identifikazio fiskaleko zenbakia edo identifikazio "
@@ -1348,7 +1351,8 @@ msgstr ""
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
-"Refunded Invoice %s Number Prefix %s longer than expected. Should be 20 characters max.!"
+"Refunded Invoice %s Number Prefix %s longer than expected. Should be 20 "
+"characters max.!"
 msgstr ""
 "%s TicketBAI faktura:\n"
 "Itzulitako %s fakturak espero baino %s zenbaki-aurrizki luzeagoa. Gehienez "
@@ -1359,7 +1363,8 @@ msgstr ""
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
-"Refunded Invoice Number %s longer than expected. Should be 20 characters max.!"
+"Refunded Invoice Number %s longer than expected. Should be 20 characters "
+"max.!"
 msgstr ""
 "%s TicketBAI faktura:\n"
 "Itzulitako faktura-zenbakia espero baino %s luzeagoa. Gehienez 20 karaktere "
@@ -1370,7 +1375,8 @@ msgstr ""
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
-"Spanish Fiscal Identification Number or Identification Number for non spanish customers is required."
+"Spanish Fiscal Identification Number or Identification Number for non "
+"spanish customers is required."
 msgstr ""
 "%s TicketBAI faktura:\n"
 "Espainiako Identifikazio Fiskaleko Zenbakia edo Espainiakoak ez diren "
@@ -1466,7 +1472,8 @@ msgstr "%s TicketBAI faktura: Zenbatekoa guztira"
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Customer %s Country Code %s not valid."
-msgstr "%s TicketBAI faktura: %s bezeroaren %s herrialde-kodea ez da baliozkoa."
+msgstr ""
+"%s TicketBAI faktura: %s bezeroaren %s herrialde-kodea ez da baliozkoa."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
@@ -1544,7 +1551,8 @@ msgstr "%s TicketBAI faktura: itzulketa kodea eta mota beharrezkoa dira."
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Second VAT Regime Key not valid."
-msgstr "%s TicketBAI faktura: BEZaren bigarren erregimen gakoa ez da baliozkoa."
+msgstr ""
+"%s TicketBAI faktura: BEZaren bigarren erregimen gakoa ez da baliozkoa."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
@@ -1580,7 +1588,8 @@ msgstr "%s TicketBAI faktura: salbuetsi gabeko zerga mota beharrezkoa da."
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Not subject to cause is required."
-msgstr "%s TicketBAI faktura: arrazoiaren menpe ez dagoen zerga beharrezkoa da."
+msgstr ""
+"%s TicketBAI faktura: arrazoiaren menpe ez dagoen zerga beharrezkoa da."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
