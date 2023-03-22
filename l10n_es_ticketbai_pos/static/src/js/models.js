@@ -194,7 +194,7 @@ odoo.define("l10n_es_ticketbai_pos.models", function (require) {
             var tbai_vat_regime_key = this.get_tbai_vat_regime_key_by_id(id);
             return (tbai_vat_regime_key && tbai_vat_regime_key.code) || null;
         },
-        push_order: function (order, opts) {
+        push_single_order: function (order, opts) {
             var self = this;
             if (this.company.tbai_enabled && order) {
                 return order.tbai_current_invoice.then(function (tbai_inv) {
@@ -209,10 +209,10 @@ odoo.define("l10n_es_ticketbai_pos.models", function (require) {
                         expedition_date: tbai_inv.expedition_date,
                     };
                     self.set_tbai_last_invoice_data(tbai_last_invoice_data);
-                    return pos_super.push_order.call(self, order, opts);
+                    return pos_super.push_single_order.call(self, order, opts);
                 });
             }
-            return pos_super.push_order.call(self, order, opts);
+            return pos_super.push_single_order.call(self, order, opts);
         },
         get_tbai_last_invoice_data: function () {
             var db_json_last_invoice_data = this.db.get_tbai_json_last_invoice_data();
