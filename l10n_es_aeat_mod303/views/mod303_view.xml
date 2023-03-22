@@ -26,7 +26,7 @@
     <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
     <field name="arch" type="xml">
         <field name="partner_bank_id" position="attributes">
-            <attribute name="attrs">{'invisible': [('result_type', 'not in', ('D', 'B', 'I'))], 'required': [('result_type', '=', 'D')]}</attribute>
+            <attribute name="attrs">{'invisible': [('result_type', 'not in', ('D', 'V', 'X', 'I', 'G', 'U'))], 'required': [('result_type', 'in', ('D', 'V', 'X'))]}</attribute>
         </field>
         <field name="previous_number" position="after">
             <field name="devolucion_mensual"/>
