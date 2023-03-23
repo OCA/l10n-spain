@@ -1,14 +1,14 @@
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3).
 
-from odoo import _, exceptions, models
-from odoo import tools
 import os
 try:
     import xlrd
 except ImportError:
     xlrd = None
 
+from odoo import _, exceptions, models, tools
+from odoo.modules.module import get_resource_path
 
 UOM_MAPPING = {
     "p/st": "intrastat_unit_pce",
@@ -16,6 +16,9 @@ UOM_MAPPING = {
     "1000 p/st": "intrastat_unit_1000pce",
     "l alc. 100%": "intrastat_unit_l_alc_100_pct",
     "kg 90% sdt": "intrastat_unit_kg_90_pct_sdt",
+    "m²": "intrastat_unit_m2",
+    "m³": "intrastat_unit_m3",
+    "1000 m³": "intrastat_unit_1000m3",
 }
 
 
@@ -32,16 +35,17 @@ class L10nEsPartnerImportWizard(models.TransientModel):
             raise exceptions.UserError(_("xlrd library not found."))
         code_obj = self.env['hs.code']
         path = os.path.join(
-            os.path.dirname(os.path.dirname(__file__)), "data", "NC_20.xlsx")
+            get_resource_path("l10n_es_intrastat_report"), "data", "Estruc_NC2023.xlsx"
+        )
         workbook = xlrd.open_workbook(path)
         sheet = workbook.sheet_by_index(0)
         vals_list = []
         parents = []
         prev_level = ""
         for nrow in range(1, sheet.nrows):
-            code = sheet.cell_value(nrow, 1).replace(" ", "")
-            description = sheet.cell_value(nrow, 5).lstrip("-")
-            level = sheet.cell_value(nrow, 4)
+            code = sheet.cell_value(nrow, 2).replace(" ", "")
+            description = sheet.cell_value(nrow, 6).lstrip("-")
+            level = int(sheet.cell_value(nrow, 3))
             temp = prev_level
             while temp > level and parents:
                 del parents[-1]
@@ -55,18 +59,19 @@ class L10nEsPartnerImportWizard(models.TransientModel):
                 "local_code": code,
                 "description": " /".join(parents + [description]),
             }
-            iu = sheet.cell_value(nrow, 6)
-            if iu and iu != '-':  # specific unit
-                if iu in UOM_MAPPING:
-                    iu_unit_id = self.env.ref(
-                        'intrastat_product.%s' % UOM_MAPPING[iu]).id
-                else:
-                    iu_unit_id = self._get_intrastat_unit(iu)
-                if iu_unit_id:
-                    vals['intrastat_unit_id'] = iu_unit_id
-                else:
-                    raise exceptions.UserError(_("Unit not found: '%s'") % iu)
-            if not code_obj.search([('local_code', '=', code)]):
+            if not code_obj.search([("local_code", "=", code)]):
+                iu = sheet.cell_value(nrow, 5).replace("\xa0", " ")
+                if iu and iu != "-":  # specific unit
+                    if iu in UOM_MAPPING:
+                        iu_unit_id = self.env.ref(
+                            "intrastat_product.%s" % UOM_MAPPING[iu]
+                        ).id
+                    else:
+                        iu_unit_id = self._get_intrastat_unit(iu)
+                    if iu_unit_id:
+                        vals["intrastat_unit_id"] = iu_unit_id
+                    else:
+                        raise exceptions.UserError(_("Unit not found: '%s'") % iu)
                 vals_list.append(vals)
         if vals_list:
             code_obj.create(vals_list)

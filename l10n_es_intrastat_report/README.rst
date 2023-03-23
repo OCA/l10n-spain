@@ -23,7 +23,7 @@ Intrastat Product Declaration for Spain
     :target: https://runbot.odoo-community.org/runbot/189/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module implements the Spanish Intrastat reporting.
 
@@ -49,7 +49,7 @@ If any other installation method is used, you can go to
 *Settings > Technical > Actions > Configuration Wizards* on developer mode,
 and launch there the wizard called "Import Spanish Product HS Codes"
 
-The included codes are for 2020. Please check possible updates for this codes in:
+The included codes are for 2023. Please check possible updates for this codes in:
 
 https://www.agenciatributaria.es/AEAT.internet/Inicio/La_Agencia_Tributaria/Memorias_y_estadisticas_tributarias/Estadisticas/_Comercio_exterior_/Documentacion/Tablas_de_codigos/Tablas_de_codigos.shtml
 
