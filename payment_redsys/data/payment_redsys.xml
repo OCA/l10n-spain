@@ -11,7 +11,7 @@
         />
         <field name="provider">redsys</field>
         <field name="company_id" ref="base.main_company" />
-        <field name="view_template_id" ref="redsys_form" />
+        <field name="redirect_form_view_id" ref="redsys_form" />
         <field name="redsys_merchant_name">Bussines name</field>
         <field name="redsys_merchant_code">8888888</field>
         <field name="redsys_merchant_description">Bussines description</field>
@@ -34,4 +34,11 @@
         <field name="name">Bizum</field>
         <field name="image" type="base64" file="payment_redsys/static/img/bizum.png" />
     </record>
+
+    <record id="payment_method_redsys" model="account.payment.method">
+        <field name="name">Redsys</field>
+        <field name="code">redsys</field>
+        <field name="payment_type">inbound</field>
+    </record>
+
 </odoo>
