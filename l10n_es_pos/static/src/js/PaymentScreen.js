@@ -17,7 +17,7 @@ odoo.define("l10n_es_pos.PaymentScreen", function (require) {
                 const below_limit =
                     this.currentOrder.get_total_with_tax() <=
                     this.env.pos.config.l10n_es_simplified_invoice_limit;
-                if (this.env.pos._is_simplified_config()) {
+                if (this.env.pos.config.is_simplified_config) {
                     const order = this.currentOrder;
                     if (below_limit && !order.to_invoice) {
                         await order.set_simple_inv_number();
