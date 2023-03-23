@@ -7,9 +7,7 @@
         owl="1"
     >
         <xpath expr="//t[@t-if='receipt.company.contact_address']" position="before">
-            <t
-                t-if="env.pos.config.iface_l10n_es_simplified_invoice and !receipt.to_invoice"
-            >
+            <t t-if="env.pos.config.is_simplified_config and !receipt.to_invoice">
                 <div><t t-esc='receipt.date.localestring' /></div>
                 <div>Simplified invoice</div>
                 <div><t t-esc="receipt.l10n_es_unique_id" /></div><br />
@@ -48,7 +46,7 @@
         <xpath expr="//div[hasclass('pos-receipt-order-data')]" position="attributes">
             <attribute
                 name="t-if"
-            >!env.pos.config.iface_l10n_es_simplified_invoice or receipt.is_to_invoice</attribute>
+            >!env.pos.config.is_simplified_config or receipt.is_to_invoice</attribute>
         </xpath>
     </t>
 </templates>

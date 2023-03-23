@@ -23,6 +23,9 @@ class PosConfig(models.Model):
     iface_l10n_es_simplified_invoice = fields.Boolean(
         string="Use simplified invoices for this POS",
     )
+    is_simplified_config = fields.Boolean(
+        store=False, compute="_compute_simplified_config"
+    )
     l10n_es_simplified_invoice_sequence_id = fields.Many2one(
         "ir.sequence",
         string="Simplified Invoice IDs Sequence",
@@ -52,6 +55,11 @@ class PosConfig(models.Model):
         readonly=True,
         compute="_compute_simplified_invoice_sequence",
     )
+
+    @api.depends("iface_l10n_es_simplified_invoice")
+    def _compute_simplified_config(self):
+        for pos in self:
+            pos.is_simplified_config = pos.iface_l10n_es_simplified_invoice
 
     @api.model
     def create(self, vals):
