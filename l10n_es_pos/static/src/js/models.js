@@ -65,9 +65,6 @@ odoo.define("l10n_es_pos.models", function (require) {
             });
             return pos_super._flush_orders.apply(this, arguments);
         },
-        _is_simplified_config() {
-            return this.config.iface_l10n_es_simplified_invoice;
-        },
         _set_simplified_invoice_number(config) {
             this.config.l10n_es_simplified_invoice_number =
                 config.l10n_es_simplified_invoice_number;
@@ -89,7 +86,7 @@ odoo.define("l10n_es_pos.models", function (require) {
             var total = order_super.get_total_with_tax.apply(this, arguments);
             var below_limit = total <= this.pos.config.l10n_es_simplified_invoice_limit;
             this.is_simplified_invoice =
-                below_limit && this.pos._is_simplified_config();
+                below_limit && this.pos.config.is_simplified_config;
             return total;
         },
         set_simple_inv_number: function () {
