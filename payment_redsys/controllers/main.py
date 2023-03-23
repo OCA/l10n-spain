@@ -1,11 +1,10 @@
 # Copyright 2016-2017 Tecnativa - Sergio Teruel
 # Copyright 2019 Ignacio Ibeas <ignacio@acysos.com>
+# Copyright 2023 Planesnet - Luis Planes, Laia Espinosa, Raul Solana
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
 import pprint
-
-import werkzeug
 
 from odoo import http
 from odoo.http import request
@@ -36,11 +35,10 @@ class RedsysController(http.Controller):
             "Redsys: entering form_feedback with post data %s", pprint.pformat(post)
         )
         if post:
-            request.env["payment.transaction"].sudo().form_feedback(post, "redsys")
-        return_url = post.pop("return_url", "")
-        if not return_url:
-            return_url = "/shop"
-        return werkzeug.utils.redirect(return_url)
+            request.env["payment.transaction"].sudo()._handle_feedback_data(
+                "redsys", post
+            )
+            return request.redirect("/payment/status")
 
     @http.route(
         ["/payment/redsys/result/<page>"],
@@ -50,4 +48,4 @@ class RedsysController(http.Controller):
         website=True,
     )
     def redsys_result(self, page, **vals):
-        return werkzeug.utils.redirect("/payment/process")
+        return request.redirect("/payment/status")
