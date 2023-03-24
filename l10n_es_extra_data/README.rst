@@ -23,7 +23,7 @@ Datos Extra
     :target: https://runbot.odoo-community.org/runbot/189/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 Módulo que nos permite configurar cualquier cambio del plan contable en la
 version 12.0 de la localización española, ya que Odoo no permite modificaciones
@@ -96,7 +96,7 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-cubells| 
+|maintainer-cubells|
 
 This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/12.0/l10n_es_extra_data>`_ project on GitHub.
 
