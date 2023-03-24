@@ -488,6 +488,16 @@ msgid "DVD"
 msgstr "DVD"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax__date_from_search
+msgid "Date From Search"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax__date_to_search
+msgid "Date To Search"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Dates"
 msgstr "Fechas"
@@ -554,7 +564,7 @@ msgid "Ending date"
 msgstr "Fecha final"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_map_tax.py:45
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_map_tax.py:44
 #, python-format
 msgid "Error! The dates of the record overlap with an existing record."
 msgstr ""
