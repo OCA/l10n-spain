@@ -1112,6 +1112,17 @@ class AccountMove(models.Model):
             invoice._process_invoice_for_sii_send()
         return res
 
+    def process_send_sii(self):
+        return {
+            "name": "Confirmation message for sending invoices to the SII",
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            "res_model": "wizard.send.sii",
+            "views": [(False, "form")],
+            "target": "new",
+            "context": self.env.context,
+        }
+
     def send_sii(self):
         invoices = self.filtered(
             lambda i: (
