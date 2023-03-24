@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 QubiQ - Pol Reig <pol.reig@qubiq.es>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_wizard_send_sii" model="ir.ui.view">
+        <field name="name">Send SII Wizard</field>
+        <field name="model">wizard.send.sii</field>
+        <field name="arch" type="xml">
+            <form>
+                <p
+                    class="alert alert-warning"
+                    role="alert"
+                    attrs="{'invisible': [('sending_number', '=', 0)]}"
+                >
+                    <field
+                        name="sending_number"
+                        widget="statinfo"
+                        string="of the selected invoices are being processed to be sent to the SII. If you confirm, they will be resent."
+                    />
+                </p>
+                <p
+                    class="alert alert-danger"
+                    role="alert"
+                    attrs="{'invisible': [('sent_number', '=', 0)]}"
+                >
+                    <field
+                        name="sent_number"
+                        widget="statinfo"
+                        string="of the selected invoices have been correctly sent to the SII. If you confirm, they will be resent."
+                    />
+                </p>
+                <footer>
+                    <button
+                        name="action_confirm"
+                        string="Send to SII"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
