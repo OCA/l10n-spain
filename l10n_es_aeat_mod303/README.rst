@@ -56,6 +56,9 @@ Known issues / Roadmap
   Foral.
 * Posibilidad de marcar en el resultado el ingreso/devolución en la cuenta
   corriente tributaria.
+* No se puede rellenar la casilla [109]: Devoluciones acordadas por la Agencia
+  Tributaria como consecuencia de la tramitación de anteriores autoliquidaciones
+  correspondientes al ejercicio y período objeto de la autoliquidación.
 * El régimen de criterio de caja está contemplado por el módulo adicional
   `l10n_es_aeat_mod303_cash_basis`.
 * La prorrata del IVA está contemplada por el módulo adicional
