@@ -138,6 +138,30 @@ msgstr "Compañías"
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
+msgid "Company city not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Company country not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Company state not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Company street not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
 msgid "Company vat is too small"
 msgstr "El identificador fiscal de la compañía es demasiado corto"
 
@@ -146,6 +170,12 @@ msgstr "El identificador fiscal de la compañía es demasiado corto"
 #, python-format
 msgid "Company vat not provided"
 msgstr "Es necesario el identificador fiscal de la compañía"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Company zip not provided"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_res_partner
@@ -163,8 +193,8 @@ msgstr "Método de corrección"
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
-msgid "Country must be defined"
-msgstr "Se debe definir el país"
+msgid "Country must be defined for factura-e enabled partners."
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.wizard_create_facturae
@@ -556,6 +586,11 @@ msgid "Invoice %s"
 msgstr "Factura %s"
 
 #. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
+msgid "Invoicing Period"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_move
 msgid "Journal Entry"
 msgstr "Asiento contable"
@@ -648,6 +683,12 @@ msgstr ""
 #, python-format
 msgid "Partner state not provided"
 msgstr "El estado es obligatorio"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Partner street address is not provided"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_move.py:0
@@ -768,19 +809,19 @@ msgstr "Estado"
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
-msgid "State must be defined"
-msgstr "La provincia es obligatoria"
+msgid "State must be defined for factura-e enabled partners."
+msgstr ""
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/res_partner.py:0
+#, python-format
+msgid "Street must be defined for factura-e enabled partners."
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_tax
 msgid "Tax"
 msgstr "Impuesto"
-
-#. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
-msgid "Taxes not provided in move line %s"
-msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_tax_template
@@ -820,13 +861,21 @@ msgstr ""
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
-msgid "Vat must be defined"
-msgstr "El número de IVA debe estar definido"
+msgid "Vat must be defined for factura-e enabled partners."
+msgstr ""
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "You can only create Facturae files for moves that have been validated."
+msgstr ""
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid ""
+"You can only create the facturae file if the client have the facturae "
+"feature activated."
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -935,6 +984,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_proponente
 msgid "Órgano proponente"
 msgstr ""
+
+#, python-format
+#~ msgid "Country must be defined"
+#~ msgstr "Se debe definir el país"
+
+#, python-format
+#~ msgid "State must be defined"
+#~ msgstr "La provincia es obligatoria"
+
+#, python-format
+#~ msgid "Vat must be defined"
+#~ msgstr "El número de IVA debe estar definido"
 
 #~ msgid "Journal"
 #~ msgstr "Libro diario"
