@@ -634,11 +634,6 @@ msgid "Messages"
 msgstr "Missatges"
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__model_id
-msgid "Model"
-msgstr "Model"
-
-#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__number
 msgid "Model number"
 msgstr "Número de model"
@@ -1037,6 +1032,9 @@ msgstr "SII voluntari?"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__has_operation_volume
 msgid "¿Volumen de operaciones?"
 msgstr "Volumen d'operacions?"
+
+#~ msgid "Model"
+#~ msgstr "Model"
 
 #~ msgid "Number of unread messages"
 #~ msgstr "Número de missatges no llegits"
