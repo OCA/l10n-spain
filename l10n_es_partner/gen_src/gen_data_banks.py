@@ -7,7 +7,14 @@ import codecs
 from datetime import datetime
 import os
 try:
+    import sys
+
     import xlrd
+
+    if sys.version_info >= (3, 8):
+        import time
+
+        time.clock = time.time
 except ImportError:
     xlrd = None
 
