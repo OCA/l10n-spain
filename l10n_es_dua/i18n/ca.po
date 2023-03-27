@@ -17,25 +17,21 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_dua
-#: model:product.product,name:l10n_es_dua.producto_dua_compensacion
 #: model:product.template,name:l10n_es_dua.producto_dua_compensacion_product_template
 msgid "DUA Compensación"
 msgstr "DUA Compensació"
 
 #. module: l10n_es_dua
-#: model:product.product,name:l10n_es_dua.producto_dua_valoracion_10
 #: model:product.template,name:l10n_es_dua.producto_dua_valoracion_10_product_template
 msgid "DUA Valoración IVA 10%"
 msgstr "DUA Valoració IVA 10%"
 
 #. module: l10n_es_dua
-#: model:product.product,name:l10n_es_dua.producto_dua_valoracion_21
 #: model:product.template,name:l10n_es_dua.producto_dua_valoracion_21_product_template
 msgid "DUA Valoración IVA 21%"
 msgstr "DUA Valoració IVA el 21%"
 
 #. module: l10n_es_dua
-#: model:product.product,name:l10n_es_dua.producto_dua_valoracion_4
 #: model:product.template,name:l10n_es_dua.producto_dua_valoracion_4_product_template
 msgid "DUA Valoración IVA 4%"
 msgstr "DUA Valoració IVA 4%"
@@ -45,14 +41,5 @@ msgstr "DUA Valoració IVA 4%"
 msgid "DUA exento"
 msgstr "DUA exempt"
 
-#. module: l10n_es_dua
-#: model:product.product,uom_name:l10n_es_dua.producto_dua_compensacion
-#: model:product.product,uom_name:l10n_es_dua.producto_dua_valoracion_10
-#: model:product.product,uom_name:l10n_es_dua.producto_dua_valoracion_21
-#: model:product.product,uom_name:l10n_es_dua.producto_dua_valoracion_4
-#: model:product.template,uom_name:l10n_es_dua.producto_dua_compensacion_product_template
-#: model:product.template,uom_name:l10n_es_dua.producto_dua_valoracion_10_product_template
-#: model:product.template,uom_name:l10n_es_dua.producto_dua_valoracion_21_product_template
-#: model:product.template,uom_name:l10n_es_dua.producto_dua_valoracion_4_product_template
-msgid "Units"
-msgstr "Unitats"
+#~ msgid "Units"
+#~ msgstr "Unitats"
