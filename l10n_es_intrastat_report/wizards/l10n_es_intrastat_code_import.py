@@ -41,7 +41,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
         sheet = workbook.sheet_by_index(0)
         vals_list = []
         parents = []
-        prev_level = ""
+        prev_level = 0
         for nrow in range(1, sheet.nrows):
             code = sheet.cell_value(nrow, 2).replace(" ", "")
             description = sheet.cell_value(nrow, 6).lstrip("-")
@@ -49,7 +49,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
             temp = prev_level
             while temp > level and parents:
                 del parents[-1]
-                temp = temp[:-1]
+                temp -= 1
             if len(code) < 8 and description != description.upper():
                 parents.append(description)
             prev_level = level
