@@ -5,12 +5,12 @@
 import codecs
 import logging
 import os
+import time
 from datetime import datetime
 
-try:
-    import xlrd
-except ImportError:
-    xlrd = None
+import xlrd
+
+time.clock = time.time  # For Python 3.8+ compatibility
 
 STATES_REPLACE_LIST = {
     "01": "vi",
