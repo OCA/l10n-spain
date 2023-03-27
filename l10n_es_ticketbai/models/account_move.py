@@ -303,7 +303,7 @@ class AccountMove(models.Model):
             for line in self.invoice_line_ids.filtered(
                 lambda l: l.display_type not in ["line_note", "line_section"]
             ):
-                description_line = line.name[:250]
+                description_line = line.name[:250] if line.name else ""
                 if (
                     self.company_id.tbai_protected_data
                     and self.company_id.tbai_protected_data_txt
