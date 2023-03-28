@@ -1,5 +1,4 @@
 from . import account_fiscal_position  # noqa
-from . import account_move  # noqa
 from . import account_invoice  # noqa
 from . import account_tax  # noqa
 from . import l10n_es_aeat_map_tax_line  # noqa

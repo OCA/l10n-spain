@@ -93,6 +93,11 @@ Contributors
 
   * Ethan Hildick
 
+* `Planeta Huerto <https://www.planetahuerto.es>`__:
+
+  * Juanjo Algaz <jalgaz@gmail.com>
+
+
 Maintainers
 ~~~~~~~~~~~
 
