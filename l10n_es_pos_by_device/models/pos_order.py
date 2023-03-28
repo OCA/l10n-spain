@@ -38,7 +38,8 @@ class PosOrder(models.Model):
                 device_seq = self.env["ir.sequence"].browse(
                     order_data["device"]["sequence"][0]
                 )
-                device_seq.next_by_id()
+                if not draft:
+                    device_seq.next_by_id()
                 pos_order["data"].update({"pos_device": order_data["device"]["id"]})
         return super(PosOrder, self)._process_order(pos_order, draft, existing_order)
 
