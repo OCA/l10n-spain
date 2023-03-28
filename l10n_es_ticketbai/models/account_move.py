@@ -415,7 +415,9 @@ class AccountMove(models.Model):
 
     def button_cancel(self):
         if self.company_id.tbai_enabled:
-            for record in self:
+            for record in self.filtered(
+                lambda m: m.move_type in self.get_invoice_types()
+            ):
                 non_cancelled_refunds = record.reversal_move_id.filtered(
                     lambda x: "cancel" != x.state
                 )
@@ -428,10 +430,12 @@ class AccountMove(models.Model):
                         )
                     )
 
-            tbai_invoices = record.sudo().filtered(
-                lambda x: x.tbai_enabled and "posted" == x.state and x.tbai_invoice_id
-            )
-            tbai_invoices._tbai_invoice_cancel()
+                tbai_invoices = record.sudo().filtered(
+                    lambda x: x.tbai_enabled
+                    and "posted" == x.state
+                    and x.tbai_invoice_id
+                )
+                tbai_invoices._tbai_invoice_cancel()
         return super().button_cancel()
 
     def _post(self, soft=True):
