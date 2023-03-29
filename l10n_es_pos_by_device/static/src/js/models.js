@@ -5,12 +5,6 @@ odoo.define("l10n_es_pos_by_device.models", function (require) {
 
     var pos_super = models.PosModel.prototype;
     models.PosModel = models.PosModel.extend({
-        _is_simplified_config() {
-            return (
-                this.config.pos_sequence_by_device ||
-                pos_super._is_simplified_config.apply(this, arguments)
-            );
-        },
         _set_simplified_invoice_number(config) {
             if (!this.config.pos_sequence_by_device) {
                 pos_super._set_simplified_invoice_number.apply(this, arguments);
