@@ -18,24 +18,6 @@ msgstr ""
 "X-Generator: Poedit 3.2.2\n"
 
 #. module: l10n_es_pos_by_device
-#. openerp-web
-#: code:addons/l10n_es_pos_by_device/static/src/xml/pos.xml:0
-#, python-format
-msgid ""
-"!(env.pos.config.iface_l10n_es_simplified_invoice or env.pos.config."
-"pos_sequence_by_device) or receipt.is_to_invoice"
-msgstr ""
-
-#. module: l10n_es_pos_by_device
-#. openerp-web
-#: code:addons/l10n_es_pos_by_device/static/src/xml/pos.xml:0
-#, python-format
-msgid ""
-"\"(env.pos.config.iface_l10n_es_simplified_invoice or env.pos.config."
-"pos_sequence_by_device) and !receipt.to_invoice\""
-msgstr ""
-
-#. module: l10n_es_pos_by_device
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
 msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
@@ -231,8 +213,7 @@ msgstr "Prefijo de Factura Simplificada"
 #: code:addons/l10n_es_pos_by_device/models/pos_config.py:0
 #, python-format
 msgid "There are no physical devices available. Cannot start session."
-msgstr ""
-"No hay dispositivos físicos disponibles. No es posible iniciar sesión."
+msgstr "No hay dispositivos físicos disponibles. No es posible iniciar sesión."
 
 #. module: l10n_es_pos_by_device
 #. openerp-web
@@ -240,8 +221,7 @@ msgstr ""
 #: code:addons/l10n_es_pos_by_device/static/src/js/Screens/Chrome/Chrome.js:0
 #, python-format
 msgid "There was a connection error when trying to establish the device."
-msgstr ""
-"Ha habido un error de conexión al intentar establecer el dispositivo."
+msgstr "Ha habido un error de conexión al intentar establecer el dispositivo."
 
 #. module: l10n_es_pos_by_device
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.pos_device_view_tree
