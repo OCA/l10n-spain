@@ -21,8 +21,7 @@ msgstr ""
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
 #, python-format
-msgid ""
-"!env.pos.config.iface_l10n_es_simplified_invoice or receipt.is_to_invoice"
+msgid "!env.pos.config.is_simplified_config or receipt.is_to_invoice"
 msgstr ""
 
 #. module: l10n_es_pos
@@ -65,6 +64,11 @@ msgstr "Diario de facturas"
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
 msgid "Invoices"
 msgstr "Diario de facturas"
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__is_simplified_config
+msgid "Is Simplified Config"
+msgstr ""
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_ir_sequence____last_update
