@@ -67,8 +67,7 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
                 "period_type": "4T",
                 "date_start": "2022-10-01",
                 "date_end": "2022-12-31",
-                "year": 2022,
-                "period_type": "4T"
+                "year": 2022
             }
         )
 
