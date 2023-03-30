@@ -14,7 +14,7 @@
                 <group attrs="{'invisible': [('state', '=', 'first')]}" colspan="4">
                     <field name="facturae" filename="facturae_fname" />
                     <field name="facturae_fname" invisible="1" />
-                    <field name="note" colspan="4" nolabel="1" />
+                    <field name="note" colspan="4" nolabel="1" readonly="1" />
                 </group>
                 <footer>
                     <button
