@@ -214,7 +214,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_needaction
-#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
@@ -280,11 +279,6 @@ msgid "Messages"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__model_id
-msgid "Model"
-msgstr "Modelo"
-
-#. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__number
 msgid "Model number"
 msgstr "Nº modelo"
@@ -337,11 +331,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_01
 msgid "Number of recipients"
-msgstr ""
-
-#. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_unread_counter
-msgid "Number of unread messages"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
@@ -408,12 +397,14 @@ msgid "SMS Delivery error"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
 #, python-format
 msgid "Select an account for making the charge"
 msgstr "Seleccione una cuenta bancaria para realizar el cargo"
 
 #. module: l10n_es_aeat_mod115
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
 #, python-format
 msgid "Select an account for receiving the money"
@@ -455,6 +446,7 @@ msgid "Tax lines"
 msgstr "Líneas de impuestos"
 
 #. module: l10n_es_aeat_mod115
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
 #, python-format
 msgid ""
@@ -463,6 +455,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
 #, python-format
 msgid ""
@@ -508,16 +501,6 @@ msgid "Type of the exception activity on record."
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_unread
-msgid "Unread Messages"
-msgstr ""
-
-#. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr ""
-
-#. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__company_vat
 msgid "VAT number"
 msgstr "NIF"
@@ -556,6 +539,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_05
 msgid "[05] Result"
 msgstr ""
+
+#~ msgid "Model"
+#~ msgstr "Modelo"
 
 #~ msgid "Calculation date"
 #~ msgstr "Fecha de cálculo"
