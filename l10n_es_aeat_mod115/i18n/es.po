@@ -219,7 +219,6 @@ msgstr "Icono para indicar una actividad de excepción."
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_needaction
-#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
 
@@ -285,11 +284,6 @@ msgid "Messages"
 msgstr "Mensajes"
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__model_id
-msgid "Model"
-msgstr "Modelo"
-
-#. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__number
 msgid "Model number"
 msgstr "Número de modelo"
@@ -343,11 +337,6 @@ msgstr "Nº de mensajes con error de entrega"
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_01
 msgid "Number of recipients"
 msgstr "Número de beneficiarios"
-
-#. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_unread_counter
-msgid "Number of unread messages"
-msgstr "Nº de mensajes sin leer"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__partner_id
@@ -411,12 +400,14 @@ msgid "SMS Delivery error"
 msgstr "SMS de error en la entrega"
 
 #. module: l10n_es_aeat_mod115
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
 #, python-format
 msgid "Select an account for making the charge"
 msgstr "Seleccione una cuenta bancaria para realizar el cargo"
 
 #. module: l10n_es_aeat_mod115
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
 #, python-format
 msgid "Select an account for receiving the money"
@@ -462,6 +453,7 @@ msgid "Tax lines"
 msgstr "Líneas de impuestos"
 
 #. module: l10n_es_aeat_mod115
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
 #, python-format
 msgid ""
@@ -472,6 +464,7 @@ msgstr ""
 "resultado"
 
 #. module: l10n_es_aeat_mod115
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
 #, python-format
 msgid ""
@@ -519,16 +512,6 @@ msgid "Type of the exception activity on record."
 msgstr "Tipo de actividad de excepción registrada."
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_unread
-msgid "Unread Messages"
-msgstr "Mensajes sin leer"
-
-#. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Contador de mensajes sin leer"
-
-#. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__company_vat
 msgid "VAT number"
 msgstr "NIF"
@@ -567,6 +550,18 @@ msgstr "[04] Resultados anteriores a compensar"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_05
 msgid "[05] Result"
 msgstr "[05] Resultado a ingresar"
+
+#~ msgid "Model"
+#~ msgstr "Modelo"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Nº de mensajes sin leer"
+
+#~ msgid "Unread Messages"
+#~ msgstr "Mensajes sin leer"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Contador de mensajes sin leer"
 
 #~ msgid "Calculation date"
 #~ msgstr "Fecha de cálculo"
