@@ -50,6 +50,7 @@ setuptools.setup(
         'odoo-addon-l10n_es_toponyms>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_vat_book>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_vat_book_oss>=15.0dev,<15.1dev',
+        'odoo-addon-payment_redsys>=15.0dev,<15.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',
