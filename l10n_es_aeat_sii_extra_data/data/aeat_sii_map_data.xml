@@ -6,4 +6,7 @@
     <record id="l10n_es_aeat_sii.aeat_sii_map_line_SFRS" model="aeat.sii.map.lines">
         <field name="taxes" eval="[(4, ref('l10n_es_extra_data.account_tax_template_p_iva5_sc'))]"/>
     </record>
+    <record id="l10n_es_aeat_sii.aeat_sii_map_line_SFRND" model="aeat.sii.map.lines">
+        <field name="taxes" eval="[(4, ref('l10n_es_extra_data.account_tax_template_p_iva5_nd'))]"/>
+    </record>
 </odoo>
