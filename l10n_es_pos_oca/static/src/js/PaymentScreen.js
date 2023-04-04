@@ -13,7 +13,7 @@ odoo.define("l10n_es_pos.PaymentScreen", function (require) {
     // eslint-disable-next-line no-shadow
     const L10nEsPosPaymentScreen = (PaymentScreen) =>
         class extends PaymentScreen {
-            async _finalizeValidation() {
+            async validateOrder(isForceValidate) {
                 const below_limit =
                     this.currentOrder.get_total_with_tax() <=
                     this.env.pos.config.l10n_es_simplified_invoice_limit;
@@ -26,7 +26,7 @@ odoo.define("l10n_es_pos.PaymentScreen", function (require) {
                         order.to_invoice = true;
                     }
                 }
-                super._finalizeValidation();
+                await super.validateOrder(isForceValidate);
             }
         };
 
