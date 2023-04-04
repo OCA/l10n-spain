@@ -266,7 +266,6 @@ class L10nEsAeatMod369Report(models.Model):
                     },
                 )
                 country_groups[country.id]["mod369_line_ids"] += [(4, mod369_line.id)]
-            self.env["l10n.es.aeat.mod369.line.grouped"].create(
-                list(country_groups.values())
-            )
+            for vals in list(country_groups.values()):
+                self.env["l10n.es.aeat.mod369.line.grouped"].create(vals)
         return res
