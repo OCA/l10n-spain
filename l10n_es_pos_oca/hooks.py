@@ -22,6 +22,14 @@ def post_init_hook(cr, registry, vals=None):
             if not pos_name_dupes[pos.name]
             else "%s_%d" % (pos.name, pos_name_dupes[pos.name])
         )
+        if not pos_vals.get("prefix"):
+            pos_vals["prefix"] = initial_prefix = "{}{}".format(
+                pos_name, pos._get_default_prefix()
+            )
+            ith = 0
+            while IrSequence.search_count([("prefix", "=", pos_vals["prefix"])]):
+                ith += 1
+                pos_vals["prefix"] = "{}_{}".format(initial_prefix, ith)
         pos.l10n_es_simplified_invoice_sequence_id = IrSequence.create(
             {
                 "name": (

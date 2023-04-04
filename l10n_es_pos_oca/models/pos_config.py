@@ -65,7 +65,13 @@ class PosConfig(models.Model):
     def create(self, vals_list):
         for vals in vals_list:
             # Auto create simp. inv. sequence
-            prefix = "{}{}".format(vals["name"], self._get_default_prefix())
+            prefix = initial_prefix = "{}{}".format(
+                vals["name"], self._get_default_prefix()
+            )
+            ith = 0
+            while self.env["ir.sequence"].search_count([("prefix", "=", prefix)]):
+                ith += 1
+                prefix = "{}_{}".format(initial_prefix, ith)
             simp_inv_seq_id = self.env["ir.sequence"].create(
                 {
                     "name": _("Simplified Invoice %s") % vals["name"],
