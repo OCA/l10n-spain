@@ -21,6 +21,7 @@ setuptools.setup(
         'odoo-addon-l10n_es_aeat_sii_oca>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_dua>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_irnr>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_es_mis_report>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_partner>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_partner_mercantil>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_ticketbai>=16.0dev,<16.1dev',
