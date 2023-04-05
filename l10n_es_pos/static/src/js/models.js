@@ -6,6 +6,9 @@
 odoo.define("l10n_es_pos.models", function (require) {
     "use strict";
 
+    const {identifyError} = require("point_of_sale.utils");
+    const {ConnectionLostError} = require("@web/core/network/rpc_service");
+
     var models = require("point_of_sale.models");
 
     var pos_super = models.PosModel.prototype;
@@ -13,11 +16,14 @@ odoo.define("l10n_es_pos.models", function (require) {
         initialize: function () {
             pos_super.initialize.apply(this, arguments);
             this.pushed_simple_invoices = [];
-
-            this.own_simplified_invoice_prefix = ""; // Unique UUID
             return this;
         },
         get_simple_inv_next_number: function () {
+            // If we had pending orders to sync we want to avoid getting the next number
+            // from the DB as we'd be ovelaping the sequence.
+            if (this.env.pos.db.get_orders().length) {
+                return Promise.reject(new ConnectionLostError());
+            }
             return this.rpc({
                 method: "search_read",
                 domain: [["id", "=", this.config_id]],
@@ -25,10 +31,8 @@ odoo.define("l10n_es_pos.models", function (require) {
                 model: "pos.config",
             });
         },
-        get_padding_simple_inv: function (number) {
-            var diff =
-                this.config.l10n_es_simplified_invoice_padding -
-                number.toString().length;
+        get_padding_simple_inv: function (number, padding) {
+            var diff = padding - number.toString().length;
             var result = "";
             if (diff <= 0) {
                 result = number;
@@ -40,12 +44,15 @@ odoo.define("l10n_es_pos.models", function (require) {
             }
             return result;
         },
+        _update_sequence_number: function () {
+            ++this.config.l10n_es_simplified_invoice_number;
+        },
         push_simple_invoice: function (order) {
             if (
                 this.pushed_simple_invoices.indexOf(order.data.l10n_es_unique_id) === -1
             ) {
                 this.pushed_simple_invoices.push(order.data.l10n_es_unique_id);
-                ++this.config.l10n_es_simplified_invoice_number;
+                this._update_sequence_number();
             }
         },
         _flush_orders: function (orders) {
@@ -58,6 +65,19 @@ odoo.define("l10n_es_pos.models", function (require) {
             });
             return pos_super._flush_orders.apply(this, arguments);
         },
+        _set_simplified_invoice_number(config) {
+            this.config.l10n_es_simplified_invoice_number =
+                config.l10n_es_simplified_invoice_number;
+        },
+        _get_simplified_invoice_number() {
+            return (
+                this.config.l10n_es_simplified_invoice_prefix +
+                this.get_padding_simple_inv(
+                    this.config.l10n_es_simplified_invoice_number,
+                    this.config.l10n_es_simplified_invoice_padding
+                )
+            );
+        },
     });
 
     var order_super = models.Order.prototype;
@@ -66,28 +86,30 @@ odoo.define("l10n_es_pos.models", function (require) {
             var total = order_super.get_total_with_tax.apply(this, arguments);
             var below_limit = total <= this.pos.config.l10n_es_simplified_invoice_limit;
             this.is_simplified_invoice =
-                below_limit && this.pos.config.iface_l10n_es_simplified_invoice;
+                below_limit && this.pos.config.is_simplified_config;
             return total;
         },
         set_simple_inv_number: function () {
-            const self = this;
             return this.pos
                 .get_simple_inv_next_number()
-                .then(function (configs) {
-                    const config = configs[0];
-                    self.pos.config.l10n_es_simplified_invoice_number =
-                        config.l10n_es_simplified_invoice_number;
-                    const simplified_invoice_number =
-                        self.pos.config.l10n_es_simplified_invoice_prefix +
-                        self.pos.get_padding_simple_inv(
-                            config.l10n_es_simplified_invoice_number
-                        );
-                    self.l10n_es_unique_id = simplified_invoice_number;
-                    self.is_simplified_invoice = true;
+                .then(([config]) => {
+                    // We'll get the number from DB only when we're online. Otherwise
+                    // the sequence will run on the client side until the orders are
+                    // synced.
+                    this.pos._set_simplified_invoice_number(config);
                 })
-                .catch(function () {
-                    self.l10n_es_unique_id = self.uid;
-                    self.is_simplified_invoice = true;
+                .catch((error) => {
+                    // We'll only consider an error if error is not instance
+                    // of ConnectionLostError
+                    if (!identifyError(error) instanceof ConnectionLostError) {
+                        throw error;
+                    }
+                })
+                .finally(() => {
+                    const simplified_invoice_number =
+                        this.pos._get_simplified_invoice_number();
+                    this.l10n_es_unique_id = simplified_invoice_number;
+                    this.is_simplified_invoice = true;
                 });
         },
         get_base_by_tax: function () {

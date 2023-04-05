@@ -55,6 +55,7 @@
                 <div class="col-12 col-lg-6 o_setting_box" id="l10n_es_pos_simp_seq">
                     <div class="o_setting_left_pane">
                         <field name="iface_l10n_es_simplified_invoice" />
+                        <field name="is_simplified_config" invisible="1" />
                     </div>
                     <div class="o_setting_right_pane">
                         <label
@@ -69,7 +70,7 @@
                         </div>
                         <div
                             class="content-group mt16"
-                            attrs="{'invisible': ['|', ('iface_l10n_es_simplified_invoice', '=', False), '&amp;', ('module_account', '=', True), ('iface_l10n_es_simplified_invoice', '!=', False)]}"
+                            attrs="{'invisible': ['|', ('is_simplified_config', '=', False), '&amp;', ('module_account', '=', True), ('is_simplified_config', '!=', False)]}"
                         >
                             <div class="row mt16">
                                 <label
@@ -90,7 +91,7 @@
                 <div
                     class="col-12 col-lg-6 o_setting_box"
                     id="l10n_es_pos_simp_limit"
-                    attrs="{'invisible': [('iface_l10n_es_simplified_invoice', '=', False)]}"
+                    attrs="{'invisible': [('is_simplified_config', '=', False)]}"
                 >
                     <div class="o_setting_right_pane">
                         <label
