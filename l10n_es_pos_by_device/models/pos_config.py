@@ -49,11 +49,12 @@ class PosConfig(models.Model):
 
     @api.depends("pos_sequence_by_device")
     def _compute_simplified_config(self):
-        super()._compute_simplified_config()
+        ret = super()._compute_simplified_config()
         for config in self:
             config.is_simplified_config = (
                 config.is_simplified_config or config.pos_sequence_by_device
             )
+        return ret
 
 
 class PosSession(models.Model):

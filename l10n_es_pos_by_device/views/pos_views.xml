@@ -40,7 +40,7 @@
         <field name="model">pos.config</field>
         <field name="inherit_id" ref="l10n_es_pos.pos_config_view_form" />
         <field name="arch" type="xml">
-            <field name="show_allow_invoicing_alert" position="after">
+            <field name="has_active_session" position="after">
                 <field name="pos_sequence_by_device" invisible="1" />
             </field>
             <div id="l10n_es_pos_simp_seq" position="attributes">

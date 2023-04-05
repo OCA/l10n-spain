@@ -1,6 +1,9 @@
 odoo.define("l10n_es_pos_by_device.models", function (require) {
     "use strict";
 
+    const {ConnectionLostError} = require("@web/core/network/rpc_service");
+    const {Gui} = require("point_of_sale.Gui");
+
     var models = require("point_of_sale.models");
 
     var pos_super = models.PosModel.prototype;
@@ -32,7 +35,7 @@ odoo.define("l10n_es_pos_by_device.models", function (require) {
             // If we had pending orders to sync we want to avoid getting the next number
             // from the DB as we'd be ovelaping the sequence.
             if (this.env.pos.db.get_orders().length) {
-                return Promise.reject({message: {code: "pending_orders"}});
+                return Promise.reject(new ConnectionLostError());
             }
             return this.rpc({
                 method: "search_read",
@@ -75,6 +78,41 @@ odoo.define("l10n_es_pos_by_device.models", function (require) {
                 });
                 this.set("pos_device", false);
                 device.locked = false;
+            }
+        },
+        device_select_popup: async function () {
+            if (this.config.pos_sequence_by_device) {
+                const list = this.pos_devices.map((pos_device) => {
+                    return {
+                        id: pos_device.id,
+                        item: pos_device,
+                        label: pos_device.name,
+                        isSelected: false,
+                    };
+                });
+                const {confirmed, payload: device} = await Gui.showPopup(
+                    "SelectionPopup",
+                    {
+                        title: this.env._t("Select Physical Device"),
+                        list: list,
+                    }
+                );
+
+                if (!confirmed) {
+                    this.trigger("close-pos");
+                }
+
+                var ret = await this.set_device(device);
+
+                if (!ret) {
+                    await Gui.showPopup("ErrorPopup", {
+                        title: this.env._t("Cannot establish device. Clossing POS."),
+                        body: this.env._t(
+                            "There was a connection error when trying to establish the device."
+                        ),
+                    });
+                    this.trigger("close-pos");
+                }
             }
         },
     });
