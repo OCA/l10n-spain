@@ -21,8 +21,7 @@ msgstr ""
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
 #, python-format
-msgid ""
-"!env.pos.config.iface_l10n_es_simplified_invoice or receipt.is_to_invoice"
+msgid "!env.pos.config.is_simplified_config or receipt.is_to_invoice"
 msgstr ""
 
 #. module: l10n_es_pos
@@ -43,20 +42,6 @@ msgid "Customer:"
 msgstr "Cliente:"
 
 #. module: l10n_es_pos
-#: model:ir.model.fields,field_description:l10n_es_pos.field_ir_sequence__display_name
-#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__display_name
-#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: l10n_es_pos
-#: model:ir.model.fields,field_description:l10n_es_pos.field_ir_sequence__id
-#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__id
-#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__id
-msgid "ID"
-msgstr ""
-
-#. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
 msgid "Invoice Journal"
 msgstr "Diario de facturas"
@@ -67,10 +52,8 @@ msgid "Invoices"
 msgstr "Diario de facturas"
 
 #. module: l10n_es_pos
-#: model:ir.model.fields,field_description:l10n_es_pos.field_ir_sequence____last_update
-#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config____last_update
-#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order____last_update
-msgid "Last Modified on"
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__is_simplified_config
+msgid "Is Simplified Config"
 msgstr ""
 
 #. module: l10n_es_pos
@@ -110,7 +93,8 @@ msgstr "Número de factura simplificada"
 
 #. module: l10n_es_pos
 #. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/Screens/OrderManagementScreen/OrderList.xml:0
+#: code:addons/l10n_es_pos/static/src/js/Screens/TicketScreen/TicketScreen.js:0
+#: code:addons/l10n_es_pos/static/src/xml/Screens/OrderManagementScreen/TicketScreen.xml:0
 #, python-format
 msgid "Simplified Invoice"
 msgstr ""
