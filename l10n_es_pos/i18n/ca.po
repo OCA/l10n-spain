@@ -20,10 +20,8 @@ msgstr ""
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
 #, python-format
-msgid ""
-"!env.pos.config.iface_l10n_es_simplified_invoice or receipt.is_to_invoice"
+msgid "!env.pos.config.is_simplified_config or receipt.is_to_invoice"
 msgstr ""
-"! env.pos.config.iface_l10n_es_simplified_invoice o ticket.is_to_invoice"
 
 #. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
@@ -43,20 +41,6 @@ msgid "Customer:"
 msgstr "Client:"
 
 #. module: l10n_es_pos
-#: model:ir.model.fields,field_description:l10n_es_pos.field_ir_sequence__display_name
-#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__display_name
-#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__display_name
-msgid "Display Name"
-msgstr "Nom visible"
-
-#. module: l10n_es_pos
-#: model:ir.model.fields,field_description:l10n_es_pos.field_ir_sequence__id
-#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__id
-#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
 msgid "Invoice Journal"
 msgstr "Diari de Factures"
@@ -67,11 +51,9 @@ msgid "Invoices"
 msgstr "Factures"
 
 #. module: l10n_es_pos
-#: model:ir.model.fields,field_description:l10n_es_pos.field_ir_sequence____last_update
-#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config____last_update
-#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order____last_update
-msgid "Last Modified on"
-msgstr "Darrera modificació el"
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__is_simplified_config
+msgid "Is Simplified Config"
+msgstr ""
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,help:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_limit
@@ -111,7 +93,8 @@ msgstr "Nombre de factura simplificada"
 
 #. module: l10n_es_pos
 #. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/Screens/OrderManagementScreen/OrderList.xml:0
+#: code:addons/l10n_es_pos/static/src/js/Screens/TicketScreen/TicketScreen.js:0
+#: code:addons/l10n_es_pos/static/src/xml/Screens/OrderManagementScreen/TicketScreen.xml:0
 #, python-format
 msgid "Simplified Invoice"
 msgstr ""
@@ -186,6 +169,21 @@ msgstr "Utilitza Factures simplificades en aquest punt de venda"
 #, python-format
 msgid "on"
 msgstr "sobre"
+
+#, python-format
+#~ msgid ""
+#~ "!env.pos.config.iface_l10n_es_simplified_invoice or receipt.is_to_invoice"
+#~ msgstr ""
+#~ "! env.pos.config.iface_l10n_es_simplified_invoice o ticket.is_to_invoice"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom visible"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Darrera modificació el"
 
 #~ msgid "Unique Order ID"
 #~ msgstr "ID únic de comanda"
