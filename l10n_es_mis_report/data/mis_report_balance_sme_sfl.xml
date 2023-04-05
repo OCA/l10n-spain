@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <record id="mis_report_es_balance_pymes_sfl" model="mis.report">
+        <field name="name">Balance PYMESFL (PGCE 2008)</field>
+        <field
+            name="description"
+        >Balance de pequeñas y medianas entidades sin fines lucrativos</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_base" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_11000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">10</field>
+        <field name="name">es11000</field>
+        <field name="description">A) ACTIVO NO CORRIENTE</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
+        <field
+            name="expression"
+        > +es11100 +es11200 +es11300 +es11400 +es11500 +es11600 +es11700</field>
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_11100" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">20</field>
+        <field name="name">es11100</field>
+        <field name="description">I. Inmovilizado intangible</field>
+        <field name="expression">+bale[20%,280%,2830%,290%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_11200" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">30</field>
+        <field name="name">es11200</field>
+        <field name="description">II. Bienes del Patrimonio Histórico</field>
+        <field name="expression">+bale[24%,299%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_11300" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">40</field>
+        <field name="name">es11300</field>
+        <field name="description">III. Inmovilizado material</field>
+        <field name="expression">+bale[21%,281%,2831%,291%,23%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_11400" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">50</field>
+        <field name="name">es11400</field>
+        <field name="description">IV. Inversiones inmobiliarias</field>
+        <field name="expression">+bale[22%,282%,2832%,292%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_11500" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">60</field>
+        <field name="name">es11500</field>
+        <field
+            name="description"
+        >V. Inversiones en empresas del grupo y asociadas a largo plazo</field>
+        <field
+            name="expression"
+        >+bale[2503%,2504%,2513%,2514%,2523%,2524%,2593%,2594%,2933%,2934%,2943%,2944%,2953%,2954%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_11600" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">70</field>
+        <field name="name">es11600</field>
+        <field name="description">VI. Inversiones financieras a largo plazo</field>
+        <field
+            name="expression"
+        >+bale[2505%,2515%,2525%,2595%,260%,261%,262%,263%,264%,265%,268%,269%,27%,2935%,2945%,2955%,296%,297%,298%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_11700" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">80</field>
+        <field name="name">es11700</field>
+        <field name="description">VII. Activos por impuesto diferido</field>
+        <field name="expression">+bale[474%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_12000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">90</field>
+        <field name="name">es12000</field>
+        <field name="description">B) ACTIVO CORRIENTE</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
+        <field
+            name="expression"
+        > +es12200 +es12300 +es12400 +es12500 +es12600 +es12700 +es12800</field>
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_12200" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">100</field>
+        <field name="name">es12200</field>
+        <field name="description">I. Existencias</field>
+        <field name="expression">+bale[30%,31%,32%,33%,34%,35%,36%,39%,407%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_12300" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">110</field>
+        <field name="name">es12300</field>
+        <field
+            name="description"
+        >II. Usuarios y otros deudores de la actividad propia</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="expression">+bale[447%,448%,495%]</field>
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_12400" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">120</field>
+        <field name="name">es12400</field>
+        <field
+            name="description"
+        >III. Deudores comerciales y otras cuentas a cobrar</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field
+            name="expression"
+        >+bale[430%,431%,432%,433%434%,435%,436%,437%,490%,493%,440%,441%,446%,449%,460%,464%,470%,471%,472%,544%,558%]</field>
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_12500" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">130</field>
+        <field name="name">es12500</field>
+        <field
+            name="description"
+        >IV. Inversiones en entidades del grupo y asociadas a corto plazo</field>
+        <field
+            name="expression"
+        >+bale[5303%,5304%,5313%,5314%,5323%,5324%,5333%,5334%,5343%,5344%,5353%,5354%,5393%,5394%,5933%,5934%,5943%,5944%,5953%,5954%] + pbale[5523%] + pbale[5524%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_12600" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">140</field>
+        <field name="name">es12600</field>
+        <field name="description">V. Inversiones financieras a corto plazo</field>
+        <field
+            name="expression"
+        >+bale[5305%,5315%,5325%,5335%,5345%,5355%,5395%,540%,541%,542%,543%,545%,546%,547%,548%,549%,5590%,565%,566%,5935%,5945%,5955%,596%,597%,598%] + pbale[551%] + pbale[5525%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_12700" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">150</field>
+        <field name="name">es12700</field>
+        <field name="description">VI. Periodificaciones a corto plazo</field>
+        <field name="expression">+bale[480%,567%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_12800" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">160</field>
+        <field name="name">es12800</field>
+        <field
+            name="description"
+        >VII. Efectivo y otros activos líquidos equivalentes</field>
+        <field name="expression">+bale[57%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_10000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">170</field>
+        <field name="name">es10000</field>
+        <field name="description">TOTAL ACTIVO (A + B)</field>
+        <field name="expression">+es11000+es12000</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l1i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
+    </record>
+
+PATRIMONIO NETO Y PASIVO:
+
+  <record id="mis_report_kpi_es_balance_pymes_sfl_20000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">180</field>
+        <field name="name">es20000</field>
+        <field name="description">A) PATRIMONIO NETO</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
+        <field name="expression"> +es21000 +es22000</field>
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_21000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">190</field>
+        <field name="name">es21000</field>
+        <field name="description">A-1) Fondos propios</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l2" />
+        <field name="expression"> +es21100 +es21200 +es21300 +es21400</field>
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_21100" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">200</field>
+        <field name="name">es21100</field>
+        <field name="description">I. Dotación fundacional/Fondo social</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="expression"> +es21110 +es21120</field>
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_21110" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">210</field>
+        <field name="name">es21110</field>
+        <field name="description">1. Dotación fundacional/Fondo social</field>
+        <field name="expression">-bale[100%,101%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_21120" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">220</field>
+        <field name="name">es21120</field>
+        <field
+            name="description"
+        >2. (Dotación fundacional no exigida/Fondo social no exigido)</field>
+        <field name="expression">-bale[103%,104%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_21200" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">230</field>
+        <field name="name">es21200</field>
+        <field name="description">II. Reservas</field>
+        <field name="expression">-bale[11%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_21300" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">240</field>
+        <field name="name">es21300</field>
+        <field name="description">III. Exedentes de ejercicios anteriores</field>
+        <field name="expression">-bale[120%,121%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_21400" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">250</field>
+        <field name="name">es21400</field>
+        <field name="description">IV. Excedente del ejercicio</field>
+        <field name="expression">-bale[129%,6%,7%]-balu[6%,7%]</field>
+        <field name="auto_expand_accounts">False</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_22000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">260</field>
+        <field name="name">es22000</field>
+        <field
+            name="description"
+        >A-2) Subvenciones, donaciones y legados recibidos</field>
+        <field name="expression">-bale[130%,131%,132%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l2i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l2" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_31000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">270</field>
+        <field name="name">es31000</field>
+        <field name="description">B) PASIVO NO CORRIENTE</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
+        <field name="expression"> +es31100 +es31200 +es31300 +es31400 +es31500</field>
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_31100" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">280</field>
+        <field name="name">es31100</field>
+        <field name="description">I. Provisiones a largo plazo</field>
+        <field name="expression">-bale[14%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_31200" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">290</field>
+        <field name="name">es31200</field>
+        <field name="description">II. Deudas a largo plazo</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="expression"> +es31220 +es31230 +es31290</field>
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_31220" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">300</field>
+        <field name="name">es31220</field>
+        <field name="description">1. Deudas con entidades de crédito</field>
+        <field name="expression">-bale[1605%,170%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_31230" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">310</field>
+        <field name="name">es31230</field>
+        <field name="description">2. Acreedores por arrendamiento financiero</field>
+        <field name="expression">-bale[1625%,174%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_31290" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">320</field>
+        <field name="name">es31290</field>
+        <field name="description">3. Otras deudas a largo plazo</field>
+        <field
+            name="expression"
+        >-bale[1615%,1635%,171%,172%,173%,175%,176%,177%,179%,180%,185%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_31300" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">330</field>
+        <field name="name">es31300</field>
+        <field
+            name="description"
+        >III. Deudas con empresas del grupo y asociadas a largo plazo</field>
+        <field
+            name="expression"
+        >-bale[1603%,1604%,1613%,1614%,1623%,1624%,1633%,1634%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_31400" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">340</field>
+        <field name="name">es31400</field>
+        <field name="description">IV. Pasivos por impuesto diferido</field>
+        <field name="expression">-bale[479%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_31500" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">350</field>
+        <field name="name">es31500</field>
+        <field name="description">V. Periodificaciones a largo plazo</field>
+        <field name="expression">-bale[181%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_32000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">360</field>
+        <field name="name">es32000</field>
+        <field name="description">C) PASIVO CORRIENTE</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
+        <field
+            name="expression"
+        > +es32200 +es32300 +es32400 +es32500 +es32600 +es32700</field>
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_32200" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">370</field>
+        <field name="name">es32200</field>
+        <field name="description">I. Provisiones a corto plazo</field>
+        <field name="expression">-bale[499%,529%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_32300" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">380</field>
+        <field name="name">es32300</field>
+        <field name="description">II. Deudas a corto plazo</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="expression"> +es32320 +es32330 +es32390</field>
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_32320" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">390</field>
+        <field name="name">es32320</field>
+        <field name="description">1. Deudas con entidades de crédito</field>
+        <field name="expression">-bale[5105%,520%,527%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_32330" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">400</field>
+        <field name="name">es32330</field>
+        <field name="description">2. Acreedores por arrendamiento financiero</field>
+        <field name="expression">-bale[5125%,524%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_32390" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">410</field>
+        <field name="name">es32390</field>
+        <field name="description">3. Otras deudas a corto plazo</field>
+        <field
+            name="expression"
+        >-bale[50%,5115%,5135%,5145%,521%,522%,523%,525%,528%,555%,5565%,5566%,5595%,560%,561%] - nbale[551%] - nbale[5525%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_32400" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">420</field>
+        <field name="name">es32400</field>
+        <field
+            name="description"
+        >III. Deudas con entidades del grupo y asociadas a corto plazo</field>
+        <field
+            name="expression"
+        >-bale[5103%,5104%,5113%,5114%,5123%,5124%,5133%,5134%,5143%,5144%,5563%,5564%] - nbale[5523%] - nbale[5524%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_32500" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">430</field>
+        <field name="name">es32500</field>
+        <field name="description">IV. Beneficiarios-Acreedores</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="expression">-bale[412%]</field>
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_32600" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">440</field>
+        <field name="name">es32600</field>
+        <field
+            name="description"
+        >V. Acreedores comerciales y otras cuentas a pagar</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="expression"> +es32680 +es32690</field>
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_32680" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">450</field>
+        <field name="name">es32680</field>
+        <field name="description">1. Proveedores</field>
+        <field name="expression">-bale[400%,401%,403%,404%,405%,406%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_32690" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">460</field>
+        <field name="name">es32690</field>
+        <field name="description">2. Otros acreedores</field>
+        <field name="expression">-bale[410%,411%,419%,438%,465%,475%,476%,477%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_32700" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">470</field>
+        <field name="name">es32700</field>
+        <field name="description">VI. Periodificaciones a corto plazo</field>
+        <field name="expression">-bale[485%,568%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+  <record id="mis_report_kpi_es_balance_pymes_sfl_30000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">480</field>
+        <field name="name">es30000</field>
+        <field name="description">TOTAL PATRIMONIO NETO Y PASIVO (A + B + C)</field>
+        <field name="expression">+es20000+es31000+es32000</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l1i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
+    </record>
+</odoo>
