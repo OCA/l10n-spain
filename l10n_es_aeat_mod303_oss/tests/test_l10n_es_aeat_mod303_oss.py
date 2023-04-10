@@ -24,7 +24,7 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             }
         )
         wizard.generate_eu_oss_taxes()
-        fr_fiscal_position = cls.env["account.fiscal.position"].search(
+        cls.fr_fiscal_position = cls.env["account.fiscal.position"].search(
             [("country_id", "=", cls.oss_country.id), ("oss_oca", "=", True)], limit=1
         )
         cls.taxes_sale = {}
@@ -43,10 +43,10 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         }
         extra_vals = {
             "invoice_line_ids": [(0, 0, line_data)],
-            "fiscal_position_id": fr_fiscal_position.id,
+            "fiscal_position_id": cls.fr_fiscal_position.id,
         }
-        cls._invoice_sale_create("2021-07-01", extra_vals)
-        cls._invoice_sale_create("2021-11-01", extra_vals)
+        cls.invoice_1 = cls._invoice_sale_create("2021-07-01", extra_vals)
+        cls.invoice_2 = cls._invoice_sale_create("2021-11-01", extra_vals)
         # Create reports
         mod303_form = Form(cls.env["l10n.es.aeat.mod303.report"])
         mod303_form.company_id = cls.company
@@ -70,6 +70,8 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         self.assertAlmostEqual(sum(lines.mapped("amount")), amount)
 
     def test_l10n_es_aeat_mod303_oss(self):
+        self.assertEqual(self.invoice_1.fiscal_position_id, self.fr_fiscal_position)
+        self.assertEqual(self.invoice_2.fiscal_position_id, self.fr_fiscal_position)
         self.model303.button_calculate()
         self._check_field_amount(self.model303, 123, 100)
         self._check_field_amount(self.model303, 126, 0)
