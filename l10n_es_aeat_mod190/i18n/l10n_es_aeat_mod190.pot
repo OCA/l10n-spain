@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -392,7 +392,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__calculation_date
-msgid "Calculation date"
+msgid "Calculation Date"
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
@@ -475,7 +475,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__contact_email
-msgid "Contact email"
+msgid "Contact Email"
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
@@ -615,14 +615,10 @@ msgid "Discapacidad"
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_fiscal_position__display_name
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move__display_name
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey__display_name
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -668,11 +664,6 @@ msgid "Followers"
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_channel_ids
-msgid "Followers (Channels)"
-msgstr ""
-
-#. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_partner_ids
 msgid "Followers (Partners)"
 msgstr ""
@@ -695,6 +686,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__movilidad_geografica
 msgid "Geographical mobility"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__has_message
+msgid "Has Message"
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
@@ -738,14 +734,10 @@ msgid "Hijos y descendientes con discapacidad, computados por entero"
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_fiscal_position__id
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move__id
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move_line__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey__id
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__id
 msgid "ID"
 msgstr ""
 
@@ -849,14 +841,10 @@ msgid "L.R. VAT number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_fiscal_position____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move_line____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -1148,7 +1136,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__period_type
-msgid "Period type"
+msgid "Period Type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
@@ -1412,7 +1400,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod190
 #: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
 #, python-format
-msgid "The perception key of the partner, %s. Must be filled."
+msgid "The perception key of the partner, %(partner)s. Must be filled."
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
