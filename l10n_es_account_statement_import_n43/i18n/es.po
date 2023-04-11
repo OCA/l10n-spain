@@ -25,6 +25,7 @@ msgid "AEB norm 43 (.n43)"
 msgstr "AEB norma 43 (.n43)"
 
 #. module: l10n_es_account_statement_import_n43
+#. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
 #, python-format
 msgid ""
@@ -39,6 +40,7 @@ msgid "Date type for N43 Import"
 msgstr "Tipo de fecha para importación N43"
 
 #. module: l10n_es_account_statement_import_n43
+#. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
 #, python-format
 msgid ""
@@ -48,12 +50,7 @@ msgstr ""
 "archivo."
 
 #. module: l10n_es_account_statement_import_n43
-#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_journal__display_name
-#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import__display_name
-msgid "Display Name"
-msgstr "Nombre mostrado"
-
-#. module: l10n_es_account_statement_import_n43
+#. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
 #, python-format
 msgid ""
@@ -62,12 +59,6 @@ msgid ""
 msgstr ""
 "El saldo final = (saldo inicial + haber - debe) no casa con lo definido en "
 "el último registro del archivo."
-
-#. module: l10n_es_account_statement_import_n43
-#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_journal__id
-#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import__id
-msgid "ID"
-msgstr "ID"
 
 #. module: l10n_es_account_statement_import_n43
 #: model:ir.model,name:l10n_es_account_statement_import_n43.model_account_statement_import
@@ -80,17 +71,12 @@ msgid "Journal"
 msgstr "Diario"
 
 #. module: l10n_es_account_statement_import_n43
-#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_journal____last_update
-#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
-
-#. module: l10n_es_account_statement_import_n43
 #: model_terms:ir.ui.view,arch_db:l10n_es_account_statement_import_n43.view_account_journal_form_n43
 msgid "Norm 43 options"
 msgstr "Opciones de Norma 43"
 
 #. module: l10n_es_account_statement_import_n43
+#. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
 #, python-format
 msgid ""
@@ -101,6 +87,7 @@ msgstr ""
 "registro del archivo."
 
 #. module: l10n_es_account_statement_import_n43
+#. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
 #, python-format
 msgid ""
@@ -111,6 +98,7 @@ msgstr ""
 "registro del archivo."
 
 #. module: l10n_es_account_statement_import_n43
+#. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
 #, python-format
 msgid "Number of records doesn't match with the defined in the last record."
@@ -124,20 +112,28 @@ msgid "Operation Date"
 msgstr "Fecha de operación"
 
 #. module: l10n_es_account_statement_import_n43
+#. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
 #, python-format
 msgid "Record type %s is not valid."
 msgstr "El tipo de registro %s no es válido."
 
 #. module: l10n_es_account_statement_import_n43
-#: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
-#, python-format
-msgid ""
-"The bank account number of the file does not match with the one in the "
-"journal."
-msgstr "El número de cuenta bancaria no coincide con la del diario."
-
-#. module: l10n_es_account_statement_import_n43
 #: model:ir.model.fields.selection,name:l10n_es_account_statement_import_n43.selection__account_journal__n43_date_type__fecha_valor
 msgid "Value Date"
 msgstr "Fecha valor"
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre mostrado"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
+
+#, python-format
+#~ msgid ""
+#~ "The bank account number of the file does not match with the one in the "
+#~ "journal."
+#~ msgstr "El número de cuenta bancaria no coincide con la del diario."
