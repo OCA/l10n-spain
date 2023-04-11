@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo-addon-l10n_es_account_asset>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_es_account_statement_import_n43>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_aeat>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_aeat_mod115>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_aeat_mod123>=16.0dev,<16.1dev',
