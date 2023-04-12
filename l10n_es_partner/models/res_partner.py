@@ -3,13 +3,11 @@
 # Copyright 2016 Tecnativa - Carlos Dauden
 # Copyright 2016-2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3).
-
 from odoo import api, fields, models
 
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
-    _rec_names_search = ["name", "comercial"]
 
     comercial = fields.Char("Trade name", size=128, index="trigram")
     display_name = fields.Char(compute="_compute_display_name")
@@ -38,3 +36,7 @@ class ResPartner(models.Model):
         res = super()._commercial_fields()
         res += ["comercial"]
         return res
+
+    def _auto_init(self):
+        self.env["res.partner"]._rec_names_search.append("comercial")
+        return super()._auto_init()
