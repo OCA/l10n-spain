@@ -1320,6 +1320,11 @@ class AccountMove(models.Model):
         elif gen_type == 2:
             return {"IDOtro": {"IDType": "02", "ID": country_code + identifier}}
         elif gen_type == 3 and identifier_type:
+            # Si usamos identificador tipo 02 en exportaciones, el envío falla con:
+            #   {'CodigoErrorRegistro': 1104,
+            #    'DescripcionErrorRegistro': 'Valor del campo ID incorrecto'}
+            if identifier_type == "02":
+                identifier_type = "06"
             return {
                 "IDOtro": {
                     "CodigoPais": country_code,
