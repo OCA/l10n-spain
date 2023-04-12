@@ -28,8 +28,25 @@ class TestL10nEsPartner(common.TransactionCase):
 
     def test_search_commercial(self):
         partner_obj = self.env["res.partner"]
-        self.assertTrue(partner_obj.name_search("prueba"))
-        self.assertTrue(partner_obj.name_search("comercial"))
+        self.assertIn(
+            self.partner.id, map(lambda x: x[0], partner_obj.name_search("prueba"))
+        )
+        self.assertNotIn(
+            self.partner.id,
+            map(
+                lambda x: x[0], partner_obj.name_search("prueba", operator="not ilike")
+            ),
+        )
+        self.assertIn(
+            self.partner.id, map(lambda x: x[0], partner_obj.name_search("comercial"))
+        )
+        self.assertNotIn(
+            self.partner.id,
+            map(
+                lambda x: x[0],
+                partner_obj.name_search("comercial", operator="not ilike"),
+            ),
+        )
 
     def test_import_banks(self):
         # Then import banks
