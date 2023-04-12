@@ -7,7 +7,7 @@
 
 <!-- /!\ do not modify above this line -->
 
-# l10n-spain
+# Spanish Localization
 
 Spanish localization modules
 

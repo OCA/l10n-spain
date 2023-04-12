@@ -14,9 +14,10 @@ odoo_test_flavor: Both
 odoo_version: 14.0
 org_name: Odoo Community Association (OCA)
 org_slug: OCA
-rebel_module_groups: []
+rebel_module_groups:
+- l10n_es_aeat_sii_oca
 repo_description: Spanish localization modules
-repo_name: l10n-spain
+repo_name: Spanish Localization
 repo_slug: l10n-spain
 repo_website: https://github.com/OCA/l10n-spain
 

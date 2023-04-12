@@ -36,8 +36,18 @@ jobs:
       matrix:
         include:
           - container: ghcr.io/oca/oca-ci/py3.6-odoo14.0:latest
+            include: "l10n_es_aeat_sii_oca"
+            makepot: "true"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.6-ocb14.0:latest
+            include: "l10n_es_aeat_sii_oca"
+            name: test with OCB
+          - container: ghcr.io/oca/oca-ci/py3.6-odoo14.0:latest
+            exclude: "l10n_es_aeat_sii_oca"
+            makepot: "true"
+            name: test with Odoo
+          - container: ghcr.io/oca/oca-ci/py3.6-ocb14.0:latest
+            exclude: "l10n_es_aeat_sii_oca"
             name: test with OCB
             makepot: "true"
     services:
@@ -49,6 +59,9 @@ jobs:
           POSTGRES_DB: odoo
         ports:
           - 5432:5432
+    env:
+      INCLUDE: "${{ matrix.include }}"
+      EXCLUDE: "${{ matrix.exclude }}"
     steps:
       - uses: actions/checkout@v3
         with:
