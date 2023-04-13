@@ -321,7 +321,10 @@ class AccountMove(models.Model):
         messages = self._check_invoice_facturae(data)
         if messages or data["attachments"]:
             self.message_post(
-                body="<br/>".join(messages), attachments=data["attachments"]
+                body="<br/>".join(messages),
+                attachments=data["attachments"],
+                message_type="comment",
+                subtype_xmlid="mail.mt_note",
             )
         return self
 
