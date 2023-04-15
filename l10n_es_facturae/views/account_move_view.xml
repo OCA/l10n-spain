@@ -56,7 +56,7 @@
                             <field name="facturae_receiver_contract_reference" />
                         </group>
                         <group name="facturae_attachment" string="Facturae Attachment">
-                            <field name="l10n_es_facturae_attachment_ids" invisible="1">
+                            <field name="l10n_es_facturae_attachment_ids">
                                 <tree>
                                     <field name="move_id" invisible="1" />
                                     <field name="filename" />
