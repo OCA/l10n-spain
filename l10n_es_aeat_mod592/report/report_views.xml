@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="act_report_aeat_mod592_pdf" model="ir.actions.report">
+        <field name="name">AEAT AEAT 592 Model</field>
+        <field name="model">l10n.es.aeat.mod592.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_es_aeat_mod592.report_l10n_es_mod592_pdf</field>
+        <field name="report_file">l10n_es_aeat_mod592.report_l10n_es_mod592</field>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

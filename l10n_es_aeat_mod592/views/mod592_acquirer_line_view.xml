@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- ###### VISTA DETALLES DE LOS REGISTROS ADQUIRIENTE ###### -->
+    <!-- Tree view -->
+    <record id="l10n_es_aeat_mod_592_acquirer_entries_view_tree" model="ir.ui.view">
+        <field name="name">l10n_es_aeat_mod_592_acquirer_entries.view.tree</field>
+        <field name="model">l10n.es.aeat.mod592.report.line.acquirer</field>
+        <field name="arch" type="xml">
+            <tree string="AEAT 592 Acquirer Entries record detail" decoration-danger="entries_ok">
+                <field name="entries_ok" invisible="1" />
+                <field name="numero_asiento" optional="show" />
+                <field name="fecha_hecho" optional="show" />
+                <field name="concepto" optional="show" />
+                <field name="clave_producto" optional="show" />
+                <field name="justificante" optional="hide" />
+                <field name="proveedor_tipo_documento" optional="show" />
+                <field name="proveedor_numero_documento" optional="show" />
+                <field name="proveedor_razon_social" optional="show" />
+                <field name="kilogramos" optional="show" />
+                <field name="kilogramos_no_reciclados" optional="show" />
+                <field name="observaciones_asiento" optional="hide" />
+                <field
+                    name="error_text"
+                    attrs="{'invisible': [('entries_ok', '=', True)]}"
+                    optional="hide"
+                />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view -->
+    <record id="l10n_es_aeat_mod_592_acquirer_entries_view_form" model="ir.ui.view">
+        <field name="name">l10n_es_aeat_mod_592_acquirer_entries.view.form</field>
+        <field name="model">l10n.es.aeat.mod592.report.line.acquirer</field>
+        <field name="arch" type="xml">
+            <form string="AEAT 592 Acquirer Entries record detail">
+                <group>
+                    <field
+                        name="error_text"
+                        attrs="{'invisible': [('entries_ok', '=', True)]}"
+                        class="text-danger"
+                    />
+                    <field name="entries_ok" invisible="1" />
+                    <field name="numero_asiento" />
+                    <field name="fecha_hecho" />
+                    <field name="concepto" />
+                    <field name="clave_producto" />
+                    <field name="justificante" />
+                    <field name="proveedor_tipo_documento" />
+                    <field name="proveedor_numero_documento" />
+                    <field name="proveedor_razon_social" />
+                    <field name="kilogramos" />
+                    <field name="kilogramos_no_reciclados" />
+                    <field name="observaciones_asiento" />
+                    <field name="report_id" invisible="1" />
+
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>
