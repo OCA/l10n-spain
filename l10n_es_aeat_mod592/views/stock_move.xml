@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_move_form_inherit_stock_picking_l10n_es_aeat_mod592" model="ir.ui.view">
+        <field name="name">stock.picking.view.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='lot_ids']"
+                position="after">
+                <field name="product_plastic_tax_weight" optional="hide"/>
+                <field name="product_plastic_weight_non_recyclable" optional="hide"/>
+                <field name="product_plastic_type_key" optional="hide" />
+                <field name="product_plastic_concept_manufacturer" optional="hide"/>
+                <field name="product_plastic_concept_acquirer" optional="hide"/>
+                <field name="product_plastic_tax_regime_manufacturer" optional="hide"/>
+                <field name="product_plastic_tax_regime_acquirer" optional="hide"/>
+                <!-- <field name="product_plastic_tax_description" optional="hide"/> -->
+                <field name="is_plastic_tax" optional="hide"/>
+            </xpath>
+            <!-- <xpath expr="//notebook" position="after">
+                <field name="total_plastic_weight" />
+                <field name="total_plastic_weight_non_recyclable" />
+            </xpath> -->
+        </field>
+    </record>
+</odoo>
