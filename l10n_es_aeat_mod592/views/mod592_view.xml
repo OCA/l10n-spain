@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- ###### VISTA DE LOS REGISTROS ###### -->
+    <!-- Tree view -->
+    <record id="view_l10n_es_aeat_mod592_report_tree" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod592.report.tree</field>
+        <field name="model">l10n.es.aeat.mod592.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree" />
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="string">AEAT 592 reports</attribute>= 
+            </tree>
+            <field name="period_type" position="after">
+                <field name="total_manufacturer_entries_records" />
+                <field name="total_weight_manufacturer_records" />
+            </field>
+        </field>
+    </record>
+    <!-- Form view -->
+    <record id="view_l10n_es_aeat_mod592_report_form" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod592.report.form</field>
+        <field name="model">l10n.es.aeat.mod592.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
+        <field name="arch" type="xml">
+            <header position="inside">
+                <field name="company_plastic_type" invisible="1"/>
+                <!-- MANUFACTURER -->
+                <button name="export_xlsx_manufacturer" string="Export XLSX" type="object" icon="fa-share" attrs="{'invisible':[('state', '!=', 'done'), ('company_plastic_type', '=', 'acquirer')]}" />
+                <button name="export_csv_manufacturer" string="Export CSV" type="object" icon="fa-share" attrs="{'invisible':[('state', '!=', 'done'), ('company_plastic_type', '=', 'acquirer')]}" />
+                <!-- ACQUIRER -->
+                <button name="export_xlsx_acquirer" string="Export XLSX" type="object" icon="fa-share" attrs="{'invisible':[('state', '!=', 'done'), ('company_plastic_type', '=', 'manufacturer')]}" />
+                <button name="export_csv_acquirer" string="Export CSV" type="object" icon="fa-share" attrs="{'invisible':[('state', '!=', 'done'), ('company_plastic_type', '=', 'manufacturer')]}" />
+            </header>
+            <group name="group_declaration" position="after">
+                <notebook colspan="4">
+                    <page string="General">
+                        <group string="Generic">
+                            <field name="amount_plastic_tax" col="2"/>
+                        </group>
+                        <group string="Manufacturer Result" attrs="{'invisible':[('company_plastic_type', '=', 'acquirer')]}">
+                            <group>
+                                <field name="total_manufacturer_entries_records" />
+                            </group>
+                            <group>
+                                <field name="total_weight_manufacturer_records" />
+                            </group>
+                            <group>
+                                <field name="total_weight_manufacturer_non_reclyclable_records" />
+                            </group>
+                            <group>
+                                <field name="total_amount_manufacturer_records" />
+                            </group>
+
+                        </group>
+                        <group string="Acquirer Result" attrs="{'invisible':[('company_plastic_type', '=', 'manufacturer')]}">
+                            <group>
+                                <field name="total_acquirer_entries_records" />
+                            </group>
+                            <group>
+                                <field name="total_weight_acquirer_records" />
+                            </group>
+                            <group>
+                                <field name="total_weight_acquirer_non_reclyclable_records" />
+                            </group>
+                            <group>
+                                <field name="total_amount_acquirer_records" />
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Manufacturer Entries Records" attrs="{'invisible':[('company_plastic_type', '=', 'acquirer')]}">
+                        <group name="manufacturer_entries_records" string="Manufacturer Entries Record">
+                            <field name="manufacturer_line_ids" nolabel="1" />
+                        </group>
+
+                    </page>
+                    <page string="Acquirer Entries Records" attrs="{'invisible':[('company_plastic_type', '=', 'manufacturer')]}">
+                        <group name="acquirer_entries_records" string="Acquirer Entries Record">
+                            <field name="acquirer_line_ids" nolabel="1" />
+                        </group>
+
+                    </page>
+
+                </notebook>
+            </group>
+            <form position="inside">
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <!-- Window action -->
+    <record id="action_l10n_es_aeat_mod592_report" model="ir.actions.act_window">
+        <field name="name">AEAT AEAT 592 Model</field>
+        <field name="res_model">l10n.es.aeat.mod592.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help">Create and query AEAT AEAT 592 Model reports</field>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_l10n_es_aeat_mod303_report_tree">
+        <field name="sequence" eval="2" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod592_report_tree" />
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod592_report" />
+    </record>
+    <record model="ir.actions.act_window.view" id="action_l10n_es_aeat_mod592_report_form">
+        <field name="sequence" eval="3" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod592_report_form" />
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod592_report" />
+    </record>
+    <!-- Menu action -->
+    <menuitem id="menu_aeat_mod592_report" parent="l10n_es_aeat.menu_root_aeat" action="action_l10n_es_aeat_mod592_report" sequence="592" name="AEAT 592 Model" />
+</odoo>
