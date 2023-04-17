@@ -146,7 +146,12 @@
                         colspan="4"
                         attrs="{'invisible': [('state', '=', 'draft')]}"
                     >
-                        <field name="tax_line_ids" nolabel="1" readonly="1" />
+                        <field
+                            name="tax_line_ids"
+                            nolabel="1"
+                            readonly="1"
+                            colspan="2"
+                        />
                     </group>
                 </group>
             </group>
