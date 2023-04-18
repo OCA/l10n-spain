@@ -3,13 +3,13 @@
 # Copyright 2014 Roberto Lizana (Trey)
 # Copyright 2013-2016 Pedro M. Baeza
 
-from odoo import _, fields, models
+from odoo import fields, models
 
 
 class AccountMove(models.Model):
     _inherit = "account.move"
 
-    number = fields.Char(related=False, size=32, copy=False, string=_("Seq. Number"))
+    number = fields.Char(related=False, size=32, copy=False, string=("Seq. Number"))
     invoice_number = fields.Char(copy=False)
 
     def _get_seq_number_next_stuff(self):
