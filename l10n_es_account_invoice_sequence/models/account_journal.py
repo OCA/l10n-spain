@@ -23,37 +23,36 @@ class AccountJournal(models.Model):
         help="The sequence used for refund invoices numbers in this journal.",
     )
 
-    @api.multi
     @api.constrains("invoice_sequence_id")
     def _check_company(self):
         for journal in self:
             sequence_company = journal.invoice_sequence_id.company_id
             if sequence_company and sequence_company != journal.company_id:
                 raise exceptions.Warning(
-                    _("Journal company and invoice sequence company do not " "match.")
+                    _("Journal company and invoice sequence company do not match.")
                 )
 
-    @api.multi
     @api.constrains("refund_inv_sequence_id")
     def _check_company_refund(self):
         for journal in self:
             sequence_company = journal.refund_inv_sequence_id.company_id
             if sequence_company and sequence_company != journal.company_id:
                 raise exceptions.Warning(
-                    _("Journal company and refund sequence company do not " "match.")
+                    _("Journal company and refund sequence company do not match.")
                 )
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         """Use the existing sequence for new Spanish journals."""
-        if not vals.get("company_id") or vals.get("sequence_id"):
-            return super(AccountJournal, self).create(vals)
-        company = self.env["res.company"].browse(vals["company_id"])
-        if company.chart_template_id.is_spanish_chart():
-            journal = self._get_company_journal(company)
-            if journal:
-                vals["sequence_id"] = journal.sequence_id.id
-                vals["refund_sequence"] = False
+        for val in vals:
+            if not val.get("company_id") or val.get("secure_sequence_id"):
+                return super(AccountJournal, self).create(vals)
+            company = self.env["res.company"].browse(val["company_id"])
+            if company.chart_template_id.is_spanish_chart():
+                journal = self._get_company_journal(company)
+                if journal:
+                    val["secure_sequence_id"] = journal.secure_sequence_id.id
+                    val["refund_sequence"] = False
         return super(AccountJournal, self).create(vals)
 
     def write(self, vals):
@@ -71,10 +70,7 @@ class AccountJournal(models.Model):
         return True
 
     def _get_invoice_types(self):
-        return [
-            "sale",
-            "purchase",
-        ]
+        return ["sale", "purchase"]
 
     def _get_company_journal(self, company):
         """Get an existing journal in the company to take it's counter."""
@@ -89,5 +85,5 @@ class AccountJournal(models.Model):
         if company.chart_template_id.is_spanish_chart():
             journal = self._get_company_journal(company)
             if journal:
-                res["sequence_id"] = journal.sequence_id.id
+                res["secure_sequence_id"] = journal.secure_sequence_id.id
         return res

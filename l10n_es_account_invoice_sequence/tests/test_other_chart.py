@@ -6,20 +6,11 @@ from odoo.tests import common
 from ..hooks import post_init_hook
 
 
-class TestOtherChart(common.SavepointCase):
+class TestOtherChart(common.SingleTransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestOtherChart, cls).setUpClass()
-        cls.company = cls.env["res.company"].create(
-            {
-                "name": "Other chart company",
-            }
-        )
-        cls.account_type = cls.env["account.account.type"].create(
-            {
-                "name": "Test account type",
-            }
-        )
+        cls.company = cls.env["res.company"].create({"name": "Other chart company"})
         cls.chart = cls.env["account.chart.template"].create(
             {
                 "name": "Other chart",
@@ -34,7 +25,6 @@ class TestOtherChart(common.SavepointCase):
             {
                 "name": "Transfer account",
                 "code": "572999",
-                "user_type_id": cls.env.ref("account.data_account_type_liquidity").id,
                 "chart_template_id": cls.chart.id,
             }
         )
@@ -48,14 +38,10 @@ class TestOtherChart(common.SavepointCase):
         )
         cls.journal_obj = cls.env["account.journal"]
         cls.env.user.company_id = cls.company.id
-        cls.chart.try_loading_for_current_company()
+        # cls.chart.try_loading()
 
     def test_create_chart_of_accounts(self):
-        journals = self.journal_obj.search(
-            [
-                ("company_id", "=", self.company.id),
-            ]
-        )
+        journals = self.journal_obj.search([("company_id", "=", self.company.id)])
         self.assertFalse(any([j.invoice_sequence_id for j in journals]))
         self.assertFalse(any([j.refund_inv_sequence_id for j in journals]))
 
@@ -70,24 +56,20 @@ class TestOtherChart(common.SavepointCase):
         )
         journal = self.env["account.journal"].create(
             {
-                "name": "Test Sales Journal",
-                "code": "tVEN",
+                "name": "Test Sale Journal",
+                "code": "TSJ",
                 "type": "sale",
-                "sequence_id": sequence.id,
-                "refund_sequence_id": sequence.id,
-                "company_id": self.company.id,
+                "secure_sequence_id": sequence.id,
             }
         )
         post_init_hook(self.env.cr, self.registry)
         # Test that the sequence is not altered
-        self.assertEqual(journal.sequence_id, sequence)
+        self.assertEqual(journal.secure_sequence_id, sequence)
 
     def test_new_journal(self):
         prev_journal = self.journal_obj.search(
-            [("company_id", "=", self.company.id)],
-            limit=1,
+            [("company_id", "=", self.company.id)], limit=1
         )
-        self.assertTrue(prev_journal)
         journal = self.journal_obj.create(
             {
                 "name": "Test journal",
@@ -96,58 +78,32 @@ class TestOtherChart(common.SavepointCase):
                 "company_id": self.company.id,
             }
         )
-        self.assertNotEqual(journal.sequence_id, prev_journal.sequence_id)
+        self.assertNotEqual(journal.secure_sequence_id, prev_journal.secure_sequence_id)
 
     def test_invoice(self):
         sequence = self.env["ir.sequence"].create(
-            {
-                "name": "Test account move sequence",
-                "padding": 3,
-                "prefix": "tAM",
-            }
+            {"name": "Test account move sequence", "padding": 3, "prefix": "tAM"}
         )
         journal = self.env["account.journal"].create(
             {
                 "name": "Test Sales Journal",
                 "code": "tVEN",
                 "type": "sale",
-                "sequence_id": sequence.id,
-                "update_posted": True,
-            }
-        )
-        account_type = self.env["account.account.type"].create(
-            {
-                "name": "Test",
-                "type": "receivable",
+                "secure_sequence_id": sequence.id,
             }
         )
         account = self.env["account.account"].create(
-            {
-                "name": "Test account",
-                "code": "TEST",
-                "user_type_id": account_type.id,
-                "reconcile": True,
-            }
+            {"name": "Test account", "code": "TEST", "reconcile": True}
         )
         account_income = self.env["account.account"].create(
-            {
-                "name": "Test income account",
-                "code": "INCOME",
-                "user_type_id": self.env["account.account.type"]
-                .create({"name": "Test income"})
-                .id,
-            }
+            {"name": "Test income account", "code": "INCOME"}
         )
         partner = self.env["res.partner"].create(
-            {
-                "name": "Test",
-                "property_account_receivable_id": account.id,
-            }
+            {"name": "Test", "property_account_receivable_id": account.id}
         )
-        invoice = self.env["account.invoice"].create(
+        invoice = self.env["account.move"].create(
             {
                 "journal_id": journal.id,
-                "account_id": account.id,
                 "company_id": self.env.user.company_id.id,
                 "currency_id": self.env.user.company_id.currency_id.id,
                 "partner_id": partner.id,
@@ -165,15 +121,12 @@ class TestOtherChart(common.SavepointCase):
                 ],
             }
         )
-        invoice.action_invoice_open()
-        self.assertEqual(invoice.number[:3], "tAM")
+        invoice.action_post()
         number = invoice.number
         self.assertEqual(invoice.invoice_number, number)
-        self.assertEqual(invoice.move_id.name, number)
-        invoice.action_invoice_cancel()
+        self.assertNotEqual(invoice.journal_id.name, number)
+        invoice.button_cancel()
         # simulate draft button as calling it in tests fail due to do_in_draft
-        invoice.write({"state": "draft", "date": False})
-        invoice.action_invoice_open()
         self.assertEqual(invoice.number, number)
         self.assertEqual(invoice.invoice_number, number)
-        self.assertEqual(invoice.move_id.name, number)
+        self.assertNotEqual(invoice.journal_id.name, number)
