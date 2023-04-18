@@ -80,7 +80,7 @@ addon | version | maintainers | summary
 [l10n_es_ticketbai_pos](l10n_es_ticketbai_pos/) | 12.0.1.0.5 | [![ao-landoo](https://github.com/ao-landoo.png?size=30px)](https://github.com/ao-landoo) | TicketBAI - Point of Sale - declaración de todas las operaciones de venta realizadas por las personas y entidades que desarrollan actividades económicas
 [l10n_es_toponyms](l10n_es_toponyms/) | 12.0.1.0.0 |  | Topónimos españoles
 [l10n_es_vat_book](l10n_es_vat_book/) | 12.0.1.7.0 |  | Libro de IVA
-[l10n_es_vat_book_extra_data](l10n_es_vat_book_extra_data/) | 12.0.1.0.0 | [![cubells](https://github.com/cubells.png?size=30px)](https://github.com/cubells) | Módulo para incluir los impuestos extra en el libro de IVA.
+[l10n_es_vat_book_extra_data](l10n_es_vat_book_extra_data/) | 12.0.1.1.0 | [![cubells](https://github.com/cubells.png?size=30px)](https://github.com/cubells) | Módulo para incluir los impuestos extra en el libro de IVA.
 [payment_redsys](payment_redsys/) | 12.0.2.0.1 |  | Payment Acquirer: Redsys Implementation
 
 [//]: # (end addons)
