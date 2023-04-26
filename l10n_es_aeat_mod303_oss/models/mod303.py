@@ -33,7 +33,7 @@ class L10nEsAeatMod303Report(models.Model):
         if 126 <= map_line.field_number <= 127:
             if (self.exonerated_390 == '2' or not self.has_operation_volume
                     or self.period_type not in ('4T', '12')):
-                return self.env['account.move.line']
+                return {}
         return res
 
     def _get_move_line_domain(self, codes, date_start, date_end, map_line):

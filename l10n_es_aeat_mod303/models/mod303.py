@@ -434,7 +434,7 @@ class L10nEsAeatMod303Report(models.Model):
         if 79 <= map_line.field_number <= 99 or map_line.field_number == 125:
             if (self.exonerated_390 == '2' or not self.has_operation_volume
                     or self.period_type not in ('4T', '12')):
-                return self.env['account.move.line']
+                return {}
         return super(L10nEsAeatMod303Report, self)._get_tax_lines(
             codes, date_start, date_end, map_line,
         )
