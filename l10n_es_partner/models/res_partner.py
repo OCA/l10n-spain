@@ -58,6 +58,12 @@ class ResPartner(models.Model):
             )
         return res
 
+    @api.model
+    def _name_get_prefetch_fields(self):
+        prefetch_fields = super()._name_get_prefetch_fields()
+        prefetch_fields.append('comercial')
+        return prefetch_fields
+
     @api.multi
     def name_get(self):
         result = []
