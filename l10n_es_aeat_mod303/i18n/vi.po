@@ -501,7 +501,7 @@ msgid "If checked, some messages have a delivery error."
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:273
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:281
 #, python-format
 msgid ""
 "In previous declarations this year you reported a Result Type 'To "
@@ -782,7 +782,7 @@ msgid "Resultado"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:418
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:423
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr ""
@@ -843,7 +843,7 @@ msgid "Telematics"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:429
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:434
 #, python-format
 msgid "The fee to compensate must be indicated as a positive number."
 msgstr ""
@@ -867,7 +867,27 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,result_type:0
+msgid "To enter - AEAT account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,result_type:0
+msgid "To enter - Bank account debit"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,result_type:0
 msgid "To return"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,result_type:0
+msgid "To return - AEAT account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,result_type:0
+msgid "To return - Foreign bank account"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303

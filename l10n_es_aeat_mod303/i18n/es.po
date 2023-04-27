@@ -518,7 +518,7 @@ msgid "If checked, some messages have a delivery error."
 msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:273
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:281
 #, python-format
 msgid ""
 "In previous declarations this year you reported a Result Type 'To "
@@ -812,7 +812,7 @@ msgid "Resultado"
 msgstr "Resultado"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:418
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:423
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr "Seleccione una cuenta bancaria para recibir el dinero"
@@ -882,7 +882,7 @@ msgid "Telematics"
 msgstr "Telemática"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:429
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:434
 #, python-format
 msgid "The fee to compensate must be indicated as a positive number."
 msgstr "La cuota a compensar debe ser indicada como una cantidad positiva."
@@ -907,27 +907,27 @@ msgid "To enter"
 msgstr "A ingresar"
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__result_type__g
+#: selection:l10n.es.aeat.mod303.report,result_type:0
 msgid "To enter - AEAT account"
 msgstr "A ingresar - Cuenta tributaria"
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__result_type__u
+#: selection:l10n.es.aeat.mod303.report,result_type:0
 msgid "To enter - Bank account debit"
 msgstr "A ingresar - Domiciliación bancaria"
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__result_type__d
+#: selection:l10n.es.aeat.mod303.report,result_type:0
 msgid "To return"
 msgstr "Devolución"
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__result_type__v
+#: selection:l10n.es.aeat.mod303.report,result_type:0
 msgid "To return - AEAT account"
 msgstr "Devolución - Cuenta tributaria"
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__result_type__x
+#: selection:l10n.es.aeat.mod303.report,result_type:0
 msgid "To return - Foreign bank account"
 msgstr "Devolución - Cuenta extranjera"
 
