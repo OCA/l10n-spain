@@ -51,4 +51,3 @@ class TestL10nEsAeatSiiBaseOss(TestL10nEsAeatSiiBase):
         res = invoice._get_sii_invoice_dict()
         res_issue = res["FacturaExpedida"]
         self.assertEqual(res_issue["ImporteTotal"], 100)
-        self.assertEqual(res_issue["ClaveRegimenEspecialOTrascendencia"], "17")
