@@ -3,10 +3,10 @@
 # Copyright 2017 Studio73 - Jordi Tolsà <jordi@studio73.es>
 # Copyright 2018 Javi Melendez <javimelex@gmail.com>
 # Copyright 2018 PESOL - Angel Moya <angel.moya@pesol.es>
-# Copyright 2011-2021 Tecnativa - Pedro M. Baeza
 # Copyright 2020 Valentin Vinagre <valent.vinagre@sygel.es>
 # Copyright 2021 Tecnativa - João Marques
 # Copyright 2022 ForgeFlow - Lois Rilo
+# Copyright 2011-2023 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import json
@@ -77,19 +77,6 @@ class AccountMove(models.Model):
     def _default_sii_refund_type(self):
         inv_type = self._get_default_type()
         return "I" if inv_type in ["out_refund", "in_refund"] else False
-
-    def _default_sii_registration_key(self):
-        sii_key_obj = self.env["aeat.sii.mapping.registration.keys"]
-        invoice_type = self._get_default_type()
-        if invoice_type in ["in_invoice", "in_refund"]:
-            key = sii_key_obj.search(
-                [("code", "=", "01"), ("type", "=", "purchase")], limit=1
-            )
-        else:
-            key = sii_key_obj.search(
-                [("code", "=", "01"), ("type", "=", "sale")], limit=1
-            )
-        return key
 
     sii_description = fields.Text(
         string="SII computed description",
@@ -162,7 +149,9 @@ class AccountMove(models.Model):
     sii_registration_key = fields.Many2one(
         comodel_name="aeat.sii.mapping.registration.keys",
         string="SII registration key",
-        default=_default_sii_registration_key,
+        compute="_compute_sii_registration_key",
+        store=True,
+        readonly=False,
         # required=True, This is not set as required here to avoid the
         # set not null constraint warning
     )
@@ -234,6 +223,25 @@ class AccountMove(models.Model):
             else:
                 record.sii_registration_key_domain = False
 
+    @api.depends("fiscal_position_id", "move_type")
+    def _compute_sii_registration_key(self):
+        for invoice in self:
+            if invoice.fiscal_position_id:
+                if "out" in invoice.move_type:
+                    key = invoice.fiscal_position_id.sii_registration_key_sale
+                else:
+                    key = invoice.fiscal_position_id.sii_registration_key_purchase
+                # Only assign sii_registration_key if it's set in the fiscal position
+                if key:
+                    invoice.sii_registration_key = key
+            else:
+                domain = [
+                    ("code", "=", "01"),
+                    ("type", "=", "sale" if "out" in invoice.move_type else "purchase"),
+                ]
+                sii_key_obj = self.env["aeat.sii.mapping.registration.keys"]
+                invoice.sii_registration_key = sii_key_obj.search(domain, limit=1)
+
     @api.depends("amount_total")
     def _compute_macrodata(self):
         for inv in self:
@@ -246,45 +254,6 @@ class AccountMove(models.Model):
                 >= 0
             )
 
-    @api.onchange("sii_refund_type")
-    def onchange_sii_refund_type(self):
-        if (
-            self.sii_enabled
-            and self.sii_refund_type == "S"
-            and not self.refund_invoice_id
-        ):
-            self.sii_refund_type = False
-            return {
-                "warning": {
-                    "message": _("You must have at least one refunded invoice"),
-                }
-            }
-
-    @api.onchange("fiscal_position_id")
-    def onchange_fiscal_position_id_l10n_es_aeat_sii(self):
-        for invoice in self.filtered("fiscal_position_id"):
-            if "out" in invoice.move_type:
-                key = invoice.fiscal_position_id.sii_registration_key_sale
-            else:
-                key = invoice.fiscal_position_id.sii_registration_key_purchase
-            # Only assign sii_registration_key if is set in fiscal position
-            if key:
-                invoice.sii_registration_key = key
-
-    @api.onchange("partner_id", "company_id")
-    def _onchange_partner_id(self):
-        """Trigger fiscal position onchange for assigning SII key when creating
-        bills from purchase module with the button from PO, due to the special
-        way this is triggered through chained onchanges.
-        """
-        trigger_fp = (
-            self.partner_id.property_account_position_id != self.fiscal_position_id
-        )
-        res = super()._onchange_partner_id()
-        if trigger_fp:
-            self.onchange_fiscal_position_id_l10n_es_aeat_sii()
-        return res
-
     def _sii_get_partner(self):
         return self.commercial_partner_id
 
@@ -293,14 +262,7 @@ class AccountMove(models.Model):
         """Complete registration key for auto-generated invoices."""
         if "refund" in vals.get("move_type", "") and not vals.get("sii_refund_type"):
             vals["sii_refund_type"] = "I"
-        invoice = super().create(vals)
-        if (
-            invoice.is_invoice()
-            and vals.get("fiscal_position_id")
-            and not vals.get("sii_registration_key")
-        ):
-            invoice.onchange_fiscal_position_id_l10n_es_aeat_sii()
-        return invoice
+        return super().create(vals)
 
     def _raise_exception_sii(self, field_name):
         raise exceptions.UserError(
@@ -342,10 +304,7 @@ class AccountMove(models.Model):
             and not any(self.mapped("sii_refund_type"))
         ):
             vals["sii_refund_type"] = "I"
-        res = super().write(vals)
-        if vals.get("fiscal_position_id") and not vals.get("sii_registration_key"):
-            self.onchange_fiscal_position_id_l10n_es_aeat_sii()
-        return res
+        return super().write(vals)
 
     def unlink(self):
         """A registered invoice at the SII cannot be deleted"""
