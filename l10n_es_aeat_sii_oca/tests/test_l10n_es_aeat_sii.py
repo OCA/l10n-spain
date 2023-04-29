@@ -1,8 +1,8 @@
 # Copyright 2017 FactorLibre - Ismael Calvo <ismael.calvo@factorlibre.com>
-# Copyright 2017-2021 Tecnativa - Pedro M. Baeza
 # Copyright 2018 PESOL - Angel Moya <angel.moya@pesol.es>
 # Copyright 2020 Valentin Vinagre <valent.vinagre@sygel.es>
 # Copyright 2021 Tecnativa - João Marques
+# Copyright 2017-2023 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 import json
@@ -75,11 +75,18 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
         comparing the expected SII dict with .
         """
         module = module or "l10n_es_aeat_sii_oca"
+        domain = [
+            ("code", "=", "01"),
+            ("type", "=", "sale" if "out" in inv_type else "purchase"),
+        ]
+        sii_key_obj = self.env["aeat.sii.mapping.registration.keys"]
         vals = {
             "name": "TEST001",
             "partner_id": self.partner.id,
             "invoice_date": "2020-01-01",
             "move_type": inv_type,
+            # FIXME: This should be auto-assigned, but not working due to unknown glitch
+            "sii_registration_key": sii_key_obj.search(domain, limit=1).id,
             "invoice_line_ids": [],
         }
         for line in lines:
@@ -353,6 +360,8 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self.partner.write(
             {"vat": "F35999705", "country_id": self.env.ref("base.es").id}
         )
+        # Repeat get invoice data tests to ensure no change is due to the VAT number
+        # expressed without country, but setting the country
         self.test_get_invoice_data()
 
     def _check_binding_address(self, invoice):
