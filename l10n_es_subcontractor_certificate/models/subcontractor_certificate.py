@@ -27,7 +27,7 @@ REQUIRED_WARNING_SS = {
 class ResPartner(models.Model):
     _inherit = ["res.partner"]
 
-    certificate_required = fields.Boolean(string="Certificate Required")
+    certificate_required = fields.Boolean()
     certificate_expiration_aeat = fields.Date(string="AEAT Certificate Expiration")
     certificate_expired_aeat = fields.Boolean(
         string="AEAT Certificate Expirated", compute="_compute_certificate_expired_aeat"
@@ -70,13 +70,13 @@ class PurchaseOrder(models.Model):
         return res
 
 
-class AccountInvoice(models.Model):
-    _inherit = ["account.invoice"]
+class AccountMove(models.Model):
+    _inherit = ["account.move"]
 
     @api.onchange("partner_id", "company_id")
     def _onchange_partner_id(self):
-        res = super(AccountInvoice, self)._onchange_partner_id() or {}
-        if self.type == "in_invoice" and self.partner_id:
+        res = super(AccountMove, self)._onchange_partner_id() or {}
+        if self.move_type == "in_invoice" and self.partner_id:
             partner = self.partner_id
             if partner.certificate_required:
                 if not partner.certificate_expiration_aeat:

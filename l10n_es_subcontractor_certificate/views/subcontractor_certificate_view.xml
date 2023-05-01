@@ -5,16 +5,23 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
-            <xpath expr="//page[@name='sales_purchases']/group" position="inside">
-                <group attrs="{'invisible': [('supplier','=', False)]}">
-                    <field name="certificate_required" />
+            <xpath expr="//group[@name='purchase']" position="after">
+                <field name="supplier_rank" invisible="1" />
+                <group
+                    string="Subcontractor Certificate"
+                    attrs="{'invisible': [('supplier_rank', '&lt;', 1)]}"
+                >
+                    <field
+                        name="certificate_required"
+                        string="Is Subcontractor Certificate"
+                    />
                     <field
                         name="certificate_expiration_aeat"
-                        attrs="{'invisible': [('certificate_required','=', False)]}"
+                        attrs="{'invisible': [('certificate_required','=',False)]}"
                     />
                     <field
                         name="certificate_expiration_ss"
-                        attrs="{'invisible': [('certificate_required','=', False)]}"
+                        attrs="{'invisible': [('certificate_required','=',False)]}"
                     />
                 </group>
             </xpath>
