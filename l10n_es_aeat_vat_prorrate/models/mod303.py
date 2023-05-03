@@ -12,9 +12,10 @@ class L10nEsAeatMod303Report(models.Model):
 
     @api.depends("tax_line_ids", "tax_line_ids.amount", "casilla_44")
     def _compute_total_deducir(self):
-        super()._compute_total_deducir()
+        res = super()._compute_total_deducir()
         for report in self:
             report.total_deducir += report.casilla_44
+        return res
 
     casilla_44 = fields.Float(
         string="[44] Regularización de la prorrata",
