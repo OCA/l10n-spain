@@ -70,7 +70,10 @@ class AccountMove(models.Model):
         res = super()._get_sii_invoice_dict_in(cancel=cancel)
         if res.get("FacturaRecibida") and self.sii_dua_invoice:
             if not self.sii_lc_operation:
-                res["FacturaRecibida"]["TipoFactura"] = "F5"
+                res["FacturaRecibida"]["TipoFactura"] = (
+                    "F5" if self.move_type == "in_invoice" else "R4"
+                )
+
             res["FacturaRecibida"].pop("FechaOperacion", None)
             nif = self.company_id.partner_id._parse_aeat_vat_info()[2]
             res["FacturaRecibida"]["IDEmisorFactura"] = {"NIF": nif}
