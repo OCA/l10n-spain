@@ -1014,7 +1014,19 @@ class TicketBAIInvoice(models.Model):
         res = []
         not_exempted_taxes_isp = OrderedDict()
         not_exempted_taxes_not_isp = OrderedDict()
+        grouped_taxes = {}
         for tax in not_exempted_taxes:
+            if not grouped_taxes.get(tax, False):
+                grouped_taxes[tax] = {
+                    "base": 0,
+                    "amount": 0,
+                    "amount_total": 0,
+                    "re_amount": 0,
+                    "re_amount_total": 0,
+                    "surcharge_or_simplified_regime": 0,
+                    "not_exempted_type": 0,
+                }
+        for tax in grouped_taxes:
             tax_details = OrderedDict(
                 [
                     ("BaseImponible", tax.base),
