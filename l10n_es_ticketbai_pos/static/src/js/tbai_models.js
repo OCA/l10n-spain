@@ -181,6 +181,7 @@ odoo.define("l10n_es_ticketbai_pos.tbai_models", function (require) {
             var company = this.pos.company;
             var vat_keys = [this.vat_regime_key];
             var self = this;
+            var simplified = "N";
 
             if (
                 order_json !== null &&
@@ -192,6 +193,9 @@ odoo.define("l10n_es_ticketbai_pos.tbai_models", function (require) {
                 }
                 if (this.vat_regime_key3 !== null) {
                     vat_keys.push(this.vat_regime_key3);
+                }
+                if (company.tbai_vat_regime_simplified) {
+                    simplified = "S";
                 }
                 tbai_json.Invoice = {
                     simple: true,
@@ -213,6 +217,7 @@ odoo.define("l10n_es_ticketbai_pos.tbai_models", function (require) {
                         self.pos.format_currency_no_symbol(order_json.amount_total)
                     ),
                     vatKeys: vat_keys,
+                    simplified: simplified,
                 };
                 tbai_json.Invoice.vatLines =
                     this.get_tbai_vat_lines_from_json(order_json);
