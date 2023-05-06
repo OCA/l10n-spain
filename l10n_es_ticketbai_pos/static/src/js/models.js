@@ -26,6 +26,7 @@ odoo.define("l10n_es_ticketbai_pos.models", function (require) {
         "tbai_tax_agency_id",
         "tbai_protected_data",
         "tbai_protected_data_txt",
+        "tbai_vat_regime_simplified",
     ]);
 
     models.load_fields("res.country", ["code"]);
