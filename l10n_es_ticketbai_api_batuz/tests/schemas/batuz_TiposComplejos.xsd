@@ -1,0 +1,1837 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/batuz_TiposComplejos.xsd"
+	xmlns:tiposcomplejos="https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/batuz_TiposComplejos.xsd"
+	xmlns:enum="https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/batuz_Enumerados.xsd"
+	xmlns:tiposbasicos="https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/batuz_TiposBasicos.xsd">
+
+	<import namespace="https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/batuz_Enumerados.xsd" schemaLocation="batuz_Enumerados.xsd"/>
+	<import namespace="https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/batuz_TiposBasicos.xsd" schemaLocation="batuz_TiposBasicos.xsd"/>
+
+	<complexType name="Cabecera140Type">
+		<sequence>
+			<element name="Modelo" type="enum:Modelo140Enum"/>
+			<element name="Capitulo" type="enum:CapituloModelo140Enum"/>
+			<element name="Subcapitulo" type="enum:SubcapituloModelo140Enum" minOccurs="0"/>
+			<element name="Operacion" type="enum:OperacionEnum"/>
+			<element name="Version" type="enum:IDVersionEnum"/>
+			<element name="Ejercicio" type="tiposbasicos:YearType"/>
+			<element name="ObligadoTributario" type="tiposcomplejos:NIFPersonaType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="Cabecera240Type">
+		<sequence>
+			<element name="Modelo" type="enum:Modelo240Enum"/>
+			<element name="Capitulo" type="enum:CapituloModelo240Enum"/>
+			<element name="Subcapitulo" type="enum:SubcapituloModelo240Enum" minOccurs="0"/>
+			<element name="Operacion" type="enum:OperacionEnum"/>
+			<element name="Version" type="enum:IDVersionEnum"/>
+			<element name="Ejercicio" type="tiposbasicos:YearType"/>
+			<element name="ObligadoTributario" type="tiposcomplejos:NIFPersonaType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="CabeceraFacturaGastosRecibidasType">
+		<sequence>
+			<element name="SerieFactura" type="tiposbasicos:TextMax20Type" minOccurs="0"/>
+			<element name="NumFactura" type="tiposbasicos:TextMax20Type"/>
+			<element name="NumFacturaFin" type="tiposbasicos:TextMax20Type" minOccurs="0"/>
+			<element name="FechaExpedicionFactura" type="tiposbasicos:FechaType"/>
+			<element name="FechaOperacion" type="tiposbasicos:FechaType" minOccurs="0"/>
+			<element name="FechaRecepcion" type="tiposbasicos:FechaType"/>
+			<element name="TipoFactura" type="enum:ClaveTipoFacturaGastosEnum"/>
+			<element name="FacturaRectificativa" type="tiposcomplejos:FacturaRectificativaImporteType" minOccurs="0"/>
+			<element name="FacturasRectificadasSustituidas" type="tiposcomplejos:FacturasRectificadasSustituidasType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="CabeceraFacturaType">
+		<sequence>
+			<element name="SerieFactura" type="tiposbasicos:TextMax20Type" minOccurs="0"/>
+			<element name="NumFactura" type="tiposbasicos:TextMax20Type"/>
+			<element name="FechaExpedicionFactura" type="tiposbasicos:FechaType"/>
+			<element name="FacturaSimplificada" type="enum:SiNoEnum" minOccurs="0"/>
+			<element name="FacturaEmitidaSustitucionSimplificada" type="enum:SiNoEnum" minOccurs="0"/>
+			<element name="AsientoResumen" type="enum:SiNoEnum" minOccurs="0"/>
+			<element name="NumFacturaFin" type="tiposbasicos:TextMax20Type" minOccurs="0"/>
+			<element name="FacturaRectificativa" type="tiposcomplejos:FacturaRectificativaImporteType" minOccurs="0"/>
+			<element name="FacturasRectificadasSustituidas" type="tiposcomplejos:FacturasRectificadasSustituidasType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="NIFPersonaType">
+		<sequence>
+			<element name="NIF" type="tiposbasicos:NIFType"/>
+			<element name="ApellidosNombreRazonSocial" type="tiposbasicos:TextMax120Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="EntidadSucedidaType">
+		<sequence>
+			<element name="NombreRazon" type="tiposbasicos:TextMax120Type"/>
+			<element name="NIF" type="tiposbasicos:NIFType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DocumentoPersonaType">
+		<sequence>
+			<choice>
+				<element name="NIF" type="tiposbasicos:NIFType"/>
+				<element name="IDOtro" type="tiposcomplejos:IDOtroType"/>
+			</choice>
+			<element name="ApellidosNombreRazonSocial" type="tiposbasicos:TextMax120Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DocumentoPersonaOpcionalType">
+		<sequence>
+			<choice>
+				<element name="NIF" type="tiposbasicos:NIFType"/>
+				<element name="IDOtro" type="tiposcomplejos:IDOtroType"/>
+			</choice>
+			<element name="ApellidosNombreRazonSocial" type="tiposbasicos:TextMax120Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DocumentoPersonaCodigoPostalType">
+		<sequence>
+			<choice>
+				<element name="NIF" type="tiposbasicos:NIFType"/>
+				<element name="IDOtro" type="tiposcomplejos:IDOtroType"/>
+			</choice>
+			<element name="ApellidosNombreRazonSocial" type="tiposbasicos:TextMax120Type"/>
+			<element name="CodigoPostal" type="tiposbasicos:stringOf5Digits" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="NIFNIFIVAType">
+		<sequence>
+			<choice>
+				<element name="NIF" type="tiposbasicos:NIFType"/>
+				<element name="IDOtro" type="tiposcomplejos:NIFIVAType"/>
+			</choice>
+		</sequence>
+	</complexType>
+
+	<complexType name="NIFNIFIVAPersonaType">
+		<sequence>
+			<choice>
+				<element name="NIF" type="tiposbasicos:NIFType"/>
+				<element name="IDOtro" type="tiposcomplejos:NIFIVAType"/>
+			</choice>
+			<element name="ApellidosNombreRazonSocial" type="tiposbasicos:TextMax120Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DocumentoType">
+		<sequence>
+			<choice>
+				<element name="NIF" type="tiposbasicos:NIFType"/>
+				<element name="IDOtro" type="tiposcomplejos:IDOtroType"/>
+			</choice>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDOtroType">
+		<sequence>
+			<element name="CodigoPais" type="enum:CountryEnum" minOccurs="0"/>
+			<element name="IDType" type="enum:TipoDocumentoIdentificativoEnum"/>
+			<element name="ID" type="tiposbasicos:TextMax20Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="NIFIVAType">
+		<sequence>
+			<element name="CodigoPais" type="enum:CountryMiembroType" minOccurs="0"/>
+			<element name="IDType" type="enum:NIF_IVA"/>
+			<element name="ID" type="tiposbasicos:TextMax20Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DeclaradoIntracomunitarioType">
+		<sequence>
+			<element name="NIFRepresentante" type="tiposbasicos:NIFType" minOccurs="0"/>
+			<choice>
+				<element name="NIF" type="tiposbasicos:NIFType"/>
+				<element name="IDOtro" type="tiposcomplejos:IDOtroType"/>
+			</choice>
+			<element name="ApellidosNombreRazonSocial" type="tiposbasicos:TextMax120Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RentaIngresosType">
+		<sequence>
+			<element name="DetalleRenta" type="tiposcomplejos:DetalleRentaIngresosType" minOccurs="1" maxOccurs="10"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDFacturaType">
+		<sequence>
+			<element name="SerieFactura" type="tiposbasicos:TextMax20Type" minOccurs="0"/>
+			<element name="NumFactura" type="tiposbasicos:TextMax20Type"/>
+			<element name="FechaExpedicionFactura" type="tiposbasicos:FechaType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="ClavesTBAIType">
+		<sequence>
+			<element name="IDClave" type="tiposcomplejos:IDClaveTBAIType" maxOccurs="3"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="ClavesIngresoType">
+		<sequence>
+			<element name="IDClave" type="tiposcomplejos:IDClaveIngresoType" maxOccurs="3"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="ClavesGastoType">
+		<sequence>
+			<element name="IDClave" type="tiposcomplejos:IDClaveGastoType" maxOccurs="3"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="ClavesFacturaEmitidaType">
+		<sequence>
+			<element name="IDClave" type="tiposcomplejos:IDClaveFacturaEmitidaType" maxOccurs="3"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="ClavesFacturaRecibidaType">
+		<sequence>
+			<element name="IDClave" type="tiposcomplejos:IDClaveFacturaRecibidaType" maxOccurs="3"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDClaveTBAIType">
+		<sequence>
+			<element name="ClaveRegimenIvaOpTrascendencia" type="enum:OperacionTrascendenciaTributariaTBAIEnum"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDClaveIngresoType">
+		<sequence>
+			<element name="ClaveRegimenIvaOpTrascendencia" type="enum:OperacionTrascendenciaTributariaIngresoEnum"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDClaveGastoType">
+		<sequence>
+			<element name="ClaveRegimenIvaOpTrascendencia" type="enum:OperacionTrascendenciaTributariaGastoEnum"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDClaveFacturaEmitidaType">
+		<sequence>
+			<element name="ClaveRegimenIvaOpTrascendencia" type="enum:OperacionTrascendenciaTributariaFacturaEmitidaEnum"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDClaveFacturaRecibidaType">
+		<sequence>
+			<element name="ClaveRegimenIvaOpTrascendencia" type="enum:OperacionTrascendenciaTributariaFacturaRecibidaEnum"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DetalleRentaIngresosType">
+		<sequence>
+			<element name="Epigrafe" type="tiposbasicos:stringMax7Digits"/>
+			<element name="IngresoAComputarIRPFDiferenteBaseImpoIVA" type="enum:SiNoEnum" minOccurs="0"/>
+			<element name="ImporteIngresoIRPF" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="CriterioCobrosYPagos" type="enum:SiNoEnum" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="FacturaRectificativaImporteType">
+		<sequence>
+			<element name="Codigo" type="enum:ClaveCodigoFacturaRectificativaEnum"/>
+			<element name="Tipo" type="enum:ClaveTipoRectificativaEnum"/>
+			<element name="ImporteRectificacionSustitutiva" type="tiposcomplejos:ImporteRectificacionSustitutivaType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="ImporteRectificacionSustitutivaType">
+		<sequence>
+			<element name="BaseRectificada" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="CuotaRectificada" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="CuotaRecargoRectificada" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="FacturasRectificadasSustituidasType">
+		<sequence>
+			<element name="IDFacturaRectificadaSustituida" type="tiposcomplejos:IDFacturaType" minOccurs="1" maxOccurs="100"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DetalleInmuebleType">
+		<sequence>
+			<element name="SituacionInmueble" type="enum:SituacionInmuebleEnum"/>
+			<element name="ReferenciaCatastral" type="tiposbasicos:TextMax25Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DesgloseFacturaType">
+		<sequence>
+			<element name="Sujeta" type="tiposcomplejos:SujetaType" minOccurs="0"/>
+			<element name="NoSujeta" type="tiposcomplejos:NoSujetaType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="SujetaType">
+		<sequence>
+			<element name="Exenta" type="tiposcomplejos:ExentaType" minOccurs="0"/>
+			<element name="NoExenta" type="tiposcomplejos:NoExentaType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="NoSujetaType">
+		<sequence>
+			<element name="DetalleNoSujeta" type="tiposcomplejos:DetalleNoSujetaType" minOccurs="1" maxOccurs="2"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DesgloseOperacionType">
+		<sequence>
+			<element name="PrestacionServicios" type="tiposcomplejos:DesgloseFacturaType" minOccurs="0"/>
+			<element name="Entrega" type="tiposcomplejos:DesgloseFacturaType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="OtraInformacionTrascendenciaTributariaType">
+		<sequence>
+			<element name="NIFRepresentanteDeclarado" type="tiposbasicos:NIFType" minOccurs="0"/>
+			<element name="Inmuebles" type="tiposcomplejos:InmueblesType" minOccurs="0"/>
+			<element name="ImporteTransmisionInmueblesSujetoAIVA" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="NumRegistroAcuerdoFacturacion" type="tiposbasicos:TextMax15Type" minOccurs="0"/>
+			<element name="ReferenciaExterna" type="tiposbasicos:TextMax60Type" minOccurs="0"/>
+			<element name="Cupon" type="enum:SiNoEnum" minOccurs="0"/>
+			<element name="EntidadSucedida" type="tiposcomplejos:EntidadSucedidaType" minOccurs="0"/>
+			<element name="FacturacionDispAdicionalSegundaYQuinta" type="enum:SiNoEnum" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="InmueblesType">
+		<sequence>
+			<element name="DetalleInmueble" type="tiposcomplejos:DetalleInmuebleType" minOccurs="1" maxOccurs="1000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="TipoDesgloseType">
+		<sequence>
+			<choice>
+				<element name="DesgloseFactura" type="tiposcomplejos:DesgloseFacturaType"/>
+				<element name="DesgloseTipoOperacion" type="tiposcomplejos:DesgloseOperacionType"/>
+			</choice>
+		</sequence>
+	</complexType>
+
+	<complexType name="DatosFacturaIngresoType">
+		<sequence>
+			<element name="FechaOperacion" type="tiposbasicos:FechaType" minOccurs="0"/>
+			<element name="DescripcionFactura" type="tiposbasicos:TextMax250Type"/>
+			<element name="ImporteTotalFactura" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="RetencionSoportada" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="BaseImponibleACoste" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="Claves" type="tiposcomplejos:ClavesIngresoType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="ExentaType">
+		<sequence>
+			<element name="DetalleExenta" type="tiposcomplejos:DetalleExentaType" minOccurs="1" maxOccurs="7"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DetalleExentaType">
+		<sequence>
+			<element name="CausaExencion" type="enum:CausaExencionEnum"/>
+			<element name="BaseImponible" type="tiposbasicos:ImporteSgn12.2Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="NoExentaType">
+		<sequence>
+			<element name="DetalleNoExenta" type="tiposcomplejos:DetalleNoExentaType" minOccurs="1" maxOccurs="2"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DetalleNoExentaType">
+		<sequence>
+			<element name="TipoNoExenta" type="enum:TipoOperacionSujetaNoExentaEnum"/>
+			<element name="DesgloseIVA" type="tiposcomplejos:DesgloseIVAType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DesgloseIVAType">
+		<sequence>
+			<element name="DetalleIVA" type="tiposcomplejos:ImportesDetalleIVAType" minOccurs="1" maxOccurs="6"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DetalleNoSujetaType">
+		<sequence>
+			<element name="CausaNoSujecion" type="enum:CausaNoSujetaEnum"/>
+			<element name="Importe" type="tiposbasicos:ImporteSgn12.2Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="ImportesDetalleIVAType">
+		<sequence>
+			<element name="BaseImponible" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="TipoImpositivo" type="tiposbasicos:Importe3.2Type" minOccurs="0"/>
+			<element name="CuotaImpuesto" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="TipoRecargoEquivalencia" type="tiposbasicos:Importe3.2Type" minOccurs="0"/>
+			<element name="CuotaRecargoEquivalencia" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="OperacionEnRecargoDeEquivalenciaORegimenSimplificado" type="enum:SiNoEnum" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IngresosConSGCodificadoType">
+		<sequence>
+			<element name="Ingreso" type="tiposcomplejos:IngresoConSGCodificadoType" minOccurs="1" maxOccurs="1000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IngresoConSGCodificadoType">
+		<sequence>
+			<element name="TicketBai" type="base64Binary"/>
+			<element name="Renta" type="tiposcomplejos:RentaIngresosType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IngresosSinSGType">
+		<sequence>
+			<element name="Ingreso" type="tiposcomplejos:IngresoSinSGType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IngresoSinSGType">
+		<sequence>
+			<element name="Factura" type="tiposcomplejos:FacturaSinSGType"/>
+			<element name="Renta" type="tiposcomplejos:RentaIngresosType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="FacturaSinSGType">
+		<sequence>
+			<element name="Destinatarios" type="tiposcomplejos:DestinatariosType" minOccurs="0"/>
+			<element name="VariosDestinatarios" type="enum:SiNoEnum" minOccurs="0"/>
+			<element name="EmitidaPorTercerosODestinatario" type="enum:EmitidaPorTercerosEnum" minOccurs="0"/>
+			<element name="CabeceraFactura" type="tiposcomplejos:CabeceraFacturaType"/>
+			<element name="DatosFactura" type="tiposcomplejos:DatosFacturaIngresoType"/>
+			<element name="TipoDesglose" type="tiposcomplejos:TipoDesgloseType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IngresosSinFacturaType">
+		<sequence>
+			<element name="Ingreso" type="tiposcomplejos:IngresoSinFacturaType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IngresoSinFacturaType">
+		<sequence>
+			<element name="TipoIngreso" type="enum:TipoIngresoEnum"/>
+			<element name="DescripcionIngreso" type="tiposbasicos:TextMax40Type"/>
+			<element name="Pagador" type="tiposcomplejos:DocumentoPersonaType" minOccurs="0"/>
+			<element name="FechaOperacion" type="tiposbasicos:FechaType"/>
+			<element name="Renta" type="tiposcomplejos:DetalleRentaIngresosSinFacturaType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DetalleRentaIngresosSinFacturaType">
+		<sequence>
+			<element name="Epigrafe" type="tiposbasicos:stringMax7Digits"/>
+			<element name="Linea" type="tiposbasicos:int1to99Type"/>
+			<element name="ImporteIngresoIRPF" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="CriterioCobrosYPagos" type="enum:SiNoEnum" minOccurs="0"/>
+			<element name="RetencionSoportada" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="BienesAltaType">
+		<sequence>
+			<element name="BienAlta" type="tiposcomplejos:BienAltaType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="BienAltaType">
+		<sequence>
+			<element name="ReferenciaBien" type="tiposbasicos:TextMax10Type"/>
+			<element name="MarcaBienInversionEfectosIVA" type="enum:SiNoEnum" minOccurs="0"/>
+			<element name="FechaOperacion" type="tiposbasicos:FechaType"/>
+			<element name="FechaInicioUtilizacion" type="tiposbasicos:FechaType" minOccurs="0"/>
+			<element name="Titulo" type="enum:TituloEnum"/>
+			<element name="TipoBien" type="enum:TipoBienEnum"/>
+			<element name="DatosBien" type="tiposcomplejos:DatosTipoBienType"/>
+			<element name="Epigrafe" type="tiposbasicos:stringMax7Digits"/>
+			<element name="PorcentajeAfectacion" type="tiposbasicos:decimalPorcentajeType" minOccurs="0"/>
+			<element name="ValorAmortizableInicial" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="SistemaAmortizacion" type="enum:SistemaAmortizacionEnum" minOccurs="0"/>
+			<element name="AmortizacionAcumulada31DiciEjercicioAnt" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DatosTipoBienType">
+		<sequence>
+			<choice>
+				<element name="Inmueble" type="tiposcomplejos:TipoBienInmuebleType"/>
+				<element name="Vehiculo" type="tiposcomplejos:TipoBienVehiculoType"/>
+				<element name="Telefono" type="tiposcomplejos:TipoBienTelefonoType"/>
+				<element name="Otro" type="tiposcomplejos:TipoBienOtroType"/>
+			</choice>
+		</sequence>
+	</complexType>
+
+	<complexType name="TipoBienInmuebleType">
+		<sequence>
+			<element name="Direccion" type="tiposcomplejos:DireccionType"/>
+			<element name="MarcaReferenciaCatastralInexistente" type="enum:SiNoEnum" minOccurs="0"/>
+			<element name="ReferenciaCatastral" type="tiposbasicos:TextMax25Type" minOccurs="0"/>
+			<element name="ImporteValorSuelo" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="ImporteValorConstruccion" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="TipoBienVehiculoType">
+		<sequence>
+			<element name="TipoVehiculo" type="enum:TipoVehiculoEnum"/>
+			<element name="Matricula" type="tiposbasicos:TextMax12Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="TipoBienTelefonoType">
+		<sequence>
+			<element name="NumeroTelefono" type="tiposbasicos:TextMax9Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="TipoBienOtroType">
+		<sequence>
+			<element name="DescripcionAdicional" type="tiposbasicos:TextMax50Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DireccionType">
+		<sequence>
+			<element name="CodigoPais" type="enum:CountryEnum" minOccurs="0"/>
+			<element name="Siglas" type="enum:SiglasEnum"/>
+			<element name="Via" type="tiposbasicos:TextMax30Type"/>
+			<element name="Numero" type="tiposbasicos:TextMax5Type"/>
+			<element name="Letra" type="tiposbasicos:TextMax1Type" minOccurs="0"/>
+			<element name="Piso" type="tiposbasicos:TextMax2Type" minOccurs="0"/>
+			<element name="Mano" type="tiposbasicos:TextMax2Type" minOccurs="0"/>
+			<element name="Municipio" type="tiposbasicos:TextMax25Type"/>
+			<element name="CodigoPostal" type="tiposbasicos:stringOf5Digits" minOccurs="0"/>
+			<element name="CodigoProvincia" type="enum:ProvinciaEnum" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="BienesBajaType">
+		<sequence>
+			<element name="BienBaja" type="tiposcomplejos:BienBajaType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="BienBajaType">
+		<sequence>
+			<element name="ReferenciaBien" type="tiposbasicos:TextMax10Type"/>
+			<element name="FechaOperacion" type="tiposbasicos:FechaType"/>
+			<element name="Motivo" type="enum:MotivoBajaBienEnum"/>
+			<element name="DescripcionMotivoBaja" type="tiposbasicos:TextMax50Type" minOccurs="0"/>
+			<element name="IdentiFacturaJustificante" type="tiposbasicos:TextMax60Type" minOccurs="0"/>
+			<element name="Renta" type="tiposcomplejos:GananciaOPerdidaType" minOccurs="0"/>
+			<element name="IVA" type="tiposcomplejos:IVABienBajaType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IVABienBajaType">
+		<sequence>
+			<element name="ProrrataAnoInicio" type="tiposbasicos:intPorcentajeType" minOccurs="0"/>
+			<element name="RegularizacionTransmisionOtros" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="GananciaOPerdidaType">
+		<sequence>
+			<choice>
+				<element name="Ganancia" type="tiposcomplejos:GananciaDetalleType"/>
+				<element name="Perdida" type="tiposbasicos:ImporteSgn12.2Type"/>
+			</choice>
+		</sequence>
+	</complexType>
+
+	<complexType name="GananciaDetalleType">
+		<sequence>
+			<element name="GananciaTransmision" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="GananciaExentaReinversion" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="BienesMejoraType">
+		<sequence>
+			<element name="BienMejora" type="tiposcomplejos:BienMejoraType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="BienMejoraType">
+		<sequence>
+			<element name="ReferenciaBien" type="tiposbasicos:TextMax10Type"/>
+			<element name="ReferenciaBienOriginal" type="tiposbasicos:TextMax10Type"/>
+			<element name="FechaOperacion" type="tiposbasicos:FechaType"/>
+			<element name="FechaInicioUtilizacion" type="tiposbasicos:FechaType" minOccurs="0"/>
+			<element name="Titulo" type="enum:TituloEnum"/>
+			<element name="PorcentajeAfectacion" type="tiposbasicos:decimalPorcentajeType" minOccurs="0"/>
+			<element name="ValorAmortizableInicial" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="SistemaAmortizacion" type="enum:SistemaAmortizacionEnum" minOccurs="0"/>
+			<element name="AmortizacionAcumulada31DiciEjercicioAnt" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="BienesRegularizacionAnualType">
+		<sequence>
+			<element name="BienRegularizacionAnual" type="tiposcomplejos:BienRegularizacionAnualType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="BienRegularizacionAnualType">
+		<sequence>
+			<element name="ReferenciaBien" type="tiposbasicos:TextMax10Type"/>
+			<element name="ProrrataAnoInicio" type="tiposbasicos:intPorcentajeType"/>
+			<element name="ProrrataAnualDefinitiva" type="tiposbasicos:intPorcentajeType"/>
+			<element name="RegularizacionAnualDeduccion" type="tiposbasicos:ImporteSgn12.2Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="GastosConFacturaType">
+		<sequence>
+			<element name="Gasto" type="tiposcomplejos:GastoConFacturaType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+	<complexType name="GastoConFacturaType">
+		<sequence>
+			<element name="EmisorFacturaRecibida" type="tiposcomplejos:DocumentoPersonaType"/>
+			<element name="CabeceraFactura" type="tiposcomplejos:CabeceraFacturaGastosRecibidasType"/>
+			<element name="DatosFactura" type="tiposcomplejos:DatosFacturaGastoType"/>
+			<element name="RentaIVA" type="tiposcomplejos:RentaIVAGastoType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DatosFacturaGastoType">
+		<sequence>
+			<element name="DescripcionOperacion" type="tiposbasicos:TextMax250Type"/>
+			<element name="Claves" type="tiposcomplejos:ClavesGastoType"/>
+			<element name="ImporteTotalFactura" type="tiposbasicos:ImporteSgn12.2Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RentaIVAGastoType">
+		<sequence>
+			<element name="DetalleRentaIVA" type="tiposcomplejos:DetalleRentaIVAGastoType" minOccurs="1" maxOccurs="100"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DetalleRentaIVAGastoType">
+		<sequence>
+			<element name="Epigrafe" type="tiposbasicos:stringMax7Digits"/>
+			<element name="BienAfectoIRPFYOIVA" type="enum:BienAfectoIRPFYOIVAEnum" minOccurs="0"/>
+			<element name="Concepto" type="enum:ConceptoEnum" minOccurs="0"/>
+			<element name="ReferenciaBien" type="tiposbasicos:TextMax10Type" minOccurs="0"/>
+			<element name="InversionSujetoPasivo" type="enum:SiNoEnum"/>
+			<element name="OperacionEnRecargoDeEquivalenciaORegimenSimplificado" type="enum:OperacionRecargoEquivalenciaORegimenSimplificadoEnum" minOccurs="0"/>
+			<element name="BaseImponible" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="TipoImpositivo" type="tiposbasicos:Importe3.2Type" minOccurs="0"/>
+			<element name="CuotaIVASoportada" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="CuotaIVADeducible" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="TipoRecargoEquivalencia" type="tiposbasicos:Importe3.2Type" minOccurs="0"/>
+			<element name="CuotaRecargoEquivalencia" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="PorcentajeCompensacionREAGYP" type="tiposbasicos:Importe3.2Type" minOccurs="0"/>
+			<element name="ImporteCompensacionREAGYP" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="ImporteGastoIRPF" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="CriterioCobrosYPagos" type="enum:SiNoEnum" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="GastosSinFacturaType">
+		<sequence>
+			<element name="Gasto" type="tiposcomplejos:GastoSinFacturaType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="GastoSinFacturaType">
+		<sequence>
+			<element name="ContraparteDeclaradaProveedora" type="tiposcomplejos:DocumentoPersonaType" minOccurs="0"/>
+			<element name="FechaOperacion" type="tiposbasicos:FechaType"/>
+			<element name="Renta" type="tiposcomplejos:RentaGastosLineaType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RentaGastosLineaType">
+		<sequence>
+			<element name="Epigrafe" type="tiposbasicos:stringMax7Digits"/>
+			<element name="Concepto" type="enum:ConceptoEnum"/>
+			<element name="Linea" type="tiposbasicos:int1to99Type"/>
+			<element name="ReferenciaBien" type="tiposbasicos:TextMax10Type" minOccurs="0"/>
+			<element name="ImporteGastoIRPF" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="CriterioCobrosYPagos" type="enum:SiNoEnum" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="BienesInversionType">
+		<sequence>
+			<element name="Bien" type="tiposcomplejos:BienInversionType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="BienInversionType">
+		<sequence>
+			<element name="IdentificacionBien" type="tiposbasicos:TextMax40Type"/>
+			<element name="FechaInicioUtilizacion" type="tiposbasicos:FechaType"/>
+			<element name="ProrrataAnualDefinitiva" type="tiposbasicos:intPorcentajeType"/>
+			<element name="RegularizacionAnualDeduccion" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="EntregaBienesInversionPeriodoRegularizacion" type="tiposcomplejos:EntregaBienesInversionPeriodoRegularizacionType" minOccurs="0"/>
+			<element name="OtraInformacionTrascendenciaTributaria" type="tiposcomplejos:OtraInfTrascendenciaTributariaType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="EntregaBienesInversionPeriodoRegularizacionType">
+		<sequence>
+			<element name="FacturaEntrega" type="tiposcomplejos:IDFacturaType"/>
+			<element name="RegularizacionDeduccionEfectuada" type="tiposbasicos:ImporteSgn12.2Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="OtraInfTrascendenciaTributariaType">
+		<sequence>
+			<element name="NumRegistroAcuerdoFacturacion" type="tiposbasicos:TextMax15Type" minOccurs="0"/>
+			<element name="ReferenciaExterna" type="tiposbasicos:TextMax60Type" minOccurs="0"/>
+			<element name="EntidadSucedida" type="tiposcomplejos:EntidadSucedidaType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="TransferenciasPericialesOtrosPJType">
+		<sequence>
+			<element name="TransferenciaPericialOtro" type="tiposcomplejos:TransferenciaPericialOtroPJType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="TransferenciaPericialOtroPJType">
+		<sequence>
+			<element name="EmisorFactura" type="tiposcomplejos:NIFNIFIVAPersonaType"/>
+			<element name="SerieFactura" type="tiposbasicos:TextMax20Type" minOccurs="0"/>
+			<element name="NumFactura" type="tiposbasicos:TextMax20Type"/>
+			<element name="FechaExpedicionFactura" type="tiposbasicos:FechaType"/>
+			<element name="FechaOperacion" type="tiposbasicos:FechaType"/>
+			<element name="Declarado" type="tiposcomplejos:NIFNIFIVAPersonaType"/>
+			<element name="DetalleOperacion" type="tiposcomplejos:DetalleOpIntracomunitariaTransfPericialesOtrosPJType"/>
+			<element name="OtraInformacionTrascendenciaTributaria" type="tiposcomplejos:OtraInformacionTrascendenciaTributariaOpIntraType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DetalleOpIntracomunitariaTransfPericialesOtrosPJType">
+		<sequence>
+			<element name="TipoOperacion" type="enum:TipoOperacionIntracomunitariaEnum"/>
+			<element name="ClaveDeclarado" type="enum:TipoDeclaradoEnum"/>
+			<element name="CodigoEstadoMiembroOrigenODestino" type="enum:CountryMiembroType"/>
+			<element name="PlazoOperacion" type="tiposbasicos:intOf3Digits" minOccurs="0"/>
+			<element name="DescripcionBienes" type="tiposbasicos:TextMax35Type"/>
+			<element name="DireccionOperador" type="tiposbasicos:TextMax120Type"/>
+			<element name="OtrasFacturasDocumentacion" type="tiposbasicos:TextMax135Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="OtraInformacionTrascendenciaTributariaOpIntraType">
+		<sequence>
+			<element name="NIFRepresentanteDeclarado" type="tiposbasicos:NIFType" minOccurs="0"/>
+			<element name="NumRegistroAcuerdoFacturacion" type="tiposbasicos:TextMax15Type" minOccurs="0"/>
+			<element name="ReferenciaExterna" type="tiposbasicos:TextMax60Type" minOccurs="0"/>
+			<element name="EntidadSucedida" type="tiposcomplejos:EntidadSucedidaType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="FacturasRecibidasType">
+		<sequence>
+			<element name="FacturaRecibida" type="tiposcomplejos:FacturaRecibidaType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="FacturaRecibidaType">
+		<sequence>
+			<element name="EmisorFacturaRecibida" type="tiposcomplejos:DocumentoPersonaType"/>
+			<element name="CabeceraFactura" type="tiposcomplejos:CabeceraFacturaGastosRecibidasType"/>
+			<element name="DatosFactura" type="tiposcomplejos:DatosFacturaRecibidaType"/>
+			<element name="IVA" type="tiposcomplejos:IVAFacturaRecibidaType"/>
+			<element name="OtraInformacionTrascendenciaTributaria" type="tiposcomplejos:OtraInformacionTrascendenciaTributariaRecibidaType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DatosFacturaRecibidaType">
+		<sequence>
+			<element name="DescripcionOperacion" type="tiposbasicos:TextMax250Type"/>
+			<element name="Claves" type="tiposcomplejos:ClavesFacturaRecibidaType"/>
+			<element name="ImporteTotalFactura" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="BaseImponibleACoste" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IVAFacturaRecibidaType">
+		<sequence>
+			<element name="DetalleIVA" type="tiposcomplejos:DetalleIVAFacturaRecibidaType" minOccurs="1" maxOccurs="1000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DetalleIVAFacturaRecibidaType">
+		<sequence>
+			<element name="CompraBienesCorrientesGastosBienesInversion" type="enum:TipoCompraGastoBienEnum"/>
+			<element name="InversionSujetoPasivo" type="enum:SiNoEnum"/>
+			<element name="BaseImponible" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="TipoImpositivo" type="tiposbasicos:Importe3.2Type" minOccurs="0"/>
+			<element name="CuotaIVASoportada" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="CuotaIVADeducible" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="PorcentajeCompensacionREAGYP" type="tiposbasicos:Importe3.2Type" minOccurs="0"/>
+			<element name="ImporteCompensacionREAGYP" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="OtraInformacionTrascendenciaTributariaRecibidaType">
+		<sequence>
+			<element name="FechaRegistroContable" type="tiposbasicos:FechaType" minOccurs="0"/>
+			<element name="NumRegistroAcuerdoFacturacion" type="tiposbasicos:TextMax15Type" minOccurs="0"/>
+			<element name="ReferenciaExterna" type="tiposbasicos:TextMax60Type" minOccurs="0"/>
+			<element name="EntidadSucedida" type="tiposcomplejos:EntidadSucedidaType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="FacturasEmitidasConSGCodificadoType">
+		<sequence>
+			<element name="FacturaEmitida" type="tiposcomplejos:DetalleEmitidaConSGCodificadoType" minOccurs="1" maxOccurs="1000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DetalleEmitidaConSGCodificadoType">
+		<sequence>
+			<element name="TicketBai" type="base64Binary"/>
+			<element name="OtraInformacionTrascendenciaTributaria" type="tiposcomplejos:OtraInformacionTrascendenciaTributariaType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="FacturasEmitidasSinSGType">
+		<sequence>
+			<element name="FacturaEmitida" type="tiposcomplejos:DetalleEmitidaSinSGType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DetalleEmitidaSinSGType">
+		<sequence>
+			<element name="Destinatarios" type="tiposcomplejos:DestinatariosType" minOccurs="0"/>
+			<element name="VariosDestinatarios" type="enum:SiNoEnum" minOccurs="0"/>
+			<element name="EmitidaPorTercerosODestinatario" type="enum:EmitidaPorTercerosEnum" minOccurs="0"/>
+			<element name="CabeceraFactura" type="tiposcomplejos:CabeceraFacturaType"/>
+			<element name="DatosFactura" type="tiposcomplejos:DatosFacturaEmitidaType"/>
+			<element name="TipoDesglose" type="tiposcomplejos:TipoDesgloseType"/>
+			<element name="OtraInformacionTrascendenciaTributaria" type="tiposcomplejos:OtraInformacionTrascendenciaTributariaType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DestinatariosType">
+		<sequence>
+			<element name="IDDestinatario" type="tiposcomplejos:DocumentoPersonaCodigoPostalType" minOccurs="1" maxOccurs="100"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DatosFacturaEmitidaType">
+		<sequence>
+			<element name="FechaOperacion" type="tiposbasicos:FechaType" minOccurs="0"/>
+			<element name="DescripcionFactura" type="tiposbasicos:TextMax250Type"/>
+			<element name="ImporteTotalFactura" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="RetencionSoportada" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="BaseImponibleACoste" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="Claves" type="tiposcomplejos:ClavesFacturaEmitidaType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="ImportesPercibidosMetalicoPFType">
+		<sequence>
+			<element name="ImportePercibidoMetalico" type="tiposcomplejos:ImportePercibidoMetalicoPFType" minOccurs="1" maxOccurs="100"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="ImportePercibidoMetalicoPFType">
+		<sequence>
+			<element name="Declarado" type="tiposcomplejos:DocumentoPersonaType"/>
+			<element name="Importes" type="tiposcomplejos:ImportesTrimestresType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="SituacionRegistroType">
+		<sequence>
+			<element name="EstadoRegistro" type="enum:EstadoRegistroEnum"/>
+			<element name="CodigoErrorRegistro" type="tiposbasicos:TextMax20Type" minOccurs="0"/>
+			<element name="DescripcionErrorRegistroES" type="tiposbasicos:TextMax250Type" minOccurs="0"/>
+			<element name="DescripcionErrorRegistroEU" type="tiposbasicos:TextMax250Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DatosPresentacionType">
+		<sequence>
+			<element name="FechaPresentacion" type="tiposbasicos:FechaConHoraType"/>
+			<element name="NIFPresentador" type="tiposbasicos:NIFType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosFacturaConSGType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroFacturaConSGType" minOccurs="1" maxOccurs="1000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroFacturaConSGType">
+		<sequence>
+			<element name="Identificador" type="tiposcomplejos:IdentificadorFacturaConSGType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IdentificadorFacturaConSGType">
+		<sequence>
+			<choice>
+				<element name="IDFactura" type="tiposcomplejos:IDFacturaType"/>
+				<element name="TicketBai" type="base64Binary"/>
+			</choice>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosIngresoSinSGType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroIngresoSinSGType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroIngresoSinSGType">
+		<sequence>
+			<element name="IDIngreso" type="tiposcomplejos:IDFacturaType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosIngresoSinFacturaType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroIngresoSinFacturaType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroIngresoSinFacturaType">
+		<sequence>
+			<element name="IDIngreso" type="tiposcomplejos:IDIngresoSinFacturaType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDIngresoSinFacturaType">
+		<sequence>
+			<element name="TipoIngreso" type="enum:TipoIngresoEnum"/>
+			<element name="FechaOperacion" type="tiposbasicos:FechaType"/>
+			<element name="Epigrafe" type="tiposbasicos:stringMax7Digits"/>
+			<element name="Linea" type="tiposbasicos:int1to99Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosGastoConFacturaType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroGastoType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroGastoType">
+		<sequence>
+			<element name="IDGasto" type="tiposcomplejos:IDFacturaConEmisorType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosFacturaRecibidaType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroFacturaRecibidaType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroFacturaRecibidaType">
+		<sequence>
+			<element name="IDRecibida" type="tiposcomplejos:IDFacturaConEmisorType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDFacturaConEmisorType">
+		<sequence>
+			<element name="SerieFactura" type="tiposbasicos:TextMax20Type" minOccurs="0"/>
+			<element name="NumFactura" type="tiposbasicos:TextMax20Type"/>
+			<element name="FechaExpedicionFactura" type="tiposbasicos:FechaType"/>
+			<element name="EmisorFacturaRecibida" type="tiposcomplejos:DocumentoType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosTransferenciaPericialOtroPJType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroTransferenciaPericialOtroPJType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroTransferenciaPericialOtroPJType">
+		<sequence>
+			<element name="IDTransferenciaPericialOtro" type="tiposcomplejos:IDTransferenciaPericialOtroType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosVentaBienEnConsignaPJType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroVentaBienEnConsignaPJType" minOccurs="1" maxOccurs="1000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroVentaBienEnConsignaPJType">
+		<sequence>
+			<element name="IDVentaEnConsigna" type="tiposcomplejos:IDVentaEnConsignaType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDVentaEnConsignaType">
+		<sequence>
+			<element name="IdRegistroDeclarado" type="tiposcomplejos:IDRegistroDeclaradoType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosGastoSinFacturaType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroGastoSinFacturaType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroGastoSinFacturaType">
+		<sequence>
+			<element name="IDGasto" type="tiposcomplejos:IDGastoSinFacturaType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDGastoSinFacturaType">
+		<sequence>
+			<element name="FechaOperacion" type="tiposbasicos:FechaType"/>
+			<element name="Epigrafe" type="tiposbasicos:stringMax7Digits"/>
+			<element name="Concepto" type="enum:ConceptoEnum"/>
+			<element name="Linea" type="tiposbasicos:int1to99Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosBienesInversionModelo140Type">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroBienesInversionModelo140Type" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroBienesInversionModelo140Type">
+		<sequence>
+			<element name="IDBien" type="tiposcomplejos:IDBienInversionModelo140Type"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDBienInversionModelo140Type">
+		<sequence>
+			<element name="ReferenciaBien" type="tiposbasicos:TextMax10Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosBienesInversionModelo240Type">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroBienesInversionModelo240Type" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroBienesInversionModelo240Type">
+		<sequence>
+			<element name="IDBien" type="tiposcomplejos:IDBienInversionModelo240Type"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDBienInversionModelo240Type">
+		<sequence>
+			<element name="IdentificacionBien" type="tiposbasicos:TextMax40Type"/>
+			<element name="FechaInicioUtilizacion" type="tiposbasicos:FechaType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosFacturaSinSGType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroFacturaSinSGType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroFacturaSinSGType">
+		<sequence>
+			<element name="IDFactura" type="tiposcomplejos:IDFacturaType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="TransferenciasPericialesOtrosPFType">
+		<sequence>
+			<element name="TransferenciaPericialOtro" type="tiposcomplejos:TransferenciaPericialOtroPFType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="TransferenciaPericialOtroPFType">
+		<sequence>
+			<element name="EmisorFactura" type="tiposcomplejos:NIFNIFIVAPersonaType"/>
+			<element name="SerieFactura" type="tiposbasicos:TextMax20Type" minOccurs="0"/>
+			<element name="NumFactura" type="tiposbasicos:TextMax20Type"/>
+			<element name="FechaExpedicionFactura" type="tiposbasicos:FechaType"/>
+			<element name="FechaOperacion" type="tiposbasicos:FechaType"/>
+			<element name="Declarado" type="tiposcomplejos:NIFNIFIVAPersonaType"/>
+			<element name="DetalleOperacion" type="tiposcomplejos:DetalleOpIntracomunitariaTransfPericialesOtrosPFType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DetalleOpIntracomunitariaTransfPericialesOtrosPFType">
+		<sequence>
+			<element name="TipoOperacion" type="enum:TipoOperacionIntracomunitariaEnum"/>
+			<element name="ClaveDeclarado" type="enum:TipoDeclaradoEnum"/>
+			<element name="CodigoEstadoMiembroOrigenODestino" type="enum:CountryMiembroType"/>
+			<element name="PlazoOperacion" type="tiposbasicos:intOf3Digits" minOccurs="0"/>
+			<element name="DescripcionBienes" type="tiposbasicos:TextMax35Type"/>
+			<element name="DireccionOperador" type="tiposbasicos:TextMax120Type"/>
+			<element name="OtrasFacturasDocumentacion" type="tiposbasicos:TextMax135Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="VentasBienesEnConsignaPFType">
+		<sequence>
+			<element name="VentaEnConsigna" type="tiposcomplejos:VentaBienEnConsignaPFType" minOccurs="1" maxOccurs="1000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="VentaBienEnConsignaPFType">
+		<sequence>
+			<element name="ClaveDeclarante" type="enum:ClaveDeclaranteEnum"/>
+			<element name="IdRegistroDeclarado" type="tiposcomplejos:IDRegistroDeclaradoType"/>
+			<element name="TipoOperacion" type="enum:TipoOperacionVentasEnConsignaEnum"/>
+			<element name="Declarado" type="tiposcomplejos:DocumentoPersonaType" minOccurs="0"/>
+			<element name="SustitutoDestinatarioInicial" type="tiposcomplejos:DocumentoPersonaType" minOccurs="0"/>
+			<element name="Deposito" type="tiposcomplejos:DepositoType" minOccurs="0"/>
+			<element name="OperacionIntracomunitaria" type="tiposcomplejos:OperacionIntracomunitariaType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDRegistroDeclaradoType">
+		<sequence>
+			<element name="Ejercicio" type="tiposbasicos:YearType"/>
+			<element name="Periodo" type="enum:PeriodoEnum"/>
+			<element name="IdRegistro" type="tiposbasicos:TextMax60Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DepositoType">
+		<sequence>
+			<element name="Depositario" type="tiposcomplejos:DocumentoPersonaType" minOccurs="0"/>
+			<element name="DireccionAlmacen" type="tiposbasicos:TextMax120Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="OperacionIntracomunitariaType">
+		<sequence>
+			<element name="InfoExpedicionRecepcion" type="tiposcomplejos:InfoExpedicionRecepcionType" minOccurs="0"/>
+			<element name="IdRegistroExpInicial" type="tiposcomplejos:IDRegistroExpInicialType" minOccurs="0"/>
+			<element name="DestinoFinalExpedRecep" type="tiposcomplejos:DestinoFinalExpedRecepType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="InfoExpedicionRecepcionType">
+		<sequence>
+			<element name="ValorBienes" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="EmPartida" type="enum:CountryMiembroType" minOccurs="0"/>
+			<element name="EmLlegada" type="enum:CountryMiembroType" minOccurs="0"/>
+			<element name="FechaExpedicion" type="tiposbasicos:FechaType" minOccurs="0"/>
+			<element name="FechaLlegada" type="tiposbasicos:FechaType" minOccurs="0"/>
+			<element name="Cantidad" type="tiposbasicos:TextMax120Type"/>
+			<element name="DescripBienes" type="tiposbasicos:TextMax120Type"/>
+			<element name="FechaSustitucion" type="tiposbasicos:FechaType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDRegistroExpInicialType">
+		<sequence>
+			<element name="Ejercicio" type="tiposbasicos:YearType"/>
+			<element name="Periodo" type="enum:PeriodoEnum"/>
+			<element name="IDExpInicial" type="tiposbasicos:TextMax60Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DestinoFinalExpedRecepType">
+		<sequence>
+			<element name="DescripBienes" type="tiposbasicos:TextMax120Type"/>
+			<element name="Cantidad" type="tiposbasicos:TextMax120Type"/>
+			<element name="FechaOpDeclarada" type="tiposbasicos:FechaType"/>
+			<element name="DestinatarioFinal" type="tiposcomplejos:DeclaradoIntracomunitarioType" minOccurs="0"/>
+			<element name="BaseImponibleValor" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="PrecioUnitario" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="CriterioCajaCobrosPFType">
+		<sequence>
+			<element name="Cobro" type="tiposcomplejos:CriterioCajaCobroPFType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="CriterioCajaCobroPFType">
+		<sequence>
+			<element name="Epigrafe" type="tiposbasicos:stringMax7Digits"/>
+			<element name="OperacionOriginal" type="tiposcomplejos:OperacionOriginalCobroType"/>
+			<element name="FechaCobro" type="tiposbasicos:FechaType"/>
+			<element name="ImporteCobrado" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="CuotaIVADevengada" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="ImporteIngresoIRPF" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="MedioDeCobro" type="enum:MedioDeCobroPagoEnum" minOccurs="0"/>
+			<element name="DescripcionMedio" type="tiposbasicos:TextMax34Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="OperacionOriginalCobroType">
+		<sequence>
+			<choice>
+				<element name="ConFactura" type="tiposcomplejos:IDFacturaType"/>
+				<element name="SinFactura" type="tiposcomplejos:CobroSinFacturaType"/>
+			</choice>
+		</sequence>
+	</complexType>
+
+	<complexType name="CobroSinFacturaType">
+		<sequence>
+			<element name="TipoIngreso" type="enum:TipoIngresoEnum"/>
+			<element name="FechaOperacion" type="tiposbasicos:FechaType"/>
+			<element name="Linea" type="tiposbasicos:int1to99Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="CriterioCajaPagosPFType">
+		<sequence>
+			<element name="Pago" type="tiposcomplejos:CriterioCajaPagoPFType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="CriterioCajaPagoPFType">
+		<sequence>
+			<element name="Epigrafe" type="tiposbasicos:stringMax7Digits"/>
+			<element name="OperacionOriginal" type="tiposcomplejos:OperacionOriginalPagoType"/>
+			<element name="FechaPago" type="tiposbasicos:FechaType"/>
+			<element name="ImportePagado" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="CuotaIVASoportada" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="CuotaIVADeducible" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="ImporteGastoIRPF" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="MedioDePago" type="enum:MedioDeCobroPagoEnum" minOccurs="0"/>
+			<element name="DescripcionMedio" type="tiposbasicos:TextMax34Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="OperacionOriginalPagoType">
+		<sequence>
+			<choice>
+				<element name="ConFactura" type="tiposcomplejos:PagoConFacturaType"/>
+				<element name="SinFactura" type="tiposcomplejos:PagoSinFacturaType"/>
+			</choice>
+		</sequence>
+	</complexType>
+
+	<complexType name="PagoConFacturaType">
+		<sequence>
+			<element name="SerieFactura" type="tiposbasicos:TextMax20Type" minOccurs="0"/>
+			<element name="NumFactura" type="tiposbasicos:TextMax20Type"/>
+			<element name="FechaExpedicionFactura" type="tiposbasicos:FechaType"/>
+			<element name="EmisorFacturaRecibida" type="tiposcomplejos:DocumentoPersonaType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="PagoSinFacturaType">
+		<sequence>
+			<element name="FechaOperacion" type="tiposbasicos:FechaType"/>
+			<element name="Concepto" type="enum:ConceptoEnum"/>
+			<element name="Linea" type="tiposbasicos:int1to99Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="CriterioCajaCobrosPJType">
+		<sequence>
+			<element name="Cobro" type="tiposcomplejos:CriterioCajaCobroPJType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="CriterioCajaCobroPJType">
+		<sequence>
+			<element name="OperacionOriginal" type="tiposcomplejos:IDFacturaType"/>
+			<element name="FechaCobro" type="tiposbasicos:FechaType"/>
+			<element name="ImporteCobrado" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="CuotaIVADevengada" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="MedioDeCobro" type="enum:MedioDeCobroPagoEnum"/>
+			<element name="DescripcionMedio" type="tiposbasicos:TextMax34Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="CriterioCajaPagosPJType">
+		<sequence>
+			<element name="Pago" type="tiposcomplejos:CriterioCajaPagoPJType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="CriterioCajaPagoPJType">
+		<sequence>
+			<element name="EmisorFacturaRecibida" type="tiposcomplejos:DocumentoPersonaType"/>
+			<element name="OperacionOriginal" type="tiposcomplejos:IDFacturaType"/>
+			<element name="FechaPago" type="tiposbasicos:FechaType"/>
+			<element name="ImportePagado" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="CuotaIVASoportada" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="CuotaIVADeducible" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="MedioDePago" type="enum:MedioDeCobroPagoEnum"/>
+			<element name="DescripcionMedio" type="tiposbasicos:TextMax34Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="VariacionesExistenciasType">
+		<sequence>
+			<element name="VariacionExistencias" type="tiposcomplejos:VariacionExistenciasType" minOccurs="1" maxOccurs="10"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="VariacionExistenciasType">
+		<sequence>
+			<element name="Epigrafe" type="tiposbasicos:stringMax7Digits"/>
+			<element name="MetodoEstimacion" type="enum:MetodoEstimacionEnum"/>
+			<element name="ExistenciasIniciales" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="ExistenciasFinales" type="tiposbasicos:ImporteSgn12.2Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="ArrendamientosLocalesNegociosType">
+		<sequence>
+			<element name="ArrendamientoLocalNegocio" type="tiposcomplejos:ArrendamientoLocalNegocioType" minOccurs="1" maxOccurs="100"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="ArrendamientoLocalNegocioType">
+		<sequence>
+			<element name="Declarado" type="tiposcomplejos:DocumentoPersonaType"/>
+			<element name="DatosInmueble" type="tiposcomplejos:DatosInmuebleType"/>
+			<element name="Importes" type="tiposcomplejos:ImportesTrimestresType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DatosInmuebleType">
+		<sequence>
+			<element name="SituacionInmueble" type="enum:SituacionInmuebleEnum"/>
+			<choice>
+				<element name="ReferenciaCatastral" type="tiposbasicos:TextMax25Type"/>
+				<element name="DireccionInmueble" type="tiposbasicos:TextMax100Type"/>
+			</choice>
+		</sequence>
+	</complexType>
+
+	<complexType name="ImportesTrimestresType">
+		<sequence>
+			<element name="ImporteTrimestre1" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="ImporteTrimestre2" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="ImporteTrimestre3" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="ImporteTrimestre4" type="tiposbasicos:ImporteSgn12.2Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="TransmisionesInmueblesType">
+		<sequence>
+			<element name="TransmisionInmueble" type="tiposcomplejos:TransmisionInmuebleType" minOccurs="1" maxOccurs="100"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="TransmisionInmuebleType">
+		<sequence>
+			<element name="Declarado" type="tiposcomplejos:DocumentoPersonaType"/>
+			<element name="Importes" type="tiposcomplejos:ImportesTrimestresType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="ImportesPercibidosMetalicoPJType">
+		<sequence>
+			<element name="ImportePercibidoMetalico" type="tiposcomplejos:ImportePercibidoMetalicoPJType" minOccurs="1" maxOccurs="100"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="ImportePercibidoMetalicoPJType">
+		<sequence>
+			<element name="Declarado" type="tiposcomplejos:DocumentoPersonaType"/>
+			<element name="ImporteTotal" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="OtraInformacionTrascendenciaTributaria" type="tiposcomplejos:OtraInformacionTrascendenciaTributariaPJType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="OtraInformacionTrascendenciaTributariaPJType">
+		<sequence>
+			<element name="NIFRepresentanteDeclarado" type="tiposbasicos:NIFType" minOccurs="0"/>
+			<element name="EntidadSucedida" type="tiposcomplejos:EntidadSucedidaType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+		<complexType name="OperacionesSegurosType">
+		<sequence>
+			<element name="OperacionSeguro" type="tiposcomplejos:OperacionSeguroType" minOccurs="1" maxOccurs="100"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="OperacionSeguroType">
+		<sequence>
+			<element name="Declarado" type="tiposcomplejos:DocumentoPersonaType"/>
+			<element name="ClaveOperacion" type="enum:ClaveOperacionSeguroEnum"/>
+			<element name="ImporteTotal" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="OtraInformacionTrascendenciaTributaria" type="tiposcomplejos:OtraInformacionTrascendenciaTributariaPJType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AgenciasViajesType">
+		<sequence>
+			<element name="AgenciaViaje" type="tiposcomplejos:AgenciaViajeType" minOccurs="1" maxOccurs="100"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AgenciaViajeType">
+		<sequence>
+			<element name="Declarado" type="tiposcomplejos:DocumentoPersonaType"/>
+			<element name="ImporteTotal" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="OtraInformacionTrascendenciaTributaria" type="tiposcomplejos:OtraInformacionTrascendenciaTributariaPJType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="ProvisionesFondosSuplidosType">
+		<sequence>
+			<element name="FondoSuplido" type="tiposcomplejos:ProvisionFondoSuplidoType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="ProvisionFondoSuplidoType">
+		<sequence>
+			<element name="TipoOperacion" type="enum:TipoOperacionProvisionSuplidoEnum"/>
+			<element name="Epigrafe" type="tiposbasicos:stringMax7Digits"/>
+			<element name="FechaOperacion" type="tiposbasicos:FechaType"/>
+			<element name="ImportePercibido" type="tiposbasicos:ImporteSgn12.2Type"/>
+			<element name="Declarado" type="tiposcomplejos:DocumentoPersonaType"/>
+			<element name="DatosOperacion" type="tiposcomplejos:DatosOperacionType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DatosOperacionType">
+		<sequence>
+			<element name="SerieFactura" type="tiposbasicos:TextMax20Type" minOccurs="0"/>
+			<element name="NumFactura" type="tiposbasicos:TextMax20Type" minOccurs="0"/>
+			<element name="ImporteTotal" type="tiposbasicos:ImporteSgn12.2Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AgrupacionesAltaType">
+		<sequence>
+			<element name="AgrupacionAlta" type="tiposcomplejos:AgrupacionAltaType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AgrupacionAltaType">
+		<sequence>
+			<element name="ReferenciaAgrupacion" type="tiposbasicos:TextMax10Type"/>
+			<element name="TipoAgrupacion" type="enum:TipoAgrupacionEnum"/>
+			<element name="DescripcionAgrupacion" type="tiposbasicos:TextMax50Type"/>
+			<element name="FechaOperacion" type="tiposbasicos:FechaType"/>
+			<element name="Bienes" type="tiposcomplejos:BienesAgrupacionType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AgrupacionesBajaType">
+		<sequence>
+			<element name="AgrupacionBaja" type="tiposcomplejos:AgrupacionBajaType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AgrupacionBajaType">
+		<sequence>
+			<element name="ReferenciaAgrupacion" type="tiposbasicos:TextMax10Type"/>
+			<element name="FechaOperacion" type="tiposbasicos:FechaType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="BienesAgrupacionType">
+		<sequence>
+			<element name="Bien" type="tiposcomplejos:BienAgrupacionType" minOccurs="1" maxOccurs="50"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="BienAgrupacionType">
+		<sequence>
+			<element name="ReferenciaBien" type="tiposbasicos:TextMax10Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="VentasBienesEnConsignaPJType">
+		<sequence>
+			<element name="VentaEnConsigna" type="tiposcomplejos:VentaBienEnConsignaPJType" minOccurs="1" maxOccurs="1000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="VentaBienEnConsignaPJType">
+		<sequence>
+			<element name="ClaveDeclarante" type="enum:ClaveDeclaranteEnum"/>
+			<element name="IdRegistroDeclarado" type="tiposcomplejos:IDRegistroDeclaradoType"/>
+			<element name="TipoOperacion" type="enum:TipoOperacionVentasEnConsignaEnum"/>
+			<element name="Declarado" type="tiposcomplejos:DeclaradoIntracomunitarioType" minOccurs="0"/>
+			<element name="SustitutoDestinatarioInicial" type="tiposcomplejos:DeclaradoIntracomunitarioType" minOccurs="0"/>
+			<element name="Deposito" type="tiposcomplejos:DepositoPJType" minOccurs="0"/>
+			<element name="OperacionIntracomunitaria" type="tiposcomplejos:OperacionIntracomunitariaPJType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DepositoPJType">
+		<sequence>
+			<element name="Depositario" type="tiposcomplejos:DeclaradoIntracomunitarioType" minOccurs="0"/>
+			<element name="DireccionAlmacen" type="tiposbasicos:TextMax120Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="OperacionIntracomunitariaPJType">
+		<sequence>
+			<element name="InfoExpedicionRecepcion" type="tiposcomplejos:InfoExpedicionRecepcionType" minOccurs="0"/>
+			<element name="IdRegistroExpInicial" type="tiposcomplejos:IDRegistroExpInicialType" minOccurs="0"/>
+			<element name="DestinoFinalExpedRecep" type="tiposcomplejos:DestinoFinalExpedRecepType" minOccurs="0"/>
+			<element name="OtraInformacionTrascendenciaTributaria" type="tiposcomplejos:OtraInfTrascendenciaTributariaType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosTransferenciaPericialOtroPFType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroTransferenciaPericialOtroPFType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroTransferenciaPericialOtroPFType">
+		<sequence>
+			<element name="IDTransferenciaPericialOtro" type="tiposcomplejos:IDTransferenciaPericialOtroType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDTransferenciaPericialOtroType">
+		<sequence>
+			<element name="EmisorFactura" type="tiposcomplejos:NIFNIFIVAType"/>
+			<element name="SerieFactura" type="tiposbasicos:TextMax20Type" minOccurs="0"/>
+			<element name="NumFactura" type="tiposbasicos:TextMax20Type"/>
+			<element name="FechaExpedicionFactura" type="tiposbasicos:FechaType"/>
+			<element name="FechaOperacion" type="tiposbasicos:FechaType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosVentaBienEnConsignaPFType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroVentaBienEnConsignaType" minOccurs="1" maxOccurs="1000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroVentaBienEnConsignaType">
+		<sequence>
+			<element name="IDVentaEnConsigna" type="tiposcomplejos:IDVentaEnConsignaType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosCriterioCajaCobroPFType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroCriterioCajaCobroPFType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroCriterioCajaCobroPFType">
+		<sequence>
+			<element name="IDCobro" type="tiposcomplejos:IDCriterioCajaCobroPFType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDCriterioCajaCobroPFType">
+		<sequence>
+			<element name="Epigrafe" type="tiposbasicos:stringMax7Digits"/>
+			<element name="OperacionOriginal" type="tiposcomplejos:OperacionOriginalCobroType"/>
+			<element name="FechaCobro" type="tiposbasicos:FechaType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosCriterioCajaPagoPFType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroCriterioCajaPagoPFType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroCriterioCajaPagoPFType">
+		<sequence>
+			<element name="IDPago" type="tiposcomplejos:IDCriterioCajaPagoPFType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDCriterioCajaPagoPFType">
+		<sequence>
+			<element name="Epigrafe" type="tiposbasicos:stringMax7Digits"/>
+			<element name="OperacionOriginal" type="tiposcomplejos:IDOperacionOriginalPagoType"/>
+			<element name="FechaPago" type="tiposbasicos:FechaType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDOperacionOriginalPagoType">
+		<sequence>
+			<choice>
+				<element name="ConFactura" type="tiposcomplejos:IDPagoConFacturaType"/>
+				<element name="SinFactura" type="tiposcomplejos:PagoSinFacturaType"/>
+			</choice>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDPagoConFacturaType">
+		<sequence>
+			<element name="SerieFactura" type="tiposbasicos:TextMax20Type" minOccurs="0"/>
+			<element name="NumFactura" type="tiposbasicos:TextMax20Type"/>
+			<element name="FechaExpedicionFactura" type="tiposbasicos:FechaType"/>
+			<element name="EmisorFacturaRecibida" type="tiposcomplejos:DocumentoType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosVariacionExistenciasType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroVariacionExistenciasType" minOccurs="1" maxOccurs="10"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroVariacionExistenciasType">
+		<sequence>
+			<element name="IDVariacionExistencias" type="tiposcomplejos:IDVariacionExistenciasType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDVariacionExistenciasType">
+		<sequence>
+			<element name="Epigrafe" type="tiposbasicos:stringMax7Digits"/>
+			<element name="MetodoEstimacion" type="enum:MetodoEstimacionEnum"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosArrendamientoLocalNegocioType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroArrendamientoLocalNegocioType" minOccurs="1" maxOccurs="100"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroArrendamientoLocalNegocioType">
+		<sequence>
+			<element name="IDArrendamientoLocalNegocio" type="tiposcomplejos:IDArrendamientoLocalNegocioType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDArrendamientoLocalNegocioType">
+		<sequence>
+			<element name="Declarado" type="tiposcomplejos:DocumentoType"/>
+			<element name="DatosInmueble" type="tiposcomplejos:DatosInmuebleType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosTransmisionInmuebleType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroTransmisionInmuebleType" minOccurs="1" maxOccurs="100"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroTransmisionInmuebleType">
+		<sequence>
+			<element name="IDTransmisionInmueble" type="tiposcomplejos:IDTransmisionInmuebleType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDTransmisionInmuebleType">
+		<sequence>
+			<element name="Declarado" type="tiposcomplejos:DocumentoType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosImportePercibidoMetalicoPFType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroImportePercibidoMetalicoPFType" minOccurs="1" maxOccurs="100"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroImportePercibidoMetalicoPFType">
+		<sequence>
+			<element name="IDImportePercibidoMetalico" type="tiposcomplejos:IDImportePercibidoMetalicoPFType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDImportePercibidoMetalicoPFType">
+		<sequence>
+			<element name="Declarado" type="tiposcomplejos:DocumentoType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosCriterioCajaCobroPJType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroCriterioCajaCobroPJType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroCriterioCajaCobroPJType">
+		<sequence>
+			<element name="IDCobro" type="tiposcomplejos:IDCriterioCajaCobroPJType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDCriterioCajaCobroPJType">
+		<sequence>
+			<element name="OperacionOriginal" type="tiposcomplejos:IDFacturaType"/>
+			<element name="FechaCobro" type="tiposbasicos:FechaType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosCriterioCajaPagoPJType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroCriterioCajaPagoPJType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroCriterioCajaPagoPJType">
+		<sequence>
+			<element name="IDPago" type="tiposcomplejos:IDCriterioCajaPagoPJType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDCriterioCajaPagoPJType">
+		<sequence>
+			<element name="EmisorFacturaRecibida" type="tiposcomplejos:DocumentoType"/>
+			<element name="OperacionOriginal" type="tiposcomplejos:IDFacturaType"/>
+			<element name="FechaPago" type="tiposbasicos:FechaType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosProvisionFondoSuplidoType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroProvisionFondoSuplidoType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroProvisionFondoSuplidoType">
+		<sequence>
+			<element name="IDFondoSuplido" type="tiposcomplejos:IDFondoSuplidoType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDFondoSuplidoType">
+		<sequence>
+			<element name="TipoOperacion" type="enum:TipoOperacionProvisionSuplidoEnum"/>
+			<element name="FechaOperacion" type="tiposbasicos:FechaType"/>
+			<element name="Declarado" type="tiposcomplejos:DocumentoType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosAgrupacionAltaType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroAgrupacionAltaType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroAgrupacionAltaType">
+		<sequence>
+			<element name="IDAgrupacionAlta" type="tiposcomplejos:IDAgrupacionType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosAgrupacionBajaType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroAgrupacionBajaType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroAgrupacionBajaType">
+		<sequence>
+			<element name="IDAgrupacionBaja" type="tiposcomplejos:IDAgrupacionType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+	<complexType name="IDAgrupacionType">
+		<sequence>
+			<element name="ReferenciaAgrupacion" type="tiposbasicos:TextMax10Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosImportePercibidoMetalicoPJType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroImportePercibidoMetalicoPJType" minOccurs="1" maxOccurs="100"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroImportePercibidoMetalicoPJType">
+		<sequence>
+			<element name="IDImportePercibidoMetalico" type="tiposcomplejos:IDImportePercibidoMetalicoPJType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDImportePercibidoMetalicoPJType">
+		<sequence>
+			<element name="Declarado" type="tiposcomplejos:DocumentoType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosOperacionSeguroType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroOperacionSeguroType" minOccurs="1" maxOccurs="100"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroOperacionSeguroType">
+		<sequence>
+			<element name="IDOperacionSeguro" type="tiposcomplejos:IDOperacionSeguroType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDOperacionSeguroType">
+		<sequence>
+			<element name="Declarado" type="tiposcomplejos:DocumentoType"/>
+			<element name="ClaveOperacion" type="enum:ClaveOperacionSeguroEnum"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosAgenciaViajeType">
+		<sequence>
+			<element name="Registro" type="tiposcomplejos:RegistroAgenciaViajeType" minOccurs="1" maxOccurs="100"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroAgenciaViajeType">
+		<sequence>
+			<element name="IDAgenciaViaje" type="tiposcomplejos:IDAgenciaViajeType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDAgenciaViajeType">
+		<sequence>
+			<element name="Declarado" type="tiposcomplejos:DocumentoType"/>
+		</sequence>
+	</complexType>
+</schema>

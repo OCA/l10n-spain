@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 Binovo IT Human Project SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_company_form_tbai_batuz" model="ir.ui.view">
+        <field name="name">view.company.form.tbai.batuz</field>
+        <field name="model">res.company</field>
+        <field
+            name="inherit_id"
+            ref="l10n_es_ticketbai_api.view_company_form_inherit"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='ticketbai']/group[@name='ticketbai_company_config']/field[@name='tbai_tax_agency_id']"
+                position="after"
+            >
+                <field
+                    name="lroe_model"
+                    attrs="{'invisible': [('tbai_tax_agency_id', '!=', %(l10n_es_ticketbai_api_batuz.tbai_tax_agency_bizkaia)d)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

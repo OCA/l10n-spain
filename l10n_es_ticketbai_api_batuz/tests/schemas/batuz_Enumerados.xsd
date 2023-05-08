@@ -1,0 +1,2476 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/batuz_Enumerados.xsd">
+	<simpleType name="IDVersionEnum">
+		<restriction base="string">
+			<enumeration value="1.0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="TipoDocumentoIdentificativoEnum">
+		<restriction base="string">
+			<enumeration value="02">
+				<annotation>
+					<documentation>NIF-IVA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="03">
+				<annotation>
+					<documentation>Pasaporte</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="04">
+				<annotation>
+					<documentation>Documento oficial de identificación expedido por el país o territorio de residencia</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="05">
+				<annotation>
+					<documentation>Certificado Residencia</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="06">
+				<annotation>
+					<documentation>Otro documento Probatorio</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="Modelo140Enum">
+		<restriction base="string">
+			<enumeration value="140">
+				<annotation>
+					<documentation>Libro Registro de Operaciones Económicas (personas físicas)</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="Modelo240Enum">
+		<restriction base="string">
+			<enumeration value="240">
+				<annotation>
+					<documentation>Libro Registro de Operaciones Económicas (personas jurídicas)</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="EmitidaPorTercerosEnum">
+		<restriction base="string">
+			<enumeration value="N">
+				<annotation>
+					<documentation>Factura emitida por el propio emisor o emisora</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="T">
+				<annotation>
+					<documentation>Factura emitida por tercero o tercera</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="D">
+				<annotation>
+					<documentation>Factura emitida por el destinatario o la destinataria de la operación</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="CausaExencionEnum">
+		<restriction base="string">
+			<enumeration value="E1">
+				<annotation>
+					<documentation>Exenta por el artículo 20 de la Norma Foral del IVA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="E2">
+				<annotation>
+					<documentation>Exenta por el artículo 21 de la Norma Foral del IVA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="E3">
+				<annotation>
+					<documentation>Exenta por el artículo 22 de la Norma Foral del IVA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="E4">
+				<annotation>
+					<documentation>Exenta por el artículo 23 y 24 de la Norma Foral del IVA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="E5">
+				<annotation>
+					<documentation>Exenta por el artículo 25 de la Norma Foral del IVA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="E6">
+				<annotation>
+					<documentation>Exenta por otra causa</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="TipoOperacionSujetaNoExentaEnum">
+		<restriction base="string">
+			<enumeration value="S1">
+				<annotation>
+					<documentation>Sin inversión del sujeto pasivo</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="S2">
+				<annotation>
+					<documentation>Con inversión del sujeto pasivo</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="CausaNoSujetaEnum">
+		<restriction base="string">
+			<enumeration value="OT">
+				<annotation>
+					<documentation>No sujeto por el artículo 7 de la Norma Foral de IVA Otros supuestos de no sujeción</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="RL">
+				<annotation>
+					<documentation>No sujeto por reglas de localización</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="SituacionInmuebleEnum">
+		<restriction base="string">
+			<enumeration value="1">
+				<annotation>
+					<documentation>Inmueble con referencia catastral situado en cualquier punto del territorio español, excepto País Vasco y Navarra</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="2">
+				<annotation>
+					<documentation>Inmueble con referencia catastral/número fijo situado en la Comunidad Autónoma del País Vasco o en la Comunidad Foral de Navarra</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="3">
+				<annotation>
+					<documentation>Inmueble en cualquiera de las situaciones anteriores, pero sin referencia catastral ni número fijo</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="4">
+				<annotation>
+					<documentation>Inmueble situado en el extranjero</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="CapituloModelo140Enum">
+		<restriction base="string">
+			<enumeration value="1">
+				<annotation>
+					<documentation>Ingresos y facturas emitidas</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="2">
+				<annotation>
+					<documentation>Gastos y facturas recibidas</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="3">
+				<annotation>
+					<documentation>Bienes afectos o de inversión</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="4">
+				<annotation>
+					<documentation>Determinadas operaciones intracomunitarias</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="5">
+				<annotation>
+					<documentation>Criterio de caja / Criterio de cobros y pagos</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="6">
+				<annotation>
+					<documentation>Provisiones y suplidos</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="7">
+				<annotation>
+					<documentation>Otra información con trascendencia tributaria</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="8">
+				<annotation>
+					<documentation>Agrupaciones de bienes</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="CapituloModelo240Enum">
+		<restriction base="string">
+			<enumeration value="1">
+				<annotation>
+					<documentation>Facturas emitidas</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="2">
+				<annotation>
+					<documentation>Facturas recibidas</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="3">
+				<annotation>
+					<documentation>Bienes de inversión</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="4">
+				<annotation>
+					<documentation>Determinadas operaciones intracomunitarias</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="5">
+				<annotation>
+					<documentation>Criterio de caja</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="6">
+				<annotation>
+					<documentation>Otra información con trascendencia tributaria</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="SubcapituloModelo140Enum">
+		<restriction base="string">
+			<enumeration value="1.1">
+				<annotation>
+					<documentation>Ingresos con facturas emitidas con software garante</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="1.2">
+				<annotation>
+					<documentation>Ingresos con facturas emitidas sin software garante</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="1.3">
+				<annotation>
+					<documentation>Ingresos sin factura</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="2.1">
+				<annotation>
+					<documentation>Gastos con factura</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="2.2">
+				<annotation>
+					<documentation>Gastos sin factura</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="3.1">
+				<annotation>
+					<documentation>Alta de bienes afectos o de inversión</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="3.2">
+				<annotation>
+					<documentation>Mejora de bienes afectos o de inversión</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="3.3">
+				<annotation>
+					<documentation>Baja de bienes afectos o de inversión</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="3.4">
+				<annotation>
+					<documentation>Regularización anual de bienes de inversión</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="4.1">
+				<annotation>
+					<documentation>Transferencias intracomunitarias, informes periciales y otros trabajos</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="4.2">
+				<annotation>
+					<documentation>Ventas de bienes en consigna</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="5.1">
+				<annotation>
+					<documentation>Cobros</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="5.2">
+				<annotation>
+					<documentation>Pagos</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="7.1">
+				<annotation>
+					<documentation>Variación de existencias</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="7.2">
+				<annotation>
+					<documentation>Arrendamientos de locales de negocios</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="7.3">
+				<annotation>
+					<documentation>Transmisiones de inmuebles sujetas a IVA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="7.4">
+				<annotation>
+					<documentation>Importes superiores a 6.000 euros percibidos en metálico</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="8.1">
+				<annotation>
+					<documentation>Alta de agrupaciones de bienes</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="8.2">
+				<annotation>
+					<documentation>Baja de agrupaciones de bienes</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="SubcapituloModelo240Enum">
+		<restriction base="string">
+			<enumeration value="1.1">
+				<annotation>
+					<documentation>Facturas emitidas con software garante</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="1.2">
+				<annotation>
+					<documentation>Facturas emitidas sin software garante</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="4.1">
+				<annotation>
+					<documentation>Transferencias intracomunitarias, informes periciales y otros trabajos</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="4.2">
+				<annotation>
+					<documentation>Ventas de bienes en consigna</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="5.1">
+				<annotation>
+					<documentation>Cobros</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="5.2">
+				<annotation>
+					<documentation>Pagos</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="6.1">
+				<annotation>
+					<documentation>Importes superiores a 6.000 euros percibidos en metálico</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="6.2">
+				<annotation>
+					<documentation>Operaciones de seguros</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="6.3">
+				<annotation>
+					<documentation>Agencias de viajes</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="SiNoEnum">
+		<restriction base="string">
+			<enumeration value="S">
+				<annotation>
+					<documentation>Sí</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="N">
+				<annotation>
+					<documentation>No</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="CountryEnum">
+		<restriction base="string">
+			<enumeration value="AF"/>
+			<enumeration value="AL"/>
+			<enumeration value="DE"/>
+			<enumeration value="AD"/>
+			<enumeration value="AO"/>
+			<enumeration value="AI"/>
+			<enumeration value="AQ"/>
+			<enumeration value="AG"/>
+			<enumeration value="SA"/>
+			<enumeration value="DZ"/>
+			<enumeration value="AR"/>
+			<enumeration value="AM"/>
+			<enumeration value="AW"/>
+			<enumeration value="AU"/>
+			<enumeration value="AT"/>
+			<enumeration value="AZ"/>
+			<enumeration value="BS"/>
+			<enumeration value="BH"/>
+			<enumeration value="BD"/>
+			<enumeration value="BB"/>
+			<enumeration value="BE"/>
+			<enumeration value="BZ"/>
+			<enumeration value="BJ"/>
+			<enumeration value="BM"/>
+			<enumeration value="BY"/>
+			<enumeration value="BO"/>
+			<enumeration value="BA"/>
+			<enumeration value="BW"/>
+			<enumeration value="BV"/>
+			<enumeration value="BR"/>
+			<enumeration value="BN"/>
+			<enumeration value="BG"/>
+			<enumeration value="BF"/>
+			<enumeration value="BI"/>
+			<enumeration value="BT"/>
+			<enumeration value="CV"/>
+			<enumeration value="KY"/>
+			<enumeration value="KH"/>
+			<enumeration value="CM"/>
+			<enumeration value="CA"/>
+			<enumeration value="CF"/>
+			<enumeration value="CC"/>
+			<enumeration value="CO"/>
+			<enumeration value="KM"/>
+			<enumeration value="CG"/>
+			<enumeration value="CD"/>
+			<enumeration value="CK"/>
+			<enumeration value="KP"/>
+			<enumeration value="KR"/>
+			<enumeration value="CI"/>
+			<enumeration value="CR"/>
+			<enumeration value="HR"/>
+			<enumeration value="CU"/>
+			<enumeration value="TD"/>
+			<enumeration value="CZ"/>
+			<enumeration value="CL"/>
+			<enumeration value="CN"/>
+			<enumeration value="CY"/>
+			<enumeration value="CW"/>
+			<enumeration value="DK"/>
+			<enumeration value="DM"/>
+			<enumeration value="DO"/>
+			<enumeration value="EC"/>
+			<enumeration value="EG"/>
+			<enumeration value="AE"/>
+			<enumeration value="ER"/>
+			<enumeration value="SK"/>
+			<enumeration value="SI"/>
+			<enumeration value="ES"/>
+			<enumeration value="US"/>
+			<enumeration value="EE"/>
+			<enumeration value="ET"/>
+			<enumeration value="FO"/>
+			<enumeration value="PH"/>
+			<enumeration value="FI"/>
+			<enumeration value="FJ"/>
+			<enumeration value="FR"/>
+			<enumeration value="GA"/>
+			<enumeration value="GM"/>
+			<enumeration value="GE"/>
+			<enumeration value="GS"/>
+			<enumeration value="GH"/>
+			<enumeration value="GI"/>
+			<enumeration value="GD"/>
+			<enumeration value="GR"/>
+			<enumeration value="GL"/>
+			<enumeration value="GU"/>
+			<enumeration value="GT"/>
+			<enumeration value="GG"/>
+			<enumeration value="GN"/>
+			<enumeration value="GQ"/>
+			<enumeration value="GW"/>
+			<enumeration value="GY"/>
+			<enumeration value="HT"/>
+			<enumeration value="HM"/>
+			<enumeration value="HN"/>
+			<enumeration value="HK"/>
+			<enumeration value="HU"/>
+			<enumeration value="IN"/>
+			<enumeration value="ID"/>
+			<enumeration value="IR"/>
+			<enumeration value="IQ"/>
+			<enumeration value="IE"/>
+			<enumeration value="IM"/>
+			<enumeration value="IS"/>
+			<enumeration value="IL"/>
+			<enumeration value="IT"/>
+			<enumeration value="JM"/>
+			<enumeration value="JP"/>
+			<enumeration value="JE"/>
+			<enumeration value="JO"/>
+			<enumeration value="KZ"/>
+			<enumeration value="KE"/>
+			<enumeration value="KG"/>
+			<enumeration value="KI"/>
+			<enumeration value="KW"/>
+			<enumeration value="LA"/>
+			<enumeration value="LS"/>
+			<enumeration value="LV"/>
+			<enumeration value="LB"/>
+			<enumeration value="LR"/>
+			<enumeration value="LY"/>
+			<enumeration value="LI"/>
+			<enumeration value="LT"/>
+			<enumeration value="LU"/>
+			<enumeration value="XG"/>
+			<enumeration value="MO"/>
+			<enumeration value="MK"/>
+			<enumeration value="MG"/>
+			<enumeration value="MY"/>
+			<enumeration value="MW"/>
+			<enumeration value="MV"/>
+			<enumeration value="ML"/>
+			<enumeration value="MT"/>
+			<enumeration value="FK"/>
+			<enumeration value="MP"/>
+			<enumeration value="MA"/>
+			<enumeration value="MH"/>
+			<enumeration value="MU"/>
+			<enumeration value="MR"/>
+			<enumeration value="YT"/>
+			<enumeration value="UM"/>
+			<enumeration value="MX"/>
+			<enumeration value="FM"/>
+			<enumeration value="MD"/>
+			<enumeration value="MC"/>
+			<enumeration value="MN"/>
+			<enumeration value="ME"/>
+			<enumeration value="MS"/>
+			<enumeration value="MZ"/>
+			<enumeration value="MM"/>
+			<enumeration value="NA"/>
+			<enumeration value="NR"/>
+			<enumeration value="CX"/>
+			<enumeration value="NP"/>
+			<enumeration value="NI"/>
+			<enumeration value="NE"/>
+			<enumeration value="NG"/>
+			<enumeration value="NU"/>
+			<enumeration value="NF"/>
+			<enumeration value="NO"/>
+			<enumeration value="NC"/>
+			<enumeration value="NZ"/>
+			<enumeration value="IO"/>
+			<enumeration value="OM"/>
+			<enumeration value="NL"/>
+			<enumeration value="BQ"/>
+			<enumeration value="PK"/>
+			<enumeration value="PW"/>
+			<enumeration value="PA"/>
+			<enumeration value="PG"/>
+			<enumeration value="PY"/>
+			<enumeration value="PE"/>
+			<enumeration value="PN"/>
+			<enumeration value="PF"/>
+			<enumeration value="PL"/>
+			<enumeration value="PT"/>
+			<enumeration value="PR"/>
+			<enumeration value="QA"/>
+			<enumeration value="GB"/>
+			<enumeration value="RW"/>
+			<enumeration value="RO"/>
+			<enumeration value="RU"/>
+			<enumeration value="SB"/>
+			<enumeration value="SV"/>
+			<enumeration value="WS"/>
+			<enumeration value="AS"/>
+			<enumeration value="KN"/>
+			<enumeration value="SM"/>
+			<enumeration value="SX"/>
+			<enumeration value="PM"/>
+			<enumeration value="VC"/>
+			<enumeration value="SH"/>
+			<enumeration value="LC"/>
+			<enumeration value="ST"/>
+			<enumeration value="SN"/>
+			<enumeration value="RS"/>
+			<enumeration value="SC"/>
+			<enumeration value="SL"/>
+			<enumeration value="SG"/>
+			<enumeration value="SY"/>
+			<enumeration value="SO"/>
+			<enumeration value="LK"/>
+			<enumeration value="SZ"/>
+			<enumeration value="ZA"/>
+			<enumeration value="SD"/>
+			<enumeration value="SS"/>
+			<enumeration value="SE"/>
+			<enumeration value="CH"/>
+			<enumeration value="SR"/>
+			<enumeration value="TH"/>
+			<enumeration value="TW"/>
+			<enumeration value="TZ"/>
+			<enumeration value="TJ"/>
+			<enumeration value="PS"/>
+			<enumeration value="TF"/>
+			<enumeration value="TL"/>
+			<enumeration value="TG"/>
+			<enumeration value="TK"/>
+			<enumeration value="TO"/>
+			<enumeration value="TT"/>
+			<enumeration value="TN"/>
+			<enumeration value="TC"/>
+			<enumeration value="TM"/>
+			<enumeration value="TR"/>
+			<enumeration value="TV"/>
+			<enumeration value="UA"/>
+			<enumeration value="UG"/>
+			<enumeration value="UY"/>
+			<enumeration value="UZ"/>
+			<enumeration value="VU"/>
+			<enumeration value="VA"/>
+			<enumeration value="VE"/>
+			<enumeration value="VN"/>
+			<enumeration value="VG"/>
+			<enumeration value="VI"/>
+			<enumeration value="WF"/>
+			<enumeration value="YE"/>
+			<enumeration value="DJ"/>
+			<enumeration value="ZM"/>
+			<enumeration value="ZW"/>
+			<enumeration value="QU"/>
+			<enumeration value="XB"/>
+			<enumeration value="XU"/>
+			<enumeration value="XN"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="CountryMiembroType">
+		<restriction base="string">
+			<enumeration value="DE"/>
+			<enumeration value="AT"/>
+			<enumeration value="BE"/>
+			<enumeration value="BG"/>
+			<enumeration value="CZ"/>
+			<enumeration value="CY"/>
+			<enumeration value="HR"/>
+			<enumeration value="DK"/>
+			<enumeration value="SK"/>
+			<enumeration value="SI"/>
+			<enumeration value="ES"/>
+			<enumeration value="EE"/>
+			<enumeration value="FI"/>
+			<enumeration value="FR"/>
+			<enumeration value="GR"/>
+			<enumeration value="HU"/>
+			<enumeration value="IE"/>
+			<enumeration value="IT"/>
+			<enumeration value="LV"/>
+			<enumeration value="LT"/>
+			<enumeration value="LU"/>
+			<enumeration value="MT"/>
+			<enumeration value="NL"/>
+			<enumeration value="PL"/>
+			<enumeration value="PT"/>
+			<enumeration value="GB"/>
+			<enumeration value="RO"/>
+			<enumeration value="SE"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ClaveTipoFacturaGastosEnum">
+		<restriction base="string">
+			<enumeration value="F1">
+				<annotation>
+					<documentation>Factura con identificación del destinatario o de la destinataria</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="F2">
+				<annotation>
+					<documentation>Factura sin identificación del destinatario o de la destinataria</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="F3">
+				<annotation>
+					<documentation>Factura emitida en sustitución de facturas simplificadas y declaradas con anterioridad</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="F4">
+				<annotation>
+					<documentation>Asiento resumen de facturas</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="F5">
+				<annotation>
+					<documentation>Importaciones con DUA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="F6">
+				<annotation>
+					<documentation>Otros justificantes</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="LC">
+				<annotation>
+					<documentation>Aduanas-Liquidación complementaria</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="ClaveCodigoFacturaRectificativaEnum">
+		<restriction base="string">
+			<enumeration value="R1">
+				<annotation>
+					<documentation>Factura rectificativa: error fundado en derecho y Art. 80 Uno, Dos y Seis de la Norma Foral del IVA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="R2">
+				<annotation>
+					<documentation>Factura rectificativa: artículo 80 Tres de la Norma Foral del IVA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="R3">
+				<annotation>
+					<documentation>Factura rectificativa: artículo 80 Cuatro de la Norma Foral del IVA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="R4">
+				<annotation>
+					<documentation>Factura rectificativa: Resto</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="R5">
+				<annotation>
+					<documentation>Factura rectificativa en facturas simplificadas</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="ClaveTipoRectificativaEnum">
+		<restriction base="string">
+			<enumeration value="S">
+				<annotation>
+					<documentation>Factura rectificativa por sustitución</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="I">
+				<annotation>
+					<documentation>Factura rectificativa por diferencias</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="OperacionTrascendenciaTributariaTBAIEnum">
+		<restriction base="string">
+			<enumeration value="01">
+                <annotation>
+                    <documentation>Operación de régimen general y cualquier otro supuesto que no esté recogido en los siguientes valores</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="02">
+                <annotation>
+                    <documentation>Exportación</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="03">
+                <annotation>
+                    <documentation>Operaciones a las que se aplique el régimen especial de bienes usados, objetos de arte, antigüedades y objetos de colección</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="04">
+                <annotation>
+                    <documentation>Régimen especial del oro de inversión</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="05">
+                <annotation>
+                    <documentation>Régimen especial de las agencias de viajes</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="06">
+                <annotation>
+                    <documentation>Régimen especial grupo de entidades en IVA (Nivel Avanzado)</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="07">
+                <annotation>
+                    <documentation>Régimen especial del criterio de caja</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="08">
+                <annotation>
+                    <documentation>Operaciones sujetas al IPSI/IGIC (Impuesto sobre la Producción, los Servicios y la Importación / Impuesto General Indirecto Canario)</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="09">
+                <annotation>
+                    <documentation>Facturación de las prestaciones de servicios de agencias de viaje que actúan como mediadoras en nombre y por cuenta ajena (disposición adicional 3ª del Reglamento de Facturación)</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="10">
+                <annotation>
+                    <documentation>Cobros por cuenta de terceros o terceras de honorarios profesionales o de derechos derivados de la propiedad industrial, de autor u otros por cuenta de sus socios, socias, asociados, asociadas, colegiados o colegiadas efectuados por sociedades, asociaciones, colegios profesionales u otras entidades que realicen estas funciones de cobro</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="11">
+                <annotation>
+                    <documentation>Operaciones de arrendamiento de local de negocio sujetos a retención</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="12">
+                <annotation>
+                    <documentation>Operaciones de arrendamiento de local de negocio no sujetos a retención</documentation>
+                </annotation>
+            </enumeration>
+		    <enumeration value="13">
+                <annotation>
+                    <documentation>Operaciones de arrendamiento de local de negocio sujetas y no sujetas a retención</documentation>
+                </annotation>
+            </enumeration>
+			 <enumeration value="14">
+                <annotation>
+                    <documentation>Factura con IVA pendiente de devengo en certificaciones de obra cuya destinataria sea una Administración Pública</documentation>
+                </annotation>
+            </enumeration>
+			 <enumeration value="15">
+                <annotation>
+                    <documentation>Factura con IVA pendiente de devengo en operaciones de tracto sucesivo</documentation>
+                </annotation>
+            </enumeration>
+			 <enumeration value="51">
+                <annotation>
+                    <documentation>Operaciones en recargo de equivalencia</documentation>
+                </annotation>
+            </enumeration>
+			 <enumeration value="52">
+                <annotation>
+                    <documentation>Operaciones en régimen simplificado</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="53">
+                <annotation>
+                    <documentation>Operaciones realizadas por personas o entidades que no tengan la consideración de empresarios, empresarias o profesionales a efectos del IVA</documentation>
+                </annotation>
+            </enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="OperacionTrascendenciaTributariaIngresoEnum">
+		<restriction base="string">
+			<enumeration value="01">
+				<annotation>
+					<documentation>Operación de régimen general y cualquier otro supuesto que no esté recogido en los siguientes valores</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="02">
+				<annotation>
+					<documentation>Exportación</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="03">
+				<annotation>
+					<documentation>Operaciones a las que se aplique el régimen especial de bienes usados, objetos de arte, antigüedades y objetos de colección</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="04">
+				<annotation>
+					<documentation>Régimen especial del oro de inversión</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="05">
+ 				<annotation>
+					<documentation>Régimen especial de las agencias de viajes</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="07">
+				<annotation>
+					<documentation>Régimen especial del criterio de caja</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="08">
+				<annotation>
+					<documentation>Operaciones sujetas al IPSI/IGIC (Impuesto sobre la Producción, los Servicios y la Importación / Impuesto General Indirecto Canario)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="09">
+				<annotation>
+					<documentation>Facturación de las prestaciones de servicios de agencias de viaje que actúan como mediadoras en nombre y por cuenta ajena (disposición adicional 3ª del Reglamento de Facturación)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="10">
+				<annotation>
+					<documentation>Cobros por cuenta de terceros o terceras de honorarios profesionales o de derechos derivados de la propiedad industrial, de autor u otros por cuenta de sus socios, socias, asociados, asociadas, colegiados o colegiadas efectuados por sociedades, asociaciones, colegios profesionales u otras entidades que realicen estas funciones de cobro</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="11">
+				<annotation>
+					<documentation>Operaciones de arrendamiento de local de negocio sujetos a retención</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="12">
+				<annotation>
+					<documentation>Operaciones de arrendamiento de local de negocio no sujetos a retención</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="13">
+				<annotation>
+					<documentation>Operaciones de arrendamiento de local de negocio sujetas y no sujetas a retención</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="14">
+				<annotation>
+					<documentation>Factura con IVA pendiente de devengo en certificaciones de obra cuyo destinatario sea una Administración Pública</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="15">
+				<annotation>
+					<documentation>Factura con IVA pendiente de devengo en operaciones de tracto sucesivo</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="51">
+				<annotation>
+					<documentation>Operaciones en recargo de equivalencia</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="52">
+				<annotation>
+					<documentation>Operaciones en régimen simplificado</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="53">
+				<annotation>
+					<documentation>Operaciones realizadas por personas o entidades que no tengan la consideración de empresarios, empresarias o profesionales a efectos del IVA </documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="OperacionTrascendenciaTributariaGastoEnum">
+		<restriction base="string">
+			<enumeration value="01">
+				<annotation>
+					<documentation>Operación de régimen general y cualquier otro supuesto que no esté recogido en los siguientes valores. En particular este valor se utilizará para el régimen simplificado y el régimen de recargo de equivalencia</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="02">
+				<annotation>
+					<documentation>Operaciones por las que los empresarios satisfacen compensaciones en las adquisiciones a personas acogidas al Régimen especial de la agricultura, ganadería y pesca</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="03">
+				<annotation>
+					<documentation>Operaciones a las que se aplique el régimen especial de bienes usados, objetos de arte, antigüedades y objetos de colección</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="04">
+				<annotation>
+					<documentation>Régimen especial del oro de inversión</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="05">
+ 				<annotation>
+					<documentation>Régimen especial de las agencias de viajes</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="07">
+				<annotation>
+					<documentation>Régimen especial del criterio de caja</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="08">
+				<annotation>
+					<documentation>Operaciones sujetas al IPSI/IGIC (Impuesto sobre la Producción, los Servicios y la Importación/Impuesto General Indirecto Canario)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="09">
+				<annotation>
+					<documentation>Adquisiciones intracomunitarias de bienes y prestaciones de servicios</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="12">
+				<annotation>
+					<documentation>Operaciones de arrendamiento de local de negocio</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="13">
+				<annotation>
+					<documentation>Factura correspondiente a una importación (informada sin asociar a un DUA)</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="OperacionTrascendenciaTributariaFacturaEmitidaEnum">
+		<restriction base="string">
+			<enumeration value="01">
+				<annotation>
+					<documentation>Operación de régimen general y cualquier otro supuesto que no esté recogido en los siguientes valores</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="02">
+				<annotation>
+					<documentation>Exportación</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="03">
+				<annotation>
+					<documentation>Operaciones a las que se aplique el régimen especial de bienes usados, objetos de arte, antigüedades y objetos de colección</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="04">
+				<annotation>
+					<documentation>Régimen especial del oro de inversión</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="05">
+ 				<annotation>
+					<documentation>Régimen especial de las agencias de viajes</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="06">
+ 				<annotation>
+					<documentation>Régimen especial grupo de entidades en IVA (Nivel Avanzado)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="07">
+				<annotation>
+					<documentation>Régimen especial del criterio de caja</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="08">
+				<annotation>
+					<documentation>Operaciones sujetas al IPSI/IGIC (Impuesto sobre la Producción, los Servicios y la Importación/Impuesto General Indirecto Canario)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="09">
+				<annotation>
+					<documentation>Facturación de las prestaciones de servicios de agencias de viaje que actúan como mediadoras en nombre y por cuenta ajena (disposición adicional 3ª del Reglamento de Facturación)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="10">
+				<annotation>
+					<documentation>Cobros por cuenta de terceros o terceras de honorarios profesionales o de derechos derivados de la propiedad industrial, de autor u otros por cuenta de sus socios, socias, asociados, asociadas, colegiados o colegiadas efectuados por sociedades, asociaciones, colegios profesionales u otras entidades que realicen estas funciones de cobro</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="11">
+				<annotation>
+					<documentation>Operaciones de arrendamiento de local de negocio sujetos a retención</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="12">
+				<annotation>
+					<documentation>Operaciones de arrendamiento de local de negocio no sujetos a retención</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="13">
+				<annotation>
+					<documentation>Operaciones de arrendamiento de local de negocio sujetas y no sujetas a retención</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="14">
+				<annotation>
+					<documentation>Factura con IVA pendiente de devengo en certificaciones de obra cuyo destinatario sea una Administración Pública</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="15">
+				<annotation>
+					<documentation>Factura con IVA pendiente de devengo en operaciones de tracto sucesivo</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="53">
+				<annotation>
+					<documentation>Operaciones realizadas por personas o entidades que no tengan la consideración de empresarios, empresarias o profesionales a efectos del IVA </documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="OperacionTrascendenciaTributariaFacturaRecibidaEnum">
+		<restriction base="string">
+			<enumeration value="01">
+				<annotation>
+					<documentation>Operación de régimen general y cualquier otro supuesto que no esté recogido en los siguientes valores</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="02">
+				<annotation>
+					<documentation>Operaciones por las que los empresarios o las empresarias satisfacen compensaciones en las adquisiciones a personas acogidas al Régimen especial de la agricultura, ganadería y pesca</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="03">
+				<annotation>
+					<documentation>Operaciones a las que se aplique el régimen especial de bienes usados, objetos de arte, antigüedades y objetos de colección</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="04">
+				<annotation>
+					<documentation>Régimen especial del oro de inversión</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="05">
+ 				<annotation>
+					<documentation>Régimen especial de las agencias de viajes</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="06">
+ 				<annotation>
+					<documentation>Régimen especial grupo de entidades en IVA (Nivel Avanzado)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="07">
+				<annotation>
+					<documentation>Régimen especial del criterio de caja</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="08">
+				<annotation>
+					<documentation>Operaciones sujetas al IPSI/IGIC (Impuesto sobre la Producción, los Servicios y la Importación/Impuesto General Indirecto Canario)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="09">
+				<annotation>
+					<documentation>Adquisiciones intracomunitarias de bienes y prestaciones de servicios</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="12">
+				<annotation>
+					<documentation>Operaciones de arrendamiento de local de negocio</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="13">
+				<annotation>
+					<documentation>Factura correspondiente a una importación (informada sin asociar a un DUA)</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="BienAfectoIRPFYOIVAEnum">
+		<restriction base="string">
+			<enumeration value="I">
+				<annotation>
+					<documentation>Adquisición de un bien de inversión a efectos del IVA y afecto a la actividad en el IRPF</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="R">
+				<annotation>
+					<documentation>Adquisición de un bien afecto a la actividad en el IRPF, pero que no es bien de inversión a efectos del IVA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="N">
+				<annotation>
+					<documentation>Adquisición de un bien que no se considera ni bien de inversión a efectos del IVA ni bien afecto a la actividad en el IRPF</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="ConceptoEnum">
+		<restriction base="string">
+			<enumeration value="600">
+				<annotation>
+					<documentation>Compras de mercaderías</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="601">
+				<annotation>
+					<documentation>Compras de materias primas</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="602">
+				<annotation>
+					<documentation>Compras de otros aprovisionamientos</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="606">
+				<annotation>
+					<documentation>Descuentos sobre compras por pronto pago</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="607">
+				<annotation>
+					<documentation>Trabajos realizados por otras empresas</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="608">
+				<annotation>
+					<documentation>Devoluciones de compras y operaciones similares</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="609">
+				<annotation>
+					<documentation>Rappels por compras</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="620">
+				<annotation>
+					<documentation>Gastos en investigación y desarrollo del ejercicio</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="621">
+				<annotation>
+					<documentation>Arrendamientos y cánones</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="622">
+				<annotation>
+					<documentation>Reparaciones y conservación</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="623">
+				<annotation>
+					<documentation>Servicios de profesionales independientes</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="624">
+				<annotation>
+					<documentation>Transportes</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="625">
+				<annotation>
+					<documentation>Primas de seguros</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="626">
+				<annotation>
+					<documentation>Servicios bancarios y similares</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="627">
+				<annotation>
+					<documentation>Publicidad, propaganda y relaciones públicas</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="628">
+				<annotation>
+					<documentation>Suministros</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="629">
+				<annotation>
+					<documentation>Otros servicios</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="631">
+				<annotation>
+					<documentation>Otros servicios</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="634">
+				<annotation>
+					<documentation>Ajustes negativos en la imposición indirecta</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="639">
+				<annotation>
+					<documentation>Ajustes positivos en la imposición indirecta</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="640">
+				<annotation>
+					<documentation>Sueldos y salarios</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="641">
+				<annotation>
+					<documentation>Indemnizaciones</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="64201">
+				<annotation>
+					<documentation>Seguridad social a cargo de la empresa: autónomos</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="64202">
+				<annotation>
+					<documentation>Seguridad social a cargo de la empresa: empleados</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="643">
+				<annotation>
+					<documentation>Retribuciones a largo plazo mediante sistemas de aportación definida</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="644">
+				<annotation>
+					<documentation>Retribuciones a largo plazo mediante sistemas de prestación definida</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="649">
+				<annotation>
+					<documentation>Otros gastos sociales</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="65">
+				<annotation>
+					<documentation>Otros gastos de gestión</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="66">
+				<annotation>
+					<documentation>Gastos financieros</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="67">
+				<annotation>
+					<documentation>Gastos excepcionales</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="680">
+				<annotation>
+					<documentation>Amortización del inmovilizado intangible</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="681">
+				<annotation>
+					<documentation>Amortización del inmovilizado material</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="682">
+				<annotation>
+					<documentation>Amortización de las inversiones inmobiliarias</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="69">
+				<annotation>
+					<documentation>Pérdidas por deterioro y otras dotaciones</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="TituloEnum">
+		<restriction base="string">
+			<enumeration value="P">
+				<annotation>
+					<documentation>Propiedad</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="A">
+				<annotation>
+					<documentation>Alquiler</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="F">
+				<annotation>
+					<documentation>Arrendamiento financiero</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="O">
+				<annotation>
+					<documentation>Otros</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="SistemaAmortizacionEnum">
+		<restriction base="string">
+			<enumeration value="1">
+				<annotation>
+					<documentation>Amortización por tablas</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="2">
+				<annotation>
+					<documentation>Libertad de amortización y otros</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="3">
+				<annotation>
+					<documentation>Amortización conjunta</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="SiglasEnum">
+		<restriction base="string">
+			<enumeration value="AC">
+				<annotation>
+					<documentation>Acceso</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="AL">
+				<annotation>
+					<documentation>Alameda</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="AP">
+				<annotation>
+					<documentation>Apartamentos</documentation>
+				</annotation>
+			</enumeration>
+				<enumeration value="AV">
+				<annotation>
+					<documentation>Avenida</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="BJ">
+				<annotation>
+					<documentation>Bajada</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="BA">
+				<annotation>
+					<documentation>Barriada</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="BO">
+				<annotation>
+					<documentation>Barrio</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="BV">
+				<annotation>
+					<documentation>Bulevar</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="CL">
+				<annotation>
+					<documentation>Calle</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="CJ">
+				<annotation>
+					<documentation>Callejón</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="CZ">
+				<annotation>
+					<documentation>Calzada</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="CM">
+				<annotation>
+					<documentation>Camino</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="CP">
+				<annotation>
+					<documentation>Campa</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="CN">
+				<annotation>
+					<documentation>Cantón</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="CR">
+				<annotation>
+					<documentation>Carretera</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="CS">
+				<annotation>
+					<documentation>Caserio</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="CH">
+				<annotation>
+					<documentation>Chalet</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="CO">
+				<annotation>
+					<documentation>Conjunto</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="CT">
+				<annotation>
+					<documentation>Cuesta</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="DI">
+				<annotation>
+					<documentation>Diseminado</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ED">
+				<annotation>
+					<documentation>Edificio</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="EN">
+				<annotation>
+					<documentation>Ensanche</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="EL">
+				<annotation>
+					<documentation>Escalinatas</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ES">
+				<annotation>
+					<documentation>Estrada</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="EX">
+				<annotation>
+					<documentation>Explanada</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="FA">
+				<annotation>
+					<documentation>Falda</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="GV">
+				<annotation>
+					<documentation>Gran Vía</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="GP">
+				<annotation>
+					<documentation>Grupo</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="JD">
+				<annotation>
+					<documentation>Jardín</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="JS">
+				<annotation>
+					<documentation>Jardines</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="LG">
+				<annotation>
+					<documentation>Lugar</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="MC">
+				<annotation>
+					<documentation>Mercado</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="MT">
+				<annotation>
+					<documentation>Monte</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML">
+				<annotation>
+					<documentation>Muelle</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="PJ">
+				<annotation>
+					<documentation>Paraje</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="PE">
+				<annotation>
+					<documentation>Parque</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="PR">
+				<annotation>
+					<documentation>Particular</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="PS">
+				<annotation>
+					<documentation>Paseo</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="PZ">
+				<annotation>
+					<documentation>Plaza</documentation>
+				</annotation>
+			</enumeration>
+				<enumeration value="PL">
+				<annotation>
+					<documentation>Plazuela</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="PB">
+				<annotation>
+					<documentation>Poblado</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="PG">
+				<annotation>
+					<documentation>Polígono</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="PC">
+				<annotation>
+					<documentation>Prolongación</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="PT">
+				<annotation>
+					<documentation>Puente</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="RM">
+				<annotation>
+					<documentation>Ramal</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="RP">
+				<annotation>
+					<documentation>Rampa</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="RR">
+				<annotation>
+					<documentation>Ribera</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="RO">
+				<annotation>
+					<documentation>Ronda</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="SD">
+				<annotation>
+					<documentation>Senda</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="SR">
+				<annotation>
+					<documentation>Sendero</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="SU">
+				<annotation>
+					<documentation>Subida</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="TR">
+				<annotation>
+					<documentation>Travesía</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="UR">
+				<annotation>
+					<documentation>Urbanización</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="VP">
+				<annotation>
+					<documentation>Vía Pública</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="VC">
+				<annotation>
+					<documentation>Viaducto</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="ProvinciaEnum">
+		<restriction base="string">
+			<enumeration value="1">
+				<annotation>
+					<documentation>ARABA/ÁLAVA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="2">
+				<annotation>
+					<documentation>ALBACETE</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="3">
+				<annotation>
+					<documentation>ALICANTE/ALACANT</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="4">
+				<annotation>
+					<documentation>ALMERIA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="5">
+				<annotation>
+					<documentation>AVILA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="6">
+				<annotation>
+					<documentation>BADAJOZ</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="7">
+				<annotation>
+					<documentation>BALEARS (ILLES)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="8">
+				<annotation>
+					<documentation>BARCELONA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="9">
+				<annotation>
+					<documentation>BURGOS</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="10">
+				<annotation>
+					<documentation>CACERES</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="11">
+				<annotation>
+					<documentation>CADIZ</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="12">
+				<annotation>
+					<documentation>CASTELLON/CASTELLO</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="13">
+				<annotation>
+					<documentation>CIUDAD REAL</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="14">
+				<annotation>
+					<documentation>CORDOBA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="15">
+				<annotation>
+					<documentation>CORUÑA (A)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="16">
+				<annotation>
+					<documentation>CUENCA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="17">
+				<annotation>
+					<documentation>GIRONA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="18">
+				<annotation>
+					<documentation>GRANADA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="19">
+				<annotation>
+					<documentation>GUADALAJARA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="20">
+				<annotation>
+					<documentation>GIPUZKOA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="21">
+				<annotation>
+					<documentation>HUELVA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="22">
+				<annotation>
+					<documentation>HUESCA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="23">
+				<annotation>
+					<documentation>JAEN</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="24">
+				<annotation>
+					<documentation>LEON</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="25">
+				<annotation>
+					<documentation>LLEIDA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="26">
+				<annotation>
+					<documentation>RIOJA (LA)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="27">
+				<annotation>
+					<documentation>LUGO</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="28">
+				<annotation>
+					<documentation>MADRID</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="29">
+				<annotation>
+					<documentation>MALAGA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="30">
+				<annotation>
+					<documentation>MURCIA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="31">
+				<annotation>
+					<documentation>NAVARRA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="32">
+				<annotation>
+					<documentation>OURENSE</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="33">
+				<annotation>
+					<documentation>ASTURIAS</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="34">
+				<annotation>
+					<documentation>PALENCIA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="35">
+				<annotation>
+					<documentation>PALMAS (LAS)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="36">
+				<annotation>
+					<documentation>PONTEVEDRA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="37">
+				<annotation>
+					<documentation>SALAMANCA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="38">
+				<annotation>
+					<documentation>SANTA CRUZ DE TENERIFE</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="39">
+				<annotation>
+					<documentation>CANTABRIA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="40">
+				<annotation>
+					<documentation>SEGOVIA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="41">
+				<annotation>
+					<documentation>SEVILLA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="42">
+				<annotation>
+					<documentation>SORIA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="43">
+				<annotation>
+					<documentation>TARRAGONA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="44">
+				<annotation>
+					<documentation>TERUEL</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="45">
+				<annotation>
+					<documentation>TOLEDO</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="46">
+				<annotation>
+					<documentation>VALENCIA/VALÈNCIA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="47">
+				<annotation>
+					<documentation>VALLADOLID</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="48">
+				<annotation>
+					<documentation>BIZKAIA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="49">
+				<annotation>
+					<documentation>ZAMORA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="50">
+				<annotation>
+					<documentation>ZARAGOZA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="51">
+				<annotation>
+					<documentation>CEUTA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="52">
+				<annotation>
+					<documentation>MELILLA</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+		<simpleType name="TipoVehiculoEnum">
+		<restriction base="string">
+			<enumeration value="T">
+				<annotation>
+					<documentation>Turismo</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="C">
+				<annotation>
+					<documentation>Camión</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="O">
+				<annotation>
+					<documentation>Otros</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="TipoBienEnum">
+		<restriction base="string">
+			<enumeration value="A">
+				<annotation>
+					<documentation>Local</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="B">
+				<annotation>
+					<documentation>Otros inmuebles</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="C">
+				<annotation>
+					<documentation>Medios de transporte</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="D">
+				<annotation>
+					<documentation>Teléfono fijo</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="E">
+				<annotation>
+					<documentation>Teléfono móvil</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="G">
+				<annotation>
+					<documentation>Mobiliario</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="H">
+				<annotation>
+					<documentation>Maquinaria</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="I">
+				<annotation>
+					<documentation>Equipo informático</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="J">
+				<annotation>
+					<documentation>Instalaciones</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="K">
+				<annotation>
+					<documentation>Inmovilizaciones intangibles</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="L">
+				<annotation>
+					<documentation>Otros inmovilizados materiales</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="M">
+				<annotation>
+					<documentation>Inmovilizaciones materiales en curso</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="N">
+				<annotation>
+					<documentation>Solar</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="MotivoBajaBienEnum">
+		<restriction base="string">
+			<enumeration value="T">
+				<annotation>
+					<documentation>Transmisión</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="O">
+				<annotation>
+					<documentation>Otros</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="TipoIngresoEnum">
+		<restriction base="string">
+			<enumeration value="1">
+				<annotation>
+					<documentation>Percepciones incapacidad temporal</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="2">
+				<annotation>
+					<documentation>Subvenciones (subgrupo 74)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="3">
+				<annotation>
+					<documentation>Ingresos financieros (subgrupo 76)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="4">
+				<annotation>
+					<documentation>Ingresos extraordinarios y otros (subgrupos 73, 77 y 79)</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="TipoOperacionIntracomunitariaEnum">
+		<restriction base="string">
+			<enumeration value="A">
+				<annotation>
+					<documentation>Envío o recepción de bienes para la realización de los informes periciales o trabajos mencionados en el artículo 70 Uno 7.º b) de la Norma Foral del IVA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="B">
+				<annotation>
+					<documentation>Transferencias de bienes y adquisiciones intracomunitarias de bienes (artículo 9.3 y 16. 2 de la Norma Foral del IVA) incluidas, en ambos casos, las contempladas en las excepciones correspondientes a las letras e), f) y g) del artículo 9.3 de la Norma Foral del IVA</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="TipoDeclaradoEnum">
+		<restriction base="string">
+			<enumeration value="D">
+				<annotation>
+					<documentation>Destinatario o destinataria</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="R">
+				<annotation>
+					<documentation>Remitente</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="TipoCompraGastoBienEnum">
+		<restriction base="string">
+			<enumeration value="C">
+				<annotation>
+					<documentation>Compra de bienes corrientes</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="G">
+				<annotation>
+					<documentation>Gastos</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="I">
+				<annotation>
+					<documentation>Adquisición de bienes de inversión</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="OperacionEnum">
+		<restriction base="string">
+			<enumeration value="A00">
+				<annotation>
+					<documentation>ALTA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="A01">
+				<annotation>
+					<documentation>ALTA DEVOLUCIÓN EN RÉGIMEN DE VIAJEROS</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="M00">
+				<annotation>
+					<documentation>MODIFICACIÓN</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="M01">
+				<annotation>
+					<documentation>MODIFICACIÓN DEVOLUCIÓN EN RÉGIMEN DE VIAJEROS</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="AN0">
+				<annotation>
+					<documentation>ANULACIÓN</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="C00">
+				<annotation>
+					<documentation>CONSULTA</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="OperacionRecargoEquivalenciaORegimenSimplificadoEnum">
+		<restriction base="string">
+			<enumeration value="E">
+				<annotation>
+					<documentation>Operación en recargo de equivalencia</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="S">
+				<annotation>
+					<documentation>Operación en régimen simplificado</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="N">
+				<annotation>
+					<documentation>Operación que no está ni en recargo de equivalencia ni en régimen simplificado</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="MedioDeCobroPagoEnum">
+		<restriction base="string">
+			<enumeration value="01">
+				<annotation>
+					<documentation>Transferencia</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="02">
+				<annotation>
+					<documentation>Cheque</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="03">
+				<annotation>
+					<documentation>No se cobra / paga (fecha límite de devengo / devengo forzoso en concurso de acreedores)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="04">
+				<annotation>
+					<documentation>Otros medios de cobro o de pago</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="05">
+				<annotation>
+					<documentation>Domiciliación bancaria</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="MetodoEstimacionEnum">
+		<restriction base="string">
+			<enumeration value="EDS">
+				<annotation>
+					<documentation>Estimación directa simplificada.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="EDN">
+				<annotation>
+					<documentation>Estimación directa normal.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="EstadoEnvioEnum">
+		<restriction base="string">
+			<enumeration value="Correcto">
+				<annotation>
+					<documentation>Correcto</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ParcialmenteCorrecto">
+				<annotation>
+					<documentation>Parcialmente correcto.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Incorrecto">
+				<annotation>
+					<documentation>Incorrecto</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="EstadoRegistroEnum">
+		<restriction base="string">
+			<enumeration value="Correcto">
+				<annotation>
+					<documentation>Correcto</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="AceptadoConErrores">
+				<annotation>
+					<documentation>Aceptado con Errores</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Anulado">
+				<annotation>
+					<documentation>Anulado</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Incorrecto">
+				<annotation>
+					<documentation>Incorrecto</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="EstadoRegistroConsultaEnum">
+		<restriction base="string">
+			<enumeration value="Correcto">
+				<annotation>
+					<documentation>Correcto</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="AceptadoConErrores">
+				<annotation>
+					<documentation>Aceptado con errores</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Anulado">
+				<annotation>
+					<documentation>Anulado</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="NIF_IVA">
+		<restriction base="string">
+			<enumeration value="02">
+				<annotation>
+					<documentation>NIF-IVA</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="ClaveDeclaranteEnum">
+		<restriction base="string">
+			<enumeration value="V">
+				<annotation>
+					<documentation>Vendedor o vendedora</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="A">
+				<annotation>
+					<documentation>Adquirente</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="PeriodoEnum">
+		<restriction base="string">
+			<enumeration value="01">
+				<annotation>
+					<documentation>Enero</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="02">
+				<annotation>
+					<documentation>Febrero</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="03">
+				<annotation>
+					<documentation>Marzo</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="04">
+				<annotation>
+					<documentation>Abril</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="05">
+				<annotation>
+					<documentation>Mayo</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="06">
+				<annotation>
+					<documentation>Junio</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="07">
+				<annotation>
+					<documentation>Julio</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="08">
+				<annotation>
+					<documentation>Agosto</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="09">
+				<annotation>
+					<documentation>Septiembre</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="10">
+				<annotation>
+					<documentation>Octubre</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="11">
+				<annotation>
+					<documentation>Noviembre</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="12">
+				<annotation>
+					<documentation>Diciembre</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="0A">
+				<annotation>
+					<documentation>Anual</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="1T">
+				<annotation>
+					<documentation>1.º Trimestre</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="2T">
+				<annotation>
+					<documentation>2.º Trimestre</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="3T">
+				<annotation>
+					<documentation>3.º Trimestre</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="4T">
+				<annotation>
+					<documentation>4.º Trimestre</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="TipoOperacionVentasEnConsignaEnum">
+		<restriction base="string">
+			<enumeration value="01">
+				<annotation>
+					<documentation>Expedición</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="02">
+				<annotation>
+					<documentation>Sustitución del destinatario o de la destinataria inicial</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="03">
+				<annotation>
+					<documentation>Entrega al destinatario o a la destinataria inicial o al sustituto o a la sustituta</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="04">
+				<annotation>
+					<documentation>Entrega distinta al destinatario o destinataria inicial o al sustituto o a la sustituta</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="05">
+				<annotation>
+					<documentation>Expedición a otro país</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="06">
+				<annotation>
+					<documentation>Destrucción, perdida, robo</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="07">
+				<annotation>
+					<documentation>Devolución al territorio de aplicación del impuesto dentro del plazo de 12 meses</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="08">
+				<annotation>
+					<documentation>Transcurso del plazo de 12 meses sin adquisición por el destinatario o la destinataria inicial o del sustituto o de la sustituta</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="09">
+				<annotation>
+					<documentation>Recepción</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="10">
+				<annotation>
+					<documentation>Adquisición</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="11">
+				<annotation>
+					<documentation>Retirada de bienes por parte del vendedor o de la vendedora</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="12">
+				<annotation>
+					<documentation>Destrucción o desaparición</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="TipoOperacionProvisionSuplidoEnum">
+		<restriction base="string">
+			<enumeration value="A">
+				<annotation>
+					<documentation>Provisión de fondos</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="B">
+				<annotation>
+					<documentation>Suplidos</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="TipoAgrupacionEnum">
+		<restriction base="string">
+			<enumeration value="A">
+				<annotation>
+					<documentation>Amortización conjunta</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="T">
+				<annotation>
+					<documentation>Telefonía</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="V">
+				<annotation>
+					<documentation>Vehículos</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="ClaveOperacionSeguroEnum">
+		<restriction base="string">
+			<enumeration value="A">
+				<annotation>
+					<documentation>Indemnizaciones o prestaciones satisfechas superiores a 3.005,06 euros</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="B">
+				<annotation>
+					<documentation>Primas o contraprestaciones percibidas superiores a 3.005,06 euros</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+</schema>
