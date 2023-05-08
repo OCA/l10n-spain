@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -58,6 +58,7 @@ msgid "Company"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:0
 #, python-format
 msgid "Company %s VAT number should not be empty!"
@@ -171,6 +172,7 @@ msgid "Incorrect"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation_response.py:0
 #, python-format
 msgid "Internal API or Operation error"
@@ -224,6 +226,7 @@ msgid "LROE Operation Response Line"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation_response.py:0
 #, python-format
 msgid "LROE Operation required!"
@@ -258,42 +261,49 @@ msgid "LROE source Operation"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation_response.py:0
 #, python-format
 msgid "LROEOperationResponseLineState not VALID !"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:0
 #, python-format
 msgid "LROE_model_pf_140_cancel"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:0
 #, python-format
 msgid "LROE_model_pf_140_create"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:0
 #, python-format
 msgid "LROE_model_pf_140_update"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:0
 #, python-format
 msgid "LROE_model_pj_240_cancel"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:0
 #, python-format
 msgid "LROE_model_pj_240_create"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:0
 #, python-format
 msgid "LROE_model_pj_240_update"
