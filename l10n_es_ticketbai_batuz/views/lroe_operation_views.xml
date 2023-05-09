@@ -34,8 +34,9 @@
                     name="invoices"
                     string="Invoices"
                     attrs="{'invisible': [('invoice_ids','=',[])]}"
+                    cols="4"
                 >
-                    <field name="invoice_ids" nolabel="1" readonly="1" />
+                    <field name="invoice_ids" nolabel="1" readonly="1" colspan="2" />
                 </group>
             </xpath>
         </field>

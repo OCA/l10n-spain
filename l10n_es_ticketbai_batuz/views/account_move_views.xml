@@ -11,18 +11,20 @@
         <field name="inherit_id" ref="l10n_es_ticketbai.view_move_form_inherit" />
         <field name="arch" type="xml">
             <xpath
-                expr="//page[@name='ticketbai']/group[@name='tbai_responses']"
+                expr="//page[@name='ticketbai']//group[@name='tbai_responses']"
                 position="after"
             >
-                <group
+                 <group
                     name="lroe_responses_lines"
                     string="LROE Responses"
                     attrs="{'invisible': [('lroe_response_line_ids', '=', [])]}"
+                    cols="4"
                 >
                     <field
                         name="lroe_response_line_ids"
                         nolabel="1"
                         options="{'no_create_edit': True}"
+                        colspan="2"
                     >
                         <form>
                             <header>
@@ -105,13 +107,14 @@
                     <group
                         name="tbai_refund_origin_invoices_data"
                         string="Origin Invoices Data"
-                        colspan="4"
+                        cols="4"
                         attrs="{'invisible': ['|', '|', ('tbai_enabled', '!=', True), ('reversed_entry_id', '!=', False), ('move_type', '!=', 'in_refund')]}"
                     >
                             <field
                             name="tbai_refund_origin_ids"
                             nolabel="1"
                             attrs="{'readonly': [('state', '!=', 'draft')]}"
+                            colspan="2"
                         >
                                 <tree editable="bottom">
                                     <field
@@ -135,23 +138,27 @@
                         name="lroe_operations"
                         string="LROE Operations"
                         attrs="{'invisible': [('lroe_operation_ids', '=', [])]}"
+                        cols="4"
                     >
                         <field
                             name="lroe_operation_ids"
                             readonly="1"
                             nolabel="1"
                             options="{'no_create':True}"
+                            colspan="2"
                         />
                     </group>
                     <group
                         name="lroe_responses_lines"
                         string="LROE Responses"
                         attrs="{'invisible': [('lroe_response_line_ids', '=', [])]}"
+                        cols="4"
                     >
                         <field
                             name="lroe_response_line_ids"
                             nolabel="1"
                             options="{'no_create_edit': True}"
+                            colspan="2"
                         >
                             <form>
                                 <header>
@@ -190,12 +197,14 @@
                     </group>
                 </page>
             </xpath>
-
-            <field name="ref" position="attributes">
+            <xpath
+                expr="//group[@name='sale_info_group']/field[@name='ref']"
+                position="attributes"
+            >
                 <attribute
                     name="attrs"
                 >{'required':[('move_type', 'in', ['in_invoice', 'in_refund']), ('state','not in',['posted','cancel'])]}</attribute>
-            </field>
+            </xpath>
         </field>
     </record>
 

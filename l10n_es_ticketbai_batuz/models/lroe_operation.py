@@ -35,27 +35,28 @@ except ImportError:
 class LROEOperation(models.Model):
     _inherit = "lroe.operation"
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         # Establecemos los valores por defecto para ser compatibles
         # con l10n_es_ticketbai_batuz
-        if not vals.get("lroe_chapter_id", False) and vals.get("model", False):
-            model = vals.get("model")
-            if model == "140":
-                vals["lroe_chapter_id"] = self.env.ref(
-                    "l10n_es_batuz.lroe_chapter_pf_140_1"
-                )
-                vals["lroe_subchapter_id"] = self.env.ref(
-                    "l10n_es_batuz.lroe_subchapter_pf_140_1_1"
-                )
-            else:
-                vals["lroe_chapter_id"] = self.env.ref(
-                    "l10n_es_batuz.lroe_chapter_pj_240_1"
-                )
-                vals["lroe_subchapter_id"] = self.env.ref(
-                    "l10n_es_batuz.lroe_subchapter_pj_240_1_1"
-                )
-        return super().create(vals)
+        for vals in vals_list:
+            if not vals.get("lroe_chapter_id", False) and vals.get("model", False):
+                model = vals.get("model")
+                if model == "140":
+                    vals["lroe_chapter_id"] = self.env.ref(
+                        "l10n_es_batuz.lroe_chapter_pf_140_1"
+                    )
+                    vals["lroe_subchapter_id"] = self.env.ref(
+                        "l10n_es_batuz.lroe_subchapter_pf_140_1_1"
+                    )
+                else:
+                    vals["lroe_chapter_id"] = self.env.ref(
+                        "l10n_es_batuz.lroe_chapter_pj_240_1"
+                    )
+                    vals["lroe_subchapter_id"] = self.env.ref(
+                        "l10n_es_batuz.lroe_subchapter_pj_240_1_1"
+                    )
+        return super().create(vals_list)
 
     def get_lroe_api(self, **kwargs):
         self.ensure_one()

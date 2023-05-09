@@ -68,7 +68,7 @@ class AccountMove(models.Model):
     lroe_response_line_ids = fields.Many2many(
         comodel_name="lroe.operation.response.line",
         compute="_compute_lroe_response_line_ids",
-        string="Responses",
+        string="LROE Responses",
     )
     lroe_operation_ids = fields.Many2many(
         comodel_name="lroe.operation",
@@ -125,38 +125,42 @@ class AccountMove(models.Model):
             )
             record.lroe_response_line_ids = [(6, 0, response_lines.ids)]
 
-    @api.model
-    def create(self, vals):
-        company = self.env["res.company"].browse(
-            vals.get("company_id", self.env.user.company_id.id)
-        )
-        tbai_tax_agency_id = company.tbai_tax_agency_id
-        if (
-            not company.tbai_enabled
-            or not tbai_tax_agency_id
-            or tbai_tax_agency_id.id
-            != self.env.ref("l10n_es_ticketbai_api_batuz.tbai_tax_agency_bizkaia").id
-        ):
-            return super().create(vals)
-        invoice_type = vals.get("move_type", False) or self._context.get(
-            "default_move_type", False
-        )
-        refund_method = (
-            self._context.get("refund_method", False) or invoice_type == "in_refund"
-        )
-        if refund_method and invoice_type:
-            if "in_refund" == invoice_type:
-                if not vals.get("tbai_refund_type", False):
-                    vals["tbai_refund_type"] = RefundType.differences.value
-                if not vals.get("tbai_refund_key", False):
-                    vals["tbai_refund_key"] = RefundCode.R1.value
-        if "name" in vals and vals["name"]:
-            vals["tbai_description_operation"] = vals["name"]
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            company = self.env["res.company"].browse(
+                vals.get("company_id", self.env.user.company_id.id)
+            )
+            tbai_tax_agency_id = company.tbai_tax_agency_id
+            if (
+                not company.tbai_enabled
+                or not tbai_tax_agency_id
+                or tbai_tax_agency_id.id
+                != self.env.ref(
+                    "l10n_es_ticketbai_api_batuz.tbai_tax_agency_bizkaia"
+                ).id
+            ):
+                continue
+            invoice_type = vals.get("move_type", False) or self._context.get(
+                "default_move_type", False
+            )
+            refund_method = (
+                self._context.get("refund_method", False) or invoice_type == "in_refund"
+            )
+            if refund_method and invoice_type:
+                if "in_refund" == invoice_type:
+                    if not vals.get("tbai_refund_type", False):
+                        vals["tbai_refund_type"] = RefundType.differences.value
+                    if not vals.get("tbai_refund_key", False):
+                        vals["tbai_refund_key"] = RefundCode.R1.value
+            if "name" in vals and vals["name"]:
+                vals["tbai_description_operation"] = vals["name"]
 
-        invoice = super(AccountMove, self).create(vals)
-        if vals.get("fiscal_position_id"):
-            invoice.onchange_fiscal_position_id_lroe_vat_regime_key()
-        return invoice
+        invoices = super(AccountMove, self).create(vals_list)
+        for invoice, vals in zip(invoices, vals_list):
+            if vals.get("fiscal_position_id"):
+                invoice.onchange_fiscal_position_id_lroe_vat_regime_key()
+        return invoices
 
     @api.onchange("fiscal_position_id", "partner_id")
     def onchange_fiscal_position_id_lroe_vat_regime_key(self):
@@ -311,7 +315,10 @@ class AccountMove(models.Model):
                         vals.append(("SerieFactura", refund_origin_id.number_prefix))
                     vals.append(("NumFactura", refund_origin_id.number))
                     vals.append(
-                        ("FechaExpedicionFactura", refund_origin_id.expedition_date)
+                        (
+                            "FechaExpedicionFactura",
+                            self._change_date_format(refund_origin_id.expedition_date),
+                        )
                     )
 
                     origins.append(
