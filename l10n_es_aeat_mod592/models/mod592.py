@@ -188,11 +188,11 @@ class L10nEsAeatmod592Report(models.Model):
                 "clave_producto": move_line.product_plastic_type_key,
                 "descripcion_producto": move_line.name,
                 "regimen_fiscal_manufacturer": move_line.product_plastic_tax_regime_manufacturer,
-                "justificante": move_line.move_id.name,
-                "proveedor_tipo_documento": move_line.move_id.partner_id.product_plastic_document_type
-                or move_line.move_id.partner_id.property_account_position_id.product_plastic_document_type,
-                "proveedor_numero_documento": move_line.move_id.partner_id.vat,
-                "proveedor_razon_social": move_line.move_id.partner_id.name,
+                "justificante": move_line.name,
+                "proveedor_tipo_documento": move_line.partner_id.product_plastic_document_type
+                or move_line.partner_id.property_account_position_id.product_plastic_document_type,
+                "proveedor_numero_documento": move_line.partner_id.vat,
+                "proveedor_razon_social": move_line.partner_id.name,
                 "kilogramos": move_line.product_plastic_tax_weight,
                 "kilogramos_no_reciclados": move_line.product_plastic_weight_non_recyclable,
                 "observaciones_asiento": False,
