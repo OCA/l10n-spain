@@ -182,7 +182,6 @@ class L10nEsAeatmod592Report(models.Model):
             {
                 "report_id": self.id,
                 "move_line_id": move_line.id,
-                # "numero_asiento": ,
                 "fecha_hecho": move_line.date,
                 "concepto": move_line.product_plastic_concept_manufacturer,
                 "clave_producto": move_line.product_plastic_type_key,
