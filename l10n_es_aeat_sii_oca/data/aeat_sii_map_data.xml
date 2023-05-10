@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2017 Acysos
+    Copyright 2017 Studio 73 - Jordi Ortolsa
+    Copyright 2021 Iván Antón
+    Copyright 2021 Comunitea - Omar Castiñeira
+    Copyright 2021 Planeta Huerto - Juanjo Algaz
+    Copyright 2021 Sygel - Valentín Vinagre
+    Copyright 2022 Punt Sistemes S.L.U - Rafa Martínez
+    Copyright 2022 Solvos - David Alonso
+    Copyright 2022 Moduon - Eduardo de Miguel
+    Copyright 2017-2023 Tecnativa - Pedro M. Baeza
+-->
 <odoo>
     <record id="aeat_sii_map" model="aeat.sii.map">
         <field name="name">SII</field>
@@ -9,7 +21,9 @@
             name="taxes"
             eval="[(6, 0, [
                 ref('l10n_es.account_tax_template_s_iva21b'),
+                ref('l10n_es.account_tax_template_s_iva0b'),
                 ref('l10n_es.account_tax_template_s_iva4b'),
+                ref('l10n_es.account_tax_template_s_iva5b'),
                 ref('l10n_es.account_tax_template_s_iva10b'),
             ])]"
         />
@@ -58,8 +72,9 @@
             eval="[(6, 0, [
                 ref('l10n_es.account_tax_template_s_iva21s'),
                 ref('l10n_es.account_tax_template_s_iva10s'),
-                ref('l10n_es.account_tax_template_s_iva5s'),
+                ref('l10n_es.account_tax_template_s_iva0s'),
                 ref('l10n_es.account_tax_template_s_iva4s'),
+                ref('l10n_es.account_tax_template_s_iva5s'),
             ])]"
         />
         <field name="sii_map_id" ref="aeat_sii_map" />
@@ -98,10 +113,16 @@
                 ref('l10n_es.account_tax_template_p_iva21_sc'),
                 ref('l10n_es.account_tax_template_p_iva10_bc'),
                 ref('l10n_es.account_tax_template_p_iva10_sc'),
+                ref('l10n_es.account_tax_template_p_iva5_bc'),
                 ref('l10n_es.account_tax_template_p_iva5_sc'),
                 ref('l10n_es.account_tax_template_p_iva4_bc'),
                 ref('l10n_es.account_tax_template_p_iva4_sc'),
                 ref('l10n_es.account_tax_template_p_iva0_bc'),
+                ref('l10n_es.account_tax_template_p_iva0_s_bc'),
+                ref('l10n_es.account_tax_template_p_iva0_s_sc'),
+                ref('l10n_es.account_tax_template_p_iva0_ic_bc'),
+                ref('l10n_es.account_tax_template_p_iva0_ic_sc'),
+                ref('l10n_es.account_tax_template_p_iva0_ibc'),
                 ref('l10n_es.account_tax_template_p_iva4_bi'),
                 ref('l10n_es.account_tax_template_p_iva10_bi'),
                 ref('l10n_es.account_tax_template_p_iva21_bi'),
@@ -111,10 +132,13 @@
                 ref('l10n_es.account_tax_template_p_iva4_ic_bc'),
                 ref('l10n_es.account_tax_template_p_iva10_ic_bc'),
                 ref('l10n_es.account_tax_template_p_iva21_ic_bc'),
+                ref('l10n_es.account_tax_template_p_iva5_ic_bc'),
+                ref('l10n_es.account_tax_template_p_iva5_ic_sc'),
                 ref('l10n_es.account_tax_template_p_iva4_ic_bi'),
                 ref('l10n_es.account_tax_template_p_iva10_ic_bi'),
                 ref('l10n_es.account_tax_template_p_iva21_ic_bi'),
                 ref('l10n_es.account_tax_template_p_iva4_ibc'),
+                ref('l10n_es.account_tax_template_p_iva5_ibc'),
                 ref('l10n_es.account_tax_template_p_iva10_ibc'),
                 ref('l10n_es.account_tax_template_p_iva21_ibc'),
                 ref('l10n_es.account_tax_template_p_iva4_ibi'),
@@ -144,9 +168,14 @@
                 ref('l10n_es.account_tax_template_p_iva21_isp'),
                 ref('l10n_es.account_tax_template_p_iva10_isp'),
                 ref('l10n_es.account_tax_template_p_iva4_isp'),
+                ref('l10n_es.account_tax_template_p_iva21_isp_bi'),
+                ref('l10n_es.account_tax_template_p_iva10_isp_bi'),
+                ref('l10n_es.account_tax_template_p_iva4_isp_bi'),
                 ref('l10n_es.account_tax_template_p_iva21_sp_ex'),
                 ref('l10n_es.account_tax_template_p_iva10_sp_ex'),
+                ref('l10n_es.account_tax_template_p_iva5_isc'),
                 ref('l10n_es.account_tax_template_p_iva4_sp_ex'),
+                ref('l10n_es.account_tax_template_p_iva0_isc'),
             ])]"
         />
         <field name="sii_map_id" ref="aeat_sii_map" />
@@ -160,6 +189,12 @@
                 ref('l10n_es.account_tax_template_p_iva4_bi'),
                 ref('l10n_es.account_tax_template_p_iva10_bi'),
                 ref('l10n_es.account_tax_template_p_iva21_bi'),
+                ref('l10n_es.account_tax_template_p_iva21_isp_bi'),
+                ref('l10n_es.account_tax_template_p_iva10_isp_bi'),
+                ref('l10n_es.account_tax_template_p_iva4_isp_bi'),
+                ref('l10n_es.account_tax_template_p_iva4_ic_bi'),
+                ref('l10n_es.account_tax_template_p_iva10_ic_bi'),
+                ref('l10n_es.account_tax_template_p_iva21_ic_bi'),
             ])]"
         />
         <field name="sii_map_id" ref="aeat_sii_map" />
@@ -186,8 +221,12 @@
                 ref('l10n_es.account_tax_template_s_req52'),
                 ref('l10n_es.account_tax_template_p_req014'),
                 ref('l10n_es.account_tax_template_s_req014'),
+                ref('l10n_es.account_tax_template_p_req062'),
+                ref('l10n_es.account_tax_template_s_req062'),
                 ref('l10n_es.account_tax_template_p_req05'),
                 ref('l10n_es.account_tax_template_s_req05'),
+                ref('l10n_es.account_tax_template_p_req0'),
+                ref('l10n_es.account_tax_template_s_req0'),
             ])]"
         />
         <field name="sii_map_id" ref="aeat_sii_map" />
@@ -217,10 +256,12 @@
               ref('l10n_es.account_tax_template_p_irpf2'),
               ref('l10n_es.account_tax_template_s_irpf7'),
               ref('l10n_es.account_tax_template_p_irpf7'),
+              ref('l10n_es.account_tax_template_p_irpf7e'),
               ref('l10n_es.account_tax_template_s_irpf9'),
               ref('l10n_es.account_tax_template_p_irpf9'),
               ref('l10n_es.account_tax_template_s_irpf15'),
               ref('l10n_es.account_tax_template_p_irpf15'),
+              ref('l10n_es.account_tax_template_p_irpf15e'),
               ref('l10n_es.account_tax_template_s_irpf18'),
               ref('l10n_es.account_tax_template_p_irpf18'),
               ref('l10n_es.account_tax_template_s_irpf19'),
@@ -255,16 +296,17 @@
         <field
             name="taxes"
             eval="[(6, 0, [
-                ref('l10n_es.account_tax_template_p_iva21_isp'),
-                ref('l10n_es.account_tax_template_p_iva10_isp'),
-                ref('l10n_es.account_tax_template_p_iva4_isp'),
                 ref('l10n_es.account_tax_template_p_iva21_sp_ex'),
                 ref('l10n_es.account_tax_template_p_iva10_sp_ex'),
+                ref('l10n_es.account_tax_template_p_iva5_isc'),
                 ref('l10n_es.account_tax_template_p_iva4_sp_ex'),
+                ref('l10n_es.account_tax_template_p_iva0_isc'),
                 ref('l10n_es.account_tax_template_p_iva4_sp_in'),
                 ref('l10n_es.account_tax_template_p_iva10_sp_in'),
                 ref('l10n_es.account_tax_template_p_iva21_sp_in'),
+                ref('l10n_es.account_tax_template_p_iva0_ic_bc'),
                 ref('l10n_es.account_tax_template_p_iva4_ic_bc'),
+                ref('l10n_es.account_tax_template_p_iva5_ic_bc'),
                 ref('l10n_es.account_tax_template_p_iva10_ic_bc'),
                 ref('l10n_es.account_tax_template_p_iva21_ic_bc'),
                 ref('l10n_es.account_tax_template_p_iva4_ic_bi'),

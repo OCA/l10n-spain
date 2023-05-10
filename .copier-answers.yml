@@ -1,9 +1,15 @@
 # Do NOT update manually; changes here will be overwritten by Copier
-_commit: v1.5.2
+_commit: v1.14.2
 _src_path: gh:oca/oca-addons-repo-template
 ci: GitHub
 dependency_installation_mode: PIP
 generate_requirements_txt: true
+github_check_license: true
+github_ci_extra_env: {}
+github_enable_codecov: true
+github_enable_makepot: true
+github_enable_stale_action: true
+github_enforce_dev_status_compatibility: true
 include_wkhtmltopdf: false
 odoo_version: 15.0
 org_name: Odoo Community Association (OCA)
@@ -15,3 +21,4 @@ repo_slug: l10n-spain
 repo_website: https://github.com/OCA/l10n-spain
 travis_apt_packages: []
 travis_apt_sources: []
+

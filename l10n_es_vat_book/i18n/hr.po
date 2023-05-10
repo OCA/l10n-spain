@@ -142,11 +142,6 @@ msgid "Company"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
-msgid "Company Name"
-msgstr ""
-
-#. module: l10n_es_vat_book
 #: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__partner_bank_id
 msgid "Company bank account used for the presentation"
 msgstr ""
@@ -554,6 +549,11 @@ msgid "Partner"
 msgstr ""
 
 #. module: l10n_es_vat_book
+#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
+msgid "Partner Name"
+msgstr ""
+
+#. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__period_type
 msgid "Period Type"
 msgstr ""
@@ -797,7 +797,7 @@ msgstr ""
 #. module: l10n_es_vat_book
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
 #, python-format
-msgid "This company doesn't have VAT"
+msgid "This partner doesn't have VAT"
 msgstr ""
 
 #. module: l10n_es_vat_book
@@ -929,24 +929,6 @@ msgstr ""
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__year
 msgid "Year"
-msgstr ""
-
-#. module: l10n_es_vat_book
-#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
-msgid "You have"
-msgstr ""
-
-#. module: l10n_es_vat_book
-#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
-msgid "errors"
-msgstr ""
-
-#. module: l10n_es_vat_book
-#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
-msgid ""
-"in this report.\n"
-"                        You will not be able to <strong>confirm and submit</"
-"strong> it until they are resolved."
 msgstr ""
 
 #. module: l10n_es_vat_book

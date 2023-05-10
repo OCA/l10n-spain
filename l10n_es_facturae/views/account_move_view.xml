@@ -3,9 +3,21 @@
     <record id="view_move_form" model="ir.ui.view">
         <field name="name">account.move.form</field>
         <field name="model">account.move</field>
-        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="inherit_id" ref="l10n_es_aeat.view_move_form" />
         <field name="type">form</field>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='thirdparty_invoice']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('move_type', 'not in', ('in_invoice', 'out_invoice',
+                    'out_refund', 'in_refund'))]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='thirdparty_number']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'required': [('thirdparty_invoice', '=', True)], 'invisible':
+                    [('thirdparty_invoice', '=', False)]}</attribute>
+            </xpath>
             <field name="name" position="after">
                 <field name="facturae" invisible="1" />
             </field>
@@ -27,31 +39,33 @@
                     attrs="{'invisible': [('facturae', '=', False)]}"
                 >
                     <group>
-                        <field
-                            name="facturae_start_date"
-                            attrs="{'invisible': [('facturae', '=', False)]}"
-                        />
-                        <field
-                            name="facturae_end_date"
-                            attrs="{'invisible': [('facturae', '=', False)]}"
-                        />
-                    </group>
-                    <group name="facturae_attachment" string="Facturae Attachment">
-                        <field name="l10n_es_facturae_attachment_ids">
-                            <tree>
-                                <field name="move_id" invisible="1" />
-                                <field name="filename" />
-                                <field name="file" filename="filename" />
-                            </tree>
-                            <form>
-                                <sheet>
-                                    <group>
-                                        <field name="file" filename="filename" />
-                                        <field name="filename" invisible="1" />
-                                    </group>
-                                </sheet>
-                            </form>
-                        </field>
+                        <group string="Invoicing Period">
+                            <field
+                                name="facturae_start_date"
+                                attrs="{'invisible': [('facturae', '=', False)]}"
+                            />
+                            <field
+                                name="facturae_end_date"
+                                attrs="{'invisible': [('facturae', '=', False)]}"
+                            />
+                        </group>
+                        <group name="facturae_attachment" string="Facturae Attachment">
+                            <field name="l10n_es_facturae_attachment_ids">
+                                <tree>
+                                    <field name="move_id" invisible="1" />
+                                    <field name="filename" />
+                                    <field name="file" filename="filename" />
+                                </tree>
+                                <form>
+                                    <sheet>
+                                        <group>
+                                            <field name="file" filename="filename" />
+                                            <field name="filename" invisible="1" />
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </group>
                     </group>
                 </page>
             </notebook>

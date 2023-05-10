@@ -32,6 +32,12 @@ msgid "AEAT Name"
 msgstr "Nom AEAT"
 
 #. module: l10n_es_aeat_partner_check
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_partner_vat
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_partner_vat
+msgid "AEAT VAT"
+msgstr "AEAT IVA"
+
+#. module: l10n_es_aeat_partner_check
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_partner_aeat_form
 msgid "Check Partner Data"
 msgstr "Consulteu les dades dels socis"
@@ -67,20 +73,6 @@ msgstr "Diferència de dades"
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_data_diff
 msgid "Data different"
 msgstr "Dades diferents"
-
-#. module: l10n_es_aeat_partner_check
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_company__display_name
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_config_settings__display_name
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__display_name
-msgid "Display Name"
-msgstr "Nom de visualització"
-
-#. module: l10n_es_aeat_partner_check
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_company__id
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_config_settings__id
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__id
-msgid "ID"
-msgstr "ID"
 
 #. module: l10n_es_aeat_partner_check
 #: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
@@ -125,13 +117,6 @@ msgid ""
 msgstr ""
 "Si es marca aquesta casella de selecció, comprovareu la informació del soci "
 "a AEAT a crear i escriure soci."
-
-#. module: l10n_es_aeat_partner_check
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_company____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_config_settings____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner____last_update
-msgid "Last Modified on"
-msgstr "Última modificació el"
 
 #. module: l10n_es_aeat_partner_check
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_last_checked
@@ -211,12 +196,6 @@ msgid "Standard regimen"
 msgstr "Règim estàndard"
 
 #. module: l10n_es_aeat_partner_check
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_partner_vat
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_partner_vat
-msgid "VAT"
-msgstr "IVA"
-
-#. module: l10n_es_aeat_partner_check
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_company__vat_check_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_config_settings__vat_check_aeat
 msgid "Verify AEAT Partner Data"
@@ -226,3 +205,12 @@ msgstr "Verifiqueu les dades del soci AEAT"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.res_config_settings_aeat_partner_check_view_form
 msgid "Verify Partner Data using AEAT Census."
 msgstr "Verifiqueu les dades dels socis mitjançant el cens AEAT."
+
+#~ msgid "Display Name"
+#~ msgstr "Nom de visualització"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificació el"

@@ -27,6 +27,12 @@ msgid "AEAT Name"
 msgstr ""
 
 #. module: l10n_es_aeat_partner_check
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_partner_vat
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_partner_vat
+msgid "AEAT VAT"
+msgstr ""
+
+#. module: l10n_es_aeat_partner_check
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_partner_aeat_form
 msgid "Check Partner Data"
 msgstr ""
@@ -178,12 +184,6 @@ msgstr ""
 #. module: l10n_es_aeat_partner_check
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_res_partner_aeat_filter
 msgid "Standard regimen"
-msgstr ""
-
-#. module: l10n_es_aeat_partner_check
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_partner_vat
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_partner_vat
-msgid "VAT"
 msgstr ""
 
 #. module: l10n_es_aeat_partner_check

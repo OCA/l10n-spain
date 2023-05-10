@@ -190,11 +190,6 @@ msgid "Enable TicketBAI"
 msgstr "Gaitu TicketBAI"
 
 #. module: l10n_es_ticketbai
-#: model:ir.model.fields,help:l10n_es_ticketbai.field_tbai_invoice_refund_origin__expedition_date
-msgid "Expected string date format: %dd-%mm-%yyyy"
-msgstr "Espero den katearen data formatua: %dd-%mm-%yyyy"
-
-#. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin__expedition_date
 msgid "Expedition Date"
 msgstr "Espedizio Data"
@@ -272,16 +267,6 @@ msgid "Invoice Serial"
 msgstr "Fakturaren Seriea"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
-#, python-format
-msgid ""
-"Invoice: number %(name)s prefix %(prefix)s invoice_date %(date)s exists. "
-"Create a credit note from this invoice."
-msgstr ""
-"Faktura: %(name)s zenbakia %(prefix)s aurrizkia %(date)s faktura_data "
-"existitzen da. Sortu kreditu-ohar bat faktura honetatik."
-
-#. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_journal
 msgid "Journal"
 msgstr "Egunkaria"
@@ -356,9 +341,11 @@ msgstr "Mezuak"
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_res_company__tbai_description_method
 msgid ""
 "Method for the TicketBAI invoices description, can be one of these:\n"
-"- Automatic: the description will be the join of the invoice   lines description\n"
+"- Automatic: the description will be the join of the invoice   lines "
+"description\n"
 "- Fixed: the description write on the below field 'TBAI   Description'\n"
-"- Manual (by default): It will be necessary to manually enter   the description on each invoice"
+"- Manual (by default): It will be necessary to manually enter   the "
+"description on each invoice"
 msgstr ""
 "TicketBAI fakturen deskribapena egiteko metodoa hauetako bat izan daiteke:\n"
 "- Automatikoa: deskribapena faktura-lerroen deskribapenaren batzea izango "
@@ -390,8 +377,8 @@ msgid ""
 "Number prefix of this invoice name e.g. if the invoice name is "
 "INV/2021/00001 then the prefix is INV/2021/, ending back slash included"
 msgstr ""
-"Adibidez, faktura honen zenbakiaren aurrizkia, fakturaren izena INV/2021/"
-"00001 bada aurrizkia INV/2021/ da, amaierako barra barne"
+"Adibidez, faktura honen zenbakiaren aurrizkia, fakturaren izena "
+"INV/2021/00001 bada aurrizkia INV/2021/ da, amaierako barra barne"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_date_operation
@@ -456,12 +443,6 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
 #, python-format
-msgid "Refunded Invoice %s Expedition Date"
-msgstr "Itzulitako %s fakturaren espedizio-data"
-
-#. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
-#, python-format
 msgid ""
 "Refunded Invoice Number %s longer than expected. Should be 20 characters "
 "max.!"
@@ -489,6 +470,11 @@ msgstr "Erantzunak"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_send_invoice
 msgid "Send TicketBAI invoices to tax agency"
 msgstr "Bidali TicketBAI fakturak zerga agentziari"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_move__tbai_refund_key__r5
+msgid "Simplified Invoice"
+msgstr ""
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info__software
@@ -597,8 +583,8 @@ msgstr "Posizio Fiskalaren txantiloia"
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_res_company__tbai_description
 msgid ""
-"The description for invoices. Only used when the field TicketBAI Description"
-" Method is 'Fixed'."
+"The description for invoices. Only used when the field TicketBAI Description "
+"Method is 'Fixed'."
 msgstr ""
 "Fakturen deskribapena. TicketBAI Description Method eremua \"Finkoa\" denean "
 "bakarrik erabiltzen da."
@@ -863,3 +849,18 @@ msgid ""
 msgstr ""
 "Ezin diozu utzi aldizkari honetatik fakturak bidaltzeari, dagoeneko faktura "
 "bat bidali da."
+
+#~ msgid "Expected string date format: %dd-%mm-%yyyy"
+#~ msgstr "Espero den katearen data formatua: %dd-%mm-%yyyy"
+
+#, python-format
+#~ msgid ""
+#~ "Invoice: number %(name)s prefix %(prefix)s invoice_date %(date)s exists. "
+#~ "Create a credit note from this invoice."
+#~ msgstr ""
+#~ "Faktura: %(name)s zenbakia %(prefix)s aurrizkia %(date)s faktura_data "
+#~ "existitzen da. Sortu kreditu-ohar bat faktura honetatik."
+
+#, python-format
+#~ msgid "Refunded Invoice %s Expedition Date"
+#~ msgstr "Itzulitako %s fakturaren espedizio-data"

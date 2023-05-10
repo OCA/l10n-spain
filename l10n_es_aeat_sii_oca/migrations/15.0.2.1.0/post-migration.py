@@ -61,5 +61,6 @@ def _set_agency_in_company(env, agency_map):
 
 @openupgrade.migrate()
 def migrate(env, version):
-    agency_map = _get_tax_agency_map(env)
-    _set_agency_in_company(env, agency_map)
+    if openupgrade.column_exists(env.cr, "res_company", "sii_tax_agency_id"):
+        agency_map = _get_tax_agency_map(env)
+        _set_agency_in_company(env, agency_map)

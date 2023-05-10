@@ -16,7 +16,7 @@ from cryptography.hazmat.primitives.serialization import Encoding
 from lxml import etree
 
 from odoo import _, api, models, tools
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 _logger = logging.getLogger(__name__)
 
@@ -110,10 +110,15 @@ class ReportFacturae(models.AbstractModel):
         x509_data = xmlsig.template.add_x509_data(key_info)
         xmlsig.template.x509_data_add_certificate(x509_data)
         xmlsig.template.add_key_value(key_info)
-        with open(public_cert, "rb") as f:
-            certificate = x509.load_pem_x509_certificate(
-                f.read(), backend=default_backend()
-            )
+        try:
+            with open(public_cert, "rb") as f:
+                certificate = x509.load_pem_x509_certificate(
+                    f.read(), backend=default_backend()
+                )
+        except FileNotFoundError as e:
+            raise ValidationError(
+                _("The provided certificate is not found in the system.")
+            ) from e
         xmlsig.template.add_reference(
             sign,
             xmlsig.constants.TransformSha1,

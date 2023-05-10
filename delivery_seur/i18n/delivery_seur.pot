@@ -1,0 +1,381 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* delivery_seur
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: delivery_seur
+#: code:addons/delivery_seur/models/delivery_carrier.py:0
+#, python-format
+msgid ""
+"\n"
+"            SEUR API doesn't provide methods to compute delivery rates, so\n"
+"            you should relay on another price method instead or override this\n"
+"            one in your custom code.\n"
+"        "
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_label_size__1d
+msgid "1D"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_label_size__2c
+msgid "2C"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_label_size__2d
+msgid "2D"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_accounting_code
+msgid "Accounting Code (CCC)"
+msgstr ""
+
+#. module: delivery_seur
+#: model_terms:ir.ui.view,arch_db:delivery_seur.view_delivery_carrier_form
+msgid "CIT Credentials"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__076
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_service_code__077
+msgid "CLASSIC"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__116
+msgid "CLASSIC MULTIPARCEL"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_service_code__007
+msgid "COURIER"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__108
+msgid "COURIER MUESTRAS"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__104
+msgid "CROSSBORDER NETEXPRES INTERNACIONAL"
+msgstr ""
+
+#. module: delivery_seur
+#: code:addons/delivery_seur/models/delivery_carrier.py:0
+#, python-format
+msgid "Cancel SEUR shipment (%(ref)s): %(message)s"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_printer__datamax:e_class_4203
+msgid "DATAMAX E CLASS 4203"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__054
+msgid "DOCUMENTOS"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__086
+msgid "ECCOMMERCE RETURN 2HOME"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__088
+msgid "ECCOMMERCE RETURN 2SHOP"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_service_code__031
+msgid "ENTREGA PARTIC"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__002
+msgid "ESTANDAR"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__018
+msgid "FRIO"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_franchise_code
+msgid "Franchise Code"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_printer__hp:laserjet_ii
+msgid "HP LASERJET II"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_printer__intermec:c4
+msgid "INTERMEC C4"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__072
+msgid "INTERNACIONAL A"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__070
+msgid "INTERNACIONAL ´T"
+msgstr ""
+
+#. module: delivery_seur
+#: model_terms:ir.ui.view,arch_db:delivery_seur.view_delivery_carrier_form
+msgid "Identification"
+msgstr ""
+
+#. module: delivery_seur
+#: model_terms:ir.ui.view,arch_db:delivery_seur.view_delivery_carrier_form
+msgid "Integration"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_integration_code
+msgid "Integration Code (CI)"
+msgstr ""
+
+#. module: delivery_seur
+#: model_terms:ir.ui.view,arch_db:delivery_seur.view_delivery_carrier_form
+msgid "Label"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_label_format
+msgid "Label format"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_label_size
+msgid "Label size"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_service_code__017
+msgid "MARITIMO"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_service_code__005
+msgid "MISMO DIA"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__006
+msgid "MULTI BOX"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__052
+msgid "MULTI DOC"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__004
+msgid "MULTIPACK"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_service_code__019
+msgid "NETEXPRESS"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__122
+msgid "NEUMATICOS B2B"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__124
+msgid "NEUMATICOS B2C"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_label_format__pdf
+msgid "PDF"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_cit_password
+msgid "Password CIT"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_ws_password
+msgid "Password WS"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_printer
+msgid "Printer"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_product_code
+msgid "Product code"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__delivery_type
+msgid "Provider"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_service_code__015
+msgid "S-48"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_service_code__003
+msgid "SEUR - 10"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_service_code__001
+msgid "SEUR - 24"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_service_code__013
+msgid "SEUR - 72"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_service_code__009
+msgid "SEUR 13:30"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__048
+msgid "SEUR 24 PICKUP"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_service_code__083
+msgid "SEUR 8:30"
+msgstr ""
+
+#. module: delivery_seur
+#: code:addons/delivery_seur/models/delivery_carrier.py:0
+#, python-format
+msgid "SEUR exception: %s"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_send_sms
+msgid "Send SMS to customer"
+msgstr ""
+
+#. module: delivery_seur
+#: model_terms:ir.ui.view,arch_db:delivery_seur.view_delivery_carrier_form
+msgid "Service"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_service_code
+msgid "Service code"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__delivery_type__seur
+msgid "Seur"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model,name:delivery_seur.model_delivery_carrier
+msgid "Shipping Methods"
+msgstr ""
+
+#. module: delivery_seur
+#: code:addons/delivery_seur/models/delivery_carrier.py:0
+#, python-format
+msgid "Status cannot be checked, enter webservice carrier credentials"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_printer__tec:b430
+msgid "TEC B430"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_label_format__txt
+msgid "TXT"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_send_sms
+msgid "This feature has delivery cost"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_cit_password
+#: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_cit_username
+msgid "Used for cit.seur.com webservice (generate labels)"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_ws_password
+#: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_ws_username
+msgid "Used for ws.seur.com webservice (pickup services)"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_cit_username
+msgid "Username CIT"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_ws_username
+msgid "Username WS"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_vat
+msgid "VAT"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__118
+msgid "VINO"
+msgstr ""
+
+#. module: delivery_seur
+#: model_terms:ir.ui.view,arch_db:delivery_seur.view_delivery_carrier_form
+msgid "WS Credentials"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_printer__zebra:lp2844-z
+msgid "ZEBRA LP2844-Z"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_printer__zebra:s600
+msgid "ZEBRA S600"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_printer__zebra:z4m_plus
+msgid "ZEBRA Z4M PLUS"
+msgstr ""

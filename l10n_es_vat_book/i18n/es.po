@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-28 23:52+0100\n"
-"PO-Revision-Date: 2022-05-25 16:05+0000\n"
-"Last-Translator: Luis D. Lafaurie <luislafaurie@hotmail.com>\n"
+"PO-Revision-Date: 2023-02-10 07:58+0000\n"
+"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_es_vat_book
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_summary
@@ -110,7 +110,7 @@ msgstr "Base"
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary__base_amount
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary__base_amount
 msgid "Base Amount"
-msgstr ""
+msgstr "Base imponible"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__fee_amount_xlsx_column
@@ -122,7 +122,7 @@ msgstr "Columna xlsx base"
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary__book_type
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary__book_type
 msgid "Book Type"
-msgstr ""
+msgstr "Tipo de libro"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__calculation_date
@@ -137,22 +137,17 @@ msgstr "Pulse para crear un nuevo libro de IVA."
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__company_id
 msgid "Company"
-msgstr "Empresa"
-
-#. module: l10n_es_vat_book
-#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
-msgid "Company Name"
-msgstr "Nombre empresa"
+msgstr "Compañía"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__partner_bank_id
 msgid "Company bank account used for the presentation"
-msgstr "Cuenta bancaria de la empresa que se usará para presentar"
+msgstr "Cuenta bancaria de la compañía que se usará para la presentación"
 
 #. module: l10n_es_vat_book
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_dates
 msgid "Company:"
-msgstr "Empresa:"
+msgstr "Compañía:"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__contact_email
@@ -222,7 +217,7 @@ msgstr "Fecha fin"
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line__entry_number
 msgid "Entry Number"
-msgstr ""
+msgstr "Nº asiento"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__error_count
@@ -448,7 +443,7 @@ msgstr "Libro de IVA"
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line__line_type
 msgid "Line Type"
-msgstr ""
+msgstr "Tipo de línea"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__message_main_attachment_id
@@ -550,6 +545,11 @@ msgstr "Nº de mensajes sin leer"
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__partner_id
 msgid "Partner"
 msgstr "Empresa"
+
+#. module: l10n_es_vat_book
+#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
+msgid "Partner Name"
+msgstr "Nombre Empresa"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__period_type
@@ -801,7 +801,7 @@ msgstr "Este libro contiene advertencias. Arréglelas antes de confirmar"
 #. module: l10n_es_vat_book
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
 #, python-format
-msgid "This company doesn't have VAT"
+msgid "This partner doesn't have VAT"
 msgstr "Esta empresa no tiene NIF"
 
 #. module: l10n_es_vat_book
@@ -922,7 +922,7 @@ msgstr "Historial de comunicación del sitio web"
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
 #, python-format
 msgid "Without Partner"
-msgstr ""
+msgstr "Sin empresa"
 
 #. module: l10n_es_vat_book
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
@@ -936,30 +936,24 @@ msgid "Year"
 msgstr "Año"
 
 #. module: l10n_es_vat_book
-#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
-msgid "You have"
-msgstr "Usted tiene"
-
-#. module: l10n_es_vat_book
-#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
-msgid "errors"
-msgstr "Errores"
-
-#. module: l10n_es_vat_book
-#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
-msgid ""
-"in this report.\n"
-"                        You will not be able to <strong>confirm and submit</"
-"strong> it until they are resolved."
-msgstr ""
-"en este informe.\n"
-"                        No podrá <strong>confirmar ni enviarlo</strong> "
-"hasta que esté resuelto."
-
-#. module: l10n_es_vat_book
 #: model:ir.actions.report,print_report_name:l10n_es_vat_book.l10n_es_vat_book_xlsx
 msgid "object.get_report_file_name()"
 msgstr "object.get_report_file_name()"
+
+#~ msgid "You have"
+#~ msgstr "Usted tiene"
+
+#~ msgid "errors"
+#~ msgstr "Errores"
+
+#~ msgid ""
+#~ "in this report.\n"
+#~ "                        You will not be able to <strong>confirm and "
+#~ "submit</strong> it until they are resolved."
+#~ msgstr ""
+#~ "en este informe.\n"
+#~ "                        No podrá <strong>confirmar ni enviarlo</strong> "
+#~ "hasta que esté resuelto."
 
 #~ msgid "Base amount"
 #~ msgstr "Importe base"

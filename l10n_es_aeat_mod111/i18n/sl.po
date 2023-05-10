@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-29 22:48+0000\n"
-"PO-Revision-Date: 2017-06-29 22:48+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2023-03-31 21:23+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.ui.menu,name:l10n_es_aeat_mod111.menu_aeat_mod111_report
@@ -144,11 +145,13 @@ msgid "Business income"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_09
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_12
 msgid "Business income - In kind - Amount retained"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_08
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_11
 msgid "Business income - In kind - Base taxable value"
 msgstr ""
@@ -294,7 +297,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__display_name
 msgid "Display Name"
-msgstr "Prikazni naziv"
+msgstr "Prikazani naziv"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__date_end
@@ -644,6 +647,18 @@ msgid "Work income"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_03
+#: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_06
+msgid "Work income - In kind - Amount retained"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_02
+#: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_05
+msgid "Work income - In kind - Base taxable value"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_04
 msgid "Work income - In kind - Number of recipients"
 msgstr ""
@@ -664,13 +679,43 @@ msgid "[01] # Recipients"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_02
+msgid "[02] Taxable"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_03
+msgid "[03] Amount retained"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_04
 msgid "[04] # Recipients"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_05
+msgid "[05] Taxable"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_06
+msgid "[06] Amount retained"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_07
 msgid "[07] # Recipients"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_08
+msgid "[08] Taxable"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_09
+msgid "[09] Amount retained"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111

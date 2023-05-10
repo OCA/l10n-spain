@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-17 10:44+0000\n"
-"PO-Revision-Date: 2018-02-10 03:41+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"PO-Revision-Date: 2023-03-31 21:23+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_46
@@ -129,6 +130,33 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A01
+msgid "A01 - Arrendadores de bienes inmuebles"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A02
+msgid "A02 - Ganadería independiente"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A03
+msgid ""
+"A03 - Resto de actividades empresariales no incluidas en los dos subtipos "
+"anteriores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A04
+msgid "A04 - Actividades profesionales de carácter artístico o deportivo"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A05
+msgid "A05 - Resto de actividades profesionales"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model,name:l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_report
 msgid "AEAT 303 Report"
 msgstr ""
@@ -215,8 +243,40 @@ msgid "Attachment Count"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B01
+msgid "B01 - Actividad agrícola"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B02
+msgid "B02 - Actividad ganadera dependiente"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B03
+msgid "B03 - Actividad forestal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B04
+msgid "B04 - Producción del mejillón en batea"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B05
+msgid ""
+"B05 - Actividad pesquera, excepto la actividad de producción de mejillón en "
+"batea"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__partner_bank_id
 msgid "Bank account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_C
+msgid "C - Actividades no iniciadas"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -319,10 +379,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_activity_code__display_name
 msgid "Display Name"
-msgstr "Prikazni naziv"
+msgstr "Prikazani naziv"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__date_end
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_activity_code__date_end
 msgid "Ending date"
 msgstr ""
 
@@ -713,6 +774,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__date_start
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_activity_code__date_start
 msgid "Starting date"
 msgstr ""
 
@@ -779,8 +841,28 @@ msgid "To enter"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__result_type__g
+msgid "To enter - AEAT account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__result_type__u
+msgid "To enter - Bank account debit"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__result_type__d
 msgid "To return"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__result_type__v
+msgid "To return - AEAT account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__result_type__x
+msgid "To return - Foreign bank account"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303

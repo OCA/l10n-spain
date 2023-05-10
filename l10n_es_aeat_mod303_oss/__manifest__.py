@@ -4,13 +4,16 @@
 
 {
     "name": "AEAT modelo 303 - OSS",
-    "version": "15.0.1.0.0",
+    "version": "15.0.1.1.0",
     "category": "Accounting",
     "author": "PESOL, Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "depends": ["l10n_es_aeat_mod303", "l10n_eu_oss_oca"],
-    "data": ["data/tax_code_map_mod303_data.xml"],
+    "data": [
+        "data/2021-07/l10n_es_aeat_map_tax_line.xml",
+        "data/2023/l10n_es_aeat_map_tax_line.xml",
+    ],
     "installable": True,
     "autoinstall": True,
 }

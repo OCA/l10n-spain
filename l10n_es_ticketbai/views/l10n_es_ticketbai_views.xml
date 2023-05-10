@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2021 Binovo IT Human Project SL
+     Copyright 2022 Landoo Sistemas de Informacion SL
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <!-- Public available Information -->
-    <menuitem
-        id="menu_finance_ticketbai"
-        name="TicketBAI"
-        parent="account.menu_finance"
-        sequence="100"
-    />
+    <record id="menu_finance_ticketbai" model="ir.ui.menu">
+        <field name="name">TicketBAI</field>
+        <field name="sequence" eval="100" />
+        <field
+            name="parent_id"
+            search="[('child_id', 'in', ref('account.menu_finance_receivables'))]"
+        />
+    </record>
     <!-- Configuration / Settings -->
     <menuitem
         id="menu_l10n_es_tbai_config"

@@ -125,7 +125,7 @@ class AccountTax(models.Model):
         return self in taxes
 
     def tbai_get_value_causa(self, invoice_id):
-        country_code = invoice_id.partner_id.tbai_get_partner_country_code()
+        country_code = invoice_id.partner_id._parse_aeat_vat_info()[0]
         if country_code and self.env.ref("base.es").code.upper() == country_code:
             fp_not_subject_tai = invoice_id.company_id.get_fps_from_templates(
                 self.env.ref("l10n_es.fp_not_subject_tai")
@@ -191,10 +191,14 @@ class AccountTax(models.Model):
         return res
 
     def tbai_get_value_cuota_recargo_equiv(self, invoice_id):
+        if RefundType.differences.value == invoice_id.tbai_refund_type:
+            sign = -1
+        else:
+            sign = 1
         re_invoice_tax = self.tbai_get_associated_re_tax(invoice_id)
         if re_invoice_tax:
             amount_total = re_invoice_tax.tbai_get_amount_total_company(invoice_id)
-            res = "%.2f" % amount_total
+            res = "%.2f" % (sign * amount_total)
         else:
             res = None
         return res

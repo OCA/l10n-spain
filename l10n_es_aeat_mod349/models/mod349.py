@@ -199,14 +199,13 @@ class Mod349(models.Model):
         for refund_detail in self.partner_refund_detail_ids:
             move_line = refund_detail.refund_line_id
             origin_invoice = move_line.move_id.reversed_entry_id
-            groups.setdefault(origin_invoice, refund_detail_obj)
-            groups[origin_invoice] += refund_detail
-        for origin_invoice in groups:
-            refund_details = groups[origin_invoice]
+            key = (origin_invoice, move_line.l10n_es_aeat_349_operation_key)
+            groups.setdefault(key, refund_detail_obj)
+            groups[key] += refund_detail
+        for (origin_invoice, op_key), refund_details in groups.items():
             refund_detail = first(refund_details)
             move_line = refund_detail.refund_line_id
             partner = move_line.partner_id
-            op_key = move_line.l10n_es_aeat_349_operation_key
             if not origin_invoice:
                 # TODO: Instead continuing, generate an empty record and a msg
                 continue
@@ -666,4 +665,5 @@ class Mod349PartnerRefundDetail(models.Model):
     date = fields.Date(
         related="refund_line_id.date",
         readonly=True,
+        store=True,  # Necessary for sorting records
     )

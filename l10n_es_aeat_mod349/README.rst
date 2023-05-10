@@ -161,6 +161,9 @@ Contributors
   * Manuel Regidor
 
 * Jairo Llopis (Moduon)
+* NuoBiT (http://www.nuobit.com)
+
+  * Eric Antones <eantones@nuobit.com>
 
 Maintainers
 ~~~~~~~~~~~

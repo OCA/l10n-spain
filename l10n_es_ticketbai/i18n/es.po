@@ -187,14 +187,8 @@ msgstr "Mostrar nombre"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_journal__tbai_enabled
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_enabled
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_enabled
-#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_ir_sequence__tbai_enabled
 msgid "Enable TicketBAI"
 msgstr "Habilitar TicketBAI"
-
-#. module: l10n_es_ticketbai
-#: model:ir.model.fields,help:l10n_es_ticketbai.field_tbai_invoice_refund_origin__expedition_date
-msgid "Expected string date format: %dd-%mm-%yyyy"
-msgstr "Formato de fecha esperado: %dd-%mm-%yyyy"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin__expedition_date
@@ -272,21 +266,6 @@ msgstr "Número de factura"
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
 msgid "Invoice Serial"
 msgstr "Serie de factura"
-
-#. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
-#, python-format
-msgid ""
-"Invoice: number %(name)s prefix %(prefix)s invoice_date %(date)s exists. "
-"Create a credit note from this invoice."
-msgstr ""
-"La factura con número %(name)s , prefijo %(prefix)s y fecha %(date)s existe. "
-"Crea una rectificativa partiendo de esa factura."
-
-#. module: l10n_es_ticketbai
-#: model:ir.ui.menu,name:l10n_es_ticketbai.menu_tbai_invoice
-msgid "Invoices"
-msgstr "Facturas"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_journal
@@ -466,12 +445,6 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
 #, python-format
-msgid "Refunded Invoice %s Expedition Date"
-msgstr "Factura rectificativa %s fecha"
-
-#. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:0
-#, python-format
 msgid ""
 "Refunded Invoice Number %s longer than expected. Should be 20 characters "
 "max.!"
@@ -501,9 +474,9 @@ msgid "Send TicketBAI invoices to tax agency"
 msgstr "Enviar facturas a hacienda TicketBAI"
 
 #. module: l10n_es_ticketbai
-#: model:ir.model,name:l10n_es_ticketbai.model_ir_sequence
-msgid "Sequence"
-msgstr "Secuencia"
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_move__tbai_refund_key__r5
+msgid "Simplified Invoice"
+msgstr ""
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info__software
@@ -880,3 +853,24 @@ msgid ""
 msgstr ""
 "No puedes dejar de enviar facturas de este diario, al menos una factura ya "
 "ha sido enviada."
+
+#~ msgid "Expected string date format: %dd-%mm-%yyyy"
+#~ msgstr "Formato de fecha esperado: %dd-%mm-%yyyy"
+
+#, python-format
+#~ msgid ""
+#~ "Invoice: number %(name)s prefix %(prefix)s invoice_date %(date)s exists. "
+#~ "Create a credit note from this invoice."
+#~ msgstr ""
+#~ "La factura con número %(name)s , prefijo %(prefix)s y fecha %(date)s "
+#~ "existe. Crea una rectificativa partiendo de esa factura."
+
+#, python-format
+#~ msgid "Refunded Invoice %s Expedition Date"
+#~ msgstr "Factura rectificativa %s fecha"
+
+#~ msgid "Invoices"
+#~ msgstr "Facturas"
+
+#~ msgid "Sequence"
+#~ msgstr "Secuencia"

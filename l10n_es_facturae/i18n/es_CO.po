@@ -140,6 +140,30 @@ msgstr ""
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
+msgid "Company city not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Company country not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Company state not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Company street not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
 msgid "Company vat is too small"
 msgstr ""
 
@@ -147,6 +171,12 @@ msgstr ""
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Company vat not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Company zip not provided"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -165,7 +195,7 @@ msgstr ""
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
-msgid "Country must be defined"
+msgid "Country must be defined for factura-e enabled partners."
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -552,8 +582,8 @@ msgid "Invoice %s"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: model:ir.model,name:l10n_es_facturae.model_account_journal
-msgid "Journal"
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
+msgid "Invoicing Period"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -603,6 +633,7 @@ msgid "Log"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__move_id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment__move_id
 msgid "Move"
 msgstr ""
@@ -623,13 +654,6 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move__facturae_refund_reason__01
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move_reversal__refund_reason__01
 msgid "Número de la factura"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,help:l10n_es_facturae.field_account_bank_statement_line__thirdparty_number
-#: model:ir.model.fields,help:l10n_es_facturae.field_account_move__thirdparty_number
-#: model:ir.model.fields,help:l10n_es_facturae.field_account_payment__thirdparty_number
-msgid "Número de la factura emitida por un tercero."
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -654,6 +678,12 @@ msgstr ""
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Partner state not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Partner street address is not provided"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -775,18 +805,18 @@ msgstr ""
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
-msgid "State must be defined"
+msgid "State must be defined for factura-e enabled partners."
+msgstr ""
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/res_partner.py:0
+#, python-format
+msgid "Street must be defined for factura-e enabled partners."
 msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_tax
 msgid "Tax"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
-msgid "Taxes not provided in move line %s"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -805,18 +835,9 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_journal__thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__thirdparty_invoice
-msgid "Third-party invoice"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__thirdparty_number
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__thirdparty_number
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__thirdparty_number
-msgid "Third-party number"
+#: code:addons/l10n_es_facturae/reports/report_facturae.py:0
+#, python-format
+msgid "The provided certificate is not found in the system."
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -833,7 +854,7 @@ msgstr ""
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
-msgid "Vat must be defined"
+msgid "Vat must be defined for factura-e enabled partners."
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -843,9 +864,17 @@ msgid "You can only create Facturae files for moves that have been validated."
 msgstr ""
 
 #. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid ""
+"You can only create the facturae file if the client have the facturae "
+"feature activated."
+msgstr ""
+
+#. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/wizard/create_facturae.py:0
 #, python-format
-msgid "You can only select one move to export"
+msgid "You must select a move to export"
 msgstr ""
 
 #. module: l10n_es_facturae

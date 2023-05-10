@@ -10,7 +10,9 @@ class L10nEsAeatMapTax(models.Model):
     _description = "AEAT tax mapping"
 
     date_from = fields.Date(string="From Date")
+    date_from_search = fields.Date(compute="_compute_date_from_search", store=True)
     date_to = fields.Date(string="To Date")
+    date_to_search = fields.Date(compute="_compute_date_to_search", store=True)
     map_line_ids = fields.One2many(
         comodel_name="l10n.es.aeat.map.tax.line",
         inverse_name="map_parent_id",
@@ -19,35 +21,25 @@ class L10nEsAeatMapTax(models.Model):
     )
     model = fields.Integer(string="AEAT Model", required=True)
 
+    @api.depends("date_from")
+    def _compute_date_from_search(self):
+        for record in self:
+            record.date_from_search = record.date_from or "1900-01-01"
+
+    @api.depends("date_to")
+    def _compute_date_to_search(self):
+        for record in self:
+            record.date_to_search = record.date_to or "2999-12-31"
+
     @api.constrains("date_from", "date_to", "model")
     def _unique_date_range(self):
         for map_tax in self:
             domain = ["&", ("model", "=", map_tax.model), ("id", "!=", map_tax.id)]
-            if map_tax.date_from and map_tax.date_to:
-                domain += [
-                    "|",
-                    "&",
-                    ("date_from", "<=", map_tax.date_to),
-                    ("date_from", ">=", map_tax.date_from),
-                    "|",
-                    "&",
-                    ("date_to", "<=", map_tax.date_to),
-                    ("date_to", ">=", map_tax.date_from),
-                    "|",
-                    "&",
-                    ("date_from", "=", False),
-                    ("date_to", ">=", map_tax.date_from),
-                    "|",
-                    "&",
-                    ("date_to", "=", False),
-                    ("date_from", "<=", map_tax.date_to),
-                ]
-            elif map_tax.date_from:
-                domain += [("date_to", ">=", map_tax.date_from)]
-            elif map_tax.date_to:
-                domain += [("date_from", "<=", map_tax.date_to)]
-            date_lst = map_tax.search(domain)
-            if date_lst:
+            if self.date_from:
+                domain.append(("date_to_search", ">=", map_tax.date_from))
+            if self.date_to:
+                domain.append(("date_from_search", "<=", map_tax.date_to))
+            if map_tax.search(domain):
                 raise exceptions.UserError(
                     _(
                         "Error! The dates of the record overlap with an "

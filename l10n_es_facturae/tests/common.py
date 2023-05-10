@@ -77,8 +77,9 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         if not self.bank:
             self.bank = bank_obj.create(
                 {
+                    "company_id": main_company.id,
                     "acc_number": "FR20 1242 1242 1242 1242 1242 124",
-                    "partner_id": main_company.partner.id,
+                    "partner_id": main_company.partner_id.id,
                     "bank_id": self.env["res.bank"]
                     .search([("bic", "=", "PSSTFRPPXXX")], limit=1)
                     .id,
@@ -119,6 +120,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
                 ).id,
                 "show_bank_account_from_journal": True,
                 "facturae_code": "01",
+                "company_id": main_company.id,
             }
         )
         self.payment_mode = self.env["account.payment.mode"].create(
@@ -130,6 +132,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
                 "show_bank_account_from_journal": True,
                 "facturae_code": "01",
                 "refund_payment_mode_id": self.refund_payment_mode.id,
+                "company_id": main_company.id,
             }
         )
 
@@ -142,15 +145,16 @@ class CommonTest(TestL10nEsAeatCertificateBase):
                 "show_bank_account_from_journal": True,
                 "facturae_code": "02",
                 "refund_payment_mode_id": self.refund_payment_mode.id,
+                "company_id": main_company.id,
             }
         )
 
         self.account = self.env["account.account"].create(
             {
-                "company_id": main_company.id,
                 "name": "Facturae Product account",
                 "code": "facturae_product",
                 "user_type_id": self.env.ref("account.data_account_type_revenue").id,
+                "company_id": main_company.id,
             }
         )
         self.move = self.env["account.move"].create(
@@ -176,6 +180,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
                         },
                     )
                 ],
+                "company_id": main_company.id,
             }
         )
         self.move.refresh()
@@ -204,6 +209,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
                         },
                     )
                 ],
+                "company_id": main_company.id,
             }
         )
         self.move_02.refresh()
@@ -215,7 +221,6 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         self.partner.country_id = self.env.ref("base.us")
         self.partner.state_id = self.env.ref("base.state_us_2")
         self.main_company = self.env.ref("base.main_company")
-        self.wizard = self.env["create.facturae"].create({})
         self.fe = "http://www.facturae.es/Facturae/2009/v3.2/Facturae"
         self.first_check_amount = ["190.310000", "190.310000", "190.31", "39.97"]
         self.second_check_amount = [
@@ -230,10 +235,13 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         self.move.action_post()
         self._activate_certificate(self.certificate_password)
         self.move.name = "2999/99999"
-        self.wizard.with_context(
-            active_ids=self.move.ids, active_model="account.move"
-        ).create_facturae_file()
-        generated_facturae = etree.fromstring(base64.b64decode(self.wizard.facturae))
+        wizard = (
+            self.env["create.facturae"]
+            .with_context(active_ids=self.move.ids, active_model="account.move")
+            .create({})
+        )
+        wizard.create_facturae_file()
+        generated_facturae = etree.fromstring(base64.b64decode(wizard.facturae))
         self.assertEqual(
             generated_facturae.xpath(
                 "/fe:Facturae/Parties/SellerParty/TaxIdentification/"
@@ -266,12 +274,17 @@ class CommonTest(TestL10nEsAeatCertificateBase):
             "odoo.addons.base.models.ir_actions_report.IrActionsReport._render_qweb_pdf"
         ) as ptch:
             ptch.return_value = (b"1234", "pdf")
-            self.wizard.with_context(
-                force_report_rendering=True,
-                active_ids=self.move.ids,
-                active_model="account.move",
-            ).create_facturae_file()
-        generated_facturae = etree.fromstring(base64.b64decode(self.wizard.facturae))
+            wizard = (
+                self.env["create.facturae"]
+                .with_context(
+                    force_report_rendering=True,
+                    active_ids=self.move.ids,
+                    active_model="account.move",
+                )
+                .create({})
+            )
+            wizard.create_facturae_file()
+        generated_facturae = etree.fromstring(base64.b64decode(wizard.facturae))
         self.assertTrue(
             generated_facturae.xpath(
                 "/fe:Facturae/Invoices/Invoice/AdditionalData/RelatedDocuments",
@@ -305,12 +318,17 @@ class CommonTest(TestL10nEsAeatCertificateBase):
                 ]
             }
         )
-        self.wizard.with_context(
-            force_report_rendering=True,
-            active_ids=self.move.ids,
-            active_model="account.move",
-        ).create_facturae_file()
-        generated_facturae = etree.fromstring(base64.b64decode(self.wizard.facturae))
+        wizard = (
+            self.env["create.facturae"]
+            .with_context(
+                force_report_rendering=True,
+                active_ids=self.move.ids,
+                active_model="account.move",
+            )
+            .create({})
+        )
+        wizard.create_facturae_file()
+        generated_facturae = etree.fromstring(base64.b64decode(wizard.facturae))
         self.assertTrue(
             generated_facturae.xpath(
                 "/fe:Facturae/Invoices/Invoice/AdditionalData/" "RelatedDocuments",
@@ -347,19 +365,25 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         with self.assertRaises(exceptions.UserError), mute_logger(
             "odoo.addons.l10n_es_facturae.reports.report_facturae"
         ):
-            self.wizard.with_context(
-                active_ids=self.move.ids, active_model="account.move"
-            ).create_facturae_file()
+            wizard = (
+                self.env["create.facturae"]
+                .with_context(active_ids=self.move.ids, active_model="account.move")
+                .create({})
+            )
+            wizard.create_facturae_file()
 
     def test_signature(self):
         self._activate_certificate(self.certificate_password)
         self.move.action_post()
         self.move.name = "2999/99999"
         self.main_company.partner_id.country_id = self.env.ref("base.es")
-        self.wizard.with_context(
-            active_ids=self.move.ids, active_model="account.move"
-        ).create_facturae_file()
-        generated_facturae = etree.fromstring(base64.b64decode(self.wizard.facturae))
+        wizard = (
+            self.env["create.facturae"]
+            .with_context(active_ids=self.move.ids, active_model="account.move")
+            .create({})
+        )
+        wizard.create_facturae_file()
+        generated_facturae = etree.fromstring(base64.b64decode(wizard.facturae))
         ns = "http://www.w3.org/2000/09/xmldsig#"
         self.assertEqual(
             len(generated_facturae.xpath("//ds:Signature", namespaces={"ds": ns})), 1
@@ -407,14 +431,12 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         self.assertEqual(refund_inv.facturae_refund_reason, "01")
         refund_inv.action_post()
         refund_inv.name = "2998/99999"
-        self.wizard.with_context(
-            active_ids=refund_inv.ids, active_model="account.move"
-        ).create_facturae_file()
-        with self.assertRaises(exceptions.UserError):
-            self.wizard.with_context(
-                active_ids=[self.move_02.id, self.move.id],
-                active_model="account.move",
-            ).create_facturae_file()
+        wizard = (
+            self.env["create.facturae"]
+            .with_context(active_ids=refund_inv.ids, active_model="account.move")
+            .create({})
+        )
+        wizard.create_facturae_file()
 
     def test_constrains_01(self):
         move = self.env["account.move"].create(
@@ -543,10 +565,13 @@ class CommonTest(TestL10nEsAeatCertificateBase):
     def _check_amounts(self, move, wo_discount, subtotal, base, tax, discount=0):
         move.action_post()
         move.name = "2999/99999"
-        self.wizard.with_context(
-            active_ids=move.ids, active_model="account.move"
-        ).create_facturae_file()
-        facturae_xml = etree.fromstring(base64.b64decode(self.wizard.facturae))
+        wizard = (
+            self.env["create.facturae"]
+            .with_context(active_ids=move.ids, active_model="account.move")
+            .create({})
+        )
+        wizard.create_facturae_file()
+        facturae_xml = etree.fromstring(base64.b64decode(wizard.facturae))
         self.assertEqual(
             facturae_xml.xpath("//InvoiceLine/TotalCost")[0].text,
             wo_discount,
@@ -639,11 +664,6 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         )
         self._check_amounts(move, *self.second_check_amount)
 
-    def test_account_move_thirdparty_fields(self):
-        view = self.env["account.move"].fields_view_get(
-            view_id=self.env.ref("account.view_move_form").id,
-            view_type="form",
-        )
-        doc = etree.XML(view["arch"])
-        self.assertTrue(doc.xpath("//field[@name='thirdparty_number']"))
-        self.assertTrue(doc.xpath("//field[@name='thirdparty_invoice']"))
+    def test_default_get_no_active_record(self):
+        with self.assertRaises(exceptions.UserError):
+            self.env["create.facturae"].create({})

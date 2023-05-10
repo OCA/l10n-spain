@@ -1,0 +1,67 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_promissory_note_caixabank
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-02 11:28+0000\n"
+"PO-Revision-Date: 2022-11-02 12:31+0100\n"
+"Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: account_promissory_note_caixabank
+#: model_terms:ir.ui.view,arch_db:account_promissory_note_caixabank.promissory_footer_cb
+msgid "<span>de</span>"
+msgstr "<span>de</span>"
+
+#. module: account_promissory_note_caixabank
+#: model:ir.model.fields,field_description:account_promissory_note_caixabank.field_account_journal__account_check_printing_layout
+#: model:ir.model.fields,field_description:account_promissory_note_caixabank.field_res_company__account_check_printing_layout
+msgid "Check Layout"
+msgstr "Plantilla de cheque"
+
+#. module: account_promissory_note_caixabank
+#: model:ir.model,name:account_promissory_note_caixabank.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: account_promissory_note_caixabank
+#: model:ir.model,name:account_promissory_note_caixabank.model_account_journal
+msgid "Journal"
+msgstr "Diario"
+
+#. module: account_promissory_note_caixabank
+#: model:ir.actions.report,name:account_promissory_note_caixabank.action_report_promissory_footer_cb
+msgid "Payment Promissory Note CaixaBank"
+msgstr "Pagaré CaixaBank"
+
+#. module: account_promissory_note_caixabank
+#: model:ir.model,name:account_promissory_note_caixabank.model_report_account_promissory_note_caixabank_report_check_cb_a4
+msgid "Promissory Note CaixaBank"
+msgstr "Pagaré CaixaBank"
+
+#. module: account_promissory_note_caixabank
+#: model:ir.model.fields.selection,name:account_promissory_note_caixabank.selection__account_journal__account_check_printing_layout__account_promissory_note_caixabank_action_report_promissory_footer_cb
+#: model:ir.model.fields.selection,name:account_promissory_note_caixabank.selection__res_company__account_check_printing_layout__account_promissory_note_caixabank_action_report_promissory_footer_cb
+#, fuzzy
+msgid "Promissory note CaixaBank"
+msgstr "Pagaré CaixaBank"
+
+#. module: account_promissory_note_caixabank
+#: model:ir.model.fields,help:account_promissory_note_caixabank.field_account_journal__account_check_printing_layout
+#: model:ir.model.fields,help:account_promissory_note_caixabank.field_res_company__account_check_printing_layout
+msgid ""
+"Select the format corresponding to the check paper you will be printing your "
+"checks on.\n"
+"In order to disable the printing feature, select 'None'."
+msgstr ""
+"Seleccione el tamaño correspondiente al tamaño de cheque que va a imprimir.\n"
+"Para desactivar la función de impresión, seleccione 'Ninguno'."

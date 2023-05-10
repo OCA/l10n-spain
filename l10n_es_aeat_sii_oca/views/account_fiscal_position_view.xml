@@ -9,35 +9,37 @@
         <field name="model">account.fiscal.position</field>
         <field name="inherit_id" ref="account.view_account_position_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='country_group_id']/.." position="after">
-                <field name="sii_enabled" invisible="1" />
-                <group
+            <xpath expr="//page[@name='account_mapping']" position="after">
+                <page
+                    name="page_sii"
                     string="SII"
-                    name="group_sii"
                     attrs="{'invisible': [('sii_enabled', '=', False)]}"
                 >
-                    <field name="sii_active" />
-                    <field
-                        name="sii_registration_key_sale"
-                        attrs="{'invisible': [('sii_active', '!=', True)]}"
-                    />
-                    <field
-                        name="sii_registration_key_purchase"
-                        attrs="{'invisible': [('sii_active', '!=', True)]}"
-                    />
-                    <field
-                        name="sii_no_taxable_cause"
-                        attrs="{'invisible': [('sii_active', '!=', True)]}"
-                    />
-                    <field
-                        name="sii_exempt_cause"
-                        attrs="{'invisible': [('sii_active', '!=', True)]}"
-                    />
-                    <field
-                        name="sii_partner_identification_type"
-                        attrs="{'invisible': [('sii_active', '!=', True)]}"
-                    />
-                </group>
+                    <group>
+                        <field name="sii_enabled" invisible="1" />
+                        <field name="sii_active" />
+                        <field
+                            name="sii_registration_key_sale"
+                            attrs="{'invisible': [('sii_active', '!=', True)]}"
+                        />
+                        <field
+                            name="sii_registration_key_purchase"
+                            attrs="{'invisible': [('sii_active', '!=', True)]}"
+                        />
+                        <field
+                            name="sii_no_taxable_cause"
+                            attrs="{'invisible': [('sii_active', '!=', True)]}"
+                        />
+                        <field
+                            name="sii_exempt_cause"
+                            attrs="{'invisible': [('sii_active', '!=', True)]}"
+                        />
+                        <field
+                            name="sii_partner_identification_type"
+                            attrs="{'invisible': [('sii_active', '!=', True)]}"
+                        />
+                    </group>
+                </page>
             </xpath>
         </field>
     </record>

@@ -33,6 +33,12 @@ msgid "AEAT Name"
 msgstr "Nombre AEAT"
 
 #. module: l10n_es_aeat_partner_check
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_partner_vat
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_partner_vat
+msgid "AEAT VAT"
+msgstr "AEAT NIF"
+
+#. module: l10n_es_aeat_partner_check
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_partner_aeat_form
 msgid "Check Partner Data"
 msgstr "Comprobar datos de la empresa"
@@ -68,20 +74,6 @@ msgstr "Datos diferentes"
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_data_diff
 msgid "Data different"
 msgstr "Datos diferentes"
-
-#. module: l10n_es_aeat_partner_check
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_company__display_name
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_config_settings__display_name
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: l10n_es_aeat_partner_check
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_company__id
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_config_settings__id
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__id
-msgid "ID"
-msgstr ""
 
 #. module: l10n_es_aeat_partner_check
 #: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
@@ -126,13 +118,6 @@ msgid ""
 msgstr ""
 "Si esta activado, se comprobará la información de la empresa en la AEAT al "
 "crear o modificar la empresa."
-
-#. module: l10n_es_aeat_partner_check
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_company____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_config_settings____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner____last_update
-msgid "Last Modified on"
-msgstr ""
 
 #. module: l10n_es_aeat_partner_check
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_last_checked
@@ -210,12 +195,6 @@ msgstr "Régimen de recargo de equivalencia"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_res_partner_aeat_filter
 msgid "Standard regimen"
 msgstr "Régimen estándar"
-
-#. module: l10n_es_aeat_partner_check
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_partner_vat
-#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_partner_vat
-msgid "VAT"
-msgstr "NIF"
 
 #. module: l10n_es_aeat_partner_check
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_company__vat_check_aeat

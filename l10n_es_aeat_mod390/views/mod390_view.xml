@@ -25,7 +25,14 @@
                         </group>
                         <group string="Actividad principal" name="group_main_activity">
                             <field name="main_activity" />
-                            <field name="main_activity_code" />
+                            <field
+                                name="main_activity_code"
+                                attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)], 'required': [('state', '=', 'calculated'), ('year', '&lt;', 2022)]}"
+                            />
+                            <field
+                                name="main_activity_code_id"
+                                attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)], 'required': [('state', '=', 'calculated'), ('year', '&gt;', 2021)]}"
+                            />
                             <field name="main_activity_iae" />
                         </group>
                         <group>
@@ -34,7 +41,14 @@
                                 name="group_other_first_activity"
                             >
                                 <field name="other_first_activity" />
-                                <field name="other_first_activity_code" />
+                                <field
+                                    name="other_first_activity_code"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)]}"
+                                />
+                                <field
+                                    name="other_first_activity_code_id"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)]}"
+                                />
                                 <field name="other_first_activity_iae" />
                             </group>
                             <group
@@ -42,7 +56,14 @@
                                 name="group_other_second_activity"
                             >
                                 <field name="other_second_activity" />
-                                <field name="other_second_activity_code" />
+                                <field
+                                    name="other_second_activity_code"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)]}"
+                                />
+                                <field
+                                    name="other_second_activity_code_id"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)]}"
+                                />
                                 <field name="other_second_activity_iae" />
                             </group>
                             <group
@@ -50,7 +71,14 @@
                                 name="group_other_third_activity"
                             >
                                 <field name="other_third_activity" />
-                                <field name="other_third_activity_code" />
+                                <field
+                                    name="other_third_activity_code"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)]}"
+                                />
+                                <field
+                                    name="other_third_activity_code_id"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)]}"
+                                />
                                 <field name="other_third_activity_iae" />
                             </group>
                             <group
@@ -58,7 +86,14 @@
                                 name="group_other_fourth_activity"
                             >
                                 <field name="other_fourth_activity" />
-                                <field name="other_fourth_activity_code" />
+                                <field
+                                    name="other_fourth_activity_code"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)]}"
+                                />
+                                <field
+                                    name="other_fourth_activity_code_id"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)]}"
+                                />
                                 <field name="other_fourth_activity_iae" />
                             </group>
                             <group
@@ -66,7 +101,14 @@
                                 name="group_other_fifth_activity"
                             >
                                 <field name="other_fifth_activity" />
-                                <field name="other_fifth_activity_code" />
+                                <field
+                                    name="other_fifth_activity_code"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)]}"
+                                />
+                                <field
+                                    name="other_fifth_activity_code_id"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)]}"
+                                />
                                 <field name="other_fifth_activity_iae" />
                             </group>
                         </group>

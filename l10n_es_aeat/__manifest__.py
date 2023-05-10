@@ -5,12 +5,13 @@
 # Copyright 2018 Juan Vicente Pascual <jvpascual@puntsistemes.es>
 # Copyright 2019 Tecnativa - Carlos Dauden
 # Copyright 2013-2021 Tecnativa - Pedro M. Baeza
+# Copyright 2022 Moduon - Eduardo de Miguel
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
 {
     "name": "AEAT Base",
     "summary": "Modulo base para declaraciones de la AEAT",
-    "version": "15.0.2.1.3",
+    "version": "15.0.3.0.2",
     "author": "Pexego, "
     "Acysos S.L., "
     "AvanzOSC, "
@@ -42,7 +43,10 @@
         "views/res_company_view.xml",
         "views/res_partner_view.xml",
         "views/aeat_certificate_view.xml",
+        "views/account_journal_view.xml",
+        "views/account_move_view.xml",
     ],
     "installable": True,
     "maintainers": ["pedrobaeza"],
+    "pre_init_hook": "pre_init_hook",
 }
