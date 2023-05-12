@@ -1020,13 +1020,6 @@ msgid "Messages"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__model_id
-#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__model_id
-#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line__model_id
-msgid "Model"
-msgstr "Modèle"
-
-#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__model_number
 msgid "Model Number"
 msgstr ""
@@ -1671,3 +1664,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_password_wizard_view
 msgid "or"
 msgstr ""
+
+#~ msgid "Model"
+#~ msgstr "Modèle"
