@@ -28,6 +28,7 @@
                     icon="fa-tags"
                     attrs="{'column_invisible': [('parent.facturae','=', False)]}"
                     type="object"
+                    title="Edit"
                 />
             </xpath>
             <notebook position="inside">
