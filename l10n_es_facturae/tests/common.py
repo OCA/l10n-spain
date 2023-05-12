@@ -4,10 +4,10 @@
 
 import base64
 from datetime import timedelta
+from unittest import mock
 
 import xmlsig
 from lxml import etree
-from mock import patch
 
 from odoo import exceptions, fields
 from odoo.tools.misc import mute_logger
@@ -262,7 +262,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         self.move.action_post()
         self.move.name = "2999/99999"
         self.partner.attach_invoice_as_annex = True
-        with patch(
+        with mock.patch(
             "odoo.addons.base.models.ir_actions_report.IrActionsReport._render_qweb_pdf"
         ) as ptch:
             ptch.return_value = (b"1234", "pdf")
