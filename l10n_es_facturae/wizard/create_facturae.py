@@ -57,13 +57,13 @@ class CreateFacturae(models.TransientModel):
         assert active_model == "account.move", "Bad context propagation"
         move = self.env["account.move"].browse(move_ids[0]).ensure_one()
         if self.firmar_facturae:
-            move_file = self.env.ref("l10n_es_facturae.report_facturae_signed")._render(
-                move.ids
+            move_file = self.env["ir.actions.report"]._render(
+                "l10n_es_facturae.report_facturae_signed", move.ids
             )[0]
             file_name = ("facturae_" + move.name + ".xsig").replace("/", "-")
         else:
-            move_file = self.env.ref("l10n_es_facturae.report_facturae")._render(
-                move.ids
+            move_file = self.env["ir.actions.report"]._render(
+                "l10n_es_facturae.report_facturae", move.ids
             )[0]
             file_name = ("facturae_" + move.name + ".xml").replace("/", "-")
         file = base64.b64encode(move_file)

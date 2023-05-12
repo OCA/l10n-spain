@@ -7,3 +7,4 @@ from . import account_tax_template
 from . import account_tax
 from . import res_currency
 from . import account_move
+from . import account_move_line

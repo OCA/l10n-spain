@@ -133,9 +133,7 @@ class AccountMove(models.Model):
         return ["posted"]
 
     def validate_facturae_fields(self):
-        lines = self.line_ids.filtered(
-            lambda r: not r.display_type and not r.exclude_from_invoice_tab
-        )
+        lines = self.line_ids.filtered(lambda r: r.display_type == "product")
         for line in lines:
             if not line.tax_ids:
                 raise ValidationError(
@@ -175,8 +173,9 @@ class AccountMove(models.Model):
     def _get_facturae_move_attachments(self):
         result = []
         if self.partner_id.attach_invoice_as_annex:
-            action = self.env.ref("account.account_invoices")
-            content, content_type = action._render(self.ids)
+            content, content_type = self.env["ir.actions.report"]._render(
+                "account.account_invoices", self.ids
+            )
             result.append(
                 {
                     "data": base64.b64encode(content),
