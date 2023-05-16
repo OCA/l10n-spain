@@ -1142,13 +1142,6 @@ msgstr ""
 "empresa."
 
 #. module: l10n_es_aeat_sii_oca
-#. odoo-python
-#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
-#, python-format
-msgid "You must have at least one refunded invoice"
-msgstr "Heu de tenir almenys una factura reemborsada"
-
-#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_property_location__1
 msgid ""
 "[1]-Real property with cadastral code located within the Spanish territory "
@@ -1263,6 +1256,10 @@ msgstr ""
 #, python-format
 msgid "third-party number"
 msgstr ""
+
+#, python-format
+#~ msgid "You must have at least one refunded invoice"
+#~ msgstr "Heu de tenir almenys una factura reemborsada"
 
 #~ msgid "Product Template"
 #~ msgstr "Plantilla de producte"

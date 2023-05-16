@@ -1142,13 +1142,6 @@ msgid "You have to select what account chart template use this company."
 msgstr "Debe seleccionar qué plan contable utiliza esta compañía."
 
 #. module: l10n_es_aeat_sii_oca
-#. odoo-python
-#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
-#, python-format
-msgid "You must have at least one refunded invoice"
-msgstr "Debe tener al menos una factura rectificada"
-
-#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_property_location__1
 msgid ""
 "[1]-Real property with cadastral code located within the Spanish territory "
@@ -1263,6 +1256,10 @@ msgstr "número de factura del proveedor"
 #, python-format
 msgid "third-party number"
 msgstr "número de factura de terceros"
+
+#, python-format
+#~ msgid "You must have at least one refunded invoice"
+#~ msgstr "Debe tener al menos una factura rectificada"
 
 #~ msgid "Product Template"
 #~ msgstr "Plantilla de producto"
