@@ -70,14 +70,6 @@ def round_by_keys(elem, search_keys, prec=2):
 class AccountMove(models.Model):
     _inherit = "account.move"
 
-    def _get_default_type(self):
-        context = self.env.context
-        return context.get("move_type", context.get("default_move_type"))
-
-    def _default_sii_refund_type(self):
-        inv_type = self._get_default_type()
-        return "I" if inv_type in ["out_refund", "in_refund"] else False
-
     sii_description = fields.Text(
         string="SII computed description",
         compute="_compute_sii_description",
@@ -120,7 +112,9 @@ class AccountMove(models.Model):
             ("I", "By differences"),
         ],
         string="SII Refund Type",
-        default=lambda self: self._default_sii_refund_type(),
+        compute="_compute_sii_refund_type",
+        store=True,
+        readonly=False,
     )
     sii_refund_specific_invoice_type = fields.Selection(
         selection=[
@@ -214,6 +208,13 @@ class AccountMove(models.Model):
     )
 
     @api.depends("move_type")
+    def _compute_sii_refund_type(self):
+        self.sii_refund_type = False
+        for record in self:
+            if "refund" in (record.move_type or ""):
+                record.sii_refund_type = "I"
+
+    @api.depends("move_type")
     def _compute_sii_registration_key_domain(self):
         for record in self:
             if record.move_type in {"out_invoice", "out_refund"}:
@@ -257,13 +258,6 @@ class AccountMove(models.Model):
     def _sii_get_partner(self):
         return self.commercial_partner_id
 
-    @api.model
-    def create(self, vals):
-        """Complete registration key for auto-generated invoices."""
-        if "refund" in vals.get("move_type", "") and not vals.get("sii_refund_type"):
-            vals["sii_refund_type"] = "I"
-        return super().create(vals)
-
     def _raise_exception_sii(self, field_name):
         raise exceptions.UserError(
             _(
@@ -296,14 +290,6 @@ class AccountMove(models.Model):
             elif invoice.move_type in ["out_invoice", "out_refund"]:
                 if "name" in vals:
                     self._raise_exception_sii(_("invoice number"))
-        # Fill sii_refund_type if not set previously. It happens on sales
-        # order invoicing process for example.
-        if (
-            vals.get("move_type")
-            and not vals.get("sii_refund_type")
-            and not any(self.mapped("sii_refund_type"))
-        ):
-            vals["sii_refund_type"] = "I"
         return super().write(vals)
 
     def unlink(self):
