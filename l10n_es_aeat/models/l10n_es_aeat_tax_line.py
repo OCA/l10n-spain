@@ -2,7 +2,7 @@
 # Copyright 2016-2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class L10nEsAeatTaxLine(models.Model):
@@ -32,14 +32,6 @@ class L10nEsAeatTaxLine(models.Model):
     )
     to_regularize = fields.Boolean(related="map_line_id.to_regularize", readonly=True)
     model = fields.Char(index=True, readonly=True, required=True, string="Model name")
-    model_id = fields.Many2one(
-        comodel_name="ir.model", string="Model", compute="_compute_model_id", store=True
-    )
-
-    @api.depends("model")
-    def _compute_model_id(self):
-        for s in self:
-            s.model_id = self.env["ir.model"].search([("model", "=", s.model)])
 
     def get_calculated_move_lines(self):
         res = self.env.ref("account.action_account_moves_all_a").sudo().read()[0]
