@@ -682,11 +682,6 @@ msgid "Mod 296"
 msgstr "Mod 296"
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__model_id
-msgid "Model"
-msgstr "Modelo"
-
-#. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__number
 msgid "Model number"
 msgstr "Número de modelo"
@@ -985,6 +980,9 @@ msgid ""
 msgstr ""
 "[04] Resumen de los datos incluidos en la declaración - Retenciones e "
 "ingresos a cuenta ingresados"
+
+#~ msgid "Model"
+#~ msgstr "Modelo"
 
 #~ msgid "Calculation date"
 #~ msgstr "Fecha de cálculo"
