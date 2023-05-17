@@ -533,11 +533,6 @@ msgid "Messages"
 msgstr "Mensajes"
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__model_id
-msgid "Model"
-msgstr "Modelo"
-
-#. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__number
 msgid "Model number"
 msgstr "Nº modelo"
@@ -995,6 +990,9 @@ msgstr "Año"
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod349.action_aeat_349_mapping
 msgid "aeat 349 Map"
 msgstr "Mapeo aeat 349"
+
+#~ msgid "Model"
+#~ msgstr "Modelo"
 
 #~ msgid "AEAT 349 Partner record detail"
 #~ msgstr "Detalle de Registro de Empresa AEAT 349"
