@@ -216,7 +216,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_needaction
-#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
@@ -282,11 +281,6 @@ msgid "Messages"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__model_id
-msgid "Model"
-msgstr ""
-
-#. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__number
 msgid "Model number"
 msgstr ""
@@ -339,11 +333,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_01
 msgid "Number of recipients"
-msgstr ""
-
-#. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_unread_counter
-msgid "Number of unread messages"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
@@ -408,12 +397,14 @@ msgid "SMS Delivery error"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
 #, python-format
 msgid "Select an account for making the charge"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
 #, python-format
 msgid "Select an account for receiving the money"
@@ -456,6 +447,7 @@ msgid "Tax lines"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
 #, python-format
 msgid ""
@@ -464,6 +456,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
 #, python-format
 msgid ""
@@ -504,16 +497,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
-
-#. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_unread
-msgid "Unread Messages"
-msgstr ""
-
-#. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_unread_counter
-msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
