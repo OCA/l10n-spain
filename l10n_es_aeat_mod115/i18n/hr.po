@@ -281,11 +281,6 @@ msgid "Messages"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__model_id
-msgid "Model"
-msgstr "Model"
-
-#. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__number
 msgid "Model number"
 msgstr ""
@@ -553,6 +548,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_05
 msgid "[05] Result"
 msgstr ""
+
+#~ msgid "Model"
+#~ msgstr "Model"
 
 #~ msgid "Cancelled"
 #~ msgstr "Otkazan"

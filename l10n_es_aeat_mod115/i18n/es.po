@@ -285,11 +285,6 @@ msgid "Messages"
 msgstr "Mensajes"
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__model_id
-msgid "Model"
-msgstr "Modelo"
-
-#. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__number
 msgid "Model number"
 msgstr "Número de modelo"
@@ -567,6 +562,9 @@ msgstr "[04] Resultados anteriores a compensar"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_05
 msgid "[05] Result"
 msgstr "[05] Resultado a ingresar"
+
+#~ msgid "Model"
+#~ msgstr "Modelo"
 
 #~ msgid "Calculation date"
 #~ msgstr "Fecha de cálculo"

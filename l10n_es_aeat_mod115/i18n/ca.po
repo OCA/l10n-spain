@@ -285,11 +285,6 @@ msgid "Messages"
 msgstr "Missatges"
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__model_id
-msgid "Model"
-msgstr "Model"
-
-#. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__number
 msgid "Model number"
 msgstr "No de model"
@@ -567,6 +562,9 @@ msgstr "[04] Quotes a compensar"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_05
 msgid "[05] Result"
 msgstr "[05] Resultat"
+
+#~ msgid "Model"
+#~ msgstr "Model"
 
 #~ msgid "Calculation date"
 #~ msgstr "Data de càlcul"
