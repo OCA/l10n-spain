@@ -823,11 +823,6 @@ msgid "Mod"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__model_id
-msgid "Model"
-msgstr "Alan"
-
-#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__number
 msgid "Model number"
 msgstr ""
@@ -1521,6 +1516,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__year
 msgid "Year"
 msgstr ""
+
+#~ msgid "Model"
+#~ msgstr "Alan"
 
 #, fuzzy
 #~ msgid "Move Type"
