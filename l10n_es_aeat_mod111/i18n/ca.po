@@ -471,11 +471,6 @@ msgid "Messages"
 msgstr "Missatges"
 
 #. module: l10n_es_aeat_mod111
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__model_id
-msgid "Model"
-msgstr "Model"
-
-#. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__number
 msgid "Model number"
 msgstr "Número de model"
@@ -849,6 +844,9 @@ msgstr "[29] Tarifes per compensar"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_30
 msgid "[30] Result"
 msgstr "[30] Resultat"
+
+#~ msgid "Model"
+#~ msgstr "Model"
 
 #~ msgid "Number of unread messages"
 #~ msgstr "Nombre de missatges no llegits"
