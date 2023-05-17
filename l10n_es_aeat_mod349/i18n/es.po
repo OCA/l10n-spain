@@ -139,6 +139,7 @@ msgid "Aeat 349 Map Line"
 msgstr "Mapeo de Línea Aeat 349"
 
 #. module: l10n_es_aeat_mod349
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #, python-format
 msgid "All partner records fields (country, VAT number) must be filled."
@@ -147,6 +148,7 @@ msgstr ""
 "rellenados."
 
 #. module: l10n_es_aeat_mod349
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #, python-format
 msgid "All partner refunds fields (country, VAT number) must be filled."
@@ -222,6 +224,7 @@ msgid "Contact Email"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #, python-format
 msgid "Contact name (Full name) must have name and surname"
@@ -413,7 +416,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_needaction
-#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Si está seleccionado, nuevos mensajes requieren su atención."
 
@@ -533,11 +535,6 @@ msgid "Messages"
 msgstr "Mensajes"
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__model_id
-msgid "Model"
-msgstr "Modelo"
-
-#. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__number
 msgid "Model number"
 msgstr "Nº modelo"
@@ -573,6 +570,7 @@ msgid "Next Activity Type"
 msgstr "Próximo tipo de actividad"
 
 #. module: l10n_es_aeat_mod349
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #, python-format
 msgid "No Tax Mapping was found"
@@ -597,11 +595,6 @@ msgstr "Núumero de mensajes que requieren una acción"
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr "Número de mensajes con un error de entrega"
-
-#. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_unread_counter
-msgid "Number of unread messages"
-msgstr "Número de mensajes no leídos"
 
 #. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_record_head
@@ -864,12 +857,6 @@ msgid "Templates for Taxes"
 msgstr "Plantilla de impuestos"
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__move_id
-#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_detail__move_id
-msgid "The move of this entry line."
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
 #: model:ir.model.constraint,message:l10n_es_aeat_mod349.constraint_aeat_349_map_line_unique_operation_key
 msgid "There's already another record with the same operation key"
 msgstr "Ya hay otro registro con la misma clave de operación"
@@ -930,16 +917,6 @@ msgid "Type of the exception activity on record."
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_unread
-msgid "Unread Messages"
-msgstr "Mensajes no leídos"
-
-#. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Número de mensajes no leídos"
-
-#. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record__partner_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund__partner_vat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_record_head
@@ -968,18 +945,21 @@ msgid "Website communication history"
 msgstr "Historial de comunicación del sitio Web"
 
 #. module: l10n_es_aeat_mod349
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #, python-format
 msgid "Without Country"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #, python-format
 msgid "Without Total Operation Amount"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #, python-format
 msgid "Without VAT"
@@ -995,6 +975,18 @@ msgstr "Año"
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod349.action_aeat_349_mapping
 msgid "aeat 349 Map"
 msgstr "Mapeo aeat 349"
+
+#~ msgid "Model"
+#~ msgstr "Modelo"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Número de mensajes no leídos"
+
+#~ msgid "Unread Messages"
+#~ msgstr "Mensajes no leídos"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Número de mensajes no leídos"
 
 #~ msgid "AEAT 349 Partner record detail"
 #~ msgstr "Detalle de Registro de Empresa AEAT 349"
