@@ -316,11 +316,6 @@ msgid "Messages"
 msgstr "Mensajes"
 
 #. module: l10n_es_aeat_mod123
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__model_id
-msgid "Model"
-msgstr "Modelo"
-
-#. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__number
 msgid "Model number"
 msgstr "Nº modelo"
@@ -568,6 +563,9 @@ msgstr "[07] Ingresos ejercicios anteriores"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_08
 msgid "[08] Resultado a ingresar"
 msgstr "[08] Resultado a ingresar"
+
+#~ msgid "Model"
+#~ msgstr "Modelo"
 
 #~ msgid "Calculation date"
 #~ msgstr "Fecha de cálculo"
