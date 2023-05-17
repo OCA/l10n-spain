@@ -316,26 +316,30 @@ class AccountStatementImport(models.TransientModel):
                 partner = partner_obj.search([("vat", "=", vat)], limit=1)
         return partner
 
-    def _get_n43_partner_from_sabadell(self, conceptos):
+    def _get_n43_partner_from_sabadell(self, referencia1):
         partner_obj = self.env["res.partner"]
-        partner = partner_obj.browse()
-        # Try to match from partner name
-        if conceptos.get("01"):
-            name = conceptos["01"][1]
-            if name and len(name) > 5:
-                partner = partner_obj.search([("name", "ilike", name)], limit=1)
+        partner = partner_obj.browse()        
+        # Try to match from VAT included in concept complementary record #01
+        if referencia1:
+            vat = referencia1[:9]            
+            partner = partner_obj.search([("vat", "ilike", vat)], limit=1)        
         return partner
 
     def _get_n43_partner(self, line):
+        partner = False
+        if line.get("referencia1"):
+            partner = self._get_n43_partner_from_sabadell(line["referencia1"])
+            if partner:
+                return partner
         if not line.get("conceptos"):  # pragma: no cover
-            return self.env["res.partner"]
+            return self.env["res.partner"]        
         partner = self._get_n43_partner_from_caixabank(line["conceptos"])
         if not partner:
-            partner = self._get_n43_partner_from_santander(line["conceptos"])
+            partner = self._get_n43_partner_from_santander(line["conceptos"])       
         if not partner:
             partner = self._get_n43_partner_from_bankia(line["conceptos"])
         if not partner:
-            partner = self._get_n43_partner_from_sabadell(line["conceptos"])
+            return self.env["res.partner"]
         return partner
 
     def _get_n43_account(self, line, journal):  # pragma: no cover
