@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-28 23:52+0100\n"
-"PO-Revision-Date: 2022-05-25 16:05+0000\n"
-"Last-Translator: Luis D. Lafaurie <luislafaurie@hotmail.com>\n"
+"PO-Revision-Date: 2023-05-18 11:21+0000\n"
+"Last-Translator: Fernando <fernandolachica@gmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_es_vat_book
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_summary
@@ -110,7 +110,7 @@ msgstr "Base"
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary__base_amount
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary__base_amount
 msgid "Base Amount"
-msgstr ""
+msgstr "Importe base"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__fee_amount_xlsx_column
@@ -122,7 +122,7 @@ msgstr "Columna xlsx base"
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary__book_type
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary__book_type
 msgid "Book Type"
-msgstr ""
+msgstr "Tipo de libro"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__calculation_date
@@ -222,7 +222,7 @@ msgstr "Fecha fin"
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line__entry_number
 msgid "Entry Number"
-msgstr ""
+msgstr "Número entrada"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__error_count
@@ -447,7 +447,7 @@ msgstr "Libro de IVA"
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line__line_type
 msgid "Line Type"
-msgstr ""
+msgstr "Tipo línea"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__message_main_attachment_id
@@ -904,7 +904,7 @@ msgstr "Historial de comunicación del sitio web"
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
 #, python-format
 msgid "Without Partner"
-msgstr ""
+msgstr "Sin Contacto"
 
 #. module: l10n_es_vat_book
 #. odoo-python
