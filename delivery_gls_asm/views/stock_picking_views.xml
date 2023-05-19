@@ -103,4 +103,23 @@
             </xpath>
         </field>
     </record>
+    <record id="view_picking_gls_form" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='note']" position="after">
+                <field
+                    name="gls_shipping_notes"
+                    placeholder="Notas para GLS"
+                    attrs="{
+                    'invisible': [
+                        '|',
+                        ('gls_carrier_is_pickup_service', '=', True),
+                        ('delivery_type', '!=', 'gls_asm')
+                    ]
+                }"
+                />
+            </xpath>
+        </field>
+    </record>
 </odoo>
