@@ -71,6 +71,7 @@ class StockPicking(models.Model):
         ],
         copy=False,
     )
+    gls_shipping_notes = fields.Text(string="Notas de envío GLS")
 
     def gls_asm_get_label(self):
         """Get GLS Label for this picking expedition"""
