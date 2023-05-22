@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_tax_form_add_simplified_regime" model="ir.ui.view">
+        <field name="name">account.tax.form.add_simplified_regime"</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form" />
+        <field name="arch" type="xml">
+            <field name="include_base_amount" position="after">
+                <field
+                    name="tbai_vat_regime_simplified"
+                    attrs="{'invisible':[('amount_type','=', 'group')]}"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>

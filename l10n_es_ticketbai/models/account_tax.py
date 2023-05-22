@@ -2,7 +2,7 @@
 # Copyright 2021 Landoo Sistemas de Informacion SL
 # Copyright 2021 Digital5, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import _, exceptions, models
+from odoo import _, api, exceptions, fields, models
 
 from odoo.addons.l10n_es_ticketbai_api.models.ticketbai_invoice import RefundType
 from odoo.addons.l10n_es_ticketbai_api.models.ticketbai_invoice_tax import (
@@ -13,6 +13,23 @@ from odoo.addons.l10n_es_ticketbai_api.models.ticketbai_invoice_tax import (
 
 class AccountTax(models.Model):
     _inherit = "account.tax"
+
+    tbai_vat_regime_simplified = fields.Boolean(
+        "Regime Simplified",
+        compute="_compute_tbai_vat_regime_simplified",
+        store=True,
+        readonly=False,
+        help="Change default value for tax individually behavior",
+    )
+
+    @api.depends("company_id.tbai_vat_regime_simplified")
+    def _compute_tbai_vat_regime_simplified(self):
+        for tax in self:
+            tax.tbai_vat_regime_simplified = (
+                tax.company_id.tbai_enabled
+                and tax.company_id.tbai_vat_regime_simplified
+                or False
+            )
 
     def tbai_is_subject_to_tax(self):
         s_iva_ns_tbai_maps = self.env["tbai.tax.map"].search(
@@ -205,7 +222,7 @@ class AccountTax(models.Model):
 
     def tbai_get_value_op_recargo_equiv_o_reg_simpl(self, invoice_id):
         re_invoice_tax = self.tbai_get_associated_re_tax(invoice_id)
-        if re_invoice_tax or invoice_id.company_id.tbai_vat_regime_simplified:
+        if re_invoice_tax or self.tbai_vat_regime_simplified:
             res = "S"
         else:
             res = "N"

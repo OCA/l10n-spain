@@ -39,7 +39,7 @@ Usage
   * Se genera el fichero y se firma al validar la factura/ticket.
 
 * Es posible utilizar un certificado específico por cada TPV, se debe crear en el menú `TicketBAI Certificados`, accesible desde la configuración de punto de venta y se establece en la configuración de cada TPV, si no se establece dicho certificado, se utiliza el definido en la compañía.
-  
+
   * Es importante recordar, de cara a la seguridad, la importancia de generar un certificado de dispositivo (Izempe) ya que este se gestiona en el cliente y con dichos certificados no puede hacerse ninguna acción fuera del dispositivo.
 
 Bug Tracker
@@ -67,6 +67,7 @@ Contributors
 * Luis J. Salvatierra <ljsalvatierra@binovo.es>
 * Miquel Alzanillas <malzanillas@apsl.net>
 * Adrián Cifuentes <acifuentes@kernet.es>
+* Omar Castiñeira Saavedra <omar@comunitea.com>
 
 Maintainers
 ~~~~~~~~~~~

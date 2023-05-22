@@ -42,6 +42,7 @@
         "views/ticketbai_invoice_views.xml",
         "views/vat_exemption_key_views.xml",
         "views/vat_regime_key_views.xml",
+        "views/account_tax_view.xml",
         "wizard/ticketbai_info_views.xml",
     ],
     "post_init_hook": "post_init_hook",

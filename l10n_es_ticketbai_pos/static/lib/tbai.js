@@ -1777,7 +1777,7 @@ O=S.createElement("TipoImpositivo"),K=S.createElement("CuotaImpuesto"),e2=S.crea
 N.textContent=d(D.base);
 O.textContent=d(D.rate);
 K.textContent=d(D.amount);
-e2.textContent=M.simplified;
+e2.textContent=D.simplified;
 ia.appendChild(U);
 U.appendChild(N);
 U.appendChild(O);
