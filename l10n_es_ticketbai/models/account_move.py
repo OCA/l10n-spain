@@ -330,11 +330,14 @@ class AccountMove(models.Model):
         exclude_taxes = self.company_id.get_taxes_from_templates(
             tbai_maps.mapped("tax_template_ids")
         )
+        simplified_regime_key = False
         for tax in (
             self.invoice_line_ids.filtered(lambda x: x.tax_ids)
             .mapped("tax_ids")
             .filtered(lambda t: t not in exclude_taxes)
         ):
+            if tax.tbai_vat_regime_simplified:
+                simplified_regime_key = True
             tax_subject_to = tax.tbai_is_subject_to_tax()
             not_subject_to_cause = (
                 not tax_subject_to and tax.tbai_get_value_causa(self) or ""
@@ -383,6 +386,9 @@ class AccountMove(models.Model):
                     },
                 )
             )
+        if simplified_regime_key:
+            # Taxes in simplified regime, not surchage
+            vals["vat_regime_key"] = "51"
         vals["tbai_tax_ids"] = taxes
         return vals
 

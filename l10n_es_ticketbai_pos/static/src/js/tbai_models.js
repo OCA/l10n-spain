@@ -189,8 +189,17 @@ odoo.define("l10n_es_ticketbai_pos.tbai_models", function (require) {
                 (this.order !== null && this.order.export_as_JSON()) || null;
             var tbai_json = {};
             var company = this.pos.company;
-            var vat_keys = [this.vat_regime_key];
+            var vatLinesJson = order_json.taxLines;
             var self = this;
+            if (vatLinesJson && vatLinesJson.length > 0) {
+                vatLinesJson.forEach(function (vatLineJson) {
+                    var vatLine = vatLineJson[2];
+                    if (vatLine.tax.tbai_vat_regime_simplified) {
+                        self.vat_regime_key = "51";
+                    }
+                });
+            }
+            var vat_keys = [this.vat_regime_key];
 
             if (
                 order_json !== null &&
