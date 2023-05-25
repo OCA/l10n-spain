@@ -51,7 +51,7 @@ addon | version | maintainers | summary
 [l10n_es_aeat_mod390](l10n_es_aeat_mod390/) | 12.0.4.1.1 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | AEAT modelo 390
 [l10n_es_aeat_mod390_vat_prorate](l10n_es_aeat_mod390_vat_prorate/) | 12.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | AEAT - Prorrata de IVA 390
 [l10n_es_aeat_partner_check](l10n_es_aeat_partner_check/) | 12.0.1.0.3 |  | AEAT - Comprobación de Calidad de datos identificativos
-[l10n_es_aeat_sii](l10n_es_aeat_sii/) | 12.0.1.9.1 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Suministro Inmediato de Información en el IVA
+[l10n_es_aeat_sii](l10n_es_aeat_sii/) | 12.0.1.9.2 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Suministro Inmediato de Información en el IVA
 [l10n_es_aeat_sii_extra_data](l10n_es_aeat_sii_extra_data/) | 12.0.1.0.0 | [![cubells](https://github.com/cubells.png?size=30px)](https://github.com/cubells) | Módulo para incluir los impuestos extra en el módulo del SII.
 [l10n_es_aeat_sii_oss](l10n_es_aeat_sii_oss/) | 12.0.1.0.1 |  | Suministro Inmediato de Información en el IVA: OSS
 [l10n_es_aeat_vat_prorrate](l10n_es_aeat_vat_prorrate/) | 12.0.1.2.0 |  | AEAT - Prorrata de IVA
