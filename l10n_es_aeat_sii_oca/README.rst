@@ -19,9 +19,9 @@ Suministro Inmediato de Información en el IVA
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/l10n-spain-16-0/l10n-spain-16-0-l10n_es_aeat_sii_oca
     :alt: Translate me on Weblate
-.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/189/16.0
-    :alt: Try me on Runbot
+.. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
+    :target: https://runboat.odoo-community.org/webui/builds.html?repo=OCA/l10n-spain&target_branch=16.0
+    :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
@@ -154,7 +154,6 @@ Contributors
 
   * Pedro M. Baeza
   * João Marques
-* Rafa Martínez - Punt Sistemes S.L.U. <rmartinez@puntsistemes.es>
 * Lois Rilo Antelo <lois.rilo@forgeflow.com>
 * Eduardo de Miguel (edu@moduon.team)
 * Jose Zambudio <jose@aurestic.es>
