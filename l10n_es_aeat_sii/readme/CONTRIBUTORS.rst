@@ -11,4 +11,3 @@
 * Santi Argüeso - Comunitea S.L. <santi@comunitea.com>
 * Angel Moya - PESOL <angel.moya@pesol.es>
 * Eric Antonés - NuoBiT Solutions, S.L. <eantones@nuobit.com>
-* Rafa Martínez - Punt Sistemes S.L.U. <rmartinez@puntsistemes.es>
