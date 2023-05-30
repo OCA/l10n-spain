@@ -26,16 +26,20 @@ odoo.define("l10n_es_pos_by_device.models", function (require) {
             );
         },
         get_simple_inv_next_number: function () {
-            var ret = pos_super.get_simple_inv_next_number.apply(this, arguments);
-            if (this.env.pos.config.pos_sequence_by_device) {
-                return this.rpc({
-                    method: "search_read",
-                    domain: [["id", "=", this.env.pos.get_device().id]],
-                    fields: ["device_simplified_invoice_number"],
-                    model: "pos.device",
-                });
+            if (!this.env.pos.config.pos_sequence_by_device) {
+                return pos_super.get_simple_inv_next_number.apply(this, arguments);
             }
-            return ret;
+            // If we had pending orders to sync we want to avoid getting the next number
+            // from the DB as we'd be ovelaping the sequence.
+            if (this.env.pos.db.get_orders().length) {
+                return Promise.reject({message: {code: "pending_orders"}});
+            }
+            return this.rpc({
+                method: "search_read",
+                domain: [["id", "=", this.env.pos.get_device().id]],
+                fields: ["device_simplified_invoice_number"],
+                model: "pos.device",
+            });
         },
         _update_sequence_number: function () {
             if (!this.env.pos.config.pos_sequence_by_device) {
