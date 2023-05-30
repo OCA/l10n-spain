@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:228
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:233
 #, python-format
 msgid ""
 "\n"
@@ -304,7 +304,7 @@ msgid "GLS Barcode"
 msgstr "Código de barras GLS"
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:216
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:221
 #, python-format
 msgid "GLS Cancellation failed with reason: %s"
 msgstr "La cancelación de GLS falló por esta causa: %s"
@@ -320,7 +320,7 @@ msgid "GLS Deliveries Manifest"
 msgstr "Manifiesto de Envíos GLS"
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:222
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:227
 #, python-format
 msgid "GLS Expedition with reference %s cancelled"
 msgstr "Expedición GLS con referencia %s cancelada"
@@ -331,7 +331,7 @@ msgid "GLS Label"
 msgstr "Etiqueta GLS"
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:257
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:262
 #: model:ir.actions.act_window,name:delivery_gls_asm.action_delivery_gls_asm_manifest_wizard
 #: model:ir.actions.report,name:delivery_gls_asm.gls_asm_manifest_report
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.delivery_manifest_wizard_form
@@ -346,7 +346,7 @@ msgid "GLS Service"
 msgstr "Servicio GLS"
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:172
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:177
 #, python-format
 msgid ""
 "GLS Shipping extra info:\n"
@@ -367,19 +367,16 @@ msgid "GLS label for %s"
 msgstr "Etiqueta GLS para %s"
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/gls_asm_request.py:297
+#: code:addons/delivery_gls_asm/models/gls_asm_request.py:189
 #, python-format
 msgid ""
 "GLS returned an error trying to record the shipping for {}.\n"
-"Error:\n"
+"Error code {}:\n"
 "{}"
 msgstr ""
-"GLS ha devuelto un error tratando de registrar la expedición para {}.\n"
-"Error:\n"
-"{}"
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:149
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:154
 #, python-format
 msgid ""
 "GLS-ASM API doesn't admit a reference number higher than 15 characters. In "
@@ -390,7 +387,7 @@ msgid ""
 msgstr ""
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/gls_asm_request.py:318
+#: code:addons/delivery_gls_asm/models/gls_asm_request.py:212
 #, python-format
 msgid ""
 "GLS: No response from server getting state from ref {}.\n"
@@ -403,7 +400,7 @@ msgstr ""
 "{}"
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/gls_asm_request.py:347
+#: code:addons/delivery_gls_asm/models/gls_asm_request.py:241
 #, python-format
 msgid ""
 "GLS: No response from server printing label with ref {}.\n"
@@ -521,7 +518,7 @@ msgid "Masivo"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/gls_asm_request.py:404
+#: code:addons/delivery_gls_asm/models/gls_asm_request.py:298
 #, python-format
 msgid ""
 "No response from server getting manifisto for GLS.\n"
@@ -530,7 +527,7 @@ msgid ""
 msgstr ""
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/gls_asm_request.py:286
+#: code:addons/delivery_gls_asm/models/gls_asm_request.py:174
 #, python-format
 msgid ""
 "No response from server recording GLS delivery {}.\n"
@@ -754,6 +751,12 @@ msgid "Transfer"
 msgstr "Albarán"
 
 #. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/gls_asm_request.py:186
+#, python-format
+msgid "Unknown"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_last_request
 #: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_last_response
 msgid "Used for issues debugging"
@@ -778,6 +781,16 @@ msgstr "C.P."
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "dPRO"
 msgstr ""
+
+#, python-format
+#~ msgid ""
+#~ "GLS returned an error trying to record the shipping for {}.\n"
+#~ "Error:\n"
+#~ "{}"
+#~ msgstr ""
+#~ "GLS ha devuelto un error tratando de registrar la expedición para {}.\n"
+#~ "Error:\n"
+#~ "{}"
 
 #~ msgid "Carrier"
 #~ msgstr "Transportista"
