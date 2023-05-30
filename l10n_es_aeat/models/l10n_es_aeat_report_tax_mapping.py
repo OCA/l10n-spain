@@ -25,8 +25,7 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         res = super().calculate()
         for report in self:
             report.tax_line_ids.unlink()
-            report.flush()
-            report.invalidate_cache()
+            report.env.invalidate_all()
             # Buscar configuración de mapeo de impuestos
             tax_code_map = (
                 self.env["l10n.es.aeat.map.tax"]
