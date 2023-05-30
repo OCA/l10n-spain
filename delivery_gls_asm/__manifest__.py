@@ -3,7 +3,7 @@
 {
     "name": "Delivery GLS-ASM",
     "summary": "Delivery Carrier implementation for GLS with ASMRed API",
-    "version": "12.0.1.0.7",
+    "version": "12.0.1.0.8",
     "category": "Stock",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Tecnativa, "
