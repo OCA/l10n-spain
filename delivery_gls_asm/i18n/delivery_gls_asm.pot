@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:228
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:233
 #, python-format
 msgid "\n"
 "            GLS ASM API doesn't provide methods to compute delivery rates, so\n"
@@ -291,7 +291,7 @@ msgid "GLS Barcode"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:216
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:221
 #, python-format
 msgid "GLS Cancellation failed with reason: %s"
 msgstr ""
@@ -307,7 +307,7 @@ msgid "GLS Deliveries Manifest"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:222
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:227
 #, python-format
 msgid "GLS Expedition with reference %s cancelled"
 msgstr ""
@@ -318,7 +318,7 @@ msgid "GLS Label"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:257
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:262
 #: model:ir.actions.act_window,name:delivery_gls_asm.action_delivery_gls_asm_manifest_wizard
 #: model:ir.actions.report,name:delivery_gls_asm.gls_asm_manifest_report
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.delivery_manifest_wizard_form
@@ -333,7 +333,7 @@ msgid "GLS Service"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:172
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:177
 #, python-format
 msgid "GLS Shipping extra info:\n"
 "barcode: %s"
@@ -351,21 +351,21 @@ msgid "GLS label for %s"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/gls_asm_request.py:297
+#: code:addons/delivery_gls_asm/models/gls_asm_request.py:189
 #, python-format
 msgid "GLS returned an error trying to record the shipping for {}.\n"
-"Error:\n"
+"Error code {}:\n"
 "{}"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:149
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:154
 #, python-format
 msgid "GLS-ASM API doesn't admit a reference number higher than 15 characters. In order to handle it, they trim thereference and as the reference is unique to every customer we soon would have duplicated reference collisions. To prevent this, you should edit your picking sequence to a max of 15 characters."
 msgstr ""
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/gls_asm_request.py:318
+#: code:addons/delivery_gls_asm/models/gls_asm_request.py:212
 #, python-format
 msgid "GLS: No response from server getting state from ref {}.\n"
 "Traceback:\n"
@@ -373,7 +373,7 @@ msgid "GLS: No response from server getting state from ref {}.\n"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/gls_asm_request.py:347
+#: code:addons/delivery_gls_asm/models/gls_asm_request.py:241
 #, python-format
 msgid "GLS: No response from server printing label with ref {}.\n"
 "Traceback:\n"
@@ -482,7 +482,7 @@ msgid "Masivo"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/gls_asm_request.py:404
+#: code:addons/delivery_gls_asm/models/gls_asm_request.py:298
 #, python-format
 msgid "No response from server getting manifisto for GLS.\n"
 "Traceback:\n"
@@ -490,7 +490,7 @@ msgid "No response from server getting manifisto for GLS.\n"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/gls_asm_request.py:286
+#: code:addons/delivery_gls_asm/models/gls_asm_request.py:174
 #, python-format
 msgid "No response from server recording GLS delivery {}.\n"
 "Traceback:\n"
@@ -710,6 +710,12 @@ msgstr ""
 #. module: delivery_gls_asm
 #: model:ir.model,name:delivery_gls_asm.model_stock_picking
 msgid "Transfer"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/gls_asm_request.py:186
+#, python-format
+msgid "Unknown"
 msgstr ""
 
 #. module: delivery_gls_asm
