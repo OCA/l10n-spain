@@ -12,6 +12,16 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(
+            context=dict(
+                cls.env.context,
+                mail_create_nolog=True,
+                mail_create_nosubscribe=True,
+                mail_notrack=True,
+                no_reset_password=True,
+                tracking_disable=True,
+            )
+        )
         cls.oss_country = cls.env.ref("base.fr")
         general_tax = cls.env.ref(
             "l10n_es.%s_account_tax_template_s_iva21b" % cls.company.id
