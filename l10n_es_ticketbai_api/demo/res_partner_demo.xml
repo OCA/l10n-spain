@@ -17,9 +17,6 @@
         <field name="partner_id" ref="partner_tech" />
         <field name="login">tech</field>
         <field name="password">tech</field>
-        <field name="signature" type="xml">
-            <span>-- <br />+Mr Tech.</span>
-        </field>
         <field name="company_id" ref="base.main_company" />
         <field
             name="groups_id"

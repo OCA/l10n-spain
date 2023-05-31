@@ -207,18 +207,25 @@ class TicketBaiResponseMessage(models.Model):
             result.append((msg.id, name))
         return result
 
-    @api.model
-    def create(self, vals):
-        if "description" in vals and isinstance(vals["description"], dict):
-            description = vals["description"]["es_ES"]
-            description_basque_translation = vals["description"]["eu_ES"]
-            vals["description"] = description
-        else:
-            description_basque_translation = ""
-        record = super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        description_basque_translation_list = []
+        for vals in vals_list:
+            if "description" in vals and isinstance(vals["description"], dict):
+                description = vals["description"]["es_ES"]
+                description_basque_translation_list.append(vals["description"]["eu_ES"])
+                vals["description"] = description
+            else:
+                description_basque_translation_list.append("")
+        records = super().create(vals_list)
         lang = self.env["res.lang"].search([("code", "=", "eu_ES")], limit=1)
-        if lang and description_basque_translation:
-            record.with_context(
-                lang="eu_ES"
-            ).description = description_basque_translation
-        return record
+        if lang:
+            for record, descrip_basque_translation in zip(
+                records, description_basque_translation_list
+            ):
+                if not descrip_basque_translation:
+                    continue
+                record.with_context(
+                    lang="eu_ES"
+                ).description = descrip_basque_translation
+        return records
