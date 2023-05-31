@@ -41,7 +41,7 @@ addon | version | maintainers | summary
 [l10n_es_partner_mercantil](l10n_es_partner_mercantil/) | 16.0.1.0.0 |  | Añade los datos del registro mercantil a la empresa
 [l10n_es_ticketbai](l10n_es_ticketbai/) | 16.0.1.0.5 | [![ao-landoo](https://github.com/ao-landoo.png?size=30px)](https://github.com/ao-landoo) | Declaración de todas las operaciones de venta realizadas por las personas y entidades que desarrollan actividades económicas
 [l10n_es_ticketbai_api](l10n_es_ticketbai_api/) | 16.0.1.0.1 | [![ao-landoo](https://github.com/ao-landoo.png?size=30px)](https://github.com/ao-landoo) | TicketBAI - API
-[l10n_es_ticketbai_api_batuz](l10n_es_ticketbai_api_batuz/) | 16.0.1.0.0 | [![ao-landoo](https://github.com/ao-landoo.png?size=30px)](https://github.com/ao-landoo) | TicketBAI (API) - Batuz - declaración de todas las operaciones de venta realizadas por las personas y entidades que desarrollan actividades económicas en Bizkaia
+[l10n_es_ticketbai_api_batuz](l10n_es_ticketbai_api_batuz/) | 16.0.1.0.1 | [![ao-landoo](https://github.com/ao-landoo.png?size=30px)](https://github.com/ao-landoo) | TicketBAI (API) - Batuz - declaración de todas las operaciones de venta realizadas por las personas y entidades que desarrollan actividades económicas en Bizkaia
 [l10n_es_toponyms](l10n_es_toponyms/) | 16.0.1.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Topónimos españoles
 [l10n_es_vat_book](l10n_es_vat_book/) | 16.0.1.3.0 |  | Libro de IVA
 
