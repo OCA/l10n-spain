@@ -114,8 +114,8 @@
                             </tree>
                         </field>
                     </group>
-                    <group name="operation_responses" string="LROE Responses">
-                        <field name="response_ids" nolabel="1" readonly="1">
+                    <group name="operation_responses" string="LROE Responses" cols="4">
+                        <field name="response_ids" nolabel="1" readonly="1" colspan="2">
                             <form
                                 string="LROE Operation Global Response"
                                 create="false"
@@ -123,67 +123,77 @@
                                 edit="false"
                                 import="false"
                             >
-                                <group
-                                    name="source_operation"
-                                    string="LROE source Operation"
-                                >
-                                    <field name="create_date" readonly="1" />
-                                </group>
-                                <group name="response_data" string="Responde data">
-                                    <field
-                                        name="xml"
-                                        string="File"
-                                        filename="xml_fname"
-                                        readonly="1"
-                                    />
-                                    <field
-                                        name="xml_fname"
-                                        invisible="1"
-                                        class="oe_inline oe_right"
-                                    />
-                                    <field name="code" readonly="1" />
-                                    <field name="description" readonly="1" />
-                                    <field name="state" readonly="1" />
-                                    <field name="lroe_record_id" readonly="1" />
-                                    <field name="lroe_record_date" readonly="1" />
-                                </group>
-                                <group name="response_lines" string="Response Lines">
-                                    <field
-                                        name="response_line_ids"
-                                        nolabel="1"
-                                        options="{'no_create_edit': True, 'no_open': True}"
+                              <group>
+                                  <group
+                                        name="source_operation"
+                                        string="LROE source Operation"
                                     >
-                                        <form
-                                            create="false"
-                                            delete="false"
-                                            edit="false"
-                                            import="false"
+                                      <field name="create_date" readonly="1" />
+                                  </group>
+                                  <group name="response_data" string="Responde data">
+                                      <field
+                                            name="xml"
+                                            string="File"
+                                            filename="xml_fname"
+                                            readonly="1"
+                                        />
+                                      <field
+                                            name="xml_fname"
+                                            invisible="1"
+                                            class="oe_inline oe_right"
+                                        />
+                                      <field name="code" readonly="1" />
+                                      <field name="description" readonly="1" />
+                                      <field name="state" readonly="1" />
+                                      <field name="lroe_record_id" readonly="1" />
+                                      <field name="lroe_record_date" readonly="1" />
+                                  </group>
+
+                                  <group
+                                        name="response_lines"
+                                        string="Response Lines"
+                                        cols="4"
+                                    >
+                                      <field
+                                            name="response_line_ids"
+                                            nolabel="1"
+                                            options="{'no_create_edit': True, 'no_open': True}"
+                                            colspan="4"
                                         >
-                                            <header>
-                                                <field
-                                                    name="state"
-                                                    widget="statusbar"
-                                                    readonly="1"
-                                                />
-                                            </header>
-                                            <sheet>
-                                                <group name="lroe_response_main_group">
-                                                    <field name="lroe_operation_id" />
-                                                    <field name="code" />
-                                                    <field name="description" />
-                                                </group>
-                                            </sheet>
-                                        </form>
-                                        <tree
-                                            create="false"
-                                            delete="false"
-                                            decoration-danger="state=='Incorrecto'"
-                                        >
-                                            <field name="create_date" />
-                                            <field name="response_message" />
-                                            <field name="state" />
+                                          <form
+                                                create="false"
+                                                delete="false"
+                                                edit="false"
+                                                import="false"
+                                            >
+                                              <header>
+                                                  <field
+                                                        name="state"
+                                                        widget="statusbar"
+                                                        readonly="1"
+                                                    />
+                                              </header>
+                                              <sheet>
+                                                  <group
+                                                        name="lroe_response_main_group"
+                                                    >
+                                                      <field name="lroe_operation_id" />
+                                                      <field name="code" />
+                                                      <field name="description" />
+                                                  </group>
+                                              </sheet>
+                                          </form>
+                                          <tree
+                                                create="false"
+                                                delete="false"
+                                                decoration-danger="state=='Incorrecto'"
+                                            >
+                                              <field name="create_date" />
+                                              <field name="response_message" />
+                                              <field name="state" />
                                         </tree>
                                     </field>
+                                </group>
                                 </group>
                             </form>
                             <tree
