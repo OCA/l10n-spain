@@ -144,15 +144,19 @@ msgid "File"
 msgstr "Fichero"
 
 #. module: l10n_es_ticketbai_api_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation__trx_gzip_fsize
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation__xml_file_size
-msgid "File Size"
-msgstr "Tamaño del fichero"
-
-#. module: l10n_es_ticketbai_api_batuz
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_operation_form_view
 msgid "GZIP File"
 msgstr "Archivo GZIP"
+
+#. module: l10n_es_ticketbai_api_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation__trx_gzip_fname
+msgid "GZIP File Name"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation__trx_gzip_fsize
+msgid "GZIP File Size"
+msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_chapter_search_view
@@ -503,11 +507,15 @@ msgid "XML File"
 msgstr "Fichero XML"
 
 #. module: l10n_es_ticketbai_api_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation__trx_gzip_fname
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation__xml_datas_fname
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_response__xml_fname
 msgid "XML File Name"
 msgstr "Nombre de fichero XML"
+
+#. module: l10n_es_ticketbai_api_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation__xml_file_size
+msgid "XML File Size"
+msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation_response__xml
@@ -518,3 +526,6 @@ msgstr "Respuesta XML"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation__xml_datas
 msgid "Xml Datas"
 msgstr "Datos XML"
+
+#~ msgid "File Size"
+#~ msgstr "Tamaño del fichero"
