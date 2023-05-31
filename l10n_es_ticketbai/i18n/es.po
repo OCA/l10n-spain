@@ -97,11 +97,6 @@ msgid "Cancellation"
 msgstr "Anulación factura"
 
 #. module: l10n_es_ticketbai
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
-msgid "Cancellation Files Sent"
-msgstr ""
-
-#. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice__cancelled_invoice_id
 msgid "Cancelled Invoice"
 msgstr "Factura cancelada"
@@ -152,6 +147,16 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_regime_key__create_date
 msgid "Created on"
 msgstr "Creado el"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
+msgid "Customer Cancellations"
+msgstr "Anulaciones factura"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
+msgid "Customer Invoices"
+msgstr "Facturas de cliente"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info__developer_id
@@ -878,12 +883,6 @@ msgstr ""
 #, python-format
 #~ msgid "Refunded Invoice %s Expedition Date"
 #~ msgstr "Factura rectificativa %s fecha"
-
-#~ msgid "Customer Cancellations"
-#~ msgstr "Anulaciones factura"
-
-#~ msgid "Customer Invoices"
-#~ msgstr "Facturas de cliente"
 
 #~ msgid "Invoices"
 #~ msgstr "Facturas"

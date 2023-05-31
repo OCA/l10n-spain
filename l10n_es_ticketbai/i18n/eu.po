@@ -96,11 +96,6 @@ msgid "Cancellation"
 msgstr "Baliogabetzea"
 
 #. module: l10n_es_ticketbai
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
-msgid "Cancellation Files Sent"
-msgstr ""
-
-#. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice__cancelled_invoice_id
 msgid "Cancelled Invoice"
 msgstr "Baliogabetutako faktura"
@@ -151,6 +146,16 @@ msgstr "Nork sortua"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_regime_key__create_date
 msgid "Created on"
 msgstr "Noiz sortua"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
+msgid "Customer Cancellations"
+msgstr "Bezeroen ezeztapenak"
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
+msgid "Customer Invoices"
+msgstr "Bezeroen Fakturak"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info__developer_id
@@ -874,9 +879,3 @@ msgstr ""
 #, python-format
 #~ msgid "Refunded Invoice %s Expedition Date"
 #~ msgstr "Itzulitako %s fakturaren espedizio-data"
-
-#~ msgid "Customer Cancellations"
-#~ msgstr "Bezeroen ezeztapenak"
-
-#~ msgid "Customer Invoices"
-#~ msgstr "Bezeroen Fakturak"
