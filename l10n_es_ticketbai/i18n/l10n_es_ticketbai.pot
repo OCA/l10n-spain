@@ -91,11 +91,6 @@ msgid "Cancellation"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
-msgid "Cancellation Files Sent"
-msgstr ""
-
-#. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice__cancelled_invoice_id
 msgid "Cancelled Invoice"
 msgstr ""
@@ -145,6 +140,16 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_exemption_key__create_date
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_vat_regime_key__create_date
 msgid "Created on"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
+msgid "Customer Cancellations"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
+msgid "Customer Invoices"
 msgstr ""
 
 #. module: l10n_es_ticketbai
