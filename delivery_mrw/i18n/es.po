@@ -510,6 +510,21 @@ msgid "Manifest"
 msgstr "Manifiesto"
 
 #. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0370
+msgid "Marítimo Baleares"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0385
+msgid "Marítimo Canarias"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0390
+msgid "Marítimo Interinsular"
+msgstr ""
+
+#. module: delivery_mrw
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
 #, python-format
 msgid "MensajeSeguimiento"
@@ -711,13 +726,28 @@ msgid "Urgente 10"
 msgstr ""
 
 #. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0015
+msgid "Urgente 10 Expedición"
+msgstr ""
+
+#. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0100
 msgid "Urgente 12"
 msgstr ""
 
 #. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0105
+msgid "Urgente 12 Expedición"
+msgstr ""
+
+#. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0110
 msgid "Urgente 14"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0115
+msgid "Urgente 14 Expedición"
 msgstr ""
 
 #. module: delivery_mrw
