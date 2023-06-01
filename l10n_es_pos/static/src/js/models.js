@@ -7,6 +7,7 @@ odoo.define("l10n_es_pos.models", function (require) {
     "use strict";
 
     var models = require("point_of_sale.models");
+    var field_utils = require("web.field_utils");
 
     var pos_super = models.PosModel.prototype;
     models.PosModel = models.PosModel.extend({
@@ -132,6 +133,11 @@ odoo.define("l10n_es_pos.models", function (require) {
             order_super.init_from_JSON.apply(this, arguments);
             this.to_invoice = json.to_invoice;
             this.l10n_es_unique_id = json.l10n_es_unique_id;
+            this.formatted_validation_date = field_utils.format.datetime(
+                moment(this.validation_date),
+                {},
+                {timezone: false}
+            );
         },
         export_as_JSON: function () {
             var res = order_super.export_as_JSON.apply(this, arguments);
