@@ -172,13 +172,7 @@ class AccountInvoice(models.Model):
             if self.company_id.tbai_protected_data \
                     and self.company_id.tbai_protected_data_txt:
                 description_line = self.company_id.tbai_protected_data_txt[:250]
-            price_unit = line.price_unit
-            for tax in line.invoice_line_tax_ids:
-                if tax.price_include:
-                    price_unit = (
-                        price_unit -
-                        (line.price_unit * tax.amount / (100 + tax.amount))
-                    )
+            price_unit = line.tbai_get_price_unit()
             lines.append((0, 0, {
                 'description': description_line,
                 'quantity': line.tbai_get_value_cantidad(),
@@ -555,6 +549,21 @@ class AccountInvoice(models.Model):
 class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'
 
+    def tbai_get_price_unit(self):
+        price_unit = self.price_unit
+        for tax in self.invoice_line_tax_ids:
+            if tax.price_include:
+                price_unit = (
+                    price_unit -
+                    (self.price_unit * tax.amount / (100 + tax.amount))
+                )
+        if (self.currency_id and self.company_id and
+                self.currency_id != self.company_id.currency_id):
+            rate_date = self.invoice_id._get_currency_rate_date() or fields.Date.today()
+            price_unit = self.currency_id._convert(
+                price_unit, self.company_id.currency_id, self.company_id, rate_date)
+        return price_unit
+
     def tbai_get_value_cantidad(self):
         if RefundType.differences.value == self.invoice_id.tbai_refund_type:
             sign = -1
@@ -585,6 +594,10 @@ class AccountInvoiceLine(models.Model):
             price, currency, self.quantity, product=self.product_id,
             partner=self.invoice_id.partner_id)
         price_total = taxes['total_included'] if taxes else self.price_subtotal
+        if currency and self.company_id and currency != self.company_id.currency_id:
+            rate_date = self.invoice_id._get_currency_rate_date() or fields.Date.today()
+            price_total = currency._convert(
+                price_total, self.company_id.currency_id, self.company_id, rate_date)
         if RefundType.differences.value == self.invoice_id.tbai_refund_type:
             sign = -1
         else:

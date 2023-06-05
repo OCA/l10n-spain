@@ -144,6 +144,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         invoice = self.create_draft_invoice(
             self.account_billing.id, self.fiscal_position_e)
         invoice.partner_id = self.partner_extracommunity.id
+        invoice.currency_id = self.env.ref("base.USD").id
         invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
         invoice.compute_taxes()
         # Artículo 21.- Exenciones en las exportaciones de bienes
