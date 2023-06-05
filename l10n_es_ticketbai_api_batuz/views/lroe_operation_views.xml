@@ -56,8 +56,17 @@
                         />
                         <field name="trx_gzip_fsize" invisible="1" />
                     </group>
-                    <group name="customer_invoices" string="TBAI Customer Invoices">
-                        <field name="tbai_invoice_ids" nolabel="1" readonly="1">
+                    <group
+                        name="customer_invoices"
+                        string="TBAI Customer Invoices"
+                        cols="4"
+                    >
+                        <field
+                            name="tbai_invoice_ids"
+                            nolabel="1"
+                            readonly="1"
+                            colspan="2"
+                        >
                             <form
                                 string="Customer Invoice"
                                 create="false"
