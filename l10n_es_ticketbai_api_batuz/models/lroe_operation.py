@@ -172,7 +172,7 @@ class LROEOperation(models.Model):
         default=LROEOperationEnum.create.value,
     )
     model = fields.Selection(
-        "Model", related="company_id.lroe_model", readonly=True, required=True
+        related="company_id.lroe_model", readonly=True, required=True
     )
     state = fields.Selection(
         selection=[
