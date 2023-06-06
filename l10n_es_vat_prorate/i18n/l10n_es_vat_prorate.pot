@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_vat_prorate
+#: model:ir.model.fields,help:l10n_es_vat_prorate.field_account_tax__prorate_account_ids
+msgid "Accounts to apply the recompute"
+msgstr ""
+
+#. module: l10n_es_vat_prorate
 #: model:ir.model,name:l10n_es_vat_prorate.model_res_company
 msgid "Companies"
 msgstr ""
@@ -91,6 +96,16 @@ msgstr ""
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate__write_date
 msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_es_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_tax__prorate_account_ids
+msgid "Prorate Account"
+msgstr ""
+
+#. module: l10n_es_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_tax_template__prorate_account_template_ids
+msgid "Prorate Account Template"
 msgstr ""
 
 #. module: l10n_es_vat_prorate

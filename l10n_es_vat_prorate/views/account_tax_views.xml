@@ -13,6 +13,11 @@
                     attrs="{'invisible': [('company_with_vat_prorate', '=', False)]}"
                 />
                 <field name="company_with_vat_prorate" invisible="1" />
+                <field
+                    name="prorate_account_ids"
+                    widget="many2many_tags"
+                    attrs="{'invisible': [('company_with_vat_prorate', '=', False)]}"
+                />
             </field>
         </field>
     </record>
