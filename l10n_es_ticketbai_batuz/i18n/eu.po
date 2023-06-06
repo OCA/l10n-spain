@@ -57,6 +57,7 @@ msgid "Chapter"
 msgstr "Kapitulua"
 
 #. module: l10n_es_ticketbai_batuz
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_batuz/models/account_move.py:0
 #, python-format
 msgid "Chapter and type are required for search a pending LROE Operation"
@@ -167,6 +168,7 @@ msgid "LROE API URL"
 msgstr "LROE API URL"
 
 #. module: l10n_es_ticketbai_batuz
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_batuz/models/account_move.py:0
 #, python-format
 msgid ""
@@ -176,6 +178,7 @@ msgstr ""
 "inplementatu!"
 
 #. module: l10n_es_ticketbai_batuz
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_batuz/models/account_move.py:0
 #, python-format
 msgid "LROE Build: operation type is necessary!"
@@ -187,6 +190,7 @@ msgid "LROE Operation"
 msgstr "LROE Eragiketa"
 
 #. module: l10n_es_ticketbai_batuz
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_batuz/models/lroe_operation.py:0
 #, python-format
 msgid "LROE Operation %s: XML schema not supported!"
@@ -201,6 +205,9 @@ msgid "LROE Operations"
 msgstr "LROE Eragiketak"
 
 #. module: l10n_es_ticketbai_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_bank_statement_line__lroe_response_line_ids
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__lroe_response_line_ids
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_payment__lroe_response_line_ids
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.move_supplier_form_inherit_l10n_es_ticketbai_batuz
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_move_form_tbai_batuz
 msgid "LROE Responses"
@@ -323,13 +330,6 @@ msgid "Resend to LROE"
 msgstr "Bidal ezazu berriro LROEra"
 
 #. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_bank_statement_line__lroe_response_line_ids
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__lroe_response_line_ids
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_payment__lroe_response_line_ids
-msgid "Responses"
-msgstr "Erantzunak"
-
-#. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai_batuz.selection__tbai_vat_regime_key__type__sale
 msgid "Sale"
 msgstr "Salmenta"
@@ -371,6 +371,7 @@ msgid "The last attemp to sent to LROE has failed"
 msgstr "LROEra bidaltzeko azken saiakerak huts egin du"
 
 #. module: l10n_es_ticketbai_batuz
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_batuz/models/account_move.py:0
 #, python-format
 msgid "There's a mismatch in taxes for RE. Check them."
@@ -448,6 +449,7 @@ msgid "With delay"
 msgstr "Atzerapenarekin"
 
 #. module: l10n_es_ticketbai_batuz
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_batuz/models/account_move.py:0
 #, python-format
 msgid ""
@@ -458,9 +460,12 @@ msgstr ""
 "dagoelako!"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_move.py:0
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_batuz/models/account_move.py:0
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr ""
 "Ezin duzu faktura hau zirriborrora aldatu, beste lan bat martxan dagoelako!"
+
+#~ msgid "Responses"
+#~ msgstr "Erantzunak"
