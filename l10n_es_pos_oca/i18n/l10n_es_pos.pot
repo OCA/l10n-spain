@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-21 10:06+0000\n"
-"PO-Revision-Date: 2022-11-21 10:06+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,14 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_pos
-#. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
-#, python-format
-msgid "!env.pos.config.is_simplified_config or receipt.is_to_invoice"
-msgstr ""
-
-#. module: l10n_es_pos
-#: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.res_config_settings_view_form
 msgid "Above this limit the simplified invoice won't be made"
 msgstr ""
 
@@ -39,15 +30,10 @@ msgid "Config Settings"
 msgstr ""
 
 #. module: l10n_es_pos
-#. openerp-web
+#. odoo-javascript
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
 #, python-format
 msgid "Customer:"
-msgstr ""
-
-#. module: l10n_es_pos
-#: model_terms:ir.ui.view,arch_db:l10n_es_pos.res_config_settings_view_form
-msgid "Invoice Journal"
 msgstr ""
 
 #. module: l10n_es_pos
@@ -104,7 +90,7 @@ msgid "Sim.Inv number"
 msgstr ""
 
 #. module: l10n_es_pos
-#. openerp-web
+#. odoo-javascript
 #: code:addons/l10n_es_pos/static/src/js/Screens/TicketScreen/TicketScreen.js:0
 #: code:addons/l10n_es_pos/static/src/xml/Screens/OrderManagementScreen/TicketScreen.xml:0
 #: code:addons/l10n_es_pos/static/src/xml/Screens/OrderManagementScreen/TicketScreen.xml:0
@@ -113,6 +99,7 @@ msgid "Simplified Invoice"
 msgstr ""
 
 #. module: l10n_es_pos
+#. odoo-python
 #: code:addons/l10n_es_pos/models/pos_config.py:0
 #: code:addons/l10n_es_pos/models/pos_config.py:0
 #, python-format
@@ -148,7 +135,7 @@ msgid "Simplified Invoice prefix"
 msgstr ""
 
 #. module: l10n_es_pos
-#. openerp-web
+#. odoo-javascript
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__is_l10n_es_simplified_invoice
 #, python-format
@@ -166,6 +153,7 @@ msgid "Simplified invoices"
 msgstr ""
 
 #. module: l10n_es_pos
+#. odoo-python
 #: code:addons/l10n_es_pos/models/ir_sequence.py:0
 #, python-format
 msgid ""
@@ -180,7 +168,7 @@ msgid "Use simplified invoices for this POS"
 msgstr ""
 
 #. module: l10n_es_pos
-#. openerp-web
+#. odoo-javascript
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
 #, python-format
