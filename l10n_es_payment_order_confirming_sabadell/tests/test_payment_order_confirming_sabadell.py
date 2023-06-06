@@ -13,7 +13,7 @@ class TestPaymentOrderConfirmingSabadell(common.SavepointCase):
             {
                 "code": "TEA",
                 "name": "Test Expense Account",
-                "user_type_id": cls.env.ref("account.data_account_type_expenses").id,
+                "account_type": "expense",
             }
         )
         cls.bank_journal = cls.env["account.journal"].create(
@@ -29,7 +29,7 @@ class TestPaymentOrderConfirmingSabadell(common.SavepointCase):
         cls.bank_journal.bank_account_id.acc_holder_name = "acc_holder_name"
         cls.bank_journal.bank_account_id.partner_id.vat = "ES40538337D"
         cls.purchase_journal = cls.env["account.journal"].create(
-            {"name": "Test purchase", "type": "purchase", "code": "test-purchase"}
+            {"name": "Test purchase", "type": "purchase", "code": "test2-purchase"}
         )
         cls.payment_mode = cls.env["account.payment.mode"].create(
             {
