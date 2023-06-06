@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t
+        t-name="OrderReceipt"
+        t-inherit="point_of_sale.OrderReceipt"
+        t-inherit-mode="extension"
+        owl="1"
+    >
+        <xpath expr="//t[@t-if='receipt.company.contact_address']" position="before">
+            <t t-if="env.pos.config.is_simplified_config and !receipt.to_invoice">
+                <div><t t-esc='receipt.date.localestring' /></div>
+                <div>Simplified invoice</div>
+                <div><t t-esc="receipt.l10n_es_unique_id" /></div><br />
+                <t t-log="receipt" />
+            </t>
+        </xpath>
+        <xpath expr='//t[@t-if="receipt.company.vat"]' position="after">
+            <div t-if="receipt.company.street"><t
+                    t-esc="receipt.company.street"
+                /></div>
+            <div>
+                <t t-if="receipt.company.zip"><t t-esc="receipt.company.zip" /> </t>
+                <t t-if="receipt.company.city"><t t-esc="receipt.company.city" /> </t>
+                <t t-if="receipt.company.state_id">(<t
+                        t-esc="receipt.company.state_id[1]"
+                    />)</t>
+            </div>
+        </xpath>
+        <xpath expr='//t[@t-if="receipt.cashier"]' position="after">
+            <br />
+            <t t-if="props.order.get_partner()">
+                <div>Customer: <t t-esc="props.order.get_partner().name" /></div>
+                <t t-if="props.order.get_partner().vat">
+                    <div><t t-esc="receipt.company.vat_label" />:<t
+                            t-esc="props.order.get_partner().vat"
+                        /></div>
+                </t>
+                <t t-if="props.order.get_partner().address != ',  , '">
+                    <div><t t-esc="props.order.get_partner().address" /></div>
+                </t>
+            </t>
+        </xpath>
+        <xpath
+            expr="//t[@t-if='!isTaxIncluded']/t/div/t[@t-esc='tax.name']"
+            position="after"
+        >
+            <span> on <t t-esc="env.pos.format_currency(tax.base)" /></span>
+        </xpath>
+        <xpath
+            expr="//t[@t-if='isTaxIncluded']/t/div/t[@t-esc='tax.name']"
+            position="after"
+        >
+            <span> on <t t-esc="env.pos.format_currency(tax.base)" /></span>
+        </xpath>
+        <xpath
+            expr="//div[hasclass('pos-receipt')]/div[hasclass('pos-receipt-order-data')]"
+            position="attributes"
+        >
+            <attribute
+                name="t-if"
+            >!env.pos.config.is_simplified_config or receipt.is_to_invoice</attribute>
+        </xpath>
+    </t>
+</templates>

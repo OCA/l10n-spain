@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='pos_accounting_section']" position="inside">
+                <div class="col-12 col-lg-6 o_setting_box" id="l10n_es_pos_simp_seq">
+                    <div class="o_setting_left_pane">
+                        <field name="pos_iface_l10n_es_simplified_invoice" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label
+                            for="pos_l10n_es_simplified_invoice_sequence_id"
+                            string="Simplified Invoice Sequence"
+                        />
+                        <div class="text-muted">
+                            Set simplified invoice sequence for this POS
+                        </div>
+                        <div class="content-group mt16" groups="base.group_no_one">
+                            <field name="pos_l10n_es_simplified_invoice_sequence_id" />
+                        </div>
+                        <field
+                            name="pos_l10n_es_simplified_invoice_sequence_id"
+                            invisible="1"
+                        />
+                    </div>
+                </div>
+                <div
+                    class="col-12 col-lg-6 o_setting_box"
+                    id="l10n_es_pos_simp_limit"
+                    attrs="{'invisible': [('pos_iface_l10n_es_simplified_invoice', '=', False)]}"
+                >
+                    <div class="o_setting_right_pane">
+                        <label
+                            for="pos_l10n_es_simplified_invoice_limit"
+                            string="Simplified Invoice Limit"
+                        />
+                        <div class="text-muted">
+                            Above this limit the simplified invoice won't be made
+                        </div>
+                        <div class="content-group mt16">
+                            <field
+                                name="pos_l10n_es_simplified_invoice_limit"
+                                class="oe_inline"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+
+            <xpath expr="//field[@name='pos_invoice_journal_id']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'required': ['|', ('pos_company_has_template', '=', True), ('pos_l10n_es_simplified_invoice_sequence_id', '=', True)]}</attribute>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
