@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Binovo IT Human Project SL
+     Copyright 2021 Digital5, S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <menuitem
+        id="l10n_es_ticketbai_api_batuz.menu_lroe_root"
+        groups="account.group_account_manager"
+        name="LROE"
+        sequence="40"
+        parent="l10n_es_ticketbai.menu_l10n_es_tbai_config"
+    />
+
+    <record id="lroe_operation_form_view_inherit_batuz" model="ir.ui.view">
+        <field name="name">lroe.operation.form.view</field>
+        <field name="model">lroe.operation</field>
+        <field
+            name="inherit_id"
+            ref="l10n_es_ticketbai_api_batuz.lroe_operation_form_view"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='operation_data']" position="inside">
+                <field name="lroe_chapter_id" readonly="1" />
+                <field name="lroe_subchapter_id" readonly="1" />
+            </xpath>
+            <xpath expr="//group[@name='customer_invoices']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('tbai_invoice_ids','=',[])]}</attribute>
+            </xpath>
+            <xpath expr="//group[@name='customer_invoices']" position="after">
+                <group
+                    name="invoices"
+                    string="Invoices"
+                    attrs="{'invisible': [('invoice_ids','=',[])]}"
+                    cols="4"
+                >
+                    <field name="invoice_ids" nolabel="1" readonly="1" colspan="2" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="lroe_operation_tree_view_inherit_batuz" model="ir.ui.view">
+        <field name="name">lroe.operation.tree.view</field>
+        <field name="model">lroe.operation</field>
+        <field
+            name="inherit_id"
+            ref="l10n_es_ticketbai_api_batuz.lroe_operation_tree_view"
+        />
+        <field name="arch" type="xml">
+            <field name="model" position="after">
+                <field name="lroe_chapter_id" readonly="1" />
+                <field name="lroe_subchapter_id" readonly="1" />
+            </field>
+        </field>
+    </record>
+
+    <record id="lroe_operation_search_view_inherit_batuz" model="ir.ui.view">
+        <field name="name">lroe.operation.search.view</field>
+        <field name="model">lroe.operation</field>
+        <field
+            name="inherit_id"
+            ref="l10n_es_ticketbai_api_batuz.lroe_operation_search_view"
+        />
+        <field name="arch" type="xml">
+            <field name="model" position="after">
+                <field name="lroe_chapter_id" readonly="1" />
+                <field name="lroe_subchapter_id" readonly="1" />
+            </field>
+            <filter name="state" position="after">
+                <filter
+                    string="Chapter"
+                    name="chapter"
+                    context="{'group_by':'lroe_chapter_id'}"
+                />
+            </filter>
+        </field>
+    </record>
+
+</odoo>

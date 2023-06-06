@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2021 Digital5, S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="view_partner_form_inherit_l10n_es_ticketbai_batuz" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <group name="ticketbai" position="inside">
+                <field name="lroe_simplified_invoice" />
+            </group>
+        </field>
+    </record>
+
+</odoo>
