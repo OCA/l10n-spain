@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -54,6 +54,7 @@ msgid "Chapter"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_batuz/models/account_move.py:0
 #, python-format
 msgid "Chapter and type are required for search a pending LROE Operation"
@@ -159,6 +160,7 @@ msgid "LROE API URL"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_batuz/models/account_move.py:0
 #, python-format
 msgid ""
@@ -166,6 +168,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_batuz/models/account_move.py:0
 #, python-format
 msgid "LROE Build: operation type is necessary!"
@@ -177,6 +180,7 @@ msgid "LROE Operation"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_batuz/models/lroe_operation.py:0
 #, python-format
 msgid "LROE Operation %s: XML schema not supported!"
@@ -191,6 +195,9 @@ msgid "LROE Operations"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_bank_statement_line__lroe_response_line_ids
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__lroe_response_line_ids
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_payment__lroe_response_line_ids
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.move_supplier_form_inherit_l10n_es_ticketbai_batuz
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_move_form_tbai_batuz
 msgid "LROE Responses"
@@ -313,13 +320,6 @@ msgid "Resend to LROE"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_bank_statement_line__lroe_response_line_ids
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__lroe_response_line_ids
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_payment__lroe_response_line_ids
-msgid "Responses"
-msgstr ""
-
-#. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai_batuz.selection__tbai_vat_regime_key__type__sale
 msgid "Sale"
 msgstr ""
@@ -361,6 +361,7 @@ msgid "The last attemp to sent to LROE has failed"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_batuz/models/account_move.py:0
 #, python-format
 msgid "There's a mismatch in taxes for RE. Check them."
@@ -438,6 +439,7 @@ msgid "With delay"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_batuz/models/account_move.py:0
 #, python-format
 msgid ""
@@ -446,6 +448,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_batuz/models/account_move.py:0
 #: code:addons/l10n_es_ticketbai_batuz/models/account_move.py:0
 #, python-format
