@@ -30,6 +30,7 @@ setuptools.setup(
         'odoo-addon-l10n_es_ticketbai>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_ticketbai_api>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_ticketbai_api_batuz>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_es_ticketbai_batuz>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_toponyms>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_vat_book>=16.0dev,<16.1dev',
     ],
