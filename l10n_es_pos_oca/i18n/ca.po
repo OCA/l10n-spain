@@ -17,33 +17,27 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_pos
-#. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
-#, python-format
-msgid "!env.pos.config.is_simplified_config or receipt.is_to_invoice"
-msgstr ""
-
-#. module: l10n_es_pos
-#: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.res_config_settings_view_form
 msgid "Above this limit the simplified invoice won't be made"
 msgstr "Per sobre d'aquest límit no es crearà factura simplificada"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,help:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_sequence_id
+#: model:ir.model.fields,help:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_sequence_id
 msgid "Autogenerate for each POS created"
 msgstr "Autogenerada per cada TPV creat"
 
 #. module: l10n_es_pos
-#. openerp-web
+#: model:ir.model,name:l10n_es_pos.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: l10n_es_pos
+#. odoo-javascript
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
 #, python-format
 msgid "Customer:"
 msgstr "Client:"
-
-#. module: l10n_es_pos
-#: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
-msgid "Invoice Journal"
-msgstr "Diari de Factures"
 
 #. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
@@ -57,6 +51,7 @@ msgstr ""
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,help:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_limit
+#: model:ir.model.fields,help:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_limit
 msgid "Over this amount is not legally posible to create a simplified invoice"
 msgstr ""
 "Per sobre d'aquesta quantitat no és legal crear una factura simplificada"
@@ -72,27 +67,34 @@ msgid "Point of Sale Orders"
 msgstr "Comandes del Punt de Venda"
 
 #. module: l10n_es_pos
+#: model:ir.model,name:l10n_es_pos.model_pos_session
+msgid "Point of Sale Session"
+msgstr ""
+
+#. module: l10n_es_pos
 #: model:ir.model,name:l10n_es_pos.model_ir_sequence
 msgid "Sequence"
 msgstr "Seqüència"
 
 #. module: l10n_es_pos
-#: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.res_config_settings_view_form
 msgid "Set simplified invoice sequence for this POS"
 msgstr "Establir seqüència de factura simplificada per aquest TPV"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_limit
+#: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_limit
 msgid "Sim.Inv limit amount"
 msgstr "Límit de factura simplificada"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_number
+#: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_number
 msgid "Sim.Inv number"
 msgstr "Nombre de factura simplificada"
 
 #. module: l10n_es_pos
-#. openerp-web
+#. odoo-javascript
 #: code:addons/l10n_es_pos/static/src/js/Screens/TicketScreen/TicketScreen.js:0
 #: code:addons/l10n_es_pos/static/src/xml/Screens/OrderManagementScreen/TicketScreen.xml:0
 #, python-format
@@ -100,6 +102,7 @@ msgid "Simplified Invoice"
 msgstr ""
 
 #. module: l10n_es_pos
+#. odoo-python
 #: code:addons/l10n_es_pos/models/pos_config.py:0
 #, python-format
 msgid "Simplified Invoice %s"
@@ -107,31 +110,34 @@ msgstr "Factura simplificada %s"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_sequence_id
+#: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_sequence_id
 msgid "Simplified Invoice IDs Sequence"
 msgstr "Seqüència de Factura Simplificada"
 
 #. module: l10n_es_pos
-#: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.res_config_settings_view_form
 msgid "Simplified Invoice Limit"
 msgstr "Límit de Factura Simplificada"
 
 #. module: l10n_es_pos
-#: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.res_config_settings_view_form
 msgid "Simplified Invoice Sequence"
 msgstr "Seqüència de Factura Simplificada"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_padding
+#: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_padding
 msgid "Simplified Invoice padding"
 msgstr "Farcit de Factura Simplificada"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_prefix
+#: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_prefix
 msgid "Simplified Invoice prefix"
 msgstr "Prefix de Factura Simplificada"
 
 #. module: l10n_es_pos
-#. openerp-web
+#. odoo-javascript
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__is_l10n_es_simplified_invoice
 #, python-format
@@ -149,6 +155,7 @@ msgid "Simplified invoices"
 msgstr "Factures simplificades"
 
 #. module: l10n_es_pos
+#. odoo-python
 #: code:addons/l10n_es_pos/models/ir_sequence.py:0
 #, python-format
 msgid ""
@@ -160,15 +167,19 @@ msgstr ""
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__iface_l10n_es_simplified_invoice
+#: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_iface_l10n_es_simplified_invoice
 msgid "Use simplified invoices for this POS"
 msgstr "Utilitza Factures simplificades en aquest punt de venda"
 
 #. module: l10n_es_pos
-#. openerp-web
+#. odoo-javascript
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
 #, python-format
 msgid "on"
 msgstr "sobre"
+
+#~ msgid "Invoice Journal"
+#~ msgstr "Diari de Factures"
 
 #, python-format
 #~ msgid ""
