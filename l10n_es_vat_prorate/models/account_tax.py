@@ -11,6 +11,13 @@ class AccountTax(models.Model):
     with_vat_prorate = fields.Boolean(
         compute="_compute_with_vat_prorate", store=True, readonly=False
     )
+    prorate_account_ids = fields.Many2many(
+        "account.account",
+        compute="_compute_with_vat_prorate",
+        store=True,
+        readonly=True,
+        help="Accounts to apply the recompute",
+    )
     company_with_vat_prorate = fields.Boolean(
         related="company_id.with_vat_prorate",
         string="Company with VAT prorate",
@@ -30,12 +37,43 @@ class AccountTax(models.Model):
                 )
                 if xmlids:
                     xmlid = xmlids[0]
-                    tax.with_vat_prorate = (
-                        "{}.{}".format(xmlid["module"], xmlid["name"].split("_", 1)[1])
-                        in tax_template_ids
+                    tax_ref = "{}.{}".format(
+                        xmlid["module"], xmlid["name"].split("_", 1)[1]
                     )
+                    with_vat_prorate = tax_ref in tax_template_ids
+                    prorate_account_ids = [(5, 0, 0)]
+                    if with_vat_prorate:
+                        tax_template = self.env.ref(tax_ref)
+                        for (
+                            template_account
+                        ) in tax_template.prorate_account_template_ids:
+                            template_account_xmlids = self.env[
+                                "ir.model.data"
+                            ].search_read(
+                                [
+                                    ("model", "=", template_account._name),
+                                    ("res_id", "=", template_account.id),
+                                ],
+                                ["name", "module"],
+                                limit=1,
+                            )
+                            if template_account_xmlids:
+                                account = self.env.ref(
+                                    "{}.{}_{}".format(
+                                        template_account_xmlids[0]["module"],
+                                        tax.company_id.id,
+                                        template_account_xmlids[0]["name"],
+                                    ),
+                                    raise_if_not_found=False,
+                                )
+                                if account:
+                                    prorate_account_ids.append((4, account.id))
+
+                    tax.with_vat_prorate = with_vat_prorate
+                    tax.prorate_account_ids = prorate_account_ids
                     continue
             tax.with_vat_prorate = False
+            tax.prorate_account_ids = False
 
     def compute_all(
         self,
@@ -64,7 +102,15 @@ class AccountTax(models.Model):
         for tax_val in result["taxes"]:
             tax = self.env["account.tax"].browse(tax_val["id"])
             date = self.env.context.get("vat_prorate_date", False)
-            if tax.with_vat_prorate and tax_val["account_id"] and date:
+            if (
+                tax.with_vat_prorate
+                and tax_val["account_id"]
+                and date
+                and (
+                    not tax.prorate_account_ids
+                    or tax_val["account_id"] in tax.prorate_account_ids.ids
+                )
+            ):
                 prec = currency.rounding
                 prorate = self.company_id.get_prorate(date)
                 new_vals = tax_val.copy()
@@ -83,6 +129,8 @@ class AccountTaxTemplate(models.Model):
     _inherit = "account.tax.template"
 
     template_with_vat_prorate = fields.Boolean()
+
+    prorate_account_template_ids = fields.Many2many("account.account.template")
     # Name must be different that the account.tax field in order to make it
     # compatible with account_chart_update
 
