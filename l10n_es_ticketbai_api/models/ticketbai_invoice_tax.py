@@ -213,7 +213,7 @@ class TicketBaiTax(models.Model):
     def _check_surcharge_or_simplified_regime(self):
         for record in self:
             if record.is_subject_to and not record.is_exempted and \
-                    record.re_amount and record.re_amount_total and (
+                    record.tbai_invoice_id.vat_regime_key == "52" and (
                     not record.surcharge_or_simplified_regime or
                     record.surcharge_or_simplified_regime !=
                     SurchargeOrSimplifiedRegimeType.S.value):
