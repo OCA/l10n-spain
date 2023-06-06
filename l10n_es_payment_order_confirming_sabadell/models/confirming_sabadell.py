@@ -20,6 +20,11 @@ class ConfirmingSabadell(object):
                 _("Propietario de la cuenta no establecido para la cuenta %s.")
                 % self.record.company_partner_bank_id.acc_number
             )
+        if not self.record.company_partner_bank_id.partner_id.vat:
+            raise UserError(
+                _("Propietario de la cuenta %s no tiene un NIF establecido.")
+                % (self.record.company_partner_bank_id.display_name)
+            )
         # Errores lineas
         for line in self.record.payment_line_ids:
             # 19 - 30 Documento identificativo
