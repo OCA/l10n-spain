@@ -1,0 +1,925 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_aeat_mod322
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-18 10:50+0000\n"
+"PO-Revision-Date: 2022-10-18 10:50+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_aeat_mod322
+#: model:l10n.es.aeat.mod322.report.activity.code,name:l10n_es_aeat_mod322.aeat_mod322_activity_code_12_0
+msgid "0 - Sin Epígrafe"
+msgstr "0 - Sense Epígraf"
+
+#. module: l10n_es_aeat_mod322
+#: model:l10n.es.aeat.mod322.report.activity.code,name:l10n_es_aeat_mod322.aeat_mod322_activity_code_4t_0
+msgid "0 - Sin epígrafe"
+msgstr "0 - Sense Epígraf"
+
+#. module: l10n_es_aeat_mod322
+#: model:l10n.es.aeat.mod322.report.activity.code,name:l10n_es_aeat_mod322.aeat_mod322_activity_code_4t_1b
+msgid "1 - Epígrafes correspondientes a: Actividades AGP con IAE"
+msgstr "1 - Epígrafs corresponents a: Activitats AGP amb IAE"
+
+#. module: l10n_es_aeat_mod322
+#: model:l10n.es.aeat.mod322.report.activity.code,name:l10n_es_aeat_mod322.aeat_mod322_activity_code_12_1
+msgid ""
+"1 - Epígrafes correspondientes a: Actividades empresariales sujetas al IAE"
+msgstr "1 - Epígrafs corresponents a: Activitats empresarials subjectes a l'IAE"
+
+#. module: l10n_es_aeat_mod322
+#: model:l10n.es.aeat.mod322.report.activity.code,name:l10n_es_aeat_mod322.aeat_mod322_activity_code_4t_1a
+msgid ""
+"1 - Epígrafes correspondientes a: Actividades en régimen simplificado "
+"excepto las agrícolas, ganaderas y pesqueras (AGP)"
+msgstr ""
+"1 - Epígrafs corresponents a: Activitats en règim simplificat excepte "
+"les agrícoles, ramaderes i pesqueres (AGP)"
+
+#. module: l10n_es_aeat_mod322
+#: model:l10n.es.aeat.mod322.report.activity.code,name:l10n_es_aeat_mod322.aeat_mod322_activity_code_12_2b
+msgid ""
+"2 - Epígrafes correspondientes a: Actividades artísticas sujetas al IAE"
+msgstr ""
+"2 - Epígrafs corresponents a: Activitats artístiques subjectes a l'IAE"
+
+#. module: l10n_es_aeat_mod322
+#: model:l10n.es.aeat.mod322.report.activity.code,name:l10n_es_aeat_mod322.aeat_mod322_activity_code_12_2a
+msgid ""
+"2 - Epígrafes correspondientes a: Actividades profesionales sujetas al IAE"
+msgstr ""
+"2 - Epígrafs corresponents a: Activitats professionals subjectes a l'IAE"
+
+#. module: l10n_es_aeat_mod322
+#: model:l10n.es.aeat.mod322.report.activity.code,name:l10n_es_aeat_mod322.aeat_mod322_activity_code_12_3a
+#: model:l10n.es.aeat.mod322.report.activity.code,name:l10n_es_aeat_mod322.aeat_mod322_activity_code_4t_3a
+msgid "3 - Epígrafe 861.1 correspondiente a: Alquiler de viviendas"
+msgstr ""
+"3 - Epígraf 861.1 corresponent a: Lloguer d'habitatges"
+
+#. module: l10n_es_aeat_mod322
+#: model:l10n.es.aeat.mod322.report.activity.code,name:l10n_es_aeat_mod322.aeat_mod322_activity_code_12_3b
+#: model:l10n.es.aeat.mod322.report.activity.code,name:l10n_es_aeat_mod322.aeat_mod322_activity_code_4t_3b
+msgid "3 - Epígrafe 861.2 correspondiente a: Alquiler de locales industriales"
+msgstr ""
+"3 - Epígraf 861.2 corresponent a: Lloguer de locals industrials"
+
+#. module: l10n_es_aeat_mod322
+#: model:l10n.es.aeat.mod322.report.activity.code,name:l10n_es_aeat_mod322.aeat_mod322_activity_code_12_3c
+msgid "3 - Epígrafe 862 correspondiente a: Alquiler de inmuebles rústicos"
+msgstr "3 - Epígraf 862 corresponent a: Lloguer d'immobles rústics"
+
+#. module: l10n_es_aeat_mod322
+#: model:l10n.es.aeat.mod322.report.activity.code,name:l10n_es_aeat_mod322.aeat_mod322_activity_code_4t_4
+msgid ""
+"4 - Sin epígrafe, correspondiente a: Actividades AGP, no sujetas al IAE"
+msgstr ""
+"4 - Sense epígraf, corresponent a: Activitats *AGP, no subjectes a l'IAE"
+
+#. module: l10n_es_aeat_mod322
+#: model:l10n.es.aeat.mod322.report.activity.code,name:l10n_es_aeat_mod322.aeat_mod322_activity_code_12_4
+msgid ""
+"4 - Sin epígrafe, correspondiente a: Actividades agrícolas, ganaderas, "
+"forestales o pesqueras, no sujetas al IAE"
+msgstr ""
+"4 - Sense epígraf, corresponent a: Activitats agrícoles, ramaderes, "
+"forestals o pesqueres, no subjectes a l'IAE"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod322.selection__l10n_es_aeat_mod322_report_activity_code__period_type__4t
+msgid "4T"
+msgstr "4T"
+
+#. module: l10n_es_aeat_mod322
+#: model:l10n.es.aeat.mod322.report.activity.code,name:l10n_es_aeat_mod322.aeat_mod322_activity_code_12_5
+msgid "5 - Sin epígrafe, correspondiente a: Sujetos pasivos sin actividad"
+msgstr "5 - Sense epígraf, corresponent a: Subjectes passius sense activitat"
+
+#. module: l10n_es_aeat_mod322
+#: model:l10n.es.aeat.mod322.report.activity.code,name:l10n_es_aeat_mod322.aeat_mod322_activity_code_12_6
+msgid ""
+"6 - Sin epígrafe, correspondiente a: Otras actividades no sujetas al IAE"
+msgstr ""
+"6 - Sense epígraf, corresponent a: Altres activitats no subjectes a l'IAE"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model,name:l10n_es_aeat_mod322.model_l10n_es_aeat_mod322_report
+msgid "AEAT 322 Report"
+msgstr "Model 322 informe"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model,name:l10n_es_aeat_mod322.model_l10n_es_aeat_mod322_report_activity_code
+msgid "AEAT 322 Report Activities Codes"
+msgstr "Model AEAT 322 informes dels codis d'activitat"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.ui.menu,name:l10n_es_aeat_mod322.menu_aeat_mod322_report_activity_code
+msgid "AEAT 322 activity codes"
+msgstr "Model AEAT 322 codis d'activitat"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.ui.menu,name:l10n_es_aeat_mod322.menu_aeat_mod322_report
+msgid "AEAT 322 model"
+msgstr "Model 322"
+
+#. module: l10n_es_aeat_mod322
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod322.view_l10n_es_aeat_mod322_report_tree
+msgid "AEAT 322 reports"
+msgstr "AEAT 322 informes"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.actions.act_window,name:l10n_es_aeat_mod322.action_l10n_es_aeat_mod322_report
+#: model:ir.actions.act_window,name:l10n_es_aeat_mod322.action_l10n_es_aeat_mod322_report_activity_code
+msgid "AEAT model 322"
+msgstr "Model AEAT 322"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__move_id
+msgid "Account entry"
+msgstr "Anotacions comptables"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__message_needaction
+msgid "Action Needed"
+msgstr "Acció requerida"
+
+#. module: l10n_es_aeat_mod322
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod322.view_l10n_es_aeat_mod322_report_form
+msgid "Actividad principal"
+msgstr "Activitat principal"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__activity_ids
+msgid "Activities"
+msgstr "Activitats"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__activity_state
+msgid "Activity State"
+msgstr "Estat de l'activitat"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report_activity_code__code
+msgid "Activity code"
+msgstr "Codi de l'activitat"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report_activity_code__name
+msgid "Activity name"
+msgstr "Nom de l'activitat"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__allow_posting
+msgid "Allow Posting"
+msgstr "Permet publicar"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__aplicable_special_prorate
+msgid "Aplicación de la prorrata especial"
+msgstr "Aplicació de prorrata especial"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__message_attachment_count
+msgid "Attachment Count"
+msgstr "Nombre d'adjunts"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__complementary_selfsettlement
+msgid "Autoliquidación complementaria"
+msgstr "Autoliquidació complementaria"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__partner_bank_id
+msgid "Bank account"
+msgstr "Compte bancari"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__calculation_date
+msgid "Calculation Date"
+msgstr "Data de càlcul"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__field_66
+msgid "Casilla [66]"
+msgstr "Casella [66]"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__annual_regularization
+msgid "Casilla [67]"
+msgstr "Casella [67]"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__company_id
+msgid "Company"
+msgstr "Companyia"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__partner_bank_id
+msgid "Company bank account used for the presentation"
+msgstr "Compte bancari de l'empresa utilitzat per a la presentació"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__contact_email
+msgid "Contact Email"
+msgstr "Correu de contacte"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__counterpart_account_id
+msgid "Counterpart account"
+msgstr "Compte de contrapart"
+
+#. module: l10n_es_aeat_mod322
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod322.action_l10n_es_aeat_mod322_report
+msgid "Create and query AEAT Model 322 reports"
+msgstr "Crea i consulta informes AEAT Model 322"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report_activity_code__create_uid
+msgid "Created by"
+msgstr "Creat per"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report_activity_code__create_date
+msgid "Created on"
+msgstr "Creat el"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__other_first_activity_code
+msgid "Código 1ª actividad"
+msgstr "Codi 1ª activitat"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__other_second_activity_code
+msgid "Código 2ª actividad"
+msgstr "Codi 2ª activitat"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__other_third_activity_code
+msgid "Código 3ª actividad"
+msgstr "Codi 3ª activitat"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__other_fourth_activity_code
+msgid "Código 4ª actividad"
+msgstr "Codi 4ª activitat"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__other_fifth_activity_code
+msgid "Código 5ª actividad"
+msgstr "Codi 5ª activitat"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__main_activity_code
+msgid "Código actividad principal"
+msgstr "Codi activitat principal"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod322.selection__l10n_es_aeat_mod322_report_activity_code__period_type__12
+msgid "December"
+msgstr "Decembre"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report_activity_code__display_name
+msgid "Display Name"
+msgstr "Nom mostrat"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__previous_selfsettlement_recipt
+msgid ""
+"En el supuesto caso que esta sea una autoliquidacón complementária, se hará "
+"constar también en este apartado el número identificativo de 13 dígitos de "
+"la autoliquidación anterior. De haberse presentado anteriormente más de una "
+"declaración, se hará constar el número identificativo de la última de ellas."
+msgstr ""
+"En el suposat cas que aquesta sigui una autoliquidació complementaria, es farà "
+"constar també en aquest apartat el número identificatiu de 13 dígits de "
+"l'autoliquidació anterior. D'haver-se presentat anteriorment més d'una declaració, "
+"es farà constar el número identificatiu de l'última d'elles."
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__date_end
+msgid "Ending date"
+msgstr "Data final"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__other_first_activity_iae
+msgid "Epígrafe I.A.E. 1ª actividad"
+msgstr "Epígraf I.A.E. 1ª activitat"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__other_second_activity_iae
+msgid "Epígrafe I.A.E. 2ª actividad"
+msgstr "Epígraf I.A.E. 2ª activitat"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__other_third_activity_iae
+msgid "Epígrafe I.A.E. 3ª actividad"
+msgstr "Epígraf I.A.E. 3ª activitat"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__other_fourth_activity_iae
+msgid "Epígrafe I.A.E. 4ª actividad"
+msgstr "Epígraf I.A.E. 4ª activitat"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__other_fifth_activity_iae
+msgid "Epígrafe I.A.E. 5ª actividad"
+msgstr "Epígraf I.A.E. 5ª activitat"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__main_activity_iae
+msgid "Epígrafe I.A.E. actividad principal"
+msgstr "Epígraf I.A.E. activitat principal"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__error_count
+msgid "Error Count"
+msgstr "Nombre d'errors"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__export_config_id
+msgid "Export config"
+msgstr "Configuraió d'exportar"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__message_follower_ids
+msgid "Followers"
+msgstr "Seguidors"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidors (Socis)"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__contact_name
+msgid "Full Name"
+msgstr "Nom complet"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__has_message
+msgid "Has Message"
+msgstr "Té Missatge"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report_activity_code__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icona per indicar una activitat d'excepció"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__message_needaction
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Si està marcada, els missatges nous requereixen la vostra atenció."
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__message_has_error
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si està marcada, alguns missatges tenen un error d'enviament."
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__field_88
+msgid ""
+"Información adicional - Operaciones realizadas en el ejercicio - Total "
+"volumen de operaciones "
+"([80]+[81]+[93]+[94]+[83]+[84]+[125]+[126]+[127]+[128]+[86]+[95]+[96]+[97]+[98]-[79]-[99])"
+msgstr ""
+"Informació addicional - Operacions realitzades en l'exercici - Total "
+"volum d'operacions "
+"([80]+[81]+[93]+[94]+[83]+[84]+[125]+[126]+[127]+[128]+[86]+[95]+[96]+[97]+[98]-[79]-[99])"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__message_is_follower
+msgid "Is Follower"
+msgstr "És seguidor"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__journal_id
+msgid "Journal"
+msgstr "Diari"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__journal_id
+msgid "Journal in which post the move."
+msgstr "Diari on es publica el moviment."
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__previous_selfsettlement_recipt
+msgid "Justificante de la autoliquidación anterior"
+msgstr "Justificant de l'autoliquidació anterior"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__representative_vat
+msgid "L.R. VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report_activity_code____last_update
+msgid "Last Modified on"
+msgstr "Última modificació el"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report_activity_code__write_uid
+msgid "Last Updated by"
+msgstr "Última modificació per"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report_activity_code__write_date
+msgid "Last Updated on"
+msgstr "Última actualització el"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__representative_vat
+msgid "Legal Representative VAT number."
+msgstr "Número d'IVA del representant legal."
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Adjunt principal"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__message_has_error
+msgid "Message Delivery error"
+msgstr "Error en l'entrega del misstage"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__message_ids
+msgid "Messages"
+msgstr "Missatges"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__model_id
+msgid "Model"
+msgstr ""
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__number
+msgid "Model number"
+msgstr "Nombre del model"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__contact_name
+msgid "Must have name and surname."
+msgstr "Ha de tenir nom i cognom."
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "La meva data límit d'activitat"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__controlling_entity_nif
+msgid "NIF de la entidad dominante"
+msgstr "NIF de l'entitat dominant"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Termini d'activitat següent"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resum de l'activitat següent"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipus d'activitat següent"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod322.selection__l10n_es_aeat_mod322_report__result_type__n
+msgid "No activity/Zero result"
+msgstr "No hi ha cap resultat d'activitat / zero"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Nombre d'accions"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__message_has_error_counter
+msgid "Number of errors"
+msgstr "Nombre d'errors"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Nombre de missatges que requereixen una acció"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Nombre de missatges amb error d'entrega"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Nombre de missatges no llegits"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__group_number
+msgid "Nº Grupo"
+msgstr "Nº de Grup"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__aplicable_special_prorate
+msgid ""
+"Opción por la aplicación de la prorrata especial (artículo 103.Dos.1º LIVA)"
+msgstr ""
+"Opció per l'aplicació de la prorrata especial (article 103.Dos.1r LIVA)"
+
+#. module: l10n_es_aeat_mod322
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod322.view_l10n_es_aeat_mod322_report_form
+msgid "Otras - 1ª actividad"
+msgstr "Altres - 1ª activitat"
+
+#. module: l10n_es_aeat_mod322
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod322.view_l10n_es_aeat_mod322_report_form
+msgid "Otras - 2ª actividad"
+msgstr "Altres - 2ª activitat"
+
+#. module: l10n_es_aeat_mod322
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod322.view_l10n_es_aeat_mod322_report_form
+msgid "Otras - 3ª actividad"
+msgstr "Altres - 3ª activitat"
+
+#. module: l10n_es_aeat_mod322
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod322.view_l10n_es_aeat_mod322_report_form
+msgid "Otras - 4ª actividad"
+msgstr "Altres - 4ª activitat"
+
+#. module: l10n_es_aeat_mod322
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod322.view_l10n_es_aeat_mod322_report_form
+msgid "Otras - 5ª actividad"
+msgstr "Altres - 5ª activitat"
+
+#. module: l10n_es_aeat_mod322
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod322.view_l10n_es_aeat_mod322_report_form
+msgid "Otros"
+msgstr "Altres"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__partner_id
+msgid "Partner"
+msgstr "Soci"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__period_type
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report_activity_code__period_type
+msgid "Period Type"
+msgstr "Tipus de periode"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__contact_phone
+msgid "Phone"
+msgstr "Telèfon"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__previous_number
+msgid "Previous declaration number"
+msgstr "Número de la declaració anterior"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__monthly_return_record
+msgid "Registro de devolución mensual"
+msgstr "Registre de devolució mensual"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__name
+msgid "Report identifier"
+msgstr "Identificador de l'informe"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__activity_user_id
+msgid "Responsible User"
+msgstr "Usuari Responsable"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__result_type
+msgid "Result Type"
+msgstr "Tipue de resultat"
+
+#. module: l10n_es_aeat_mod322
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod322.view_l10n_es_aeat_mod322_report_form
+msgid "Resultado"
+msgstr "Resultat"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__aplicable_special_prorate_revocation
+msgid "Revocación de aplicación de la prorrata especial"
+msgstr "Revocació de l'aplicació de la prorrata especial"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__aplicable_special_prorate_revocation
+msgid ""
+"Revocación de la opción por la aplicación de la prorrata especial (artículo "
+"103.Dos.1º LIVA)"
+msgstr ""
+"Revocació de l'opció per l'aplicació de la prorrata especial (article "
+"103.Dos.1r LIVA)"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__special_cash_criterion_regime
+msgid "Régimen especial del criterio de caja"
+msgstr "Règim especial del criteri de caixa"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de lliurament de SMS"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__without_activity
+msgid ""
+"Si no se han devengado ni soportado cuotas durante el período a que se "
+"refiere la presente declaración marque con una “X” esta casilla."
+msgstr ""
+"Si no s'han reportat ni suportat quotes durant el període a què es refereix "
+"la present declaració marqui amb una “X” aquesta casella."
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__without_activity
+msgid "Sin actividad"
+msgstr "Sense activitat"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__date_start
+msgid "Starting date"
+msgstr "Data inicial"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__state
+msgid "State"
+msgstr "Estat"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__statement_type
+msgid "Statement Type"
+msgstr "Tipus d'expressió"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__support_type
+msgid "Support Type"
+msgstr "Tipus de suport"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__tax_line_ids
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod322.view_l10n_es_aeat_mod322_report_form
+msgid "Tax lines"
+msgstr "Línies d'impostos"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__counterpart_account_id
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
+"Aquest compte serà la contrapartida de tots els elements del diari que es "
+"regularitzen en publicar l'informe."
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__aplicable_special_regime
+msgid "Tipo régimen especial aplicable"
+msgstr "Tipus règim especial aplicable"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__aplicable_special_regime
+msgid "Tipo régimen especial aplicable: Art. 163 sexies.Cinco LIVA"
+msgstr "Tipus règim especial aplicable: Art. 163 sexies.Cinco LIVA"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod322.selection__l10n_es_aeat_mod322_report__result_type__c
+msgid "To compensate"
+msgstr "Per compensar"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod322.selection__l10n_es_aeat_mod322_report__result_type__i
+msgid "To enter"
+msgstr "Per ingressar"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod322.selection__l10n_es_aeat_mod322_report__result_type__d
+msgid "To return"
+msgstr "Per retornar"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__total_to_deduct
+msgid ""
+"Total a deducir "
+"([40]+[42]+[44]+[46]+[48]+[50]+[52]+[54]+[56]+[58]+[59]+[60]+[61])"
+msgstr ""
+"Total a deduir "
+"([40]+[42]+[44]+[46]+[48]+[50]+[52]+[54]+[56]+[58]+[59]+[60]+[61])"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__total_earned
+msgid ""
+"Total cuota devengada "
+"([03]+[06]+[09]+[11]+[14]+[17]+[20]+[22]+[24]+[26]+[29]+[32]+[35]+[37])"
+msgstr ""
+"Total quota reportada "
+"([03]+[06]+[09]+[11]+[14]+[17]+[20]+[22]+[24]+[26]+[29]+[32]+[35]+[37])"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipus de l'activitat d'excepció registrada."
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__message_unread
+msgid "Unread Messages"
+msgstr "Missatges no llegits"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Comptador de missatges sense llegir"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__company_vat
+msgid "VAT number"
+msgstr "Número d'IVA"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__website_message_ids
+msgid "Website Messages"
+msgstr "Missatges del lloc web"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicacions del lloc web"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__year
+msgid "Year"
+msgstr "Any"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__total_earned
+msgid "[38] Total cuota devengada"
+msgstr "[38] Total quota reportada"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__total_to_deduct
+msgid "[62] Total a deducir"
+msgstr "[62] Total a deduir"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__field_63
+msgid "[63] Diferencia ([38] - [62] + [76])"
+msgstr ""
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__state_percentage_attributable
+msgid "[64] % Atribuible a la Administración del Estado"
+msgstr "[64] % Atribuïble a l'Administració de l'Estat"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__state_attributable
+msgid "[65] Atribuible a la Administración del Estado"
+msgstr "[65] Atribuïble a l'Administració de l'Estat"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__field_66
+msgid ""
+"[66] Cuotas a compensar de períodos anteriores a la incorporación al grupo"
+msgstr ""
+"[66] Cuotes a compensar de periodes anteriors a la inconrporació al grup"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__annual_regularization
+msgid ""
+"[67] Exclusivamente para sujetos pasivos que tributan conjuntamente a la "
+"Administración del Estado y a las Diputaciones Forales. Resultado de la "
+"regularización anual."
+msgstr ""
+"[67] Exclusivament per a subjectes passius que tributen conjuntament a "
+"l'Administració de l'Estat i a les Diputacions Forals. Resultat de la "
+"regularització anual."
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__field_68
+msgid "[68] Resultado ([65] + [77] - [66] + [67])"
+msgstr "[68] Resultat ([65] + [77] - [66] + [67])"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__previous_result
+msgid "[69] A deducir"
+msgstr "[69] A deduir"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__previous_result
+msgid ""
+"[69] Resultado de las autoliquidaciones anteriores presentadas por el mismo "
+"concepto, ejercicio y periodo"
+msgstr ""
+"[69] Resultat de les autoliquidacions anteriors presentades pel mateix "
+"concepte, exercici i període"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__selfsettlement_result
+msgid "[70] Resultado de la autoliquidación ([68] - [69])"
+msgstr "[70] Resultat de l'autoliquidació ([68] - [69])"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__field_76
+msgid "[76] Regularización cuotas art. 80.Cinco.5ª LIVA"
+msgstr "[76] Regularització quotes art. 80.Cinc.5a LIVA"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__field_77
+msgid "[77] IVA a la importación liquidado por la Aduana pendiente de ingreso"
+msgstr "[77] IVA a la importació liquidat per la Duana pendent d'ingrés"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__field_77
+msgid "[77] IVA diferido (Liquidar en aduana)"
+msgstr "[77] IVA diferit (Liquidar en duana)"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__field_88
+msgid "[88] Total volumen operaciones"
+msgstr "[88] Total volum operacions"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__special_cash_criterion_regime
+msgid ""
+"¿Es destinatario de operaciones a las que se aplique el régimen especial del"
+" criterio de caja?"
+msgstr ""
+"És destinatari d'operacions a les quals s'apliqui el règim especial del"
+" criteri de caixa?"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__monthly_return_record
+msgid "¿Está inscrito en el Registro de devolución mensual (Art. 30 RIVA)?"
+msgstr "Està inscrit en el Registre de devolució mensual (Art. 30 RIVA)?"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__has_operation_volume
+msgid "¿Existe volumen de operaciones (art. 121 LIVA)?"
+msgstr "Existeix volum d'operacions (art. 121 LIVA)?"
+
+#. module: l10n_es_aeat_mod322
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__has_operation_volume
+msgid "¿Volumen de operaciones?"
+msgstr "Volum d'operacions?"
