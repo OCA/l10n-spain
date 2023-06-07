@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form" />
+        <field name="priority">99</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='child_ids']/form/sheet/group" position="inside">
+                <group groups="account.group_account_invoice">
+                    <group
+                        string="Facturae"
+                        attrs="{'invisible': ['|', ('parent.facturae', '=', False), ('type', '!=', 'invoice')]}"
+                        colspan="5"
+                    >
+                        <field name="facturae_version" />
+                        <field name="organo_gestor" />
+                        <field name="unidad_tramitadora" />
+                        <field name="oficina_contable" />
+                        <field name="organo_proponente" />
+                        <field name="attach_invoice_as_annex" />
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="/form" position="inside">
+                <field name="parent_facturae" invisible="1" />
+                <field name="facturae" invisible="1" />
+            </xpath>
+            <group name='accounting_entries' position="inside">
+                <field name="facturae" groups="account.group_account_invoice" />
+            </group>
+            <group name="accounting_entries" position="after">
+                <group
+                    name="group_facturae"
+                    string="Facturae"
+                    attrs="{'invisible': [('facturae', '=', False), ('parent_facturae', '=', False)]}"
+                    groups="account.group_account_invoice"
+                >
+                    <field name="facturae_version" />
+                    <field
+                        name="organo_gestor"
+                        attrs="{'required': [('facturae', '=', True)]}"
+                    />
+                    <field
+                        name="unidad_tramitadora"
+                        attrs="{'required': [('facturae', '=', True)]}"
+                    />
+                    <field
+                        name="oficina_contable"
+                        attrs="{'required': [('facturae', '=', True)]}"
+                    />
+                    <field name="organo_proponente" />
+                    <field name="attach_invoice_as_annex" />
+                </group>
+            </group>
+            <page name="accounting_disabled" position="inside">
+                <group
+                    name="group_facturae"
+                    string="Facturae"
+                    attrs="{'invisible': ['|', ('type', '!=', 'invoice'), ('parent_facturae', '=', False)]}"
+                    groups="account.group_account_invoice"
+                >
+                    <field name="facturae_version" />
+                    <field
+                        name="organo_gestor"
+                        attrs="{'required': [('facturae', '=', True)]}"
+                    />
+                    <field
+                        name="unidad_tramitadora"
+                        attrs="{'required': [('facturae', '=', True)]}"
+                    />
+                    <field
+                        name="oficina_contable"
+                        attrs="{'required': [('facturae', '=', True)]}"
+                    />
+                    <field name="organo_proponente" />
+                    <field name="attach_invoice_as_annex" />
+                </group>
+            </page>
+        </field>
+    </record>
+</odoo>
