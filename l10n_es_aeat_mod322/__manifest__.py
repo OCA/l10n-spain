@@ -5,8 +5,8 @@
     "name": "AEAT modelo 322",
     "version": "15.0.2.3.0",
     "category": "Accounting",
-    # "development_status": "Mature",
-    "author": "QubiQ" "Odoo Community Association (OCA)",
+    "development_status": "Beta",
+    "author": "QubiQ, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "depends": [
