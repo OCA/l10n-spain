@@ -164,6 +164,6 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         self.assertEqual(record_with_ad.a_nacimiento, "2000")
         record_without_ad = supplier_record.filtered(lambda r: r.ad_required < 2)
         self.assertTrue(record_without_ad)
-        self.assertTrue(record_without_ad.a_nacimiento)
+        self.assertFalse(record_without_ad.a_nacimiento)
         model190.button_confirm()
         self.assertEqual(model190.state, "done")

@@ -39,16 +39,15 @@ class AccountMove(models.Model):
     )
 
     def add_keys(self, set_fiscal_position=True):
+        FiscalPosition = self.env["account.fiscal.position"]
         for invoice in self:
             if set_fiscal_position:
                 delivery_partner = self.env["res.partner"].browse(
                     invoice.partner_id.address_get(["delivery"])["delivery"]
                 )
-                invoice.fiscal_position_id = (
-                    self.env["account.fiscal.position"]
-                    .with_company(invoice.company_id.id)
-                    ._get_fiscal_position(invoice.partner_id, delivery=delivery_partner)
-                )
+                invoice.fiscal_position_id = FiscalPosition.with_company(
+                    invoice.company_id.id
+                )._get_fiscal_position(invoice.partner_id, delivery=delivery_partner)
             if invoice.fiscal_position_id.aeat_perception_key_id:
                 fp = invoice.fiscal_position_id
                 invoice.aeat_perception_key_id = fp.aeat_perception_key_id
