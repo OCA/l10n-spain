@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_l10n_es_atc_mod420_report_tree" model="ir.ui.view">
+        <field name="name">l10n_es_igic.atc.mod420.report.tree</field>
+        <field name="model">l10n.es.atc.mod420.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree" />
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="string">Modelo ATC 420</attribute>= </tree>
+            <field name="period_type" position="after">
+                <field name="total_devengado" />
+                <field name="total_deducir" />
+                <field name="diferencia" />
+                <field name="resultado_autoliquidacion" />
+            </field>
+        </field>
+    </record>
+    <record id="view_l10n_es_atc_mod420_report_form" model="ir.ui.view">
+        <field name="name">l10n_es_igic.ATC.mod420.report.form</field>
+        <field name="model">l10n.es.atc.mod420.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//button[@name='%(l10n_es_aeat.action_wizard_aeat_export)d']"
+                position="attributes"
+            >
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <header position="inside">
+                <button
+                    name="button_modelo_sobre"
+                    string="Carátula Sobre"
+                    type="object"
+                    icon="fa-share"
+                />
+            </header>
+            <field name="export_config_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <group name="group_declaration" position="after">
+                <group
+                    string="Resultado"
+                    name="group_result"
+                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    col="3"
+                >
+                    <group>
+                        <field
+                            name="casilla_23"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="casilla_24"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="total_devengado"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                    <group col="3">
+                        <field
+                            name="casilla_36"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="casilla_37"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="casilla_38"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="casilla_39"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="total_deducir"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                    <group col="3">
+                        <field
+                            name="diferencia"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="regularizacion_cuotas"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="cuotas_compensar"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="a_deducir"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                </group>
+
+                <group
+                    class="oe_subtotal_footer oe_right"
+                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    colspan="2"
+                >
+                    <field
+                        name="resultado_autoliquidacion"
+                        class="oe_subtotal_footer_separator"
+                        widget="monetary"
+                        options="{'currency_field': 'currency_id'}"
+                    />
+                    <field name="result_type" />
+                    <field name="company_partner_id" invisible="1" />
+                    <field
+                        name="bank_account_id"
+                        domain="[('partner_id', '=', company_partner_id)]"
+                        attrs="{'invisible': [('result_type', 'not in', ('D', 'B', 'I'))], 'required': [('result_type', '=', 'D')]}"
+                    />
+                </group>
+                <field
+                    name="tax_line_ids"
+                    nolabel="1"
+                    readonly="1"
+                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                />
+
+            </group>
+
+
+        </field>
+    </record>
+    <record id="action_l10n_es_atc_mod420_report" model="ir.actions.act_window">
+        <field name="name">Modelo ATC 420</field>
+        <field name="res_model">l10n.es.atc.mod420.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help">Crear y consultar declaraciones del modelo ATC 420</field>
+    </record>
+
+    <record
+        model="ir.actions.act_window.view"
+        id="action_l10n_es_atc_mod420_report_tree"
+    >
+        <field name="sequence" eval="2" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_l10n_es_atc_mod420_report_tree" />
+        <field name="act_window_id" ref="action_l10n_es_atc_mod420_report" />
+    </record>
+
+    <record
+        model="ir.actions.act_window.view"
+        id="action_l10n_es_atc_mod420_report_form"
+    >
+        <field name="sequence" eval="3" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_l10n_es_atc_mod420_report_form" />
+        <field name="act_window_id" ref="action_l10n_es_atc_mod420_report" />
+    </record>
+    <menuitem
+        id="menu_atc_mod420_report"
+        parent="l10n_es_atc.menu_root_atc"
+        sequence="420"
+        name="Modelo 420"
+        action="action_l10n_es_atc_mod420_report"
+    />
+
+</odoo>
