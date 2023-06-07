@@ -13,12 +13,12 @@ class AccountMove(models.Model):
     sii_invoice_summary_end = fields.Char("SII Invoice Summary: Last Invoice")
 
     def _get_sii_invoice_dict_out(self, cancel=False):
-        inv_dict = super(AccountMove, self)._get_sii_invoice_dict_out(cancel=cancel)
-        if self.is_invoice_summary and self.move_type in ("out_invoice", "out_refund"):
+        inv_dict = super()._get_sii_invoice_dict_out(cancel=cancel)
+        if self.is_invoice_summary and self.is_sale_document():
             tipo_factura = "F4"
             if self.sii_invoice_summary_start:
                 if self.sii_invoice_summary_start == self.sii_invoice_summary_end:
-                    tipo_factura = "F2" if self.move_type == "out_invoice" else "R5"
+                    tipo_factura = "F2" if self.is_inbound() else "R5"
                 else:
                     inv_dict["IDFactura"][
                         "NumSerieFacturaEmisor"
@@ -39,10 +39,11 @@ class AccountMove(models.Model):
 
         return inv_dict
 
+    # pylint: disable=W8110
     def _sii_check_exceptions(self):
         """Inheritable method for exceptions control when sending SII invoices."""
         try:
-            super(AccountMove, self)._sii_check_exceptions()
+            super()._sii_check_exceptions()
         except exceptions.UserError as e:
             if (
                 e.args[0] == _("The partner has not a VAT configured.")
@@ -52,5 +53,5 @@ class AccountMove(models.Model):
             else:
                 raise
 
-        if self.is_invoice_summary and self.move_type[:2] == "in":
+        if self.is_invoice_summary and self.is_purchase_document():
             raise exceptions.UserError(_("You can't make a supplier summary invoice."))

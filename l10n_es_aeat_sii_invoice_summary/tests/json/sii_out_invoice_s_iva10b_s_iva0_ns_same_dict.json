@@ -15,32 +15,18 @@
     "ClaveRegimenEspecialOTrascendencia": "01",
     "DescripcionOperacion": "/",
     "TipoDesglose": {
-      "DesgloseTipoOperacion": {
-        "PrestacionServicios": {
-          "Sujeta": {
-            "Exenta": {
-              "DetalleExenta": [
+      "DesgloseFactura": {
+        "Sujeta": {
+          "NoExenta": {
+            "TipoNoExenta": "S1",
+            "DesgloseIVA": {
+              "DetalleIVA": [
                 {
-                  "BaseImponible": 200.0,
-                  "CausaExencion": "E5"
+                  "TipoImpositivo": "10.0",
+                  "BaseImponible": 100.0,
+                  "CuotaRepercutida": 10.0
                 }
               ]
-            }
-          }
-        },
-        "Entrega": {
-          "Sujeta": {
-            "NoExenta": {
-              "TipoNoExenta": "S1",
-              "DesgloseIVA": {
-                "DetalleIVA": [
-                  {
-                    "TipoImpositivo": "10.0",
-                    "BaseImponible": 100.0,
-                    "CuotaRepercutida": 10.0
-                  }
-                ]
-              }
             }
           }
         }

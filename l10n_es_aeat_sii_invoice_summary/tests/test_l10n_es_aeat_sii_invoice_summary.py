@@ -4,11 +4,11 @@
 from odoo import exceptions
 
 from odoo.addons.l10n_es_aeat_sii_oca.tests.test_l10n_es_aeat_sii import (
-    TestL10nEsAeatSii,
+    TestL10nEsAeatSiiBase,
 )
 
 
-class TestL10nEsAeatSiiSummary(TestL10nEsAeatSii):
+class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiBase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -145,7 +145,6 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSii):
             self._create_and_test_invoice_sii_dict(
                 inv_type, lines, extra_vals, "l10n_es_aeat_sii_invoice_summary"
             )
-        return
 
     def test_get_invoice_data_summary(self):
         mapping = [
@@ -248,17 +247,13 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSii):
             self._create_and_test_invoice_sii_dict(
                 inv_type, lines, extra_vals, "l10n_es_aeat_sii_invoice_summary"
             )
-        return
 
     def _compare_sii_dict(
         self, json_file, inv_type, lines, extra_vals=None, module=None
     ):
-        if extra_vals.get("sii_invoice_summary_start"):
-            if extra_vals.get("sii_invoice_summary_start") == extra_vals.get(
-                "sii_invoice_summary_end"
-            ):
-                json_file = json_file.replace("dict.json", "same_dict.json")
+        if extra_vals.get("sii_invoice_summary_start") and extra_vals.get(
+            "sii_invoice_summary_start"
+        ) == extra_vals.get("sii_invoice_summary_end"):
+            json_file = json_file.replace("dict.json", "same_dict.json")
 
-        return super(TestL10nEsAeatSiiSummary, self)._compare_sii_dict(
-            json_file, inv_type, lines, extra_vals, module
-        )
+        return super()._compare_sii_dict(json_file, inv_type, lines, extra_vals, module)
