@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="menu_root_atc" model="ir.ui.menu">
+        <field name="name">Declaraciones ATC</field>
+        <field name="sequence" eval="4" />
+        <field
+            name="parent_id"
+            search="[('child_id', 'in', ref('account.menu_finance_receivables'))]"
+        />
+        <field name="groups_id" eval="[(4, ref('group_account_atc'))]" />
+    </record>
+    <menuitem
+        id="menu_l10n_es_atc_config"
+        parent="account.menu_finance_configuration"
+        sequence="45"
+        groups="group_account_atc"
+        name="ATC"
+    />
+</odoo>
