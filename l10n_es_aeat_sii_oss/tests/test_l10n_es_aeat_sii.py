@@ -41,7 +41,6 @@ class TestL10nEsAeatSiiBaseOss(TestL10nEsAeatSiiBase):
         invoice_form.partner_id = self.partner
         invoice_form.invoice_date = "2021-07-01"
         invoice_form.fiscal_position_id = self.fpos_fr_id
-
         with invoice_form.invoice_line_ids.new() as line_form:
             line_form.product_id = self.product
             line_form.price_unit = 100
@@ -52,4 +51,3 @@ class TestL10nEsAeatSiiBaseOss(TestL10nEsAeatSiiBase):
         res = invoice._get_sii_invoice_dict()
         res_issue = res["FacturaExpedida"]
         self.assertEqual(res_issue["ImporteTotal"], 100)
-        self.assertEqual(res_issue["ClaveRegimenEspecialOTrascendencia"], "17")

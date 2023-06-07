@@ -155,7 +155,6 @@ Contributors
 
   * Pedro M. Baeza
   * João Marques
-* Rafa Martínez - Punt Sistemes S.L.U. <rmartinez@puntsistemes.es>
 * Lois Rilo Antelo <lois.rilo@forgeflow.com>
 * Eduardo de Miguel (edu@moduon.team)
 

@@ -40,14 +40,8 @@ class AccountMove(models.Model):
         result["vat_prorate"] = tax_line.vat_prorate
         return result
 
-    @api.onchange(
-        "line_ids",
-        "invoice_payment_term_id",
-        "invoice_date_due",
-        "invoice_cash_rounding_id",
-        "invoice_vendor_bill_id",
-    )
-    def _onchange_recompute_dynamic_lines(self):
+    @api.onchange("invoice_line_ids")
+    def _onchange_invoice_line_ids(self):
         """If we change any analytic information, we should drop all the taxes lines
         for forcing a recreation of them, as only on creation, the analytic information
         is transferred.
@@ -67,7 +61,7 @@ class AccountMove(models.Model):
             self.line_ids -= self.line_ids.filtered(
                 lambda x: x.tax_repartition_line_id in tax_repartition_lines
             )
-        return super()._onchange_recompute_dynamic_lines()
+        return super()._onchange_invoice_line_ids()
 
 
 class AccountMoveLine(models.Model):

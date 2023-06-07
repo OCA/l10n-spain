@@ -210,7 +210,10 @@ class L10nEsAeatMod130Report(models.Model):
     @api.depends("result")
     def _compute_tipo_declaracion(self):
         for report in self:
-            if float_compare(report.result, 0, precision_digits=2) <= 0:
+            result = float_compare(report.result, 0, precision_digits=2)
+            if result == 0:
+                report.tipo_declaracion = "N"
+            elif result < 0:
                 report.tipo_declaracion = "B" if report.period_type != "4T" else "N"
             else:
                 report.tipo_declaracion = "I"
