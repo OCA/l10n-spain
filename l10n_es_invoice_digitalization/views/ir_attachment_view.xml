@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_ir_attachment_digitalization_form" model="ir.ui.view">
+        <field name="name">ir.attachment.digitalization.form</field>
+        <field name="model">ir.attachment</field>
+        <field name="inherit_id" ref="base.view_attachment_form"/>
+        <field name="arch" type="xml">
+            <field name="mimetype" position="after">
+                <field name="document_blocked"/>
+                <field name="checksum" readonly="1" attrs="{'invisible': [('document_blocked', '=', False)]}"/>
+            </field>
+        </field>
+    </record>
+</odoo>
