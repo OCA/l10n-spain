@@ -4,8 +4,6 @@
 
 import logging
 
-from odoo import exceptions
-
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
 )

@@ -7,7 +7,4 @@ from odoo import fields, models
 class ResCompany(models.Model):
     _inherit = "res.company"
 
-    group_number = fields.Char(
-        string="Nº Grupo",
-        help="Número de grupo de la empresa."
-    )
+    group_number = fields.Char(string="Nº Grupo", help="Número de grupo de la empresa.")
