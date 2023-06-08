@@ -6,7 +6,7 @@
 # Copyright 2016 Tecnativa - Angel Moya <odoo@tecnativa.com>
 # Copyright 2018 PESOL - Angel Moya <info@pesol.es>
 # Copyright 2014-2022 Tecnativa - Pedro M. Baeza
-# Copyright 2014-2032 Binhex - Nicolás Ramos (http://binhex.es)
+# Copyright 2014-2023 Binhex - Nicolás Ramos (http://binhex.es)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 # Basado en el modelo 347 de la AEAT
 {
