@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_l10n_es_atc_mod425_report_tree" model="ir.ui.view">
+        <field name="name">l10n_es.atc.mod425.report.tree</field>
+        <field name="model">l10n.es.atc.mod425.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree" />
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="string">ATC 425 reports</attribute>
+            </tree>
+        </field>
+    </record>
+    <record id="view_l10n_es_atc_mod425_report_form" model="ir.ui.view">
+        <field name="name">l10n_es.atc.mod425.report.form</field>
+        <field name="model">l10n.es.atc.mod425.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
+        <field name="arch" type="xml">
+            <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </button>
+            <group name="group_declaration" position="after">
+                <notebook attrs="{'invisible': [('state', '=', 'draft')]}">
+                    <page string="3. Datos estadísticos">
+                        <group>
+                            <field name="has_415" />
+                        </group>
+                        <group string="Actividad principal" name="group_main_activity">
+                            <field name="main_activity" />
+                            <field name="main_activity_code" attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)], 'required': [('state', '=', 'calculated'), ('year', '&lt;', 2022)]}" />
+                            <field name="main_regime_code_id" attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)], 'required': [('state', '=', 'calculated'), ('year', '&gt;', 2021)]}" />
+                            <field name="main_activity_iae" />
+                        </group>
+                        <group>
+                            <group string="Otras - 1ª actividad" name="group_other_first_activity">
+                                <field name="other_first_activity" />
+                                <field name="other_first_activity_code" attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)]}" />
+                                <field name="other_first_activity_code_id" attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)]}" />
+                                <field name="other_first_activity_iae" />
+                                <field name="other_first_activity_pro_prorrata" />
+                                <field name="other_first_activity_def_prorrata" />
+                                <field name="other_first_activity_esp_prorrata" />
+                            </group>
+                            <group string="Otras - 2ª actividad" name="group_other_second_activity">
+                                <field name="other_second_activity" />
+                                <field name="other_second_activity_code" attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)]}" />
+                                <field name="other_second_activity_code_id" attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)]}" />
+                                <field name="other_second_activity_iae" />
+                                <field name="other_second_activity_pro_prorrata" />
+                                <field name="other_second_activity_def_prorrata" />
+                                <field name="other_second_activity_esp_prorrata" />
+                            </group>
+                            <group string="Otras - 3ª actividad" name="group_other_third_activity">
+                                <field name="other_third_activity" />
+                                <field name="other_third_activity_code" attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)]}" />
+                                <field name="other_third_activity_code_id" attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)]}" />
+                                <field name="other_third_activity_iae" />
+                                <field name="other_third_activity_pro_prorrata" />
+                                <field name="other_third_activity_def_prorrata" />
+                                <field name="other_third_activity_esp_prorrata" />
+                            </group>
+                            <group string="Otras - 4ª actividad" name="group_other_fourth_activity">
+                                <field name="other_fourth_activity" />
+                                <field name="other_fourth_activity_code" attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)]}" />
+                                <field name="other_fourth_activity_code_id" attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)]}" />
+                                <field name="other_fourth_activity_iae" />
+                                <field name="other_fourth_activity_pro_prorrata" />
+                                <field name="other_fourth_activity_def_prorrata" />
+                                <field name="other_fourth_activity_esp_prorrata" />
+                            </group>
+                            <group string="Otras - 5ª actividad" name="group_other_fifth_activity">
+                                <field name="other_fifth_activity" />
+                                <field name="other_fifth_activity_code" attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)]}" />
+                                <field name="other_fifth_activity_code_id" attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)]}" />
+                                <field name="other_fifth_activity_iae" />
+                                <field name="other_fifth_activity_pro_prorrata" />
+                                <field name="other_fifth_activity_def_prorrata" />
+                                <field name="other_fifth_activity_esp_prorrata" />
+                            </group>
+                        </group>
+                    </page>
+                    <page string="4. Representantes">
+                        <group>
+                            <group name="group_first_representative" string="Primer representante">
+                                <field name="first_representative_name" />
+                                <field name="first_representative_vat" />
+                                <field name="first_representative_date" />
+                                <field name="first_representative_notary" />
+                            </group>
+                            <group name="group_second_representative" string="Segundo representante">
+                                <field name="second_representative_name" />
+                                <field name="second_representative_vat" />
+                                <field name="second_representative_date" />
+                                <field name="second_representative_notary" />
+                            </group>
+                            <group name="group_third_representative" string="Tercer representante">
+                                <field name="third_representative_name" />
+                                <field name="third_representative_vat" />
+                                <field name="third_representative_date" />
+                                <field name="third_representative_notary" />
+                            </group>
+                        </group>
+                    </page>
+                    <page string="5. Régimen general" name="page_general">
+                        <group col="3">
+                            <group>
+                                <field name="casilla_74" widget="monetary" />
+                                <field name="casilla_79" widget="monetary" />
+                            </group>
+                            <group>
+                                <!-- <field name="casilla_70" widget="monetary" /> -->
+                                <field name="casilla_72" widget="monetary" />
+                                <field name="casilla_73" widget="monetary" />
+                                <field name="casilla_75" widget="monetary" />
+                                <field name="casilla_76" widget="monetary" />
+                                <field name="casilla_77" widget="monetary" />
+                                <field name="casilla_78" widget="monetary" />
+                            </group>
+                            <group>
+                                <field name="casilla_90" widget="monetary" />
+                                <field name="casilla_91" widget="monetary" />
+                                <field name="casilla_92" widget="monetary" />
+                                <field name="casilla_93" widget="monetary" />
+
+                            </group>
+                        </group>
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="casilla_94" widget="monetary" />
+                            <field name="casilla_95" class="oe_subtotal_footer_separator" widget="monetary" />
+                            <field name="casilla_113" widget="monetary" />
+                            <field name="casilla_114" widget="monetary" />
+                            <field name="casilla_115" class="oe_subtotal_footer_separator" widget="monetary" />
+                        </group>
+                    </page>
+                    <page string="9. Resultado liquidaciones">
+                        <group>
+                            <field name="casilla_116" widget="monetary" />
+                            <field name="casilla_117" widget="monetary" />
+                            <field name="casilla_118" widget="monetary" />
+                            <field name="casilla_119" widget="monetary" />
+                        </group>
+                    </page>
+                    <page string="10. Volumen de operaciones">
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="casilla_120" class="oe_subtotal_footer_separator" widget="monetary" />
+                        </group>
+                    </page>
+                </notebook>
+
+                <field name="tax_line_ids" nolabel="1" readonly="1" />
+
+            </group>
+            <form position="inside">
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="action_l10n_es_atc_mod425_report" model="ir.actions.act_window">
+        <field name="name">ATC model 425</field>
+        <field name="res_model">l10n.es.atc.mod425.report</field>
+        <field name="view_mode">form,tree</field>
+        <field name="help">Create and query ATC Model 425 reports.</field>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_l10n_es_atc_mod425_report_tree">
+        <field name="sequence" eval="2" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_l10n_es_atc_mod425_report_tree" />
+        <field name="act_window_id" ref="action_l10n_es_atc_mod425_report" />
+    </record>
+    <record model="ir.actions.act_window.view" id="action_l10n_es_atc_mod425_report_form">
+        <field name="sequence" eval="3" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_l10n_es_atc_mod425_report_form" />
+        <field name="act_window_id" ref="action_l10n_es_atc_mod425_report" />
+    </record>
+    <menuitem id="menu_atc_mod425_report" parent="l10n_es_atc.menu_root_atc" action="action_l10n_es_atc_mod425_report" sequence="425" name="Modelo 425" />
+</odoo>
