@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="l10n_es_atc_mod415_report_rule" model="ir.rule">
+        <field name="name">ATC Mod 415 multi-company</field>
+        <field ref="model_l10n_es_atc_mod415_report" name="model_id" />
+        <field eval="True" name="global" />
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+</odoo>
