@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- ##########################################
+               Modelo ATC 415 PARTNER RECORD
+         ########################################## -->
+    <!-- Tree view -->
+    <record model="ir.ui.view" id="view_l10n_es_atc_mod415_partner_record_tree">
+        <field name="model">l10n.es.atc.mod415.partner_record</field>
+        <field
+            name="inherit_id"
+            ref="l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_tree"
+        />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="." position="inside">
+            </xpath>
+        </field>
+    </record>
+    <!-- Form view -->
+    <record model="ir.ui.view" id="view_l10n_es_atc_mod415_partner_record_form">
+        <field name="model">l10n.es.atc.mod415.partner_record</field>
+        <field
+            name="inherit_id"
+            ref="l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form"
+        />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="." position="inside">
+            </xpath>
+        </field>
+    </record>
+    <!-- Search view -->
+    <record id="partner_record_search_view" model="ir.ui.view">
+        <field name="model">l10n.es.atc.mod415.partner_record</field>
+        <field name="inherit_id" ref="l10n_es_aeat_mod347.partner_record_search_view" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="." position="inside">
+            </xpath>
+        </field>
+    </record>
+    <!-- #############################################
+    ### Modelo ATC 415 PARTNER REAL ESTATE RECORDS ###
+    ############################################## -->
+    <!-- Tree view -->
+    <record id="view_l10n_es_atc_mod415_real_estate_record_tree" model="ir.ui.view">
+        <field name="model">l10n.es.atc.mod415.real_estate_record</field>
+        <field
+            name="inherit_id"
+            ref="l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_real_estate_record_tree"
+        />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="." position="inside">
+            </xpath>
+        </field>
+    </record>
+    <!-- Form view -->
+    <record id="view_l10n_es_atc_mod415_real_estate_record_form" model="ir.ui.view">
+        <field name="model">l10n.es.atc.mod415.real_estate_record</field>
+        <field
+            name="inherit_id"
+            ref="l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_real_estate_record_form"
+        />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="." position="inside">
+            </xpath>
+        </field>
+    </record>
+    <!-- #################
+    ### Modelo ATC 415 ###
+    ################## -->
+    <!-- Form view -->
+    <record id="view_l10n_es_atc_mod415_report_form" model="ir.ui.view">
+        <field name="model">l10n.es.atc.mod415.report</field>
+        <field
+            name="inherit_id"
+            ref="l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form"
+        />
+        <field name="arch" type="xml">
+            <button
+                name="%(l10n_es_aeat.action_wizard_aeat_export)d"
+                position="attributes"
+            >
+                <attribute name="invisible">True</attribute>
+            </button>
+            <field name="export_config_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+    <!-- Window action -->
+    <record id="action_l10n_es_atc_mod415_report" model="ir.actions.act_window">
+        <field name="name">Modelo ATC 415</field>
+        <field name="res_model">l10n.es.atc.mod415.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a Modelo ATC 415 Reports.
+            </p>
+            <p>
+                Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban
+                los diseños físicos y lógicos del 415.
+            </p>
+        </field>
+    </record>
+    <record
+        model="ir.actions.act_window.view"
+        id="action_l10n_es_atc_mod415_report_tree"
+    >
+        <field name="sequence" eval="2" />
+        <field name="view_mode">tree</field>
+        <field
+            name="view_id"
+            ref="l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_tree"
+        />
+        <field name="act_window_id" ref="action_l10n_es_atc_mod415_report" />
+    </record>
+    <record
+        model="ir.actions.act_window.view"
+        id="action_l10n_es_atc_mod415_report_form"
+    >
+        <field name="sequence" eval="3" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_l10n_es_atc_mod415_report_form" />
+        <field name="act_window_id" ref="action_l10n_es_atc_mod415_report" />
+    </record>
+    <!-- ### MENU ACCESS ### -->
+    <menuitem
+        id="menu_atc_mod415_report"
+        parent="l10n_es_atc.menu_root_atc"
+        action="action_l10n_es_atc_mod415_report"
+        sequence="415"
+        name="Modelo 415"
+    />
+</odoo>
