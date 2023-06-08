@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-06-08 17:09+0000\n"
+"Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__hijos_y_descendientes
@@ -29,11 +31,18 @@ msgid ""
 "        la Ley del Impuesto.\n"
 "        "
 msgstr ""
+"\n"
+"        Solo para percepciones corresponsals a las claves A,\n"
+"B.01, B.03 y C. Datos referidos a los hijos y demás descendientes del\n"
+"Perceptor por los que éste tenga derecho a la aplicación\n"
+"del mínimo por descendientes previsto en el artículo 58 de\n"
+"La Ley del Impuesto.\n"
+"        "
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__discapacidad__0
 msgid "0 - No disability or degree of disability less than 33 percent."
-msgstr ""
+msgstr "0 - Cap discapacitat o grau de discapacitat inferior al 33 per cent."
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__prestamos_vh__0
@@ -41,11 +50,13 @@ msgid ""
 "0 - Si en ningún momento del ejercicio ha resultado de aplicación la "
 "reducción del tipo de retención."
 msgstr ""
+"0 - Si en cap moment de l'exercici ha resultat d'aplicació la reducció del "
+"tipus de retenció."
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__res_partner__discapacidad__0
 msgid "0 - Sin discapacidad o grado de minusvalía inferior al 33 por 100."
-msgstr ""
+msgstr "0 - Sense discapacitat o grau de minusvalidesa inferior al 33 per 100."
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__contrato_o_relacion__1
