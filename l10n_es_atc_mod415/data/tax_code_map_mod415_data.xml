@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019
+     Pesol - Angel Moya <angel.moya@pesol.es>
+     Gafic - Albert Cabedo <albert@gafic.com>
+     Copyright 2014-2023 Binhex - Nicolás Ramos (http://binhex.es)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="atc_mod415_map" model="l10n.es.aeat.map.tax">
+        <field name="model">415</field>
+    </record>
+    <record id="atc_mod415_map_a" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="atc_mod415_map" />
+        <field name="field_number">01</field>
+        <field
+            name="name"
+        >A - Adquisiciones de bienes y servicios superiores al límite</field>
+        <field name="to_regularize" eval="False" />
+        <field name="move_type">regular</field>
+        <field name="field_type">both</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [
+        ref('l10n_es_igic.account_tax_template_igic_sop_0'),
+        ref('l10n_es_igic.account_tax_template_igic_sop_3'),
+        ref('l10n_es_igic.account_tax_template_igic_sop_7'),
+        ref('l10n_es_igic.account_tax_template_igic_sop_9_5'),
+        ref('l10n_es_igic.account_tax_template_igic_sop_15'),
+        ref('l10n_es_igic.account_tax_template_igic_sop_20'),
+        ref('l10n_es_igic.account_tax_template_igic_sop_0_inv'),
+        ref('l10n_es_igic.account_tax_template_igic_sop_3_inv'),
+        ref('l10n_es_igic.account_tax_template_igic_sop_7_inv'),
+        ref('l10n_es_igic.account_tax_template_igic_sop_9_5_inv'),
+        ref('l10n_es_igic.account_tax_template_igic_sop_15_inv'),
+        ref('l10n_es_igic.account_tax_template_igic_sop_20_inv'),
+        ref('l10n_es_igic.account_tax_template_igic_sop_i_0'),
+        ref('l10n_es_igic.account_tax_template_igic_sop_i_3'),
+        ref('l10n_es_igic.account_tax_template_igic_sop_i_7'),
+        ref('l10n_es_igic.account_tax_template_igic_sop_i_9_5'),
+        ref('l10n_es_igic.account_tax_template_igic_sop_i_15'),
+        ref('l10n_es_igic.account_tax_template_igic_sop_i_20'),
+        ref('l10n_es_igic.account_tax_template_igic_sop_i_0_inv'),
+        ref('l10n_es_igic.account_tax_template_igic_sop_i_3_inv'),
+        ref('l10n_es_igic.account_tax_template_igic_sop_i_7_inv'),
+        ref('l10n_es_igic.account_tax_template_igic_sop_i_9_5_inv'),
+        ref('l10n_es_igic.account_tax_template_igic_sop_i_15_inv'),
+        ref('l10n_es_igic.account_tax_template_igic_sop_i_20_inv'),
+        ref('l10n_es_igic.account_tax_template_igic_ISP0'),
+        ref('l10n_es_igic.account_tax_template_igic_ISP3'),
+        ref('l10n_es_igic.account_tax_template_igic_ISP7'),
+        ref('l10n_es_igic.account_tax_template_igic_ISP95'),
+        ref('l10n_es_igic.account_tax_template_igic_ISP15'),
+        ref('l10n_es_igic.account_tax_template_igic_ISP20'),
+        ref('l10n_es_igic.account_tax_template_igic_p_re0'),
+        ref('l10n_es_igic.account_tax_template_igic_p_re03'),
+        ref('l10n_es_igic.account_tax_template_igic_p_re07'),
+        ref('l10n_es_igic.account_tax_template_igic_p_re095'),
+        ref('l10n_es_igic.account_tax_template_igic_p_re15'),
+        ref('l10n_es_igic.account_tax_template_igic_p_re20'),
+        ])]"
+        />
+    </record>
+    <record id="atc_mod415_map_b" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="atc_mod415_map" />
+        <field name="field_number">02</field>
+        <field
+            name="name"
+        >B - Entregas de bienes y servicios superiores al límite</field>
+        <field name="to_regularize" eval="False" />
+        <field name="move_type">regular</field>
+        <field name="field_type">both</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [
+        ref('l10n_es_igic.account_tax_template_igic_r_0'),
+        ref('l10n_es_igic.account_tax_template_igic_r_3'),
+        ref('l10n_es_igic.account_tax_template_igic_r_7'),
+        ref('l10n_es_igic.account_tax_template_igic_r_9_5'),
+        ref('l10n_es_igic.account_tax_template_igic_r_15'),
+        ref('l10n_es_igic.account_tax_template_igic_r_20'),
+        ref('l10n_es_igic.account_tax_template_igic_s_ISP0'),
+        ref('l10n_es_igic.account_tax_template_igic_ex_0'),
+        ref('l10n_es_igic.account_tax_template_igic_re_ex'),
+        ref('l10n_es_igic.account_tax_template_igic_cmino'),
+        ])]"
+        />
+    </record>
+</odoo>

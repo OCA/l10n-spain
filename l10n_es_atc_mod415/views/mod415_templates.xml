@@ -1,0 +1,63 @@
+<odoo>
+    <template id="communication_success" name="415 communication success">
+        <t t-call="portal.frontend_layout">
+            <div id="wrap">
+                <div class="oe_structure oe_empty">
+                    <div class="container">
+                        <div class="row mb32">
+                            <div class="col-12 text-center">
+                                <h1
+                                    class="mt32"
+                                    style="font-size: 22px; letter-spacing: 2px; font-weight: bolder;"
+                                >Modelo 415</h1>
+                                <div id="ok">
+                                    <img
+                                        src="/l10n_es_atc_mod415/static/src/img/415_ok.svg"
+                                        width="200"
+                                        height="233"
+                                        class="mb32"
+                                    />
+                                    <h4>
+                                        La comunicación se ha registrado correctamente.
+                                    </h4>
+                                    <p>Ya puede cerrar esta página si así lo desea.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+    <template id="communication_failed" name="415 communication failed">
+        <t t-call="portal.frontend_layout">
+            <div id="wrap">
+                <div class="oe_structure oe_empty">
+                    <div class="container">
+                        <div class="row mb32">
+                            <div class="col-12 text-center">
+                                <h1
+                                    class="mt32"
+                                    style="font-size: 22px; letter-spacing: 2px; font-weight: bolder;"
+                                >Modelo 415</h1>
+                                <div id="bad">
+                                    <img
+                                        src="/l10n_es_atc_mod415/static/src/img/415_bad.svg"
+                                        width="200"
+                                        height="233"
+                                        class="mb32"
+                                    />
+                                    <h4>
+                                        Ha habido un error registrando la comunicación.
+                                    </h4>
+                                    <p
+                                    >Revíselo y vuelva a intentarlo, o pongase en contacto por correo con nosotros.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
