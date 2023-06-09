@@ -33,7 +33,7 @@ msgstr "Dispositivos TPV disponibles"
 #. module: l10n_es_pos_by_device
 #. openerp-web
 #: code:addons/l10n_es_pos_by_device/static/src/js/PaymentScreen.js:0
-#: code:addons/l10n_es_pos_by_device/static/src/js/Screens/Chrome/Chrome.js:0
+#: code:addons/l10n_es_pos_by_device/static/src/js/models.js:0
 #, python-format
 msgid "Cannot establish device. Clossing POS."
 msgstr "No es posible establecer dispositivo. Cerrando TPV."
@@ -69,22 +69,12 @@ msgid "Device locked"
 msgstr "Dispositivo bloqueado"
 
 #. module: l10n_es_pos_by_device
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_config__display_name
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__display_name
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_order__display_name
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_session__display_name
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_res_company__display_name
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: l10n_es_pos_by_device
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_config__id
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__id
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_order__id
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_session__id
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_res_company__id
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_res_config_settings__id
 msgid "ID"
 msgstr ""
 
@@ -94,12 +84,7 @@ msgid "If left empty, all devices will be selectable"
 msgstr "Si se deja vacío, se pueden seleccionar todos los dispositivos"
 
 #. module: l10n_es_pos_by_device
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_config____last_update
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device____last_update
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_order____last_update
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_session____last_update
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_res_company____last_update
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_res_config_settings____last_update
 msgid "Last Modified on"
 msgstr "Última modificación el"
 
@@ -173,7 +158,7 @@ msgstr "Secuencia TPV por dispositivo"
 
 #. module: l10n_es_pos_by_device
 #. openerp-web
-#: code:addons/l10n_es_pos_by_device/static/src/js/Screens/Chrome/Chrome.js:0
+#: code:addons/l10n_es_pos_by_device/static/src/js/models.js:0
 #, python-format
 msgid "Select Physical Device"
 msgstr "Selecciona dispositivo físico"
@@ -218,7 +203,7 @@ msgstr "No hay dispositivos físicos disponibles. No es posible iniciar sesión.
 #. module: l10n_es_pos_by_device
 #. openerp-web
 #: code:addons/l10n_es_pos_by_device/static/src/js/PaymentScreen.js:0
-#: code:addons/l10n_es_pos_by_device/static/src/js/Screens/Chrome/Chrome.js:0
+#: code:addons/l10n_es_pos_by_device/static/src/js/models.js:0
 #, python-format
 msgid "There was a connection error when trying to establish the device."
 msgstr "Ha habido un error de conexión al intentar establecer el dispositivo."
