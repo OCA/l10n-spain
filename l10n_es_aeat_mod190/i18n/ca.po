@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-09 13:11+0000\n"
+"PO-Revision-Date: 2023-06-09 18:09+0000\n"
 "Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
 "Language-Team: none\n"
 "Language: ca\n"
@@ -1161,124 +1161,124 @@ msgstr "Dades de percepció"
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__aeat_perception_key_id
 msgid "Perception key"
-msgstr ""
+msgstr "Clau de percepció"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__aeat_perception_subkey_id
 msgid "Perception subkey"
-msgstr ""
+msgstr "Subclau de percepció"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__percepciones_en_especie_incap
 msgid "Perceptions in kind arising from incapacity for work"
-msgstr ""
+msgstr "Percepcions en espècie derivades de la incapacitat laboral"
 
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
 msgid "Performance key"
-msgstr ""
+msgstr "Clau de rendiment"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__period_type
 msgid "Period Type"
-msgstr ""
+msgstr "Tipus de període"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__contact_phone
 msgid "Phone"
-msgstr ""
+msgstr "Telèfon"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__previous_number
 msgid "Previous declaration number"
-msgstr ""
+msgstr "Número de declaració anterior"
 
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
 msgid "Provincia"
-msgstr ""
+msgstr "Província"
 
 #. module: l10n_es_aeat_mod190
 #: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
 #, python-format
 msgid "Provincia no definida en el cliente"
-msgstr ""
+msgstr "Província no definida al client"
 
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
 msgid "Razón social"
-msgstr ""
+msgstr "Raó social"
 
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_form
 msgid "Recipients"
-msgstr ""
+msgstr "Destinataris"
 
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
 msgid "Reducciones aplicables"
-msgstr ""
+msgstr "Reduccions aplicables"
 
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
 msgid "Reduced mobility"
-msgstr ""
+msgstr "Mobilitat reduïda"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__name
 msgid "Report identifier"
-msgstr ""
+msgstr "Identificador de l'informe"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "Usuari responsable"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__hijos_y_descendientes
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
 msgid "Rest"
-msgstr ""
+msgstr "Descans"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__hijos_y_descendientes_entero
 msgid "Rest, computed entirely"
-msgstr ""
+msgstr "Reste, calculat íntegrament"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__hijos_y_descendientes_entero
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__hijos_y_descendientes_entero
 msgid "Resto, computadors por entero"
-msgstr ""
+msgstr "Resta, comuptadors per sencer"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__hijos_y_descendientes
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__hijos_y_descendientes
 msgid "Resto:"
-msgstr ""
+msgstr "Resta:"
 
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_form
 msgid "Result"
-msgstr ""
+msgstr "Resultat"
 
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
 msgid "Retenciones practicadas"
-msgstr ""
+msgstr "Retencions practicades"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__movilidad_geografica__1
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__res_partner__movilidad_geografica__1
 msgid "SI"
-msgstr ""
+msgstr "SI"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "Error d'entrega d'SMS"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__ceuta_melilla
@@ -1294,6 +1294,15 @@ msgid ""
 "            En otro caso se hará constar en este campo el número\n"
 "            cero (0)."
 msgstr ""
+"S'ha de consignar el número 1 en els supòsits en què, per\n"
+"             tractar-se de rendes obtingudes a Ceuta o Melilla amb\n"
+"             dret a la deducció establerta a l'article 68.4 de\n"
+"             la Llei de l'impost, el pagador hauria determinat el\n"
+"             tipus de retenció d'acord amb el previst als\n"
+"             articles 80.2 i 95.1, darrer paràgraf, del Reglament del\n"
+"             Impost.\n"
+"             En altre cas es farà constar en aquest camp el número\n"
+"             zero (0)."
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_account_bank_statement_line__aeat_perception_key_id
@@ -1307,6 +1316,8 @@ msgid ""
 "Se consignará la clave alfabética que corresponda a las percepciones de que "
 "se trate."
 msgstr ""
+"S'ha de consignar la clau alfabètica que correspongui a les percepcions de "
+"què es tracti."
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__a_nacimiento
@@ -1315,6 +1326,8 @@ msgid ""
 "Se consignarán las cuatro cifras del año de nacimiento del\n"
 "            perceptor."
 msgstr ""
+"Es consignaran les quatre xifres de l'any de naixement del\n"
+"             perceptor."
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__situacion_familiar
@@ -1323,6 +1336,8 @@ msgid ""
 "Se hará constar el dígito numérico indicativo de la\n"
 "            situación familiar del perceptor"
 msgstr ""
+"Es farà constar el dígit numèric indicatiu de la\n"
+"             situació familiar del perceptor"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__representante_legal_vat
@@ -1332,13 +1347,16 @@ msgid ""
 "            este campo el número de identificación fiscal de su\n"
 "            representante legal (padre, madre o tutor)."
 msgstr ""
+"Si el perceptor és menor de 14 anys, es consignarà a\n"
+"             aquest camp el número d'identificació fiscal de la seva\n"
+"             representant legal (pare, mare o tutor)."
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__situacion_familiar
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__situacion_familiar
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
 msgid "Situación familiar"
-msgstr ""
+msgstr "Situació familiar"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__contrato_o_relacion
@@ -1350,6 +1368,11 @@ msgid ""
 "            contrato o relación existente entre el perceptor y la\n"
 "            persona o entidad retenedora"
 msgstr ""
+"Només per a percepcions corresponents a la clau A.\n"
+"             Tractant-se d'empleats per compte aliè en actiu, es\n"
+"             farà constar el dígit numèric indicatiu del tipus de\n"
+"             contracte o relació existent entre el perceptor i la\n"
+"             persona o entitat retenedora"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__discapacidad
@@ -1362,6 +1385,12 @@ msgid ""
 "            por 100, se hará constar en este campo el código\n"
 "            numérico indicativo de dicho grado"
 msgstr ""
+"Només per a percepcions corresponents a les claus A,\n"
+"             B.01, B.03 i C.\n"
+"             Si el perceptor és una persona amb discapacitat que té\n"
+"             acreditat un grau de minusvalidesa igual o superior al 33\n"
+"             per 100, es farà constar en aquest camp el codi\n"
+"             numèric indicatiu del grau esmentat"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__nif_conyuge
@@ -1374,36 +1403,42 @@ msgid ""
 "            2, se hará constar el número de identificación fiscal de su\n"
 "            cónyuge."
 msgstr ""
+"Només per a percepcions corresponents a les claus A,\n"
+"             B.01, B.03 i C.\n"
+"             Únicament en cas que la «SITUACIÓ\n"
+"             FAMILIAR» del perceptor sigui l'assenyalada amb el número\n"
+"             2, es farà constar el número didentificació fiscal de la seva\n"
+"             cònjuge."
 
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
 msgid "Sons and other decendents"
-msgstr ""
+msgstr "Fills i altres descendents"
 
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
 msgid "Sons and other decendents with discapacity"
-msgstr ""
+msgstr "Fills i altres descendents amb discapacitat"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__date_start
 msgid "Starting date"
-msgstr ""
+msgstr "Data d'inici"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__state
 msgid "State"
-msgstr ""
+msgstr "Estat"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__codigo_provincia
 msgid "State ISO code"
-msgstr ""
+msgstr "Codi ISO estatal"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__statement_type
 msgid "Statement Type"
-msgstr ""
+msgstr "Tipus de declaració"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__activity_state
@@ -1413,6 +1448,10 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"Estat basat en activitats\n"
+"Vençut: la data de venciment ja ha superat\n"
+"Avui: la data de l'activitat és avui\n"
+"Planificades: Activitats futures."
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_bank_statement_line__aeat_perception_subkey_id
@@ -1424,34 +1463,34 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__aeat_perception_subkey_id
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
 msgid "Subclave"
-msgstr ""
+msgstr "Subclavi"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__aeat_perception_subkey_ids
 msgid "Subkeys"
-msgstr ""
+msgstr "Subclaus"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__support_type
 msgid "Support Type"
-msgstr ""
+msgstr "Tipus de suport"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__tax_line_ids
 msgid "Tax lines"
-msgstr ""
+msgstr "Línies fiscals"
 
 #. module: l10n_es_aeat_mod190
 #: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
 #, python-format
 msgid "The perception key of the partner, %(partner)s. Must be filled."
-msgstr ""
+msgstr "La clau de percepció de la parella, %(partner)s. S'ha d'omplir."
 
 #. module: l10n_es_aeat_mod190
 #: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
 #, python-format
 msgid "The state is not defined in the partner, %s"
-msgstr ""
+msgstr "L'estat no està definit al soci, %s"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__counterpart_account_id
@@ -1459,11 +1498,13 @@ msgid ""
 "This account will be the counterpart for all the journal items that are "
 "regularized when posting the report."
 msgstr ""
+"Aquest compte serà la contrapartida de tots els ítems de la revista que es "
+"regularitzin en publicar l'informe."
 
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_form
 msgid "Totals"
-msgstr ""
+msgstr "Totals"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_account_move_line__aeat_perception_subkey_id
@@ -1485,6 +1526,23 @@ msgid ""
 "                    percepciones correspondientes a una misma clave y, en\n"
 "                    su caso, subclave."
 msgstr ""
+"Tractant-se de percepcions corresponents a les claus\n"
+"                     B, E, F, G, H, I, K i L, s'haurà de consignar, a més, "
+"la\n"
+"                     subclau numèrica de dos dígits que correspongui a les\n"
+"                     percepcions de què es tracti, segons la relació de\n"
+"                     subclaus que per a cadascuna de les esmentades claus\n"
+"                     figura a continuació.\n"
+"                     En percepcions corresponents a claus diferents de les\n"
+"                     esmentades, no s'emplenarà aquest camp.\n"
+"                     Quan s'hagin de consignar al model 190\n"
+"                     percepcions satisfetes a un mateix perceptor que\n"
+"                     corresponguin a diferents claus o subclaus de\n"
+"                     percepció, hauran d'emplenar tants apunts o\n"
+"                     registres de percepció com calgui, de manera que\n"
+"                     cadascun reflecteix exclusivament les dades de\n"
+"                     percepcions corresponents a una mateixa clau i, a\n"
+"                     el seu cas, subclau."
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_account_bank_statement_line__aeat_perception_subkey_id
@@ -1509,6 +1567,22 @@ msgid ""
 "                percepciones correspondientes a una misma clave y, en\n"
 "                su caso, subclave."
 msgstr ""
+"Tractant-se de percepcions corresponents a les claus\n"
+"                 B, E, F, G, H, I, K i L, s'haurà de consignar, a més, la\n"
+"                 subclau numèrica de dos dígits que correspongui a les\n"
+"                 percepcions de què es tracti, segons la relació de\n"
+"                 subclaus que per a cadascuna de les esmentades claus\n"
+"                 figura a continuació.\n"
+"                 En percepcions corresponents a claus diferents de les\n"
+"                 esmentades, no s'emplenarà aquest camp.\n"
+"                 Quan s'hagin de consignar al model 190\n"
+"                 percepcions satisfetes a un mateix perceptor que\n"
+"                 corresponguin a diferents claus o subclaus de\n"
+"                 percepció, hauran d'emplenar tants apunts o\n"
+"                 registres de percepció com calgui, de manera que\n"
+"                 cadascun reflecteix exclusivament les dades de\n"
+"                 percepcions corresponents a una mateixa clau i, a\n"
+"                 el seu cas, subclau."
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__aeat_perception_subkey_id
@@ -1531,89 +1605,105 @@ msgid ""
 "            percepciones correspondientes a una misma clave y, en\n"
 "            su caso, subclave."
 msgstr ""
+"Tractant-se de percepcions corresponents a les claus\n"
+"             B, E, F, G, H, I, K i L, s'haurà de consignar, a més, la\n"
+"             subclau numèrica de dos dígits que correspongui a les\n"
+"             percepcions de què es tracti, segons la relació de\n"
+"             subclaus que per a cadascuna de les esmentades claus\n"
+"             figura a continuació.\n"
+"             En percepcions corresponents a claus diferents de les\n"
+"             esmentades, no s'emplenarà aquest camp.\n"
+"             Quan s'hagin de consignar al model 190\n"
+"             percepcions satisfetes a un mateix perceptor que\n"
+"             corresponguin a diferents claus o subclaus de\n"
+"             percepció, hauran d'emplenar tants apunts o\n"
+"             registres de percepció com calgui, de manera que\n"
+"             cadascun reflecteix exclusivament les dades de\n"
+"             percepcions corresponents a una mateixa clau i, a\n"
+"             el seu cas, subclau."
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Tipus d'activitat d'excepció registrada."
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__hijos_y_descendientes_m
 msgid "Under 3 years"
-msgstr ""
+msgstr "Menors de 3 anys"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__hijos_y_descendientes_m_entero
 msgid "Under 3 years, computed entirely"
-msgstr ""
+msgstr "Menors de 3 anys, calculat íntegrament"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_unread
 msgid "Unread Messages"
-msgstr ""
+msgstr "Missatges no llegits"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_unread_counter
 msgid "Unread Messages Counter"
-msgstr ""
+msgstr "Comptador de missatges no llegits"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__company_vat
 msgid "VAT number"
-msgstr ""
+msgstr "Número d'IVA"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__nif_conyuge
 msgid "VAT of the spouse"
-msgstr ""
+msgstr "IVA del cònjuge"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__percepciones_en_especie
 msgid "Valuation"
-msgstr ""
+msgstr "Valoració"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Missatges del lloc web"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Historial de comunicacions del lloc web"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__year
 msgid "Year"
-msgstr ""
+msgstr "Any"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__a_nacimiento
 msgid "Year of birth"
-msgstr ""
+msgstr "Any de neixement"
 
 #. module: l10n_es_aeat_mod190
 #: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
 #, python-format
 msgid "You have to recalculate the report before confirm it."
-msgstr ""
+msgstr "Heu de tornar a calcular l'informe abans de confirmar-lo."
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__casilla_01
 msgid "[01] Recipients"
-msgstr ""
+msgstr "[01] Destinataris"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__casilla_02
 msgid "[02] Amount of perceptions"
-msgstr ""
+msgstr "[02] Quantitat de percepcions"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__casilla_03
 msgid "[03] Amount of retentions"
-msgstr ""
+msgstr "[03] Import de les retencions"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__ejercicio_devengo
 msgid "year"
-msgstr ""
+msgstr "Any"
