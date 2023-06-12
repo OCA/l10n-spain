@@ -56,31 +56,3 @@ class AccountMove(models.Model):
                     continue
                 line._process_aeat_tax_fee_info(res, tax, sign)
         return res
-
-
-class AccountMoveLine(models.Model):
-    _inherit = "account.move.line"
-
-    def _process_aeat_tax_base_info(self, res, tax, sign):
-        """It modifies the dictionary given in res for setting the base amount info
-        for the taxes dictionary obtained in ~~account.move~~._get_aeat_tax_info().
-        """
-        taxes = tax.amount_type == "group" and tax.children_tax_ids or tax
-        for tax in taxes:
-            res.setdefault(
-                tax, {"tax": tax, "base": 0, "amount": 0, "deductible_amount": 0}
-            )
-            res[tax]["base"] += self.balance * sign
-
-    def _process_aeat_tax_fee_info(self, res, tax, sign):
-        """It modifies the dictionary given in res for setting the tax amount info
-        for the taxes dictionary obtained in ~~account.move~~._get_aeat_tax_info().
-        """
-        taxes = tax.amount_type == "group" and tax.children_tax_ids or tax
-        for tax in taxes:
-            res.setdefault(
-                tax, {"tax": tax, "base": 0, "amount": 0, "deductible_amount": 0}
-            )
-            amount = self.balance * sign
-            res[tax]["amount"] += amount
-            res[tax]["deductible_amount"] += amount
