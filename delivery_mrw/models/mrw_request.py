@@ -1,8 +1,8 @@
 # Copyright 2022 ForgeFlow, S.L.
+# Copyright 2023 NuoBiT Solutions, S.L. - Eric Antones <eantones@nuobit.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
-import os
 from datetime import datetime
 
 from zeep import Client, helpers as ZeepHelpers
@@ -20,6 +20,11 @@ MRW_API_URL = {
     "prod": "https://sagec.mrw.es/MRWEnvio.asmx?WSDL",
 }
 
+MRW_TRACKING_API_URL = {
+    "test": "https://trackingservice.mrw.es/TrackingService.svc?wsdl",
+    "prod": "https://trackingservice.mrw.es/TrackingService.svc?wsdl",
+}
+
 
 class MRWRequest:
     """Interface between MRW SOAP API and Odoo recordset
@@ -31,8 +36,8 @@ class MRWRequest:
 
     def __init__(self, carrier):
         self.carrier = carrier
-        api_env = "prod" if self.carrier.prod_environment else "test"
-        self.client = Client(wsdl=MRW_API_URL[api_env])
+        self.api_env = "prod" if self.carrier.prod_environment else "test"
+        self.client = Client(wsdl=MRW_API_URL[self.api_env])
         self.username = self.carrier.mrw_username
         self.pasword = self.carrier.mrw_password
         self.client_code = self.carrier.mrw_client_code
@@ -90,18 +95,12 @@ class MRWRequest:
         label = self._process_reply(self.client.service[method], request=vals)
         return label
 
-    def _get_mrw_wsdl_tracking_file(self):
-        wsdl_file = "mrw-api-tracking-prod.wsdl"
-        return wsdl_file
-
     def _get_tracking_states(self, vals):
         """Get just tracking states from MRW info for the given reference"""
         transport = ZeepTransport(timeout=10)
-        wsdl_file = self._get_mrw_wsdl_tracking_file()
-        wsdl_path = os.path.join(
-            os.path.dirname(os.path.realpath(__file__)), "../api/%s" % wsdl_file
+        zeep_client = Client(
+            wsdl=MRW_TRACKING_API_URL[self.api_env], transport=transport
         )
-        zeep_client = Client(wsdl_path, transport=transport)
         response = zeep_client.service.GetEnvios(**vals)
         return response
 
