@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Eduardo de Miguel <edu@moduon.team>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="l10n_es_aeat_real_estate_action" model="ir.actions.act_window">
+        <field name="name">AEAT Real Estates</field>
+        <field name="res_model">l10n.es.aeat.real_estate</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="l10n_es_aeat_real_estate_form" model="ir.ui.view">
+        <field name="name">l10n.es.aeat.real.estate.form</field>
+        <field name="model">l10n.es.aeat.real_estate</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="check_ok" invisible="1" />
+                <field name="active" invisible="1" />
+                <header>
+
+                </header>
+                <div
+                    class="alert alert-danger"
+                    role="alert"
+                    attrs="{'invisible': ['|', ('id', '=', False), ('check_ok', '=', True)]}"
+                >
+                    <b>Errors</b>: <em><field name="error_text" readonly="1" /></em>
+                </div>
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Legal Representative">
+                            <field name="partner_id" />
+                            <field name="representative_vat" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                        <group string="Catastral Reference">
+                            <field name="reference" />
+                        </group>
+                        <separator />
+                        <group string="Address" col="3">
+                            <field name="address_type" nolabel="1" />
+                            <field
+                                name="address"
+                                nolabel="1"
+                                colspan="2"
+                                placeholder="Name of the street"
+                            />
+                            <field name="number_type" nolabel="1" />
+                            <div class="o_row" colspan="2">
+                                <field
+                                    name="number"
+                                    attrs="{'invisible': [('number_type', 'not in', ['NUM', 'KM.'])]}"
+                                />
+                                <field
+                                    name="number_calification"
+                                    attrs="{'invisible': [('number_type', '!=', 'NUM')]}"
+                                />
+                            </div>
+                            <label for="block" string="B/F/S" />
+                            <div class="o_row" colspan="2" col="3">
+                                <field name="block" placeholder="Block" />
+                                <field name="floor" placeholder="Floor" />
+                                <field name="stairway" placeholder="Stairway" />
+                            </div>
+                            <label for="portal" string="P/D/C" />
+                            <div class="o_row" colspan="2" col="3">
+                                <field name="portal" placeholder="Portal" />
+                                <field name="door" placeholder="Door" />
+                                <field name="complement" placeholder="Complement" />
+                            </div>
+                        </group>
+                        <group string="City">
+                            <field name="state_id" />
+                            <field name="township_domain" invisible="1" />
+                            <field
+                                name="township_id"
+                                options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"
+                            />
+                            <field name="city" />
+                            <field name="postal_code" />
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="l10n_es_aeat_real_estate_tree" model="ir.ui.view">
+        <field name="name">l10n.es.aeat.real.estate.tree</field>
+        <field name="model">l10n.es.aeat.real_estate</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="not check_ok">
+                <field name="partner_id" />
+                <field name="name" />
+                <field name="representative_vat" optional="hide" />
+                <field name="reference" />
+                <field name="state_id" optional="hide" />
+                <field name="check_ok" invisible="1" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="l10n_es_aeat_real_estate_search" model="ir.ui.view">
+        <field name="name">l10n.es.aeat.real.estate.search</field>
+        <field name="model">l10n.es.aeat.real_estate</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="reference" />
+                <field name="partner_id" />
+                <field name="representative_vat" />
+                <field name="state_id" />
+                <group>
+                    <filter
+                        name="flt_partners"
+                        string="Partners"
+                        context="{'group_by': 'partner_id'}"
+                    />
+                    <filter
+                        name="flt_postal_codes"
+                        string="Postal Codes"
+                        context="{'group_by': 'postal_code'}"
+                    />
+                    <filter
+                        name="flt_state_id"
+                        string="State"
+                        context="{'group_by': 'state_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <menuitem
+        id="l10n_es_aeat_real_estate_menu"
+        parent="l10n_es_aeat.menu_l10n_es_aeat_config"
+        sequence="36"
+        groups="group_account_aeat"
+        action="l10n_es_aeat.l10n_es_aeat_real_estate_action"
+        name="Real Estates"
+    />
+</odoo>

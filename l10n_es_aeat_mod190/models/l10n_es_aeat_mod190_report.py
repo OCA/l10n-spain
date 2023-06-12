@@ -4,7 +4,7 @@
 
 from odoo import _, api, exceptions, fields, models
 
-from odoo.addons.l10n_es_aeat.models.spanish_states_mapping import SPANISH_STATES
+from odoo.addons.l10n_es_aeat.models.aeat_data import AEAT_STATES_CODE_MAP
 
 
 class L10nEsAeatMod190Report(models.Model):
@@ -152,7 +152,7 @@ class L10nEsAeatMod190Report(models.Model):
         return res
 
     def _get_line_mod190_vals(self, rp, key_id, subkey_id):
-        codigo_provincia = SPANISH_STATES.get(rp.state_id.code)
+        codigo_provincia = AEAT_STATES_CODE_MAP.get(rp.state_id.code)
         if not codigo_provincia:
             raise exceptions.UserError(
                 _("The state is not defined in the partner, %s") % rp.name
@@ -500,7 +500,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
     @api.depends("partner_id")
     def _compute_codigo_provincia(self):
         for item in self:
-            code = SPANISH_STATES.get(item.partner_id.state_id.code)
+            code = AEAT_STATES_CODE_MAP.get(item.partner_id.state_id.code)
             item.codigo_provincia = code if code else "98"
 
     @api.depends("aeat_perception_key_id", "aeat_perception_subkey_id")

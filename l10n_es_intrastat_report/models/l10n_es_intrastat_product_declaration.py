@@ -9,7 +9,7 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
-from odoo.addons.l10n_es_aeat.models.spanish_states_mapping import SPANISH_STATES
+from odoo.addons.l10n_es_aeat.models.aeat_data import AEAT_STATES_CODE_MAP
 
 
 class IntrastatProductDeclaration(models.Model):
@@ -94,7 +94,7 @@ class IntrastatProductDeclaration(models.Model):
             # Estado destino/origen
             line.src_dest_country_code,
             # Provincia destino/origen
-            SPANISH_STATES.get(state_code, state_code),
+            AEAT_STATES_CODE_MAP.get(state_code, state_code),
             # Condiciones de entrega
             line.incoterm_id.code,
             # Naturaleza de la transacción
