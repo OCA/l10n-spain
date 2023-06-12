@@ -60,12 +60,6 @@ class PosOrder(models.Model):
             self._update_sequence_number(pos)
         return super()._process_order(pos_order, draft, existing_order)
 
-    def _get_fields_for_order_line(self):
-        fields = super()._get_fields_for_order_line()
-
-        fields += ["l10n_es_unique_id"]
-        return fields
-
     def _export_for_ui(self, order):
         res = super()._export_for_ui(order)
 
