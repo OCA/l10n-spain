@@ -257,8 +257,7 @@ class TicketBaiTax(models.Model):
             if (
                 record.is_subject_to
                 and not record.is_exempted
-                and record.re_amount
-                and record.re_amount_total
+                and record.tbai_invoice_id.company_id.tbai_vat_regime_simplified
                 and (
                     not record.surcharge_or_simplified_regime
                     or record.surcharge_or_simplified_regime

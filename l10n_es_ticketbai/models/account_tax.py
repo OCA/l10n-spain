@@ -221,8 +221,7 @@ class AccountTax(models.Model):
         return res
 
     def tbai_get_value_op_recargo_equiv_o_reg_simpl(self, invoice_id):
-        re_invoice_tax = self.tbai_get_associated_re_tax(invoice_id)
-        if re_invoice_tax or self.tbai_vat_regime_simplified:
+        if self.tbai_vat_regime_simplified:
             res = "S"
         else:
             res = "N"
