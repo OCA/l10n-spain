@@ -19,6 +19,7 @@
         "data/mis_report_balance_sme_sfl.xml",
         "data/mis_report_pyg_abreviated.xml",
         "data/mis_report_pyg_normal.xml",
+        "data/mis_report_pyg_normal_2022.xml",
         "data/mis_report_pyg_sme.xml",
         "data/mis_report_pyg_sme_sfl.xml",
         "data/mis_report_revenues_expenses_normal.xml",
