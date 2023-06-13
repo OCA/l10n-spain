@@ -49,7 +49,7 @@ class PosOrder(models.Model):
         res = super()._order_fields(ui_order)
         session = self.env["pos.session"].browse(ui_order["pos_session_id"])
         if session.config_id.tbai_enabled and not ui_order.get("to_invoice", False):
-            res["tbai_vat_regime_key"] = ui_order["tbai_vat_regime_key"]
+            res["tbai_vat_regime_key"] = ui_order.get("tbai_vat_regime_key", False)
         return res
 
     def tbai_prepare_invoice_values(self, pos_order=None):
@@ -182,6 +182,8 @@ class PosOrder(models.Model):
 
     @api.model
     def _process_order(self, pos_order, draft, existing_order):
+        if draft:
+            return super()._process_order(pos_order, draft, existing_order)
         if pos_order["data"].get("tbai_vat_regime_key", False) and isinstance(
             pos_order["data"]["tbai_vat_regime_key"], str
         ):
@@ -237,7 +239,10 @@ class PosOrder(models.Model):
         return res
 
     def tbai_get_value_serie_factura(self):
-        sequence = self.config_id.l10n_es_simplified_invoice_sequence_id
+        if hasattr(self.config_id, "pos_sequence_by_device") and self.pos_device_id:
+            sequence = self.pos_device_id.sequence
+        else:
+            sequence = self.config_id.l10n_es_simplified_invoice_sequence_id
         date = fields.Datetime.context_timestamp(
             self, fields.Datetime.from_string(self.date_order)
         ).strftime(DEFAULT_SERVER_DATE_FORMAT)
