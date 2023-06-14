@@ -61,7 +61,7 @@ class MRWRequest:
         try:
             response = service(request=request)
         except Fault as e:
-            raise UserError(e)
+            raise UserError(str(e)) from e
         return response
 
     def _cancel_shipment(self, reference=False):
@@ -117,8 +117,8 @@ class MRWRequest:
                         hour = int(time_str[:2])
                         minute = int(time_str[2:4])
                         input_date = input_date.replace(hour=hour, minute=minute)
-            except Exception:
-                pass
+            except Exception as e:
+                _logger.warning("An error occurred during date parsing: %s", e)
             return input_date
 
         json_res = ZeepHelpers.serialize_object(response, dict)

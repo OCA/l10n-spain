@@ -203,9 +203,16 @@ class DeliveryCarrier(models.Model):
         self.log_xml(mrw_last_request, "mrw_request")
         self.log_xml(mrw_last_response, "mrw_response")
 
+    # def _mrw_check_response(self, response):
+    #     if not int(response["Estado"]):
+    #         raise UserError(_("MRW Error: %s)" % response["Mensaje"]))
+    #     elif response["Estado"] and response["Mensaje"]:
+    #         return response["Mensaje"]
+    #     return ""
+
     def _mrw_check_response(self, response):
         if not int(response["Estado"]):
-            raise UserError(_("MRW Error: %s)" % response["Mensaje"]))
+            raise UserError(_("MRW Error: %s") % response["Mensaje"])
         elif response["Estado"] and response["Mensaje"]:
             return response["Mensaje"]
         return ""
