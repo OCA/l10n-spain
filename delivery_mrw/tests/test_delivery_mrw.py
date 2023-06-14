@@ -64,3 +64,38 @@ class TestDeliveryMRW(common.SavepointCase):
         self.assertEqual(
             manifest_data[-1]["carrier_tracking_ref"], self.picking.carrier_tracking_ref
         )
+
+    def test_03_mrw_get_label(self):
+        stock_picking = self.env["stock.picking"].create(
+            {
+                "delivery_type": "mrw",
+                "carrier_tracking_ref": "MRW123456",
+                "location_dest_id": 8,
+                "location_id": 4,
+                "picking_type_id": 1,
+            }
+        )
+
+        stock_picking.mrw_get_label()
+
+        self.assertTrue(stock_picking.message_ids, "No se creó ningún mensaje.")
+
+    def test_04_prepare_html_address(self):
+        mrw_address = {
+            "street": "123 Main St",
+            "city": "City",
+            "zip": "12345",
+            "country": "Country",
+        }
+
+        immediate_transfer = self.env["stock.immediate.transfer"]
+
+        result = immediate_transfer._prepare_html_address(mrw_address)
+
+        expected_result = (
+            "<strong>street</strong>: 123 Main St <br>"
+            "<strong>city</strong>: City <br>"
+            "<strong>zip</strong>: 12345 <br>"
+            "<strong>country</strong>: Country <br>"
+        )
+        self.assertEqual(result, expected_result)
