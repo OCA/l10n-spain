@@ -1,5 +1,7 @@
 import datetime
 
+from odoo import _
+from odoo.exceptions import UserError
 from odoo.tests import Form, common
 
 
@@ -99,3 +101,99 @@ class TestDeliveryMRW(common.SavepointCase):
             "<strong>country</strong>: Country <br>"
         )
         self.assertEqual(result, expected_result)
+
+    def test_05_get_manifest_no_deliveries(self):
+        manifest_wizard = self.env["mrw.manifest.wizard"].create(
+            {"date_from": "2023-06-14", "carrier_id": 4}
+        )
+
+        with self.assertRaises(UserError) as error:
+            manifest_wizard.get_manifest()
+
+        self.assertEqual(
+            error.exception.name,
+            "It wasn't possible to get the manifest. Maybe there aren't"
+            "deliveries for the selected date.",
+        )
+
+    def test_06_mrw_check_response(self):
+        response = {
+            "Estado": "1",
+            "Mensaje": "Response message",
+        }
+
+        carrier = self.env["delivery.carrier"]
+        result = carrier._mrw_check_response(response)
+
+        expected_result = "Response message"
+        self.assertEqual(result, expected_result)
+
+    def test_07_street_missing(self):
+        partner = self.env["res.partner"].create(
+            {"name": "Test Partner"}
+        )  # Sin valor para street
+
+        with self.assertRaises(UserError) as context:
+            self.env["delivery.carrier"].mrw_address(partner, False)
+
+        expected_error_message = (
+            _("No se ha encontrado la calle del cliente %s") % partner.name
+        )
+        self.assertEqual(context.exception.name, expected_error_message)
+
+    def test_get_manifest_no_deliveries(self):
+        manifest_wizard = self.env["mrw.manifest.wizard"].create(
+            {
+                "date_from": "2023-06-14",
+            }
+        )
+
+        with self.assertRaises(UserError) as error:
+            manifest_wizard.get_manifest()
+
+        expected_error_message = _(
+            "It wasn't possible to get the manifest. Maybe there aren't"
+            "deliveries for the selected date."
+        )
+        self.assertMultiLineEqual(error.exception.name, expected_error_message)
+
+    def test_prepare_mrw_tracking(self):
+        carrier = self.env["delivery.carrier"].create(
+            {
+                "name": "test2",
+                "product_id": 40,
+                "mrw_username": "test_username",
+                "mrw_password": "test_password",
+                "mrw_api_language": "test_language",
+                "mrw_api_filter_type": 0,
+                "mrw_api_information_type": 0,
+                "mrw_client_code": "test_client_code",
+                "mrw_franquicia_code": "test_franquicia_code",
+            }
+        )
+
+        picking = self.env["stock.picking"].create(
+            {
+                "carrier_tracking_ref": "test_tracking_ref",
+                "location_dest_id": 8,
+                "location_id": 4,
+                "picking_type_id": 1,
+            }
+        )
+
+        prepared_tracking = carrier._prepare_mrw_tracking(picking)
+
+        expected_result = {
+            "login": "test_username",
+            "pass": "test_password",
+            "codigoIdioma": "test_language",
+            "tipoFiltro": 0,
+            "valorFiltroDesde": "test_tracking_ref",
+            "valorFiltroHasta": "test_tracking_ref",
+            "fechaDesde": "",
+            "fechaHasta": "",
+            "tipoInformacion": 0,
+            "codigoAbonado": "test_client_code",
+            "codigoFranquicia": "test_franquicia_code",
+        }
+        self.assertEqual(prepared_tracking, expected_result)
