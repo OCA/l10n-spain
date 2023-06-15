@@ -1,0 +1,24 @@
+{
+  "IDFactura": {
+    "FechaExpedicionFacturaEmisor": "01-01-2020",
+    "NumSerieFacturaEmisor": "sup0001",
+    "IDEmisorFactura": {"NIF": "U2687761C"}
+  },
+  "FacturaRecibida": {
+    "TipoFactura": "F5",
+    "Contraparte": {"NombreRazon": "Spanish test company", "NIF": "U2687761C"},
+    "IDEmisorFactura": {"NIF": "U2687761C"},
+    "DescripcionOperacion": "/",
+    "ClaveRegimenEspecialOTrascendencia": "01",
+    "FechaRegContable": "01-10-2020",
+    "DesgloseFactura": {
+      "DesgloseIVA": {
+        "DetalleIVA": [
+          {"BaseImponible": 83.33, "CuotaSoportada": 17.5, "TipoImpositivo": "21.0"}
+        ]
+      }
+    },
+    "CuotaDeducible": 17.5
+  },
+  "PeriodoLiquidacion": {"Periodo": "01", "Ejercicio": 2020}
+}
