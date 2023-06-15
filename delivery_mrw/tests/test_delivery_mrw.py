@@ -104,7 +104,7 @@ class TestDeliveryMRW(common.SavepointCase):
 
     def test_05_get_manifest_no_deliveries(self):
         manifest_wizard = self.env["mrw.manifest.wizard"].create(
-            {"date_from": "2023-06-14", "carrier_id": 4}
+            {"date_from": "2023-06-14", "carrier_id": self.carrier_mrw.id}
         )
 
         with self.assertRaises(UserError) as error:
@@ -136,9 +136,7 @@ class TestDeliveryMRW(common.SavepointCase):
         with self.assertRaises(UserError) as context:
             self.env["delivery.carrier"].mrw_address(partner, False)
 
-        expected_error_message = (
-            _("No se ha encontrado la calle del cliente %s") % partner.name
-        )
+        expected_error_message = _("Couldn't find partner %s street") % partner.name
         self.assertEqual(context.exception.args[0], expected_error_message)
 
     def test_get_manifest_no_deliveries(self):
