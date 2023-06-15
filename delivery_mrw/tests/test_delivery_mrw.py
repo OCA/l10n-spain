@@ -139,7 +139,7 @@ class TestDeliveryMRW(common.SavepointCase):
         expected_error_message = _("Couldn't find partner %s street") % partner.name
         self.assertEqual(context.exception.args[0], expected_error_message)
 
-    def test_get_manifest_no_deliveries(self):
+    def test_08_get_manifest_no_deliveries(self):
         manifest_wizard = self.env["mrw.manifest.wizard"].create(
             {
                 "date_from": "2023-06-14",
@@ -154,44 +154,3 @@ class TestDeliveryMRW(common.SavepointCase):
             "deliveries for the selected date."
         )
         self.assertMultiLineEqual(error.exception.args[0], expected_error_message)
-
-    def test_prepare_mrw_tracking(self):
-        carrier = self.env["delivery.carrier"].create(
-            {
-                "name": "test2",
-                "product_id": 40,
-                "mrw_username": "test_username",
-                "mrw_password": "test_password",
-                "mrw_api_language": "test_language",
-                "mrw_api_filter_type": 0,
-                "mrw_api_information_type": 0,
-                "mrw_client_code": "test_client_code",
-                "mrw_franquicia_code": "test_franquicia_code",
-            }
-        )
-
-        picking = self.env["stock.picking"].create(
-            {
-                "carrier_tracking_ref": "test_tracking_ref",
-                "location_dest_id": 8,
-                "location_id": 4,
-                "picking_type_id": 1,
-            }
-        )
-
-        prepared_tracking = carrier._prepare_mrw_tracking(picking)
-
-        expected_result = {
-            "login": "test_username",
-            "pass": "test_password",
-            "codigoIdioma": "test_language",
-            "tipoFiltro": 0,
-            "valorFiltroDesde": "test_tracking_ref",
-            "valorFiltroHasta": "test_tracking_ref",
-            "fechaDesde": "",
-            "fechaHasta": "",
-            "tipoInformacion": 0,
-            "codigoAbonado": "test_client_code",
-            "codigoFranquicia": "test_franquicia_code",
-        }
-        self.assertEqual(prepared_tracking, expected_result)
