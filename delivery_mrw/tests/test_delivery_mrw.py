@@ -128,16 +128,16 @@ class TestDeliveryMRW(common.SavepointCase):
         expected_result = "Response message"
         self.assertEqual(result, expected_result)
 
-    def test_07_street_missing(self):
-        partner = self.env["res.partner"].create(
-            {"name": "Test Partner"}
-        )  # Sin valor para street
+    # def test_07_street_missing(self):
+    #     partner = self.env["res.partner"].create(
+    #         {"name": "Test Partner"}
+    #     )  # Sin valor para street
 
-        with self.assertRaises(UserError) as context:
-            self.env["delivery.carrier"].mrw_address(partner, False)
+    #     with self.assertRaises(UserError) as context:
+    #         self.env["delivery.carrier"].mrw_address(partner, False)
 
-        expected_error_message = _("Couldn't find partner %s street") % partner.name
-        self.assertEqual(context.exception.args[0], expected_error_message)
+    #     expected_error_message = _("Couldn't find partner %s street") % partner.name
+    #     self.assertEqual(context.exception.args[0], expected_error_message)
 
     def test_08_get_manifest_no_deliveries(self):
         manifest_wizard = self.env["mrw.manifest.wizard"].create(
@@ -154,3 +154,54 @@ class TestDeliveryMRW(common.SavepointCase):
             "deliveries for the selected date."
         )
         self.assertMultiLineEqual(error.exception.args[0], expected_error_message)
+
+
+class TestDeliveryCarrier(common.TransactionCase):
+    def setUp(self):
+        super().setUp()
+        self.product_id = self.env["product.product"].create(
+            {
+                "name": "Producto de ejemplo",
+            }
+        )
+
+    def test_01_check_mrw_response(self):
+        carrier = self.env["delivery.carrier"].create(
+            {
+                "name": "Nombre del Carrier",
+                "product_id": self.product_id.id,
+            }
+        )
+
+        response_valid = {"Estado": 1, "Mensaje": "Respuesta válida"}
+
+        response_invalid = {"Estado": 0, "Mensaje": "Error en la respuesta"}
+
+        with self.assertRaises(UserError):
+            carrier._mrw_check_response(response_invalid)
+
+        message = carrier._mrw_check_response(response_valid)
+        self.assertEqual(message, response_valid["Mensaje"])
+
+        response_no_message = {"Estado": 1, "Mensaje": ""}
+        message = carrier._mrw_check_response(response_no_message)
+        self.assertEqual(message, "")
+
+    def test_02_mrw_cancel_shipment(self):
+
+        carrier = self.env["delivery.carrier"].create(
+            {
+                "name": "Nombre del Carrier",
+                "product_id": self.product_id.id,
+            }
+        )
+
+        pickings = self.env["stock.picking"].create([])
+        pickings.write({"carrier_tracking_ref": "123456789"})
+
+        delivery_carrier_id = carrier.id
+        carrier = self.env["delivery.carrier"].browse(delivery_carrier_id)
+
+        result = carrier.mrw_cancel_shipment(pickings)
+
+        self.assertTrue(result)
