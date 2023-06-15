@@ -256,23 +256,19 @@ odoo.define("l10n_es_ticketbai_pos.models", function (require) {
         export_as_JSON: function () {
             var json = orderLine_super.export_as_JSON.apply(this, arguments);
             if (this.pos.company.tbai_enabled) {
-                var mapped_included_taxes = [];
                 var product = this.get_product();
                 var price_unit = null;
                 var tax = this.get_taxes()[0];
+                var fp_taxes = this._map_tax_fiscal_position(tax);
                 json.tbai_description = product.display_name || "";
-                if (tax) {
+                if (fp_taxes) {
                     json.tbai_vat_amount = tax.amount;
                     json.tbai_price_without_tax = this.get_price_without_tax();
                     json.tbai_price_with_tax = this.get_price_with_tax();
-                    var fp_taxes = this._map_tax_fiscal_position(tax);
-                    if (tax.price_include && _.contains(fp_taxes, tax)) {
-                        mapped_included_taxes.push(tax);
-                    }
                 }
-                if (mapped_included_taxes.length > 0) {
+                if (fp_taxes.length > 0) {
                     price_unit = this.compute_all(
-                        mapped_included_taxes,
+                        fp_taxes,
                         json.price_unit,
                         1,
                         this.pos.currency.rounding,
