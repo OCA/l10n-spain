@@ -111,7 +111,7 @@ class TestDeliveryMRW(common.SavepointCase):
             manifest_wizard.get_manifest()
 
         self.assertEqual(
-            error.exception.name,
+            error.exception.args[0],
             "It wasn't possible to get the manifest. Maybe there aren't"
             "deliveries for the selected date.",
         )
@@ -139,7 +139,7 @@ class TestDeliveryMRW(common.SavepointCase):
         expected_error_message = (
             _("No se ha encontrado la calle del cliente %s") % partner.name
         )
-        self.assertEqual(context.exception.name, expected_error_message)
+        self.assertEqual(context.exception.args[0], expected_error_message)
 
     def test_get_manifest_no_deliveries(self):
         manifest_wizard = self.env["mrw.manifest.wizard"].create(
@@ -155,7 +155,7 @@ class TestDeliveryMRW(common.SavepointCase):
             "It wasn't possible to get the manifest. Maybe there aren't"
             "deliveries for the selected date."
         )
-        self.assertMultiLineEqual(error.exception.name, expected_error_message)
+        self.assertMultiLineEqual(error.exception.args[0], expected_error_message)
 
     def test_prepare_mrw_tracking(self):
         carrier = self.env["delivery.carrier"].create(
