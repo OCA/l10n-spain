@@ -128,16 +128,16 @@ class TestDeliveryMRW(common.SavepointCase):
         expected_result = "Response message"
         self.assertEqual(result, expected_result)
 
-    # def test_07_street_missing(self):
-    #     partner = self.env["res.partner"].create(
-    #         {"name": "Test Partner"}
-    #     )  # Sin valor para street
+    def test_07_street_missing(self):
+        partner = self.env["res.partner"].create(
+            {"name": "Test Partner"}
+        )  # Sin valor para street
 
-    #     with self.assertRaises(UserError) as context:
-    #         self.env["delivery.carrier"].mrw_address(partner, False)
+        with self.assertRaises(UserError) as context:
+            self.env["delivery.carrier"].mrw_address(partner, False)
 
-    #     expected_error_message = _("Couldn't find partner %s street") % partner.name
-    #     self.assertEqual(context.exception.args[0], expected_error_message)
+        expected_error_message = _("Couldn't find partner %s street") % partner.name
+        self.assertEqual(context.exception.args[0], expected_error_message)
 
     def test_08_get_manifest_no_deliveries(self):
         manifest_wizard = self.env["mrw.manifest.wizard"].create(
@@ -205,3 +205,17 @@ class TestDeliveryCarrier(common.TransactionCase):
         result = carrier.mrw_cancel_shipment(pickings)
 
         self.assertTrue(result)
+
+    def test_stock_immediate_transfer_default_get(self):
+        transfer = self.env["stock.immediate.transfer"]
+
+        fields = ["immediate_transfer_line_ids"]
+
+        result = transfer.default_get(fields)
+
+        expected_address = "<strong>Dirección esperada</strong>"
+        result["mrw_to_address"] = expected_address
+
+        transfer = transfer.create(result)
+
+        self.assertEqual(transfer.mrw_to_address, expected_address)
