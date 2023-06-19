@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="invoice_supplier_form_inherit_mod180" model="ir.ui.view">
+        <field name="name">invoice.supplier.form.inherit.mod180</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_line_ids']//tree//field[@name='invoice_line_tax_ids']" position="before">
+                <field name="invoice_partner_id" invisible="1"/>
+                <field name="selectable_informacion_catastral_ids" invisible="1"/>
+                <field name="es_arrendatario" invisible="1"/>
+                <field name="informacion_catastral_id" attrs="{'invisible': [('es_arrendatario', '=', False)]}" domain="[('id', 'in', selectable_informacion_catastral_ids)]"/>
+            </xpath>
+            <xpath expr="//field[@name='tax_line_ids']//tree//field[@name='currency_id']" position="after">
+                <field name="informacion_catastral_id" invisible="0"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
