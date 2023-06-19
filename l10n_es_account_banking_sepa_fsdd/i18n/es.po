@@ -23,27 +23,9 @@ msgid "Adds FSDD prefix to sepa file id"
 msgstr "Añade el prefijo FSDD al identificador del fichero sepa"
 
 #. module: l10n_es_account_banking_sepa_fsdd
-#: model:ir.model.fields,field_description:l10n_es_account_banking_sepa_fsdd.field_account_payment_mode__display_name
-#: model:ir.model.fields,field_description:l10n_es_account_banking_sepa_fsdd.field_account_payment_order__display_name
-msgid "Display Name"
-msgstr "Nombre a mostrar"
-
-#. module: l10n_es_account_banking_sepa_fsdd
 #: model:ir.model.fields,field_description:l10n_es_account_banking_sepa_fsdd.field_account_payment_mode__charge_financed
 msgid "Financed Charge"
 msgstr "Cobro financiado"
-
-#. module: l10n_es_account_banking_sepa_fsdd
-#: model:ir.model.fields,field_description:l10n_es_account_banking_sepa_fsdd.field_account_payment_mode__id
-#: model:ir.model.fields,field_description:l10n_es_account_banking_sepa_fsdd.field_account_payment_order__id
-msgid "ID"
-msgstr "ID (identificación)"
-
-#. module: l10n_es_account_banking_sepa_fsdd
-#: model:ir.model.fields,field_description:l10n_es_account_banking_sepa_fsdd.field_account_payment_mode____last_update
-#: model:ir.model.fields,field_description:l10n_es_account_banking_sepa_fsdd.field_account_payment_order____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
 
 #. module: l10n_es_account_banking_sepa_fsdd
 #: model:ir.model,name:l10n_es_account_banking_sepa_fsdd.model_account_payment_mode
@@ -54,3 +36,12 @@ msgstr "Modos de pago"
 #: model:ir.model,name:l10n_es_account_banking_sepa_fsdd.model_account_payment_order
 msgid "Payment Order"
 msgstr "Orden de pago"
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre a mostrar"
+
+#~ msgid "ID"
+#~ msgstr "ID (identificación)"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
