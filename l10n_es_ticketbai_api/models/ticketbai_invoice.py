@@ -156,7 +156,8 @@ class TicketBAIInvoice(models.Model):
         (RefundCode.R1.value, 'Art. 80.1, 80.2, 80.6 and rights founded error'),
         (RefundCode.R2.value, 'Art. 80.3'),
         (RefundCode.R3.value, 'Art. 80.4'),
-        (RefundCode.R4.value, 'Art. 80 - other')
+        (RefundCode.R4.value, 'Art. 80 - other'),
+        (RefundCode.R5.value, 'Simplified Invoice'),
     ], string='Invoice Refund Reason Code',
         help="BOE-A-1992-28740. Ley 37/1992, de 28 de diciembre, del Impuesto sobre el "
              "Valor Añadido. Artículo 80. Modificación de la base imponible.")
