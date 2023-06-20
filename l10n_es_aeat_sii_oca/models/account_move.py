@@ -165,7 +165,7 @@ class AccountMove(models.Model):
         string="Additional 2 SII registration key",
     )
     sii_registration_key_code = fields.Char(
-        related="sii_registration_key.code",
+        compute="_compute_sii_registration_key_code",
         readonly=True,
         string="SII Code",
     )
@@ -213,6 +213,19 @@ class AccountMove(models.Model):
         string="Connector Jobs",
         copy=False,
     )
+
+    @api.depends("sii_registration_key")
+    def _compute_sii_registration_key_code(self):
+        """
+        Para evitar tiempos de instalación largos en BBDD grandes, es necesario que
+        sólo dependa de sii_registration_key, ya que en caso de añadirlo odoo buscará
+        todos los movimientos y cuando escribamos el key, aunque sea un campo no almacenado
+
+        A partir de v16.0 este cambio ya no es necesario, ya que el sistema ya revisa que el
+        campo sea almacenado o que este visualizandose (en caché)
+        """
+        for record in self:
+            record.sii_registration_key_code = record.sii_registration_key.code
 
     @api.depends("move_type")
     def _compute_sii_registration_key_domain(self):
