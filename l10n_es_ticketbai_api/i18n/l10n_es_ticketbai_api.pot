@@ -807,6 +807,7 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice__simplified_invoice
+#: selection:tbai.invoice,refund_code:0
 msgid "Simplified Invoice"
 msgstr ""
 
@@ -967,7 +968,7 @@ msgid "Test QR Base URL"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:629
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:630
 #, python-format
 msgid "The Company %s VAT Number is required."
 msgstr ""
@@ -1043,21 +1044,21 @@ msgid "TicketBAI Installations"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:806
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:807
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Address for %s is required for the Tax Agency %s!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1171
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1172
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "All Invoice recipients must be from the same country."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:196
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:197
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Already exists a TicketBAI Invoice with the same link to its previous TicketBAI Invoice."
@@ -1113,91 +1114,91 @@ msgid "TicketBAI Invoice %s:\n"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:291
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:292
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Invoice Description is required."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:350
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:351
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Invoice Number Prefix longer than expected. Should be 20 characters max.!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:340
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:341
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Invoice Number longer than expected. Should be 20 characters max.!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:280
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:281
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Invoice Refund Reason Code is required."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:360
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:361
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Invoice Tax Retention Total Amount"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:295
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:296
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Invoice description longer than expected. Should be 250 characters max.!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:938
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:939
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Invoice lines are required for the Tax Agency %s!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:778
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:779
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Maximum 100 recipients allowed for each Invoice!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1056
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1057
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Maximum number of Invoice Lines allowed is 1000."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:959
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:960
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Previous Invoice signature value is required."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1239
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1240
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Refunded Invoice %s Expedition Date"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1229
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1230
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Refunded Invoice %s Number Prefix %s longer than expected. Should be 20 characters max.!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1218
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1219
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Refunded Invoice Number %s longer than expected. Should be 20 characters max.!"
@@ -1211,42 +1212,42 @@ msgid "TicketBAI Invoice %s:\n"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:270
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:271
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Substituted Invoice Tax Amount Total"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:265
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:266
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Substituted Invoice Tax Amount Total is required."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:253
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:254
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Substituted Invoice amount total untaxed"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:248
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:249
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Substituted Invoice amount total untaxed is required."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:384
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:385
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "TBAI identifier %s should be %d characters long with CRC-8!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:375
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:376
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "TBAI identifier without CRC-8 %s should be %d characters long!"
@@ -1260,14 +1261,14 @@ msgid "TicketBAI Invoice %s:\n"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:799
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:800
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "ZIP code for %s is required for the Tax Agency %s!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:331
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:332
 #, python-format
 msgid "TicketBAI Invoice %s: Amount Total"
 msgstr ""
@@ -1291,13 +1292,13 @@ msgid "TicketBAI Invoice %s: Exempted taxes are Subject to taxes."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:304
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:305
 #, python-format
 msgid "TicketBAI Invoice %s: Expedition Date"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:313
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:314
 #, python-format
 msgid "TicketBAI Invoice %s: Expedition Hour"
 msgstr ""
@@ -1327,31 +1328,31 @@ msgid "TicketBAI Invoice %s: Line %s Quantity"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:831
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:832
 #, python-format
 msgid "TicketBAI Invoice %s: Max. number of exempted taxes is 7!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:917
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:918
 #, python-format
 msgid "TicketBAI Invoice %s: Max. number of not subject to taxes is 2!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:322
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:323
 #, python-format
 msgid "TicketBAI Invoice %s: Operation Date"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:237
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:238
 #, python-format
 msgid "TicketBAI Invoice %s: Refund Code and Type are required."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:217
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:218
 #, python-format
 msgid "TicketBAI Invoice %s: Second VAT Regime Key not valid."
 msgstr ""
@@ -1405,25 +1406,25 @@ msgid "TicketBAI Invoice %s: Tax Surcharge Amount Total"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:227
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:228
 #, python-format
 msgid "TicketBAI Invoice %s: Third VAT Regime Key not valid."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:208
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:209
 #, python-format
 msgid "TicketBAI Invoice %s: VAT Regime Key not valid."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:453
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:454
 #, python-format
 msgid "TicketBAI Invoice %s: XML Invoice schema not supported!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:669
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:670
 #, python-format
 msgid "TicketBAI Invoice %s: XML schema not supported!"
 msgstr ""
