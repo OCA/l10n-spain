@@ -57,10 +57,10 @@ class AccountInvoice(models.Model):
         res = super(AccountInvoice, self).tax_line_move_line_get()
         for tax_line in sorted(self.tax_line_ids, key=lambda x: -x.sequence):
             if tax_line.informacion_catastral_id:
-                for dict in res:
-                    if dict.get('invoice_tax_line_id', 0) == tax_line.id:
+                for res_dict in res:
+                    if res_dict.get('invoice_tax_line_id', 0) == tax_line.id:
                         info_cat_id = tax_line.informacion_catastral_id.id
-                        dict.update({
+                        res_dict.update({
                             'informacion_catastral_id': info_cat_id
                         })
                         break
