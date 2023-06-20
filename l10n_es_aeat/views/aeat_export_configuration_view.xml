@@ -58,8 +58,8 @@
                             <field name="date_end" />
                         </group>
                     </group>
-                    <group string="Configuration lines">
-                        <field name="config_line_ids" nolabel="1" />
+                    <group string="Configuration lines" col="4">
+                        <field name="config_line_ids" nolabel="1" colspan="4" />
                     </group>
                 </sheet>
             </form>
