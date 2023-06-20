@@ -75,7 +75,7 @@ msgid "Cancel and recreate"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:307
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:319
 #, python-format
 msgid "Cancellation"
 msgstr ""
@@ -389,7 +389,7 @@ msgid "Origin Invoices Data"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:352
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:364
 #, python-format
 msgid "Please, specify data for the original invoices that are going to be refunded"
 msgstr ""
@@ -410,7 +410,7 @@ msgid "Refund"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:330
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:342
 #, python-format
 msgid "Refund invoices must be cancelled in order to cancel the original invoice."
 msgstr ""
@@ -452,18 +452,23 @@ msgid "Sequence"
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#: selection:account.invoice,tbai_refund_key:0
+msgid "Simplified Invoice"
+msgstr ""
+
+#. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info__software
 msgid "Software"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:366
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:378
 #, python-format
 msgid "Some of the original invoices have related tbai cancelled invoices"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:361
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:373
 #, python-format
 msgid "Some of the original invoices have related tbai invoices in inconsistent state please fix them beforehand."
 msgstr ""
@@ -773,7 +778,7 @@ msgid "Wizard to Load AEAT Certificate"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:85
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:86
 #, python-format
 msgid "You cannot change to draft a TicketBAI invoice!"
 msgstr ""
