@@ -74,23 +74,10 @@ class L10nEsPartnerImportWizard(models.TransientModel):
         if vals_list:
             code_obj.create(vals_list)
 
-    def _set_defaults(self, company):
-        module = __name__.split("addons.")[1].split(".")[0]
-        transaction = self.env.ref("%s.intrastat_transaction_11" % module)
-        for field in [
-            "intrastat_transaction_out_invoice",
-            "intrastat_transaction_out_refund",
-            "intrastat_transaction_in_invoice",
-            "intrastat_transaction_in_refund",
-        ]:
-            if not company[field]:
-                company[field] = transaction
-
     def execute(self):
         company = self.env.company
         if (company.country_id.code or "").lower() != "es":
             raise exceptions.UserError(
                 _("Current company is not Spanish, so it can't be configured.")
             )
-        self._set_defaults(company)
         self._import_hs_codes()

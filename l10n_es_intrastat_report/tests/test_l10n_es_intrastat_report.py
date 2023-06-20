@@ -2,6 +2,8 @@
 
 from datetime import datetime
 
+from psycopg2.errors import NotNullViolation
+
 from odoo import _
 from odoo.tests import tagged
 from odoo.tests.common import Form
@@ -26,9 +28,11 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
         move_form.ref = "ABCDE"
         move_form.partner_id = partner
         partner_shipping = partner.child_ids.filtered(lambda x: x.type == "delivery")
-        move_form.partner_shipping_id = (
-            partner_shipping if partner_shipping else partner
-        )
+        if inv_type in ["out_invoice", "out_refund", "out_receipt"]:
+            move_form.partner_shipping_id = (
+                partner_shipping if partner_shipping else partner
+            )
+        move_form.fiscal_position_id = cls.fiscal_position
         move_form.invoice_date = datetime.today()
         with move_form.invoice_line_ids.new() as line_form:
             line_form.name = "test"
@@ -42,7 +46,7 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
 
     @classmethod
     def _create_declaration(cls, declaration_type):
-        return cls.env["l10n.es.intrastat.product.declaration"].create(
+        return cls.env["intrastat.product.declaration"].create(
             {
                 "year": datetime.today().year,
                 "month": str(datetime.today().month).zfill(2),
@@ -58,8 +62,20 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
         )
         super().setUpClass(chart_template_ref=chart_template_ref)
         # Set current company to Spanish
-        cls.env.user.company_id.country_id = cls.env.ref("base.es").id
-        cls.env.user.company_id.incoterm_id = cls.env.ref("account.incoterm_FCA").id
+        intrastat_transport = cls.env["intrastat.transport_mode"].search([], limit=1)
+        cls.env.user.company_id.write(
+            {
+                "country_id": cls.env.ref("base.es").id,
+                "incoterm_id": cls.env.ref("account.incoterm_FCA").id,
+                "intrastat_transport_id": intrastat_transport.id,
+            }
+        )
+        cls.env.user.groups_id += cls.env.ref("account.group_delivery_invoice_address")
+        cls.fiscal_position = cls.env["account.fiscal.position"].search(
+            [("name", "=", "EU privado"), ("company_id", "=", cls.env.company.id)],
+            limit=1,
+        )
+        cls.fiscal_position.write({"intrastat": "b2b", "vat_required": True})
         # Create Intrastat partners
         cls.partner_1 = cls.env["res.partner"].create(
             {"name": "Test Partner FR", "country_id": cls.env.ref("base.es").id}
@@ -105,7 +121,6 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
             )
             for partner in (cls.partner_1, cls.partner_2):
                 invoice = cls._create_invoice(inv_type, partner)
-                invoice.intrastat_fiscal_position = True
                 cls.invoices[declaration_type]["invoices"].append(invoice)
                 cls.invoices[declaration_type][partner.country_id] += 1
 
@@ -135,9 +150,9 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
 
     def _check_declaration_lines(self, lines, fr_qty, pt_qty):
         for line in lines:
-            if line.src_dest_country_id == self.env.ref("base.fr"):
+            if line.src_dest_country_code == self.env.ref("base.fr").code:
                 self.assertEqual(line.suppl_unit_qty, fr_qty)
-            if line.src_dest_country_id == self.env.ref("base.pt"):
+            if line.src_dest_country_code == self.env.ref("base.pt").code:
                 self.assertEqual(line.suppl_unit_qty, pt_qty)
 
     def test_report_creation_dispatches(self):
@@ -175,23 +190,23 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
         report_dispatches = self._create_declaration("dispatches")
         expected_invoices = self.invoices["dispatches"]["invoices"]
         expected_notes = [
-            _("Missing origin country on product %s. ") % (self.product.display_name),
-            _("Missing partner vat on invoice %s. ") % (expected_invoices[0].name),
+            _("Missing <em>Country of Origin</em> <small>"),
+            _("Missing <em>VAT Number</em> <small>"),
         ]
         report_dispatches.action_gather()
         for expected_note in expected_notes:
             self.assertIn(expected_note, report_dispatches.note)
-        report_dispatches.generate_declaration()
+        with self.assertRaises(NotNullViolation):
+            report_dispatches.generate_declaration()
         self.assertEqual(len(report_dispatches.declaration_line_ids), 0)
-        # Change data to remove some notes and create lines
+        # # Change data to remove some notes and create lines
         self.product.origin_country_id = self.env.ref("base.fr")
         self.partner_1.vat = "FR23334175221"
         self.partner_2.vat = "FR23334175221"
         report_dispatches.action_gather()
         report_dispatches.generate_declaration()
-        total_expected_invoices = len(expected_invoices) / 2
         self.assertEqual(
-            len(report_dispatches.declaration_line_ids), total_expected_invoices
+            len(report_dispatches.declaration_line_ids), len(expected_invoices) / 2
         )
         for expected_note in expected_notes:
             self.assertNotIn(expected_note, report_dispatches.note)
