@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="informacion_catastral_view_tree" model="ir.ui.view">
+        <field name="name">informacion.catastral.view.tree</field>
+        <field name="model">informacion.catastral</field>
+        <field name="arch" type="xml">
+            <tree name="info_catastral_tree" string="Información catastral">
+                <field name="cod_postal"/>
+                <field name="situacion_inmueble"/>
+                <field name="referencia_catastral"/>
+                <field name="nombre_via_publica"/>
+                <field name="num_casa"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="informacion_catastral_view_form" model="ir.ui.view">
+        <field name="name">informacion.catastral.view.form</field>
+        <field name="model">informacion.catastral</field>
+        <field name="arch" type="xml">
+            <form name="info_catastral_tree" string="Información catastral">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="cod_postal"/>
+                            <field name="municipio" readonly="1" force_save="1"/>
+                            <field name="referencia_catastral" force_save="1"/>
+                            <field name="nombre_via_publica"/>
+                            <field name="num_casa"/>
+                            <field name="bloque"/>
+                        </group>
+                        <group>
+                            <field name="cod_provincia" readonly="1" force_save="1"/>
+                            <field name="situacion_inmueble" readonly="1" force_save="1"/>
+                            <field name="tipo_via"/>
+                            <field name="tipo_numeracion"/>
+                            <field name="calificador_numero"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
