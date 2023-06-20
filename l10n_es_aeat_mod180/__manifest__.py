@@ -3,14 +3,11 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 {
     'name': 'Modelo 180',
-    'summary': 'Modelo 180',
-    'description': '''
-    - Modelo 180 \n''',
+    'version': '12.0.1.0.0',
     'author': 'Netkia,'
               "Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'website': 'https://github.com/OCA/l10n-spain',
-    'version': '12.0.1.0.0',
     'category': "Localization/Accounting",
     'depends': [
         'l10n_es_aeat_mod115',
