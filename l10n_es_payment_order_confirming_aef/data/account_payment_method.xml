@@ -5,5 +5,6 @@
         <field name="code">confirming_aef</field>
         <field name="payment_type">outbound</field>
         <field name="bank_account_required" eval="False" />
+        <field name="payment_order_only" eval="False" />
     </record>
 </odoo>

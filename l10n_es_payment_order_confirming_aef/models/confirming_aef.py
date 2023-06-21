@@ -9,19 +9,19 @@ from odoo.exceptions import UserError
 class ConfirmingAEF(object):
     def __init__(self, record):
         self.record = record
+        self.partner_bank = record.company_partner_bank_id.partner_id
 
     def _aef_errors(self):
         validation_errors = []
         # Nombre ordenante
-        if not self.record.company_partner_bank_id.partner_id:
+        if not self.partner_bank:
             validation_errors.append(
                 _("- Propietario de la cuenta no establecido para la cuenta %s.")
                 % self.record.company_partner_bank_id.acc_number
             )
-        if not self.record.company_partner_bank_id.partner_id.country_id:
+        if not self.partner_bank.country_id:
             validation_errors.append(
-                _("- País del propietario no establecido %s.")
-                % self.record.company_partner_bank_id.partner_id.name
+                _("- País del propietario no establecido %s.") % self.partner_bank.name
             )
         # Errores lineas
         for line in self.record.payment_line_ids:
@@ -101,15 +101,12 @@ class ConfirmingAEF(object):
         # 1 Valor fijo - ok
         text = "1"
         # 2 - 51 Nombre Ordenante - ok
-        text += self._aef_convert_text(
-            self.record.company_partner_bank_id.partner_id.name, 50, "left"
-        )
+        text += self._aef_convert_text(self.partner_bank.name, 50, "left")
         # 52 - 66 NIF Ordenante -ok
-        vat = self.record.company_partner_bank_id.partner_id.vat
-        if self.record.company_partner_bank_id.partner_id.country_id.code in vat:
-            vat = vat.replace(
-                self.record.company_partner_bank_id.partner_id.country_id.code, ""
-            )
+        vat = self.partner_bank.vat
+        code = self.partner_bank.country_id.code
+        if vat and code in vat:
+            vat = vat.replace(self.partner_bank.country_id.code, "")
         text += self._aef_convert_text(vat, 15, "left")
         # 67 - 74 Fecha proceso
         text += self._aef_convert_text("", 8)
@@ -148,17 +145,11 @@ class ConfirmingAEF(object):
         # 1 Valor fijo
         text = "2"
         # 2 - 66 Domicilio ordenante
-        text += self._aef_convert_text(
-            self.record.company_partner_bank_id.partner_id.street, 65, "left"
-        )
+        text += self._aef_convert_text(self.partner_bank.street, 65, "left")
         # 67 - 106 Población ordenante
-        text += self._aef_convert_text(
-            self.record.company_partner_bank_id.partner_id.city, 40, "left"
-        )
+        text += self._aef_convert_text(self.partner_bank.city, 40, "left")
         # 107 - 116 CP ordenante
-        text += self._aef_convert_text(
-            self.record.company_partner_bank_id.partner_id.zip, 10, "left"
-        )
+        text += self._aef_convert_text(self.partner_bank.zip, 10, "left")
         # 117 - 250 Espacios
         text += self._aef_convert_text("", 133)
         text += "\r\n"
