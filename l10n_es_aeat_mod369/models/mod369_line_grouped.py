@@ -63,8 +63,8 @@ class L10nEsAeatMod369LineGrouped(models.Model):
         related="tax_id.service_type",
         string="Service type",
     )
-    base = fields.Float(string="Base", compute="_compute_totals")
-    amount = fields.Float(string="Amount", compute="_compute_totals")
+    base = fields.Float(string="Base total", compute="_compute_totals")
+    amount = fields.Float(string="Amount total", compute="_compute_totals")
     # page 8 fields
     is_page_8_line = fields.Boolean(
         string="Is part of page 8", help="Used to filter for grouped lines for page 8"
