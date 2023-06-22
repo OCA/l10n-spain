@@ -17,13 +17,20 @@
         <field name="model">l10n.es.aeat.map.tax</field>
         <field name="arch" type="xml">
             <form string="Tax mapping">
-                <group col="4">
-                    <field name="model" colspan="4" />
-                    <field name="date_from" />
-                    <field name="date_to" />
-                </group>
-                <separator string="Mapping Lines" />
-                <field name="map_line_ids" />
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="model" />
+                        </group>
+                        <group>
+                            <field name="date_from" />
+                            <field name="date_to" />
+                        </group>
+                    </group>
+                    <group string="Mapping Lines" col="4">
+                        <field name="map_line_ids" nolabel="1" colspan="4" />
+                    </group>
+                </sheet>
             </form>
         </field>
     </record>
