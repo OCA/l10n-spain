@@ -469,3 +469,21 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             in_invoice.write({"partner_id": partner.id})
         with self.assertRaises(exceptions.UserError):
             in_invoice.write({"ref": "REF2"})
+
+    def test_account_move_reversal_out_invoice(self):
+        reversal = (
+            self.env["account.move.reversal"]
+            .with_context(
+                active_id=self.invoice.id,
+                active_model=self.invoice._name,
+                active_ids=self.invoice.ids,
+            )
+            .create(
+                {
+                    "journal_id": self.invoice.journal_id.id,
+                }
+            )
+        )
+        self.assertEqual(reversal.sii_refund_type, "I")
+        self.assertTrue(reversal.sii_refund_type_required)
+        self.assertFalse(reversal.supplier_invoice_number_refund_required)
