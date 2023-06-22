@@ -21,6 +21,12 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
         general_tax = cls.env.ref(
             "l10n_es.%s_account_tax_template_s_iva21b" % cls.company.id
         )
+        reduced_tax = cls.env.ref(
+            "l10n_es.%s_account_tax_template_s_iva10b" % cls.company.id
+        )
+        superreduced_tax = cls.env.ref(
+            "l10n_es.%s_account_tax_template_s_iva4b" % cls.company.id
+        )
         cls.oss_taxes = {}
         cls.oss_countries = {}
         cls.sale_invoices = {}
@@ -31,28 +37,92 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
                 {
                     "company_id": cls.company.id,
                     "general_tax": general_tax.id,
+                    "reduced_tax": reduced_tax.id,
+                    "superreduced_tax": superreduced_tax.id,
                     "todo_country_ids": [(4, country.id)],
                 }
             )
             wizard.generate_eu_oss_taxes()
-            tax = cls.env["account.tax"].search(
+            taxes = cls.env["account.tax"].search(
                 [
                     ("oss_country_id", "=", country.id),
                     ("company_id", "=", cls.company.id),
                 ]
             )
-            tax.service_type = "goods"
-            line_data = {
-                "name": "Test for OSS tax",
-                "account_id": cls.accounts["700000"].id,
-                "price_unit": 100,
-                "quantity": 1,
-                "tax_ids": [(4, tax.id)],
-            }
-            extra_vals = {"invoice_line_ids": [(0, 0, line_data)]}
+            fpo = cls.env["account.fiscal.position"].search(
+                [("country_id", "=", country.id), ("oss_oca", "=", True)], limit=1
+            )
+            # FR has 3 taxes, DE has 2
+            tax_g = taxes[0]
+            tax_r = taxes[1]
+            if country_key == "FR":
+                tax_sr = taxes[2]
+                tax_g.service_type = "goods"
+                lines_data = [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Test for OSS tax",
+                            "account_id": cls.accounts["700000"].id,
+                            "price_unit": 100,
+                            "quantity": 1,
+                            "tax_ids": [(6, 0, tax_g.ids)],
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Test for OSS tax - reduced",
+                            "account_id": cls.accounts["700000"].id,
+                            "price_unit": 100,
+                            "quantity": 1,
+                            "tax_ids": [(6, 0, tax_r.ids)],
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Test for OSS tax - superreduced",
+                            "account_id": cls.accounts["700000"].id,
+                            "price_unit": 100,
+                            "quantity": 1,
+                            "tax_ids": [(6, 0, tax_sr.ids)],
+                        },
+                    ),
+                ]
+            else:
+                lines_data = [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Test for OSS tax",
+                            "account_id": cls.accounts["700000"].id,
+                            "price_unit": 100,
+                            "quantity": 1,
+                            "tax_ids": [(6, 0, tax_g.ids)],
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Test for OSS tax - reduced",
+                            "account_id": cls.accounts["700000"].id,
+                            "price_unit": 100,
+                            "quantity": 1,
+                            "tax_ids": [(6, 0, tax_r.ids)],
+                        },
+                    ),
+                ]
+
+            extra_vals = {"fiscal_position_id": fpo.id, "invoice_line_ids": lines_data}
             invoice = cls._invoice_sale_create(invoice_date, extra_vals)
             cls.sale_invoices[country_key] = invoice
-            cls.oss_taxes[country_key] = tax
+            cls.oss_taxes[country_key] = taxes
             cls.oss_countries[country_key] = country
         # 369
         model369_model = cls.env["l10n.es.aeat.mod369.report"].with_user(
@@ -73,7 +143,7 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
             }
         )
 
-    def test_model_369(self):
+    def test_model_369_amounts(self):
         self.model369.button_calculate()
         total_sale_invoices_tax = 0
         self.assertFalse(self.model369.spain_services_line_ids)
@@ -83,14 +153,35 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
             spain_goods_line_filter = self.model369.goods_line_ids.filtered(
                 lambda x: x.country_code == country_code and not x.is_page_8_line
             )
-            self.assertEqual(
-                self.oss_taxes[country_code].amount, spain_goods_line_filter.vat_type
+            # checking type of tax
+            country_amount_tax = sum(tax.amount for tax in self.oss_taxes[country_code])
+            spain_goods_line_vat_type = sum(
+                line.vat_type for line in spain_goods_line_filter
             )
-            self.assertEqual(
-                spain_goods_line_filter.amount, sale_invoice_by_key.amount_tax
+            self.assertEqual(country_amount_tax, spain_goods_line_vat_type)
+            # checking amount of tax
+            spain_goods_line_amount = sum(
+                line.amount for line in spain_goods_line_filter
             )
+            self.assertEqual(spain_goods_line_amount, sale_invoice_by_key.amount_tax)
+            # checking base of tax
+            spain_goods_line_base = sum(line.base for line in spain_goods_line_filter)
+            self.assertEqual(spain_goods_line_base, sale_invoice_by_key.amount_untaxed)
+
             total_sale_invoices_tax += sale_invoice_by_key.amount_tax
-            self.assertEqual(
-                spain_goods_line_filter.base, sale_invoice_by_key.amount_untaxed
-            )
         self.assertEqual(self.model369.total_amount, total_sale_invoices_tax)
+
+    def test_model_369_amounts_page_5_6(self):
+        self.model369.button_calculate()
+        total_sale_invoices_tax = 0
+        for country_code in self.sale_invoices.keys():
+            sale_invoice_by_key = self.sale_invoices[country_code]
+            total_sale_invoices_tax += sale_invoice_by_key.amount_tax
+
+        num_invoices_from_test = len(self.sale_invoices)
+        num_invoices_from_mod369 = len(
+            self.model369.tax_line_ids.mapped("move_line_ids").mapped("move_id")
+        )
+        self.assertEqual(num_invoices_from_test, num_invoices_from_mod369)
+        pages_5_6_total = sum(self.model369.total_line_ids.mapped("page_5_6_total"))
+        self.assertEqual(total_sale_invoices_tax, pages_5_6_total)
