@@ -6,3 +6,7 @@
 
   * Víctor Martínez
   * Pedro M. Baeza
+
+* `Planeta Huerto <https://www.planetahuerto.es>`_:
+
+  * Juanjo Algaz
