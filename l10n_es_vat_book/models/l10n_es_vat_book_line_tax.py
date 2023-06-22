@@ -25,7 +25,9 @@ class L10nEsVatBookLineTax(models.Model):
 
     tax_amount = fields.Float(string="Tax fee")
 
-    total_amount = fields.Float(string="Total")
+    total_amount = fields.Float(
+        string="Total", compute="_compute_total_amount", store=True,
+    )
 
     move_line_ids = fields.Many2many(
         comodel_name="account.move.line", string="Move Lines"
@@ -37,9 +39,25 @@ class L10nEsVatBookLineTax(models.Model):
     )
     special_tax_id = fields.Many2one(comodel_name="account.tax", string="Special Tax",)
     special_tax_amount = fields.Float(string="Special Tax fee",)
-    total_amount_special_include = fields.Float(string="Total w/Special",)
+    total_amount_special_include = fields.Float(
+        string="Total w/Special",
+        compute="_compute_total_amount_special_include",
+        store=True,
+    )
 
     @api.depends("tax_id")
     def _compute_tax_rate(self):
         for rec in self:
             rec.tax_rate = rec.tax_id.amount
+
+    @api.depends("base_amount", "tax_amount")
+    def _compute_total_amount(self):
+        for record in self:
+            record.total_amount = record.base_amount + record.tax_amount
+
+    @api.depends("total_amount", "special_tax_amount")
+    def _compute_total_amount_special_include(self):
+        for record in self:
+            record.total_amount_special_include = (
+                record.total_amount + record.special_tax_amount
+            )
