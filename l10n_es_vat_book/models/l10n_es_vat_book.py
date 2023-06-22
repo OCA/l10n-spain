@@ -253,7 +253,6 @@ class L10nEsVatBook(models.Model):
             "tax_id": move_line.tax_line_id.id,
             "base_amount": base_amount_untaxed,
             "tax_amount": fee_amount_untaxed,
-            "total_amount": base_amount_untaxed + fee_amount_untaxed,
             "move_line_ids": [(4, move_line.id)],
             "special_tax_group": False,
         }
@@ -261,16 +260,14 @@ class L10nEsVatBook(models.Model):
     def upsert_book_line_tax(self, move_line, vat_book_line, implied_taxes):
         vals = self._prepare_book_line_tax_vals(move_line, vat_book_line)
         tax_lines = vat_book_line["tax_lines"]
-        implied_lines = []
         if move_line.tax_line_id:
             key = self.get_book_line_tax_key(move_line, move_line.tax_line_id)
             if key not in tax_lines:
-                tax_lines[key] = vals.copy()
+                tax_lines[key] = vals
             else:
+                tax_lines[key]["tax_id"] = move_line.tax_line_id.id
                 tax_lines[key]["tax_amount"] += vals["tax_amount"]
-                tax_lines[key]["total_amount"] += vals["total_amount"]
                 tax_lines[key]["move_line_ids"] += vals["move_line_ids"]
-            implied_lines.append(tax_lines[key])
         for i, tax in enumerate(move_line.tax_ids):
             if i == 0:
                 vat_book_line["base_amount"] += vals["base_amount"]
@@ -282,31 +279,9 @@ class L10nEsVatBook(models.Model):
                 tax_lines[key]["tax_id"] = tax.id
             else:
                 tax_lines[key]["base_amount"] += vals["base_amount"]
-                tax_lines[key]["total_amount"] += vals["total_amount"]
-                # if i == 0:
                 tax_lines[key]["move_line_ids"] += vals["move_line_ids"]
-            implied_lines.append(tax_lines[key])
-            sp_taxes_dic = self.get_special_taxes_dic()
-            if tax.id in sp_taxes_dic:
-                tax_group = sp_taxes_dic[tax.id]["special_tax_group"]
-                vat_book_line["special_tax_group"] = tax_group
-                tax_lines[key]["special_tax_group"] = tax_group
-        if vat_book_line["special_tax_group"]:
-            base_line = next(
-                filter(lambda l: not l["special_tax_group"], implied_lines), None
-            )
-            special_line = next(
-                filter(lambda l: l["special_tax_group"], implied_lines), None
-            )
-            if base_line and special_line:
-                base_line.update(
-                    {
-                        "special_tax_id": special_line["tax_id"],
-                        "special_tax_amount": special_line["tax_amount"],
-                        "total_amount_special_include": base_line["total_amount"]
-                        + special_line["tax_amount"],
-                    }
-                )
+            # For later matching special taxes
+            tax_lines[key]["other_tax_ids"] = (move_line.tax_ids - tax).ids
 
     def _clear_old_data(self):
         """
@@ -375,10 +350,10 @@ class L10nEsVatBook(models.Model):
         return special_dic
 
     def get_book_line_key(self, move_line):
-        return move_line.move_id.id, move_line.move_id.id
+        return move_line.move_id.id
 
     def get_book_line_tax_key(self, move_line, tax):
-        return move_line.move_id.id, move_line.move_id.id, tax.id
+        return move_line.move_id.id, tax.id
 
     def _set_line_type(self, line_vals, line_type):
         if line_vals["base_amount"] < 0.0:
@@ -415,6 +390,25 @@ class L10nEsVatBook(models.Model):
         lines_values = []
         for line_vals in moves_dic.values():
             tax_lines = line_vals.pop("tax_lines")
+            # Match special taxes groups
+            sp_taxes_dic = self.get_special_taxes_dic()
+            sp_taxes = {}
+            # First loop for extracting special taxes
+            for tax_line in tax_lines.values():
+                if tax_line["tax_id"] in sp_taxes_dic:
+                    tax_group = sp_taxes_dic[tax_line["tax_id"]]["special_tax_group"]
+                    line_vals["special_tax_group"] = tax_group
+                    tax_line["special_tax_group"] = tax_group
+                    sp_taxes[tuple(tax_line["other_tax_ids"])] = tax_line
+                tax_line.pop("other_tax_ids")
+            # Second loop for putting the values in the other lines
+            if sp_taxes:
+                for tax_line in tax_lines.values():
+                    key = (tax_line["tax_id"],)
+                    if key in sp_taxes:
+                        sp_vals = sp_taxes[key]
+                        tax_line["special_tax_id"] = sp_vals["tax_id"]
+                        tax_line["special_tax_amount"] = sp_vals["tax_amount"]
             tax_line_list = []
             tax_amount = 0.0
             for tax_line_vals in tax_lines.values():
