@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-10 03:55+0000\n"
-"PO-Revision-Date: 2023-06-23 09:08+0000\n"
+"PO-Revision-Date: 2023-06-23 13:09+0000\n"
 "Last-Translator: eccit-quim <quim@eccit.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
@@ -746,7 +746,7 @@ msgstr "Desde la fecha"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_contact_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_contact_name
 msgid "Full Name"
-msgstr "Nombre completo"
+msgstr "Nom complet"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_id
@@ -826,7 +826,7 @@ msgstr "Invertir el signo de la suma"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_journal_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_journal_id
 msgid "Journal"
-msgstr "Diario"
+msgstr "Diari"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod111_report_journal_id
@@ -842,12 +842,12 @@ msgstr "Diario"
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_journal_id
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_vat_book_journal_id
 msgid "Journal in which post the move."
-msgstr "Diario en el que publicar el movimiento."
+msgstr "Diari on es publicarà el moviment."
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line_move_line_ids
 msgid "Journal items"
-msgstr "Apuntes contables"
+msgstr "Apunts comptables"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod111_report_representative_vat
@@ -1308,7 +1308,7 @@ msgstr "Ver movimiento"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_date_start
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_date_start
 msgid "Starting date"
-msgstr "Fecha inicial"
+msgstr "Data inicial"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod111_report_state
@@ -1342,7 +1342,7 @@ msgstr "Estat"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_type
 msgid "Statement Type"
-msgstr "Tipo de declaración"
+msgstr "Tipus declaració"
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,export_type:0
@@ -1385,7 +1385,7 @@ msgstr "Tipo de suma"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_support_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_support_type
 msgid "Support Type"
-msgstr "Tipo de soporte"
+msgstr "Tipus de soport"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_map_tax_line_form
