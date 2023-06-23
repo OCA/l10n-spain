@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-20 18:05+0000\n"
-"Last-Translator: jabelchi <jabelchi@gmail.com>\n"
+"PO-Revision-Date: 2023-06-23 13:11+0000\n"
+"Last-Translator: eccit-quim <quim@eccit.com>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_aeat_mod390
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390.view_l10n_es_aeat_mod390_report_form
@@ -229,7 +229,7 @@ msgstr "Compte bancari de la companyia utilitzat per a la presentació"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__contact_email
 msgid "Contact Email"
-msgstr "Email de contacte"
+msgstr "Correu electrònic de contacte"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__counterpart_account_id
@@ -264,7 +264,7 @@ msgstr "Codi 1ª activitat"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_first_activity_code
 msgid "Código 1ª actividad (antiguo)"
-msgstr ""
+msgstr "Codi primera activitat (antic)"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_second_activity_code_id
@@ -274,7 +274,7 @@ msgstr "Codi 2ª activitat"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_second_activity_code
 msgid "Código 2ª actividad (antiguo)"
-msgstr ""
+msgstr "Codi 2ona activitat (antic)"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_third_activity_code_id
@@ -284,7 +284,7 @@ msgstr "Codi 3ª activitat"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_third_activity_code
 msgid "Código 3ª actividad (antiguo)"
-msgstr ""
+msgstr "Codi 3era activitat (antic)"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fourth_activity_code_id
@@ -294,7 +294,7 @@ msgstr "Codi 4ª activitat"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fourth_activity_code
 msgid "Código 4ª actividad (antiguo)"
-msgstr ""
+msgstr "Codi 4a activitat (antic)"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fifth_activity_code_id
@@ -304,7 +304,7 @@ msgstr "Codi 5ª activitat"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fifth_activity_code
 msgid "Código 5ª actividad (antiguo)"
-msgstr ""
+msgstr "Codi 5ena activitat (antic)"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__main_activity_code_id
@@ -314,7 +314,7 @@ msgstr "Codi activitat principal"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__main_activity_code
 msgid "Código actividad principal (antiguo)"
-msgstr ""
+msgstr "Codi activitat principal (antic)"
 
 #. module: l10n_es_aeat_mod390
 #. odoo-python
@@ -373,12 +373,12 @@ msgstr "Epígraf I.A.E. activitat principal"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__error_count
 msgid "Error Count"
-msgstr ""
+msgstr "Recompte d'errors"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__export_config_id
 msgid "Export config"
-msgstr "Export config"
+msgstr "Exportar la configuració"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__first_representative_date
@@ -418,7 +418,7 @@ msgstr "Nom complet"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "Té missatge"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__id
@@ -459,12 +459,12 @@ msgstr "Diari"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__journal_id
 msgid "Journal in which post the move."
-msgstr "Diari per a publicar el moviment."
+msgstr "Diari on es publicarà el moviment."
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__representative_vat
 msgid "L.R. VAT number"
-msgstr "NIF representant legal"
+msgstr "NIF repr. legal"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report____last_update
@@ -936,7 +936,7 @@ msgstr "[64] Suma de deduccions"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_65
 msgid "[65] Result. rég. gral."
-msgstr "[65] Result. rég. gral."
+msgstr "[65] Result. règ. gral."
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_85
@@ -967,34 +967,3 @@ msgstr "[98] Result. 303 darrer període a tornar"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__has_347
 msgid "¿Obligación del 347?"
 msgstr "Obligació del 347?"
-<<<<<<< HEAD
-
-#~ msgid "Model"
-#~ msgstr "Model"
-
-#~ msgid "Number of unread messages"
-#~ msgstr "Nombre de missatges no llegits"
-
-#~ msgid "Unread Messages"
-#~ msgstr "Missatges per llegir"
-
-#~ msgid "Unread Messages Counter"
-#~ msgstr "Nombre de missatges per llegir"
-
-#~ msgid "Calculation date"
-#~ msgstr "Data de càlcul"
-
-#~ msgid "Contact email"
-#~ msgstr "Email de contacte"
-
-#~ msgid "Followers (Channels)"
-#~ msgstr "Seguidors (canals)"
-
-#~ msgid "Period type"
-#~ msgstr "Tipus de període"
->>>>>>> c6c4d8985 (Update translation files)
-=======
-msgstr "Obligació del 347?"
->>>>>>> 0dde547bb (Translated using Weblate (Catalan))
-=======
->>>>>>> 70dd841af (s)
