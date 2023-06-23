@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-10 03:41+0000\n"
-"PO-Revision-Date: 2022-03-09 10:17+0000\n"
-"Last-Translator: Eugeni Chafer <eugeni@chafer.cat>\n"
+"PO-Revision-Date: 2023-06-23 13:10+0000\n"
+"Last-Translator: eccit-quim <quim@eccit.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:142
@@ -561,7 +561,7 @@ msgstr "Data de finalització"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__date_end
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__date_end
 msgid "Ending date"
-msgstr "Fecha final"
+msgstr "Data final"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_map_tax.py:44
