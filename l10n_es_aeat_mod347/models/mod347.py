@@ -347,6 +347,11 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         default=lambda self: self.env.user,
         copy=False,
     )
+    # Needed for having the field in the external layout rendering scope for catching
+    # the proper company for the header/footer
+    company_id = fields.Many2one(
+        comodel_name="res.company", string="Company", related="report_id.company_id",
+    )
     state = fields.Selection(
         selection=[
             ("pending", "Pending"),
