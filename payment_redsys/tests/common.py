@@ -6,21 +6,21 @@ from odoo.addons.payment.tests.common import PaymentCommon
 
 class RedsysCommon(PaymentCommon):
     @classmethod
-    def setUpClass(cls, chart_template_ref=None):
-        super().setUpClass(chart_template_ref=chart_template_ref)
-        cls.redsys = cls._prepare_acquirer(
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.redsys = cls._prepare_provider(
             "redsys",
             update_values={
-                # Set values for create a new acquirer Redsys
-                "redsys_merchant_name": "Redsys test acquirer",
+                # Set values for create a new provider Redsys
+                "redsys_merchant_name": "Redsys test provider",
                 "redsys_merchant_code": "069611024",
-                "redsys_merchant_description": "Product description for Redsys test acquirer",
+                "redsys_merchant_description": "Product description for Redsys test provider",
                 "redsys_secret_key": "sq7HjrUOBfKmC576ILgskD5srU870gJ8",
                 "redsys_merchant_data": "Merchant data",
             },
         )
         # Override default values
-        cls.acquirer = cls.redsys
+        cls.provider = cls.redsys
         cls.currency = cls.currency_euro
         cls.country_spain = cls.env.ref("base.es")
         cls.country = cls.country_spain
