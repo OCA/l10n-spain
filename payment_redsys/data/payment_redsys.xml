@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2016-2017 Tecnativa - Sergio Teruel
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3). -->
+<odoo noupdate="1">
+    <record id="payment_provider_redsys" model="payment.provider">
+        <field name="name">Redsys</field>
+        <field
+            name="image_128"
+            type="base64"
+            file="payment_redsys/static/description/icon.png"
+        />
+        <field name="code">redsys</field>
+        <field name="company_id" ref="base.main_company" />
+        <field name="redirect_form_view_id" ref="redsys_form" />
+        <field name="redsys_merchant_name">Bussines name</field>
+        <field name="redsys_merchant_code">8888888</field>
+        <field name="redsys_merchant_description">Bussines description</field>
+        <field name="redsys_secret_key">xxxxxxxxxxxx -- SHA256</field>
+        <field name="module_id" ref="base.module_payment_redsys" />
+        <field
+            name="pre_msg"
+        ><![CDATA[
+<p>You will be redirected to the Redsys payment gateway after clicking on the payment button.</p>]]></field>
+    </record>
+    <record id="payment_icon_cc_bizum" model="payment.icon">
+        <field name="name">Bizum</field>
+        <field name="image" type="base64" file="payment_redsys/static/img/bizum.png" />
+    </record>
+
+    <record id="payment_method_redsys" model="account.payment.method">
+        <field name="name">Redsys</field>
+        <field name="code">redsys</field>
+        <field name="payment_type">inbound</field>
+    </record>
+
+</odoo>
