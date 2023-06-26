@@ -20,8 +20,8 @@ from odoo.tools import config
 _logger = logging.getLogger(__name__)
 
 
-class AcquirerRedsys(models.Model):
-    _inherit = "payment.acquirer"
+class PaymentProvider(models.Model):
+    _inherit = "payment.provider"
 
     def _redsys_get_api_url(self):
         if self.state == "enabled":
@@ -29,7 +29,7 @@ class AcquirerRedsys(models.Model):
         else:  # test environment
             return "https://sis-t.redsys.es:25443/sis/realizarPago/"
 
-    provider = fields.Selection(
+    code = fields.Selection(
         selection_add=[("redsys", "Redsys")], ondelete={"redsys": "set default"}
     )
     redsys_merchant_name = fields.Char("Merchant Name", required_if_provider="redsys")
@@ -196,6 +196,6 @@ class AcquirerRedsys(models.Model):
 
     def _get_default_payment_method_id(self):
         self.ensure_one()
-        if self.provider != "redsys":
+        if self.code != "redsys":
             return super()._get_default_payment_method_id()
         return self.env.ref("payment_redsys.payment_method_redsys").id

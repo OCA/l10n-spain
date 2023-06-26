@@ -35,7 +35,7 @@ class RedsysController(http.Controller):
             "Redsys: entering form_feedback with post data %s", pprint.pformat(post)
         )
         if post:
-            request.env["payment.transaction"].sudo()._handle_feedback_data(
+            request.env["payment.transaction"].sudo()._handle_notification_data(
                 "redsys", post
             )
             return request.redirect("/payment/status")
