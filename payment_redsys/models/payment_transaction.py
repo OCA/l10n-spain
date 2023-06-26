@@ -9,10 +9,10 @@ import json
 import logging
 import urllib
 
-from odoo import _, api, fields, http, models
+from odoo import _, api, fields, models
 from odoo.tools import config
 
-from odoo.addons.payment.models.payment_acquirer import ValidationError
+from odoo.addons.payment.models.payment_provider import ValidationError
 
 _logger = logging.getLogger(__name__)
 
@@ -31,10 +31,10 @@ class TxRedsys(models.Model):
     # --------------------------------------------------
 
     @api.model
-    def _get_tx_from_feedback_data(self, provider, data):
+    def _get_tx_from_notification_data(self, provider, data):
         """Given a data dict coming from redsys, verify it and
         find the related transaction record."""
-        tx = super()._get_tx_from_feedback_data(provider, data)
+        tx = super()._get_tx_from_notification_data(provider, data)
         if provider != "redsys":
             return tx
 
@@ -52,8 +52,6 @@ class TxRedsys(models.Model):
             if not test_env:
                 _logger.info(error_msg)
                 raise ValidationError(error_msg)
-            # For tests
-            http.OpenERPSession.tx_error = True
         tx = self.search([("reference", "=", reference)])
         if not tx or len(tx) > 1:
             error_msg = "Redsys: received data for reference %s" % (reference)
@@ -65,8 +63,8 @@ class TxRedsys(models.Model):
             raise ValidationError(error_msg)
         if tx and not test_env:
             # verify shasign
-            shasign_check = tx.acquirer_id.sign_parameters(
-                tx.acquirer_id.redsys_secret_key, parameters
+            shasign_check = tx.provider_id.sign_parameters(
+                tx.provider_id.redsys_secret_key, parameters
             )
             if shasign_check != shasign:
                 error_msg = (
@@ -88,9 +86,9 @@ class TxRedsys(models.Model):
         else:
             return "error"
 
-    def _process_feedback_data(self, data):
-        super()._process_feedback_data(data)
-        if self.provider != "redsys":
+    def _process_notification_data(self, data):
+        super()._process_notification_data(data)
+        if self.provider_code != "redsys":
             return
 
         params = self.merchant_params_json2dict(data)
@@ -134,19 +132,19 @@ class TxRedsys(models.Model):
 
     def _get_specific_rendering_values(self, processing_values):
         res = super()._get_specific_rendering_values(processing_values)
-        if self.acquirer_id.provider != "redsys":
+        if self.provider_code != "redsys":
             return res
         redsys_values = dict(processing_values)
-        merchant_parameters = self.acquirer_id._prepare_merchant_parameters(
+        merchant_parameters = self.provider_id._prepare_merchant_parameters(
             processing_values
         )
         redsys_values.update(
             {
-                "api_url": self.acquirer_id._redsys_get_api_url(),
-                "Ds_SignatureVersion": str(self.acquirer_id.redsys_signature_version),
+                "api_url": self.provider_id._redsys_get_api_url(),
+                "Ds_SignatureVersion": str(self.provider_id.redsys_signature_version),
                 "Ds_MerchantParameters": merchant_parameters,
-                "Ds_Signature": self.acquirer_id.sign_parameters(
-                    self.acquirer_id.redsys_secret_key, merchant_parameters
+                "Ds_Signature": self.provider_id.sign_parameters(
+                    self.provider_id.redsys_secret_key, merchant_parameters
                 ),
             }
         )
