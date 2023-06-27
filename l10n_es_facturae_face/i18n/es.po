@@ -119,7 +119,6 @@ msgstr ""
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__res_partner__l10n_es_facturae_sending_code__face
-#: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__webservice_backend__protocol__face
 msgid "FACe"
 msgstr ""
 
@@ -237,11 +236,6 @@ msgid "Paid"
 msgstr "Pagado"
 
 #. module: l10n_es_facturae_face
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_webservice_backend__protocol
-msgid "Protocol"
-msgstr ""
-
-#. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__account_move__l10n_es_facturae_status__face-1300
 msgid "Registered on RCF"
 msgstr "Registrado en RCF"
@@ -275,8 +269,3 @@ msgstr ""
 #, python-format
 msgid "Vat must be defined in order to send to FACe"
 msgstr "El identificador fiscal debe estar definido para poder enviar por FACe"
-
-#. module: l10n_es_facturae_face
-#: model:ir.model,name:l10n_es_facturae_face.model_webservice_backend
-msgid "WebService Backend"
-msgstr ""
