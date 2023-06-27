@@ -82,7 +82,7 @@ msgid "Cancel and recreate"
 msgstr "Baliogabetu eta birsortu"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:319
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:313
 #, python-format
 msgid "Cancellation"
 msgstr "Baliogabetzea"
@@ -414,7 +414,7 @@ msgid "Origin Invoices Data"
 msgstr "Jatorrizko Fakturaren Datuak"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:364
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:358
 #, python-format
 msgid ""
 "Please, specify data for the original invoices that are going to be refunded"
@@ -436,7 +436,7 @@ msgid "Refund"
 msgstr "Itzulketa"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:342
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:336
 #, python-format
 msgid ""
 "Refund invoices must be cancelled in order to cancel the original invoice."
@@ -499,13 +499,13 @@ msgid "Software"
 msgstr "Softwarea"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:378
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:372
 #, python-format
 msgid "Some of the original invoices have related tbai cancelled invoices"
 msgstr "Jatorrizko faktura batzuek baliogabetutako tbai fakturak dituzte"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:373
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:367
 #, python-format
 msgid ""
 "Some of the original invoices have related tbai invoices in inconsistent "
