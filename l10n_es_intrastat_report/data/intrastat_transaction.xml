@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="intrastat_transaction_11" model="intrastat.transaction">
+            <field name="code">11</field>
+            <field
+                name="description"
+            >Transacciones que supongan un traspaso de propiedad real o previsto de residentes a no residentes a cambio de una compensación financiera o de otro tipo: Compra/Venta en firme.</field>
+            <field name="company_id" eval="False" />
+        </record>
+        <record id="intrastat_transaction_12" model="intrastat.transaction">
+            <field name="code">12</field>
+            <field
+                name="description"
+            >Transacciones que supongan un traspaso de propiedad real o previsto de residentes a no residentes a cambio de una compensación financiera o de otro tipo: Entrega para venta a la vista o de prueba, para consignación o con la mediación de un agente comisionado.</field>
+            <field name="company_id" eval="False" />
+        </record>
+        <record id="intrastat_transaction_13" model="intrastat.transaction">
+            <field name="code">13</field>
+            <field
+                name="description"
+            >Transacciones que supongan un traspaso de propiedad real o previsto de residentes a no residentes a cambio de una compensación financiera o de otro tipo: Trueque (compensación en especie).</field>
+            <field name="company_id" eval="False" />
+            <field name="active" eval="False" />
+        </record>
+        <record id="intrastat_transaction_14" model="intrastat.transaction">
+            <field name="code">14</field>
+            <field
+                name="description"
+            >Transacciones que supongan un traspaso de propiedad real o previsto de residentes a no residentes a cambio de una compensación financiera o de otro tipo: Arrendamiento financiero (alquiler - compra).</field>
+            <field name="company_id" eval="False" />
+            <field name="active" eval="False" />
+        </record>
+        <record id="intrastat_transaction_19" model="intrastat.transaction">
+            <field name="code">19</field>
+            <field
+                name="description"
+            >Transacciones que supongan un traspaso de propiedad real o previsto de residentes a no residentes a cambio de una compensación financiera o de otro tipo: Otras.</field>
+            <field name="company_id" eval="False" />
+            <field name="active" eval="False" />
+        </record>
+        <record id="intrastat_transaction_21" model="intrastat.transaction">
+            <field name="code">21</field>
+            <field
+                name="description"
+            >Devolución y sustitución gratuita de mercancías después del registro de la transacción original: Devolución de mercancías.</field>
+            <field name="company_id" eval="False" />
+        </record>
+        <record id="intrastat_transaction_22" model="intrastat.transaction">
+            <field name="code">22</field>
+            <field
+                name="description"
+            >Devolución y sustitución gratuita de mercancías después del registro de la transacción original: Sustitución de mercancías devueltas.</field>
+            <field name="company_id" eval="False" />
+        </record>
+        <record id="intrastat_transaction_23" model="intrastat.transaction">
+            <field name="code">23</field>
+            <field
+                name="description"
+            >Devolución y sustitución gratuita de mercancías después del registro de la transacción original: Sustitución (por ejemplo, bajo garantía) de mercancías no devueltas.</field>
+            <field name="company_id" eval="False" />
+        </record>
+        <record id="intrastat_transaction_29" model="intrastat.transaction">
+            <field name="code">29</field>
+            <field
+                name="description"
+            >Devolución y sustitución gratuita de mercancías después del registro de la transacción original: Otras.</field>
+            <field name="company_id" eval="False" />
+            <field name="active" eval="False" />
+        </record>
+        <record id="intrastat_transaction_31" model="intrastat.transaction">
+            <field name="code">31</field>
+            <field
+                name="description"
+            >Transacciones que supongan un traspaso de propiedad sin compensación financiera o en especie: Mercancías suministradas en el marco de programas de ayuda promovidos o financiados parcial o totalmente por la Unión Europea.</field>
+            <field name="company_id" eval="False" />
+        </record>
+        <record id="intrastat_transaction_32" model="intrastat.transaction">
+            <field name="code">32</field>
+            <field
+                name="description"
+            >Transacciones que supongan un traspaso de propiedad sin compensación financiera o en especie: Otras entregas de ayuda gubernamental.</field>
+            <field name="company_id" eval="False" />
+        </record>
+        <record id="intrastat_transaction_33" model="intrastat.transaction">
+            <field name="code">33</field>
+            <field
+                name="description"
+            >Transacciones que supongan un traspaso de propiedad sin compensación financiera o en especie: Otras ayudas (particulares, organizaciones no gubernamentales).</field>
+            <field name="company_id" eval="False" />
+        </record>
+        <record id="intrastat_transaction_34" model="intrastat.transaction">
+            <field name="code">34</field>
+            <field
+                name="description"
+            >Transacciones que implican transferencia de propiedad sin compensación económica. Transacciones que implican el cambio previsto de propiedad o cambio de propiedad sin compensación financiera.</field>
+            <field name="company_id" eval="False" />
+        </record>
+        <record id="intrastat_transaction_41" model="intrastat.transaction">
+            <field name="code">41</field>
+            <field
+                name="description"
+            >Operaciones con vistas a un perfeccionamiento bajo contrato (no se traspasa la propiedad al contratista): Mercancías destinadas a regresar al Estado miembro de expedición inicial.</field>
+            <field name="company_id" eval="False" />
+        </record>
+        <record id="intrastat_transaction_42" model="intrastat.transaction">
+            <field name="code">42</field>
+            <field
+                name="description"
+            >Operaciones con vistas a un perfeccionamiento bajo contrato (no se traspasa la propiedad al contratista): Mercancías no destinadas a regresar al Estado miembro de expedición inicial.</field>
+            <field name="company_id" eval="False" />
+        </record>
+        <record id="intrastat_transaction_44" model="intrastat.transaction">
+            <field name="code">44</field>
+            <field
+                name="description"
+            >Operaciones con vistas a un perfeccionamiento bajo contrato (no se traspasa la propiedad al contratista): Reparación o mantenimiento a título gratuito.</field>
+            <field name="company_id" eval="False" />
+            <field name="active" eval="False" />
+        </record>
+        <record id="intrastat_transaction_45" model="intrastat.transaction">
+            <field name="code">45</field>
+            <field
+                name="description"
+            >Operaciones con vistas a un perfeccionamiento bajo contrato (no se traspasa la propiedad al contratista): Reparación o mantenimiento a título oneroso.</field>
+            <field name="company_id" eval="False" />
+            <field name="active" eval="False" />
+        </record>
+        <record id="intrastat_transaction_51" model="intrastat.transaction">
+            <field name="code">51</field>
+            <field
+                name="description"
+            >Operaciones posteriores al perfeccionamiento bajo contrato (no se traspasa la propiedad al contratista): Mercancías que regresan al Estado miembro de expedición.</field>
+            <field name="company_id" eval="False" />
+        </record>
+        <record id="intrastat_transaction_52" model="intrastat.transaction">
+            <field name="code">52</field>
+            <field
+                name="description"
+            >Operaciones posteriores al perfeccionamiento bajo contrato (no se traspasa la propiedad al contratista): Mercancías que no regresan al Estado miembro de expedición.</field>
+            <field name="company_id" eval="False" />
+        </record>
+        <record id="intrastat_transaction_54" model="intrastat.transaction">
+            <field name="code">54</field>
+            <field
+                name="description"
+            >Operaciones posteriores al perfeccionamiento bajo contrato (no se traspasa la propiedad al contratista): Reparación o mantenimiento a título gratuito.</field>
+            <field name="company_id" eval="False" />
+            <field name="active" eval="False" />
+        </record>
+        <record id="intrastat_transaction_55" model="intrastat.transaction">
+            <field name="code">55</field>
+            <field
+                name="description"
+            >Operaciones posteriores al perfeccionamiento bajo contrato (no se traspasa la propiedad al contratista): Reparación o mantenimiento a título oneroso.</field>
+            <field name="company_id" eval="False" />
+            <field name="active" eval="False" />
+        </record>
+        <record id="intrastat_transaction_60" model="intrastat.transaction">
+            <field name="code">60</field>
+            <field
+                name="description"
+            >Transacciones particulares registradas para fines nacionales, como reparaciones.</field>
+            <field name="company_id" eval="False" />
+        </record>
+        <record id="intrastat_transaction_70" model="intrastat.transaction">
+            <field name="code">70</field>
+            <field
+                name="description"
+            >Operaciones en el marco de programas comunes de defensa u otros programas intergubernamentales de producción conjunta.</field>
+            <field name="company_id" eval="False" />
+            <field name="active" eval="False" />
+        </record>
+        <record id="intrastat_transaction_71" model="intrastat.transaction">
+            <field name="code">71</field>
+            <field
+                name="description"
+            >Despacho de mercancías a libre práctica en un Estado miembro con una exportación posterior a otro Estado miembro. Transacciones con miras al despacho de aduanas (que no implica cambio de titularidad, relacionados con mercancías en cuasi-importación o exportación).</field>
+            <field name="company_id" eval="False" />
+        </record>
+        <record id="intrastat_transaction_72" model="intrastat.transaction">
+            <field name="code">72</field>
+            <field
+                name="description"
+            >Transporte de mercancías de un miembr Estado a otro Estado miembro para colocar el mercancías en régimen de exportación. Transacciones con miras al despacho de aduanas (que no implica cambio de titularidad, relacionados con mercancías en cuasi-importación o exportación).</field>
+            <field name="company_id" eval="False" />
+        </record>
+        <record id="intrastat_transaction_80" model="intrastat.transaction">
+            <field name="code">80</field>
+            <field
+                name="description"
+            >Suministro de materiales de construcción y maquinaria para trabajos en el marco de un contrato general de construcción o ingeniería.</field>
+            <field name="company_id" eval="False" />
+        </record>
+        <record id="intrastat_transaction_91" model="intrastat.transaction">
+            <field name="code">91</field>
+            <field
+                name="description"
+            >Suministro de materiales de construcción y maquinaria para trabajos en el marco de un contrato general de construcción o ingeniería.</field>
+            <field name="company_id" eval="False" />
+        </record>
+        <record id="intrastat_transaction_99" model="intrastat.transaction">
+            <field name="code">99</field>
+            <field
+                name="description"
+            >Otras transacciones que no se pueden clasificar bajo otros códigos. Otras.</field>
+            <field name="company_id" eval="False" />
+        </record>
+    </data>
+</odoo>
