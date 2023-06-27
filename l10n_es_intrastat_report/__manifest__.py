@@ -20,7 +20,7 @@
         "security/l10n_es_intrastat_report_security.xml",
         "security/ir.model.access.csv",
         "data/intrastat_transaction.xml",
-        "data/account_fiscal_position_template.xml",
+        # "data/account_fiscal_position_template.xml",
         "views/l10n_es_intrastat_product.xml",
         "wizards/l10n_es_intrastat_code_import.xml",
     ],
