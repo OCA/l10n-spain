@@ -15,7 +15,7 @@
     "auto_install": False,
     "development_status": "Beta",
     "maintainers": [
-        "ao-landoo",
+        "oihane",
     ],
     "depends": ["base", "base_setup"],
     "external_dependencies": {
