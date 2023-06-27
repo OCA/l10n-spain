@@ -78,7 +78,6 @@ class L10nEsPartnerImportWizard(models.TransientModel):
         module = __name__.split("addons.")[1].split(".")[0]
         transaction = self.env.ref("%s.intrastat_transaction_11" % module)
         for field in [
-            "intrastat_transaction_out_invoice",
             "intrastat_transaction_out_refund",
             "intrastat_transaction_in_invoice",
             "intrastat_transaction_in_refund",
