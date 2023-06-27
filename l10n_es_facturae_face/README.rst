@@ -108,6 +108,12 @@ Authors
 
 * Creu Blanca
 
+Contributors
+~~~~~~~~~~~~
+
+* Enric Tobella <etobella@creublanca.es>
+* Eric Antones <eantones@nuobit.com>
+
 Maintainers
 ~~~~~~~~~~~
 
