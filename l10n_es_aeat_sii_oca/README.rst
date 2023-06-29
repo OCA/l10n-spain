@@ -157,6 +157,9 @@ Contributors
 * Lois Rilo Antelo <lois.rilo@forgeflow.com>
 * Eduardo de Miguel (edu@moduon.team)
 * Jose Zambudio <jose@aurestic.es>
+* `Factor Libre <https://factorlibre.com>`__:
+
+  * Luis J. Salvatierra <luis.salvatierra@factorlibre.com>
 
 Maintainers
 ~~~~~~~~~~~
