@@ -13,24 +13,19 @@
                     <field name="is_plastic_tax" />
                 </div>
             </xpath>
-            <xpath expr="//group[@name='group_lots_and_weight']" position="after">
+             <xpath expr="//group[@name='group_lots_and_weight']" position="after">
                 <group name="plastic_tax" string="Plastic Tax Parameters" col="4" colspan="4"
                     attrs="{'invisible': [('is_plastic_tax', '=', False)]}">
-                    <field name="company_plastic_type" />
+                    <field name="tax_plastic_type" attrs="{'required': [('is_plastic_tax', '=', True)]}"/>
                     <field name="product_plastic_tax_weight"
                         attrs="{'required': [('is_plastic_tax', '=', True)]}" />
                     <field name="product_plastic_weight_non_recyclable"
                         attrs="{'required': [('is_plastic_tax', '=', True)]}" />
-                    <field name="product_plastic_type_key"
-                        attrs="{'required': [('is_plastic_tax', '=', True)]}" />
-                    <!-- <field name="product_plastic_concept_manufacturer"
-                        attrs="{'required': [('is_plastic_tax', '=', True)], 'invisible': [('company_plastic_type', '=', 'acquirer')]}" />
-                    <field name="product_plastic_concept_acquirer"
-                        attrs="{'required': [('is_plastic_tax', '=', True)], 'invisible': [('company_plastic_type', '=', 'acquirer')]}" /> -->
+                    <field name="product_plastic_type_key"/>
                     <field name="product_plastic_tax_regime_manufacturer"
-                        attrs="{'invisible': [('company_plastic_type', '=', 'acquirer')]}" />
+                        attrs="{'invisible': [('tax_plastic_type', '=', 'acquirer')]}" />
                     <field name="product_plastic_tax_regime_acquirer"
-                        attrs="{'invisible': [('company_plastic_type', '=', 'manufacturer')]}" />
+                        attrs="{'invisible': [('tax_plastic_type', '=', 'manufacturer')]}" />
                 </group>
             </xpath>
         </field>
