@@ -24,63 +24,65 @@
         <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
         <field name="arch" type="xml">
             <header position="inside">
-                <field name="company_plastic_type" invisible="1"/>
                 <!-- MANUFACTURER -->
-                <button name="export_xlsx_manufacturer" string="Export XLSX" type="object" icon="fa-share" attrs="{'invisible':[('state', '!=', 'done'), ('company_plastic_type', '=', 'acquirer')]}" />
-                <button name="export_csv_manufacturer" string="Export CSV" type="object" icon="fa-share" attrs="{'invisible':[('state', '!=', 'done'), ('company_plastic_type', '=', 'acquirer')]}" />
+                <button name="export_csv_manufacturer" string="Export CSV Manufacturer" type="object" icon="fa-share" attrs="{'invisible':['|', ('state', '!=', 'done'), ('num_lines_manufacturer', '=', 0)]}" />
                 <!-- ACQUIRER -->
-                <button name="export_xlsx_acquirer" string="Export XLSX" type="object" icon="fa-share" attrs="{'invisible':[('state', '!=', 'done'), ('company_plastic_type', '=', 'manufacturer')]}" />
-                <button name="export_csv_acquirer" string="Export CSV" type="object" icon="fa-share" attrs="{'invisible':[('state', '!=', 'done'), ('company_plastic_type', '=', 'manufacturer')]}" />
+                <button name="export_csv_acquirer" string="Export CSV Acquirer" type="object" icon="fa-share" attrs="{'invisible':['|', ('state', '!=', 'done'), ('num_lines_acquirer', '=', 0)]}" />
             </header>
+
+            <field name="allow_posting" position="before">
+                <field name="acquirer_line_ids" invisible="1"/> 
+                <field name="manufacturer_line_ids" invisible="1"/> 
+                <div class="oe_button_box" name="button_box">
+                    <button
+                            class="oe_stat_button"
+                            name="view_action_mod592_report_line_acquirer"
+                            type="object"
+                            attrs="{'invisible': [('num_lines_acquirer', '=', 0)]}"
+                            icon="fa-list">
+                        <field name="num_lines_acquirer" string="Acquirer entries" widget="statinfo"/>
+                    </button>
+                    <button
+                        class="oe_stat_button"
+                        name="view_action_mod592_report_line_manufacturer"
+                        type="object"
+                        attrs="{'invisible': [('num_lines_manufacturer', '=', 0)]}"
+                        icon="fa-list">
+                        <field name="num_lines_manufacturer" string="Manufacturer entries" widget="statinfo"/>
+                    </button>
+                </div>
+            </field>
+            <group name="group_declaration" position="before">
+                <field name="show_error_acquirer" invisible="1"/>
+                <field name="show_error_manufacturer" invisible="1"/>
+                <div style="color:red" attrs="{'invisible': [('show_error_acquirer', '=', False)]}">
+                    <h2>Acquirer lines with errors</h2>
+                </div>
+                <div style="color:red" attrs="{'invisible': [('show_error_manufacturer', '=', False)]}">
+                    <h2>Manufacturer lines with errors</h2>
+                </div>
+            </group>
             <group name="group_declaration" position="after">
                 <notebook colspan="4">
                     <page string="General">
                         <group string="Generic">
                             <field name="amount_plastic_tax" col="2"/>
                         </group>
-                        <group string="Manufacturer Result" attrs="{'invisible':[('company_plastic_type', '=', 'acquirer')]}">
-                            <group>
+                        <group>
+                            <group string="Manufacturer Result">
                                 <field name="total_manufacturer_entries_records" />
-                            </group>
-                            <group>
                                 <field name="total_weight_manufacturer_records" />
-                            </group>
-                            <group>
                                 <field name="total_weight_manufacturer_non_reclyclable_records" />
-                            </group>
-                            <group>
                                 <field name="total_amount_manufacturer_records" />
                             </group>
-
-                        </group>
-                        <group string="Acquirer Result" attrs="{'invisible':[('company_plastic_type', '=', 'manufacturer')]}">
-                            <group>
+                            <group string="Acquirer Result">
                                 <field name="total_acquirer_entries_records" />
-                            </group>
-                            <group>
                                 <field name="total_weight_acquirer_records" />
-                            </group>
-                            <group>
                                 <field name="total_weight_acquirer_non_reclyclable_records" />
-                            </group>
-                            <group>
                                 <field name="total_amount_acquirer_records" />
                             </group>
                         </group>
                     </page>
-                    <page string="Manufacturer Entries Records" attrs="{'invisible':[('company_plastic_type', '=', 'acquirer')]}">
-                        <group name="manufacturer_entries_records" string="Manufacturer Entries Record">
-                            <field name="manufacturer_line_ids" nolabel="1" />
-                        </group>
-
-                    </page>
-                    <page string="Acquirer Entries Records" attrs="{'invisible':[('company_plastic_type', '=', 'manufacturer')]}">
-                        <group name="acquirer_entries_records" string="Acquirer Entries Record">
-                            <field name="acquirer_line_ids" nolabel="1" />
-                        </group>
-
-                    </page>
-
                 </notebook>
             </group>
             <form position="inside">
@@ -92,6 +94,7 @@
             </form>
         </field>
     </record>
+
     <!-- Window action -->
     <record id="action_l10n_es_aeat_mod592_report" model="ir.actions.act_window">
         <field name="name">AEAT AEAT 592 Model</field>
@@ -111,6 +114,7 @@
         <field name="view_id" ref="view_l10n_es_aeat_mod592_report_form" />
         <field name="act_window_id" ref="action_l10n_es_aeat_mod592_report" />
     </record>
+
     <!-- Menu action -->
     <menuitem id="menu_aeat_mod592_report" parent="l10n_es_aeat.menu_root_aeat" action="action_l10n_es_aeat_mod592_report" sequence="592" name="AEAT 592 Model" />
 </odoo>
