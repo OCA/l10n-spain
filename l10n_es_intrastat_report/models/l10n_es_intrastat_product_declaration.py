@@ -7,27 +7,24 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
-from odoo.exceptions import Warning as UserError
+from odoo.exceptions import UserError
 
 from odoo.addons.l10n_es_aeat.models.spanish_states_mapping import SPANISH_STATES
 
-MODEL_NAME = "l10n.es.intrastat.product.declaration"
-PRODUCT_COMPUTATION_LINE = "l10n.es.intrastat.product.computation.line"
-PRODUCT_DECLARATION_LINE = "l10n.es.intrastat.product.declaration.line"
 
 class L10nEsIntrastatProductDeclaration(models.Model):
-    _name = MODEL_NAME
+    _name = "intrastat.product.declaration"
     _description = "Intrastat Product Declaration for Spain"
     _inherit = ["intrastat.product.declaration", "mail.thread"]
 
     computation_line_ids = fields.One2many(
-        comodel_name=PRODUCT_COMPUTATION_LINE,
+        comodel_name="intrastat.product.computation.line",
         inverse_name="parent_id",
         string="Intrastat Product Computation Lines",
         states={"done": [("readonly", True)]},
     )
     declaration_line_ids = fields.One2many(
-        comodel_name=PRODUCT_DECLARATION_LINE,
+        comodel_name="intrastat.product.declaration.line",
         inverse_name="parent_id",
         string="Intrastat Product Declaration Lines",
         states={"done": [("readonly", True)]},
@@ -39,8 +36,8 @@ class L10nEsIntrastatProductDeclaration(models.Model):
         inv_type = inv_line.move_id.move_type
         if inv_type in ("in_invoice", "in_refund"):
             intrastat_state = inv_line.purchase_line_id.move_ids[
-                              :1
-                              ].location_dest_id._get_intrastat_state()
+                :1
+            ].location_dest_id._get_intrastat_state()
         elif inv_type in ("out_invoice", "out_refund"):
             so = inv_line.sale_line_ids[:1].order_id
             intrastat_state = so.warehouse_id.partner_id.state_id
@@ -48,25 +45,8 @@ class L10nEsIntrastatProductDeclaration(models.Model):
             intrastat_state = inv_line.company_id.partner_id.state_id
         return intrastat_state
 
-    def _gather_invoices(self, notedict):
-        old_lines = super()._gather_invoices(notedict)
-        lines = []
-        move_line_model = self.env["account.move.line"]
-        for line in old_lines:
-            if self.declaration_type == "dispatches" and int(self.year) >= 2022:
-                if not line["product_origin_country_id"]:
-                    inv_line = move_line_model.browse(line["invoice_line_id"])
-                    line_notes = [
-                        _("Missing origin country on product %s. ")
-                        % (inv_line.product_id.display_name)
-                    ]
-                    self._format_line_note(inv_line, notedict, line_notes)
-                    continue
-            lines.append(line)
-        return lines
-
     def _update_computation_line_vals(self, inv_line, line_vals, notedict):
-        super()._update_computation_line_vals(inv_line, line_vals, notedict)
+        result = super()._update_computation_line_vals(inv_line, line_vals, notedict)
         intrastat_state = self._get_intrastat_state(inv_line)
         if intrastat_state:
             line_vals["intrastat_state_id"] = intrastat_state.id
@@ -78,10 +58,11 @@ class L10nEsIntrastatProductDeclaration(models.Model):
                 inv_line.move_id.partner_shipping_id.vat or "QV999999999999"
             )
             if not inv_line.move_id.partner_shipping_id.vat:
-                line_notes = [
-                    _("Missing partner vat on invoice %s. ") % (inv_line.move_id.name)
-                ]
-                self._format_line_note(inv_line, notedict, line_notes)
+                msg = _("Missing partner <em>VAT Number</em>")
+                notedict["partner"][inv_line.move_id.partner_id.display_name][msg].add(
+                    notedict["inv_origin"]
+                )
+        return result
 
     def _gather_invoices_init(self, notedict):
         if self.company_id.country_id.code != "ES":
@@ -99,7 +80,7 @@ class L10nEsIntrastatProductDeclaration(models.Model):
         - credit notes with and without return
         - companies subject to arrivals or dispatches only
         """
-        domain = super()._prepare_invoice_domain()
+        domain = super()._prepare_invoice_domain()[:-1]
         if self.declaration_type == "arrivals":
             domain.append(("move_type", "in", ("in_invoice", "out_refund")))
         elif self.declaration_type == "dispatches":
@@ -119,21 +100,19 @@ class L10nEsIntrastatProductDeclaration(models.Model):
         return vals
 
     @api.model
-    def _prepare_declaration_line(self, computation_lines):
-        vals = super()._prepare_declaration_line(computation_lines)
-        # Avoid rounding in weight
+    def _prepare_declaration_line(self):
+        vals = super()._prepare_declaration_line()
+        # Avoid rounding in weight and fiscal value
         vals["weight"] = 0.0
-        for computation_line in computation_lines:
-            vals["weight"] += computation_line["weight"]
-        if not vals["weight"]:
-            vals["weight"] = 1
-        # Avoid rounding in fiscal value
         vals["amount_company_currency"] = 0.0
-        for computation_line in computation_lines:
+        for computation_line in self:
+            vals["weight"] += computation_line["weight"]
             vals["amount_company_currency"] += (
                 computation_line["amount_company_currency"]
                 + computation_line["amount_accessory_cost_company_currency"]
             )
+        if not vals["weight"]:
+            vals["weight"] = 1
         return vals
 
     @api.model
@@ -176,7 +155,7 @@ class L10nEsIntrastatProductDeclaration(models.Model):
             # Código mercancías CN8
             line.hs_code_id.local_code,
             # País origen
-            line.product_origin_country_id.code,
+            line.product_origin_country_code,
             # Régimen estadístico
             False,
             # Masa neta
@@ -250,18 +229,18 @@ class L10nEsIntrastatProductDeclaration(models.Model):
 
 
 class L10nEsIntrastatProductComputationLine(models.Model):
-    _name = PRODUCT_COMPUTATION_LINE
+    _name = "intrastat.product.computation.line"
     _inherit = "intrastat.product.computation.line"
     _description = "Intrastat Product Computation Line for Spain"
 
     parent_id = fields.Many2one(
-        comodel_name=MODEL_NAME,
+        comodel_name="intrastat.product.declaration",
         string="Intrastat Product Declaration",
         ondelete="cascade",
         readonly=True,
     )
     declaration_line_id = fields.Many2one(
-        comodel_name=PRODUCT_DECLARATION_LINE,
+        comodel_name="intrastat.product.declaration.line",
         string="Declaration Line",
         readonly=True,
     )
@@ -272,18 +251,18 @@ class L10nEsIntrastatProductComputationLine(models.Model):
 
 
 class L10nEsIntrastatProductDeclarationLine(models.Model):
-    _name = PRODUCT_DECLARATION_LINE
+    _name = "intrastat.product.declaration.line"
     _inherit = "intrastat.product.declaration.line"
     _description = "Intrastat Product Declaration Line for Spain"
 
     parent_id = fields.Many2one(
-        comodel_name=MODEL_NAME,
+        comodel_name="intrastat.product.declaration",
         string="Intrastat Product Declaration",
         ondelete="cascade",
         readonly=True,
     )
     computation_line_ids = fields.One2many(
-        comodel_name=PRODUCT_COMPUTATION_LINE,
+        comodel_name="intrastat.product.computation.line",
         inverse_name="declaration_line_id",
         string="Computation Lines",
         readonly=True,

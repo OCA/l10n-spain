@@ -17,5 +17,5 @@ def post_init_hook(cr, registry):
         ]
     )
     env["account.fiscal.position"].browse(items.mapped("res_id")).write(
-        {"intrastat": 'no'}
+        {"intrastat": "b2b", "vat_required": True}
     )
