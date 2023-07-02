@@ -173,9 +173,8 @@ class AccountMove(models.Model):
     def _get_facturae_move_attachments(self):
         result = []
         if self.partner_id.attach_invoice_as_annex:
-            content, content_type = self.env["ir.actions.report"]._render(
-                "account.account_invoices", self.ids
-            )
+            action = self.env.ref("account.account_invoices")
+            content, content_type = action._render(self.ids)
             result.append(
                 {
                     "data": base64.b64encode(content),

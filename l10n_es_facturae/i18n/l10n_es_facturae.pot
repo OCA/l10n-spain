@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -129,14 +129,12 @@ msgid "Companies"
 msgstr ""
 
 #. module: l10n_es_facturae
-#. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Company vat is too small"
 msgstr ""
 
 #. module: l10n_es_facturae
-#. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Company vat not provided"
@@ -156,7 +154,6 @@ msgid "Correction Method"
 msgstr ""
 
 #. module: l10n_es_facturae
-#. odoo-python
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
 msgid "Country must be defined"
@@ -242,17 +239,11 @@ msgid "Domicilio Receptor"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
-msgid "Edit"
-msgstr ""
-
-#. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.wizard_create_facturae
 msgid "Export"
 msgstr ""
 
 #. module: l10n_es_facturae
-#. odoo-python
 #: code:addons/l10n_es_facturae/wizard/create_facturae.py:0
 #, python-format
 msgid ""
@@ -264,9 +255,7 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__parent_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__parent_facturae
 msgid "Factura electrónica"
 msgstr ""
 
@@ -294,7 +283,6 @@ msgid "Facturae Code"
 msgstr ""
 
 #. module: l10n_es_facturae
-#. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Facturae Configuration"
@@ -401,7 +389,6 @@ msgid "Facturae sin firmar"
 msgstr ""
 
 #. module: l10n_es_facturae
-#. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
@@ -552,7 +539,6 @@ msgid "Identificación fiscal Receptor"
 msgstr ""
 
 #. module: l10n_es_facturae
-#. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Invoice %s"
@@ -646,21 +632,18 @@ msgid "Otro"
 msgstr ""
 
 #. module: l10n_es_facturae
-#. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Partner state not provided"
 msgstr ""
 
 #. module: l10n_es_facturae
-#. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Partner vat is too small"
 msgstr ""
 
 #. module: l10n_es_facturae
-#. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Partner vat not provided"
@@ -672,7 +655,6 @@ msgid "Payment Modes"
 msgstr ""
 
 #. module: l10n_es_facturae
-#. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Payment mode is required"
@@ -743,14 +725,12 @@ msgid "Second"
 msgstr ""
 
 #. module: l10n_es_facturae
-#. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Selected account BIC must be 11"
 msgstr ""
 
 #. module: l10n_es_facturae
-#. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Selected account is too small"
@@ -763,7 +743,6 @@ msgid "Serie de la factura"
 msgstr ""
 
 #. module: l10n_es_facturae
-#. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
@@ -776,7 +755,6 @@ msgid "State"
 msgstr ""
 
 #. module: l10n_es_facturae
-#. odoo-python
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
 msgid "State must be defined"
@@ -788,7 +766,6 @@ msgid "Tax"
 msgstr ""
 
 #. module: l10n_es_facturae
-#. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Taxes not provided in move line %s"
@@ -800,7 +777,6 @@ msgid "Templates for Taxes"
 msgstr ""
 
 #. module: l10n_es_facturae
-#. odoo-python
 #: code:addons/l10n_es_facturae/reports/report_facturae.py:0
 #, python-format
 msgid ""
@@ -822,21 +798,18 @@ msgid "Unidad Tramitadora"
 msgstr ""
 
 #. module: l10n_es_facturae
-#. odoo-python
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
 msgid "Vat must be defined"
 msgstr ""
 
 #. module: l10n_es_facturae
-#. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "You can only create Facturae files for moves that have been validated."
 msgstr ""
 
 #. module: l10n_es_facturae
-#. odoo-python
 #: code:addons/l10n_es_facturae/wizard/create_facturae.py:0
 #, python-format
 msgid "You can only select one move to export"
