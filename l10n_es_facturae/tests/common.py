@@ -17,7 +17,7 @@ from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
 )
 
 
-class CommonTest(TestL10nEsAeatCertificateBase):
+class CommonTestBase(TestL10nEsAeatCertificateBase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # We want to avoid testing on the CommonTest class
@@ -226,6 +226,8 @@ class CommonTest(TestL10nEsAeatCertificateBase):
             "57.090000",
         ]
 
+
+class CommonTest(CommonTestBase):
     def test_facturae_generation(self):
         self.move.action_post()
         self._activate_certificate(self.certificate_password)
