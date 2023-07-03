@@ -48,6 +48,7 @@ addon | version | maintainers | summary
 [l10n_es_aeat_mod303_oss](l10n_es_aeat_mod303_oss/) | 12.0.1.0.0 |  | AEAT modelo 303 - OSS
 [l10n_es_aeat_mod347](l10n_es_aeat_mod347/) | 12.0.2.2.0 |  | AEAT modelo 347
 [l10n_es_aeat_mod349](l10n_es_aeat_mod349/) | 12.0.1.3.4 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Modelo 349 AEAT
+[l10n_es_aeat_mod369](l10n_es_aeat_mod369/) | 12.0.1.0.0 |  | AEAT modelo 369
 [l10n_es_aeat_mod390](l10n_es_aeat_mod390/) | 12.0.4.1.1 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | AEAT modelo 390
 [l10n_es_aeat_mod390_vat_prorate](l10n_es_aeat_mod390_vat_prorate/) | 12.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | AEAT - Prorrata de IVA 390
 [l10n_es_aeat_partner_check](l10n_es_aeat_partner_check/) | 12.0.1.0.3 |  | AEAT - Comprobación de Calidad de datos identificativos
