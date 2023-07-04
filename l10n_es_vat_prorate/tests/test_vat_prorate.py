@@ -12,8 +12,8 @@ from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 @tagged("post_install", "-at_install")
 class TestVatProrate(AccountTestInvoicingCommon):
     @classmethod
-    def setUpClass(cls):
-        super().setUpClass(chart_template_ref="l10n_es.account_chart_template_pymes")
+    def setUpClass(cls, chart_template_ref="l10n_es.account_chart_template_pymes"):
+        super().setUpClass(chart_template_ref=chart_template_ref)
         cls.env.company.write(
             {
                 "with_vat_prorate": True,
