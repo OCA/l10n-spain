@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-20 12:24+0000\n"
-"PO-Revision-Date: 2022-10-20 14:26+0200\n"
-"Last-Translator: ethan@studio73.es\n"
+"PO-Revision-Date: 2023-07-05 19:08+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__0
@@ -497,6 +497,8 @@ msgid ""
 "GLS Pickup extra info:<br/> Tracking number: %(codigo)s<br/> Bultos: "
 "%(bultos)s"
 msgstr ""
+"GLS Pickup información adicional:<br/> Número de seguimiento: %(codigo)s<br/"
+"> Bultos: %(bultos)s"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_asm_service
@@ -547,6 +549,11 @@ msgid ""
 "prevent this, you should edit your picking sequence to a max of 15 "
 "characters."
 msgstr ""
+"La API de GLS-ASM no admite un número de referencia superior a 15 "
+"caracteres. Para manejarlo, recortan la referencia y como la referencia es "
+"única para cada cliente pronto tendríamos colisiones de referencias "
+"duplicadas. Para evitar esto, debería editar su secuencia de picking a un "
+"máximo de 15 caracteres."
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_asm_with_return
@@ -635,6 +642,9 @@ msgid ""
 "If checked, it means that the carrier is paid with cash. It assumes there is "
 "a sale order linked and it will use that total amount as the value to be paid"
 msgstr ""
+"Si está marcada, significa que el transportista se paga en efectivo. Asume "
+"que hay una orden de venta vinculada y utilizará ese importe total como "
+"valor a pagar"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__36
@@ -773,7 +783,7 @@ msgstr ""
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_pickup_state__pending_auth
 msgid "Pending Autorización"
-msgstr ""
+msgstr "Pendiente de Autorización"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_is_pickup_service
