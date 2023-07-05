@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-06 09:06+0000\n"
-"PO-Revision-Date: 2022-07-06 09:06+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2023-07-05 19:08+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__account_move__l10n_es_facturae_status__face-2400
@@ -24,18 +25,18 @@ msgstr "Aceptado"
 #. module: l10n_es_facturae_face
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae_face.edi_l10n_es_facturae_face_cancel_form_view
 msgid "Cancel"
-msgstr ""
+msgstr "cancelar"
 
 #. module: l10n_es_facturae_face
 #: model:ir.actions.act_window,name:l10n_es_facturae_face.edi_l10n_es_facturae_face_cancel_act_window
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae_face.view_move_form
 msgid "Cancel FACe"
-msgstr ""
+msgstr "Cancelar FACe"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model,name:l10n_es_facturae_face.model_edi_l10n_es_facturae_face_cancel
 msgid "Cancel a FACe Exchange Record"
-msgstr ""
+msgstr "Cancelar un registro de intercambio FACe"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__account_move__l10n_es_facturae_cancellation_status__face-4300
@@ -73,7 +74,7 @@ msgstr "La compañía %s no puede procesarse"
 #: code:addons/l10n_es_facturae_face/components/webservice_face.py:0
 #, python-format
 msgid "Connection with FACe returned error %(code)s - %(description)s"
-msgstr ""
+msgstr "La conexión con FACe devolvió error %(code)s-%(description)s"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model,name:l10n_es_facturae_face.model_res_partner
@@ -89,12 +90,12 @@ msgstr "Se debe definir el país para poder enviar por FACe"
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "creado por"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel__create_date
 msgid "Created on"
-msgstr ""
+msgstr "creado el"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel__display_name
@@ -104,23 +105,23 @@ msgstr "Nombre mostrado"
 #. module: l10n_es_facturae_face
 #: model:ir.model,name:l10n_es_facturae_face.model_edi_exchange_record
 msgid "EDI exchange Record"
-msgstr ""
+msgstr "Registro de intercambio EDI"
 
 #. module: l10n_es_facturae_face
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae_face.edi_l10n_es_facturae_face_cancel_form_view
 msgid "Edi L10n Es Facturae FACe Cancel"
-msgstr ""
+msgstr "Edi L10n Es Facturae FACe Cancelar"
 
 #. module: l10n_es_facturae_face
 #: code:addons/l10n_es_facturae_face/components/account_move_l10n_es_facturae_face_listener.py:0
 #, python-format
 msgid "Exchange record cannot be found for FACe"
-msgstr ""
+msgstr "No se encuentra el registro de intercambio para FACe"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__res_partner__l10n_es_facturae_sending_code__face
 msgid "FACe"
-msgstr ""
+msgstr "FACe"
 
 #. module: l10n_es_facturae_face
 #: model:ir.actions.server,name:l10n_es_facturae_face.update_face_job_ir_actions_server
@@ -137,34 +138,34 @@ msgstr "Email FACe"
 #. module: l10n_es_facturae_face
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae_face.edi_exchange_record_view_form
 msgid "Facturae"
-msgstr ""
+msgstr "Facturae(factura electrónica)"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_exchange_record__l10n_es_facturae_cancellation_motive
 msgid "Facturae Cancellation motive"
-msgstr ""
+msgstr "Motivo de anulación Facturae"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_exchange_record__l10n_es_facturae_cancellation_status
 msgid "Facturae Cancellation state"
-msgstr ""
+msgstr "Estado de anulación Facturae"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_exchange_record__l10n_es_facturae_status
 msgid "Facturae State"
-msgstr ""
+msgstr "estado de Facturae"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_bank_statement_line__l10n_es_facturae_cancellation_status
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_move__l10n_es_facturae_cancellation_status
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_payment__l10n_es_facturae_cancellation_status
 msgid "Facturae cancellation status"
-msgstr ""
+msgstr "Estado de cancelación de la facturae"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_exchange_record__l10n_es_facturae_motive
 msgid "Facturae description"
-msgstr ""
+msgstr "descripción de la facturae"
 
 #. module: l10n_es_facturae_face
 #: code:addons/l10n_es_facturae_face/models/res_partner.py:0
@@ -177,12 +178,12 @@ msgstr "Se debe seleccionar el campo facturae para poder enviar por FACe"
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_move__l10n_es_facturae_status
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_payment__l10n_es_facturae_status
 msgid "Facturae status"
-msgstr ""
+msgstr "estado de la facturae"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel__id
 msgid "ID"
-msgstr ""
+msgstr "ID(identificador)"
 
 #. module: l10n_es_facturae_face
 #: code:addons/l10n_es_facturae_face/models/res_company.py:0
@@ -203,12 +204,12 @@ msgstr "Última modificación el"
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "actualizado por última vez por"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "actualizado por última vez el"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel__motive
@@ -218,7 +219,7 @@ msgstr "Motivo"
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel__move_id
 msgid "Move"
-msgstr ""
+msgstr "Mover"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__account_move__l10n_es_facturae_cancellation_status__face-4100
@@ -228,7 +229,7 @@ msgstr "No solicitado"
 #. module: l10n_es_facturae_face
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae_face.edi_l10n_es_facturae_face_cancel_form_view
 msgid "OK"
-msgstr ""
+msgstr "Aceptar"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__account_move__l10n_es_facturae_status__face-2500
@@ -254,7 +255,7 @@ msgstr "Rechazado"
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_partner__l10n_es_facturae_sending_code
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_users__l10n_es_facturae_sending_code
 msgid "Sending method"
-msgstr ""
+msgstr "Método de envío"
 
 #. module: l10n_es_facturae_face
 #: code:addons/l10n_es_facturae_face/models/res_partner.py:0
