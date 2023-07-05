@@ -3,15 +3,14 @@
 
 import logging
 
-from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import \
-    TestL10nEsAeatModBase
-from odoo.tests.common import Form
+from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
+    TestL10nEsAeatModBase,
+)
 
-_logger = logging.getLogger('aeat.369')
+_logger = logging.getLogger("aeat.369")
 
 
 class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
-
     def setUp(self):
         super().setUp()
 
@@ -36,12 +35,10 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
             ]
         )
 
-        fpo = self.env['account.fiscal.position'].search(
-            [('name', '=', 'Intra-EU B2C in France (EU-OSS-FR)')])
-        fpo.write({
-            'oss_regimen': 'union',
-            'outside_spain': True
-        })
+        fpo = self.env["account.fiscal.position"].search(
+            [("name", "=", "Intra-EU B2C in France (EU-OSS-FR)")]
+        )
+        fpo.write({"oss_regimen": "union", "outside_spain": True})
         line_data = {
             "name": "Test for OSS tax",
             "account_id": self.accounts["700000"].id,
@@ -51,23 +48,29 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
         }
         extra_vals = {
             "fiscal_position_id": fpo.id,
-            "invoice_line_ids": [(0, 0, line_data)]
+            "invoice_line_ids": [(0, 0, line_data)],
         }
         self.inv1 = self._invoice_sale_create("2022-11-01", extra_vals)
         self.inv2 = self._invoice_sale_create("2023-01-01", extra_vals)
 
         # Create reports
-        mod369_form = Form(self.env["l10n.es.aeat.mod369.report"])
-        mod369_form.company_id = self.company
-        mod369_form.company_vat = "1234567890"
-        self.model369 = mod369_form.save()
+        self.model369 = self.env["l10n.es.aeat.mod369.report"].create(
+            {
+                "company_id": self.company.id,
+                "company_vat": "1234567890",
+                "contact_name": "Test owner",
+                "contact_phone": "911234455",
+                "date_start": "2022-01-01",
+                "date_end": "2022-03-31",
+            }
+        )
         self.model369_2022_4t = self.model369.copy(
             {
                 "name": "3690000000002",
                 "period_type": "4T",
                 "date_start": "2022-10-01",
                 "date_end": "2022-12-31",
-                "year": 2022
+                "year": 2022,
             }
         )
 
@@ -77,9 +80,12 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
         self.assertTrue(amount_tax)
         self.assertEqual(amount_tax, self.model369_2022_4t.total_amount)
         num_invoices = len(
-            self.model369_2022_4t.tax_line_ids.mapped('move_line_ids').mapped(
-                'invoice_id'))
+            self.model369_2022_4t.tax_line_ids.mapped("move_line_ids").mapped(
+                "invoice_id"
+            )
+        )
         self.assertEqual(1, num_invoices)
         pages_5_6_total = sum(
-            self.model369_2022_4t.total_line_ids.mapped('page_5_6_total'))
+            self.model369_2022_4t.total_line_ids.mapped("page_5_6_total")
+        )
         self.assertEqual(amount_tax, pages_5_6_total)

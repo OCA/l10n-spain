@@ -253,7 +253,7 @@ class L10nEsAeatMod369Report(models.Model):
                         "outside_spain": mod369_line.outside_spain,
                     },
                 )
-                country_groups[key]["mod369_line_ids"] += [(4, mod369_line.id)]
+                country_groups[key]["mod369_line_ids"] += [(4, mod369_line.id, 0)]
                 # page 8
                 country_groups.setdefault(
                     country.id,
@@ -265,8 +265,9 @@ class L10nEsAeatMod369Report(models.Model):
                         "is_page_8_line": True,
                     },
                 )
-                country_groups[country.id]["mod369_line_ids"] += [(4, mod369_line.id)]
-            self.env["l10n.es.aeat.mod369.line.grouped"].create(
-                list(country_groups.values())
-            )
+                country_groups[country.id]["mod369_line_ids"] += [
+                    (4, mod369_line.id, 0)
+                ]
+            for vals in list(country_groups.values()):
+                self.env["l10n.es.aeat.mod369.line.grouped"].create(vals)
         return res

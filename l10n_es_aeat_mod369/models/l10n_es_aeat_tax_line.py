@@ -11,12 +11,10 @@ class L10nEsAeatTaxLine(models.Model):
         string="369 extra info", comodel_name="l10n.es.aeat.mod369.line"
     )
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        res = super().create(vals_list)
-        for line in res:
-            # Relate field both ways
-            if not line.mod369_line_id:
-                continue
-            line.mod369_line_id.tax_line_id = line.id
+    @api.model
+    def create(self, vals):
+        res = super().create(vals)
+        if not res.mod369_line_id:
+            return res
+        res.mod369_line_id.tax_line_id = res.id
         return res
