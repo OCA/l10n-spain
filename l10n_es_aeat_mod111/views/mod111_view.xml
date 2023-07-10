@@ -36,71 +36,75 @@
                     <group string="Work income">
                         <label string="Monetary:"
                                class="oe_force_bold" colspan="2"/>
-                        <field name="casilla_01"/>
+                        <field
+                            name="casilla_01"
+                            attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                        />
+                        <field name="casilla_02" />
+                        <field name="casilla_03" />
                         <separator/>
                         <label string="In kind:"
                                class="oe_force_bold" colspan="2"/>
-                        <field name="casilla_04"/>
+                        <field
+                            name="casilla_04"
+                            attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                        />
+                        <field name="casilla_05" />
+                        <field name="casilla_06" />
                     </group>
                     <group string="Business income">
                         <label string="Monetary:"
                                class="oe_force_bold" colspan="2"/>
-                        <field name="casilla_07"/>
+                        <field
+                            name="casilla_07"
+                            attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                        />
+                        <field name="casilla_08" />
+                        <field name="casilla_09" />
                         <separator/>
                         <label string="In kind:"
                                class="oe_force_bold" colspan="2"/>
-                        <field name="casilla_10"/>
-                        <field name="casilla_11" widget="monetary"
-                               options="{'currency_field': 'currency_id'}"/>
-                        <field name="casilla_12" widget="monetary"
-                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_10"
+                            attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                        />
+                        <field name="casilla_11" />
+                        <field name="casilla_12" />
                     </group>
                     <group string="Awards">
                         <label string="Monetary:"
                                class="oe_force_bold" colspan="2"/>
                         <field name="casilla_13"/>
-                        <field name="casilla_14" widget="monetary"
-                               options="{'currency_field': 'currency_id'}"/>
-                        <field name="casilla_15" widget="monetary"
-                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_14" />
+                        <field name="casilla_15" />
+                        <separator />
                         <label string="In kind:"
                                class="oe_force_bold" colspan="2"/>
                         <field name="casilla_16"/>
-                        <field name="casilla_17" widget="monetary"
-                               options="{'currency_field': 'currency_id'}"/>
-                        <field name="casilla_18" widget="monetary"
-                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_17" />
+                        <field name="casilla_18" />
                     </group>
                     <group string="Capital gains derived from the forest exploitation">
                         <label string="Monetary:"
                                class="oe_force_bold" colspan="2"/>
                         <field name="casilla_19"/>
-                        <field name="casilla_20" widget="monetary"
-                               options="{'currency_field': 'currency_id'}"/>
-                        <field name="casilla_21" widget="monetary"
-                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_20" />
+                        <field name="casilla_21" />
+                        <separator />
                         <label string="In kind:"
                                class="oe_force_bold" colspan="2"/>
                         <field name="casilla_22"/>
-                        <field name="casilla_23" widget="monetary"
-                               options="{'currency_field': 'currency_id'}"/>
-                        <field name="casilla_24" widget="monetary"
-                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_23" />
+                        <field name="casilla_24" />
                     </group>
                     <group string="Consideration for the transfer of image rights">
                         <field name="casilla_25"/>
-                        <field name="casilla_26" widget="monetary"
-                               options="{'currency_field': 'currency_id'}"/>
-                        <field name="casilla_27" widget="monetary"
-                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_26" />
+                        <field name="casilla_27" />
                     </group>
                     <group string="Totals">
-                        <field name="casilla_28" widget="monetary"
-                               options="{'currency_field': 'currency_id'}"/>
-                        <field name="casilla_29" widget="monetary"
-                               options="{'currency_field': 'currency_id'}"/>
-                        <field name="casilla_30" widget="monetary"
-                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_28" />
+                        <field name="casilla_29" />
+                        <field name="casilla_30" />
                     </group>
                     <group string="Tax lines"
                            name="group_tax_lines"
