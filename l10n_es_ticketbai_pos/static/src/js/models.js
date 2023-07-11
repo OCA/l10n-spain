@@ -23,6 +23,7 @@ odoo.define("l10n_es_ticketbai_pos.models", function(require) {
         "tbai_license_key",
         "tbai_developer_id",
         "tbai_software_name",
+        "tbai_software_version",
         "tbai_tax_agency_id",
         "tbai_protected_data",
         "tbai_protected_data_txt",
