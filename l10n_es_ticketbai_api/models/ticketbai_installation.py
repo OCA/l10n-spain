@@ -19,6 +19,12 @@ class TicketBaiInstallation(models.Model):
     )
     vat = fields.Char("TIN", related="developer_id.vat")
     license_key = fields.Char(required=True, copy=False)
+    version = fields.Char(
+        string="Software Version",
+        required=True,
+        copy=False,
+        help="Version of the software.",
+    )
 
     @api.constrains("license_key")
     def _check_license_key(self):
