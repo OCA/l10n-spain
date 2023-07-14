@@ -3,7 +3,7 @@
 
 {
     "name": "Envío de Facturae a FACe",
-    "version": "14.0.2.1.1",
+    "version": "14.0.2.2.1",
     "author": "Creu Blanca, " "Odoo Community Association (OCA)",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
@@ -17,7 +17,6 @@
         "security/ir.model.access.csv",
         "data/edi.xml",
         "data/face_data.xml",
-        "data/edi_output.xml",
         "data/cron_data.xml",
         "wizards/edi_l10n_es_facturae_face_cancel.xml",
         "views/account_move.xml",
