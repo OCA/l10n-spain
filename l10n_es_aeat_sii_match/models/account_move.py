@@ -11,8 +11,6 @@ from zeep.helpers import serialize_object
 from odoo import _, api, exceptions, fields, models
 from odoo.modules.registry import Registry
 
-from odoo.addons.queue_job.job import job
-
 
 class AccountMove(models.Model):
     _inherit = "account.move"
@@ -108,11 +106,11 @@ class AccountMove(models.Model):
         res = []
         if self.sii_content_sent:
             odoo_values = json.loads(self.sii_content_sent)
-            if self.type in ["out_invoice", "out_refund"]:
+            if self.move_type in ["out_invoice", "out_refund"]:
                 res += self._get_diffs(
                     odoo_values["FacturaExpedida"], sii_values["DatosFacturaEmitida"]
                 )
-            elif self.type in ["in_invoice", "in_refund"]:
+            elif self.move_type in ["in_invoice", "in_refund"]:
                 res += self._get_diffs(
                     odoo_values["FacturaRecibida"], sii_values["DatosFacturaRecibida"]
                 )
@@ -129,17 +127,10 @@ class AccountMove(models.Model):
         configuration parameters and invoice availability for SII"""
         queue_obj = self.env["queue.job"].sudo()
         for invoice in self:
-            company = invoice.company_id
-            new_delay = (
-                invoice.sudo()
-                .with_context(company_id=company.id)
-                .with_delay(
-                    eta=False,
-                )
-                .contrast_one_invoice()
-            )
+            invoice = invoice.sudo().with_company(invoice.company_id)
+            new_delay = invoice.with_delay(eta=False).contrast_one_invoice()
             jb = queue_obj.search([("uuid", "=", new_delay.uuid)], limit=1)
-            invoice.sudo().invoice_jobs_ids |= jb
+            invoice.invoice_jobs_ids |= jb
 
     def contrast_aeat(self):
         invoices = self.filtered(
@@ -241,25 +232,25 @@ class AccountMove(models.Model):
     def _get_contrast_invoice_dict(self):
         self.ensure_one()
         self._sii_check_exceptions()
-        if self.type in ["out_invoice", "out_refund"]:
+        if self.move_type in ["out_invoice", "out_refund"]:
             return self._get_contrast_invoice_dict_out()
-        elif self.type in ["in_invoice", "in_refund"]:
+        elif self.move_type in ["in_invoice", "in_refund"]:
             return self._get_contrast_invoice_dict_in()
         return {}
 
     def _contrast_invoice_to_aeat(self):
         for invoice in self.filtered(lambda i: i.state == "posted"):
-            serv = invoice._connect_sii(invoice.type)
+            serv = invoice._connect_sii(invoice.move_type)
             header = invoice._get_sii_header(False, True)
             inv_vals = {}
             try:
                 inv_dict = invoice._get_contrast_invoice_dict()
                 inv_vals["sii_match_sent"] = json.dumps(inv_dict, indent=4)
                 res_line = False
-                if invoice.type in ["out_invoice", "out_refund"]:
+                if invoice.move_type in ["out_invoice", "out_refund"]:
                     res = serv.ConsultaLRFacturasEmitidas(header, inv_dict)
                     res_line = res["RegistroRespuestaConsultaLRFacturasEmitidas"][0]
-                elif invoice.type in ["in_invoice", "in_refund"]:
+                elif invoice.move_type in ["in_invoice", "in_refund"]:
                     res = serv.ConsultaLRFacturasRecibidas(header, inv_dict)
                     res_line = res["RegistroRespuestaConsultaLRFacturasRecibidas"][0]
                 inv_vals.update(
@@ -306,6 +297,5 @@ class AccountMove(models.Model):
                 new_cr.close()
                 raise
 
-    @job(default_channel="root.invoice_validate_sii")
     def contrast_one_invoice(self):
         self._contrast_invoice_to_aeat()

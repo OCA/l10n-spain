@@ -125,7 +125,7 @@
                                         icon="fa-check"
                                     />
                                     <field name="sii_match_result" nolabel="1">
-                                        <tree string="SII Match result">
+                                        <tree>
                                             <field name="invoice" />
                                             <field name="invoice_id" />
                                             <field name="sii_match_state" />
@@ -282,7 +282,7 @@
         <field name="name">l10n_es.aeat.sii.match.result.tree</field>
         <field name="model">l10n.es.aeat.sii.match.result</field>
         <field name="arch" type="xml">
-            <tree string="SII Match result" create="0" delete="0">
+            <tree create="0" delete="0">
                 <field name="invoice" />
                 <field name="invoice_id" />
                 <field name="sii_match_state" />
