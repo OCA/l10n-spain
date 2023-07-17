@@ -24,7 +24,10 @@ class SiiMatchReport(models.Model):
         company_obj = self.env["res.company"]
         return company_obj._company_default_get("l10n.es.aeat.sii.match.report")
 
-    name = fields.Char(string="Report identifier", required=True,)
+    name = fields.Char(
+        string="Report identifier",
+        required=True,
+    )
     state = fields.Selection(
         selection=[
             ("draft", "Draft"),
@@ -73,7 +76,9 @@ class SiiMatchReport(models.Model):
         states={"draft": [("readonly", False)]},
     )
     calculate_date = fields.Datetime(
-        string="Calculate date", readonly=True, states={"draft": [("readonly", False)]},
+        string="Calculate date",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )
     sii_match_result = fields.One2many(
         comodel_name="l10n.es.aeat.sii.match.result",
@@ -90,33 +95,48 @@ class SiiMatchReport(models.Model):
     )
     number_records = fields.Integer(string="Total records", readonly=True)
     number_records_both = fields.Integer(
-        string="Records in Odoo and SII", readonly=True,
+        string="Records in Odoo and SII",
+        readonly=True,
     )
-    number_records_odoo = fields.Integer(string="Records only in Odoo", readonly=True,)
-    number_records_sii = fields.Integer(string="Records only in SII", readonly=True,)
+    number_records_odoo = fields.Integer(
+        string="Records only in Odoo",
+        readonly=True,
+    )
+    number_records_sii = fields.Integer(
+        string="Records only in SII",
+        readonly=True,
+    )
     number_records_correct = fields.Integer(
-        string="Records correctly contrasted", readonly=True,
+        string="Records correctly contrasted",
+        readonly=True,
     )
     number_records_no_exist = fields.Integer(
-        string="Records without contrast", readonly=True,
+        string="Records without contrast",
+        readonly=True,
     )
     number_records_partially = fields.Integer(
-        string="Records partially contrasted", readonly=True,
+        string="Records partially contrasted",
+        readonly=True,
     )
     number_records_no_test = fields.Integer(
-        string="Records no testables", readonly=True,
+        string="Records no testables",
+        readonly=True,
     )
     number_records_in_process = fields.Integer(
-        string="Records in process of contrast", readonly=True,
+        string="Records in process of contrast",
+        readonly=True,
     )
     number_records_not_contrasted = fields.Integer(
-        string="Records not contasted", readonly=True,
+        string="Records not contasted",
+        readonly=True,
     )
     number_records_partially_contrasted = fields.Integer(
-        string="Records partially contrasted", readonly=True,
+        string="Records partially contrasted",
+        readonly=True,
     )
     number_records_contrasted = fields.Integer(
-        string="Records contrasted", readonly=True,
+        string="Records contrasted",
+        readonly=True,
     )
     sii_match_jobs_ids = fields.Many2many(
         comodel_name="queue.job",
@@ -133,7 +153,9 @@ class SiiMatchReport(models.Model):
             new_delay = (
                 match_report.sudo()
                 .with_context(company_id=company.id)
-                .with_delay(eta=False,)
+                .with_delay(
+                    eta=False,
+                )
                 .get_invoice_aeat()
             )
             jb = queue_obj.search([("uuid", "=", new_delay.uuid)], limit=1)

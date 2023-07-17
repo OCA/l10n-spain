@@ -19,7 +19,9 @@ class AccountMove(models.Model):
 
     sii_match_sent = fields.Text(string="SII match sent", copy=False, readonly=True)
     sii_match_return = fields.Text(
-        string="SII match return", copy=False, readonly=True,
+        string="SII match return",
+        copy=False,
+        readonly=True,
     )
     sii_match_state = fields.Selection(
         string="Match state",
@@ -131,7 +133,9 @@ class AccountMove(models.Model):
             new_delay = (
                 invoice.sudo()
                 .with_context(company_id=company.id)
-                .with_delay(eta=False,)
+                .with_delay(
+                    eta=False,
+                )
                 .contrast_one_invoice()
             )
             jb = queue_obj.search([("uuid", "=", new_delay.uuid)], limit=1)
