@@ -11,18 +11,12 @@ from zeep.helpers import serialize_object
 from odoo import _, api, exceptions, fields, models
 from odoo.modules.registry import Registry
 
-from odoo.addons.queue_job.job import job
-
 SII_VERSION = "1.1"
 
 
 class SiiMatchReport(models.Model):
     _name = "l10n.es.aeat.sii.match.report"
     _description = "AEAT SII match Report"
-
-    def _default_company_id(self):
-        company_obj = self.env["res.company"]
-        return company_obj._company_default_get("l10n.es.aeat.sii.match.report")
 
     name = fields.Char(
         string="Report identifier",
@@ -36,7 +30,6 @@ class SiiMatchReport(models.Model):
             ("error", "Error"),
             ("cancelled", "Cancelled"),
         ],
-        string="State",
         default="draft",
     )
     period_type = fields.Selection(
@@ -61,7 +54,6 @@ class SiiMatchReport(models.Model):
     )
     fiscalyear = fields.Integer(
         string="Fiscal year",
-        lenght=4,
         required=True,
         default=fields.Date.from_string(fields.Date.today()).year,
         readonly=True,
@@ -69,7 +61,7 @@ class SiiMatchReport(models.Model):
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
-        default=_default_company_id,
+        default=lambda self: self.env.company.id,
         string="Company",
         required=True,
         readonly=True,
@@ -148,18 +140,11 @@ class SiiMatchReport(models.Model):
 
     def _process_invoices_from_sii(self):
         queue_obj = self.env["queue.job"].sudo()
-        for match_report in self:
-            company = match_report.company_id
-            new_delay = (
-                match_report.sudo()
-                .with_context(company_id=company.id)
-                .with_delay(
-                    eta=False,
-                )
-                .get_invoice_aeat()
-            )
+        for item in self:
+            item = item.sudo().with_company(item.company_id)
+            new_delay = item.with_delay(eta=False).get_invoice_aeat()
             jb = queue_obj.search([("uuid", "=", new_delay.uuid)], limit=1)
-            match_report.sudo().sii_match_jobs_ids |= jb
+            item.sii_match_jobs_ids |= jb
 
     def _get_invoice_dict(self):
         self.ensure_one()
@@ -196,13 +181,16 @@ class SiiMatchReport(models.Model):
                         "|",
                         ("name", "=", name),
                         ("thirdparty_number", "=", name),
-                        ("type", "in", ["out_invoice", "out_refund"]),
+                        ("move_type", "in", ["out_invoice", "out_refund"]),
                     ],
                     limit=1,
                 )
             else:
                 odoo_invoice = self.env["account.move"].search(
-                    [("ref", "=", name), ("type", "in", ["in_invoice", "in_refund"])],
+                    [
+                        ("ref", "=", name),
+                        ("move_type", "in", ["in_invoice", "in_refund"]),
+                    ],
                     limit=1,
                 )
             if odoo_invoice and odoo_invoice.id not in list(matched_invoices.keys()):
@@ -286,7 +274,7 @@ class SiiMatchReport(models.Model):
                 ("date", "<", date_to),
                 ("company_id", "=", self.company_id.id),
                 ("id", "not in", list(invoices.keys())),
-                ("type", "in", inv_type),
+                ("move_type", "in", inv_type),
             ]
         )
         for invoice in invoice_ids.filtered("sii_enabled"):
@@ -500,7 +488,6 @@ class SiiMatchReport(models.Model):
             "context": {},
         }
 
-    @job(default_channel="root.invoice_validate_sii")
     def get_invoice_aeat(self):
         self._get_invoices_from_sii()
 
@@ -521,7 +508,7 @@ class SiiMatchResult(models.Model):
         string="AEAT SII Match Report ID",
         ondelete="cascade",
     )
-    invoice = fields.Char(string="Invoice")
+    invoice = fields.Char()
     invoice_id = fields.Many2one(string="Odoo invoice", comodel_name="account.move")
     csv = fields.Char(string="CSV")
     sii_match_state = fields.Selection(

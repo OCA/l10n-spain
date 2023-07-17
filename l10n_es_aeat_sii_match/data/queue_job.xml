@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="job_function_contrast_one_invoice" model="queue.job.function">
+        <field name="model_id" ref="account.model_account_move" />
+        <field name="method">contrast_one_invoice</field>
+        <field name="channel_id" ref="l10n_es_aeat_sii_oca.invoice_validate_sii" />
+    </record>
+    <record id="job_function_get_invoice_aeat" model="queue.job.function">
+        <field
+            name="model_id"
+            ref="l10n_es_aeat_sii_match.model_l10n_es_aeat_sii_match_report"
+        />
+        <field name="method">get_invoice_aeat</field>
+        <field name="channel_id" ref="l10n_es_aeat_sii_oca.invoice_validate_sii" />
+    </record>
+</odoo>
