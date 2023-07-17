@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_move_form" model="ir.ui.view">
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='journal_div']" position="after">
+                <field name="is_rebu" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_invoice_tree" model="ir.ui.view">
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="is_rebu" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_invoice_filter" model="ir.ui.view">
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter" />
+        <field name="arch" type="xml">
+            <field name="date" position="after">
+                <field name="is_rebu"/>
+            </field>
+            <filter name="cancel" position="after">
+                <separator />
+                <filter name="is-rebu" string="IS Rebu" domain="[('is_rebu', '=', True)]"/>
+                <filter name="is-not-rebu" string="IS NOT Rebu" domain="[('is_rebu', '=', False)]"/>
+            </filter>
+            <filter name="duedate" position="after">
+                <filter string="Is rebu" name="group-rebu" context="{'group_by': 'is_rebu'}"/>
+            </filter>
+        </field>
+    </record>
+</odoo>

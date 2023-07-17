@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_account_journal_form" model="ir.ui.view">
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form" />
+        <field name="arch" type="xml">
+            <field name="type" position="after">
+                <field name="is_rebu" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_journal_tree" model="ir.ui.view">
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_tree" />
+        <field name="arch" type="xml">
+            <field name="type" position="after">
+                <field name="is_rebu" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_journal_search" model="ir.ui.view">
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_search" />
+        <field name="arch" type="xml">
+            <filter name="miscellaneous" position="after">
+                <separator/>
+                <filter name="is-rebu" string="Is Rebu" domain="[('is_rebu', '=', True)]"/>
+                <filter name="is-not-rebu" string="Is Not Rebu" domain="[('is_rebu', '=', False)]"/>
+            </filter>
+        </field>
+    </record>
+</odoo>

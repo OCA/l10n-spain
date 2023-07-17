@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_document_inh_supertronic" inherit_id="account.report_invoice_document">
+        <th name="th_priceunit" position="attributes">
+            <attribute name="t-if">not o.is_rebu</attribute>
+        </th>
+        <th name="th_price_unit" position="attributes">
+            <attribute name="t-if">display_discount and not o.is_rebu</attribute>
+        </th>
+        <th name="th_taxes" position="attributes">
+            <attribute name="t-if">not o.is_rebu</attribute>
+        </th>
+        <th name="th_subtotal" position="attributes">
+            <attribute name="t-if">not o.is_rebu</attribute>
+        </th>
+        <xpath expr="//span[@t-field='line.price_unit']/.." position="attributes">
+            <attribute name="t-if">not o.is_rebu</attribute>
+        </xpath>
+        <xpath expr="//span[@t-field='line.discount']/.." position="attributes">
+            <attribute name="t-if">display_discount and not o.is_rebu</attribute>
+        </xpath>
+        <xpath expr="//span[@id='line_tax_ids']/.." position="attributes">
+            <attribute name="t-if">not o.is_rebu</attribute>
+        </xpath>
+        <xpath expr="//span[@t-field='line.price_subtotal']/.." position="attributes">
+            <attribute name="t-if">not o.is_rebu</attribute>
+        </xpath>
+    </template>
+</odoo>
