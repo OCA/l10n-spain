@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-31 07:23+0000\n"
-"PO-Revision-Date: 2022-03-31 09:29+0200\n"
+"POT-Creation-Date: 2023-07-19 12:00+0000\n"
+"PO-Revision-Date: 2023-07-19 14:01+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -15,10 +15,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,help:l10n_es_aeat_sii_match.field_account_bank_statement_line__sii_match_state
 #: model:ir.model.fields,help:l10n_es_aeat_sii_match.field_account_move__sii_match_state
+#: model:ir.model.fields,help:l10n_es_aeat_sii_match.field_account_payment__sii_match_state
 msgid ""
 "- No testable: The counterpart is not suscribed to SII the record will not "
 "be contrasted.\n"
@@ -123,7 +125,9 @@ msgid "AEAT SII match Report"
 msgstr "Informe de cuadre SII"
 
 #. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_bank_statement_line__sii_contrast_state
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_move__sii_contrast_state
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_payment__sii_contrast_state
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__sii_contrast_state
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_account_invoice_sii_match_filter
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
@@ -334,8 +338,8 @@ msgstr "Trabajos"
 
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model,name:l10n_es_aeat_sii_match.model_account_move
-msgid "Journal Entries"
-msgstr "Asientos contables"
+msgid "Journal Entry"
+msgstr "Asiento contable"
 
 #. module: l10n_es_aeat_sii_match
 #: code:addons/l10n_es_aeat_sii_match/models/account_move.py:0
@@ -367,7 +371,9 @@ msgid "Last Updated on"
 msgstr "Última actualización en"
 
 #. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_bank_statement_line__sii_match_state
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_move__sii_match_state
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_payment__sii_match_state
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__sii_match_state
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
 msgid "Match state"
@@ -513,10 +519,8 @@ msgstr "Informe de cuadre de SII"
 
 #. module: l10n_es_aeat_sii_match
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_filter
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_tree
 msgid "SII Match result"
 msgstr "Resultado de cuadre de SII"
 
@@ -531,18 +535,24 @@ msgid "SII match difference"
 msgstr "Diferencia de cuadre SII"
 
 #. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_bank_statement_line__sii_match_difference_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_move__sii_match_difference_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_payment__sii_match_difference_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__sii_match_difference_ids
 msgid "SII match differences"
 msgstr "Diferencias de cuadre SII"
 
 #. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_bank_statement_line__sii_match_return
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_move__sii_match_return
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_payment__sii_match_return
 msgid "SII match return"
 msgstr "Retorno de cuadre de SII"
 
 #. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_bank_statement_line__sii_match_sent
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_move__sii_match_sent
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_payment__sii_match_sent
 msgid "SII match sent"
 msgstr "Cuadre SII enviado"
 
@@ -607,6 +617,3 @@ msgid ""
 msgstr ""
 "La librería deepdiff no esta instalada, por favor tienes que instalarla para "
 "utilizar esta característica"
-
-#~ msgid "l10n.es.aeat.sii.match.difference"
-#~ msgstr "l10n.es.aeat.sii.match.difference"
