@@ -9,7 +9,7 @@ import logging
 
 from requests import Session
 
-from odoo import _, api, fields, models
+from odoo import _, api, exceptions, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.modules.registry import Registry
 from odoo.tools.float_utils import float_compare
@@ -221,8 +221,18 @@ class SiiMixin(models.AbstractModel):
         self.ensure_one()
         return self._sii_get_partner()._parse_aeat_vat_info()[0]
 
-    def _check_unlink_sii_sent(self):
-        return self and not self.filtered(lambda rec: rec.sii_state != "not_sent")
+    def _filter_sii_unlink_not_possible(self):
+        """Filter records that we do not allow to be deleted, all those
+        that are not in not_sent sii status."""
+        return self.filtered(lambda rec: rec.sii_state != "not_sent")
+
+    @api.ondelete(at_uninstall=False)
+    def _unlink_except_sii(self):
+        """Do not allow the deletion of records already sent to the SII."""
+        if self._filter_sii_unlink_not_possible():
+            raise exceptions.UserError(
+                _("You cannot delete an invoice already registered at the SII.")
+            )
 
     @api.model
     def _get_sii_taxes_map(self, codes, date):
