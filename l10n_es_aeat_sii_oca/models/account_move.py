@@ -159,13 +159,10 @@ class AccountMove(models.Model):
                     self._raise_exception_sii(_("invoice number"))
         return super().write(vals)
 
-    def unlink(self):
-        """A registered invoice at the SII cannot be deleted"""
-        if self.filtered(lambda x: x.is_invoice())._check_unlink_sii_sent():
-            raise exceptions.UserError(
-                _("You cannot delete an invoice already registered at the SII.")
-            )
-        return super().unlink()
+    def _filter_sii_unlink_not_possible(self):
+        """Filter records that we can delete to apply only to invoices."""
+        res = super()._filter_sii_unlink_not_possible()
+        return res.filtered(lambda x: x.is_invoice())
 
     def _get_sii_tax_req(self, tax):
         """Get the associated req tax for the specified tax.
