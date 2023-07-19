@@ -825,6 +825,12 @@ msgid "Software Name must be unique!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_company__tbai_software_version
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_installation__version
+msgid "Software Version"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_invoice_customer__nif
 msgid "Spanish Fiscal Identification Number"
 msgstr ""
@@ -1713,6 +1719,12 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai_api.selection__res_partner__tbai_partner_idtype__02
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai_api.selection__tbai_invoice_customer__idtype__02
 msgid "VAT identification number"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: model:ir.model.fields,help:l10n_es_ticketbai_api.field_res_company__tbai_software_version
+#: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_installation__version
+msgid "Version of the software."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
