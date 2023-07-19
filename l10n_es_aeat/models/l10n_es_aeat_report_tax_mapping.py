@@ -90,7 +90,11 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         ]
         if map_line.move_type == "regular":
             move_line_domain.append(
-                ("move_id.financial_type", "in", ("receivable", "payable", "liquidity"))
+                (
+                    "move_id.financial_type",
+                    "in",
+                    ("receivable", "payable", "liquidity", "other"),
+                )
             )
         elif map_line.move_type == "refund":
             move_line_domain.append(
