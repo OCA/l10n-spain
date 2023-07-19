@@ -120,6 +120,7 @@ msgstr ""
 "    "
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/utils/utils.py:0
 #, python-format
 msgid ""
@@ -131,12 +132,14 @@ msgstr ""
 "behar du"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/res_partner.py:0
 #, python-format
 msgid "%s VAT Number"
 msgstr "%s BEZ zenbakia"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/utils/utils.py:0
 #, python-format
 msgid "%s value must be a positive percentage."
@@ -249,6 +252,7 @@ msgid "Company"
 msgstr "Enpresa"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/res_company.py:0
 #, python-format
 msgid ""
@@ -259,12 +263,14 @@ msgstr ""
 "karaktere izan behar ditu!"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/res_company.py:0
 #, python-format
 msgid "Company %s TicketBAI Certificate is required."
 msgstr "%s Enpresaren TicketBAI ziurtagiria beharrezkoa da."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/res_company.py:0
 #, python-format
 msgid "Company %s TicketBAI Tax Agency is required."
@@ -353,6 +359,7 @@ msgid "Developer"
 msgstr "Garatzailea"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:0
 #: model:ir.model.constraint,message:l10n_es_ticketbai_api.constraint_tbai_installation_developer_ref_uniq
 #, python-format
@@ -490,6 +497,7 @@ msgid "Identification Type Code"
 msgstr "Identifikazio motaren kodea"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/utils/utils.py:0
 #, python-format
 msgid "Invalid %(field)s format '%(value)s'."
@@ -577,6 +585,7 @@ msgid "License Key"
 msgstr "Lizentzia-gakoa"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:0
 #: model:ir.model.constraint,message:l10n_es_ticketbai_api.constraint_tbai_installation_license_ref_uniq
 #, python-format
@@ -653,6 +662,7 @@ msgid "P12 Certificate"
 msgstr "P12 Ziurtagiria"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/res_partner.py:0
 #, python-format
 msgid ""
@@ -784,6 +794,7 @@ msgid "Residence certificate"
 msgstr "Bizileku-ziurtagiria"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "Response"
@@ -858,11 +869,18 @@ msgid "Software Name"
 msgstr "Softwarearen Izena"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:0
 #: model:ir.model.constraint,message:l10n_es_ticketbai_api.constraint_tbai_installation_name_ref_uniq
 #, python-format
 msgid "Software Name must be unique!"
 msgstr "Softwarearen izenak bakarra izan behar du!"
+
+#. module: l10n_es_ticketbai_api
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_company__tbai_software_version
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_installation__version
+msgid "Software Version"
+msgstr ""
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_invoice_customer__nif
@@ -956,6 +974,7 @@ msgid "Tax Agency name"
 msgstr "Zerga Agentziaren izena"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/res_company.py:0
 #, python-format
 msgid "Tax agency cannot be modified after a TicketBAI invoice has been sent."
@@ -1019,6 +1038,7 @@ msgid "Test QR Base URL"
 msgstr "Test QR Base URL"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "The Company %s VAT Number is required."
@@ -1027,13 +1047,13 @@ msgstr "%s enpresaren BEZ zenbakia beharrezkoa da."
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_installation__vat
 msgid ""
-"The Tax Identification Number. Complete it if the contact is subjected to "
-"government taxes. Used in some legal statements."
+"The Tax Identification Number. Values here will be validated based on the "
+"country format. You can use '/' to indicate that the partner is not subject "
+"to tax."
 msgstr ""
-"Identifikazio Fiskaleko Zenbakia. Osatu kontaktua gobernuaren zergen menpe "
-"badago. Zenbait lege adierazpenetan erabiltzen da."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/res_partner.py:0
 #, python-format
 msgid "The invoice customer %s does not have a valid country assigned."
@@ -1054,7 +1074,6 @@ msgstr "TicketBAI"
 #. module: l10n_es_ticketbai_api
 #: model:ir.actions.server,name:l10n_es_ticketbai_api.ir_cron_l10n_es_ticketbai_send_pending_invoices_ir_actions_server
 #: model:ir.cron,cron_name:l10n_es_ticketbai_api.ir_cron_l10n_es_ticketbai_send_pending_invoices
-#: model:ir.cron,name:l10n_es_ticketbai_api.ir_cron_l10n_es_ticketbai_send_pending_invoices
 msgid "TicketBAI - Send pending invoices"
 msgstr "TicketBAI - Bidali zain dauden fakturak"
 
@@ -1064,6 +1083,7 @@ msgid "TicketBAI API URL"
 msgstr "TicketBAI API URL"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_response.py:0
 #, python-format
 msgid "TicketBAI API required fields missing."
@@ -1083,6 +1103,7 @@ msgid "TicketBAI Certificates"
 msgstr "TicketBAI Ziurtagiriak"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/res_company.py:0
 #, python-format
 msgid ""
@@ -1093,6 +1114,7 @@ msgstr ""
 "beharrezkoa da."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:0
 #, python-format
 msgid "TicketBAI Developer is required."
@@ -1113,6 +1135,7 @@ msgid "TicketBAI Installations"
 msgstr "TicketBAI Instalazioak"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1123,6 +1146,7 @@ msgstr ""
 " %(number)s Itzulitako fakturaren espedizio-data"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1133,6 +1157,7 @@ msgstr ""
 "%(customer)s-en helbidea beharrezkoa da %(agency)s Zerga Agentziarentzat!"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
 #, python-format
 msgid ""
@@ -1145,6 +1170,7 @@ msgstr ""
 "karaktere izan behar ditu gehienez!"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
 #, python-format
 msgid ""
@@ -1157,6 +1183,7 @@ msgstr ""
 "Gehienez 20 karaktere izan behar ditu!"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
 #, python-format
 msgid ""
@@ -1169,6 +1196,7 @@ msgstr ""
 "ez diren bezeroentzat."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
 #, python-format
 msgid ""
@@ -1181,6 +1209,7 @@ msgstr ""
 "identifikazio zenbakia espainiarrak ez diren bezeroentzat beharrezkoa da."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
 #, python-format
 msgid ""
@@ -1193,6 +1222,7 @@ msgstr ""
 "20 karaktere izan behar ditu!"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
 #, python-format
 msgid ""
@@ -1205,6 +1235,7 @@ msgstr ""
 "behar ditu gehienez!"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_line.py:0
 #, python-format
 msgid ""
@@ -1216,6 +1247,7 @@ msgstr ""
 "behar ditu!"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1226,6 +1258,7 @@ msgstr ""
 "%(agency)s Zerga Agentziarentzat faktura lerroak behar dira!"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1238,6 +1271,7 @@ msgstr ""
 "luzeagoa. Gehienez 20 karaktere izan behar ditu!"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1250,6 +1284,7 @@ msgstr ""
 "karaktere izan behar ditu!"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1260,6 +1295,7 @@ msgstr ""
 "%(id)s TBAI identifikatzaileak %(len)d karaktere izan behar ditu CRC-8-rekin!"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1271,6 +1307,7 @@ msgstr ""
 "ditu!"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
 #, python-format
 msgid ""
@@ -1282,6 +1319,7 @@ msgstr ""
 "du."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1292,6 +1330,7 @@ msgstr ""
 "%(customer)s-ren posta-kodea beharrezkoa da %(agency)s Zerga Agentziarentzat!"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
 #, python-format
 msgid ""
@@ -1302,36 +1341,42 @@ msgstr ""
 "kodea ez da baliozkoa."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
 #, python-format
 msgid "TicketBAI Invoice %(name)s: Customer %(customer)s NIF"
 msgstr "%(name)s TicketBAI faktura: %(customer)s Bezeroaren IFZ"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_line.py:0
 #, python-format
 msgid "TicketBAI Invoice %(name)s: Line %(desc)s Amount Total"
 msgstr "%(name)s TicketBAI faktura: %(desc)s lerroaren Zenbateko osoa"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_line.py:0
 #, python-format
 msgid "TicketBAI Invoice %(name)s: Line %(desc)s Discount Amount"
 msgstr "%(name)s TicketBAI faktura: %(desc)s lerroaren deskontuaren zenbatekoa"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_line.py:0
 #, python-format
 msgid "TicketBAI Invoice %(name)s: Line %(desc)s Price Unit"
 msgstr "%(name)s TicketBAI faktura: %(desc)s lerroaren prezio-unitatea"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_line.py:0
 #, python-format
 msgid "TicketBAI Invoice %(name)s: Line %(desc)s Quantity"
 msgstr "%(name)s TicketBAI faktura: %(desc)s lerroaren kopurua"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1342,6 +1387,7 @@ msgstr ""
 " Fakturaren Deskribapena beharrezkoa da."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1352,6 +1398,7 @@ msgstr ""
 "Fakturaren Zerga Atxikipenaren Zenbateko osoa"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1362,6 +1409,7 @@ msgstr ""
 "Ordezkatutako fakturaren gaineko zergaren zenbatekoa guztira"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1372,6 +1420,7 @@ msgstr ""
 "Faktura-hartzaile guztiek herrialde berekoak izan behar dute."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1384,6 +1433,7 @@ msgstr ""
 "esteka bera duena."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1395,6 +1445,7 @@ msgstr ""
 "karaktere izan behar ditu!"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1406,6 +1457,7 @@ msgstr ""
 "ditu!"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1416,6 +1468,7 @@ msgstr ""
 "Fakturaren itzulketa arrazoiaren kodea beharrezkoa da."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1427,6 +1480,7 @@ msgstr ""
 "ditu gehienez!"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1437,6 +1491,7 @@ msgstr ""
 "Gehienez 100 hartzaile onartzen dira faktura bakoitzeko!"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1447,6 +1502,7 @@ msgstr ""
 "Onartutako faktura-lerroen gehienezko kopurua 1000 da."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1457,6 +1513,7 @@ msgstr ""
 "Aurreko fakturaren sinaduraren balioa beharrezkoa da."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
 #, python-format
 msgid ""
@@ -1469,6 +1526,7 @@ msgstr ""
 "bezeroentzat Identifikazio Zenbakia beharrezkoa da."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1479,6 +1537,7 @@ msgstr ""
 "Ordezkatutako fakturaren Zerga Zenbatekoa Guztira beharrezkoa da."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1489,6 +1548,7 @@ msgstr ""
 "Ordeztutako fakturaren zenbatekoa guztira, zergarik gabe"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1499,54 +1559,63 @@ msgstr ""
 "Ordeztutako fakturaren zenbatekoa guztira zergarik gabe beharrezkoa da."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Amount Total"
 msgstr "%s TicketBAI faktura: Zenbatekoa guztira"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Exempted taxes are Subject to taxes."
 msgstr "%s TicketBAI faktura : salbuetsitako zergak zergen menpe daude."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Expedition Date"
 msgstr "%s TicketBAI faktura: espedizio-data"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Expedition Hour"
 msgstr "%s TicketBAI faktura: espedizio-ordua"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Max. number of exempted taxes is 7!"
 msgstr "%s TicketBAI faktura: gehienez salbuetsitako zerga kopurua 7 da!"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Max. number of not subject to taxes is 2!"
 msgstr "%s TicketBAI faktura: gehienez Zergarik ez dutenen kopurua 2 da!"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Operation Date"
 msgstr "%s TicketBAI faktura: Eragiketa-data"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Refund Code and Type are required."
 msgstr "%s TicketBAI faktura: itzulketa kodea eta mota beharrezkoa dira."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Second VAT Regime Key not valid."
@@ -1554,36 +1623,42 @@ msgstr ""
 "%s TicketBAI faktura: BEZaren bigarren erregimen gakoa ez da baliozkoa."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Amount (%%)"
 msgstr "%s TicketBAI faktura: Zerga zenbatekoa (%%)"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Amount Total"
 msgstr "%s TicketBAI faktura: Zerga zenbatekoa guztira"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Base"
 msgstr "%s TicketBAI faktura: Zerga Oinarria"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Exempted cause is required."
 msgstr "%s TicketBAI faktura: Zerga salbuespenerako arrazoia behar da."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Not exempted type is required."
 msgstr "%s TicketBAI faktura: salbuetsi gabeko zerga mota beharrezkoa da."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Not subject to cause is required."
@@ -1591,36 +1666,42 @@ msgstr ""
 "%s TicketBAI faktura: arrazoiaren menpe ez dagoen zerga beharrezkoa da."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Surcharge Amount (%%)"
 msgstr "%s TicketBAI faktura: Zerga errekarguaren zenbatekoa (%%)"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Surcharge Amount Total"
 msgstr "%s TicketBAI faktura: Zerga gainkarguen zenbatekoa guztira"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Third VAT Regime Key not valid."
 msgstr "%s TicketBAI faktura: BEZaren hirugarren gakoa ez da baliozkoa."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: VAT Regime Key not valid."
 msgstr "%s TicketBAI faktura: BEZaren erregimenaren gakoa ez da baliozkoa."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: XML Invoice schema not supported!"
 msgstr "%s TicketBAI faktura: XML fakturaren eskema ez da onartzen!"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: XML schema not supported!"
@@ -1667,12 +1748,14 @@ msgid "TicketBAI Invoices"
 msgstr "TicketBAI fakturak"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:0
 #, python-format
 msgid "TicketBAI License Key is required."
 msgstr "TicketBAI lizentzia-giltza behar da."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:0
 #, python-format
 msgid ""
@@ -1693,6 +1776,7 @@ msgid "TicketBAI Refunded Invoices"
 msgstr "TicketBAI Itzulitako Fakturak"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:0
 #, python-format
 msgid "TicketBAI Software Name is required."
@@ -1704,6 +1788,7 @@ msgid "TicketBAI Tax Agency"
 msgstr "TicketBAI Zerga Agentzia"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_tax_agency.py:0
 #, python-format
 msgid ""
@@ -1714,6 +1799,7 @@ msgstr ""
 "%(version)s TicketBAI bertsioaren gehienezko tamaina 5 karaktere da."
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_tax_agency.py:0
 #, python-format
 msgid ""
@@ -1766,6 +1852,7 @@ msgid "URL"
 msgstr "URL"
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_response.py:0
 #, python-format
 msgid "Unknown TicketBAI response code."
@@ -1792,6 +1879,12 @@ msgid "VAT identification number"
 msgstr "IFZaren identifikazio zenbakia"
 
 #. module: l10n_es_ticketbai_api
+#: model:ir.model.fields,help:l10n_es_ticketbai_api.field_res_company__tbai_software_version
+#: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_installation__version
+msgid "Version of the software."
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_response__xml
 msgid "XML Response"
 msgstr "XML Erantzuna"
@@ -1800,3 +1893,10 @@ msgstr "XML Erantzuna"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_customer__zip
 msgid "ZIP Code"
 msgstr "Posta Kodea"
+
+#~ msgid ""
+#~ "The Tax Identification Number. Complete it if the contact is subjected to "
+#~ "government taxes. Used in some legal statements."
+#~ msgstr ""
+#~ "Identifikazio Fiskaleko Zenbakia. Osatu kontaktua gobernuaren zergen "
+#~ "menpe badago. Zenbait lege adierazpenetan erabiltzen da."
