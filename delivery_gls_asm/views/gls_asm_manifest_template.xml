@@ -106,9 +106,7 @@
                                     <span t-esc="delivery.get('localidad_dst')" />
                                 </td>
                                 <td class="text-right">
-                                    <span
-                                        t-esc="float(delivery.get('kgs').replace(',', '.'))"
-                                    />
+                                    <span t-esc="delivery.get('kgs')" />
                                 </td>
                                 <td class="text-center">
                                     <span t-esc="delivery.get('bultos')" />
@@ -125,16 +123,14 @@
                             </td>
                             <td style="font-size: 14px; text-align: center;">
                                 <strong>
-                                    <span
-                                        t-esc="sum([float(x['kgs'].replace(',', '.')) for x in deliveries])"
-                                    />
+                                    <span t-esc="sum(x['kgs'] for x in deliveries)" />
                                     <br />(Kg.)
                                 </strong>
                             </td>
                             <td style="font-size:14px;text-align:center;">
                                 <strong>
                                     <span
-                                        t-esc="sum([int(x['bultos'].replace(',', '.')) for x in deliveries])"
+                                        t-esc="sum(x['bultos'] for x in deliveries)"
                                     />
                                     <br />(Packages)
                                 </strong>
