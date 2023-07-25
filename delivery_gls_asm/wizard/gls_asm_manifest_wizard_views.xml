@@ -4,6 +4,10 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="GLS Manifest">
+                <p
+                >GLS API does no longer support the manifest creation, so keep in mind that the
+                    data will be retrieved from Odoo.
+                </p>
                 <group>
                     <group>
                         <field name="date_from" />
