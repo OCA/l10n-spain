@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -49,21 +49,11 @@ msgid "Date"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
-#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move__display_name
-#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move_line__display_name
-#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_tax__display_name
-#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_tax_template__display_name
-#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company__display_name
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
-#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move__id
-#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move_line__id
-#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_tax__id
-#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_tax_template__id
-#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company__id
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate__id
 msgid "ID"
 msgstr ""
@@ -79,11 +69,6 @@ msgid "Journal Item"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
-#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move____last_update
-#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move_line____last_update
-#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_tax____last_update
-#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_tax_template____last_update
-#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company____last_update
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate____last_update
 msgid "Last Modified on"
 msgstr ""

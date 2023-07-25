@@ -140,7 +140,7 @@ class TestVatProrate(AccountTestInvoicingCommon):
         wizard = (
             self.env["account.move.reversal"]
             .with_context(active_ids=invoice.ids, active_model="account.move")
-            .create({})
+            .create({"journal_id": invoice.journal_id.id})
         )
         wizard.reverse_moves()
         refund = wizard.new_move_ids
