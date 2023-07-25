@@ -84,6 +84,7 @@ class AccountTax(models.Model):
         partner=None,
         is_refund=False,
         handle_price_include=True,
+        include_caba_tags=False,
     ):
         """If there is a prorate, we will add the new lines here"""
         result = super().compute_all(
@@ -94,6 +95,7 @@ class AccountTax(models.Model):
             partner=partner,
             is_refund=is_refund,
             handle_price_include=handle_price_include,
+            include_caba_tags=include_caba_tags,
         )
         new_taxes = []
         company = self[:1].company_id or self.env.company
@@ -146,8 +148,8 @@ class AccountTaxTemplate(models.Model):
         return result
 
     @api.model_create_multi
-    def create(self, mvals):
-        result = super(AccountTaxTemplate, self).create(mvals)
+    def create(self, vals_list):
+        result = super().create(vals_list)
         self.clear_caches()
         return result
 
