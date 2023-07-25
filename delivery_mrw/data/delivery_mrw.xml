@@ -4,9 +4,9 @@
             <field name="name">MRW delivery charges</field>
             <field name="default_code">Delivery_MRW</field>
             <field name="type">service</field>
-            <field name="categ_id" ref="delivery.product_category_deliveries"/>
-            <field name="sale_ok" eval="False"/>
-            <field name="purchase_ok" eval="False"/>
+            <field name="categ_id" ref="delivery.product_category_deliveries" />
+            <field name="sale_ok" eval="False" />
+            <field name="purchase_ok" eval="False" />
             <field name="list_price">0.0</field>
             <field name="invoice_policy">order</field>
         </record>

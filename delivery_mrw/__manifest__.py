@@ -17,7 +17,6 @@
     ],
     "external_dependencies": {"python": ["zeep"]},
     "data": [
-
         "views/delivery_mrw_view.xml",
         "views/stock_picking_views.xml",
         "views/mrw_manifest_template.xml",
