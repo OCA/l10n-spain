@@ -201,6 +201,11 @@ msgid "Cash On Delivery"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_asm_cash_on_delivery
+msgid "Cash on delivery"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_pickup_state__closed
 msgid "Cerrado"
 msgstr ""
@@ -218,6 +223,13 @@ msgstr ""
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__closed
 msgid "Cerrado por siniestro"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_asm_with_return
+msgid ""
+"Check this field to mark the delivery as 'With return'. This means that the "
+"customer receiving the delivery also has a package to return."
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -299,9 +311,7 @@ msgid "Devuelta al cliente"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__display_name
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_gls_asm_minifest_wizard__display_name
-#: model:ir.model.fields,field_description:delivery_gls_asm.field_stock_picking__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -416,6 +426,14 @@ msgid "GLASS"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model_terms:ir.ui.view,arch_db:delivery_gls_asm.delivery_manifest_wizard_form
+msgid ""
+"GLS API does no longer support the manifest creation, so keep in mind that "
+"the\n"
+"                    data will be retrieved from Odoo."
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__delivery_type__gls_asm
 msgid "GLS ASM"
 msgstr ""
@@ -466,9 +484,16 @@ msgid "GLS Manifest"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields,field_description:delivery_gls_asm.field_stock_picking__gls_asm_picking_ref
+msgid "GLS Picking Reference"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #, python-format
-msgid "GLS Pickup extra info:<br/> Tracking number: %s<br/> Bultos: %s"
+msgid ""
+"GLS Pickup extra info:<br/> Tracking number: %(codigo)s<br/> Bultos: "
+"%(bultos)s"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -500,9 +525,9 @@ msgstr ""
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
 msgid ""
-"GLS returned an error trying to record the shipping for {}.\n"
+"GLS returned an error trying to record the shipping for %(ref).\n"
 "Error:\n"
-"{}"
+"%(error)"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -517,21 +542,26 @@ msgid ""
 msgstr ""
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
-#, python-format
-msgid ""
-"GLS: No response from server getting state from ref {}.\n"
-"Traceback:\n"
-"{}"
+#: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_asm_with_return
+msgid "GLS/ASM With return"
 msgstr ""
 
 #. module: delivery_gls_asm
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
 msgid ""
-"GLS: No response from server printing label with ref {}.\n"
+"GLS: No response from server getting state from ref %(ref).\n"
 "Traceback:\n"
-"{}"
+"%(error)"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
+#, python-format
+msgid ""
+"GLS: No response from server printing label with ref %(ref).\n"
+"Traceback:\n"
+"%(error)"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -555,9 +585,7 @@ msgid "IBEX"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__id
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_gls_asm_minifest_wizard__id
-#: model:ir.model.fields,field_description:delivery_gls_asm.field_stock_picking__id
 msgid "ID"
 msgstr ""
 
@@ -587,6 +615,13 @@ msgid "INTERNACIONAL EXPRESS"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_asm_cash_on_delivery
+msgid ""
+"If checked, it means that the carrier is paid with cash. It assumes there is "
+"a sale order linked and it will use that total amount as the value to be paid"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__36
 msgid "Int. WEB"
 msgstr ""
@@ -600,9 +635,7 @@ msgid ""
 msgstr ""
 
 #. module: delivery_gls_asm
-#: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier____last_update
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_gls_asm_minifest_wizard____last_update
-#: model:ir.model.fields,field_description:delivery_gls_asm.field_stock_picking____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -650,18 +683,9 @@ msgstr ""
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
 msgid ""
-"No response from server getting manifisto for GLS.\n"
+"No response from server recording GLS delivery %(ref).\n"
 "Traceback:\n"
-"{}"
-msgstr ""
-
-#. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
-#, python-format
-msgid ""
-"No response from server recording GLS delivery {}.\n"
-"Traceback:\n"
-"{}"
+"%(error)"
 msgstr ""
 
 #. module: delivery_gls_asm
