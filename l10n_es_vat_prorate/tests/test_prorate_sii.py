@@ -1,5 +1,4 @@
 from datetime import date
-from unittest import SkipTest
 
 from odoo.tests.common import tagged
 
@@ -10,11 +9,10 @@ from odoo.addons.l10n_es_aeat_sii_oca.tests import test_l10n_es_aeat_sii
 class TestSIIVatProrate(test_l10n_es_aeat_sii.TestL10nEsAeatSiiBase):
     @classmethod
     def setUpClass(cls):
-        super().setUpClass()
-        if not cls.env["ir.module.module"].search(
-            [("name", "=", "l10n_es_aeat_sii_oca"), ("state", "=", "installed")]
-        ):
-            raise SkipTest("l10n_es_aeat_sii_oca is not installed")
+        try:
+            super().setUpClass()
+        except Exception:
+            cls.skipTest(cls, "l10n_es_aeat_sii_oca seems not installed")
         cls.company.write(
             {
                 "with_vat_prorate": True,

@@ -12,7 +12,7 @@ class AccountMove(models.Model):
         self, recompute_tax_base_amount=False, tax_rep_lines_to_recompute=None
     ):
         # As we cannot pass the date, we have to use context
-        super(
+        return super(
             AccountMove,
             self.with_context(
                 vat_prorate_date=self.date or self.invoice_date or fields.Date.today()
@@ -85,9 +85,10 @@ class AccountMoveLine(models.Model):
     vat_prorate = fields.Boolean()
 
     def _process_aeat_tax_fee_info(self, res, tax, sign):
-        super()._process_aeat_tax_fee_info(res, tax, sign)
+        result = super()._process_aeat_tax_fee_info(res, tax, sign)
         if self.vat_prorate:
             res[tax]["deductible_amount"] -= self.balance * sign
+        return result
 
     def copy_data(self, default=None):
         """Move `tax_repartition_line_id` value to other field name for avoiding the
