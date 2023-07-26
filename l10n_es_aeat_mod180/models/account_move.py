@@ -8,7 +8,9 @@ class AccountMove(models.Model):
 
     informacion_catastral_id = fields.Many2one("informacion.catastral")
 
-    def fields_view_get(self, view_id=None, view_type='form', toolbar=False, submenu=False):
+    def fields_view_get(
+        self, view_id=None, view_type="form", toolbar=False, submenu=False
+    ):
         """The purpose of this is to write a context on "order_line" field
         respecting other contexts on this field.
         There is a PR (https://github.com/odoo/odoo/pull/26607) to odoo for
@@ -16,10 +18,7 @@ class AccountMove(models.Model):
         in the field.
         """
         res = super().fields_view_get(
-            view_id=view_id,
-            view_type=view_type,
-            toolbar=toolbar,
-            submenu=submenu
+            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
         )
         order_xml = etree.XML(res["arch"])
         move_line_fields = order_xml.xpath("//field[@name='move_line_ids']")
