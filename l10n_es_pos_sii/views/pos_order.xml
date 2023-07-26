@@ -48,7 +48,7 @@
                         name="group_sii_result"
                         groups="l10n_es_aeat.group_account_aeat"
                     >
-                        <notebook>
+                        <notebook colspan="4">
                             <page name="page_sii_result_general" string="General">
                                 <group>
                                     <field name="sii_state" />
