@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-29 15:09+0000\n"
-"PO-Revision-Date: 2021-12-16 13:39+0000\n"
-"Last-Translator: pere-aquarian <pere@aquarian.tech>\n"
+"PO-Revision-Date: 2023-07-27 19:09+0000\n"
+"Last-Translator: gelo joga Rodríguez <gelo.joga@factorlibre.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_aeat_mod390
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390.view_l10n_es_aeat_mod390_report_form
@@ -215,7 +215,7 @@ msgstr "Cuenta bancaria"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__calculation_date
 msgid "Calculation Date"
-msgstr ""
+msgstr "Fecha de cálculo"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__company_id
@@ -230,7 +230,7 @@ msgstr "Cuenta bancaria de la compañía usada para la presentación"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__contact_email
 msgid "Contact Email"
-msgstr ""
+msgstr "Email de contacto"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__counterpart_account_id
@@ -265,7 +265,7 @@ msgstr "Código 1ª actividad"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_first_activity_code
 msgid "Código 1ª actividad (antiguo)"
-msgstr ""
+msgstr "Código 1ª actividad (antiguo)"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_second_activity_code_id
@@ -275,7 +275,7 @@ msgstr "Código 2ª actividad"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_second_activity_code
 msgid "Código 2ª actividad (antiguo)"
-msgstr ""
+msgstr "Código 2ª actividad (antiguo)"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_third_activity_code_id
@@ -285,7 +285,7 @@ msgstr "Código 3ª actividad"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_third_activity_code
 msgid "Código 3ª actividad (antiguo)"
-msgstr ""
+msgstr "Código 3ª actividad (antiguo)"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fourth_activity_code_id
@@ -295,7 +295,7 @@ msgstr "Código 4ª actividad"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fourth_activity_code
 msgid "Código 4ª actividad (antiguo)"
-msgstr ""
+msgstr "Código 4ª actividad (antiguo)"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fifth_activity_code_id
@@ -305,7 +305,7 @@ msgstr "Código 5ª actividad"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fifth_activity_code
 msgid "Código 5ª actividad (antiguo)"
-msgstr ""
+msgstr "Código 5ª actividad (antiguo)"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__main_activity_code_id
@@ -315,7 +315,7 @@ msgstr "Código actividad principal"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__main_activity_code
 msgid "Código actividad principal (antiguo)"
-msgstr ""
+msgstr "Código actividad principal (antiguo)"
 
 #. module: l10n_es_aeat_mod390
 #. odoo-python
@@ -374,7 +374,7 @@ msgstr "Epígrafe I.A.E. actividad principal"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__error_count
 msgid "Error Count"
-msgstr ""
+msgstr "Número de errores"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__export_config_id
@@ -419,7 +419,7 @@ msgstr "Nombre completo"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "Hay mensajes"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__id
@@ -651,7 +651,7 @@ msgstr "Empresa"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__period_type
 msgid "Period Type"
-msgstr ""
+msgstr "Tipo de período"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__contact_phone
