@@ -911,3 +911,6 @@ class SiiMixin(models.AbstractModel):
 
     def confirm_one_document(self):
         self.sudo()._send_document_to_sii()
+
+    def confirm_one_invoice(self):
+        return self.confirm_one_document()
