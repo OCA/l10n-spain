@@ -88,4 +88,57 @@
         </field>
     </record>
 
+    <record id="view_pos_order_filter" model="ir.ui.view">
+        <field name="name">pos.order.list.select</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_filter" />
+        <field name="arch" type="xml">
+            <filter name="order_date" position="after">
+                <group string="SII filters">
+                    <separator />
+                    <filter
+                        name="sii_not_sent"
+                        string="SII not sent"
+                        domain="[('sii_state', '=', 'not_sent'), ('date_order', '>=', '2017-01-01')]"
+                        help="Never sent to SII"
+                    />
+                    <filter
+                        name="sii_pending"
+                        string="With modifications not sent to SII"
+                        domain="[('sii_state', 'in', ['sent_modified','cancelled_modified'])]"
+                        help="Already sent but with local changes not sent yet"
+                    />
+                    <filter
+                        name="sii_sent"
+                        string="SII sent"
+                        domain="[('sii_state', 'not in', ['not_sent'])]"
+                        help="Already sent to SII. It includes cancelled invoices"
+                    />
+                    <filter
+                        name="sii_send_failed"
+                        string="SII failed"
+                        domain="[('sii_send_failed', '=', True)]"
+                        help="The last attempt to sent to SII has failed"
+                    />
+                    <separator />
+                    <filter
+                        name="sii_cancelled"
+                        string="SII cancelled"
+                        domain="[('sii_state', 'in', ['cancelled','cancelled_modified'])]"
+                        help="Cancelled invoices at SII"
+                    />
+                    <separator />
+                </group>
+            </filter>
+            <xpath expr="//group" position="inside">
+                <separator />
+                <filter
+                    string="SII error"
+                    name="sii_error"
+                    domain="[('sii_send_failed', '=', True)]"
+                    context="{'group_by':'sii_send_error'}"
+                />
+            </xpath>
+        </field>
+    </record>
 </odoo>
