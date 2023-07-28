@@ -433,6 +433,14 @@ msgid "GLASS"
 msgstr "GLASS"
 
 #. module: delivery_gls_asm
+#: model_terms:ir.ui.view,arch_db:delivery_gls_asm.delivery_manifest_wizard_form
+msgid ""
+"GLS API does no longer support the manifest creation, so keep in mind that "
+"the\n"
+"                    data will be retrieved from Odoo."
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__delivery_type__gls_asm
 msgid "GLS ASM"
 msgstr "GLS ASM"
@@ -705,18 +713,6 @@ msgstr "Masivo"
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_pickup_state__not_done
 msgid "No Realizada"
 msgstr ""
-
-#. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
-#, python-format
-msgid ""
-"No response from server getting manifisto for GLS.\n"
-"Traceback:\n"
-"%(error)"
-msgstr ""
-"No hay respuesta del servidor obteniendo manifisto para GLS.\n"
-"Rastrear:\n"
-"%(error)"
 
 #. module: delivery_gls_asm
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
@@ -1056,3 +1052,13 @@ msgstr "C.P."
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__35
 msgid "dPRO"
 msgstr "dPRO"
+
+#, python-format
+#~ msgid ""
+#~ "No response from server getting manifisto for GLS.\n"
+#~ "Traceback:\n"
+#~ "%(error)"
+#~ msgstr ""
+#~ "No hay respuesta del servidor obteniendo manifisto para GLS.\n"
+#~ "Rastrear:\n"
+#~ "%(error)"
