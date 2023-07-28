@@ -37,49 +37,41 @@
         <field name="arch" type="xml">
             <group name="group_declaration" position="after">
                 <notebook attrs="{'invisible': [('state', '=', 'draft')]}">
-                    <page string="8. Results">
-                        <group name="group_tax_lines_8">
-                            <group>
-                                <field name="total_amount" />
-                            </group>
-                            <group>
-                                <field name="total_line_ids" nolabel="1" readonly="1">
-                                    <tree>
-                                        <field name="country_code" />
-                                        <field name="page_3_total" />
-                                        <field name="page_4_total" />
-                                        <field name="page_3_4_total" />
-                                        <field name="page_5_total" />
-                                        <field name="page_6_total" />
-                                        <field name="page_5_6_total" />
-                                        <field
-                                            name="amount"
-                                            sum="Balance to deposit in Spain"
-                                        />
-                                    </tree>
-                                </field>
-                            </group>
+                    <page string="8. Results" name="page_tax_lines_8">
+                        <group>
+                            <field name="total_amount" />
                         </group>
+                        <field name="total_line_ids" nolabel="1" readonly="1">
+                            <tree>
+                                <field name="country_code" />
+                                <field name="page_3_total" />
+                                <field name="page_4_total" />
+                                <field name="page_3_4_total" />
+                                <field name="page_5_total" />
+                                <field name="page_6_total" />
+                                <field name="page_5_6_total" />
+                                <field
+                                    name="amount"
+                                    sum="Balance to deposit in Spain"
+                                />
+                            </tree>
+                        </field>
                     </page>
-                    <page string="3. Spanish services">
-                        <group name="group_tax_lines_3">
-                            <field
-                                name="spain_services_line_ids"
-                                nolabel="1"
-                                readonly="1"
-                                domain="[('is_page_8_line', '=', False)]"
-                            />
-                        </group>
+                    <page string="3. Spanish services" name="page_tax_lines_3">
+                        <field
+                            name="spain_services_line_ids"
+                            nolabel="1"
+                            readonly="1"
+                            domain="[('is_page_8_line', '=', False)]"
+                        />
                     </page>
-                    <page string="4. Spanish goods">
-                        <group name="group_tax_lines_4">
-                            <field
-                                name="spain_goods_line_ids"
-                                nolabel="1"
-                                readonly="1"
-                                domain="[('is_page_8_line', '=', False)]"
-                            />
-                        </group>
+                    <page string="4. Spanish goods" name="page_tax_lines_4">
+                        <field
+                            name="spain_goods_line_ids"
+                            nolabel="1"
+                            readonly="1"
+                            domain="[('is_page_8_line', '=', False)]"
+                        />
                     </page>
                 </notebook>
             </group>
