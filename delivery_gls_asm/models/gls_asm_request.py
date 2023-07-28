@@ -77,19 +77,6 @@ class GlsAsmRequest:
             **kwargs
         )
 
-    def _prepare__get_manifest_docin(self, **kwargs):
-        """ASM API is not very standard. Prepare parameters to pass them raw in
-        the SOAP message"""
-        return """
-            <Servicios uidcliente="{uidcustomer}"
-                       xmlns="http://www.asmred.com/">
-                <FechaDesde>{date_from}</FechaDesde>
-                <FechaHasta></FechaHasta>
-            </Servicios>
-        """.format(
-            **kwargs
-        )
-
     def _prepare_send_shipping_docin(self, **kwargs):
         """ASM API is not very standard. Prepare parameters to pass them raw in
         the SOAP message"""
@@ -454,37 +441,3 @@ class GlsAsmRequest:
         response["gls_sent_xml"] = xml
         response["_return"] = int(response["_return"])
         return response
-
-    def _get_manifest(self, date_from):
-        """Get shipping manifest for a given range date
-        :param str date_from -- date in format "%d/%m&Y"
-        :returns: list of dicts with format
-            {
-                'codplaza_pag': 771, 'codcli': 601, 'cliente': Pruebas WS
-                'codplaza_org': 771, 'codexp': 468644476, 'codservicio': 74,
-                'servicio': EUROBUSINESS PARCEL, 'codhorario': 3,
-                'horario': BusinessParcel, 'codestado': -10, 'estado': GRABADO,
-                'bultos': 1, 'kgs': 7,0, 'nombre_dst': TEST USER,
-                'calle_dst': direccion, 'localidad_dst': Fontenay-Trésigny,
-                'cp_dst': 77610, 'departamento_dst': , 'pais_dst': FR,
-            }
-        """
-        xml = Raw(
-            self._prepare__get_manifest_docin(
-                uidcustomer=self.uidcustomer, date_from=date_from
-            )
-        )
-        _logger.debug(xml)
-        try:
-            res = self.client.service.GetManifiesto(docIn=xml)
-            _logger.debug(res)
-        except Exception as e:
-            raise UserError(
-                _(
-                    "No response from server getting manifisto for GLS.\n"
-                    "Traceback:\n%(error)"
-                )
-                % {"error": e}
-            ) from e
-        res = self._recursive_asdict(res.Servicios.Envios).get("Envio", [])
-        return res
