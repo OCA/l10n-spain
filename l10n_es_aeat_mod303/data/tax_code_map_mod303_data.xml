@@ -729,7 +729,7 @@
          S_IVA0_E, S_IVA_NS, S_IVA_NS_B -->
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva0_e'), ref('l10n_es.account_tax_template_s_iva0'), ref('l10n_es.account_tax_template_s_iva_ns'), ref('l10n_es.account_tax_template_s_iva_ns_b')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva0_e'), ref('l10n_es.account_tax_template_s_iva0')])]"
         />
     </record>
     <record id="aeat_mod303_map_line_61" model="l10n.es.aeat.map.tax.line">
