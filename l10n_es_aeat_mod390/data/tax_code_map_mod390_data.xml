@@ -1187,7 +1187,7 @@
         <field name="inverse" eval="False" />
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva_e')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva_e'), ref('l10n_es.account_tax_template_s_iva_ns'), ref('l10n_es.account_tax_template_s_iva_ns_b')])]"
         />
     </record>
     <record id="aeat_mod390_map_line_102" model="l10n.es.aeat.map.tax.line">
