@@ -131,7 +131,7 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
             # Adquisiciones intracomunitarias exentas
             ("109", 0.0),
             # Exportaciones y otras operaciones exentas con derecho a deducción
-            ("110", 4200.0),
+            ("110", 8600.0),  # (2*2100 + 2*2200) (S_IVA_E + S_IVA_NS)
             # IVA deducible en oper. corrientes de bienes y servicios - Base 4%
             ("190", 2100.0),
             # IVA deducible en oper. corrientes de bienes y servicios - Cuota 4%
@@ -287,7 +287,7 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         self.assertAlmostEqual(self.model390.casilla_64, 2408.45, 2)
         self.assertAlmostEqual(self.model390.casilla_65, 108.55, 2)
         self.assertAlmostEqual(self.model390.casilla_86, 108.55, 2)
-        self.assertAlmostEqual(self.model390.casilla_108, 37480.0, 2)
+        self.assertAlmostEqual(self.model390.casilla_108, 41880.0, 2)
         # It's not possible to confirm without entering manual 303 summary
         with self.assertRaises(exceptions.UserError):
             self.model390.button_confirm()
