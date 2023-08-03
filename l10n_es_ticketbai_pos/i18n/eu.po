@@ -44,14 +44,6 @@ msgid "Device Serial Number"
 msgstr "Gailuaren serie zenbakia"
 
 #. module: l10n_es_ticketbai_pos
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_move__display_name
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__display_name
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order__display_name
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_tbai_invoice__display_name
-msgid "Display Name"
-msgstr "Bistaratutako izena"
-
-#. module: l10n_es_ticketbai_pos
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__tbai_enabled
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order__tbai_enabled
 msgid "Enable TicketBAI"
@@ -63,25 +55,9 @@ msgid "Files Sent"
 msgstr "Bidalitako fitxategiak"
 
 #. module: l10n_es_ticketbai_pos
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_move__id
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__id
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order__id
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_tbai_invoice__id
-msgid "ID"
-msgstr "ID"
-
-#. module: l10n_es_ticketbai_pos
 #: model:ir.model,name:l10n_es_ticketbai_pos.model_account_move
 msgid "Journal Entry"
 msgstr "Egunkari Sarrera"
-
-#. module: l10n_es_ticketbai_pos
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_move____last_update
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config____last_update
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order____last_update
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_tbai_invoice____last_update
-msgid "Last Modified on"
-msgstr "Azken aldaketa eguna"
 
 #. module: l10n_es_ticketbai_pos
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__tbai_last_invoice_id
@@ -107,7 +83,8 @@ msgstr "Mezuak"
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "Non spanish customers are not supported for Simplified Invoice."
-msgstr "Espainiakoak ez diren bezeroak ez dira onartzen Faktura Sinplifikatuan."
+msgstr ""
+"Espainiakoak ez diren bezeroak ez dira onartzen Faktura Sinplifikatuan."
 
 #. module: l10n_es_ticketbai_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
@@ -156,8 +133,7 @@ msgstr ""
 #. openerp-web
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
-msgid ""
-"Please set VAT or TicketBAI Partner Identification Number for customer."
+msgid "Please set VAT or TicketBAI Partner Identification Number for customer."
 msgstr ""
 "Ezarri IFZa edo TicketBAI Bazkidearen Identifikazio Zenbakia bezeroarentzat."
 
@@ -198,8 +174,6 @@ msgstr "Erantzunak"
 
 #. module: l10n_es_ticketbai_pos
 #: code:addons/l10n_es_ticketbai_pos/models/pos_config.py:0
-#: code:addons/l10n_es_ticketbai_pos/models/pos_config.py:0
-#: code:addons/l10n_es_ticketbai_pos/models/pos_config.py:0
 #, python-format
 msgid "Simplified Invoice IDs Sequence is required"
 msgstr "Faktura sinplifikatuaren IDaren sekuentzia beharrezkoa da"
@@ -207,9 +181,8 @@ msgstr "Faktura sinplifikatuaren IDaren sekuentzia beharrezkoa da"
 #. module: l10n_es_ticketbai_pos
 #: code:addons/l10n_es_ticketbai_pos/models/pos_order.py:0
 #, python-format
-msgid "Simplified Invoice Number Prefix %s is not part of Number %s!"
+msgid "Simplified Invoice Number Prefix %s is not part of Number %%!"
 msgstr ""
-"Sinplifikatutako faktura-zenbakiaren %s aurrizkia ez da %s zenbakiaren parte!"
 
 #. module: l10n_es_ticketbai_pos
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_bank_statement_line__tbai_substitution_pos_order_id
@@ -220,8 +193,6 @@ msgstr "Tbai Ordezkapen Pos Agindua"
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ProductScreen/ProductScreen.js:0
@@ -291,3 +262,18 @@ msgstr "IFZaren erregimenaren gakoa"
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
 msgid "VAT Regimes"
 msgstr "IFZaren erregimenak"
+
+#~ msgid "Display Name"
+#~ msgstr "Bistaratutako izena"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Azken aldaketa eguna"
+
+#, python-format
+#~ msgid "Simplified Invoice Number Prefix %s is not part of Number %s!"
+#~ msgstr ""
+#~ "Sinplifikatutako faktura-zenbakiaren %s aurrizkia ez da %s zenbakiaren "
+#~ "parte!"
