@@ -68,6 +68,7 @@ class AccountMove(models.Model):
         account reassignation in super (in combination with `copy_data` method in
         account.move.line).
         """
+        self = self.with_context(prorrate_refund=True)
         vals = super()._reverse_move_vals(default_values, cancel=cancel)
         for command in vals["line_ids"]:
             line_vals = command[2]
@@ -94,8 +95,9 @@ class AccountMoveLine(models.Model):
         calls this one. We will put it again after, overwriting the other method.
         """
         res = super().copy_data(default=default)
-        for vals in res:
-            if vals.get("vat_prorate") and vals.get("tax_repartition_line_id"):
-                repartition_line_id = vals.pop("tax_repartition_line_id")
-                vals["prorate_tax_repartition_line_id"] = repartition_line_id
+        if self.env.context.get("prorrate_refund"):
+            for vals in res:
+                if vals.get("vat_prorate") and vals.get("tax_repartition_line_id"):
+                    repartition_line_id = vals.pop("tax_repartition_line_id")
+                    vals["prorate_tax_repartition_line_id"] = repartition_line_id
         return res
