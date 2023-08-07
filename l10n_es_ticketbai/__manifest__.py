@@ -5,7 +5,7 @@
     "name": "TicketBAI",
     "summary": "Declaración de todas las operaciones de venta realizadas por las "
     "personas y entidades que desarrollan actividades económicas",
-    "version": "13.0.1.10.4",
+    "version": "13.0.1.10.5",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Binovo, Odoo Community Association (OCA)",
