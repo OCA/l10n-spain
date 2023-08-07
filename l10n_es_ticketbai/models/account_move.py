@@ -423,6 +423,7 @@ class AccountMove(models.Model):
                 lambda x: x.tbai_enabled and "posted" == x.state and x.tbai_invoice_id
             )
             tbai_invoices._tbai_invoice_cancel()
+        self.mapped("line_ids.analytic_line_ids").unlink()
         return super().button_cancel()
 
     def post(self):
