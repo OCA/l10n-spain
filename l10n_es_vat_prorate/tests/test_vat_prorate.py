@@ -133,3 +133,19 @@ class TestVatProrate(AccountTestInvoicingCommon):
         )
         self.assertEqual(4, len(invoice.line_ids))
         self.assertEqual(1, len(invoice.line_ids.filtered(lambda r: r.tax_line_id)))
+
+    def test_prorate_make_refund(self):
+        invoice = self.init_invoice("in_invoice", products=[self.product_a])
+        invoice.action_post()
+        wizard = (
+            self.env["account.move.reversal"]
+            .with_context(active_ids=invoice.ids, active_model="account.move")
+            .create({})
+        )
+        wizard.reverse_moves()
+        refund = wizard.new_move_ids
+        self.assertEqual(len(refund.line_ids), 4)
+        tax_lines = refund.line_ids.filtered(lambda r: r.tax_line_id)
+        self.assertEqual(len(tax_lines), 2)
+        # One of the tax lines should have expense account and the other the tax account
+        self.assertNotEqual(tax_lines[0].account_id, tax_lines[1].account_id)
