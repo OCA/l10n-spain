@@ -63,6 +63,21 @@ class AccountMove(models.Model):
             )
         return super()._onchange_invoice_line_ids()
 
+    def _reverse_move_vals(self, default_values, cancel=True):
+        """Reassign again the proper field name on prorate lines after avoiding the
+        account reassignation in super (in combination with `copy_data` method in
+        account.move.line).
+        """
+        self = self.with_context(prorrate_refund=True)
+        vals = super()._reverse_move_vals(default_values, cancel=cancel)
+        for command in vals["line_ids"]:
+            line_vals = command[2]
+            if line_vals.get("prorate_tax_repartition_line_id"):
+                line_vals["tax_repartition_line_id"] = line_vals.pop(
+                    "prorate_tax_repartition_line_id"
+                )
+        return vals
+
 
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
@@ -73,3 +88,16 @@ class AccountMoveLine(models.Model):
         super()._process_aeat_tax_fee_info(res, tax, sign)
         if self.vat_prorate:
             res[tax]["deductible_amount"] -= self.balance * sign
+
+    def copy_data(self, default=None):
+        """Move `tax_repartition_line_id` value to other field name for avoiding the
+        `account_id` reassignation due to the code inside `_reverse_move_vals`, which
+        calls this one. We will put it again after, overwriting the other method.
+        """
+        res = super().copy_data(default=default)
+        if self.env.context.get("prorrate_refund"):
+            for vals in res:
+                if vals.get("vat_prorate") and vals.get("tax_repartition_line_id"):
+                    repartition_line_id = vals.pop("tax_repartition_line_id")
+                    vals["prorate_tax_repartition_line_id"] = repartition_line_id
+        return res
