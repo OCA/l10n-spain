@@ -6,7 +6,7 @@
     "name": "TicketBAI - Point of Sale - "
             "declaración de todas las operaciones de venta realizadas por las personas "
             "y entidades que desarrollan actividades económicas",
-    "version": "12.0.1.0.5",
+    "version": "12.0.1.0.6",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Binovo,"
