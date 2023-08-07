@@ -51,7 +51,7 @@
                     colspan="4"
                     attrs="{'invisible': [('state', '=', 'draft')]}"
                 >
-                    <field name="lines296" nolabel="1" />
+                    <field name="lines296" nolabel="1" colspan="2" />
                 </group>
             </group>
             <form position="inside">
