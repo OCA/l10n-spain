@@ -1,8 +1,9 @@
 # Copyright 2022 Creu Blanca
+# Copyright 2023 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
-from odoo.tools import float_round, ormcache
+from odoo.tools import ormcache
 
 
 class AccountTax(models.Model):
@@ -74,57 +75,6 @@ class AccountTax(models.Model):
                     continue
             tax.with_vat_prorate = False
             tax.prorate_account_ids = False
-
-    def compute_all(
-        self,
-        price_unit,
-        currency=None,
-        quantity=1.0,
-        product=None,
-        partner=None,
-        is_refund=False,
-        handle_price_include=True,
-        include_caba_tags=False,
-    ):
-        """If there is a prorate, we will add the new lines here"""
-        result = super().compute_all(
-            price_unit,
-            currency=currency,
-            quantity=quantity,
-            product=product,
-            partner=partner,
-            is_refund=is_refund,
-            handle_price_include=handle_price_include,
-            include_caba_tags=include_caba_tags,
-        )
-        new_taxes = []
-        company = self[:1].company_id or self.env.company
-        if not currency:
-            currency = company.currency_id
-        for tax_val in result["taxes"]:
-            tax = self.env["account.tax"].browse(tax_val["id"])
-            date = self.env.context.get("vat_prorate_date", False)
-            if (
-                tax.with_vat_prorate
-                and tax_val["account_id"]
-                and date
-                and (
-                    not tax.prorate_account_ids
-                    or tax_val["account_id"] in tax.prorate_account_ids.ids
-                )
-            ):
-                prec = currency.rounding
-                prorate = self.company_id.get_prorate(date)
-                new_vals = tax_val.copy()
-                new_vals["vat_prorate"] = True
-                tax_val["amount"] = float_round(
-                    tax_val["amount"] * (prorate / 100), precision_rounding=prec
-                )
-                new_vals["amount"] -= tax_val["amount"]
-                result["total_void"] += new_vals["amount"]
-                new_taxes.append(new_vals)
-        result["taxes"] += new_taxes
-        return result
 
 
 class AccountTaxTemplate(models.Model):
