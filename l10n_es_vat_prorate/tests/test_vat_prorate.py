@@ -4,7 +4,7 @@
 
 from datetime import date
 
-from odoo.tests.common import Form, tagged
+from odoo.tests.common import tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
@@ -29,8 +29,12 @@ class TestVatProrate(AccountTestInvoicingCommon):
                 "taxes_id": [(6, 0, cls.tax_sale_a.ids)],
             }
         )
+        cls.analytic_plan = cls.env["account.analytic.plan"].create({"name": "Default"})
         cls.analytic_account = cls.env["account.analytic.account"].create(
-            {"name": "Test analytic account"}
+            {
+                "name": "Test analytic account",
+                "plan_id": cls.analytic_plan.id,
+            }
         )
 
     def test_no_prorate_in_invoice(self):
@@ -50,15 +54,13 @@ class TestVatProrate(AccountTestInvoicingCommon):
         self.assertEqual(6, len(invoice.line_ids))
         self.assertEqual(3, len(invoice.line_ids.filtered(lambda r: r.tax_line_id)))
         # Deal with analytics
-        with Form(invoice) as invoice_form:
-            with invoice_form.invoice_line_ids.edit(0) as line_form:
-                line_form.analytic_account_id = self.analytic_account
+        invoice.line_ids[0].analytic_distribution = {self.analytic_account.id: 100}
         self.assertEqual(6, len(invoice.line_ids))
         self.assertEqual(
             1,
             len(
                 invoice.line_ids.filtered(
-                    lambda r: r.tax_line_id and r.analytic_account_id
+                    lambda r: r.tax_line_id and r.analytic_distribution
                 )
             ),
         )
@@ -71,7 +73,11 @@ class TestVatProrate(AccountTestInvoicingCommon):
             "in_invoice", products=[self.product_a, self.product_b]
         )
         self.assertEqual(5, len(invoice.line_ids))
-        self.assertEqual(2, len(invoice.line_ids.filtered(lambda r: r.tax_line_id)))
+        tax_lines = invoice.line_ids.filtered(lambda r: r.tax_line_id)
+        self.assertEqual(2, len(tax_lines))
+        self.assertEqual(1, len(tax_lines.filtered("vat_prorate")))
+        # One of the tax lines should have expense account and the other the tax account
+        self.assertNotEqual(tax_lines[0].account_id, tax_lines[1].account_id)
 
     def test_no_prorate_in_refund(self):
         self.env.company.write(

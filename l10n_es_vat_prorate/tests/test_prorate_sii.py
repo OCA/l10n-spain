@@ -22,6 +22,12 @@ class TestSIIVatProrate(test_l10n_es_aeat_sii.TestL10nEsAeatSiiBase):
                 ],
             }
         )
+        # Make sure the currency rate 1.2
+        cls.usd = cls.env.ref("base.USD")
+        cls.usd.rate_ids.unlink()
+        cls.usd.rate_ids.create(
+            {"name": "2000-01-01", "rate": 1.2, "currency_id": cls.usd.id}
+        )
 
     def test_get_invoice_data(self):
         mapping = [
