@@ -223,26 +223,26 @@
                     <InvoicesCount t-esc="'1'" />
                     <TotalInvoicesAmount>
                         <TotalAmount
-                            t-esc="('%.2f' if version == '3_2' else '%.8f') % move.amount_total"
+                            t-esc="('%.2f' if version == '3_2' else '%.8f') % move.amount_total_signed"
                         />
                         <EquivalentInEuros
-                            t-esc="'%.2f' % (move.amount_total * euro_rate / currency_rate)"
+                            t-esc="'%.2f' % (move.amount_total_signed * euro_rate / currency_rate)"
                         />
                     </TotalInvoicesAmount>
                     <TotalOutstandingAmount>
                         <TotalAmount
-                            t-esc="('%.2f' if version == '3_2' else '%.8f') % move.amount_total"
+                            t-esc="('%.2f' if version == '3_2' else '%.8f') % move.amount_total_signed"
                         />
                         <EquivalentInEuros
-                            t-esc="'%.2f' % (move.amount_total * euro_rate / currency_rate)"
+                            t-esc="'%.2f' % (move.amount_total_signed * euro_rate / currency_rate)"
                         />
                     </TotalOutstandingAmount>
                     <TotalExecutableAmount>
                         <TotalAmount
-                            t-esc="('%.2f' if version == '3_2' else '%.8f') % move.amount_total"
+                            t-esc="('%.2f' if version == '3_2' else '%.8f') % move.amount_total_signed"
                         />
                         <EquivalentInEuros
-                            t-esc="'%.2f' % (move.amount_total * euro_rate / currency_rate)"
+                            t-esc="'%.2f' % (move.amount_total_signed * euro_rate / currency_rate)"
                         />
                     </TotalExecutableAmount>
                     <InvoiceCurrencyCode t-esc="move.currency_id.name" />
@@ -432,14 +432,14 @@
                     </TaxesWithheld>
                     <InvoiceTotals>
                         <TotalGrossAmount
-                            t-esc="('%.2f' if version == '3_2' else '%.8f') % move.amount_untaxed"
+                            t-esc="('%.2f' if version == '3_2' else '%.8f') % move.amount_untaxed_signed"
                         />
                         <GeneralDiscounts t-if="False" />
                         <GeneralSurcharges t-if="False" />
                         <TotalGeneralDiscounts t-if="False" />
                         <TotalGeneralSurcharges t-if="False" />
                         <TotalGrossAmountBeforeTaxes
-                            t-esc="('%.2f' if version == '3_2' else '%.8f') % move.amount_untaxed"
+                            t-esc="('%.2f' if version == '3_2' else '%.8f') % move.amount_untaxed_signed"
                         />
                         <TotalTaxOutputs
                             t-esc="('%.2f' if version == '3_2' else '%.8f') % (-amount_tax)"
@@ -448,19 +448,19 @@
                             t-esc="('%.2f' if version == '3_2' else '%.8f') % (-amount_tax_withheld)"
                         />
                         <InvoiceTotal
-                            t-esc="('%.2f' if version == '3_2' else '%.8f') % move.amount_total"
+                            t-esc="('%.2f' if version == '3_2' else '%.8f') % move.amount_total_signed"
                         />
                         <Subsidies t-if="False" />
                         <PaymentsOnAccount t-if="False" />
                         <ReimbursableExpenses t-if="False" />
                         <TotalFinancialExpenses t-if="False" />
                         <TotalOutstandingAmount
-                            t-esc="('%.2f' if version == '3_2' else '%.8f') % move.amount_total"
+                            t-esc="('%.2f' if version == '3_2' else '%.8f') % move.amount_total_signed"
                         />
                         <TotalPaymentsOnAccount t-if="False" />
                         <AmountsWithheld t-if="False" />
                         <TotalExecutableAmount
-                            t-esc="('%.2f' if version == '3_2' else '%.8f') % move.amount_total"
+                            t-esc="('%.2f' if version == '3_2' else '%.8f') % move.amount_total_signed"
                         />
                         <TotalReimbursableExpenses t-if="False" />
                         <t t-if="version not in ('3_2', '3_2_1')">
@@ -475,6 +475,10 @@
                             t-foreach="move.line_ids.filtered(lambda r: not r.display_type and not r.exclude_from_invoice_tab)"
                             t-as="line"
                         >
+                            <t
+                                t-set="line_sign"
+                                t-value="-1 if move.move_type == 'out_refund' else 1"
+                            />
                             <t t-set="withheld" t-value="False" />
                             <t t-foreach="line.tax_ids" t-as="line_tax">
                                 <t t-if="line_tax.amount &lt; 0">
@@ -529,7 +533,7 @@
                             <SequenceNumber t-if="False" />
                             <DeliveryNotesReferences t-if="False" />
                             <ItemDescription t-length="2500" t-esc="line.name" />
-                            <Quantity t-esc="line.quantity" />
+                            <Quantity t-esc="line_sign * line.quantity" />
                             <UnitOfMeasure t-if="False" />
                             <UnitPriceWithoutTax
                                 t-esc="('%.6f' if version == '3_2' else '%.8f') % line.price_unit"
@@ -539,7 +543,7 @@
                                 t-value="line._get_price_total_and_subtotal_model(line.price_unit, line.quantity,0,line.move_id.currency_id, line.product_id, line.move_id.partner_id, line.tax_ids, line.move_id.move_type,).get('price_subtotal', 0.0)"
                             />
                             <TotalCost
-                                t-esc="('%.6f' if version == '3_2' else '%.8f') % subtotal_gross"
+                                t-esc="('%.6f' if version == '3_2' else '%.8f') % (line_sign * subtotal_gross)"
                             />
                             <DiscountsAndRebates t-if="line.discount != 0">
                                 <Discount>
@@ -548,13 +552,13 @@
                                         t-esc="('%.4f' if version == '3_2' else '%.8f') % line.discount"
                                     />
                                     <DiscountAmount
-                                        t-esc="('%.6f' if version == '3_2' else '%.8f') % (subtotal_gross - line.price_subtotal)"
+                                        t-esc="('%.6f' if version == '3_2' else '%.8f') % (line_sign * (subtotal_gross - line.price_subtotal))"
                                     />
                                 </Discount>
                             </DiscountsAndRebates>
                             <Charges t-if="False" />
                             <GrossAmount
-                                t-esc="('%.6f' if version == '3_2' else '%.8f') % line.price_subtotal"
+                                t-esc="('%.6f' if version == '3_2' else '%.8f') % (line_sign * line.price_subtotal)"
                             />
                             <TaxesWithheld t-if="withheld">
                                 <t t-foreach="line.tax_ids" t-as="line_tax">
@@ -565,18 +569,18 @@
                                         />
                                         <TaxableBase>
                                             <TotalAmount
-                                                t-esc="('%.2f' if version == '3_2' else '%.8f') % line.price_subtotal"
+                                                t-esc="('%.2f' if version == '3_2' else '%.8f') % (line_sign * line.price_subtotal)"
                                             />
                                             <EquivalentInEuros
-                                                t-esc="'%.2f' % (line.price_subtotal * euro_rate / currency_rate)"
+                                                t-esc="'%.2f' % (line_sign * (line.price_subtotal * euro_rate / currency_rate))"
                                             />
                                         </TaxableBase>
                                         <TaxAmount>
                                             <TotalAmount
-                                                t-esc="('%.2f' if version == '3_2' else '%.8f') % (line.price_subtotal * (-line_tax.amount))"
+                                                t-esc="('%.2f' if version == '3_2' else '%.8f') % (line_sign * (line.price_subtotal * (-line_tax.amount)))"
                                             />
                                             <EquivalentInEuros
-                                                t-esc="'%.2f' % (line.price_subtotal * (-line_tax.amount) * euro_rate / currency_rate)"
+                                                t-esc="'%.2f' % (line_sign * (line.price_subtotal * (-line_tax.amount) * euro_rate / currency_rate))"
                                             />
                                         </TaxAmount>
                                     </Tax>
@@ -591,18 +595,18 @@
                                         />
                                         <TaxableBase>
                                             <TotalAmount
-                                                t-esc="('%.2f' if version == '3_2' else '%.8f') % line.price_subtotal"
+                                                t-esc="('%.2f' if version == '3_2' else '%.8f') % (line_sign * line.price_subtotal)"
                                             />
                                             <EquivalentInEuros
-                                                t-esc="'%.2f' % (line.price_subtotal * euro_rate / currency_rate)"
+                                                t-esc="'%.2f' % (line_sign * (line.price_subtotal * euro_rate / currency_rate))"
                                             />
                                         </TaxableBase>
                                         <TaxAmount>
                                             <TotalAmount
-                                                t-esc="('%.2f' if version == '3_2' else '%.8f') % (line.price_subtotal * (line_tax.amount) / 100)"
+                                                t-esc="('%.2f' if version == '3_2' else '%.8f') % (line_sign * (line.price_subtotal * (line_tax.amount) / 100))"
                                             />
                                             <EquivalentInEuros
-                                                t-esc="'%.2f' % (line.price_subtotal * (line_tax.amount) / 100 * euro_rate / currency_rate)"
+                                                t-esc="'%.2f' % (line_sign * (line.price_subtotal * (line_tax.amount) / 100 * euro_rate / currency_rate))"
                                             />
                                         </TaxAmount>
                                     </Tax>
@@ -637,7 +641,7 @@
                                 t-esc="move.invoice_date_due or move.invoice_date"
                             />
                             <InstallmentAmount
-                                t-esc="'%.2f' % (move.amount_residual)"
+                                t-esc="'%.2f' % (move.amount_residual_signed)"
                             />
                             <t
                                 t-set="partner_bank"
