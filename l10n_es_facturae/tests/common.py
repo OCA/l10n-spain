@@ -225,6 +225,34 @@ class CommonTestBase(TestL10nEsAeatCertificateBase):
             "27.98",
             "57.090000",
         ]
+        self.refund_move = self.env["account.move"].create(
+            {
+                "partner_id": self.partner.id,
+                "journal_id": self.sale_journal.id,
+                "invoice_date": "2016-03-12",
+                "payment_mode_id": self.payment_mode_02.id,
+                "move_type": "out_refund",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.env.ref(
+                                "product.product_delivery_02"
+                            ).id,
+                            "account_id": self.account.id,
+                            "name": "Producto de prueba",
+                            "quantity": 1.0,
+                            "price_unit": 100.0,
+                            "tax_ids": [(6, 0, self.tax.ids)],
+                        },
+                    )
+                ],
+            }
+        )
+        self.refund_move.refresh()
+        self.refund_check_amount = ["-100.000000", "-100.000000", "-100.00", "-21.00"]
+        self.refund_check_totals = ["-100.00", "-100.00", "-21.00", "-121.00"]
 
 
 class CommonTest(CommonTestBase):
@@ -418,6 +446,14 @@ class CommonTest(CommonTestBase):
                 active_model="account.move",
             ).create_facturae_file()
 
+    def test_refund_amounts_file_generation(self):
+        self._activate_certificate(self.certificate_password)
+        self._check_amounts(self.refund_move, *self.refund_check_amount)
+
+    def test_refund_totals_file_generation(self):
+        self._activate_certificate(self.certificate_password)
+        self._check_totals(self.refund_move, *self.refund_check_totals)
+
     def test_constrains_01(self):
         move = self.env["account.move"].create(
             {
@@ -570,6 +606,35 @@ class CommonTest(CommonTestBase):
                 facturae_xml.xpath("//InvoiceLine//DiscountAmount")[0].text,
                 discount,
             )
+
+    def _check_totals(self, move, subtotal, base, tax, total):
+        move.action_post()
+        move.name = "2999/99999"
+        wizard = (
+            self.env["create.facturae"]
+            .with_context(active_ids=move.ids, active_model="account.move")
+            .create({})
+        )
+        wizard.create_facturae_file()
+        generated_facturae = etree.fromstring(base64.b64decode(wizard.facturae))
+        self.assertEqual(
+            generated_facturae.xpath("//InvoiceTotals/TotalGrossAmount")[0].text,
+            subtotal,
+        )
+        self.assertEqual(
+            generated_facturae.xpath("//InvoiceTotals/TotalGrossAmountBeforeTaxes")[
+                0
+            ].text,
+            base,
+        )
+        self.assertEqual(
+            generated_facturae.xpath("//InvoiceTotals/TotalTaxOutputs")[0].text,
+            tax,
+        )
+        self.assertEqual(
+            generated_facturae.xpath("//InvoiceTotals//InvoiceTotal")[0].text,
+            total,
+        )
 
     def test_move_rounding(self):
         self._activate_certificate(self.certificate_password)
