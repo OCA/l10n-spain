@@ -151,6 +151,34 @@ msgstr "Companyies"
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
+msgid "Company city not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#. odoo-python
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Company country not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#. odoo-python
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Company state not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#. odoo-python
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Company street not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#. odoo-python
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
 msgid "Company vat is too small"
 msgstr "El NIF de la companyia es massa petit"
 
@@ -160,6 +188,13 @@ msgstr "El NIF de la companyia es massa petit"
 #, python-format
 msgid "Company vat not provided"
 msgstr "No s'ha facilitat el NIF de la companyia"
+
+#. module: l10n_es_facturae
+#. odoo-python
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Company zip not provided"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_res_partner
@@ -178,8 +213,8 @@ msgstr "Mètode de correcció"
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
-msgid "Country must be defined"
-msgstr "Cal definir el país"
+msgid "Country must be defined for factura-e enabled partners."
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.wizard_create_facturae
@@ -591,6 +626,11 @@ msgid "Invoice %s"
 msgstr "Factura %s"
 
 #. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
+msgid "Invoicing Period"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_move
 msgid "Journal Entry"
 msgstr "Assentament comptable"
@@ -672,6 +712,11 @@ msgid "Organo Gestor"
 msgstr "Òrgan gestor"
 
 #. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
+msgid "Other facturae fields"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__05
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__05
 msgid "Otro"
@@ -689,6 +734,13 @@ msgstr ""
 #, python-format
 msgid "Partner state not provided"
 msgstr "No s'ha informat de l'estat del partner"
+
+#. module: l10n_es_facturae
+#. odoo-python
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Partner street address is not provided"
+msgstr ""
 
 #. module: l10n_es_facturae
 #. odoo-python
@@ -816,8 +868,15 @@ msgstr "Estat"
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
-msgid "State must be defined"
-msgstr "Cal definir l'estat"
+msgid "State must be defined for factura-e enabled partners."
+msgstr ""
+
+#. module: l10n_es_facturae
+#. odoo-python
+#: code:addons/l10n_es_facturae/models/res_partner.py:0
+#, python-format
+msgid "Street must be defined for factura-e enabled partners."
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_tax
@@ -866,8 +925,8 @@ msgstr "Unitat tramitadora"
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
-msgid "Vat must be defined"
-msgstr "S'ha de definir el NIF"
+msgid "Vat must be defined for factura-e enabled partners."
+msgstr ""
 
 #. module: l10n_es_facturae
 #. odoo-python
@@ -984,6 +1043,18 @@ msgstr "[19] Pagament amb targeta"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_proponente
 msgid "Órgano proponente"
 msgstr "Ôrgan proponent"
+
+#, python-format
+#~ msgid "Country must be defined"
+#~ msgstr "Cal definir el país"
+
+#, python-format
+#~ msgid "State must be defined"
+#~ msgstr "Cal definir l'estat"
+
+#, python-format
+#~ msgid "Vat must be defined"
+#~ msgstr "S'ha de definir el NIF"
 
 #~ msgid "Número de la factura emitida por un tercero."
 #~ msgstr "Número de la factura emès per un tercer."

@@ -17,3 +17,5 @@ class TestL10nEsFacturae(CommonTest):
             "27.98",
             "57.090000",
         ]
+        self.refund_check_amount = ["-100.000000", "-100.000000", "-100.00", "-21.00"]
+        self.refund_check_totals = ["-100.00", "-100.00", "-21.00", "-121.00"]
