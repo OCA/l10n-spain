@@ -21,7 +21,7 @@ class PosOrder(models.Model):
         copy=False,
     )
 
-    @api.depends("company_id")
+    @api.depends("company_id", "state")
     def _compute_sii_description(self):
         for order in self:
             order.sii_description = order.company_id.sii_pos_description
