@@ -312,6 +312,7 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
             }
         )
         self._compare_sii_dict("sii_pos_order_refund_iva21b.json", refund_order)
+        self.assertEqual(refund_order.sii_refund_type, "I")
 
     def test_07_automatic_send(self):
         self.company.sii_description_method = "auto"
