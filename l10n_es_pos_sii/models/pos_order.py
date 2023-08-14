@@ -46,6 +46,14 @@ class PosOrder(models.Model):
             else:
                 order.sii_enabled = False
 
+    @api.depends("amount_total")
+    def _compute_sii_refund_type(self):
+        for record in self:
+            if 0 > record.amount_total:
+                record.sii_refund_type = "I"
+            else:
+                record.sii_refund_type = False
+
     def _is_sii_type_breakdown_required(self, taxes_dict):
         """As these are simplified invoices, we don't break taxes.
 
