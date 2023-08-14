@@ -1,0 +1,24 @@
+{
+  "IDFactura": {
+    "FechaExpedicionFacturaEmisor": "01-01-2020",
+    "NumSerieFacturaEmisor": "sup0004",
+    "IDEmisorFactura": {"NIF": "F35999705"}
+  },
+  "FacturaRecibida": {
+    "TipoFactura": "F1",
+    "Contraparte": {"NombreRazon": "Test partner", "NIF": "F35999705"},
+    "DescripcionOperacion": "/",
+    "ClaveRegimenEspecialOTrascendencia": "01",
+    "ImporteTotal": 121.0,
+    "FechaRegContable": "01-10-2020",
+    "DesgloseFactura": {
+      "InversionSujetoPasivo": {
+        "DetalleIVA": [
+          {"BaseImponible": 100.0, "CuotaSoportada": 21.0, "TipoImpositivo": "21.0"}
+        ]
+      }
+    },
+    "CuotaDeducible": 4.2
+  },
+  "PeriodoLiquidacion": {"Periodo": "01", "Ejercicio": 2020}
+}
