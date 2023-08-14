@@ -253,15 +253,43 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
             self.assertTrue(order._is_sii_simplified_invoice())
 
     def test_05_sii_description(self):
-        company = self.order.company_id
-        self.assertEqual(self.order.sii_description, "/")
-        company.write(
+        self.order.company_id.write(
             {
                 "sii_pos_description": "Test POS description",
             }
         )
-        self.order._compute_sii_description()
-        self.assertEqual(self.order.sii_description, "Test POS description")
+        session = self.order.session_id
+        default_partner = session.config_id.default_partner_id
+        order = self.env["pos.order"].create(
+            {
+                "company_id": self.order.company_id.id,
+                "session_id": session.id,
+                "pricelist_id": default_partner.property_product_pricelist.id,
+                "partner_id": default_partner.id,
+                "lines": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "TPV/0001",
+                            "product_id": self.product21.id,
+                            "price_unit": 100,
+                            "discount": 0.0,
+                            "qty": 1.0,
+                            "tax_ids": [(6, 0, self.product21.taxes_id.ids)],
+                            "price_subtotal": 100,
+                            "price_subtotal_incl": 100 + 21,
+                        },
+                    )
+                ],
+                "amount_tax": 21,
+                "amount_total": 100 + 21,
+                "amount_paid": 121,
+                "amount_return": 0,
+            }
+        )
+        order.action_pos_order_paid()
+        self.assertEqual(order.sii_description, "Test POS description")
 
     def test_06_refund_sii_refund_type(self):
         cash = self.cash_pm1
