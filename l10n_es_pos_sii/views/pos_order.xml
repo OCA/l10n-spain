@@ -83,6 +83,21 @@
                             </page>
                         </notebook>
                     </group>
+                    <group
+                        string="Connector Jobs"
+                        name="group_sii_jobs"
+                        groups="l10n_es_aeat.group_account_aeat"
+                        cols="4"
+                    >
+                        <field
+                            name="order_jobs_ids"
+                            options="{'reload_on_button': true}"
+                            nolabel="1"
+                            colspan="2"
+                            readonly="1"
+                            context="{'tree_view_ref': 'l10n_es_aeat_sii_oca.view_queue_job_sii'}"
+                        />
+                    </group>
                 </page>
             </xpath>
         </field>
