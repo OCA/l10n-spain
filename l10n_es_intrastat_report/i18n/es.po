@@ -408,8 +408,8 @@ msgstr "Mensajes"
 #. module: l10n_es_intrastat_report
 #: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
 #, python-format
-msgid "Missing origin country on product %s."
-msgstr "Falta el país de origen en el producto %s."
+msgid "Missing origin country on product %s. "
+msgstr ""
 
 #. module: l10n_es_intrastat_report
 #: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
@@ -706,6 +706,10 @@ msgstr "Año y mes de la declaración."
 #: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__note
 msgid "You can add some comments here if you want."
 msgstr "Puede añadir algunos comentarios aquí si lo prefiere."
+
+#, python-format
+#~ msgid "Missing origin country on product %s."
+#~ msgstr "Falta el país de origen en el producto %s."
 
 #, python-format
 #~ msgid "xlrd library not found."
