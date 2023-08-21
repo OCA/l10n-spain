@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-10 09:29+0000\n"
-"PO-Revision-Date: 2022-08-29 13:07+0000\n"
-"Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
+"PO-Revision-Date: 2023-09-03 07:57+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_invoice__schema
@@ -881,7 +881,7 @@ msgstr "¡El nombre de Software TicketBAI debe ser único!"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_company__tbai_software_version
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_installation__version
 msgid "Software Version"
-msgstr ""
+msgstr "Versión del software"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_invoice_customer__nif
@@ -1062,6 +1062,9 @@ msgid ""
 "country format. You can use '/' to indicate that the partner is not subject "
 "to tax."
 msgstr ""
+"El número de identificación fiscal. Los valores aquí se validarán en función "
+"del formato del país. Puede utilizar '/' para indicar que el socio no está "
+"sujeto a impuestos."
 
 #. module: l10n_es_ticketbai_api
 #. odoo-python
@@ -1153,8 +1156,8 @@ msgid ""
 "TicketBAI Invoice %(name)s:\n"
 " Refunded Invoice %(number)s Expedition Date"
 msgstr ""
-"TicketBAI Factura %(name)s:\n"
-"Factura rectificada o sustituida %(number)s fecha de expedición"
+"Factura TicketBAI %(name)s:\n"
+" Factura reembolsada %(number)s Fecha de expedición"
 
 #. module: l10n_es_ticketbai_api
 #. odoo-python
@@ -1277,9 +1280,9 @@ msgid ""
 "Refunded Invoice %(number)s Number Prefix %(prefix)s longer than expected. "
 "Should be 20 characters max.!"
 msgstr ""
-"TicketBAI Factura %(name)s:\n"
-"Factura rectificada o sustituida %(number)s con la serie %(prefix)s más "
-"larga de lo esperado. Debería tener un máximo de 20 caracteres!"
+"Factura TicketBAI %(name)s:\n"
+"Factura reembolsada %(number)s Número de prefijo %(prefix)s más largo de lo "
+"esperado. ¡Debe tener 20 caracteres como máximo!"
 
 #. module: l10n_es_ticketbai_api
 #. odoo-python
@@ -1347,8 +1350,8 @@ msgid ""
 "TicketBAI Invoice %(name)s: Customer %(customer)s Country Code %(country)s "
 "not valid."
 msgstr ""
-"TicketBAI Factura %(name)s: TicketBAI Factura %(name)s: Cliente %(customer)s "
-"con código de país %(country)s no válido."
+"TicketBAI Factura %(name)s: Cliente %(customer)s Código de país %(country)s "
+"no válido."
 
 #. module: l10n_es_ticketbai_api
 #. odoo-python
@@ -1890,7 +1893,7 @@ msgstr "NIF"
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_res_company__tbai_software_version
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_installation__version
 msgid "Version of the software."
-msgstr ""
+msgstr "Versión del programa."
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_response__xml
