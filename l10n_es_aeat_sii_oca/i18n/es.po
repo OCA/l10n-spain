@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-01 14:14+0000\n"
-"PO-Revision-Date: 2022-08-01 16:16+0200\n"
-"Last-Translator: pere-aquarian <pere@aquarian.tech>\n"
+"PO-Revision-Date: 2023-09-03 07:57+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_company_sii_form
@@ -75,7 +75,7 @@ msgstr "SII - Tabla de claves"
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model,name:l10n_es_aeat_sii_oca.model_aeat_tax_agency
 msgid "Aeat Tax Agency"
-msgstr ""
+msgstr "Agencia de impuestos AEAT"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_account_invoice_sii_filter
@@ -143,7 +143,7 @@ msgstr "Por diferencias"
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_wizard_send_sii
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_queue_job_sii
@@ -195,8 +195,8 @@ msgid ""
 "Check to confirm that the invoice has an absolute amount greater o equal to "
 "100 000 000,00 euros."
 msgstr ""
-"Check to confirm that the invoice has an absolute amount greater o equal to "
-"100 000 000,00 euros."
+"Revise para confirmar que el importe total de la factura es mayor o igual "
+"que 100 000 000,00 euros."
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_partner__sii_simplified_invoice
@@ -381,7 +381,7 @@ msgstr "ID"
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_company__delay_time
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_company__sent_time
 msgid "In hours"
-msgstr ""
+msgstr "En horas"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_send_failed
@@ -424,17 +424,17 @@ msgstr "Intracomunitario"
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_wizard_send_sii__account_move_ids
 msgid "Invoices"
-msgstr ""
+msgstr "Facturas"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_wizard_send_sii__sending_number
 msgid "Invoices Jobs Process Sending"
-msgstr ""
+msgstr "Facturación de trabajos Proceso de envío"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_wizard_send_sii__sent_number
 msgid "Invoices SII Sent"
-msgstr ""
+msgstr "Facturas SII Enviadas"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move_reversal__sii_refund_type_required
@@ -490,7 +490,7 @@ msgstr "Líneas"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_macrodata
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_macrodata
 msgid "MacroData"
-msgstr "MacroData"
+msgstr "MacroDatos"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__res_company__sii_description_method__manual
@@ -588,7 +588,7 @@ msgstr "Operaciones no sujetas en el TAI por reglas de localización"
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model,name:l10n_es_aeat_sii_oca.model_product_template
 msgid "Product"
-msgstr ""
+msgstr "Producto"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__aeat_sii_mapping_registration_keys__type__purchase
@@ -830,7 +830,7 @@ msgstr "Modo de envío"
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model,name:l10n_es_aeat_sii_oca.model_wizard_send_sii
 msgid "Send SII Wizard"
-msgstr ""
+msgstr "Enviar Asistente SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
@@ -1234,6 +1234,8 @@ msgid ""
 "of the selected invoices are being processed to be sent to the SII. If you "
 "confirm, they will be resent."
 msgstr ""
+"de las facturas seleccionadas están siendo procesadas para ser enviadas al "
+"SII. Si lo confirma, se volverán a enviar."
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_wizard_send_sii
@@ -1241,6 +1243,8 @@ msgid ""
 "of the selected invoices have been correctly sent to the SII. If you "
 "confirm, they will be resent."
 msgstr ""
+"de las facturas seleccionadas se han enviado correctamente al SII. Si lo "
+"confirma, se volverán a enviar."
 
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
