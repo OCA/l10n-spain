@@ -24,19 +24,21 @@ class AccountMove(models.Model):
             and fp.id
             or self.env["account.fiscal.position"]
             .search(
-                [
-                    ("name", "=", "Importación con DUA"),
-                    ("company_id", "=", company.id),
-                ],
-                limit=1,
-            )
+            [
+                ("name", "=", "Importación con DUA"),
+                ("company_id", "=", company.id),
+            ],
+            limit=1,
+        )
             .id
         )
 
     @api.depends("company_id", "fiscal_position_id", "invoice_line_ids.tax_ids")
     def _compute_dua_invoice(self):
         for invoice in self:
-            taxes = invoice._get_sii_taxes_map(["DUA"])
+            taxes = invoice._get_sii_taxes_map(
+                ["DUA"], self._get_document_fiscal_date()
+            )
             invoice.sii_dua_invoice = invoice.invoice_line_ids.filtered(
                 lambda x: any([tax in taxes for tax in x.tax_ids])
             )
