@@ -23,6 +23,14 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
         super().setUpClass(chart_template_ref=chart_template_ref)
         # !: AccountTestInvoicingCommon overwrite user.company_id with sii disabled
         cls.company = cls.env.user.company_id
+
+        # Create a new cash payment method
+        cls.cash_pm1 = cls.env["pos.payment.method"].create(
+            {
+                "name": "Cash",
+                "company_id": cls.env.company.id,
+            }
+        )
         cls.company.write(
             {
                 "sii_enabled": True,
@@ -31,7 +39,8 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
                 "sii_method": "manual",
                 "vat": "ESU2687761C",
                 "sii_description_method": "manual",
-                "tax_agency_id": cls.env.ref("l10n_es_aeat.aeat_tax_agency_spain"),
+                "tax_agency_id": cls.env.ref(
+                    "l10n_es_aeat.aeat_tax_agency_spain"),
             }
         )
         cls.customer.write(
@@ -67,7 +76,8 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
             }
         )
         self.env.user.write(
-            {"groups_id": [(3, self.env.ref("account.group_account_manager").id)]}
+            {"groups_id": [
+                (3, self.env.ref("account.group_account_manager").id)]}
         )
         self.tax_21b = self.env.ref(
             f"l10n_es.{self.env.user.company_id.id}_account_tax_template_s_iva21b"
@@ -236,12 +246,14 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
             )
             order.write(
                 {
-                    "l10n_es_unique_id": json_by_taxes.get(taxes, {}).get("name"),
+                    "l10n_es_unique_id": json_by_taxes.get(taxes, {}).get(
+                        "name"),
                     "date_order": "2023-06-14",
                 }
             )
             order.send_sii()
-            self._compare_sii_dict(json_by_taxes.get(taxes, {}).get("json"), order)
+            self._compare_sii_dict(json_by_taxes.get(taxes, {}).get("json"),
+                                   order)
 
     def test_03_job_creation(self):
         for order in self.session.order_ids:
