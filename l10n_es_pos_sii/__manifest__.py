@@ -17,6 +17,11 @@
         "views/pos_order.xml",
         "views/res_company.xml",
     ],
+    "assets": {
+        "point_of_sale.assets": [
+            "l10n_es_pos_sii/static/src/js/**/*.js",
+        ],
+    },
     "installable": True,
     "autoinstall": True,
 }
