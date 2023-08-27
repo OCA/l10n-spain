@@ -88,18 +88,6 @@ class L10nEsIntrastatProductDeclaration(models.Model):
         return domain
 
     @api.model
-    def _prepare_grouped_fields(self, computation_line, fields_to_sum):
-        vals = super()._prepare_grouped_fields(computation_line, fields_to_sum)
-        vals["intrastat_state_id"] = computation_line.intrastat_state_id.id
-        vals["incoterm_id"] = computation_line.incoterm_id.id
-        if (
-            computation_line.declaration_type == "dispatches"
-            and int(computation_line.parent_id.year) >= 2022
-        ):
-            vals["partner_vat"] = computation_line.partner_vat
-        return vals
-
-    @api.model
     def _prepare_declaration_line(self):
         vals = super()._prepare_declaration_line()
         # Avoid rounding in weight and fiscal value
@@ -248,6 +236,17 @@ class L10nEsIntrastatProductComputationLine(models.Model):
         comodel_name="res.country.state", string="Intrastat State"
     )
     partner_vat = fields.Char(string="Customer VAT")
+
+    def _prepare_grouped_fields(self, fields_to_sum):
+        vals = super()._prepare_grouped_fields(fields_to_sum)
+        vals["intrastat_state_id"] = self.intrastat_state_id.id
+        vals["incoterm_id"] = self.incoterm_id.id
+        if (
+            self.declaration_type == "dispatches"
+            and int(self.parent_id.year) >= 2022
+        ):
+            vals["partner_vat"] = self.partner_vat
+        return vals
 
 
 class L10nEsIntrastatProductDeclarationLine(models.Model):
