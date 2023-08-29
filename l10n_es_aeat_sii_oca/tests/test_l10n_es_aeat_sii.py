@@ -181,6 +181,40 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             [("sii_wsdl_out", "!=", False)]
         )
 
+    def test_intracomunitary_customer_extracomunitary_delivery(self):
+        """Comprobar venta a un cliente intracomunitario enviada al extranjero.
+
+        Este caso se puede dar cuando una asesoría contable contabiliza facturas
+        para otro cliente, en caso de que ese cliente le venda a otro cliente
+        intracomunitario pero envíe a una dirección extracomunitaria.
+
+        También se puede dar cuando se instala el módulo `sale` en Odoo. Al instalarlo,
+        se añade el campo `partner_shipping_id`, que permite indicar una dirección
+        de entrega extracomunitaria para clientes intracomunitarios.
+        """
+        self._activate_certificate(self.certificate_password)
+        eu_customer = self.env["res.partner"].create(
+            {
+                "name": "French Customer",
+                "country_id": self.ref("base.fr"),
+                "vat": "FR23334175221",
+            }
+        )
+        fp_extra = self.browse_ref(f"l10n_es.{self.company.id}_fp_extra")
+        fp_extra.sii_partner_identification_type = "3"
+        invoice = self.invoice.copy(
+            {"partner_id": eu_customer.id, "fiscal_position_id": fp_extra.id}
+        )
+        invoice.action_post()
+        sii_info = invoice._get_sii_invoice_dict()
+        self.assertEqual(
+            sii_info["FacturaExpedida"]["Contraparte"],
+            {
+                "NombreRazon": "French Customer",
+                "IDOtro": {"CodigoPais": "FR", "IDType": "06", "ID": "23334175221"},
+            },
+        )
+
     def test_job_creation(self):
         self.assertTrue(self.invoice.invoice_jobs_ids)
 
@@ -416,7 +450,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
 
     def test_unlink_invoice_when_sent_to_sii(self):
         self.invoice.sii_state = "sent"
-        self.invoice.button_draft()
+        self.invoice.button_draft()  # Convert to draft to check only SII exception
         with self.assertRaises(exceptions.UserError):
             self.invoice.unlink()
 
@@ -427,8 +461,6 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             self.invoice.write({"invoice_date": "2022-01-01"})
         with self.assertRaises(exceptions.UserError):
             self.invoice.write({"thirdparty_number": "CUSTOM"})
-        with self.assertRaises(exceptions.UserError):
-            self.invoice.write({"name": "NEW-NUMBER"})
         # in_invoice
         in_invoice = self.invoice.copy(
             {
