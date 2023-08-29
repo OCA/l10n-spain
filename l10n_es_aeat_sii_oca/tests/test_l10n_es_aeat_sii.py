@@ -211,7 +211,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             sii_info["FacturaExpedida"]["Contraparte"],
             {
                 "NombreRazon": "French Customer",
-                "IDOtro": {"CodigoPais": "FR", "IDType": "06", "ID": "23334175221"},
+                "IDOtro": {"CodigoPais": "FR", "IDType": "02", "ID": "23334175221"},
             },
         )
 
