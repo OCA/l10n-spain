@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright AvanzOSC - Ainara Galdona
+    Copyright 2016 - Tecnativa - Antonio Espinosa
+    Copyright 2016-2019 - Tecnativa - Pedro M. Baeza
+    Copyright 2018 Valentin Vinagre <valentin.vinagre@qubiq.es>
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="view_l10n_es_aeat_mod296_report_tree" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod296.report.tree</field>
+        <field name="model">l10n.es.aeat.mod296.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree" />
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="string">Declaraciones AEAT 296</attribute>
+            </tree>
+        </field>
+    </record>
+    <record id="view_l10n_es_aeat_mod296_report_form" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod296.report.form</field>
+        <field name="model">l10n.es.aeat.mod296.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
+        <field name="arch" type="xml">
+            <group name="group_declaration" position="after">
+                <group
+                    string="Result"
+                    name="group_result"
+                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    colspan="4"
+                >
+                    <field name="casilla_01" />
+                    <field
+                        name="casilla_02"
+                        widget="monetary"
+                        options="{'currency_field': 'currency_id'}"
+                    />
+                    <field
+                        name="casilla_03"
+                        widget="monetary"
+                        options="{'currency_field': 'currency_id'}"
+                    />
+                    <field
+                        name="casilla_04"
+                        widget="monetary"
+                        options="{'currency_field': 'currency_id'}"
+                    />
+                </group>
+                <group
+                    string="Detail by company"
+                    colspan="4"
+                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                >
+                    <field name="lines296" nolabel="1" colspan="2" />
+                </group>
+            </group>
+            <form position="inside">
+                <div class="oe_chatter">
+                    <field
+                        name="message_follower_ids"
+                        widget="mail_followers"
+                        groups="base.group_user"
+                    />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="view_l10n_es_aeat_mod296_report_line_tree" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod296.report.line.tree</field>
+        <field name="model">l10n.es.aeat.mod296.report.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="partner_id" />
+                <field name="base_retenciones_ingresos" />
+                <field name="retenciones_ingresos" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_l10n_es_aeat_mod296_report_line_form" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod296.report.line.form</field>
+        <field name="model">l10n.es.aeat.mod296.report.line</field>
+        <field name="arch" type="xml">
+            <form string="Detail 296">
+                <group string="Common data in all recipients" colspan="2" col="2">
+                    <field name="partner_id" />
+                    <group colspan="2" col="4">
+                        <field name="fisica_juridica" />
+                        <field name="fecha_devengo" />
+                        <field name="naturaleza" />
+                    </group>
+                    <field name="clave" />
+                    <field name="subclave" />
+                    <group colspan="2" col="4">
+                        <field name="base_retenciones_ingresos" />
+                        <field name="porcentaje_retencion" />
+                        <field name="retenciones_ingresos" />
+                    </group>
+                </group>
+                <group
+                    attrs="{'invisible':[('clave', 'not in', ('1', '2'))]}"
+                    string="Specific data according to the letter consigned in the 'key' field"
+                >
+                    <field name="mediador" />
+                    <field name="codigo" />
+                    <field name="codigo_emisor" />
+                    <field name="pago" />
+                    <field name="tipo_codigo" />
+                    <field name="cuenta_valores" />
+                    <field name="pendiente" />
+                </group>
+                <group
+                    string="Identification data and address of the recipients"
+                    colspan="2"
+                    col="2"
+                >
+                    <group
+                        string="Address in the country of residence"
+                        colspan="2"
+                        col="2"
+                    >
+                        <field name="domicilio" />
+                        <field name="complemento_domicilio" />
+                        <field name="poblacion" />
+                        <field name="zip" />
+                        <field name="provincia" />
+                        <field name="pais" />
+                    </group>
+                    <field name="nif_pais_residencia" />
+                    <field name="fecha_nacimiento" />
+                    <field name="ciudad_nacimiento" />
+                    <field name="pais_nacimiento" />
+                    <field name="pais_residencia_fiscal" />
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="action_l10n_es_aeat_mod296_report" model="ir.actions.act_window">
+        <field name="name">AEAT model 296</field>
+        <field name="res_model">l10n.es.aeat.mod296.report</field>
+        <field name="view_mode">form,tree</field>
+        <field name="help">Create and query AEAT Model 296 reports.</field>
+    </record>
+    <record
+        id="action_l10n_es_aeat_mod296_report_tree"
+        model="ir.actions.act_window.view"
+    >
+        <field name="sequence" eval="2" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod296_report_tree" />
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod296_report" />
+    </record>
+    <record
+        id="action_l10n_es_aeat_mod296_report_form"
+        model="ir.actions.act_window.view"
+    >
+        <field name="sequence" eval="3" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod296_report_form" />
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod296_report" />
+    </record>
+    <menuitem
+        id="menu_aeat_mod296_report"
+        parent="l10n_es_aeat.menu_root_aeat"
+        action="action_l10n_es_aeat_mod296_report"
+        sequence="296"
+        name="AEAT 296 model"
+    />
+</odoo>
