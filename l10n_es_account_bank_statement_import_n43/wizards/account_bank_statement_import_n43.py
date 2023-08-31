@@ -267,7 +267,7 @@ class AccountBankStatementImport(models.TransientModel):
             # Try to match from partner name
             if conceptos.get("01"):
                 name = conceptos["01"][0][4:] + conceptos["01"][1]
-                if name:
+                if name and len(name) > 7:
                     partner = partner_obj.search([("name", "ilike", name)], limit=1)
         return partner
 
@@ -284,7 +284,7 @@ class AccountBankStatementImport(models.TransientModel):
             # Try to match from partner name
             if conceptos.get("01"):
                 name = conceptos["01"][0]
-                if name:
+                if name and len(name) > 7:
                     partner = partner_obj.search([("name", "ilike", name)], limit=1)
         return partner
 
@@ -304,7 +304,7 @@ class AccountBankStatementImport(models.TransientModel):
         # Try to match from partner name
         if conceptos.get("01"):
             name = conceptos["01"][1]
-            if name and len(name) > 5:
+            if name and len(name) > 7:
                 partner = partner_obj.search([("name", "ilike", name)], limit=1)
         return partner
 
