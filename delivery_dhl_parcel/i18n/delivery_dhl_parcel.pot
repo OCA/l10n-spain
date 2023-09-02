@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-15 08:57+0000\n"
+"PO-Revision-Date: 2022-07-15 08:57+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,6 +33,11 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #: model_terms:ir.ui.view,arch_db:delivery_dhl_parcel.delivery_endday_wizard_form
 msgid "Cancel"
+msgstr ""
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_cash_on_delivery
+msgid "Cash on delivery"
 msgstr ""
 
 #. module: delivery_dhl_parcel
@@ -189,6 +196,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__id
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_stock_picking__id
 msgid "ID"
+msgstr ""
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields,help:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_cash_on_delivery
+msgid ""
+"If checked, it means that the carrier is paid with cash. It assumes there is"
+" a sale order linked and it will use that total amount as the value to be "
+"paid. It will also exclude this carrier from the e-commerce checkout."
 msgstr ""
 
 #. module: delivery_dhl_parcel
