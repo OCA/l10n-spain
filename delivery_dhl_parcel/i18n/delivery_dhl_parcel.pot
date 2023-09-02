@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-15 08:57+0000\n"
-"PO-Revision-Date: 2022-07-15 08:57+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -160,6 +158,7 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__display_name
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__display_name
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_sale_order__display_name
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_stock_picking__display_name
 msgid "Display Name"
 msgstr ""
@@ -194,6 +193,7 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__id
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__id
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_sale_order__id
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_stock_picking__id
 msgid "ID"
 msgstr ""
@@ -227,6 +227,7 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier____last_update
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard____last_update
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_sale_order____last_update
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_stock_picking____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -275,6 +276,11 @@ msgstr ""
 #: code:addons/delivery_dhl_parcel/models/stock_picking.py:0
 #, python-format
 msgid "Released shipment for {}"
+msgstr ""
+
+#. module: delivery_dhl_parcel
+#: model:ir.model,name:delivery_dhl_parcel.model_sale_order
+msgid "Sales Order"
 msgstr ""
 
 #. module: delivery_dhl_parcel
