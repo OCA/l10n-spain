@@ -24,6 +24,7 @@ msgstr "Configuración AEAT SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_state__sent_w_errors
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__pos_order__sii_state__sent_w_errors
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__sii_mixin__sii_state__sent_w_errors
 msgid "Accepted with errors"
 msgstr "Aceptado con errores"
@@ -138,6 +139,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_refund_type__i
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__pos_order__sii_refund_type__i
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__sii_mixin__sii_refund_type__i
 msgid "By differences"
 msgstr "Por diferencias"
@@ -154,12 +156,14 @@ msgstr "Cancelar envío"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_state__cancelled
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__pos_order__sii_state__cancelled
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__sii_mixin__sii_state__cancelled
 msgid "Cancelled"
 msgstr "Cancelada"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_state__cancelled_modified
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__pos_order__sii_state__cancelled_modified
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__sii_mixin__sii_state__cancelled_modified
 msgid "Cancelled in SII but last modifications not sent"
 msgstr "Anulada en SII con modificaciones pendientes de comunicar"
@@ -580,6 +584,7 @@ msgstr "Ninguno"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_state__not_sent
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__pos_order__sii_state__not_sent
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__sii_mixin__sii_state__not_sent
 msgid "Not sent"
 msgstr "No registrada"
@@ -625,6 +630,7 @@ msgstr "Situación del inmueble"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_state__sent_modified
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__pos_order__sii_state__sent_modified
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__sii_mixin__sii_state__sent_modified
 msgid "Registered in SII but last modifications not sent"
 msgstr "Registro correcto en SII con modificaciones pendientes de comunicar"
@@ -878,6 +884,7 @@ msgstr "Enviar al SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_state__sent
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__pos_order__sii_state__sent
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__sii_mixin__sii_state__sent
 msgid "Sent"
 msgstr "Enviada"
