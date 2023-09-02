@@ -126,6 +126,13 @@ Depuración de errores
   #. También puede activar Odoo con `--log-level=debug` para registrar las
      peticiones y las respuestas en el log.
 
+Contrareembolso
+~~~~~~~~~~~~~~~
+
+  #. Al crear un envío con un método que tiene marcado el check de contrareembolso, asumirá que hay un pedido
+     vinculado al albarán y usará el importe total del pedido como importe del contrareembolso.
+     Métodos de envío con este check no se encontrarán disponibles en la web si se está usando.
+
 Known issues / Roadmap
 ======================
 
