@@ -17,6 +17,11 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: delivery_dhl_parcel
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__all_customer_accounts
+msgid "All customer accounts"
+msgstr ""
+
+#. module: delivery_dhl_parcel
 #: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_product__b2b
 msgid "B2B Product"
 msgstr ""
@@ -29,6 +34,11 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #: model_terms:ir.ui.view,arch_db:delivery_dhl_parcel.delivery_endday_wizard_form
 msgid "Cancel"
+msgstr ""
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_cash_on_delivery
+msgid "Cash on delivery"
 msgstr ""
 
 #. module: delivery_dhl_parcel
@@ -53,11 +63,11 @@ msgstr ""
 
 #. module: delivery_dhl_parcel
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
-#: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
 #, python-format
 msgid ""
 "DHL Parcel API doesn't provide methods to compute delivery rates, so\n"
-"                you should rely on another price method instead or override this\n"
+"                you should rely on another price method instead or override "
+"this\n"
 "                one in your custom code."
 msgstr ""
 
@@ -151,8 +161,14 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__display_name
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__display_name
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_sale_order__display_name
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_stock_picking__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_label_format__epl
+msgid "EPL"
 msgstr ""
 
 #. module: delivery_dhl_parcel
@@ -180,9 +196,18 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__id
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__id
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_sale_order__id
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_stock_picking__id
 msgid "ID"
 msgstr "ID"
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields,help:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_cash_on_delivery
+msgid ""
+"If checked, it means that the carrier is paid with cash. It assumes there is "
+"a sale order linked and it will use that total amount as the value to be "
+"paid. It will also exclude this carrier from the e-commerce checkout."
+msgstr ""
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,help:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__customer_accounts
@@ -198,8 +223,14 @@ msgid "If the product is not specified, it is considered B2B"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_label_format
+msgid "Label format"
+msgstr ""
+
+#. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier____last_update
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard____last_update
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_sale_order____last_update
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_stock_picking____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -225,6 +256,11 @@ msgid "Owed transport"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_label_format__pdf
+msgid "PDF"
+msgstr ""
+
+#. module: delivery_dhl_parcel
 #: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_incoterm__cpt
 msgid "Paid transport"
 msgstr ""
@@ -243,6 +279,11 @@ msgstr ""
 #: code:addons/delivery_dhl_parcel/models/stock_picking.py:0
 #, python-format
 msgid "Released shipment for {}"
+msgstr ""
+
+#. module: delivery_dhl_parcel
+#: model:ir.model,name:delivery_dhl_parcel.model_sale_order
+msgid "Sales Order"
 msgstr ""
 
 #. module: delivery_dhl_parcel
@@ -271,4 +312,9 @@ msgstr ""
 #: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
 #, python-format
 msgid "Unsupported request type, please only use 'GET' or 'POST'"
+msgstr ""
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_label_format__zpl
+msgid "ZPL"
 msgstr ""
