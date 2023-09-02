@@ -391,14 +391,15 @@ Pass: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</p>
 <li><a class="reference internal" href="#seguimiento-de-envios" id="id7">Seguimiento de envíos</a></li>
 <li><a class="reference internal" href="#cierre-del-dia" id="id8">Cierre del día</a></li>
 <li><a class="reference internal" href="#depuracion-de-errores" id="id9">Depuración de errores</a></li>
+<li><a class="reference internal" href="#contrareembolso" id="id10">Contrareembolso</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#known-issues-roadmap" id="id10">Known issues / Roadmap</a></li>
-<li><a class="reference internal" href="#bug-tracker" id="id11">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="id12">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="id13">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="id14">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="id15">Maintainers</a></li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="id11">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="id12">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="id13">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="id14">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="id15">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="id16">Maintainers</a></li>
 </ul>
 </li>
 </ul>
@@ -497,9 +498,19 @@ peticiones y las respuestas en el log.</li>
 </ol>
 </blockquote>
 </div>
+<div class="section" id="contrareembolso">
+<h2><a class="toc-backref" href="#id10">Contrareembolso</a></h2>
+<blockquote>
+<ol class="arabic simple">
+<li>Al crear un envío con un método que tiene marcado el check de contrareembolso, asumirá que hay un pedido
+vinculado al albarán y usará el importe total del pedido como importe del contrareembolso.
+Métodos de envío con este check no se encontrarán disponibles en la web si se está usando.</li>
+</ol>
+</blockquote>
+</div>
 </div>
 <div class="section" id="known-issues-roadmap">
-<h1><a class="toc-backref" href="#id10">Known issues / Roadmap</a></h1>
+<h1><a class="toc-backref" href="#id11">Known issues / Roadmap</a></h1>
 <ul class="simple">
 <li>La API no facilita métodos para cotizar el coste real de los envíos, por lo
 que siempre se cotizan a 0. Si la cotización de envíos es necesaria,
@@ -508,7 +519,7 @@ el método de cotización para este tipo de transportista.</li>
 </ul>
 </div>
 <div class="section" id="bug-tracker">
-<h1><a class="toc-backref" href="#id11">Bug Tracker</a></h1>
+<h1><a class="toc-backref" href="#id12">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-spain/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
@@ -516,15 +527,15 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h1><a class="toc-backref" href="#id12">Credits</a></h1>
+<h1><a class="toc-backref" href="#id13">Credits</a></h1>
 <div class="section" id="authors">
-<h2><a class="toc-backref" href="#id13">Authors</a></h2>
+<h2><a class="toc-backref" href="#id14">Authors</a></h2>
 <ul class="simple">
 <li>Studio73</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h2><a class="toc-backref" href="#id14">Contributors</a></h2>
+<h2><a class="toc-backref" href="#id15">Contributors</a></h2>
 <ul class="simple">
 <li><a class="reference external" href="https://www.studio73.es">Studio73</a>:<ul>
 <li>Ethan Hildick</li>
@@ -537,7 +548,7 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#id15">Maintainers</a></h2>
+<h2><a class="toc-backref" href="#id16">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
