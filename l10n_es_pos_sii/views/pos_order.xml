@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2023 Aures Tic (https://aurestic.es/)
+  @author: Almudena de la Puente <almudena@aurestic.es>
+  @author: Jose Zambudio <jose@aurestic.es>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <record id="view_pos_pos_form_inherit_inh_l10n_es_pos_sii" model="ir.ui.view">
+        <field name="name">pos.order.view.form.inherit</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="before">
+                <button
+                    type="object"
+                    string="Send to SII"
+                    name="send_sii"
+                    groups="l10n_es_aeat.group_account_aeat"
+                    attrs="{'invisible': ['|','|',('sii_enabled', '=', False),('state', 'not in', ['done']),('sii_state','in',['sent','cancelled'])]}"
+                />
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page
+                    string="SII"
+                    name="page_sii"
+                    attrs="{'invisible': [('sii_enabled', '=', False)]}"
+                >
+                    <group string="SII Information" name="group_sii_information">
+                        <field
+                            name="sii_description"
+                            attrs="{'required': [('sii_enabled', '=', True)]}"
+                        />
+                        <field name="sii_refund_type" />
+                        <field name="sii_registration_key_domain" invisible="1" />
+                        <field
+                            name="sii_registration_key"
+                            domain="[('type', '=', sii_registration_key_domain)]"
+                            attrs="{'required': [('sii_enabled', '=', True)]}"
+                            widget="selection"
+                        />
+                        <field name="sii_registration_key_code" invisible="1" />
+                        <field name="sii_enabled" invisible="1" />
+                    </group>
+                    <group
+                        string="SII Result"
+                        name="group_sii_result"
+                        groups="l10n_es_aeat.group_account_aeat"
+                    >
+                        <notebook colspan="4">
+                            <page name="page_sii_result_general" string="General">
+                                <group>
+                                    <field name="sii_state" />
+                                    <field
+                                        name="sii_send_failed"
+                                        attrs="{'invisible': [('sii_send_failed', '=', False)]}"
+                                    />
+                                    <field
+                                        name="sii_send_error"
+                                        attrs="{'invisible': [('sii_send_failed', '=', False)]}"
+                                    />
+                                    <field name="sii_csv" />
+                                </group>
+                            </page>
+                            <page
+                                name="page_sii_result_technical"
+                                string="Technical"
+                                groups="base.group_no_one"
+                            >
+                                <group>
+                                    <label for="sii_header_sent" />
+                                </group>
+                                <field name="sii_header_sent" />
+                                <group>
+                                    <label for="sii_content_sent" />
+                                </group>
+                                <field name="sii_content_sent" />
+                                <group>
+                                    <label for="sii_return" />
+                                </group>
+                                <field name="sii_return" />
+                            </page>
+                        </notebook>
+                    </group>
+                    <group
+                        string="Connector Jobs"
+                        name="group_sii_jobs"
+                        groups="l10n_es_aeat.group_account_aeat"
+                        cols="4"
+                    >
+                        <field
+                            name="order_jobs_ids"
+                            options="{'reload_on_button': true}"
+                            nolabel="1"
+                            colspan="2"
+                            readonly="1"
+                            context="{'tree_view_ref': 'l10n_es_aeat_sii_oca.view_queue_job_sii'}"
+                        />
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_pos_order_filter" model="ir.ui.view">
+        <field name="name">pos.order.list.select</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_filter" />
+        <field name="arch" type="xml">
+            <filter name="order_date" position="after">
+                <group string="SII filters">
+                    <separator />
+                    <filter
+                        name="sii_not_sent"
+                        string="SII not sent"
+                        domain="[('sii_state', '=', 'not_sent'), ('date_order', '>=', '2017-01-01')]"
+                        help="Never sent to SII"
+                    />
+                    <filter
+                        name="sii_pending"
+                        string="With modifications not sent to SII"
+                        domain="[('sii_state', 'in', ['sent_modified','cancelled_modified'])]"
+                        help="Already sent but with local changes not sent yet"
+                    />
+                    <filter
+                        name="sii_sent"
+                        string="SII sent"
+                        domain="[('sii_state', 'not in', ['not_sent'])]"
+                        help="Already sent to SII. It includes cancelled invoices"
+                    />
+                    <filter
+                        name="sii_send_failed"
+                        string="SII failed"
+                        domain="[('sii_send_failed', '=', True)]"
+                        help="The last attempt to sent to SII has failed"
+                    />
+                    <separator />
+                    <filter
+                        name="sii_cancelled"
+                        string="SII cancelled"
+                        domain="[('sii_state', 'in', ['cancelled','cancelled_modified'])]"
+                        help="Cancelled invoices at SII"
+                    />
+                    <separator />
+                </group>
+            </filter>
+            <xpath expr="//group" position="inside">
+                <separator />
+                <filter
+                    string="SII error"
+                    name="sii_error"
+                    domain="[('sii_send_failed', '=', True)]"
+                    context="{'group_by':'sii_send_error'}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
