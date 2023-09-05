@@ -28,6 +28,12 @@ class L10nEsIntrastatProductDeclaration(models.Model):
         string="Intrastat Product Declaration Lines",
         states={"done": [("readonly", True)]},
     )
+    total_amount = fields.Float(
+        compute="_compute_numbers",
+        string="Total Fiscal Amount",
+        store=True,
+        help="Total fiscal amount in company currency of the declaration.",
+    )
 
     def _get_intrastat_state(self, inv_line):
         """Similar logic as in product_intrastat `_get_region` method."""
