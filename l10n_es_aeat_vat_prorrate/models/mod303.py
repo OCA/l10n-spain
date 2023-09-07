@@ -1,5 +1,6 @@
 # Copyright 2015 AvanzOSC - Ainara Galdona
 # Copyright 2015-2017 Tecnativa - Pedro M. Baeza
+# Copyright 2023 Tecnativa - Carolina Fernandez
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo import _, api, exceptions, fields, models
@@ -12,9 +13,10 @@ class L10nEsAeatMod303Report(models.Model):
 
     @api.depends("tax_line_ids", "tax_line_ids.amount", "casilla_44")
     def _compute_total_deducir(self):
-        super()._compute_total_deducir()
+        res = super()._compute_total_deducir()
         for report in self:
             report.total_deducir += report.casilla_44
+        return res
 
     casilla_44 = fields.Float(
         string="[44] Regularización de la prorrata",

@@ -1,10 +1,11 @@
 # Copyright 2015 AvanzOSC - Ainara Galdona
 # Copyright 2015-2020 Tecnativa - Pedro M. Baeza
+# Copyright 2023 Tecnativa - Carolina Fernandez
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
 {
     "name": "AEAT - Prorrata de IVA",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "license": "AGPL-3",
     "author": "AvanzOSC, Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
