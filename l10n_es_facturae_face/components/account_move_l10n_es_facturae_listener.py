@@ -10,9 +10,6 @@ class AccountMoveL10nEsFacturaeListener(Component):
     _inherit = "base.event.listener"
     _apply_on = ["account.move"]
 
-    def _get_backend(self, record):
-        return self.env.ref("l10n_es_facturae_face.face_backend")
-
     def _get_exchange_record_vals(self, record):
         return {
             "model": record._name,
@@ -28,10 +25,10 @@ class AccountMoveL10nEsFacturaeListener(Component):
                 continue
             if not partner.facturae or not partner.l10n_es_facturae_sending_code:
                 continue
-            backend = self._get_backend(record)
+            backend = partner._get_facturae_backend()
             if not backend:
                 continue
-            exchange_type = self.env.ref("l10n_es_facturae_face.facturae_exchange_type")
+            exchange_type = partner._get_facturae_exchange_type()
             # We check fields now to raise an error to the user, otherwise the
             # error will be raising silently in the queue job.
             record.validate_facturae_fields()

@@ -28,13 +28,16 @@ class WebServiceFace(Component):
     _backend_type = "l10n_es_facturae"
     _inherit = "edi.component.mixin"
 
+    def _get_wsdl(self):
+        return self.env["ir.config_parameter"].sudo().get_param("facturae.face.ws")
+
     def _get_client(self, public_crt, private_key):
         with open(public_crt, "rb") as f:
             cert = x509.load_pem_x509_certificate(f.read())
         with open(private_key, "rb") as f:
             key = serialization.load_pem_private_key(f.read(), None)
         return Client(
-            wsdl=self.env["ir.config_parameter"].sudo().get_param("facturae.face.ws"),
+            wsdl=self._get_wsdl(),
             wsse=MemorySignature(
                 cert,
                 key,
