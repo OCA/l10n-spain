@@ -226,6 +226,12 @@ class AccountMove(models.Model):
                     withheld_taxes[tax]["amount"] += tax_amount
         return output_taxes, withheld_taxes
 
+    def _get_facturae_headers(self):
+        return 'xmlns:ds="http://www.w3.org/2000/09/xmldsig#"'
+
+    def _facturae_has_extensions(self):
+        return False
+
 
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
