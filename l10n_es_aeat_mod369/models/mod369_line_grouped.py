@@ -56,7 +56,8 @@ class L10nEsAeatMod369LineGrouped(models.Model):
         string="Mod369 report", comodel_name="l10n.es.aeat.mod369.report"
     )
     country_id = fields.Many2one(string="Country", comodel_name="res.country")
-    country_code = fields.Char(string="Country code", related="country_id.code")
+    oss_country_id = fields.Many2one(string="OSS Country", comodel_name="res.country")
+    country_code = fields.Char(string="Country code", compute="_compute_country_code")
     tax_id = fields.Many2one(string="Tax", comodel_name="account.tax")
     vat_type = fields.Float(string="VAT Type", related="tax_id.amount")
     service_type = fields.Selection(
@@ -81,6 +82,12 @@ class L10nEsAeatMod369LineGrouped(models.Model):
     page_5_6_total = fields.Float(
         string="Non-Spanish services and goods", compute="_compute_totals"
     )
+
+    def _compute_country_code(self):
+        for line in self:
+            line.country_code = self.env["res.partner"]._map_aeat_country_iso_code(
+                line.country_id
+            )
 
     def get_calculated_move_lines(self):
         res = self.env.ref("account.action_account_moves_all_a").sudo().read()[0]

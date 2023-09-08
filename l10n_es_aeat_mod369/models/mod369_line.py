@@ -18,6 +18,7 @@ class L10nEsAeatMod369Line(models.Model):
     oss_tax_id = fields.Many2one(string="OSS Tax", comodel_name="account.tax")
     oss_country_id = fields.Many2one(string="OSS Country", comodel_name="res.country")
     oss_sequence = fields.Integer(string="OSS Sequence")
+    country_id = fields.Many2one(string="Country", comodel_name="res.country")
     service_type = fields.Selection(
         related="oss_tax_id.service_type",
         string="Service type",

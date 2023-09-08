@@ -62,16 +62,10 @@
                             name="spain_services_line_ids"
                             nolabel="1"
                             readonly="1"
-                            domain="[('is_page_8_line', '=', False)]"
                         />
                     </page>
                     <page string="4. Spanish goods" name="page_tax_lines_4">
-                        <field
-                            name="spain_goods_line_ids"
-                            nolabel="1"
-                            readonly="1"
-                            domain="[('is_page_8_line', '=', False)]"
-                        />
+                        <field name="spain_goods_line_ids" nolabel="1" readonly="1" />
                     </page>
                 </notebook>
             </group>
