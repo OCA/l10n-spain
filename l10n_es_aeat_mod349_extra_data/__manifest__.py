@@ -8,7 +8,7 @@
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "category": "Accounting & Finance",
-    "version": "11.0.1.0.0",
+    "version": "12.0.1.0.0",
     "depends": ["l10n_es_aeat_mod349", "l10n_es_extra_data"],
     "data": ["data/aeat_349_map_data.xml"],
     "installable": True,
