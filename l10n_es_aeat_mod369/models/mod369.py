@@ -31,7 +31,11 @@ class L10nEsAeatMod369Report(models.Model):
         string="Spanish services 369 lines",
         comodel_name="l10n.es.aeat.mod369.line.grouped",
         inverse_name="report_id",
-        domain=[("service_type", "=", "services"), ("country_id.code", "=", "ES")],
+        domain=[
+            ("service_type", "=", "services"),
+            ("oss_country_id.code", "=", "ES"),
+            ("is_page_8_line", "=", False),
+        ],
         copy=False,
         readonly=True,
     )
@@ -47,7 +51,11 @@ class L10nEsAeatMod369Report(models.Model):
         string="Spanish goods 369 lines",
         comodel_name="l10n.es.aeat.mod369.line.grouped",
         inverse_name="report_id",
-        domain=[("service_type", "=", "goods"), ("country_id.code", "=", "ES")],
+        domain=[
+            ("service_type", "=", "goods"),
+            ("oss_country_id.code", "=", "ES"),
+            ("is_page_8_line", "=", False),
+        ],
         copy=False,
         readonly=True,
     )
@@ -158,8 +166,9 @@ class L10nEsAeatMod369Report(models.Model):
             oss_taxes_map = self.env.context.get("oss_taxes_map", {})
             tax_data = oss_taxes_map.get(map_line.field_number, {})
             if tax_data:
-                country = tax_data.get("country", self.env["res.country"])
                 tax = tax_data.get("tax", self.env["account.tax"])
+                country = tax.country_id
+                oss_country = tax.oss_country_id
                 name = "Régimen Unión - OSS {} - {} {}%".format(
                     country.name,
                     "Base imponible" if map_line.field_type == "base" else "Cuota",
@@ -168,8 +177,9 @@ class L10nEsAeatMod369Report(models.Model):
                 mod369_line = self.env["l10n.es.aeat.mod369.line"].create(
                     {
                         "oss_name": name,
-                        "oss_country_id": country.id,
+                        "oss_country_id": oss_country.id,
                         "oss_tax_id": tax.id,
+                        "country_id": country.id,
                     }
                 )
                 new_vals = {"mod369_line_id": mod369_line.id}
@@ -206,9 +216,10 @@ class L10nEsAeatMod369Report(models.Model):
             country_groups = {}
             for line in report.mapped("tax_line_ids").filtered(lambda l: l.amount > 0):
                 mod369_line = line.mod369_line_id
-                country = mod369_line.oss_country_id
+                country = mod369_line.country_id
+                oss_country = mod369_line.oss_country_id
                 tax = mod369_line.oss_tax_id
-                outside_spain = bool(country.code != "ES")
+                outside_spain = bool(oss_country.code != "ES")
                 key_country = "OUT-ES" if outside_spain else "ES"
                 mod369_line.oss_sequence = lines_index[tax.service_type][key_country]
                 lines_index[tax.service_type][key_country] += 1
@@ -223,6 +234,7 @@ class L10nEsAeatMod369Report(models.Model):
                     key,
                     {
                         "country_id": country.id,
+                        "oss_country_id": oss_country.id,
                         "tax_id": tax.id,
                         "mod369_line_ids": [],
                         "report_id": report.id,
@@ -234,6 +246,7 @@ class L10nEsAeatMod369Report(models.Model):
                     country.id,
                     {
                         "country_id": country.id,
+                        "oss_country_id": oss_country.id,
                         "tax_id": tax.id,
                         "mod369_line_ids": [],
                         "report_id": report.id,
