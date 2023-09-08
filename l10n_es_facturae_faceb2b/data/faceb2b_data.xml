@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<odoo noupdate="1">
+    <record id="face_ws_link" model="ir.config_parameter">
+        <field name="key">facturae.faceb2b.ws</field>
+        <field name="value">https://se-ws-faceb2b.redsara.es/sv1/invoice?wsdl</field>
+    </record>
+</odoo>
