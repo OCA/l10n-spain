@@ -480,7 +480,7 @@ class L10nEsAeatMod390Report(models.Model):
         for report in self:
             report.casilla_48 = sum(report.tax_line_ids.filtered(
                 lambda x: x.field_number in (
-                    190, 192, 555, 603, 194, 557, 605,
+                    190, 192, 555, 603, 194, 557, 605, 724,
                 )
             ).mapped('amount'))
 
@@ -490,7 +490,7 @@ class L10nEsAeatMod390Report(models.Model):
         for report in self:
             report.casilla_49 = sum(report.tax_line_ids.filtered(
                 lambda x: x.field_number in (
-                    191, 193, 556, 604, 195, 558, 606,
+                    191, 193, 556, 604, 195, 558, 606, 725,
                 )
             ).mapped('amount'))
 
