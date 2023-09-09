@@ -1,5 +1,6 @@
 # Copyright 2023 Tecnativa - Víctor Martínez
 # Copyright 2023 Tecnativa - Pedro M. Baeza
+# Copyright 2023 Tecnativa - Carolina Fernandez
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
 from odoo import _, api, exceptions, fields, models
@@ -52,6 +53,9 @@ class L10nEsAeatMod303Report(models.Model):
         if not diff_perc:
             return
         result = 0
+        # Assign value to avoid division error by zero
+        if not theoretical_prorate:
+            theoretical_prorate = 1
         # Get the difference for the previous reports
         prev_reports = self._get_previous_fiscalyear_reports(self.date_start)
         for report in prev_reports:
@@ -100,7 +104,7 @@ class L10nEsAeatMod303Report(models.Model):
                 {
                     "name": _("VAT prorate regularization"),
                     "account_id": self.prorate_account_id.id,
-                    "analytic_account_id": self.prorate_analytic_account_id.id,
+                    "analytic_distribution": {self.prorate_analytic_account_id.id: 100},
                     "debit": -self.casilla_44 if self.casilla_44 < 0 else 0.0,
                     "credit": self.casilla_44 if self.casilla_44 > 0 else 0.0,
                 }
