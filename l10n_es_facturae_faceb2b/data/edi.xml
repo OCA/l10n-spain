@@ -13,6 +13,17 @@
         <field name="exchange_file_ext">xsig</field>
         <field name="exchange_file_auto_generate" eval="True" />
     </record>
+    <record id="facturae_faceb2b_exchange_input_type" model="edi.exchange.type">
+        <field name="name">Spanish Facturae Input</field>
+        <field name="code">l10n_es_facturae_faceb2b_input</field>
+        <field
+            name="backend_type_id"
+            ref="l10n_es_facturae_face.facturae_backend_type"
+        />
+        <field name="direction">input</field>
+        <field name="exchange_filename_pattern">{record_name}--{dt}</field>
+        <field name="exchange_file_ext">xsig</field>
+    </record>
     <record id="facturae_faceb2b_exchange_type_rule" model="edi.exchange.type.rule">
         <field name="name">Default</field>
         <field name="type_id" ref="facturae_faceb2b_exchange_type" />

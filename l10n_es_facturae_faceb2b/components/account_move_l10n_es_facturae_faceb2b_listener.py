@@ -9,7 +9,7 @@ from odoo.addons.component.core import Component
 
 
 class AccountMoveL10nEsFacturaeFACeListener(Component):
-    _name = "account.move.l10n.es.facturae.face.listener"
+    _name = "account.move.l10n.es.facturae.faceb2b.listener"
     _inherit = "base.event.listener"
     _apply_on = ["account.move"]
 

@@ -8,7 +8,7 @@ from odoo.addons.component.core import Component
 
 
 class EdiInputProcessL10nEsFacturaeFaceUpdate(Component):
-    _name = "edi.input.process.l10n_es_facturae.l10n_es_facturae_face_update"
+    _name = "edi.input.process.l10n_es_facturae.l10n_es_facturae_faceb2b_update"
     _usage = "input.process"
     _backend_type = "l10n_es_facturae"
     _exchange_type = "l10n_es_facturae_faceb2b_update"
