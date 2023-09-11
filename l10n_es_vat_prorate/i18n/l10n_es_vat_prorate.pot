@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-11 11:28+0000\n"
-"PO-Revision-Date: 2023-09-11 11:28+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -81,13 +79,6 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
-#. odoo-python
-#: code:addons/l10n_es_vat_prorate/models/res_company.py:0
-#, python-format
-msgid "You must complete VAT prorate information"
-msgstr ""
-
-#. module: l10n_es_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_tax__prorate_account_ids
 msgid "Prorate Account"
 msgstr ""
@@ -123,6 +114,11 @@ msgid "VAT Prorate table"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
+#: model:ir.model.constraint,message:l10n_es_vat_prorate.constraint_res_company_vat_prorate_vat_prorate_percent_amount
+msgid "VAT prorate must be between 0.01 and 100!"
+msgstr ""
+
+#. module: l10n_es_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move_line__vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company__vat_prorate_ids
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate__vat_prorate
@@ -133,4 +129,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_tax__with_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company__with_vat_prorate
 msgid "With Vat Prorate"
+msgstr ""
+
+#. module: l10n_es_vat_prorate
+#. odoo-python
+#: code:addons/l10n_es_vat_prorate/models/res_company.py:0
+#, python-format
+msgid "You must complete VAT prorate information"
 msgstr ""
