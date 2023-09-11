@@ -1,10 +1,15 @@
 # Copyright 2022 Creu Blanca
 # Copyright 2023 Tecnativa - Pedro M. Baeza
+# Copyright 2023 Tecnativa - Carolina Fernandez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import date
 
+from psycopg2 import IntegrityError
+
+from odoo import exceptions
 from odoo.tests.common import tagged
+from odoo.tools import mute_logger
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
@@ -14,6 +19,16 @@ class TestVatProrate(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass(chart_template_ref="l10n_es.account_chart_template_pymes")
+        cls.env = cls.env(
+            context=dict(
+                cls.env.context,
+                mail_create_nolog=True,
+                mail_create_nosubscribe=True,
+                mail_notrack=True,
+                no_reset_password=True,
+                tracking_disable=True,
+            )
+        )
         cls.env.company.write(
             {
                 "with_vat_prorate": True,
@@ -36,6 +51,17 @@ class TestVatProrate(AccountTestInvoicingCommon):
                 "plan_id": cls.analytic_plan.id,
             }
         )
+
+    # Put `zzz` for making sure that the test is executed in last place, as the cursor
+    # gets incoherent after returning from the SQL constraint violation
+    @mute_logger("odoo.sql_db")
+    def test_zzz_company_vat_prorate_out_of_range(self):
+        with self.assertRaises(IntegrityError):
+            self.env.company.vat_prorate_ids[0].vat_prorate = 200
+
+    def test_no_company_vat_prorate_information(self):
+        with self.assertRaises(exceptions.ValidationError):
+            self.env.company.write({"vat_prorate_ids": False})
 
     def test_no_prorate_in_invoice(self):
         self.env.company.write(
