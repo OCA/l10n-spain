@@ -13,7 +13,7 @@ from odoo.addons.component.core import Component
 
 
 class EdiWebServiceReceiveFaceL10nEsFacturaeFaceUpdate(Component):
-    _name = "edi.webservice.receive.face.l10n_es_facturae_face_update"
+    _name = "edi.webservice.receive.face.l10n_es_facturae_faceb2b_update"
     _usage = "input.receive"
     _backend_type = "l10n_es_facturae"
     _exchange_type = "l10n_es_facturae_faceb2b_update"

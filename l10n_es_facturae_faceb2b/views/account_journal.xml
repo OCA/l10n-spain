@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Dixmit
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="view_account_journal_form" model="ir.ui.view">
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="edi_account_oca.view_account_journal_form" />
+        <field name="arch" type="xml">
+            <group name="edi_configuration" position="inside">
+                <field
+                    name="import_faceb2b"
+                    attrs="{'invisible': [('type', '!=', 'purchase')]}"
+                />
+                <field
+                    name="facturae_faceb2b_dire"
+                    attrs="{'invisible': [('type', '!=', 'purchase')]}"
+                />
+            </group>
+        </field>
+    </record>
+
+
+</odoo>
