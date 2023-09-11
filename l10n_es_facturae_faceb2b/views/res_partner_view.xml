@@ -7,6 +7,14 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="l10n_es_facturae_face.view_partner_form" />
         <field name="arch" type="xml">
+            <field name="facturae" position="after">
+                <button
+                    name="check_faceb2b_information"
+                    type="object"
+                    string="Check FaceB2B"
+                    attrs="{'invisible': ['|', ('country_id', '!=', %(base.es)s), ('vat', '=', False)]}"
+                />
+            </field>
             <xpath
                 expr="//field[@name='child_ids']/form/sheet/group//field[@name='l10n_es_facturae_sending_code']"
                 position="before"
