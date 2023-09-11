@@ -55,7 +55,7 @@ addon | version | maintainers | summary
 [l10n_es_ticketbai_batuz](l10n_es_ticketbai_batuz/) | 16.0.1.0.0 | [![enriquemartin](https://github.com/enriquemartin.png?size=30px)](https://github.com/enriquemartin) [![ao-landoo](https://github.com/ao-landoo.png?size=30px)](https://github.com/ao-landoo) | TicketBAI - Batuz - declaración de todas las operaciones de venta realizadas por las personas y entidades que desarrollan actividades económicas en Bizkaia
 [l10n_es_toponyms](l10n_es_toponyms/) | 16.0.1.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Topónimos españoles
 [l10n_es_vat_book](l10n_es_vat_book/) | 16.0.1.3.0 |  | Libro de IVA
-[l10n_es_vat_prorate](l10n_es_vat_prorate/) | 16.0.1.0.0 |  | Prorrata de IVA para la localización española
+[l10n_es_vat_prorate](l10n_es_vat_prorate/) | 16.0.1.0.1 |  | Prorrata de IVA para la localización española
 [payment_redsys](payment_redsys/) | 16.0.1.0.0 |  | Payment Acquirer: Redsys Implementation
 
 [//]: # (end addons)
