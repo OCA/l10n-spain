@@ -12,6 +12,10 @@ class L10nEsAccountStatementImportN43(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.company_2 = cls.env["res.company"].create({"name": "New company"})
+        cls.partner_other_company = cls.env["res.partner"].create(
+            {"name": "Test partner N43", "company_id": cls.company_2.id}
+        )
         cls.partner = cls.env["res.partner"].create(
             {"name": "Test partner N43", "company_id": cls.env.company.id}
         )

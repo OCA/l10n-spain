@@ -273,23 +273,29 @@ class AccountStatementImport(models.TransientModel):
         else:  # pragma: no cover
             return "{} / {}".format(line["referencia1"], line["referencia2"])
 
-    def _get_n43_partner_from_caixabank(self, conceptos):
+    def _get_n43_partner_from_caixabank(self, conceptos, extra_domain):
         partner_obj = self.env["res.partner"]
         partner = partner_obj.browse()
         # Try to match from VAT included in concept complementary record #02
         if conceptos.get("02"):  # pragma: no cover
             vat = conceptos["02"][0][:2] + conceptos["02"][0][7:]
             if vat:
-                partner = partner_obj.search([("vat", "=", vat)], limit=1)
+                partner = partner_obj.search(
+                    [("vat", "=", vat)] + extra_domain,
+                    limit=1,
+                )
         if not partner:
             # Try to match from partner name
             if conceptos.get("01"):
                 name = conceptos["01"][0][4:] + conceptos["01"][1]
                 if name and len(name) > 7:
-                    partner = partner_obj.search([("name", "ilike", name)], limit=1)
+                    partner = partner_obj.search(
+                        [("name", "ilike", name)] + extra_domain,
+                        limit=1,
+                    )
         return partner
 
-    def _get_n43_partner_from_santander(self, conceptos):
+    def _get_n43_partner_from_santander(self, conceptos, extra_domain):
         partner_obj = self.env["res.partner"]
         partner = partner_obj.browse()
         # Try to match from VAT included in concept complementary record #01
@@ -297,45 +303,64 @@ class AccountStatementImport(models.TransientModel):
             if conceptos["01"][1]:
                 vat = conceptos["01"][1]
                 if vat:
-                    partner = partner_obj.search([("vat", "ilike", vat)], limit=1)
+                    partner = partner_obj.search(
+                        [("vat", "ilike", vat)] + extra_domain,
+                        limit=1,
+                    )
         if not partner:
             # Try to match from partner name
             if conceptos.get("01"):
                 name = conceptos["01"][0]
                 if name and len(name) > 7:
-                    partner = partner_obj.search([("name", "ilike", name)], limit=1)
+                    partner = partner_obj.search(
+                        [("name", "ilike", name)] + extra_domain,
+                        limit=1,
+                    )
         return partner
 
-    def _get_n43_partner_from_bankia(self, conceptos):
+    def _get_n43_partner_from_bankia(self, conceptos, extra_domain):
         partner_obj = self.env["res.partner"]
         partner = partner_obj.browse()
         # Try to match from partner name
         if conceptos.get("01"):
             vat = conceptos["01"][0][:2] + conceptos["01"][0][7:]
             if vat:
-                partner = partner_obj.search([("vat", "=", vat)], limit=1)
+                partner = partner_obj.search(
+                    [("vat", "=", vat)] + extra_domain,
+                    limit=1,
+                )
         return partner
 
-    def _get_n43_partner_from_sabadell(self, conceptos):
+    def _get_n43_partner_from_sabadell(self, conceptos, extra_domain):
         partner_obj = self.env["res.partner"]
         partner = partner_obj.browse()
         # Try to match from partner name
         if conceptos.get("01"):
             name = conceptos["01"][1]
             if name and len(name) > 7:
-                partner = partner_obj.search([("name", "ilike", name)], limit=1)
+                partner = partner_obj.search(
+                    [("name", "ilike", name)] + extra_domain,
+                    limit=1,
+                )
         return partner
 
     def _get_n43_partner(self, line):
+        extra_domain = [
+            ("company_id", "in", [False, self.env.company.id]),
+        ]
         if not line.get("conceptos"):  # pragma: no cover
             return self.env["res.partner"]
-        partner = self._get_n43_partner_from_caixabank(line["conceptos"])
+        partner = self._get_n43_partner_from_caixabank(line["conceptos"], extra_domain)
         if not partner:
-            partner = self._get_n43_partner_from_santander(line["conceptos"])
+            partner = self._get_n43_partner_from_santander(
+                line["conceptos"], extra_domain
+            )
         if not partner:
-            partner = self._get_n43_partner_from_bankia(line["conceptos"])
+            partner = self._get_n43_partner_from_bankia(line["conceptos"], extra_domain)
         if not partner:
-            partner = self._get_n43_partner_from_sabadell(line["conceptos"])
+            partner = self._get_n43_partner_from_sabadell(
+                line["conceptos"], extra_domain
+            )
         return partner
 
     def _get_n43_account(self, line, journal):  # pragma: no cover
@@ -415,13 +440,18 @@ class AccountStatementImport(models.TransientModel):
         """Match partner_id if if hasn't been deducted yet."""
         res = super()._complete_stmts_vals(stmts_vals, journal, account_number)
         for st_vals in res:
+            journal = self.env["account.journal"].browse(st_vals["journal_id"])
             for line_vals in st_vals["transactions"]:
                 if line_vals.get("n43_line"):
                     n43_line = line_vals.pop("n43_line")
                     if not line_vals.get("partner_id"):
-                        line_vals["partner_id"] = self._get_n43_partner(
-                            n43_line,
-                        ).id
+                        line_vals["partner_id"] = (
+                            self.with_company(journal.company_id.id)
+                            ._get_n43_partner(
+                                n43_line,
+                            )
+                            .id
+                        )
                     line_vals["date"] = fields.Date.to_string(
                         n43_line.get(journal.n43_date_type or "fecha_valor")
                     )
