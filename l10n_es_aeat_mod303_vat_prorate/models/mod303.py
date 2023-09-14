@@ -53,9 +53,6 @@ class L10nEsAeatMod303Report(models.Model):
         if not diff_perc:
             return
         result = 0
-        # Assign value to avoid division error by zero
-        if not theoretical_prorate:
-            theoretical_prorate = 1
         # Get the difference for the previous reports
         prev_reports = self._get_previous_fiscalyear_reports(self.date_start)
         for report in prev_reports:
