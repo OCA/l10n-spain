@@ -11,9 +11,12 @@
         <field name="direction">output</field>
         <field name="exchange_filename_pattern">{record_name}--{dt}</field>
         <field name="exchange_file_ext">xsig</field>
-        <field name="model_manual_btn" eval="True" />
-        <field name="model_ids" eval="[(4, ref('account.model_account_move'))]" />
         <field name="exchange_file_auto_generate" eval="True" />
+    </record>
+    <record id="facturae_face_exchange_type_rule" model="edi.exchange.type.rule">
+        <field name="name">Default</field>
+        <field name="type_id" ref="facturae_exchange_type" />
+        <field name="model_id" ref="account.model_account_move" />
         <field
             name="enable_domain"
         >[('state', '!=', 'draft'), ('partner_id', '!=', False), ('partner_id.l10n_es_facturae_sending_code', '=', "face"),('move_type', 'in', ['out_invoice', 'out_refund'])]</field>
@@ -33,9 +36,12 @@
         <field name="backend_id" ref="face_backend" />
         <field name="direction">input</field>
         <field name="exchange_filename_pattern">{record_name}--{dt}</field>
-        <field name="model_manual_btn" eval="True" />
         <field name="exchange_file_ext">json</field>
-        <field name="model_ids" eval="[(4, ref('account.model_account_move'))]" />
+    </record>
+    <record id="facturae_face_update_exchange_type_rule" model="edi.exchange.type.rule">
+        <field name="name">Default</field>
+        <field name="type_id" ref="facturae_face_update_exchange_type" />
+        <field name="model_id" ref="account.model_account_move" />
         <field
             name="enable_domain"
         >[('state', '!=', 'draft'), ('partner_id.l10n_es_facturae_sending_code', '=', "face")]</field>
