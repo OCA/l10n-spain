@@ -6,7 +6,7 @@
     </record>
 
     <record model="ir.cron" id="ir_cron_faceb2b_receive">
-        <field name="name">FaceB2B Receive Data</field>
+        <field name="name">FaceB2B: Receive Invoices</field>
         <field name="interval_number">1</field>
         <field name="interval_type">hours</field>
         <field name="numbercall">-1</field>
@@ -14,5 +14,15 @@
         <field name="doall" eval="False" />
         <field name="model_id" ref="account.model_account_journal" />
         <field name="code">model._cron_facturae_faceb2b()</field>
+    </record>
+    <record model="ir.cron" id="ir_cron_faceb2b_request_to_cancel">
+        <field name="name">FaceB2B: Requests to cancel invoices</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">hours</field>
+        <field name="numbercall">-1</field>
+        <field name="state">code</field>
+        <field name="doall" eval="False" />
+        <field name="model_id" ref="account.model_account_journal" />
+        <field name="code">model._cron_facturae_cancel_faceb2b()</field>
     </record>
 </odoo>

@@ -14,17 +14,11 @@ class EdiWebServiceReceiveFaceL10nEsFacturaeFaceUpdate(Component):
     _usage = "input.receive"
     _backend_type = "l10n_es_facturae"
     _exchange_type = "l10n_es_facturae_faceb2b_input"
-    _inherit = ["edi.component.receive.mixin", "base.webservice.face"]
-
-    def _get_wsdl(self):
-        return self.env["ir.config_parameter"].sudo().get_param("facturae.faceb2b.ws")
+    _inherit = "edi.component.receive.mixin"
 
     def receive(self):
         journal = self.exchange_record.record
-        public_crt, private_key = self.env["l10n.es.aeat.certificate"].get_certificates(
-            journal.company_id
-        )
-        client = self._get_client(public_crt, private_key)
+        client = journal.company_id._get_faceb2b_wsdl_client()
         result = client.service.DownloadInvoice(
             client.get_type("ns0:DownloadInvoiceRequestType")(
                 registryNumber=self.exchange_record.external_identifier

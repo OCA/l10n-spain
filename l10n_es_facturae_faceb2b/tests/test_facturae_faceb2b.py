@@ -22,6 +22,20 @@ except (ImportError, IOError) as err:
 _logger = logging.getLogger(__name__)
 
 
+class DemoService(object):
+    def __init__(self, value):
+        self.value = value
+
+    def SendInvoice(self, *args):
+        return self.value
+
+    def GetInvoiceDetails(self, *args):
+        return self.value
+
+    def RequestInvoiceCancellation(self, *args):
+        return self.value
+
+
 class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegistryCase):
     @classmethod
     def setUpClass(cls):
@@ -260,16 +274,6 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
         self.assertEqual(exchange_record.edi_exchange_state, "output_error_on_send")
 
     def test_facturae_faceb2b(self):
-        class DemoService(object):
-            def __init__(self, value):
-                self.value = value
-
-            def SendInvoice(self, *args):
-                return self.value
-
-            def GetInvoiceDetails(self, *args):
-                return self.value
-
         self._activate_certificate(self.certificate_password)
         client = Client(
             wsdl=self.env["ir.config_parameter"].sudo().get_param("facturae.faceb2b.ws")
@@ -328,5 +332,59 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
             mock_client.return_value = DemoService(response_update)
             self.move.edi_create_exchange_record(self.face_update_type.id)
             mock_client.assert_called_once()
-        self.assertEqual(exchange_record.l10n_es_facturae_status, "face-1200")
-        self.assertEqual(self.move.l10n_es_facturae_status, "face-1200")
+        self.assertEqual(exchange_record.l10n_es_facturae_status, "faceb2b-1200")
+        self.assertEqual(self.move.l10n_es_facturae_status, "faceb2b-1200")
+
+    def test_cancel(self):
+        self._activate_certificate(self.certificate_password)
+        client = Client(
+            wsdl=self.env["ir.config_parameter"].sudo().get_param("facturae.faceb2b.ws")
+        )
+        integration_code = "1234567890"
+        response_ok = client.get_type("ns0:SendInvoiceResponseType")(
+            client.get_type("ns0:ResultStatusType")(
+                code="0", detail="OK", message="OK"
+            ),
+            client.get_type("ns0:InvoiceType")(registryNumber=integration_code),
+        )
+        self.assertFalse(self.move.exchange_record_ids)
+        with mock.patch("zeep.client.ServiceProxy") as mock_client:
+            mock_client.return_value = DemoService(response_ok)
+
+            self.move.with_context(
+                force_edi_send=True, test_queue_job_no_delay=True
+            ).action_post()
+            self.move.name = "2999/99998"
+            mock_client.assert_not_called()
+            exchange_record = self.move.exchange_record_ids.with_context(
+                _edi_send_break_on_error=True
+            )
+            self.assertEqual(exchange_record.edi_exchange_state, "output_pending")
+            exchange_record.backend_id.exchange_send(exchange_record)
+            self.assertEqual(
+                exchange_record.edi_exchange_state, "output_sent_and_processed"
+            )
+            mock_client.assert_called_once()
+        self.move.refresh()
+        self.assertTrue(self.move.exchange_record_ids)
+        exchange_record = self.move.exchange_record_ids
+        self.move.refresh()
+        response_fail = client.get_type("ns0:ResultStatusType")(
+            code="10", detail="OK", message="OK"
+        )
+        with mock.patch("zeep.client.ServiceProxy") as mock_client:
+            mock_client.return_value = DemoService(response_fail)
+            with self.assertRaises(exceptions.UserError):
+                self.env["l10n.es.facturae.faceb2b.cancel"].create(
+                    {"move_id": self.move.id, "motive": "Some motive here"}
+                ).cancel_faceb2b()
+
+        response_ok = client.get_type("ns0:ResultStatusType")(
+            code="0", detail="OK", message="OK"
+        )
+        with mock.patch("zeep.client.ServiceProxy") as mock_client:
+            mock_client.return_value = DemoService(response_ok)
+            self.env["l10n.es.facturae.faceb2b.cancel"].create(
+                {"move_id": self.move.id, "motive": "Some motive here"}
+            ).cancel_faceb2b()
+        self.assertEqual(self.move.l10n_es_facturae_cancellation_status, "faceb2b-4200")

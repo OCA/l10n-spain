@@ -14,9 +14,9 @@ from odoo.addons.component.core import Component
 
 class EdiWebServiceReceiveFaceL10nEsFacturaeFaceUpdate(Component):
     _name = "edi.webservice.receive.face.l10n_es_facturae_faceb2b_update"
-    _usage = "input.receive"
+    _usage = "input.receive.faceb2b"
     _backend_type = "l10n_es_facturae"
-    _exchange_type = "l10n_es_facturae_faceb2b_update"
+    _exchange_type = None
     _inherit = ["edi.component.receive.mixin", "base.webservice.face"]
 
     def _get_wsdl(self):

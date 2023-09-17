@@ -33,7 +33,7 @@
         >[('state', '!=', 'draft'), ('partner_id', '!=', False), ('partner_id.l10n_es_facturae_sending_code', '=', "faceb2b"),('move_type', 'in', ['out_invoice', 'out_refund'])]</field>
         <field
             name="enable_snippet"
-        >result = not record._has_exchange_record(exchange_type)</field>
+        >result = not record._has_exchange_record(exchange_type) or record.l10n_es_facturae_status in ["faceb2b-2600", "faceb2b-3100"]</field>
     </record>
     <record id="faceb2b_backend" model="edi.backend">
         <field name="name">FACe B2B</field>
@@ -54,6 +54,13 @@
         <field name="direction">input</field>
         <field name="exchange_filename_pattern">{record_name}-{dt}</field>
         <field name="exchange_file_ext">json</field>
+        <field
+            name="advanced_settings_edit"
+        ><![CDATA[
+components:
+  receive:
+    usage: input.receive.faceb2b
+            ]]></field>
     </record>
 
     <record
@@ -69,7 +76,38 @@
     <field
             name="enable_snippet"
         >result = record._has_exchange_record(record.env.ref("l10n_es_facturae_faceb2b.facturae_faceb2b_exchange_type"), record.env.ref("l10n_es_facturae_faceb2b.faceb2b_backend"))</field>
+    </record>
 
+    <record
+        id="facturae_faceb2b_update_exchange_type_input_rule"
+        model="edi.exchange.type.rule"
+    >
+        <field name="name">Default Input</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field name="type_id" ref="facturae_faceb2b_update_exchange_type" />
+        <field name="enable_domain">[('journal_id.import_faceb2b', '=', True)]</field>
+    <field
+            name="enable_snippet"
+        >result = record._has_exchange_record(record.env.ref("l10n_es_facturae_faceb2b.facturae_faceb2b_exchange_input_type"), record.env.ref("l10n_es_facturae_faceb2b.faceb2b_backend"))</field>
+    </record>
+
+    <record id="facturae_faceb2b_exchange_cancel_input_type" model="edi.exchange.type">
+        <field name="name">Spanish Facturae Cancel</field>
+        <field name="code">l10n_es_facturae_faceb2b_cancel_input</field>
+        <field
+            name="backend_type_id"
+            ref="l10n_es_facturae_face.facturae_backend_type"
+        />
+        <field name="direction">input</field>
+        <field name="exchange_filename_pattern">{record_name}--{dt}</field>
+        <field
+            name="advanced_settings_edit"
+        ><![CDATA[
+components:
+  receive:
+    usage: input.receive.faceb2b
+            ]]></field>
+        <field name="exchange_file_ext">json</field>
     </record>
     <record id="facturae_face_cancel_exchange_type" model="edi.exchange.type">
         <field name="name">Cancel Facturae FACe</field>

@@ -1,16 +1,9 @@
 # Copyright 2023 Dixmit
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-import base64
 import logging
 
-from cryptography import x509
-from cryptography.hazmat.primitives import serialization
-from zeep import Client
-
 from odoo import fields, models
-
-from odoo.addons.l10n_es_facturae_face.models.wsse_signature import MemorySignature
 
 _logger = logging.getLogger(__name__)
 
@@ -25,27 +18,7 @@ class AccountJournal(models.Model):
         for journal in self.search(
             [("import_faceb2b", "=", True), ("type", "=", "purchase")]
         ):
-            public_crt, private_key = self.env[
-                "l10n.es.aeat.certificate"
-            ].get_certificates(journal.company_id)
-            with open(public_crt, "rb") as f:
-                cert = x509.load_pem_x509_certificate(f.read())
-            with open(private_key, "rb") as f:
-                key = serialization.load_pem_private_key(f.read(), None)
-            client = Client(
-                wsdl=self.env["ir.config_parameter"]
-                .sudo()
-                .get_param("facturae.faceb2b.ws"),
-                wsse=MemorySignature(
-                    cert,
-                    key,
-                    x509.load_pem_x509_certificate(
-                        base64.b64decode(
-                            self.env.ref("l10n_es_facturae_face.face_certificate").datas
-                        )
-                    ),
-                ),
-            )
+            client = journal.company_id._get_faceb2b_wsdl_client()
             journal.with_company(
                 journal.company_id.id
             )._generate_facturae_faceb2b_records(client)
@@ -102,3 +75,67 @@ class AccountJournal(models.Model):
                 )
                 created += 1
         _logger.debug("%s new records created for %s" % (created, self.display_name))
+
+    def _cron_facturae_cancel_faceb2b(self):
+        for journal in self.search(
+            [("import_faceb2b", "=", True), ("type", "=", "purchase")]
+        ):
+            client = journal.company_id._get_faceb2b_wsdl_client()
+            journal.with_company(
+                journal.company_id.id
+            )._cancel_facturae_faceb2b_records(client)
+
+    def _cancel_facturae_faceb2b_records(self, client):
+        cancel_invoices = client.service.GetInvoiceCancellations(
+            client.get_type("ns0:GetInvoiceCancellationsRequestType")(
+                receivingUnit=self.facturae_faceb2b_dire
+            )
+        )
+        if cancel_invoices.resultStatus.code != "0":
+            _logger.warning(
+                "Something happened and we had a problem "
+                "receiving the request to cancel invoices: %s - %s - %s"
+                % (
+                    cancel_invoices.resultStatus.code,
+                    cancel_invoices.resultStatus.message,
+                    cancel_invoices.resultStatus.detail,
+                )
+            )
+            return
+        if not cancel_invoices.invoiceCancellationRequests:
+            _logger.debug("No requests to cancel invoices for %s" % self.display_name)
+            return
+        _logger.debug(
+            "%s new requests to cancel invoice detected for %s"
+            % (len(cancel_invoices.invoiceCancellationRequests), self.display_name)
+        )
+        backend = self.env.ref("l10n_es_facturae_faceb2b.faceb2b_backend")
+        input_type = self.env.ref(
+            "l10n_es_facturae_faceb2b.facturae_faceb2b_exchange_cancel_input_type"
+        )
+        parent_type = self.env.ref(
+            "l10n_es_facturae_faceb2b.facturae_faceb2b_exchange_input_type"
+        )
+        for (
+            registry_number
+        ) in cancel_invoices.invoiceCancellationRequests.registryNumber:
+            parent = self.env["edi.exchange.record"].search(
+                [
+                    ("type_id", "=", parent_type.id),
+                    ("backend_id", "=", backend.id),
+                    ("external_identifier", "=", registry_number),
+                ],
+                limit=1,
+            )
+            if not parent:
+                continue
+            backend.create_record(
+                input_type.code,
+                {
+                    "parent_id": parent.id,
+                    "external_identifier": registry_number,
+                    "edi_exchange_state": "input_pending",
+                    "model": parent.model,
+                    "res_id": parent.res_id,
+                },
+            )

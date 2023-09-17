@@ -11,10 +11,13 @@
     "website": "https://github.com/OCA/l10n-spain",
     "depends": ["l10n_es_facturae_face"],
     "data": [
+        "security/ir.model.access.csv",
+        "wizards/l10n_es_facturae_faceb2b_cancel.xml",
         "views/account_journal.xml",
         "data/edi.xml",
         "data/faceb2b_data.xml",
         "views/res_partner_view.xml",
+        "views/account_move.xml",
         "views/report_facturae.xml",
     ],
     "demo": [],
