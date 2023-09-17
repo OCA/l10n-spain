@@ -13,11 +13,81 @@ class AccountMoveL10nEsFacturaeFACeListener(Component):
     _inherit = "base.event.listener"
     _apply_on = ["account.move"]
 
+    def on_paid_account_move(self, move):
+        related_record = move._get_exchange_record(
+            self.env.ref(
+                "l10n_es_facturae_faceb2b.facturae_faceb2b_exchange_input_type"
+            ),
+            self.env.ref("l10n_es_facturae_faceb2b.faceb2b_backend"),
+        )
+        if not related_record or move.l10n_es_facturae_status == "faceb2b-2600":
+            return
+        client = move.company_id._get_faceb2b_wsdl_client()
+        response = client.service.MarkInvoiceAsPaid(
+            client.get_type("ns0:MarkInvoiceAsPaidRequestType")(
+                registryNumber=related_record.external_identifier,
+            )
+        )
+        if response.code != "0":
+            raise UserError(
+                _(
+                    "Something happened and we had a problem "
+                    "receiving the registered invoices: %s - %s - %s"
+                    % (
+                        response.code,
+                        response.message,
+                        response.detail,
+                    )
+                )
+            )
+        related_record.l10n_es_facturae_status = "faceb2b-2600"
+        move.l10n_es_facturae_status = "faceb2b-2600"
+
+    def on_cancel_account_move(self, move):
+        related_record = move._get_exchange_record(
+            self.env.ref(
+                "l10n_es_facturae_faceb2b.facturae_faceb2b_exchange_input_type"
+            ),
+            self.env.ref("l10n_es_facturae_faceb2b.faceb2b_backend"),
+        )
+        if not related_record or move.l10n_es_facturae_status == "faceb2b-2500":
+            return
+        client = move.company_id._get_faceb2b_wsdl_client()
+        response = client.service.RejectInvoice(
+            client.get_type("ns0:RejectInvoiceRequestType")(
+                registryNumber=related_record.external_identifier,
+                reason="R002"
+                if move.env.context.get("_facturae_cancel_supplier")
+                else "R001",
+            )
+        )
+        if response.code != "0":
+            raise UserError(
+                _(
+                    "Something happened and we had a problem "
+                    "receiving the registered invoices: %s - %s - %s"
+                    % (
+                        response.code,
+                        response.message,
+                        response.detail,
+                    )
+                )
+            )
+        related_record.l10n_es_facturae_status = "faceb2b-2500"
+        move.l10n_es_facturae_status = "faceb2b-2500"
+
     def on_edi_generate_manual(self, move, exchange_record):
         if exchange_record.type_id.code != "l10n_es_facturae_faceb2b_update":
             return
+        exchange_type = self.env.ref(
+            "l10n_es_facturae_faceb2b.facturae_faceb2b_exchange_type"
+        )
+        if move.is_purchase_document():
+            exchange_type = self.env.ref(
+                "l10n_es_facturae_faceb2b.facturae_faceb2b_exchange_input_type"
+            )
         related_record = move._get_exchange_record(
-            self.env.ref("l10n_es_facturae_faceb2b.facturae_faceb2b_exchange_type"),
+            exchange_type,
             self.env.ref("l10n_es_facturae_faceb2b.faceb2b_backend"),
         )
         if not related_record:

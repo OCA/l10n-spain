@@ -5,7 +5,9 @@ import logging
 
 import mock
 
+from odoo import exceptions, fields
 from odoo.modules.module import get_module_resource
+from odoo.tests.common import Form
 
 from odoo.addons.component.tests.common import SavepointComponentRegistryCase
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
@@ -42,6 +44,9 @@ class DemoService(object):
 
     def MarkInvoiceAsPaid(self, *args):
         return self.value["mark_paid"]
+
+    def GetInvoiceDetails(self, *args):
+        return self.value["update"]
 
     def AcceptInvoiceCancellation(self, *args):
         return self.value["accept_cancellation"]
@@ -151,7 +156,7 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
                 "inbound_payment_method_ids": [(6, 0, payment_methods.ids)],
             }
         )
-
+        cls.env["account.journal"].search([]).write({"import_faceb2b": False})
         cls.purchase_journal = cls.env["account.journal"].create(
             {
                 "name": "Purchase journal",
@@ -198,20 +203,23 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
             get_module_resource("l10n_es_facturae_faceb2b", "tests", "invoice.xsig"),
             "rb",
         ).read()
+        cls.cancel_input_type = cls.env.ref(
+            "l10n_es_facturae_faceb2b.facturae_faceb2b_exchange_cancel_input_type"
+        )
+        cls.integration_code = "TEST_1234"
 
     def test_cron_import_ok(self):
         self._activate_certificate(self.certificate_password)
         client = Client(
             wsdl=self.env["ir.config_parameter"].sudo().get_param("facturae.faceb2b.ws")
         )
-        integration_code = "TEST_1234"
         responses = {
             "get_registered": client.get_type("ns0:GetRegisteredInvoicesResponseType")(
                 client.get_type("ns0:ResultStatusType")(
                     code="0", detail="OK", message="OK"
                 ),
                 client.get_type("ns0:InvoiceRegistryNumbersType")(
-                    registryNumber=[integration_code]
+                    registryNumber=[self.integration_code]
                 ),
             ),
             "download": client.get_type("ns0:DownloadInvoiceResponseType")(
@@ -228,14 +236,14 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
         }
         self.assertFalse(
             self.env["edi.exchange.record"].search(
-                [("external_identifier", "=", integration_code)]
+                [("external_identifier", "=", self.integration_code)]
             )
         )
         with mock.patch("zeep.client.ServiceProxy") as mock_client:
             mock_client.return_value = DemoService(responses)
             self.env["account.journal"]._cron_facturae_faceb2b()
             exchange_record = self.env["edi.exchange.record"].search(
-                [("external_identifier", "=", integration_code)]
+                [("external_identifier", "=", self.integration_code)]
             )
             self.assertTrue(exchange_record)
             exchange_record.backend_id.exchange_receive(exchange_record)
@@ -244,20 +252,21 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
             exchange_record.backend_id.exchange_process(exchange_record)
             self.assertEqual(exchange_record.edi_exchange_state, "input_processed")
             self.assertEqual(exchange_record.record._name, "account.move")
+        return client, exchange_record
 
     def test_cron_import_error_confirm(self):
         self._activate_certificate(self.certificate_password)
         client = Client(
             wsdl=self.env["ir.config_parameter"].sudo().get_param("facturae.faceb2b.ws")
         )
-        integration_code = "TEST_1234"
+        self.integration_code = "TEST_1234"
         responses = {
             "get_registered": client.get_type("ns0:GetRegisteredInvoicesResponseType")(
                 client.get_type("ns0:ResultStatusType")(
                     code="0", detail="OK", message="OK"
                 ),
                 client.get_type("ns0:InvoiceRegistryNumbersType")(
-                    registryNumber=[integration_code]
+                    registryNumber=[self.integration_code]
                 ),
             ),
             "download": client.get_type("ns0:DownloadInvoiceResponseType")(
@@ -274,14 +283,14 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
         }
         self.assertFalse(
             self.env["edi.exchange.record"].search(
-                [("external_identifier", "=", integration_code)]
+                [("external_identifier", "=", self.integration_code)]
             )
         )
         with mock.patch("zeep.client.ServiceProxy") as mock_client:
             mock_client.return_value = DemoService(responses)
             self.env["account.journal"]._cron_facturae_faceb2b()
             exchange_record = self.env["edi.exchange.record"].search(
-                [("external_identifier", "=", integration_code)]
+                [("external_identifier", "=", self.integration_code)]
             )
             self.assertTrue(exchange_record)
             exchange_record.backend_id.exchange_receive(exchange_record)
@@ -300,14 +309,14 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
         client = Client(
             wsdl=self.env["ir.config_parameter"].sudo().get_param("facturae.faceb2b.ws")
         )
-        integration_code = "TEST_1234"
+        self.integration_code = "TEST_1234"
         responses = {
             "get_registered": client.get_type("ns0:GetRegisteredInvoicesResponseType")(
                 client.get_type("ns0:ResultStatusType")(
                     code="0", detail="OK", message="OK"
                 ),
                 client.get_type("ns0:InvoiceRegistryNumbersType")(
-                    registryNumber=[integration_code]
+                    registryNumber=[self.integration_code]
                 ),
             ),
             "download": client.get_type("ns0:DownloadInvoiceResponseType")(
@@ -324,7 +333,7 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
         }
         self.assertFalse(
             self.env["edi.exchange.record"].search(
-                [("external_identifier", "=", integration_code)]
+                [("external_identifier", "=", self.integration_code)]
             )
         )
         with mock.patch("zeep.client.ServiceProxy") as mock_client:
@@ -334,7 +343,7 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
                 1,
                 len(
                     self.env["edi.exchange.record"].search(
-                        [("external_identifier", "=", integration_code)]
+                        [("external_identifier", "=", self.integration_code)]
                     )
                 ),
             )
@@ -343,7 +352,7 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
                 1,
                 len(
                     self.env["edi.exchange.record"].search(
-                        [("external_identifier", "=", integration_code)]
+                        [("external_identifier", "=", self.integration_code)]
                     )
                 ),
             )
@@ -353,14 +362,14 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
         client = Client(
             wsdl=self.env["ir.config_parameter"].sudo().get_param("facturae.faceb2b.ws")
         )
-        integration_code = "TEST_1234"
+        self.integration_code = "TEST_1234"
         responses = {
             "get_registered": client.get_type("ns0:GetRegisteredInvoicesResponseType")(
                 client.get_type("ns0:ResultStatusType")(
                     code="0", detail="OK", message="OK"
                 ),
                 client.get_type("ns0:InvoiceRegistryNumbersType")(
-                    registryNumber=[integration_code]
+                    registryNumber=[self.integration_code]
                 ),
             ),
             "download": client.get_type("ns0:DownloadInvoiceResponseType")(
@@ -371,14 +380,14 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
         }
         self.assertFalse(
             self.env["edi.exchange.record"].search(
-                [("external_identifier", "=", integration_code)]
+                [("external_identifier", "=", self.integration_code)]
             )
         )
         with mock.patch("zeep.client.ServiceProxy") as mock_client:
             mock_client.return_value = DemoService(responses)
             self.env["account.journal"]._cron_facturae_faceb2b()
             exchange_record = self.env["edi.exchange.record"].search(
-                [("external_identifier", "=", integration_code)]
+                [("external_identifier", "=", self.integration_code)]
             )
             self.assertTrue(exchange_record)
             exchange_record.backend_id.exchange_receive(exchange_record)
@@ -390,7 +399,7 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
         client = Client(
             wsdl=self.env["ir.config_parameter"].sudo().get_param("facturae.faceb2b.ws")
         )
-        integration_code = "TEST_1234"
+        self.integration_code = "TEST_1234"
         responses = {
             "get_registered": client.get_type("ns0:GetRegisteredInvoicesResponseType")(
                 client.get_type("ns0:ResultStatusType")(
@@ -401,7 +410,7 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
         }
         self.assertFalse(
             self.env["edi.exchange.record"].search(
-                [("external_identifier", "=", integration_code)]
+                [("external_identifier", "=", self.integration_code)]
             )
         )
         with mock.patch("zeep.client.ServiceProxy") as mock_client:
@@ -409,7 +418,7 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
             self.env["account.journal"]._cron_facturae_faceb2b()
             self.assertFalse(
                 self.env["edi.exchange.record"].search(
-                    [("external_identifier", "=", integration_code)]
+                    [("external_identifier", "=", self.integration_code)]
                 )
             )
 
@@ -418,20 +427,20 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
         client = Client(
             wsdl=self.env["ir.config_parameter"].sudo().get_param("facturae.faceb2b.ws")
         )
-        integration_code = "TEST_1234"
+        self.integration_code = "TEST_1234"
         responses = {
             "get_registered": client.get_type("ns0:GetRegisteredInvoicesResponseType")(
                 client.get_type("ns0:ResultStatusType")(
                     code="10", detail="OK", message="OK"
                 ),
                 client.get_type("ns0:InvoiceRegistryNumbersType")(
-                    registryNumber=[integration_code]
+                    registryNumber=[self.integration_code]
                 ),
             ),
         }
         self.assertFalse(
             self.env["edi.exchange.record"].search(
-                [("external_identifier", "=", integration_code)]
+                [("external_identifier", "=", self.integration_code)]
             )
         )
         with mock.patch("zeep.client.ServiceProxy") as mock_client:
@@ -439,6 +448,271 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
             self.env["account.journal"]._cron_facturae_faceb2b()
             self.assertFalse(
                 self.env["edi.exchange.record"].search(
-                    [("external_identifier", "=", integration_code)]
+                    [("external_identifier", "=", self.integration_code)]
                 )
             )
+
+    def test_cancel_integrated_supplier(self):
+        client, exchange_record = self.test_cron_import_ok()
+        responses = {
+            "get_cancelled": client.get_type("ns0:GetInvoiceCancellationsResponseType")(
+                client.get_type("ns0:ResultStatusType")(
+                    code="0", detail="OK", message="OK"
+                ),
+                client.get_type("ns0:InvoiceRegistryNumbersType")(
+                    registryNumber=[self.integration_code]
+                ),
+            ),
+            "update": client.get_type("ns0:GetInvoiceDetailsResponseType")(
+                client.get_type("ns0:ResultStatusType")(
+                    code="0", detail="OK", message="OK"
+                ),
+                client.get_type("ns0:InvoiceType")(
+                    registryNumber=self.integration_code,
+                    receptionDate=fields.Datetime.now(),
+                    issueDate=fields.Datetime.now(),
+                    statusInfo=client.get_type("ns0:StatusInfoType")(
+                        client.get_type("ns0:CodeType")("1200", "DESC", "MOTIVO")
+                    ),
+                    cancellationInfo=client.get_type("ns0:CancellationInfoType")(
+                        client.get_type("ns0:CodeType")("4200", "DESC", "MOTIVO")
+                    ),
+                ),
+            ),
+            "accept_cancellation": client.get_type("ns0:ResultStatusType")(
+                code="0", detail="OK", message="OK"
+            ),
+            "reject": client.get_type("ns0:ResultStatusType")(
+                code="0", detail="OK", message="OK"
+            ),
+        }
+        self.assertFalse(
+            self.env["edi.exchange.record"].search(
+                [
+                    ("external_identifier", "=", self.integration_code),
+                    (
+                        "type_id",
+                        "=",
+                        self.cancel_input_type.id,
+                    ),
+                ]
+            )
+        )
+        with mock.patch("zeep.client.ServiceProxy") as mock_client:
+            mock_client.return_value = DemoService(responses)
+            self.env["account.journal"]._cron_facturae_cancel_faceb2b()
+            cancel_exchange = self.env["edi.exchange.record"].search(
+                [
+                    ("external_identifier", "=", self.integration_code),
+                    (
+                        "type_id",
+                        "=",
+                        self.cancel_input_type.id,
+                    ),
+                ]
+            )
+            cancel_exchange.ensure_one()
+            cancel_exchange.backend_id.exchange_receive(cancel_exchange)
+            cancel_exchange.backend_id.exchange_process(cancel_exchange)
+        exchange_record.invalidate_cache()
+        exchange_record.record.invalidate_cache()
+        self.assertEqual(
+            exchange_record.l10n_es_facturae_cancellation_status, "faceb2b-4300"
+        )
+        self.assertEqual(
+            exchange_record.record.l10n_es_facturae_cancellation_status, "faceb2b-4300"
+        )
+        self.assertEqual(exchange_record.record.state, "cancel")
+
+    def test_cancel_integrated_supplier_reject(self):
+        client, exchange_record = self.test_cron_import_ok()
+        # Override info, in order to make it work without facturae import
+        exchange_record.record.write(
+            {
+                "partner_id": self.partner.id,
+                "invoice_date": fields.Date.today(),
+                "invoice_line_ids": [
+                    (5, 0, 0),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "DEMO",
+                            "price_unit": 10,
+                            "account_id": self.account.id,
+                        },
+                    ),
+                ],
+            }
+        )
+        exchange_record.record._post()
+        responses = {
+            "get_cancelled": client.get_type("ns0:GetInvoiceCancellationsResponseType")(
+                client.get_type("ns0:ResultStatusType")(
+                    code="0", detail="OK", message="OK"
+                ),
+                client.get_type("ns0:InvoiceRegistryNumbersType")(
+                    registryNumber=[self.integration_code]
+                ),
+            ),
+            "update": client.get_type("ns0:GetInvoiceDetailsResponseType")(
+                client.get_type("ns0:ResultStatusType")(
+                    code="0", detail="OK", message="OK"
+                ),
+                client.get_type("ns0:InvoiceType")(
+                    registryNumber=self.integration_code,
+                    receptionDate=fields.Datetime.now(),
+                    issueDate=fields.Datetime.now(),
+                    statusInfo=client.get_type("ns0:StatusInfoType")(
+                        client.get_type("ns0:CodeType")("1200", "DESC", "MOTIVO")
+                    ),
+                    cancellationInfo=client.get_type("ns0:CancellationInfoType")(
+                        client.get_type("ns0:CodeType")("4200", "DESC", "MOTIVO")
+                    ),
+                ),
+            ),
+            "reject_cancellation": client.get_type("ns0:ResultStatusType")(
+                code="0", detail="OK", message="OK"
+            ),
+        }
+        self.assertFalse(
+            self.env["edi.exchange.record"].search(
+                [
+                    ("external_identifier", "=", self.integration_code),
+                    (
+                        "type_id",
+                        "=",
+                        self.cancel_input_type.id,
+                    ),
+                ]
+            )
+        )
+        with mock.patch("zeep.client.ServiceProxy") as mock_client:
+            mock_client.return_value = DemoService(responses)
+            self.env["account.journal"]._cron_facturae_cancel_faceb2b()
+            cancel_exchange = self.env["edi.exchange.record"].search(
+                [
+                    ("external_identifier", "=", self.integration_code),
+                    (
+                        "type_id",
+                        "=",
+                        self.cancel_input_type.id,
+                    ),
+                ]
+            )
+            cancel_exchange.ensure_one()
+            cancel_exchange.backend_id.exchange_receive(cancel_exchange)
+            cancel_exchange.backend_id.exchange_process(cancel_exchange)
+        exchange_record.invalidate_cache()
+        exchange_record.record.invalidate_cache()
+        self.assertEqual(
+            exchange_record.l10n_es_facturae_cancellation_status, "faceb2b-4400"
+        )
+        self.assertEqual(
+            exchange_record.record.l10n_es_facturae_cancellation_status, "faceb2b-4400"
+        )
+
+    def test_cancel_integrated(self):
+        client, exchange_record = self.test_cron_import_ok()
+        responses = {
+            "reject": client.get_type("ns0:ResultStatusType")(
+                code="0", detail="OK", message="OK"
+            ),
+        }
+        with mock.patch("zeep.client.ServiceProxy") as mock_client:
+            mock_client.return_value = DemoService(responses)
+            exchange_record.record.button_cancel()
+            mock_client.assert_called()
+
+    def test_cancel_integrated_error(self):
+        client, exchange_record = self.test_cron_import_ok()
+        responses = {
+            "reject": client.get_type("ns0:ResultStatusType")(
+                code="10", detail="OK", message="OK"
+            ),
+        }
+        with mock.patch("zeep.client.ServiceProxy") as mock_client:
+            mock_client.return_value = DemoService(responses)
+            with self.assertRaises(exceptions.UserError):
+                exchange_record.record.button_cancel()
+            mock_client.assert_called()
+
+    def test_paid_integrated(self):
+        client, exchange_record = self.test_cron_import_ok()
+        # Override info, in order to make it work without facturae import
+        exchange_record.record.write(
+            {
+                "partner_id": self.partner.id,
+                "invoice_date": fields.Date.today(),
+                "invoice_line_ids": [
+                    (5, 0, 0),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "DEMO",
+                            "price_unit": 10,
+                            "account_id": self.account.id,
+                        },
+                    ),
+                ],
+            }
+        )
+        exchange_record.record._post()
+        responses = {
+            "mark_paid": client.get_type("ns0:ResultStatusType")(
+                code="0", detail="OK", message="OK"
+            ),
+        }
+        with mock.patch("zeep.client.ServiceProxy") as mock_client:
+            mock_client.return_value = DemoService(responses)
+            f = Form(
+                self.env["account.payment.register"].with_context(
+                    active_model=exchange_record.record._name,
+                    active_ids=exchange_record.record.ids,
+                    active_id=exchange_record.record.id,
+                )
+            )
+            f.save().action_create_payments()
+            self.assertEqual(exchange_record.record.payment_state, ("paid"))
+            mock_client.assert_called()
+
+    def test_paid_integrated_error(self):
+        client, exchange_record = self.test_cron_import_ok()
+        # Override info, in order to make it work without facturae import
+        exchange_record.record.write(
+            {
+                "partner_id": self.partner.id,
+                "invoice_date": fields.Date.today(),
+                "invoice_line_ids": [
+                    (5, 0, 0),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "DEMO",
+                            "price_unit": 10,
+                            "account_id": self.account.id,
+                        },
+                    ),
+                ],
+            }
+        )
+        exchange_record.record._post()
+        responses = {
+            "mark_paid": client.get_type("ns0:ResultStatusType")(
+                code="10", detail="OK", message="OK"
+            ),
+        }
+        with mock.patch("zeep.client.ServiceProxy") as mock_client:
+            mock_client.return_value = DemoService(responses)
+            f = Form(
+                self.env["account.payment.register"].with_context(
+                    active_model=exchange_record.record._name,
+                    active_ids=exchange_record.record.ids,
+                    active_id=exchange_record.record.id,
+                )
+            )
+            with self.assertRaises(exceptions.UserError):
+                f.save().action_create_payments()
+            mock_client.assert_called()
