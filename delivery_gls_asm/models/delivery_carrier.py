@@ -174,7 +174,7 @@ class DeliveryCarrier(models.Model):
             "destinatario_email": escape(
                 consignee.email or consignee_entity.email or ""
             ),
-            "destinatario_observaciones": "",
+            "destinatario_observaciones": picking.gls_shipping_notes or "",
             "destinatario_att": "",
             "destinatario_departamento": "",
             "destinatario_nif": "",
