@@ -694,6 +694,16 @@ msgid ""
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields,field_description:delivery_gls_asm.field_stock_picking__gls_shipping_notes
+msgid "Notas de envío GLS"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model_terms:ir.ui.view,arch_db:delivery_gls_asm.view_picking_gls_form
+msgid "Notas para GLS"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__19
 msgid "OPERACIONES RED"
 msgstr ""
