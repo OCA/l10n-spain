@@ -1,5 +1,6 @@
 # Copyright 2023 Tecnativa - Víctor Martínez
 # Copyright 2023 Tecnativa - Pedro M. Baeza
+# Copyright 2023 Tecnativa - Carolina Fernandez
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
 from odoo import _, api, exceptions, fields, models
@@ -100,7 +101,7 @@ class L10nEsAeatMod303Report(models.Model):
                 {
                     "name": _("VAT prorate regularization"),
                     "account_id": self.prorate_account_id.id,
-                    "analytic_account_id": self.prorate_analytic_account_id.id,
+                    "analytic_distribution": {self.prorate_analytic_account_id.id: 100},
                     "debit": -self.casilla_44 if self.casilla_44 < 0 else 0.0,
                     "credit": self.casilla_44 if self.casilla_44 > 0 else 0.0,
                 }
