@@ -627,6 +627,17 @@ class AccountMove(models.Model):
                     description += " - ".join(filter(None, names))
             invoice.tbai_description_operation = (description or "")[:250] or "/"
 
+    def action_switch_invoice_into_refund_credit_note(self):
+        super().action_switch_invoice_into_refund_credit_note()
+        for move in self:
+            if "out_refund" == move.move_type:
+                vals = {"tbai_refund_type": RefundType.differences.value}
+                if move.partner_id.aeat_anonymous_cash_customer:
+                    vals["tbai_refund_key"] = RefundCode.R5.value
+                else:
+                    vals["tbai_refund_key"] = RefundCode.R1.value
+                move.write(vals)
+
 
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
