@@ -117,24 +117,13 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
         return invoice
 
     @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.maxDiff = None  # needed for the dict comparison
-        cls.partner = cls.env["res.partner"].create(
-            {"name": "Test partner", "vat": "ESF35999705"}
-        )
-        cls.product = cls.env["product.product"].create(
-            {"name": "Test product", "sii_exempt_cause": "E5"}
-        )
-        cls.account_expense = cls.env.ref(
-            "l10n_es.%s_account_common_600" % cls.company.id
-        )
-        cls.invoice = cls.env["account.move"].create(
+    def _create_invoice(cls, move_type):
+        return cls.env["account.move"].create(
             {
                 "company_id": cls.company.id,
                 "partner_id": cls.partner.id,
                 "invoice_date": "2018-02-01",
-                "move_type": "out_invoice",
+                "move_type": move_type,
                 "invoice_line_ids": [
                     (
                         0,
@@ -150,6 +139,21 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
                 ],
             }
         )
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.maxDiff = None  # needed for the dict comparison
+        cls.partner = cls.env["res.partner"].create(
+            {"name": "Test partner", "vat": "ESF35999705"}
+        )
+        cls.product = cls.env["product.product"].create(
+            {"name": "Test product", "sii_exempt_cause": "E5"}
+        )
+        cls.account_expense = cls.env.ref(
+            "l10n_es.%s_account_common_600" % cls.company.id
+        )
+        cls.invoice = cls._create_invoice("out_invoice")
         cls.company.write(
             {
                 "sii_enabled": True,
@@ -326,33 +330,27 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
                 "sii_description_method": "fixed",
             }
         )
-        invoice_temp = self.invoice.copy()
-        # FIXME: Can we auto-trigger the compute method?
-        invoice_temp._compute_sii_description()
+        self.invoice._compute_sii_description()
         self.assertEqual(
-            invoice_temp.sii_description,
+            self.invoice.sii_description,
             "Test customer header | Test description",
         )
-        invoice_temp = self.invoice.copy(
-            {"move_type": "in_invoice", "journal_id": self.journal_purchase.id}
-        )
-        invoice_temp._compute_sii_description()
+        invoice_temp = self._create_invoice("in_invoice")
         self.assertEqual(
             invoice_temp.sii_description,
             "Test supplier header | Test description",
         )
         company.sii_description = False
         company.sii_description_method = "manual"
-        invoice_temp = self.invoice.copy()
-        invoice_temp._compute_sii_description()
-        self.assertEqual(invoice_temp.sii_description, "Test customer header")
-        invoice_temp.sii_description = "Other thing"
-        self.assertEqual(invoice_temp.sii_description, "Other thing")
+        self.invoice.sii_description = "/"
+        self.invoice._compute_sii_description()
+        self.assertEqual(self.invoice.sii_description, "Test customer header")
+        self.invoice.sii_description = "Other thing"
+        self.assertEqual(self.invoice.sii_description, "Other thing")
         company.sii_description_method = "auto"
-        invoice_temp = self.invoice.copy()
-        invoice_temp._compute_sii_description()
+        self.invoice._compute_sii_description()
         self.assertEqual(
-            invoice_temp.sii_description,
+            self.invoice.sii_description,
             "Test customer header | Test line",
         )
 
@@ -389,9 +387,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self._activate_certificate()
         self.invoice.company_id.sii_test = True
         self._check_tax_agencies(self.invoice)
-        in_invoice = self.invoice.copy(
-            {"move_type": "in_invoice", "journal_id": self.journal_purchase.id}
-        )
+        in_invoice = self._create_invoice("in_invoice")
         self._check_tax_agencies(in_invoice)
 
     def test_tax_agencies_production(self):
@@ -399,9 +395,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self._activate_certificate()
         self.invoice.company_id.sii_test = False
         self._check_tax_agencies(self.invoice)
-        in_invoice = self.invoice.copy(
-            {"move_type": "in_invoice", "journal_id": self.journal_purchase.id}
-        )
+        in_invoice = self._create_invoice("in_invoice")
         self._check_tax_agencies(in_invoice)
 
     def test_refund_sii_refund_type(self):
@@ -462,13 +456,8 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         with self.assertRaises(exceptions.UserError):
             self.invoice.write({"thirdparty_number": "CUSTOM"})
         # in_invoice
-        in_invoice = self.invoice.copy(
-            {
-                "move_type": "in_invoice",
-                "journal_id": self.journal_purchase.id,
-                "ref": "REF",
-            }
-        )
+        in_invoice = self._create_invoice("in_invoice")
+        in_invoice.ref = "REF"
         in_invoice.sii_state = "sent"
         partner = self.partner.copy()
         with self.assertRaises(exceptions.UserError):
