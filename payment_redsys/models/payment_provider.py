@@ -194,8 +194,8 @@ class PaymentProvider(models.Model):
             res = description[:125]
         return res
 
-    def _get_default_payment_method_id(self):
+    def _get_default_payment_method_id(self, code):
         self.ensure_one()
         if self.code != "redsys":
-            return super()._get_default_payment_method_id()
+            return super()._get_default_payment_method_id(code)
         return self.env.ref("payment_redsys.payment_method_redsys").id
