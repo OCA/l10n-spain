@@ -230,8 +230,8 @@ class GlsAsmRequest:
         except Exception as e:
             raise UserError(
                 _(
-                    "No response from server recording GLS delivery %(ref).\n"
-                    "Traceback:\n%(error)"
+                    "No response from server recording GLS delivery %(ref)s.\n"
+                    "Traceback:\n%(error)s"
                 )
                 % {"ref": vals.get("referencia_c", ""), "error": e}
             ) from e
@@ -245,8 +245,8 @@ class GlsAsmRequest:
         if res["_return"] < 0:
             raise UserError(
                 _(
-                    "GLS returned an error trying to record the shipping for %(ref).\n"
-                    "Error:\n%(error)"
+                    "GLS returned an error trying to record the shipping for %(ref)s.\n"
+                    "Error:\n%(error)s"
                 )
                 % {
                     "ref": vals.get("referencia_c", ""),
@@ -275,8 +275,8 @@ class GlsAsmRequest:
         except Exception as e:
             raise UserError(
                 _(
-                    "No response from server recording GLS delivery %(ref).\n"
-                    "Traceback:\n%(error)"
+                    "No response from server recording GLS delivery %(ref)s.\n"
+                    "Traceback:\n%(error)s"
                 )
                 % {"ref": vals.get("referencia_c", ""), "error": e}
             ) from e
@@ -290,8 +290,8 @@ class GlsAsmRequest:
         if res["_return"] < 0:
             raise UserError(
                 _(
-                    "GLS returned an error trying to record the shipping for %(ref).\n"
-                    "Error:\n%(error)"
+                    "GLS returned an error trying to record the shipping for %(ref)s.\n"
+                    "Error:\n%(error)s"
                 )
                 % {
                     "ref": vals.get("referencia_c", ""),
@@ -311,8 +311,8 @@ class GlsAsmRequest:
         except Exception as e:
             raise UserError(
                 _(
-                    "GLS: No response from server getting state from ref %(ref).\n"
-                    "Traceback:\n%(error)"
+                    "GLS: No response from server getting state from ref %(ref)s.\n"
+                    "Traceback:\n%(error)s"
                 )
                 % {"ref": reference, "error": e}
             ) from e
@@ -367,8 +367,8 @@ class GlsAsmRequest:
         except Exception as e:
             raise UserError(
                 _(
-                    "GLS: No response from server printing label with ref %(ref).\n"
-                    "Traceback:\n%(error)"
+                    "GLS: No response from server printing label with ref %(ref)s.\n"
+                    "Traceback:\n%(error)s"
                 )
                 % {"ref": reference, "error": e}
             ) from e

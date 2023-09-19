@@ -539,13 +539,13 @@ msgstr "Etiqueta GLS para% s"
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
 msgid ""
-"GLS returned an error trying to record the shipping for %(ref).\n"
+"GLS returned an error trying to record the shipping for %(ref)s.\n"
 "Error:\n"
-"%(error)"
+"%(error)s"
 msgstr ""
-"GLS ha devuelto un error tratando de registrar la expedición para %(ref).\n"
+"GLS ha devuelto un error tratando de registrar la expedición para %(ref)s.\n"
 "Error:\n"
-"%(error)"
+"%(error)s"
 
 #. module: delivery_gls_asm
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
@@ -572,27 +572,27 @@ msgstr "Con recogida GLS/ASM"
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
 msgid ""
-"GLS: No response from server getting state from ref %(ref).\n"
+"GLS: No response from server getting state from ref %(ref)s.\n"
 "Traceback:\n"
-"%(error)"
+"%(error)s"
 msgstr ""
 "GLS: Si respuesta del servidor intentando recuperar el estado de la "
-"referencia %(ref).\n"
+"referencia %(ref)s.\n"
 "Traceback:\n"
-"%(error)"
+"%(error)s"
 
 #. module: delivery_gls_asm
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
 msgid ""
-"GLS: No response from server printing label with ref %(ref).\n"
+"GLS: No response from server printing label with ref %(ref)s.\n"
 "Traceback:\n"
-"%(error)"
+"%(error)s"
 msgstr ""
 "GLS: Sin respuesta del servidor trantando de imprimir la etiqueta con "
-"referencia %(ref)..\n"
+"referencia %(ref)s..\n"
 "Traceback:\n"
-"%(error)"
+"%(error)s"
 
 #. module: delivery_gls_asm
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.delivery_manifest_wizard_form
@@ -718,13 +718,13 @@ msgstr ""
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
 msgid ""
-"No response from server recording GLS delivery %(ref).\n"
+"No response from server recording GLS delivery %(ref)s.\n"
 "Traceback:\n"
-"%(error)"
+"%(error)s"
 msgstr ""
-"No hay respuesta del servidor que registra la entrega de GLS %(ref).\n"
+"No hay respuesta del servidor que registra la entrega de GLS %(ref)s.\n"
 "Rastrear:\n"
-"%(error)"
+"%(error)s"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__19
@@ -1057,8 +1057,8 @@ msgstr "dPRO"
 #~ msgid ""
 #~ "No response from server getting manifisto for GLS.\n"
 #~ "Traceback:\n"
-#~ "%(error)"
+#~ "%(error)s"
 #~ msgstr ""
 #~ "No hay respuesta del servidor obteniendo manifisto para GLS.\n"
 #~ "Rastrear:\n"
-#~ "%(error)"
+#~ "%(error)s"

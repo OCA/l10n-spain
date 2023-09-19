@@ -522,9 +522,9 @@ msgstr ""
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
 msgid ""
-"GLS returned an error trying to record the shipping for %(ref).\n"
+"GLS returned an error trying to record the shipping for %(ref)s.\n"
 "Error:\n"
-"%(error)"
+"%(error)s"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -547,18 +547,18 @@ msgstr ""
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
 msgid ""
-"GLS: No response from server getting state from ref %(ref).\n"
+"GLS: No response from server getting state from ref %(ref)s.\n"
 "Traceback:\n"
-"%(error)"
+"%(error)s"
 msgstr ""
 
 #. module: delivery_gls_asm
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
 msgid ""
-"GLS: No response from server printing label with ref %(ref).\n"
+"GLS: No response from server printing label with ref %(ref)s.\n"
 "Traceback:\n"
-"%(error)"
+"%(error)s"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -682,9 +682,9 @@ msgstr ""
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
 msgid ""
-"No response from server recording GLS delivery %(ref).\n"
+"No response from server recording GLS delivery %(ref)s.\n"
 "Traceback:\n"
-"%(error)"
+"%(error)s"
 msgstr ""
 
 #. module: delivery_gls_asm
