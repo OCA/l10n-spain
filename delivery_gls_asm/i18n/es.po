@@ -235,8 +235,9 @@ msgstr ""
 msgid ""
 "Check this field to mark the delivery as 'With return'. This means that the "
 "customer receiving the delivery also has a package to return."
-msgstr "Marcar campo para indicar que el envío es 'Con recogida'. Esto significa que el cliente "
-"que recibe el envío también tiene un paquete para devolver."
+msgstr ""
+"Marcar campo para indicar que el envío es 'Con recogida'. Esto significa que "
+"el cliente que recibe el envío también tiene un paquete para devolver."
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_is_pickup_service
@@ -473,11 +474,6 @@ msgid "GLS Deliveries Manifest"
 msgstr "Manifiesto de Envíos GLS"
 
 #. module: delivery_gls_asm
-#: model:ir.model.fields,field_description:delivery_gls_asm.field_stock_picking__gls_asm_picking_ref
-msgid "GLS Picking Reference"
-msgstr "Referencia albarán GLS"
-
-#. module: delivery_gls_asm
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.view_picking_form
 msgid "GLS Label"
 msgstr "Etiqueta GLS"
@@ -490,6 +486,11 @@ msgstr "Etiqueta GLS"
 #, python-format
 msgid "GLS Manifest"
 msgstr "Manifiesto GLS"
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields,field_description:delivery_gls_asm.field_stock_picking__gls_asm_picking_ref
+msgid "GLS Picking Reference"
+msgstr "Referencia albarán GLS"
 
 #. module: delivery_gls_asm
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
@@ -631,6 +632,13 @@ msgid "INTERNACIONAL EXPRESS"
 msgstr "INTERNACIONAL EXPRESS"
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_asm_cash_on_delivery
+msgid ""
+"If checked, it means that the carrier is paid with cash. It assumes there is "
+"a sale order linked and it will use that total amount as the value to be paid"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__36
 msgid "Int. WEB"
 msgstr "Int. WEB"
@@ -715,6 +723,16 @@ msgstr ""
 "No hay respuesta del servidor que registra la entrega de GLS {}.\n"
 "Rastrear:\n"
 "{}"
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields,field_description:delivery_gls_asm.field_stock_picking__gls_shipping_notes
+msgid "Notas de envío GLS"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model_terms:ir.ui.view,arch_db:delivery_gls_asm.view_picking_gls_form
+msgid "Notas para GLS"
+msgstr ""
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__19
