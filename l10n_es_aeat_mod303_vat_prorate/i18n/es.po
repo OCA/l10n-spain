@@ -28,21 +28,6 @@ msgid "Definitive VAT prorate percentage"
 msgstr "Porcentaje definitivo de prorrata"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__display_name
-msgid "Display Name"
-msgstr "Nombre a mostrar"
-
-#. module: l10n_es_aeat_mod303_vat_prorate
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__id
-msgid "ID"
-msgstr "ID"
-
-#. module: l10n_es_aeat_mod303_vat_prorate
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
-
-#. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__prorate_account_id
 msgid "Prorate regularization account"
 msgstr "Cuenta de regularización de prorrata"
@@ -76,12 +61,14 @@ msgstr ""
 "prorrata al asiento."
 
 #. module: l10n_es_aeat_mod303_vat_prorate
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod303_vat_prorate/models/mod303.py:0
 #, python-format
 msgid "VAT prorate percent must be between 0.01 and 100"
 msgstr "El porcentaje de prorrata debe estar entre 0.01 y 100"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod303_vat_prorate/models/mod303.py:0
 #, python-format
 msgid "VAT prorate regularization"
@@ -94,8 +81,14 @@ msgstr "Con prorrata de IVA"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__casilla_44
-msgid "[44] Regularización de la prorrata"
-msgstr ""
+msgid "[44] Prorate regularization"
+msgstr "[44] Regularización de prorrata"
 
-#~ msgid "[44] Prorate regularization"
-#~ msgstr "[44] Regularización de prorrata"
+#~ msgid "Display Name"
+#~ msgstr "Nombre a mostrar"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"
