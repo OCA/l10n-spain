@@ -10,7 +10,7 @@
 
 {
     "name": "Libro de IVA",
-    "version": "14.0.2.8.0",
+    "version": "14.0.2.8.1",
     "author": "PRAXYA, ForgeFlow, Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
