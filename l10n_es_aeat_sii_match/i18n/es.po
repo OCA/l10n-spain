@@ -1,0 +1,619 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_aeat_sii_match
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-19 12:00+0000\n"
+"PO-Revision-Date: 2023-07-19 14:01+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,help:l10n_es_aeat_sii_match.field_account_bank_statement_line__sii_match_state
+#: model:ir.model.fields,help:l10n_es_aeat_sii_match.field_account_move__sii_match_state
+#: model:ir.model.fields,help:l10n_es_aeat_sii_match.field_account_payment__sii_match_state
+msgid ""
+"- No testable: The counterpart is not suscribed to SII the record will not "
+"be contrasted.\n"
+"- In process of contrast: AEAT is processing the data soon will be a "
+"result.\n"
+"- Not contrasted: The counterpart has not sent the invoice to SII, AEAT "
+"gives up to 4 months in order to contrast the information.\n"
+"- Partially contrasted: A invoice has been found but some data is "
+"different.\n"
+"- Contrasted: The counterpart has send the invoice to SII, all is OK."
+msgstr ""
+"- No contrastable: La contraparte no está obligada a presentar datos en el "
+"SII y el registro nunca se contrastará.\n"
+"- En proceso de contraste: AEAT está procesando los datos y en breve tendrá "
+"el resultado.\n"
+"- No contrastada: La contraparte todavía no ha registrado la factura en el "
+"SII, AEAT da 4 meses para que el contraste se produzca.\n"
+"- Parcialmente contrastada: Se ha encontrado la factura vinculada pero algún "
+"dato es distinto entre ambos registros.\n"
+"- Contrastada: La contraparte ha enviado correctamente la factura, todo está "
+"correcto."
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__period_type__01
+msgid "01 - January"
+msgstr "01 - Enero"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__period_type__02
+msgid "02 - February"
+msgstr "02 - Febrero"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__period_type__03
+msgid "03 - March"
+msgstr "03 - Marzo"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__period_type__04
+msgid "04 - April"
+msgstr "04 - Abril"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__period_type__05
+msgid "05 - May"
+msgstr "05 - Mayo"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__period_type__06
+msgid "06 - June"
+msgstr "06 - Junio"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__period_type__07
+msgid "07 - July"
+msgstr "07 - Julio"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__period_type__08
+msgid "08 - August"
+msgstr "08 - Agosto"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__period_type__09
+msgid "09 - September"
+msgstr "09 - Septiembre"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__period_type__10
+msgid "10 - October"
+msgstr "10 - Octubre"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__period_type__11
+msgid "11 - November"
+msgstr "11 - Noviembre"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__period_type__12
+msgid "12 - December"
+msgstr "12 - Diciembre"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.actions.act_window,name:l10n_es_aeat_sii_match.action_l10n_es_aeat_sii_match_report
+#: model:ir.ui.menu,name:l10n_es_aeat_sii_match.menu_aeat_sii_match_report
+msgid "AEAT SII Match"
+msgstr "Cuadre con AEAT"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model,name:l10n_es_aeat_sii_match.model_l10n_es_aeat_sii_match_result
+msgid "AEAT SII Match - Result"
+msgstr "Cuadre con AEAT - Resultado"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__report_id
+msgid "AEAT SII Match Report ID"
+msgstr "Informe de cuadre SII"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model,name:l10n_es_aeat_sii_match.model_l10n_es_aeat_sii_match_report
+msgid "AEAT SII match Report"
+msgstr "Informe de cuadre SII"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_bank_statement_line__sii_contrast_state
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_move__sii_contrast_state
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_payment__sii_contrast_state
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__sii_contrast_state
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_account_invoice_sii_match_filter
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
+msgid "AEAT contrast state"
+msgstr "Estado contraste AEAT"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__csv
+msgid "CSV"
+msgstr "CSV"
+
+#. module: l10n_es_aeat_sii_match
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_form
+msgid "Calculate"
+msgstr "Calcular"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__calculate_date
+msgid "Calculate date"
+msgstr "Fecha cálculo"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__state__calculated
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_filter
+msgid "Calculated"
+msgstr "Calculado"
+
+#. module: l10n_es_aeat_sii_match
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__state__cancelled
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_filter
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: l10n_es_aeat_sii_match
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_form
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__sii_match_jobs_ids
+msgid "Connector Jobs"
+msgstr "Trabajos del conector"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.actions.server,name:l10n_es_aeat_sii_match.action_contrast_aeat
+msgid "Contrast Invoices with AEAT"
+msgstr "Contrastar factura con AEAT"
+
+#. module: l10n_es_aeat_sii_match
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.invoice_sii_match_form
+msgid "Contrast with AEAT"
+msgstr "Contrastar con AEAT"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_match_state__5
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
+msgid "Contrasted"
+msgstr "Contrastada"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_contrast_state__correct
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_result__sii_contrast_state__correct
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
+msgid "Correct"
+msgstr "Correcto"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_difference__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_difference__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_difference__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_contrast_state__no_exist
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_result__sii_contrast_state__no_exist
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
+msgid "Doesn't exist"
+msgstr "No existe"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__state__done
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_filter
+msgid "Done"
+msgstr "Completado"
+
+#. module: l10n_es_aeat_sii_match
+#: code:addons/l10n_es_aeat_sii_match/models/aeat_sii_match_report.py:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__state__draft
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_filter
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_form
+#, python-format
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__state__error
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_filter
+msgid "Error"
+msgstr "Error"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__fiscalyear
+msgid "Fiscal year"
+msgstr "Ejercicio fiscal"
+
+#. module: l10n_es_aeat_sii_match
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_filter
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_difference__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__invoice_type__in
+msgid "In invoice/refund"
+msgstr "Factura/rectificativa de proveedor"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_match_state__2
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
+msgid "In process of contrast"
+msgstr "En proceso de contraste"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__invoice
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_result__invoice_location__odoo
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
+msgid "Invoice in Odoo"
+msgstr "Factura en Odoo"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_result__invoice_location__both
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
+msgid "Invoice in Odoo and SII"
+msgstr "Factura en Odoo y en el SII"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_result__invoice_location__sii
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
+msgid "Invoice in SII"
+msgstr "Factura en el SII"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__invoice_location
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
+msgid "Invoice location"
+msgstr "Ubicación de la factura"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__invoice_type
+msgid "Invoice type"
+msgstr "Tipo de factura"
+
+#. module: l10n_es_aeat_sii_match
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_form
+msgid "Invoices content: Odoo against SII"
+msgstr "Contenido facturas: Odoo contra SII"
+
+#. module: l10n_es_aeat_sii_match
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_form
+msgid "Invoices: Odoo against SII"
+msgstr "Facturas: Odoo contra SII"
+
+#. module: l10n_es_aeat_sii_match
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_form
+msgid "Invoices: SII against Customers/Suppliers"
+msgstr "Facturas: SII contra Clientes/Proveedores"
+
+#. module: l10n_es_aeat_sii_match
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_form
+msgid "Jobs"
+msgstr "Trabajos"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model,name:l10n_es_aeat_sii_match.model_account_move
+msgid "Journal Entry"
+msgstr "Asiento contable"
+
+#. module: l10n_es_aeat_sii_match
+#: code:addons/l10n_es_aeat_sii_match/models/account_move.py:0
+#, python-format
+msgid ""
+"Las facturas tienen que estar enviadas y con CSV para poder ser contrastadas."
+msgstr ""
+"Las facturas tienen que estar enviadas y con CSV para poder ser contrastadas."
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_difference____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result____last_update
+msgid "Last Modified on"
+msgstr "Última Modifiación en"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_difference__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_difference__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_bank_statement_line__sii_match_state
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_move__sii_match_state
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_payment__sii_match_state
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__sii_match_state
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
+msgid "Match state"
+msgstr "Estado cuadre"
+
+#. module: l10n_es_aeat_sii_match
+#: code:addons/l10n_es_aeat_sii_match/models/aeat_sii_match_report.py:0
+#, python-format
+msgid "No VAT configured for the company '{}'"
+msgstr "El VAT de la compañía '{}' no esta configurado"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_match_state__1
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
+msgid "No testable"
+msgstr "No contrastable"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_match_state__3
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
+msgid "Not contrasted"
+msgstr "No contrastada"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__invoice_id
+msgid "Odoo invoice"
+msgstr "Factura Odoo"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__invoice_type__out
+msgid "Out invoice/refund"
+msgstr "Factura/rectificativa de cliente"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_match_state__4
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
+msgid "Partially contrasted"
+msgstr "Parcialmente contrastada"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_contrast_state__partially
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_result__sii_contrast_state__partially
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
+msgid "Partially correct"
+msgstr "Parcialmente correcto"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__period_type
+msgid "Period type"
+msgstr "Tipo de período"
+
+#. module: l10n_es_aeat_sii_match
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_form
+msgid "Re-Calculate"
+msgstr "Re-Calcular"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__number_records_contrasted
+msgid "Records contrasted"
+msgstr "Registros contrastados"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__number_records_correct
+msgid "Records correctly contrasted"
+msgstr "Registros correctamente contrastados"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__number_records_both
+msgid "Records in Odoo and SII"
+msgstr "Registros en Odoo y en el SII"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__number_records_in_process
+msgid "Records in process of contrast"
+msgstr "Registros en proceso de contraste"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__number_records_no_test
+msgid "Records no testables"
+msgstr "Registros no testeables"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__number_records_not_contrasted
+msgid "Records not contasted"
+msgstr "Registros no contrastados"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__number_records_odoo
+msgid "Records only in Odoo"
+msgstr "Registros solo en Odoo"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__number_records_sii
+msgid "Records only in SII"
+msgstr "Registros solo en el SII"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__number_records_partially
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__number_records_partially_contrasted
+msgid "Records partially contrasted"
+msgstr "Registros parcialmente contrastados"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__number_records_no_exist
+msgid "Records without contrast"
+msgstr "Registros sin contrastar"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_difference__report_id
+msgid "Related SII match report"
+msgstr "Informe SII emparejamiento relacionado"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_difference__invoice_id
+msgid "Related invoice"
+msgstr "Factura relacionada"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__name
+msgid "Report identifier"
+msgstr "Identificador del informe"
+
+#. module: l10n_es_aeat_sii_match
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_form
+msgid "Result"
+msgstr "Resultado"
+
+#. module: l10n_es_aeat_sii_match
+#: code:addons/l10n_es_aeat_sii_match/models/aeat_sii_match_report.py:0
+#, python-format
+msgid "Results"
+msgstr "Resultados"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__sii_match_result
+msgid "SII Match Result"
+msgstr "Resultado de cuadre de SII"
+
+#. module: l10n_es_aeat_sii_match
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_form
+msgid "SII Match report"
+msgstr "Informe de cuadre de SII"
+
+#. module: l10n_es_aeat_sii_match
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_filter
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_form
+msgid "SII Match result"
+msgstr "Resultado de cuadre de SII"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_difference__sii_field
+msgid "SII field name"
+msgstr "SII field name"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model,name:l10n_es_aeat_sii_match.model_l10n_es_aeat_sii_match_difference
+msgid "SII match difference"
+msgstr "Diferencia de cuadre SII"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_bank_statement_line__sii_match_difference_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_move__sii_match_difference_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_payment__sii_match_difference_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__sii_match_difference_ids
+msgid "SII match differences"
+msgstr "Diferencias de cuadre SII"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_bank_statement_line__sii_match_return
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_move__sii_match_return
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_payment__sii_match_return
+msgid "SII match return"
+msgstr "Retorno de cuadre de SII"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_bank_statement_line__sii_match_sent
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_move__sii_match_sent
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_payment__sii_match_sent
+msgid "SII match sent"
+msgstr "Cuadre SII enviado"
+
+#. module: l10n_es_aeat_sii_match
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_account_invoice_sii_match_filter
+msgid "SII match state"
+msgstr "Estado cuadre SII"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_difference__sii_return_field_value
+msgid "SII return field value"
+msgstr "SII return field value"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_difference__sii_sent_field_value
+msgid "SII sent field value"
+msgstr "SII sent field value"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__state
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_filter
+msgid "State"
+msgstr "Estado"
+
+#. module: l10n_es_aeat_sii_match
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_form
+msgid "Summary"
+msgstr "Resumen"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__number_records
+msgid "Total records"
+msgstr "Registros totales"
+
+#. module: l10n_es_aeat_sii_match
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_form
+msgid "View full tree"
+msgstr "Ver vista completa"
+
+#. module: l10n_es_aeat_sii_match
+#: code:addons/l10n_es_aeat_sii_match/models/aeat_sii_match_report.py:0
+#, python-format
+msgid "You can not calculate at this moment because there is a job running"
+msgstr "No se puede calcular porque hay un trabajo en ejecución"
+
+#. module: l10n_es_aeat_sii_match
+#: code:addons/l10n_es_aeat_sii_match/models/account_move.py:0
+#, python-format
+msgid ""
+"You can not contrast this invoice at this moment because there is a job "
+"running"
+msgstr ""
+"En este momento no puede comunicar este cuadre porque hay un trabajo "
+"ejecutándose"
+
+#. module: l10n_es_aeat_sii_match
+#: code:addons/l10n_es_aeat_sii_match/models/account_move.py:0
+#, python-format
+msgid ""
+"You have not installed deepdiff library, please install it in order to use "
+"this feature"
+msgstr ""
+"La librería deepdiff no esta instalada, por favor tienes que instalarla para "
+"utilizar esta característica"
