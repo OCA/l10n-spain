@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -21,21 +21,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__vat_prorate_percent
 msgid "Definitive VAT prorate percentage"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303_vat_prorate
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303_vat_prorate
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__id
-msgid "ID"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303_vat_prorate
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303_vat_prorate
@@ -68,12 +53,14 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod303_vat_prorate
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod303_vat_prorate/models/mod303.py:0
 #, python-format
 msgid "VAT prorate percent must be between 0.01 and 100"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303_vat_prorate
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod303_vat_prorate/models/mod303.py:0
 #, python-format
 msgid "VAT prorate regularization"
@@ -86,5 +73,5 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__casilla_44
-msgid "[44] Regularización de la prorrata"
+msgid "[44] Prorate regularization"
 msgstr ""
