@@ -12,11 +12,10 @@ para ello, accederemos a https://face.gob.es (Producción) o https://se-face.red
 (Desarrollo).
 Allí, accederemos a `Integradores/Gestión de certificados` y nos loguearemos con
 Certificado Electrónico.
-Una vez dentro, debemos acceder a Alta Nuevo Proveedor y subir toda la información
-necesaria.
+Una vez dentro, debemos darnos de alta como integrador creando una incidencia en la URL que nos aparecerá.
+El siguiente `documento <https://administracionelectronica.gob.es/PAe/FACE/altaintegrador>`_ tiene toda la información detallada.
 
-Será necesario subir la parte pública de nuestro certificado, un comando para exportarlo
-es:
+Cuando nos confirmen el alta, será necesario subir la parte pública de nuestro certificado, un comando para exportarlo es:
 
 .. code-block:: bash
 
