@@ -43,6 +43,7 @@ class TestDeliveryGlsAsm(common.SavepointCase):
         cls.sale_order.action_confirm()
         cls.picking = cls.sale_order.picking_ids
         cls.picking.move_lines.quantity_done = 20
+        cls.picking.number_of_packages = 1
 
     def test_01_gls_picking_confirm_simple(self):
         """The picking is confirm and the shipping is recorded to GLS"""
