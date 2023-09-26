@@ -53,6 +53,7 @@ addon | version | maintainers | summary
 [l10n_es_facturae_face](l10n_es_facturae_face/) | 15.0.2.2.0 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Envío de Facturae a FACe
 [l10n_es_intrastat_report](l10n_es_intrastat_report/) | 15.0.2.0.1 |  | Spanish Intrastat Product Declaration
 [l10n_es_irnr](l10n_es_irnr/) | 15.0.1.0.1 |  | Retenciones IRNR (No residentes)
+[l10n_es_irnr_sii](l10n_es_irnr_sii/) | 15.0.1.0.0 | [![EmilioPascual](https://github.com/EmilioPascual.png?size=30px)](https://github.com/EmilioPascual) | Suministro Inmediato de Información de importaciones con IRNR
 [l10n_es_mis_report](l10n_es_mis_report/) | 15.0.1.0.1 |  | Plantillas MIS Builder para informes contables españoles
 [l10n_es_partner](l10n_es_partner/) | 15.0.1.0.1 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Adaptación de los clientes, proveedores y bancos para España
 [l10n_es_partner_mercantil](l10n_es_partner_mercantil/) | 15.0.1.0.0 |  | Añade los datos del registro mercantil a la empresa
