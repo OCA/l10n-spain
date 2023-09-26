@@ -31,6 +31,7 @@ setuptools.setup(
         'odoo-addon-l10n_es_facturae>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_igic>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_irnr>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_es_irnr_sii>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_mis_report>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_partner>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_partner_mercantil>=16.0dev,<16.1dev',
