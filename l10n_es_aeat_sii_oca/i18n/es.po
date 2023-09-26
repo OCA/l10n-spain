@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-01 14:14+0000\n"
-"PO-Revision-Date: 2023-09-03 07:57+0000\n"
+"PO-Revision-Date: 2023-10-09 05:51+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -204,6 +204,8 @@ msgid ""
 "Check to confirm that the document has an absolute amount greater o equal to "
 "100 000 000,00 euros."
 msgstr ""
+"Compruebe que el documento tiene un importe absoluto superior o igual a 100 "
+"000 000,00 euros."
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_partner__sii_simplified_invoice
@@ -232,7 +234,7 @@ msgstr "Compañías"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__company_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_sii_mixin__company_id
 msgid "Company"
-msgstr ""
+msgstr "Companía"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__invoice_jobs_ids
@@ -408,6 +410,8 @@ msgid ""
 "Indicates that the last attempt to communicate this document to the SII has "
 "failed. See SII return for details"
 msgstr ""
+"Indica que ha fallado el último intento de comunicar este documento al SII. "
+"Véase la devolución del SII para más detalles"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_account_registration_date
@@ -419,6 +423,9 @@ msgid ""
 "date when the document is recorded in the system and is independent of the "
 "date of the accounting entry of the document"
 msgstr ""
+"Indica la fecha de registro contable fijada en el SII, que debe ser la fecha "
+"en que el documento se registra en el sistema y es independiente de la fecha "
+"del asiento contable del documento"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_state
@@ -428,7 +435,7 @@ msgstr ""
 msgid ""
 "Indicates the state of this document in relation with the presentation at "
 "the SII"
-msgstr ""
+msgstr "Indica el estado de esta factura en relación al registro en el SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_fiscal_position__sii_partner_identification_type__2
@@ -708,7 +715,7 @@ msgstr "Información SII"
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model,name:l10n_es_aeat_sii_oca.model_sii_mixin
 msgid "SII Mixin"
-msgstr ""
+msgstr "Mezclador SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_fiscal_position__sii_no_taxable_cause
@@ -1142,6 +1149,8 @@ msgid ""
 "You can not communicate this document at this moment because there is a job "
 "running!"
 msgstr ""
+"¡En este momento no puede comunicar este documento porque hay un trabajo en "
+"curso!"
 
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
