@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="invoice_validate_sii" model="queue.job.channel">
-        <field name="name">root.invoice_validate_sii</field>
+        <field name="name">invoice_validate_sii</field>
         <field name="parent_id" ref="queue_job.channel_root" />
     </record>
     <record id="job_function_confirm_one_document" model="queue.job.function">
