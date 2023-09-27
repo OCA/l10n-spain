@@ -35,13 +35,13 @@ class ConfirmingSabadell(object):
                     % line.partner_id.name
                 )
             # 52 - 66 Num Factura
-            if line.move_line_id.ref and len(line.move_line_id.ref) > 15:
+            if len(line.move_line_id.move_id.ref or "") > 15:
                 raise UserError(
                     _(
                         "La referencia de factura %s de proveedor no puede ocupar "
                         "más de 15 caracteres."
                     )
-                    % line.move_line_id.ref
+                    % line.move_line_id.move_id.ref
                 )
             # 111 - 150 Ciudad
             if not line.partner_id.city:
@@ -198,9 +198,7 @@ class ConfirmingSabadell(object):
         )
         text += self._sab_convert_text(cuenta, 20, "left")
         # 52 - 66 Num Factura
-        num_factura = (
-            line.move_line_id.ref if line.move_line_id.ref else line.communication
-        )
+        num_factura = line.move_line_id.move_id.ref or line.communication
         text += self._sab_convert_text(num_factura, 15, "left")
         # 67 - 81 Importe de la factura
         text += self._sab_convert_text(line.amount_currency, 14)
