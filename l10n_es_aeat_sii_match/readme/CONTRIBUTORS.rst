@@ -4,6 +4,7 @@
   * Pablo Fuentes
   * Jordi Tolsá
   * Guillermo Llinares
+  * Carlos Reyes
 
 * `Tecnativa <https://www.tecnativa.com>`_:
 
