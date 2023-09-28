@@ -29,6 +29,20 @@ msgid "Cancelled invoices at SII"
 msgstr ""
 
 #. module: l10n_es_pos_sii
+#. odoo-javascript
+#: code:addons/l10n_es_pos_sii/static/src/js/Screens/TicketScreen/ControlButtons/InvoiceButton.js:0
+#, python-format
+msgid "Cannot Invoice"
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#. odoo-javascript
+#: code:addons/l10n_es_pos_sii/static/src/js/Screens/TicketScreen/ControlButtons/InvoiceButton.js:0
+#, python-format
+msgid "Cannot invoice order from closed session."
+msgstr ""
+
+#. module: l10n_es_pos_sii
 #: model:ir.model.fields,help:l10n_es_pos_sii.field_pos_order__sii_macrodata
 msgid ""
 "Check to confirm that the document has an absolute amount greater o equal to"
@@ -84,6 +98,13 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_pos_sii
+#. odoo-javascript
+#: code:addons/l10n_es_pos_sii/static/src/js/Screens/TicketScreen/ControlButtons/InvoiceButton.js:0
+#, python-format
+msgid "Invoice"
+msgstr ""
+
+#. module: l10n_es_pos_sii
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_macrodata
 msgid "MacroData"
 msgstr ""
@@ -101,6 +122,13 @@ msgstr ""
 #. module: l10n_es_pos_sii
 #: model:ir.model,name:l10n_es_pos_sii.model_pos_session
 msgid "Point of Sale Session"
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#. odoo-javascript
+#: code:addons/l10n_es_pos_sii/static/src/js/Screens/TicketScreen/ControlButtons/InvoiceButton.js:0
+#, python-format
+msgid "Reprint Invoice"
 msgstr ""
 
 #. module: l10n_es_pos_sii
@@ -221,6 +249,13 @@ msgstr ""
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
 msgid "Send to SII"
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#. odoo-javascript
+#: code:addons/l10n_es_pos_sii/static/src/js/Screens/TicketScreen/ControlButtons/InvoiceButton.js:0
+#, python-format
+msgid "Session is closed"
 msgstr ""
 
 #. module: l10n_es_pos_sii
