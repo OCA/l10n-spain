@@ -1,5 +1,6 @@
 # Copyright 2022 Studio73 - Ethan Hildick <ethan@studio73.es>
 # Copyright 2022 Tecnativa - Víctor Martínez
+# Copyright 2023 Factor Libre - Aritz Olea
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 from odoo import api, fields, models
@@ -14,16 +15,17 @@ class L10nEsAeatMod369Report(models.Model):
     @api.depends("tax_line_ids")
     def _compute_total_amount(self):
         for report in self:
-            tax_lines = report.tax_line_ids.filtered(
-                lambda x: x.map_line_id.field_type == "amount"
-            )
-            report.total_amount = sum(tax_lines.mapped("amount"))
+            total_lines = report.total_line_ids
+            report.total_amount = sum(total_lines.mapped("total_deposit"))
 
     services_line_ids = fields.One2many(
         string="Services 369 lines",
         comodel_name="l10n.es.aeat.mod369.line.grouped",
         inverse_name="report_id",
-        domain=[("service_type", "=", "services")],
+        domain=[
+            ("service_type", "=", "services"),
+            ("is_refund", "=", False),
+        ],
         copy=False,
         readonly=True,
     )
@@ -35,6 +37,7 @@ class L10nEsAeatMod369Report(models.Model):
             ("service_type", "=", "services"),
             ("oss_country_id.code", "=", "ES"),
             ("is_page_8_line", "=", False),
+            ("is_refund", "=", False),
         ],
         copy=False,
         readonly=True,
@@ -43,7 +46,10 @@ class L10nEsAeatMod369Report(models.Model):
         string="Goods 369 lines",
         comodel_name="l10n.es.aeat.mod369.line.grouped",
         inverse_name="report_id",
-        domain=[("service_type", "=", "goods")],
+        domain=[
+            ("service_type", "=", "goods"),
+            ("is_refund", "=", False),
+        ],
         copy=False,
         readonly=True,
     )
@@ -55,6 +61,17 @@ class L10nEsAeatMod369Report(models.Model):
             ("service_type", "=", "goods"),
             ("oss_country_id.code", "=", "ES"),
             ("is_page_8_line", "=", False),
+            ("is_refund", "=", False),
+        ],
+        copy=False,
+        readonly=True,
+    )
+    refund_line_ids = fields.One2many(
+        string="Refunds from other periods 369 lines",
+        comodel_name="l10n.es.aeat.mod369.line.grouped",
+        inverse_name="report_id",
+        domain=[
+            ("is_refund", "=", True),
         ],
         copy=False,
         readonly=True,
@@ -72,6 +89,7 @@ class L10nEsAeatMod369Report(models.Model):
         string="Declaration type",
         selection=[("union", "Union"), ("export", "Export"), ("import", "Import")],
         readonly=True,
+        default="union",
         states={"draft": [("readonly", False)]},
     )
     nrc_reference = fields.Char(
@@ -106,6 +124,21 @@ class L10nEsAeatMod369Report(models.Model):
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
+
+    @api.model
+    def _get_period_from_date(self, date, monthly=False):
+        month = date.month
+        if not monthly:
+            if month in [1, 2, 3]:
+                return "T1"
+            elif month in [4, 5, 6]:
+                return "T2"
+            elif month in [7, 8, 9]:
+                return "T3"
+            else:
+                return "T4"
+        else:
+            return "M" + str(month)
 
     def get_taxes_from_map(self, map_line):
         oss_map_lines = self.env.context.get("oss_map_lines", {})
@@ -192,6 +225,7 @@ class L10nEsAeatMod369Report(models.Model):
         self.mapped("tax_line_ids.mod369_line_id").unlink()
         self.mapped("spain_goods_line_ids").unlink()
         self.mapped("spain_services_line_ids").unlink()
+        self.mapped("refund_line_ids").unlink()
         self.mapped("total_line_ids").unlink()
         # Send through context so we only calculate these fixed values once
         oss_map_lines = self.env.ref("l10n_es_aeat_mod369.aeat_mod369_map").map_line_ids
@@ -214,8 +248,15 @@ class L10nEsAeatMod369Report(models.Model):
                 "services": {"ES": 1, "OUT-ES": 1},
             }
             country_groups = {}
-            for line in report.mapped("tax_line_ids").filtered(lambda l: l.amount > 0):
+            tax_lines = report.mapped("tax_line_ids")
+            for line in tax_lines.filtered(lambda tl: len(tl.move_line_ids) > 0):
                 mod369_line = line.mod369_line_id
+                ref_move_lines = line.move_line_ids.filtered(
+                    lambda ml: ml.move_type == "out_refund"
+                    and ml.move_id.reversed_entry_id
+                    and ml.move_id.reversed_entry_id.invoice_date < report.date_start
+                )
+                move_lines = line.move_line_ids - ref_move_lines
                 country = mod369_line.country_id
                 oss_country = mod369_line.oss_country_id
                 tax = mod369_line.oss_tax_id
@@ -223,24 +264,26 @@ class L10nEsAeatMod369Report(models.Model):
                 key_country = "OUT-ES" if outside_spain else "ES"
                 mod369_line.oss_sequence = lines_index[tax.service_type][key_country]
                 lines_index[tax.service_type][key_country] += 1
-                # page 3, 4, 5 or 6
-                key = "{}{}{}{}".format(
-                    country.id,
-                    tax.id,
-                    tax.service_type,
-                    outside_spain,
-                )
-                country_groups.setdefault(
-                    key,
-                    {
-                        "country_id": country.id,
-                        "oss_country_id": oss_country.id,
-                        "tax_id": tax.id,
-                        "mod369_line_ids": [],
-                        "report_id": report.id,
-                    },
-                )
-                country_groups[key]["mod369_line_ids"] += [(4, mod369_line.id)]
+                if len(move_lines) > 0:
+                    # page 3, 4, 5 or 6
+                    key = "{}{}{}{}".format(
+                        country.id,
+                        tax.id,
+                        tax.service_type,
+                        outside_spain,
+                    )
+                    country_groups.setdefault(
+                        key,
+                        {
+                            "country_id": country.id,
+                            "oss_country_id": oss_country.id,
+                            "tax_id": tax.id,
+                            "mod369_line_ids": [],
+                            "refund_line_ids": [],
+                            "report_id": report.id,
+                        },
+                    )
+                    country_groups[key]["mod369_line_ids"] += [(4, mod369_line.id)]
                 # page 8
                 country_groups.setdefault(
                     country.id,
@@ -249,12 +292,43 @@ class L10nEsAeatMod369Report(models.Model):
                         "oss_country_id": oss_country.id,
                         "tax_id": tax.id,
                         "mod369_line_ids": [],
+                        "refund_line_ids": [],
                         "report_id": report.id,
                         "is_page_8_line": True,
                     },
                 )
                 country_groups[country.id]["mod369_line_ids"] += [(4, mod369_line.id)]
-            self.env["l10n.es.aeat.mod369.line.grouped"].create(
+                for mline in ref_move_lines:
+                    orig_move = mline.move_id.reversed_entry_id
+                    refund_fiscal_year = orig_move.date.year
+                    monthly = report.period_type not in ["1T", "2T", "3T", "4T"]
+                    refund_period = self._get_period_from_date(orig_move.date, monthly)
+                    key = "{}{}{}".format(
+                        country.id,
+                        refund_fiscal_year,
+                        refund_period,
+                    )
+                    # page 7
+                    country_groups.setdefault(
+                        key,
+                        {
+                            "country_id": country.id,
+                            "oss_country_id": oss_country.id,
+                            "mod369_line_ids": [],
+                            "refund_line_ids": [],
+                            "report_id": report.id,
+                            "is_refund": True,
+                            "refund_fiscal_year": refund_fiscal_year,
+                            "refund_period": refund_period,
+                            "tax_correction": 0,
+                        },
+                    )
+                    if line.map_line_id.field_type == "amount":
+                        country_groups[key]["tax_correction"] -= mline.debit
+                    country_groups[key]["refund_line_ids"] += [(4, mline.id)]
+
+            groups = self.env["l10n.es.aeat.mod369.line.grouped"].create(
                 list(country_groups.values())
             )
+            groups._compute_totals()
         return res
