@@ -55,7 +55,7 @@ class SiiMatchReport(models.Model):
     fiscalyear = fields.Integer(
         string="Fiscal year",
         required=True,
-        default=fields.Date.from_string(fields.Date.today()).year,
+        default=fields.Date.today().year,
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
@@ -260,8 +260,8 @@ class SiiMatchReport(models.Model):
         start_date = fields.Date.from_string(
             "%s-%s-01" % (str(self.fiscalyear), self.period_type)
         )
-        date_from = fields.Date.to_string(start_date)
-        date_to = fields.Date.to_string(start_date + relativedelta(months=1))
+        date_from = start_date
+        date_to = start_date + relativedelta(months=1)
         res = []
         inv_type = (
             ["out_invoice", "out_refund"]
@@ -434,7 +434,7 @@ class SiiMatchReport(models.Model):
         self.ensure_one()
         company = self.company_id
         if not company.vat:
-            raise exceptions.Warning(
+            raise exceptions.UserError(
                 _("No VAT configured for the company '{}'").format(company.name)
             )
         header = {
@@ -452,7 +452,7 @@ class SiiMatchReport(models.Model):
                 if queue.state in ("pending", "enqueued", "failed"):
                     queue.sudo().unlink()
                 elif queue.state == "started":
-                    raise exceptions.Warning(
+                    raise exceptions.UserError(
                         _(
                             "You can not calculate at this moment "
                             "because there is a job running"

@@ -4,7 +4,6 @@
         <field name="name">account.invoice.sii.match.form</field>
         <field name="model">account.move</field>
         <field name="inherit_id" ref="l10n_es_aeat_sii_oca.invoice_sii_form" />
-        <field name="groups_id" eval="[(4, ref('l10n_es_aeat.group_account_aeat'))]" />
         <field name="arch" type="xml">
             <field name="sii_enabled" position="after">
                 <button
@@ -16,14 +15,24 @@
                             ('state', 'not in', 'posted'),
                             ('sii_enabled', '=', False),
                             ('sii_csv', '=', False)]}"
+                    groups="l10n_es_aeat.group_account_aeat"
                 />
             </field>
             <field name="sii_state" position="after">
-                <field name="sii_match_state" />
-                <field name="sii_contrast_state" />
+                <field
+                    name="sii_match_state"
+                    groups="l10n_es_aeat.group_account_aeat"
+                />
+                <field
+                    name="sii_contrast_state"
+                    groups="l10n_es_aeat.group_account_aeat"
+                />
             </field>
             <page name="page_sii_result_general" position="inside">
-                <group attrs="{'invisible': [('sii_match_difference_ids', '=', [])]}">
+                <group
+                    attrs="{'invisible': [('sii_match_difference_ids', '=', [])]}"
+                    groups="l10n_es_aeat.group_account_aeat"
+                >
                     <field name="sii_match_difference_ids">
                         <tree>
                             <field name="sii_field" />
@@ -34,8 +43,11 @@
                 </group>
             </page>
             <field name="sii_return" position="after">
-                <field name="sii_match_sent" />
-                <field name="sii_match_return" />
+                <field name="sii_match_sent" groups="l10n_es_aeat.group_account_aeat" />
+                <field
+                    name="sii_match_return"
+                    groups="l10n_es_aeat.group_account_aeat"
+                />
             </field>
         </field>
     </record>
@@ -43,13 +55,20 @@
         <field name="name">account.invoice.sii.match.tree</field>
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_invoice_tree" />
-        <field name="groups_id" eval="[(4, ref('l10n_es_aeat.group_account_aeat'))]" />
         <field name="arch" type="xml">
             <field name="state" position="after">
                 <!-- We add the fields to tree view to see the value of the
                      selection instead of the key when grouping -->
-                <field name="sii_match_state" invisible="1" />
-                <field name="sii_contrast_state" invisible="1" />
+                <field
+                    name="sii_match_state"
+                    invisible="1"
+                    groups="l10n_es_aeat.group_account_aeat"
+                />
+                <field
+                    name="sii_contrast_state"
+                    invisible="1"
+                    groups="l10n_es_aeat.group_account_aeat"
+                />
             </field>
         </field>
     </record>
@@ -57,7 +76,6 @@
         <field name="name">account.invoice.sii.match.filter</field>
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_account_invoice_filter" />
-        <field name="groups_id" eval="[(4, ref('l10n_es_aeat.group_account_aeat'))]" />
         <field name="arch" type="xml">
             <xpath expr="//group" position="inside">
                 <separator />
@@ -65,11 +83,13 @@
                     name="sii_match_state"
                     string="SII match state"
                     context="{'group_by':'sii_match_state'}"
+                    groups="l10n_es_aeat.group_account_aeat"
                 />
                 <filter
                     name="sii_contrast_state"
                     string="AEAT contrast state"
                     context="{'group_by':'sii_contrast_state'}"
+                    groups="l10n_es_aeat.group_account_aeat"
                 />
             </xpath>
         </field>

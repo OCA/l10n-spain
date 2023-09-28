@@ -68,7 +68,7 @@ class AccountMove(models.Model):
         dp = self.env["decimal.precision"].precision_get("Account")
         res = []
         if not DeepDiff:
-            raise exceptions.Warning(
+            raise exceptions.UserError(
                 _(
                     "You have not installed deepdiff library, "
                     "please install it in order to use this feature"
@@ -142,7 +142,7 @@ class AccountMove(models.Model):
             )
         )
         if not invoices._invoice_started_jobs():
-            raise exceptions.Warning(
+            raise exceptions.UserError(
                 _(
                     "You can not contrast this invoice at this moment "
                     "because there is a job running"
@@ -153,7 +153,7 @@ class AccountMove(models.Model):
     def direct_contrast_aeat(self):
         self.ensure_one()
         if not self._invoice_started_jobs():
-            raise exceptions.Warning(
+            raise exceptions.UserError(
                 _(
                     "You can not contrast this invoice at this moment "
                     "because there is a job running"
@@ -167,7 +167,7 @@ class AccountMove(models.Model):
         ):
             self._contrast_invoice_to_aeat()
         else:
-            raise Warning(
+            raise exceptions.UserError(
                 _(
                     "Las facturas tienen que estar enviadas y con CSV para poder "
                     "ser contrastadas."
@@ -183,8 +183,8 @@ class AccountMove(models.Model):
         invoice_date = self._change_date_format(self.invoice_date)
         partner = self.partner_id.commercial_partner_id
         company = self.company_id
-        ejercicio = fields.Date.from_string(self.date).year
-        periodo = "%02d" % fields.Date.from_string(self.date).month
+        ejercicio = self.date.year
+        periodo = "%02d" % self.date.month
         number = self.name
         if self.thirdparty_invoice:
             number = self.thirdparty_number
@@ -211,8 +211,8 @@ class AccountMove(models.Model):
         """
         self.ensure_one()
         invoice_date = self._change_date_format(self.invoice_date)
-        ejercicio = fields.Date.from_string(self.date).year
-        periodo = "%02d" % fields.Date.from_string(self.date).month
+        ejercicio = self.date.year
+        periodo = "%02d" % self.date.month
         inv_dict = {
             "FiltroConsulta": {},
             "IDFactura": {
