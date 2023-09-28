@@ -333,3 +333,36 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
         pos_session.close_session_from_ui()
         for order in pos_session.order_ids:
             self.assertTrue(order.order_jobs_ids)
+
+    def test_08_export_for_ui_session_is_closed(self):
+        cash = self.cash_pm1
+        pos_session = self._start_pos_session(cash, 462.0)
+        self._create_orders(
+            [
+                {
+                    "pos_order_lines_ui_args": [(self.product21, 1)],
+                    "payments": [(cash, 121)],
+                    "customer": False,
+                    "is_invoiced": False,
+                    "uid": "00100-010-0004",
+                },
+            ]
+        )
+        res = pos_session.order_ids.export_for_ui()
+        self.assertTrue(
+            all(
+                "sii_session_closed" in x and x["sii_session_closed"] is False
+                for x in res
+            ),
+            "The session is not closed",
+        )
+        pos_session.post_closing_cash_details(583.0)
+        pos_session.close_session_from_ui()
+        res = pos_session.order_ids.export_for_ui()
+        self.assertTrue(
+            all(
+                "sii_session_closed" in x and x["sii_session_closed"] is True
+                for x in res
+            ),
+            "The session is closed",
+        )
