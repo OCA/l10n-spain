@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-17 11:49+0000\n"
+"PO-Revision-Date: 2023-10-17 11:49+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,6 +28,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod369
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod369.view_l10n_es_aeat_mod369_report_form
 msgid "4. Spanish goods"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod369.view_l10n_es_aeat_mod369_report_form
+msgid "7. Refunds from other periods"
 msgstr ""
 
 #. module: l10n_es_aeat_mod369
@@ -149,6 +156,7 @@ msgid "Counterpart account"
 msgstr ""
 
 #. module: l10n_es_aeat_mod369
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line__country_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__country_id
 msgid "Country"
 msgstr ""
@@ -293,13 +301,11 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_needaction
-#: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -311,6 +317,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_is_follower
 msgid "Is Follower"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__is_refund
+msgid "Is Refund"
 msgstr ""
 
 #. module: l10n_es_aeat_mod369
@@ -410,6 +421,11 @@ msgid "NRC Reference"
 msgstr ""
 
 #. module: l10n_es_aeat_mod369
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__neg_corrections
+msgid "Negative corrections"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__activity_date_deadline
 msgid "Next Activity Deadline"
 msgstr ""
@@ -451,7 +467,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_needaction_counter
-msgid "Number of messages which requires an action"
+msgid "Number of messages requiring action"
 msgstr ""
 
 #. module: l10n_es_aeat_mod369
@@ -460,12 +476,8 @@ msgid "Number of messages with delivery error"
 msgstr ""
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_unread_counter
-msgid "Number of unread messages"
-msgstr ""
-
-#. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line__oss_country_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__oss_country_id
 msgid "OSS Country"
 msgstr ""
 
@@ -505,6 +517,11 @@ msgid "Phone"
 msgstr ""
 
 #. module: l10n_es_aeat_mod369
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__pos_corrections
+msgid "Positive corrections"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__previous_number
 msgid "Previous declaration number"
 msgstr ""
@@ -512,6 +529,26 @@ msgstr ""
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__account_tax__tax_reduction_type__r
 msgid "Reduced"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__refund_fiscal_year
+msgid "Refund Fiscal Year"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__refund_period
+msgid "Refund Period"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__refund_line_ids
+msgid "Refund lines"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__refund_line_ids
+msgid "Refunds from other periods 369 lines"
 msgstr ""
 
 #. module: l10n_es_aeat_mod369
@@ -527,11 +564,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__activity_user_id
 msgid "Responsible User"
-msgstr ""
-
-#. module: l10n_es_aeat_mod369
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_has_sms_error
-msgid "SMS Delivery error"
 msgstr ""
 
 #. module: l10n_es_aeat_mod369
@@ -552,6 +584,7 @@ msgid "Services 369 lines"
 msgstr ""
 
 #. module: l10n_es_aeat_mod369
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod369.view_l10n_es_aeat_mod369_line_grouped_page7_tree
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod369.view_l10n_es_aeat_mod369_line_grouped_tree
 msgid "Show journal items"
 msgstr ""
@@ -622,6 +655,11 @@ msgid "Tax"
 msgstr ""
 
 #. module: l10n_es_aeat_mod369
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__tax_correction
+msgid "Tax Correction"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__tax_line_ids
 msgid "Tax lines"
 msgstr ""
@@ -656,6 +694,24 @@ msgid "Total amount"
 msgstr ""
 
 #. module: l10n_es_aeat_mod369
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__result_total
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod369.view_l10n_es_aeat_mod369_report_form
+msgid "Total result"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__total_deposit
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod369.view_l10n_es_aeat_mod369_report_form
+msgid "Total to deposit ES"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__total_return
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod369.view_l10n_es_aeat_mod369_report_form
+msgid "Total to return EM"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__activity_exception_decoration
 msgid "Type of the exception activity on record."
 msgstr ""
@@ -663,16 +719,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_mod369_report__declaration_type__union
 msgid "Union"
-msgstr ""
-
-#. module: l10n_es_aeat_mod369
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_unread
-msgid "Unread Messages"
-msgstr ""
-
-#. module: l10n_es_aeat_mod369
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_unread_counter
-msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: l10n_es_aeat_mod369
