@@ -12,8 +12,10 @@ class AccountMove(models.Model):
         string="Clave percepción",
         help="Se consignará la clave alfabética que corresponda a las "
         "percepciones de que se trate.",
-        readonly=True,
+        readonly=False,
         states={"draft": [("readonly", False)]},
+        store=True,
+        compute="_compute_aeat_perception_keys",
     )
     aeat_perception_subkey_id = fields.Many2one(
         comodel_name="l10n.es.aeat.report.perception.subkey",
@@ -34,34 +36,35 @@ class AccountMove(models.Model):
                 cada uno de ellos refleje exclusivamente los datos de
                 percepciones correspondientes a una misma clave y, en
                 su caso, subclave.""",
-        readonly=True,
+        readonly=False,
         states={"draft": [("readonly", False)]},
+        store=True,
+        compute="_compute_aeat_perception_keys",
+        domain="[('aeat_perception_key_id', '=', aeat_perception_key_id)]",
+    )
+    is_aeat_perception_subkey_visible = fields.Boolean(
+        compute="_compute_is_aeat_perception_subkey_visible"
     )
 
-    def add_keys(self, set_fiscal_position=True):
-        FiscalPosition = self.env["account.fiscal.position"]
-        for invoice in self:
-            if set_fiscal_position:
-                delivery_partner_id = invoice._get_invoice_delivery_partner_id()
-                invoice.fiscal_position_id = FiscalPosition.with_company(
-                    invoice.company_id.id
-                ).get_fiscal_position(
-                    invoice.partner_id.id, delivery_id=delivery_partner_id
+    @api.depends("aeat_perception_key_id")
+    def _compute_is_aeat_perception_subkey_visible(self):
+        for record in self:
+            record.is_aeat_perception_subkey_visible = bool(
+                record.env["l10n.es.aeat.report.perception.subkey"].search(
+                    [
+                        (
+                            "aeat_perception_key_id",
+                            "=",
+                            record.aeat_perception_key_id.id,
+                        ),
+                    ]
                 )
+            )
+
+    @api.depends("fiscal_position_id")
+    def _compute_aeat_perception_keys(self):
+        for invoice in self:
             if invoice.fiscal_position_id.aeat_perception_key_id:
                 fp = invoice.fiscal_position_id
                 invoice.aeat_perception_key_id = fp.aeat_perception_key_id
                 invoice.aeat_perception_subkey_id = fp.aeat_perception_subkey_id
-
-    @api.onchange("partner_id")
-    def _onchange_partner_id(self):
-        res = super()._onchange_partner_id()
-        self.add_keys(set_fiscal_position=False)
-        return res
-
-    @api.model_create_multi
-    def create(self, vals_list):
-        """Call add_keys() function only if fp not set in vals."""
-        res = super().create(vals_list)
-        res.filtered(lambda x: not x.fiscal_position_id).add_keys()
-        return res

@@ -237,6 +237,9 @@ class ResPartner(models.Model):
     ad_required = fields.Integer(
         "Aditional data required", compute="_compute_ad_required"
     )
+    is_aeat_perception_subkey_visible = fields.Boolean(
+        compute="_compute_is_aeat_perception_subkey_visible"
+    )
 
     @api.depends("aeat_perception_key_id", "aeat_perception_subkey_id")
     def _compute_ad_required(self):
@@ -245,6 +248,21 @@ class ResPartner(models.Model):
             if record.aeat_perception_subkey_id:
                 ad_required += record.aeat_perception_subkey_id.ad_required
             record.ad_required = ad_required
+
+    @api.depends("aeat_perception_key_id")
+    def _compute_is_aeat_perception_subkey_visible(self):
+        for record in self:
+            record.is_aeat_perception_subkey_visible = bool(
+                record.env["l10n.es.aeat.report.perception.subkey"].search(
+                    [
+                        (
+                            "aeat_perception_key_id",
+                            "=",
+                            record.aeat_perception_key_id.id,
+                        ),
+                    ]
+                )
+            )
 
     @api.onchange("aeat_perception_key_id")
     def onchange_aeat_perception_key_id(self):
