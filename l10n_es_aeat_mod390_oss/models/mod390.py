@@ -1,7 +1,7 @@
 # Copyright 2022 Sygel - Manuel Regidor
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
-from odoo import models
+from odoo import models, api
 
 
 class L10nEsAeatMod390Report(models.Model):
@@ -19,3 +19,14 @@ class L10nEsAeatMod390Report(models.Model):
                 ]
             )
         return super().get_taxes_from_map(map_line)
+
+    @api.multi
+    @api.depends("tax_line_ids")
+    def _compute_casilla_108(self):
+        super()._compute_casilla_108()
+        for report in self:
+            report.casilla_108 += sum(
+                report.tax_line_ids.filtered(
+                    lambda x: x.field_number in (126, 127)
+                ).mapped("amount")
+            )
