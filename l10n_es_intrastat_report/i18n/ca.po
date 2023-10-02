@@ -1,0 +1,743 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_intrastat_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2021-07-13 16:48+0000\n"
+"Last-Translator: jabelchi <jabelchi@gmail.com>\n"
+"Language-Team: none\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: l10n_es_intrastat_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_computation_line_view_tree
+msgid "/&gt;"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__product_origin_country_code
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__product_origin_country_code
+msgid ""
+"2 digit code of country of origin of the product except for the UK.\n"
+"Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK.\n"
+"Specify 'QU' when the country is unknown.\n"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__src_dest_country_code
+msgid ""
+"2 digit code of country of origin/destination.\n"
+"Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK."
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__src_dest_country_code
+msgid ""
+"2 digit code of country of origin/destination.\n"
+"Specify 'XI' for UK Northern Ireland."
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__amount_accessory_cost_company_currency
+msgid "Accessory Costs"
+msgstr "Costos accessoris"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__action
+msgid "Action"
+msgstr "Acció"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_needaction
+msgid "Action Needed"
+msgstr "Necessària acció"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_ids
+msgid "Activities"
+msgstr "Activitats"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoració d'activitat d'excepció"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_state
+msgid "Activity State"
+msgstr "Estat activitat"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icona tipus d'activitat"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__amount_company_currency
+msgid "Amount Company Currency"
+msgstr "Import en moneda de la companyia"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__amount_accessory_cost_company_currency
+msgid ""
+"Amount in company currency of the accessory costs related to this invoice "
+"line (by default, these accessory costs are computed at the pro-rata of the "
+"amount of each invoice line."
+msgstr ""
+"Import, en moneda de la companyia, dels costos accessoris relatius a aquesta "
+"línia de factura (per defecte, aquests costos accessoris es calculen "
+"proporcionalment a l'import de cada línia)."
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__amount_company_currency
+msgid ""
+"Amount in company currency to write in the declaration. Amount in company "
+"currency = amount in invoice currency converted to company currency with the "
+"rate of the invoice date."
+msgstr ""
+"Import, en moneda de la companyia, a anotar a la declaració. Import en "
+"moneda de la companyia = import en moneda de la factura convertit amb el "
+"tipus de canvi a la data de la factura."
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_attachment_count
+msgid "Attachment Count"
+msgstr "Nombre d'adjunts"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__company_id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__company_id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__company_id
+msgid "Company"
+msgstr "Companyia"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__company_country_code
+msgid "Company Country Code"
+msgstr "Codi de país de la companyia"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__company_currency_id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__company_currency_id
+msgid "Company currency"
+msgstr "Divisa de la companyia"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__computation_line_ids
+msgid "Computation Lines"
+msgstr "Línies de càlcul"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__src_dest_country_id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__src_dest_country_id
+msgid "Country"
+msgstr "País"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__src_dest_country_code
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__src_dest_country_code
+msgid "Country Code"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__product_origin_country_code
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__product_origin_country_id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__product_origin_country_code
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__product_origin_country_id
+msgid "Country of Origin of the Product"
+msgstr "País d'origen del producte"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__src_dest_country_id
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__src_dest_country_id
+msgid "Country of Origin/Destination"
+msgstr "País d'origen/destí"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__product_origin_country_id
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__product_origin_country_id
+msgid "Country of origin of the product i.e. product 'made in ____'"
+msgstr "País d'origen del producte p. e. producte 'fabricat a _____'"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__create_uid
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__create_uid
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__create_uid
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__create_uid
+msgid "Created by"
+msgstr "Creat per"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__create_date
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__create_date
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__create_date
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__create_date
+msgid "Created on"
+msgstr "Creat el"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: l10n_es_intrastat_report
+#: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:0
+#, python-format
+msgid "Current company is not Spanish, so it can't be configured."
+msgstr "La companyia actual no es d'Espanya. No es pot configurar."
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__partner_vat
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__partner_vat
+msgid "Customer VAT"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__declaration_line_id
+msgid "Declaration Line"
+msgstr "Línia de declaració"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__display_name
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__display_name
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__display_name
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__display_name
+msgid "Display Name"
+msgstr "Nom a mostrar"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__amount_company_currency
+msgid "Fiscal Value"
+msgstr "Valor fiscal"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_follower_ids
+msgid "Followers"
+msgstr "Seguidors"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidors (Contactes)"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icona Font Awesome p. e. fa-tasks"
+
+#. module: l10n_es_intrastat_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_form
+msgid "Generate CSV Declaration File"
+msgstr "Generar fitxer CSV de la declaració"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_exception_icon
+msgid "Icon"
+msgstr "Icona"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icona per a indicar una activitat d'excepció."
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_needaction
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Si està marcat, hi ha missatges que requereixen la vostra atenció."
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_has_error
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si està marcat, hi ha missatges que tenen una errada d'entrega."
+
+#. module: l10n_es_intrastat_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.view_l10n_es_intrastat_code_import
+msgid "Import"
+msgstr "Importar"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.actions.act_window,name:l10n_es_intrastat_report.action_l10n_es_intrastat_code_import
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.view_l10n_es_intrastat_code_import
+msgid "Import Spanish Product HS Codes"
+msgstr "Importar codis HS espanyols de producte"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__incoterm_id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__incoterm_id
+msgid "Incoterm"
+msgstr "Incoterm"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__hs_code_id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__hs_code_id
+msgid "Intrastat Code"
+msgstr "Codi intrastat"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_l10n_es_intrastat_code_import
+msgid "Intrastat HS Code Import for Spain"
+msgstr "Importació de codis Intrastat HS per Espanya"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_l10n_es_intrastat_product_computation_line
+msgid "Intrastat Product Computation Line for Spain"
+msgstr "Línia de càlcul de producte Intrastat per a Espanya"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__computation_line_ids
+msgid "Intrastat Product Computation Lines"
+msgstr "Línies de càlcul de producte Intrastat"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__parent_id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__parent_id
+msgid "Intrastat Product Declaration"
+msgstr "Declaració de productes Intrastat"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_l10n_es_intrastat_product_declaration_line
+msgid "Intrastat Product Declaration Line for Spain"
+msgstr "Línia de declaració de producte Intrastat per a Espanya"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__declaration_line_ids
+msgid "Intrastat Product Declaration Lines"
+msgstr "Línies de declaració de producte Intrastat"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_l10n_es_intrastat_product_declaration
+msgid "Intrastat Product Declaration for Spain"
+msgstr "Declaració de producte Intrastat per a Espanya"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__region_id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__region_id
+msgid "Intrastat Region"
+msgstr "Regió Intrastat"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__intrastat_state_id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__intrastat_state_id
+msgid "Intrastat State"
+msgstr "Província Intrastat"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__intrastat_unit_id
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__intrastat_unit_id
+msgid "Intrastat Supplementary Unit"
+msgstr "Unitat suplementaria Intrastat"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__transaction_id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__transaction_id
+msgid "Intrastat Transaction"
+msgstr "Transacció Intrastat"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_report_intrastat_product_product_declaration_xls
+msgid "Intrastat declaration"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_stock_location
+msgid "Inventory Locations"
+msgstr "Ubicacions d'inventari"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__invoice_id
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__invoice_line_id
+msgid "Invoice Line"
+msgstr "Línia de factura"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_is_follower
+msgid "Is Follower"
+msgstr "És seguidor"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import____last_update
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line____last_update
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration____last_update
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line____last_update
+msgid "Last Modified on"
+msgstr "Darrera modificació el"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__write_uid
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__write_uid
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__write_uid
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__write_uid
+msgid "Last Updated by"
+msgstr "Darrera actualització per"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__write_date
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__write_date
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__write_date
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__write_date
+msgid "Last Updated on"
+msgstr "Darrera actualització el"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Adjunt principal"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_has_error
+msgid "Message Delivery error"
+msgstr "Missatge d'error de lliurament"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_ids
+msgid "Messages"
+msgstr "Missatges"
+
+#. module: l10n_es_intrastat_report
+#: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
+#: code:addons/l10n_es_intrastat_report/tests/test_l10n_es_intrastat_report.py:0
+#, python-format
+msgid "Missing origin country on product %s. "
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
+#: code:addons/l10n_es_intrastat_report/tests/test_l10n_es_intrastat_report.py:0
+#, python-format
+msgid "Missing partner vat on invoice %s. "
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__month
+msgid "Month"
+msgstr "Mes"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Data límit activitat"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__weight
+msgid "Net weight in Kg"
+msgstr "Pes net en Kg"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Data límit de la següent activitat"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resum de la següent activitat"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipus de la següent activitat"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__note
+msgid "Notes"
+msgstr "Notes"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Nombre d'accions"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__num_decl_lines
+msgid "Number of Declaration Lines"
+msgstr "Nombre de línies de declaració"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_has_error_counter
+msgid "Number of errors"
+msgstr "Nombre d'errors"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Nº de missatges que requereixen acció"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Nº de missatge amb error de lliurament"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Nº de missatges sense llegir"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__partner_id
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__year_month
+msgid "Period"
+msgstr "Període"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__product_id
+msgid "Product"
+msgstr "Producte"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__reporting_level
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__reporting_level
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__reporting_level
+msgid "Reporting Level"
+msgstr "Nivell d'informe"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_user_id
+msgid "Responsible User"
+msgstr "Usuari responsable"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__revision
+msgid "Revision"
+msgstr "Revisió"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de lliurament SMS"
+
+#. module: l10n_es_intrastat_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_search
+msgid "Search Spanish Intrastat Product Declaration"
+msgstr "Buscar declaració de producte Intrastat Espanyola"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.actions.act_window,name:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_action
+#: model:ir.ui.menu,name:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_menu
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_graph
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_tree
+msgid "Spanish Intrastat Product Declaration"
+msgstr "Declaració de producte Intrastat Espanyola"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__state
+msgid "State"
+msgstr "Província"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__state
+msgid ""
+"State of the declaration. When the state is set to 'Done', the parameters "
+"become read-only."
+msgstr ""
+"Estat de la declaració. Quan l'estat està com a 'Realitzat', els paràmetres "
+"es converteixen a només lectura."
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estat basat en les activitats\n"
+"Tard: La data de venciment ja està vençuda\n"
+"Avui: La data de l'activitat és avui\n"
+"Planificat: Activitats futures."
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__intrastat_unit_id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__intrastat_unit_id
+msgid "Suppl. Unit"
+msgstr "Unit. supl."
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__suppl_unit_qty
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__suppl_unit_qty
+msgid "Suppl. Unit Qty"
+msgstr "Quantitat unit. supl."
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__suppl_unit_qty
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__suppl_unit_qty
+msgid "Supplementary Units Quantity"
+msgstr "Quantitat d'unitats suplementàries"
+
+#. module: l10n_es_intrastat_report
+#: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
+#, python-format
+msgid ""
+"The Spanish Intrastat Declaration requires the Company's Country to be equal "
+"to 'Spain'."
+msgstr ""
+"La declaració Intrastat espanyola requereix que el país de la companyia "
+"sigui 'Espanya'."
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__invoice_id
+msgid "The move of this entry line."
+msgstr "El moviment d'aquesta línia d'entrada."
+
+#. module: l10n_es_intrastat_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.view_l10n_es_intrastat_code_import
+msgid ""
+"This wizard will import Spanish Product HS Codes from the local copy and set "
+"company Instrastat type defaults at company level."
+msgstr ""
+"Aquest assistent importarà codis espanyols de producte HS des de la copia "
+"local i establirà els valors predeterminats del tipus d'Intrastat a nivell "
+"d'empresa."
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__total_amount
+msgid "Total Fiscal Amount"
+msgstr "Import fiscal total"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__total_amount
+msgid "Total fiscal amount in company currency of the declaration."
+msgstr "Import fiscal total de la declaració en la moneda de la companyia."
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__transport_id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__transport_id
+msgid "Transport Mode"
+msgstr "Mode de transport"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__declaration_type
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__declaration_type
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__declaration_type
+msgid "Type"
+msgstr "Tipus"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipus de l'activitat d'excepció al registre."
+
+#. module: l10n_es_intrastat_report
+#: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:0
+#, python-format
+msgid "Unit not found: '%s'"
+msgstr "Unitat no trobada: '%s'"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_unread
+msgid "Unread Messages"
+msgstr "Missatges no llegits"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Comptador de missatges no llegits"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__revision
+msgid "Used to keep track of changes"
+msgstr "Usat per a rastrejar els canvis"
+
+#. module: l10n_es_intrastat_report
+#: code:addons/l10n_es_intrastat_report/report/intrastat_product_report_xls.py:0
+#, python-format
+msgid "VAT"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__vat
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__vat
+msgid "VAT Number"
+msgstr "NIF"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__valid
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__valid
+msgid "Valid"
+msgstr "Vàlid"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__website_message_ids
+msgid "Website Messages"
+msgstr "Missatges del web"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicació del web"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__weight
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__weight
+msgid "Weight"
+msgstr "Pes"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__xml_attachment_id
+msgid "XML Attachment"
+msgstr "Adjunt XML"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__xml_attachment_datas
+msgid "XML Export"
+msgstr "Exportació XML"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__xml_attachment_name
+msgid "XML Filename"
+msgstr "Nom fitxer XML"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__year
+msgid "Year"
+msgstr "Any"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__year_month
+msgid "Year and month of the declaration."
+msgstr "Any i mes de la declaració."
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__note
+msgid "You can add some comments here if you want."
+msgstr "Si vol, pot afegir comentaris aquí."
+
+#~ msgid "Followers (Channels)"
+#~ msgstr "Seguidors (Canals)"
+
+#, python-format
+#~ msgid "xlrd library not found."
+#~ msgstr "Llibreria xlrd no trobada."
+
+#~ msgid "Used in views and methods of localization modules."
+#~ msgstr "Usat en vistes i mètodes de mòduls de localització."
