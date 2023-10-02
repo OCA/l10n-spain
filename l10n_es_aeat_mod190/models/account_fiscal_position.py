@@ -32,7 +32,26 @@ class AccountFiscalPosition(models.Model):
                 cada uno de ellos refleje exclusivamente los datos de
                 percepciones correspondientes a una misma clave y, en
                 su caso, subclave.""",
+        domain="[('aeat_perception_key_id', '=', aeat_perception_key_id)]",
     )
+    is_aeat_perception_subkey_visible = fields.Boolean(
+        compute="_compute_is_aeat_perception_subkey_visible"
+    )
+
+    @api.depends("aeat_perception_key_id")
+    def _compute_is_aeat_perception_subkey_visible(self):
+        for record in self:
+            record.is_aeat_perception_subkey_visible = bool(
+                record.env["l10n.es.aeat.report.perception.subkey"].search(
+                    [
+                        (
+                            "aeat_perception_key_id",
+                            "=",
+                            record.aeat_perception_key_id.id,
+                        ),
+                    ]
+                )
+            )
 
     @api.onchange("aeat_perception_key_id")
     def onchange_aeat_perception_key_id(self):
