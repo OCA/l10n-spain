@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="l10n_es_aeat_mod390.aeat_mod390_map_line_702" model="l10n.es.aeat.map.tax.line">
+        <field name="tax_ids" eval="[
+            (4, ref('l10n_es_extra_data.account_tax_template_s_iva5_a')),
+            (4, ref('l10n_es_extra_data.account_tax_template_s_iva5s'))
+        ]"/>
+    </record>
+    <record id="l10n_es_aeat_mod390.aeat_mod390_map_line_703" model="l10n.es.aeat.map.tax.line">
+        <field name="tax_ids" eval="[
+            (4, ref('l10n_es_extra_data.account_tax_template_s_iva5_a')),
+            (4, ref('l10n_es_extra_data.account_tax_template_s_iva5s'))
+        ]"/>
+    </record>
+    <record id="l10n_es_aeat_mod390.aeat_mod390_map_line_724" model="l10n.es.aeat.map.tax.line">
+        <field name="tax_ids" eval="[
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_sc'))
+        ]"/>
+    </record>
+    <record id="l10n_es_aeat_mod390.aeat_mod390_map_line_725" model="l10n.es.aeat.map.tax.line">
+        <field name="tax_ids" eval="[
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_sc'))
+        ]"/>
+    </record>
+</odoo>
