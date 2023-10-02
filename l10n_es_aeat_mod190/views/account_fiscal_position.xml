@@ -6,14 +6,19 @@
         <field name="name">account.fiscal.position.form (in l10n_es_aeat_mod190)</field>
         <field name="model">account.fiscal.position</field>
         <field name="inherit_id" ref="account.view_account_position_form" />
-        <field name="groups_id" eval="[(4, ref('l10n_es_aeat.group_account_aeat'))]" />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="aeat_perception_key_id" />
+                <field name="aeat_perception_key_id" invisible="1" />
+                <field
+                    name="aeat_perception_key_id"
+                    groups="l10n_es_aeat.group_account_aeat"
+                />
+                <field name="aeat_perception_subkey_id" invisible="1" />
+                <field name="is_aeat_perception_subkey_visible" invisible="1" />
                 <field
                     name="aeat_perception_subkey_id"
-                    domain="[('aeat_perception_key_id', '=', aeat_perception_key_id)]"
-                    attrs="{'invisible': ['|', ('aeat_perception_key_id', '=', %(l10n_es_aeat_mod190.aeat_m190_perception_key_01)s), ('aeat_perception_key_id', '=', False)]}"
+                    attrs="{'invisible': [('is_aeat_perception_subkey_visible', '=', False)]}"
+                    groups="l10n_es_aeat.group_account_aeat"
                 />
             </field>
         </field>
