@@ -113,8 +113,8 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__calculation_date
-msgid "Calculation date"
-msgstr "Data obliczeń"
+msgid "Calculation Date"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__casilla_01
@@ -218,7 +218,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__contact_email
-msgid "Contact email"
+msgid "Contact Email"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -291,11 +291,6 @@ msgid "Followers"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_channel_ids
-msgid "Followers (Channels)"
-msgstr ""
-
-#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_partner_ids
 msgid "Followers (Partners)"
 msgstr ""
@@ -324,6 +319,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__real_expenses
 msgid "Gastos reales"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__has_message
+msgid "Has Message"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -406,11 +406,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_ids
 msgid "Messages"
-msgstr ""
-
-#. module: l10n_es_aeat_mod130
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__model_id
-msgid "Model"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -505,7 +500,7 @@ msgstr "Partner"
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__period_type
-msgid "Period type"
+msgid "Period Type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -736,6 +731,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__has_prestamo
 msgid "¿Préstamo para vivienda habitual?"
 msgstr ""
+
+#~ msgid "Calculation date"
+#~ msgstr "Data obliczeń"
 
 #, fuzzy
 #~ msgid "Company partner"
