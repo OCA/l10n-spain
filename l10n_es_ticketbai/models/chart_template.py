@@ -57,7 +57,9 @@ class AccountChartTemplate(models.Model):
             fiscal_position = self.env['account.fiscal.position'].browse(res_id)
             tbai_vat_exemptions = []
             for exemption in template.tbai_vat_exemption_ids:
-                Report = self.env['l10n.es.aeat.report']
+                Report = self.env["l10n.es.aeat.report"].new(
+                    {'company_id': company.id}
+                )
                 tax = Report.get_taxes_from_templates(exemption.tax_id)
                 if 1 == len(tax):
                     tbai_vat_exemptions.append((0, 0, {
