@@ -23,5 +23,5 @@
         ],
     },
     "installable": True,
-    "autoinstall": True,
+    "auto_install": True,
 }
