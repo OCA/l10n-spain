@@ -1,11 +1,11 @@
-# Copyright 2013-2017 Tecnativa - Pedro M. Baeza
+# Copyright 2013-2023 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3).
 
 import logging
 import os
 import tempfile
 
-from odoo import _, fields, models, tools
+from odoo import fields, models, tools
 
 from ..gen_src.gen_data_banks import gen_bank_data_xml
 
@@ -35,32 +35,28 @@ class L10nEsPartnerImportWizard(models.TransientModel):
         dest_file = tempfile.NamedTemporaryFile("w", delete=False)
         try:
             response = requests.get(
-                "http://www.bde.es/f/webbde/IFI/servicio/regis/ficheros/es/"
-                "REGBANESP_CONESTAB_A.XLS",
-                timeout=20,
+                "https://www.bde.es/f/webbde/SGE/regis/REGBANESP_CONESTAB_A.xls",
+                timeout=5,
             )
             response.raise_for_status()
             src_file.write(response.content)
             src_file.close()
-            # Generate XML and reopen it
-            gen_bank_data_xml(src_file.name, dest_file.name)
-            tools.convert_xml_import(
-                self._cr, "l10n_es_partner", dest_file.name, {}, "init", noupdate=True
+            src_file_name = src_file.name
+        except (
+            requests.exceptions.HTTPError,
+            requests.exceptions.ConnectTimeout,
+            requests.exceptions.ReadTimeout,
+        ):
+            # BDE is forbidding on certain conditions to get the file, so we use a
+            # local file. Latest update: 2023-10-07
+            _logger.warning("Error while downloading data. Using local file.")
+            src_file_name = tools.file_path(
+                "l10n_es_partner/gen_src/REGBANESP_CONESTAB_A.xls",
             )
-        except requests.exceptions.HTTPError:  # pragma: no cover
-            _logger.exception("HTTP Error while importing data")
-            self.import_fail = True
-            return {
-                "name": _("Import spanish bank data"),
-                "type": "ir.actions.act_window",
-                "res_model": "l10n.es.partner.import.wizard",
-                "view_id": self.env.ref(
-                    "l10n_es_partner." "l10n_es_partner_import_wizard"
-                ).id,
-                "view_mode": "form",
-                "res_id": self.id,
-                "target": "new",
-            }
-        finally:
-            os.remove(src_file.name)
-            os.remove(dest_file.name)
+        # Generate XML and import it
+        gen_bank_data_xml(src_file_name, dest_file.name)
+        tools.convert_xml_import(
+            self._cr, "l10n_es_partner", dest_file.name, {}, "init", noupdate=True
+        )
+        os.remove(src_file.name)
+        os.remove(dest_file.name)
