@@ -35,7 +35,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
         dest_file = tempfile.NamedTemporaryFile('w', delete=False)
         try:
             response = requests.get(
-                'http://www.bde.es/f/webbde/IFI/servicio/regis/ficheros/es/'
+                'https://www.bde.es/f/webbde/IFI/servicio/regis/ficheros/es/'
                 'REGBANESP_CONESTAB_A.XLS')
             response.raise_for_status()
             src_file.write(response.content)
