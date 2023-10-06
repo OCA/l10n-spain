@@ -66,11 +66,8 @@ msgid "Import from local file"
 msgstr "Importar des d'un fitxer local"
 
 #. module: l10n_es_partner
-#. odoo-python
-#: code:addons/l10n_es_partner/wizard/l10n_es_partner_wizard.py:0
 #: model:ir.actions.act_window,name:l10n_es_partner.action_l10n_es_partner_import
 #: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
-#, python-format
 msgid "Import spanish bank data"
 msgstr "Importar dades d'entitats bancaries espanyoles"
 
