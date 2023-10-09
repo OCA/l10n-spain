@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2022-04-05 10:40+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -81,19 +82,9 @@ msgid "Activities"
 msgstr "Actividades"
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__activity_exception_decoration
-msgid "Activity Exception Decoration"
-msgstr "Decoración de Actividad  de Excepción"
-
-#. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__activity_state
 msgid "Activity State"
 msgstr "Estado de la actividad"
-
-#. module: l10n_es_aeat_mod369
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__activity_type_icon
-msgid "Activity Type Icon"
-msgstr "Ícono de tipo de actvidad"
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__allow_posting
@@ -132,6 +123,11 @@ msgid "Calculation date"
 msgstr "Fecha de cálculo"
 
 #. module: l10n_es_aeat_mod369
+#: selection:l10n.es.aeat.mod369.report,state:0
+msgid "Cancelled"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__company_id
 msgid "Company"
 msgstr "Compañía"
@@ -140,6 +136,11 @@ msgstr "Compañía"
 #: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__partner_bank_id
 msgid "Company bank account used for the presentation"
 msgstr "Cuenta bancaria de la empresa utilizada para la presentación"
+
+#. module: l10n_es_aeat_mod369
+#: selection:l10n.es.aeat.mod369.report,type:0
+msgid "Complementary"
+msgstr ""
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__contact_email
@@ -187,6 +188,11 @@ msgid "Currency"
 msgstr "Moneda"
 
 #. module: l10n_es_aeat_mod369
+#: selection:l10n.es.aeat.mod369.report,support_type:0
+msgid "DVD"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__declaration_type
 msgid "Declaration type"
 msgstr "Régimen OSS"
@@ -197,17 +203,21 @@ msgid "Declaration without activity"
 msgstr "Declaración sin actividad"
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_account_fiscal_position__display_name
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_account_move__display_name
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_account_tax__display_name
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_map_tax_line__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__display_name
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_tax_line__display_name
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_res_country__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
+
+#. module: l10n_es_aeat_mod369
+#: selection:l10n.es.aeat.mod369.report,state:0
+msgid "Done"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
+#: selection:l10n.es.aeat.mod369.report,state:0
+msgid "Draft"
+msgstr ""
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__date_end
@@ -215,14 +225,18 @@ msgid "Ending date"
 msgstr "Fecha de finalización"
 
 #. module: l10n_es_aeat_mod369
+#: selection:l10n.es.aeat.mod369.report,declaration_type:0
+msgid "Export"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__export_config_id
 msgid "Export config"
 msgstr "Exportar configuración"
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__account_fiscal_position__oss_regimen__exterior
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_mod369_line__oss_regimen__exterior
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_mod369_report__declaration_type__exterior
+#: selection:account.fiscal.position,oss_regimen:0
+#: selection:l10n.es.aeat.mod369.line,oss_regimen:0
 msgid "Exterior"
 msgstr "Exterior a la Unión"
 
@@ -257,19 +271,14 @@ msgid "Followers (Partners)"
 msgstr "Seguidores (Socios)"
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__activity_type_icon
-msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
-
-#. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__contact_name
 msgid "Full Name"
 msgstr "Nombre completo"
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_map_tax_line__service_type__goods
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_mod369_line__service_type__goods
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_mod369_line_grouped__service_type__goods
+#: selection:l10n.es.aeat.map.tax.line,service_type:0
+#: selection:l10n.es.aeat.mod369.line,service_type:0
+#: selection:l10n.es.aeat.mod369.line.grouped,service_type:0
 msgid "Goods"
 msgstr "Bienes"
 
@@ -284,46 +293,38 @@ msgid "Grouped info by country for 369 model"
 msgstr "Información agrupada por país para el modelo 369"
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_account_fiscal_position__id
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_account_move__id
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_account_tax__id
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_map_tax_line__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__id
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_tax_line__id
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_res_country__id
 msgid "ID"
 msgstr "ID (identificación)"
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__activity_exception_icon
-msgid "Icon"
-msgstr "Icono"
-
-#. module: l10n_es_aeat_mod369
-#: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__activity_exception_icon
-msgid "Icon to indicate an exception activity."
-msgstr "Icono para indicar una actividad de excepción."
+#: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_unread
+msgid "If checked new messages require your attention."
+msgstr ""
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_needaction
-#: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Si está marcado, los nuevos mensajes requieren su atención."
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcada, algunos mensajes tienen un error de entrega."
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__account_fiscal_position__oss_regimen__import
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_mod369_line__oss_regimen__import
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_mod369_report__declaration_type__import
+#: selection:account.fiscal.position,oss_regimen:0
+#: selection:l10n.es.aeat.mod369.line,oss_regimen:0
+#: selection:l10n.es.aeat.mod369.report,declaration_type:0
 msgid "Import"
 msgstr "Importación"
+
+#. module: l10n_es_aeat_mod369
+#: model:ir.model,name:l10n_es_aeat_mod369.model_account_invoice
+msgid "Invoice"
+msgstr ""
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_is_follower
@@ -341,11 +342,6 @@ msgid "Journal"
 msgstr "Diario"
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model,name:l10n_es_aeat_mod369.model_account_move
-msgid "Journal Entry"
-msgstr "Asiento contable"
-
-#. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__journal_id
 msgid "Journal in which post the move."
 msgstr "Diario en el que publicar el movimiento."
@@ -356,15 +352,9 @@ msgid "L.R. VAT number"
 msgstr "NIF repr. legal"
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_account_fiscal_position____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_account_move____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_account_tax____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_map_tax_line____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_tax_line____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_res_country____last_update
 msgid "Last Modified on"
 msgstr "Últ. modificación en"
 
@@ -433,11 +423,6 @@ msgid "Must have name and surname."
 msgstr "Debe tener nombre y apellidos."
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__my_activity_date_deadline
-msgid "My Activity Deadline"
-msgstr "Fecha límite de Mi Actividad"
-
-#. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__nrc_reference
 msgid "NRC Reference"
 msgstr "NRC Pago"
@@ -473,14 +458,19 @@ msgid "Non-Spanish services and goods"
 msgstr "5+6 Bienes y servicios NO España"
 
 #. module: l10n_es_aeat_mod369
+#: selection:l10n.es.aeat.mod369.report,type:0
+msgid "Normal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_needaction_counter
 msgid "Number of Actions"
 msgstr "Número de Acciones"
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_has_error_counter
-msgid "Number of errors"
-msgstr "Numero de errores"
+msgid "Number of error"
+msgstr ""
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_needaction_counter
@@ -524,22 +514,23 @@ msgid "OSS Tax"
 msgstr "Impuesto OSS"
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_account_bank_statement_line__origin_country_id
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_account_move__origin_country_id
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_account_payment__origin_country_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_account_invoice__origin_country_id
 msgid "Origin country"
 msgstr "País de origen"
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_account_bank_statement_line__fp_outside_spain
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_account_fiscal_position__outside_spain
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_account_move__fp_outside_spain
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_account_payment__fp_outside_spain
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_account_invoice__fp_outside_spain
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_map_tax_line__outside_spain
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line__outside_spain
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__outside_spain
 msgid "Outside of Spain"
 msgstr "Desde fuera de España"
+
+#. module: l10n_es_aeat_mod369
+#: selection:l10n.es.aeat.mod369.report,activity_state:0
+msgid "Overdue"
+msgstr ""
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__partner_id
@@ -562,12 +553,27 @@ msgid "Phone"
 msgstr "Teléfono"
 
 #. module: l10n_es_aeat_mod369
+#: selection:l10n.es.aeat.mod369.report,activity_state:0
+msgid "Planned"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
+#: selection:l10n.es.aeat.mod369.report,state:0
+msgid "Posted"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__previous_number
 msgid "Previous declaration number"
 msgstr "Número de la declaración anterior"
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__account_tax__tax_reduction_type__r
+#: selection:l10n.es.aeat.mod369.report,state:0
+msgid "Processed"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
+#: selection:account.tax,tax_reduction_type:0
 msgid "Reduced"
 msgstr "Reducido"
 
@@ -587,11 +593,6 @@ msgid "Responsible User"
 msgstr "Usuario responsable"
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Error de entrega del SMS"
-
-#. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_map_tax_line__service_type
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line__service_type
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__service_type
@@ -599,9 +600,9 @@ msgid "Service type"
 msgstr "Tipo de servicio"
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_map_tax_line__service_type__services
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_mod369_line__service_type__services
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_mod369_line_grouped__service_type__services
+#: selection:l10n.es.aeat.map.tax.line,service_type:0
+#: selection:l10n.es.aeat.mod369.line,service_type:0
+#: selection:l10n.es.aeat.mod369.line.grouped,service_type:0
 msgid "Services"
 msgstr "Servicios"
 
@@ -636,7 +637,7 @@ msgid "Spanish services and goods"
 msgstr "3+4 Bienes y servicios España"
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__account_tax__tax_reduction_type__s
+#: selection:account.tax,tax_reduction_type:0
 msgid "Standard"
 msgstr "Estándar"
 
@@ -651,7 +652,7 @@ msgid "State"
 msgstr "Estado"
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__statement_type
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__type
 msgid "Statement Type"
 msgstr "Tipo de declaración"
 
@@ -667,6 +668,11 @@ msgstr ""
 "Vencida: la fecha límite ya ha pasado\n"
 "Hoy: La fecha tope es hoy\n"
 "Planificada: futuras actividades."
+
+#. module: l10n_es_aeat_mod369
+#: selection:l10n.es.aeat.mod369.report,type:0
+msgid "Substitutive"
+msgstr ""
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__support_type
@@ -690,6 +696,11 @@ msgid "Tax type"
 msgstr "Tipo de impuesto"
 
 #. module: l10n_es_aeat_mod369
+#: selection:l10n.es.aeat.mod369.report,support_type:0
+msgid "Telematics"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__country_code
 msgid ""
 "The ISO country code in two chars. \n"
@@ -708,12 +719,15 @@ msgstr ""
 "regularizan al publicar el informe."
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields,help:l10n_es_aeat_mod369.field_account_bank_statement_line__fp_outside_spain
 #: model:ir.model.fields,help:l10n_es_aeat_mod369.field_account_fiscal_position__outside_spain
-#: model:ir.model.fields,help:l10n_es_aeat_mod369.field_account_move__fp_outside_spain
-#: model:ir.model.fields,help:l10n_es_aeat_mod369.field_account_payment__fp_outside_spain
+#: model:ir.model.fields,help:l10n_es_aeat_mod369.field_account_invoice__fp_outside_spain
 msgid "This field is to differentiate moves for the 369 model (union)"
 msgstr "Este campo es para diferenciar movimientos"
+
+#. module: l10n_es_aeat_mod369
+#: selection:l10n.es.aeat.mod369.report,activity_state:0
+msgid "Today"
+msgstr ""
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__total_line_ids
@@ -726,14 +740,9 @@ msgid "Total amount"
 msgstr "Saldo para ingresar en España"
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__activity_exception_decoration
-msgid "Type of the exception activity on record."
-msgstr "Tipo de actividad de excepción registrada."
-
-#. module: l10n_es_aeat_mod369
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__account_fiscal_position__oss_regimen__union
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_mod369_line__oss_regimen__union
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_mod369_report__declaration_type__union
+#: selection:account.fiscal.position,oss_regimen:0
+#: selection:l10n.es.aeat.mod369.line,oss_regimen:0
+#: selection:l10n.es.aeat.mod369.report,declaration_type:0
 msgid "Union"
 msgstr "Unión"
 
@@ -793,17 +802,17 @@ msgid "Your company's VAT number in this country"
 msgstr "El NIF de tu empresa en este país"
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_mod369_report__payment_type__i
+#: selection:l10n.es.aeat.mod369.report,payment_type:0
 msgid "[I] A ingresar"
 msgstr "[I] A ingresar"
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_mod369_report__payment_type__n
+#: selection:l10n.es.aeat.mod369.report,payment_type:0
 msgid "[N] Negativa"
 msgstr "[N] Negativa"
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_mod369_report__payment_type__o
+#: selection:l10n.es.aeat.mod369.report,payment_type:0
 msgid ""
 "[O] Reconocimiento de deuda con los Estados Miembros de Consumo con "
 "imposibilidad de pago"
@@ -812,7 +821,7 @@ msgstr ""
 "imposibilidad de pago"
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_mod369_report__payment_type__s
+#: selection:l10n.es.aeat.mod369.report,payment_type:0
 msgid ""
 "[S] Ingreso parcial y Reconocimiento de deuda con los Estados Miembros de "
 "Consumo con imposibilidad de pago"
@@ -821,6 +830,33 @@ msgstr ""
 "Consumo con imposibilidad de pago"
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_mod369_report__payment_type__t
+#: selection:l10n.es.aeat.mod369.report,payment_type:0
 msgid "[T] Ingreso por transferencia desde el extranjero"
 msgstr "[T] Ingreso por transferencia desde el extranjero"
+
+#~ msgid "Activity Exception Decoration"
+#~ msgstr "Decoración de Actividad  de Excepción"
+
+#~ msgid "Activity Type Icon"
+#~ msgstr "Ícono de tipo de actvidad"
+
+#~ msgid "Icon"
+#~ msgstr "Icono"
+
+#~ msgid "Icon to indicate an exception activity."
+#~ msgstr "Icono para indicar una actividad de excepción."
+
+#~ msgid "Journal Entry"
+#~ msgstr "Asiento contable"
+
+#~ msgid "My Activity Deadline"
+#~ msgstr "Fecha límite de Mi Actividad"
+
+#~ msgid "Number of errors"
+#~ msgstr "Numero de errores"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error de entrega del SMS"
+
+#~ msgid "Type of the exception activity on record."
+#~ msgstr "Tipo de actividad de excepción registrada."
