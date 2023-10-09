@@ -28,7 +28,7 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "At least one product does not have a tax."
 msgstr "Al menos un producto no tiene establecido el impuesto."
@@ -45,6 +45,14 @@ msgid "Device Serial Number"
 msgstr "Número de serie de dispositivo"
 
 #. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_tbai_invoice__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_es_ticketbai_pos
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__tbai_enabled
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order__tbai_enabled
 msgid "Enable TicketBAI"
@@ -56,9 +64,25 @@ msgid "Files Sent"
 msgstr "Ficheros enviados"
 
 #. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_tbai_invoice__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_es_ticketbai_pos
 #: model:ir.model,name:l10n_es_ticketbai_pos.model_account_move
-msgid "Journal Entries"
-msgstr "Asientos contables"
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_move____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_tbai_invoice____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__tbai_last_invoice_id
@@ -66,7 +90,9 @@ msgid "Last TicketBAI Invoice sent"
 msgstr "Última factura de TicketBAI enviada"
 
 #. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,help:l10n_es_ticketbai_pos.field_account_bank_statement_line__tbai_substitution_pos_order_id
 #: model:ir.model.fields,help:l10n_es_ticketbai_pos.field_account_move__tbai_substitution_pos_order_id
+#: model:ir.model.fields,help:l10n_es_ticketbai_pos.field_account_payment__tbai_substitution_pos_order_id
 msgid "Link between a validated Customer Invoice and its substitute."
 msgstr "Relación entre la factura de cliente validada y su sustituta."
 
@@ -77,7 +103,8 @@ msgstr "Mensajes"
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "Non spanish customers are not supported for Simplified Invoice."
 msgstr ""
@@ -90,21 +117,28 @@ msgstr "Pedidos"
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/xml/pos.xml:0
+#, python-format
+msgid "PRO FORMA"
+msgstr ""
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "Please set Company VAT."
 msgstr "Por favor, establezca el NIF de la compañía."
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
 #, python-format
 msgid "Please set Country for customer %s."
 msgstr "Por favor, establezca el país para el cliente %s."
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "Please set VAT Regime Key for fiscal position %s."
 msgstr ""
@@ -113,7 +147,7 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
 #, python-format
 msgid ""
 "Please set VAT or TicketBAI Partner Identification Number for customer %s."
@@ -123,7 +157,7 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "Please set VAT or TicketBAI Partner Identification Number for customer."
 msgstr ""
@@ -132,8 +166,8 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ProductScreen/ProductScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/models.js:0
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
 #, python-format
 msgid "Please set a tax for product %s."
 msgstr "Por favor, establezca un impuesto para el producto %s."
@@ -178,14 +212,18 @@ msgid "Simplified Invoice Number Prefix %s is not part of Number %s!"
 msgstr "El prefijo para facturas simplificadas %s no es parte del número %s!"
 
 #. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_bank_statement_line__tbai_substitution_pos_order_id
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_move__tbai_substitution_pos_order_id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_payment__tbai_substitution_pos_order_id
 msgid "Tbai Substitution Pos Order"
 msgstr "Pedido TPV de sustitución Tbai"
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ProductScreen/ProductScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/models.js:0
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/tbai_models.js:0
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
@@ -214,7 +252,7 @@ msgstr "TicketBAI Certificados"
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "TicketBAI Invoice not built yet. Please try again."
 msgstr "Factura TicketBAI no construida aún. Por favor inténtelo de nuevo."
@@ -232,7 +270,7 @@ msgstr "Pedido de TPV TicketBAI"
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "TicketBAI certificate not loaded!"
 msgstr "¡Error: Certificado TicketBAI no cargado!"
@@ -251,3 +289,6 @@ msgstr "Clave de regímenes de IVA"
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
 msgid "VAT Regimes"
 msgstr "Claves de regímenes de IVA"
+
+#~ msgid "Journal Entries"
+#~ msgstr "Asientos contables"

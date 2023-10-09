@@ -107,7 +107,8 @@ msgstr "Mezuak"
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "Non spanish customers are not supported for Simplified Invoice."
-msgstr "Espainiakoak ez diren bezeroak ez dira onartzen Faktura Sinplifikatuan."
+msgstr ""
+"Espainiakoak ez diren bezeroak ez dira onartzen Faktura Sinplifikatuan."
 
 #. module: l10n_es_ticketbai_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
@@ -156,8 +157,7 @@ msgstr ""
 #. openerp-web
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
-msgid ""
-"Please set VAT or TicketBAI Partner Identification Number for customer."
+msgid "Please set VAT or TicketBAI Partner Identification Number for customer."
 msgstr ""
 "Ezarri IFZa edo TicketBAI Bazkidearen Identifikazio Zenbakia bezeroarentzat."
 
@@ -198,8 +198,6 @@ msgstr "Erantzunak"
 
 #. module: l10n_es_ticketbai_pos
 #: code:addons/l10n_es_ticketbai_pos/models/pos_config.py:0
-#: code:addons/l10n_es_ticketbai_pos/models/pos_config.py:0
-#: code:addons/l10n_es_ticketbai_pos/models/pos_config.py:0
 #, python-format
 msgid "Simplified Invoice IDs Sequence is required"
 msgstr "Faktura sinplifikatuaren IDaren sekuentzia beharrezkoa da"
@@ -220,8 +218,6 @@ msgstr "Tbai Ordezkapen Pos Agindua"
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ProductScreen/ProductScreen.js:0
