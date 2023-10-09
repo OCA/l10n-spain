@@ -5,4 +5,7 @@
     <record id="l10n_es.fp_intra_private" model="account.fiscal.position.template">
         <field name="intrastat" eval="True" />
     </record>
+    <record id="l10n_es.fp_intra" model="account.fiscal.position.template">
+        <field name="intrastat" eval="True" />
+    </record>
 </odoo>
