@@ -59,7 +59,7 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: l10n_es_aeat_vat_prorrate
-#: selection:l10n.es.aeat.mod303.report,vat_prorrate_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_vat_prorrate.selection__l10n_es_aeat_mod303_report__vat_prorrate_type__general
 msgid "General prorrate"
 msgstr "Prorrata general"
 
@@ -84,7 +84,7 @@ msgid "Last Updated on"
 msgstr "Última actualización en"
 
 #. module: l10n_es_aeat_vat_prorrate
-#: selection:l10n.es.aeat.mod303.report,vat_prorrate_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_vat_prorrate.selection__l10n_es_aeat_mod303_report__vat_prorrate_type__none
 msgid "None"
 msgstr "Ninguno"
 
@@ -113,13 +113,13 @@ msgid "Regularización por aplicación del porcentaje definitivo de prorrata."
 msgstr "Regularización por aplicación del porcentaje definitivo de prorrata."
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:222
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:0
 #, python-format
 msgid "Regularización prorrata IVA"
 msgstr "Regularización prorrata IVA"
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:67
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:0
 #, python-format
 msgid ""
 "There's at least one previous report in draft state. Please confirm it "
@@ -165,7 +165,7 @@ msgstr ""
 "                        para ese año, y la diferencia se compensará."
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:58
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:0
 #, python-format
 msgid "VAT prorrate percent must be between 0.01 and 100"
 msgstr "El porcentaje de la prorrata de IVA debe estar entre 0.01 y 100"
