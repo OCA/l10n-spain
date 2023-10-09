@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_account_asset
+# 	* l10n_es_account_asset
 #
 msgid ""
 msgstr ""
@@ -43,7 +43,6 @@ msgid "Fixed percentage"
 msgstr ""
 
 #. module: l10n_es_account_asset
-#: sql_constraint:account.asset:0
-#: sql_constraint:account.asset.profile:0
+#: sql_constraint:account.asset:0 sql_constraint:account.asset.profile:0
 msgid "Wrong percentage!"
 msgstr ""
