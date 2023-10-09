@@ -31,10 +31,10 @@ msgid "Alemán"
 msgstr "Alemán"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:0
+#: code:addons/payment_redsys/models/payment_transaction.py:0
 #, python-format
-msgid "Bank Error: %s (%s)"
-msgstr "Error del banco: %s (%s)"
+msgid "Bank Error: %(status_code)s (%(error_code)s)"
+msgstr ""
 
 #. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_pay_method__z
@@ -57,21 +57,15 @@ msgid "Currency"
 msgstr "Moneda"
 
 #. module: payment_redsys
-#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__display_name
-#: model:ir.model.fields,field_description:payment_redsys.field_payment_transaction__display_name
-msgid "Display Name"
-msgstr "Mostrar Nombre"
-
-#. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_pay_method__d
 msgid "Domiciliacion"
 msgstr "Domiciliación"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:0
+#: code:addons/payment_redsys/models/payment_transaction.py:0
 #, python-format
-msgid "Error: %s (%s)"
-msgstr "Error: %s (%s)"
+msgid "Error: %(status_code)s (%(error_code)s)"
+msgstr ""
 
 #. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_merchant_lang__013
@@ -99,12 +93,6 @@ msgid "Holandés"
 msgstr "Holandés"
 
 #. module: payment_redsys
-#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__id
-#: model:ir.model.fields,field_description:payment_redsys.field_payment_transaction__id
-msgid "ID"
-msgstr "ID (identificación)"
-
-#. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_merchant_lang__002
 msgid "Inglés"
 msgstr "Inglés"
@@ -113,12 +101,6 @@ msgstr "Inglés"
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_merchant_lang__007
 msgid "Italiano"
 msgstr "Italiano"
-
-#. module: payment_redsys
-#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer____last_update
-#: model:ir.model.fields,field_description:payment_redsys.field_payment_transaction____last_update
-msgid "Last Modified on"
-msgstr "Última Modificación el"
 
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_merchant_lang
@@ -141,7 +123,7 @@ msgid "Merchant code"
 msgstr "Código de comerciante"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:0
+#: code:addons/payment_redsys/models/payment_transaction.py:0
 #, python-format
 msgid "Ok: %s"
 msgstr "Ok: %s"
@@ -157,12 +139,6 @@ msgid "Pago por Transferencia"
 msgstr "Pago por Transferencia"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:0
-#, python-format
-msgid "Partial payment percent must be between 0 and 100"
-msgstr "El porcentaje de pago parcial debe estar entre 0 y 100"
-
-#. module: payment_redsys
 #: model:ir.model,name:payment_redsys.model_payment_acquirer
 msgid "Payment Acquirer"
 msgstr "Proceso de pago"
@@ -171,6 +147,11 @@ msgstr "Proceso de pago"
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_pay_method
 msgid "Payment Method"
 msgstr "Método de pago"
+
+#. module: payment_redsys
+#: model:ir.model,name:payment_redsys.model_account_payment_method
+msgid "Payment Methods"
+msgstr ""
 
 #. module: payment_redsys
 #: model:ir.model,name:payment_redsys.model_payment_transaction
@@ -198,6 +179,7 @@ msgid "Provider"
 msgstr "Proveedor"
 
 #. module: payment_redsys
+#: model:account.payment.method,name:payment_redsys.payment_method_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__provider__redsys
 #: model:payment.acquirer,name:payment_redsys.payment_acquirer_redsys
 msgid "Redsys"
@@ -209,15 +191,10 @@ msgid "Redsys Signature Version"
 msgstr "Versión de Redsys de la firma"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:0
+#: code:addons/payment_redsys/models/payment_transaction.py:0
 #, python-format
-msgid "Redsys: feedback error %s (%s)"
-msgstr "Redsys: feedback error %s (%s)"
-
-#. module: payment_redsys
-#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_percent_partial
-msgid "Reduction percent"
-msgstr "Porcentaje de reducción"
+msgid "Redsys: feedback error: %(status_code)s (%(error_code)s)"
+msgstr ""
 
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_secret_key
@@ -235,6 +212,11 @@ msgid "Terminal"
 msgstr "Terminal"
 
 #. module: payment_redsys
+#: model:ir.model.fields,help:payment_redsys.field_payment_acquirer__provider
+msgid "The Payment Service Provider to use with this acquirer"
+msgstr ""
+
+#. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_transaction__redsys_txnid
 msgid "Transaction ID"
 msgstr "ID de la transacción"
@@ -248,17 +230,6 @@ msgstr "Tipo de transacción"
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_merchant_lang__010
 msgid "Valenciano"
 msgstr "Valenciano"
-
-#. module: payment_redsys
-#: model:ir.model.fields,help:payment_redsys.field_payment_acquirer__redsys_percent_partial
-msgid ""
-"Write percent reduction payment, for this method payment.With this option "
-"you can allow partial payments in your shop online, the residual amount in "
-"pending for do a manual payment later."
-msgstr ""
-"Escriba el porcentaje que se reducirá en el pago para este método de pago. "
-"Con esta opción puede permitir pagos parciales en su tienda online, la "
-"cantidad restante quedará pendiente para realizar un pago manual más tarde."
 
 #. module: payment_redsys
 #: model_terms:payment.acquirer,pre_msg:payment_redsys.payment_acquirer_redsys
@@ -289,6 +260,44 @@ msgstr "Su pago ha sido procesado con éxito pero está esperando su aprobación
 #: model_terms:payment.acquirer,done_msg:payment_redsys.payment_acquirer_redsys
 msgid "Your payment has been successfully processed. Thank you!"
 msgstr "Su pago ha sido realizado correctamente. Gracias!"
+
+#, python-format
+#~ msgid "Bank Error: %s (%s)"
+#~ msgstr "Error del banco: %s (%s)"
+
+#~ msgid "Display Name"
+#~ msgstr "Mostrar Nombre"
+
+#, python-format
+#~ msgid "Error: %s (%s)"
+#~ msgstr "Error: %s (%s)"
+
+#~ msgid "ID"
+#~ msgstr "ID (identificación)"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificación el"
+
+#, python-format
+#~ msgid "Partial payment percent must be between 0 and 100"
+#~ msgstr "El porcentaje de pago parcial debe estar entre 0 y 100"
+
+#, python-format
+#~ msgid "Redsys: feedback error %s (%s)"
+#~ msgstr "Redsys: feedback error %s (%s)"
+
+#~ msgid "Reduction percent"
+#~ msgstr "Porcentaje de reducción"
+
+#~ msgid ""
+#~ "Write percent reduction payment, for this method payment.With this option "
+#~ "you can allow partial payments in your shop online, the residual amount "
+#~ "in pending for do a manual payment later."
+#~ msgstr ""
+#~ "Escriba el porcentaje que se reducirá en el pago para este método de "
+#~ "pago. Con esta opción puede permitir pagos parciales en su tienda online, "
+#~ "la cantidad restante quedará pendiente para realizar un pago manual más "
+#~ "tarde."
 
 #~ msgid "Send quotation"
 #~ msgstr "Enviar presupuesto"
