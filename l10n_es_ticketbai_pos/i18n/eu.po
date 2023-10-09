@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_ticketbai_pos
+# 	* l10n_es_ticketbai_pos
 #
 msgid ""
 msgstr ""
@@ -18,7 +18,9 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
-msgid "<span class=\"fa fa-lg fa-desktop\" title=\"Values set here are company-specific\" groups=\"base.group_multi_company\"/>"
+msgid ""
+"<span class=\"fa fa-lg fa-desktop\" title=\"Values set here are company-"
+"specific\" groups=\"base.group_multi_company\"/>"
 msgstr ""
 "<span class=\"fa fa-lg fa-desktop\" title=\"Hemen ezarritako balioak "
 "enpresaren espezifikoak dira\" groups=\"base.group_multi_company\"/>"
@@ -79,7 +81,8 @@ msgstr "Mezuak"
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:109
 #, python-format
 msgid "Non spanish customers are not supported for Simplified Invoice."
-msgstr "Espainiakoak ez diren bezeroak ez dira onartzen Faktura Sinplifikatuan."
+msgstr ""
+"Espainiakoak ez diren bezeroak ez dira onartzen Faktura Sinplifikatuan."
 
 #. module: l10n_es_ticketbai_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
@@ -111,7 +114,8 @@ msgstr "Ezarri BEZaren erregimen gakoa %s posizio fiskalarentzako."
 #. openerp-web
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:115
 #, python-format
-msgid "Please set VAT or TicketBAI Partner Identification Number for customer %s."
+msgid ""
+"Please set VAT or TicketBAI Partner Identification Number for customer %s."
 msgstr ""
 "Ezarri BEZa edo TicketBAI Bazkidearen Identifikazio Zenbakia %s "
 "bezeroarentzat."
@@ -201,7 +205,9 @@ msgstr "TicketBAI Ziurtagiria"
 
 #. module: l10n_es_ticketbai_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
-msgid "TicketBAI Certificate (optional). If not set, the certificate from the company is used instead."
+msgid ""
+"TicketBAI Certificate (optional). If not set, the certificate from the "
+"company is used instead."
 msgstr ""
 "TicketBAI Ziurtagiria (aukerakoa). Ezarri ez bada, enpresaren ziurtagiria "
 "erabiltzen da."
