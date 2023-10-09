@@ -29,10 +29,10 @@ msgid ""
 "\"\n"
 "            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
 msgstr ""
-"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/"
-"Facturae\"\n"
-"                            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\""
-"&gt;"
+"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae"
+"\"\n"
+"                            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#"
+"\"&gt;"
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
@@ -43,8 +43,8 @@ msgid ""
 msgstr ""
 "&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2014/v3.2.1/"
 "Facturae\"\n"
-"                            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\""
-"&gt;"
+"                            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#"
+"\"&gt;"
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
@@ -55,8 +55,8 @@ msgid ""
 msgstr ""
 "&lt;fe:Facturae xmlns:fe=\"http://www.facturae.gob.es/formato/Versiones/"
 "Facturaev3_2_2.xml\"\n"
-"                            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\""
-"&gt;"
+"                            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#"
+"\"&gt;"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__res_company__facturae_version__3_2
