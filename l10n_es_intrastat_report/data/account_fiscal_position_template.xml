@@ -6,4 +6,8 @@
         <field name="intrastat">b2b</field>
         <field name="vat_required" eval="False" />
     </record>
+    <record id="l10n_es.fp_intra" model="account.fiscal.position.template">
+        <field name="intrastat">b2b</field>
+        <field name="vat_required" eval="False" />
+    </record>
 </odoo>
