@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_pos
+# 	* l10n_es_pos
 #
 msgid ""
 msgstr ""
@@ -171,7 +171,9 @@ msgstr "Subt"
 #. module: l10n_es_pos
 #: code:addons/l10n_es_pos/models/ir_sequence.py:20
 #, python-format
-msgid "There is already a simplified invoice sequence with that prefix and it should be unique."
+msgid ""
+"There is already a simplified invoice sequence with that prefix and it "
+"should be unique."
 msgstr ""
 "Ja hi ha una seqüència de Factura Simplificada amb aquest prefix i aquest "
 "hauria de ser únic."
