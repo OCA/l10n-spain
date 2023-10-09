@@ -7,20 +7,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-22 12:41+0000\n"
-"PO-Revision-Date: 2022-02-22 13:42+0100\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2023-10-09 18:18+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_intrastat_report
 #: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_computation_line_view_tree
 msgid "/&gt;"
-msgstr ""
+msgstr "/&gt;"
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_needaction
@@ -79,7 +79,7 @@ msgstr "Seguidores (Contactos)"
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "Tiene mensaje"
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__id
@@ -111,17 +111,17 @@ msgstr "Importar Códigos HS españoles de producto"
 #. module: l10n_es_intrastat_report
 #: model:ir.model,name:l10n_es_intrastat_report.model_l10n_es_intrastat_code_import
 msgid "Intrastat HS Code Import for Spain"
-msgstr ""
+msgstr "Intrastat Código HS Importación para España"
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model,name:l10n_es_intrastat_report.model_intrastat_product_computation_line
 msgid "Intrastat Product Computation Line for Spain"
-msgstr ""
+msgstr "Línea de cálculo de productos Intrastat para España"
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model,name:l10n_es_intrastat_report.model_intrastat_product_declaration_line
 msgid "Intrastat Product Declaration Line for Spain"
-msgstr ""
+msgstr "Línea de declaración de productos Intrastat para España"
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model,name:l10n_es_intrastat_report.model_intrastat_product_declaration
@@ -184,21 +184,21 @@ msgstr "Mensajes"
 #: code:addons/l10n_es_intrastat_report/tests/test_l10n_es_intrastat_report.py:0
 #, python-format
 msgid "Missing <em>Country of Origin</em> <small>"
-msgstr ""
+msgstr "Falta <em>País de origen</em><small>"
 
 #. module: l10n_es_intrastat_report
 #. odoo-python
 #: code:addons/l10n_es_intrastat_report/tests/test_l10n_es_intrastat_report.py:0
 #, python-format
 msgid "Missing <em>VAT Number</em> <small>"
-msgstr ""
+msgstr "Falta <em>Número de IVA</em><small>"
 
 #. module: l10n_es_intrastat_report
 #. odoo-python
 #: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
 #, python-format
 msgid "Missing partner <em>VAT Number</em>"
-msgstr ""
+msgstr "Falta socio <em>Número de IVA</em>"
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_needaction_counter
@@ -213,7 +213,7 @@ msgstr "Número de errores"
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,help:l10n_es_intrastat_report.field_intrastat_product_declaration__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "Número de mensajes que requieren una acción"
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,help:l10n_es_intrastat_report.field_intrastat_product_declaration__message_has_error_counter
