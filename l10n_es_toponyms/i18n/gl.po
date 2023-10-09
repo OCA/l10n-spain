@@ -26,11 +26,6 @@ msgid "Config ES Toponyms"
 msgstr "'config.es.toponyms'"
 
 #. module: l10n_es_toponyms
-#: model_terms:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
-msgid "Configure from GeoNames"
-msgstr "Configurar desde GeoNames"
-
-#. module: l10n_es_toponyms
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__create_uid
 msgid "Created by"
 msgstr "Creado por"
@@ -55,6 +50,11 @@ msgstr "ID"
 #, fuzzy
 msgid "Import City Zips from Geonames"
 msgstr "Importar CPs de GeoNames"
+
+#. module: l10n_es_toponyms
+#: model_terms:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
+msgid "Import data from GeoNames"
+msgstr ""
 
 #. module: l10n_es_toponyms
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms____last_update
@@ -101,6 +101,9 @@ msgid ""
 msgstr ""
 "¡Aviso! Engadir esta cantidade de rexistros pode tardar moito tempo. Se está "
 "detrás dun proxy SSL, comprobe o 'timeout'."
+
+#~ msgid "Configure from GeoNames"
+#~ msgstr "Configurar desde GeoNames"
 
 #~ msgid "Configure from local"
 #~ msgstr "Configurar desde local"
