@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Dixmit
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="l10n_es_aeat_mod322_report_form_view">
+        <field
+            name="name"
+        >l10n.es.aeat.mod322.report.form (in l10n_es_aeat_mod322)</field>
+        <field name="model">l10n.es.aeat.mod322.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <group name="group_declaration" position="after">
+                <group
+                    string="Resultado"
+                    name="group_result"
+                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    col="3"
+                >
+                    <group>
+                        <field
+                            name="total_devengado"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="total_deducir"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="casilla_63"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                    <group>
+                        <field name="porcentaje_atribuible_estado" />
+                        <field
+                            name="atribuible_estado"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="cuota_compensar"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+
+                    <group>
+                        <field
+                            name="main_activity_code_id"
+                            attrs="{'readonly': [('period_type', 'not in', ('4T', '12'))]}"
+                        />
+                        <field
+                            name="main_activity_iae"
+                            attrs="{'readonly': [('period_type', 'not in', ('4T', '12'))]}"
+                        />
+                    </group>
+                <group
+                        string="Tax lines"
+                        name="group_tax_lines"
+                        colspan="4"
+                        attrs="{'invisible': [('state', '=', 'draft')]}"
+                    >
+                    <field name="tax_line_ids" nolabel="1" readonly="1" />
+                </group>
+            </group>
+            </group>
+            <field name="company_vat" position="after">
+                <field name="company_type" required="1" />
+                <field name="dominant_company_vat" required="1" />
+                <field name="group_number" required="1" />
+                <field
+                    name="vinculated_partner_ids"
+                    widget="many2many_tags"
+                    groups="base.group_no_one"
+                />
+            </field>
+            <form position="inside">
+                <div class="oe_chatter">
+                    <field
+                        name="message_follower_ids"
+                        widget="mail_followers"
+                        groups="base.group_user"
+                    />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="l10n_es_aeat_mod322_report_tree_view">
+        <field
+            name="name"
+        >l10n.es.aeat.mod322.report.tree (in l10n_es_aeat_mod322)</field>
+        <field name="model">l10n.es.aeat.mod322.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="string">322 Model</attribute>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="l10n_es_aeat_mod322_report_act_window">
+        <field name="name">AEAT model 322</field> <!-- TODO -->
+        <field name="res_model">l10n.es.aeat.mod322.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record model="ir.ui.menu" id="l10n_es_aeat_mod322_report_menu">
+        <field name="name">AEAT 322 model</field>
+        <field name="parent_id" ref="l10n_es_aeat.menu_root_aeat" /> <!-- TODO -->
+        <field name="action" ref="l10n_es_aeat_mod322_report_act_window" />
+        <field name="sequence" eval="322" /> <!-- TODO -->
+    </record>
+
+</odoo>
