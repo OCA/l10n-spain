@@ -41,12 +41,15 @@ msgstr "Creat el"
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__display_name
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank__display_name
 #: model:ir.model.fields,field_description:l10n_es_partner.field_res_partner__display_name
 msgid "Display Name"
 msgstr "Nombre a mostrar"
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__id
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank__id
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_partner__id
 msgid "ID"
 msgstr "ID"
 
@@ -85,6 +88,8 @@ msgstr ""
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard____last_update
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank____last_update
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_partner____last_update
 msgid "Last Modified on"
 msgstr "Darrera modificació el"
 
