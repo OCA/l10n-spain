@@ -76,6 +76,7 @@ msgid "Data different"
 msgstr "Datos diferentes"
 
 #. module: l10n_es_aeat_partner_check
+#. odoo-python
 #: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_check_result__identificado
 #, python-format
@@ -83,6 +84,7 @@ msgid "Identificado"
 msgstr "Identificado"
 
 #. module: l10n_es_aeat_partner_check
+#. odoo-python
 #: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_check_result__identificado-baja
 #, python-format
@@ -90,6 +92,7 @@ msgid "Identificado, baja"
 msgstr "Identificado, baja"
 
 #. module: l10n_es_aeat_partner_check
+#. odoo-python
 #: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_check_result__identificado-revocado
 #, python-format
@@ -126,6 +129,7 @@ msgid "Latest AEAT check"
 msgstr "Última petición"
 
 #. module: l10n_es_aeat_partner_check
+#. odoo-python
 #: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_check_result__no_identificable
 #, python-format
@@ -133,6 +137,7 @@ msgid "No identificable"
 msgstr "No identificable"
 
 #. module: l10n_es_aeat_partner_check
+#. odoo-python
 #: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_check_result__no_identificado
 #, python-format
@@ -140,6 +145,7 @@ msgid "No identificado"
 msgstr "No identificado"
 
 #. module: l10n_es_aeat_partner_check
+#. odoo-python
 #: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_check_result__no_procesado
 #, python-format
@@ -173,6 +179,7 @@ msgid "Partner type"
 msgstr "Tipo asociado"
 
 #. module: l10n_es_aeat_partner_check
+#. odoo-python
 #: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_type__sales_equalization
 #, python-format
@@ -180,6 +187,7 @@ msgid "Régimen de recargo de equivalencia"
 msgstr "Régimen de recargo de equivalencia"
 
 #. module: l10n_es_aeat_partner_check
+#. odoo-python
 #: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_type__standard
 #, python-format
