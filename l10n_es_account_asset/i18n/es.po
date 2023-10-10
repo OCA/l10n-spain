@@ -42,31 +42,23 @@ msgid "Depreciation percentage"
 msgstr "Porcentaje de amortización"
 
 #. module: l10n_es_account_asset
-#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset__display_name
-#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_profile__display_name
-msgid "Display Name"
-msgstr "Nombre mostrado"
-
-#. module: l10n_es_account_asset
+#. odoo-python
 #: code:addons/l10n_es_account_asset/models/account_asset_profile.py:0
 #, python-format
 msgid "Fixed percentage"
 msgstr "Porcentaje fijo"
 
 #. module: l10n_es_account_asset
-#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset__id
-#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_profile__id
-msgid "ID"
-msgstr "ID"
-
-#. module: l10n_es_account_asset
-#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset____last_update
-#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_profile____last_update
-msgid "Last Modified on"
-msgstr "Última modificación"
-
-#. module: l10n_es_account_asset
 #: model:ir.model.constraint,message:l10n_es_account_asset.constraint_account_asset_annual_percentage
 #: model:ir.model.constraint,message:l10n_es_account_asset.constraint_account_asset_profile_annual_percentage
 msgid "Wrong percentage!"
 msgstr "¡Porcentaje incorrecto!"
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre mostrado"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación"
