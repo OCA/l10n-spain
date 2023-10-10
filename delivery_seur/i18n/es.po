@@ -103,6 +103,11 @@ msgid "DOCUMENTOS"
 msgstr "DOCUMENTOS"
 
 #. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: delivery_seur
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__086
 msgid "ECCOMMERCE RETURN 2HOME"
 msgstr ""
@@ -136,6 +141,11 @@ msgstr "Código de franquicia"
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_printer__hp:laserjet_ii
 msgid "HP LASERJET II"
 msgstr "HP LASERJET II"
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__id
+msgid "ID"
+msgstr ""
 
 #. module: delivery_seur
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_printer__intermec:c4
@@ -183,6 +193,11 @@ msgid "Label size"
 msgstr "Tamaño de etiqueta"
 
 #. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: delivery_seur
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_service_code__017
 msgid "MARITIMO"
 msgstr "MARÍTIMO"
@@ -208,11 +223,6 @@ msgid "MULTIPACK"
 msgstr "MULTIPACK"
 
 #. module: delivery_seur
-#: model_terms:ir.ui.view,arch_db:delivery_seur.view_delivery_carrier_form
-msgid "Misc"
-msgstr "Varios"
-
-#. module: delivery_seur
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_service_code__019
 msgid "NETEXPRESS"
 msgstr "NETEXPRESS"
@@ -231,6 +241,11 @@ msgstr ""
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_label_format__pdf
 msgid "PDF"
 msgstr "PDF"
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_cit_password
+msgid "Password CIT"
+msgstr ""
 
 #. module: delivery_seur
 #: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_ws_password
@@ -314,11 +329,6 @@ msgid "Seur"
 msgstr "Seur"
 
 #. module: delivery_seur
-#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_cit_password
-msgid "Seur Cit Password"
-msgstr "Seur contraseña CIT"
-
-#. module: delivery_seur
 #: model:ir.model,name:delivery_seur.model_delivery_carrier
 msgid "Shipping Methods"
 msgstr "Métodos de envío"
@@ -345,11 +355,6 @@ msgstr "TXT"
 #: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_send_sms
 msgid "This feature has delivery cost"
 msgstr "Esta funcionalidad tiene coste de envío"
-
-#. module: delivery_seur
-#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_use_packages_from_picking
-msgid "Use packages from picking"
-msgstr "Usar paquetes de picking"
 
 #. module: delivery_seur
 #: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_cit_password
@@ -402,3 +407,12 @@ msgstr "ZEBRA S600"
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_printer__zebra:z4m_plus
 msgid "ZEBRA Z4M PLUS"
 msgstr "ZEBRA Z4M PLUS"
+
+#~ msgid "Misc"
+#~ msgstr "Varios"
+
+#~ msgid "Seur Cit Password"
+#~ msgstr "Seur contraseña CIT"
+
+#~ msgid "Use packages from picking"
+#~ msgstr "Usar paquetes de picking"

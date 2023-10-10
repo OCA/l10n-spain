@@ -22,13 +22,14 @@ msgstr ""
 msgid ""
 "\n"
 "            SEUR API doesn't provide methods to compute delivery rates, so\n"
-"            you should relay on another price method instead or override this\n"
+"            you should relay on another price method instead or override "
+"this\n"
 "            one in your custom code.\n"
 "        "
 msgstr ""
 "\n"
-"            L'API SEUR no proveeix mètodes per a calcular costos de trameses,"
-"\n"
+"            L'API SEUR no proveeix mètodes per a calcular costos de "
+"trameses,\n"
 "            per tant, hauríeu de basar-vos en altres mètodes de càlcul, o "
 "bé, \n"
 "            sobreescriure aquest en el vostre codi personalitzat.\n"
@@ -66,9 +67,24 @@ msgid "CLASSIC"
 msgstr "CLASSIC"
 
 #. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__116
+msgid "CLASSIC MULTIPARCEL"
+msgstr ""
+
+#. module: delivery_seur
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_service_code__007
 msgid "COURIER"
 msgstr "COURIER"
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__108
+msgid "COURIER MUESTRAS"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__104
+msgid "CROSSBORDER NETEXPRES INTERNACIONAL"
+msgstr ""
 
 #. module: delivery_seur
 #: code:addons/delivery_seur/models/delivery_carrier.py:0
@@ -85,6 +101,21 @@ msgstr "DATAMAX E CLASS 4203"
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__054
 msgid "DOCUMENTOS"
 msgstr "DOCUMENTS"
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__086
+msgid "ECCOMMERCE RETURN 2HOME"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__088
+msgid "ECCOMMERCE RETURN 2SHOP"
+msgstr ""
 
 #. module: delivery_seur
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_service_code__031
@@ -110,6 +141,11 @@ msgstr "Codi franquícia"
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_printer__hp:laserjet_ii
 msgid "HP LASERJET II"
 msgstr "HP LASERJET II"
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__id
+msgid "ID"
+msgstr ""
 
 #. module: delivery_seur
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_printer__intermec:c4
@@ -157,14 +193,9 @@ msgid "Label size"
 msgstr "Mida etiqueta"
 
 #. module: delivery_seur
-#: model:ir.model.fields,field_description:delivery_seur.field_stock_picking__seur_last_request
-msgid "Last SEUR xml request"
-msgstr "Darrera petició xml SEUR"
-
-#. module: delivery_seur
-#: model:ir.model.fields,field_description:delivery_seur.field_stock_picking__seur_last_response
-msgid "Last SEUR xml response"
-msgstr "Darrera resposta xml SEUR"
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: delivery_seur
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_service_code__017
@@ -197,9 +228,24 @@ msgid "NETEXPRESS"
 msgstr "NETEXPRESS"
 
 #. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__122
+msgid "NEUMATICOS B2B"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__124
+msgid "NEUMATICOS B2C"
+msgstr ""
+
+#. module: delivery_seur
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_label_format__pdf
 msgid "PDF"
 msgstr "PDF"
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_cit_password
+msgid "Password CIT"
+msgstr ""
 
 #. module: delivery_seur
 #: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_ws_password
@@ -247,14 +293,14 @@ msgid "SEUR 13:30"
 msgstr "SEUR 13:30"
 
 #. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__048
+msgid "SEUR 24 PICKUP"
+msgstr ""
+
+#. module: delivery_seur
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_service_code__083
 msgid "SEUR 8:30"
 msgstr "SEUR 8:30"
-
-#. module: delivery_seur
-#: model_terms:ir.ui.view,arch_db:delivery_seur.view_picking_withcarrier_out_form
-msgid "SEUR Technical"
-msgstr "SEUR Tècnic"
 
 #. module: delivery_seur
 #: code:addons/delivery_seur/models/delivery_carrier.py:0
@@ -281,11 +327,6 @@ msgstr "Codi de servei"
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__delivery_type__seur
 msgid "Seur"
 msgstr "Seur"
-
-#. module: delivery_seur
-#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_cit_password
-msgid "Seur Cit Password"
-msgstr "Contrasenya Seur Cit"
 
 #. module: delivery_seur
 #: model:ir.model,name:delivery_seur.model_delivery_carrier
@@ -316,21 +357,10 @@ msgid "This feature has delivery cost"
 msgstr "Aquesta característica té costos de tramesa"
 
 #. module: delivery_seur
-#: model:ir.model,name:delivery_seur.model_stock_picking
-msgid "Transfer"
-msgstr "Transfer"
-
-#. module: delivery_seur
 #: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_cit_password
 #: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_cit_username
 msgid "Used for cit.seur.com webservice (generate labels)"
 msgstr "Usat pel webservice cit.seur.com (generar etiquetes)"
-
-#. module: delivery_seur
-#: model:ir.model.fields,help:delivery_seur.field_stock_picking__seur_last_request
-#: model:ir.model.fields,help:delivery_seur.field_stock_picking__seur_last_response
-msgid "Used for issues debugging"
-msgstr "Usat per depuració d'incidències"
 
 #. module: delivery_seur
 #: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_ws_password
@@ -377,3 +407,21 @@ msgstr "ZEBRA S600"
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_printer__zebra:z4m_plus
 msgid "ZEBRA Z4M PLUS"
 msgstr "ZEBRA Z4M PLUS"
+
+#~ msgid "Last SEUR xml request"
+#~ msgstr "Darrera petició xml SEUR"
+
+#~ msgid "Last SEUR xml response"
+#~ msgstr "Darrera resposta xml SEUR"
+
+#~ msgid "SEUR Technical"
+#~ msgstr "SEUR Tècnic"
+
+#~ msgid "Seur Cit Password"
+#~ msgstr "Contrasenya Seur Cit"
+
+#~ msgid "Transfer"
+#~ msgstr "Transfer"
+
+#~ msgid "Used for issues debugging"
+#~ msgstr "Usat per depuració d'incidències"
