@@ -30,15 +30,25 @@ msgid "Asset"
 msgstr "Ativo"
 
 #. module: l10n_es_aeat_vat_prorrate_asset
-#: model:ir.model,name:l10n_es_aeat_vat_prorrate_asset.model_account_invoice
-#, fuzzy
-msgid "Invoice"
-msgstr "Linha de fatura"
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate_asset.field_account_asset__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate_asset.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate_asset.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate_asset.field_l10n_es_aeat_mod303_report__display_name
+msgid "Display Name"
+msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate_asset
-#: model:ir.model,name:l10n_es_aeat_vat_prorrate_asset.model_account_invoice_line
-msgid "Invoice Line"
-msgstr "Linha de fatura"
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate_asset.field_account_asset__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate_asset.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate_asset.field_account_move_line__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate_asset.field_l10n_es_aeat_mod303_report__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_es_aeat_vat_prorrate_asset
+#: model:ir.model,name:l10n_es_aeat_vat_prorrate_asset.model_account_move
+msgid "Journal Entry"
+msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate_asset
 #: model:ir.model,name:l10n_es_aeat_vat_prorrate_asset.model_account_move_line
@@ -46,13 +56,20 @@ msgid "Journal Item"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate_asset
-#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate_asset.field_account_invoice_line__vat_prorrate_percent
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate_asset.field_account_asset____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate_asset.field_account_move____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate_asset.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate_asset.field_l10n_es_aeat_mod303_report____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_es_aeat_vat_prorrate_asset
 #: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate_asset.field_account_move_line__vat_prorrate_percent
 msgid "Prorrate perc."
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate_asset
-#: code:addons/l10n_es_aeat_vat_prorrate_asset/models/account_invoice.py:30
+#: code:addons/l10n_es_aeat_vat_prorrate_asset/models/account_move.py:0
 #, python-format
 msgid "VAT prorrate percent must be between 0.01 and 100"
 msgstr ""
@@ -66,3 +83,10 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate_asset.field_account_asset__vat_prorrate_percent
 msgid "Vat Prorrate Percent"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Invoice"
+#~ msgstr "Linha de fatura"
+
+#~ msgid "Invoice Line"
+#~ msgstr "Linha de fatura"
