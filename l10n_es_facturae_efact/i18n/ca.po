@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_facturae_efact
+# 	* l10n_es_facturae_efact
 #
 msgid ""
 msgstr ""
@@ -17,197 +17,98 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_es_facturae_efact
-#: selection:account.invoice.integration,integration_status:0
+#: model:ir.model.fields.selection,name:l10n_es_facturae_efact.selection__account_move__l10n_es_facturae_status__efact-accepted
 msgid "Accepted"
 msgstr "Acceptada"
 
 #. module: l10n_es_facturae_efact
-#: selection:account.invoice.integration,integration_status:0
+#: model:ir.model.fields.selection,name:l10n_es_facturae_efact.selection__account_move__l10n_es_facturae_status__efact-recognised
 msgid "Accounted obligation"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
-#: selection:account.invoice.integration,integration_status:0
-msgid "Cancellation approved"
+#: model:ir.model.fields.selection,name:l10n_es_facturae_efact.selection__account_move__l10n_es_facturae_status__efact-canceled
+msgid "Canceled"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
-#: code:addons/l10n_es_facturae_efact/models/account_invoice_integration_method.py:20
-#, python-format
-msgid "Certificate must be added for company"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: code:addons/l10n_es_facturae_efact/models/account_invoice_integration_method.py:23
-#, python-format
-msgid "Certificate password must be added for company"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_invoice_integration__method_code
-msgid "Code"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: model:ir.model,name:l10n_es_facturae_efact.model_res_company
-msgid "Companies"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: model:ir.model,name:l10n_es_facturae_efact.model_res_config_settings
-msgid "Config Settings"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: model:ir.model,name:l10n_es_facturae_efact.model_res_partner
-msgid "Contact"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: code:addons/l10n_es_facturae_efact/models/res_partner.py:28
-#, python-format
-msgid "Country must be defined in order to send to e.Fact"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: selection:account.invoice.integration,integration_status:0
+#: model:ir.model.fields.selection,name:l10n_es_facturae_efact.selection__account_move__l10n_es_facturae_status__efact-delivered
 msgid "Delivered"
 msgstr "Entregada"
 
 #. module: l10n_es_facturae_efact
-#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_invoice_integration__efact_hub_id
-msgid "Efact Hub"
+#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_edi_exchange_record__display_name
+msgid "Display Name"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
-#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_invoice_integration__efact_reference
-msgid "Efact Reference"
+#: model:ir.model,name:l10n_es_facturae_efact.model_edi_exchange_record
+msgid "EDI exchange Record"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
-#: code:addons/l10n_es_facturae_efact/models/res_partner.py:21
-#, python-format
-msgid "Facturae must be selected in order to send to e.Fact"
+#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_bank_statement_line__l10n_es_facturae_status
+#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_move__l10n_es_facturae_status
+#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_payment__l10n_es_facturae_status
+msgid "Facturae status"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
-#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_invoice_integration_log__hub_message_id
-msgid "Hub Message"
+#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_edi_exchange_record__id
+msgid "ID"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
-#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_invoice_integration__integration_status
-msgid "Integration Status"
+#: model:ir.model,name:l10n_es_facturae_efact.model_account_move
+msgid "Journal Entry"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
-#: model:ir.model,name:l10n_es_facturae_efact.model_account_invoice_integration
-msgid "Integration for an invoice"
+#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_move____last_update
+#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_edi_exchange_record____last_update
+msgid "Last Modified on"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
-#: model:ir.model,name:l10n_es_facturae_efact.model_account_invoice_integration_method
-msgid "Integration method for invoices"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: selection:account.invoice.integration,integration_status:0
+#: model:ir.model.fields.selection,name:l10n_es_facturae_efact.selection__account_move__l10n_es_facturae_status__efact-paid
 msgid "Paid"
 msgstr "Pagada"
 
 #. module: l10n_es_facturae_efact
-#: selection:account.invoice.integration,integration_status:0
-msgid "Payed"
+#: model:ir.model.fields.selection,name:l10n_es_facturae_efact.selection__account_move__l10n_es_facturae_status__efact-received
+msgid "Received"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
-#: selection:account.invoice.integration,integration_status:0
+#: model:ir.model.fields.selection,name:l10n_es_facturae_efact.selection__account_move__l10n_es_facturae_status__efact-registered
 msgid "Registered"
 msgstr "Registrada"
 
 #. module: l10n_es_facturae_efact
-#: selection:account.invoice.integration,integration_status:0
-msgid "Registered on RCF"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: selection:account.invoice.integration,integration_status:0
-msgid "Registered on REC"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: selection:account.invoice.integration,integration_status:0
+#: model:ir.model.fields.selection,name:l10n_es_facturae_efact.selection__account_move__l10n_es_facturae_status__efact-annotated
 msgid "Registered on RFC"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
-#: selection:account.invoice.integration,integration_status:0
+#: model:ir.model.fields.selection,name:l10n_es_facturae_efact.selection__account_move__l10n_es_facturae_status__efact-rejected
 msgid "Rejected"
 msgstr "Rebutjada"
 
 #. module: l10n_es_facturae_efact
-#: model:ir.model,name:l10n_es_facturae_efact.model_account_invoice_integration_log
-msgid "Result logs for integrations of invoices"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: selection:account.invoice.integration,integration_status:0
+#: model:ir.model.fields.selection,name:l10n_es_facturae_efact.selection__account_move__l10n_es_facturae_status__efact-sent
 msgid "Sended"
 msgstr "Enviada"
 
 #. module: l10n_es_facturae_efact
-#: code:addons/l10n_es_facturae_efact/models/res_partner.py:32
-#, python-format
-msgid "State must be defined in Spain in order to send to e.Fact"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: code:addons/l10n_es_facturae_efact/models/res_partner.py:25
-#, python-format
-msgid "Vat must be defined in order to send to e.Fact"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: model_terms:ir.ui.view,arch_db:l10n_es_facturae_efact.res_config_settings_view_form
-msgid "e.Fact Configuration"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_config_settings__efact_port
-msgid "e.Fact SSH port"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_company__facturae_efact_code
-#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_partner__facturae_efact_code
-#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_users__facturae_efact_code
-msgid "e.Fact code"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: code:addons/l10n_es_facturae_efact/models/res_partner.py:37
-#, python-format
-msgid "e.Fact code must be correctly defined"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_config_settings__efact_password
-msgid "e.Fact password"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_config_settings__efact_server
-msgid "e.Fact server location"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_config_settings__efact_user
-msgid "e.Fact user"
+#: model:ir.model.fields.selection,name:l10n_es_facturae_efact.selection__account_move__l10n_es_facturae_status__efact-validated
+msgid "Validated"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
 #: model:ir.actions.server,name:l10n_es_facturae_efact.update_efact_job_ir_actions_server
 #: model:ir.cron,cron_name:l10n_es_facturae_efact.update_efact_job
 #: model:ir.cron,name:l10n_es_facturae_efact.update_efact_job
-msgid "eFACT update Job"
+msgid "e.FACT update Job"
 msgstr ""
