@@ -23,27 +23,32 @@ msgid "Account Chart Template"
 msgstr "Plantilla de Plan de Cuentas"
 
 #. module: l10n_es_ticketbai_batuz
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_invoice_filter_inherit_l10n_es_ticketbai_batuz
+#: model:ir.model,name:l10n_es_ticketbai_batuz.model_account_move_reversal
+msgid "Account Move Reversal"
+msgstr ""
+
+#. module: l10n_es_ticketbai_batuz
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_move_filter_inherit_l10n_es_ticketbai_batuz
 msgid "Already sent to LROE. It includes cancelled invoices"
 msgstr "Ya enviadas al LROE. Incluye facturas canceladas"
 
 #. module: l10n_es_ticketbai_batuz
-#: selection:res.company,send_mode:0
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai_batuz.selection__res_company__send_mode__fixed
 msgid "At fixed time"
 msgstr "A una hora fija"
 
 #. module: l10n_es_ticketbai_batuz
-#: selection:res.company,send_mode:0
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai_batuz.selection__res_company__send_mode__end_quarter
 msgid "At the end of the quarter"
 msgstr "Al final del trimestre"
 
 #. module: l10n_es_ticketbai_batuz
-#: selection:account.invoice,lroe_state:0
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai_batuz.selection__account_move__lroe_state__cancel
 msgid "Cancel"
 msgstr "Cancelar"
 
 #. module: l10n_es_ticketbai_batuz
-#: selection:account.invoice,lroe_state:0
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai_batuz.selection__account_move__lroe_state__cancel_modified
 msgid "Cancelled in LROE but last modifications not recorded"
 msgstr "Cancelada en LROE pero con modificaciones pendientes de comunicar"
 
@@ -53,7 +58,7 @@ msgid "Chapter"
 msgstr "Capítulo"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:661
+#: code:addons/l10n_es_ticketbai_batuz/models/account_move.py:0
 #, python-format
 msgid "Chapter and type are required for search a pending LROE Operation"
 msgstr ""
@@ -99,19 +104,42 @@ msgid "Contact"
 msgstr "Contacto"
 
 #. module: l10n_es_ticketbai_batuz
-#: model:ir.model,name:l10n_es_ticketbai_batuz.model_account_invoice_refund
-msgid "Credit Note"
-msgstr "Rectificativa"
-
-#. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_company__delay_time
 msgid "Delay time"
 msgstr "Tiempo de retardo"
 
 #. module: l10n_es_ticketbai_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_chart_template__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position_template__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move_reversal__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_lroe_operation__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_company__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_partner__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_tbai_invoice__display_name
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_tbai_vat_regime_key__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_es_ticketbai_batuz
 #: model:ir.model,name:l10n_es_ticketbai_batuz.model_account_fiscal_position
 msgid "Fiscal Position"
 msgstr "Posición fiscal"
+
+#. module: l10n_es_ticketbai_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_chart_template__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position_template__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move_reversal__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_lroe_operation__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_company__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_partner__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_tbai_invoice__id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_tbai_vat_regime_key__id
+msgid "ID"
+msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_res_company__delay_time
@@ -120,15 +148,27 @@ msgid "In hours"
 msgstr "En horas"
 
 #. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_account_invoice__lroe_state
+#: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_account_bank_statement_line__lroe_state
+#: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_account_move__lroe_state
+#: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_account_payment__lroe_state
 msgid "Indicates the state of this invoice in relation with LROE/Batuz"
 msgstr ""
 "Indica el estado de esta factura con respecto al registro en LROE/Batuz"
 
 #. module: l10n_es_ticketbai_batuz
-#: model:ir.model,name:l10n_es_ticketbai_batuz.model_account_invoice
-msgid "Invoice"
-msgstr "Factura"
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.move_supplier_form_inherit_l10n_es_ticketbai_batuz
+msgid "Invoice Date"
+msgstr ""
+
+#. module: l10n_es_ticketbai_batuz
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.move_supplier_form_inherit_l10n_es_ticketbai_batuz
+msgid "Invoice Number"
+msgstr ""
+
+#. module: l10n_es_ticketbai_batuz
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.move_supplier_form_inherit_l10n_es_ticketbai_batuz
+msgid "Invoice Serial"
+msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_lroe_operation__invoice_ids
@@ -137,12 +177,17 @@ msgid "Invoices"
 msgstr "Facturas"
 
 #. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_invoice_refund__batuz_supplier_invoice_number_required
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move_reversal__batuz_supplier_invoice_number_required
 msgid "Is Supplier Invoice Number Required?"
 msgstr "¿Es requerido el nº de factura de proveedor?"
 
 #. module: l10n_es_ticketbai_batuz
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.invoice_supplier_form_inherit_l10n_es_ticketbai_batuz
+#: model:ir.model,name:l10n_es_ticketbai_batuz.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_es_ticketbai_batuz
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.move_supplier_form_inherit_l10n_es_ticketbai_batuz
 msgid "LROE"
 msgstr "LROE"
 
@@ -152,13 +197,13 @@ msgid "LROE API URL"
 msgstr "LROE API URL"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:726
+#: code:addons/l10n_es_ticketbai_batuz/models/account_move.py:0
 #, python-format
 msgid "LROE Build: method for model %s chapter %s not implemented!"
 msgstr "¡LROE: método para modelo %s capítulo %s no implementado!"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:707
+#: code:addons/l10n_es_ticketbai_batuz/models/account_move.py:0
 #, python-format
 msgid "LROE Build: operation type is necessary!"
 msgstr "¡LROE: el tipo de operación es necesario!"
@@ -169,131 +214,164 @@ msgid "LROE Operation"
 msgstr "Operación LROE"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/lroe_operation.py:200
+#: code:addons/l10n_es_ticketbai_batuz/models/lroe_operation.py:0
 #, python-format
 msgid "LROE Operation %s: XML schema not supported!"
 msgstr "Operación LROE %s: Esquema XML de factura no soportado!"
 
 #. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_invoice__lroe_operation_ids
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.invoice_supplier_form_inherit_l10n_es_ticketbai_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_bank_statement_line__lroe_operation_ids
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__lroe_operation_ids
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_payment__lroe_operation_ids
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.move_supplier_form_inherit_l10n_es_ticketbai_batuz
 msgid "LROE Operations"
 msgstr "Operaciones LROE"
 
 #. module: l10n_es_ticketbai_batuz
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.invoice_supplier_form_inherit_l10n_es_ticketbai_batuz
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_invoice_form_tbai_batuz
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.move_supplier_form_inherit_l10n_es_ticketbai_batuz
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_move_form_tbai_batuz
 msgid "LROE Responses"
 msgstr "Respuestas LROE"
 
 #. module: l10n_es_ticketbai_batuz
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_invoice_filter_inherit_l10n_es_ticketbai_batuz
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_move_filter_inherit_l10n_es_ticketbai_batuz
 msgid "LROE failed"
 msgstr "LROE erróneo"
 
 #. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_invoice__lroe_invoice_dict
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_bank_statement_line__lroe_invoice_dict
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__lroe_invoice_dict
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_payment__lroe_invoice_dict
 msgid "LROE last content sent"
 msgstr "Últimos datos enviados LROE"
 
 #. module: l10n_es_ticketbai_batuz
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_invoice_filter_inherit_l10n_es_ticketbai_batuz
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_move_filter_inherit_l10n_es_ticketbai_batuz
 msgid "LROE not sent"
 msgstr "No enviadas LROE"
 
 #. module: l10n_es_ticketbai_batuz
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_invoice_filter_inherit_l10n_es_ticketbai_batuz
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_move_filter_inherit_l10n_es_ticketbai_batuz
 msgid "LROE sent"
 msgstr "LROE enviada"
 
 #. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_invoice__lroe_state
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_invoice_filter_inherit_l10n_es_ticketbai_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_bank_statement_line__lroe_state
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__lroe_state
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_payment__lroe_state
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_move_filter_inherit_l10n_es_ticketbai_batuz
 msgid "LROE state"
 msgstr "Estado LROE"
 
 #. module: l10n_es_ticketbai_batuz
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_invoice_filter_inherit_l10n_es_ticketbai_batuz
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_chart_template____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position_template____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move_reversal____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_lroe_operation____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_company____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_partner____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_tbai_invoice____last_update
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_tbai_vat_regime_key____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_es_ticketbai_batuz
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_move_filter_inherit_l10n_es_ticketbai_batuz
 msgid "Never sent to LROE"
 msgstr "Nunca enviadas al LROE"
 
 #. module: l10n_es_ticketbai_batuz
-#: selection:account.invoice,lroe_state:0
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai_batuz.selection__account_move__lroe_state__not_sent
 msgid "Not recorded"
 msgstr "No registrada"
 
 #. module: l10n_es_ticketbai_batuz
-#: selection:res.company,send_mode:0
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai_batuz.selection__res_company__send_mode__auto
 msgid "On validate"
 msgstr "Al validar"
 
 #. module: l10n_es_ticketbai_batuz
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_invoice_filter_inherit_l10n_es_ticketbai_batuz
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.move_supplier_form_inherit_l10n_es_ticketbai_batuz
+msgid "Origin Invoices Data"
+msgstr ""
+
+#. module: l10n_es_ticketbai_batuz
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_move_filter_inherit_l10n_es_ticketbai_batuz
 msgid "Pending to sent to LROE"
 msgstr "Pendiente de envío a LROE"
 
 #. module: l10n_es_ticketbai_batuz
-#: selection:tbai.vat.regime.key,type:0
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai_batuz.selection__tbai_vat_regime_key__type__purchase
 msgid "Purchase"
 msgstr "Compra"
 
 #. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_invoice__tbai_vat_regime_purchase_key2
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_bank_statement_line__tbai_vat_regime_purchase_key2
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__tbai_vat_regime_purchase_key2
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_payment__tbai_vat_regime_purchase_key2
 msgid "Purchase VAT Regime 2nd Key"
 msgstr "2ª clave de regímenes de IVA para compras"
 
 #. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_invoice__tbai_vat_regime_purchase_key3
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_bank_statement_line__tbai_vat_regime_purchase_key3
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__tbai_vat_regime_purchase_key3
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_payment__tbai_vat_regime_purchase_key3
 msgid "Purchase VAT Regime 3rd Key"
 msgstr "3ª clave de regímenes de IVA para compras"
 
 #. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_invoice__tbai_vat_regime_purchase_key
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_bank_statement_line__tbai_vat_regime_purchase_key
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__tbai_vat_regime_purchase_key
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_payment__tbai_vat_regime_purchase_key
 msgid "Purchase VAT Regime Key"
 msgstr "Clave de regímenes de IVA para compras"
 
 #. module: l10n_es_ticketbai_batuz
-#: selection:account.invoice,lroe_state:0
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai_batuz.selection__account_move__lroe_state__recorded
 msgid "Recorded"
 msgstr "Correcto"
 
 #. module: l10n_es_ticketbai_batuz
-#: selection:account.invoice,lroe_state:0
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai_batuz.selection__account_move__lroe_state__recorded_warning
 msgid "Recorded with warnings"
 msgstr "Aceptado con errores"
 
 #. module: l10n_es_ticketbai_batuz
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.invoice_supplier_form_inherit_l10n_es_ticketbai_batuz
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.move_supplier_form_inherit_l10n_es_ticketbai_batuz
 msgid "Refund"
 msgstr "Rectificativa"
 
 #. module: l10n_es_ticketbai_batuz
-#: selection:account.invoice,lroe_state:0
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai_batuz.selection__account_move__lroe_state__recorded_modified
 msgid "Registered in LROE but last modifications not recorded"
 msgstr "Registro correcto en LROE con modificaciones pendientes de comunicar"
 
 #. module: l10n_es_ticketbai_batuz
-#: selection:account.invoice,lroe_state:0
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai_batuz.selection__account_move__lroe_state__error
 msgid "Registration error"
 msgstr "Error de registro"
 
 #. module: l10n_es_ticketbai_batuz
-#: selection:account.invoice,lroe_state:0
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai_batuz.selection__account_move__lroe_state__pending
 msgid "Registration in LROE planned"
 msgstr "Registro en LROE planificado"
 
 #. module: l10n_es_ticketbai_batuz
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.invoice_supplier_form_inherit_l10n_es_ticketbai_batuz
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.move_supplier_form_inherit_l10n_es_ticketbai_batuz
 msgid "Resend to LROE"
 msgstr "Reenviar LROE"
 
 #. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_invoice__lroe_response_line_ids
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_bank_statement_line__lroe_response_line_ids
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move__lroe_response_line_ids
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_payment__lroe_response_line_ids
 msgid "Responses"
 msgstr "Respuestas"
 
 #. module: l10n_es_ticketbai_batuz
-#: selection:tbai.vat.regime.key,type:0
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai_batuz.selection__tbai_vat_regime_key__type__sale
 msgid "Sale"
 msgstr "Venta"
 
@@ -314,12 +392,12 @@ msgid "Simplified invoices in LROE?"
 msgstr "¿Facturas simplificadas en el LROE?"
 
 #. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_invoice_refund__batuz_supplier_invoice_number
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_move_reversal__batuz_supplier_invoice_number
 msgid "Supplier Invoice Number"
 msgstr "Referencia de proveedor"
 
 #. module: l10n_es_ticketbai_batuz
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.invoice_supplier_form_inherit_l10n_es_ticketbai_batuz
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.move_supplier_form_inherit_l10n_es_ticketbai_batuz
 msgid "Technical"
 msgstr "Técnico"
 
@@ -329,12 +407,12 @@ msgid "Template for Fiscal Position"
 msgstr "Plantilla de posición fiscal"
 
 #. module: l10n_es_ticketbai_batuz
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_invoice_filter_inherit_l10n_es_ticketbai_batuz
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_move_filter_inherit_l10n_es_ticketbai_batuz
 msgid "The last attemp to sent to LROE has failed"
 msgstr "El último intento de envío al LROE ha fallado"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:400
+#: code:addons/l10n_es_ticketbai_batuz/models/account_move.py:0
 #, python-format
 msgid "There's a mismatch in taxes for RE. Check them."
 msgstr "Hay un cruce erróneo para tasas en RE. Compruébelas."
@@ -396,7 +474,7 @@ msgid "VAT Regime Key for purchases"
 msgstr "Clave de regímenes de IVA para compras"
 
 #. module: l10n_es_ticketbai_batuz
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.invoice_supplier_form_inherit_l10n_es_ticketbai_batuz
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.move_supplier_form_inherit_l10n_es_ticketbai_batuz
 msgid "VAT Regimes"
 msgstr "Regímenes de IVA"
 
@@ -406,12 +484,12 @@ msgid "VAT Regimes Purchase"
 msgstr "Regímenes de IVA para compras"
 
 #. module: l10n_es_ticketbai_batuz
-#: selection:res.company,send_mode:0
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai_batuz.selection__res_company__send_mode__delayed
 msgid "With delay"
 msgstr "Con retardo"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:712
+#: code:addons/l10n_es_ticketbai_batuz/models/account_move.py:0
 #, python-format
 msgid ""
 "You can not communicate this invoice at this moment because there is a job "
@@ -421,13 +499,18 @@ msgstr ""
 "ejecutándose!"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:804
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:838
+#: code:addons/l10n_es_ticketbai_batuz/models/account_move.py:0
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr ""
 "¡En este momento no puede poner en borrador esta factura porque hay un "
 "trabajo ejecutándose!"
+
+#~ msgid "Credit Note"
+#~ msgstr "Rectificativa"
+
+#~ msgid "Invoice"
+#~ msgstr "Factura"
 
 #~ msgid "Templates for Account Chart"
 #~ msgstr "Plantillas de plan contable"
