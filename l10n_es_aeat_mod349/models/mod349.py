@@ -250,26 +250,17 @@ class Mod349(models.Model):
                 # happens in this way because the right original_amount
                 # will be the value of the total_operation_amount
                 # corresponding to the last period found in between the periods
-                other_invoice_period = (
-                    all_details_period.mapped("move_id") - origin_invoice
+                last_refund_detail = refund_detail_obj.search(
+                    [
+                        ("report_id.date_start", ">", report.date_end),
+                        ("report_id.date_end", "<", self.date_start),
+                        ("move_id", "in", origin_invoice.reversal_move_id.ids),
+                    ],
+                    order="date desc",
+                    limit=1,
                 )
-                refund_invoice_ids = self.env["account.move"].search(
-                    [("reversed_entry_id", "in", other_invoice_period.ids)]
-                )
-                if refund_invoice_ids:
-                    last_refund_detail = refund_detail_obj.search(
-                        [
-                            ("report_id.date_start", ">", report.date_end),
-                            ("report_id.date_end", "<", self.date_start),
-                            ("move_id", "in", refund_invoice_ids.ids),
-                        ],
-                        order="date desc",
-                        limit=1,
-                    )
-                    if last_refund_detail:
-                        origin_amount = (
-                            last_refund_detail.refund_id.total_operation_amount
-                        )
+                if last_refund_detail:
+                    origin_amount = last_refund_detail.refund_id.total_operation_amount
 
             else:
                 # There's no previous 349 declaration report in Odoo
