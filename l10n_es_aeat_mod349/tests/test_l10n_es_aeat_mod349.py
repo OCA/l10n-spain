@@ -4,6 +4,8 @@
 
 import logging
 
+from odoo.tests.common import tagged
+
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
 )
@@ -11,6 +13,7 @@ from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
 _logger = logging.getLogger("aeat.349")
 
 
+@tagged("post_install", "-at_install")
 class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
     # Set 'debug' attribute to True to easy debug this test
     # Do not forget to include '--log-handler aeat:DEBUG' in Odoo command line
@@ -22,6 +25,25 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         "P_IVA21_IC_BC": (150, 0),
         "P_IVA21_IC_BC//2": (150, 0),
     }
+
+    @classmethod
+    def _invoice_refund(cls, invoice, dt, price_unit=None):
+        _logger.debug(
+            "Refund {} invoice: date = {}: price_unit = {}".format(
+                invoice.move_type, dt, price_unit or 150.0
+            )
+        )
+        default_values_list = [
+            {"date": dt, "invoice_date": dt, "invoice_payment_term_id": None}
+        ]
+        inv = invoice.with_user(cls.billing_user)._reverse_moves(default_values_list)
+        if price_unit is not None:
+            for line in inv.invoice_line_ids:
+                line.price_unit = price_unit
+        inv.action_post()
+        if cls.debug:
+            cls._print_move_lines(inv.line_ids)
+        return inv
 
     def test_model_349(self):
         # Add some test data
@@ -210,3 +232,79 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         self.env.ref("l10n_es_aeat_mod349.act_report_aeat_mod349_pdf")._render(
             "l10n_es_aeat_mod349.report_l10n_es_mod349_pdf", model349.ids, {}
         )
+
+    def test_model_349_with_intermediate_periods(self):
+        # Create vendor bill and 2 refunds in different periods
+        inv = self._invoice_purchase_create("2017-01-01")
+        self._invoice_refund(inv, "2017-02-01", price_unit=50.0)
+        self._invoice_refund(inv, "2017-03-01", price_unit=50.0)
+        # Create model
+        model349_model = self.env["l10n.es.aeat.mod349.report"].with_user(
+            self.account_manager
+        )
+        model349_1 = model349_model.create(
+            {
+                "name": "3490000000001",
+                "company_id": self.company.id,
+                "company_vat": "1234567890",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": 2017,
+                "period_type": "01",
+                "date_start": "2017-01-01",
+                "date_end": "2017-01-31",
+            }
+        )
+        # Calculate
+        _logger.debug("Calculate AEAT 349 January 2017")
+        model349_1.button_calculate()
+        self.assertEqual(model349_1.total_partner_records, 1)
+        self.assertEqual(model349_1.partner_record_ids.total_operation_amount, 300)
+
+        model349_2 = model349_model.create(
+            {
+                "name": "3490000000002",
+                "company_id": self.company.id,
+                "company_vat": "1234567890",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": 2017,
+                "period_type": "02",
+                "date_start": "2017-02-01",
+                "date_end": "2017-02-28",
+            }
+        )
+        # Calculate
+        _logger.debug("Calculate AEAT 349 February 2017")
+        model349_2.button_calculate()
+        self.assertEqual(model349_2.total_partner_records, 0)
+        self.assertEqual(model349_2.total_partner_refunds, 1)
+        self.assertEqual(model349_2.partner_refund_ids.total_origin_amount, 300)
+        self.assertEqual(model349_2.partner_refund_ids.total_operation_amount, 200)
+
+        model349_3 = model349_model.create(
+            {
+                "name": "3490000000003",
+                "company_id": self.company.id,
+                "company_vat": "1234567890",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": 2017,
+                "period_type": "03",
+                "date_start": "2017-03-01",
+                "date_end": "2017-03-31",
+            }
+        )
+        # Calculate
+        _logger.debug("Calculate AEAT 349 March 2017")
+        model349_3.button_calculate()
+        self.assertEqual(model349_3.total_partner_records, 0)
+        self.assertEqual(model349_3.total_partner_refunds, 1)
+        self.assertEqual(model349_3.partner_refund_ids.total_origin_amount, 200)
+        self.assertEqual(model349_3.partner_refund_ids.total_operation_amount, 100)
