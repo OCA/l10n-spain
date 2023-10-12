@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-13 07:00+0000\n"
-"PO-Revision-Date: 2022-08-30 11:07+0000\n"
-"Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
+"PO-Revision-Date: 2023-10-12 12:38+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_ticketbai_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
@@ -58,7 +58,7 @@ msgstr "Ficheros enviados"
 #. module: l10n_es_ticketbai_pos
 #: model:ir.model,name:l10n_es_ticketbai_pos.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Entrada diaria"
 
 #. module: l10n_es_ticketbai_pos
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__tbai_last_invoice_id
@@ -96,7 +96,7 @@ msgstr "Pedidos"
 #: code:addons/l10n_es_ticketbai_pos/static/src/xml/pos.xml:0
 #, python-format
 msgid "PRO FORMA"
-msgstr ""
+msgstr "FORMA PRO"
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
@@ -186,6 +186,7 @@ msgstr "Secuencia de factura simplificada requerida"
 #, python-format
 msgid "Simplified Invoice Number Prefix %s is not part of Number %%!"
 msgstr ""
+"¡Número de factura simplificado El prefijo %s no forma parte del número %%!"
 
 #. module: l10n_es_ticketbai_pos
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_bank_statement_line__tbai_substitution_pos_order_id
@@ -205,7 +206,7 @@ msgstr "Pedido TPV de sustitución Tbai"
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
 #, python-format
 msgid "TicketBAI"
-msgstr "TicketBAI"
+msgstr "TiquetBAI"
 
 #. module: l10n_es_ticketbai_pos
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__tbai_certificate_id
