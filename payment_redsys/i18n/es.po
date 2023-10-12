@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-26 16:03+0000\n"
-"PO-Revision-Date: 2023-09-20 16:11+0000\n"
+"PO-Revision-Date: 2023-10-12 12:38+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
 "language/es/)\n"
@@ -34,7 +34,7 @@ msgstr "Alemán"
 #: code:addons/payment_redsys/models/payment_transaction.py:0
 #, python-format
 msgid "Bank Error: %(status_code)s (%(error_code)s)"
-msgstr ""
+msgstr "Error Bancario: %(status_code)s (%(error_code)s)"
 
 #. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_pay_method__z
@@ -65,7 +65,7 @@ msgstr "Domiciliación"
 #: code:addons/payment_redsys/models/payment_transaction.py:0
 #, python-format
 msgid "Error: %(status_code)s (%(error_code)s)"
-msgstr ""
+msgstr "Error: %(status_code)s (%(error_code)s)"
 
 #. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_merchant_lang__013
@@ -151,7 +151,7 @@ msgstr "Método de pago"
 #. module: payment_redsys
 #: model:ir.model,name:payment_redsys.model_account_payment_method
 msgid "Payment Methods"
-msgstr ""
+msgstr "Métodos de Pago"
 
 #. module: payment_redsys
 #: model:ir.model,name:payment_redsys.model_payment_transaction
@@ -194,7 +194,7 @@ msgstr "Versión de Redsys de la firma"
 #: code:addons/payment_redsys/models/payment_transaction.py:0
 #, python-format
 msgid "Redsys: feedback error: %(status_code)s (%(error_code)s)"
-msgstr ""
+msgstr "Redsys: error de respuesta: %(status_code)s (%(error_code)s)"
 
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_secret_key
@@ -215,6 +215,8 @@ msgstr "Terminal"
 #: model:ir.model.fields,help:payment_redsys.field_payment_acquirer__provider
 msgid "The Payment Service Provider to use with this acquirer"
 msgstr ""
+"El proveedor de servicios de pago que se utilizará con esta entidad "
+"adquirente"
 
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_transaction__redsys_txnid
