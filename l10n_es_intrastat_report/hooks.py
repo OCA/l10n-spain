@@ -12,7 +12,7 @@ def post_init_hook(cr, registry):
     items = env["ir.model.data"].search(
         [
             ("model", "=", "account.fiscal.position"),
-            ("name", "like", "%_fp_intra_private"),
+            ("name", "like", "%_fp_intra%"),
             ("module", "=", "l10n_es"),
         ]
     )
