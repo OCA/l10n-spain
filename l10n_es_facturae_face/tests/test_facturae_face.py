@@ -2,8 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import logging
-
-import mock
+from unittest import mock
 
 from odoo import exceptions
 
@@ -12,17 +11,15 @@ from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
     TestL10nEsAeatCertificateBase,
 )
 
+_logger = logging.getLogger(__name__)
 try:
     from zeep import Client
 except (ImportError, IOError) as err:
-    logging.info(err)
-
-
-_logger = logging.getLogger(__name__)
+    _logger.info(err)
 
 
 class EDIBackendTestCase(
-    TestL10nEsAeatCertificateBase, EDIBackendCommonComponentRegistryTestCase
+    EDIBackendCommonComponentRegistryTestCase, TestL10nEsAeatCertificateBase
 ):
     @classmethod
     def setUpClass(cls):
@@ -141,8 +138,8 @@ class EDIBackendTestCase(
             {
                 "company_id": main_company.id,
                 "name": "Facturae Product account",
-                "code": "facturae_product",
-                "user_type_id": self.env.ref("account.data_account_type_revenue").id,
+                "code": "facturaeproduct",
+                "account_type": "income",
             }
         )
         self.move = self.env["account.move"].create(
@@ -171,34 +168,6 @@ class EDIBackendTestCase(
                 ],
             }
         )
-        self.move.refresh()
-        self.move = self.env["account.move"].create(
-            {
-                "partner_id": self.partner.id,
-                # "account_id": self.partner.property_account_receivable_id.id,
-                "journal_id": self.sale_journal.id,
-                "invoice_date": "2016-03-12",
-                "payment_mode_id": self.payment_mode.id,
-                "move_type": "out_invoice",
-                "invoice_line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "product_id": self.env.ref(
-                                "product.product_delivery_02"
-                            ).id,
-                            "account_id": self.account.id,
-                            "name": "Producto de prueba",
-                            "quantity": 1.0,
-                            "price_unit": 100.0,
-                            "tax_ids": [(6, 0, self.tax.ids)],
-                        },
-                    )
-                ],
-            }
-        )
-        self.move.refresh()
         self.main_company = self.env.ref("base.main_company")
         self.main_company.face_email = "test@test.com"
         self.face_update_type = self.env.ref(
@@ -231,7 +200,7 @@ class EDIBackendTestCase(
         self.move.with_context(
             force_edi_send=True, test_queue_job_no_delay=True
         ).action_post()
-        self.move.refresh()
+        self.move.invalidate_recordset()
         self.assertTrue(self.move.exchange_record_ids)
         exchange_record = self.move.exchange_record_ids
         self.assertEqual(exchange_record.edi_exchange_state, "output_pending")
@@ -282,7 +251,7 @@ class EDIBackendTestCase(
                 exchange_record.edi_exchange_state, "output_sent_and_processed"
             )
             mock_client.assert_called_once()
-        self.move.refresh()
+        self.move.invalidate_recordset()
         self.assertTrue(self.move.exchange_record_ids)
         self.assertIn(
             str(self.face_update_type.id),
@@ -335,7 +304,7 @@ class EDIBackendTestCase(
                 exchange_record.edi_exchange_state, "output_sent_and_processed"
             )
             mock_client.assert_called_once()
-        self.move.refresh()
+        self.move.invalidate_recordset()
         self.assertTrue(self.move.exchange_record_ids)
         exchange_record = self.move.exchange_record_ids
         response_update = client.get_type("ns0:ConsultarFacturaResponse")(
@@ -346,14 +315,14 @@ class EDIBackendTestCase(
                 client.get_type("ns0:EstadoFactura")("4100", "DESC", "MOTIVO"),
             ),
         )
-        self.move.refresh()
+        self.move.invalidate_recordset()
         self.assertIn(
             str(self.face_update_type.id),
             self.move.edi_config,
         )
         try:
             self.move.edi_create_exchange_record(self.face_update_type.id)
-        except exceptions.UserError:  # pylint: disable=W7938
+        except exceptions.UserError:  # pylint: disable=W8138
             pass
         except Exception:
             raise
@@ -389,16 +358,16 @@ class EDIBackendTestCase(
         with mock.patch("zeep.client.ServiceProxy") as mock_client:
             mock_client.return_value = DemoService(multi_response)
             self.env["edi.exchange.record"].with_context()._cron_face_update_method()
-        exchange_record.flush()
-        exchange_record.refresh()
+        exchange_record.flush_recordset()
+        exchange_record.invalidate_recordset()
         self.assertEqual(exchange_record.l10n_es_facturae_status, "face-1300")
 
         self.assertEqual(len(exchange_record.related_exchange_ids), 3)
         with mock.patch("zeep.client.ServiceProxy") as mock_client:
             mock_client.return_value = DemoService(multi_response)
             self.env["edi.exchange.record"].with_context()._cron_face_update_method()
-        exchange_record.flush()
-        exchange_record.refresh()
+        exchange_record.flush_recordset()
+        exchange_record.invalidate_recordset()
         self.assertEqual(len(exchange_record.related_exchange_ids), 3)
         # New record should not have been created
         cancel = self.env["edi.l10n.es.facturae.face.cancel"].create(
@@ -413,7 +382,7 @@ class EDIBackendTestCase(
         with mock.patch("zeep.client.ServiceProxy") as mock_client:
             mock_client.return_value = DemoService(response_cancel)
             cancel.cancel_face()
-        exchange_record.refresh()
+        exchange_record.invalidate_recordset()
         self.assertEqual(
             exchange_record.l10n_es_facturae_cancellation_status, "face-4200"
         )
