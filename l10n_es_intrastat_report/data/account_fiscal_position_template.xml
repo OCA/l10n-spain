@@ -3,11 +3,9 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="l10n_es.fp_intra_private" model="account.fiscal.position.template">
-        <field name="intrastat">b2b</field>
-        <field name="vat_required" eval="False" />
+        <field name="intrastat">b2c</field>
     </record>
     <record id="l10n_es.fp_intra" model="account.fiscal.position.template">
         <field name="intrastat">b2b</field>
-        <field name="vat_required" eval="False" />
     </record>
 </odoo>
