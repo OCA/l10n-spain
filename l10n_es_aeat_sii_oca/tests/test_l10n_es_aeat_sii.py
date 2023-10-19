@@ -3,6 +3,7 @@
 # Copyright 2020 Valentin Vinagre <valent.vinagre@sygel.es>
 # Copyright 2021 Tecnativa - João Marques
 # Copyright 2017-2023 Tecnativa - Pedro M. Baeza
+# Copyright 2023 Moduon Team - Eduardo de Miguel
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 import json
@@ -436,6 +437,35 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         )
         with self.assertRaises(exceptions.UserError):
             invoice._sii_check_exceptions()
+
+    def test_sii_check_exceptions_case_supplier_on_post(self):
+        """Check sii exceptions when posting supplier bills"""
+        supplier = self.supplier.copy()
+        supplier.country_id = self.env.ref("base.es")
+        supplier.vat = "A46180576"
+        # Extra data without `ref` field
+        extra_data_wo_ref = {
+            "partner_id": supplier.id,
+            "invoice_line_ids": [
+                (
+                    0,
+                    0,
+                    {
+                        "name": "Test line",
+                        "account_id": self.accounts["600000"].id,
+                        "price_unit": 100.0,
+                        "quantity": 1,
+                    },
+                )
+            ],
+        }
+        with self.assertRaises(exceptions.UserError):
+            self._invoice_purchase_create("2018-02-01", extra_vals=extra_data_wo_ref)
+        self.assertTrue(
+            self._invoice_purchase_create(
+                "2018-02-01", extra_vals=dict(extra_data_wo_ref, ref="TEST REF")
+            )
+        )
 
     def test_unlink_draft_invoice_when_not_sent_to_sii(self):
         draft_invoice = self.invoice.copy({})
