@@ -9,6 +9,16 @@ class TestL10nEsPartner(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(
+            context=dict(
+                cls.env.context,
+                mail_create_nolog=True,
+                mail_create_nosubscribe=True,
+                mail_notrack=True,
+                no_reset_password=True,
+                tracking_disable=True,
+            )
+        )
         # Make sure there's no commercial name on display_name field
         cls.env["ir.config_parameter"].set_param("l10n_es_partner.name_pattern", "")
         cls.country_spain = cls.env.ref("base.es")
