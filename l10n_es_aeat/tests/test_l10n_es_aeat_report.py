@@ -14,6 +14,16 @@ class TestL10nEsAeatReport(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(
+            context=dict(
+                cls.env.context,
+                mail_create_nolog=True,
+                mail_create_nosubscribe=True,
+                mail_notrack=True,
+                no_reset_password=True,
+                tracking_disable=True,
+            )
+        )
         # Load a test model using odoo_test_helper
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
