@@ -27,6 +27,7 @@
         "base_vat",
         "report_xml",
         "report_qweb_parameter",
+        "l10n_es_aeat",
     ],
     "data": [
         "security/ir.model.access.csv",
