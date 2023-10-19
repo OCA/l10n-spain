@@ -10,3 +10,7 @@
 * `Planeta Huerto <https://www.planetahuerto.es>`_:
 
   * Juanjo Algaz
+
+* `FactorLibre <https://factorlibre.com>`_:
+
+  * Aritz Olea
