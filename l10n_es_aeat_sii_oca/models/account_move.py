@@ -9,6 +9,7 @@
 # Copyright 2011-2023 Tecnativa - Pedro M. Baeza
 # Copyright 2023 Aures Tic - Almudena de la Puente <almudena@aurestic.es>
 # Copyright 2023 Aures Tic - Jose Zambudio <jose@aurestic.es>
+# Copyright 2023 Moduon Team - Eduardo de Miguel
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import json
@@ -587,6 +588,7 @@ class AccountMove(models.Model):
     def _post(self, soft=True):
         res = super()._post(soft=soft)
         for invoice in self.filtered(lambda x: x.sii_enabled and x.is_invoice()):
+            invoice._sii_check_exceptions()
             if (
                 invoice.sii_state in ["sent_modified", "sent"]
                 and self._sii_invoice_dict_not_modified()
