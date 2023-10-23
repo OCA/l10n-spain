@@ -31,6 +31,7 @@ setuptools.setup(
         'odoo13-addon-l10n_es_aeat_mod349',
         'odoo13-addon-l10n_es_aeat_mod390',
         'odoo13-addon-l10n_es_aeat_mod390_oss',
+        'odoo13-addon-l10n_es_aeat_sii_match',
         'odoo13-addon-l10n_es_aeat_sii_oca',
         'odoo13-addon-l10n_es_aeat_sii_oss',
         'odoo13-addon-l10n_es_aeat_vat_prorrate',
