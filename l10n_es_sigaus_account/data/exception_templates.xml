@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
+ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template id="exception_sigaus">
+        <div>
+            Exception(s) occurred:
+            <a href="#" t-att-data-oe-model="model" t-att-data-oe-id="origin" />.
+            The following products are subject to SIGAUS but have no weight.
+            <div class="mt16">
+                <p>Product(s):</p>
+                <ul t-foreach="products" t-as="product">
+                    <li>
+                        <a
+                            href="#"
+                            data-oe-model="product.product"
+                            t-att-data-oe-id="product.id"
+                        ><t t-esc="product.name" /></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </template>
+</odoo>

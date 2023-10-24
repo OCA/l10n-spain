@@ -1,0 +1,68 @@
+<odoo>
+<!-- Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
+ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+    <record id="l10n_es_sigaus_account_amount_form_view" model="ir.ui.view">
+        <field name="name">l10n.es.sigaus.account.amount.form.view</field>
+        <field name="model">l10n.es.sigaus.amount</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="price" />
+                        </group>
+                        <group>
+                            <label for="date_from" string="Dates" />
+                            <div class="o_row">
+                                <field
+                                    name="date_from"
+                                    widget="daterange"
+                                    options='{"related_end_date": "date_to"}'
+                                />
+                                <i
+                                    class="fa fa-long-arrow-right mx-1"
+                                    aria-label="Arrow icon"
+                                    title="Arrow"
+                                />
+                                <field
+                                    name="date_to"
+                                    widget="daterange"
+                                    options='{"related_start_date": "date_from"}'
+                                />
+                            </div>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="l10n_es_sigaus_account_amount_tree_view" model="ir.ui.view">
+        <field name="name">l10n.es.sigaus.account.amount.tree.view</field>
+        <field name="model">l10n.es.sigaus.amount</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="date_from" />
+                <field name="date_to" />
+                <field name="price" />
+            </tree>
+        </field>
+    </record>
+    <record id="l10n_es_sigaus_account_amount_action" model="ir.actions.act_window">
+        <field name="name">L10n Es Sigaus Amount</field>
+        <field name="res_model">l10n.es.sigaus.amount</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="l10n_es_sigaus_account_amount_tree_view" />
+    </record>
+    <menuitem
+        parent="account.menu_finance_configuration"
+        id="menu_l10n_es_sigaus"
+        name="SIGAUS"
+    />
+    <menuitem
+        parent="l10n_es_sigaus_account.menu_l10n_es_sigaus"
+        action="l10n_es_sigaus_account_amount_action"
+        id="menu_l10n_es_sigaus_account_amount"
+    />
+</odoo>
