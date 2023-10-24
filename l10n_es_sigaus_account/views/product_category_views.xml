@@ -1,0 +1,14 @@
+<odoo>
+<!-- Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
+ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+    <record id="l10n_es_sigaus_account_product_category_form_view" model="ir.ui.view">
+        <field name="name">l10n.es.sigaus.account.product.category.form.view</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view" />
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <field name="sigaus_subject" />
+            </field>
+        </field>
+    </record>
+</odoo>

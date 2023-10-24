@@ -1,0 +1,30 @@
+<odoo>
+<!-- Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
+ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+    <record id="l10n_es_sigaus_account_view_move_form" model="ir.ui.view">
+        <field name="name">l10n.es.sigaus.account.view.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@id='header_right_group']" position="inside">
+                <field name="sigaus_company" invisible="1" />
+                <field
+                    name="is_sigaus"
+                    attrs="{'readonly': [('state', '!=', 'draft')], 'invisible': [('sigaus_company', '=', False)]}"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='invoice_line_ids']/form//field[@name='price_unit']"
+                position="before"
+            >
+                <field name="is_sigaus" invisible="1" />
+            </xpath>
+            <xpath
+                expr="//field[@name='invoice_line_ids']/tree/field[@name='price_unit']"
+                position="before"
+            >
+                <field name="is_sigaus" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,24 @@
+<odoo>
+<!-- Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
+ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+    <record id="l10n_es_sigaus_account_view_account_position_form" model="ir.ui.view">
+        <field name="name">l10n.es.sigaus.account.view.account.position.form</field>
+        <field name="model">account.fiscal.position</field>
+        <field name="inherit_id" ref="account.view_account_position_form" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="sigaus_subject" />
+            </field>
+        </field>
+    </record>
+    <record id="l10n_es_sigaus_account_view_account_position_tree" model="ir.ui.view">
+        <field name="name">l10n.es.sigaus.account.view.account.position.tree</field>
+        <field name="model">account.fiscal.position</field>
+        <field name="inherit_id" ref="account.view_account_position_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="sigaus_subject" />
+            </field>
+        </field>
+    </record>
+</odoo>
