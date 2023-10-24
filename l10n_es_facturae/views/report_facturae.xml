@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+    <!--
+        The system will implement most of the fields,
+        but all the unnecesary ones will be hidden.
+        They are created because the schema sequence is required
+        If we create them, we can ensure that multiple repos can edit them.
+        Otherwise, we cannot ensure that the fields are on the required order
+        due to the module installation order.
+    -->
     <record id="report_facturae" model="ir.actions.report">
         <field name="report_name">l10n_es_facturae.template_facturae</field>
         <field name="name">Facturae sin firmar</field>
@@ -157,7 +165,7 @@
                 t-out="administrative_partner.phone"
                 t-if="administrative_partner.phone"
             />
-            <TeleFax t-length="15" t-if="False" />
+            <TeleFax t-esc="''" t-length="15" t-if="False" />
             <WebAddress
                 t-length="60"
                 t-out="administrative_partner.website"
@@ -174,7 +182,7 @@
             />
             <CnoCnae t-if="False" />
             <INETownCode t-if="False" />
-            <AdditionalContactDetails t-length="60" t-if="False" />
+            <AdditionalContactDetails t-esc="''" t-length="60" t-if="False" />
         </ContactDetails>
     </template>
     <template id="template_facturae">
@@ -369,9 +377,17 @@
                                 t-if="move.get_narration()"
                                 t-out="move.get_narration()"
                             />
-                            <ReceiverTransactionReference t-length="20" t-if="False" />
-                            <FileReference t-length="20" t-if="False" />
-                            <ReceiverContractReference t-length="20" t-if="False" />
+                            <ReceiverTransactionReference
+                                t-out="''"
+                                t-length="20"
+                                t-if="False"
+                            />
+                            <FileReference t-out="''" t-length="20" t-if="False" />
+                            <ReceiverContractReference
+                                t-out="''"
+                                t-length="20"
+                                t-if="False"
+                            />
                         </t>
                     </InvoiceIssueData>
                     <TaxesOutputs>
@@ -475,7 +491,7 @@
                         <TotalReimbursableExpenses t-if="False" />
                         <t t-if="version not in ('3_2', '3_2_1')">
                             <PaymentInKind t-if="False">
-                                <PaymentInKindReason t-length="2500" />
+                                <PaymentInKindReason t-out="''" t-length="2500" />
                                 <PaymentInKindAmount />
                             </PaymentInKind>
                         </t>
@@ -629,6 +645,7 @@
                                 t-esc="line.facturae_transaction_date"
                             />
                             <AdditionalLineItemInformation
+                                t-out="''"
                                 t-length="2500"
                                 t-if="False"
                             />
@@ -670,7 +687,7 @@
                                     t-esc="bank.code"
                                     t-if="bank.code"
                                 />
-                                <BranchCode t-length="60" t-if="False" />
+                                <BranchCode t-esc="''" t-length="60" t-if="False" />
                                 <BIC
                                     t-minlength="11"
                                     t-length="11"
@@ -678,6 +695,7 @@
                                     t-if="bank.bic"
                                 />
                                 <PaymentReconciliationReference
+                                    t-esc="''"
                                     t-length="60"
                                     t-if="False"
                                 />
@@ -693,7 +711,7 @@
                                     t-esc="bank.code"
                                     t-if="bank.code"
                                 />
-                                <BranchCode t-length="60" t-if="False" />
+                                <BranchCode t-esc="''" t-length="60" t-if="False" />
                                 <BIC
                                     t-minlength="11"
                                     t-length="11"
