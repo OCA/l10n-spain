@@ -1,0 +1,26 @@
+<odoo>
+<!-- Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
+ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+    <record id="l10n_es_sigaus_account_view_company_form" model="ir.ui.view">
+        <field name="name">l10n.es.sigaus.account.view.company.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page name="Sigaus" string="Sigaus">
+                    <group>
+                        <field name="sigaus_enable" />
+                        <field
+                            name="sigaus_date_from"
+                            attrs="{'invisible': [('sigaus_enable', '=', False)], 'required': [('sigaus_date_from', '=', True)]}"
+                        />
+                        <field
+                            name="sigaus_show_in_reports"
+                            attrs="{'invisible': [('sigaus_enable', '=', False)]}"
+                        />
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
