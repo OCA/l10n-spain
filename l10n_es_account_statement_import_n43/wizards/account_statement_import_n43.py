@@ -381,6 +381,7 @@ class AccountStatementImport(models.TransientModel):
                     "payment_ref": " ".join(conceptos)
                     or self._get_n43_ref(line)
                     or "/",
+                    "ref": self._get_n43_ref(line),
                     "amount": line["importe"],
                     # inject raw parsed N43 dict for later use, that will be
                     # removed before passing final values to create the record
