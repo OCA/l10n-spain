@@ -53,6 +53,16 @@ class TestL10nEsAeat(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(
+            context=dict(
+                cls.env.context,
+                mail_create_nolog=True,
+                mail_create_nosubscribe=True,
+                mail_notrack=True,
+                no_reset_password=True,
+                tracking_disable=True,
+            )
+        )
         cls.tax_map_model = cls.env["l10n.es.aeat.map.tax"]
         cls.tax_map = cls.tax_map_model.create({"model": 999})
 

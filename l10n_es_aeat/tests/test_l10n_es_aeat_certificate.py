@@ -67,6 +67,16 @@ class TestL10nEsAeatCertificateBase(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(
+            context=dict(
+                cls.env.context,
+                mail_create_nolog=True,
+                mail_create_nosubscribe=True,
+                mail_notrack=True,
+                no_reset_password=True,
+                tracking_disable=True,
+            )
+        )
         cls.certificate_password = b"794613"
         private_key = generate_private_key(public_exponent=65537, key_size=2048)
         public_key = private_key.public_key()
