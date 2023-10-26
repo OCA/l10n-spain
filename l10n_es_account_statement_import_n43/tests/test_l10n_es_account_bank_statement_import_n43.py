@@ -98,6 +98,9 @@ class L10nEsAccountStatementImportN43(common.TransactionCase):
         self.assertAlmostEqual(statement.balance_start, 0, 2)
         self.assertAlmostEqual(statement.balance_end, 101.96, 2)
         self.assertEqual(statement_lines[2].partner_id, self.partner)
+        self.assertEqual(statement_lines[2].ref, "000975737917")
+        self.assertEqual(statement_lines[1].ref, "/")
+        self.assertEqual(statement_lines[0].ref, "5540014210128010")
 
     def test_import_n43_fecha_oper(self):
         self.journal.n43_date_type = "fecha_oper"
