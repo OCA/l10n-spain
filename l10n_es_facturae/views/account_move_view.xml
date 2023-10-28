@@ -38,14 +38,11 @@
                     attrs="{'invisible': [('facturae', '=', False)]}"
                 >
                     <group>
-                        <field
-                            name="facturae_start_date"
-                            attrs="{'invisible': [('facturae', '=', False)]}"
-                        />
-                        <field
-                            name="facturae_end_date"
-                            attrs="{'invisible': [('facturae', '=', False)]}"
-                        />
+                        <field name="facturae_start_date" />
+                        <field name="facturae_end_date" />
+                        <field name="facturae_file_reference" />
+                        <field name="facturae_receiver_transaction_reference" />
+                        <field name="facturae_receiver_contract_reference" />
                     </group>
                     <group name="facturae_attachment" string="Facturae Attachment">
                         <field name="l10n_es_facturae_attachment_ids">
