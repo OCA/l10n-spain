@@ -17,8 +17,8 @@ odoo.define("l10n_es_pos.models", function (require) {
             constructor() {
                 super(...arguments);
                 this.pushed_simple_invoices = [];
-
-                this.own_simplified_invoice_prefix = ""; // Unique UUID
+                // Unique UUID
+                this.own_simplified_invoice_prefix = "";
             }
             get_simple_inv_next_number() {
                 // If we had pending orders to sync we want to avoid getting the next number
