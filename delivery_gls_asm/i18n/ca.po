@@ -998,7 +998,8 @@ msgstr ""
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #, python-format
 msgid ""
-"Unable to cancel GLS Expedition with reference {} as it is in state {}.\n"
+"Unable to cancel GLS Expedition with reference %(ref)s as it is in state "
+"%(state)s.\n"
 "Please manage the cancellation of this shipment/pickup with GLS via email."
 msgstr ""
 
