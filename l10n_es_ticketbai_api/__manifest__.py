@@ -17,6 +17,7 @@
     "depends": ["base", "base_setup"],
     "external_dependencies": {
         "python": [
+            "cryptography",
             "qrcode",
             "xmlsig",
             "xmltodict",
