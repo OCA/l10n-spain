@@ -73,6 +73,9 @@ class AccountMove(models.Model):
         inverse_name="move_id",
         copy=False,
     )
+    facturae_file_reference = fields.Char()
+    facturae_receiver_transaction_reference = fields.Char()
+    facturae_receiver_contract_reference = fields.Char()
 
     @api.constrains("facturae_start_date", "facturae_end_date")
     def _check_facturae_date(self):

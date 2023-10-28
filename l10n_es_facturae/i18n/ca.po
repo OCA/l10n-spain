@@ -335,7 +335,10 @@ msgid "Facturae File Date"
 msgstr "Data del fitxer Facturae"
 
 #. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae_file_reference
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae_file_reference
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move_line__facturae_file_reference
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae_file_reference
 msgid "Facturae File Reference"
 msgstr "Referència del fitxer Facturae"
 
@@ -365,7 +368,10 @@ msgid "Facturae Receiver Contract Date"
 msgstr "Data de contracte de receptor Facturae"
 
 #. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae_receiver_contract_reference
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae_receiver_contract_reference
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move_line__facturae_receiver_contract_reference
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae_receiver_contract_reference
 msgid "Facturae Receiver Contract Reference"
 msgstr "Referència de contracte de receptor Facturae"
 
@@ -375,7 +381,10 @@ msgid "Facturae Receiver Transaction Date"
 msgstr "Data de transacció de receptor Facturae"
 
 #. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae_receiver_transaction_reference
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae_receiver_transaction_reference
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move_line__facturae_receiver_transaction_reference
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae_receiver_transaction_reference
 msgid "Facturae Receiver Transaction Reference"
 msgstr "Referència de transacció de receptor Facturae"
 
