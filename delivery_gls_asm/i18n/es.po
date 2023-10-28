@@ -1041,11 +1041,12 @@ msgstr "Albarán"
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #, python-format
 msgid ""
-"Unable to cancel GLS Expedition with reference {} as it is in state {}.\n"
+"Unable to cancel GLS Expedition with reference %(ref)s as it is in state "
+"%(state)s.\n"
 "Please manage the cancellation of this shipment/pickup with GLS via email."
 msgstr ""
-"No es posible cancelar la expedición GLS con la reference {} ya que estáen "
-"el estado {}. \n"
+"No es posible cancelar la expedición GLS con la reference %(ref)s ya que "
+"estáen el estado %(state)s. \n"
 "Por favor gestonia la cancelación de este envío/recogida con GLS por correo."
 
 #. module: delivery_gls_asm
