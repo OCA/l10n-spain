@@ -280,6 +280,24 @@ class AccountMoveLine(models.Model):
             "context": self.env.context,
         }
 
+    def _get_subtotal_without_discount(self):
+        self.ensure_one()
+        if self.display_type != "product":
+            return 0
+        subtotal = self.quantity * self.price_unit
+        if self.tax_ids:
+            taxes_res = self.tax_ids.compute_all(
+                self.price_unit,
+                quantity=self.quantity,
+                currency=self.currency_id,
+                product=self.product_id,
+                partner=self.partner_id,
+                is_refund=self.is_refund,
+            )
+            return taxes_res["total_excluded"]
+        else:
+            return subtotal
+
 
 class L10nEsFacturaeAttachment(models.Model):
     _name = "l10n.es.facturae.attachment"
