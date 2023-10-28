@@ -6,6 +6,6 @@
 * Comunitea (http://www.comunitea.com)
 * Pedro M. Baeza (http://www.tecnativa.com)
 * Javi Melendez <javimelex@gmail.com>
-* Enric Tobella <etobella@creublanca.es>
+* Enric Tobella <enric.tobella@dixmit.com>
 * Adrián Gómez <adrian.gomez@pesol.es>
 * Eduardo de Miguel (edu@moduon.team)

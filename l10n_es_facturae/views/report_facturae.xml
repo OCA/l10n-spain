@@ -364,9 +364,21 @@
                                 t-if="move.get_narration()"
                                 t-esc="move.get_narration()"
                             />
-                            <ReceiverTransactionReference t-length="20" t-if="False" />
-                            <FileReference t-length="20" t-if="False" />
-                            <ReceiverContractReference t-length="20" t-if="False" />
+                            <ReceiverTransactionReference
+                                t-esc="move.facturae_receiver_transaction_reference"
+                                t-length="20"
+                                t-if="move.facturae_receiver_transaction_reference"
+                            />
+                            <FileReference
+                                t-esc="move.facturae_file_reference"
+                                t-length="20"
+                                t-if="move.facturae_file_reference"
+                            />
+                            <ReceiverContractReference
+                                t-esc="move.facturae_receiver_contract_reference"
+                                t-length="20"
+                                t-if="move.facturae_receiver_contract_reference"
+                            />
                         </t>
                     </InvoiceIssueData>
                     <TaxesOutputs>
@@ -510,8 +522,8 @@
                             />
                             <ReceiverContractReference
                                 t-length="20"
-                                t-if="line.facturae_receiver_contract_reference"
-                                t-esc="line.facturae_receiver_contract_reference"
+                                t-if="line.facturae_receiver_contract_reference or move.facturae_receiver_contract_reference"
+                                t-esc="line.facturae_receiver_contract_reference or move.facturae_receiver_contract_reference"
                             />
                             <ReceiverContractDate
                                 t-if="line.facturae_receiver_contract_date"
@@ -519,8 +531,8 @@
                             />
                             <ReceiverTransactionReference
                                 t-length="20"
-                                t-if="line.facturae_receiver_transaction_reference"
-                                t-esc="line.facturae_receiver_transaction_reference"
+                                t-if="line.facturae_receiver_transaction_reference or move.facturae_receiver_transaction_reference"
+                                t-esc="line.facturae_receiver_transaction_reference or move.facturae_receiver_transaction_reference"
                             />
                             <ReceiverTransactionDate
                                 t-if="line.facturae_receiver_transaction_date"
@@ -528,8 +540,8 @@
                             />
                             <FileReference
                                 t-length="20"
-                                t-if="line.facturae_file_reference"
-                                t-esc="line.facturae_file_reference"
+                                t-if="line.facturae_file_reference or move.facturae_file_reference"
+                                t-esc="line.facturae_file_reference or move.facturae_file_reference"
                             />
                             <FileDate
                                 t-if="line.facturae_file_date"
