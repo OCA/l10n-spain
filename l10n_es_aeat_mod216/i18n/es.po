@@ -213,7 +213,6 @@ msgstr "si está marcada, los mensajes nuevos requieren su atención."
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "si está marcada, algunos mensajes tienen un error de entrega."
 
@@ -403,11 +402,6 @@ msgid "Result: ([03] - [06])"
 msgstr "Resultado: ([03] - [06])"
 
 #. module: l10n_es_aeat_mod216
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Error en la entrega de SMS"
-
-#. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__date_start
 msgid "Starting date"
 msgstr "Fecha de inicio"
@@ -539,6 +533,9 @@ msgstr "[06] Resultados anteriores a compensar"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_07
 msgid "[07] Result"
 msgstr "[07] Resultado a ingresar"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error en la entrega de SMS"
 
 #~ msgid "AEAT 111 report"
 #~ msgstr "Modelo 111"
