@@ -692,12 +692,3 @@ class AccountMoveLine(models.Model):
                 invoice_id.date or invoice_id.invoice_date,
             )
         return price_unit
-
-
-class AccountMoveReversal(models.TransientModel):
-    _inherit = "account.move.reversal"
-
-    def _prepare_default_reversal(self, move):
-        res = super()._prepare_default_reversal(move)
-        res.update({"company_id": self.move_ids[0].company_id.id})
-        return res
