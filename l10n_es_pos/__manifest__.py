@@ -9,7 +9,7 @@
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
-    "version": "16.0.1.0.1",
+    "version": "16.0.1.0.2",
     "depends": ["point_of_sale"],
     "data": ["views/pos_views.xml", "views/res_config_settings_views.xml"],
     "assets": {
