@@ -442,7 +442,6 @@ msgstr "Si està marcat, hi ha missatges que requereixen la vostra atenció."
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si està marcat, hi ha missatges que tenen un error de lliurament."
 
@@ -676,11 +675,6 @@ msgstr "Identificador de l'Informe"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__activity_user_id
 msgid "Responsible User"
 msgstr "Usuari responsable"
-
-#. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Error de lliurament SMS"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_95
@@ -967,6 +961,9 @@ msgstr "[98] Result. 303 darrer període a tornar"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__has_347
 msgid "¿Obligación del 347?"
 msgstr "Obligació del 347?"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error de lliurament SMS"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Nombre de missatges que requereixen una acció"
