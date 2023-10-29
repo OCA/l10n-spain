@@ -366,11 +366,6 @@ msgid "Cash payments"
 msgstr "Importe en efectivo"
 
 #. module: l10n_es_aeat_mod347
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
-msgid "Cash records"
-msgstr "Rexistros de efectivo"
-
-#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__reference
 msgid "Catastral Reference"
 msgstr "Referencia catastral"
@@ -684,9 +679,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_has_sms_error
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -875,7 +868,6 @@ msgstr "Rexistro de factura"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__move_record_ids
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
 #, fuzzy
 msgid "Move records"
 msgstr "Rexistros de facturas"
@@ -1050,7 +1042,6 @@ msgstr "Rexistro de empresa"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__partner_record_ids
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_tree
 msgid "Partner Records"
 msgstr "Rexistros de empresas"
 
@@ -1153,7 +1144,6 @@ msgstr "Rexistros de inmobles"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__real_estate_record_ids
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_real_estate_record_tree
 msgid "Real Estate Records"
 msgstr "Rexistros de inmobles"
 
@@ -1265,12 +1255,6 @@ msgstr ""
 msgid ""
 "Revíselo y vuelva a intentarlo, o pongase en contacto por correo con "
 "nosotros."
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_has_sms_error
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_has_sms_error
-msgid "SMS Delivery error"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -1591,6 +1575,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__year
 msgid "Year"
 msgstr ""
+
+#~ msgid "Cash records"
+#~ msgstr "Rexistros de efectivo"
 
 #, fuzzy
 #~ msgid "Amount 1Q:"

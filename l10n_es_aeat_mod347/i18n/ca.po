@@ -454,11 +454,6 @@ msgid "Cash payments"
 msgstr "Pagaments en efectiu"
 
 #. module: l10n_es_aeat_mod347
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
-msgid "Cash records"
-msgstr "Registres d'efectiu"
-
-#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__reference
 msgid "Catastral Reference"
 msgstr "Referència cadastral"
@@ -774,9 +769,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_has_sms_error
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si està marcat, hi ha missatges amb error d'entrega."
 
@@ -957,7 +950,6 @@ msgstr "Registre d'apunt"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__move_record_ids
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
 msgid "Move records"
 msgstr "Registres d'apunts"
 
@@ -1127,7 +1119,6 @@ msgstr "Registres d'empreses"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__partner_record_ids
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_tree
 msgid "Partner Records"
 msgstr "Registres d'empreses"
 
@@ -1230,7 +1221,6 @@ msgstr "Registre d'immoble"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__real_estate_record_ids
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_real_estate_record_tree
 msgid "Real Estate Records"
 msgstr "Registres d'immobles"
 
@@ -1340,12 +1330,6 @@ msgid ""
 msgstr ""
 "Revisi-ho i provi-ho de nou, o bé, posi's en contacte amb nosaltres per "
 "correu."
-
-#. module: l10n_es_aeat_mod347
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_has_sms_error
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Error de lliurament SMS"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__user_id
@@ -1694,6 +1678,12 @@ msgstr "Podeu tancar aquesta pàgina, si ho voleu."
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__year
 msgid "Year"
 msgstr "Any"
+
+#~ msgid "Cash records"
+#~ msgstr "Registres d'efectiu"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error de lliurament SMS"
 
 #~ msgid "<strong class=\"text-right\">Amount 1Q:</strong>"
 #~ msgstr "<strong class=\"text-right\">Import 1T:</strong>"
