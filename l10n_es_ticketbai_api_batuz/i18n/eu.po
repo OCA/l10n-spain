@@ -208,22 +208,15 @@ msgid "LROE Model"
 msgstr "LROE Eredua"
 
 #. module: l10n_es_ticketbai_api_batuz
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_chapter_tree_view
-msgid "LROE OpeChapterration"
-msgstr "LROE OpeChapterration"
-
-#. module: l10n_es_ticketbai_api_batuz
 #: model:ir.model,name:l10n_es_ticketbai_api_batuz.model_lroe_operation
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_operation_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_operation_search_view
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_operation_tree_view
 msgid "LROE Operation"
 msgstr "LROE Eragiketa"
 
 #. module: l10n_es_ticketbai_api_batuz
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_operation_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_operation_response_form_view
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_api_batuz.lroe_operation_response_tree_view
 msgid "LROE Operation Global Response"
 msgstr "LROE Eragiketa Globalaren Erantzuna"
 
@@ -521,3 +514,6 @@ msgstr "XML Erantzuna"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api_batuz.field_lroe_operation__xml_datas
 msgid "Xml Datas"
 msgstr "Xml Datuak"
+
+#~ msgid "LROE OpeChapterration"
+#~ msgstr "LROE OpeChapterration"
