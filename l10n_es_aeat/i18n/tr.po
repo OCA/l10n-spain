@@ -77,11 +77,6 @@ msgid "AEAT export configuration line"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_line_tree
-msgid "AEAT export configurationline"
-msgstr ""
-
-#. module: l10n_es_aeat
 #: model:res.groups,name:l10n_es_aeat.group_account_aeat
 msgid "AEAT manager"
 msgstr ""
@@ -96,7 +91,6 @@ msgstr ""
 
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_tree
 msgid "AEAT report"
 msgstr ""
 
@@ -264,11 +258,6 @@ msgstr ""
 #: model:ir.ui.menu,name:l10n_es_aeat.menu_aeat_export_config
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_form
 msgid "BOE export configuration"
-msgstr ""
-
-#. module: l10n_es_aeat
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_tree
-msgid "BOE export configurations"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -906,9 +895,7 @@ msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_has_sms_error
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -1473,12 +1460,6 @@ msgid "Right"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_has_sms_error
-#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr ""
-
-#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__sequence
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__sequence
 msgid "Sequence"
@@ -1585,14 +1566,8 @@ msgid "Tax code mapping line"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_map_tax_line_tree
-msgid "Tax code mapping lines"
-msgstr ""
-
-#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__tax_line_ids
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_tax_line_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_tax_line_tree
 msgid "Tax lines"
 msgstr ""
 
@@ -1600,7 +1575,6 @@ msgstr ""
 #: model:ir.actions.act_window,name:l10n_es_aeat.action_l10n_es_aeat_map_tax
 #: model:ir.ui.menu,name:l10n_es_aeat.menu_l10n_es_aeat_map_tax_code
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_map_tax_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_map_tax_tree
 msgid "Tax mapping"
 msgstr ""
 
