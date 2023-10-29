@@ -231,7 +231,6 @@ msgstr "Posizio Fiskala"
 #: model:ir.ui.menu,name:l10n_es_ticketbai.menu_tbai_account_fiscal_position_template
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_account_fiscal_position_template_view_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_account_fiscal_position_template_view_search
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_account_fiscal_position_template_view_tree
 msgid "Fiscal Position Template"
 msgstr "Posizio Fiskalaren Txantiloia"
 
@@ -723,7 +722,6 @@ msgstr "TicketBAI Salbuespen Gakoa"
 #. module: l10n_es_ticketbai
 #: model:ir.actions.act_window,name:l10n_es_ticketbai.action_tbai_vat_exemption_key
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_vat_exemption_key_view_search
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_vat_exemption_key_view_tree
 msgid "TicketBAI Exemption Keys"
 msgstr "TicketBAI Salbuespen Giltzak"
 
@@ -744,7 +742,6 @@ msgstr "TicketBAI Instalazioak"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_invoice_id
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_search
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_tree
 msgid "TicketBAI Invoice"
 msgstr "TicketBAI Faktura"
 
@@ -791,7 +788,6 @@ msgstr "TicketBAI itzulitako fakturak Jatorrizko fakturen datuak"
 #. module: l10n_es_ticketbai
 #: model:ir.actions.act_window,name:l10n_es_ticketbai.action_tbai_vat_regime_key
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_vat_regime_key_view_search
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_vat_regime_key_view_tree
 msgid "TicketBAI Registration Keys"
 msgstr "TicketBAI Erregistro-giltzak"
 
@@ -800,7 +796,6 @@ msgstr "TicketBAI Erregistro-giltzak"
 #: model:ir.model,name:l10n_es_ticketbai.model_tbai_tax_map
 #: model:ir.ui.menu,name:l10n_es_ticketbai.menu_tbai_tax_map
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_tax_map_view_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_tax_map_view_tree
 msgid "TicketBAI Tax Map"
 msgstr "TicketBAI Zerga Mapa"
 
