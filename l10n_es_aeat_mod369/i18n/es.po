@@ -302,7 +302,6 @@ msgstr "Si está marcado, los nuevos mensajes requieren su atención."
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcada, algunos mensajes tienen un error de entrega."
 
@@ -540,11 +539,6 @@ msgid "Responsible User"
 msgstr "Usuario responsable"
 
 #. module: l10n_es_aeat_mod369
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Error de entrega del SMS"
-
-#. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_account_tax__service_type
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line__service_type
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__service_type
@@ -755,6 +749,9 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_mod369_report__payment_type__t
 msgid "[T] Ingreso por transferencia desde el extranjero"
 msgstr "[T] Ingreso por transferencia desde el extranjero"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error de entrega del SMS"
 
 #~ msgid "AEAT tax mapping line"
 #~ msgstr "Línea de mapeo de impuesto AEAT"
