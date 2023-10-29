@@ -33,7 +33,6 @@ msgstr ""
 #. module: l10n_es_vat_book
 #: model:ir.actions.act_window,name:l10n_es_vat_book.action_aeat_vat_book_mapping
 #: model:ir.ui.menu,name:l10n_es_vat_book.menu_aeat_vat_book_map
-#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.l10n_es_aeat_vat_book_map_lines_view_tree
 msgid "AEAT vat book map"
 msgstr ""
 
@@ -324,7 +323,6 @@ msgstr ""
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__message_has_error
-#: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -383,7 +381,6 @@ msgstr ""
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__line_ids
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_line_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_line_tree
 msgid "Issued/Received invoices"
 msgstr ""
 
@@ -642,11 +639,6 @@ msgid "Responsible User"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr ""
-
-#. module: l10n_es_vat_book
 #: model:ir.model,name:l10n_es_vat_book.model_l10n_es_vat_book_line
 msgid "Spanish VAT book line"
 msgstr ""
@@ -729,7 +721,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_received_document
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_summary_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_summary_tree
 msgid "Summary"
 msgstr ""
 
@@ -768,7 +759,6 @@ msgstr ""
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__tax_summary_ids
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_tax_summary_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_tax_summary_tree
 msgid "Tax Summary"
 msgstr ""
 
