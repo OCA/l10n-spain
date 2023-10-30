@@ -25,6 +25,7 @@ setuptools.setup(
         'odoo14-addon-l10n_es_aeat_mod303',
         'odoo14-addon-l10n_es_aeat_mod303_oss',
         'odoo14-addon-l10n_es_aeat_mod303_vat_prorate',
+        'odoo14-addon-l10n_es_aeat_mod322',
         'odoo14-addon-l10n_es_aeat_mod347',
         'odoo14-addon-l10n_es_aeat_mod349',
         'odoo14-addon-l10n_es_aeat_mod369',
