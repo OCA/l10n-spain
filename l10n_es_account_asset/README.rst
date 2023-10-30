@@ -40,11 +40,6 @@ regulaciones españolas:
 .. contents::
    :local:
 
-Known issues / Roadmap
-===========
-* Añadir un campo de fecha de comienzo de amortización para definir una distinta
-  a la de compra. Esta funcionalidad se perdió en la migración V11 > V12
-
 Bug Tracker
 ===========
 
