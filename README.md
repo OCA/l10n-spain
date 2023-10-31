@@ -31,7 +31,7 @@ addon | version | maintainers | summary
 [account_promissory_note_santander](account_promissory_note_santander/) | 12.0.1.0.0 | [![cubells](https://github.com/cubells.png?size=30px)](https://github.com/cubells) | Impresión de pagaré del Santander en A4
 [delivery_gls_asm](delivery_gls_asm/) | 12.0.1.0.8 |  | Delivery Carrier implementation for GLS with ASMRed API
 [delivery_seur](delivery_seur/) | 12.0.1.1.6 |  | Integrate SEUR webservice
-[l10n_es_account_asset](l10n_es_account_asset/) | 12.0.2.0.7 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Gestión de activos fijos para España
+[l10n_es_account_asset](l10n_es_account_asset/) | 12.0.2.0.8 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Gestión de activos fijos para España
 [l10n_es_account_bank_statement_import_n43](l10n_es_account_bank_statement_import_n43/) | 12.0.1.0.7 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Importación de extractos bancarios españoles (Norma 43)
 [l10n_es_account_banking_sepa_fsdd](l10n_es_account_banking_sepa_fsdd/) | 12.0.1.0.0 |  | Account Banking Sepa - FSDD (Anticipos de crédito)
 [l10n_es_account_invoice_sequence](l10n_es_account_invoice_sequence/) | 12.0.1.0.2 |  | Secuencia para facturas separada de la secuencia de asientos

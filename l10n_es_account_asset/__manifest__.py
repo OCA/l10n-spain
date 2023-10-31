@@ -5,7 +5,7 @@
 
 {
     "name": "Gestión de activos fijos para España",
-    "version": "12.0.2.0.7",
+    "version": "12.0.2.0.8",
     "depends": [
         "account_asset_management",
     ],
