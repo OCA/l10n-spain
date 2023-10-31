@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="account_fiscal_position_form_view">
+        <field name="name">account.fiscal.position.form (in l10n_es_aeat_mod190)</field>
+        <field name="model">account.fiscal.position</field>
+        <field name="inherit_id" ref="account.view_account_position_form" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="aeat_perception_key_id" invisible="1" />
+                <field
+                    name="aeat_perception_key_id"
+                    groups="l10n_es_aeat.group_account_aeat"
+                />
+                <field name="aeat_perception_subkey_id" invisible="1" />
+                <field name="is_aeat_perception_subkey_visible" invisible="1" />
+                <field
+                    name="aeat_perception_subkey_id"
+                    attrs="{'invisible': [('is_aeat_perception_subkey_visible', '=', False)]}"
+                    groups="l10n_es_aeat.group_account_aeat"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

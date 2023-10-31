@@ -1,0 +1,1570 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_aeat_mod190
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__hijos_y_descendientes
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__hijos_y_descendientes_m
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_users__hijos_y_descendientes
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_users__hijos_y_descendientes_m
+msgid ""
+"\n"
+"        Solo para percepciones correspondientes a las claves A,\n"
+"        B.01, B.03 y C.\n"
+"        Datos referidos a los hijos y demás descendientes del\n"
+"        perceptor por los que éste tenga derecho a la aplicación\n"
+"        del mínimo por descendientes previsto en el artículo 58 de\n"
+"        la Ley del Impuesto.\n"
+"        "
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__discapacidad__0
+msgid "0 - No disability or degree of disability less than 33 percent."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__prestamos_vh__0
+msgid ""
+"0 - Si en ningún momento del ejercicio ha resultado de aplicación la "
+"reducción del tipo de retención."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__res_partner__discapacidad__0
+msgid "0 - Sin discapacidad o grado de minusvalía inferior al 33 por 100."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__contrato_o_relacion__1
+msgid "1 - Contract or relationship of a general nature"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__res_partner__contrato_o_relacion__1
+msgid "1 - Contrato o relación de carácter general"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__discapacidad__1
+msgid ""
+"1 - Degree of disability greater than 33 percent and less than 66 percent."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__res_partner__discapacidad__1
+msgid ""
+"1 - Grado de minusvalía superior al 33 por 100 e inferior al 66 por 100."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__prestamos_vh__1
+msgid ""
+"1 - Si en algún momento del ejercicio ha resultado de aplicación la "
+"reducción del tipo de retención."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__situacion_familiar__1
+msgid ""
+"1 - Single, widowed, divorced or separated with children under 18 or "
+"incapacitated"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__res_partner__situacion_familiar__1
+msgid ""
+"1 - Soltero, viudo, divorciado o separado con hijos menores de 18 años o "
+"mayores incapacitados"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__res_partner__situacion_familiar__2
+msgid ""
+"2 - Casado y no separado legalmente y su conyuge no tiene rentas anuales "
+"superiores a la cuantía a la que se refiere la situación 2ª de las "
+"contempladas en el artículo 81.1"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__contrato_o_relacion__2
+msgid "2 - Contract or ratio less than a year"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__res_partner__contrato_o_relacion__2
+msgid "2 - Contrato o relación inferior al año"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__discapacidad__2
+msgid ""
+"2 - Degree of disability greater than 33 percent and less than 66 percent, "
+"and reduced mobility."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__res_partner__discapacidad__2
+msgid ""
+"2 - Grado de minusvalía superior al 33 por 100 e inferior al 66 por 100, y "
+"movilidad reducida."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__situacion_familiar__2
+msgid ""
+"2 - Married and not legally separated and your spouse has no annual income "
+"above the amount referred to"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__contrato_o_relacion__3
+msgid "3 - Contract or special employment relationship of a dependent nature"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__res_partner__contrato_o_relacion__3
+msgid "3 - Contrato o relación laboral especial de carácter dependiente"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__discapacidad__3
+msgid "3 - Degree of disability equal to or greater than 65%."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__res_partner__situacion_familiar__3
+msgid "3 - Distinta de las anteriores."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__res_partner__discapacidad__3
+msgid "3 - Grado de minusvalía igual o superior al 65 por 100."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__situacion_familiar__3
+msgid "3 - Other."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__res_partner__contrato_o_relacion__4
+msgid "4 - Relación esporádica propia de los trabajadores manuales"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__contrato_o_relacion__4
+msgid "4 - Sporadic relationship of manual workers"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__report_id
+msgid "AEAT 190 Report ID"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.ui.menu,name:l10n_es_aeat_mod190.menu_aeat_mod190_report
+msgid "AEAT 190 model"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model,name:l10n_es_aeat_mod190.model_l10n_es_aeat_mod190_report
+msgid "AEAT 190 report"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_tree
+msgid "AEAT 190 reports"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.actions.act_window,name:l10n_es_aeat_mod190.action_l10n_es_aeat_mod190_report
+msgid "AEAT model 190"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__move_id
+msgid "Account entry"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__active
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey__active
+msgid "Active"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__ad_required
+msgid "Ad Required"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__ad_required
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey__ad_required
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__ad_required
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__ad_required
+msgid "Aditional data required"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
+#, python-format
+msgid "All partner records fields (country, VAT number) must be filled."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__allow_posting
+msgid "Allow Posting"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__anualidades_por_alimentos
+msgid "Annuities for food"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Anualidades por alimentos"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__reduccion_aplicable
+msgid "Applicable reduction"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+msgid "Ascendents"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+msgid "Ascendents with discapacity"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__ascendientes_discapacidad_33
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__ascendientes_discapacidad_33
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__ascendientes_discapacidad_33
+msgid "Ascendientes con discapacidad"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__ascendientes_discapacidad_mr
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__ascendientes_discapacidad_mr
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__ascendientes_discapacidad_mr
+msgid "Ascendientes con discapacidad de más del 33%"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__ascendientes_discapacidad_entero_mr
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__ascendientes_discapacidad_entero_mr
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__ascendientes_discapacidad_entero_mr
+msgid "Ascendientes con discapacidad de más del 33%, computados por entero"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__ascendientes_discapacidad_66
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__ascendientes_discapacidad_66
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__ascendientes_discapacidad_66
+msgid "Ascendientes con discapacidad de más del 66%"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__ascendientes_discapacidad_entero_66
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__ascendientes_discapacidad_entero_66
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__ascendientes_discapacidad_entero_66
+msgid "Ascendientes con discapacidad de más del 66%, computados por entero"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__ascendientes_discapacidad_entero_33
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__ascendientes_discapacidad_entero_33
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__ascendientes_discapacidad_entero_33
+msgid "Ascendientes con discapacidad, computados por entero"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__ascendientes_m75
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__ascendientes_m75
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__ascendientes_m75
+msgid "Ascendientes mayores de 75 años"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__ascendientes_entero_m75
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__ascendientes_entero_m75
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__ascendientes_entero_m75
+msgid "Ascendientes mayores de 75 años, computados por entero"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__ascendientes
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__ascendientes
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__ascendientes
+msgid "Ascendientes menores de 75 años"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__ascendientes_entero
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__ascendientes_entero
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__ascendientes_entero
+msgid "Ascendientes menores de 75 años, computados por entero"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__a_nacimiento
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__a_nacimiento
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Año de nacimiento"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__partner_bank_id
+msgid "Bank account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+msgid "Between 33% and 65%"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+msgid "Bigger than 65%"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+msgid "Bigger than 75 years"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__calculado
+msgid "Calculated"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__calculation_date
+msgid "Calculation Date"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__ceuta_melilla
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__ceuta_melilla
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Ceuta o Melilla"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__ceuta_melilla
+msgid "Ceuta or Melilla"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__partner_record_ok
+msgid "Checked if partner record is OK"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Clave"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model,name:l10n_es_aeat_mod190.model_l10n_es_aeat_report_perception_key
+msgid "Clave percepcion"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_bank_statement_line__aeat_perception_key_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_fiscal_position__aeat_perception_key_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move__aeat_perception_key_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move_line__aeat_perception_key_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_payment__aeat_perception_key_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__aeat_perception_key_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__aeat_perception_key_id
+msgid "Clave percepción"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__code
+msgid "Code"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__company_id
+msgid "Company"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__partner_bank_id
+msgid "Company bank account used for the presentation"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__pensiones_compensatorias
+msgid "Compensatory pensions"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid ""
+"Comunicación por el perceptor que ha destinado cantidades"
+"                                                     para la adquisición o "
+"rehabilitación de su vivienda habitual"
+"                                                     utilizando financiación"
+" ajena."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__prestamos_vh
+msgid "Comunicación préstamos vivienda habitual"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model,name:l10n_es_aeat_mod190.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__contact_email
+msgid "Contact Email"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__contrato_o_relacion
+msgid "Contract or relationship"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__contrato_o_relacion
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__contrato_o_relacion
+msgid "Contrato o relacion"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Contrato o relación"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__counterpart_account_id
+msgid "Counterpart account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod190.action_l10n_es_aeat_mod190_report
+msgid "Create and query AEAT Model 190 reports."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__computo_primeros_hijos_1
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_users__computo_primeros_hijos_1
+msgid ""
+"CÓMPUTO DE LOS 3 PRIMEROS HIJOS.\n"
+"            Solo para percepciones correspondientes a las claves A,\n"
+"            B.01, B.03 y C.\n"
+"            Datos referidos a la proporción en la que ha sido\n"
+"            computado a efectos de determinar el tipo de retención\n"
+"            cada uno de los tres primeros hijos o descendientes del\n"
+"            perceptor, ordenados de mayor a menor según su edad,\n"
+"            de acuerdo a los siguientes valores:\n"
+"            1: Computado por entero\n"
+"            2: Computado por mitad\n"
+"            0: En cualquier otro caso.\n"
+"             "
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__computo_primeros_hijos_1
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__computo_primeros_hijos_1
+msgid "Cómputo de los 3 primeros hijos"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__computo_primeros_hijos_2
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__computo_primeros_hijos_2
+msgid "Cómputo de los 3 primeros hijos (2º)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__computo_primeros_hijos_3
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__computo_primeros_hijos_3
+msgid "Cómputo de los 3 primeros hijos (3º)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Datos adicionales"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Datos de la percepción"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Decendents"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Decendents with discapacity"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__gastos_deducibles
+msgid "Deductible expenses"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__hijos_y_desc_discapacidad_mr
+msgid "Descendientes con discapacidad"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__hijos_y_desc_discapacidad_entero_mr
+msgid "Descendientes con discapacidad, computado de forma entera"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__description
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey__description
+msgid "Description"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__discapacidad
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__discapacidad
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__discapacidad
+msgid "Disability"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Discapacidad"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Ejercicio de devengo"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__date_end
+msgid "Ending date"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__error_count
+msgid "Error Count"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__export_config_id
+msgid "Export config"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__situacion_familiar
+msgid "Family situation"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+msgid "First 3 compute"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model,name:l10n_es_aeat_mod190.model_account_fiscal_position
+msgid "Fiscal Position"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__contact_name
+msgid "Full Name"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Gastos deducibles"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__movilidad_geografica
+msgid "Geographical mobility"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__hijos_y_desc_discapacidad_mr
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__hijos_y_desc_discapacidad_mr
+msgid "Hijos y descendientes con discapacidad"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__hijos_y_desc_discapacidad_33
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__hijos_y_desc_discapacidad_33
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__hijos_y_desc_discapacidad_33
+msgid "Hijos y descendientes con discapacidad del 33%"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__hijos_y_desc_discapacidad_entero_33
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__hijos_y_desc_discapacidad_entero_33
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__hijos_y_desc_discapacidad_entero_33
+msgid "Hijos y descendientes con discapacidad del 33%, computados por entero"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__hijos_y_desc_discapacidad_66
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__hijos_y_desc_discapacidad_66
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__hijos_y_desc_discapacidad_66
+msgid "Hijos y descendientes con discapacidad del 66%"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__hijos_y_desc_discapacidad_entero_66
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__hijos_y_desc_discapacidad_entero_66
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__hijos_y_desc_discapacidad_entero_66
+msgid "Hijos y descendientes con discapacidad del 66%, computados por entero"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__hijos_y_desc_discapacidad_entero_mr
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__hijos_y_desc_discapacidad_entero_mr
+msgid "Hijos y descendientes con discapacidad, computados por entero"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_needaction
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_has_error
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__incluir_190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__incluir_190
+msgid "Included in mod190"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__ingresos_a_cuenta_efectuados_incap
+msgid "Income on account in kind made as a result of incapacity for work"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__ingresos_a_cuenta_repercutidos
+msgid "Income paid into account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__ingresos_a_cuenta_efectuados
+msgid "Income paid on account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__ingresos_a_cuenta_repercutidos_incap
+msgid ""
+"Income to account in kind, repercussions derived from incapacity for work"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Ingresos a cuenta efectuados"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Ingresos a cuenta en especie"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Ingresos a cuenta repercutidos"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__journal_id
+msgid "Journal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model,name:l10n_es_aeat_mod190.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model,name:l10n_es_aeat_mod190.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__journal_id
+msgid "Journal in which post the move."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__representante_legal_vat
+msgid "L. R. VAT"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__representative_vat
+msgid "L.R. VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__representative_vat
+msgid "Legal Representative VAT number."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model,name:l10n_es_aeat_mod190.model_l10n_es_aeat_mod190_report_line
+msgid "Line for AEAT report Mod 190"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+msgid "Lower than 3 years"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+msgid "Lower than 75 years"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__registro_manual
+msgid "Manual records"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__hijos_y_descendientes_m
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__hijos_y_descendientes_m
+msgid "Menores de 3 años"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__hijos_y_descendientes_m_entero
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__hijos_y_descendientes_m_entero
+msgid "Menores de 3 años, computados por entero"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__number
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__aeat_number
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey__aeat_number
+msgid "Model number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+msgid "Modelo 190"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__percepciones_dinerarias
+msgid "Monetary perceptions"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__percepciones_dinerarias_incap
+msgid "Monetary perceptions derived from incapacity for work"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__retenciones_dinerarias_incap
+msgid "Monetary withholdings derived from incapacity for work"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__retenciones_dinerarias
+msgid "Money withholdings"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__movilidad_geografica
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__movilidad_geografica
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Movilidad geográfica"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__contact_name
+msgid "Must have name and surname."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__partner_vat
+msgid "NIF"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__nif_conyuge
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__nif_conyuge
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "NIF del conyuge"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "NIF perceptor"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__representante_legal_vat
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__representante_legal_vat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "NIF representante legal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__movilidad_geografica__0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__res_partner__movilidad_geografica__0
+msgid "NO"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey__name
+msgid "Name"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_form
+msgid "Number of perceptions:"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__partner_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__partner_id
+msgid "Partner"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__partner_record_ok
+msgid "Partner Record OK"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__partner_record_ids
+msgid "Partner records"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Pensiones compensatorias"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Percepciones dinerarias NO derivadas de incapacidad laboral"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Percepciones dinerarias derivadas de incapacidad laboral"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Percepciones en especie NO derivadas de incapacidad laboral"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Percepciones en especie derivadas de incapacidad laboral"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Percepción integra"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey__aeat_perception_key_id
+msgid "Perception ID"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model,name:l10n_es_aeat_mod190.model_l10n_es_aeat_report_perception_subkey
+msgid "Perception Subkey"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+msgid "Perception data"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__aeat_perception_key_id
+msgid "Perception key"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__aeat_perception_subkey_id
+msgid "Perception subkey"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__percepciones_en_especie_incap
+msgid "Perceptions in kind arising from incapacity for work"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+msgid "Performance key"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__period_type
+msgid "Period Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__contact_phone
+msgid "Phone"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__previous_number
+msgid "Previous declaration number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Provincia"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
+#, python-format
+msgid "Provincia no definida en el cliente"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Razón social"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_form
+msgid "Recipients"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Reducciones aplicables"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+msgid "Reduced mobility"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__name
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__hijos_y_descendientes
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+msgid "Rest"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__hijos_y_descendientes_entero
+msgid "Rest, computed entirely"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__hijos_y_descendientes_entero
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__hijos_y_descendientes_entero
+msgid "Resto, computadors por entero"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__hijos_y_descendientes
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__hijos_y_descendientes
+msgid "Resto:"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_form
+msgid "Result"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Retenciones practicadas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__movilidad_geografica__1
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__res_partner__movilidad_geografica__1
+msgid "SI"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__ceuta_melilla
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_users__ceuta_melilla
+msgid ""
+"Se consignará el número 1 en los supuestos en que, por\n"
+"            tratarse de rentas obtenidas en Ceuta o Melilla con\n"
+"            derecho a la deducción establecida en el artículo 68.4 de\n"
+"            la Ley del Impuesto, el pagador hubiera determinado el\n"
+"            tipo de retención de acuerdo con lo previsto en los\n"
+"            artículos 80.2 y 95.1, último párrafo, del Reglamento del\n"
+"            Impuesto.\n"
+"            En otro caso se hará constar en este campo el número\n"
+"            cero (0)."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_account_bank_statement_line__aeat_perception_key_id
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_account_fiscal_position__aeat_perception_key_id
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_account_move__aeat_perception_key_id
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_account_move_line__aeat_perception_key_id
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_account_payment__aeat_perception_key_id
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__aeat_perception_key_id
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_users__aeat_perception_key_id
+msgid ""
+"Se consignará la clave alfabética que corresponda a las percepciones de que "
+"se trate."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__a_nacimiento
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_users__a_nacimiento
+msgid ""
+"Se consignarán las cuatro cifras del año de nacimiento del\n"
+"            perceptor."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__situacion_familiar
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_users__situacion_familiar
+msgid ""
+"Se hará constar el dígito numérico indicativo de la\n"
+"            situación familiar del perceptor"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__representante_legal_vat
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_users__representante_legal_vat
+msgid ""
+"Si el perceptor es menor de 14 años, se consignará en\n"
+"            este campo el número de identificación fiscal de su\n"
+"            representante legal (padre, madre o tutor)."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__situacion_familiar
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__situacion_familiar
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Situación familiar"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__contrato_o_relacion
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_users__contrato_o_relacion
+msgid ""
+"Solo para percepciones correspondientes a la clave A.\n"
+"            Tratándose de empleados por cuenta ajena en activo, se\n"
+"            hará constar el dígito numérico indicativo del tipo de\n"
+"            contrato o relación existente entre el perceptor y la\n"
+"            persona o entidad retenedora"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__discapacidad
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_users__discapacidad
+msgid ""
+"Solo para percepciones correspondientes a las claves A,\n"
+"            B.01, B.03 y C.\n"
+"            Si el perceptor es una persona con discapacidad que tiene\n"
+"            acreditado un grado de minusvalía igual o superior al 33\n"
+"            por 100, se hará constar en este campo el código\n"
+"            numérico indicativo de dicho grado"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__nif_conyuge
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_users__nif_conyuge
+msgid ""
+"Solo para percepciones correspondientes a las claves A,\n"
+"            B.01, B.03 y C.\n"
+"            Únicamente en el supuesto de que la «SITUACIÓN\n"
+"            FAMILIAR» del perceptor sea la señalada con el número\n"
+"            2, se hará constar el número de identificación fiscal de su\n"
+"            cónyuge."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+msgid "Sons and other decendents"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+msgid "Sons and other decendents with discapacity"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__date_start
+msgid "Starting date"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__state
+msgid "State"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__codigo_provincia
+msgid "State ISO code"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__statement_type
+msgid "Statement Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_bank_statement_line__aeat_perception_subkey_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_fiscal_position__aeat_perception_subkey_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move__aeat_perception_subkey_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move_line__aeat_perception_subkey_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_payment__aeat_perception_subkey_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__aeat_perception_subkey_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__aeat_perception_subkey_id
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Subclave"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__aeat_perception_subkey_ids
+msgid "Subkeys"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__support_type
+msgid "Support Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__tax_line_ids
+msgid "Tax lines"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
+#, python-format
+msgid "The perception key of the partner, %(partner)s. Must be filled."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
+#, python-format
+msgid "The state is not defined in the partner, %s"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__counterpart_account_id
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_form
+msgid "Totals"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_account_move_line__aeat_perception_subkey_id
+msgid ""
+"Tratándose de percepciones correspondientes a las claves\n"
+"                    B, E, F, G, H, I, K y L, deberá consignarse, además, la\n"
+"                    subclave numérica de dos dígitos que corresponda a las\n"
+"                    percepciones de que se trate, según la relación de\n"
+"                    subclaves que para cada una de las mencionadas claves\n"
+"                    figura a continuación.\n"
+"                    En percepciones correspondientes a claves distintas de las\n"
+"                    mencionadas, no se cumplimentará este campo.\n"
+"                    Cuando deban consignarse en el modelo 190\n"
+"                    percepciones satisfechas a un mismo perceptor que\n"
+"                    correspondan a diferentes claves o subclaves de\n"
+"                    percepción, deberán cumplimentarle tantos apuntes o\n"
+"                    registros de percepción como sea necesario, de forma que\n"
+"                    cada uno de ellos refleje exclusivamente los datos de\n"
+"                    percepciones correspondientes a una misma clave y, en\n"
+"                    su caso, subclave."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_account_bank_statement_line__aeat_perception_subkey_id
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_account_fiscal_position__aeat_perception_subkey_id
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_account_move__aeat_perception_subkey_id
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_account_payment__aeat_perception_subkey_id
+msgid ""
+"Tratándose de percepciones correspondientes a las claves\n"
+"                B, E, F, G, H, I, K y L, deberá consignarse, además, la\n"
+"                subclave numérica de dos dígitos que corresponda a las\n"
+"                percepciones de que se trate, según la relación de\n"
+"                subclaves que para cada una de las mencionadas claves\n"
+"                figura a continuación.\n"
+"                En percepciones correspondientes a claves distintas de las\n"
+"                mencionadas, no se cumplimentará este campo.\n"
+"                Cuando deban consignarse en el modelo 190\n"
+"                percepciones satisfechas a un mismo perceptor que\n"
+"                correspondan a diferentes claves o subclaves de\n"
+"                percepción, deberán cumplimentarle tantos apuntes o\n"
+"                registros de percepción como sea necesario, de forma que\n"
+"                cada uno de ellos refleje exclusivamente los datos de\n"
+"                percepciones correspondientes a una misma clave y, en\n"
+"                su caso, subclave."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__aeat_perception_subkey_id
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_users__aeat_perception_subkey_id
+msgid ""
+"Tratándose de percepciones correspondientes a las claves\n"
+"            B, E, F, G, H, I, K y L, deberá consignarse, además, la\n"
+"            subclave numérica de dos dígitos que corresponda a las\n"
+"            percepciones de que se trate, según la relación de\n"
+"            subclaves que para cada una de las mencionadas claves\n"
+"            figura a continuación.\n"
+"            En percepciones correspondientes a claves distintas de las\n"
+"            mencionadas, no se cumplimentará este campo.\n"
+"            Cuando deban consignarse en el modelo 190\n"
+"            percepciones satisfechas a un mismo perceptor que\n"
+"            correspondan a diferentes claves o subclaves de\n"
+"            percepción, deberán cumplimentarle tantos apuntes o\n"
+"            registros de percepción como sea necesario, de forma que\n"
+"            cada uno de ellos refleje exclusivamente los datos de\n"
+"            percepciones correspondientes a una misma clave y, en\n"
+"            su caso, subclave."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__hijos_y_descendientes_m
+msgid "Under 3 years"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__hijos_y_descendientes_m_entero
+msgid "Under 3 years, computed entirely"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__company_vat
+msgid "VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__nif_conyuge
+msgid "VAT of the spouse"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__percepciones_en_especie
+msgid "Valuation"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__year
+msgid "Year"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__a_nacimiento
+msgid "Year of birth"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
+#, python-format
+msgid "You have to recalculate the report before confirm it."
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__casilla_01
+msgid "[01] Recipients"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__casilla_02
+msgid "[02] Amount of perceptions"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__casilla_03
+msgid "[03] Amount of retentions"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__ejercicio_devengo
+msgid "year"
+msgstr ""

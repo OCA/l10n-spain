@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_move_line_form" model="ir.ui.view">
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_form" />
+        <field name="arch" type="xml">
+            <field name="tax_ids" position="after">
+                <field
+                    name="aeat_perception_key_id"
+                    groups="l10n_es_aeat.group_account_aeat"
+                />
+                <field name="is_aeat_perception_subkey_visible" invisible="1" />
+                <field
+                    name="aeat_perception_subkey_id"
+                    groups="l10n_es_aeat.group_account_aeat"
+                    domain="[('aeat_perception_key_id', '=', aeat_perception_key_id)]"
+                    attrs="{'invisible': [('is_aeat_perception_subkey_visible', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
