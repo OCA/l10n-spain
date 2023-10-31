@@ -273,6 +273,7 @@ msgid "Aditional data required"
 msgstr "Información adicional requerida"
 
 #. module: l10n_es_aeat_mod190
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
 #, python-format
 msgid "All partner records fields (country, VAT number) must be filled."
@@ -302,13 +303,13 @@ msgstr "Reducción aplicable"
 
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_form_inherit_l10n_es_aeat_mod190
 msgid "Ascendents"
 msgstr "Ascendientes"
 
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_form_inherit_l10n_es_aeat_mod190
 msgid "Ascendents with discapacity"
 msgstr "Ascendientes con discapacidad"
 
@@ -401,19 +402,19 @@ msgstr "Cuenta bancaria"
 
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_form_inherit_l10n_es_aeat_mod190
 msgid "Between 33% and 65%"
 msgstr "Entre 33% y 65%"
 
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_form_inherit_l10n_es_aeat_mod190
 msgid "Bigger than 65%"
 msgstr "Superior a 65%"
 
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_form_inherit_l10n_es_aeat_mod190
 msgid "Bigger than 75 years"
 msgstr "Mayor de 75 años"
 
@@ -488,11 +489,11 @@ msgstr "Pensiones compensatorias"
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
 msgid ""
-"Comunicación por el perceptor que ha destinado cantidades"
-"                                                     para la adquisición o "
-"rehabilitación de su vivienda habitual"
-"                                                     utilizando financiación"
-" ajena."
+"Comunicación por el perceptor que ha destinado "
+"cantidades                                                     para la "
+"adquisición o rehabilitación de su vivienda "
+"habitual                                                     utilizando "
+"financiación ajena."
 msgstr ""
 "Comunicación por el perceptor que ha destinado "
 "cantidades                                                     para la "
@@ -698,7 +699,7 @@ msgstr "Situación familiar"
 
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_form_inherit_l10n_es_aeat_mod190
 msgid "First 3 compute"
 msgstr "Cómputo de los 3 primeros"
 
@@ -802,13 +803,11 @@ msgstr "Icono para indicar la excepción de la actividad."
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_needaction
-#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Si está marcada, nuevos mensajes requieren su atención."
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "si está marcada, algunos mensajes tienen un error de entrega."
 
@@ -857,6 +856,17 @@ msgstr "Ingresos a cuenta en especie"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
 msgid "Ingresos a cuenta repercutidos"
 msgstr "Ingresos a cuenta repercutidos"
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_bank_statement_line__is_aeat_perception_subkey_visible
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_fiscal_position__is_aeat_perception_subkey_visible
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move__is_aeat_perception_subkey_visible
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move_line__is_aeat_perception_subkey_visible
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_payment__is_aeat_perception_subkey_visible
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__is_aeat_perception_subkey_visible
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__is_aeat_perception_subkey_visible
+msgid "Is Aeat Perception Subkey Visible"
+msgstr ""
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_is_follower
@@ -929,13 +939,13 @@ msgstr "Línea para informe AEAT Mod 190"
 
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_form_inherit_l10n_es_aeat_mod190
 msgid "Lower than 3 years"
 msgstr "Menores de 3 años"
 
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_form_inherit_l10n_es_aeat_mod190
 msgid "Lower than 75 years"
 msgstr "Menores de 75 años"
 
@@ -979,7 +989,7 @@ msgid "Model number"
 msgstr "Número de modelo"
 
 #. module: l10n_es_aeat_mod190
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_form_inherit_l10n_es_aeat_mod190
 msgid "Modelo 190"
 msgstr "Modelo 190"
 
@@ -1084,8 +1094,8 @@ msgstr "Número de errores"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "Número de mensajes que requieren una acción"
+msgid "Number of messages requiring action"
+msgstr ""
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_has_error_counter
@@ -1096,11 +1106,6 @@ msgstr "Número de mensajes con error de entrega"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_form
 msgid "Number of perceptions:"
 msgstr "Número de percepciones:"
-
-#. module: l10n_es_aeat_mod190
-#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_unread_counter
-msgid "Number of unread messages"
-msgstr "Número de mensajes no leídos"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__partner_id
@@ -1159,7 +1164,7 @@ msgid "Perception Subkey"
 msgstr "Subclave de percepción"
 
 #. module: l10n_es_aeat_mod190
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_form_inherit_l10n_es_aeat_mod190
 msgid "Perception data"
 msgstr "Datos de la percepción"
 
@@ -1179,7 +1184,7 @@ msgid "Perceptions in kind arising from incapacity for work"
 msgstr "Percepción en especie derivada de incapacidad laboral"
 
 #. module: l10n_es_aeat_mod190
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_form_inherit_l10n_es_aeat_mod190
 msgid "Performance key"
 msgstr "Clave de rendimiento"
 
@@ -1204,6 +1209,7 @@ msgid "Provincia"
 msgstr "Provincia"
 
 #. module: l10n_es_aeat_mod190
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
 #, python-format
 msgid "Provincia no definida en el cliente"
@@ -1226,7 +1232,7 @@ msgstr "Reducciones aplicables"
 
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_form_inherit_l10n_es_aeat_mod190
 msgid "Reduced mobility"
 msgstr "Movilidad reducida"
 
@@ -1243,7 +1249,7 @@ msgstr "Usuario Responsable"
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__hijos_y_descendientes
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_form_inherit_l10n_es_aeat_mod190
 msgid "Rest"
 msgstr "Resto"
 
@@ -1279,11 +1285,6 @@ msgstr "Retenciones practicadas"
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__res_partner__movilidad_geografica__1
 msgid "SI"
 msgstr "SI"
-
-#. module: l10n_es_aeat_mod190
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Error en la entrega de sms"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__ceuta_melilla
@@ -1416,12 +1417,12 @@ msgstr ""
 "            cónyuge."
 
 #. module: l10n_es_aeat_mod190
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_form_inherit_l10n_es_aeat_mod190
 msgid "Sons and other decendents"
 msgstr "Hijos y otros descendientes"
 
 #. module: l10n_es_aeat_mod190
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_form_inherit_l10n_es_aeat_mod190
 msgid "Sons and other decendents with discapacity"
 msgstr "Hijos y otros descendientes con discapacidad"
 
@@ -1486,12 +1487,14 @@ msgid "Tax lines"
 msgstr "Líneas de impuesto"
 
 #. module: l10n_es_aeat_mod190
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
 #, python-format
 msgid "The perception key of the partner, %(partner)s. Must be filled."
 msgstr "La clave de percepción del socio, %(partner)s. Debe ser llenado."
 
 #. module: l10n_es_aeat_mod190
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
 #, python-format
 msgid "The state is not defined in the partner, %s"
@@ -1520,13 +1523,15 @@ msgid ""
 "                    percepciones de que se trate, según la relación de\n"
 "                    subclaves que para cada una de las mencionadas claves\n"
 "                    figura a continuación.\n"
-"                    En percepciones correspondientes a claves distintas de las\n"
+"                    En percepciones correspondientes a claves distintas de "
+"las\n"
 "                    mencionadas, no se cumplimentará este campo.\n"
 "                    Cuando deban consignarse en el modelo 190\n"
 "                    percepciones satisfechas a un mismo perceptor que\n"
 "                    correspondan a diferentes claves o subclaves de\n"
 "                    percepción, deberán cumplimentarle tantos apuntes o\n"
-"                    registros de percepción como sea necesario, de forma que\n"
+"                    registros de percepción como sea necesario, de forma "
+"que\n"
 "                    cada uno de ellos refleje exclusivamente los datos de\n"
 "                    percepciones correspondientes a una misma clave y, en\n"
 "                    su caso, subclave."
@@ -1644,16 +1649,6 @@ msgid "Under 3 years, computed entirely"
 msgstr "Menos de 3 años, computados en su totalidad"
 
 #. module: l10n_es_aeat_mod190
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_unread
-msgid "Unread Messages"
-msgstr "Mensajes No Leídos"
-
-#. module: l10n_es_aeat_mod190
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Contador de Mensajes no leídos"
-
-#. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__company_vat
 msgid "VAT number"
 msgstr "Número NIF"
@@ -1689,6 +1684,7 @@ msgid "Year of birth"
 msgstr "Año de nacimiento"
 
 #. module: l10n_es_aeat_mod190
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
 #, python-format
 msgid "You have to recalculate the report before confirm it."
@@ -1713,3 +1709,18 @@ msgstr "[03] Importe de las retenciones"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__ejercicio_devengo
 msgid "year"
 msgstr "año"
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "Número de mensajes que requieren una acción"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Número de mensajes no leídos"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error en la entrega de sms"
+
+#~ msgid "Unread Messages"
+#~ msgstr "Mensajes No Leídos"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Contador de Mensajes no leídos"
