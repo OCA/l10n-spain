@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -60,12 +60,14 @@ msgid "Companies"
 msgstr ""
 
 #. module: l10n_es_facturae_face
+#. odoo-python
 #: code:addons/l10n_es_facturae_face/models/edi_exchange_record.py:0
 #, python-format
 msgid "Company %s cannot be processed"
 msgstr ""
 
 #. module: l10n_es_facturae_face
+#. odoo-python
 #: code:addons/l10n_es_facturae_face/components/edi_webservice_receive_face_l10n_es_facturae_face_update.py:0
 #: code:addons/l10n_es_facturae_face/components/webservice_face.py:0
 #, python-format
@@ -78,6 +80,7 @@ msgid "Contact"
 msgstr ""
 
 #. module: l10n_es_facturae_face
+#. odoo-python
 #: code:addons/l10n_es_facturae_face/models/res_partner.py:0
 #, python-format
 msgid "Country must be defined in order to send to FACe"
@@ -109,6 +112,7 @@ msgid "Edi L10n Es Facturae FACe Cancel"
 msgstr ""
 
 #. module: l10n_es_facturae_face
+#. odoo-python
 #: code:addons/l10n_es_facturae_face/components/account_move_l10n_es_facturae_face_listener.py:0
 #, python-format
 msgid "Exchange record cannot be found for FACe"
@@ -122,7 +126,6 @@ msgstr ""
 #. module: l10n_es_facturae_face
 #: model:ir.actions.server,name:l10n_es_facturae_face.update_face_job_ir_actions_server
 #: model:ir.cron,cron_name:l10n_es_facturae_face.update_face_job
-#: model:ir.cron,name:l10n_es_facturae_face.update_face_job
 msgid "FACe update Job"
 msgstr ""
 
@@ -164,6 +167,7 @@ msgid "Facturae description"
 msgstr ""
 
 #. module: l10n_es_facturae_face
+#. odoo-python
 #: code:addons/l10n_es_facturae_face/models/res_partner.py:0
 #, python-format
 msgid "Facturae must be selected in order to send to FACe"
@@ -182,6 +186,7 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_es_facturae_face
+#. odoo-python
 #: code:addons/l10n_es_facturae_face/models/res_company.py:0
 #, python-format
 msgid "Invalid facturae email"
@@ -254,12 +259,14 @@ msgid "Sending method"
 msgstr ""
 
 #. module: l10n_es_facturae_face
+#. odoo-python
 #: code:addons/l10n_es_facturae_face/models/res_partner.py:0
 #, python-format
 msgid "State must be defined in Spain in order to send to FACe"
 msgstr ""
 
 #. module: l10n_es_facturae_face
+#. odoo-python
 #: code:addons/l10n_es_facturae_face/models/res_partner.py:0
 #, python-format
 msgid "Vat must be defined in order to send to FACe"
