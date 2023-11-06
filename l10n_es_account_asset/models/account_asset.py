@@ -142,13 +142,13 @@ class AccountAssetAsset(models.Model):
                 return amount_to_depr * percentage / 100
         elif (self.method == 'linear' and self.prorata and
               sequence != undone_dotation_number):
-            # Caso especial de cálculo que cambia
-            # Debemos considerar también las cantidades ya depreciadas
-            depreciated_amount = 0
-            for line in posted_depreciation_line_ids:
-                depreciated_amount += line.amount
-            amount = (amount_to_depr + depreciated_amount) \
-                / self.method_number
+            posted_depreciation_lines = len(posted_depreciation_line_ids)
+            depreciation_lines = undone_dotation_number - posted_depreciation_lines
+            if self.prorata and posted_depreciation_lines:
+                depreciation_lines = self.method_number - posted_depreciation_lines
+            elif self.prorata and not posted_depreciation_lines:
+                depreciation_lines = self.method_number
+            amount = amount_to_depr / depreciation_lines
             if sequence == 1:
                 if self.method_period == 1:
                         total_days = calendar.monthrange(
