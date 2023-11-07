@@ -1520,6 +1520,8 @@ msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.actions.act_window,name:l10n_es_aeat.aeat_tax_agency_action
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__tax_agency_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__tax_agency_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_res_company__tax_agency_id
 #: model:ir.ui.menu,name:l10n_es_aeat.aeat_tax_agency_menu
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_tax_agency_form_view
