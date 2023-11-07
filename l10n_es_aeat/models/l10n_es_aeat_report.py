@@ -248,6 +248,7 @@ class L10nEsAeatReport(models.AbstractModel):
     error_count = fields.Integer(
         compute="_compute_error_count",
     )
+    tax_agency_ids = fields.Many2many("aeat.tax.agency", string="Tax Agency")
     _sql_constraints = [
         (
             "name_uniq",
