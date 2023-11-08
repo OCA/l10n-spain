@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_l10n_es_aeat_sii_match_report_form" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.sii.match.report.form</field>
+        <field name="model">l10n.es.aeat.sii.match.report</field>
+        <field name="arch" type="xml">
+            <form string="SII Match report">
+                <header>
+                    <button
+                        name="button_calculate"
+                        type="object"
+                        string="Calculate"
+                        states="draft"
+                        icon="fa-cogs"
+                    />
+                    <button
+                        name="button_calculate"
+                        type="object"
+                        string="Re-Calculate"
+                        states="calculated,error"
+                        icon="fa-cogs"
+                    />
+                    <button
+                        name="button_confirm"
+                        string="Confirm"
+                        type="object"
+                        states="calculated"
+                        icon="fa-check"
+                    />
+                    <button
+                        name="button_recover"
+                        string="Draft"
+                        type="object"
+                        states="cancelled"
+                        icon="fa-undo"
+                    />
+                    <button
+                        name="button_cancel"
+                        string="Cancel"
+                        type="object"
+                        states="calculated,done,error"
+                        icon="fa-times"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,calculated,done"
+                    />
+                </header>
+                <sheet>
+                    <group>
+                        <group colspan="2" col="1">
+                            <label for="name" class="oe_edit_only" />
+                            <h1>
+                                <field name="name" nolabel="1" />
+                            </h1>
+                        </group>
+                        <group>
+                            <field name="period_type" />
+                            <field name="fiscalyear" />
+                            <field name="invoice_type" />
+                        </group>
+                        <group>
+                            <field
+                                name="calculate_date"
+                                attrs="{'invisible': ['|',('calculate_date', '=', False),('state','=','draft')]}"
+                            />
+                            <field
+                                name="company_id"
+                                required="1"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                        <notebook colspan="2">
+                            <page
+                                string="Summary"
+                                name="summary"
+                                attrs="{'invisible': [('state','not in',['calculated','done'])]}"
+                            >
+                                <group string="Invoices: Odoo against SII">
+                                    <group>
+                                        <field name="number_records" />
+                                        <field name="number_records_both" />
+                                    </group>
+                                    <group>
+                                        <field name="number_records_odoo" />
+                                        <field name="number_records_sii" />
+                                    </group>
+                                </group>
+                                <group string="Invoices content: Odoo against SII">
+                                    <group>
+                                        <field name="number_records_correct" />
+                                    </group>
+                                    <group>
+                                        <field name="number_records_partially" />
+                                        <field name="number_records_no_exist" />
+                                    </group>
+                                </group>
+                                <group
+                                    string="Invoices: SII against Customers/Suppliers"
+                                >
+                                    <group>
+                                        <field name="number_records_contrasted" />
+                                        <field name="number_records_in_process" />
+                                    </group>
+                                    <group>
+                                        <field name="number_records_no_test" />
+                                        <field name="number_records_not_contrasted" />
+                                        <field
+                                            name="number_records_partially_contrasted"
+                                        />
+                                    </group>
+                                </group>
+                            </page>
+                            <page
+                                string="Result"
+                                name="result"
+                                attrs="{'invisible': ['|',('sii_match_result', '=', []),('state','not in',['calculated','done'])]}"
+                            >
+                                <group col="1" colspan="2">
+                                    <button
+                                        name="open_result"
+                                        string="View full tree"
+                                        type="object"
+                                        icon="fa-check"
+                                    />
+                                    <field name="sii_match_result" nolabel="1">
+                                        <tree>
+                                            <field name="invoice" />
+                                            <field name="invoice_id" />
+                                            <field name="sii_match_state" />
+                                            <field name="sii_contrast_state" />
+                                            <field name="invoice_location" />
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Jobs" name="jobs">
+                                <group string="Jobs" col="1" colspan="2">
+                                    <field
+                                        name="sii_match_jobs_ids"
+                                        nolabel="1"
+                                        readonly="1"
+                                        context="{'tree_view_ref': 'l10n_es_aeat_sii_oca.view_queue_job_sii'}"
+                                    />
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_es_aeat_sii_match_report_tree" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.sii.match.report.tree</field>
+        <field name="model">l10n.es.aeat.sii.match.report</field>
+        <field name="arch" type="xml">
+            <tree
+                decoration-info="state == 'draft'"
+                decoration-muted="state in ('cancelled', 'done')"
+                decoration-danger="state == 'error'"
+            >
+                <field name="name" />
+                <field name="period_type" />
+                <field name="fiscalyear" />
+                <field name="invoice_type" />
+                <field name="calculate_date" />
+                <field name="state" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_es_aeat_sii_match_report_filter" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.sii.match.report.filter</field>
+        <field name="model">l10n.es.aeat.sii.match.report</field>
+        <field name="arch" type="xml">
+            <search string="SII Match result">
+                <field name="period_type" />
+                <field name="fiscalyear" />
+                <field name="company_id" />
+                <field name="calculate_date" />
+                <field name="name" />
+                <separator />
+                <filter
+                    name="draft"
+                    string="Draft"
+                    domain="[('state', '=', 'draft')]"
+                />
+                <filter
+                    name="calculated"
+                    string="Calculated"
+                    domain="[('state', '=', 'calculated')]"
+                />
+                <filter name="done" string="Done" domain="[('state', '=', 'done')]" />
+                <filter
+                    name="error"
+                    string="Error"
+                    domain="[('state', '=', 'error')]"
+                />
+                <filter
+                    name="cancelled"
+                    string="Cancelled"
+                    domain="[('state', '=', 'cancelled')]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="state"
+                        string="State"
+                        icon="terp-personal"
+                        domain="[]"
+                        context="{'group_by':'state'}"
+                    />
+                </group>
+            </search>
+         </field>
+     </record>
+
+    <!-- Window action -->
+    <record id="action_l10n_es_aeat_sii_match_report" model="ir.actions.act_window">
+        <field name="name">AEAT SII Match</field>
+        <field name="res_model">l10n.es.aeat.sii.match.report</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- ### MENU ACCESS ### -->
+    <menuitem
+        id="menu_aeat_sii_match_report"
+        parent="l10n_es_aeat.menu_root_aeat"
+        action="action_l10n_es_aeat_sii_match_report"
+        sequence="500"
+        name="AEAT SII Match"
+    />
+
+    <record id="view_l10n_es_aeat_sii_match_result_form" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.sii.match.result.form</field>
+        <field name="model">l10n.es.aeat.sii.match.result</field>
+        <field name="arch" type="xml">
+            <form string="SII Match result" create="0" edit="0" delete="0">
+                <group>
+                    <group>
+                        <field name="invoice_location" />
+                        <field name="invoice_id" />
+                        <field name="invoice" />
+                    </group>
+                    <group>
+                        <field name="csv" />
+                        <field name="sii_match_state" />
+                        <field name="sii_contrast_state" />
+                    </group>
+                    <group
+                        col="1"
+                        colspan="2"
+                        attrs="{'invisible': [('sii_match_difference_ids', '=', [])]}"
+                    >
+                        <label for="sii_match_difference_ids" colspan="2" />
+                        <field name="sii_match_difference_ids" nolabel="1">
+                            <tree>
+                                <field name="sii_field" />
+                                <field name="sii_return_field_value" />
+                                <field name="sii_sent_field_value" />
+                            </tree>
+                            <form>
+                                <group col="3">
+                                    <label for="sii_field" />
+                                    <label for="sii_return_field_value" />
+                                    <label for="sii_sent_field_value" />
+                                    <field name="sii_field" nolabel="1" />
+                                    <field name="sii_return_field_value" nolabel="1" />
+                                    <field name="sii_sent_field_value" nolabel="1" />
+                                </group>
+                            </form>
+                        </field>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_es_aeat_sii_match_result_tree" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.sii.match.result.tree</field>
+        <field name="model">l10n.es.aeat.sii.match.result</field>
+        <field name="arch" type="xml">
+            <tree create="0" delete="0">
+                <field name="invoice" />
+                <field name="invoice_id" />
+                <field name="sii_match_state" />
+                <field name="sii_contrast_state" />
+                <field name="invoice_location" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_es_aeat_sii_match_result_filter" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.sii.match.result.filter</field>
+        <field name="model">l10n.es.aeat.sii.match.result</field>
+        <field name="arch" type="xml">
+            <search string="SII Match result">
+                <field name="invoice" />
+                <field name="invoice_id" />
+                <field name="sii_match_state" />
+                <field name="sii_contrast_state" />
+                <field name="invoice_location" />
+                <separator />
+                <filter
+                    name="in_odoo"
+                    string="Invoice in Odoo"
+                    domain="[('invoice_location', '=', 'odoo')]"
+                />
+                <filter
+                    name="in_sii"
+                    string="Invoice in SII"
+                    domain="[('invoice_location', '=', 'sii')]"
+                />
+                <filter
+                    name="in_both"
+                    string="Invoice in Odoo and SII"
+                    domain="[('invoice_location', '=', 'both')]"
+                />
+                <separator />
+                <filter
+                    name="match_state_1"
+                    string="No testable"
+                    domain="[('sii_match_state', '=', '1')]"
+                />
+                <filter
+                    name="match_state_2"
+                    string="In process of contrast"
+                    domain="[('sii_match_state', '=', '2')]"
+                />
+                <filter
+                    name="match_state_3"
+                    string="Not contrasted"
+                    domain="[('sii_match_state', '=', '3')]"
+                />
+                <filter
+                    name="match_state_4"
+                    string="Partially contrasted"
+                    domain="[('sii_match_state', '=', '4')]"
+                />
+                <filter
+                    name="match_state_5"
+                    string="Contrasted"
+                    domain="[('sii_match_state', '=', '5')]"
+                />
+                <separator />
+                <filter
+                    name="contrast_state_correct"
+                    string="Correct"
+                    domain="[('sii_contrast_state', '=', 'correct')]"
+                />
+                <filter
+                    name="contrast_state_no_exist"
+                    string="Doesn't exist"
+                    domain="[('sii_contrast_state', '=', 'no_exist')]"
+                />
+                <filter
+                    name="contrast_state_partially"
+                    string="Partially correct"
+                    domain="[('sii_contrast_state', '=', 'partially')]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="invoice_location"
+                        string="Invoice location"
+                        icon="terp-personal"
+                        domain="[]"
+                        context="{'group_by':'invoice_location'}"
+                    />
+                    <filter
+                        name="sii_match_state"
+                        string="Match state"
+                        icon="terp-personal"
+                        domain="[]"
+                        context="{'group_by':'sii_match_state'}"
+                    />
+                    <filter
+                        name="sii_contrast_state"
+                        string="AEAT contrast state"
+                        icon="terp-personal"
+                        domain="[]"
+                        context="{'group_by':'sii_contrast_state'}"
+                    />
+                </group>
+            </search>
+         </field>
+     </record>
+</odoo>

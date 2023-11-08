@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="l10n_es_aeat_sii_oca.queue_job_sii_rule" model="ir.rule">
+        <field
+            name="domain_force"
+        >['|', ('channel', '=', 'root.invoice_validate_sii'), '|', ('channel', '=', 'root.invoice_contrast_aeat'), ('channel', '=', 'root.get_invoice_aeat')]</field>
+    </record>
+</odoo>
