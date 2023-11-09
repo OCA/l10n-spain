@@ -74,45 +74,6 @@ class IntrastatProductDeclaration(models.Model):
             domain.append(("move_type", "in", ("out_invoice", "in_refund")))
         return domain
 
-    @api.model
-    def _prepare_grouped_fields(self, computation_line, fields_to_sum):
-        vals = super()._prepare_grouped_fields(computation_line, fields_to_sum)
-        vals["intrastat_state_id"] = computation_line.intrastat_state_id.id
-        vals["incoterm_id"] = computation_line.incoterm_id.id
-        if (
-            computation_line.declaration_type == "dispatches"
-            and int(computation_line.parent_id.year) >= 2022
-        ):
-            vals["partner_vat"] = computation_line.partner_vat
-        return vals
-
-    @api.model
-    def _prepare_declaration_line(self):
-        vals = super()._prepare_declaration_line()
-        # Avoid rounding in weight and fiscal value
-        vals["weight"] = 0.0
-        vals["amount_company_currency"] = 0.0
-        for computation_line in self:
-            vals["weight"] += computation_line["weight"]
-            vals["amount_company_currency"] += (
-                computation_line["amount_company_currency"]
-                + computation_line["amount_accessory_cost_company_currency"]
-            )
-        if not vals["weight"]:
-            vals["weight"] = 1
-        return vals
-
-    @api.model
-    def _group_line_hashcode_fields(self, computation_line):
-        res = super()._group_line_hashcode_fields(computation_line)
-        res["intrastat_state_id"] = computation_line.intrastat_state_id.id
-        if (
-            computation_line.declaration_type == "dispatches"
-            and int(computation_line.parent_id.year) >= 2022
-        ):
-            res["partner_vat"] = computation_line.partner_vat
-        return res
-
     def _generate_xml(self):
         return self._generate_csv()
 
@@ -223,6 +184,38 @@ class IntrastatProductComputationLine(models.Model):
         comodel_name="res.country.state", string="Intrastat State"
     )
     partner_vat = fields.Char(string="Customer VAT")
+
+    def _prepare_grouped_fields(self, fields_to_sum):
+        vals = super()._prepare_grouped_fields(fields_to_sum)
+        vals["intrastat_state_id"] = self.intrastat_state_id.id
+        # TODO: Move set incoterm_id to intrastat_product
+        vals["incoterm_id"] = self.incoterm_id.id
+        if self.declaration_type == "dispatches" and int(self.parent_id.year) >= 2022:
+            vals["partner_vat"] = self.partner_vat
+        return vals
+
+    def _prepare_declaration_line(self):
+        vals = super()._prepare_declaration_line()
+        # Avoid rounding in weight and fiscal value
+        vals["weight"] = 0.0
+        vals["amount_company_currency"] = 0.0
+        for computation_line in self:
+            vals["weight"] += computation_line["weight"]
+            vals["amount_company_currency"] += (
+                computation_line["amount_company_currency"]
+                + computation_line["amount_accessory_cost_company_currency"]
+            )
+        if not vals["weight"]:
+            vals["weight"] = 1
+        return vals
+
+    @api.model
+    def _group_line_hashcode_fields(self):
+        res = super()._group_line_hashcode_fields()
+        res["intrastat_state_id"] = self.intrastat_state_id.id
+        if self.declaration_type == "dispatches" and int(self.parent_id.year) >= 2022:
+            res["partner_vat"] = self.partner_vat
+        return res
 
 
 class IntrastatProductDeclarationLine(models.Model):
