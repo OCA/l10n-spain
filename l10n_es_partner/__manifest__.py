@@ -8,7 +8,11 @@
 {
     "name": "Adaptación de los clientes, proveedores y bancos para España",
     "version": "16.0.2.0.0",
-    "author": "ZikZak," "Acysos," "Tecnativa," "Odoo Community Association (OCA)" "ProcessControl",
+    "author": "ZikZak,"
+    "Acysos,"
+    "Tecnativa,"
+    "Odoo Community Association (OCA)"
+    "ProcessControl",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Localisation/Europe",
     "license": "AGPL-3",
