@@ -8,12 +8,12 @@
 {
     "name": "Adaptación de los clientes, proveedores y bancos para España",
     "version": "16.0.2.0.0",
-    "author": "ZikZak," "Acysos," "Tecnativa," "Odoo Community Association (OCA)",
+    "author": "ZikZak," "Acysos," "Tecnativa," "Odoo Community Association (OCA)" "ProcessControl",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Localisation/Europe",
     "license": "AGPL-3",
     "development_status": "Mature",
-    "maintainers": ["pedrobaeza"],
+    "maintainers": ["pedrobaeza", "curonny"],
     "depends": ["account", "base_bank_from_iban", "base_vat"],
     "data": [
         "data/l10n_es_partner_data.xml",
