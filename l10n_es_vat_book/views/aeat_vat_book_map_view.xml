@@ -23,6 +23,7 @@
                 <field name="fee_amount_xlsx_column" />
                 <field name="tax_tmpl_ids" widget="many2many_tags" />
                 <field name="tax_account_id" />
+                <field name="tax_agency_ids" widget="many2many_tags" />
             </tree>
         </field>
     </record>
