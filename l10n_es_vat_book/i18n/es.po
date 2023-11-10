@@ -734,6 +734,7 @@ msgid "Tax Account Restriction"
 msgstr "Restricción de la cuenta de impuestos"
 
 #. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__tax_agency_ids
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__tax_agency_ids
 msgid "Tax Agency"
 msgstr "Agencia Tributaria"
