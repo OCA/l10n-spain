@@ -7,6 +7,10 @@
         <field name="fee_type_xlsx_column">N</field>
         <field name="fee_amount_xlsx_column">O</field>
         <field
+            name="tax_agency_ids"
+            eval="[ Command.link(ref('l10n_es_aeat.aeat_tax_agency_spain')) ]"
+        />
+        <field
             name="tax_tmpl_ids"
             eval="[
             (4, ref('l10n_es.account_tax_template_s_iva0b')),
@@ -36,6 +40,10 @@
         <field name="special_tax_group" eval="False" />
         <field name="fee_type_xlsx_column">O</field>
         <field name="fee_amount_xlsx_column">P</field>
+        <field
+            name="tax_agency_ids"
+            eval="[ Command.link(ref('l10n_es_aeat.aeat_tax_agency_spain')) ]"
+        />
         <field name="tax_account_id" ref="l10n_es.account_common_472" />
         <field
             name="tax_tmpl_ids"
@@ -97,6 +105,10 @@
         <field name="book_type">received</field>
         <field name="special_tax_group" eval="False" />
         <field
+            name="tax_agency_ids"
+            eval="[ Command.link(ref('l10n_es_aeat.aeat_tax_agency_spain')) ]"
+        />
+        <field
             name="tax_tmpl_ids"
             eval="[
             (4, ref('l10n_es.account_tax_template_p_iva0_nd')),
@@ -111,6 +123,10 @@
         <field name="special_tax_group">req</field>
         <field name="fee_type_xlsx_column">P</field>
         <field name="fee_amount_xlsx_column">Q</field>
+        <field
+            name="tax_agency_ids"
+            eval="[ Command.link(ref('l10n_es_aeat.aeat_tax_agency_spain')) ]"
+        />
         <field
             name="tax_tmpl_ids"
             eval="[
@@ -128,6 +144,10 @@
         <field name="special_tax_group">req</field>
         <field name="fee_type_xlsx_column">R</field>
         <field name="fee_amount_xlsx_column">S</field>
+        <field
+            name="tax_agency_ids"
+            eval="[ Command.link(ref('l10n_es_aeat.aeat_tax_agency_spain')) ]"
+        />
         <field
             name="tax_tmpl_ids"
             eval="[
