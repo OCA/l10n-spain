@@ -57,41 +57,10 @@ msgid "Customer VAT"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_71
-msgid ""
-"Despacho de mercancías a libre práctica en un Estado miembro con una "
-"exportación posterior a otro Estado miembro. Transacciones con miras al "
-"despacho de aduanas (que no implica cambio de titularidad, relacionados con "
-"mercancías en cuasi-importación o exportación)."
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_21
-msgid ""
-"Devolución y sustitución gratuita de mercancías después del registro de la "
-"transacción original: Devolución de mercancías."
-msgstr ""
-
-#. module: l10n_es_intrastat_report
 #: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_29
 msgid ""
 "Devolución y sustitución gratuita de mercancías después del registro de la "
 "transacción original: Otras."
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_23
-msgid ""
-"Devolución y sustitución gratuita de mercancías después del registro de la "
-"transacción original: Sustitución (por ejemplo, bajo garantía) de mercancías"
-" no devueltas."
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_22
-msgid ""
-"Devolución y sustitución gratuita de mercancías después del registro de la "
-"transacción original: Sustitución de mercancías devueltas."
 msgstr ""
 
 #. module: l10n_es_intrastat_report
@@ -253,22 +222,6 @@ msgid "Number of messages with delivery error"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_41
-msgid ""
-"Operaciones con vistas a un perfeccionamiento bajo contrato (no se traspasa "
-"la propiedad al contratista): Mercancías destinadas a regresar al Estado "
-"miembro de expedición inicial."
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_42
-msgid ""
-"Operaciones con vistas a un perfeccionamiento bajo contrato (no se traspasa "
-"la propiedad al contratista): Mercancías no destinadas a regresar al Estado "
-"miembro de expedición inicial."
-msgstr ""
-
-#. module: l10n_es_intrastat_report
 #: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_44
 msgid ""
 "Operaciones con vistas a un perfeccionamiento bajo contrato (no se traspasa "
@@ -290,22 +243,6 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_52
-msgid ""
-"Operaciones posteriores al perfeccionamiento bajo contrato (no se traspasa "
-"la propiedad al contratista): Mercancías que no regresan al Estado miembro "
-"de expedición."
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_51
-msgid ""
-"Operaciones posteriores al perfeccionamiento bajo contrato (no se traspasa "
-"la propiedad al contratista): Mercancías que regresan al Estado miembro de "
-"expedición."
-msgstr ""
-
-#. module: l10n_es_intrastat_report
 #: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_54
 msgid ""
 "Operaciones posteriores al perfeccionamiento bajo contrato (no se traspasa "
@@ -320,12 +257,6 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_99
-msgid ""
-"Otras transacciones que no se pueden clasificar bajo otros códigos. Otras."
-msgstr ""
-
-#. module: l10n_es_intrastat_report
 #: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_search
 msgid "Search Spanish Intrastat Product Declaration"
 msgstr ""
@@ -337,14 +268,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_graph
 #: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_tree
 msgid "Spanish Intrastat Product Declaration"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_80
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_91
-msgid ""
-"Suministro de materiales de construcción y maquinaria para trabajos en el "
-"marco de un contrato general de construcción o ingeniería."
 msgstr ""
 
 #. module: l10n_es_intrastat_report
@@ -371,36 +294,11 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_34
-msgid ""
-"Transacciones que implican transferencia de propiedad sin compensación "
-"económica. Transacciones que implican el cambio previsto de propiedad o "
-"cambio de propiedad sin compensación financiera."
-msgstr ""
-
-#. module: l10n_es_intrastat_report
 #: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_14
 msgid ""
 "Transacciones que supongan un traspaso de propiedad real o previsto de "
 "residentes a no residentes a cambio de una compensación financiera o de otro"
 " tipo: Arrendamiento financiero (alquiler - compra)."
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_11
-msgid ""
-"Transacciones que supongan un traspaso de propiedad real o previsto de "
-"residentes a no residentes a cambio de una compensación financiera o de otro"
-" tipo: Compra/Venta en firme."
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_12
-msgid ""
-"Transacciones que supongan un traspaso de propiedad real o previsto de "
-"residentes a no residentes a cambio de una compensación financiera o de otro"
-" tipo: Entrega para venta a la vista o de prueba, para consignación o con la"
-" mediación de un agente comisionado."
 msgstr ""
 
 #. module: l10n_es_intrastat_report
@@ -417,38 +315,6 @@ msgid ""
 "Transacciones que supongan un traspaso de propiedad real o previsto de "
 "residentes a no residentes a cambio de una compensación financiera o de otro"
 " tipo: Trueque (compensación en especie)."
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_31
-msgid ""
-"Transacciones que supongan un traspaso de propiedad sin compensación "
-"financiera o en especie: Mercancías suministradas en el marco de programas "
-"de ayuda promovidos o financiados parcial o totalmente por la Unión Europea."
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_33
-msgid ""
-"Transacciones que supongan un traspaso de propiedad sin compensación "
-"financiera o en especie: Otras ayudas (particulares, organizaciones no "
-"gubernamentales)."
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_32
-msgid ""
-"Transacciones que supongan un traspaso de propiedad sin compensación "
-"financiera o en especie: Otras entregas de ayuda gubernamental."
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_72
-msgid ""
-"Transporte de mercancías de un miembr Estado a otro Estado miembro para "
-"colocar el mercancías en régimen de exportación. Transacciones con miras al "
-"despacho de aduanas (que no implica cambio de titularidad, relacionados con "
-"mercancías en cuasi-importación o exportación)."
 msgstr ""
 
 #. module: l10n_es_intrastat_report
