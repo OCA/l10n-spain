@@ -62,28 +62,6 @@ msgid "Customer VAT"
 msgstr "NIF del cliente"
 
 #. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_71
-msgid ""
-"Despacho de mercancías a libre práctica en un Estado miembro con una "
-"exportación posterior a otro Estado miembro. Transacciones con miras al "
-"despacho de aduanas (que no implica cambio de titularidad, relacionados con "
-"mercancías en cuasi-importación o exportación)."
-msgstr ""
-"Despacho de mercancías a libre práctica en un Estado miembro con una "
-"exportación posterior a otro Estado miembro. Transacciones con miras al "
-"despacho de aduanas (que no implica cambio de titularidad, relacionados con "
-"mercancías en cuasi-importación o exportación)."
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_21
-msgid ""
-"Devolución y sustitución gratuita de mercancías después del registro de la "
-"transacción original: Devolución de mercancías."
-msgstr ""
-"Devolución y sustitución gratuita de mercancías después del registro de la "
-"transacción original: Devolución de mercancías."
-
-#. module: l10n_es_intrastat_report
 #: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_29
 msgid ""
 "Devolución y sustitución gratuita de mercancías después del registro de la "
@@ -91,26 +69,6 @@ msgid ""
 msgstr ""
 "Devolución y sustitución gratuita de mercancías después del registro de la "
 "transacción original: Otras."
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_23
-msgid ""
-"Devolución y sustitución gratuita de mercancías después del registro de la "
-"transacción original: Sustitución (por ejemplo, bajo garantía) de mercancías "
-"no devueltas."
-msgstr ""
-"Devolución y sustitución gratuita de mercancías después del registro de la "
-"transacción original: Sustitución (por ejemplo, bajo garantía) de mercancías "
-"no devueltas."
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_22
-msgid ""
-"Devolución y sustitución gratuita de mercancías después del registro de la "
-"transacción original: Sustitución de mercancías devueltas."
-msgstr ""
-"Devolución y sustitución gratuita de mercancías después del registro de la "
-"transacción original: Sustitución de mercancías devueltas."
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__display_name
@@ -271,28 +229,6 @@ msgid "Number of messages with delivery error"
 msgstr "Nº de mensajes con error de entrega"
 
 #. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_41
-msgid ""
-"Operaciones con vistas a un perfeccionamiento bajo contrato (no se traspasa "
-"la propiedad al contratista): Mercancías destinadas a regresar al Estado "
-"miembro de expedición inicial."
-msgstr ""
-"Operaciones con vistas a un perfeccionamiento bajo contrato (no se traspasa "
-"la propiedad al contratista): Mercancías destinadas a regresar al Estado "
-"miembro de expedición inicial."
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_42
-msgid ""
-"Operaciones con vistas a un perfeccionamiento bajo contrato (no se traspasa "
-"la propiedad al contratista): Mercancías no destinadas a regresar al Estado "
-"miembro de expedición inicial."
-msgstr ""
-"Operaciones con vistas a un perfeccionamiento bajo contrato (no se traspasa "
-"la propiedad al contratista): Mercancías no destinadas a regresar al Estado "
-"miembro de expedición inicial."
-
-#. module: l10n_es_intrastat_report
 #: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_44
 msgid ""
 "Operaciones con vistas a un perfeccionamiento bajo contrato (no se traspasa "
@@ -320,28 +256,6 @@ msgstr ""
 "intergubernamentales de producción conjunta."
 
 #. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_52
-msgid ""
-"Operaciones posteriores al perfeccionamiento bajo contrato (no se traspasa "
-"la propiedad al contratista): Mercancías que no regresan al Estado miembro "
-"de expedición."
-msgstr ""
-"Operaciones posteriores al perfeccionamiento bajo contrato (no se traspasa "
-"la propiedad al contratista): Mercancías que no regresan al Estado miembro "
-"de expedición."
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_51
-msgid ""
-"Operaciones posteriores al perfeccionamiento bajo contrato (no se traspasa "
-"la propiedad al contratista): Mercancías que regresan al Estado miembro de "
-"expedición."
-msgstr ""
-"Operaciones posteriores al perfeccionamiento bajo contrato (no se traspasa "
-"la propiedad al contratista): Mercancías que regresan al Estado miembro de "
-"expedición."
-
-#. module: l10n_es_intrastat_report
 #: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_54
 msgid ""
 "Operaciones posteriores al perfeccionamiento bajo contrato (no se traspasa "
@@ -360,13 +274,6 @@ msgstr ""
 "la propiedad al contratista): Reparación o mantenimiento a título oneroso."
 
 #. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_99
-msgid ""
-"Otras transacciones que no se pueden clasificar bajo otros códigos. Otras."
-msgstr ""
-"Otras transacciones que no se pueden clasificar bajo otros códigos. Otras."
-
-#. module: l10n_es_intrastat_report
 #: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_search
 msgid "Search Spanish Intrastat Product Declaration"
 msgstr "Buscar declaraciones de producto Intrastat españolas"
@@ -379,16 +286,6 @@ msgstr "Buscar declaraciones de producto Intrastat españolas"
 #: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_tree
 msgid "Spanish Intrastat Product Declaration"
 msgstr "Declaración de producto Intrastat española"
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_80
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_91
-msgid ""
-"Suministro de materiales de construcción y maquinaria para trabajos en el "
-"marco de un contrato general de construcción o ingeniería."
-msgstr ""
-"Suministro de materiales de construcción y maquinaria para trabajos en el "
-"marco de un contrato general de construcción o ingeniería."
 
 #. module: l10n_es_intrastat_report
 #. odoo-python
@@ -420,17 +317,6 @@ msgstr ""
 "reparaciones."
 
 #. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_34
-msgid ""
-"Transacciones que implican transferencia de propiedad sin compensación "
-"económica. Transacciones que implican el cambio previsto de propiedad o "
-"cambio de propiedad sin compensación financiera."
-msgstr ""
-"Transacciones que implican transferencia de propiedad sin compensación "
-"económica. Transacciones que implican el cambio previsto de propiedad o "
-"cambio de propiedad sin compensación financiera."
-
-#. module: l10n_es_intrastat_report
 #: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_14
 msgid ""
 "Transacciones que supongan un traspaso de propiedad real o previsto de "
@@ -440,30 +326,6 @@ msgstr ""
 "Transacciones que supongan un traspaso de propiedad real o previsto de "
 "residentes a no residentes a cambio de una compensación financiera o de otro "
 "tipo: Arrendamiento financiero (alquiler - compra)."
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_11
-msgid ""
-"Transacciones que supongan un traspaso de propiedad real o previsto de "
-"residentes a no residentes a cambio de una compensación financiera o de otro "
-"tipo: Compra/Venta en firme."
-msgstr ""
-"Transacciones que supongan un traspaso de propiedad real o previsto de "
-"residentes a no residentes a cambio de una compensación financiera o de otro "
-"tipo: Compra/Venta en firme."
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_12
-msgid ""
-"Transacciones que supongan un traspaso de propiedad real o previsto de "
-"residentes a no residentes a cambio de una compensación financiera o de otro "
-"tipo: Entrega para venta a la vista o de prueba, para consignación o con la "
-"mediación de un agente comisionado."
-msgstr ""
-"Transacciones que supongan un traspaso de propiedad real o previsto de "
-"residentes a no residentes a cambio de una compensación financiera o de otro "
-"tipo: Entrega para venta a la vista o de prueba, para consignación o con la "
-"mediación de un agente comisionado."
 
 #. module: l10n_es_intrastat_report
 #: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_19
@@ -486,50 +348,6 @@ msgstr ""
 "Transacciones que supongan un traspaso de propiedad real o previsto de "
 "residentes a no residentes a cambio de una compensación financiera o de otro "
 "tipo: Trueque (compensación en especie)."
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_31
-msgid ""
-"Transacciones que supongan un traspaso de propiedad sin compensación "
-"financiera o en especie: Mercancías suministradas en el marco de programas "
-"de ayuda promovidos o financiados parcial o totalmente por la Unión Europea."
-msgstr ""
-"Transacciones que supongan un traspaso de propiedad sin compensación "
-"financiera o en especie: Mercancías suministradas en el marco de programas "
-"de ayuda promovidos o financiados parcial o totalmente por la Unión Europea."
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_33
-msgid ""
-"Transacciones que supongan un traspaso de propiedad sin compensación "
-"financiera o en especie: Otras ayudas (particulares, organizaciones no "
-"gubernamentales)."
-msgstr ""
-"Transacciones que supongan un traspaso de propiedad sin compensación "
-"financiera o en especie: Otras ayudas (particulares, organizaciones no "
-"gubernamentales)."
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_32
-msgid ""
-"Transacciones que supongan un traspaso de propiedad sin compensación "
-"financiera o en especie: Otras entregas de ayuda gubernamental."
-msgstr ""
-"Transacciones que supongan un traspaso de propiedad sin compensación "
-"financiera o en especie: Otras entregas de ayuda gubernamental."
-
-#. module: l10n_es_intrastat_report
-#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_72
-msgid ""
-"Transporte de mercancías de un miembr Estado a otro Estado miembro para "
-"colocar el mercancías en régimen de exportación. Transacciones con miras al "
-"despacho de aduanas (que no implica cambio de titularidad, relacionados con "
-"mercancías en cuasi-importación o exportación)."
-msgstr ""
-"Transporte de mercancías de un miembr Estado a otro Estado miembro para "
-"colocar el mercancías en régimen de exportación. Transacciones con miras al "
-"despacho de aduanas (que no implica cambio de titularidad, relacionados con "
-"mercancías en cuasi-importación o exportación)."
 
 #. module: l10n_es_intrastat_report
 #. odoo-python
@@ -559,6 +377,155 @@ msgstr "Historial de comunicación del sitio web"
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration_line__weight
 msgid "Weight"
 msgstr "Peso"
+
+#~ msgid ""
+#~ "Despacho de mercancías a libre práctica en un Estado miembro con una "
+#~ "exportación posterior a otro Estado miembro. Transacciones con miras al "
+#~ "despacho de aduanas (que no implica cambio de titularidad, relacionados "
+#~ "con mercancías en cuasi-importación o exportación)."
+#~ msgstr ""
+#~ "Despacho de mercancías a libre práctica en un Estado miembro con una "
+#~ "exportación posterior a otro Estado miembro. Transacciones con miras al "
+#~ "despacho de aduanas (que no implica cambio de titularidad, relacionados "
+#~ "con mercancías en cuasi-importación o exportación)."
+
+#~ msgid ""
+#~ "Devolución y sustitución gratuita de mercancías después del registro de "
+#~ "la transacción original: Devolución de mercancías."
+#~ msgstr ""
+#~ "Devolución y sustitución gratuita de mercancías después del registro de "
+#~ "la transacción original: Devolución de mercancías."
+
+#~ msgid ""
+#~ "Devolución y sustitución gratuita de mercancías después del registro de "
+#~ "la transacción original: Sustitución (por ejemplo, bajo garantía) de "
+#~ "mercancías no devueltas."
+#~ msgstr ""
+#~ "Devolución y sustitución gratuita de mercancías después del registro de "
+#~ "la transacción original: Sustitución (por ejemplo, bajo garantía) de "
+#~ "mercancías no devueltas."
+
+#~ msgid ""
+#~ "Devolución y sustitución gratuita de mercancías después del registro de "
+#~ "la transacción original: Sustitución de mercancías devueltas."
+#~ msgstr ""
+#~ "Devolución y sustitución gratuita de mercancías después del registro de "
+#~ "la transacción original: Sustitución de mercancías devueltas."
+
+#~ msgid ""
+#~ "Operaciones con vistas a un perfeccionamiento bajo contrato (no se "
+#~ "traspasa la propiedad al contratista): Mercancías destinadas a regresar "
+#~ "al Estado miembro de expedición inicial."
+#~ msgstr ""
+#~ "Operaciones con vistas a un perfeccionamiento bajo contrato (no se "
+#~ "traspasa la propiedad al contratista): Mercancías destinadas a regresar "
+#~ "al Estado miembro de expedición inicial."
+
+#~ msgid ""
+#~ "Operaciones con vistas a un perfeccionamiento bajo contrato (no se "
+#~ "traspasa la propiedad al contratista): Mercancías no destinadas a "
+#~ "regresar al Estado miembro de expedición inicial."
+#~ msgstr ""
+#~ "Operaciones con vistas a un perfeccionamiento bajo contrato (no se "
+#~ "traspasa la propiedad al contratista): Mercancías no destinadas a "
+#~ "regresar al Estado miembro de expedición inicial."
+
+#~ msgid ""
+#~ "Operaciones posteriores al perfeccionamiento bajo contrato (no se "
+#~ "traspasa la propiedad al contratista): Mercancías que no regresan al "
+#~ "Estado miembro de expedición."
+#~ msgstr ""
+#~ "Operaciones posteriores al perfeccionamiento bajo contrato (no se "
+#~ "traspasa la propiedad al contratista): Mercancías que no regresan al "
+#~ "Estado miembro de expedición."
+
+#~ msgid ""
+#~ "Operaciones posteriores al perfeccionamiento bajo contrato (no se "
+#~ "traspasa la propiedad al contratista): Mercancías que regresan al Estado "
+#~ "miembro de expedición."
+#~ msgstr ""
+#~ "Operaciones posteriores al perfeccionamiento bajo contrato (no se "
+#~ "traspasa la propiedad al contratista): Mercancías que regresan al Estado "
+#~ "miembro de expedición."
+
+#~ msgid ""
+#~ "Otras transacciones que no se pueden clasificar bajo otros códigos. Otras."
+#~ msgstr ""
+#~ "Otras transacciones que no se pueden clasificar bajo otros códigos. Otras."
+
+#~ msgid ""
+#~ "Suministro de materiales de construcción y maquinaria para trabajos en el "
+#~ "marco de un contrato general de construcción o ingeniería."
+#~ msgstr ""
+#~ "Suministro de materiales de construcción y maquinaria para trabajos en el "
+#~ "marco de un contrato general de construcción o ingeniería."
+
+#~ msgid ""
+#~ "Transacciones que implican transferencia de propiedad sin compensación "
+#~ "económica. Transacciones que implican el cambio previsto de propiedad o "
+#~ "cambio de propiedad sin compensación financiera."
+#~ msgstr ""
+#~ "Transacciones que implican transferencia de propiedad sin compensación "
+#~ "económica. Transacciones que implican el cambio previsto de propiedad o "
+#~ "cambio de propiedad sin compensación financiera."
+
+#~ msgid ""
+#~ "Transacciones que supongan un traspaso de propiedad real o previsto de "
+#~ "residentes a no residentes a cambio de una compensación financiera o de "
+#~ "otro tipo: Compra/Venta en firme."
+#~ msgstr ""
+#~ "Transacciones que supongan un traspaso de propiedad real o previsto de "
+#~ "residentes a no residentes a cambio de una compensación financiera o de "
+#~ "otro tipo: Compra/Venta en firme."
+
+#~ msgid ""
+#~ "Transacciones que supongan un traspaso de propiedad real o previsto de "
+#~ "residentes a no residentes a cambio de una compensación financiera o de "
+#~ "otro tipo: Entrega para venta a la vista o de prueba, para consignación o "
+#~ "con la mediación de un agente comisionado."
+#~ msgstr ""
+#~ "Transacciones que supongan un traspaso de propiedad real o previsto de "
+#~ "residentes a no residentes a cambio de una compensación financiera o de "
+#~ "otro tipo: Entrega para venta a la vista o de prueba, para consignación o "
+#~ "con la mediación de un agente comisionado."
+
+#~ msgid ""
+#~ "Transacciones que supongan un traspaso de propiedad sin compensación "
+#~ "financiera o en especie: Mercancías suministradas en el marco de "
+#~ "programas de ayuda promovidos o financiados parcial o totalmente por la "
+#~ "Unión Europea."
+#~ msgstr ""
+#~ "Transacciones que supongan un traspaso de propiedad sin compensación "
+#~ "financiera o en especie: Mercancías suministradas en el marco de "
+#~ "programas de ayuda promovidos o financiados parcial o totalmente por la "
+#~ "Unión Europea."
+
+#~ msgid ""
+#~ "Transacciones que supongan un traspaso de propiedad sin compensación "
+#~ "financiera o en especie: Otras ayudas (particulares, organizaciones no "
+#~ "gubernamentales)."
+#~ msgstr ""
+#~ "Transacciones que supongan un traspaso de propiedad sin compensación "
+#~ "financiera o en especie: Otras ayudas (particulares, organizaciones no "
+#~ "gubernamentales)."
+
+#~ msgid ""
+#~ "Transacciones que supongan un traspaso de propiedad sin compensación "
+#~ "financiera o en especie: Otras entregas de ayuda gubernamental."
+#~ msgstr ""
+#~ "Transacciones que supongan un traspaso de propiedad sin compensación "
+#~ "financiera o en especie: Otras entregas de ayuda gubernamental."
+
+#~ msgid ""
+#~ "Transporte de mercancías de un miembr Estado a otro Estado miembro para "
+#~ "colocar el mercancías en régimen de exportación. Transacciones con miras "
+#~ "al despacho de aduanas (que no implica cambio de titularidad, "
+#~ "relacionados con mercancías en cuasi-importación o exportación)."
+#~ msgstr ""
+#~ "Transporte de mercancías de un miembr Estado a otro Estado miembro para "
+#~ "colocar el mercancías en régimen de exportación. Transacciones con miras "
+#~ "al despacho de aduanas (que no implica cambio de titularidad, "
+#~ "relacionados con mercancías en cuasi-importación o exportación)."
 
 #~ msgid "SMS Delivery error"
 #~ msgstr "Error de entrega de SMS"
