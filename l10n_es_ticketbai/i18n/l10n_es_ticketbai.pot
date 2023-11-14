@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-14 14:03+0000\n"
+"PO-Revision-Date: 2023-11-14 14:03+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -288,6 +290,24 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
 msgid "Invoice Serial"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_journal__tbai_invoice_issuer__t
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_move__tbai_invoice_issuer__t
+msgid "Invoice issued by a third party"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_journal__tbai_invoice_issuer__d
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_move__tbai_invoice_issuer__d
+msgid "Invoice issued by recipient"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_journal__tbai_invoice_issuer__n
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_move__tbai_invoice_issuer__n
+msgid "Invoice issued by the issuer itself"
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -800,6 +820,14 @@ msgstr ""
 msgid ""
 "TicketBAI: You cannot cancel and recreate an Invoice with a state different "
 "than 'Error'."
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_invoice_issuer
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_journal__tbai_invoice_issuer
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_invoice_issuer
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_invoice_issuer
+msgid "TicketBai: Invoice issuer"
 msgstr ""
 
 #. module: l10n_es_ticketbai

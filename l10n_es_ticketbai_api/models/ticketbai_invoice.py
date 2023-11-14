@@ -219,6 +219,18 @@ class TicketBAIInvoice(models.Model):
     tax_retention_amount_total = fields.Char(
         "Invoice Tax Retention Total Amount", default=""
     )
+    tbai_invoice_issuer = fields.Selection(
+        selection=[
+            ("N", "Invoice issued by the issuer itself"),
+            # Factura emitida por el propio emisor
+            ("T", "Invoice issued by a third party"),
+            # Factura emitida por tercero
+            ("D", "Invoice issued by recipient"),
+            # Factura emitida por destinatario
+        ],
+        default="N",
+        string="TicketBai: Invoice issuer",
+    )
 
     @api.constrains("previous_tbai_invoice_id")
     def _check_previous_tbai_invoice_id(self):
@@ -1325,6 +1337,8 @@ class TicketBAIInvoice(models.Model):
         customers = self.build_destinatarios()
         if customers:
             res["Destinatarios"] = customers
+        if self.tbai_invoice_issuer != "N":
+            res["EmitidaPorTercerosODestinatario"] = self.tbai_invoice_issuer
         return res
 
     def build_tipo_desglose(self):

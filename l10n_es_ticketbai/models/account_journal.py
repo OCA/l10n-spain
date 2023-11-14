@@ -17,6 +17,21 @@ class AccountJournal(models.Model):
         help="Start date for sending invoices to the tax authorities",
         default=fields.Date.to_date("2022-01-01"),
     )
+    tbai_invoice_issuer = fields.Selection(
+        selection=[
+            ("N", "Invoice issued by the issuer itself"),
+            # Factura emitida por el propio emisor
+            ("T", "Invoice issued by a third party"),
+            # Factura emitida por tercero
+            ("D", "Invoice issued by recipient"),
+            # Factura emitida por destinatario
+        ],
+        default="N",
+        string="TicketBai: Invoice issuer",
+        # TicketBai: Emisor de la factura
+        copy=False,
+        required=True,
+    )
 
     @api.onchange("refund_sequence")
     def onchange_refund_sequence(self):
