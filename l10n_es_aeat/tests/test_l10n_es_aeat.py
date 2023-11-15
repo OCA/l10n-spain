@@ -109,3 +109,17 @@ class TestL10nEsAeat(TransactionCase):
             self.env["l10n.es.aeat.map.tax"].create(
                 {"date_to": "2021-01-01", "model": 303}
             )
+
+    def test_map_aeat_iso_code_greece(self):
+        res_partner_obj = self.env["res.partner"]
+        greece_country = self.env.ref("base.gr")
+        iso_code = "EL"
+        mapping_return = res_partner_obj._map_aeat_country_iso_code(greece_country)
+        self.assertEqual(iso_code, mapping_return)
+
+    def test_map_aeat_iso_code_no_mapping(self):
+        res_partner_obj = self.env["res.partner"]
+        spain_country = self.env.ref("base.es")
+        iso_code = "ES"
+        mapping_return = res_partner_obj._map_aeat_country_iso_code(spain_country)
+        self.assertEqual(iso_code, mapping_return)
