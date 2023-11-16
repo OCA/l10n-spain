@@ -176,7 +176,7 @@ class L10nEsAeatReport(models.AbstractModel):
             (
                 "model_id",
                 "=",
-                self.env["ir.model"].search([("model", "=", self._name)]).id,
+                self.env["ir.model"].sudo().search([("model", "=", self._name)]).id,
             )
         ],
         compute="_compute_export_config_id",
