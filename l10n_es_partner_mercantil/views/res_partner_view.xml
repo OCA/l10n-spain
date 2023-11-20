@@ -11,10 +11,7 @@
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
             <page name="internal_notes" position="after">
-                <page
-                    string="Commercial Info"
-                    attrs="{'invisible': [('is_company','=',False)]}"
-                >
+                <page string="Commercial Info" invisible="not is_company">
                     <group>
                         <group>
                             <field name="es_libro" />
