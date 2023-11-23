@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-27 07:06+0000\n"
-"PO-Revision-Date: 2023-11-23 15:36+0000\n"
+"PO-Revision-Date: 2023-11-23 18:36+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -151,7 +151,7 @@ msgstr ""
 "                    cambiarla en el formulario de contacto. Prueba de poner "
 "calle y número\n"
 "                    en la primera línea de dirección, y piso y puerta en la "
-"segunda"
+"segunda."
 
 #. module: delivery_mrw
 #: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
@@ -274,7 +274,7 @@ msgstr "Fecha"
 #. module: delivery_mrw
 #: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_department_code
 msgid "Department Code"
-msgstr "Código de Depto."
+msgstr "Código de Departamento"
 
 #. module: delivery_mrw
 #: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__display_name
@@ -393,7 +393,7 @@ msgstr "ID"
 #: model:ir.model.fields,help:delivery_mrw.field_mrw_manifest_wizard__carrier_id
 msgid ""
 "If no service is selected, all MRW type shippment methods will be printed"
-msgstr "Si no se selecciona un servicio se imprimirán todos los envíos de MRW."
+msgstr "Si no se selecciona un servicio se imprimirán todos los envíos de MRW"
 
 #. module: delivery_mrw
 #: model:ir.model,name:delivery_mrw.model_stock_immediate_transfer
@@ -519,7 +519,7 @@ msgstr "Servicio"
 #: code:addons/delivery_mrw/models/stock_picking.py:0
 #, python-format
 msgid "MRW Shipping Label:"
-msgstr "Etiqueta de Envío de MRW"
+msgstr "Etiqueta de Envío de MRW:"
 
 #. module: delivery_mrw
 #: model:delivery.carrier,name:delivery_mrw.mrw_carrier_test
@@ -645,42 +645,42 @@ msgstr "Reembolso"
 #. module: delivery_mrw
 #: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
 msgid "Ref."
-msgstr ""
+msgstr "Ref."
 
 #. module: delivery_mrw
 #: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
 msgid "Refund"
-msgstr "Reemb."
+msgstr "Reembolso"
 
 #. module: delivery_mrw
 #: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_view_delivery_carrier_form
 msgid "Retorno"
-msgstr ""
+msgstr "Retorno"
 
 #. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_retorno__d
 msgid "Retorno de albarán cobro en destino"
-msgstr ""
+msgstr "Retorno de albarán cobro en destino"
 
 #. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_retorno__s
 msgid "Retorno de mercancia"
-msgstr ""
+msgstr "Retorno de mercancía"
 
 #. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_notification_channel__2
 msgid "SMS"
-msgstr ""
+msgstr "SMS"
 
 #. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_international_service__sc
 msgid "SUPERCITY"
-msgstr ""
+msgstr "SUPERCIUDAD"
 
 #. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_notification_type__2
 msgid "Seguimiento de envío"
-msgstr ""
+msgstr "Seguimiento de envío"
 
 #. module: delivery_mrw
 #: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
@@ -702,22 +702,22 @@ msgstr "Métodos de envío"
 #. module: delivery_mrw
 #: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
 msgid "Shipping Num."
-msgstr "Núm. Envío"
+msgstr "Núm. Envío."
 
 #. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_en_franquicia__n
 msgid "Sin recogida ni entrega en franquicia."
-msgstr ""
+msgstr "Sin recogida ni entrega en franquicia."
 
 #. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_reembolso__n
 msgid "Sin reembolso"
-msgstr ""
+msgstr "Sin reembolso"
 
 #. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_retorno__n
 msgid "Sin retorno"
-msgstr ""
+msgstr "Sin retorno"
 
 #. module: delivery_mrw
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
@@ -726,6 +726,8 @@ msgid ""
 "Solamente se permiten caracteres numéricos en el campo número de la "
 "dirección. Número: %s"
 msgstr ""
+"Solamente se permiten caracteres numéricos en el campo número de la "
+"dirección. Número: %s"
 
 #. module: delivery_mrw
 #: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
@@ -745,57 +747,57 @@ msgstr "Albarán"
 #. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0000
 msgid "Urgente 10"
-msgstr ""
+msgstr "Urgente 10"
 
 #. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0015
 msgid "Urgente 10 Expedición"
-msgstr ""
+msgstr "Urgente 10 Expedición"
 
 #. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0100
 msgid "Urgente 12"
-msgstr ""
+msgstr "Urgente 12"
 
 #. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0105
 msgid "Urgente 12 Expedición"
-msgstr ""
+msgstr "Urgente 12 Expedición"
 
 #. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0110
 msgid "Urgente 14"
-msgstr ""
+msgstr "Urgente 14"
 
 #. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0115
 msgid "Urgente 14 Expedición"
-msgstr ""
+msgstr "Urgente 14 Expedición"
 
 #. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0200
 msgid "Urgente 19"
-msgstr ""
+msgstr "Urgente 19"
 
 #. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0205
 msgid "Urgente 19 Expediciones"
-msgstr ""
+msgstr "Urgente 19 Expediciones"
 
 #. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0210
 msgid "Urgente 19 Mas 40 Kilos"
-msgstr ""
+msgstr "Urgente 19 Mas 40 Kilos"
 
 #. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0120
 msgid "Urgente 22"
-msgstr ""
+msgstr "Urgente 22"
 
 #. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0005
 msgid "Urgente Hoy"
-msgstr ""
+msgstr "Urgente Hoy"
 
 #. module: delivery_mrw
 #: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_username
@@ -810,7 +812,7 @@ msgstr "Peso"
 #. module: delivery_mrw
 #: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
 msgid "ZIP Code"
-msgstr "C.P."
+msgstr "Código postal"
 
 #~ msgid "Create Shipping"
 #~ msgstr "Crear envío"
