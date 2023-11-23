@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-11-23 22:34+0000\n"
+"PO-Revision-Date: 2023-11-24 01:57+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -438,47 +438,47 @@ msgstr "Socio"
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__period_type
 msgid "Period type"
-msgstr ""
+msgstr "Tipo de periodo"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__contact_phone
 msgid "Phone"
-msgstr ""
+msgstr "Teléfono"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__previous_number
 msgid "Previous declaration number"
-msgstr ""
+msgstr "Número de declaración previa"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__name
 msgid "Report identifier"
-msgstr ""
+msgstr "Identificador del Informe"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "Usuario Responsable"
 
 #. module: l10n_es_aeat_mod322
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod322.l10n_es_aeat_mod322_report_form_view
 msgid "Resultado"
-msgstr ""
+msgstr "Resultado"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__date_start
 msgid "Starting date"
-msgstr ""
+msgstr "Fecha inicio"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__state
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__statement_type
 msgid "Statement Type"
-msgstr ""
+msgstr "Tipo de extracto"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__activity_state
@@ -488,17 +488,21 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"Estado basado en las actividades\n"
+"Atrasado: La fecha de vencimiento ya ha pasado\n"
+"Hoy: La fecha de la actividad es hoy\n"
+"Planificado: Actividades futuras."
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__support_type
 msgid "Support Type"
-msgstr ""
+msgstr "Tipo de soporte"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__tax_line_ids
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod322.l10n_es_aeat_mod322_report_form_view
 msgid "Tax lines"
-msgstr ""
+msgstr "Líneas de impuesto"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__porcentaje_atribuible_estado
@@ -508,12 +512,17 @@ msgid ""
 "enter in this box the percentage of volume operations in the common "
 "territory. Other taxpayers will enter in this box 100%"
 msgstr ""
+"Los sujetos pasivos que tributen conjuntamente a la Administración del "
+"Estado y a las Diputaciones Forales del País Vasco o a la Comunidad Foral de "
+"Navarra, consignarán en esta casilla el porcentaje del volumen de "
+"operaciones en territorio común. Los demás sujetos pasivos consignarán en "
+"esta casilla el 100%"
 
 #. module: l10n_es_aeat_mod322
 #: code:addons/l10n_es_aeat_mod322/models/l10n_es_aeat_mod322_report.py:0
 #, python-format
 msgid "The fee to compensate must be indicated as a positive number."
-msgstr ""
+msgstr "La cuota a compensar debe ser indicada como una cantidad positiva."
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__counterpart_account_id
@@ -521,94 +530,96 @@ msgid ""
 "This account will be the counterpart for all the journal items that are "
 "regularized when posting the report."
 msgstr ""
+"Esta cuenta será la contrapartida para todos los apuntes contables que estén "
+"regularizados al publicar el informe."
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__company_type
 msgid "Tipo de compañía"
-msgstr ""
+msgstr "Tipo de compañía"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Tipo (o clase) de actividad excepcional registrada."
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__message_unread
 msgid "Unread Messages"
-msgstr ""
+msgstr "Mensajes sin Leer"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__message_unread_counter
 msgid "Unread Messages Counter"
-msgstr ""
+msgstr "Contador de Mensajes sin Leer"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_group__vinculated_partner_ids
 msgid "Use this field if you have other vinculated partners"
-msgstr ""
+msgstr "Utilice este campo si tiene otros socios vinculados"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__company_vat
 msgid "VAT number"
-msgstr ""
+msgstr "Número NIF"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_group__vinculated_partner_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__vinculated_partner_ids
 msgid "Vinculated Partner"
-msgstr ""
+msgstr "Socio Vinculado"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Mensajes de la Página web"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,help:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Historial de la comunicación del sitio web"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__year
 msgid "Year"
-msgstr ""
+msgstr "Año"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__total_devengado
 msgid "[38] Total devengador"
-msgstr ""
+msgstr "[38] Total devengador"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__total_deducir
 msgid "[62] Total a deducir"
-msgstr ""
+msgstr "[62] Total a deducir"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__casilla_63
 msgid "[63] General scheme result"
-msgstr ""
+msgstr "[63] Resultado del esquema general"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__porcentaje_atribuible_estado
 msgid "[64] % attributable to State"
-msgstr ""
+msgstr "[64] % atribuible al Estado"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__atribuible_estado
 msgid "[65] Attributable to the Administration"
-msgstr ""
+msgstr "[65] Atribuible a la Administración"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__cuota_compensar
 msgid "[66] Applied fees to compensate"
-msgstr ""
+msgstr "[66] Tasas aplicadas para compensar"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__cuota_liquidacion
 msgid "[68] Result"
-msgstr ""
+msgstr "[68] Resultado"
 
 #. module: l10n_es_aeat_mod322
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod322.field_l10n_es_aeat_mod322_report__operaciones_ejercicio
 msgid "[88] Operaciones realizadas en el ejercicio"
-msgstr ""
+msgstr "[88] Operaciones realizadas en el ejercicio"
