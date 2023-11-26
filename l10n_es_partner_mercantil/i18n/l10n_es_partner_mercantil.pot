@@ -1,0 +1,60 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_partner_mercantil
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_partner_mercantil
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner__es_libro
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users__es_libro
+msgid "Book"
+msgstr ""
+
+#. module: l10n_es_partner_mercantil
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner_mercantil.view_partner_form
+msgid "Commercial Info"
+msgstr ""
+
+#. module: l10n_es_partner_mercantil
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner__es_registro_mercantil
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users__es_registro_mercantil
+msgid "Commercial Registry"
+msgstr ""
+
+#. module: l10n_es_partner_mercantil
+#: model:ir.model,name:l10n_es_partner_mercantil.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: l10n_es_partner_mercantil
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner__es_folio
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users__es_folio
+msgid "Page"
+msgstr ""
+
+#. module: l10n_es_partner_mercantil
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner__es_seccion
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users__es_seccion
+msgid "Section"
+msgstr ""
+
+#. module: l10n_es_partner_mercantil
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner__es_hoja
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users__es_hoja
+msgid "Sheet"
+msgstr ""
+
+#. module: l10n_es_partner_mercantil
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner__es_tomo
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users__es_tomo
+msgid "Volume"
+msgstr ""
