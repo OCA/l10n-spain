@@ -142,13 +142,6 @@ class AccountMove(models.Model):
                 raise ValidationError(
                     _("Taxes not provided in move line " "%s") % line.name
                 )
-        if not self.facturae:
-            raise ValidationError(
-                _(
-                    "You can only create the facturae file if the client have the "
-                    "facturae feature activated."
-                )
-            )
         if self.state not in self._get_valid_move_statuses():
             raise ValidationError(
                 _(
