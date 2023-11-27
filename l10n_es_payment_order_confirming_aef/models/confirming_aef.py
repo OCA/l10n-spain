@@ -109,7 +109,8 @@ class ConfirmingAEF(object):
             vat = vat.replace(self.partner_bank.country_id.code, "")
         text += self._aef_convert_text(vat, 15, "left")
         # 67 - 74 Fecha proceso
-        text += self._aef_convert_text("", 8)
+        fecha_proceso = fields.first(self.record.payment_line_ids).date
+        text += self._aef_convert_text(str(fecha_proceso).replace("-", ""), 8)
         # 75 - 82 Fecha remesa
         if self.record.date_prefered == "due":
             fecha_planificada = fields.first(
