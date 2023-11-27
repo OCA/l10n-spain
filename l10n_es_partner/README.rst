@@ -17,27 +17,29 @@ Adaptación de los clientes, proveedores y bancos para España
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_partner
+    :target: https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_partner
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-16-0/l10n-spain-16-0-l10n_es_partner
+    :target: https://translation.odoo-community.org/projects/l10n-spain-17-0/l10n-spain-17-0-l10n_es_partner
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 Incluye la siguiente funcionalidad:
 
-* Añade el campo *Nombre comercial* a las empresas y permite buscar por él.
-* Permite definir un patrón del nombre a mostrar a partir del nombre y el
-  nombre comercial de la empresa.
-* Añade los campos nombre largo, NIF y web a los bancos.
-* Añade los datos de los bancos españoles extraídos del registro oficial del
-  Banco de España (http://goo.gl/mtx6ic). El asistente realiza la descarga
-  automática de Internet, pero si por cualquier razón hay algún problema,
-  existe una copia local cuya última actualización fue el 26/10/2017.
+-  Añade el campo *Nombre comercial* a las empresas y permite buscar por
+   él.
+-  Permite definir un patrón del nombre a mostrar a partir del nombre y
+   el nombre comercial de la empresa.
+-  Añade los campos nombre largo, NIF y web a los bancos.
+-  Añade los datos de los bancos españoles extraídos del registro
+   oficial del Banco de España (http://goo.gl/mtx6ic). El asistente
+   realiza la descarga automática de Internet, pero si por cualquier
+   razón hay algún problema, existe una copia local cuya última
+   actualización fue el 26/10/2017.
 
 **Table of contents**
 
@@ -47,8 +49,8 @@ Incluye la siguiente funcionalidad:
 Installation
 ============
 
-Este módulo depende de *base_bank_from_iban* que se encuentra en el repositorio
-https://github.com/OCA/community-data-files
+Este módulo depende de *base_bank_from_iban* que se encuentra en el
+repositorio https://github.com/OCA/community-data-files
 
 Configuration
 =============
@@ -56,20 +58,21 @@ Configuration
 Para añadir cuentas bancarias a la compañía, el mejor camino es ir a
 Contabilidad > Configuración > Contabilidad > Cuentas bancarias.
 
-Para añadir cuentas bancarias a los clientes/proveedores, hay que ir a la
-lista de empresas desde cualquiera de los accesos, y pulsar sobre el enlace
-"n Cuenta(s) bancaria(s)" que hay en la pestaña "Ventas y compras".
+Para añadir cuentas bancarias a los clientes/proveedores, hay que ir a
+la lista de empresas desde cualquiera de los accesos, y pulsar sobre el
+enlace "n Cuenta(s) bancaria(s)" que hay en la pestaña "Ventas y
+compras".
 
 Para definir el patrón del nombre a mostrar en empresas, hay que ir a
 Configuración > Técnico > Parámetros > Parámetros del sistema
-Seleccionar la clave l10n_es_partner.name_pattern
-Definir el patron utilizando las etiquetas *%(name)s* para nombre y
-*%(comercial_name)s* para nombre comercial.
+Seleccionar la clave l10n_es_partner.name_pattern Definir el patron
+utilizando las etiquetas *%(name)s* para nombre y *%(comercial_name)s*
+para nombre comercial.
 
 Known issues / Roadmap
 ======================
 
-* Take BICs from https://github.com/PeterNotenboom/SwiftCodes.
+-  Take BICs from https://github.com/PeterNotenboom/SwiftCodes.
 
 Bug Tracker
 ===========
@@ -77,7 +80,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_partner%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_partner%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -85,25 +88,25 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * ZikZak
 * Acysos
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Jordi Esteve <jesteve@zikzakmedia.com>
-* Ignacio Ibeas <ignacio@acysos.com>
-* Pedro M. Baeza <pedro.baeza@tecnativa.com>
-* Sergio Teruel <sergio@incaser.es>
-* Ismael Calvo <ismael.calvo@factorlibre.com>
-* Carlos Dauden <carlos.dauden@tecnativa.com>
-* Manuel Regidor <manuel.regidor@sygel.es>
+-  Jordi Esteve <jesteve@zikzakmedia.com>
+-  Ignacio Ibeas <ignacio@acysos.com>
+-  Pedro M. Baeza <pedro.baeza@tecnativa.com>
+-  Sergio Teruel <sergio@incaser.es>
+-  Ismael Calvo <ismael.calvo@factorlibre.com>
+-  Carlos Dauden <carlos.dauden@tecnativa.com>
+-  Manuel Regidor <manuel.regidor@sygel.es>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -123,6 +126,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-pedrobaeza| 
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_partner>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_partner>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
