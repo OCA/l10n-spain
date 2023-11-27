@@ -15,7 +15,7 @@
                     <attribute name="string">Import spanish bank data</attribute>
                 </form>
                 <separator position="replace">
-                    <group attrs="{'invisible': [('import_fail', '=', True)]}">
+                    <group invisible="import_fail">
                         <p
                             colspan="2"
                         >This wizard will import spanish bank data. You can choose to import it from:</p>
@@ -29,7 +29,7 @@
                     <label
                         colspan="2"
                         for="import_fail"
-                        attrs="{'invisible': [('import_fail', '=', False)]}"
+                        invisible="not import_fail"
                         string="Something has failed importing data from Internet. You will need to import local data instead."
                     />
                 </separator>
@@ -42,9 +42,7 @@
                 </button>
                 <button name="action_next" position="attributes">
                     <attribute name="string">Import from Internet</attribute>
-                    <attribute
-                        name="attrs"
-                    >{'invisible': [('import_fail', '=', True)]}</attribute>
+                    <attribute name="invisible">import_fail</attribute>
                 </button>
             </data>
         </field>
