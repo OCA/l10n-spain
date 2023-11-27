@@ -13,23 +13,22 @@ class ResPartner(models.Model):
     display_name = fields.Char(compute="_compute_display_name")
 
     @api.depends("comercial")
+    @api.depends_context("no_display_commercial")
     def _compute_display_name(self):
-        return super()._compute_display_name()
-
-    def _get_name(self):
         name_pattern = (
             self.env["ir.config_parameter"]
             .sudo()
             .get_param("l10n_es_partner.name_pattern", default="")
         )
-        origin = super()._get_name()
-        if (
-            self.env.context.get("no_display_commercial", False)
-            or not name_pattern
-            or not self.comercial
-        ):
-            return origin
-        return name_pattern % {"name": origin, "comercial_name": self.comercial}
+        no_display_commercial = self.env.context.get("no_display_commercial")
+        for partner in self:
+            if no_display_commercial or not name_pattern or not partner.comercial:
+                super(ResPartner, partner)._compute_display_name()
+            else:
+                partner.display_name = name_pattern % {
+                    "name": partner.complete_name,
+                    "comercial_name": partner.comercial,
+                }
 
     @api.model
     def _commercial_fields(self):
