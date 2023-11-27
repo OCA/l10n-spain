@@ -18,7 +18,7 @@ from ..hooks import post_init_hook
 @tagged("post_install", "-at_install")
 class TestL10nIntraStatReport(AccountTestInvoicingCommon):
     @classmethod
-    def _create_invoice(cls, inv_type, partner, product=None):
+    def _create_invoice(cls, inv_type, partner, fiscal_pos, product=None):
         product = product or cls.product
         if inv_type in ("out_invoice", "in_refund"):
             account = cls.company_data["default_account_revenue"]
@@ -34,7 +34,7 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
             move_form.partner_shipping_id = (
                 partner_shipping if partner_shipping else partner
             )
-        move_form.fiscal_position_id = cls.fiscal_position
+        move_form.fiscal_position_id = fiscal_pos
         move_form.invoice_date = datetime.today()
         with move_form.invoice_line_ids.new() as line_form:
             line_form.name = "test"
@@ -76,11 +76,22 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
             }
         )
         cls.env.user.groups_id += cls.env.ref("account.group_delivery_invoice_address")
-        cls.fiscal_position = cls.env["account.fiscal.position"].search(
-            [("name", "=", "EU privado"), ("company_id", "=", cls.env.company.id)],
-            limit=1,
+        cls.fiscal_position_b2b = cls.env["account.fiscal.position"].create(
+            {
+                "name": "B2B FP",
+                "company_id": cls.env.company.id,
+                "intrastat": "b2b",
+                "vat_required": True,
+            }
         )
-        cls.fiscal_position.write({"intrastat": "b2b", "vat_required": True})
+        cls.fiscal_position_b2c = cls.env["account.fiscal.position"].create(
+            {
+                "name": "B2C FP",
+                "company_id": cls.env.company.id,
+                "intrastat": "b2c",
+                "vat_required": False,
+            }
+        )
         # Create Intrastat partners
         cls.partner_1 = cls.env["res.partner"].create(
             {"name": "Test Partner FR", "country_id": cls.env.ref("base.fr").id}
@@ -124,8 +135,11 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
             declaration_type = (
                 "dispatches" if inv_type in ("out_invoice", "in_refund") else "arrivals"
             )
-            for partner in (cls.partner_1, cls.partner_2):
-                invoice = cls._create_invoice(inv_type, partner)
+            for partner, fiscal in zip(
+                (cls.partner_1, cls.partner_2),
+                (cls.fiscal_position_b2b, cls.fiscal_position_b2c),
+            ):
+                invoice = cls._create_invoice(inv_type, partner, fiscal)
                 cls.invoices[declaration_type]["invoices"].append(invoice)
                 cls.invoices[declaration_type][partner.country_id] += 1
 
