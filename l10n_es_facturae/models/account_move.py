@@ -129,13 +129,6 @@ class AccountMove(models.Model):
         return ["posted"]
 
     def validate_facturae_fields(self):
-        if not self.facturae:
-            raise ValidationError(
-                _(
-                    "You can only create the facturae file if the client have the "
-                    "facturae feature activated."
-                )
-            )
         if self.state not in self._get_valid_move_statuses():
             raise ValidationError(
                 _(
