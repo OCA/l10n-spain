@@ -112,7 +112,7 @@ class XlsDictReader:
 
 
 def escape(data):
-    if isinstance(data, (int, float)):  # pragma: no cover
+    if isinstance(data, (int or float)):  # pragma: no cover
         data = str(int(data))
     chars = [
         ("&", "&amp;"),
@@ -137,7 +137,7 @@ def gen_bank_data_xml(src_path, dest_path):
     # Abrir el archivo que contine la información de los bancos
     try:
         reader = XlsDictReader(src_path)
-    except IOError:  # pragma: no cover
+    except OSError:  # pragma: no cover
         _logger.error("File '%s' not found." % src_path)
         return
     # Preparar el archivo resultante
