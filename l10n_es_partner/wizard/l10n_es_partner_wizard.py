@@ -24,7 +24,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
         path = os.path.join("l10n_es_partner", "wizard", "data_banks.xml")
         with tools.file_open(path) as fp:
             tools.convert_xml_import(
-                self._cr, "l10n_es_partner", fp, {}, "init", noupdate=True
+                self.env, "l10n_es_partner", fp, {}, "init", noupdate=True
             )
         return res
 
@@ -36,7 +36,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
         try:
             response = requests.get(
                 "https://www.bde.es/f/webbde/SGE/regis/REGBANESP_CONESTAB_A.xls",
-                timeout=5,
+                timeout=10,
             )
             response.raise_for_status()
             src_file.write(response.content)
@@ -46,6 +46,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
             requests.exceptions.HTTPError,
             requests.exceptions.ConnectTimeout,
             requests.exceptions.ReadTimeout,
+            requests.exceptions.ConnectionError,
         ):
             # BDE is forbidding on certain conditions to get the file, so we use a
             # local file. Latest update: 2023-10-07
@@ -56,7 +57,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
         # Generate XML and import it
         gen_bank_data_xml(src_file_name, dest_file.name)
         tools.convert_xml_import(
-            self._cr, "l10n_es_partner", dest_file.name, {}, "init", noupdate=True
+            self.env, "l10n_es_partner", dest_file.name, {}, "init", noupdate=True
         )
         os.remove(src_file.name)
         os.remove(dest_file.name)

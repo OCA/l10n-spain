@@ -8,7 +8,7 @@
                 <field
                     name="comercial"
                     placeholder="Trade name"
-                    attrs="{'invisible': [('is_company','=', False)]}"
+                    invisible="not is_company"
                 />
             </field>
         </field>
@@ -21,7 +21,7 @@
                 <field
                     name="comercial"
                     placeholder="Trade name"
-                    attrs="{'invisible': [('is_company','=', False)]}"
+                    invisible="not is_company"
                 />
             </field>
         </field>

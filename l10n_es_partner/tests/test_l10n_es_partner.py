@@ -70,7 +70,14 @@ class TestL10nEsPartner(common.TransactionCase):
         self.assertEqual(partner2.display_name, "Nombre comercial (Empresa de prueba)")
         partner2.write({"comercial": "Nuevo nombre"})
         self.assertEqual(partner2.display_name, "Nuevo nombre (Empresa de prueba)")
-        names = dict(partner2.with_context(no_display_commercial=True).name_get())
+        names = dict(
+            [
+                (
+                    partner2.id,
+                    partner2.with_context(no_display_commercial=True).display_name,
+                )
+            ]
+        )
         self.assertEqual(names.get(partner2.id), "Empresa de prueba")
-        names = dict(partner2.name_get())
+        names = dict([(partner2.id, partner2.display_name)])
         self.assertEqual(names.get(partner2.id), "Nuevo nombre (Empresa de prueba)")
