@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-24 11:31+0000\n"
-"PO-Revision-Date: 2023-02-24 12:34+0100\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2023-11-27 22:37+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 3.2.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_pos_by_device
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
@@ -24,6 +24,9 @@ msgid ""
 "specific.\" aria-label=\"Values set here are company-specific.\" groups="
 "\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" aria-label=\"Values set here are company-specific.\" groups="
+"\"base.group_multi_company\" role=\"img\"/>"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_config__pos_device_ids
@@ -56,12 +59,12 @@ msgstr "Opciones de configuración"
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado el"
 
 #. module: l10n_es_pos_by_device
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.pos_device_view_tree
@@ -86,7 +89,7 @@ msgstr "Nombre mostrado"
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_res_company__id
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_res_config_settings__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,help:l10n_es_pos_by_device.field_pos_config__pos_device_ids
@@ -106,12 +109,12 @@ msgstr "Última modificación el"
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualización por"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última Actualización el"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__locked
@@ -226,14 +229,14 @@ msgstr "Ha habido un error de conexión al intentar establecer el dispositivo."
 #. module: l10n_es_pos_by_device
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.pos_device_view_tree
 msgid "Unlock device"
-msgstr ""
+msgstr "Desbloquear el dispositivo"
 
 #. module: l10n_es_pos_by_device
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
 msgid "Use a different subsequence for each physical device on POS."
-msgstr ""
+msgstr "Utilice una subsecuencia diferente para cada dispositivo físico en POS."
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model,name:l10n_es_pos_by_device.model_pos_device
 msgid "pos.device"
-msgstr ""
+msgstr "pos.dispositivo"
