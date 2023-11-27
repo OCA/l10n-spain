@@ -877,14 +877,6 @@ msgstr ""
 "Només podeu crear fitxers Facturae per a moviments que hagin estat validats."
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
-msgid ""
-"You can only create the facturae file if the client have the facturae "
-"feature activated."
-msgstr ""
-
-#. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/wizard/create_facturae.py:0
 #, python-format
 msgid "You must select a move to export"

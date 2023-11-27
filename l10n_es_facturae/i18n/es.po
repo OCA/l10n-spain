@@ -897,16 +897,6 @@ msgstr ""
 "validados."
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
-msgid ""
-"You can only create the facturae file if the client have the facturae "
-"feature activated."
-msgstr ""
-"Sólo puede crear el fichero facturae si el cliente tiene activada la función "
-"facturae."
-
-#. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/wizard/create_facturae.py:0
 #, python-format
 msgid "You must select a move to export"
@@ -1012,6 +1002,14 @@ msgstr "[19] Pago mediante tarjeta"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_proponente
 msgid "Órgano proponente"
 msgstr "Órgano proponente"
+
+#, python-format
+#~ msgid ""
+#~ "You can only create the facturae file if the client have the facturae "
+#~ "feature activated."
+#~ msgstr ""
+#~ "Sólo puede crear el fichero facturae si el cliente tiene activada la "
+#~ "función facturae."
 
 #, python-format
 #~ msgid "Country must be defined"
