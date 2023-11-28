@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-03 15:25+0000\n"
-"PO-Revision-Date: 2022-08-29 13:07+0000\n"
-"Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
+"PO-Revision-Date: 2023-11-28 19:34+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_l10n_es_aeat_certificate
@@ -529,7 +529,7 @@ msgstr "Secuencia"
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_move__tbai_refund_key__r5
 msgid "Simplified Invoice"
-msgstr ""
+msgstr "Factura Simplificada"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info__software
@@ -557,7 +557,7 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_account_journal__tbai_active_date
 msgid "Start date for sending invoices to the tax authorities"
-msgstr ""
+msgstr "Fecha de inicio para el envío de facturas a las autoridades fiscales"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_substitute_simplified_invoice
@@ -667,7 +667,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_partner_property_form_inherit
 msgid "TicketBAI"
-msgstr "TicketBAI"
+msgstr "TiquetBAI"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_fp_tbai_tax
@@ -818,7 +818,7 @@ msgstr "TicketBAI Mapeo claves de regímenes de IVA"
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_journal__tbai_active_date
 msgid "TicketBAI active date"
-msgstr ""
+msgstr "TicketBAI fecha de activación"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_tbai_info
