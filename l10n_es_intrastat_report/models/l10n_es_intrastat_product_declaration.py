@@ -44,6 +44,9 @@ class IntrastatProductDeclaration(models.Model):
             line_vals["partner_vat"] = (
                 inv_line.move_id.partner_shipping_id.vat or "QV999999999999"
             )
+            fiscal_pos = inv_line.move_id.fiscal_position_id
+            if fiscal_pos and fiscal_pos.intrastat == "b2c":
+                return result
             if not inv_line.move_id.partner_shipping_id.vat:
                 msg = _("Missing partner <em>VAT Number</em>")
                 notedict["partner"][inv_line.move_id.partner_id.display_name][msg].add(
