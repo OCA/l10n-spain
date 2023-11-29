@@ -38,13 +38,13 @@ class ConfirmingAEF(object):
                     % line.partner_id.name
                 )
             # Num Factura
-            if line.move_line_id.ref and len(line.move_line_id.ref) > 15:
+            if len(line.move_line_id.move_id.ref or "") > 15:
                 validation_errors.append(
                     _(
                         "- La referencia de factura %s de proveedor no puede ocupar "
                         "más de 15 caracteres."
                     )
-                    % line.move_line_id.ref
+                    % line.move_line_id.move_id.ref
                 )
             # Ciudad
             if not line.partner_id.city:
@@ -109,7 +109,8 @@ class ConfirmingAEF(object):
             vat = vat.replace(self.partner_bank.country_id.code, "")
         text += self._aef_convert_text(vat, 15, "left")
         # 67 - 74 Fecha proceso
-        text += self._aef_convert_text("", 8)
+        fecha_proceso = fields.first(self.record.payment_line_ids).date
+        text += self._aef_convert_text(str(fecha_proceso).replace("-", ""), 8)
         # 75 - 82 Fecha remesa
         if self.record.date_prefered == "due":
             fecha_planificada = fields.first(
@@ -230,11 +231,7 @@ class ConfirmingAEF(object):
         # 1 Valor fijo
         text = "6"
         # 2 - 21 Num factura
-        referencia_factura = (
-            str(line.move_line_id.move_id.name)
-            if line.move_line_id.move_id.name
-            else line.communication
-        )
+        referencia_factura = line.move_line_id.move_id.ref or line.communication
         text += self._aef_convert_text(referencia_factura.replace("-", ""), 20, "left")
         # 22 - 22 signo
         signo_factura = "+" if line.amount_currency >= 0 else "-"
