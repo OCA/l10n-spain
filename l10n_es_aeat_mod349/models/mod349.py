@@ -436,6 +436,21 @@ class Mod349PartnerRecord(models.Model):
             allfields=["l10n_es_aeat_349_operation_key"],
         )["l10n_es_aeat_349_operation_key"]["selection"]
 
+    def _process_vat(self, record, errors):
+        partner_vat = record.partner_vat
+        country_code = "".join(c for c in partner_vat[0:2] if not c.isnumeric())
+        if not country_code:
+            errors.append(_("VAT without country code"))
+        elif country_code not in record.partner_id._get_aeat_europe_codes():
+            europe = self.env.ref("base.europe", raise_if_not_found=False)
+            map_european_codes = [
+                record.partner_id._map_aeat_country_iso_code(c)
+                for c in europe.country_ids
+            ]
+            if country_code not in map_european_codes:
+                errors.append(_("Country code not found in Europe"))
+        return errors
+
     @api.depends("partner_vat", "country_id", "total_operation_amount")
     def _compute_partner_record_ok(self):
         """Checks if all line fields are filled."""
@@ -447,6 +462,10 @@ class Mod349PartnerRecord(models.Model):
                 errors.append(_("Without Country"))
             if not record.total_operation_amount:
                 errors.append(_("Without Total Operation Amount"))
+            if record.total_operation_amount and record.total_operation_amount < 0.0:
+                errors.append(_("Negative amount"))
+            if record.partner_vat:
+                errors = self._process_vat(record, errors)
             record.partner_record_ok = bool(not errors)
             record.error_text = ", ".join(errors)
 
