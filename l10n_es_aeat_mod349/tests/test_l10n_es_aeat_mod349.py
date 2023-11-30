@@ -4,6 +4,7 @@
 
 import logging
 
+from odoo import _
 from odoo.tests.common import tagged
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
@@ -308,3 +309,91 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         self.assertEqual(model349_3.total_partner_refunds, 1)
         self.assertEqual(model349_3.partner_refund_ids.total_origin_amount, 200)
         self.assertEqual(model349_3.partner_refund_ids.total_operation_amount, 100)
+
+    def test_mod349_errors(self):
+        # Add some test data
+        self.customer.write(
+            {"vat": "BE0411905847", "country_id": self.env.ref("base.be").id}
+        )
+        self.supplier.write(
+            {"vat": "BG0000100159", "country_id": self.env.ref("base.bg").id}
+        )
+        # Data for 1T 2023
+        # Purchase invoices
+        self._invoice_purchase_create("2023-01-01")
+        p2 = self._invoice_purchase_create("2023-01-02")
+        self._invoice_refund(p2, "2023-01-02")
+        # Sale invoices
+        self._invoice_sale_create("2023-01-01")
+        s2 = self._invoice_sale_create("2023-01-02")
+        self._invoice_refund(s2, "2023-01-02")
+        # Create model
+        model349_model = self.env["l10n.es.aeat.mod349.report"].with_user(
+            self.account_manager
+        )
+        model349_errors = model349_model.create(
+            {
+                "name": "3490000000001",
+                "company_id": self.company.id,
+                "company_vat": "1234567890",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": 2023,
+                "period_type": "1T",
+                "date_start": "2023-01-01",
+                "date_end": "2023-03-31",
+            }
+        )
+        # Calculate
+        _logger.debug("Calculate AEAT 349 1T 2023")
+        model349_errors.button_calculate()
+        partner_record = model349_errors.partner_record_ids.filtered(
+            lambda x: x.partner_vat == self.customer.vat
+        )
+        self.assertTrue(partner_record.partner_record_ok)
+
+        # EL vat
+        self.customer.write(
+            {"vat": "EL12345670", "country_id": self.env.ref("base.gr").id}
+        )
+        model349_errors.button_recalculate()
+        partner_record = model349_errors.partner_record_ids.filtered(
+            lambda x: x.partner_vat == self.customer.vat
+        )
+        self.assertTrue(partner_record.partner_record_ok)
+
+        # No vat
+        self.customer.write({"vat": False, "country_id": self.env.ref("base.be").id})
+        model349_errors.button_recalculate()
+        partner_record = model349_errors.partner_record_ids.filtered(
+            lambda x: x.partner_vat == self.customer.vat
+        )
+        self.assertFalse(partner_record.partner_record_ok)
+        expected_note = _("Without VAT")
+        self.assertIn(expected_note, partner_record.error_text)
+
+        # No country code in vat and no country
+        self.customer.write({"vat": "12345670", "country_id": False})
+        model349_errors.button_recalculate()
+        partner_record = model349_errors.partner_record_ids.filtered(
+            lambda x: x.partner_vat == self.customer.vat
+        )
+        self.assertFalse(partner_record.partner_record_ok)
+        expected_notes = [
+            _("Without Country"),
+            _("VAT without country code"),
+        ]
+        for expected_note in expected_notes:
+            self.assertIn(expected_note, partner_record.error_text)
+
+        # Reset vat and country
+        self.customer.write(
+            {"vat": "BE0411905847", "country_id": self.env.ref("base.be").id}
+        )
+        model349_errors.button_recalculate()
+        partner_record = model349_errors.partner_record_ids.filtered(
+            lambda x: x.partner_vat == self.customer.vat
+        )
+        self.assertTrue(partner_record.partner_record_ok)
