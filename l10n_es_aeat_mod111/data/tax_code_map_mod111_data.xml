@@ -19,7 +19,12 @@
              P_IRPFT, P_IRPFTD -->
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_p_irpf21t'), ref('l10n_es.account_tax_template_p_irpf21td')])]"
+            eval="[(6, False, [
+             ref('l10n_es.account_tax_template_p_irpf21t'),
+             ref('l10n_es.account_tax_template_p_irpf21td'),
+             ref('l10n_es.account_tax_template_p_irpf19ca'),
+             ref('l10n_es.account_tax_template_p_irpf35cya'),
+        ])]"
         />
     </record>
     <record id="aeat_mod111_map_line_03" model="l10n.es.aeat.map.tax.line">
@@ -35,7 +40,12 @@
              P_IRPFT, P_IRPFTD -->
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_p_irpf21t'), ref('l10n_es.account_tax_template_p_irpf21td')])]"
+            eval="[(6, False, [
+             ref('l10n_es.account_tax_template_p_irpf21t'),
+             ref('l10n_es.account_tax_template_p_irpf21td'),
+             ref('l10n_es.account_tax_template_p_irpf19ca'),
+             ref('l10n_es.account_tax_template_p_irpf35cya'),
+        ])]"
         />
     </record>
     <record id="aeat_mod111_map_line_05" model="l10n.es.aeat.map.tax.line">
