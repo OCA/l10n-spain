@@ -151,6 +151,34 @@ msgstr "Compañías"
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
+msgid "Company city not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#. odoo-python
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Company country not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#. odoo-python
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Company state not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#. odoo-python
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Company street not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#. odoo-python
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
 msgid "Company vat is too small"
 msgstr "El identificador fiscal de la compañía es demasiado corto"
 
@@ -160,6 +188,13 @@ msgstr "El identificador fiscal de la compañía es demasiado corto"
 #, python-format
 msgid "Company vat not provided"
 msgstr "Es necesario el identificador fiscal de la compañía"
+
+#. module: l10n_es_facturae
+#. odoo-python
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Company zip not provided"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_res_partner
@@ -178,8 +213,8 @@ msgstr "Método de corrección"
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
-msgid "Country must be defined"
-msgstr "Se debe definir el país"
+msgid "Country must be defined for factura-e enabled partners."
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.wizard_create_facturae
@@ -597,6 +632,11 @@ msgid "Invoice %s"
 msgstr "Factura %s"
 
 #. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
+msgid "Invoicing Period"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_move
 msgid "Journal Entry"
 msgstr "Asiento contable"
@@ -678,6 +718,11 @@ msgid "Organo Gestor"
 msgstr "Órgano Gestor"
 
 #. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
+msgid "Other facturae fields"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__05
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__05
 msgid "Otro"
@@ -695,6 +740,13 @@ msgstr "Facturae Parental"
 #, python-format
 msgid "Partner state not provided"
 msgstr "El estado es obligatorio"
+
+#. module: l10n_es_facturae
+#. odoo-python
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Partner street address is not provided"
+msgstr ""
 
 #. module: l10n_es_facturae
 #. odoo-python
@@ -823,8 +875,15 @@ msgstr "Estado"
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
-msgid "State must be defined"
-msgstr "La provincia es obligatoria"
+msgid "State must be defined for factura-e enabled partners."
+msgstr ""
+
+#. module: l10n_es_facturae
+#. odoo-python
+#: code:addons/l10n_es_facturae/models/res_partner.py:0
+#, python-format
+msgid "Street must be defined for factura-e enabled partners."
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_tax
@@ -872,8 +931,8 @@ msgstr "Unidad Tramitadora"
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
-msgid "Vat must be defined"
-msgstr "El número de IVA debe estar definido"
+msgid "Vat must be defined for factura-e enabled partners."
+msgstr ""
 
 #. module: l10n_es_facturae
 #. odoo-python
@@ -991,6 +1050,18 @@ msgstr "[19] Pago mediante tarjeta"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_proponente
 msgid "Órgano proponente"
 msgstr "Órgano proponente"
+
+#, python-format
+#~ msgid "Country must be defined"
+#~ msgstr "Se debe definir el país"
+
+#, python-format
+#~ msgid "State must be defined"
+#~ msgstr "La provincia es obligatoria"
+
+#, python-format
+#~ msgid "Vat must be defined"
+#~ msgstr "El número de IVA debe estar definido"
 
 #~ msgid "Journal"
 #~ msgstr "Libro diario"
