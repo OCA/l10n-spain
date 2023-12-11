@@ -75,7 +75,7 @@ msgid "Cancel and recreate"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:313
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:326
 #, python-format
 msgid "Cancellation"
 msgstr ""
@@ -83,6 +83,11 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice__cancelled_invoice_id
 msgid "Cancelled Invoice"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_account_tax__tbai_vat_regime_simplified
+msgid "Change default value for tax individually behavior"
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -389,7 +394,7 @@ msgid "Origin Invoices Data"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:358
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:371
 #, python-format
 msgid "Please, specify data for the original invoices that are going to be refunded"
 msgstr ""
@@ -410,7 +415,7 @@ msgid "Refund"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:336
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:349
 #, python-format
 msgid "Refund invoices must be cancelled in order to cancel the original invoice."
 msgstr ""
@@ -431,6 +436,11 @@ msgstr ""
 #: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:76
 #, python-format
 msgid "Refunded Invoice Number %s longer than expected. Should be 20 characters max.!"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_tax__tbai_vat_regime_simplified
+msgid "Regime Simplified"
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -462,13 +472,13 @@ msgid "Software"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:372
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:385
 #, python-format
 msgid "Some of the original invoices have related tbai cancelled invoices"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:367
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:380
 #, python-format
 msgid "Some of the original invoices have related tbai invoices in inconsistent state please fix them beforehand."
 msgstr ""
@@ -778,7 +788,7 @@ msgid "Wizard to Load AEAT Certificate"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:86
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:89
 #, python-format
 msgid "You cannot change to draft a TicketBAI invoice!"
 msgstr ""
