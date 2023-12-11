@@ -82,7 +82,7 @@ msgid "Cancel and recreate"
 msgstr "Baliogabetu eta birsortu"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:313
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:326
 #, python-format
 msgid "Cancellation"
 msgstr "Baliogabetzea"
@@ -91,6 +91,11 @@ msgstr "Baliogabetzea"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice__cancelled_invoice_id
 msgid "Cancelled Invoice"
 msgstr "Baliogabetutako faktura"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_account_tax__tbai_vat_regime_simplified
+msgid "Change default value for tax individually behavior"
+msgstr ""
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_tax_map__code
@@ -414,7 +419,7 @@ msgid "Origin Invoices Data"
 msgstr "Jatorrizko Fakturaren Datuak"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:358
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:371
 #, python-format
 msgid ""
 "Please, specify data for the original invoices that are going to be refunded"
@@ -436,7 +441,7 @@ msgid "Refund"
 msgstr "Itzulketa"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:336
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:349
 #, python-format
 msgid ""
 "Refund invoices must be cancelled in order to cancel the original invoice."
@@ -471,6 +476,11 @@ msgstr ""
 "izan behar ditu!"
 
 #. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_tax__tbai_vat_regime_simplified
+msgid "Regime Simplified"
+msgstr ""
+
+#. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_invoice__tbai_response_ids
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
 msgid "Responses"
@@ -499,13 +509,13 @@ msgid "Software"
 msgstr "Softwarea"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:372
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:385
 #, python-format
 msgid "Some of the original invoices have related tbai cancelled invoices"
 msgstr "Jatorrizko faktura batzuek baliogabetutako tbai fakturak dituzte"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:367
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:380
 #, python-format
 msgid ""
 "Some of the original invoices have related tbai invoices in inconsistent "
@@ -837,7 +847,7 @@ msgid "Wizard to Load AEAT Certificate"
 msgstr "AEAT ziurtagiria kargatzeko morroia"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:86
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:89
 #, python-format
 msgid "You cannot change to draft a TicketBAI invoice!"
 msgstr "Ezin duzu aldatu TicketBAI faktura zirriborrora!"
