@@ -63,6 +63,14 @@
             <field name="code">15</field>
             <field name="name">Factura con IVA pendiente de devengo en operaciones de tracto sucesivo</field>
         </record>
+        <record id="tbai_vat_regime_17" model="tbai.vat.regime.key">
+            <field name="code">17</field>
+            <field name="name">Operación acogida a alguno de los regímenes previstos en el Capítulo XI del Título IX (OSS e IOSS)</field>
+        </record>
+        <record id="tbai_vat_regime_19" model="tbai.vat.regime.key">
+            <field name="code">19</field>
+            <field name="name">Operaciones de actividades incluidas en el Régimen Especial de Agricultura, Ganadería y Pesca (REAGYP)</field>
+        </record>
         <record id="tbai_vat_regime_51" model="tbai.vat.regime.key">
             <field name="code">51</field>
             <field name="name">Operaciones en recargo de equivalencia</field>
