@@ -16,8 +16,11 @@ class AccountInvoice(models.Model):
         context = self.env.context
         invoice_type = context.get('type', context.get("default_type"))
         if invoice_type in ['out_invoice', 'out_refund']:
+            code = "01"
+            if self.env.user.company_id.tbai_vat_regime_simplified:
+                code = "52"
             key = self.env['tbai.vat.regime.key'].search(
-                [('code', '=', '01')], limit=1)
+                [('code', '=', code)], limit=1)
             return key
 
     tbai_enabled = fields.Boolean(
@@ -270,8 +273,11 @@ class AccountInvoice(models.Model):
         exclude_taxes = self.company_id.get_taxes_from_templates(
             tbai_maps.mapped("tax_template_ids")
         )
+        simplified_regime_key = False
         for tax in self.tax_line_ids.filtered(
                 lambda x: x.tax_id not in exclude_taxes):
+            if tax.tax_id.tbai_vat_regime_simplified:
+                simplified_regime_key = True
             tax_subject_to = tax.tax_id.tbai_is_subject_to_tax()
             not_subject_to_cause = \
                 not tax_subject_to and tax.tbai_get_value_causa() or ''
@@ -294,6 +300,13 @@ class AccountInvoice(models.Model):
                     tax.tbai_get_value_op_recargo_equivalencia_o_reg_simplificado(),
                 'type': tax.tbai_get_value_tax_type()
             }))
+        if simplified_regime_key:
+            if self.company_id.tbai_vat_regime_simplified:
+                # Taxes in simplified regime, not surchage
+                vals["vat_regime_key"] = "52"
+            else:
+                # Taxes in surchage regime, not simplified
+                vals["vat_regime_key"] = "51"
         vals['tbai_tax_ids'] = taxes
         return vals
 

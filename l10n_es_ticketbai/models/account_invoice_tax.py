@@ -164,9 +164,12 @@ class AccountInvoiceTax(models.Model):
         return res
 
     def tbai_get_value_op_recargo_equivalencia_o_reg_simplificado(self):
-        re_invoice_tax = self.tbai_get_associated_re_tax()
-        if re_invoice_tax or self.invoice_id.company_id.tbai_vat_regime_simplified:
-            res = 'S'
+        if (self.invoice_id.tbai_vat_regime_key == self.env.ref(
+                "l10n_es_ticketbai.tbai_vat_regime_52")
+                or (self.invoice_id.tbai_vat_regime_key == self.env.ref(
+                    "l10n_es_ticketbai.tbai_vat_regime_51") and
+                    self.tax_id.tbai_vat_regime_simplified)):
+            res = "S"
         else:
-            res = 'N'
+            res = "N"
         return res
