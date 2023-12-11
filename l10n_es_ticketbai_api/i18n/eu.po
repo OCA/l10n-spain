@@ -1449,7 +1449,7 @@ msgstr ""
 "%s CRC-8rik gabeko TBAI identifikatzaileak, %d karaktere izan behar ditu!"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:218
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:220
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
@@ -1489,7 +1489,7 @@ msgid "TicketBAI Invoice %s: Customer %s NIF"
 msgstr "%s TicketBAI faktura: %s bezeroaren IFZ"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:144
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:146
 #, python-format
 msgid "TicketBAI Invoice %s: Exempted taxes are Subject to taxes."
 msgstr "%s TicketBAI faktura : salbuetsitako zergak zergen menpe daude."
@@ -1562,50 +1562,50 @@ msgstr ""
 "%s TicketBAI faktura: BEZaren bigarren erregimen gakoa ez da baliozkoa."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:173
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:175
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Amount (%%)"
 msgstr "%s TicketBAI faktura: Zerga zenbatekoa (%%)"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:183
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:185
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Amount Total"
 msgstr "%s TicketBAI faktura: Zerga zenbatekoa guztira"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:126
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:128
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Base"
 msgstr "%s TicketBAI faktura: Zerga Oinarria"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:154
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:156
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Exempted cause is required."
 msgstr "%s TicketBAI faktura: Zerga salbuespenerako arrazoia behar da."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:164
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:166
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Not exempted type is required."
 msgstr "%s TicketBAI faktura: salbuetsi gabeko zerga mota beharrezkoa da."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:135
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:137
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Not subject to cause is required."
 msgstr ""
 "%s TicketBAI faktura: arrazoiaren menpe ez dagoen zerga beharrezkoa da."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:194
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:196
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Surcharge Amount (%%)"
 msgstr "%s TicketBAI faktura: Zerga errekarguaren zenbatekoa (%%)"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:205
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:207
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Surcharge Amount Total"
 msgstr "%s TicketBAI faktura: Zerga gainkarguen zenbatekoa guztira"
