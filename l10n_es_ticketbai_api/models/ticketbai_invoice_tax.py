@@ -20,6 +20,8 @@ class VATRegimeKey(tbai_utils.EnumValues):
     K13 = '13'
     K14 = '14'
     K15 = '15'
+    K17 = '17'
+    K19 = '19'
     K51 = '51'
     K52 = '52'
     K53 = '53'
