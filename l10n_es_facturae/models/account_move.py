@@ -317,6 +317,24 @@ class AccountMoveLine(models.Model):
         else:
             return subtotal
 
+    def _facturae_get_price_unit(self):
+        # Se añade esta funcionalidad para el caso en el cual algún impuesto de la
+        # factura sea con el precio incluido. De esta forma se obtiene siemrpe el
+        # precio sin impuestos. Como es el precio unitario lo que se calcula, no se
+        # deben tener en cuenta los descuentos que pueda tener la factura
+        self.ensure_one()
+        if any(tax.price_include for tax in self.tax_ids):
+            taxes_res = self.tax_ids.compute_all(
+                self.price_unit,
+                quantity=1.0,
+                currency=self.currency_id,
+                product=self.product_id,
+                partner=self.partner_id,
+                is_refund=self.is_refund,
+            )
+            return taxes_res["total_excluded"]
+        return self.price_unit
+
 
 class L10nEsFacturaeAttachment(models.Model):
     _name = "l10n.es.facturae.attachment"
