@@ -566,7 +566,7 @@
                             <Quantity t-esc="line_sign * line.quantity" />
                             <UnitOfMeasure t-if="False" />
                             <UnitPriceWithoutTax
-                                t-out="('%.6f' if version == '3_2' else '%.8f') % line.price_unit"
+                                t-out="('%.6f' if version == '3_2' else '%.8f') % line._facturae_get_price_unit()"
                             />
                             <t
                                 t-set="subtotal_gross"
