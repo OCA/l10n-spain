@@ -33,7 +33,7 @@ class GlsAsmRequest:
             os.path.dirname(os.path.realpath(__file__)), "../api/gls_asm_api.wsdl"
         )
         self.uidcustomer = uidcustomer or ""
-        self.client = Client("file:{}".format(wsdl_path))
+        self.client = Client("file:{}".format(wsdl_path), timeout=90)
 
     def _recursive_asdict(self, suds_object):
         """As suds response is an special object, we convert it into
