@@ -426,9 +426,12 @@ class DeliveryCarrier(models.Model):
             picking.gls_pickup_state = GLS_PICKUP_TYPE_STATES.get(
                 tracking.get("Codigo"), "incidence"
             )
-        picking.delivery_state = states_to_check.get(
+        delivery_state = states_to_check.get(
             tracking_info.get("codestado") or tracking.get("Codigo"), "incidence"
         )
+        if delivery_state == "incidence":
+            delivery_state = "incident"
+        picking.delivery_state = delivery_state
 
     def gls_asm_cancel_shipment(self, pickings):
         """Cancel the expedition"""
