@@ -41,7 +41,7 @@ class L10nEsAeatMod369LineGrouped(models.Model):
                 group_keys[line.map_line_id.field_type] += amount
                 if not group.is_page_8_line or line.map_line_id.field_type != "amount":
                     continue
-                if line.oss_country_id.code == "ES":
+                if line.country_id.code == "ES":
                     if line.service_type == "services":
                         group_keys["page_3_total"] += amount
                     elif line.service_type == "goods":
@@ -131,11 +131,11 @@ class L10nEsAeatMod369LineGrouped(models.Model):
     total_deposit = fields.Float(string="Total to deposit ES")
     total_return = fields.Float(string="Total to return EM")
 
-    @api.depends("country_id", "country_id.code")
+    @api.depends("oss_country_id", "oss_country_id.code")
     def _compute_country_code(self):
         for line in self:
             line.country_code = self.env["res.partner"]._map_aeat_country_iso_code(
-                line.country_id
+                line.oss_country_id
             )
 
     def get_calculated_move_lines(self):

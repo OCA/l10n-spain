@@ -35,7 +35,7 @@ class L10nEsAeatMod369Report(models.Model):
         inverse_name="report_id",
         domain=[
             ("service_type", "=", "services"),
-            ("oss_country_id.code", "=", "ES"),
+            ("country_id.code", "=", "ES"),
             ("is_page_8_line", "=", False),
             ("is_refund", "=", False),
         ],
@@ -59,7 +59,7 @@ class L10nEsAeatMod369Report(models.Model):
         inverse_name="report_id",
         domain=[
             ("service_type", "=", "goods"),
-            ("oss_country_id.code", "=", "ES"),
+            ("country_id.code", "=", "ES"),
             ("is_page_8_line", "=", False),
             ("is_refund", "=", False),
         ],
@@ -260,14 +260,14 @@ class L10nEsAeatMod369Report(models.Model):
                 country = mod369_line.country_id
                 oss_country = mod369_line.oss_country_id
                 tax = mod369_line.oss_tax_id
-                outside_spain = bool(oss_country.code != "ES")
+                outside_spain = bool(country.code != "ES")
                 key_country = "OUT-ES" if outside_spain else "ES"
                 mod369_line.oss_sequence = lines_index[tax.service_type][key_country]
                 lines_index[tax.service_type][key_country] += 1
                 if len(move_lines) > 0:
                     # page 3, 4, 5 or 6
                     key = "{}{}{}{}".format(
-                        country.id,
+                        oss_country.id,
                         tax.id,
                         tax.service_type,
                         outside_spain,
@@ -286,7 +286,7 @@ class L10nEsAeatMod369Report(models.Model):
                     country_groups[key]["mod369_line_ids"] += [(4, mod369_line.id)]
                 # page 8
                 country_groups.setdefault(
-                    country.id,
+                    oss_country.id,
                     {
                         "country_id": country.id,
                         "oss_country_id": oss_country.id,
@@ -297,14 +297,16 @@ class L10nEsAeatMod369Report(models.Model):
                         "is_page_8_line": True,
                     },
                 )
-                country_groups[country.id]["mod369_line_ids"] += [(4, mod369_line.id)]
+                country_groups[oss_country.id]["mod369_line_ids"] += [
+                    (4, mod369_line.id)
+                ]
                 for mline in ref_move_lines:
                     orig_move = mline.move_id.reversed_entry_id
                     refund_fiscal_year = orig_move.date.year
                     monthly = report.period_type not in ["1T", "2T", "3T", "4T"]
                     refund_period = self._get_period_from_date(orig_move.date, monthly)
                     key = "{}{}{}".format(
-                        country.id,
+                        oss_country.id,
                         refund_fiscal_year,
                         refund_period,
                     )
