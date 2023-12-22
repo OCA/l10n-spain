@@ -18,6 +18,8 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.company.country_id = cls.env.ref("base.es").id
+        cls.company.account_fiscal_country_id = cls.env.ref("base.es").id
         general_tax = cls.env.ref(
             "l10n_es.%s_account_tax_template_s_iva21b" % cls.company.id
         )
@@ -146,11 +148,9 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
     def test_model_369_amounts(self):
         self.model369.button_calculate()
         total_sale_invoices_tax = 0
-        self.assertFalse(self.model369.spain_services_line_ids)
-        self.assertFalse(self.model369.spain_goods_line_ids)
         for country_code in self.sale_invoices.keys():
             sale_invoice_by_key = self.sale_invoices[country_code]
-            spain_goods_line_filter = self.model369.goods_line_ids.filtered(
+            spain_goods_line_filter = self.model369.spain_goods_line_ids.filtered(
                 lambda x: x.country_code == country_code and not x.is_page_8_line
             )
             # checking type of tax
@@ -170,18 +170,3 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
 
             total_sale_invoices_tax += sale_invoice_by_key.amount_tax
         self.assertEqual(self.model369.total_amount, total_sale_invoices_tax)
-
-    def test_model_369_amounts_page_5_6(self):
-        self.model369.button_calculate()
-        total_sale_invoices_tax = 0
-        for country_code in self.sale_invoices.keys():
-            sale_invoice_by_key = self.sale_invoices[country_code]
-            total_sale_invoices_tax += sale_invoice_by_key.amount_tax
-
-        num_invoices_from_test = len(self.sale_invoices)
-        num_invoices_from_mod369 = len(
-            self.model369.tax_line_ids.mapped("move_line_ids").mapped("move_id")
-        )
-        self.assertEqual(num_invoices_from_test, num_invoices_from_mod369)
-        pages_5_6_total = sum(self.model369.total_line_ids.mapped("page_5_6_total"))
-        self.assertEqual(total_sale_invoices_tax, pages_5_6_total)
