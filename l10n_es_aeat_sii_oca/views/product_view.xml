@@ -5,7 +5,7 @@
         <field name="name">product.template.form.inherit.sii</field>
         <field name="model">product.template</field>
         <field name="priority">6</field>
-        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="inherit_id" ref="account.product_template_form_view" />
         <field name="arch" type="xml">
             <group name="properties" position="after">
                 <separator string="SII" />
