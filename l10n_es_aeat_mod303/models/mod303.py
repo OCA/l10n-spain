@@ -48,6 +48,11 @@ class L10nEsAeatMod303Report(models.Model):
         states=NON_EDITABLE_ON_DONE,
         help="Registered in the Register of Monthly Return",
     )
+    return_last_period = fields.Boolean(
+        string="Last Period Return",
+        states=NON_EDITABLE_ON_DONE,
+        help="Check if you are submitting the last period return",
+    )
     total_devengado = fields.Float(
         string="[27] VAT payable",
         readonly=True,
@@ -348,6 +353,7 @@ class L10nEsAeatMod303Report(models.Model):
         for record in self:
             if record.period_type not in ("4T", "12"):
                 record.exonerated_390 = "2"
+                record.return_last_period = False
 
     @api.depends("tax_line_ids", "tax_line_ids.amount")
     def _compute_total_devengado(self):
@@ -451,7 +457,7 @@ class L10nEsAeatMod303Report(models.Model):
             elif result == 1:
                 report.result_type = "I"
             else:
-                if report.devolucion_mensual or report.period_type in ("4T", "12"):
+                if report.devolucion_mensual or report.return_last_period:
                     report.result_type = "D" if report.marca_sepa == "1" else "X"
                 else:
                     report.result_type = "C"
@@ -462,25 +468,53 @@ class L10nEsAeatMod303Report(models.Model):
             self.previous_result = 0
 
     def calculate(self):
+        self.cuota_compensar = 0
         res = super(L10nEsAeatMod303Report, self).calculate()
         for mod303 in self:
-            prev_reports = mod303._get_previous_fiscalyear_reports(
-                mod303.date_start
-            ).filtered(lambda x: x.state not in ["draft", "cancelled"])
-            if not prev_reports:
-                continue
-            prev_report = min(
-                prev_reports,
-                key=lambda x: abs(
-                    fields.Date.to_date(x.date_end)
-                    - fields.Date.to_date(mod303.date_start)
-                ),
-            )
-            if prev_report.result_type == "C":
-                amount = abs(prev_report.resultado_liquidacion)
-                mod303.write(
-                    {"cuota_compensar": amount, "potential_cuota_compensar": amount}
+            prev_reports = self.search(
+                [("date_start", "<", mod303.date_start)]
+            ).filtered(lambda m: m.state not in ["draft", "cancelled"])
+            if prev_reports:
+                prev_report = min(
+                    prev_reports,
+                    key=lambda x: abs(
+                        fields.Date.to_date(x.date_end)
+                        - fields.Date.to_date(mod303.date_start)
+                    ),
                 )
+                if (
+                    prev_report.remaining_cuota_compensar > 0
+                    or prev_report.result_type == "C"
+                ):
+                    mod303.write(
+                        {
+                            "potential_cuota_compensar": (
+                                prev_report.remaining_cuota_compensar
+                                - prev_report.resultado_liquidacion
+                            ),
+                        }
+                    )
+            if mod303.return_last_period:
+                cuota_compensar = mod303.potential_cuota_compensar
+            elif (
+                float_compare(
+                    mod303.resultado_liquidacion,
+                    0,
+                    precision_digits=mod303.currency_id.decimal_places,
+                )
+                != -1
+            ):
+                cuota_compensar = min(
+                    mod303.potential_cuota_compensar, mod303.resultado_liquidacion
+                )
+            else:
+                cuota_compensar = 0
+            mod303.write(
+                {
+                    "cuota_compensar": cuota_compensar,
+                }
+            )
+
         return res
 
     def button_confirm(self):
