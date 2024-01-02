@@ -135,6 +135,11 @@ Contributors
 
   * Iván Antón
 
+* Arantxa Sudón (`Moduon <https://www.moduon.team/>`__)
+* Loida Vilaplana (`Moduon <https://www.moduon.team/>`__)
+* Rafael Blasco (`Moduon <https://www.moduon.team/>`__)
+* Emilio Pascual (`Moduon <https://www.moduon.team/>`__)
+
 Maintainers
 ~~~~~~~~~~~
 
