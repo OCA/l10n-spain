@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Poedit 3.4\n"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_46
@@ -293,6 +293,11 @@ msgstr "C - Actividades no iniciadas"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__calculation_date
 msgid "Calculation Date"
 msgstr "Fecha de cálculo"
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__return_last_period
+msgid "Check if you are submitting the last period return"
+msgstr "Marcar si quieres enviar la devolución en el último período"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__company_id
@@ -582,6 +587,11 @@ msgstr "Diario en el que se publica el movimiento."
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__representative_vat
 msgid "L.R. VAT number"
 msgstr "NIF del representante legal"
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__return_last_period
+msgid "Last Period Return"
+msgstr "Devolución último período"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__write_uid
@@ -1044,51 +1054,3 @@ msgstr "¿SII voluntario?"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__has_operation_volume
 msgid "¿Volumen de operaciones?"
 msgstr "¿Volumen de operaciones?"
-
-#~ msgid "Last Modified on"
-#~ msgstr "Última modificación en"
-
-#~ msgid "Main Attachment"
-#~ msgstr "Adjunto Principal"
-
-#~ msgid "Number of messages which requires an action"
-#~ msgstr "Número de mensajes que requieren una acción"
-
-#~ msgid "Model"
-#~ msgstr "Modelo"
-
-#~ msgid "Number of unread messages"
-#~ msgstr "Número de mensajes no leídos"
-
-#~ msgid "Unread Messages"
-#~ msgstr "Mensajes no leídos"
-
-#~ msgid "Unread Messages Counter"
-#~ msgstr "Contador de mensajes no leídos"
-
-#~ msgid "Allow posting"
-#~ msgstr "Permitir generar asiento"
-
-#~ msgid "Calculation date"
-#~ msgstr "Fecha de cálculo"
-
-#~ msgid "Contact email"
-#~ msgstr "Email de contacto"
-
-#~ msgid "Followers (Channels)"
-#~ msgstr "Seguidores (Canales)"
-
-#~ msgid "Period type"
-#~ msgstr "Tipo de período"
-
-#~ msgid "Result type"
-#~ msgstr "Tipo de resultado"
-
-#~ msgid ""
-#~ "Información adicional - Operaciones realizadas en el ejercicio - Total "
-#~ "volumen de operaciones "
-#~ "([80]+[81]+[93]+[94]+[83]+[84]+[85]+[86]+[95]+[96]+[97]+[98]-[79]-[99])"
-#~ msgstr ""
-#~ "Información adicional - Operaciones realizadas en el ejercicio - Total "
-#~ "volumen de operaciones "
-#~ "([80]+[81]+[93]+[94]+[83]+[84]+[85]+[86]+[95]+[96]+[97]+[98]-[79]-[99])"
