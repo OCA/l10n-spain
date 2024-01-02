@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Poedit 3.4\n"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_46
@@ -291,8 +291,13 @@ msgstr "C - Actividades no iniciadas"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__calculation_date
-msgid "Calculation date"
-msgstr "Fecha de cálculo"
+msgid "Calculation Date"
+msgstr "Fecha de calculo"
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__return_last_period
+msgid "Check if you are submitting the last period return"
+msgstr "Marcar si quieres enviar la devolución en el último período"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__company_id
@@ -586,6 +591,11 @@ msgstr "NIF del representante legal"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_activity_code____last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__return_last_period
+msgid "Last Period Return"
+msgstr "Devolución último período"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__write_uid
@@ -1051,15 +1061,3 @@ msgstr "¿SII voluntario?"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__has_operation_volume
 msgid "¿Volumen de operaciones?"
 msgstr "¿Volumen de operaciones?"
-
-#~ msgid "SMS Delivery error"
-#~ msgstr "SMS de error en la entrega"
-
-#~ msgid ""
-#~ "Información adicional - Operaciones realizadas en el ejercicio - Total "
-#~ "volumen de operaciones "
-#~ "([80]+[81]+[93]+[94]+[83]+[84]+[85]+[86]+[95]+[96]+[97]+[98]-[79]-[99])"
-#~ msgstr ""
-#~ "Información adicional - Operaciones realizadas en el ejercicio - Total "
-#~ "volumen de operaciones "
-#~ "([80]+[81]+[93]+[94]+[83]+[84]+[85]+[86]+[95]+[96]+[97]+[98]-[79]-[99])"

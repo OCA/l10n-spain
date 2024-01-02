@@ -14,3 +14,4 @@
 * `Ozono Multimedia <https://www.ozonomultimedia.com>`__:
 
   * Iván Antón
+* Arantxa Sudón [Moduon](https://www.moduon.team)
