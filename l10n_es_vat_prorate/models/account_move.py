@@ -17,54 +17,57 @@ class AccountMoveLine(models.Model):
             res[tax]["deductible_amount"] -= self.balance * sign
         return result
 
-    def _compute_all_tax(self):
+    def create_prorate_line(self):
         """After getting normal taxes dict that is dumped into this field, we loop
         into it to check if any of them applies VAT prorate, and if it's the case,
         we modify its amount and add the corresponding extra tax line.
         """
+        prorate_tax_list = {}
+        vat_prorate_date = self.date or self.invoice_date or fields.Date.today()
+        for tax_key, tax_vals in self.compute_all_tax.items():
+            tax = (
+                self.env["account.tax.repartition.line"]
+                .browse(tax_key.get("tax_repartition_line_id", False))
+                .tax_id
+            )
+            if (
+                tax.with_vat_prorate
+                and tax_key.get("account_id")
+                and (
+                    not tax.prorate_account_ids
+                    or tax_key.get("account_id") in tax.prorate_account_ids.ids
+                )
+            ):
+                prec = self.move_id.currency_id.rounding
+                prorate = self.company_id.get_prorate(vat_prorate_date)
+                new_vals = tax_vals.copy()
+                for field in {"amount_currency", "balance"}:
+                    tax_vals[field] = float_round(
+                        tax_vals[field] * (prorate / 100),
+                        precision_rounding=prec,
+                    )
+                    new_vals[field] -= tax_vals[field]
+                new_vals["vat_prorate"] = True
+                new_key = dict(tax_key)
+                new_key.update(
+                    {
+                        "vat_prorate": True,
+                        "account_id": self.account_id.id,
+                        "analytic_distribution": self.analytic_distribution,
+                    }
+                )
+                new_key = frozendict(new_key)
+                if prorate_tax_list.get(new_key):
+                    for field in {"amount_currency", "balance"}:
+                        prorate_tax_list[new_key][field] += new_vals[field]
+                else:
+                    prorate_tax_list[new_key] = new_vals
+        if prorate_tax_list:
+            self.compute_all_tax.update(prorate_tax_list)
+
+    def _compute_all_tax(self):
         res = None
         for line in self:
             res = super(AccountMoveLine, line)._compute_all_tax()
-            prorate_tax_list = {}
-            vat_prorate_date = line.date or line.invoice_date or fields.Date.today()
-            for tax_key, tax_vals in line.compute_all_tax.items():
-                tax = (
-                    self.env["account.tax.repartition.line"]
-                    .browse(tax_key.get("tax_repartition_line_id", False))
-                    .tax_id
-                )
-                if (
-                    tax.with_vat_prorate
-                    and tax_key.get("account_id")
-                    and (
-                        not tax.prorate_account_ids
-                        or tax_key.get("account_id") in tax.prorate_account_ids.ids
-                    )
-                ):
-                    prec = line.move_id.currency_id.rounding
-                    prorate = line.company_id.get_prorate(vat_prorate_date)
-                    new_vals = tax_vals.copy()
-                    for field in {"amount_currency", "balance"}:
-                        tax_vals[field] = float_round(
-                            tax_vals[field] * (prorate / 100),
-                            precision_rounding=prec,
-                        )
-                        new_vals[field] -= tax_vals[field]
-                    new_vals["vat_prorate"] = True
-                    new_key = dict(tax_key)
-                    new_key.update(
-                        {
-                            "vat_prorate": True,
-                            "account_id": line.account_id.id,
-                            "analytic_distribution": line.analytic_distribution,
-                        }
-                    )
-                    new_key = frozendict(new_key)
-                    if prorate_tax_list.get(new_key):
-                        for field in {"amount_currency", "balance"}:
-                            prorate_tax_list[new_key][field] += new_vals[field]
-                    else:
-                        prorate_tax_list[new_key] = new_vals
-            if prorate_tax_list:
-                line.compute_all_tax.update(prorate_tax_list)
+            line.create_prorate_line()
         return res
