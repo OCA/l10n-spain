@@ -17,6 +17,24 @@
         <field name="model">l10n.es.aeat.mod390.report</field>
         <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
         <field name="arch" type="xml">
+            <header position="after">
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    attrs="{'invisible': [('use_303', '=', False)]}"
+                >
+                    <p
+                    >This is using the 303 reports for automatic calculations in the <b
+                        >fields 85, 95, 97, 98 and 662</b>. The calculations
+                        may not be correct if there are duplicated or out-of-date 303 reports.</p>
+                    <p
+                    >If you do not want to use the 303 reports for the automatic calculation,
+                        uncheck "<b>Use 303 reports</b>" option.</p>
+                </div>
+            </header>
+            <group name="group_other_parameters" position="inside">
+                <field name="use_303" />
+            </group>
             <group name="group_declaration" position="after">
                 <notebook attrs="{'invisible': [('state', '=', 'draft')]}">
                     <page string="3. Datos estadísticos">
@@ -188,6 +206,7 @@
                             <field name="casilla_95" widget="monetary" />
                             <field name="casilla_97" widget="monetary" />
                             <field name="casilla_98" widget="monetary" />
+                            <field name="casilla_662" widget="monetary" />
                         </group>
                     </page>
                     <page string="10. Volumen de operaciones">

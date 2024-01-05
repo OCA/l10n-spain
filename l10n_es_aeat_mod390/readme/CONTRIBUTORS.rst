@@ -16,3 +16,7 @@
 * `Dixmit <https://www.dixmit.com>`_:
 
   * Enric Tobella
+
+* `Moduon <https://www.moduon.team>`_:
+
+  * Emilio Pascual
