@@ -761,6 +761,27 @@ class L10nEsAeatMod390Report(models.Model):
                 _("You cannot make complementary reports for this model.")
             )
 
+    def calculate(self):
+        res = super().calculate()
+        for mod390 in self:
+            reports_303_this_year = self.env["l10n.es.aeat.mod303.report"].search(
+                [("year", "=", mod390.year)]
+            )
+            mod390.casilla_95 = sum(
+                reports_303_this_year.filtered(
+                    lambda r: r.result_type in {"I", "G", "U"}
+                ).mapped("resultado_liquidacion")
+            )
+            report_303_last_period = reports_303_this_year.filtered(
+                lambda r: r.period_type in {"4T", "12"}
+            )
+            if report_303_last_period:
+                if report_303_last_period.result_type == "C":
+                    mod390.casilla_97 = report_303_last_period.resultado_liquidacion
+                elif report_303_last_period.result_type in {"D", "V", "X"}:
+                    mod390.casilla_98 = report_303_last_period.resultado_liquidacion
+        return res
+
     def button_confirm(self):
         """Check that the manual 303 results match the report."""
         self.ensure_one()
