@@ -8,3 +8,5 @@
   - Valentin Vinagre \<<valentin.vinagre@sygel.es>\>
 - [Dixmit](https://www.dixmit.com):
   - Enric Tobella
+- [Moduon](https://www.moduon.team):
+  - Emilio Pascual
