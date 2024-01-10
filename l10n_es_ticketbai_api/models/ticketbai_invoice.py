@@ -112,6 +112,18 @@ class TicketBAIInvoice(models.Model):
     tbai_invoice_refund_ids = fields.One2many(
         string='Refunded Invoices', copy=True,
         comodel_name='tbai.invoice.refund', inverse_name='tbai_invoice_id')
+    tbai_invoice_issuer = fields.Selection(
+        selection=[
+            ("N", "Invoice issued by the issuer itself"),
+            # Factura emitida por el propio emisor
+            ("T", "Invoice issued by a third party"),
+            # Factura emitida por tercero
+            ("D", "Invoice issued by recipient"),
+            # Factura emitida por destinatario
+        ],
+        default="N",
+        string="TicketBai: Invoice issuer",
+    )
     qr_url = fields.Char('URL', compute='_compute_tbai_qr', store=True, copy=False)
     qr = fields.Binary(string="QR", compute='_compute_tbai_qr', store=True,
                        copy=False, attachment=True)
@@ -1159,6 +1171,8 @@ class TicketBAIInvoice(models.Model):
         customers = self.build_destinatarios()
         if customers:
             res["Destinatarios"] = customers
+        if self.tbai_invoice_issuer and self.tbai_invoice_issuer != "N":
+            res["EmitidaPorTercerosODestinatario"] = self.tbai_invoice_issuer
         return res
 
     def build_tipo_desglose(self):
