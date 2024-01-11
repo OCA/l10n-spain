@@ -47,6 +47,12 @@
         ref('l10n_es.account_tax_template_p_iva105_gan'),
         ref('l10n_es.account_tax_template_p_iva10_nd'),
         ref('l10n_es.account_tax_template_p_iva4_nd'),
+                ref('l10n_es.account_tax_template_p_iva5_bc'),
+                ref('l10n_es.account_tax_template_p_iva5_sc'),
+                ref('l10n_es.account_tax_template_p_iva0_s_bc'),
+                ref('l10n_es.account_tax_template_p_iva0_s_sc'),
+                ref('l10n_es.account_tax_template_p_req0'),
+                ref('l10n_es.account_tax_template_p_req062'),
         ])]"
         />
     </record>
@@ -79,6 +85,12 @@
         ref('l10n_es.account_tax_template_s_req014'),
         ref('l10n_es.account_tax_template_s_req52'),
         ref('l10n_es.account_tax_template_s_iva0_isp'),
+                ref('l10n_es.account_tax_template_s_iva0s'),
+                ref('l10n_es.account_tax_template_s_iva0b'),
+                ref('l10n_es.account_tax_template_s_iva5s'),
+                ref('l10n_es.account_tax_template_s_iva5b'),
+                ref('l10n_es.account_tax_template_s_req0'),
+                ref('l10n_es.account_tax_template_s_req062'),
         ])]"
         />
     </record>
