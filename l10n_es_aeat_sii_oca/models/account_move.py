@@ -444,6 +444,8 @@ class AccountMove(models.Model):
 
     def _get_sii_invoice_dict_out(self, cancel=False):
         inv_dict = super()._get_sii_invoice_dict_out(cancel=cancel)
+        if cancel:
+            return inv_dict
         if self.thirdparty_invoice:
             inv_dict["FacturaExpedida"]["EmitidaPorTercerosODestinatario"] = "S"
         if self.sii_registration_key_additional1:
