@@ -53,6 +53,9 @@
         # 2022
         "data/2022/aeat.model.export.config.csv",
         "data/2022/aeat.model.export.config.line.csv",
+        # 2023
+        "data/2023/aeat.model.export.config.csv",
+        "data/2023/aeat.model.export.config.line.csv",
         # rest of stuff
         "views/mod390_view.xml",
         "security/ir.model.access.csv",

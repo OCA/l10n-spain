@@ -22,4 +22,24 @@
             (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_sc'))
         ]"/>
     </record>
+    <record id="l10n_es_aeat_mod390.aeat_mod390_map_line_663" model="l10n.es.aeat.map.tax.line">
+        <field name="tax_ids" eval="[
+            (4, ref('l10n_es_extra_data.account_tax_template_s_req0'))
+        ]"/>
+    </record>
+    <record id="l10n_es_aeat_mod390.aeat_mod390_map_line_664" model="l10n.es.aeat.map.tax.line">
+        <field name="tax_ids" eval="[
+            (4, ref('l10n_es_extra_data.account_tax_template_s_req0'))
+        ]"/>
+    </record>
+    <record id="l10n_es_aeat_mod390.aeat_mod390_map_line_665" model="l10n.es.aeat.map.tax.line">
+        <field name="tax_ids" eval="[
+            (4, ref('l10n_es_extra_data.account_tax_template_s_req062'))
+        ]"/>
+    </record>
+    <record id="l10n_es_aeat_mod390.aeat_mod390_map_line_666" model="l10n.es.aeat.map.tax.line">
+        <field name="tax_ids" eval="[
+            (4, ref('l10n_es_extra_data.account_tax_template_s_req062'))
+        ]"/>
+    </record>
 </odoo>
