@@ -264,7 +264,7 @@ class L10nEsAeatMod322Report(models.Model):
                 mod322_group.main_company_id.partner_id
                 | mod322_group.company_ids.partner_id
                 | mod322_group.vinculated_partner_ids
-            )
+            ).filtered(lambda r: not r.company_id or r.company_id == record.company_id)
 
     def _get_move_line_domain(self, date_start, date_end, map_line):
         domain = super()._get_move_line_domain(date_start, date_end, map_line)
