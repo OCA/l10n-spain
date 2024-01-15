@@ -120,6 +120,10 @@
                                 <group>
                                     <field name="sii_state" />
                                     <field
+                                        name="sii_account_registration_date"
+                                        attrs="{'invisible': ['|',('sii_account_registration_date', '=', False),('move_type', 'not in', ['in_invoice', 'in_refund'])]}"
+                                    />
+                                    <field
                                         name="sii_send_failed"
                                         attrs="{'invisible': [('sii_send_failed', '=', False)]}"
                                     />
