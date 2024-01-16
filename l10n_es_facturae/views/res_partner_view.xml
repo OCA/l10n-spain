@@ -31,7 +31,6 @@
                 <group
                     name="group_facturae"
                     string="Facturae"
-                    attrs="{'invisible': [('facturae', '=', False), ('parent_facturae', '=', False)]}"
                     groups="account.group_account_invoice"
                 >
                     <field name="facturae" />
@@ -65,7 +64,6 @@
                 <group
                     name="group_facturae_wo_accounting"
                     string="Facturae"
-                    attrs="{'invisible': [('facturae', '=', False), ('parent_facturae', '=', False)]}"
                     groups="account.group_account_invoice"
                 >
                     <field name="facturae" />
