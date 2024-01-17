@@ -443,6 +443,7 @@ class L10nEsAeatMod390Report(models.Model):
         compute="_compute_casilla_108",
         store=True,
     )
+    use_303 = fields.Boolean("Use 303 models", default=False)
 
     @api.depends("tax_line_ids", "tax_line_ids.amount")
     def _compute_casilla_33(self):
@@ -764,9 +765,25 @@ class L10nEsAeatMod390Report(models.Model):
     def calculate(self):
         res = super().calculate()
         for mod390 in self:
+            if not mod390.use_303:
+                continue
             reports_303_this_year = self.env["l10n.es.aeat.mod303.report"].search(
-                [("year", "=", mod390.year)]
+                [
+                    ("year", "=", mod390.year),
+                    ("state", "not in", ("draft", "cancelled")),
+                    ("statement_type", "=", "N"),
+                ]
             )
+            if not reports_303_this_year:
+                continue
+            # casilla 85 = casilla 110 del primer periodo del año
+            first_period = reports_303_this_year.filtered(
+                lambda r: r.period_type in {"1T", "01"}
+            )
+            if first_period:
+                mod390.casilla_85 = first_period[0].potential_cuota_compensar
+            # casilla 95 = sumatorio de las casillas 71 de los periodos del año que
+            # sean a ingresar
             mod390.casilla_95 = sum(
                 reports_303_this_year.filtered(
                     lambda r: r.result_type in {"I", "G", "U"}
@@ -776,10 +793,21 @@ class L10nEsAeatMod390Report(models.Model):
                 lambda r: r.period_type in {"4T", "12"}
             )
             if report_303_last_period:
-                if report_303_last_period.result_type == "C":
-                    mod390.casilla_97 = report_303_last_period.resultado_liquidacion
-                elif report_303_last_period.result_type in {"D", "V", "X"}:
-                    mod390.casilla_98 = report_303_last_period.resultado_liquidacion
+                if report_303_last_period[0].result_type == "C":
+                    # Si salió a compensar, casilla 97 = casilla 71 del último periodo
+                    # del año si fue a compensar
+                    mod390.casilla_97 = abs(
+                        report_303_last_period.resultado_liquidacion
+                    )
+                elif report_303_last_period[0].result_type == "N":
+                    # Si salio resultado cero, pero queda pendiente a compensar
+                    # casilla 97 = casilla 83 del último periodo del año si fue a compensar
+                    mod390.casilla_97 = report_303_last_period.remaining_cuota_compensar
+                elif report_303_last_period[0].result_type in {"D", "V", "X"}:
+                    # casilla 98 = casilla 71 del último periodo del año si fue a devolver
+                    mod390.casilla_98 = abs(
+                        report_303_last_period.resultado_liquidacion
+                    )
         return res
 
     def button_confirm(self):
