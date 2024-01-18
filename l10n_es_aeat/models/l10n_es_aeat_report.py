@@ -18,6 +18,7 @@ class L10nEsAeatReport(models.AbstractModel):
     _name = "l10n.es.aeat.report"
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "AEAT report base module"
+    _order = "date_start,id"
     _rec_name = "name"
     _aeat_number = False
     _period_quarterly = True
