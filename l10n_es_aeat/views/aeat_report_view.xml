@@ -10,6 +10,8 @@
                 <field name="name" />
                 <field name="year" />
                 <field name="period_type" />
+                <field name="date_start" optional="show" />
+                <field name="date_end" optional="hide" />
                 <field name="state" />
                 <field name="company_id" groups="base.group_multi_company" />
             </tree>
