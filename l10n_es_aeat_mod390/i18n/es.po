@@ -183,34 +183,64 @@ msgid "Created on"
 msgstr "Creado en"
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_other_first_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_other_first_activity_code_id
 msgid "Código 1ª actividad"
 msgstr "Código 1ª actividad"
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_other_second_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_other_first_activity_code
+msgid "Código 1ª actividad (antiguo)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_other_second_activity_code_id
 msgid "Código 2ª actividad"
 msgstr "Código 2ª actividad"
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_other_third_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_other_second_activity_code
+msgid "Código 2ª actividad (antiguo)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_other_third_activity_code_id
 msgid "Código 3ª actividad"
 msgstr "Código 3ª actividad"
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_other_fourth_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_other_third_activity_code
+msgid "Código 3ª actividad (antiguo)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_other_fourth_activity_code_id
 msgid "Código 4ª actividad"
 msgstr "Código 4ª actividad"
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_other_fifth_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_other_fourth_activity_code
+msgid "Código 4ª actividad (antiguo)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_other_fifth_activity_code_id
 msgid "Código 5ª actividad"
 msgstr "Código 5ª actividad"
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_main_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_other_fifth_activity_code
+msgid "Código 5ª actividad (antiguo)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_main_activity_code_id
 msgid "Código actividad principal"
 msgstr "Código actividad principal"
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_main_activity_code
+msgid "Código actividad principal (antiguo)"
+msgstr ""
 
 #. module: l10n_es_aeat_mod390
 #: code:addons/l10n_es_aeat_mod390/models/mod390.py:30
@@ -452,7 +482,7 @@ msgid "Tercer representante"
 msgstr "Tercer representante"
 
 #. module: l10n_es_aeat_mod390
-#: code:addons/l10n_es_aeat_mod390/models/mod390.py:561
+#: code:addons/l10n_es_aeat_mod390/models/mod390.py:666
 #, python-format
 msgid "You cannot make complementary reports for this model."
 msgstr "No puede realizar declaraciones complementarias para este modelo."
