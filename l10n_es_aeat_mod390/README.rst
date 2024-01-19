@@ -145,6 +145,10 @@ de las siguientes empresas (por orden alfabético):
 * `Trey <https://www.trey.es>`_
 * `Vicent Cubells <http://vcubells.net>`_
 
+* `Dixmit <https://www.dixmit.com>`_:
+
+  * Enric Tobella
+
 Maintainers
 ~~~~~~~~~~~
 
@@ -164,7 +168,7 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-pedrobaeza| 
+|maintainer-pedrobaeza|
 
 This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/11.0/l10n_es_aeat_mod390>`_ project on GitHub.
 
