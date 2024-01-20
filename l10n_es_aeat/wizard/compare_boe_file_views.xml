@@ -8,25 +8,22 @@
         <field name="arch" type="xml">
             <form>
                 <field invisible="1" name="state" />
-                <div states="open">
+                <div invisible="state != 'open'">
                     <p
                     >Escoja el archivo para comparar con el actual formato de exportación. NOTA: Solo es válido de momento para formatos sin partes condicionales ni subpartes con bucle de repetición.</p>
                     <field name="data" />
                 </div>
-                <div states="compare">
+                <div invisible="state != 'compare'">
                     <field name="line_ids">
                         <tree create="0" delete="0" editable="1">
                             <field name="sequence" />
                             <field name="name" />
                             <field name="content" />
-                            <field
-                                name="content_float"
-                                attrs="{'invisible': [('content_float', '=', 0)]}"
-                            />
+                            <field name="content_float" invisible="not content_float" />
                         </tree>
                     </field>
                 </div>
-                <footer states="open">
+                <footer invisible="state != 'open'">
                     <button
                         name="button_compare_file"
                         string="Compare"
@@ -40,7 +37,7 @@
                         class="oe_link"
                     />
                 </footer>
-                <footer states="compare">
+                <footer invisible="state != 'compare'">
                     <button special="cancel" string="Close" type="object" />
                 </footer>
             </form>

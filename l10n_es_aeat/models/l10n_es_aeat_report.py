@@ -86,16 +86,12 @@ class L10nEsAeatReport(models.AbstractModel):
         comodel_name="res.company",
         string="Company",
         required=True,
-        readonly=True,
         default=lambda self: self.env.company,
-        states={"draft": [("readonly", False)]},
     )
     company_vat = fields.Char(
         string="VAT number",
         size=9,
         required=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     number = fields.Char(
         string="Model number",
@@ -107,7 +103,6 @@ class L10nEsAeatReport(models.AbstractModel):
     previous_number = fields.Char(
         string="Previous declaration number",
         size=13,
-        states={"done": [("readonly", True)]},
     )
     contact_name = fields.Char(
         string="Full Name",
@@ -115,46 +110,33 @@ class L10nEsAeatReport(models.AbstractModel):
         help="Must have name and surname.",
         required=True,
         readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     contact_phone = fields.Char(
         string="Phone",
         size=9,
         required=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     contact_email = fields.Char(
         size=50,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     representative_vat = fields.Char(
         string="L.R. VAT number",
         size=9,
-        readonly=True,
         help="Legal Representative VAT number.",
-        states={"draft": [("readonly", False)]},
     )
     year = fields.Integer(
         default=_default_year,
         required=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     statement_type = fields.Selection(
         selection=[("N", "Normal"), ("C", "Complementary"), ("S", "Substitutive")],
         default="N",
-        readonly=True,
         required=True,
-        states={"draft": [("readonly", False)]},
     )
     support_type = fields.Selection(
         selection=[("C", "DVD"), ("T", "Telematics")],
         default="T",
-        readonly=True,
         required=True,
-        states={"draft": [("readonly", False)]},
     )
     calculation_date = fields.Datetime()
     state = fields.Selection(
@@ -194,24 +176,18 @@ class L10nEsAeatReport(models.AbstractModel):
         selection="get_period_type_selection",
         required=True,
         default=_default_period_type,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     date_start = fields.Date(
         string="Starting date",
         required=True,
-        readonly=True,
         store=True,
         compute="_compute_dates",
-        states={"draft": [("readonly", False)]},
     )
     date_end = fields.Date(
         string="Ending date",
         required=True,
-        readonly=True,
         store=True,
         compute="_compute_dates",
-        states={"draft": [("readonly", False)]},
     )
     allow_posting = fields.Boolean(compute="_compute_allow_posting")
     counterpart_account_id = fields.Many2one(
@@ -226,7 +202,6 @@ class L10nEsAeatReport(models.AbstractModel):
         domain="[('type', '=', 'general'), ('company_id', '=', company_id)]",
         default=_default_journal,
         help="Journal in which post the move.",
-        states={"done": [("readonly", True)]},
     )
     move_id = fields.Many2one(
         comodel_name="account.move",
@@ -322,12 +297,7 @@ class L10nEsAeatReport(models.AbstractModel):
                         f"{report.year}-{starting_month}-01"
                     )
                     report.date_end = fields.Date.to_date(
-                        "%s-%s-%s"
-                        % (
-                            report.year,
-                            ending_month,
-                            monthrange(report.year, ending_month)[1],
-                        )
+                        f"{report.year}-{ending_month}-{monthrange(report.year, ending_month)[1]}"
                     )
                 elif report.period_type in (
                     "01",
@@ -347,8 +317,7 @@ class L10nEsAeatReport(models.AbstractModel):
                     month = int(report.period_type)
                     report.date_start = fields.Date.to_date(f"{report.year}-{month}-01")
                     report.date_end = fields.Date.to_date(
-                        "%s-%s-%s"
-                        % (report.year, month, monthrange(report.year, month)[1])
+                        f"{report.year}-{month}-{monthrange(report.year, month)[1]}"
                     )
 
     @api.depends("date_start")

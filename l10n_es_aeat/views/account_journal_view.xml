@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="account.view_account_journal_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='type'][last()]" position="after">
-                <field name="thirdparty_invoice" attrs="{'invisible': 1}" />
+                <field name="thirdparty_invoice" invisible="1" />
             </xpath>
         </field>
     </record>

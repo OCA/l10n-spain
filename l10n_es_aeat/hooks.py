@@ -31,5 +31,5 @@ def create_column_thirdparty_invoice(cr):
         cr.execute("UPDATE account_journal SET thirdparty_invoice = False")
 
 
-def pre_init_hook(cr):
-    create_column_thirdparty_invoice(cr)
+def pre_init_hook(env):
+    create_column_thirdparty_invoice(env.cr)

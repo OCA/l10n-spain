@@ -41,13 +41,12 @@ class TestL10nEsAeatModBase(common.TransactionCase):
         cls.company = cls.env["res.company"].create(
             {"name": "Spanish test company", "currency_id": cls.env.ref("base.EUR").id}
         )
-        cls.chart = cls.env.ref("l10n_es.account_chart_template_pymes")
         cls.env.ref("base.group_multi_company").write({"users": [(4, cls.env.uid)]})
         cls.env.user.write(
             {"company_ids": [(4, cls.company.id)], "company_id": cls.company.id}
         )
-        chart = cls.env.ref("l10n_es.account_chart_template_pymes")
-        chart.try_loading()
+        chart = cls.env["account.chart.template"]
+        chart.try_loading(template_code="es_pymes", company=cls.company)
         cls.with_context(company_id=cls.company.id)
         return True
 
@@ -101,7 +100,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
         taxes = cls.env["account.tax"]
         for desc in descs.split(","):
             parts = desc.split(".")
-            module = parts[0] if len(parts) > 1 else "l10n_es"
+            module = parts[0] if len(parts) > 1 else "l10n_es_aeat"
             xml_id = parts[1] if len(parts) > 1 else parts[0]
             if xml_id.lower() != xml_id and len(parts) == 1:
                 # shortcut for not changing existing tests with old codes
