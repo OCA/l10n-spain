@@ -72,7 +72,7 @@ class TestL10nEsAeat(TransactionCase):
     def test_map_line_overlaps(self):
         for from1, to1, from2, to2, raise_exception in _DATES_MAPPING:
             _logger.info(
-                "Tax map 1 with date_from %s and date_to %s against tax map 2 "
-                "with date_from %s and date_to %s" % (from1, to1, from2, to2)
+                f"Tax map 1 with date_from {from1} and date_to {to1} against tax map 2 "
+                f"with date_from {from2} and date_to {to2}"
             )
             self._test_map_line_overlap(from1, to1, from2, to2, raise_exception)

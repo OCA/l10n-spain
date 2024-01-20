@@ -16,3 +16,5 @@ from . import aeat_certificate
 from . import aeat_soap
 from . import aeat_tax_agency
 from . import account_move
+from . import aeat_tax
+from . import aeat_account

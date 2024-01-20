@@ -35,26 +35,15 @@ class ResCompany(models.Model):
         """Low level cached search for a tax given its tax template and
         company.
         """
-        xmlids = (
-            self.sudo()
-            .env["ir.model.data"]
-            .search_read(
-                [
-                    ("model", "=", "account.tax.template"),
-                    ("res_id", "=", tax_template.id),
-                ],
-                ["name", "module"],
-            )
-        )
         return (
-            xmlids
+            tax_template
             and self.sudo()
             .env["ir.model.data"]
             .search(
                 [
                     ("model", "=", "account.tax"),
-                    ("module", "=", xmlids[0]["module"]),
-                    ("name", "=", "{}_{}".format(company.id, xmlids[0]["name"])),
+                    ("module", "=", "account"),
+                    ("name", "=", f"{company.id}_{tax_template.xmlid}"),
                 ]
             )
             .res_id
@@ -98,7 +87,7 @@ class ResCompany(models.Model):
         tax_ids = []
         # We need to rebrowse the records to avoid a problem with the ormcache
         # and virtual records that populate m2m as NewId.
-        for tmpl in self.env["account.tax.template"].browse(tax_templates.ids):
+        for tmpl in self.env["aeat.tax"].browse(tax_templates.ids):
             tax_id = self._get_tax_id_from_tax_template(tmpl, self)
             if tax_id:
                 tax_ids.append(tax_id)

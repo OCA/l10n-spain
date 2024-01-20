@@ -11,7 +11,8 @@
                         <field name="aeat_identification_type" />
                         <field
                             name="aeat_identification"
-                            attrs="{'required': [('aeat_identification_type', '!=', False)], 'invisible': [('aeat_identification_type', '=', False)]}"
+                            required="aeat_identification_type"
+                            invisible="not aeat_identification_type"
                         />
                     </group>
                 </page>

@@ -39,28 +39,27 @@ class TestL10nEsAeatTaxInfoGroup(TestL10nEsAeatModBase):
 
     @classmethod
     def _chart_of_accounts_create(cls):
-        cls.env["account.tax.template"]._load_records(
+        super()._chart_of_accounts_create()
+        cls.env["account.tax"]._load_records(
             [
                 {
-                    "xml_id": "l10n_es.account_tax_template_s_ivag1021b",
+                    "xml_id": f"account.{cls.company.id}_account_tax_template_s_ivag1021b",
                     "noupdate": True,
                     "values": {
                         "type_tax_use": "sale",
                         "name": "Grupo IVA 10%/21% (Bienes)",
-                        "chart_template_id": cls.env.ref(
-                            "l10n_es.account_chart_template_common"
-                        ).id,
                         "amount_type": "group",
+                        "tax_scope": "consu",
                         "children_tax_ids": [
                             (
                                 6,
                                 0,
                                 [
                                     cls.env.ref(
-                                        "l10n_es.account_tax_template_s_iva10b"
+                                        f"account.{cls.company.id}_account_tax_template_s_iva10b"
                                     ).id,
                                     cls.env.ref(
-                                        "l10n_es.account_tax_template_s_iva21b"
+                                        f"account.{cls.company.id}_account_tax_template_s_iva21b"
                                     ).id,
                                 ],
                             )
@@ -69,7 +68,19 @@ class TestL10nEsAeatTaxInfoGroup(TestL10nEsAeatModBase):
                 }
             ]
         )
-        return super()._chart_of_accounts_create()
+        cls.env["aeat.tax"]._load_records(
+            [
+                {
+                    "xml_id": "l10n_es_aeat.account_tax_template_s_ivag1021b",
+                    "noupdate": True,
+                    "values": {
+                        "xmlid": "account_tax_template_s_ivag1021b",
+                        "name": "Grupo IVA 10%/21% (Bienes)",
+                    },
+                }
+            ]
+        )
+        return
 
     def test_tax_info_1021B(self):
         invoice = self._invoice_sale_create("2018-02-01", {})
