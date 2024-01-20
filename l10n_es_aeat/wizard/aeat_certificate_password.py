@@ -34,7 +34,7 @@ try:
 
     else:
         load_key_and_certificates = pkcs12.load_key_and_certificates
-except (ImportError, IOError) as err:
+except (OSError, ImportError) as err:
     _logger.debug(err)
 
 # FIXME To be removed in v16, as it is now specified in the manifest
