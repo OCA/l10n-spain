@@ -43,7 +43,9 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
 
         text = text.upper()
         text = "".join([unidecode(x) if x not in ("Ñ", "Ç") else x for x in text])
-        text = re.sub(r"[^A-Z0-9\s\.,-_&'´\\:;/\(\)ÑÇ]", "", text, re.UNICODE | re.X)
+        text = re.sub(
+            r"[^A-Z0-9\s\.,-_&'´\\:;/\(\)ÑÇ]", "", text, flags=re.UNICODE | re.X
+        )
         ascii_string = text.encode("iso-8859-1")
         # Cut the string if it is too long
         if len(ascii_string) > length:
@@ -70,7 +72,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         if not text:
             return fill * length
         # Replace numbers
-        name = re.sub(r"[\d-]", "", text, re.UNICODE | re.X)
+        name = re.sub(r"[\d-]", "", text, flags=re.UNICODE | re.X)
         return self._format_string(name, length, fill=fill, align=align)
 
     def _format_number(

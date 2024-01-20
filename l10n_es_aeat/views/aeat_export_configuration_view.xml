@@ -44,7 +44,7 @@
                         name="web_ribbon"
                         text="Archived"
                         bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}"
+                        invisible="active"
                     />
                     <field name="active" invisible="1" />
                     <group>
@@ -106,7 +106,8 @@
                         <field
                             name="subconfig_id"
                             domain="[('id', '!=', parent.id)]"
-                            attrs="{'invisible': [('export_type', '!=', 'subconfig')], 'required': [('export_type', '=', 'subconfig')]}"
+                            invisible="export_type != 'subconfig'"
+                            required="export_type == 'subconfig'"
                             context="{'active_test': False}"
                         />
                         <field name="repeat_expression" />
@@ -117,16 +118,16 @@
                         string='Value'
                         colspan="4"
                         col="4"
-                        attrs="{'invisible': [('export_type', '=', 'subconfig')]}"
+                        invisible="export_type == 'subconfig'"
                     >
                         <field
                             name="fixed_value"
-                            attrs="{'readonly': [('expression', '!=', False), ('fixed_value', '=', False)]}"
+                            readonly="expression and not fixed_value"
                             force_save="1"
                         />
                         <field
                             name="expression"
-                            attrs="{'readonly': [('fixed_value', '!=', False), ('expression', '=', False)]}"
+                            readonly="not expression and fixed_value"
                             force_save="1"
                         />
                     </group>
@@ -134,25 +135,25 @@
                         name="group_advanced_configuration"
                         string="Advanced configuration"
                         colspan="4"
-                        attrs="{'invisible': [('export_type', 'in', ('string', 'subconfig'))]}"
+                        invisible="export_type in ('string', 'subconfig')"
                     >
                         <group
-                            attrs="{'invisible': [('export_type', 'not in', ('float', 'integer'))]}"
+                            invisible="export_type not in ('float', 'integer')"
                             colspan="2"
                         >
                             <group>
                                 <field name="apply_sign" />
                             </group>
-                            <group attrs="{'invisible':[('apply_sign', '=', False)]}">
+                            <group invisible="not apply_sign">
                                 <field name="positive_sign" />
                                 <field name="negative_sign" />
                                 <field
                                     name="decimal_size"
-                                    attrs="{'invisible':[('export_type', '!=', 'float')]}"
+                                    invisible="export_type != 'float'"
                                 />
                             </group>
                         </group>
-                        <group attrs="{'invisible':[('export_type', '!=', 'boolean')]}">
+                        <group invisible="export_type != 'boolean'">
                             <group>
                                 <field name="bool_no" />
                             </group>

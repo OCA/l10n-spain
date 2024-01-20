@@ -163,7 +163,7 @@ class TestL10nEsAeatExportConfig(TransactionCase):
                 ],
             }
         )
-        new_report = self.env["l10n.es.aeat.report"].new({"name": "Test Report"})
+        new_report = self.env["l10n.es.aeat.report"]
         export_to_boe = self.env["l10n.es.aeat.report.export_to_boe"].create(
             {"name": "test_export_to_boe.txt"}
         )

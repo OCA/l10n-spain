@@ -54,14 +54,12 @@ class TestL10nEsAeatReport(common.TransactionCase):
             self.assertEqual(
                 report.date_start,
                 fields.Date.to_date(date_start),
-                "Incorrect start date for period %s: %s."
-                % (period_type, report.date_start),
+                f"Incorrect start date for period {period_type}: {report.date_start}.",
             )
             self.assertEqual(
                 report.date_end,
                 fields.Date.to_date(date_end),
-                "Incorrect end date for period %s: %s."
-                % (period_type, report.date_end),
+                f"Incorrect end date for period {period_type}: {report.date_end}.",
             )
             report.invalidate_recordset(["date_start", "date_end"])
 

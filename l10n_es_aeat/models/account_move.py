@@ -24,8 +24,6 @@ class AccountMove(models.Model):
     thirdparty_number = fields.Char(
         string="Third-party number",
         index=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
         copy=False,
         help="Número de la factura emitida por un tercero.",
     )

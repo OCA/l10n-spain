@@ -11,7 +11,7 @@
 {
     "name": "AEAT Base",
     "summary": "Modulo base para declaraciones de la AEAT",
-    "version": "16.0.2.2.0",
+    "version": "17.0.1.0.0",
     "author": "Pexego, "
     "Acysos S.L., "
     "AvanzOSC, "
@@ -27,6 +27,8 @@
     "data": [
         "security/aeat_security.xml",
         "security/ir.model.access.csv",
+        "data/aeat_tax.xml",
+        "data/aeat_account.xml",
         "data/aeat_partner.xml",
         "data/ir_config_parameter.xml",
         "data/aeat_tax_agency_data.xml",

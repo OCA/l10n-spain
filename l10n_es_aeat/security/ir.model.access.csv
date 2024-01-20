@@ -7,6 +7,10 @@ access_model_l10n_es_aeat_map_tax_admin,aeat.mod.map.tax.code admin,model_l10n_e
 access_model_l10n_es_aeat_map_tax_aeat,aeat.mod.map.tax.code aeat,model_l10n_es_aeat_map_tax,group_account_aeat,1,0,0,0
 access_model_l10n_es_aeat_map_tax_line_admin,aeat.mod.map.tax.code.line admin,model_l10n_es_aeat_map_tax_line,base.group_system,1,1,1,1
 access_model_l10n_es_aeat_map_taxe_line_aeat,aeat.mod.map.tax.code.line aeat,model_l10n_es_aeat_map_tax_line,group_account_aeat,1,0,0,0
+access_model_l10n_es_aeat_tax_admin,aeat.tax admin,model_aeat_tax,base.group_system,1,1,1,1
+access_model_l10n_es_aeat_tax_aeat,aeat.tax aeat,model_aeat_tax,group_account_aeat,1,0,0,0
+access_model_l10n_es_aeat_account_admin,aeat.account admin,model_aeat_account,base.group_system,1,1,1,1
+access_model_l10n_es_aeat_account_aeat,aeat.account aeat,model_aeat_account,group_account_aeat,1,0,0,0
 access_model_l10n_es_aeat_tax_line_aeat,l10n.es.aeat.tax.line aeat,model_l10n_es_aeat_tax_line,group_account_aeat,1,1,1,1
 access_l10n_es_aeat_certificate_manager,l10n_es_aeat_certificate manager,model_l10n_es_aeat_certificate,account.group_account_manager,1,1,1,1
 access_aeat_tax_agency_account,access_aeat_tax_agency_account,model_aeat_tax_agency,base.group_user,1,0,0,0
