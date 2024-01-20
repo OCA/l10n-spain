@@ -319,7 +319,7 @@ class L10nEsAeatReport(models.AbstractModel):
                     starting_month = 1 + (int(report.period_type[0]) - 1) * 3
                     ending_month = starting_month + 2
                     report.date_start = fields.Date.to_date(
-                        "{}-{}-01".format(report.year, starting_month)
+                        f"{report.year}-{starting_month}-01"
                     )
                     report.date_end = fields.Date.to_date(
                         "%s-%s-%s"
@@ -345,9 +345,7 @@ class L10nEsAeatReport(models.AbstractModel):
                 ):
                     # Mensual
                     month = int(report.period_type)
-                    report.date_start = fields.Date.to_date(
-                        "{}-{}-01".format(report.year, month)
-                    )
+                    report.date_start = fields.Date.to_date(f"{report.year}-{month}-01")
                     report.date_end = fields.Date.to_date(
                         "%s-%s-%s"
                         % (report.year, month, monthrange(report.year, month)[1])

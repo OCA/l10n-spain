@@ -106,14 +106,12 @@ class TestL10nEsAeatModBase(common.TransactionCase):
             if xml_id.lower() != xml_id and len(parts) == 1:
                 # shortcut for not changing existing tests with old codes
                 xml_id = "account_tax_template_" + xml_id.lower()
-            tax_template = cls.env.ref(
-                "{}.{}".format(module, xml_id), raise_if_not_found=False
-            )
+            tax_template = cls.env.ref(f"{module}.{xml_id}", raise_if_not_found=False)
             if tax_template:
                 tax = cls.company.get_taxes_from_templates(tax_template)
                 taxes |= tax
             if not tax_template or not tax:
-                _logger.error("Tax not found: {}".format(desc))
+                _logger.error(f"Tax not found: {desc}")
         return taxes
 
     @classmethod
@@ -131,7 +129,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
             _logger.debug("{:>14} {:>9}".format("SALE TAX", "PRICE"))
         for desc, values in cls.taxes_sale.items():
             if cls.debug:
-                _logger.debug("{:>14} {:>9}".format(desc, values[0]))
+                _logger.debug(f"{desc:>14} {values[0]:>9}")
             # Allow to duplicate taxes skipping the unique key constraint
             line_data = {
                 "name": "Test for tax(es) %s" % desc,
@@ -166,7 +164,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
             _logger.debug("{:>14} {:>9}".format("PURCHASE TAX", "PRICE"))
         for desc, values in cls.taxes_purchase.items():
             if cls.debug:
-                _logger.debug("{:>14} {:>9}".format(desc, values[0]))
+                _logger.debug(f"{desc:>14} {values[0]:>9}")
             # Allow to duplicate taxes skipping the unique key constraint
             line_data = {
                 "name": "Test for tax(es) %s" % desc,
@@ -188,7 +186,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
 
     @classmethod
     def _invoice_refund(cls, invoice, dt):
-        _logger.debug("Refund {} invoice: date = {}".format(invoice.move_type, dt))
+        _logger.debug(f"Refund {invoice.move_type} invoice: date = {dt}")
         default_values_list = [
             {"date": dt, "invoice_date": dt, "invoice_payment_term_id": None}
         ]
