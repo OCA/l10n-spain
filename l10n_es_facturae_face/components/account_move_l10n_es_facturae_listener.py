@@ -23,7 +23,7 @@ class AccountMoveL10nEsFacturaeListener(Component):
         for record in records:
             if record.edi_disable_auto:
                 continue
-            partner = record.partner_id
+            partner = record.commercial_partner_id
             if record.move_type not in ["out_invoice", "out_refund"]:
                 continue
             if not partner.facturae or not partner.l10n_es_facturae_sending_code:

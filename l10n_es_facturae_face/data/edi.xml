@@ -19,7 +19,7 @@
         <field name="model_id" ref="account.model_account_move" />
         <field
             name="enable_domain"
-        >[('state', '!=', 'draft'), ('partner_id', '!=', False), ('partner_id.l10n_es_facturae_sending_code', '=', "face"),('move_type', 'in', ['out_invoice', 'out_refund'])]</field>
+        >[('state', '!=', 'draft'), ('commercial_partner_id', '!=', False), ('commercial_partner_id.l10n_es_facturae_sending_code', '=', "face"),('move_type', 'in', ['out_invoice', 'out_refund'])]</field>
         <field
             name="enable_snippet"
         >result = not record._has_exchange_record(exchange_type)</field>

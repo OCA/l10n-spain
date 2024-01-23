@@ -28,7 +28,7 @@ class ResPartner(models.Model):
                 or record.l10n_es_facturae_sending_code != "face"
             ):
                 continue
-            if not record.facturae:
+            if not record.facturae and not record.parent_facturae:
                 raise exceptions.ValidationError(
                     _("Facturae must be selected in order to send to FACe")
                 )
