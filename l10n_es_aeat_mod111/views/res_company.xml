@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Moduon Team S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0) -->
+<odoo>
+    <record id="view_company_aeat_mod111_form" model="ir.ui.view">
+        <field name="name">res.company.aeat.mod111.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_company_aeat_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='aeat']//parent::group" position="inside">
+                <group>
+                    <group name="aeat_mod111_config" string="AEAT Model 111">
+                        <field name="colegio_concertado" />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -18,6 +18,7 @@
         "data/aeat_export_mod111_data.xml",
         "data/tax_code_map_mod111_data.xml",
         "views/mod111_view.xml",
+        "views/res_company.xml",
         "security/ir.model.access.csv",
         "security/l10n_es_aeat_mod111_security.xml",
     ],

@@ -78,6 +78,7 @@ class TestL10nEsAeatMod111Base(TestL10nEsAeatModBase):
         export_config = self.env.ref(
             "l10n_es_aeat_mod111.aeat_mod111_main_export_config"
         )
+        self.company.colegio_concertado = True
         self.model111 = self.env["l10n.es.aeat.mod111.report"].create(
             {
                 "name": "9990000000111",
@@ -96,7 +97,8 @@ class TestL10nEsAeatMod111Base(TestL10nEsAeatModBase):
                 "counterpart_account_id": self.accounts["475000"].id,
             }
         )
-
+        # Check default value
+        self.assertTrue(self.model111.colegio_concertado)
         # Calculate
         _logger.debug("Calculate AEAT 111 1T 2015")
         self.model111.button_calculate()

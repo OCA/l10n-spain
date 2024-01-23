@@ -262,7 +262,7 @@ class L10nEsAeatMod111Report(models.Model):
         string="College concerted",
         readonly=True,
         states={"draft": [("readonly", False)]},
-        default=False,
+        default=lambda self: self.env.company.colegio_concertado,
     )
 
     @api.depends("tax_line_ids", "tax_line_ids.move_line_ids.partner_id")
