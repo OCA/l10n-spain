@@ -123,6 +123,9 @@ class L10nEsAeatReport(models.AbstractModel):
         string="L.R. VAT number",
         size=9,
         help="Legal Representative VAT number.",
+        compute="_compute_representative_vat",
+        store=True,
+        readonly=False,
     )
     year = fields.Integer(
         default=_default_year,
@@ -312,6 +315,11 @@ class L10nEsAeatReport(models.AbstractModel):
                     report.date_end = fields.Date.to_date(
                         f"{report.year}-{month}-{monthrange(report.year, month)[1]}"
                     )
+
+    @api.depends("company_id")
+    def _compute_representative_vat(self):
+        for report in self:
+            report.representative_vat = report.company_id.representative_vat
 
     @api.depends("date_start")
     def _compute_export_config_id(self):
