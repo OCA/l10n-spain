@@ -13,6 +13,11 @@ class ResCompany(models.Model):
     _inherit = "res.company"
 
     tax_agency_id = fields.Many2one("aeat.tax.agency", string="Tax Agency")
+    representative_vat = fields.Char(
+        string="L.R. VAT number",
+        size=9,
+        help="Legal Representative VAT number for all the AEAT reports of this company.",
+    )
 
     @api.model_create_multi
     def create(self, vals_list):
