@@ -99,16 +99,20 @@ class L10nEsAeatMod369LineGrouped(models.Model):
     )
     tax_id = fields.Many2one(string="Tax", comodel_name="account.tax")
     vat_type = fields.Float(string="VAT Type", related="tax_id.amount")
+    vat_type_str = fields.Char(compute="_compute_vat_type_str")
     service_type = fields.Selection(
         related="tax_id.service_type",
         string="Service type",
     )
     base = fields.Float(string="Base total", compute="_compute_totals")
+    base_str = fields.Char(compute="_compute_base_str")
     amount = fields.Float(string="Amount total", compute="_compute_totals")
+    amount_str = fields.Char(compute="_compute_amount_str")
     is_refund = fields.Boolean()
     refund_fiscal_year = fields.Integer()
     refund_period = fields.Char()
     tax_correction = fields.Float()
+    tax_correction_str = fields.Char(compute="_compute_tax_correction_str")
     # page 8 fields
     is_page_8_line = fields.Boolean(
         string="Is part of page 8", help="Used to filter for grouped lines for page 8"
@@ -130,6 +134,32 @@ class L10nEsAeatMod369LineGrouped(models.Model):
     result_total = fields.Float(string="Total result")
     total_deposit = fields.Float(string="Total to deposit ES")
     total_return = fields.Float(string="Total to return EM")
+
+    @api.depends("vat_type")
+    def _compute_vat_type_str(self):
+        for line in self:
+            vat_type_split = str(line.vat_type).split(".")
+            line.vat_type_str = vat_type_split[0].zfill(3) + vat_type_split[1].zfill(2)
+
+    @api.depends("base")
+    def _compute_base_str(self):
+        for line in self:
+            base_split = str(line.base).split(".")
+            line.base_str = base_split[0].zfill(15) + base_split[1].zfill(2)
+
+    @api.depends("amount")
+    def _compute_amount_str(self):
+        for line in self:
+            amount_split = str(line.amount).split(".")
+            line.amount_str = amount_split[0].zfill(15) + amount_split[1].zfill(2)
+
+    @api.depends("tax_correction")
+    def _compute_tax_correction_str(self):
+        for line in self:
+            tax_correction_split = str(line.tax_correction).split(".")
+            line.tax_correction_str = tax_correction_split[0].zfill(
+                15
+            ) + tax_correction_split[1].zfill(2)
 
     @api.depends("oss_country_id", "oss_country_id.code")
     def _compute_country_code(self):
