@@ -15,6 +15,12 @@
                 <field name="operation_key" />
                 <field name="partner_vat" />
                 <field name="partner_id" />
+                <field name="partner_state_code" optional="hide" />
+                <field name="partner_country_code" optional="hide" />
+                <field name="first_quarter" optional="hide" />
+                <field name="second_quarter" optional="hide" />
+                <field name="third_quarter" optional="hide" />
+                <field name="fourth_quarter" optional="hide" />
                 <field name="amount" />
                 <field name="cash_amount" />
                 <field name="real_estate_transmissions_amount" />
