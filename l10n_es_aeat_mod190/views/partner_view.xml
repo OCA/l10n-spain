@@ -13,6 +13,7 @@
                 </group>
                 <group>
                     <group
+                        groups="account.group_account_invoice,l10n_es_aeat.group_account_aeat"
                         string="Performance key"
                         name="acc_sale"
                         attrs="{'invisible':[('incluir_190', '=', False)]}"
@@ -59,6 +60,7 @@
                         <field name="hijos_y_descendientes_entero" />
                     </group>
                     <group
+                        groups="account.group_account_invoice,l10n_es_aeat.group_account_aeat"
                         string="First 3 compute"
                         attrs="{'invisible': [('is_aeat_perception_subkey_visible', '=', False)]}"
                     >
