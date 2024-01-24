@@ -472,8 +472,11 @@ class L10nEsAeatMod303Report(models.Model):
         res = super(L10nEsAeatMod303Report, self).calculate()
         for mod303 in self:
             prev_reports = self.search(
-                [("date_start", "<", mod303.date_start)]
-            ).filtered(lambda m: m.state not in ["draft", "cancelled"])
+                [
+                    ("date_start", "<", mod303.date_start),
+                    ("state", "not in", ("draft", "cancelled")),
+                ]
+            )
             if prev_reports:
                 prev_report = min(
                     prev_reports,
