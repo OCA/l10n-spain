@@ -1251,7 +1251,7 @@
         <field name="move_type">all</field>
         <field name="field_type">base</field>
         <field name="sum_type">both</field>
-        <field name="inverse" eval="True" />
+        <field name="inverse" eval="False" />
         <field name="tax_ids" eval="[(6, False, [])]" />
     </record>
     <record id="aeat_mod390_map_line_230" model="l10n.es.aeat.map.tax.line">
