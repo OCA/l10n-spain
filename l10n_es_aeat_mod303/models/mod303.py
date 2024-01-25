@@ -5,6 +5,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, exceptions, fields, models, _
+from odoo.tools import float_compare
 
 _ACCOUNT_PATTERN_MAP = {
     "C": "4700",
@@ -364,10 +365,15 @@ class L10nEsAeatMod303Report(models.Model):
     )
     def _compute_result_type(self):
         for report in self:
-            if report.resultado_liquidacion == 0:
-                report.result_type = 'N'
-            elif report.resultado_liquidacion > 0:
-                report.result_type = 'I'
+            result = float_compare(
+                report.resultado_liquidacion,
+                0,
+                precision_digits=report.currency_id.decimal_places,
+            )
+            if result == 0:
+                report.result_type = "N"
+            elif result == 1:
+                report.result_type = "I"
             else:
                 if report.devolucion_mensual or report.period_type in ("4T", "12"):
                     report.result_type = "D" if report.marca_sepa == "1" else "X"
