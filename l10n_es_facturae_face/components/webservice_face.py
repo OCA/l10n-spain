@@ -7,6 +7,7 @@ import logging
 
 from cryptography import x509
 from cryptography.hazmat.primitives import serialization
+from zeep import Client
 
 from odoo.exceptions import UserError, ValidationError
 from odoo.models import _
@@ -16,10 +17,6 @@ from odoo.addons.component.core import Component
 from ..models.wsse_signature import MemorySignature
 
 _logger = logging.getLogger(__name__)
-try:
-    from zeep import Client
-except (ImportError, IOError) as err:
-    _logger.info(err)
 
 
 class WebServiceFace(Component):
