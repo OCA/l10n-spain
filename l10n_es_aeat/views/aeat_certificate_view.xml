@@ -33,7 +33,13 @@
                 <group>
                     <field name="private_key" />
                     <field name="public_key" />
+                    <field
+                        name="show_public_key"
+                        widget="boolean_toggle"
+                        options="{'autosave': False}"
+                    />
                 </group>
+                <field name="public_key_data" />
             </form>
         </field>
     </record>

@@ -8,11 +8,15 @@ import cryptography
 from cryptography import x509
 from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
-from cryptography.hazmat.primitives.serialization import BestAvailableEncryption, pkcs12
+from cryptography.hazmat.primitives.serialization import (
+    BestAvailableEncryption,
+    Encoding,
+    pkcs12,
+)
 from cryptography.x509 import oid
 
 from odoo import exceptions
-from odoo.tests import common
+from odoo.tests import Form, common
 
 CRYPTOGRAPHY_VERSION_3 = tuple(map(int, cryptography.__version__.split("."))) >= (3, 0)
 if not CRYPTOGRAPHY_VERSION_3:
@@ -100,6 +104,7 @@ class TestL10nEsAeatCertificateBase(common.TransactionCase):
             certificate,
             cls.certificate_password,
         )
+        cls.public_key = certificate.public_bytes(Encoding.PEM).decode("UTF-8")
         cls.sii_cert = cls.env["l10n.es.aeat.certificate"].create(
             {
                 "folder": "Test folder",
@@ -131,3 +136,14 @@ class TestL10nEsAeatCertificate(TestL10nEsAeatCertificateBase):
         )
         self._activate_certificate(self.certificate_password)
         self.assertEqual(self.sii_cert.state, "active")
+
+    def test_show_public_key(self):
+        self._activate_certificate(self.certificate_password)
+        with Form(self.sii_cert) as f:
+            self.assertFalse(f.show_public_key)
+            self.assertFalse(f.public_key_data)
+            f.show_public_key = True
+            self.assertTrue(f.public_key_data)
+            self.assertEqual(f.public_key_data, self.public_key)
+            f.show_public_key = False
+            self.assertFalse(f.public_key_data)
