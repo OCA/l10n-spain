@@ -1,0 +1,21 @@
+<odoo>
+<!-- Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
+ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+    <template
+        id="report_saleorder_document"
+        inherit_id="sale.report_saleorder_document"
+    >
+        <xpath expr="//td[@name='td_name']" position="inside">
+            <t
+                t-if="doc.sigaus_has_line and line.order_id.company_id.sigaus_enable and line.order_id.company_id.sigaus_show_in_reports and line.product_id and line.product_id.sigaus_has_amount"
+            >
+                <br /><span
+                    style="font-size: 70%; opacity: 0.7;"
+                >Aportación SIGAUS (RD 679/2006): <span
+                        t-field="line.sigaus_amount"
+                        t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"
+                    /></span>
+            </t>
+        </xpath>
+    </template>
+</odoo>
