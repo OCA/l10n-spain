@@ -14,6 +14,7 @@
         "edi_exchange_template_oca",
     ],
     "data": [
+        "views/res_config_settings.xml",
         "security/ir.model.access.csv",
         "data/edi.xml",
         "data/face_data.xml",

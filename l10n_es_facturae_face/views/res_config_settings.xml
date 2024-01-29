@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Dixmit
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="res_config_settings_form_view">
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='analytic']" position="after">
+                <h2>Facturae FACe</h2>
+                <div class="row mt16 o_settings_container" id="facturae_face">
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label
+                                        for="face_wsdl"
+                                        class="col-md-3 o_light_label"
+                                    />
+                                    <field name="face_wsdl" />
+                                </div>
+                                <div class="row mt16">
+                                    <label
+                                        for="face_certificate"
+                                        class="col-md-3 o_light_label"
+                                    />
+                                    <field
+                                        name="face_certificate"
+                                        filename="face_certificate_filename"
+                                        options="{'accepted_file_extensions': '.crt'}"
+                                    />
+                                    <field
+                                        name="face_certificate_filename"
+                                        invisible="1"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+
+
+</odoo>
