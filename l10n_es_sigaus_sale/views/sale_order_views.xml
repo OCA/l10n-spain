@@ -1,0 +1,18 @@
+<odoo>
+<!-- Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
+ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+    <record id="l10n_es_sigaus_sale_view_order_form" model="ir.ui.view">
+        <field name="name">l10n.es.sigaus.sale.view.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="payment_term_id" position="after">
+                <field name="sigaus_company" invisible="1" />
+                <field
+                    name="is_sigaus"
+                    attrs="{'readonly': [('state', '!=', 'draft')], 'invisible': [('sigaus_company', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
