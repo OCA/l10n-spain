@@ -330,23 +330,25 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         self._invoice_purchase_create("2018-01-01")
         self._invoice_purchase_create("2018-04-01")
         self._invoice_purchase_create("2018-07-01")
-        self._invoice_purchase_create("2018-07-10")
+        self._invoice_purchase_create("2018-10-01")
         # Sale invoices
         self._invoice_sale_create("2018-01-01")
-        self._invoice_sale_create("2018-04-01")
         self._invoice_sale_create("2018-07-01")
         self._invoice_sale_create("2018-10-01")
+        # Calculate 390
         self.model390_2018.button_calculate()
         self.assertAlmostEqual(self.model390_2018.casilla_85, 0.0, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_95, 0.0, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_97, 0.0, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_98, 0.0, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_662, 0.0, 2)
 
     def test_model_390_using_303_02(self):
         # Check use 303 activated and 303 reports exist but none are to be enter
-        # and last period is to return
+        # and last period is to return with remaining compensation
         # Purchase invoices
         self._invoice_purchase_create("2018-01-01")
+        self._invoice_purchase_create("2018-10-01")
         # Reports 303
         self.model303_1T = self.env["l10n.es.aeat.mod303.report"].create(
             {
@@ -390,16 +392,20 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
                 "date_end": "2018-12-31",
             }
         )
-        self.model303_1T.potential_cuota_compensar = 1000.0
+        # Calculate reports
         self.model303_1T.button_calculate()
         self.model303_2T.button_calculate()
         self.model303_3T.button_calculate()
         self.model303_4T.button_calculate()
+        self.model303_4T.cuota_compensar = 0
         self.model390_2018.button_calculate()
-        self.assertAlmostEqual(self.model390_2018.casilla_85, 1000.0, 2)
+        # Check casilla_85, casilla_95, casilla_97, casilla_98, casilla_662
+        self.assertAlmostEqual(self.model390_2018.casilla_85, 1121.7, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_95, 0.0, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_97, 0.0, 2)
-        self.assertAlmostEqual(self.model390_2018.casilla_98, 674.48, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_98, 560.85, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_662, 674.48, 2)
+        self.model390.button_confirm()
 
     def test_model_390_using_303_03(self):
         # Check use 303 activated, 303 reports exist and last period is to compensate
@@ -407,7 +413,7 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         self._invoice_purchase_create("2018-01-01")
         self._invoice_purchase_create("2018-04-01")
         self._invoice_purchase_create("2018-07-01")
-        self._invoice_purchase_create("2018-07-10")
+        self._invoice_purchase_create("2018-10-01")
         # # Sale invoices
         self._invoice_sale_create("2018-01-01")
         self._invoice_sale_create("2018-04-01")
@@ -455,14 +461,21 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
                 "date_end": "2018-12-31",
             }
         )
+        # Calculate reports
         self.model303_1T.button_calculate()
         self.model303_2T.button_calculate()
         self.model303_3T.button_calculate()
-        self.model303_4T.potential_cuota_compensar = 1500
-        self.model303_4T.cuota_compensar = 1366.10
+        self.model303_4T.potential_cuota_compensar = 905.25
+        self.model303_4T.cuota_compensar = 805.25
         self.model303_4T.button_calculate()
         self.model390_2018.button_calculate()
-        self.assertAlmostEqual(self.model390_2018.casilla_85, 0.0, 2)
-        self.assertAlmostEqual(self.model390_2018.casilla_95, 1741.27, 2)
-        self.assertAlmostEqual(self.model390_2018.casilla_97, 133.9, 2)
+        # Check casilla_85, casilla_95, casilla_97, casilla_98, casilla_662
+        self.assertAlmostEqual(self.model390_2018.casilla_85, 805.25, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_95, 2302.12, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_97, 100.0, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_98, 0.0, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_662, 0.0, 2)
+        self.model390.button_confirm()
+
+    # TODO: Currently no way for result type to be compensate in the last period,
+    # but should. Update test when result type can be compensate in last period
