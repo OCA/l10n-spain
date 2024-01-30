@@ -397,6 +397,13 @@ class L10nEsAeatMod390Report(models.Model):
         store=True,
         string="[65] Result. rég. gral.",
     )
+    casilla_662 = fields.Float(
+        string="[662] Cuotas pendientes de compensación al término del ejercicio",
+        help="[662] Cuotas pendientes de compensación generadas en el ejercicio "
+        "y distintas de las incluidas en la casilla 97",
+        states=REQUIRED_ON_CALCULATED,
+        readonly=True,
+    )
     casilla_85 = fields.Float(
         string="[85] Compens. ejercicio anterior",
         readonly=True,
@@ -767,6 +774,7 @@ class L10nEsAeatMod390Report(models.Model):
         for mod390 in self:
             if not mod390.use_303:
                 continue
+            casilla_85, casilla_95, casilla_97, casilla_98, casilla_662 = 0, 0, 0, 0, 0
             reports_303_this_year = self.env["l10n.es.aeat.mod303.report"].search(
                 [
                     ("year", "=", mod390.year),
@@ -776,15 +784,11 @@ class L10nEsAeatMod390Report(models.Model):
             )
             if not reports_303_this_year:
                 continue
-            # casilla 85 = casilla 110 del primer periodo del año
-            first_period = reports_303_this_year.filtered(
-                lambda r: r.period_type in {"1T", "01"}
-            )
-            if first_period:
-                mod390.casilla_85 = first_period[0].potential_cuota_compensar
-            # casilla 95 = sumatorio de las casillas 71 de los periodos del año que
+            # casilla 85 = sumatorio de las casilla 78 de los periodos del año
+            casilla_85 = sum(reports_303_this_year.mapped("cuota_compensar"))
+            # casilla 95 = sumatorio de las casilla 71 de los periodos del año que
             # sean a ingresar
-            mod390.casilla_95 = sum(
+            casilla_95 = sum(
                 reports_303_this_year.filtered(
                     lambda r: r.result_type in {"I", "G", "U"}
                 ).mapped("resultado_liquidacion")
@@ -796,29 +800,37 @@ class L10nEsAeatMod390Report(models.Model):
                 if report_303_last_period[0].result_type == "C":
                     # Si salió a compensar, casilla 97 = casilla 71 del último periodo
                     # del año si fue a compensar
-                    mod390.casilla_97 = abs(
-                        report_303_last_period.resultado_liquidacion
-                    )
+                    casilla_97 = abs(report_303_last_period.resultado_liquidacion)
                 elif report_303_last_period[0].result_type == "N":
+                    # casilla 97 = casilla 87 del último periodo del año si fue a compensar
                     # Si salio resultado cero, pero queda pendiente a compensar
-                    # casilla 97 = casilla 83 del último periodo del año si fue a compensar
-                    mod390.casilla_97 = report_303_last_period.remaining_cuota_compensar
+                    casilla_97 = report_303_last_period.remaining_cuota_compensar
                 elif report_303_last_period[0].result_type in {"D", "V", "X"}:
                     # casilla 98 = casilla 71 del último periodo del año si fue a devolver
-                    mod390.casilla_98 = abs(
-                        report_303_last_period.resultado_liquidacion
-                    )
+                    casilla_98 = abs(report_303_last_period.resultado_liquidacion)
+                    # casilla 662 = casilla 87 del último periodo del año si no se incluyo
+                    # en la casilla 97
+                    casilla_662 = report_303_last_period.remaining_cuota_compensar
+            mod390.update(
+                {
+                    "casilla_85": casilla_85,
+                    "casilla_95": casilla_95,
+                    "casilla_97": casilla_97,
+                    "casilla_98": casilla_98,
+                    "casilla_662": casilla_662,
+                }
+            )
         return res
 
     def button_confirm(self):
         """Check that the manual 303 results match the report."""
         self.ensure_one()
-        summary = self.casilla_95 - self.casilla_97 - self.casilla_98
+        summary = self.casilla_95 - self.casilla_97 - self.casilla_98 - self.casilla_662
         if float_compare(summary, self.casilla_86, precision_digits=2) != 0:
             raise exceptions.UserError(
                 _(
-                    "The result of the manual 303 summary (fields [95], [97] and "
-                    "[98] in the page '9. Resultado liquidaciones') doesn't match "
+                    "The result of the manual 303 summary (fields [95], [97], [98] and "
+                    "[662] in the page '9. Resultado liquidaciones') doesn't match "
                     "the field [86]. Please check if you have filled such fields."
                 )
             )
