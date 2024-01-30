@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-30 12:33+0000\n"
-"PO-Revision-Date: 2024-01-30 13:35+0100\n"
+"POT-Creation-Date: 2024-02-02 09:02+0000\n"
+"PO-Revision-Date: 2024-02-02 10:04+0100\n"
 "Last-Translator: Emilio Pascual <emilio@moduom.team>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -807,13 +807,13 @@ msgstr "Tercer representante"
 #: code:addons/l10n_es_aeat_mod390/models/mod390.py:0
 #, python-format
 msgid ""
-"The result of the manual 303 summary (fields [95], [97] and [98] in the page "
-"'9. Resultado liquidaciones') doesn't match the field [86]. Please check if "
-"you have filled such fields."
+"The result of the manual 303 summary (fields [95], [97], [98] and [662] in "
+"the page '9. Resultado liquidaciones') doesn't match the field [86]. Please "
+"check if you have filled such fields."
 msgstr ""
-"El resultado del resumen manual del 303 (casillas [95], [97] y [98] en la "
-"página '9. Resultado liquidaciones') no casa con la casilla [86]. Compruebe "
-"por favor que ha rellenado las mismas."
+"El resultado del resumen manual del 303 (casillas [95], [97], [98] y [662] "
+"en la página '9. Resultado liquidaciones') no casa con la casilla [86]. "
+"Compruebe por favor que ha rellenado las mismas."
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__counterpart_account_id
@@ -828,6 +828,16 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__activity_exception_decoration
 msgid "Type of the exception activity on record."
 msgstr "Tipo de la excepción de la actividad en el registro."
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_unread
+msgid "Unread Messages"
+msgstr "Mensajes"
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__use_303
@@ -875,7 +885,6 @@ msgstr ""
 "duplicados o desactualizados."
 
 #. module: l10n_es_aeat_mod390
-#. odoo-python
 #: code:addons/l10n_es_aeat_mod390/models/mod390.py:0
 #, python-format
 msgid "You cannot make complementary reports for this model."
@@ -988,6 +997,20 @@ msgstr "[64] Suma de deducciones"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_65
 msgid "[65] Result. rég. gral."
 msgstr "[65] Result. rég. gral."
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_662
+msgid "[662] Cuotas pendientes de compensación al término del ejercicio"
+msgstr "[662] Cuotas pendientes de compensación al término del ejercicio"
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_662
+msgid ""
+"[662] Cuotas pendientes de compensación generadas en el ejercicio y "
+"distintas de las incluidas en la casilla 97"
+msgstr ""
+"[662] Cuotas pendientes de compensación generadas en el ejercicio y "
+"distintas de las incluidas en la casilla 97"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_85
