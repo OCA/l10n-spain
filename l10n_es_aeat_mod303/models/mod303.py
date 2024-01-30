@@ -303,35 +303,6 @@ class L10nEsAeatMod303Report(models.Model):
             else:
                 record.marca_sepa = "0"
 
-    # pylint:disable=missing-return
-    @api.depends("date_start", "cuota_compensar")
-    def _compute_exception_msg(self):
-        super(L10nEsAeatMod303Report, self)._compute_exception_msg()
-        for mod303 in self.filtered(lambda x: x.state != "draft"):
-            # Get result from previous declarations, in order to identify if
-            # there is an amount to compensate.
-            prev_reports = mod303._get_previous_fiscalyear_reports(
-                mod303.date_start
-            ).filtered(lambda x: x.state not in ["draft", "cancelled"])
-            if not prev_reports:
-                continue
-            prev_report = min(
-                prev_reports,
-                key=lambda x: abs(
-                    fields.Date.to_date(x.date_end)
-                    - fields.Date.to_date(mod303.date_start)
-                ),
-            )
-            if prev_report.result_type == "C" and not mod303.cuota_compensar:
-                if mod303.exception_msg:
-                    mod303.exception_msg += "\n"
-                else:
-                    mod303.exception_msg = ""
-                mod303.exception_msg += _(
-                    "In previous declarations this year you reported a "
-                    "Result Type 'To Compensate'. You might need to fill "
-                    "field '[67] Fees to compensate' in this declaration."
-                )
 
     @api.depends("company_id", "result_type")
     def _compute_counterpart_account_id(self):

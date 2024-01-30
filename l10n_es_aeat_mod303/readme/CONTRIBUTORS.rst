@@ -7,6 +7,8 @@
   * Antonio Espinosa
   * Luis M. Ontalba
   * Pedro M. Baeza
+  * Sergio Teruel
+  * Carlos Dauden
 * `Sygel <https://www.sygel.es>`__:
 
   * Harald Panten
