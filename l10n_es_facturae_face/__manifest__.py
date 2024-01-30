@@ -24,7 +24,7 @@
         "views/res_partner.xml",
         "views/edi_exchange_record.xml",
     ],
-    "external_dependencies": {"python": ["zeep", "cryptography"]},
+    "external_dependencies": {"python": ["zeep", "cryptography==3.4.8"]},
     "installable": True,
     "maintainers": ["etobella"],
 }
