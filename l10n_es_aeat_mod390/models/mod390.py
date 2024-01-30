@@ -397,6 +397,13 @@ class L10nEsAeatMod390Report(models.Model):
         store=True,
         string="[65] Result. rég. gral.",
     )
+    casilla_662 = fields.Float(
+        string="[662] Cuotas pendientes de compensación al término del ejercicio",
+        help="[662] Cuotas pendientes de compensación generadas en el ejercicio "
+        "y distintas de las incluidas en la casilla 97",
+        states=REQUIRED_ON_CALCULATED,
+        readonly=True,
+    )
     casilla_85 = fields.Float(
         string="[85] Compens. ejercicio anterior",
         readonly=True,
