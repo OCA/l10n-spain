@@ -191,29 +191,6 @@ msgid "Cancellation Status"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: selection:account.invoice.integration,cancellation_status:0
-#, fuzzy
-msgid "Cancellation accepted"
-msgstr "Annulé"
-
-#. module: l10n_es_facturae
-#: selection:account.invoice.integration,integration_status:0
-#, fuzzy
-msgid "Cancellation approved"
-msgstr "Annulé"
-
-#. module: l10n_es_facturae
-#: selection:account.invoice.integration,cancellation_status:0
-#, fuzzy
-msgid "Cancellation rejected"
-msgstr "Annulé"
-
-#. module: l10n_es_facturae
-#: selection:account.invoice.integration,cancellation_status:0
-msgid "Cancellation requested"
-msgstr ""
-
-#. module: l10n_es_facturae
 #: selection:account.invoice.integration,state:0
 msgid "Cancelled"
 msgstr "Annulé"
@@ -868,11 +845,6 @@ msgid "Nombre y apellidos/Razón social - Receptor"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: selection:account.invoice.integration,cancellation_status:0
-msgid "Not requested"
-msgstr ""
-
-#. module: l10n_es_facturae
 #: selection:account.invoice,facturae_refund_reason:0
 #: selection:account.invoice.refund,refund_reason:0
 msgid "Número de la factura"
@@ -911,11 +883,6 @@ msgstr ""
 #: code:addons/l10n_es_facturae/models/account_invoice.py:221
 #, python-format
 msgid "Partner vat not provided"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: selection:account.invoice.integration,integration_status:0
-msgid "Payed"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -1002,16 +969,6 @@ msgstr ""
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,integration_status:0
 msgid "Registered"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: selection:account.invoice.integration,integration_status:0
-msgid "Registered on RCF"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: selection:account.invoice.integration,integration_status:0
-msgid "Registered on REC"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -1312,3 +1269,15 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_proponente
 msgid "Órgano proponente"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Cancellation accepted"
+#~ msgstr "Annulé"
+
+#, fuzzy
+#~ msgid "Cancellation approved"
+#~ msgstr "Annulé"
+
+#, fuzzy
+#~ msgid "Cancellation rejected"
+#~ msgstr "Annulé"

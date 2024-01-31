@@ -197,26 +197,6 @@ msgid "Cancellation Status"
 msgstr "Estado de la cancelación"
 
 #. module: l10n_es_facturae
-#: selection:account.invoice.integration,cancellation_status:0
-msgid "Cancellation accepted"
-msgstr "Cancelación aceptada"
-
-#. module: l10n_es_facturae
-#: selection:account.invoice.integration,integration_status:0
-msgid "Cancellation approved"
-msgstr "Cancelación aprobada"
-
-#. module: l10n_es_facturae
-#: selection:account.invoice.integration,cancellation_status:0
-msgid "Cancellation rejected"
-msgstr "Cancelación rechazada"
-
-#. module: l10n_es_facturae
-#: selection:account.invoice.integration,cancellation_status:0
-msgid "Cancellation requested"
-msgstr "Cancelación solicitada"
-
-#. module: l10n_es_facturae
 #: selection:account.invoice.integration,state:0
 msgid "Cancelled"
 msgstr "Cancelada"
@@ -892,11 +872,6 @@ msgid "Nombre y apellidos/Razón social - Receptor"
 msgstr "Nombre y apellidos/Razón social - Receptor"
 
 #. module: l10n_es_facturae
-#: selection:account.invoice.integration,cancellation_status:0
-msgid "Not requested"
-msgstr "No solicitado"
-
-#. module: l10n_es_facturae
 #: selection:account.invoice,facturae_refund_reason:0
 #: selection:account.invoice.refund,refund_reason:0
 msgid "Número de la factura"
@@ -936,11 +911,6 @@ msgstr "El identificador fiscal del Cliente es demasiado corto"
 #, python-format
 msgid "Partner vat not provided"
 msgstr "El NIF es obligatorio"
-
-#. module: l10n_es_facturae
-#: selection:account.invoice.integration,integration_status:0
-msgid "Payed"
-msgstr "Pagado"
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_payment_mode
@@ -1028,16 +998,6 @@ msgstr "Número de registro"
 #: selection:account.invoice.integration,integration_status:0
 msgid "Registered"
 msgstr "Registrado"
-
-#. module: l10n_es_facturae
-#: selection:account.invoice.integration,integration_status:0
-msgid "Registered on RCF"
-msgstr "Registrado en RCF"
-
-#. module: l10n_es_facturae
-#: selection:account.invoice.integration,integration_status:0
-msgid "Registered on REC"
-msgstr "Registrado en REC"
 
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,integration_status:0
@@ -1342,6 +1302,30 @@ msgstr "Órgano gestor"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_proponente
 msgid "Órgano proponente"
 msgstr "Órgano proponente"
+
+#~ msgid "Cancellation accepted"
+#~ msgstr "Cancelación aceptada"
+
+#~ msgid "Cancellation approved"
+#~ msgstr "Cancelación aprobada"
+
+#~ msgid "Cancellation rejected"
+#~ msgstr "Cancelación rechazada"
+
+#~ msgid "Cancellation requested"
+#~ msgstr "Cancelación solicitada"
+
+#~ msgid "Not requested"
+#~ msgstr "No solicitado"
+
+#~ msgid "Payed"
+#~ msgstr "Pagado"
+
+#~ msgid "Registered on RCF"
+#~ msgstr "Registrado en RCF"
+
+#~ msgid "Registered on REC"
+#~ msgstr "Registrado en REC"
 
 #, python-format
 #~ msgid "Partner bank is missing"
