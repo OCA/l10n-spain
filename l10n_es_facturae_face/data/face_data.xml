@@ -2,7 +2,7 @@
 <odoo noupdate="1">
     <record id="account_invoice_face_server" model="ir.config_parameter">
         <field name="key">account.invoice.face.server</field>
-        <field name="value">https://se-face-webservice.redsara.es/facturasspp2?wsdl</field>
+        <field name="value">https://webservice.face.gob.es/facturasspp2?wsdl</field>
     </record>
     <record id="face_certificate" model="ir.attachment">
         <field name="name">account.invoice.face.certificate</field>
