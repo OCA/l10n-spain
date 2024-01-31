@@ -221,7 +221,7 @@ class L10nEsAeatMod190Report(models.Model):
         vals = {
             "report_id": self.id,
             "partner_id": rp.id,
-            "partner_vat": rp.vat,
+            "partner_vat": rp._parse_aeat_vat_info()[2],
             "aeat_perception_key_id": key_id.id,
             "aeat_perception_subkey_id": subkey_id.id,
             "codigo_provincia": codigo_provincia,
@@ -504,7 +504,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
             if not self.codigo_provincia:
                 self.codigo_provincia = "98"
 
-            self.partner_vat = partner.vat
+            self.partner_vat = partner._parse_aeat_vat_info()[2]
             # Cargamos valores establecidos en el tercero.
             self.aeat_perception_key_id = partner.aeat_perception_key_id
             self.aeat_perception_subkey_id = partner.aeat_perception_subkey_id
