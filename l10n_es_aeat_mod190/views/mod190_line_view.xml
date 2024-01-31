@@ -130,6 +130,7 @@
                                         string="Movilidad geográfica"
                                     />
                                 </group>
+                                <!-- TODO: Limitar a las claves A, B.01, B.03 y C-->
                                 <group>
                                     <field
                                         name="situacion_familiar"
@@ -174,6 +175,7 @@
                                 </group>
                             </group>
                         </page>
+                        <!-- TODO: Limitar a las claves A, B.01, B.03 y C-->
                         <page string="Decendents">
                             <group col="3">
                                 <group string="Lower than 3 years">

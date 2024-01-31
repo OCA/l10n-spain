@@ -112,7 +112,7 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         )
         record_new.partner_id = self.customer
         record_new.onchange_partner_id()
-        self.assertEqual(record_new.partner_vat, self.customer.vat)
+        self.assertEqual(record_new.partner_vat, "C2259530J")
         self.env["l10n.es.aeat.mod190.report.line"].create(
             record_new._convert_to_write(record_new._cache)
         )
