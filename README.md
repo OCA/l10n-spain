@@ -54,7 +54,7 @@ addon | version | maintainers | summary
 [l10n_es_dua_ticketbai_batuz](l10n_es_dua_ticketbai_batuz/) | 14.0.1.0.2 | [![ao-landoo](https://github.com/ao-landoo.png?size=30px)](https://github.com/ao-landoo) | TicketBAI - Batuz con DUA
 [l10n_es_facturae](l10n_es_facturae/) | 14.0.2.7.1 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Creación de Facturae
 [l10n_es_facturae_efact](l10n_es_facturae_efact/) | 14.0.1.1.0 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Envío de Facturae a e.FACT
-[l10n_es_facturae_face](l10n_es_facturae_face/) | 14.0.2.5.2 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Envío de Facturae a FACe
+[l10n_es_facturae_face](l10n_es_facturae_face/) | 14.0.2.6.0 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Envío de Facturae a FACe
 [l10n_es_facturae_sale_stock](l10n_es_facturae_sale_stock/) | 14.0.1.0.0 |  | Entregas en Factura-e
 [l10n_es_intrastat_report](l10n_es_intrastat_report/) | 14.0.4.1.0 |  | Spanish Intrastat Product Declaration
 [l10n_es_irnr](l10n_es_irnr/) | 14.0.1.0.1 |  | Retenciones IRNR (No residentes)
