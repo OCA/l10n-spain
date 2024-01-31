@@ -27,11 +27,6 @@ msgid "Accounted obligation"
 msgstr "Obligación contable"
 
 #. module: l10n_es_facturae_efact
-#: selection:account.invoice.integration,integration_status:0
-msgid "Cancellation approved"
-msgstr "Cancelación aprobada"
-
-#. module: l10n_es_facturae_efact
 #: code:addons/l10n_es_facturae_efact/models/account_invoice_integration_method.py:20
 #, python-format
 msgid "Certificate must be added for company"
@@ -117,22 +112,7 @@ msgstr ""
 
 #. module: l10n_es_facturae_efact
 #: selection:account.invoice.integration,integration_status:0
-msgid "Payed"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: selection:account.invoice.integration,integration_status:0
 msgid "Registered"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: selection:account.invoice.integration,integration_status:0
-msgid "Registered on RCF"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: selection:account.invoice.integration,integration_status:0
-msgid "Registered on REC"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
@@ -211,6 +191,9 @@ msgstr "Usuario de e.Fact"
 #: model:ir.cron,name:l10n_es_facturae_efact.update_efact_job
 msgid "eFACT update Job"
 msgstr "Actualizar estados e.Fact"
+
+#~ msgid "Cancellation approved"
+#~ msgstr "Cancelación aprobada"
 
 #~ msgid "account.invoice.integration"
 #~ msgstr "account.invoice.integration"
