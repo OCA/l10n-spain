@@ -63,7 +63,7 @@ addon | version | maintainers | summary
 [l10n_es_extra_data](l10n_es_extra_data/) | 12.0.3.0.0 | [![cubells](https://github.com/cubells.png?size=30px)](https://github.com/cubells) | Datos extra de la localización española
 [l10n_es_facturae](l10n_es_facturae/) | 12.0.3.2.0 |  | Creación de Factura-e
 [l10n_es_facturae_efact](l10n_es_facturae_efact/) | 12.0.1.0.3 |  | Envío de Factura-e a e.FACT
-[l10n_es_facturae_face](l10n_es_facturae_face/) | 12.0.1.1.0 |  | Envío de Factura-e a FACe
+[l10n_es_facturae_face](l10n_es_facturae_face/) | 12.0.1.1.1 |  | Envío de Factura-e a FACe
 [l10n_es_intrastat_report](l10n_es_intrastat_report/) | 12.0.2.0.4 |  | Spanish Intrastat Product Declaration
 [l10n_es_irnr](l10n_es_irnr/) | 12.0.2.2.0 |  | Retenciones IRNR (No residentes)
 [l10n_es_location_nuts](l10n_es_location_nuts/) | 12.0.1.0.0 |  | NUTS specific options for Spain
