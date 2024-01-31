@@ -137,11 +137,6 @@ msgid "At fixed time"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: selection:res.company,send_mode:0
-msgid "At the end of the quarter"
-msgstr ""
-
-#. module: l10n_es_aeat_sii
 #: selection:res.company,sii_description_method:0
 #: selection:res.company,sii_method:0
 msgid "Automatic"
@@ -402,12 +397,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password__id
 msgid "ID"
 msgstr "ID"
-
-#. module: l10n_es_aeat_sii
-#: model:ir.model.fields,help:l10n_es_aeat_sii.field_res_company__delay_time
-#: model:ir.model.fields,help:l10n_es_aeat_sii.field_res_company__sent_time
-msgid "In hours"
-msgstr ""
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,help:l10n_es_aeat_sii.field_account_invoice__sii_send_failed
