@@ -451,24 +451,35 @@ class L10nEsAeatMod390Report(models.Model):
                 report.tax_line_ids.filtered(
                     lambda x: x.field_number
                     in (
+                        700,
                         1,
-                        3,
                         702,
+                        3,
                         5,  # Régimen ordinario
+                        704,
                         500,
+                        706,
                         502,
                         504,  # Intragrupo - no incluido aún
+                        708,
                         643,
+                        710,
                         645,
                         647,  # Criterio de caja - no incluido aún
+                        712,
                         7,
+                        714,
                         9,
                         11,  # Bienes usados, etc - no incluido aún
                         13,  # Agencias de viajes - no incluido aún
+                        716,
                         21,
+                        718,
                         23,
                         25,  # Adquis. intracomunitaria bienes
+                        720,
                         545,
+                        722,
                         547,
                         551,  # Adquis. intracomunitaria servicios
                         27,  # IVA otras operaciones sujeto pasivo
@@ -486,24 +497,35 @@ class L10nEsAeatMod390Report(models.Model):
                 report.tax_line_ids.filtered(
                     lambda x: x.field_number
                     in (
+                        701,
                         2,
-                        4,
                         703,
+                        4,
                         6,  # Régimen ordinario
+                        705,
                         501,
+                        707,
                         503,
                         505,  # Intragrupo - no incluido aún
+                        709,
                         644,
+                        711,
                         646,
                         648,  # Criterio de caja - no incluido aún
+                        713,
                         8,
+                        715,
                         10,
                         12,  # Bienes usados, etc - no incluido aún
                         14,  # Agencias de viajes - no incluido aún
+                        717,
                         22,
+                        719,
                         24,
                         26,  # Adquis. intracomunitaria bienes
+                        721,
                         546,
+                        723,
                         548,
                         552,  # Adquis. intracomunitaria servicios
                         28,  # IVA otras operaciones sujeto pasivo
@@ -521,9 +543,12 @@ class L10nEsAeatMod390Report(models.Model):
                 report.tax_line_ids.filtered(
                     lambda x: x.field_number
                     in (
+                        664,
                         36,
+                        666,
                         600,
-                        602,  # Recargo de equivalencia
+                        602,
+                        42,  # Recargo de equivalencia
                         44,  # Modificación recargo de equivalencia
                         46,  # Mod. recargo equiv. concurso - no incluido aún
                     )
@@ -532,6 +557,7 @@ class L10nEsAeatMod390Report(models.Model):
 
     @api.depends("tax_line_ids", "tax_line_ids.amount")
     def _compute_casilla_38(self):
+        """Deprecated field left for old reports. To be removed in newer versions."""
         for report in self:
             report.casilla_38 = sum(
                 report.tax_line_ids.filtered(
@@ -541,6 +567,7 @@ class L10nEsAeatMod390Report(models.Model):
 
     @api.depends("tax_line_ids", "tax_line_ids.amount")
     def _compute_casilla_39(self):
+        """Deprecated field left for old reports. To be removed in newer versions."""
         for report in self:
             report.casilla_39 = sum(
                 report.tax_line_ids.filtered(
@@ -625,7 +652,7 @@ class L10nEsAeatMod390Report(models.Model):
         for report in self:
             report.casilla_56 = sum(
                 report.tax_line_ids.filtered(
-                    lambda x: x.field_number in (214, 216, 579, 627, 218, 581, 629)
+                    lambda x: x.field_number in (214, 216, 579, 627, 218, 581, 629, 736)
                 ).mapped("amount")
             )
 
@@ -634,7 +661,7 @@ class L10nEsAeatMod390Report(models.Model):
         for report in self:
             report.casilla_57 = sum(
                 report.tax_line_ids.filtered(
-                    lambda x: x.field_number in (215, 217, 580, 628, 219, 582, 630)
+                    lambda x: x.field_number in (215, 217, 580, 628, 219, 582, 630, 737)
                 ).mapped("amount")
             )
 
