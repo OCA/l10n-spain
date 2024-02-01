@@ -166,6 +166,8 @@
         <field name="expression">${object.casilla_02}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True" />
+        <field name="positive_sign"> </field>
+        <field name="negative_sign">N</field>
         <field name="size">16</field>
         <field name="decimal_size">2</field>
         <field name="alignment">right</field>
@@ -203,7 +205,7 @@
         >Reservado para la Administración. Rellenar con blancos</field>
         <field name="fixed_value" />
         <field name="export_type">string</field>
-        <field name="size">261</field>
+        <field name="size">262</field>
         <field name="alignment">left</field>
     </record>
     <!-- SELLO ELECTRONICO (13) -->
