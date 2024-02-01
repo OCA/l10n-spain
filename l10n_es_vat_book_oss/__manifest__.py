@@ -9,7 +9,7 @@
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "category": "Accounting",
-    "depends": ["l10n_es_vat_book", "l10n_eu_oss"],
+    "depends": ["l10n_es_vat_book", "l10n_eu_oss_oca"],
     "installable": True,
     "autoinstall": True,
 }
