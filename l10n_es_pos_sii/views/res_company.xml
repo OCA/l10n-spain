@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2023 Aures Tic (https://aurestic.es/)
+  @author: Almudena de la Puente <almudena@aurestic.es>
+  @author: Jose Zambudio <jose@aurestic.es>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+<record id="view_company_sii_form_inherit_l10n_es_pos_sii" model="ir.ui.view">
+    <field name="name">res.company.view.form.inherit</field>
+    <field name="model">res.company</field>
+    <field name="inherit_id" ref="l10n_es_aeat_sii_oca.view_company_sii_form" />
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='sii_description']" position="after">
+            <field name="sii_pos_description" />
+        </xpath>
+    </field>
+</record>
+
+</odoo>

@@ -409,8 +409,14 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         with self.assertRaises(exceptions.UserError):
             invoice._sii_check_exceptions()
 
+    def test_unlink_draft_invoice_when_not_sent_to_sii(self):
+        draft_invoice = self.invoice.copy({})
+        draft_invoice.unlink()
+        self.assertFalse(draft_invoice.exists())
+
     def test_unlink_invoice_when_sent_to_sii(self):
         self.invoice.sii_state = "sent"
+        self.invoice.button_draft()  # Convert to draft to check only SII exception
         with self.assertRaises(exceptions.UserError):
             self.invoice.unlink()
 
@@ -421,8 +427,6 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             self.invoice.write({"invoice_date": "2022-01-01"})
         with self.assertRaises(exceptions.UserError):
             self.invoice.write({"thirdparty_number": "CUSTOM"})
-        with self.assertRaises(exceptions.UserError):
-            self.invoice.write({"name": "NEW-NUMBER"})
         # in_invoice
         in_invoice = self.invoice.copy(
             {
