@@ -1,24 +1,20 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_auto_fiscal_position
+# 	* l10n_es_auto_fiscal_position
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.0.3\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2012-02-06 08:50+0000\n"
+"POT-Creation-Date: 2012-05-29 18:49+0000\n"
 "PO-Revision-Date: 2012-05-29 18:06+0100\n"
 "Last-Translator: Jesús Martín <jmartin@zikzakmedia.com>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-
-#. module: l10n_es_auto_fiscal_position
-#: model:ir.module.module,shortdesc:l10n_es_auto_fiscal_position.module_meta_information
-msgid "Partner Auto fiscal position"
-msgstr "Posició fiscal d'empresa automàtica"
 
 #. module: l10n_es_auto_fiscal_position
 #: model:ir.model,name:l10n_es_auto_fiscal_position.model_res_partner_address
@@ -26,13 +22,7 @@ msgid "Partner Addresses"
 msgstr "Adreces d'empresa"
 
 #. module: l10n_es_auto_fiscal_position
-#: model:ir.model,name:l10n_es_auto_fiscal_position.model_config_fiscal_position
-msgid "config.fiscal.position"
-msgstr "config.fiscal.position"
-
-#. module: l10n_es_auto_fiscal_position
-#: view:config.fiscal.position:0
-#: field:config.fiscal.position,country_ids:0
+#: view:config.fiscal.position:0 field:config.fiscal.position,country_ids:0
 msgid "Countries"
 msgstr "Paísos"
 
@@ -47,8 +37,12 @@ msgid "Config. Name"
 msgstr "Nom"
 
 #. module: l10n_es_auto_fiscal_position
-#: view:config.fiscal.position:0
-#: field:config.fiscal.position,state_ids:0
+#: field:config.fiscal.position,vies_valid_vat:0
+msgid "Vies Valid Vat"
+msgstr "Vies Valid Vat"
+
+#. module: l10n_es_auto_fiscal_position
+#: view:config.fiscal.position:0 field:config.fiscal.position,state_ids:0
 msgid "States"
 msgstr "Províncies"
 
@@ -58,9 +52,14 @@ msgid "Fiscal Position"
 msgstr "Posició fiscal"
 
 #. module: l10n_es_auto_fiscal_position
-#: field:config.fiscal.position,vat_subjected:0
-msgid "VAT Legal Statement"
-msgstr "Subjecte a IVA"
+#: model:ir.model,name:l10n_es_auto_fiscal_position.model_config_fiscal_position
+msgid "config.fiscal.position"
+msgstr "config.fiscal.position"
+
+#. module: l10n_es_auto_fiscal_position
+#: model:ir.model,name:l10n_es_auto_fiscal_position.model_res_partner
+msgid "Partner"
+msgstr "Partner"
 
 #. module: l10n_es_auto_fiscal_position
 #: view:config.fiscal.position:0
@@ -70,12 +69,17 @@ msgid "Config Fiscal Position"
 msgstr "Configuració de posició fiscal"
 
 #. module: l10n_es_auto_fiscal_position
-#: model:ir.module.module,description:l10n_es_auto_fiscal_position.module_meta_information
-msgid "Auto fiscal position depending on invoice address."
-msgstr "Posició fiscal automàtica depenent de l'adreça de la factura."
+#: field:config.fiscal.position,vat_subjected:0
+msgid "VAT Legal Statement"
+msgstr "Subjecte a IVA"
 
 #. module: l10n_es_auto_fiscal_position
 #: view:config.fiscal.position:0
 msgid "Config Fiscal Positions"
 msgstr "Configuració de posicions fiscals"
 
+#~ msgid "Partner Auto fiscal position"
+#~ msgstr "Posició fiscal d'empresa automàtica"
+
+#~ msgid "Auto fiscal position depending on invoice address."
+#~ msgstr "Posició fiscal automàtica depenent de l'adreça de la factura."
