@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2010-11-11 16:34+0100\n"
 "Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,18 +18,28 @@ msgstr ""
 
 #. module: l10n_es_toponyms
 #: constraint:ir.model:0
-msgid "The Object name must start with x_ and not contain any special character !"
-msgstr "El nom de l'objecte ha de començar amb x_ i no contenir cap caràcter especial!"
+msgid ""
+"The Object name must start with x_ and not contain any special character !"
+msgstr ""
+"El nom de l'objecte ha de començar amb x_ i no contenir cap caràcter "
+"especial!"
 
 #. module: l10n_es_toponyms
 #: help:config.ES.toponyms,city_module:0
-msgid "City module is optional and groups state, city and zip code in one entity."
-msgstr "El mòdul Ciutat és opcional i agrupa província, ciutat i codi postal en una única entitat."
+msgid ""
+"City module is optional and groups state, city and zip code in one entity."
+msgstr ""
+"El mòdul Ciutat és opcional i agrupa província, ciutat i codi postal en una "
+"única entitat."
 
 #. module: l10n_es_toponyms
 #: view:config.ES.toponyms:0
-msgid "Warning! Adding more than 15000 zip codes can take several minutes and it will be done in a background process."
-msgstr "Avís! Afegir més de 15000 codis postals pot tardar varis minuts i serà realitzat per un procés en segon pla."
+msgid ""
+"Warning! Adding more than 15000 zip codes can take several minutes and it "
+"will be done in a background process."
+msgstr ""
+"Avís! Afegir més de 15000 codis postals pot tardar varis minuts i serà "
+"realitzat per un procés en segon pla."
 
 #. module: l10n_es_toponyms
 #: constraint:ir.actions.act_window:0
@@ -37,8 +48,12 @@ msgstr "Nom de model no vàlid a la definició de l'acció."
 
 #. module: l10n_es_toponyms
 #: model:ir.actions.todo,note:l10n_es_toponyms.config_wizard_toponyms_es
-msgid "You can select the toponym version of the Spanish states and add the Spanish cities associated to the zip codes."
-msgstr "Podeu seleccionar la versió dels topònims de les províncies espanyoles i afegir les ciutats espanyoles associades als codis postals."
+msgid ""
+"You can select the toponym version of the Spanish states and add the Spanish "
+"cities associated to the zip codes."
+msgstr ""
+"Podeu seleccionar la versió dels topònims de les províncies espanyoles i "
+"afegir les ciutats espanyoles associades als codis postals."
 
 #. module: l10n_es_toponyms
 #: selection:config.ES.toponyms,city_module:0
@@ -83,8 +98,14 @@ msgstr "Noms de província"
 
 #. module: l10n_es_toponyms
 #: help:config.ES.toponyms,city_info:0
-msgid "Do you want to add city and state information associated to the zip codes for all the Spanish cities? This allows to fill automatically the city and states fields of partner and contact forms from the zip code."
-msgstr "Voleu associar municipis i províncies a codis postals de tots els municipis de l'Estat Espanyol? Permet omplir automàticament els camps ciutat i província del formulari d'empresa i contacte a partir del codi postal."
+msgid ""
+"Do you want to add city and state information associated to the zip codes "
+"for all the Spanish cities? This allows to fill automatically the city and "
+"states fields of partner and contact forms from the zip code."
+msgstr ""
+"Voleu associar municipis i províncies a codis postals de tots els municipis "
+"de l'Estat Espanyol? Permet omplir automàticament els camps ciutat i "
+"província del formulari d'empresa i contacte a partir del codi postal."
 
 #. module: l10n_es_toponyms
 #: model:ir.actions.act_window,name:l10n_es_toponyms.action_config_toponyms_es_form
@@ -104,7 +125,8 @@ msgstr "XML invàlid per a la definició de la vista!"
 #. module: l10n_es_toponyms
 #: view:config.ES.toponyms:0
 msgid "Select the toponym version of the Spanish states"
-msgstr "Seleccioneu la versió dels topònims de les províncies de l'Estat Espanyol"
+msgstr ""
+"Seleccioneu la versió dels topònims de les províncies de l'Estat Espanyol"
 
 #. module: l10n_es_toponyms
 #: selection:config.ES.toponyms,state:0
@@ -113,8 +135,10 @@ msgstr "Oficial"
 
 #. module: l10n_es_toponyms
 #: view:config.ES.toponyms:0
-msgid "For example: Official (Girona), Spanish (Gerona), Both (Gerona / Girona)"
-msgstr "Per exemple: Oficial (Lleida), Castellà (Lérida), Ambdós (Lérida / Lleida)"
+msgid ""
+"For example: Official (Girona), Spanish (Gerona), Both (Gerona / Girona)"
+msgstr ""
+"Per exemple: Oficial (Lleida), Castellà (Lérida), Ambdós (Lérida / Lleida)"
 
 #. module: l10n_es_toponyms
 #: field:config.ES.toponyms,city_info:0
@@ -123,8 +147,12 @@ msgstr "Informació de ciutat"
 
 #. module: l10n_es_toponyms
 #: view:config.ES.toponyms:0
-msgid "Add city and state information associated to the zip codes for all the Spanish cities"
-msgstr "Associació de municipis i províncies a codis postals de tots els municipis de l'Estat Espanyol"
+msgid ""
+"Add city and state information associated to the zip codes for all the "
+"Spanish cities"
+msgstr ""
+"Associació de municipis i províncies a codis postals de tots els municipis "
+"de l'Estat Espanyol"
 
 #. module: l10n_es_toponyms
 #: field:config.ES.toponyms,city_info_recover:0
@@ -133,8 +161,12 @@ msgstr "Recuperació d'informació de ciutat"
 
 #. module: l10n_es_toponyms
 #: help:config.ES.toponyms,state:0
-msgid "Toponym version of the Spanish states. For example: Official (Girona), Spanish (Gerona), Both (Gerona / Girona)"
-msgstr "Versió dels topònims de les províncies de l'Estat Espanyol. Per exemple: Oficial (Lleida), Castellà (Lérida), Ambdós (Lérida / Lleida)"
+msgid ""
+"Toponym version of the Spanish states. For example: Official (Girona), "
+"Spanish (Gerona), Both (Gerona / Girona)"
+msgstr ""
+"Versió dels topònims de les províncies de l'Estat Espanyol. Per exemple: "
+"Oficial (Lleida), Castellà (Lérida), Ambdós (Lérida / Lleida)"
 
 #. module: l10n_es_toponyms
 #: field:config.ES.toponyms,config_logo:0
@@ -159,17 +191,25 @@ msgstr "Sí"
 
 #. module: l10n_es_toponyms
 #: help:config.ES.toponyms,city_info_recover:0
-msgid "If the city module has been installed, do you want to recover the location data (city information) from the zip code there was in the partner addresses before installing the city module?"
-msgstr "Si el mòdul Ciutat ha estat instal·lat, voleu recuperar les dades d'ubicació (ciutat) a partir del codi postal que hi havia en els contactes d'empreses abans d'instal·lar el mòdul Ciutat?"
+msgid ""
+"If the city module has been installed, do you want to recover the location "
+"data (city information) from the zip code there was in the partner addresses "
+"before installing the city module?"
+msgstr ""
+"Si el mòdul Ciutat ha estat instal·lat, voleu recuperar les dades d'ubicació "
+"(ciutat) a partir del codi postal que hi havia en els contactes d'empreses "
+"abans d'instal·lar el mòdul Ciutat?"
 
 #~ msgid "Create"
 #~ msgstr "Crea"
+
 #~ msgid ""
 #~ "This allows to fill automatically the city and states fields of partner "
 #~ "and contact forms from the zip code."
 #~ msgstr ""
 #~ "Permet omplir automàticament els camps ciutat i província del formulari "
 #~ "d'empresa i contacte a partir del codi postal."
+
 #~ msgid ""
 #~ "If the city module has been installed, recover the location data there "
 #~ "was in the partner addresses before installing it."
@@ -177,8 +217,9 @@ msgstr "Si el mòdul Ciutat ha estat instal·lat, voleu recuperar les dades d'ub
 #~ "Si el mòdul Ciutat ha estat instal·lat, permet recuperar les dades "
 #~ "d'ubicació que hi havia en els contactes d'empreses abans d'instal·lar el "
 #~ "mòdul Ciutat."
+
 #~ msgid "Skip"
 #~ msgstr "Salta"
+
 #~ msgid "State configuration"
 #~ msgstr "Configuració de províncies"
-
