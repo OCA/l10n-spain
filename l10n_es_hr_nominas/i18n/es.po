@@ -1,6 +1,6 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_hr_nominas
+# 	* l10n_es_hr_nominas
 #
 msgid ""
 msgstr ""
@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2011-04-30 19:32+0100\n"
 "Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,8 +27,7 @@ msgid "Payroll Search"
 msgstr "Buscar nómina"
 
 #. module: l10n_es_hr_nominas
-#: field:hr.employee,ss_trabajador:0
-#: field:hr.employee,ss_trabajador_extra:0
+#: field:hr.employee,ss_trabajador:0 field:hr.employee,ss_trabajador_extra:0
 #: field:hr.nomina,ss_trabajador:0
 msgid "S.S a cargo del Trabajador"
 msgstr "S.S a cargo del Trabajador"
@@ -76,8 +76,11 @@ msgstr "Fecha Nómina"
 
 #. module: l10n_es_hr_nominas
 #: constraint:hr.employee:0
-msgid "Error ! You cannot select a department for which the employee is the manager."
-msgstr "¡Error! No puede seleccionar un departamento en el que el empleado sea el responsable."
+msgid ""
+"Error ! You cannot select a department for which the employee is the manager."
+msgstr ""
+"¡Error! No puede seleccionar un departamento en el que el empleado sea el "
+"responsable."
 
 #. module: l10n_es_hr_nominas
 #: field:hr.nomina,state:0
@@ -92,8 +95,7 @@ msgid "Empleados"
 msgstr "Empleados"
 
 #. module: l10n_es_hr_nominas
-#: view:hr.anticipo:0
-#: view:hr.nomina:0
+#: view:hr.anticipo:0 view:hr.nomina:0
 msgid "Cancelled"
 msgstr "Cancelado"
 
@@ -109,8 +111,7 @@ msgid "Generar Anticipos"
 msgstr "Generar Anticipos"
 
 #. module: l10n_es_hr_nominas
-#: wizard_view:wiz_crear_extras,init:0
-#: wizard_view:wiz_crear_nominas,init:0
+#: wizard_view:wiz_crear_extras,init:0 wizard_view:wiz_crear_nominas,init:0
 msgid "Generar Nominas"
 msgstr "Generar Nóminas"
 
@@ -125,8 +126,7 @@ msgstr ""
 "Por favor configure las cuentas en el menú de configuración de la compañia: "
 
 #. module: l10n_es_hr_nominas
-#: view:hr.anticipo:0
-#: view:hr.nomina:0
+#: view:hr.anticipo:0 view:hr.nomina:0
 msgid "Draft"
 msgstr "Borrador"
 
@@ -137,8 +137,7 @@ msgid "Generar Nóminas"
 msgstr "Generar Nóminas"
 
 #. module: l10n_es_hr_nominas
-#: view:hr.anticipo:0
-#: view:hr.nomina:0
+#: view:hr.anticipo:0 view:hr.nomina:0
 msgid "Confirmed"
 msgstr "Confirmado"
 
@@ -153,8 +152,7 @@ msgid "Retribución Nomina"
 msgstr "Retribución Nómina"
 
 #. module: l10n_es_hr_nominas
-#: field:hr.employee,irpf:0
-#: field:hr.employee,irpf_extra:0
+#: field:hr.employee,irpf:0 field:hr.employee,irpf_extra:0
 #: field:hr.nomina,irpf:0
 msgid "Retención IRPF (%)"
 msgstr "Retención IRPF (%)"
@@ -217,14 +215,12 @@ msgid "Crear Nóminas"
 msgstr "Crear Nóminas"
 
 #. module: l10n_es_hr_nominas
-#: view:hr.nomina:0
-#: field:hr.nomina,name:0
+#: view:hr.nomina:0 field:hr.nomina,name:0
 msgid "Nómina"
 msgstr "Nómina"
 
 #. module: l10n_es_hr_nominas
-#: field:hr.anticipo,employee_id:0
-#: field:hr.nomina,employee_id:0
+#: field:hr.anticipo,employee_id:0 field:hr.nomina,employee_id:0
 msgid "Empleado"
 msgstr "Empleado"
 
@@ -272,14 +268,12 @@ msgid "Pagar Anticipos"
 msgstr "Pagar Anticipos"
 
 #. module: l10n_es_hr_nominas
-#: view:hr.anticipo:0
-#: view:hr.nomina:0
+#: view:hr.anticipo:0 view:hr.nomina:0
 msgid "Group by..."
 msgstr "Agrupar por..."
 
 #. module: l10n_es_hr_nominas
-#: field:hr.employee,ss_empresa:0
-#: field:hr.employee,ss_empresa_extra:0
+#: field:hr.employee,ss_empresa:0 field:hr.employee,ss_empresa_extra:0
 #: field:hr.nomina,ss_empresa:0
 msgid "S.S a Cargo de la empresa"
 msgstr "S.S a Cargo de la empresa"
@@ -310,8 +304,7 @@ msgid "Advance Search"
 msgstr "Búsqueda avanzada"
 
 #. module: l10n_es_hr_nominas
-#: view:hr.anticipo:0
-#: view:hr.nomina:0
+#: view:hr.anticipo:0 view:hr.nomina:0
 msgid "Paid"
 msgstr "Pagado"
 
@@ -395,8 +388,7 @@ msgid "Fecha de Anticipo"
 msgstr "Fecha de Anticipo"
 
 #. module: l10n_es_hr_nominas
-#: view:hr.anticipo:0
-#: view:hr.nomina:0
+#: view:hr.anticipo:0 view:hr.nomina:0
 msgid "State"
 msgstr "Estado"
 
@@ -442,8 +434,7 @@ msgid "Generar Pagas Extras"
 msgstr "Generar Pagas Extras"
 
 #. module: l10n_es_hr_nominas
-#: selection:hr.anticipo,state:0
-#: selection:hr.nomina,state:0
+#: selection:hr.anticipo,state:0 selection:hr.nomina,state:0
 msgid "Borrador"
 msgstr "Borrador"
 
@@ -453,8 +444,7 @@ msgid "Cuenta Seguridad Social a cargo de la empresa"
 msgstr "Cuenta Seguridad Social a cargo de la empresa"
 
 #. module: l10n_es_hr_nominas
-#: view:hr.anticipo:0
-#: view:hr.nomina:0
+#: view:hr.anticipo:0 view:hr.nomina:0
 #: model:ir.model,name:l10n_es_hr_nominas.model_hr_employee
 msgid "Employee"
 msgstr "Empleado"
@@ -492,8 +482,10 @@ msgstr "¡No existe un periodo para esa fecha de nómina!"
 
 #. module: l10n_es_hr_nominas
 #: help:hr.nomina,numero:0
-msgid "Número único de nómina, se asigna automáticamente cuando se crea la nómina"
-msgstr "Número único de nómina, se asigna automáticamente cuando se crea la nómina"
+msgid ""
+"Número único de nómina, se asigna automáticamente cuando se crea la nómina"
+msgstr ""
+"Número único de nómina, se asigna automáticamente cuando se crea la nómina"
 
 #. module: l10n_es_hr_nominas
 #: field:res.company,diario_destino:0
@@ -501,8 +493,7 @@ msgid "Diario de Destino"
 msgstr "Diario de Destino"
 
 #. module: l10n_es_hr_nominas
-#: view:hr.anticipo:0
-#: field:hr.anticipo,name:0
+#: view:hr.anticipo:0 field:hr.anticipo,name:0
 msgid "Anticipo"
 msgstr "Anticipo"
 
@@ -514,8 +505,12 @@ msgstr "Asiento Anticipo"
 #. module: l10n_es_hr_nominas
 #: code:addons/l10n_es_hr_nominas/hr_nominas.py:160
 #, python-format
-msgid "Por favor configure una cuenta en la ficha del empleado en la que generar los asientos de la nómina."
-msgstr "Por favor configure una cuenta en la ficha del empleado en la que generar los asientos de la nómina."
+msgid ""
+"Por favor configure una cuenta en la ficha del empleado en la que generar "
+"los asientos de la nómina."
+msgstr ""
+"Por favor configure una cuenta en la ficha del empleado en la que generar "
+"los asientos de la nómina."
 
 #. module: l10n_es_hr_nominas
 #: view:hr.anticipo:0
@@ -529,8 +524,7 @@ msgid "Pagar nóminas"
 msgstr "Pagar nóminas"
 
 #. module: l10n_es_hr_nominas
-#: view:hr.nomina:0
-#: wizard_button:wiz_crear_anticipos,init,end:0
+#: view:hr.nomina:0 wizard_button:wiz_crear_anticipos,init,end:0
 #: wizard_button:wiz_crear_extras,init,end:0
 #: wizard_button:wiz_crear_nominas,init,end:0
 #: wizard_button:wizard_confirmar_anticipos,init,end:0
@@ -547,8 +541,7 @@ msgid "No existe una cuenta configurada para el empleado!"
 msgstr "No existe una cuenta configurada para el empleado!"
 
 #. module: l10n_es_hr_nominas
-#: view:hr.employee:0
-#: view:hr.nomina:0
+#: view:hr.employee:0 view:hr.nomina:0
 #: model:ir.actions.act_window,name:l10n_es_hr_nominas.view_nomina_action
 #: model:ir.ui.menu,name:l10n_es_hr_nominas.menu_ver_nominas
 msgid "Nóminas"
@@ -558,4 +551,3 @@ msgstr "Nóminas"
 #: wizard_view:wizard_pagar_nominas,init:0
 msgid "Pagar Nominas"
 msgstr "Pagar Nóminas"
-
