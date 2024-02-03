@@ -1,15 +1,16 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* city
+# 	* city
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.14\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2009-02-27 09:13+0000\n"
+"POT-Creation-Date: 2013-04-30 12:00+0000\n"
 "PO-Revision-Date: 2011-01-14 14:52+0000\n"
 "Last-Translator: Magnus Brandt (mba), Aspirix AB <Unknown>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,22 +18,15 @@ msgstr ""
 "X-Generator: Launchpad (build 16218)\n"
 
 #. module: city
-#: view:city.city:0
+#: view:city.city:0 field:city.city,name:0
 #: model:ir.actions.act_window,name:city.action_city
 #: model:ir.model,name:city.model_city_city
-#: model:ir.module.module,shortdesc:city.module_meta_information
 msgid "City"
 msgstr "Stad"
 
 #. module: city
-#: constraint:ir.ui.view:0
-msgid "Invalid XML for View Architecture!"
-msgstr "Ogiltig XML för Vy-arkitektur!"
-
-#. module: city
-#: constraint:ir.model:0
-msgid ""
-"The Object name must start with x_ and not contain any special character !"
+#: model:ir.model,name:city.model_res_partner_address
+msgid "Partner Addresses"
 msgstr ""
 
 #. module: city
@@ -41,14 +35,14 @@ msgid "ZIP"
 msgstr "Postnummer"
 
 #. module: city
-#: field:city.city,state_id:0
-msgid "State"
-msgstr ""
-
-#. module: city
 #: field:city.city,country_id:0
 msgid "Country"
 msgstr "Land"
+
+#. module: city
+#: help:res.partner.address,location:0
+msgid "Use the name or the zip to search the location"
+msgstr ""
 
 #. module: city
 #: field:city.city,code:0
@@ -56,21 +50,12 @@ msgid "City Code"
 msgstr ""
 
 #. module: city
-#: model:ir.module.module,description:city.module_meta_information
-msgid ""
-"Creates a model for storing cities\n"
-"Zip code, city, state and country fields are replaced with a location field "
-"in partner and partner contact forms.\n"
-"This module helps to keep homogeneous address data in the database."
+#: field:city.city,state_id:0
+msgid "State"
 msgstr ""
 
 #. module: city
-#: field:city.city,name:0
-msgid "City Name"
-msgstr "Stadens namn"
-
-#. module: city
-#: field:res.partner.address,city_id:0
+#: field:res.partner.address,location:0
 msgid "Location"
 msgstr "Plats"
 
@@ -84,3 +69,14 @@ msgstr ""
 #: field:res.country.state,city_ids:0
 msgid "Cities"
 msgstr "Städer"
+
+#. module: city
+#: model:ir.model,name:city.model_res_country_state
+msgid "Country state"
+msgstr ""
+
+#~ msgid "Invalid XML for View Architecture!"
+#~ msgstr "Ogiltig XML för Vy-arkitektur!"
+
+#~ msgid "City Name"
+#~ msgstr "Stadens namn"
