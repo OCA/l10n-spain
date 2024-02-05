@@ -191,7 +191,7 @@ class AccountMove(models.Model):
             content, content_type = action._render(self.ids)
             result.append(
                 {
-                    "data": base64.b64encode(content),
+                    "data": base64.b64encode(content).decode("utf-8"),
                     "content_type": content_type,
                     "encoding": "BASE64",
                     "description": _("Invoice %s") % self.name,
