@@ -181,6 +181,7 @@
         <template id="report_347_partner">
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
+                    <t t-set="company" t-value="o.report_id.company_id" />
                     <t
                         t-call="l10n_es_aeat_mod347.report_347_partner_document"
                         t-lang="o.partner_id.lang"
