@@ -4,7 +4,7 @@
 
 {
     'name': 'AEAT modelo 111',
-    'version': '11.0.1.1.0',
+    'version': '11.0.2.1.0',
     'category': "Localisation/Accounting",
     'author': "AvanzOSC,"
               "RGB Consulting SL,"
@@ -17,6 +17,8 @@
         'l10n_es_aeat',
     ],
     'data': [
+        'data/account_tax_group_data.xml',
+        'data/account_tax_data.xml',
         'data/aeat_export_mod111_data.xml',
         'data/tax_code_map_mod111_data.xml',
         'views/mod111_view.xml',
