@@ -37,7 +37,7 @@ class AccountMove(models.Model):
     def _compute_dua_invoice(self):
         for invoice in self:
             taxes = invoice._get_sii_taxes_map(
-                ["DUA"], self._get_document_fiscal_date()
+                ["DUA"], invoice._get_document_fiscal_date()
             )
             invoice.sii_dua_invoice = invoice.invoice_line_ids.filtered(
                 lambda x: any([tax in taxes for tax in x.tax_ids])
