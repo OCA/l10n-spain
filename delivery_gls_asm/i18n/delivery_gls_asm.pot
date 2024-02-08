@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -147,6 +147,11 @@ msgid "BICI"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__96
+msgid "BUSINESS PARCEL"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__3
 msgid "BusinessParcel"
 msgstr ""
@@ -245,12 +250,14 @@ msgid "Con incidencia"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #, python-format
 msgid "Couldn't find the consignee street"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #, python-format
@@ -435,6 +442,7 @@ msgid "GLS ASM"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #, python-format
@@ -450,6 +458,7 @@ msgid "GLS Barcode"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #, python-format
 msgid "GLS Cancellation failed with reason: %s"
@@ -471,6 +480,7 @@ msgid "GLS Label"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #: model:ir.actions.act_window,name:delivery_gls_asm.action_delivery_gls_asm_manifest_wizard
 #: model:ir.actions.report,name:delivery_gls_asm.gls_asm_manifest_report
@@ -485,6 +495,7 @@ msgid "GLS Picking Reference"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #, python-format
 msgid ""
@@ -499,6 +510,7 @@ msgid "GLS Service"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #, python-format
 msgid ""
@@ -512,12 +524,14 @@ msgid "GLS UID"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/stock_picking.py:0
 #, python-format
 msgid "GLS label for %s"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
@@ -528,6 +542,7 @@ msgid ""
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #, python-format
 msgid ""
@@ -544,6 +559,7 @@ msgid "GLS/ASM With return"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
 msgid ""
@@ -553,6 +569,7 @@ msgid ""
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
 msgid ""
@@ -625,6 +642,7 @@ msgid "Int. WEB"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/wizard/gls_asm_manifest_wizard.py:0
 #, python-format
 msgid ""
@@ -678,6 +696,7 @@ msgid "No Realizada"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
@@ -994,6 +1013,7 @@ msgid "Transfer"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #, python-format
 msgid ""
