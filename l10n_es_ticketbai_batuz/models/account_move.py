@@ -223,7 +223,11 @@ class AccountMove(models.Model):
                 res["NIF"] = vat[2:] if vat.startswith(country_code) else vat
         elif idtype:
             res["IDOtro"] = OrderedDict(
-                [("CodigoPais", country_code), ("IDType", idtype), ("ID", vat)]
+                [
+                    ("CodigoPais", country_code),
+                    ("IDType", idtype),
+                    ("ID", partner.tbai_partner_identification_number or vat),
+                ]
             )
         res[
             "ApellidosNombreRazonSocial"
