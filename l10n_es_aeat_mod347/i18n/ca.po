@@ -508,11 +508,9 @@ msgstr "Redactar email"
 #. module: l10n_es_aeat_mod347
 #: model:mail.template,subject:l10n_es_aeat_mod347.email_template_347
 msgid ""
-"Comprobación datos de modelo 347 año ${object.report_id.year} de ${user."
-"company_id.name}"
+"Comprobación datos de modelo 347 año ${object.report_id.year} de ${object."
+"report_id.company_id.name}"
 msgstr ""
-"Comprobació dades model 347 any ${object.report_id.year} de ${user."
-"company_id.name}"
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
@@ -1678,6 +1676,13 @@ msgstr "Podeu tancar aquesta pàgina, si ho voleu."
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__year
 msgid "Year"
 msgstr "Any"
+
+#~ msgid ""
+#~ "Comprobación datos de modelo 347 año ${object.report_id.year} de ${user."
+#~ "company_id.name}"
+#~ msgstr ""
+#~ "Comprobació dades model 347 any ${object.report_id.year} de ${user."
+#~ "company_id.name}"
 
 #~ msgid "Cash records"
 #~ msgstr "Registres d'efectiu"
