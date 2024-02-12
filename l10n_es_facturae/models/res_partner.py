@@ -1,6 +1,7 @@
 # Copyright 2015 Omar Castiñeira (Comunitea)
 # Copyright 2017 Creu Blanca
 # Copyright 2023 QubiQ - Jan Tugores (jan.tugores@qubiq.es)
+# Copyright 2024 Tecnativa - Carolina Fernandez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, fields, models
@@ -55,3 +56,7 @@ class ResPartner(models.Model):
                         raise ValidationError(
                             _("State must be defined for factura-e enabled partners.")
                         )
+
+    @api.model
+    def _commercial_fields(self):
+        return super()._commercial_fields() + ["facturae"]

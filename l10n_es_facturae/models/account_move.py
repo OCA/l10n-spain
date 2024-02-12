@@ -1,4 +1,5 @@
 # Copyright 2017 Creu Blanca
+# Copyright 2024 Tecnativa - Carolina Fernandez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import base64
@@ -147,6 +148,12 @@ class AccountMove(models.Model):
             raise ValidationError(_("Partner vat is too small"))
         if not self.partner_id.state_id:
             raise ValidationError(_("Partner state not provided"))
+        if not self.partner_id.organo_gestor:
+            raise ValidationError(_("Organo Gestor not provided"))
+        if not self.partner_id.unidad_tramitadora:
+            raise ValidationError(_("Unidad Tramitadora not provided"))
+        if not self.partner_id.oficina_contable:
+            raise ValidationError(_("Oficina Contable not provided"))
         if not self.payment_mode_id:
             raise ValidationError(_("Payment mode is required"))
         if self.payment_mode_id.facturae_code:
