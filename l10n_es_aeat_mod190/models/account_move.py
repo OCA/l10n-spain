@@ -1,4 +1,5 @@
 # Copyright 2020 Creu Blanca
+# Copyright 2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -15,7 +16,7 @@ class AccountMove(models.Model):
         readonly=False,
         states={"draft": [("readonly", False)]},
         store=True,
-        compute="_compute_aeat_perception_keys",
+        compute="_compute_aeat_perception_key_id",
     )
     aeat_perception_subkey_id = fields.Many2one(
         comodel_name="l10n.es.aeat.report.perception.subkey",
@@ -39,12 +40,24 @@ class AccountMove(models.Model):
         readonly=False,
         states={"draft": [("readonly", False)]},
         store=True,
-        compute="_compute_aeat_perception_keys",
+        compute="_compute_aeat_perception_subkey_id",
         domain="[('aeat_perception_key_id', '=', aeat_perception_key_id)]",
     )
     is_aeat_perception_subkey_visible = fields.Boolean(
         compute="_compute_is_aeat_perception_subkey_visible"
     )
+
+    @api.depends("fiscal_position_id")
+    def _compute_aeat_perception_key_id(self):
+        for item in self.filtered(lambda x: x.fiscal_position_id):
+            item.aeat_perception_key_id = item.fiscal_position_id.aeat_perception_key_id
+
+    @api.depends("fiscal_position_id")
+    def _compute_aeat_perception_subkey_id(self):
+        for item in self.filtered(lambda x: x.fiscal_position_id):
+            item.aeat_perception_subkey_id = (
+                item.fiscal_position_id.aeat_perception_subkey_id
+            )
 
     @api.depends("aeat_perception_key_id")
     def _compute_is_aeat_perception_subkey_visible(self):
@@ -60,11 +73,3 @@ class AccountMove(models.Model):
                     ]
                 )
             )
-
-    @api.depends("fiscal_position_id")
-    def _compute_aeat_perception_keys(self):
-        for invoice in self:
-            if invoice.fiscal_position_id.aeat_perception_key_id:
-                fp = invoice.fiscal_position_id
-                invoice.aeat_perception_key_id = fp.aeat_perception_key_id
-                invoice.aeat_perception_subkey_id = fp.aeat_perception_subkey_id
