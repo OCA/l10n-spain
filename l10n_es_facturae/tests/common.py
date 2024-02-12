@@ -1,5 +1,6 @@
 # Copyright 2016 Serv. Tecnol. Avanzados - Pedro M. Baeza
 # Copyright 2017 Creu Blanca
+# Copyright 2024 Tecnativa Carolina Fernandez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import base64
@@ -705,3 +706,40 @@ class CommonTest(CommonTestBase):
             }
         )
         self._check_amounts(move, *self.second_check_amount)
+
+    def test_facturae_commercial_field(self):
+        child_partner = self.partner.copy()
+        child_partner.name = "Child partner"
+        child_partner.parent_id = self.partner.id
+        self.assertEqual(child_partner.facturae, self.partner.facturae)
+        self.partner.facturae = False
+        self.assertEqual(child_partner.facturae, self.partner.facturae)
+
+    def _create_wizard_facturae_file(self):
+        self.move.action_post()
+        self._activate_certificate(self.certificate_password)
+        self.move.name = "2999/99999"
+        wizard = (
+            self.env["create.facturae"]
+            .with_context(active_ids=self.move.ids, active_model="account.move")
+            .create({})
+        )
+        return wizard
+
+    def test_create_facturae_file_without_organo_gestor(self):
+        wizard = self._create_wizard_facturae_file()
+        self.partner.organo_gestor = False
+        with self.assertRaises(exceptions.ValidationError):
+            wizard.create_facturae_file()
+
+    def test_create_facturae_file_without_unidad_tramitadora(self):
+        wizard = self._create_wizard_facturae_file()
+        self.partner.unidad_tramitadora = False
+        with self.assertRaises(exceptions.ValidationError):
+            wizard.create_facturae_file()
+
+    def test_create_facturae_file_without_oficina_contable(self):
+        wizard = self._create_wizard_facturae_file()
+        self.partner.oficina_contable = False
+        with self.assertRaises(exceptions.ValidationError):
+            wizard.create_facturae_file()
