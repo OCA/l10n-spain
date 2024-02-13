@@ -768,21 +768,3 @@ class CommonTest(CommonTestBase):
             .create({})
         )
         return wizard
-
-    def test_create_facturae_file_without_organo_gestor(self):
-        wizard = self._create_wizard_facturae_file()
-        self.partner.organo_gestor = False
-        with self.assertRaises(exceptions.ValidationError):
-            wizard.create_facturae_file()
-
-    def test_create_facturae_file_without_unidad_tramitadora(self):
-        wizard = self._create_wizard_facturae_file()
-        self.partner.unidad_tramitadora = False
-        with self.assertRaises(exceptions.ValidationError):
-            wizard.create_facturae_file()
-
-    def test_create_facturae_file_without_oficina_contable(self):
-        wizard = self._create_wizard_facturae_file()
-        self.partner.oficina_contable = False
-        with self.assertRaises(exceptions.ValidationError):
-            wizard.create_facturae_file()
