@@ -1670,7 +1670,7 @@
 	</xs:complexType>
 	<xs:complexType name="ExtensionsType">
 		<xs:sequence>
-			<xs:any namespace="##other" processContents="strict" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="AccountType">
