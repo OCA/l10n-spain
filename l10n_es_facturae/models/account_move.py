@@ -221,6 +221,12 @@ class AccountMove(models.Model):
             or "3_2"
         )
 
+    def _get_facturae_headers(self):
+        return 'xmlns:ds="http://www.w3.org/2000/09/xmldsig#"'
+
+    def _facturae_has_extensions(self):
+        return False
+
     def _get_facturae_tax_info(self):
         self.ensure_one()
         sign = -1 if self.move_type[:3] == "out" else 1
