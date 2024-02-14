@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-06 09:01+0000\n"
-"PO-Revision-Date: 2024-02-28 21:36+0000\n"
+"PO-Revision-Date: 2024-03-30 21:37+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -19,6 +19,11 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
+msgid "&gt;"
+msgstr "&gt;"
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
 msgid "&lt;/fe:Facturae&gt;"
 msgstr "&lt;/fe:Facturae&gt;"
 
@@ -26,34 +31,28 @@ msgstr "&lt;/fe:Facturae&gt;"
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
 msgid ""
 "&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae"
-"\"\n"
-"            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+"\""
 msgstr ""
-"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae"
-"\"\n"
-"            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/"
+"Facturae\""
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
 msgid ""
 "&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2014/v3.2.1/"
-"Facturae\"\n"
-"            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+"Facturae\""
 msgstr ""
 "&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2014/v3.2.1/"
-"Facturae\"\n"
-"            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+"Facturae\""
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
 msgid ""
 "&lt;fe:Facturae xmlns:fe=\"http://www.facturae.gob.es/formato/Versiones/"
-"Facturaev3_2_2.xml\"\n"
-"            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+"Facturaev3_2_2.xml\""
 msgstr ""
 "&lt;fe:Facturae xmlns:fe=\"http://www.facturae.gob.es/formato/Versiones/"
-"Facturaev3_2_2.xml\"\n"
-"            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+"Facturaev3_2_2.xml\""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__res_company__facturae_version__3_2
@@ -732,13 +731,6 @@ msgid "Organo Gestor"
 msgstr "Órgano Gestor"
 
 #. module: l10n_es_facturae
-#. odoo-python
-#: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
-msgid "Organo Gestor not provided"
-msgstr "El Órgano Gestor es obligatorio"
-
-#. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
 msgid "Other facturae fields"
 msgstr "Otros campos de facturae"
@@ -1079,6 +1071,33 @@ msgstr "[19] Pago mediante tarjeta"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_proponente
 msgid "Órgano proponente"
 msgstr "Órgano proponente"
+
+#~ msgid ""
+#~ "&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/"
+#~ "Facturae\"\n"
+#~ "            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+#~ msgstr ""
+#~ "&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/"
+#~ "Facturae\"\n"
+#~ "            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+
+#~ msgid ""
+#~ "&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2014/v3.2.1/"
+#~ "Facturae\"\n"
+#~ "            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+#~ msgstr ""
+#~ "&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2014/v3.2.1/"
+#~ "Facturae\"\n"
+#~ "            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+
+#~ msgid ""
+#~ "&lt;fe:Facturae xmlns:fe=\"http://www.facturae.gob.es/formato/Versiones/"
+#~ "Facturaev3_2_2.xml\"\n"
+#~ "            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+#~ msgstr ""
+#~ "&lt;fe:Facturae xmlns:fe=\"http://www.facturae.gob.es/formato/Versiones/"
+#~ "Facturaev3_2_2.xml\"\n"
+#~ "            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
 
 #, python-format
 #~ msgid "Country must be defined"
