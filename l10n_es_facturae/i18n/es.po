@@ -732,13 +732,6 @@ msgid "Organo Gestor"
 msgstr "Órgano Gestor"
 
 #. module: l10n_es_facturae
-#. odoo-python
-#: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
-msgid "Organo Gestor not provided"
-msgstr "El Órgano Gestor es obligatorio"
-
-#. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
 msgid "Other facturae fields"
 msgstr "Otros campos de facturae"

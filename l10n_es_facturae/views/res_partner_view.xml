@@ -11,9 +11,10 @@
                 <group groups="account.group_account_invoice">
                     <group
                         string="Facturae"
-                        attrs="{'invisible': [('parent.facturae', '=', False)]}"
+                        attrs="{'invisible': [('facturae', '=', False)]}"
                         colspan="5"
                     >
+                        <field name="facturae" invisible="1" />
                         <field name="facturae_version" />
                         <field name="organo_gestor" />
                         <field name="unidad_tramitadora" />
@@ -60,7 +61,7 @@
                     />
                     <field
                         name="facturae_hide_discount"
-                        attrs="{'invisible': [('facturae', '=', False), ('parent_facturae', '=', False)]}"
+                        attrs="{'invisible': [('facturae', '=', False)]}"
                     />
                 </group>
             </group>

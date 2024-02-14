@@ -58,7 +58,7 @@
             <FirstSurname
                 t-length="40"
                 t-out="administrative_partner.lastname if administrative_partner._fields.get('lastname') else ''"
-                t-if="not partner.is_company"
+                t-if="not partner.is_company and administrative_partner.lastname if administrative_partner._fields.get('lastname') else ''"
             />
             <SecondSurname t-if="False" />
             <t t-call="l10n_es_facturae.address_contact" />
@@ -134,7 +134,7 @@
                 t-length="40"
                 t-out="partner.lastname if partner._fields.get('lastname') else ''"
             />
-            <SecondSurname t-length="40" t-out="''" />
+            <SecondSurname t-length="40" t-out="''" t-if="False" />
             <t t-call="l10n_es_facturae.address_contact">
             </t>
         </Individual>
