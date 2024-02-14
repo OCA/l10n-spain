@@ -15,28 +15,33 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
+msgid "&gt;"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
 msgid "&lt;/fe:Facturae&gt;"
 msgstr ""
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
 msgid ""
-"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae\"\n"
-"            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+"&lt;fe:Facturae "
+"xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae\""
 msgstr ""
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
 msgid ""
-"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2014/v3.2.1/Facturae\"\n"
-"            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+"&lt;fe:Facturae "
+"xmlns:fe=\"http://www.facturae.es/Facturae/2014/v3.2.1/Facturae\""
 msgstr ""
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
 msgid ""
-"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.gob.es/formato/Versiones/Facturaev3_2_2.xml\"\n"
-"            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+"&lt;fe:Facturae "
+"xmlns:fe=\"http://www.facturae.gob.es/formato/Versiones/Facturaev3_2_2.xml\""
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -688,6 +693,7 @@ msgid "Oficina Contable"
 msgstr ""
 
 #. module: l10n_es_facturae
+#. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Oficina Contable not provided"
@@ -697,13 +703,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__organo_gestor
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_gestor
 msgid "Organo Gestor"
-msgstr ""
-
-#. module: l10n_es_facturae
-#. odoo-python
-#: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
-msgid "Organo Gestor not provided"
 msgstr ""
 
 #. module: l10n_es_facturae
