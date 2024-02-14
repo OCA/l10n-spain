@@ -236,6 +236,13 @@ msgid "OK"
 msgstr "OK"
 
 #. module: l10n_es_facturae_face
+#. odoo-python
+#: code:addons/l10n_es_facturae_face/models/account_move.py:0
+#, python-format
+msgid "Organo Gestor not provided"
+msgstr ""
+
+#. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__account_move__l10n_es_facturae_status__face-2500
 msgid "Paid"
 msgstr ""

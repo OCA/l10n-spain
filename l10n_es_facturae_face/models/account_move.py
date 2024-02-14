@@ -2,7 +2,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class AccountMove(models.Model):
@@ -83,3 +84,9 @@ class AccountMove(models.Model):
             "face-2600",
             "face-3100",
         ]
+
+    def validate_facturae_fields(self):
+        super().validate_facturae_fields()
+        if not self.partner_id.organo_gestor:
+            raise ValidationError(_("Organo Gestor not provided"))
+        return
