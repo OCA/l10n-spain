@@ -19,7 +19,7 @@
             >
                 <field
                     name="l10n_es_facturae_sending_code"
-                    attrs="{'invisible': [('facturae', '=', False), ('parent_facturae', '=', False)]}"
+                    attrs="{'invisible': [('facturae', '=', False)]}"
                 />
             </xpath>
         </field>
