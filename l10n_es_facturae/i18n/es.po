@@ -719,10 +719,24 @@ msgid "Oficina Contable"
 msgstr "Oficina Contable"
 
 #. module: l10n_es_facturae
+#. odoo-python
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Oficina Contable not provided"
+msgstr "La Oficina Contable es obligatoria"
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__organo_gestor
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_gestor
 msgid "Organo Gestor"
 msgstr "Órgano Gestor"
+
+#. module: l10n_es_facturae
+#. odoo-python
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Organo Gestor not provided"
+msgstr "El Órgano Gestor es obligatorio"
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
@@ -734,12 +748,6 @@ msgstr "Otros campos de facturae"
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__05
 msgid "Otro"
 msgstr "Otro"
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__parent_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__parent_facturae
-msgid "Parent Facturae"
-msgstr "Facturae Parental"
 
 #. module: l10n_es_facturae
 #. odoo-python
@@ -940,6 +948,13 @@ msgstr "Este proceso creará la factura electrónica"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__unidad_tramitadora
 msgid "Unidad Tramitadora"
 msgstr "Unidad Tramitadora"
+
+#. module: l10n_es_facturae
+#. odoo-python
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Unidad Tramitadora not provided"
+msgstr "La Unidad Tramitadora es obligatoria"
 
 #. module: l10n_es_facturae
 #. odoo-python
