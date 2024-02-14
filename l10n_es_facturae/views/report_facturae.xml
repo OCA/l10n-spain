@@ -25,26 +25,29 @@
     </record>
     <template id="facturae_header">
         <t t-if="version == '3_2'">
-            &lt;fe:Facturae xmlns:fe="http://www.facturae.es/Facturae/2009/v3.2/Facturae"
-            xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
+            &lt;fe:Facturae xmlns:fe="http://www.facturae.es/Facturae/2009/v3.2/Facturae" <t
+                t-raw="headers"
+            /> &gt;
             <t t-out="0" />
             &lt;/fe:Facturae&gt;
         </t>
         <t t-elif="version == '3_2_1'">
-            &lt;fe:Facturae xmlns:fe="http://www.facturae.es/Facturae/2014/v3.2.1/Facturae"
-            xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
+            &lt;fe:Facturae xmlns:fe="http://www.facturae.es/Facturae/2014/v3.2.1/Facturae" <t
+                t-raw="headers"
+            /> &gt;
             <t t-out="0" />
             &lt;/fe:Facturae&gt;
         </t>
         <t t-elif="version == '3_2_2'">
-            &lt;fe:Facturae xmlns:fe="http://www.facturae.gob.es/formato/Versiones/Facturaev3_2_2.xml"
-            xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
+            &lt;fe:Facturae xmlns:fe="http://www.facturae.gob.es/formato/Versiones/Facturaev3_2_2.xml" <t
+                t-raw="headers"
+            /> &gt;
             <t t-out="0" />
             &lt;/fe:Facturae&gt;
         </t>
     </template>
     <template id="administrative_center">
-        <AdministrativeCentre>
+        <AdministrativeCentre t-if="centre_code">
             <CentreCode t-length="10" t-out="centre_code" />
             <RoleTypeCode t-out="role_type_code" />
             <Name
@@ -202,6 +205,7 @@
         <t t-set="currency_rate" t-value="currency.rate if currency else 1.0" />
         <t t-set="euro_rate" t-value="euro.rate if euro else 1.0" />
         <t t-set="version" t-value="move.get_facturae_version()" />
+        <t t-set="headers" t-value="move._get_facturae_headers()" />
         <t t-call="l10n_es_facturae.facturae_header">
             <FileHeader>
                 <SchemaVersion
@@ -743,7 +747,9 @@
                         t-set="attachments"
                         t-value="move._get_facturae_move_attachments()"
                     />
-                    <AdditionalData t-if="move.get_narration() or attachments">
+                    <AdditionalData
+                        t-if="move.narration or attachments or move._facturae_has_extensions()"
+                    >
                         <RelatedInvoice t-if="False" />
                         <RelatedDocuments t-if="attachments">
                             <Attachment t-foreach="attachments" t-as="attachment">
@@ -768,7 +774,7 @@
                             t-esc="move.get_narration()"
                             t-if="move.get_narration()"
                         />
-                        <Extensions t-if="False" />
+                        <Extensions t-if="move._facturae_has_extensions()" />
                     </AdditionalData>
                 </Invoice>
             </Invoices>
