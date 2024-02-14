@@ -688,9 +688,22 @@ msgid "Oficina Contable"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Oficina Contable not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__organo_gestor
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_gestor
 msgid "Organo Gestor"
+msgstr ""
+
+#. module: l10n_es_facturae
+#. odoo-python
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Organo Gestor not provided"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -702,12 +715,6 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__05
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__05
 msgid "Otro"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__parent_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__parent_facturae
-msgid "Parent Facturae"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -905,6 +912,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__unidad_tramitadora
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__unidad_tramitadora
 msgid "Unidad Tramitadora"
+msgstr ""
+
+#. module: l10n_es_facturae
+#. odoo-python
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Unidad Tramitadora not provided"
 msgstr ""
 
 #. module: l10n_es_facturae

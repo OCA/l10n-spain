@@ -25,7 +25,6 @@
                 </group>
             </xpath>
             <xpath expr="/form" position="inside">
-                <field name="parent_facturae" invisible="1" />
                 <field name="facturae" invisible="1" />
             </xpath>
             <group name="accounting_entries" position="after">
@@ -37,27 +36,27 @@
                     <field name="facturae" />
                     <field
                         name="facturae_version"
-                        attrs="{'invisible': [('facturae', '=', False), ('parent_facturae', '=', False)]}"
+                        attrs="{'invisible': [('facturae', '=', False)]}"
                     />
                     <field
                         name="organo_gestor"
-                        attrs="{'invisible': [('facturae', '=', False), ('parent_facturae', '=', False)], 'required': [('facturae', '=', True)]}"
+                        attrs="{'invisible': [('facturae', '=', False)]}"
                     />
                     <field
                         name="unidad_tramitadora"
-                        attrs="{'invisible': [('facturae', '=', False), ('parent_facturae', '=', False)], 'required': [('facturae', '=', True)]}"
+                        attrs="{'invisible': [('facturae', '=', False)]}"
                     />
                     <field
                         name="oficina_contable"
-                        attrs="{'invisible': [('facturae', '=', False), ('parent_facturae', '=', False)], 'required': [('facturae', '=', True)]}"
+                        attrs="{'invisible': [('facturae', '=', False)]}"
                     />
                     <field
                         name="organo_proponente"
-                        attrs="{'invisible': [('facturae', '=', False), ('parent_facturae', '=', False)]}"
+                        attrs="{'invisible': [('facturae', '=', False)]}"
                     />
                     <field
                         name="attach_invoice_as_annex"
-                        attrs="{'invisible': [('facturae', '=', False), ('parent_facturae', '=', False)]}"
+                        attrs="{'invisible': [('facturae', '=', False)]}"
                     />
                     <field
                         name="facturae_hide_discount"
@@ -74,27 +73,27 @@
                     <field name="facturae" />
                     <field
                         name="facturae_version"
-                        attrs="{'invisible': [('facturae', '=', False), ('parent_facturae', '=', False)]}"
+                        attrs="{'invisible': [('facturae', '=', False)]}"
                     />
                     <field
                         name="organo_gestor"
-                        attrs="{'invisible': [('facturae', '=', False), ('parent_facturae', '=', False)], 'required': [('facturae', '=', True)]}"
+                        attrs="{'invisible': [('facturae', '=', False)]}"
                     />
                     <field
                         name="unidad_tramitadora"
-                        attrs="{'invisible': [('facturae', '=', False), ('parent_facturae', '=', False)], 'required': [('facturae', '=', True)]}"
+                        attrs="{'invisible': [('facturae', '=', False)]}"
                     />
                     <field
                         name="oficina_contable"
-                        attrs="{'invisible': [('facturae', '=', False), ('parent_facturae', '=', False)], 'required': [('facturae', '=', True)]}"
+                        attrs="{'invisible': [('facturae', '=', False)]}"
                     />
                     <field
                         name="organo_proponente"
-                        attrs="{'invisible': [('facturae', '=', False), ('parent_facturae', '=', False)]}"
+                        attrs="{'invisible': [('facturae', '=', False)]}"
                     />
                     <field
                         name="attach_invoice_as_annex"
-                        attrs="{'invisible': [('facturae', '=', False), ('parent_facturae', '=', False)]}"
+                        attrs="{'invisible': [('facturae', '=', False)]}"
                     />
                 </group>
             </page>
