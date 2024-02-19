@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-06 09:01+0000\n"
-"PO-Revision-Date: 2023-12-09 19:38+0000\n"
+"PO-Revision-Date: 2024-02-28 21:36+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -507,6 +507,13 @@ msgid "First"
 msgstr "Primero"
 
 #. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_hide_discount
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__facturae_hide_discount
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__facturae_hide_discount
+msgid "Hide Facturae discount"
+msgstr "Ocultar descuentos en Facturae"
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__12
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__12
 msgid "ICIO: Impuesto sobre las construcciones, instalaciones y obras"
@@ -915,6 +922,13 @@ msgstr ""
 "El fichero XML no es válido al compararlo con el definición oficial de "
 "esquema XML. El fichero XML generado y el error puede encontrarse en los "
 "logs del servidor. el error que puede dar una idea del problema es: %s"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,help:l10n_es_facturae.field_res_company__facturae_hide_discount
+#: model:ir.model.fields,help:l10n_es_facturae.field_res_partner__facturae_hide_discount
+#: model:ir.model.fields,help:l10n_es_facturae.field_res_users__facturae_hide_discount
+msgid "The unit price will be recalculated applying the discount"
+msgstr "El precio unitario será recalculado aplicando el descuento"
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.wizard_create_facturae

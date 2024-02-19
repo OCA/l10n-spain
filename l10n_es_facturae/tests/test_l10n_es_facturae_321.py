@@ -34,3 +34,9 @@ class TestL10nEsFacturae321(CommonTest):
             "-21.00000000",
             "-121.00000000",
         ]
+        self.hided_discount_check_amount = [
+            "133.21700000",
+            "133.22000000",
+            "133.22000000",
+            "27.97620000",
+        ]

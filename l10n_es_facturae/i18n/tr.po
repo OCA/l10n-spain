@@ -490,6 +490,13 @@ msgid "First"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_hide_discount
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__facturae_hide_discount
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__facturae_hide_discount
+msgid "Hide Facturae discount"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__12
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__12
 msgid "ICIO: Impuesto sobre las construcciones, instalaciones y obras"
@@ -885,6 +892,13 @@ msgid ""
 "Definition. The generated XML file and the full error have been written in "
 "the server logs. Here is the error, which may give you an idea on the cause "
 "of the problem : %s"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,help:l10n_es_facturae.field_res_company__facturae_hide_discount
+#: model:ir.model.fields,help:l10n_es_facturae.field_res_partner__facturae_hide_discount
+#: model:ir.model.fields,help:l10n_es_facturae.field_res_users__facturae_hide_discount
+msgid "The unit price will be recalculated applying the discount"
 msgstr ""
 
 #. module: l10n_es_facturae
