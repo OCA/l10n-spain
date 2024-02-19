@@ -253,17 +253,33 @@ class CommonTestBase(TestL10nEsAeatCertificateBase):
         self.refund_move.refresh()
         self.refund_check_amount = ["-100.000000", "-100.000000", "-100.00", "-21.00"]
         self.refund_check_totals = ["-100.00", "-100.00", "-21.00", "-121.00"]
+        self.hided_discount_check_amount = [
+            "133.217000",
+            "133.220000",
+            "133.22",
+            "27.98",
+        ]
 
 
 class CommonTest(CommonTestBase):
+    def _create_facturae_file(self, move_id, force=False):
+        wizard = (
+            self.env["create.facturae"]
+            .with_context(
+                force_report_rendering=force,
+                active_ids=move_id.ids,
+                active_model="account.move",
+            )
+            .create({})
+        )
+        wizard.create_facturae_file()
+        return etree.fromstring(base64.b64decode(wizard.facturae))
+
     def test_facturae_generation(self):
         self.move.action_post()
         self._activate_certificate(self.certificate_password)
         self.move.name = "2999/99999"
-        self.wizard.with_context(
-            active_ids=self.move.ids, active_model="account.move"
-        ).create_facturae_file()
-        generated_facturae = etree.fromstring(base64.b64decode(self.wizard.facturae))
+        generated_facturae = self._create_facturae_file(self.move)
         self.assertEqual(
             generated_facturae.xpath(
                 "/fe:Facturae/Parties/SellerParty/TaxIdentification/"
@@ -296,12 +312,7 @@ class CommonTest(CommonTestBase):
             "odoo.addons.base.models.ir_actions_report.IrActionsReport._render_qweb_pdf"
         ) as ptch:
             ptch.return_value = (b"1234", "pdf")
-            self.wizard.with_context(
-                force_report_rendering=True,
-                active_ids=self.move.ids,
-                active_model="account.move",
-            ).create_facturae_file()
-        generated_facturae = etree.fromstring(base64.b64decode(self.wizard.facturae))
+            generated_facturae = self._create_facturae_file(self.move, force=True)
         self.assertTrue(
             generated_facturae.xpath(
                 "/fe:Facturae/Invoices/Invoice/AdditionalData/RelatedDocuments",
@@ -335,12 +346,7 @@ class CommonTest(CommonTestBase):
                 ]
             }
         )
-        self.wizard.with_context(
-            force_report_rendering=True,
-            active_ids=self.move.ids,
-            active_model="account.move",
-        ).create_facturae_file()
-        generated_facturae = etree.fromstring(base64.b64decode(self.wizard.facturae))
+        generated_facturae = self._create_facturae_file(self.move, force=True)
         self.assertTrue(
             generated_facturae.xpath(
                 "/fe:Facturae/Invoices/Invoice/AdditionalData/" "RelatedDocuments",
@@ -377,19 +383,14 @@ class CommonTest(CommonTestBase):
         with self.assertRaises(exceptions.UserError), mute_logger(
             "odoo.addons.l10n_es_facturae.reports.report_facturae"
         ):
-            self.wizard.with_context(
-                active_ids=self.move.ids, active_model="account.move"
-            ).create_facturae_file()
+            self._create_facturae_file(self.move)
 
     def test_signature(self):
         self._activate_certificate(self.certificate_password)
         self.move.action_post()
         self.move.name = "2999/99999"
         self.main_company.partner_id.country_id = self.env.ref("base.es")
-        self.wizard.with_context(
-            active_ids=self.move.ids, active_model="account.move"
-        ).create_facturae_file()
-        generated_facturae = etree.fromstring(base64.b64decode(self.wizard.facturae))
+        generated_facturae = self._create_facturae_file(self.move)
         ns = "http://www.w3.org/2000/09/xmldsig#"
         self.assertEqual(
             len(generated_facturae.xpath("//ds:Signature", namespaces={"ds": ns})), 1
@@ -579,12 +580,10 @@ class CommonTest(CommonTestBase):
         self.assertEqual(item, self.move_line)
 
     def _check_amounts(self, move, wo_discount, subtotal, base, tax, discount=0):
-        move.action_post()
-        move.name = "2999/99999"
-        self.wizard.with_context(
-            active_ids=move.ids, active_model="account.move"
-        ).create_facturae_file()
-        facturae_xml = etree.fromstring(base64.b64decode(self.wizard.facturae))
+        if move.state != "posted":
+            move.action_post()
+            move.name = "2999/99999"
+        facturae_xml = self._create_facturae_file(move)
         self.assertEqual(
             facturae_xml.xpath("//InvoiceLine/TotalCost")[0].text,
             wo_discount,
@@ -610,13 +609,7 @@ class CommonTest(CommonTestBase):
     def _check_totals(self, move, subtotal, base, tax, total):
         move.action_post()
         move.name = "2999/99999"
-        wizard = (
-            self.env["create.facturae"]
-            .with_context(active_ids=move.ids, active_model="account.move")
-            .create({})
-        )
-        wizard.create_facturae_file()
-        generated_facturae = etree.fromstring(base64.b64decode(wizard.facturae))
+        generated_facturae = self._create_facturae_file(move)
         self.assertEqual(
             generated_facturae.xpath("//InvoiceTotals/TotalGrossAmount")[0].text,
             subtotal,
@@ -705,3 +698,52 @@ class CommonTest(CommonTestBase):
             }
         )
         self._check_amounts(move, *self.second_check_amount)
+
+    def test_hide_discount(self):
+        self._activate_certificate(self.certificate_password)
+        self.main_company.tax_calculation_rounding_method = "round_globally"
+        dp = self.env.ref("product.decimal_price")
+        dp.digits = 4
+        # We do this for refreshing the cached value in this env
+        self.assertEqual(dp.precision_get(dp.name), 4)
+        move = self.env["account.move"].create(
+            {
+                "partner_id": self.partner.id,
+                "journal_id": self.sale_journal.id,
+                "invoice_date": "2016-03-12",
+                "payment_mode_id": self.payment_mode.id,
+                "move_type": "out_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.env.ref(
+                                "product.product_delivery_02"
+                            ).id,
+                            "account_id": self.account.id,
+                            "name": "Producto de prueba",
+                            "quantity": 1.0,
+                            "price_unit": 190.314,
+                            "discount": 30,
+                            "tax_ids": [(6, 0, self.tax.ids)],
+                        },
+                    )
+                ],
+            }
+        )
+        # Check amouns and discount with facturae_hide_discount in company
+        self.main_company.facturae_hide_discount = True
+        self._check_amounts(move, *self.hided_discount_check_amount)
+        facturae_xml = self._create_facturae_file(move)
+        self.assertFalse(
+            facturae_xml.xpath("//InvoiceLine//DiscountAmount"),
+        )
+        # Check amouns and discount with facturae_hide_discount in partner_id
+        self.main_company.facturae_hide_discount = False
+        self.partner.facturae_hide_discount = True
+        self._check_amounts(move, *self.hided_discount_check_amount)
+        facturae_xml = self._create_facturae_file(move)
+        self.assertFalse(
+            facturae_xml.xpath("//InvoiceLine//DiscountAmount"),
+        )
