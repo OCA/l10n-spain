@@ -565,17 +565,23 @@
                             <ItemDescription t-length="2500" t-esc="line.name" />
                             <Quantity t-esc="line_sign * line.quantity" />
                             <UnitOfMeasure t-if="False" />
+                            <t
+                                t-set="discount_factor"
+                                t-value="1 - line.discount/100 if move.get_facturae_hide_discount() else 1"
+                            />
                             <UnitPriceWithoutTax
-                                t-out="('%.6f' if version == '3_2' else '%.8f') % line._facturae_get_price_unit()"
+                                t-out="('%.6f' if version == '3_2' else '%.8f') % (line._facturae_get_price_unit() * discount_factor)"
                             />
                             <t
                                 t-set="subtotal_gross"
                                 t-value="line._get_subtotal_without_discount()"
                             />
                             <TotalCost
-                                t-esc="('%.6f' if version == '3_2' else '%.8f') % (line_sign * subtotal_gross)"
+                                t-esc="('%.6f' if version == '3_2' else '%.8f') % (line_sign * subtotal_gross * discount_factor)"
                             />
-                            <DiscountsAndRebates t-if="line.discount != 0">
+                            <DiscountsAndRebates
+                                t-if="line.discount != 0 and not move.get_facturae_hide_discount()"
+                            >
                                 <Discount>
                                     <DiscountReason t-out="'Descuento'" />
                                     <DiscountRate

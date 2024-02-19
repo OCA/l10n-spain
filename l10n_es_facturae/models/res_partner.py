@@ -17,6 +17,10 @@ class ResPartner(models.Model):
     facturae_version = fields.Selection(
         [("3_2", "3.2"), ("3_2_1", "3.2.1"), ("3_2_2", "3.2.2")]
     )
+    facturae_hide_discount = fields.Boolean(
+        string="Hide Facturae discount",
+        help="The unit price will be recalculated applying the discount",
+    )
     organo_gestor = fields.Char(size=10)
     unidad_tramitadora = fields.Char(size=10)
     oficina_contable = fields.Char(size=10)

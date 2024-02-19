@@ -246,6 +246,13 @@ class AccountMove(models.Model):
                     withheld_taxes[tax]["amount"] += tax_amount
         return output_taxes, withheld_taxes
 
+    def get_facturae_hide_discount(self):
+        return (
+            self.partner_id.facturae_hide_discount
+            or self.commercial_partner_id.facturae_hide_discount
+            or self.company_id.facturae_hide_discount
+        )
+
     def get_narration(self):
         self.ensure_one()
         return html2plaintext(self.narration)
