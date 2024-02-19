@@ -149,6 +149,7 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
             "partner_id": partner,
             "currency_id": self.env.ref("base.EUR").id,
             "invoice_date": str(date.today()),
+            "date": date.today(),
             "tbai_date_operation": str(date.today()),
             "fiscal_position_id": fp.id,
             "invoice_line_ids": invoice_line_ids,

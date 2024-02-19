@@ -6,15 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-29 13:07+0000\n"
+"POT-Creation-Date: 2024-02-21 15:30+0000\n"
+"PO-Revision-Date: 2024-02-21 16:32+0100\n"
 "Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
 "Language-Team: none\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_l10n_es_aeat_certificate
@@ -429,9 +430,7 @@ msgstr ""
 "INV/2021/00001 bada aurrizkia INV/2021/ da, amaierako barra barne"
 
 #. module: l10n_es_ticketbai
-#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_date_operation
-#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_date_operation
-#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_date_operation
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
 msgid "Operation Date"
 msgstr "Eragiketa Data"
 
@@ -648,6 +647,15 @@ msgstr ""
 "bakarrik erabiltzen da."
 
 #. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_move.py:0
+#, python-format
+msgid ""
+"The invoice date violates Art.11 del Reglamento de facturación.\n"
+"                                The limit invoice date taking into account "
+"the operation date (%s) is %s"
+msgstr ""
+
+#. module: l10n_es_ticketbai
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_tbai_invoice_refund_origin__number
 msgid ""
 "The number of the invoice name e.g. if the invoice name is INV/2021/00001 "
@@ -655,6 +663,12 @@ msgid ""
 msgstr ""
 "Fakturaren izenaren zenbakia adibidez, fakturaren izena INV/2021/00001 bada, "
 "00001 da zenbakia"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_move.py:0
+#, python-format
+msgid "The operation date cannot be greater than the invoice date."
+msgstr ""
 
 #. module: l10n_es_ticketbai
 #: model:ir.ui.menu,name:l10n_es_ticketbai.menu_finance_ticketbai
@@ -911,18 +925,3 @@ msgid ""
 msgstr ""
 "Ezin diozu utzi aldizkari honetatik fakturak bidaltzeari, dagoeneko faktura "
 "bat bidali da."
-
-#~ msgid "Expected string date format: %dd-%mm-%yyyy"
-#~ msgstr "Espero den katearen data formatua: %dd-%mm-%yyyy"
-
-#, python-format
-#~ msgid ""
-#~ "Invoice: number %s prefix %s invoice_date %s exists. Create a credit note "
-#~ "from this invoice."
-#~ msgstr ""
-#~ "Faktura: %s zenbakia %s aurrizkia %s faktura data existitzen da. Sortu "
-#~ "kreditu-ohar bat faktura honetatik."
-
-#, python-format
-#~ msgid "Refunded Invoice %s Expedition Date"
-#~ msgstr "Itzulitako %s fakturaren espedizio-data"

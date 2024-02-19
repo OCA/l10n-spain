@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-03 15:25+0000\n"
-"PO-Revision-Date: 2023-11-28 19:34+0000\n"
+"POT-Creation-Date: 2024-02-21 15:30+0000\n"
+"PO-Revision-Date: 2024-02-21 16:31+0100\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_l10n_es_aeat_certificate
@@ -430,9 +430,7 @@ msgstr ""
 "entonces el prefijo es FV/2021/, incluyendo el caracter separador final"
 
 #. module: l10n_es_ticketbai
-#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_date_operation
-#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_date_operation
-#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_date_operation
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
 msgid "Operation Date"
 msgstr "Fecha operación"
 
@@ -652,6 +650,15 @@ msgstr ""
 "TicketBAI es 'Predefinido'."
 
 #. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_move.py:0
+#, python-format
+msgid ""
+"The invoice date violates Art.11 del Reglamento de facturación.\n"
+"                                The limit invoice date taking into account "
+"the operation date (%s) is %s"
+msgstr ""
+
+#. module: l10n_es_ticketbai
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_tbai_invoice_refund_origin__number
 msgid ""
 "The number of the invoice name e.g. if the invoice name is INV/2021/00001 "
@@ -659,6 +666,12 @@ msgid ""
 msgstr ""
 "El número de la factura p.e. si la actura es FV/2021/00001 entonces el "
 "número es 00001"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_move.py:0
+#, python-format
+msgid "The operation date cannot be greater than the invoice date."
+msgstr ""
 
 #. module: l10n_es_ticketbai
 #: model:ir.ui.menu,name:l10n_es_ticketbai.menu_finance_ticketbai
@@ -915,18 +928,3 @@ msgid ""
 msgstr ""
 "No puedes dejar de enviar facturas de este diario, al menos una factura ya "
 "ha sido enviada."
-
-#~ msgid "Expected string date format: %dd-%mm-%yyyy"
-#~ msgstr "Formato de fecha esperado: %dd-%mm-%yyyy"
-
-#, python-format
-#~ msgid ""
-#~ "Invoice: number %s prefix %s invoice_date %s exists. Create a credit note "
-#~ "from this invoice."
-#~ msgstr ""
-#~ "La factura con número %s , prefijo %s y fecha %s existe. Crea una "
-#~ "rectificativa partiendo de esa factura."
-
-#, python-format
-#~ msgid "Refunded Invoice %s Expedition Date"
-#~ msgstr "Factura rectificativa %s fecha"

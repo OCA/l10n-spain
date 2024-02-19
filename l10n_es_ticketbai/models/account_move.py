@@ -2,6 +2,8 @@
 # Copyright 2021 Landoo Sistemas de Informacion SL
 # Copyright 2021 Digital5, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+from dateutil.relativedelta import relativedelta
+
 from odoo import _, api, exceptions, fields, models
 
 from odoo.addons.l10n_es_ticketbai_api.models.ticketbai_invoice import (
@@ -54,7 +56,6 @@ class AccountMove(models.Model):
     tbai_datetime_invoice = fields.Datetime(
         compute="_compute_tbai_datetime_invoice", store=True, copy=False
     )
-    tbai_date_operation = fields.Datetime("Operation Date", copy=False)
     tbai_description_operation = fields.Text(
         "Operation Description",
         default="/",
@@ -114,6 +115,68 @@ class AccountMove(models.Model):
                 raise exceptions.ValidationError(
                     _("You cannot change to draft a TicketBAI invoice!")
                 )
+
+    @api.constrains("date", "date_invoice")
+    def _check_dates(self):
+        """
+        Segun DECRETO FORAL de la Diputación Foral de Bizkaia 4/2013, de 22 de enero,
+          por el que se aprueba el Reglamento por el que se regulan las obligaciones
+          de facturación (BOB 29 Enero): comprobamos el Artículo 11. Plazo para la
+          expedición de las facturas:
+        1. Las facturas deberán ser expedidas en el momento de realizarse la operación.
+            No obstante, cuando el destinatario de la operación sea un empresario o
+            profesional que actúe como tal, las facturas deberán expedirse antes del
+            día 16 del mes siguiente a aquél en que se haya producido el devengo del
+            Impuesto correspondiente a la citada operación.
+        2. En las entregas de bienes comprendidas en el artículo 75.Uno.8.º de la Norma
+            Foral del Impuesto sobre el Valor Añadido, las facturas deberán expedirse
+            antes del día 16 del mes siguiente a aquél en que se inicie la expedición
+            o el transporte de los bienes con destino al adquirente.
+        Es igual en todas las diputaciones forales
+        """
+        for record in self:
+            if (
+                record.move_type in ("out_invoice", "out_refund")
+                and record.tbai_enabled
+            ):
+                invoice_date = record.invoice_date or fields.Date.today()
+                operation_date = record.date if record.date else fields.Date.today()
+                if operation_date == invoice_date:
+                    continue
+                elif operation_date > invoice_date:
+                    raise exceptions.ValidationError(
+                        _("The operation date cannot be greater than the invoice date.")
+                    )
+                else:
+                    limit_invoice_date = (
+                        operation_date + relativedelta(months=1)
+                    ).replace(day=16)
+                    if invoice_date >= limit_invoice_date:
+                        raise exceptions.ValidationError(
+                            _(
+                                """
+The invoice date violates Art.11 del Reglamento de facturación.\n
+The limit invoice date taking into account the operation date (%s) is %s"""
+                                % (
+                                    record.date,
+                                    fields.Date.to_string(limit_invoice_date),
+                                )
+                            )
+                        )
+
+    def _get_accounting_date(self, invoice_date, has_tax):
+        """En las facturas que se emiten, la fecha contable es la fecha operación.
+        Odoo de base la iguala a la fecha factura para ventas (o a fecha de bloqueo +1 dia),
+        pero en tbai la fecha factura es el día en que se confirma/emite."""
+        if (
+            self.is_sale_document(include_receipts=True)
+            and self.tbai_enabled
+            and self.tbai_send_invoice
+            and self.invoice_date >= self.journal_id.tbai_active_date
+        ):
+            return self.date or fields.Date.today()
+        else:
+            return super()._get_accounting_date(invoice_date, has_tax)
 
     @api.model
     def create(self, vals):
@@ -438,6 +501,18 @@ class AccountMove(models.Model):
                 tbai_invoices._tbai_invoice_cancel()
         return super().button_cancel()
 
+    def _set_invoice_date_today(self):
+        # Establecemos la fecha de hoy para las facturas emitidas a las que haya
+        #   que generar fichero tbai, ya sean normales o rectificativas
+        out_invoices = self.sudo().filtered(
+            lambda x: x.tbai_enabled
+            and x.move_type in ("out_invoice", "out_refund")
+            and x.tbai_send_invoice
+        )
+        out_invoices.write({"invoice_date": fields.Date.today()})
+        for move in out_invoices:
+            move._onchange_invoice_date()
+
     def _post(self, soft=True):
         def validate_refund_invoices():
             for invoice in refund_invoices:
@@ -468,8 +543,19 @@ class AccountMove(models.Model):
                 if not valid_refund:
                     raise exceptions.ValidationError(error_refund_msg)
 
+        self._set_invoice_date_today()
         res = super()._post(soft)
         tbai_invoices = self.sudo().env["account.move"]
+        # Segun pregunta nº 238 de batuz.eus: ¿Cuál es el criterio temporal para anotar
+        #   las factura emitidas y recibidas en el LROE?
+        # En cuanto a las facturas emitidas, estas se tendrán que anotar en el LROE
+        #   del año correspondiente a su fecha de expedición.
+        # En cuanto a las facturas recibidas, estas se tendrán que anotar en el LROE
+        #   del año correspondiente a su fecha de recepción, entendida esta fecha como
+        #   aquella a partir de la cual la persona contribuyente está en posesión del
+        #   documento justificativo de su derecho a deducir el IVA soportado
+        #   (artículo 97 de la Norma Foral del IVA).
+        # Por tanto, comparamos con invoice_date y no con date
         tbai_invoices |= self.sudo().filtered(
             lambda x: x.tbai_enabled
             and "out_invoice" == x.move_type
@@ -527,7 +613,7 @@ class AccountMove(models.Model):
         return num_invoice
 
     def tbai_get_value_fecha_exp_factura(self):
-        invoice_date = self.date or self.invoice_date
+        invoice_date = self.invoice_date
         date = fields.Datetime.context_timestamp(
             self, fields.Datetime.from_string(invoice_date)
         )
@@ -562,13 +648,9 @@ class AccountMove(models.Model):
         return "%.2f" % amount
 
     def tbai_get_value_fecha_operacion(self):
-        if self.tbai_date_operation:
-            tbai_date_operation = self.tbai_date_operation.strftime("%d-%m-%Y")
-            date_invoice = (self.date or self.invoice_date).strftime("%d-%m-%Y")
-            if tbai_date_operation == date_invoice:
-                tbai_date_operation = None
-        else:
-            tbai_date_operation = None
+        tbai_date_operation = None
+        if self.date != self.invoice_date:
+            tbai_date_operation = self.date.strftime("%d-%m-%Y")
         return tbai_date_operation
 
     def tbai_get_value_retencion_soportada(self):
