@@ -6,16 +6,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-15 09:55+0000\n"
-"PO-Revision-Date: 2024-02-15 10:57+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3\n"
 
 #. module: l10n_es_sigaus_account
 #. odoo-python
@@ -23,7 +19,6 @@ msgstr ""
 #, python-format
 msgid "'Sigaus Date From' is mandatory for companies with SIGAUS enabled."
 msgstr ""
-"'SIGAUS fecha desde' es obligatorio para las compañías con SIGAUS habilitado."
 
 #. module: l10n_es_sigaus_account
 #: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_account.exception_sigaus
@@ -31,9 +26,6 @@ msgid ""
 ".\n"
 "            The following products are subject to SIGAUS but have no weight."
 msgstr ""
-".\n"
-"            Los siguientes productos están sujetos a SIGAUS pero no tienen "
-"peso."
 
 #. module: l10n_es_sigaus_account
 #: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_account.l10n_es_sigaus_account_amount_form_view
@@ -45,7 +37,7 @@ msgstr ""
 #. module: l10n_es_sigaus_account
 #: model:ir.model,name:l10n_es_sigaus_account.model_account_move_reversal
 msgid "Account Move Reversal"
-msgstr "Revocación de movimiento en cuenta"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_account.report_invoice_document
@@ -60,52 +52,52 @@ msgstr ""
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields.selection,name:l10n_es_sigaus_account.selection__product_template__sigaus_subject__category
 msgid "Category"
-msgstr "Categoría"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model,name:l10n_es_sigaus_account.model_res_company
 msgid "Companies"
-msgstr "Compañías"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_l10n_es_sigaus_amount__create_uid
 msgid "Created by"
-msgstr "Creado por"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_l10n_es_sigaus_amount__create_date
 msgid "Created on"
-msgstr "Creado el"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_l10n_es_sigaus_amount__date_from
 msgid "Date From"
-msgstr "Fecha desde"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_l10n_es_sigaus_amount__date_to
 msgid "Date To"
-msgstr "Fecha hasta"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_account.l10n_es_sigaus_account_amount_form_view
 msgid "Dates"
-msgstr "Fechas"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_l10n_es_sigaus_amount__display_name
 msgid "Display Name"
-msgstr "Nombre a mostrar"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_account.exception_sigaus
 msgid "Exception(s) occurred:"
-msgstr "Excepcion(es):"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model,name:l10n_es_sigaus_account.model_account_fiscal_position
 msgid "Fiscal Position"
-msgstr "Posición fiscal"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_l10n_es_sigaus_amount__id
@@ -115,18 +107,18 @@ msgstr ""
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,help:l10n_es_sigaus_account.field_res_company__sigaus_show_in_reports
 msgid "If active, SIGAUS amount is shown in reports."
-msgstr "Si está activo, la aportación SIGAUS se muestra en los informes."
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_account_move_line__is_sigaus
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_sigaus_line_mixin__is_sigaus
 msgid "Is Sigaus"
-msgstr "Es SIGAUS"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model,name:l10n_es_sigaus_account.model_account_move
 msgid "Journal Entry"
-msgstr "Asiento contable"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model,name:l10n_es_sigaus_account.model_account_move_line
@@ -137,27 +129,27 @@ msgstr ""
 #: model:ir.actions.act_window,name:l10n_es_sigaus_account.l10n_es_sigaus_account_amount_action
 #: model:ir.ui.menu,name:l10n_es_sigaus_account.menu_l10n_es_sigaus_account_amount
 msgid "L10n Es Sigaus Amount"
-msgstr "Aportación SIGAUS"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_l10n_es_sigaus_amount____last_update
 msgid "Last Modified on"
-msgstr "Modificado por última vez el"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_l10n_es_sigaus_amount__write_uid
 msgid "Last Updated by"
-msgstr "Actualizado por última vez por"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_l10n_es_sigaus_amount__write_date
 msgid "Last Updated on"
-msgstr "Actualizado por última vez el"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_l10n_es_sigaus_amount__name
 msgid "Name"
-msgstr "Nombre"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields.selection,name:l10n_es_sigaus_account.selection__product_template__sigaus_subject__no
@@ -167,27 +159,27 @@ msgstr ""
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_l10n_es_sigaus_amount__price
 msgid "Price"
-msgstr "Precio"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model,name:l10n_es_sigaus_account.model_product_template
 msgid "Product"
-msgstr "Producto"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model,name:l10n_es_sigaus_account.model_product_category
 msgid "Product Category"
-msgstr "Categoría de producto"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model,name:l10n_es_sigaus_account.model_product_product
 msgid "Product Variant"
-msgstr "Variante de producto"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_account.exception_sigaus
 msgid "Product(s):"
-msgstr "Producto(s):"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.ui.menu,name:l10n_es_sigaus_account.menu_l10n_es_sigaus
@@ -197,24 +189,24 @@ msgstr ""
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,help:l10n_es_sigaus_account.field_res_company__sigaus_date_from
 msgid "SIGAUS can only be applied from this date."
-msgstr "La aportación SIGAUS solamente se aplica a partir de esta fecha."
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_res_company__sigaus_show_in_reports
 msgid "Show detailed SIGAUS amount in report lines"
-msgstr "Mostrar cantidades de SIGAUS en líneas de informes"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_account.l10n_es_sigaus_account_view_company_form
 msgid "Sigaus"
-msgstr "SIGAUS"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model,name:l10n_es_sigaus_account.model_l10n_es_sigaus_amount
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_account_move_line__sigaus_amount
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_sigaus_line_mixin__sigaus_amount
 msgid "Sigaus Amount"
-msgstr "Aportación SIGAUS"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_account_bank_statement_line__sigaus_automated_exception_id
@@ -222,7 +214,7 @@ msgstr "Aportación SIGAUS"
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_account_payment__sigaus_automated_exception_id
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_sigaus_mixin__sigaus_automated_exception_id
 msgid "Sigaus Automated Exception"
-msgstr "Excepción de automatización de SIGAUS"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_account_bank_statement_line__sigaus_company
@@ -230,22 +222,22 @@ msgstr "Excepción de automatización de SIGAUS"
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_account_payment__sigaus_company
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_sigaus_mixin__sigaus_company
 msgid "Sigaus Company"
-msgstr "Compañía SIGAUS"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_res_company__sigaus_date_from
 msgid "Sigaus Date From"
-msgstr "SIGAUS fecha desde"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_res_company__sigaus_enable
 msgid "Sigaus Enable"
-msgstr "SIGAUS activado"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_product_product__sigaus_has_amount
 msgid "Sigaus Has Amount"
-msgstr "Hay aportación SIGAUS"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_account_bank_statement_line__sigaus_has_line
@@ -253,7 +245,7 @@ msgstr "Hay aportación SIGAUS"
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_account_payment__sigaus_has_line
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_sigaus_mixin__sigaus_has_line
 msgid "Sigaus Has Line"
-msgstr "Hay línea SIGAUS"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_account_bank_statement_line__sigaus_is_date
@@ -261,7 +253,7 @@ msgstr "Hay línea SIGAUS"
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_account_payment__sigaus_is_date
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_sigaus_mixin__sigaus_is_date
 msgid "Sigaus Is Date"
-msgstr "Es fecha SIGAUS"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model,name:l10n_es_sigaus_account.model_sigaus_line_mixin
@@ -278,7 +270,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_product_product__sigaus_subject
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_product_template__sigaus_subject
 msgid "Subject To SIGAUS"
-msgstr "Sujeto a SIGAUS"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_account_bank_statement_line__is_sigaus
@@ -287,7 +279,7 @@ msgstr "Sujeto a SIGAUS"
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_product_category__sigaus_subject
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_sigaus_mixin__is_sigaus
 msgid "Subject to SIGAUS"
-msgstr "Es SIGAUS"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,help:l10n_es_sigaus_account.field_account_bank_statement_line__sigaus_is_date
@@ -299,16 +291,13 @@ msgid ""
 "SIGAUS is equal or after the date selected in the company from which SIGAUS "
 "has to be applied."
 msgstr ""
-"Campo técnico para determinar si la fecha de un documento sujeto a SIGAUS es "
-"igual o posterior a la fecha seleccionada en la compañía a partir de la que "
-"el SIGAUS puede aplicarse."
 
 #. module: l10n_es_sigaus_account
 #. odoo-python
 #: code:addons/l10n_es_sigaus_account/models/l10n_es_sigaus_amount.py:0
 #, python-format
 msgid "The ending date must not be prior to the starting date."
-msgstr "La fecha de finalización debe ser anterior a la de inicio."
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #. odoo-python
@@ -316,22 +305,18 @@ msgstr "La fecha de finalización debe ser anterior a la de inicio."
 #, python-format
 msgid ""
 "There is not a SIGAUS price set for the date: {}. Please, go to Invoicing > "
-"Configuration > L10n Es Sigaus Amount and make sure that the date is include "
-"in one of the configured date ranges."
+"Configuration > L10n Es Sigaus Amount and make sure that the date is include"
+" in one of the configured date ranges."
 msgstr ""
-"No hay un importe de aportación SIGAUS establecido para la fecha actual: {}. "
-"Por favor, vaya a Facturación > Configuración > Aportación SIGAUS y "
-"asegúrese de que la fecha está incluida en alguno de los rangos de fechas "
-"configurados."
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields.selection,name:l10n_es_sigaus_account.selection__product_template__sigaus_subject__yes
 msgid "Yes"
-msgstr "Sí"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #. odoo-python
 #: code:addons/l10n_es_sigaus_account/models/l10n_es_sigaus_amount.py:0
 #, python-format
 msgid "You can not have overlapping date ranges."
-msgstr "No se permiten rangos de fechas que se solapan."
+msgstr ""
