@@ -43,6 +43,7 @@ setuptools.setup(
         'odoo-addon-l10n_es_payment_order_confirming_aef>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_pos>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_pos_sii>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_es_sigaus_account>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_ticketbai>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_ticketbai_api>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_ticketbai_api_batuz>=16.0dev,<16.1dev',
