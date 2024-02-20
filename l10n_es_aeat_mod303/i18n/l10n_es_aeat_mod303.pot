@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-22 10:10+0000\n"
+"PO-Revision-Date: 2024-01-22 10:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -217,6 +219,11 @@ msgid "C - Actividades no iniciadas"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_return_last_period
+msgid "Check if you are submitting the last period return"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_casilla_77
 msgid "Contributions of import tax included in the documents evidencing the payment made by the Administration and received in the settlement period. You can only complete this box when the requirements of Article 74.1 of the Tax Regulations Value Added are met."
 msgstr ""
@@ -351,7 +358,7 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:270
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:281
 #, python-format
 msgid "In previous declarations this year you reported a Result Type 'To Compensate'. You might need to fill field '[67] Fees to compensate' in this declaration."
 msgstr ""
@@ -370,6 +377,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report___last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_activity_code___last_update
 msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_return_last_period
+msgid "Last Period Return"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -465,7 +477,7 @@ msgid "Resultado"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:415
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:445
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr ""
@@ -486,7 +498,7 @@ msgid "Taxpayers who pay jointly to the Central Government and the Provincial Co
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:426
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:456
 #, python-format
 msgid "The fee to compensate must be indicated as a positive number."
 msgstr ""
@@ -508,7 +520,27 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,result_type:0
+msgid "To enter - AEAT account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,result_type:0
+msgid "To enter - Bank account debit"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,result_type:0
 msgid "To return"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,result_type:0
+msgid "To return - AEAT account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,result_type:0
+msgid "To return - Foreign bank account"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303

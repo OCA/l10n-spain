@@ -2,8 +2,8 @@
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # Copyright 2016-2017 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-
-from odoo import _, api, exceptions, fields, models
+from odoo.tools import config
+from odoo import _, api, exceptions, fields, models, registry
 
 
 class L10nEsAeatReportTaxMapping(models.AbstractModel):
@@ -33,18 +33,16 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
                  ('date_to', '>=', report.date_end),
                  ('date_to', '=', False)], limit=1)
             if tax_code_map:
-                tax_lines = []
-                for map_line in tax_code_map.map_line_ids:
-                    tax_lines.append(report._prepare_tax_line_vals(map_line))
                 # Due to a bug in ORM that unlinks other tables' records, we
                 # have to avoid (0, 0, x) syntax
                 # Reference: https://github.com/odoo/odoo/issues/18438
-                for tax_line_vals in tax_lines:
-                    tax_line_vals.update({
+                for map_line in tax_code_map.map_line_ids:
+                    map_line_vals = report._prepare_tax_line_vals(map_line)
+                    map_line_vals.update({
                         'model': report._name,
                         'res_id': report.id,
                     })
-                    tax_line_obj.create(tax_line_vals)
+                    tax_line_obj.create(map_line_vals)
                 report.modified(['tax_line_ids'])
                 report.recompute()
         return res
@@ -61,13 +59,15 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
             map_line.mapped('tax_ids.description'),
             self.date_start, self.date_end, map_line,
         )
+        credit = move_lines.get("credit", 0.0)
+        debit = move_lines.get("debit", 0.0)
+        move_line_ids = move_lines.get("ids", [])
         if map_line.sum_type == 'credit':
-            amount = sum(move_lines.mapped('credit'))
+            amount = credit
         elif map_line.sum_type == 'debit':
-            amount = sum(move_lines.mapped('debit'))
+            amount = debit
         else:  # map_line.sum_type == 'both'
-            amount = (sum(move_lines.mapped('credit')) -
-                      sum(move_lines.mapped('debit')))
+            amount = credit - debit
         if map_line.inverse:
             amount = (-1.0) * amount
         return {
@@ -75,7 +75,7 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
             'res_id': self.id,
             'map_line_id': map_line.id,
             'amount': amount,
-            'move_line_ids': [(6, 0, move_lines.ids)],
+            'move_line_ids': [(6, 0, move_line_ids)],
         }
 
     @api.multi
@@ -131,12 +131,49 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         :param date_start: Start date of the period
         :param date_stop: Stop date of the period
         :param map_line: Mapping line record
-        :return: Move lines recordset that matches the criteria.
+        :return: Dict with Move Line IDs, credit SUM and debit SUM.
         """
         domain = self._get_move_line_domain(
             codes, date_start, date_end, map_line,
         )
-        return self.env['account.move.line'].search(domain)
+        ids = []
+        credit = 0
+        debit = 0
+        search_fields = ["id", "credit", "debit"]
+        limit = 100000
+        offset = 0
+        should_search = True
+        while should_search:
+            with api.Environment.manage():
+                env = self.env
+                if not config["test_enable"]:
+                    new_cr = registry(self.env.cr.dbname).cursor()
+                    env = api.Environment(new_cr, self._uid, self._context)
+                lines = env['account.move.line'].with_context(
+                    recompute=False,
+                ).search_read(
+                    domain=domain,
+                    fields=search_fields,
+                    offset=offset,
+                    limit=limit,
+                    order="id ASC",
+                )
+                if limit > len(lines):
+                    should_search = False
+                else:
+                    offset += len(lines)
+                for line in lines:
+                    ids.append(line["id"])
+                    credit += line["credit"]
+                    debit += line["debit"]
+                if not config["test_enable"]:
+                    env.cr.close()
+                    env.clear()
+        return {
+            "ids": ids,
+            "credit": credit,
+            "debit": debit,
+        }
 
     @api.model
     def _prepare_regularization_move_line(self, account_group):

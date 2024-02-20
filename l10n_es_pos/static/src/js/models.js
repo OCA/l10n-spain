@@ -16,9 +16,6 @@ odoo.define('l10n_es_pos.models', function (require) {
             return this;
         },
         get_simple_inv_next_number: function () {
-            if (this.pushed_simple_invoices.indexOf(this.config.l10n_es_simplified_invoice_number) > -1) {
-                ++this.config.l10n_es_simplified_invoice_number;
-            }
             return this.config.l10n_es_simplified_invoice_prefix+this.get_padding_simple_inv(this.config.l10n_es_simplified_invoice_number);
         },
         get_padding_simple_inv: function (number) {
@@ -39,6 +36,13 @@ odoo.define('l10n_es_pos.models', function (require) {
                 this.pushed_simple_invoices.push(order.data.simplified_invoice);
                 ++this.config.l10n_es_simplified_invoice_number;
             }
+        },
+        push_order: function(order, opts) {
+            if (order && this.pushed_simple_invoices.indexOf(order.simplified_invoice) === -1) {
+                this.pushed_simple_invoices.push(order.simplified_invoice);
+                ++this.config.l10n_es_simplified_invoice_number;
+            }
+            return pos_super.push_order.apply(this, arguments);
         },
         _flush_orders: function (orders, options) {
             var self = this;

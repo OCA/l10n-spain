@@ -11,6 +11,7 @@ import re
 from odoo import models, api, fields, _
 from odoo.exceptions import Warning as UserError
 from odoo.tools import ormcache
+import copy
 
 
 class L10nEsVatBook(models.Model):
@@ -247,7 +248,7 @@ class L10nEsVatBook(models.Model):
                 continue
             key = self.get_book_line_tax_key(move_line, tax)
             if key not in tax_lines:
-                tax_lines[key] = vals.copy()
+                tax_lines[key] = copy.deepcopy(vals)
                 tax_lines[key]['tax_id'] = tax.id
             else:
                 tax_lines[key]['base_amount'] += vals['base_amount']
@@ -260,18 +261,6 @@ class L10nEsVatBook(models.Model):
                 tax_group = sp_taxes_dic[tax.id]['special_tax_group']
                 vat_book_line['special_tax_group'] = tax_group
                 tax_lines[key]['special_tax_group'] = tax_group
-        if vat_book_line['special_tax_group']:
-            base_line = next(filter(
-                lambda l: not l['special_tax_group'], implied_lines), None)
-            special_line = next(filter(
-                lambda l: l['special_tax_group'], implied_lines), None)
-            if base_line and special_line:
-                base_line.update({
-                    'special_tax_id': special_line['tax_id'],
-                    'special_tax_amount': special_line['tax_amount'],
-                    'total_amount_special_include':
-                        base_line['total_amount'] + special_line['tax_amount'],
-                })
 
     def _clear_old_data(self):
         """
@@ -341,6 +330,22 @@ class L10nEsVatBook(models.Model):
                 moves_dic[line_key] = self._prepare_book_line_vals(
                     move_line, line_type)
             self.upsert_book_line_tax(move_line, moves_dic[line_key], taxes)
+
+        for move_dic in moves_dic.values():
+            if move_dic['special_tax_group']:
+                tax_lines = [x for x in move_dic['tax_lines'].values()]
+                base_line = next(filter(
+                    lambda l: not l['special_tax_group'], tax_lines), None)
+                special_line = next(filter(
+                    lambda l: l['special_tax_group'], tax_lines), None)
+                if base_line and special_line:
+                    base_line.update({
+                        'special_tax_id': special_line['tax_id'],
+                        'special_tax_amount': special_line['tax_amount'],
+                        'total_amount_special_include':
+                            base_line['total_amount'] + special_line['tax_amount'],
+                    })
+
         for line_vals in moves_dic.values():
             tax_lines = line_vals.pop('tax_lines')
             tax_line_list = []

@@ -238,14 +238,16 @@ class AccountBankStatementImport(models.TransientModel):
         if conceptos.get('02'):  # pragma: no cover
             vat = conceptos['02'][0][:2] + conceptos['02'][0][7:]
             if vat:
-                partner = partner_obj.search([('vat', '=', vat)], limit=1)
+                partner = partner_obj.search([('vat', '=', vat)], limit=1,
+                                             order='id asc')
         if not partner:
             # Try to match from partner name
             if conceptos.get('01'):
                 name = conceptos['01'][0][4:] + conceptos['01'][1]
                 if name:
                     partner = partner_obj.search(
-                        [('name', 'ilike', name)], limit=1)
+                        [('name', 'ilike', name)], limit=1,
+                        order='id asc')
         return partner
 
     def _get_n43_partner_from_santander(self, conceptos):
@@ -257,14 +259,16 @@ class AccountBankStatementImport(models.TransientModel):
                 vat = conceptos['01'][1]
                 if vat:
                     partner = partner_obj.search(
-                        [('vat', 'ilike', vat)], limit=1)
+                        [('vat', 'ilike', vat)], limit=1,
+                        order='id asc')
         if not partner:
             # Try to match from partner name
             if conceptos.get('01'):
                 name = conceptos['01'][0]
                 if name:
                     partner = partner_obj.search(
-                        [('name', 'ilike', name)], limit=1)
+                        [('name', 'ilike', name)], limit=1,
+                        order='id asc')
         return partner
 
     def _get_n43_partner_from_bankia(self, conceptos):
@@ -274,7 +278,8 @@ class AccountBankStatementImport(models.TransientModel):
         if conceptos.get('01'):
             vat = conceptos['01'][0][:2] + conceptos['01'][0][7:]
             if vat:
-                partner = partner_obj.search([('vat', '=', vat)], limit=1)
+                partner = partner_obj.search([('vat', '=', vat)], limit=1,
+                                             order='id asc')
         return partner
 
     def _get_n43_partner_from_sabadell(self, conceptos):
@@ -285,7 +290,7 @@ class AccountBankStatementImport(models.TransientModel):
             name = conceptos['01'][1]
             if name:
                 partner = partner_obj.search(
-                    [('name', 'ilike', name)], limit=1)
+                    [('name', 'ilike', name)], limit=1, order='id asc')
         return partner
 
     def _get_n43_partner(self, line):

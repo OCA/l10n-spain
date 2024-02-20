@@ -12,7 +12,10 @@ import logging
 
 try:
     import xmlsig
-    from OpenSSL import crypto
+    from cryptography import x509
+    from cryptography.hazmat.backends import default_backend
+    from cryptography.hazmat.primitives.serialization import Encoding
+    from cryptography.hazmat.primitives import serialization
 except(ImportError, IOError) as err:
     logging.info(err)
 
@@ -233,15 +236,15 @@ class AccountInvoice(models.Model):
 
     def get_facturae(self, firmar_facturae):
 
-        def _sign_file(cert, password, request):
-            min = 1
-            max = 99999
-            signature_id = 'Signature%05d' % random.randint(min, max)
+        def _sign_file(public_cert, private_key, request):
+            rand_min = 1
+            rand_max = 99999
+            signature_id = 'Signature%05d' % random.randint(rand_min, rand_max)
             signed_properties_id = signature_id + '-SignedProperties%05d' \
-                                                  % random.randint(min, max)
-            key_info_id = 'KeyInfo%05d' % random.randint(min, max)
-            reference_id = 'Reference%05d' % random.randint(min, max)
-            object_id = 'Object%05d' % random.randint(min, max)
+                                                  % random.randint(rand_min, rand_max)
+            key_info_id = 'KeyInfo%05d' % random.randint(rand_min, rand_max)
+            reference_id = 'Reference%05d' % random.randint(rand_min, rand_max)
+            object_id = 'Object%05d' % random.randint(rand_min, rand_max)
             etsi = 'http://uri.etsi.org/01903/v1.3.2#'
             sig_policy_identifier = 'http://www.facturae.es/' \
                                     'politica_de_firma_formato_facturae/' \
@@ -262,7 +265,10 @@ class AccountInvoice(models.Model):
             x509_data = xmlsig.template.add_x509_data(key_info)
             xmlsig.template.x509_data_add_certificate(x509_data)
             xmlsig.template.add_key_value(key_info)
-            certificate = crypto.load_pkcs12(base64.b64decode(cert), password)
+            with open(public_cert, "rb") as f:
+                certificate = x509.load_pem_x509_certificate(
+                    f.read(), backend=default_backend()
+                )
             xmlsig.template.add_reference(
                 sign,
                 xmlsig.constants.TransformSha1,
@@ -334,12 +340,7 @@ class AccountInvoice(models.Model):
                     'Algorithm': 'http://www.w3.org/2000/09/xmldsig#sha1'
                 }
             )
-            hash_cert = hashlib.sha1(
-                crypto.dump_certificate(
-                    crypto.FILETYPE_ASN1,
-                    certificate.get_certificate()
-                )
-            )
+            hash_cert = hashlib.sha1(certificate.public_bytes(Encoding.DER))
             etree.SubElement(
                 cert_digest,
                 etree.QName(xmlsig.constants.DSigNs, 'DigestValue')
@@ -351,12 +352,11 @@ class AccountInvoice(models.Model):
             etree.SubElement(
                 issuer_serial,
                 etree.QName(xmlsig.constants.DSigNs, 'X509IssuerName')
-            ).text = xmlsig.utils.get_rdns_name(
-                certificate.get_certificate().to_cryptography().issuer.rdns)
+            ).text = xmlsig.utils.get_rdns_name(certificate.issuer.rdns)
             etree.SubElement(
                 issuer_serial,
                 etree.QName(xmlsig.constants.DSigNs, 'X509SerialNumber')
-            ).text = str(certificate.get_certificate().get_serial_number())
+            ).text = str(certificate.serial_number)
             signature_policy_identifier = etree.SubElement(
                 signed_signature_properties,
                 etree.QName(etsi, 'SignaturePolicyIdentifier')
@@ -425,10 +425,12 @@ class AccountInvoice(models.Model):
                 etree.QName(etsi, 'MimeType')
             ).text = 'text/xml'
             ctx = xmlsig.SignatureContext()
-            key = crypto.load_pkcs12(base64.b64decode(cert), password)
-            ctx.x509 = key.get_certificate().to_cryptography()
-            ctx.public_key = ctx.x509.public_key()
-            ctx.private_key = key.get_privatekey().to_cryptography_key()
+            ctx.x509 = certificate
+            ctx.public_key = certificate.public_key()
+            with open(private_key, "rb") as f:
+                ctx.private_key = serialization.load_pem_private_key(
+                    f.read(), password=None, backend=default_backend()
+                )
             root.append(sign)
             ctx.sign(sign)
             return etree.tostring(
@@ -446,12 +448,17 @@ class AccountInvoice(models.Model):
         xml_facturae = etree.tostring(tree, xml_declaration=True,
                                       encoding='UTF-8')
         self._validate_facturae(xml_facturae)
-        if self.company_id.facturae_cert and firmar_facturae:
+        public_crt, private_key = (
+            self.env["l10n.es.aeat.certificate"]
+            .sudo()
+            .get_certificates(self.company_id)
+        )
+        if firmar_facturae:
             file_name = (_(
                 'facturae') + '_' + self.number + '.xsig').replace('/', '-')
             invoice_file = _sign_file(
-                self.company_id.facturae_cert,
-                self.company_id.facturae_cert_password,
+                public_crt,
+                private_key,
                 xml_facturae)
         else:
             invoice_file = xml_facturae
@@ -460,9 +467,19 @@ class AccountInvoice(models.Model):
 
         return invoice_file, file_name
 
+    def get_facturae_version(self):
+        return (
+            self.partner_id.facturae_version
+            or self.commercial_partner_id.facturae_version
+            or self.company_id.facturae_version
+            or "3_2"
+        )
+
     def _get_facturae_schema_file(self):
-        return tools.file_open("Facturaev3_2.xsd",
-                               subdir="addons/l10n_es_facturae/data")
+        return tools.file_open(
+            "addons/l10n_es_facturae/data/Facturaev%s.xsd"
+            % self.get_facturae_version(),
+        )
 
     def _validate_facturae(self, xml_string):
         facturae_schema = etree.XMLSchema(

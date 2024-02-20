@@ -16,23 +16,6 @@ from odoo.fields import first
 from odoo.tools import float_is_zero
 
 
-def _format_partner_vat(partner_vat=None, country=None):
-    """Formats VAT to match XXVATNUMBER (where XX is country code).
-
-    An exception is made with Greece, that has a different prefix than its
-    country code.
-    """
-    if country.code:
-        code = country.code
-        if code == 'GR':
-            code = 'EL'
-        country_pattern = "%s|%s.*" % (code, code.lower())
-        vat_regex = re.compile(country_pattern, re.UNICODE | re.X)
-        if partner_vat and not vat_regex.match(partner_vat):
-            partner_vat = code + partner_vat
-    return partner_vat
-
-
 class Mod349(models.Model):
     _inherit = "l10n.es.aeat.report"
     _name = "l10n.es.aeat.mod349.report"
@@ -160,10 +143,7 @@ class Mod349(models.Model):
                 record_created = rec_obj.create({
                     'report_id': self.id,
                     'partner_id': partner.id,
-                    'partner_vat': _format_partner_vat(
-                        partner_vat=partner.vat,
-                        country=partner.country_id,
-                    ),
+                    'partner_vat': partner.vat,
                     'operation_key': op_key,
                     'country_id': partner.country_id.id,
                 })
@@ -215,11 +195,43 @@ class Mod349(models.Model):
             if original_details:
                 # There's at least one previous 349 declaration report
                 report = original_details.mapped('report_id')[:1]
-                original_details = original_details.filtered(
-                    lambda d: d.report_id == report)
-                origin_amount = sum(original_details.mapped('amount_untaxed'))
+                partner_id = original_details.mapped('partner_id')[:1]
                 period_type = report.period_type
                 year = str(report.year)
+
+                key_vals = data.get((partner, op_key, period_type, year))
+                if key_vals:
+                    key_vals['refund_details'] += refund_details
+                    continue
+
+                # Sum all details period origin
+                all_details_period = detail_obj.search([
+                    ('partner_id', '=', partner_id.id),
+                    ('partner_record_id.operation_key', '=', op_key),
+                    ('report_id', '=', report.id),
+                ], order='report_id desc')
+                origin_amount = sum(
+                    all_details_period.mapped('amount_untaxed'))
+
+                # If there are intermediate periods between the original
+                # period and the period where the rectification is taking
+                # place, it's necessary to check if there is any rectification
+                # of the original period in between these periods. This
+                # happens in this way because the right original_amount
+                # will be the value of the total_operation_amount
+                # corresponding to the last period found in between the periods
+                other_invoice_period = all_details_period.mapped(
+                    'invoice_id') - origin_invoice
+                if other_invoice_period.mapped('refund_invoice_ids'):
+                    last_refund_detail = refund_detail_obj.search([
+                        ('report_id.date_start', '>', report.date_end),
+                        ('report_id.date_end', '<', self.date_start),
+                        ('invoice_id', 'in', other_invoice_period.mapped(
+                            'refund_invoice_ids').ids)
+                    ], order='date desc', limit=1)
+                    if last_refund_detail:
+                        origin_amount = last_refund_detail.refund_id.\
+                            total_operation_amount
             else:
                 # There's no previous 349 declaration report in Odoo
                 original_amls = move_line_obj.search([
@@ -259,10 +271,7 @@ class Mod349(models.Model):
             partner_refund = obj.create({
                 'report_id': self.id,
                 'partner_id': partner.id,
-                'partner_vat': _format_partner_vat(
-                    partner_vat=partner.vat,
-                    country=partner.country_id,
-                ),
+                'partner_vat': partner.vat,
                 'operation_key': op_key,
                 'country_id': partner.country_id.id,
                 'total_origin_amount': key_vals['original_amount'],
@@ -424,15 +433,6 @@ class Mod349PartnerRecord(models.Model):
                 record.mapped('record_detail_ids.amount_untaxed')
             )
 
-    @api.multi
-    def onchange_format_partner_vat(self, partner_vat, country_id):
-        """Formats VAT to match XXVATNUMBER (where XX is country code)"""
-        if country_id:
-            country = self.env['res.country'].browse(country_id)
-            partner_vat = _format_partner_vat(partner_vat=partner_vat,
-                                              country=country)
-        return {'value': {'partner_vat': partner_vat}}
-
 
 class Mod349PartnerRecordDetail(models.Model):
     """AEAT 349 Model - Partner record detail
@@ -543,15 +543,6 @@ class Mod349PartnerRefund(models.Model):
             record.total_operation_amount = (
                 record.total_origin_amount - rectified_amount
             )
-
-    @api.multi
-    def onchange_format_partner_vat(self, partner_vat, country_id):
-        """Formats VAT to match XXVATNUMBER (where XX is country code)"""
-        if country_id:
-            country = self.env['res.country'].browse(country_id)
-            partner_vat = _format_partner_vat(partner_vat=partner_vat,
-                                              country=country)
-        return {'value': {'partner_vat': partner_vat}}
 
 
 class Mod349PartnerRefundDetail(models.Model):

@@ -7,7 +7,7 @@
 
 {
     "name": "Creación de Factura-e",
-    "version": "11.0.1.1.1",
+    "version": "11.0.1.2.0",
     "author": "ASR-OSS, "
               "FactorLibre, "
               "Tecon, "
@@ -27,7 +27,8 @@
         "partner_firstname",
         "report_xml",
         "report_qweb_parameter",
-        "account_banking_mandate"
+        "account_banking_mandate",
+        "l10n_es_aeat_certificate"
     ],
     "data": [
         "data/log_counter.xml",

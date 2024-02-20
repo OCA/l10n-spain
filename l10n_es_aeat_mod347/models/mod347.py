@@ -169,9 +169,6 @@ class L10nEsAeatMod347Report(models.Model):
             ('move_id.not_in_mod347', '=', False),
             ('date', '>=', self.date_start),
             ('date', '<=', self.date_end),
-            '|',
-            ('tax_ids', 'in', taxes.ids),
-            ('tax_line_id', 'in', taxes.ids),
         ]
 
     @api.model
@@ -215,11 +212,21 @@ class L10nEsAeatMod347Report(models.Model):
         domain = self._account_move_line_domain(taxes)
         if partner_record:
             domain += [('partner_id', '=', partner_record.partner_id.id)]
-        groups = self.env['account.move.line'].read_group(
-            domain,
-            ['partner_id', 'balance'],
-            ['partner_id'],
+
+        domain_taxes = [('tax_ids', 'in', taxes.ids), ('tax_line_id', 'in', taxes.ids)]
+        groups_tax_ids = self.env['account.move.line'].search_read(
+            domain + [domain_taxes[0]], ['id']
         )
+        groups_tax_line_id = self.env['account.move.line'].search_read(
+            domain + [domain_taxes[1]], ['id']
+        )
+        move_line_ids = [x["id"] for x in groups_tax_ids] + [
+            x["id"] for x in groups_tax_line_id
+        ]
+        groups = self.env["account.move.line"].read_group(
+            [("id", "in", move_line_ids)], ["partner_id", "balance"], ["partner_id"]
+        )
+
         filtered_groups = list(filter(
             lambda d: abs(d['balance']) > self.operations_limit, groups)
         )
@@ -233,11 +240,20 @@ class L10nEsAeatMod347Report(models.Model):
                 'amount': (-1 if key == 'B' else 1) * group['balance'],
             }
             vals.update(self._get_partner_347_identification(partner))
-            move_groups = self.env['account.move.line'].read_group(
-                group['__domain'],
-                ['move_id', 'balance'],
-                ['move_id'],
+
+            move_groups_tax_ids = self.env['account.move.line'].search_read(
+                ["&", ('partner_id', '=', partner.id)] + domain + [domain_taxes[0]], ['id']
             )
+            move_groups_tax_line_id = self.env['account.move.line'].search_read(
+                ["&", ('partner_id', '=', partner.id)] + domain + [domain_taxes[1]], ['id']
+            )
+            mg_move_line_ids = [x["id"] for x in move_groups_tax_ids] + [
+                x["id"] for x in move_groups_tax_line_id
+            ]
+            move_groups = self.env["account.move.line"].read_group(
+                [("id", "in", mg_move_line_ids)], ["move_id", "balance"], ["move_id"]
+            )
+
             vals['move_record_ids'] = [
                 (0, 0, {
                     'move_id': move_group['move_id'][0],
