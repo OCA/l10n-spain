@@ -5,7 +5,7 @@ from odoo import fields
 from odoo.tests import Form, common
 
 
-class TestPaymentOrderConfirmingSabadell(common.SavepointCase):
+class TestPaymentOrderConfirmingSabadell(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -56,6 +56,7 @@ class TestPaymentOrderConfirmingSabadell(common.SavepointCase):
                 "state_id": cls.env.ref("base.state_es_m").id,
             }
         )
+        cls.product = cls.env["product.product"].create({"name": "Test product"})
         cls.invoice = cls._create_invoice(cls)
         cls.env.ref("account_payment_mode.main_company_iban2").partner_id = cls.partner
 
@@ -71,8 +72,7 @@ class TestPaymentOrderConfirmingSabadell(common.SavepointCase):
         move_form.invoice_date = fields.date.today()
         move_form.payment_mode_id = self.payment_mode
         with move_form.invoice_line_ids.new() as line_form:
-            line_form.name = "Test line"
-            line_form.account_id = self.a_expense
+            line_form.product_id = self.product
             line_form.quantity = 1.0
             line_form.price_unit = 100.00
         move = move_form.save()
