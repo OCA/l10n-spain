@@ -5,7 +5,7 @@
     "name": "AEAT Modelo 322",
     "summary": """
         AEAT modelo 322""",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "license": "AGPL-3",
     "author": "Dixmit,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
