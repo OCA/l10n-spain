@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_l10n_es_aeat_mod369_report_tree" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod369.report.tree</field>
+        <field name="model">l10n.es.aeat.mod369.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree" />
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="string">AEAT 369 reports</attribute>
+            </tree>
+        </field>
+    </record>
+    <record id="view_l10n_es_aeat_mod369_line_grouped_tree" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod369.line.grouped.tree</field>
+        <field name="model">l10n.es.aeat.mod369.line.grouped</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="country_code" />
+                <field name="vat_type" />
+                <field name="base" />
+                <field name="amount" />
+                <button
+                    name="get_calculated_move_lines"
+                    type="object"
+                    help="Show journal items"
+                    aria-label="Show journal items"
+                    title="Show journal items"
+                    icon="fa-search-plus"
+                />
+            </tree>
+        </field>
+    </record>
+    <record id="view_l10n_es_aeat_mod369_line_grouped_page7_tree" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod369.line.grouped.page7.tree</field>
+        <field name="model">l10n.es.aeat.mod369.line.grouped</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="country_code" />
+                <field name="refund_fiscal_year" />
+                <field name="refund_period" />
+                <field name="tax_correction" />
+                <button
+                    name="get_calculated_refund_move_lines"
+                    type="object"
+                    help="Show journal items"
+                    aria-label="Show journal items"
+                    title="Show journal items"
+                    icon="fa-search-plus"
+                />
+            </tree>
+        </field>
+    </record>
+    <record id="view_l10n_es_aeat_mod369_report_form" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod369.report.form</field>
+        <field name="model">l10n.es.aeat.mod369.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
+        <field name="arch" type="xml">
+            <group name="group_declaration" position="after">
+                <notebook attrs="{'invisible': [('state', '=', 'draft')]}">
+                    <page string="8. Results" name="page_tax_lines_8">
+                        <group>
+                            <field name="total_amount" />
+                        </group>
+                        <field name="total_line_ids" nolabel="1" readonly="1">
+                            <tree>
+                                <field name="country_code" />
+                                <field name="page_3_total" />
+                                <field name="page_4_total" />
+                                <field name="page_3_4_total" />
+                                <field name="page_5_total" />
+                                <field name="page_6_total" />
+                                <field name="page_5_6_total" />
+                                <field
+                                    name="amount"
+                                    sum="Balance to deposit in Spain"
+                                />
+                                <field name="pos_corrections" optional="hide" />
+                                <field name="neg_corrections" optional="hide" />
+                                <field
+                                    name="result_total"
+                                    sum="Total result"
+                                    optional="hide"
+                                />
+                                <field
+                                    name="total_deposit"
+                                    sum="Total to deposit ES"
+                                    optional="hide"
+                                />
+                                <field
+                                    name="total_return"
+                                    sum="Total to return EM"
+                                    optional="hide"
+                                />
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="3. Spanish services" name="page_tax_lines_3">
+                        <field
+                            name="spain_services_line_ids"
+                            nolabel="1"
+                            readonly="1"
+                            context="{'tree_view_ref': 'l10n_es_aeat_mod369.view_l10n_es_aeat_mod369_line_grouped_tree'}"
+                        />
+                    </page>
+                    <page string="4. Spanish goods" name="page_tax_lines_4">
+                        <field
+                            name="spain_goods_line_ids"
+                            nolabel="1"
+                            readonly="1"
+                            context="{'tree_view_ref': 'l10n_es_aeat_mod369.view_l10n_es_aeat_mod369_line_grouped_tree'}"
+                        />
+                    </page>
+                    <page
+                        string="7. Refunds from other periods"
+                        name="page_tax_lines_7"
+                    >
+                        <field
+                            name="refund_line_ids"
+                            nolabel="1"
+                            readonly="1"
+                            context="{'tree_view_ref': 'l10n_es_aeat_mod369.view_l10n_es_aeat_mod369_line_grouped_page7_tree'}"
+                        />
+                    </page>
+                </notebook>
+            </group>
+            <form position="inside">
+                <div class="oe_chatter">
+                    <field
+                        name="message_follower_ids"
+                        widget="mail_followers"
+                        groups="base.group_user"
+                    />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+            <field name="statement_type" position="after">
+                <field name="declaration_type" />
+                <field name="payment_type" />
+                <field name="nrc_reference" />
+                <field name="declaration_inactive" />
+            </field>
+        </field>
+    </record>
+    <record id="action_l10n_es_aeat_mod369_report" model="ir.actions.act_window">
+        <field name="name">AEAT model 369</field>
+        <field name="res_model">l10n.es.aeat.mod369.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help">Create and query AEAT Model 369 reports</field>
+    </record>
+    <record
+        model="ir.actions.act_window.view"
+        id="action_l10n_es_aeat_mod369_report_tree"
+    >
+        <field name="sequence" eval="2" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod369_report_tree" />
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod369_report" />
+    </record>
+    <record
+        model="ir.actions.act_window.view"
+        id="action_l10n_es_aeat_mod369_report_form"
+    >
+        <field name="sequence" eval="3" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod369_report_form" />
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod369_report" />
+    </record>
+    <menuitem
+        id="menu_aeat_mod369_report"
+        parent="l10n_es_aeat.menu_root_aeat"
+        action="action_l10n_es_aeat_mod369_report"
+        sequence="369"
+        name="AEAT 369 model"
+    />
+</odoo>
