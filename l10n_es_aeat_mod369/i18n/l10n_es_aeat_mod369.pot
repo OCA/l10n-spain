@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-17 11:49+0000\n"
-"PO-Revision-Date: 2023-10-17 11:49+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -106,6 +104,11 @@ msgid "Amount"
 msgstr ""
 
 #. module: l10n_es_aeat_mod369
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__amount_str
+msgid "Amount Str"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__amount
 msgid "Amount total"
 msgstr ""
@@ -123,6 +126,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__partner_bank_id
 msgid "Bank account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__base_str
+msgid "Base Str"
 msgstr ""
 
 #. module: l10n_es_aeat_mod369
@@ -655,8 +663,18 @@ msgid "Tax"
 msgstr ""
 
 #. module: l10n_es_aeat_mod369
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__tax_agency_ids
+msgid "Tax Agency"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__tax_correction
 msgid "Tax Correction"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__tax_correction_str
+msgid "Tax Correction Str"
 msgstr ""
 
 #. module: l10n_es_aeat_mod369
@@ -667,13 +685,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_account_tax__tax_reduction_type
 msgid "Tax type"
-msgstr ""
-
-#. module: l10n_es_aeat_mod369
-#: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__country_code
-msgid ""
-"The ISO country code in two chars. \n"
-"You can use this field for quick search."
 msgstr ""
 
 #. module: l10n_es_aeat_mod369
@@ -734,6 +745,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__company_vat
 msgid "VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__vat_type_str
+msgid "Vat Type Str"
 msgstr ""
 
 #. module: l10n_es_aeat_mod369
