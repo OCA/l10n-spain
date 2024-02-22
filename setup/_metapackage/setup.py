@@ -23,6 +23,7 @@ setuptools.setup(
         'odoo-addon-l10n_es_aeat_mod303_vat_prorate>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_aeat_mod347>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_aeat_mod349>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_es_aeat_mod369>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_aeat_mod390>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_aeat_partner_check>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_aeat_sii_match>=16.0dev,<16.1dev',
