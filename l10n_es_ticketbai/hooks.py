@@ -62,21 +62,26 @@ def post_init_hook(cr, registry):
                         journal.sequence_id.suffix = ''
                         journal.refund_sequence = True
 
-    invoices = env['account.invoice'].search(
-        [('type', 'in', ('out_invoice', 'out_refund'))]
-    )
     tbai_vat_regime_key_01 = env['tbai.vat.regime.key'].search(
         [('code', '=', '01')], limit=1
     )
 
-    for invoice in invoices:
-        if invoice.fiscal_position_id:
-            invoice.tbai_vat_regime_key = (
-                invoice.fiscal_position_id.tbai_vat_regime_key.id
-            )
-        else:
-            invoice.tbai_vat_regime_key = tbai_vat_regime_key_01.id
-
-        if invoice.type == 'out_refund':
-            invoice.tbai_refund_key = RefundCode.R1.value
-            invoice.tbai_refund_type = RefundType.differences.value
+    cr.execute("""
+        UPDATE account_invoice ai
+        SET tbai_vat_regime_key = afp.tbai_vat_regime_key
+        FROM account_fiscal_position afp
+        WHERE afp.id = ai.fiscal_position_id
+        AND ai.type IN ('out_invoice', 'out_refund');
+    """)
+    cr.execute("""
+        UPDATE account_invoice
+        SET tbai_vat_regime_key = %s
+        WHERE fiscal_position_id IS NULL
+        AND type IN ('out_invoice', 'out_refund');
+    """, (tbai_vat_regime_key_01.id,))
+    cr.execute("""
+        UPDATE account_invoice
+        SET tbai_refund_key = %s,
+        tbai_refund_type = %s
+        WHERE type = 'out_refund';
+    """, (RefundCode.R1.value, RefundType.differences.value, ))
