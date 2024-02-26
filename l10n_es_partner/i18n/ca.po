@@ -1,0 +1,154 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_partner
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-26 12:00+0000\n"
+"PO-Revision-Date: 2021-07-13 16:48+0000\n"
+"Last-Translator: jabelchi <jabelchi@gmail.com>\n"
+"Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_res_bank
+msgid "Bank"
+msgstr "Banc"
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_res_partner
+msgid "Contact"
+msgstr "Contacte"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__create_uid
+msgid "Created by"
+msgstr "Creat per"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__create_date
+msgid "Created on"
+msgstr "Creat el"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__display_name
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_partner__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__import_fail
+msgid "Import Fail"
+msgstr "Importació ha fallat"
+
+#. module: l10n_es_partner
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+msgid "Import from Internet"
+msgstr "Importar d'Internet"
+
+#. module: l10n_es_partner
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+msgid "Import from local file"
+msgstr "Importar des d'un fitxer local"
+
+#. module: l10n_es_partner
+#: model:ir.actions.act_window,name:l10n_es_partner.action_l10n_es_partner_import
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+msgid "Import spanish bank data"
+msgstr "Importar dades d'entitats bancaries espanyoles"
+
+#. module: l10n_es_partner
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+msgid ""
+"Internet (from Bank of Spain). Maybe this source will be not available from "
+"certain moment in time. You will need xlrd Python library."
+msgstr ""
+"Internet (des del Banc d’Espanya). Aquest origen podria ser que estigui "
+"disponible en un determinat moment. Per això, necessitareu la biblioteca "
+"xlrd de Python."
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard____last_update
+msgid "Last Modified on"
+msgstr "Darrera modificació el"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Darrera Actualització per"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__write_date
+msgid "Last Updated on"
+msgstr "Darrera Actualització el"
+
+#. module: l10n_es_partner
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+msgid "Local file mirror. This copy was updated last time on 26/10/2017."
+msgstr ""
+"Copia mirall en local. Aquesta còpia es va actualitzar per última vegada el "
+"26/10/2017."
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank__lname
+msgid "Long name"
+msgstr "Nom complert"
+
+#. module: l10n_es_partner
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+msgid ""
+"Something has failed importing data from Internet. You will need to import "
+"local data instead."
+msgstr ""
+"Alguna cosa ha fallat al importar dades d’Internet. Haureu d’importar-ho des "
+"de dades locals."
+
+#. module: l10n_es_partner
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+msgid ""
+"This wizard will import spanish bank data. You can choose to import it from:"
+msgstr ""
+"Aquest assistent importarà les dades de les entitats bancaries espanyoles. "
+"Podeu triar importar-lo des de:"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_partner__comercial
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_users__comercial
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.view_partner_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.view_partner_simple_form
+msgid "Trade name"
+msgstr "Nom comercial"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank__vat
+msgid "VAT code"
+msgstr "CIF"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,help:l10n_es_partner.field_res_bank__vat
+msgid "Value Added Tax number"
+msgstr "Codi d'Indentificació Fiscal"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank__website
+msgid "Website"
+msgstr "Lloc web"
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_l10n_es_partner_import_wizard
+msgid "l10n es partner import wizard"
+msgstr "l10n.es.partner.import.wizard"
