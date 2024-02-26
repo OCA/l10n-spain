@@ -552,17 +552,23 @@
                             <ItemDescription t-length="2500" t-esc="line.name" />
                             <Quantity t-esc="line_sign * line.quantity" />
                             <UnitOfMeasure t-if="False" />
+                            <t
+                                t-set="discount_factor"
+                                t-value="1 - line.discount/100 if move.get_facturae_hide_discount() else 1"
+                            />
                             <UnitPriceWithoutTax
-                                t-esc="('%.6f' if version == '3_2' else '%.8f') % line.price_unit"
+                                t-esc="('%.6f' if version == '3_2' else '%.8f') % (line.price_unit * discount_factor)"
                             />
                             <t
                                 t-set="subtotal_gross"
                                 t-value="line._get_price_total_and_subtotal_model(line.price_unit, line.quantity,0,line.move_id.currency_id, line.product_id, line.move_id.partner_id, line.tax_ids, line.move_id.move_type,).get('price_subtotal', 0.0)"
                             />
                             <TotalCost
-                                t-esc="('%.6f' if version == '3_2' else '%.8f') % (line_sign * subtotal_gross)"
+                                t-esc="('%.6f' if version == '3_2' else '%.8f') % (line_sign * subtotal_gross * discount_factor)"
                             />
-                            <DiscountsAndRebates t-if="line.discount != 0">
+                            <DiscountsAndRebates
+                                t-if="line.discount != 0 and not move.get_facturae_hide_discount()"
+                            >
                                 <Discount>
                                     <DiscountReason t-esc="'Descuento'" />
                                     <DiscountRate

@@ -21,6 +21,7 @@
                         <field name="oficina_contable" />
                         <field name="organo_proponente" />
                         <field name="attach_invoice_as_annex" />
+                        <field name="facturae_hide_discount" />
                     </group>
                 </group>
             </xpath>
@@ -48,6 +49,7 @@
                     />
                     <field name="organo_proponente" />
                     <field name="attach_invoice_as_annex" />
+                    <field name="facturae_hide_discount" />
                 </group>
             </group>
         </field>
