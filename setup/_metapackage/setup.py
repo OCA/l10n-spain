@@ -46,6 +46,7 @@ setuptools.setup(
         'odoo-addon-l10n_es_pos>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_pos_sii>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_sigaus_account>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_es_sigaus_purchase>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_sigaus_sale>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_ticketbai>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_ticketbai_api>=16.0dev,<16.1dev',
