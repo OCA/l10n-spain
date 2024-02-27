@@ -1,0 +1,1 @@
+Con este módulo podemos forzar a nivel de posición fiscal que una rectificativa se remita al SII como F1 en lugar de con las claves R2 / R5. El objetivo es poder remitir al SII las devoluciones de IVA en Régimen de Viajeros.
