@@ -29,6 +29,7 @@ setuptools.setup(
         'odoo-addon-l10n_es_aeat_sii_match>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_aeat_sii_oca>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_aeat_sii_oss>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_es_aeat_sii_taxfree>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_atc>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_dua>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_dua_sii>=16.0dev,<16.1dev',
