@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-17 11:49+0000\n"
-"PO-Revision-Date: 2023-10-17 13:50+0200\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2024-02-28 21:36+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_aeat_mod369
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod369.view_l10n_es_aeat_mod369_report_form
@@ -85,7 +85,7 @@ msgstr "Actividades"
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr "Decoración de Actividad  de Excepción"
+msgstr "Decoración de Actividad de Excepción"
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__activity_state
@@ -130,7 +130,7 @@ msgstr "Cuenta bancaria"
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__base
 msgid "Base total"
-msgstr ""
+msgstr "Total Base"
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__calculation_date
@@ -252,7 +252,7 @@ msgstr "Seguidores (Socios)"
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Fuente iconos sorprendentes , por ejemplo fa-tasks"
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__contact_name
@@ -282,7 +282,7 @@ msgstr "Información agrupada por país para el modelo 369"
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "Tiene Mensaje"
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line__id
@@ -375,7 +375,7 @@ msgstr "NIF del representant legal."
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "Archivo Adjunto Principal"
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line__map_line_id
@@ -430,7 +430,7 @@ msgstr "Correcciones negativas"
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "Fecha Límite de la Siguiente Actividad"
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__activity_summary
@@ -551,7 +551,7 @@ msgstr "Lineas de devolución"
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__refund_line_ids
 msgid "Refunds from other periods 369 lines"
-msgstr "Lineas 369 de devoluciones de otros periodos "
+msgstr "Líneas 369 de devoluciones de otros periodos"
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__name
@@ -764,12 +764,12 @@ msgstr "Año"
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_mod369_report__payment_type__i
 msgid "[I] A ingresar"
-msgstr ""
+msgstr "[I] A ingresar"
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_mod369_report__payment_type__n
 msgid "[N] Negativa"
-msgstr ""
+msgstr "[N] Negativa"
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_mod369_report__payment_type__o
@@ -777,6 +777,8 @@ msgid ""
 "[O] Reconocimiento de deuda con los Estados Miembros de Consumo con "
 "imposibilidad de pago"
 msgstr ""
+"[O] Reconocimiento de deuda con los Estados Miembros de Consumo con "
+"imposibilidad de pago"
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_mod369_report__payment_type__s
@@ -784,8 +786,10 @@ msgid ""
 "[S] Ingreso parcial y Reconocimiento de deuda con los Estados Miembros de "
 "Consumo con imposibilidad de pago"
 msgstr ""
+"[S] Ingreso parcial y Reconocimiento de deuda con los Estados Miembros de "
+"Consumo con imposibilidad de pago"
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_mod369_report__payment_type__t
 msgid "[T] Ingreso por transferencia desde el extranjero"
-msgstr ""
+msgstr "[T] Ingreso por transferencia desde el extranjero"
