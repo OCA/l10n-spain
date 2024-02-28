@@ -55,14 +55,24 @@ class DhlParcelRequest(object):
             )
             self.carrier_id.log_xml(dhl_parcel_last_request, "dhl_parcel_last_request")
             self.carrier_id.log_xml(res.text or "", "dhl_parcel_last_response")
-        except requests.exceptions.Timeout:
-            raise UserError(_("Timeout: the server did not reply within 60s"))
-        except (ValueError, requests.exceptions.ConnectionError):
-            raise UserError(_("Server not reachable, please try again later"))
+        except requests.exceptions.Timeout as e:
+            raise UserError(
+                _("Timeout: the server did not reply within 60s\n%(text)s")
+                % {"text": str(e)}
+            ) from e
+        except requests.exceptions.ConnectionError as e:
+            raise UserError(
+                _("Server not reachable, please try again later\n%(text)s")
+                % {"text": str(e)}
+            ) from e
         except requests.exceptions.HTTPError as e:
             raise UserError(
-                _("{}\n{}".format(e, res.json().get("Message", "") if res.text else ""))
-            )
+                _("%(text)s\n%(message)s")
+                % {
+                    "text": e,
+                    "message": res.json().get("Message", "") if res.text else "",
+                }
+            ) from e
         return res
 
     def _get_new_auth_token(self, username, password):
@@ -133,8 +143,7 @@ class DhlParcelRequest(object):
         )
         return res.json()
 
-    # TODO: The label_format parameter is not used and can be removed.
-    def print_shipment(self, reference=False, label_format="PDF"):
+    def print_shipment(self, reference=False):
         """Get shipping label for the given ref
         :param str reference -- public shipping reference
         :returns: base64 with pdf label or False
