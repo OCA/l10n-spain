@@ -20,6 +20,7 @@
                         <field name="oficina_contable" />
                         <field name="organo_proponente" />
                         <field name="attach_invoice_as_annex" />
+                        <field name="facturae_hide_discount" />
                     </group>
                 </group>
             </xpath>
@@ -56,6 +57,10 @@
                     />
                     <field
                         name="attach_invoice_as_annex"
+                        attrs="{'invisible': [('facturae', '=', False), ('parent_facturae', '=', False)]}"
+                    />
+                    <field
+                        name="facturae_hide_discount"
                         attrs="{'invisible': [('facturae', '=', False), ('parent_facturae', '=', False)]}"
                     />
                 </group>
