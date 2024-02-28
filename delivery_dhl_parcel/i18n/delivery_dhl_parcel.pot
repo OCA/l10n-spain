@@ -4,14 +4,24 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-28 14:01+0000\n"
+"PO-Revision-Date: 2024-02-28 14:01+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: delivery_dhl_parcel
+#: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
+#, python-format
+msgid ""
+"%(text)s\n"
+"%(message)s"
+msgstr ""
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__all_customer_accounts
@@ -116,7 +126,7 @@ msgstr ""
 #, python-format
 msgid ""
 "DHL Parcel Shipping extra info:\n"
-"Origin: {}, Customer: {}, AWB: {}, LP: {}"
+"Origin: %(origin)s, Customer: %(customer)s, AWB: %(awb)s, LP: %(lp)s"
 msgstr ""
 
 #. module: delivery_dhl_parcel
@@ -156,10 +166,7 @@ msgid "DHL Product"
 msgstr ""
 
 #. module: delivery_dhl_parcel
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__display_name
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__display_name
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_sale_order__display_name
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_stock_picking__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -191,10 +198,7 @@ msgid "Hold DHL Parcel shipment"
 msgstr ""
 
 #. module: delivery_dhl_parcel
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__id
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__id
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_sale_order__id
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_stock_picking__id
 msgid "ID"
 msgstr ""
 
@@ -225,10 +229,7 @@ msgid "Label format"
 msgstr ""
 
 #. module: delivery_dhl_parcel
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier____last_update
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard____last_update
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_sale_order____last_update
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_stock_picking____last_update
 msgid "Last Modified on"
 msgstr ""
 
