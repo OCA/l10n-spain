@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="invoice_form_aeat369" model="ir.ui.view">
+        <field name="name">account.invoice.form.aeat369</field>
+        <field name="model">account.invoice</field>
+        <field name='inherit_id' ref='account.invoice_form'/>
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='other_info']//field[@name='fiscal_position_id']"
+                position="after"
+            >
+                <field name="fp_outside_spain" invisible="1" />
+                <field
+                    name="origin_country_id"
+                    attrs="{
+                    'invisible': [('fp_outside_spain', '=', False)]
+                }"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
