@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-15 09:55+0000\n"
-"PO-Revision-Date: 2024-02-15 10:57+0100\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2024-02-29 00:13+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_sigaus_account
 #. odoo-python
@@ -41,6 +41,8 @@ msgid ""
 "<i class=\"fa fa-long-arrow-right mx-1\" aria-label=\"Arrow icon\" title="
 "\"Arrow\"/>"
 msgstr ""
+"<i class=\"fa fa-long-arrow-right mx-1\" aria-label=\"Arrow icon\" title="
+"\"Arrow\"/>"
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model,name:l10n_es_sigaus_account.model_account_move_reversal
@@ -50,12 +52,12 @@ msgstr "Revocación de movimiento en cuenta"
 #. module: l10n_es_sigaus_account
 #: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_account.report_invoice_document
 msgid "Aporatación SIGAUS (RD 679/2006):"
-msgstr ""
+msgstr "Aportación SIGAUS (RD 679/2006):"
 
 #. module: l10n_es_sigaus_account
 #: model:product.template,name:l10n_es_sigaus_account.aportacion_sigaus_product_template_product_template
 msgid "Aportación SIGAUS (R.D. 679/2006)"
-msgstr ""
+msgstr "Aportación SIGAUS (R.D. 679/2006)"
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields.selection,name:l10n_es_sigaus_account.selection__product_template__sigaus_subject__category
@@ -110,7 +112,7 @@ msgstr "Posición fiscal"
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_l10n_es_sigaus_amount__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,help:l10n_es_sigaus_account.field_res_company__sigaus_show_in_reports
@@ -131,7 +133,7 @@ msgstr "Asiento contable"
 #. module: l10n_es_sigaus_account
 #: model:ir.model,name:l10n_es_sigaus_account.model_account_move_line
 msgid "Journal Item"
-msgstr ""
+msgstr "Artículo del Diario"
 
 #. module: l10n_es_sigaus_account
 #: model:ir.actions.act_window,name:l10n_es_sigaus_account.l10n_es_sigaus_account_amount_action
@@ -162,7 +164,7 @@ msgstr "Nombre"
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields.selection,name:l10n_es_sigaus_account.selection__product_template__sigaus_subject__no
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_l10n_es_sigaus_amount__price
@@ -192,7 +194,7 @@ msgstr "Producto(s):"
 #. module: l10n_es_sigaus_account
 #: model:ir.ui.menu,name:l10n_es_sigaus_account.menu_l10n_es_sigaus
 msgid "SIGAUS"
-msgstr ""
+msgstr "SIGAUS"
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,help:l10n_es_sigaus_account.field_res_company__sigaus_date_from
@@ -266,12 +268,12 @@ msgstr "Es fecha SIGAUS"
 #. module: l10n_es_sigaus_account
 #: model:ir.model,name:l10n_es_sigaus_account.model_sigaus_line_mixin
 msgid "Sigaus Line Mixin"
-msgstr ""
+msgstr "Mezcla de Líneas Sigaus"
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model,name:l10n_es_sigaus_account.model_sigaus_mixin
 msgid "Sigaus Mixin"
-msgstr ""
+msgstr "Mezclador Sigaus"
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_account_fiscal_position__sigaus_subject
