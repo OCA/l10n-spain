@@ -1,0 +1,71 @@
+<odoo>
+<!-- Copyright 2024 Manuel Regidor <manuel.regidor@sygel.es>
+ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+    <template
+        id="l10n_es_sigaus_report_delivery_document"
+        inherit_id="stock_picking_report_valued.valued_report_picking"
+    >
+        <xpath expr="//span[@t-field='o.amount_untaxed']/../../../.." position="after">
+            <t
+                t-if="o.valued and o.sale_id and o.sale_id.is_sigaus and o.move_line_ids and is_outgoing"
+            >
+                <table class="table table-sm mt32" name="sigaus_valued">
+                    <thead>
+                        <tr>
+                            <th class="text-end"><strong
+                                >SIGAUS Untaxed Amount</strong></th>
+                            <th class="text-end"><strong>SIGAUS Taxes</strong></th>
+                            <th class="text-end"><strong>Total SIGAUS</strong></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-end">
+                                <span t-field="o.sigaus_amount_subtotal" />
+                            </td>
+                            <td class="text-end">
+                                <span t-field="o.sigaus_amount_tax" />
+                            </td>
+                            <td class="text-end">
+                                <span t-field="o.sigaus_amount_total" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="col-6 ms-auto">
+                    <table
+                        class="table table-sm"
+                        style="background-color: rgba(0, 0, 0, 0.2);"
+                        name="sigaus_total"
+                    >
+                        <tr>
+                            <td>
+                                <strong>Total Picking</strong>
+                            </td>
+                            <td class="text-end">
+                                <strong t-field="o.picking_total_with_sigaus" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+        </xpath>
+    </template>
+    <template
+        id="l10n_es_sigaus_stock_report_delivery_has_serial_move_line_sigaus"
+        inherit_id="stock.stock_report_delivery_has_serial_move_line"
+    >
+        <xpath expr="//span[@t-field='move_line.product_id']/.." position="inside">
+            <t
+                t-if="o.valued and o.sale_id and o.move_line_ids and is_outgoing and move_line.sigaus_amount_total"
+            >
+                <br /><span
+                    style="font-size: 70%; opacity: 0.7;"
+                >Aportación SIGAUS (RD 679/2006): <span
+                        t-field="move_line.sigaus_amount_total"
+                        t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"
+                    /></span>
+            </t>
+        </xpath>
+    </template>
+</odoo>
