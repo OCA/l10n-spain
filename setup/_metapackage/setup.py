@@ -48,6 +48,7 @@ setuptools.setup(
         'odoo-addon-l10n_es_sigaus_account>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_sigaus_purchase>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_sigaus_sale>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_es_sigaus_stock_picking_report_valued>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_ticketbai>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_ticketbai_api>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_ticketbai_api_batuz>=16.0dev,<16.1dev',
