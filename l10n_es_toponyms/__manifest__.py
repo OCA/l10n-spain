@@ -2,12 +2,12 @@
 # Copyright 2019 David Gómez <david.gomez@aselcis.com>
 # Copyright 2020 Jose Luis Algara <osotranquilo@gmail.com>
 # Copyright 2021 Tecnativa - João Marques
-# Copyright 2013-2022 Tecnativa - Pedro M. Baeza
+# Copyright 2013-2024 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Topónimos españoles",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "development_status": "Mature",
     "author": "Spanish Localization Team, "
     "ZikZakMedia, "
