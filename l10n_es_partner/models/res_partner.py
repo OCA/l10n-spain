@@ -29,6 +29,7 @@ class ResPartner(models.Model):
                     "name": partner.complete_name,
                     "comercial_name": partner.comercial,
                 }
+        return True
 
     @api.model
     def _commercial_fields(self):
