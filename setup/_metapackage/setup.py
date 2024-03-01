@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-l10n-spain Odoo addons",
     version=version,
     install_requires=[
+        'odoo-addon-delivery_gls_asm>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_account_asset>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_account_banking_sepa_fsdd>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_account_statement_import_n43>=16.0dev,<16.1dev',
