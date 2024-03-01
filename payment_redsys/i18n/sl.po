@@ -1,0 +1,270 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * payment_redsys
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-spain (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-27 18:55+0000\n"
+"PO-Revision-Date: 2016-09-09 11:33+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
+"language/sl/)\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
+
+#. module: payment_redsys
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_merchant_lang__005
+msgid "Alemán"
+msgstr ""
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/payment_transaction.py:0
+#, python-format
+msgid "Bank Error: %(status_code)s (%(error_code)s)"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_pay_method__z
+msgid "Bizum"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_merchant_lang__001
+msgid "Castellano"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_merchant_lang__003
+msgid "Catalán"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__code
+msgid "Code"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_currency
+msgid "Currency"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_pay_method__d
+msgid "Domiciliacion"
+msgstr ""
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/payment_transaction.py:0
+#, python-format
+msgid "Error: %(status_code)s (%(error_code)s)"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_merchant_lang__013
+msgid "Euskera"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_merchant_lang__004
+msgid "Francés"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_merchant_lang__012
+msgid "Gallego"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_signature_version__hmac_sha256_v1
+msgid "HMAC SHA256 V1"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_merchant_lang__006
+msgid "Holandés"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_merchant_lang__002
+msgid "Inglés"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_merchant_lang__007
+msgid "Italiano"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_merchant_lang
+msgid "Merchant Consumer Language"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_merchant_data
+msgid "Merchant Data"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_merchant_name
+msgid "Merchant Name"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_merchant_code
+msgid "Merchant code"
+msgstr ""
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/payment_transaction.py:0
+#, python-format
+msgid "Ok: %s"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_pay_method__t
+msgid "Pago con Tarjeta"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_pay_method__r
+msgid "Pago por Transferencia"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_pay_method
+msgid "Payment Method"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model,name:payment_redsys.model_account_payment_method
+msgid "Payment Methods"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model,name:payment_redsys.model_payment_provider
+msgid "Payment Provider"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model,name:payment_redsys.model_payment_transaction
+msgid "Payment Transaction"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_merchant_lang__011
+msgid "Polaco"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_merchant_lang__009
+msgid "Portugués"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_merchant_description
+msgid "Product Description"
+msgstr ""
+
+#. module: payment_redsys
+#: model:account.payment.method,name:payment_redsys.payment_method_redsys
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__code__redsys
+#: model:payment.provider,name:payment_redsys.payment_provider_redsys
+msgid "Redsys"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_signature_version
+msgid "Redsys Signature Version"
+msgstr ""
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/payment_transaction.py:0
+#, python-format
+msgid "Redsys: feedback error: %(status_code)s (%(error_code)s)"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_secret_key
+msgid "Secret Key"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_merchant_lang__008
+msgid "Sueco"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_terminal
+msgid "Terminal"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields,help:payment_redsys.field_payment_provider__code
+msgid "The technical code of this payment provider."
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_transaction__redsys_txnid
+msgid "Transaction ID"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_transaction_type
+msgid "Transtaction Type"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_merchant_lang__010
+msgid "Valenciano"
+msgstr ""
+
+#. module: payment_redsys
+#: model_terms:payment.provider,pre_msg:payment_redsys.payment_provider_redsys
+msgid ""
+"You will be redirected to the Redsys payment gateway after clicking on the "
+"payment button."
+msgstr ""
+
+#. module: payment_redsys
+#: model_terms:payment.provider,auth_msg:payment_redsys.payment_provider_redsys
+msgid "Your payment has been authorized."
+msgstr ""
+
+#. module: payment_redsys
+#: model_terms:payment.provider,cancel_msg:payment_redsys.payment_provider_redsys
+msgid "Your payment has been cancelled."
+msgstr ""
+
+#. module: payment_redsys
+#: model_terms:payment.provider,pending_msg:payment_redsys.payment_provider_redsys
+msgid ""
+"Your payment has been successfully processed but is waiting for approval."
+msgstr ""
+
+#. module: payment_redsys
+#: model_terms:payment.provider,done_msg:payment_redsys.payment_provider_redsys
+msgid "Your payment has been successfully processed. Thank you!"
+msgstr ""
+
+#~ msgid "Order"
+#~ msgstr "Nalog"
+
+#~ msgid "Taxes:"
+#~ msgstr "Davki:"
+
+#~ msgid "Untaxed Amount:"
+#~ msgstr "Neobdavčeni znesek"
+
+#~ msgid "Product"
+#~ msgstr "Proizvod"
