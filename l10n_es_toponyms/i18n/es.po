@@ -53,11 +53,6 @@ msgid "Import data from GeoNames"
 msgstr "Importar datos desde GeoNames"
 
 #. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms____last_update
-msgid "Last Modified on"
-msgstr "Modificado por última vez el"
-
-#. module: l10n_es_toponyms
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__write_uid
 msgid "Last Updated by"
 msgstr "Ultima actualización por"
@@ -97,3 +92,6 @@ msgid ""
 msgstr ""
 "¡Aviso! Añadir esta cantidad de registros puede tardar mucho tiempo. Si está "
 "detrás de un proxy SSL, compruebe el timeout."
+
+#~ msgid "Last Modified on"
+#~ msgstr "Modificado por última vez el"

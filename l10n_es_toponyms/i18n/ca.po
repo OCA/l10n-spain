@@ -55,11 +55,6 @@ msgid "Import data from GeoNames"
 msgstr ""
 
 #. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms____last_update
-msgid "Last Modified on"
-msgstr "Última modificació el"
-
-#. module: l10n_es_toponyms
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__write_uid
 msgid "Last Updated by"
 msgstr "Darrera Actualització per"
@@ -97,6 +92,9 @@ msgid ""
 "Warning! Adding this bunch of records can take a lot of time. If you are "
 "behind a SSL proxy, check your timeout."
 msgstr "Avís! Afegir més de 54000 codis postals pot tardar varis minuts."
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificació el"
 
 #~ msgid "Configure from GeoNames"
 #~ msgstr "Configurar de GeoNames"
