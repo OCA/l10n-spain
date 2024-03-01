@@ -1,0 +1,97 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_toponyms
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-13 17:36+0000\n"
+"PO-Revision-Date: 2017-04-13 17:36+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Spanish (Colombia) (https://www.transifex.com/oca/teams/23907/"
+"es_CO/)\n"
+"Language: es_CO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_es_toponyms
+#: model:ir.model,name:l10n_es_toponyms.model_config_es_toponyms
+msgid "Config ES Toponyms"
+msgstr ""
+
+#. module: l10n_es_toponyms
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_es_toponyms
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__create_date
+msgid "Created on"
+msgstr "Creado"
+
+#. module: l10n_es_toponyms
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__display_name
+msgid "Display Name"
+msgstr "Nombre Público"
+
+#. module: l10n_es_toponyms
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_toponyms
+#: model:ir.model,name:l10n_es_toponyms.model_city_zip_geonames_import
+msgid "Import City Zips from Geonames"
+msgstr ""
+
+#. module: l10n_es_toponyms
+#: model_terms:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
+msgid "Import data from GeoNames"
+msgstr ""
+
+#. module: l10n_es_toponyms
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: l10n_es_toponyms
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__write_uid
+msgid "Last Updated by"
+msgstr "Actualizado por"
+
+#. module: l10n_es_toponyms
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__write_date
+msgid "Last Updated on"
+msgstr "Actualizado"
+
+#. module: l10n_es_toponyms
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: l10n_es_toponyms
+#: model_terms:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
+msgid "Spanish cities configuration"
+msgstr ""
+
+#. module: l10n_es_toponyms
+#: model:ir.actions.act_window,name:l10n_es_toponyms.action_config_toponyms_es_form
+msgid "Spanish toponyms configuration"
+msgstr ""
+
+#. module: l10n_es_toponyms
+#: model_terms:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
+msgid "This wizard will add city and state information to zip codes"
+msgstr ""
+
+#. module: l10n_es_toponyms
+#: model_terms:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
+msgid ""
+"Warning! Adding this bunch of records can take a lot of time. If you are "
+"behind a SSL proxy, check your timeout."
+msgstr ""
