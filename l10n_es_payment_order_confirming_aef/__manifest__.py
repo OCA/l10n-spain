@@ -3,7 +3,7 @@
 
 {
     "name": "Exportación de fichero bancario Confirming estándar AEF",
-    "version": "16.0.1.0.2",
+    "version": "16.0.1.0.4",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "category": "Localisation/Accounting",
     "website": "https://github.com/OCA/l10n-spain",
