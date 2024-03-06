@@ -23,7 +23,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         "P_IVA21_IC_BC//2": (150, 0),
     }
 
-    def test_model_349(self):
+    def test_model_349_01(self):
         # Add some test data
         self.customer.write(
             {"vat": "BE0411905847", "country_id": self.env.ref("base.be").id}
@@ -152,7 +152,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         )
         self.assertEqual(a_record.total_operation_amount, 300)
         # Create a substitutive presentation for 2T 2017.
-        # We create a refund of p1, and a new sale
+        # We create a refund of p1 and p2 and a new sale
         self._invoice_refund(p1, "2017-04-01")
         self._invoice_sale_create("2017-04-01")
         model349_2t = model349_model.create(
@@ -210,3 +210,78 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         self.env.ref("l10n_es_aeat_mod349.act_report_aeat_mod349_pdf")._render(
             model349.ids
         )
+
+    def test_model_349_02(self):
+        """When we enter refunds in another period, the rectifications section must correctly
+        report the right amounts"""
+        # Add some test data
+        self.customer.write(
+            {"vat": "BE0411905847", "country_id": self.env.ref("base.be").id}
+        )
+        self.supplier.write(
+            {"vat": "BG0000100159", "country_id": self.env.ref("base.bg").id}
+        )
+        # Data for 1T 2017
+        # Purchase invoices
+        p1 = self._invoice_purchase_create("2017-01-01")
+        p2 = self._invoice_purchase_create("2017-01-02")
+        # Create model
+        model349_model = self.env["l10n.es.aeat.mod349.report"].with_user(
+            self.account_manager
+        )
+        model349_1t = model349_model.create(
+            {
+                "name": "3490000000001",
+                "company_id": self.company.id,
+                "company_vat": "1234567890",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": 2017,
+                "period_type": "1T",
+                "date_start": "2017-01-01",
+                "date_end": "2017-03-31",
+            }
+        )
+        # Calculate
+        _logger.debug("Calculate AEAT 349 1T 2017")
+        model349_1t.button_calculate()
+        self.assertEqual(model349_1t.total_partner_records, 1)
+        # p1 + p2 = 2400 + 2400 = 4800
+        self.assertEqual(model349_1t.total_partner_records_amount, 600.00)
+        self.assertEqual(model349_1t.total_partner_refunds, 0)
+        self.assertEqual(model349_1t.total_partner_refunds_amount, 0.0)
+        # Now create 2T 2017, refunding the first two bills
+        self._invoice_refund(p1, "2017-04-01")
+        self._invoice_refund(p2, "2017-04-02")
+        model349_2t = model349_model.create(
+            {
+                "name": "3490000000002",
+                "company_id": self.company.id,
+                "company_vat": "1234567890",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": 2017,
+                "period_type": "2T",
+                "date_start": "2017-04-01",
+                "date_end": "2017-06-30",
+            }
+        )
+        # Calculate
+        _logger.debug("Calculate AEAT 349 2T 2017")
+        model349_2t.button_calculate()
+        self.assertEqual(model349_2t.total_partner_records, 0)
+        # p1 + p2 -
+        self.assertEqual(model349_2t.total_partner_records_amount, 0.0)
+        self.assertEqual(model349_2t.total_partner_refunds, 1)
+        self.assertEqual(model349_2t.total_partner_refunds_amount, 600.0)
+        a_refund = model349_2t.partner_refund_ids.filtered(
+            lambda x: x.operation_key == "A"
+        )
+        self.assertEqual(len(a_refund), 1)
+        self.assertEqual(len(a_refund.refund_detail_ids), 4)
+        self.assertEqual(a_refund.total_origin_amount, 600.0)
+        self.assertEqual(a_refund.total_operation_amount, 0.0)
