@@ -23,13 +23,14 @@ msgstr ""
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_config__pos_device_ids
+#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_res_config_settings__pos_device_ids
 msgid "Available POS devices"
 msgstr ""
 
 #. module: l10n_es_pos_by_device
-#. openerp-web
-#: code:addons/l10n_es_pos_by_device/static/src/js/PaymentScreen.js:0
-#: code:addons/l10n_es_pos_by_device/static/src/js/Screens/Chrome/Chrome.js:0
+#. odoo-javascript
+#: code:addons/l10n_es_pos_by_device/static/src/js/PaymentScreen.esm.js:0
+#: code:addons/l10n_es_pos_by_device/static/src/js/Screens/Chrome/Chrome.esm.js:0
 #, python-format
 msgid "Cannot establish device. Clossing POS."
 msgstr ""
@@ -65,37 +66,23 @@ msgid "Device locked"
 msgstr ""
 
 #. module: l10n_es_pos_by_device
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_config__display_name
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__display_name
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_order__display_name
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_session__display_name
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_res_company__display_name
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: l10n_es_pos_by_device
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_config__id
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__id
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_order__id
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_session__id
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_res_company__id
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_res_config_settings__id
 msgid "ID"
 msgstr ""
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,help:l10n_es_pos_by_device.field_pos_config__pos_device_ids
+#: model:ir.model.fields,help:l10n_es_pos_by_device.field_res_config_settings__pos_device_ids
 msgid "If left empty, all devices will be selectable"
 msgstr ""
 
 #. module: l10n_es_pos_by_device
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_config____last_update
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device____last_update
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_order____last_update
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_session____last_update
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_res_company____last_update
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_res_config_settings____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -120,8 +107,8 @@ msgid "Name"
 msgstr ""
 
 #. module: l10n_es_pos_by_device
-#. openerp-web
-#: code:addons/l10n_es_pos_by_device/static/src/js/Screens/Chrome/DeviceName.js:0
+#. odoo-javascript
+#: code:addons/l10n_es_pos_by_device/static/src/js/Screens/Chrome/DeviceName.esm.js:0
 #, python-format
 msgid "No device"
 msgstr ""
@@ -135,7 +122,7 @@ msgstr ""
 #. module: l10n_es_pos_by_device
 #: model:ir.actions.act_window,name:l10n_es_pos_by_device.pos_devices_act_window
 #: model:ir.ui.menu,name:l10n_es_pos_by_device.pos_device_menu
-#: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.pos_config_view_form_by_device
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
 msgid "POS Physical devices"
 msgstr ""
 
@@ -168,14 +155,14 @@ msgid "Secuencing by physical device"
 msgstr ""
 
 #. module: l10n_es_pos_by_device
-#. openerp-web
-#: code:addons/l10n_es_pos_by_device/static/src/js/Screens/Chrome/Chrome.js:0
+#. odoo-javascript
+#: code:addons/l10n_es_pos_by_device/static/src/js/Screens/Chrome/Chrome.esm.js:0
 #, python-format
 msgid "Select Physical Device"
 msgstr ""
 
 #. module: l10n_es_pos_by_device
-#: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.pos_config_view_form_by_device
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
 msgid "Select available physical devices for this POS configuration"
 msgstr ""
 
@@ -205,15 +192,16 @@ msgid "Simplified Invoice prefix"
 msgstr ""
 
 #. module: l10n_es_pos_by_device
+#. odoo-python
 #: code:addons/l10n_es_pos_by_device/models/pos_config.py:0
 #, python-format
 msgid "There are no physical devices available. Cannot start session."
 msgstr ""
 
 #. module: l10n_es_pos_by_device
-#. openerp-web
-#: code:addons/l10n_es_pos_by_device/static/src/js/PaymentScreen.js:0
-#: code:addons/l10n_es_pos_by_device/static/src/js/Screens/Chrome/Chrome.js:0
+#. odoo-javascript
+#: code:addons/l10n_es_pos_by_device/static/src/js/PaymentScreen.esm.js:0
+#: code:addons/l10n_es_pos_by_device/static/src/js/Screens/Chrome/Chrome.esm.js:0
 #, python-format
 msgid "There was a connection error when trying to establish the device."
 msgstr ""
