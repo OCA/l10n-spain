@@ -21,7 +21,7 @@ pedidos en la sesión.
 
 En caso de pérdida de conexión + incidente en dispositivo (pérdida de batería,
 cierre de ventana o navegador): El dispositivo se queda bloqueado. Tiene que
-ser desbloqueado manualmente para volver a usarse. En caso entrar en la misma
+ser desbloqueado manualmente para volver a usarse. En caso de entrar en la misma
 sesión, los pedidos pendientes se incluirán en la misma sesión. En caso de ser
 una sesión diferente, serán incluidos en una sesión de rescate siguiendo el
 estándar de Odoo.

@@ -35,36 +35,6 @@
             </group>
         </field>
     </record>
-    <record id="pos_config_view_form_by_device" model="ir.ui.view">
-        <field name="name">PoS Config l10n_es_pos_by_device</field>
-        <field name="model">pos.config</field>
-        <field name="inherit_id" ref="l10n_es_pos.pos_config_view_form" />
-        <field name="arch" type="xml">
-            <field name="show_allow_invoicing_alert" position="after">
-                <field name="pos_sequence_by_device" invisible="1" />
-            </field>
-            <div id="l10n_es_pos_simp_seq" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'invisible': [('pos_sequence_by_device', '=', True)]}</attribute>
-            </div>
-            <div id="other_devices" position="after">
-                <div
-                    class="col-12 col-lg-6 o_setting_box"
-                    id="physical_pos_devices"
-                    attrs="{'invisible': [('pos_sequence_by_device', '=', False)]}"
-                >
-                    <div class="o_setting_right_pane">
-                        <label for="pos_device_ids" string="POS Physical devices" />
-                        <div class="text-muted mb16">
-                            Select available physical devices for this POS configuration
-                        </div>
-                        <field name="pos_device_ids" widget="many2many_tags" />
-                    </div>
-                </div>
-            </div>
-        </field>
-    </record>
     <!-- POS device act window -->
     <record model="ir.actions.act_window" id="pos_devices_act_window">
         <field name="name">POS Physical devices</field>

@@ -3,7 +3,7 @@
     <t t-name="DeviceName" owl="1">
         <div class="oe_status">
             <span class="devicename">
-                <t t-esc="devicename" />
+                <t t-out="devicename" />
             </span>
         </div>
     </t>

@@ -49,18 +49,9 @@ class PosConfig(models.Model):
 
     @api.depends("pos_sequence_by_device")
     def _compute_simplified_config(self):
+        # pylint: disable=missing-return
         super()._compute_simplified_config()
         for config in self:
             config.is_simplified_config = (
                 config.is_simplified_config or config.pos_sequence_by_device
             )
-
-
-class PosSession(models.Model):
-    _inherit = "pos.session"
-
-    def open_frontend_cb(self):
-        for session in self:
-            if session.config_id.pos_sequence_by_device:
-                session.config_id._check_available_devices()
-        return super(PosSession, self).open_frontend_cb()
