@@ -311,7 +311,10 @@ class AccountMove(models.Model):
                         vals.append(("SerieFactura", refund_origin_id.number_prefix))
                     vals.append(("NumFactura", refund_origin_id.number))
                     vals.append(
-                        ("FechaExpedicionFactura", refund_origin_id.expedition_date)
+                        (
+                            "FechaExpedicionFactura",
+                            self._change_date_format(refund_origin_id.expedition_date),
+                        )
                     )
 
                     origins.append(
