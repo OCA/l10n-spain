@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="l10n_es_aeat_mod349.aeat_349_map_line_A" model="aeat.349.map.line">
+        <field name="tax_tmpl_ids" eval="[
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva0_ic_a_1')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva0_ic_a_2')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva0_ic_a')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_ic_a_1')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_ic_a_2')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_ic_a')),]"
+            />
+    </record>
+    <record id="l10n_es_aeat_mod349.aeat_349_map_line_I" model="aeat.349.map.line">
+        <field name="tax_tmpl_ids" eval="[
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva0_ic_sc')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_ic_sc')),]"
+            />
+    </record>
+</odoo>
