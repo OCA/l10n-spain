@@ -371,7 +371,9 @@ class SiiMatchReport(models.Model):
             if sii_match_report.invoice_type == "in":
                 mapping_key = "in_invoice"
             serv = (
-                self.env["account.move"].search([], limit=1)._connect_sii(mapping_key)
+                self.env["account.move"]
+                .search([("company_id", "in", [self.company_id.id, False])], limit=1)
+                ._connect_sii(mapping_key)
             )
             header = sii_match_report._get_sii_header()
             match_vals = {}
