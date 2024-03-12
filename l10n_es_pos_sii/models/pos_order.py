@@ -63,17 +63,7 @@ class PosOrder(models.Model):
         return SII_VALID_POS_ORDER_STATES
 
     def _sii_get_partner(self):
-        partner = (
-            self.partner_id.commercial_partner_id
-            or self.session_id.config_id.default_partner_id
-        )
-        if not partner:
-            raise UserError(
-                _("You must define a default partner for POS {}").format(
-                    self.session_id.config_id.display_name,
-                )
-            )
-        return partner
+        return self.env["res.partner"].new({"name": "Cliente contado"})
 
     def _is_sii_simplified_invoice(self):
         return True
@@ -114,7 +104,7 @@ class PosOrder(models.Model):
                 line.order_id.pricelist_id.currency_id or self.session_id.currency_id,
                 line.qty,
                 product=line.product_id,
-                partner=line.order_id.partner_id or False,
+                partner=self._sii_get_partner(),
             )
             for line_tax in line_taxes["taxes"]:
                 tax = self.env["account.tax"].browse(line_tax["id"])
