@@ -214,20 +214,18 @@ class Mod349(models.Model):
                 [
                     ("move_line_id.move_id", "=", origin_invoice.id),
                     ("partner_record_id.operation_key", "=", op_key),
-                    ("id", "not in", visited_details.ids),
                 ],
                 order="report_id desc",
+                limit=1,
             )
-            # we add all of them to visited, as we don't want to repeat
-            visited_details |= original_details
-            if original_details:
+            origin_amount = 0.0
+            if original_details and original_details not in visited_details:
                 # There's at least one previous 349 declaration report
                 report = original_details.mapped("report_id")[:1]
                 partner_id = original_details.mapped("partner_id")[:1]
                 original_details = original_details.filtered(
                     lambda d: d.report_id == report
                 )
-                origin_amount = sum(original_details.mapped("amount_untaxed"))
                 period_type = report.period_type
                 year = str(report.year)
 
@@ -240,6 +238,7 @@ class Mod349(models.Model):
                     ],
                     order="report_id desc",
                 )
+                visited_details |= all_details_period
                 origin_amount = sum(all_details_period.mapped("amount_untaxed"))
 
                 # If there are intermediate periods between the original
@@ -269,7 +268,11 @@ class Mod349(models.Model):
                         origin_amount = (
                             last_refund_detail.refund_id.total_operation_amount
                         )
-
+            elif original_details and original_details in visited_details:
+                # This move corresponds to a period that has already been rectified
+                report = original_details.mapped("report_id")[:1]
+                period_type = report.period_type
+                year = str(report.year)
             else:
                 # There's no previous 349 declaration report in Odoo
                 original_amls = move_line_obj.search(
@@ -299,6 +302,8 @@ class Mod349(models.Model):
                     period_type = "%sT" % int(math.ceil(int(month) / 3.0))
                 else:
                     period_type = month
+            # we add all of them to visited, as we don't want to repeat
+            visited_details |= original_details
             key = (partner, op_key, period_type, year)
             key_vals = data.setdefault(
                 key, {"original_amount": 0, "refund_details": refund_detail_obj}
