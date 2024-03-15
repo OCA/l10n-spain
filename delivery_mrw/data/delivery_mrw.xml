@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+        <record id="mrw_carrier_test" model="delivery.carrier">
+        <field name="name">MRW Test</field>
+        <field name="delivery_type">mrw</field>
+        <field name="mrw_franquicia_code">00626</field>
+        <field name="mrw_department_code" />
+        <field name="mrw_client_code">008048</field>
+        <field name="mrw_username">SAGEC00626PORTAL</field>
+        <field name="mrw_password">SAGEC00626PORTAL</field>
+        <field name="product_id" ref="delivery.product_product_delivery" />
+    </record>
+</odoo>
