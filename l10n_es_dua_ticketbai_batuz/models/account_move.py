@@ -58,6 +58,7 @@ class AccountMove(models.Model):
         dua_fiscal_position_id = self._get_dua_fiscal_position_id(self.company_id)
         if (
             self.move_type == "in_invoice"
+            and dua_fiscal_position_id
             and self.fiscal_position_id.id == dua_fiscal_position_id
             and not self.tbai_dua_invoice
         ):
