@@ -1,11 +1,12 @@
 # Copyright 2015 AvanzOSC - Ainara Galdona
 # Copyright 2016 Tecnativa - Antonio Espinosa
 # Copyright 2015-2019 Tecnativa - Pedro M. Baeza
+# Copyright 2024 Trey - Roberto Lizana
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     'name': 'AEAT modelo 216',
-    'version': '12.0.2.4.0',
+    'version': '12.0.2.5.0',
     'category': "Localisation/Accounting",
     'author': "AvanzOSC,"
               "Tecnativa,"

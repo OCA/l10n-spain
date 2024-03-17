@@ -14,7 +14,7 @@
         <field name="field_type">base</field>
         <field name="sum_type">both</field>
         <field name="inverse" eval="True"/>
-        <field name="tax_ids" eval="[(6, False, [ref('l10n_es_irnr.account_tax_template_p_irpfnrnue24p'),ref('l10n_es_irnr.account_tax_template_p_irpfnrue19p')])]"/>
+        <field name="tax_ids" eval="[(6, False, [ref('l10n_es_irnr.account_tax_template_p_irpfnrnue24p'),ref('l10n_es_irnr.account_tax_template_p_irpfnrue19p'),ref('l10n_es_irnr.account_tax_template_p_irpfnrnue0p'),ref('l10n_es_irnr.account_tax_template_p_irpfnrue0p')])]"/>
     </record>
 
     <record id="aeat_mod216_map_line_03" model="l10n.es.aeat.map.tax.line">
@@ -24,7 +24,7 @@
         <field name="field_type">amount</field>
         <field name="sum_type">both</field>
         <field name="inverse" eval="False"/>
-        <field name="tax_ids" eval="[(6, False, [ref('l10n_es_irnr.account_tax_template_p_irpfnrnue24p'),ref('l10n_es_irnr.account_tax_template_p_irpfnrue19p')])]"/>
+        <field name="tax_ids" eval="[(6, False, [ref('l10n_es_irnr.account_tax_template_p_irpfnrnue24p'),ref('l10n_es_irnr.account_tax_template_p_irpfnrue19p'),ref('l10n_es_irnr.account_tax_template_p_irpfnrnue0p'),ref('l10n_es_irnr.account_tax_template_p_irpfnrue0p')])]"/>
     </record>
 
 </odoo>
