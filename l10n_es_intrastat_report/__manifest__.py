@@ -8,7 +8,7 @@
 
 {
     "name": "Intrastat Product Declaration for Spain",
-    "version": "16.0.1.3.1",
+    "version": "16.0.1.3.2",
     "category": "Intrastat",
     "license": "AGPL-3",
     "summary": "Spanish Intrastat Product Declaration",
