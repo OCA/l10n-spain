@@ -13,7 +13,7 @@
             <field name="period_type" position="after">
                 <field name="total_devengado" />
                 <field name="total_deducir" />
-                <field name="porcentaje_atribuible_estado" />
+                <field name="porcentaje_atribuible_estado" readonly="state == 'done'" />
                 <field name="resultado_liquidacion" />
             </field>
         </field>
@@ -24,39 +24,48 @@
         <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
         <field name="arch" type="xml">
             <field name="partner_bank_id" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'invisible': [('result_type', 'not in', ('D', 'V', 'X', 'I', 'G', 'U'))], 'required': [('result_type', 'in', ('D', 'V', 'X'))]}</attribute>
+                <attribute name="invisble">
+                    result_type  not in ('D', 'V', 'X', 'I', 'G', 'U')
+                </attribute>
+                <attribute name="required">
+                    result_type in ('D', 'V', 'X')
+                </attribute>
             </field>
             <field name="previous_number" position="after">
-                <field name="devolucion_mensual" />
+                <field name="devolucion_mensual" readonly="state == 'done'" />
                 <field
                     name="exonerated_390"
-                    attrs="{'invisible': [('period_type', 'not in', ('4T', '12'))]}"
+                    readonly="state != 'draft'"
+                    invisible="period_type not in ('4T', '12')"
                 />
             </field>
             <group name="group_declaration" position="after">
                 <group
                     string="Datos extra exonerados modelo 390"
                     name="group_exonerated_390"
-                    attrs="{'invisible': [('exonerated_390', '=', '2')]}"
+                    invisible="exonerated_390 == '2'"
                 >
                     <group>
                         <group string="Actividad principal" name="group_main_activity">
                             <field
                                 name="main_activity_code"
                                 widget="selection"
-                                attrs="{'required': [('exonerated_390', '!=', '2')]}"
+                                readonly="state == 'done'"
+                                required="exonerated_390 != '2'"
                             />
                             <field
                                 name="main_activity_iae"
-                                attrs="{'required': [('exonerated_390', '!=', '2')]}"
+                                readonly="state == 'done'"
+                                required="exonerated_390 != '2'"
                             />
                         </group>
                         <group name="group_others_390" string="Otros">
-                            <field name="has_operation_volume" />
-                            <field name="has_347" />
-                            <field name="is_voluntary_sii" />
+                            <field
+                                name="has_operation_volume"
+                                readonly="state != 'draft'"
+                            />
+                            <field name="has_347" readonly="state == 'done'" />
+                            <field name="is_voluntary_sii" readonly="state == 'done'" />
                         </group>
                     </group>
                     <group col="3">
@@ -66,9 +75,13 @@
                         >
                             <field
                                 name="other_first_activity_code"
+                                readonly="state == 'done'"
                                 widget="selection"
                             />
-                            <field name="other_first_activity_iae" />
+                            <field
+                                name="other_first_activity_iae"
+                                readonly="state == 'done'"
+                            />
                         </group>
                         <group
                             string="Otras - 2ª actividad"
@@ -76,9 +89,13 @@
                         >
                             <field
                                 name="other_second_activity_code"
+                                readonly="state == 'done'"
                                 widget="selection"
                             />
-                            <field name="other_second_activity_iae" />
+                            <field
+                                name="other_second_activity_iae"
+                                readonly="state == 'done'"
+                            />
                         </group>
                         <group
                             string="Otras - 3ª actividad"
@@ -86,9 +103,13 @@
                         >
                             <field
                                 name="other_third_activity_code"
+                                readonly="state == 'done'"
                                 widget="selection"
                             />
-                            <field name="other_third_activity_iae" />
+                            <field
+                                name="other_third_activity_iae"
+                                readonly="state == 'done'"
+                            />
                         </group>
                         <group
                             string="Otras - 4ª actividad"
@@ -96,9 +117,13 @@
                         >
                             <field
                                 name="other_fourth_activity_code"
+                                readonly="state == 'done'"
                                 widget="selection"
                             />
-                            <field name="other_fourth_activity_iae" />
+                            <field
+                                name="other_fourth_activity_iae"
+                                readonly="state == 'done'"
+                            />
                         </group>
                         <group
                             string="Otras - 5ª actividad"
@@ -106,16 +131,20 @@
                         >
                             <field
                                 name="other_fifth_activity_code"
+                                readonly="state == 'done'"
                                 widget="selection"
                             />
-                            <field name="other_fifth_activity_iae" />
+                            <field
+                                name="other_fifth_activity_iae"
+                                readonly="state == 'done'"
+                            />
                         </group>
                     </group>
                 </group>
                 <group
                     string="Resultado"
                     name="group_result"
-                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    invisible="state == 'draft'"
                     col="3"
                 >
                     <group>
@@ -136,7 +165,10 @@
                         />
                     </group>
                     <group>
-                        <field name="porcentaje_atribuible_estado" />
+                        <field
+                            name="porcentaje_atribuible_estado"
+                            readonly="state == 'done'"
+                        />
                         <field
                             name="atribuible_estado"
                             widget="monetary"
@@ -144,11 +176,13 @@
                         />
                         <field
                             name="potential_cuota_compensar"
+                            readonly="state == 'done'"
                             widget="monetary"
                             options="{'currency_field': 'currency_id'}"
                         />
                         <field
                             name="cuota_compensar"
+                            readonly="state == 'done'"
                             widget="monetary"
                             options="{'currency_field': 'currency_id'}"
                         />
@@ -162,8 +196,8 @@
                         <field
                             name="regularizacion_anual"
                             widget="monetary"
+                            readonly="period_type not in ('4T', '12') or state == 'done'"
                             options="{'currency_field': 'currency_id'}"
-                            attrs="{'readonly': [('period_type', 'not in', ('4T', '12'))]}"
                         />
                         <field
                             name="casilla_77"
@@ -178,39 +212,37 @@
                         <field
                             name="previous_result"
                             widget="monetary"
+                            readonly="statement_type != 'C' or state == 'done'"
+                            required="statement_type == 'C'"
                             options="{'currency_field': 'currency_id'}"
-                            attrs="{'readonly': [('statement_type', '!=', 'C')], 'required': [('statement_type', '=', 'C')]}"
                         />
                     </group>
-                <group
+                    <group
                         class="oe_subtotal_footer oe_right"
-                        attrs="{'invisible': [('state', '=', 'draft')]}"
+                        invisible="state == 'draft'"
                         colspan="2"
                     >
-                    <field
+                        <field
                             name="resultado_liquidacion"
                             widget="monetary"
                             options="{'currency_field': 'currency_id'}"
                         />
-                    <field
+                        <field
                             name="casilla_88"
                             class="oe_subtotal_footer_separator"
                             widget="monetary"
-                            attrs="{'invisible': [('exonerated_390', '=', '2')]}"
+                            invisible="exonerated_390 == '2'"
                             options="{'currency_field': 'currency_id'}"
                         />
                     <field name="result_type" />
                 </group>
                 </group>
-                <separator
-                    string="Tax lines"
-                    attrs="{'invisible': [('state', '=', 'draft')]}"
-                />
+                <separator string="Tax lines" invisible="state == 'draft'" />
                     <field
                     name="tax_line_ids"
                     nolabel="1"
                     readonly="1"
-                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    invisible="state == 'draft'"
                 />
             </group>
             <form position="inside">
