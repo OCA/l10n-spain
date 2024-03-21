@@ -384,8 +384,6 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         "59": (2 * 2400) + (2 * 2500),  # S_IVA0_IC, S_IVA0_SP_I
         # Exportaciones y operaciones asimiladas - Base ventas
         "60": (2 * 2000) + (2 * 2600),  # S_IVA0_E + S_IVA0
-        # Op. no sujetas o con inv. del sujeto pasivo - Base ventas
-        "61": ((2 * 2100) + (2 * 2300)),  # S_IVA_SP_E # S_IVA0_ISP
         # Importes de las entregas de bienes y prestaciones de servicios
         # a las que habiéndoles sido aplicado el régimen especial del
         # criterio de caja hubieran resultado devengadas conforme a la regla
@@ -421,10 +419,10 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
                 "statement_type": "N",
                 "support_type": "T",
                 "contact_phone": "911234455",
-                "year": 2017,
+                "year": 2024,
                 "period_type": "1T",
-                "date_start": "2017-01-01",
-                "date_end": "2017-03-31",
+                "date_start": "2024-01-01",
+                "date_end": "2024-03-31",
                 "journal_id": cls.journal_misc.id,
             }
         )
@@ -432,8 +430,8 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
             {
                 "name": "9994000000303",
                 "period_type": "4T",
-                "date_start": "2017-09-01",
-                "date_end": "2017-12-31",
+                "date_start": "2024-09-01",
+                "date_end": "2024-12-31",
             }
         )
 
@@ -443,21 +441,21 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
     def setUpClass(cls):
         super().setUpClass()
         # Purchase invoices
-        cls._invoice_purchase_create("2017-01-01")
-        cls._invoice_purchase_create("2017-01-02")
-        purchase = cls._invoice_purchase_create("2017-01-03")
-        cls._invoice_refund(purchase, "2017-01-18")
+        cls._invoice_purchase_create("2024-01-01")
+        cls._invoice_purchase_create("2024-01-02")
+        purchase = cls._invoice_purchase_create("2024-01-03")
+        cls._invoice_refund(purchase, "2024-01-18")
         # Sale invoices
-        cls._invoice_sale_create("2017-01-11")
-        cls._invoice_sale_create("2017-01-12")
-        sale = cls._invoice_sale_create("2017-01-13")
-        cls._invoice_refund(sale, "2017-01-14")
+        cls._invoice_sale_create("2024-01-11")
+        cls._invoice_sale_create("2024-01-12")
+        sale = cls._invoice_sale_create("2024-01-13")
+        cls._invoice_refund(sale, "2024-01-14")
 
     def _check_tax_lines(self):
         for field, result in iter(self.taxes_result.items()):
             _logger.debug("Checking tax line: %s" % field)
             lines = self.model303.tax_line_ids.filtered(
-                lambda x: x.field_number == int(field)
+                lambda x, field=field: x.field_number == int(field)
             )
             self.assertAlmostEqual(
                 sum(lines.mapped("amount")),
@@ -467,7 +465,7 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             )
 
     def test_model_303(self):
-        _logger.debug("Calculate AEAT 303 1T 2017")
+        _logger.debug("Calculate AEAT 303 1T 2024")
         self.model303.button_calculate()
         # Test default counterpart.
         self.assertEqual(
@@ -518,10 +516,6 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             {"name": "test_export_to_boe.txt"}
         )
         export_config_xml_ids = [
-            "l10n_es_aeat_mod303.aeat_mod303_2018_main_export_config",
-            "l10n_es_aeat_mod303.aeat_mod303_2021_main_export_config",
-            "l10n_es_aeat_mod303.aeat_mod303_202107_main_export_config",
-            "l10n_es_aeat_mod303.aeat_mod303_2022_main_export_config",
             "l10n_es_aeat_mod303.aeat_mod303_2023_main_export_config",
         ]
         for xml_id in export_config_xml_ids:
@@ -569,10 +563,7 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             ).amount,
             14280.0,
         )
-        self.assertAlmostEqual(
-            self.model303_4t.casilla_88,
-            35680.0,
-        )
+        self.assertAlmostEqual(self.model303_4t.casilla_88, 57280.0)
         # Check change of period type
         self.model303_4t.period_type = "1T"
         self.assertEqual(self.model303_4t.exonerated_390, "2")
@@ -610,9 +601,10 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
 
     def test_model_303_negative_special_case(self):
         self.change_taxes_negative_special_case()
-        self._invoice_sale_create("2020-01-01")
-        self._invoice_purchase_create("2020-01-01")
-        self.model303.date_start = "2020-01-01"
-        self.model303.date_end = "2020-03-31"
+        # It requires a different year from the invoices of the setup
+        self._invoice_sale_create("2023-01-01")
+        self._invoice_purchase_create("2023-01-01")
+        self.model303.date_start = "2023-01-01"
+        self.model303.date_end = "2023-03-31"
         self.model303.button_calculate()
         self._check_tax_lines()

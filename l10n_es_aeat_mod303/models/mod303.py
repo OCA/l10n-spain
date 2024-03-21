@@ -18,14 +18,6 @@ _ACCOUNT_PATTERN_MAP = {
     "G": "4750",
     "U": "4750",
 }
-NON_EDITABLE_ON_DONE = {"done": [("readonly", True)]}
-NON_EDITABLE_EXCEPT_DRAFT = {
-    "done": [("readonly", True)],
-    "calculated": [("readonly", True)],
-    "posted": [("readonly", True)],
-    "cancelled": [("readonly", True)],
-}
-EDITABLE_ON_DRAFT = {"draft": [("readonly", False)]}
 ACTIVITY_CODE_DOMAIN = (
     "["
     "   '|',"
@@ -45,7 +37,6 @@ class L10nEsAeatMod303Report(models.Model):
 
     devolucion_mensual = fields.Boolean(
         string="Montly Return",
-        states=NON_EDITABLE_ON_DONE,
         help="Registered in the Register of Monthly Return",
     )
     total_devengado = fields.Float(
@@ -72,7 +63,6 @@ class L10nEsAeatMod303Report(models.Model):
     porcentaje_atribuible_estado = fields.Float(
         string="[65] % attributable to State",
         default=100,
-        states=NON_EDITABLE_ON_DONE,
         help="Taxpayers who pay jointly to the Central Government and "
         "the Provincial Councils of the Basque Country or the "
         "Autonomous Community of Navarra, will enter in this box the "
@@ -88,12 +78,10 @@ class L10nEsAeatMod303Report(models.Model):
     potential_cuota_compensar = fields.Float(
         string="[110] Pending fees to compensate",
         default=0,
-        states=NON_EDITABLE_ON_DONE,
     )
     cuota_compensar = fields.Float(
         string="[78] Applied fees to compensate (old [67])",
         default=0,
-        states=NON_EDITABLE_ON_DONE,
         help="Fee to compensate for prior periods, in which his statement "
         "was to return and compensation back option was chosen",
     )
@@ -103,7 +91,6 @@ class L10nEsAeatMod303Report(models.Model):
     )
     regularizacion_anual = fields.Float(
         string="[68] Annual regularization",
-        states=NON_EDITABLE_ON_DONE,
         compute="_compute_regularizacion_anual",
         readonly=False,
         store=True,
@@ -135,7 +122,6 @@ class L10nEsAeatMod303Report(models.Model):
         string="[70] To be deducted",
         help="Result of the previous or prior statements of the same concept, "
         "exercise and period",
-        states=NON_EDITABLE_ON_DONE,
     )
     resultado_liquidacion = fields.Float(
         string="[71] Settlement result",
@@ -169,7 +155,6 @@ class L10nEsAeatMod303Report(models.Model):
         selection=[("1", "Exonerado"), ("2", "No exonerado")],
         default="2",
         required=True,
-        states=NON_EDITABLE_EXCEPT_DRAFT,
         compute="_compute_exonerated_390",
         store=True,
         readonly=False,
@@ -180,14 +165,11 @@ class L10nEsAeatMod303Report(models.Model):
     has_operation_volume = fields.Boolean(
         string="¿Volumen de operaciones?",
         default=True,
-        readonly=True,
-        states=EDITABLE_ON_DRAFT,
         help="¿Existe volumen de operaciones (art. 121 LIVA)?",
     )
     has_347 = fields.Boolean(
         string="¿Obligación del 347?",
         default=True,
-        states=NON_EDITABLE_ON_DONE,
         help="Marque la casilla si el sujeto pasivo ha efectuado con alguna "
         "persona o entidad operaciones por las que tenga obligación de "
         "presentar la declaración anual de operaciones con terceras "
@@ -195,74 +177,61 @@ class L10nEsAeatMod303Report(models.Model):
     )
     is_voluntary_sii = fields.Boolean(
         string="¿SII voluntario?",
-        states=NON_EDITABLE_ON_DONE,
         help="¿Ha llevado voluntariamente los Libros registro del IVA a "
         "través de la Sede electrónica de la AEAT durante el ejercicio?",
     )
     main_activity_code = fields.Many2one(
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
         domain=ACTIVITY_CODE_DOMAIN,
-        states=NON_EDITABLE_ON_DONE,
         string="Código actividad principal",
     )
     main_activity_iae = fields.Char(
-        states=NON_EDITABLE_ON_DONE,
         string="Epígrafe I.A.E. actividad principal",
         size=4,
     )
     other_first_activity_code = fields.Many2one(
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
         domain=ACTIVITY_CODE_DOMAIN,
-        states=NON_EDITABLE_ON_DONE,
         string="Código 1ª actividad",
     )
     other_first_activity_iae = fields.Char(
         string="Epígrafe I.A.E. 1ª actividad",
-        states=NON_EDITABLE_ON_DONE,
         size=4,
     )
     other_second_activity_code = fields.Many2one(
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
         domain=ACTIVITY_CODE_DOMAIN,
-        states=NON_EDITABLE_ON_DONE,
         string="Código 2ª actividad",
     )
     other_second_activity_iae = fields.Char(
         string="Epígrafe I.A.E. 2ª actividad",
-        states=NON_EDITABLE_ON_DONE,
         size=4,
     )
     other_third_activity_code = fields.Many2one(
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
         domain=ACTIVITY_CODE_DOMAIN,
-        states=NON_EDITABLE_ON_DONE,
         string="Código 3ª actividad",
     )
     other_third_activity_iae = fields.Char(
         string="Epígrafe I.A.E. 3ª actividad",
-        states=NON_EDITABLE_ON_DONE,
         size=4,
     )
     other_fourth_activity_code = fields.Many2one(
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
         domain=ACTIVITY_CODE_DOMAIN,
-        states=NON_EDITABLE_ON_DONE,
         string="Código 4ª actividad",
     )
     other_fourth_activity_iae = fields.Char(
         string="Epígrafe I.A.E. 4ª actividad",
-        states=NON_EDITABLE_ON_DONE,
         size=4,
     )
     other_fifth_activity_code = fields.Many2one(
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
         domain=ACTIVITY_CODE_DOMAIN,
-        states=NON_EDITABLE_ON_DONE,
         string="Código 5ª actividad",
     )
     other_fifth_activity_iae = fields.Char(
         string="Epígrafe I.A.E. 5ª actividad",
-        states=NON_EDITABLE_ON_DONE,
         size=4,
     )
     casilla_88 = fields.Float(
