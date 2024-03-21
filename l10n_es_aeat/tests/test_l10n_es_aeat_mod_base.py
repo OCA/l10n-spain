@@ -1,4 +1,6 @@
-# © 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2016 Tecnativa - Antonio Espinosa
+# Copyright 2022 Sygel - Valentín Vinagre
+# Copyright 2021-2024 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
 import logging
@@ -100,16 +102,13 @@ class TestL10nEsAeatModBase(common.TransactionCase):
         taxes = cls.env["account.tax"]
         for desc in descs.split(","):
             parts = desc.split(".")
-            module = parts[0] if len(parts) > 1 else "l10n_es_aeat"
             xml_id = parts[1] if len(parts) > 1 else parts[0]
             if xml_id.lower() != xml_id and len(parts) == 1:
                 # shortcut for not changing existing tests with old codes
                 xml_id = "account_tax_template_" + xml_id.lower()
-            tax_template = cls.env.ref(f"{module}.{xml_id}", raise_if_not_found=False)
-            if tax_template:
-                tax = cls.company.get_taxes_from_templates(tax_template)
-                taxes |= tax
-            if not tax_template or not tax:
+            tax_id = cls.company._get_tax_id_from_xmlid(xml_id)
+            taxes |= cls.env["account.tax"].browse(tax_id)
+            if not tax_id:
                 _logger.error(f"Tax not found: {desc}")
         return taxes
 

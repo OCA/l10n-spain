@@ -252,14 +252,6 @@ class L10nEsAeatReport(models.AbstractModel):
                     )
                 )
 
-    def get_taxes_from_templates(self, tax_templates):
-        company = self.company_id or self.env.user.company_id
-        return company.get_taxes_from_templates(tax_templates)
-
-    def get_account_from_template(self, account_template):
-        company = self.company_id or self.env.user.company_id
-        return company.get_account_from_template(account_template)
-
     @api.onchange("company_id")
     def onchange_company_id(self):
         """Load some company data (the VAT number) when company changes."""
@@ -297,7 +289,8 @@ class L10nEsAeatReport(models.AbstractModel):
                         f"{report.year}-{starting_month}-01"
                     )
                     report.date_end = fields.Date.to_date(
-                        f"{report.year}-{ending_month}-{monthrange(report.year, ending_month)[1]}"
+                        f"{report.year}-{ending_month}-"
+                        f"{monthrange(report.year, ending_month)[1]}"
                     )
                 elif report.period_type in (
                     "01",

@@ -30,75 +30,42 @@ class ResCompany(models.Model):
                 _logger.debug(e)
         return companies
 
-    @ormcache("tax_template", "company")
-    def _get_tax_id_from_tax_template(self, tax_template, company):
-        """Low level cached search for a tax given its tax template and
-        company.
-        """
+    @ormcache("self", "xmlid")
+    def _get_tax_id_from_xmlid(self, xmlid):
+        """Low level cached search for a tax given its template XML-ID and company."""
+        self.ensure_one()
         return (
-            tax_template
+            xmlid
             and self.sudo()
             .env["ir.model.data"]
             .search(
                 [
                     ("model", "=", "account.tax"),
-                    ("module", "=", "account"),
-                    ("name", "=", f"{company.id}_{tax_template.xmlid}"),
+                    ("module", "=", "account"),  # All is registered under this module
+                    ("name", "=", f"{self.id}_{xmlid}"),
                 ]
             )
             .res_id
             or False
         )
 
-    @ormcache("account_template", "company")
-    def _get_account_id_from_account_template(self, account_template, company):
+    @ormcache("self", "xmlid")
+    def _get_account_id_from_xmlid(self, xmlid):
         """Low level cached search for a tax given its account template and
         company.
         """
-        xmlids = (
-            self.sudo()
-            .env["ir.model.data"]
-            .search_read(
-                [
-                    ("model", "=", "account.account.template"),
-                    ("res_id", "=", account_template.id),
-                ],
-                ["name", "module"],
-            )
-        )
+        self.ensure_one()
         return (
-            xmlids
+            xmlid
             and self.sudo()
             .env["ir.model.data"]
             .search(
                 [
                     ("model", "=", "account.account"),
-                    ("module", "=", xmlids[0]["module"]),
-                    ("name", "=", "{}_{}".format(company.id, xmlids[0]["name"])),
+                    ("module", "=", "account"),  # All is registered under this module
+                    ("name", "=", f"{self.id}_{xmlid}"),
                 ]
             )
             .res_id
             or False
         )
-
-    def get_taxes_from_templates(self, tax_templates):
-        """Return company taxes that match the given tax templates."""
-        self.ensure_one()
-        tax_ids = []
-        # We need to rebrowse the records to avoid a problem with the ormcache
-        # and virtual records that populate m2m as NewId.
-        for tmpl in self.env["aeat.tax"].browse(tax_templates.ids):
-            tax_id = self._get_tax_id_from_tax_template(tmpl, self)
-            if tax_id:
-                tax_ids.append(tax_id)
-        return self.env["account.tax"].browse(tax_ids)
-
-    def get_account_from_template(self, account_template):
-        """Return company account that match the given account template."""
-        self.ensure_one()
-        account_id = []
-        if account_template:
-            account_id = self._get_account_id_from_account_template(
-                account_template, self
-            )
-        return self.env["account.account"].browse(account_id or [])

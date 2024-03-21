@@ -41,8 +41,8 @@
                 <field name="field_number" />
                 <field name="name" />
                 <field name="to_regularize" />
-                <field name="tax_ids" widget="many2many_tags" />
-                <field name="account_id" />
+                <field name="tax_xmlid_ids" widget="many2many_tags" />
+                <field name="account_xmlid_ids" widget="many2many_tags" />
                 <field name="move_type" />
                 <field name="field_type" />
                 <field name="sum_type" />
@@ -63,8 +63,8 @@
                         <field name="inverse" />
                     </group>
                     <group>
-                        <field name="tax_ids" widget="many2many_tags" />
-                        <field name="account_id" />
+                        <field name="tax_xmlid_ids" widget="many2many_tags" />
+                        <field name="account_xmlid_ids" widget="many2many_tags" />
                         <field name="move_type" />
                         <field name="field_type" />
                         <field name="sum_type" />

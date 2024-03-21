@@ -7,7 +7,7 @@
         <field name="sequence" eval="4" />
         <field
             name="parent_id"
-            search="[('child_id', 'in', ref('account.menu_finance_receivables'))]"
+            search="[('child_id', 'in', ref('account.menu_finance_entries'))]"
         />
         <field name="groups_id" eval="[(4, ref('group_account_aeat'))]" />
     </record>
