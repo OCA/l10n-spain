@@ -10,9 +10,11 @@ class L10nEsAeatMapTaxLine(models.Model):
     _description = "AEAT tax mapping line"
 
     field_number = fields.Integer(required=True)
-    tax_ids = fields.Many2many(comodel_name="aeat.tax", string="Taxes templates")
-    account_id = fields.Many2one(
-        comodel_name="aeat.account",
+    tax_xmlid_ids = fields.Many2many(
+        comodel_name="l10n.es.aeat.map.tax.line.tax", string="Taxes templates"
+    )
+    account_xmlid_ids = fields.Many2many(
+        comodel_name="l10n.es.aeat.map.tax.line.account",
         string="Account Template",
     )
     name = fields.Char(required=True)
@@ -50,3 +52,39 @@ class L10nEsAeatMapTaxLine(models.Model):
     )
     inverse = fields.Boolean(string="Inverse summarize sign", default=False)
     to_regularize = fields.Boolean()
+
+    def get_taxes_for_company(self, company):
+        """Obtain the taxes corresponding to this line according the given company."""
+        self.ensure_one()
+        tax_ids = set()
+        for tax_xmlid in self.tax_xmlid_ids:
+            tax_id = company._get_tax_id_from_xmlid(tax_xmlid.name)
+            if tax_id:
+                tax_ids.add(tax_id)
+        return self.env["account.tax"].browse(list(tax_ids))
+
+    def get_accounts_for_company(self, company):
+        """Obtain the accounts corresponding to the line according the given company."""
+        self.ensure_one()
+        account_ids = set()
+        for account_xmlid in self.account_xmlid_ids:
+            account_id = company._get_account_id_from_xmlid(account_xmlid.name)
+            if account_id:
+                account_ids.add(account_id)
+        return self.env["account.account"].browse(list(account_ids))
+
+
+class L10nEsAeatMapTaxLineTax(models.Model):
+    _name = "l10n.es.aeat.map.tax.line.tax"
+    _order = "name, id"
+    _description = "AEAT tax mapping line - Tax"
+
+    name = fields.Char()
+
+
+class L10nEsAeatMapTaxLineAccount(models.Model):
+    _name = "l10n.es.aeat.map.tax.line.account"
+    _order = "name, id"
+    _description = "AEAT tax mapping line - Account"
+
+    name = fields.Char()
