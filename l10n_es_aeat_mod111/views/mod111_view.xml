@@ -24,14 +24,14 @@
         <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
         <field name="arch" type="xml">
             <field name="previous_number" position="after">
-                <field name="tipo_declaracion" />
-                <field name="colegio_concertado" />
+                <field name="tipo_declaracion" readonly="state != 'calculated'" />
+                <field name="colegio_concertado" readonly="state != 'calculated'" />
             </field>
             <group name="group_declaration" position="after">
                 <group
                     string="Result"
                     name="group_result"
-                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    invisible="state == 'draft'"
                     colspan="4"
                 >
                     <group string="Work income">
@@ -41,10 +41,7 @@
                             class="oe_force_bold"
                             colspan="2"
                         />
-                        <field
-                            name="casilla_01"
-                            attrs="{'readonly': [('state', '!=', 'calculated')]}"
-                        />
+                        <field name="casilla_01" readonly="state != 'calculated'" />
                         <field name="casilla_02" />
                         <field name="casilla_03" />
                         <separator />
@@ -54,10 +51,7 @@
                             class="oe_force_bold"
                             colspan="2"
                         />
-                        <field
-                            name="casilla_04"
-                            attrs="{'readonly': [('state', '!=', 'calculated')]}"
-                        />
+                        <field name="casilla_04" readonly="state != 'calculated'" />
                         <field name="casilla_05" />
                         <field name="casilla_06" />
                     </group>
@@ -68,10 +62,7 @@
                             class="oe_force_bold"
                             colspan="2"
                         />
-                        <field
-                            name="casilla_07"
-                            attrs="{'readonly': [('state', '!=', 'calculated')]}"
-                        />
+                        <field name="casilla_07" readonly="state != 'calculated'" />
                         <field name="casilla_08" />
                         <field name="casilla_09" />
                         <separator />
@@ -81,10 +72,7 @@
                             class="oe_force_bold"
                             colspan="2"
                         />
-                        <field
-                            name="casilla_10"
-                            attrs="{'readonly': [('state', '!=', 'calculated')]}"
-                        />
+                        <field name="casilla_10" readonly="state != 'calculated'" />
                         <field name="casilla_11" />
                         <field name="casilla_12" />
                     </group>
@@ -95,9 +83,9 @@
                             class="oe_force_bold"
                             colspan="2"
                         />
-                        <field name="casilla_13" />
-                        <field name="casilla_14" />
-                        <field name="casilla_15" />
+                        <field name="casilla_13" readonly="state != 'calculated'" />
+                        <field name="casilla_14" readonly="state != 'calculated'" />
+                        <field name="casilla_15" readonly="state != 'calculated'" />
                         <separator />
                         <label
                             string="In kind:"
@@ -105,9 +93,9 @@
                             class="oe_force_bold"
                             colspan="2"
                         />
-                        <field name="casilla_16" />
-                        <field name="casilla_17" />
-                        <field name="casilla_18" />
+                        <field name="casilla_16" readonly="state != 'calculated'" />
+                        <field name="casilla_17" readonly="state != 'calculated'" />
+                        <field name="casilla_18" readonly="state != 'calculated'" />
                     </group>
                     <group string="Capital gains derived from the forest exploitation">
                         <label
@@ -116,9 +104,9 @@
                             class="oe_force_bold"
                             colspan="2"
                         />
-                        <field name="casilla_19" />
-                        <field name="casilla_20" />
-                        <field name="casilla_21" />
+                        <field name="casilla_19" readonly="state != 'calculated'" />
+                        <field name="casilla_20" readonly="state != 'calculated'" />
+                        <field name="casilla_21" readonly="state != 'calculated'" />
                         <separator />
                         <label
                             string="In kind:"
@@ -126,25 +114,25 @@
                             class="oe_force_bold"
                             colspan="2"
                         />
-                        <field name="casilla_22" />
-                        <field name="casilla_23" />
-                        <field name="casilla_24" />
+                        <field name="casilla_22" readonly="state != 'calculated'" />
+                        <field name="casilla_23" readonly="state != 'calculated'" />
+                        <field name="casilla_24" readonly="state != 'calculated'" />
                     </group>
                     <group string="Consideration for the transfer of image rights">
-                        <field name="casilla_25" />
-                        <field name="casilla_26" />
-                        <field name="casilla_27" />
+                        <field name="casilla_25" readonly="state != 'calculated'" />
+                        <field name="casilla_26" readonly="state != 'calculated'" />
+                        <field name="casilla_27" readonly="state != 'calculated'" />
                     </group>
                     <group string="Totals">
                         <field name="casilla_28" />
-                        <field name="casilla_29" />
+                        <field name="casilla_29" readonly="state != 'calculated'" />
                         <field name="casilla_30" />
                     </group>
                     <group
                         string="Tax lines"
                         name="group_tax_lines"
                         colspan="4"
-                        attrs="{'invisible': [('state', '=', 'draft')]}"
+                        invisible="state == 'draft'"
                     >
                         <field
                             name="tax_line_ids"
