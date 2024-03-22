@@ -14,3 +14,4 @@
 * `Sygel <https://www.sygel.es>`_:
 
   * Manuel Regidor
+  * Alejandro Ji Cheung (https://factorlibre.com)
