@@ -1,0 +1,31 @@
+<odoo>
+    <record
+        id="view_l10n_es_aeat_mod303_report_activity_code_data_tree"
+        model="ir.ui.view"
+    >
+        <field name="model">l10n.es.aeat.mod303.report.activity.code</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="period_type" />
+                <field name="code" />
+                <field name="name" />
+                <field name="date_start" />
+                <field name="date_end" />
+            </tree>
+        </field>
+    </record>
+    <record
+        id="action_l10n_es_aeat_mod303_report_activity_code"
+        model="ir.actions.act_window"
+    >
+        <field name="name">AEAT model 303</field>
+        <field name="res_model">l10n.es.aeat.mod303.report.activity.code</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <menuitem
+        id="menu_aeat_mod303_report_activity_code"
+        parent="l10n_es_aeat.menu_l10n_es_aeat_config"
+        action="action_l10n_es_aeat_mod303_report_activity_code"
+        name="AEAT 303 activity codes"
+    />
+</odoo>
