@@ -171,7 +171,7 @@ class L10nEsAeatMod347Report(models.Model):
                 error += "\n".join(real_state_errors)
             if partner_errors or real_state_errors:
                 raise exceptions.ValidationError(error)
-        return super(L10nEsAeatMod347Report, self).button_confirm()
+        return super().button_confirm()
 
     def button_send_mails(self):
         self.partner_record_ids.filtered(

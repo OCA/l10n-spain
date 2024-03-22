@@ -18,6 +18,6 @@ class ResPartner(models.Model):
 
     @api.model
     def _commercial_fields(self):
-        res = super(ResPartner, self)._commercial_fields()
+        res = super()._commercial_fields()
         res += ["not_in_mod347"]
         return res
