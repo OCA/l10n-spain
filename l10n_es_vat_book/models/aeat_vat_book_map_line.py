@@ -24,16 +24,30 @@ class AeatVatBookMapLines(models.Model):
     )
     fee_type_xlsx_column = fields.Char(string="Type xlsx column")
     fee_amount_xlsx_column = fields.Char(string="Base xlsx column")
-    tax_tmpl_ids = fields.Many2many(
-        comodel_name="account.tax.template",
-        string="Taxes",
+    tax_xmlid_ids = fields.Many2many(
+        comodel_name="l10n.es.aeat.map.tax.line.tax", string="Taxes"
     )
-    tax_account_id = fields.Many2one(
-        comodel_name="account.account.template",
+    account_xmlid_id = fields.Many2one(
+        comodel_name="l10n.es.aeat.map.tax.line.account",
         string="Tax Account Restriction",
     )
     tax_agency_ids = fields.Many2many("aeat.tax.agency", string="Tax Agency")
 
-    def get_taxes(self, report):
+    def get_taxes_for_company(self, company):
+        """Obtain the taxes corresponding to this line according the given company."""
         self.ensure_one()
-        return report.get_taxes_from_templates(self.tax_tmpl_ids)
+        tax_ids = set()
+        for tax_xmlid in self.tax_xmlid_ids:
+            tax_id = company._get_tax_id_from_xmlid(tax_xmlid.name)
+            if tax_id:
+                tax_ids.add(tax_id)
+        return self.env["account.tax"].browse(list(tax_ids))
+
+    def get_accounts_for_company(self, company):
+        """Obtain the accounts corresponding to the line according the given company."""
+        self.ensure_one()
+        account_ids = set()
+        account_id = company._get_account_id_from_xmlid(self.account_xmlid_id.name)
+        if account_id:
+            account_ids.add(account_id)
+        return self.env["account.account"].browse(list(account_ids))

@@ -27,27 +27,27 @@
                     name="view_issued_invoices"
                     string="View Issued Invoices"
                     type="object"
-                    attrs="{'invisible':[('state', '=', 'draft')]}"
+                    invisible="state == 'draft'"
                 />
                 <button
                     name="view_received_invoices"
                     string="View Received Invoices"
                     type="object"
-                    attrs="{'invisible':[('state', '=', 'draft')]}"
+                    invisible="state == 'draft'"
                 />
                 <button
                     name="export_xlsx"
                     string="Export draft"
                     type="object"
-                    icon="fa-file-excel"
-                    attrs="{'invisible':[('state', 'in', ('draft', 'done'))]}"
+                    icon="fa-file-excel-o"
+                    invisible="state in ('draft', 'done')"
                 />
                 <button
                     name="export_xlsx"
                     string="Export BOE"
                     type="object"
-                    icon="fa-file-excel"
-                    attrs="{'invisible':[('state', '!=', 'done')]}"
+                    icon="fa-file-excel-o"
+                    invisible="state != 'done'"
                 />
             </header>
             <field name="name" position="attributes">
