@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_l10n_es_aeat_report_tree" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.report.tree</field>
+        <field name="model">l10n.es.aeat.report</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="year" />
+                <field name="period_type" />
+                <field name="date_start" optional="show" />
+                <field name="date_end" optional="hide" />
+                <field name="state" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_l10n_es_aeat_report_form" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.report.form</field>
+        <field name="model">l10n.es.aeat.report</field>
+        <field name="arch" type="xml">
+            <form string="AEAT report">
+                <header>
+                    <button
+                        name="button_calculate"
+                        type="object"
+                        string="Calculate"
+                        invisible="state != 'draft'"
+                        icon="fa-cogs"
+                    />
+                    <button
+                        name="button_recalculate"
+                        type="object"
+                        string="Recalculate"
+                        invisible="state != 'calculated'"
+                        icon="fa-refresh"
+                    />
+                    <button
+                        name="button_confirm"
+                        string="Confirm"
+                        type="object"
+                        invisible="state != 'calculated'"
+                        icon="fa-check"
+                    />
+                    <button
+                        name="%(action_wizard_aeat_export)d"
+                        type="action"
+                        string="Export to BOE"
+                        invisible="state not in ('posted', 'done')"
+                        icon="fa-share"
+                    />
+                    <button
+                        name="button_recover"
+                        string="Draft"
+                        type="object"
+                        invisible="state != 'cancelled'"
+                        icon="fa-undo"
+                    />
+                    <button
+                        name="button_open_move"
+                        string="Show move"
+                        type="object"
+                        invisible="state != 'posted'"
+                    />
+                    <button
+                        name="button_post"
+                        string="Create move"
+                        help="This button creates the regularization move for the selected report"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="state != 'done' or not allow_posting"
+                    />
+                    <button
+                        name="button_cancel"
+                        string="Cancel"
+                        type="object"
+                        invisible="state not in ('calculated', 'done')"
+                        icon="fa-times"
+                    />
+                    <button
+                        name="button_unpost"
+                        string="Cancel"
+                        type="object"
+                        invisible="state != 'posted'"
+                        icon="fa-times"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,calculated,done,cancelled"
+                        statusbar_colors="{'cancelled': 'red', 'done': 'blue', 'posted': 'blue'}"
+                    />
+                </header>
+                <div
+                    class="alert alert-warning text-center"
+                    invisible="not error_count or state != 'calculated'"
+                    role="alert"
+                >
+                    <span>
+                        You have <strong class="text-danger"><field
+                                name="error_count"
+                            /> errors</strong> in this report.
+                        You will not be able to <strong
+                        >confirm and submit it</strong> until they are resolved.
+                    </span>
+                </div>
+                <sheet>
+                    <field name="allow_posting" invisible="1" />
+                    <field name="number" invisible="1" />
+                    <field name="currency_id" invisible="1" />
+                    <!-- This company_id field as invisible is needed for use in domain
+                         for inherited views and to avoid error with company_id field
+                         with group defined -->
+                    <field name="company_id" invisible="1" />
+                    <h1>
+                        <label string="Report " for="name" />
+                        <field name="name" class="oe_inline" readonly="1" />
+                    </h1>
+                    <group string="Declaración" colspan="4" name="group_declaration">
+                        <group>
+                            <field
+                                name="company_vat"
+                                required="1"
+                                readonly="state != 'draft'"
+                            />
+                            <field name="year" readonly="state != 'draft'" />
+                            <field name="period_type" readonly="state != 'draft'" />
+                            <label
+                                for="date_start"
+                                string="Dates"
+                                readonly="state != 'draft'"
+                            />
+                            <div>
+                                <field
+                                    name="date_start"
+                                    class="oe_inline"
+                                    readonly="state != 'draft'"
+                                />
+                                <span class="oe_inline"> - </span>
+                                <field
+                                    name="date_end"
+                                    class="oe_inline"
+                                    readonly="state != 'draft'"
+                                />
+                            </div>
+                            <field name="export_config_id" groups="base.group_no_one" />
+                        </group>
+                        <group>
+                            <field
+                                name="journal_id"
+                                invisible="not allow_posting"
+                                readonly="state == 'done'"
+                            />
+                            <field
+                                name="counterpart_account_id"
+                                invisible="not allow_posting"
+                            />
+                            <field
+                                name="representative_vat"
+                                readonly="state != 'draft'"
+                            />
+                            <field name="support_type" readonly="state != 'draft'" />
+                            <field name="calculation_date" readonly="1" />
+                            <field name="partner_id" invisible="1" />
+                            <field name="partner_bank_id" />
+                            <field
+                                name="company_id"
+                                required="1"
+                                groups="base.group_multi_company"
+                                readonly="state != 'draft'"
+                            />
+                        </group>
+                        <group string="Contact data" name="group_contact_data">
+                            <field name="contact_name" readonly="state != 'draft'" />
+                            <field name="contact_phone" readonly="state != 'draft'" />
+                            <field name="contact_email" readonly="state != 'draft'" />
+                        </group>
+                        <group string="Other parameters" name="group_other_parameters">
+                            <field name="statement_type" readonly="state != 'draft'" />
+                            <field
+                                name="previous_number"
+                                invisible="statement_type == 'N'"
+                                required="statement_type in ('S', 'C')"
+                                readonly="state == 'done'"
+                            />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_l10n_es_aeat_report_search" model="ir.ui.view">
+        <field name="name">AEAT Model (search)</field>
+        <field name="model">l10n.es.aeat.report</field>
+        <field name="arch" type="xml">
+            <search string="AEAT">
+                <field name="name" />
+                <filter
+                    name="filter_draft"
+                    string="Draft"
+                    domain="[('state','=','draft')]"
+                    help="Draft models"
+                />
+                <filter
+                    name="filter_in_process"
+                    string="In process"
+                    domain="[('state', '=', 'calculated')]"
+                    help="In process models"
+                />
+                <filter
+                    name="filter_done"
+                    string="Done"
+                    domain="[('state', '=', 'done')]"
+                    help="Confirmed models"
+                />
+                <filter
+                    name="filter_cancel"
+                    string="Cancelled"
+                    domain="[('state', '=', 'cancelled')]"
+                    help="Cancelled models"
+                />
+                <filter
+                    name="group_by_year"
+                    string="Fiscal year"
+                    domain="[]"
+                    context="{'group_by':'year'}"
+                />
+                <filter
+                    name="group_by_company"
+                    string="Company"
+                    domain="[]"
+                    context="{'group_by': 'company_id'}"
+                    groups="base.group_multi_company"
+                />
+            </search>
+        </field>
+    </record>
+</odoo>

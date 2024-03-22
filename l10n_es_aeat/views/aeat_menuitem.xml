@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- Done this way for being compatible with both community and enteprise editions -->
+    <record id="menu_root_aeat" model="ir.ui.menu">
+        <field name="name">AEAT reports</field>
+        <field name="sequence" eval="4" />
+        <field
+            name="parent_id"
+            search="[('child_id', 'in', ref('account.menu_finance_entries'))]"
+        />
+        <field name="groups_id" eval="[(4, ref('group_account_aeat'))]" />
+    </record>
+    <menuitem
+        id="menu_l10n_es_aeat_config"
+        parent="account.menu_finance_configuration"
+        sequence="35"
+        groups="group_account_aeat"
+        name="AEAT"
+    />
+</odoo>

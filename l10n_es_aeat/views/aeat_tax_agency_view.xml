@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Enrique Martin <enriquemartin@digital5.es>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="aeat_tax_agency_form_view" model="ir.ui.view">
+        <field name="name">aeat.tax.agency.form</field>
+        <field name="model">aeat.tax.agency</field>
+        <field name="arch" type="xml">
+            <form string="Tax Agency">
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <notebook>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="aeat_tax_agency_tree_view" model="ir.ui.view">
+        <field name="name">aeat.tax.agency.tree</field>
+        <field name="model">aeat.tax.agency</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+    <record id="aeat_tax_agency_action" model="ir.actions.act_window">
+        <field name="name">Tax Agency</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">aeat.tax.agency</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        id="aeat_tax_agency_menu"
+        name="Tax Agency"
+        action="aeat_tax_agency_action"
+        sequence="1"
+        parent="l10n_es_aeat.menu_l10n_es_aeat_config"
+    />
+</odoo>
