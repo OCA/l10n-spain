@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="view_pos_pos_form_simplified_invoice_by_device" model="ir.ui.view">
+        <field name="name">pos.order.form</field>
+        <field name="model">pos.order</field>
+        <field
+            name="inherit_id"
+            ref="l10n_es_pos.view_pos_pos_form_simplified_invoice"
+        />
+        <field name="arch" type="xml">
+            <field name="session_id" position="after">
+                <field name="pos_sequence_by_device" invisible="1" />
+                <field
+                    name="pos_device_id"
+                    attrs="{'invisible': [('pos_sequence_by_device', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="view_pos_order_filter_simplified_invoice_by_device" model="ir.ui.view">
+        <field name="name">POS Order (add group by device option)</field>
+        <field name="model">pos.order</field>
+        <field
+            name="inherit_id"
+            ref="l10n_es_pos.view_pos_order_filter_simplified_invoice"
+        />
+        <field name="arch" type="xml">
+            <group position="inside">
+                <filter
+                    string="POS Physical Device"
+                    name="pos_device_id"
+                    domain="[]"
+                    context="{'group_by': 'pos_device_id'}"
+                />
+            </group>
+        </field>
+    </record>
+    <!-- POS device act window -->
+    <record model="ir.actions.act_window" id="pos_devices_act_window">
+        <field name="name">POS Physical devices</field>
+        <field name="res_model">pos.device</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <!-- POS device menu -->
+    <record id="pos_device_menu" model="ir.ui.menu">
+        <field name="name">POS Physical devices</field>
+        <field name="parent_id" ref="point_of_sale.menu_point_config_product" />
+        <field name="action" ref="pos_devices_act_window" />
+    </record>
+    <!-- POS device tree -->
+    <record id="pos_device_view_tree" model="ir.ui.view">
+        <field name="name">pos.device.view.tree</field>
+        <field name="model">pos.device</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name" />
+                <field name="sequence" />
+                <field name="company_id" />
+                <field name="locked" invisible="1" />
+                <button
+                    name="unlock_device"
+                    string="Device locked"
+                    help="Unlock device"
+                    icon="fa-lock"
+                    attrs="{'invisible': [('locked','=', False)]}"
+                    type="object"
+                />
+            </tree>
+        </field>
+    </record>
+</odoo>

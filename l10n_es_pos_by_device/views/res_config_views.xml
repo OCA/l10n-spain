@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_res_config_settings_pos_seq_device" model="ir.ui.view">
+        <field name="name">res.config.settings.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <div id="l10n_es_pos_simp_seq" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('pos_sequence_by_device', '=', True)]}</attribute>
+            </div>
+            <xpath expr="//div[@id='pos_accounting_section']" position="after">
+                <h2>Sequencing</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="pos_sequence_by_device" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label
+                                string="Secuencing by physical device"
+                                for="pos_sequence_by_device"
+                            />
+                            <span
+                                class="fa fa-lg fa-building-o"
+                                title="Values set here are company-specific."
+                                aria-label="Values set here are company-specific."
+                                groups="base.group_multi_company"
+                                role="img"
+                            />
+                            <div class="text-muted">
+                                Use a different subsequence for each physical device on POS.
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        id="physical_pos_devices"
+                        class="col-12 col-lg-6 o_setting_box"
+                        attrs="{'invisible': [('pos_sequence_by_device', '=', False)]}"
+                    >
+                        <div class="o_setting_left_pane">
+                            <field name="pos_device_ids" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="pos_device_ids" string="POS Physical devices" />
+                            <div class="text-muted mb16">
+                                Select available physical devices for this POS configuration
+                            </div>
+                            <div class="content-group mt16">
+                                <field name="pos_device_ids" widget="many2many_tags" />
+                            </div>
+                            <div>
+                                <button
+                                    name="%(pos_devices_act_window)d"
+                                    icon="fa-arrow-right"
+                                    type="action"
+                                    string="POS Physical devices"
+                                    class="btn-link"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
