@@ -13,7 +13,6 @@ from odoo import api, fields, models
 
 
 class L10nEsAeatMod111Report(models.Model):
-
     _description = "AEAT 111 report"
     _inherit = "l10n.es.aeat.report.tax.mapping"
     _name = "l10n.es.aeat.mod111.report"
