@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -369,7 +368,7 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:65cca57e62facb94cf9f2743f4836ff396c6770af14c62c6f1d515fb5f20b75b
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Mature" src="https://img.shields.io/badge/maturity-Mature-brightgreen.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_aeat_mod111"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-16-0/l10n-spain-16-0-l10n_es_aeat_mod111"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Mature" src="https://img.shields.io/badge/maturity-Mature-brightgreen.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_aeat_mod111"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-17-0/l10n-spain-17-0-l10n_es_aeat_mod111"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>Modelo 111 de la AEAT. Retenciones e ingresos a cuenta. Rendimientos del
 trabajo y de actividades económicas, premios y determinadas ganancias
 patrimoniales e imputaciones de Renta. Autoliquidación.</p>
@@ -393,39 +392,48 @@ patrimoniales e imputaciones de Renta. Autoliquidación.</p>
 <ol class="arabic simple">
 <li>Ir a Facturación &gt; Declaraciones AEAT &gt; Modelo 111</li>
 <li>Pulsar en el botón “Crear”</li>
-<li>Seleccionar el ejercicio fiscal y el tipo de período, los periodos incluidos
-se calculan automáticamente</li>
+<li>Seleccionar el ejercicio fiscal y el tipo de período, los periodos
+incluidos se calculan automáticamente</li>
 <li>Seleccionar el tipo de declaración</li>
-<li>Rellenar el teléfono y teléfono móvil, necesarios para la exportacion BOE</li>
+<li>Rellenar el teléfono y teléfono móvil, necesarios para la exportacion
+BOE</li>
 <li>Guardar y pulsar en el botón “Calcular”</li>
-<li>Rellenar (si es necesario) aquellos campos que Odoo no calcula automáticamente:<ul>
-<li>Rendimientos del trabajo: Dinerarios ([01], [02], [03]) y en especie ([04], [05], [06])</li>
-<li>Premios por la participación en juegos, concursos, …: Dinerarios ([13], [14], [15]) y en especie ([16], [17], [18])</li>
-<li>Ganancias patrimoniales derivadas de los aprovechamientos forestales …: Dinerarias ([19], [20], [21]) y en especie ([22], [23], [24])</li>
-<li>Contraprestaciones por la cesión de derechos de imagen …: Casillas [25], [26] y [27]</li>
+<li>Rellenar (si es necesario) aquellos campos que Odoo no calcula
+automáticamente:<ul>
+<li>Rendimientos del trabajo: Dinerarios ([01], [02], [03]) y en
+especie ([04], [05], [06])</li>
+<li>Premios por la participación en juegos, concursos, …: Dinerarios
+([13], [14], [15]) y en especie ([16], [17], [18])</li>
+<li>Ganancias patrimoniales derivadas de los aprovechamientos
+forestales …: Dinerarias ([19], [20], [21]) y en especie ([22],
+[23], [24])</li>
+<li>Contraprestaciones por la cesión de derechos de imagen …:
+Casillas [25], [26] y [27]</li>
 <li>Resultados a ingresar anteriores: Casilla [29]</li>
 </ul>
 </li>
 <li>Cuando los valores sean los correctos, pulsar en el botón “Confirmar”</li>
-<li>Podemos exportar en formato BOE para presentarlo telemáticamente en el portal
-de la AEAT</li>
+<li>Podemos exportar en formato BOE para presentarlo telemáticamente en
+el portal de la AEAT</li>
 </ol>
-<p>NOTA: En el caso en que tengamos el addon ‘l10n_es_aeat_mod216’ deberemos
-indicar los proveedores que son residentes (éste es el valor por defecto),
-en la ficha de la empresa: Contabilidad &gt; Proveedores &gt; Proveedores, pestaña de
-Contabilidad. El campo “Es no residente” no debe estar marcado para que
-las retenciones realizadas a éste proveedor se incluyan en el modelo 111.</p>
+<p>NOTA: En el caso en que tengamos el addon ‘l10n_es_aeat_mod216’
+deberemos indicar los proveedores que son residentes (éste es el valor
+por defecto), en la ficha de la empresa: Contabilidad &gt; Proveedores &gt;
+Proveedores, pestaña de Contabilidad. El campo “Es no residente” no debe
+estar marcado para que las retenciones realizadas a éste proveedor se
+incluyan en el modelo 111.</p>
 </div>
 <div class="section" id="known-issues-roadmap">
 <h1><a class="toc-backref" href="#toc-entry-2">Known issues / Roadmap</a></h1>
-<p>El modelo 111 no está preparado para compañías que están acogidas al régimen de caja</p>
+<p>El modelo 111 no está preparado para compañías que están acogidas al
+régimen de caja</p>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#toc-entry-3">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-spain/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_mod111%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_mod111%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -463,7 +471,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_aeat_mod111">OCA/l10n-spain</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_aeat_mod111">OCA/l10n-spain</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
