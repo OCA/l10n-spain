@@ -372,9 +372,7 @@ class L10nEsVatBook(models.Model):
             req_vat_identif_types = [
                 s_opt[0]
                 for s_opt in rp_model._fields["aeat_identification_type"].selection
-            ] + [
-                ""
-            ]  # "" is the identification type for Spain
+            ] + [""]  # "" is the identification type for Spain
             # Partner type requires VAT
             if (
                 identifier_type in req_vat_identif_types
