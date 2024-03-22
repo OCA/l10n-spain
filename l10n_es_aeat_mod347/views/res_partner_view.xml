@@ -6,9 +6,9 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="account.view_partner_property_form" />
         <field name="arch" type="xml">
-            <group name="fiscal_information">
+            <xpath expr="//group[@name='aeat_general']" position="inside">
                 <field name="not_in_mod347" />
-            </group>
+            </xpath>
         </field>
     </record>
 </odoo>
