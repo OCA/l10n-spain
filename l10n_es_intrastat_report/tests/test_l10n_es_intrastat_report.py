@@ -120,13 +120,13 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
         cls.invoices = {
             "dispatches": {
                 "invoices": [],
-                cls.partner_1.country_id: 0,
-                cls.partner_2.country_id: 0,
+                cls.partner_1.country_id: 1,
+                cls.partner_2.country_id: 1,
             },
             "arrivals": {
                 "invoices": [],
-                cls.partner_1.country_id: 0,
-                cls.partner_2.country_id: 0,
+                cls.partner_1.country_id: 1,
+                cls.partner_2.country_id: 1,
             },
         }
         for inv_type in ("out_invoice", "in_refund", "in_invoice", "out_refund"):
@@ -139,7 +139,6 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
             ):
                 invoice = cls._create_invoice(inv_type, partner, fiscal)
                 cls.invoices[declaration_type]["invoices"].append(invoice)
-                cls.invoices[declaration_type][partner.country_id] += 1
 
     def test_post_init_hook(self):
         fp = self.env["account.fiscal.position"].create(
@@ -180,15 +179,16 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
         # Generate report
         report_dispatches = self._create_declaration("dispatches")
         report_dispatches.action_gather()
+        expected_invoices = self.invoices["dispatches"]["invoices"]
         self._check_move_lines_present(
-            self.invoices["dispatches"]["invoices"],
+            expected_invoices,
             report_dispatches.computation_line_ids,
         )
         report_dispatches.draft2confirmed()
         report_dispatches.confirmed2done()
         self.assertEqual(report_dispatches.state, "done")
         self.assertEqual(
-            len(report_dispatches.declaration_line_ids), 2
+            len(report_dispatches.declaration_line_ids), len(expected_invoices)
         )  # One line for each country
         self.assertEqual(
             report_dispatches.declaration_line_ids.mapped("hs_code_id"),
@@ -201,7 +201,7 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
         )
         csv_result = report_dispatches._generate_csv()
         csv_lines = csv_result.decode("utf-8").rstrip().splitlines()
-        self.assertEqual(len(csv_lines), 2)
+        self.assertEqual(len(csv_lines), len(expected_invoices))
         for line in csv_lines:
             items = line.split(";")
             self.assertTrue(items[0] in ("PT", "FR"))
@@ -228,8 +228,12 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
         report_dispatches.draft2confirmed()
         report_dispatches.confirmed2done()
         self.assertEqual(report_dispatches.state, "done")
+        # 1. 'FR-4-25-1-1-False-FR-FR23334175221-420-FR23334175221'
+        # 2. 'PT-4-25-1-1-False-FR-FR23334175221-420-FR23334175221'
+        # 3. 'FR-4-25-3-1-False-FR-FR23334175221-420-FR23334175221'
+        # 4. 'PT-4-25-3-1-False-FR-FR23334175221-420-FR23334175221'
         self.assertEqual(
-            len(report_dispatches.declaration_line_ids), len(expected_invoices) / 2
+            len(report_dispatches.declaration_line_ids), len(expected_invoices)
         )
         for expected_note in expected_notes:
             self.assertNotIn(expected_note, report_dispatches.note)
@@ -238,14 +242,15 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
         # Generate report
         report_arrivals = self._create_declaration("arrivals")
         report_arrivals.action_gather()
+        expected_invoices = self.invoices["arrivals"]["invoices"]
         self._check_move_lines_present(
-            self.invoices["arrivals"]["invoices"], report_arrivals.computation_line_ids
+            expected_invoices, report_arrivals.computation_line_ids
         )
         report_arrivals.draft2confirmed()
         report_arrivals.confirmed2done()
         self.assertEqual(report_arrivals.state, "done")
         self.assertEqual(
-            len(report_arrivals.declaration_line_ids), 2
+            len(report_arrivals.declaration_line_ids), len(expected_invoices)
         )  # One line for each country
         self.assertEqual(
             report_arrivals.declaration_line_ids.mapped("hs_code_id"),
@@ -258,7 +263,7 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
         )
         csv_result = report_arrivals._generate_csv()
         csv_lines = csv_result.decode("utf-8").rstrip().splitlines()
-        self.assertEqual(len(csv_lines), 2)
+        self.assertEqual(len(csv_lines), len(expected_invoices))
         for line in csv_lines:
             items = line.split(";")
             self.assertTrue(items[0] in ("PT", "FR"))
