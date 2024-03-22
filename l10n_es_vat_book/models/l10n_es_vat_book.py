@@ -20,14 +20,14 @@ class L10nEsVatBook(models.Model):
     _aeat_number = "LIVA"
     _period_yearly = True
 
-    number = fields.Char(default="vat_book", readonly="True")
+    number = fields.Char(default="vat_book", readonly=True)
 
     line_ids = fields.One2many(
         comodel_name="l10n.es.vat.book.line",
         inverse_name="vat_book_id",
         string="Issued/Received invoices",
         copy=False,
-        readonly="True",
+        readonly=True,
     )
 
     issued_line_ids = fields.One2many(
@@ -36,7 +36,7 @@ class L10nEsVatBook(models.Model):
         domain=[("line_type", "=", "issued")],
         string="Issued invoices",
         copy=False,
-        readonly="True",
+        readonly=True,
     )
 
     rectification_issued_line_ids = fields.One2many(
@@ -45,7 +45,7 @@ class L10nEsVatBook(models.Model):
         domain=[("line_type", "=", "rectification_issued")],
         string="Issued Refund Invoices",
         copy=False,
-        readonly="True",
+        readonly=True,
     )
 
     received_line_ids = fields.One2many(
@@ -54,7 +54,7 @@ class L10nEsVatBook(models.Model):
         domain=[("line_type", "=", "received")],
         string="Received invoices",
         copy=False,
-        readonly="True",
+        readonly=True,
     )
 
     rectification_received_line_ids = fields.One2many(
@@ -63,7 +63,7 @@ class L10nEsVatBook(models.Model):
         domain=[("line_type", "=", "rectification_received")],
         string="Received Refund Invoices",
         copy=False,
-        readonly="True",
+        readonly=True,
     )
 
     calculation_date = fields.Date()
@@ -72,7 +72,7 @@ class L10nEsVatBook(models.Model):
         comodel_name="l10n.es.vat.book.tax.summary",
         string="Tax Summary",
         inverse_name="vat_book_id",
-        readonly="True",
+        readonly=True,
     )
 
     issued_tax_summary_ids = fields.One2many(
@@ -80,7 +80,7 @@ class L10nEsVatBook(models.Model):
         string="Issued Tax Summary",
         inverse_name="vat_book_id",
         domain=[("book_type", "=", "issued")],
-        readonly="True",
+        readonly=True,
     )
 
     received_tax_summary_ids = fields.One2many(
@@ -88,14 +88,14 @@ class L10nEsVatBook(models.Model):
         string="Received Tax Summary",
         inverse_name="vat_book_id",
         domain=[("book_type", "=", "received")],
-        readonly="True",
+        readonly=True,
     )
 
     summary_ids = fields.One2many(
         comodel_name="l10n.es.vat.book.summary",
         string="Summary",
         inverse_name="vat_book_id",
-        readonly="True",
+        readonly=True,
     )
 
     issued_summary_ids = fields.One2many(
@@ -103,7 +103,7 @@ class L10nEsVatBook(models.Model):
         string="Issued Summary",
         inverse_name="vat_book_id",
         domain=[("book_type", "=", "issued")],
-        readonly="True",
+        readonly=True,
     )
 
     received_summary_ids = fields.One2many(
@@ -111,11 +111,11 @@ class L10nEsVatBook(models.Model):
         string="Received Summary",
         inverse_name="vat_book_id",
         domain=[("book_type", "=", "received")],
-        readonly="True",
+        readonly=True,
     )
 
     auto_renumber = fields.Boolean(
-        "Auto renumber invoices received", states={"draft": [("readonly", False)]}
+        "Auto renumber invoices received",
     )
 
     error_count = fields.Integer(
@@ -342,7 +342,7 @@ class L10nEsVatBook(models.Model):
         map_lines = self.env["aeat.vat.book.map.line"].search(domain)
         special_dic = {}
         for map_line in map_lines:
-            for tax in map_line.get_taxes(self):
+            for tax in map_line.get_taxes_for_company(self.company_id):
                 special_dic[tax.id] = {
                     "name": map_line.name,
                     "book_type": map_line.book_type,
@@ -447,10 +447,10 @@ class L10nEsVatBook(models.Model):
                 taxes = self.env["account.tax"]
                 accounts = {}
                 for map_line in map_lines:
-                    line_taxes = map_line.get_taxes(rec)
+                    line_taxes = map_line.get_taxes_for_company(rec.company_id)
                     taxes |= line_taxes
-                    if map_line.tax_account_id:
-                        account = rec.get_account_from_template(map_line.tax_account_id)
+                    if map_line.account_xmlid_id:
+                        account = map_line.get_accounts_for_company(rec.company_id)
                         accounts.update({tax: account for tax in line_taxes})
                 # Filter in all possible data using sets for improving performance
                 if accounts:
