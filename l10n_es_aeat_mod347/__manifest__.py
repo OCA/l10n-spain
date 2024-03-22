@@ -10,7 +10,7 @@
 
 {
     "name": "AEAT modelo 347",
-    "version": "16.0.1.7.0",
+    "version": "17.0.1.0.0",
     "author": "Tecnativa,PESOL,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Accounting",
@@ -23,10 +23,12 @@
         "portal",
     ],
     "data": [
+        "data/l10n.es.aeat.map.tax.line.tax.csv",
         "data/aeat_export_mod347_partner_data.xml",
         "data/aeat_export_mod347_real_state_data.xml",
         "data/aeat_export_mod347_data.xml",
-        "data/tax_code_map_mod347_data.xml",
+        "data/l10n.es.aeat.map.tax.csv",
+        "data/l10n.es.aeat.map.tax.line.csv",
         "security/ir.model.access.csv",
         "security/mod_347_security.xml",
         "views/account_move_view.xml",
