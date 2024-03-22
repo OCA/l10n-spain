@@ -258,13 +258,13 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         # Check tax lines
         for field, result in self.taxes_result.items():
             lines = self.model390.tax_line_ids.filtered(
-                lambda x: x.field_number == int(field)
+                lambda x, field=field: x.field_number == int(field)
             )
             self.assertAlmostEqual(
                 sum(lines.mapped("amount")),
                 result,
                 2,
-                "Incorrect result in field %s %s" % (field, ex.exception),
+                f"Incorrect result in field {field} {ex.exception}",
             )
         # Check computed fields
         self.assertAlmostEqual(self.model390.casilla_33, 17700.0, 2)
@@ -298,9 +298,7 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
             {"name": "test_export_to_boe.txt"}
         )
         export_config_xml_ids = [
-            "l10n_es_aeat_mod390.aeat_mod390_2019_main_export_config",
-            "l10n_es_aeat_mod390.aeat_mod390_2021_main_export_config",
-            "l10n_es_aeat_mod390.aeat_mod390_2022_main_export_config",
+            "l10n_es_aeat_mod390.aeat_mod390_2023_main_export_config",
         ]
         for xml_id in export_config_xml_ids:
             export_config = self.env.ref(xml_id)
