@@ -10,7 +10,7 @@
 
 {
     "name": "Libro de IVA",
-    "version": "16.0.1.4.0",
+    "version": "17.0.1.0.0",
     "author": "PRAXYA, ForgeFlow, Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
@@ -19,7 +19,9 @@
     "data": [
         "security/ir_rule.xml",
         "security/ir.model.access.csv",
-        "data/aeat_vat_book_map_data.xml",
+        "data/l10n.es.aeat.map.tax.line.account.csv",
+        "data/l10n.es.aeat.map.tax.line.tax.csv",
+        "data/aeat.vat.book.map.line.csv",
         "views/aeat_vat_book_map_view.xml",
         "views/l10n_es_vat_book.xml",
         "views/l10n_es_vat_book_line.xml",
