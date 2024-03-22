@@ -1,26 +1,4 @@
 id,alignment,apply_sign,conditional_expression,decimal_size,export_config_id:id,export_type,expression,fixed_value,name,sequence,size,subconfig_id:id
-aeat_mod390_2021_main_export_line_01,"left",,,,"aeat_mod390_2021_main_export_config","string",,"<T","Constante: <T","1","2",
-aeat_mod390_2021_main_export_line_02,"left",,,,"aeat_mod390_2021_main_export_config","string",,"390","Constante: 390","2","3",
-aeat_mod390_2021_main_export_line_03,"left",,,,"aeat_mod390_2021_main_export_config","string",,"0","Constante: 0","3","1",
-aeat_mod390_2021_main_export_line_04,"left",,,,"aeat_mod390_2021_main_export_config","string","${object.year}",,"Ejercicio devengo","4","4",
-aeat_mod390_2021_main_export_line_05,"left",,,,"aeat_mod390_2021_main_export_config","string","${object.period_type}",,"Identificación Periodo","5","2",
-aeat_mod390_2021_main_export_line_06,"left",,,,"aeat_mod390_2021_main_export_config","string",,"0000>","Constante: 0000>","6","5",
-aeat_mod390_2021_main_export_line_07,"left",,,,"aeat_mod390_2021_main_export_config","string",,"<AUX>","Constante: <AUX>","7","5",
-aeat_mod390_2021_main_export_line_08,"left",,,,"aeat_mod390_2021_main_export_config","string",,,"Reservado para la Administración: Rellenar con blancos","8","70",
-aeat_mod390_2021_main_export_line_09,"left",,,,"aeat_mod390_2021_main_export_config","string",,"odoo","Versión del programa","9","4",
-aeat_mod390_2021_main_export_line_10,"left",,,,"aeat_mod390_2021_main_export_config","string",,,"Reservado para la Administración. Rellenar con blancos","10","4",
-aeat_mod390_2021_main_export_line_11,"left",,,,"aeat_mod390_2021_main_export_config","string",,"G87846952","NIF Empresa Desarrollo","11","9",
-aeat_mod390_2021_main_export_line_12,"left",,,,"aeat_mod390_2021_main_export_config","string",,,"Reservado para la Administración. Rellenar con blancos","12","213",
-aeat_mod390_2021_main_export_line_13,"left",,,,"aeat_mod390_2021_main_export_config","string",,"</AUX>","Constante: </AUX>","13","6",
-aeat_mod390_2021_main_export_line_14,,,"True",,"aeat_mod390_2021_main_export_config","subconfig",,,"Contenido del fichero [sub01]","14",,"aeat_mod390_2019_sub01_export_config"
-aeat_mod390_2021_main_export_line_15,,,"True",,"aeat_mod390_2021_main_export_config","subconfig",,,"Contenido del fichero [sub02]","15",,"aeat_mod390_2019_sub02_export_config"
-aeat_mod390_2021_main_export_line_16,,,"True",,"aeat_mod390_2021_main_export_config","subconfig",,,"Contenido del fichero [sub03]","16",,"aeat_mod390_2019_sub03_export_config"
-aeat_mod390_2021_main_export_line_17,,,"True",,"aeat_mod390_2021_main_export_config","subconfig",,,"Contenido del fichero [sub04]","17",,"aeat_mod390_2019_sub04_export_config"
-aeat_mod390_2021_main_export_line_18,,,"False",,"aeat_mod390_2021_main_export_config","subconfig",,,"Contenido del fichero [sub05]","18",,"aeat_mod390_2019_sub05_export_config"
-aeat_mod390_2021_main_export_line_19,,,"True",,"aeat_mod390_2021_main_export_config","subconfig",,,"Contenido del fichero [sub06]","19",,"aeat_mod390_2021_sub06_export_config"
-aeat_mod390_2021_main_export_line_20,,,"True",,"aeat_mod390_2021_main_export_config","subconfig",,,"Contenido del fichero [sub07]","20",,"aeat_mod390_2019_sub07_export_config"
-aeat_mod390_2021_main_export_line_21,,,"False",,"aeat_mod390_2021_main_export_config","subconfig",,,"Contenido del fichero [sub08]","21",,"aeat_mod390_2019_sub08_export_config"
-aeat_mod390_2021_main_export_line_22,"left",,,,"aeat_mod390_2021_main_export_config","string","</T3900${object.year}${object.period_type}0000>",,"Constante: </T3900+Ejercicio+periodo+0000>","22","18",
 aeat_mod390_2021_sub06_export_line_01,"left",,,,"aeat_mod390_2021_sub06_export_config","string",,"<T","Constante: <T","1","2",
 aeat_mod390_2021_sub06_export_line_02,"left",,,,"aeat_mod390_2021_sub06_export_config","string",,"390","Constante: 390","2","3",
 aeat_mod390_2021_sub06_export_line_03,"left",,,,"aeat_mod390_2021_sub06_export_config","string",,"06","Página","3","2",
