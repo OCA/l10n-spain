@@ -18,66 +18,99 @@
         <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
         <field name="arch" type="xml">
             <group name="group_declaration" position="after">
-                <notebook attrs="{'invisible': [('state', '=', 'draft')]}">
+                <notebook invisible="state == 'draft'">
                     <page string="3. Datos estadísticos">
                         <group>
                             <field name="has_347" />
                         </group>
                         <group string="Actividad principal" name="group_main_activity">
-                            <field name="main_activity" />
+                            <field
+                                name="main_activity"
+                                required="state == 'calculated'"
+                                readonly="state != 'calculated'"
+                            />
                             <field
                                 name="main_activity_code"
-                                attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)], 'required': [('state', '=', 'calculated'), ('year', '&lt;', 2022)]}"
+                                readonly="state != 'calculated'"
+                                required="state == 'calculated' and year &lt;= 2022"
+                                invisible="year &gt; 2022"
                             />
                             <field
                                 name="main_activity_code_id"
-                                attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)], 'required': [('state', '=', 'calculated'), ('year', '&gt;', 2021)]}"
+                                readonly="state != 'calculated'"
+                                invisible="year &lt;= 2022"
+                                required="state == 'calculated' and year &gt; 2022"
                             />
-                            <field name="main_activity_iae" />
+                            <field
+                                name="main_activity_iae"
+                                required="state == 'calculated'"
+                                readonly="state != 'calculated'"
+                            />
                         </group>
                         <group>
                             <group
                                 string="Otras - 1ª actividad"
                                 name="group_other_first_activity"
                             >
-                                <field name="other_first_activity" />
+                                <field
+                                    name="other_first_activity"
+                                    readonly="state != 'calculated'"
+                                />
                                 <field
                                     name="other_first_activity_code"
-                                    attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)]}"
+                                    readonly="state != 'calculated'"
+                                    invisible="year &gt; 2022"
                                 />
                                 <field
                                     name="other_first_activity_code_id"
-                                    attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)]}"
+                                    readonly="state != 'calculated'"
+                                    invisible="year &lt;= 2022"
                                 />
-                                <field name="other_first_activity_iae" />
+                                <field
+                                    name="other_first_activity_iae"
+                                    readonly="state != 'calculated'"
+                                />
                             </group>
                             <group
                                 string="Otras - 2ª actividad"
                                 name="group_other_second_activity"
                             >
-                                <field name="other_second_activity" />
+                                <field
+                                    name="other_second_activity"
+                                    readonly="state != 'calculated'"
+                                />
                                 <field
                                     name="other_second_activity_code"
-                                    attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)]}"
+                                    readonly="state != 'calculated'"
+                                    invisible="year &gt; 2022"
                                 />
                                 <field
                                     name="other_second_activity_code_id"
-                                    attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)]}"
+                                    readonly="state != 'calculated'"
+                                    invisible="year &lt;= 2022"
                                 />
-                                <field name="other_second_activity_iae" />
+                                <field
+                                    name="other_second_activity_iae"
+                                    readonly="state != 'calculated'"
+                                />
                             </group>
                             <group
                                 string="Otras - 3ª actividad"
                                 name="group_other_third_activity"
                             >
-                                <field name="other_third_activity" />
+                                <field
+                                    name="other_third_activity"
+                                    readonly="state != 'calculated'"
+                                />
                                 <field
                                     name="other_third_activity_code"
-                                    attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)]}"
+                                    readonly="state != 'calculated'"
+                                    invisible="year &gt; 2022"
                                 />
                                 <field
                                     name="other_third_activity_code_id"
-                                    attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)]}"
+                                    readonly="state != 'calculated'"
+                                    invisible="year &lt;= 2022"
                                 />
                                 <field name="other_third_activity_iae" />
                             </group>
@@ -85,31 +118,47 @@
                                 string="Otras - 4ª actividad"
                                 name="group_other_fourth_activity"
                             >
-                                <field name="other_fourth_activity" />
+                                <field
+                                    name="other_fourth_activity"
+                                    readonly="state != 'calculated'"
+                                />
                                 <field
                                     name="other_fourth_activity_code"
-                                    attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)]}"
+                                    readonly="state != 'calculated'"
+                                    invisible="year &gt; 2022"
                                 />
                                 <field
                                     name="other_fourth_activity_code_id"
-                                    attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)]}"
+                                    readonly="state != 'calculated'"
+                                    invisible="year &lt;= 2022"
                                 />
-                                <field name="other_fourth_activity_iae" />
+                                <field
+                                    name="other_fourth_activity_iae"
+                                    readonly="state != 'calculated'"
+                                />
                             </group>
                             <group
                                 string="Otras - 5ª actividad"
                                 name="group_other_fifth_activity"
                             >
-                                <field name="other_fifth_activity" />
+                                <field
+                                    name="other_fifth_activity"
+                                    readonly="state != 'calculated'"
+                                />
                                 <field
                                     name="other_fifth_activity_code"
-                                    attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)]}"
+                                    readonly="state != 'calculated'"
+                                    invisible="year &gt; 2022"
                                 />
                                 <field
                                     name="other_fifth_activity_code_id"
-                                    attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)]}"
+                                    readonly="state != 'calculated'"
+                                    invisible="year &lt;= 2022"
                                 />
-                                <field name="other_fifth_activity_iae" />
+                                <field
+                                    name="other_fifth_activity_iae"
+                                    readonly="state != 'calculated'"
+                                />
                             </group>
                         </group>
                     </page>
@@ -119,75 +168,148 @@
                                 name="group_first_representative"
                                 string="Primer representante"
                             >
-                                <field name="first_representative_name" />
-                                <field name="first_representative_vat" />
-                                <field name="first_representative_date" />
-                                <field name="first_representative_notary" />
+                                <field
+                                    name="first_representative_name"
+                                    required="state == 'calculated'"
+                                    readonly="state != 'calculated'"
+                                />
+                                <field
+                                    name="first_representative_vat"
+                                    required="state == 'calculated'"
+                                    readonly="state != 'calculated'"
+                                />
+                                <field
+                                    name="first_representative_date"
+                                    required="state == 'calculated'"
+                                    readonly="state != 'calculated'"
+                                />
+                                <field
+                                    name="first_representative_notary"
+                                    required="state == 'calculated'"
+                                    readonly="state != 'calculated'"
+                                />
                             </group>
                             <group
                                 name="group_second_representative"
                                 string="Segundo representante"
                             >
-                                <field name="second_representative_name" />
-                                <field name="second_representative_vat" />
-                                <field name="second_representative_date" />
-                                <field name="second_representative_notary" />
+                                <field
+                                    name="second_representative_name"
+                                    readonly="state != 'calculated'"
+                                />
+                                <field
+                                    name="second_representative_vat"
+                                    readonly="state != 'calculated'"
+                                />
+                                <field
+                                    name="second_representative_date"
+                                    readonly="state != 'calculated'"
+                                />
+                                <field
+                                    name="second_representative_notary"
+                                    readonly="state != 'calculated'"
+                                />
                             </group>
                             <group
                                 name="group_third_representative"
                                 string="Tercer representante"
                             >
-                                <field name="third_representative_name" />
-                                <field name="third_representative_vat" />
-                                <field name="third_representative_date" />
-                                <field name="third_representative_notary" />
+                                <field
+                                    name="third_representative_name"
+                                    readonly="state != 'calculated'"
+                                />
+                                <field
+                                    name="third_representative_vat"
+                                    readonly="state != 'calculated'"
+                                />
+                                <field
+                                    name="third_representative_date"
+                                    readonly="state != 'calculated'"
+                                />
+                                <field
+                                    name="third_representative_notary"
+                                    readonly="state != 'calculated'"
+                                />
                             </group>
                         </group>
                     </page>
                     <page string="5. Régimen general" name="page_general">
                         <group>
+                            <!-- Done with nolable + label after for better visualization, as the labels are very long-->
                             <group>
-                                <field name="casilla_33" widget="monetary" />
-                                <field name="casilla_34" widget="monetary" />
+                                <field name="casilla_33" nolabel="1" />
+                                <label for="casilla_33" />
+                                <field name="casilla_34" nolabel="1" />
+                                <label for="casilla_34" />
                             </group>
                             <group>
-                                <field name="casilla_48" widget="monetary" />
-                                <field name="casilla_49" widget="monetary" />
-                                <field name="casilla_50" widget="monetary" />
-                                <field name="casilla_51" widget="monetary" />
-                                <field name="casilla_52" widget="monetary" />
-                                <field name="casilla_53" widget="monetary" />
-                                <field name="casilla_54" widget="monetary" />
-                                <field name="casilla_55" widget="monetary" />
-                                <field name="casilla_56" widget="monetary" />
-                                <field name="casilla_57" widget="monetary" />
-                                <field name="casilla_58" widget="monetary" />
-                                <field name="casilla_59" widget="monetary" />
-                                <field name="casilla_597" widget="monetary" />
-                                <field name="casilla_598" widget="monetary" />
+                                <field name="casilla_48" nolabel="1" />
+                                <label for="casilla_48" />
+                                <field name="casilla_49" nolabel="1" />
+                                <label for="casilla_49" />
+                                <field name="casilla_50" nolabel="1" />
+                                <label for="casilla_50" />
+                                <field name="casilla_51" nolabel="1" />
+                                <label for="casilla_51" />
+                                <field name="casilla_52" nolabel="1" />
+                                <label for="casilla_52" />
+                                <field name="casilla_53" nolabel="1" />
+                                <label for="casilla_53" />
+                                <field name="casilla_54" nolabel="1" />
+                                <label for="casilla_54" />
+                                <field name="casilla_55" nolabel="1" />
+                                <label for="casilla_55" />
+                                <field name="casilla_56" nolabel="1" />
+                                <label for="casilla_56" />
+                                <field name="casilla_57" nolabel="1" />
+                                <label for="casilla_57" />
+                                <field name="casilla_58" nolabel="1" />
+                                <label for="casilla_58" />
+                                <field name="casilla_59" nolabel="1" />
+                                <label for="casilla_59" />
+                                <field name="casilla_597" nolabel="1" />
+                                <label for="casilla_597" />
+                                <field name="casilla_598" nolabel="1" />
+                                <label for="casilla_598" />
                             </group>
                         </group>
                         <group class="oe_subtotal_footer oe_right">
-                            <field name="casilla_47" widget="monetary" />
-                            <field name="casilla_64" widget="monetary" />
+                            <field name="casilla_47" />
+                            <field name="casilla_64" />
                             <field
                                 name="casilla_65"
                                 class="oe_subtotal_footer_separator"
-                                widget="monetary"
                             />
-                            <field name="casilla_85" widget="monetary" />
+                            <field name="casilla_85" readonly="state != 'calculated'" />
                             <field
                                 name="casilla_86"
                                 class="oe_subtotal_footer_separator"
-                                widget="monetary"
                             />
                         </group>
                     </page>
                     <page string="9. Resultado liquidaciones">
                         <group>
-                            <field name="casilla_95" widget="monetary" />
-                            <field name="casilla_97" widget="monetary" />
-                            <field name="casilla_98" widget="monetary" />
+                            <field
+                                name="casilla_95"
+                                nolabel="1"
+                                required="state == 'calculated'"
+                                readonly="state != 'calculated'"
+                            />
+                            <label for="casilla_95" />
+                            <field
+                                name="casilla_97"
+                                nolabel="1"
+                                required="state == 'calculated'"
+                                readonly="state != 'calculated'"
+                            />
+                            <label for="casilla_97" />
+                            <field
+                                name="casilla_98"
+                                nolabel="1"
+                                required="state == 'calculated'"
+                                readonly="state != 'calculated'"
+                            />
+                            <label for="casilla_98" />
                         </group>
                     </page>
                     <page string="10. Volumen de operaciones">
@@ -195,20 +317,16 @@
                             <field
                                 name="casilla_108"
                                 class="oe_subtotal_footer_separator"
-                                widget="monetary"
                             />
                         </group>
                     </page>
                 </notebook>
-                <separator
-                    string="Tax lines"
-                    attrs="{'invisible': [('state', '=', 'draft')]}"
-                />
+                <separator string="Tax lines" invisible="state == 'draft'" />
                 <field
                     name="tax_line_ids"
                     nolabel="1"
                     readonly="1"
-                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    invisible="state == 'draft'"
                 />
             </group>
             <form position="inside">
