@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="registro_perceptor_view_form" model="ir.ui.view">
+        <field name="name">registro.perceptor.view.form</field>
+        <field name="model">registro.perceptor</field>
+        <field name="arch" type="xml">
+            <form string="Registro de perceptor">
+                <sheet>
+                    <group>
+                        <field name="partner_id"/>
+                        <field name="base_retenciones"/>
+                        <field name="porcentaje_retencion"/>
+                    </group>
+                    <group>
+                        <field name="informacion_catastral_id"/>
+                        <field name="cuota_retenciones"/>
+                        <field name="ejercicio_devengo"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="registro_perceptor_view_tree" model="ir.ui.view">
+        <field name="name">registro.perceptor.view.tree</field>
+        <field name="model">registro.perceptor</field>
+        <field name="arch" type="xml">
+            <tree string="Registro de perceptor">
+                <field name="partner_id"/>
+                <field name="informacion_catastral_id"/>
+                <field name="base_retenciones"/>
+                <button name="action_get_base_move_lines" type="object" icon="fa-search-plus"/>
+                <field name="cuota_retenciones"/>
+                <button name="action_get_cuota_move_lines" type="object" icon="fa-search-plus"/>
+                <field name="porcentaje_retencion"/>
+                <field name="ejercicio_devengo"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

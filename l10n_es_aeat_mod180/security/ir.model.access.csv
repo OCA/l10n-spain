@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_informacion_catastral,access.informacion.catastral,model_informacion_catastral,,1,1,1,1
+access_registro_perceptor,access.registro.perceptor,model_registro_perceptor,,1,1,1,1
+access_l10n_es_aeat_mod180_manager,l10n_es_aeat_mod180 manager,model_l10n_es_aeat_mod180_report,l10n_es_aeat.group_account_aeat,1,1,1,1
