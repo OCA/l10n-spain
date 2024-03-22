@@ -396,11 +396,6 @@ msgid "L.R. VAT number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report____last_update
-msgid "Last Modified on"
-msgstr "Laatst bijgewerkt op"
-
-#. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__write_uid
 msgid "Last Updated by"
 msgstr "Laatst bijgewerkt door"
@@ -413,11 +408,6 @@ msgstr "Laatst bijgewerkt op"
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__representative_vat
 msgid "Legal Representative VAT number."
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_main_attachment_id
-msgid "Main Attachment"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
@@ -605,6 +595,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__company_vat
 msgid "VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__valued_tax_line_ids
+msgid "Valued tax lines"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
@@ -798,3 +793,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_30
 msgid "[30] Result"
 msgstr ""
+
+#~ msgid "Last Modified on"
+#~ msgstr "Laatst bijgewerkt op"
