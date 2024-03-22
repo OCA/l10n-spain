@@ -23,11 +23,11 @@ class L10nEsVatBookIssuedSummary(models.Model):
         selection=[("issued", "Issued"), ("received", "Received")],
     )
 
-    base_amount = fields.Float(readonly="True")
+    base_amount = fields.Float(readonly=True)
 
-    tax_amount = fields.Float(readonly="True")
+    tax_amount = fields.Float(readonly=True)
 
-    total_amount = fields.Float(readonly="True")
+    total_amount = fields.Float(readonly=True)
     special_tax_group = fields.Selection(
         selection=_selection_special_tax_group,
         string="Special group",
