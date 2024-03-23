@@ -48,4 +48,8 @@ class RedsysController(http.Controller):
         website=True,
     )
     def redsys_result(self, page, **vals):
+        if vals:
+            request.env["payment.transaction"].sudo()._handle_notification_data(
+                "redsys", vals
+            )
         return request.redirect("/payment/status")
