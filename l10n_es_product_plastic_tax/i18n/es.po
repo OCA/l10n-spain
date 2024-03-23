@@ -1,0 +1,90 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_product_plastic_tax
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-09 11:59+0000\n"
+"PO-Revision-Date: 2023-10-09 14:01+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: l10n_es_product_plastic_tax
+#: model_terms:ir.ui.view,arch_db:l10n_es_product_plastic_tax.view_template_property_form_inherit_plastic_tax
+msgid "<span>kg</span>"
+msgstr ""
+
+#. module: l10n_es_product_plastic_tax
+#: model:ir.model.fields.selection,name:l10n_es_product_plastic_tax.selection__product_product__plastic_tax_product_code__a
+#: model:ir.model.fields.selection,name:l10n_es_product_plastic_tax.selection__product_template__plastic_tax_product_code__a
+msgid "A - Non-reusable containers containing plastic"
+msgstr "A - Envases no reutilizables que contengan plástico"
+
+#. module: l10n_es_product_plastic_tax
+#: model:ir.model.fields.selection,name:l10n_es_product_plastic_tax.selection__product_product__plastic_tax_product_code__b
+#: model:ir.model.fields.selection,name:l10n_es_product_plastic_tax.selection__product_template__plastic_tax_product_code__b
+msgid "B - Semi-finished plastic products intended to obtain type A plastics"
+msgstr ""
+"B - Productos plásticos semielaborados destinados a la obtención de "
+"plásticos de tipo A"
+
+#. module: l10n_es_product_plastic_tax
+#: model:ir.model.fields.selection,name:l10n_es_product_plastic_tax.selection__product_product__plastic_tax_product_code__c
+#: model:ir.model.fields.selection,name:l10n_es_product_plastic_tax.selection__product_template__plastic_tax_product_code__c
+msgid ""
+"C - Products containing plastic intended to allow closure, marketing or "
+"otherwise of non-reusable packaging"
+msgstr ""
+"C - Productos que contengan plástico destinados a permitir el cierre, la "
+"comercialización u otros de envases no reutilizables"
+
+#. module: l10n_es_product_plastic_tax
+#: model:ir.model.fields,field_description:l10n_es_product_plastic_tax.field_product_product__non_reusable_plastic_weight
+#: model:ir.model.fields,field_description:l10n_es_product_plastic_tax.field_product_template__non_reusable_plastic_weight
+msgid "Non Reusable Plastic Weight"
+msgstr "Peso plástico no reutilizable"
+
+#. module: l10n_es_product_plastic_tax
+#. odoo-python
+#: code:addons/l10n_es_product_plastic_tax/models/product.py:0
+#: code:addons/l10n_es_product_plastic_tax/models/product_template.py:0
+#, python-format
+msgid "Non reusable plastic weight cannot exceed total plastic weight."
+msgstr ""
+"La cantidad de peso de plástico no reutilizable no puede superar al peso "
+"total de plástico."
+
+#. module: l10n_es_product_plastic_tax
+#: model_terms:ir.ui.view,arch_db:l10n_es_product_plastic_tax.view_template_property_form_inherit_plastic_tax
+msgid "Plastic"
+msgstr "Plástico"
+
+#. module: l10n_es_product_plastic_tax
+#: model:ir.model.fields,field_description:l10n_es_product_plastic_tax.field_product_product__plastic_tax_product_code
+#: model:ir.model.fields,field_description:l10n_es_product_plastic_tax.field_product_template__plastic_tax_product_code
+msgid "Plastic Tax Product Code"
+msgstr "Código de impuesto sobre plásticos del producto"
+
+#. module: l10n_es_product_plastic_tax
+#: model:ir.model.fields,field_description:l10n_es_product_plastic_tax.field_product_product__total_plastic_weight
+#: model:ir.model.fields,field_description:l10n_es_product_plastic_tax.field_product_template__total_plastic_weight
+msgid "Plastic Total Weight"
+msgstr "Peso total plástico"
+
+#. module: l10n_es_product_plastic_tax
+#: model:ir.model,name:l10n_es_product_plastic_tax.model_product_template
+msgid "Product"
+msgstr "Producto"
+
+#. module: l10n_es_product_plastic_tax
+#: model:ir.model,name:l10n_es_product_plastic_tax.model_product_product
+msgid "Product Variant"
+msgstr "Variante de producto"

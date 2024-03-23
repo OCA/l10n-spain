@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- © 2022 FactorLibre - Hugo Córdoba <hugo.cordoba@factorlibre.com>
+     © 2023 FactorLibre - Luis J. Salvatierra <luis.salvatierra@factorlibre.com>
+     © 2023 FactorLibre - Aritz Olea <aritz.olea@factorlibre.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="view_template_property_form_inherit_plastic_tax" model="ir.ui.view">
+        <field
+            name="name"
+        >product.template.stock.property.form.inherit.plastic.tax</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='inventory']//group[@name='group_lots_and_weight']"
+                position="after"
+            >
+                <group
+                    string="Plastic"
+                    name="group_plastic_tax"
+                    attrs="{'invisible':[('detailed_type', 'not in', ['product', 'consu'])]}"
+                >
+                    <group name="group_plastic_tax_fields" colspan="4">
+                        <field name="plastic_tax_product_code" />
+                        <label for="total_plastic_weight" />
+                        <div class="o_row" name="total_plastic_weight">
+                            <field name="total_plastic_weight" />
+                            <span>kg</span>
+                        </div>
+                        <label for="non_reusable_plastic_weight" />
+                        <div class="o_row" name="non_reusable_plastic_weight">
+                            <field name="non_reusable_plastic_weight" />
+                            <span>kg</span>
+                        </div>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
