@@ -1,0 +1,9 @@
+id,field_number,field_type,inverse,map_parent_id:id,name,sum_type,account_xmlid_ids/id,tax_xmlid_ids/id
+aeat_mod111_map_line_02,02,base,True,aeat_mod111_map,Rendimientos del trabajo (dinerarios) - Importe de las percepciones,both,,"p_irpf21t,p_irpf21td,p_irpf19ca,p_irpf35cya"
+aeat_mod111_map_line_03,03,amount,False,aeat_mod111_map,Rendimientos del trabajo (dinerarios) - Importe de las retenciones,both,,"p_irpf21t,p_irpf21td,p_irpf19ca,p_irpf35cya"
+aeat_mod111_map_line_05,05,base,True,aeat_mod111_map,Rendimientos del trabajo (en especie) - Valor percepciones en especie,both,,p_irpf21te
+aeat_mod111_map_line_06,06,amount,False,aeat_mod111_map,Rendimientos del trabajo (en especie) - Importe de los ingresos a cuenta,both,,p_irpf21te
+aeat_mod111_map_line_08,08,base,True,aeat_mod111_map,Rendimientos de actividades económicas (dinerarios) - Importe de las percepciones,both,,"p_irpf1,p_irpf2,p_irpf7,p_irpf9,p_irpf15,p_irpf18,p_irpf19,p_irpf20,p_irpf21p,p_irpf24"
+aeat_mod111_map_line_09,09,amount,False,aeat_mod111_map,Rendimientos de actividades económicas (dinerarios) - Importe de las retenciones,both,,"p_irpf1,p_irpf2,p_irpf7,p_irpf9,p_irpf15,p_irpf18,p_irpf19,p_irpf20,p_irpf21p,p_irpf24"
+aeat_mod111_map_line_11,11,base,True,aeat_mod111_map,Rendimientos de actividades económicas (en especie) - Importe de las percepciones,both,,"p_irpf7e',p_irpf15e"
+aeat_mod111_map_line_12,12,amount,False,aeat_mod111_map,Rendimientos de actividades económicas (en especie) - Importe de los ingresos a cuenta,both,,"p_irpf7e',p_irpf15e"
