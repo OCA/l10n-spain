@@ -29,5 +29,8 @@ class EdiOutputSendL10nEsFacturaeFace(Component):
             self._get_extra_attachment(),
         )
         self.exchange_record.write(
-            {"external_identifier": response.factura.numeroRegistro}
+            {"external_identifier": self._get_external_identifier(response)}
         )
+
+    def _get_external_identifier(self, response):
+        return response.factura.numeroRegistro

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="facturae_faceb2b_exchange_type" model="edi.exchange.type">
+        <field name="name">Spanish Facturae</field>
+        <field name="code">l10n_es_facturae_faceb2b</field>
+        <field
+            name="backend_type_id"
+            ref="l10n_es_facturae_face.facturae_backend_type"
+        />
+        <field name="direction">output</field>
+        <field name="exchange_filename_pattern">{record_name}--{dt}</field>
+        <field name="exchange_file_ext">xsig</field>
+        <field name="exchange_file_auto_generate" eval="True" />
+    </record>
+    <record id="facturae_faceb2b_exchange_input_type" model="edi.exchange.type">
+        <field name="name">Spanish Facturae Input</field>
+        <field name="code">l10n_es_facturae_faceb2b_input</field>
+        <field
+            name="backend_type_id"
+            ref="l10n_es_facturae_face.facturae_backend_type"
+        />
+        <field name="direction">input</field>
+        <field name="exchange_filename_pattern">{record_name}--{dt}</field>
+        <field name="exchange_file_ext">xsig</field>
+    </record>
+    <record id="facturae_faceb2b_exchange_type_rule" model="edi.exchange.type.rule">
+        <field name="name">Default</field>
+        <field name="type_id" ref="facturae_faceb2b_exchange_type" />
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="enable_domain"
+        >[('state', '!=', 'draft'), ('partner_id', '!=', False), ('partner_id.l10n_es_facturae_sending_code', '=', "faceb2b"),('move_type', 'in', ['out_invoice', 'out_refund'])]</field>
+        <field
+            name="enable_snippet"
+        >result = not record._has_exchange_record(exchange_type) or record.l10n_es_facturae_status in ["faceb2b-2600", "faceb2b-3100"]</field>
+    </record>
+    <record id="faceb2b_backend" model="edi.backend">
+        <field name="name">FACe B2B</field>
+        <field
+            name="backend_type_id"
+            ref="l10n_es_facturae_face.facturae_backend_type"
+        />
+        <field name="output_sent_processed_auto" eval="True" />
+    </record>
+    <record id="facturae_faceb2b_update_exchange_type" model="edi.exchange.type">
+        <field name="name">Update Facturae FACe</field>
+        <field name="code">l10n_es_facturae_faceb2b_update</field>
+        <field
+            name="backend_type_id"
+            ref="l10n_es_facturae_face.facturae_backend_type"
+        />
+        <field name="backend_id" ref="faceb2b_backend" />
+        <field name="direction">input</field>
+        <field name="exchange_filename_pattern">{record_name}-{dt}</field>
+        <field name="exchange_file_ext">json</field>
+        <field
+            name="advanced_settings_edit"
+        ><![CDATA[
+components:
+  receive:
+    usage: input.receive.faceb2b
+            ]]></field>
+    </record>
+
+    <record
+        id="facturae_faceb2b_update_exchange_type_rule"
+        model="edi.exchange.type.rule"
+    >
+        <field name="name">Default</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field name="type_id" ref="facturae_faceb2b_update_exchange_type" />
+        <field
+            name="enable_domain"
+        >[('state', '!=', 'draft'), ('partner_id.l10n_es_facturae_sending_code', '=', "faceb2b")]</field>
+    <field
+            name="enable_snippet"
+        >result = record._has_exchange_record(record.env.ref("l10n_es_facturae_faceb2b.facturae_faceb2b_exchange_type"), record.env.ref("l10n_es_facturae_faceb2b.faceb2b_backend"))</field>
+    </record>
+
+    <record
+        id="facturae_faceb2b_update_exchange_type_input_rule"
+        model="edi.exchange.type.rule"
+    >
+        <field name="name">Default Input</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field name="type_id" ref="facturae_faceb2b_update_exchange_type" />
+        <field name="enable_domain">[('journal_id.import_faceb2b', '=', True)]</field>
+    <field
+            name="enable_snippet"
+        >result = record._has_exchange_record(record.env.ref("l10n_es_facturae_faceb2b.facturae_faceb2b_exchange_input_type"), record.env.ref("l10n_es_facturae_faceb2b.faceb2b_backend"))</field>
+    </record>
+
+    <record id="facturae_faceb2b_exchange_cancel_input_type" model="edi.exchange.type">
+        <field name="name">Spanish Facturae Cancel</field>
+        <field name="code">l10n_es_facturae_faceb2b_cancel_input</field>
+        <field
+            name="backend_type_id"
+            ref="l10n_es_facturae_face.facturae_backend_type"
+        />
+        <field name="direction">input</field>
+        <field name="exchange_filename_pattern">{record_name}--{dt}</field>
+        <field
+            name="advanced_settings_edit"
+        ><![CDATA[
+components:
+  receive:
+    usage: input.receive.faceb2b
+            ]]></field>
+        <field name="exchange_file_ext">json</field>
+    </record>
+    <record id="facturae_face_cancel_exchange_type" model="edi.exchange.type">
+        <field name="name">Cancel Facturae FACe</field>
+        <field name="code">l10n_es_facturae_faceb2b_cancel</field>
+        <field
+            name="backend_type_id"
+            ref="l10n_es_facturae_face.facturae_backend_type"
+        />
+        <field name="backend_id" ref="faceb2b_backend" />
+        <field name="direction">output</field>
+        <field name="exchange_filename_pattern">{record_name}-{dt}</field>
+        <field name="exchange_file_ext">txt</field>
+    </record>
+    <record id="facturae_faceb2b_output_template" model="edi.exchange.template.output">
+        <field name="name">Facturae output</field>
+        <field
+            name="backend_type_id"
+            ref="l10n_es_facturae_face.facturae_backend_type"
+        />
+        <field name="type_id" ref="facturae_faceb2b_exchange_type" />
+        <field name="code">l10n_es_facturae.facturae_file</field>
+        <field name="output_type">xsig</field>
+        <field name="generator">report</field>
+        <field name="report_id" ref="l10n_es_facturae.report_facturae_signed" />
+        <field name="code_snippet">result = {"res_ids": record.ids}</field>
+    </record>
+</odoo>

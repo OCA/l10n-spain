@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 n
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="l10n_es_facturae_face.view_partner_form" />
+        <field name="arch" type="xml">
+            <field name="facturae" position="after">
+                <button
+                    name="check_faceb2b_information"
+                    type="object"
+                    string="Check FaceB2B"
+                    attrs="{'invisible': ['|', ('country_id', '!=', %(base.es)s), ('vat', '=', False)]}"
+                />
+            </field>
+            <xpath
+                expr="//field[@name='child_ids']/form/sheet/group//field[@name='l10n_es_facturae_sending_code']"
+                position="before"
+            >
+                <field
+                    name="facturae_faceb2b_dire"
+                    attrs="{'invisible': [('l10n_es_facturae_sending_code', '!=', 'faceb2b')]}"
+                />
+            </xpath>
+            <xpath
+                expr="//group[@name='group_facturae']/field[@name='l10n_es_facturae_sending_code']"
+                position="before"
+            >
+                <field
+                    name="facturae_faceb2b_dire"
+                    attrs="{'invisible': [('l10n_es_facturae_sending_code', '!=', 'faceb2b')]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
