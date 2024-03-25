@@ -18,6 +18,10 @@
                     name="tbai_active_date"
                     attrs="{'invisible': [('tbai_send_invoice', '=', False)]}"
                 />
+                <field
+                    name="tbai_invoice_issuer"
+                    attrs="{'invisible': ['|', '|', ('type', '!=', 'sale'), ('tbai_enabled', '=', False), ('tbai_send_invoice', '=', False)]}"
+                />
             </xpath>
         </field>
     </record>

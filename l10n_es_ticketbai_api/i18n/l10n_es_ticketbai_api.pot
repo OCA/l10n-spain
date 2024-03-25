@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-14 14:08+0000\n"
+"PO-Revision-Date: 2023-11-14 14:08+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -219,11 +221,6 @@ msgstr ""
 #: code:addons/l10n_es_ticketbai_api/models/res_company.py:0
 #, python-format
 msgid "Company %s TicketBAI Tax Agency is required."
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: model:ir.model,name:l10n_es_ticketbai_api.model_res_config_settings
-msgid "Config Settings"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
@@ -463,6 +460,21 @@ msgid "Invoice Tax Retention Total Amount"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai_api.selection__tbai_invoice__tbai_invoice_issuer__t
+msgid "Invoice issued by a third party"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai_api.selection__tbai_invoice__tbai_invoice_issuer__d
+msgid "Invoice issued by recipient"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai_api.selection__tbai_invoice__tbai_invoice_issuer__n
+msgid "Invoice issued by the issuer itself"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_tax__is_exempted
 msgid "Is Exempted"
 msgstr ""
@@ -643,6 +655,11 @@ msgstr ""
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_line__price_unit
 msgid "Price Unit"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: model:ir.model,name:l10n_es_ticketbai_api.model_res_config_settings
+msgid "Procurement purchase grouping settings"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
@@ -1609,6 +1626,11 @@ msgstr ""
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai_api.selection__tbai_invoice__schema__ticketbai
 msgid "TicketBai"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice__tbai_invoice_issuer
+msgid "TicketBai: Invoice issuer"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api

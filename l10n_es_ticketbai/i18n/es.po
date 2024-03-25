@@ -297,6 +297,24 @@ msgid "Invoice Serial"
 msgstr "Serie de factura"
 
 #. module: l10n_es_ticketbai
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_journal__tbai_invoice_issuer__t
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_move__tbai_invoice_issuer__t
+msgid "Invoice issued by a third party"
+msgstr "Factura emitida por tercero"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_journal__tbai_invoice_issuer__d
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_move__tbai_invoice_issuer__d
+msgid "Invoice issued by recipient"
+msgstr "Factura emitida por destinatario"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_journal__tbai_invoice_issuer__n
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_move__tbai_invoice_issuer__n
+msgid "Invoice issued by the issuer itself"
+msgstr "Factura emitida por el propio emisor"
+
+#. module: l10n_es_ticketbai
 #: model:ir.ui.menu,name:l10n_es_ticketbai.menu_tbai_invoice
 msgid "Invoices"
 msgstr "Facturas"
@@ -839,6 +857,14 @@ msgid ""
 msgstr ""
 "TicketBAI: No es posible cancelar y recrear una factura cuyo estado no sea "
 "'Error'."
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_invoice_issuer
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_journal__tbai_invoice_issuer
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_invoice_issuer
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_invoice_issuer
+msgid "TicketBai: Invoice issuer"
+msgstr "TicketBai: Emisor de la factura"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax__tbai_vat_exemption_key

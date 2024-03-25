@@ -273,11 +273,6 @@ msgid "Company %s TicketBAI Tax Agency is required."
 msgstr "La hacienda de TicketBAI en la compañía %s es requerida."
 
 #. module: l10n_es_ticketbai_api
-#: model:ir.model,name:l10n_es_ticketbai_api.model_res_config_settings
-msgid "Config Settings"
-msgstr "Opciones de configuración"
-
-#. module: l10n_es_ticketbai_api
 #: model:ir.model,name:l10n_es_ticketbai_api.model_res_partner
 msgid "Contact"
 msgstr "Contacto"
@@ -512,6 +507,21 @@ msgid "Invoice Tax Retention Total Amount"
 msgstr "Retención soportada"
 
 #. module: l10n_es_ticketbai_api
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai_api.selection__tbai_invoice__tbai_invoice_issuer__t
+msgid "Invoice issued by a third party"
+msgstr "Factura emitida por tercero"
+
+#. module: l10n_es_ticketbai_api
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai_api.selection__tbai_invoice__tbai_invoice_issuer__d
+msgid "Invoice issued by recipient"
+msgstr "Factura emitida por destinatario"
+
+#. module: l10n_es_ticketbai_api
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai_api.selection__tbai_invoice__tbai_invoice_issuer__n
+msgid "Invoice issued by the issuer itself"
+msgstr "Factura emitida por el propio emisor"
+
+#. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_tax__is_exempted
 msgid "Is Exempted"
 msgstr "Es exenta"
@@ -697,6 +707,11 @@ msgstr "Factura previa TicketBAI"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_line__price_unit
 msgid "Price Unit"
 msgstr "Precio unidad"
+
+#. module: l10n_es_ticketbai_api
+#: model:ir.model,name:l10n_es_ticketbai_api.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr ""
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai_api.selection__tbai_invoice_tax__type__goods
@@ -1772,6 +1787,11 @@ msgid "TicketBai"
 msgstr "TicketBai"
 
 #. module: l10n_es_ticketbai_api
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice__tbai_invoice_issuer
+msgid "TicketBai: Invoice issuer"
+msgstr "TicketBai: Emisor de la factura"
+
+#. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_tax__type
 msgid "Type"
 msgstr "Tipo"
@@ -1820,6 +1840,9 @@ msgstr "XML Respuesta"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_customer__zip
 msgid "ZIP Code"
 msgstr "Código postal"
+
+#~ msgid "Config Settings"
+#~ msgstr "Opciones de configuración"
 
 #~ msgid "Name %s too long. Should be 120 characters max.!"
 #~ msgstr ""

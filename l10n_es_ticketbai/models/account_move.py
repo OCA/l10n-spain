@@ -101,6 +101,9 @@ class AccountMove(models.Model):
         inverse_name="account_refund_invoice_id",
         string="TicketBAI Refund Origin References",
     )
+    tbai_invoice_issuer = fields.Selection(
+        related="journal_id.tbai_invoice_issuer", store=True
+    )
 
     @api.constrains("state")
     def _check_cancel_number_invoice(self):
@@ -263,6 +266,7 @@ class AccountMove(models.Model):
             "vat_regime_key": self.tbai_vat_regime_key.code,
             "vat_regime_key2": self.tbai_vat_regime_key2.code,
             "vat_regime_key3": self.tbai_vat_regime_key3.code,
+            "tbai_invoice_issuer": self.tbai_invoice_issuer,
         }
         if partner and not partner.aeat_anonymous_cash_customer:
             vals["tbai_customer_ids"] = [
