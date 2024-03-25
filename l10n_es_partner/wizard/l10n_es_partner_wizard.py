@@ -50,9 +50,8 @@ class L10nEsPartnerImportWizard(models.TransientModel):
             # BDE is forbidding on certain conditions to get the file, so we use a
             # local file. Latest update: 2023-10-07
             _logger.warning("Error while downloading data. Using local file.")
-            src_file_name = tools.file_path(
-                "l10n_es_partner/gen_src/REGBANESP_CONESTAB_A.xls",
-            )
+            res = tools.file_open("l10n_es_partner/gen_src/REGBANESP_CONESTAB_A.xls")
+            src_file_name = res.name
         # Generate XML and import it
         gen_bank_data_xml(src_file_name, dest_file.name)
         tools.convert_xml_import(
