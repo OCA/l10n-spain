@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_partner_id_category_form" model="ir.ui.view">
+        <field name="model">res.partner.id_category</field>
+        <field
+            name="inherit_id"
+            ref="partner_identification.view_partner_id_category_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='code']" position="after">
+               <field name="aeat_identification_type" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
