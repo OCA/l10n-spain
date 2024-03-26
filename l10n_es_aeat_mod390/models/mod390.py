@@ -443,6 +443,14 @@ class L10nEsAeatMod390Report(models.Model):
         compute="_compute_casilla_108",
         store=True,
     )
+    casilla_662 = fields.Float(
+        string="[662] Cuotas pendientes de compensación al término del ejercicio",
+        help="[662] Cuotas pendientes de compensación generadas en el ejercicio "
+        "y distintas de las incluidas en la casilla 97",
+        states=REQUIRED_ON_CALCULATED,
+        readonly=True,
+    )
+    use_303 = fields.Boolean("Use 303 models", default=False)
 
     @api.depends("tax_line_ids", "tax_line_ids.amount")
     def _compute_casilla_33(self):
@@ -761,15 +769,68 @@ class L10nEsAeatMod390Report(models.Model):
                 _("You cannot make complementary reports for this model.")
             )
 
+    def calculate(self):
+        res = super().calculate()
+        for mod390 in self:
+            if not mod390.use_303:
+                continue
+            casilla_85, casilla_95, casilla_97, casilla_98, casilla_662 = 0, 0, 0, 0, 0
+            reports_303_this_year = self.env["l10n.es.aeat.mod303.report"].search(
+                [
+                    ("year", "=", mod390.year),
+                    ("state", "not in", ("draft", "cancelled")),
+                    ("statement_type", "=", "N"),
+                ]
+            )
+            if not reports_303_this_year:
+                continue
+            # casilla 85 = sumatorio de las casilla 78 de los periodos del año
+            casilla_85 = sum(reports_303_this_year.mapped("cuota_compensar"))
+            # casilla 95 = sumatorio de las casilla 71 de los periodos del año que
+            # sean a ingresar
+            casilla_95 = sum(
+                reports_303_this_year.filtered(
+                    lambda r: r.result_type in {"I", "G", "U"}
+                ).mapped("resultado_liquidacion")
+            )
+            report_303_last_period = reports_303_this_year.filtered(
+                lambda r: r.period_type in {"4T", "12"}
+            )
+            if report_303_last_period:
+                if report_303_last_period[0].result_type == "C":
+                    # Si salió a compensar, casilla 97 = casilla 71 del último periodo
+                    # del año si fue a compensar
+                    casilla_97 = abs(report_303_last_period.resultado_liquidacion)
+                elif report_303_last_period[0].result_type == "N":
+                    # casilla 97 = casilla 87 del último periodo del año si fue a compensar
+                    # Si salio resultado cero, pero queda pendiente a compensar
+                    casilla_97 = report_303_last_period.remaining_cuota_compensar
+                elif report_303_last_period[0].result_type in {"D", "V", "X"}:
+                    # casilla 98 = casilla 71 del último periodo del año si fue a devolver
+                    casilla_98 = abs(report_303_last_period.resultado_liquidacion)
+                    # casilla 662 = casilla 87 del último periodo del año si no se incluyo
+                    # en la casilla 97
+                    casilla_662 = report_303_last_period.remaining_cuota_compensar
+            mod390.update(
+                {
+                    "casilla_85": casilla_85,
+                    "casilla_95": casilla_95,
+                    "casilla_97": casilla_97,
+                    "casilla_98": casilla_98,
+                    "casilla_662": casilla_662,
+                }
+            )
+        return res
+
     def button_confirm(self):
         """Check that the manual 303 results match the report."""
         self.ensure_one()
-        summary = self.casilla_95 - self.casilla_97 - self.casilla_98
+        summary = self.casilla_95 - self.casilla_97 - self.casilla_98 - self.casilla_662
         if float_compare(summary, self.casilla_86, precision_digits=2) != 0:
             raise exceptions.UserError(
                 _(
-                    "The result of the manual 303 summary (fields [95], [97] and "
-                    "[98] in the page '9. Resultado liquidaciones') doesn't match "
+                    "The result of the manual 303 summary (fields [95], [97], [98] and "
+                    "[662] in the page '9. Resultado liquidaciones') doesn't match "
                     "the field [86]. Please check if you have filled such fields."
                 )
             )
