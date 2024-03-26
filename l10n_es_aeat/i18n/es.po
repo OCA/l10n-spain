@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. module: l10n_es_aeat
 #. odoo-python
@@ -987,6 +987,7 @@ msgstr "Apuntes contables"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__representative_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__representative_vat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_company__representative_vat
 msgid "L.R. VAT number"
 msgstr "NIF del representante legal"
 
@@ -1042,6 +1043,14 @@ msgstr "Última actualización el"
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_model_export_config_line__alignment__left
 msgid "Left"
 msgstr "Izquierda"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_res_company__representative_vat
+msgid ""
+"Legal Representative VAT number for all the AEAT reports of this company."
+msgstr ""
+"NIF del representante legal para todos los informes de la AEAT de esta "
+"compañía."
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__representative_vat
@@ -1837,79 +1846,4 @@ msgid "or"
 msgstr "o"
 
 #~ msgid "SMS Delivery error"
-#~ msgstr "SMS de error en la entrega"
-
-#~ msgid "Number of messages which requires an action"
-#~ msgstr "Número de mensajes que requieren una acción"
-
-#~ msgid "Model"
-#~ msgstr "Modelo"
-
-#~ msgid "Number of unread messages"
-#~ msgstr "Número de mensajes no leídos"
-
-#~ msgid "Unread Messages"
-#~ msgstr "Mensajes no leídos"
-
-#~ msgid "Unread Messages Counter"
-#~ msgstr "Contador de mensajes no leídos"
-
-#~ msgid "Cryptography version is not supported. Upgrade to 3.0.0 or greater."
-#~ msgstr "Versión de criptografía no soportada. Actualice a 3.0.0 o superior."
-
-#~ msgid "%s_report_%s.txt"
-#~ msgstr "%s_report_%s.txt"
-
-#~ msgid "AEAT export configurationline"
-#~ msgstr "Línea de configuración de exportación de la AEAT"
-
-#~ msgid "Apply sign"
-#~ msgstr "Aplicar signo"
-
-#~ msgid "BOE export configurations"
-#~ msgstr "Configuraciones de exportación a BOE"
-
-#~ msgid "Calculation date"
-#~ msgstr "Fecha de cálculo"
-
-#~ msgid "Conditional expression"
-#~ msgstr "Expresión condicional"
-
-#~ msgid "Contact email"
-#~ msgstr "Correo electrónico de contacto"
-
-#~ msgid "Field type"
-#~ msgstr "Tipo de campo"
-
-#~ msgid "Fixed value"
-#~ msgstr "Valor fijo"
-
-#~ msgid "Followers (Channels)"
-#~ msgstr "Seguidores (Canales)"
-
-#~ msgid "Period type"
-#~ msgstr "Tipo de periodo"
-
-#~ msgid "Repeat expression"
-#~ msgstr "Expresión de repetición"
-
-#~ msgid "Tax code mapping lines"
-#~ msgstr "Líneas de mapeo de impuestos"
-
-#~ msgid "To regularize"
-#~ msgstr "Para regularizar"
-
-#~ msgid "OpenSSL version is not supported. Upgrade to 0.15 or greater."
-#~ msgstr "Versión de OpenSSL no soportada. Actualice a 0.15 o superior."
-
-#~ msgid "If checked new messages require your attention."
-#~ msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
-
-#~ msgid "Overdue"
-#~ msgstr "Retraso"
-
-#~ msgid "Planned"
-#~ msgstr "Planificado"
-
-#~ msgid "Today"
-#~ msgstr "Hoy"
+#~ msgstr "Error de envío del mensaje"
