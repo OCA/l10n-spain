@@ -384,3 +384,59 @@ class TestL10nEsSigausPurchase(TestL10nEsSigausCommon):
         ]
         with self.assertRaises(ValidationError):
             self.create_purchase_order("2022-01-01", self.fiscal_position_sigaus, lines)
+
+    def test_add_sigaus_line_create_method(self):
+        purchase = self.create_purchase_order(
+            "2023-01-01", self.fiscal_position_sigaus, []
+        )
+        self.env["purchase.order.line"].create(
+            {
+                "product_id": self.product_sigaus_in_category_excluded.id,
+                "product_qty": 1.0,
+                "price_unit": 2,
+                "order_id": purchase.id,
+            }
+        )
+        self.assertEqual(purchase.sigaus_company, True)
+        self.assertEqual(purchase.sigaus_has_line, False)
+        self.assertEqual(purchase.amount_untaxed, 2)
+        self.env["purchase.order.line"].create(
+            {
+                "product_id": self.product_sigaus_in_product.id,
+                "product_qty": 3.0,
+                "price_unit": 3,
+                "order_id": purchase.id,
+            }
+        )
+        self.assertEqual(purchase.sigaus_company, True)
+        self.assertEqual(purchase.sigaus_has_line, True)
+        self.assertEqual(purchase.amount_untaxed, 11.18)
+        purchase.order_line.filtered(
+            lambda a: a.product_id == self.product_sigaus_in_product
+        ).write(
+            {
+                "product_qty": 6.0,
+            }
+        )
+        self.assertEqual(purchase.sigaus_company, True)
+        self.assertEqual(purchase.sigaus_has_line, True)
+        self.assertEqual(purchase.amount_untaxed, 20.36)
+        purchase.write(
+            {
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product_sigaus_in_category.id,
+                            "product_uom_qty": 2,
+                            "price_unit": 1,
+                            "product_qty": 2.0,
+                        },
+                    ),
+                ],
+            }
+        )
+        self.assertEqual(purchase.sigaus_company, True)
+        self.assertEqual(purchase.sigaus_has_line, True)
+        self.assertEqual(purchase.amount_untaxed, 22.6)
