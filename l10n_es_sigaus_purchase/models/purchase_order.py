@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, models
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT, frozendict
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 class PurchaseOrder(models.Model):
@@ -56,7 +56,7 @@ class PurchaseOrder(models.Model):
         return super(PurchaseOrder, obj).action_create_invoice()
 
     def write(self, vals):
-        res = super().write(vals)
+        res = super(PurchaseOrder, self.with_context(avoid_recursion=True)).write(vals)
         sigaus_purchases = self.filtered(
             lambda a: a.is_sigaus
             and a.sigaus_is_date
@@ -69,10 +69,7 @@ class PurchaseOrder(models.Model):
             if self.env.context.get("avoid_recursion"):
                 continue
             purchase.automatic_sigaus_exception()
-            purchase.with_context(avoid_recursion=True).apply_sigaus()
-            purchase.env.context = frozendict(
-                {**purchase.env.context, "avoid_recursion": False}
-            )
+            purchase.apply_sigaus()
         (self - sigaus_purchases).filtered(
             lambda a: (
                 not a.is_sigaus
@@ -99,3 +96,11 @@ class PurchaseOrder(models.Model):
             purchase.automatic_sigaus_exception()
             purchase.apply_sigaus()
         return purchases
+
+    def copy(self, default=None):
+        # Do not calculate SIGAUS through create method in purchase.order.lines
+        # but calculate it through create method in purchase.order
+        new_po = super(PurchaseOrder, self.with_context(avoid_recursion=True)).copy(
+            default
+        )
+        return new_po
