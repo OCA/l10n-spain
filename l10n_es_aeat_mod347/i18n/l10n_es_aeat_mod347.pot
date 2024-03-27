@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -117,11 +117,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model:ir.actions.report,name:l10n_es_aeat_mod347.347_partner
 msgid "347 Partner Detail"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
-#: model:mail.template,report_name:l10n_es_aeat_mod347.email_template_347
-msgid "347_details"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -645,7 +640,9 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_has_error
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_has_sms_error
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_has_error
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -735,14 +732,6 @@ msgid "La comunicación se ha registrado correctamente."
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__write_uid
@@ -767,12 +756,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__representative_vat
 msgid "Legal Representative VAT number."
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_main_attachment_id
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_main_attachment_id
-msgid "Main Attachment"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -845,13 +828,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_type_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
-#. odoo-python
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
-#, python-format
-msgid "No Tax Mapping was found"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -1178,6 +1154,12 @@ msgstr ""
 msgid ""
 "Revíselo y vuelva a intentarlo, o pongase en contacto por correo con "
 "nosotros."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_has_sms_error
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_has_sms_error
+msgid "SMS Delivery error"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
