@@ -62,6 +62,7 @@ setuptools.setup(
         'odoo12-addon-l10n_es_ticketbai_batuz',
         'odoo12-addon-l10n_es_ticketbai_batuz_extra_data',
         'odoo12-addon-l10n_es_ticketbai_extra_data',
+        'odoo12-addon-l10n_es_ticketbai_oss',
         'odoo12-addon-l10n_es_ticketbai_pos',
         'odoo12-addon-l10n_es_toponyms',
         'odoo12-addon-l10n_es_vat_book',
