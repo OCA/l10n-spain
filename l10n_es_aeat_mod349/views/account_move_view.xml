@@ -8,13 +8,14 @@
                 <field
                     name="eu_triangular_deal"
                     groups="l10n_es_aeat.group_account_aeat"
+                    readonly="state != 'draft'"
                 />
             </field>
             <xpath
                 expr="//field[@name='invoice_line_ids']/tree/field[@name='tax_ids']"
                 position="after"
             >
-                <field name="l10n_es_aeat_349_operation_key" invisible="1" />
+                <field name="l10n_es_aeat_349_operation_key" />
             </xpath>
         </field>
     </record>

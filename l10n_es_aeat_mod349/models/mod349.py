@@ -24,7 +24,7 @@ class Mod349(models.Model):
     _period_yearly = True
     _aeat_number = "349"
 
-    frequency_change = fields.Boolean(states={"confirmed": [("readonly", True)]})
+    frequency_change = fields.Boolean()
     total_partner_records = fields.Integer(
         compute="_compute_report_regular_totals",
         string="Partners records",
@@ -55,7 +55,6 @@ class Mod349(models.Model):
         comodel_name="l10n.es.aeat.mod349.partner_record_detail",
         inverse_name="report_id",
         string="Partner record details",
-        states={"confirmed": [("readonly", True)]},
     )
     partner_refund_ids = fields.One2many(
         comodel_name="l10n.es.aeat.mod349.partner_refund",
@@ -67,7 +66,6 @@ class Mod349(models.Model):
         comodel_name="l10n.es.aeat.mod349.partner_refund_detail",
         inverse_name="report_id",
         string="Partner refund details",
-        states={"confirmed": [("readonly", True)]},
     )
     number = fields.Char(default="349")
 
@@ -226,7 +224,7 @@ class Mod349(models.Model):
                 report = original_details.mapped("report_id")[:1]
                 partner_id = original_details.mapped("partner_id")[:1]
                 original_details = original_details.filtered(
-                    lambda d: d.report_id == report
+                    lambda d, report=report: d.report_id == report
                 )
                 origin_amount = sum(original_details.mapped("amount_untaxed"))
                 period_type = report.period_type
@@ -329,10 +327,11 @@ class Mod349(models.Model):
     def _get_taxes(self):
         """Obtain all the taxes to be considered for 349."""
         map_lines = self.env["aeat.349.map.line"].search([])
-        tax_templates = map_lines.mapped("tax_tmpl_ids")
+        tax_templates = map_lines.mapped("tax_xmlid_ids")
         if not tax_templates:
             raise exceptions.UserError(_("No Tax Mapping was found"))
-        return self.get_taxes_from_templates(tax_templates)
+        taxes_ids = self.company_id._get_tax_ids_from_xmlids(tax_templates)
+        return self.env["account.tax"].search([("id", "in", taxes_ids)])
 
     def _cleanup_report(self):
         """Remove previous partner records and partner refunds in report."""
@@ -345,35 +344,33 @@ class Mod349(models.Model):
     def calculate(self):
         """Computes the records in report."""
         self.ensure_one()
-        with self.env.norecompute():
-            self._cleanup_report()
-            taxes = self._get_taxes()
-            # Get all the account moves
-            move_lines = self.env["account.move.line"].search(
-                self._account_move_line_domain(taxes)
+        self._cleanup_report()
+        taxes = self._get_taxes()
+        # Get all the account moves
+        move_lines = self.env["account.move.line"].search(
+            self._account_move_line_domain(taxes)
+        )
+        # If the type of presentation is complementary, remove records that
+        # already exist in other presentations
+        if self.statement_type == "C":
+            prev_details = self.partner_record_detail_ids.search(
+                [
+                    ("move_line_id", "in", move_lines.ids),
+                    ("report_id", "!=", self.id),
+                ]
             )
-            # If the type of presentation is complementary, remove records that
-            # already exist in other presentations
-            if self.statement_type == "C":
-                prev_details = self.partner_record_detail_ids.search(
-                    [
-                        ("move_line_id", "in", move_lines.ids),
-                        ("report_id", "!=", self.id),
-                    ]
-                )
-                move_lines -= prev_details.mapped("move_line_id")
-                prev_details = self.partner_refund_detail_ids.search(
-                    [
-                        ("refund_line_id", "in", move_lines.ids),
-                        ("report_id", "!=", self.id),
-                    ]
-                )
-                move_lines -= prev_details.mapped("refund_line_id")
-            self._create_349_details(move_lines)
-            self._create_349_invoice_records()
-            self._create_349_refund_records()
-        # Recompute all pending computed fields
-        self.flush_recordset()
+            move_lines -= prev_details.mapped("move_line_id")
+            prev_details = self.partner_refund_detail_ids.search(
+                [
+                    ("refund_line_id", "in", move_lines.ids),
+                    ("report_id", "!=", self.id),
+                ]
+            )
+            move_lines -= prev_details.mapped("refund_line_id")
+        self._create_349_details(move_lines)
+        self._create_349_invoice_records()
+        self._create_349_refund_records()
+        self.env.flush_all()
         return True
 
     def button_recover(self):

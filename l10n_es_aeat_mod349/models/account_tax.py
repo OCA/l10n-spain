@@ -25,6 +25,7 @@ class AccountTax(models.Model):
         for tax in self:
             tax.l10n_es_aeat_349_operation_key = False
             for line in map_349:
-                if tax in tax.company_id.get_taxes_from_templates(line.tax_tmpl_ids):
+                taxes_ids = tax.company_id._get_tax_ids_from_xmlids(line.tax_xmlid_ids)
+                if taxes_ids and tax.id in taxes_ids:
                     tax.l10n_es_aeat_349_operation_key = line.operation_key
                     break

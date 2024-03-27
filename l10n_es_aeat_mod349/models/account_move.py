@@ -14,7 +14,6 @@ class AccountMove(models.Model):
         help="This invoice constitutes a triangular operation for the "
         "purposes of intra-community operations.",
         readonly=True,
-        states={"draft": [("readonly", False)]},
     )
 
 
@@ -35,6 +34,9 @@ class AccountMoveLine(models.Model):
         ],
         string="AEAT 349 Operation key",
         compute="_compute_l10n_es_aeat_349_operation_key",
+        # It needs to be stored so this field is searchable in
+        # _create_349_refund_records in l10n.es.aeat.mod349.report
+        store=True,
     )
 
     @api.depends("tax_ids", "move_id.eu_triangular_deal")

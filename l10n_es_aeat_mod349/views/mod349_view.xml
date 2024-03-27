@@ -43,7 +43,7 @@
         <field name="model">l10n.es.aeat.mod349.partner_record</field>
         <field name="arch" type="xml">
             <tree decoration-danger="not partner_record_ok">
-                <field name="partner_record_ok" invisible="1" />
+                <field name="partner_record_ok" />
                 <field name="country_id" optional="show" />
                 <field name="partner_vat" optional="show" />
                 <field name="partner_id" optional="show" />
@@ -51,7 +51,7 @@
                 <field name="total_operation_amount" optional="show" />
                 <field
                     name="error_text"
-                    attrs="{'invisible': [('partner_record_ok', '=', True)]}"
+                    invisible="partner_record_ok"
                     optional="show"
                 />
             </tree>
@@ -68,7 +68,7 @@
                         <group>
                             <field
                                 name="error_text"
-                                attrs="{'invisible': [('partner_record_ok', '=', True)]}"
+                                invisible="partner_record_ok"
                                 class="text-danger"
                             />
                             <field name="partner_record_ok" invisible="1" />
@@ -208,20 +208,29 @@
                             </group>
                         </group>
                         <group string="Options" colspan="4">
-                            <field name="frequency_change" />
+                            <field
+                                name="frequency_change"
+                                readonly="state == 'confirmed'"
+                            />
                         </group>
                     </page>
                     <page string="Partner records">
                         <separator string="Summary" />
                         <field name="partner_record_ids" />
                         <separator string="Details" />
-                        <field name="partner_record_detail_ids" />
+                        <field
+                            name="partner_record_detail_ids"
+                            readonly="state == 'confirmed'"
+                        />
                     </page>
                     <page string="Refunds from other periods">
                         <separator string="Summary" />
                         <field name="partner_refund_ids" />
                         <separator string="Details" />
-                        <field name="partner_refund_detail_ids" />
+                        <field
+                            name="partner_refund_detail_ids"
+                            readonly="state == 'confirmed'"
+                        />
                     </page>
                 </notebook>
             </group>
