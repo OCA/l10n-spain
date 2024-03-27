@@ -157,6 +157,10 @@ class AccountMove(models.Model):
             raise ValidationError(_("Partner vat is too small"))
         if not self.partner_id.state_id:
             raise ValidationError(_("Partner state not provided"))
+        if not self.partner_id.unidad_tramitadora:
+            raise ValidationError(_("Unidad Tramitadora not provided"))
+        if not self.partner_id.oficina_contable:
+            raise ValidationError(_("Oficina Contable not provided"))
         if not self.payment_mode_id:
             raise ValidationError(_("Payment mode is required"))
         if self.payment_mode_id.facturae_code:
@@ -256,6 +260,12 @@ class AccountMove(models.Model):
     def get_narration(self):
         self.ensure_one()
         return html2plaintext(self.narration)
+
+    def _get_facturae_headers(self):
+        return 'xmlns:ds="http://www.w3.org/2000/09/xmldsig#"'
+
+    def _facturae_has_extensions(self):
+        return False
 
 
 class AccountMoveLine(models.Model):

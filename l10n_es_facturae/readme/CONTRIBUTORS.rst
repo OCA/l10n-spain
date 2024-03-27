@@ -11,3 +11,4 @@
 * Eduardo de Miguel (edu@moduon.team)
 * Eric Antones (eantones@nuobit.com>
 * Alberto Martínez (alberto.martinez@sygel.es)
+* Carolina Fernandez (http://www.tecnativa.com)
