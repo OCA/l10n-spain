@@ -16,3 +16,4 @@
 * Valentin Vinagre <valentin.vinagre@sygel.es>
 * Manuel Regidor <manuel.regidor@sygel.es>
 * Jairo Llopis (https://www.moduon.team)
+* Eduardo de Miguel (https://www.moduon.team)
