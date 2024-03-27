@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_347_partner_document">
+        <t t-call="web.external_layout">
+            <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
+            <div class="page">
+                <t t-set="address">
+                    <address
+                        t-field="o.partner_id"
+                        t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'
+                    />
+                    <div t-if="o.partner_id.vat" class="mt16">
+                        <t
+                            t-if="o.report_id.company_id.account_fiscal_country_id.vat_label"
+                            t-esc="o.report_id.company_id.account_fiscal_country_id.vat_label"
+                        />
+                        <t t-else="">Tax ID</t>: <span t-field="o.partner_id.vat" />
+                    </div>
+                </t>
+                <div class="row mt32 mb32">
+                    <div class="col-auto col-3 mw-100 mb-2" t-if="o.operation_key">
+                        <strong>Operation Key:</strong>
+                        <p class="m-0" t-field="o.operation_key" />
+                    </div>
+                </div>
+                <t t-if="o.amount">
+                    <h2>Invoices</h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto col-3 mw-100 mb-2">
+                            <strong>Amount:</strong>
+                            <p class="m-0" t-field="o.amount" />
+                        </div>
+                        <div class="col-auto col-3 mw-100 mb-2">
+                            <strong>Amount 1Q:</strong>
+                            <p class="m-0" t-field="o.first_quarter" />
+                        </div>
+                        <div class="col-auto col-3 mw-100 mb-2">
+                            <strong>Amount 2Q:</strong>
+                            <p class="m-0" t-field="o.second_quarter" />
+                        </div>
+                        <div class="col-auto col-3 mw-100 mb-2">
+                            <strong>Amount 3Q:</strong>
+                            <p class="m-0" t-field="o.third_quarter" />
+                        </div>
+                        <div class="col-auto col-3 mw-100 mb-2">
+                            <strong>Amount 4Q:</strong>
+                            <p class="m-0" t-field="o.fourth_quarter" />
+                        </div>
+                    </div>
+                    <t t-if="o.move_record_ids">
+                        <table
+                            class="table table-sm o_main_table table-borderless"
+                            name="invoice_line_table"
+                        >
+                            <thead>
+                                <tr>
+                                    <th class="text-start">Invoice</th>
+                                    <th class="text-start">Date</th>
+                                    <th class="text-end">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody class="invoice_tbody">
+                                <tr t-foreach="o.move_record_ids" t-as="l">
+                                    <td>
+                                        <span t-esc="l.move_id.ref or l.move_id.name" />
+                                    </td>
+                                    <td>
+                                        <span t-field="l.move_id.date" />
+                                    </td>
+                                    <td class="text-end" id="subtotal">
+                                        <span t-field="l.amount" />
+                                    </td>
+                                </tr>
+                                <tr
+                                    t-foreach="range(max(5-len(o.move_record_ids),0))"
+                                    t-as="l"
+                                >
+                                    <td t-translation="off">&amp;nbsp;</td>
+                                    <td />
+                                    <td />
+                                </tr>
+                            </tbody>
+                        </table>
+                    </t>
+                </t>
+                <t t-if="o.cash_amount">
+                    <h2>Cash Register</h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto col-3 mw-100 mb-2">
+                            <strong>Amount:</strong>
+                            <p class="m-0" t-field="o.cash_amount" />
+                        </div>
+                    </div>
+                    <t t-if="o.cash_record_ids">
+                        <table class="table table-condensed" name="invoice_line_table">
+                            <thead>
+                                <tr>
+                                    <th class="text-start">Date</th>
+                                    <th class="text-end">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody class="invoice_tbody">
+                                <tr t-foreach="o.cash_record_ids" t-as="l">
+                                    <td>
+                                        <span t-field="l.date" />
+                                    </td>
+                                    <td class="text-end" id="subtotal">
+                                        <span t-field="l.balance" />
+                                    </td>
+                                </tr>
+                                <tr
+                                    t-foreach="range(max(5-len(o.cash_record_ids),0))"
+                                    t-as="l"
+                                >
+                                    <td t-translation="off">&amp;nbsp;</td>
+                                    <td />
+                                </tr>
+                            </tbody>
+                        </table>
+                    </t>
+                </t>
+                <t t-if="o.real_estate_transmissions_amount">
+                    <h2>Real State Transmissions</h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto col-3 mw-100 mb-2">
+                            <strong>Amount:</strong>
+                            <p
+                                class="m-0"
+                                t-field="o.real_estate_transmissions_amount"
+                            />
+                        </div>
+                        <div class="col-auto col-3 mw-100 mb-2">
+                            <strong>Amount 1Q:</strong>
+                            <p
+                                class="m-0"
+                                t-field="o.first_quarter_real_estate_transmission"
+                            />
+                        </div>
+                        <div class="col-auto col-3 mw-100 mb-2">
+                            <strong>Amount 2Q:</strong>
+                            <p
+                                class="m-0"
+                                t-field="o.second_quarter_real_estate_transmission"
+                            />
+                        </div>
+                        <div class="col-auto col-3 mw-100 mb-2">
+                            <strong>Amount 3Q:</strong>
+                            <p
+                                class="m-0"
+                                t-field="o.third_quarter_real_estate_transmission"
+                            />
+                        </div>
+                        <div class="col-auto col-3 mw-100 mb-2">
+                            <strong>Amount 4Q:</strong>
+                            <p
+                                class="m-0"
+                                t-field="o.fourth_quarter_real_estate_transmission"
+                            />
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+    <template id="report_347_partner">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t
+                    t-call="l10n_es_aeat_mod347.report_347_partner_document"
+                    t-lang="o.partner_id.lang"
+                />
+            </t>
+        </t>
+    </template>
+    <record id="347_partner" model="ir.actions.report">
+        <field name="name">347 Partner Detail</field>
+        <field name="model">l10n.es.aeat.mod347.partner_record</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_es_aeat_mod347.report_347_partner</field>
+        <field name="report_file">l10n_es_aeat_mod347.report_347_partner</field>
+        <field name="binding_model_id" ref="model_l10n_es_aeat_mod347_partner_record" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
