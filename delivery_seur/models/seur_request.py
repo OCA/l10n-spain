@@ -133,7 +133,7 @@ class SeurRequest(object):
             # http://ayuda.seur.com
             # /faq/tamano-peso-de-los-paquetes-a-enviar-a-traves-de-seur-com
             "total_kilos": weight or 1,
-            "pesoBulto": ((weight / self.record.number_of_packages or 1) or 1),
+            "pesoBulto": ((weight / (self.record.number_of_packages or 1)) or 1),
             "observaciones": self.record.note,
             "referencia_expedicion": self.record.name,
             "ref_bulto": "",
