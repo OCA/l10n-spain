@@ -1,0 +1,107 @@
+id,field_number,field_type,inverse,map_parent_id:id,move_type,name,sum_type,account_xmlid_ids/id,tax_xmlid_ids/id
+aeat_mod390_map_line_01,1,base,False,aeat_mod390_map,regular,Régimen ordinario - Base imponible 4%,both,,"s_iva4b,s_iva4s"
+aeat_mod390_map_line_02,2,amount,False,aeat_mod390_map,regular,Régimen ordinario - Cuota 4%,both,,"s_iva4b,s_iva4s"
+aeat_mod390_map_line_03,3,base,False,aeat_mod390_map,regular,Régimen ordinario - Base imponible 10%,both,,"s_iva10b,s_iva10s"
+aeat_mod390_map_line_04,4,amount,False,aeat_mod390_map,regular,Régimen ordinario - Cuota 10%,both,,"s_iva10b,s_iva10s"
+aeat_mod390_map_line_05,5,base,False,aeat_mod390_map,regular,Régimen ordinario - Base imponible 21%,both,,"s_iva21b,s_iva21s"
+aeat_mod390_map_line_06,6,amount,False,aeat_mod390_map,regular,Régimen ordinario - Cuota 21%,both,,"s_iva21b,s_iva21s"
+aeat_mod390_map_line_21,21,base,True,aeat_mod390_map,regular,Adquisiciones intracomunitarias de bienes - Base 4%,both,,p_iva4_ic_bc
+aeat_mod390_map_line_22,22,amount,False,aeat_mod390_map,regular,Adquisiciones intracomunitarias de bienes - Cuota 4%,both,common_477,p_iva4_ic_bc
+aeat_mod390_map_line_23,23,base,True,aeat_mod390_map,regular,Adquisiciones intracomunitarias de bienes - Base 10%,both,,p_iva10_ic_bc
+aeat_mod390_map_line_24,24,amount,False,aeat_mod390_map,regular,Adquisiciones intracomunitarias de bienes - Cuota 10%,both,common_477,p_iva10_ic_bc
+aeat_mod390_map_line_25,25,base,True,aeat_mod390_map,regular,Adquisiciones intracomunitarias de bienes - Base 21%,both,,p_iva21_ic_bc
+aeat_mod390_map_line_26,26,amount,False,aeat_mod390_map,regular,Adquisiciones intracomunitarias de bienes - Cuota 21%,both,common_477,p_iva21_ic_bc
+aeat_mod390_map_line_545,545,base,True,aeat_mod390_map,regular,Adquisiciones intracomunitarias de servicios - Base 4%,both,,p_iva4_sp_in
+aeat_mod390_map_line_546,546,amount,True,aeat_mod390_map,regular,Adquisiciones intracomunitarias de servicios - Cuota 4%,both,common_472,p_iva4_sp_in
+aeat_mod390_map_line_547,547,base,True,aeat_mod390_map,regular,Adquisiciones intracomunitarias de servicios - Base 10%,both,,p_iva10_sp_in
+aeat_mod390_map_line_548,548,amount,True,aeat_mod390_map,regular,Adquisiciones intracomunitarias de servicios - Cuota 10%,both,common_472,p_iva10_sp_in
+aeat_mod390_map_line_551,551,base,True,aeat_mod390_map,regular,Adquisiciones intracomunitarias de servicios - Base 21%,both,,p_iva21_sp_in
+aeat_mod390_map_line_552,552,amount,True,aeat_mod390_map,regular,Adquisiciones intracomunitarias de servicios - Cuota 21%,both,common_472,p_iva21_sp_in
+aeat_mod390_map_line_27,27,base,True,aeat_mod390_map,regular,IVA devengado en otros supuestos de inversión del sujeto pasivo - Base,both,,"p_iva4_sp_ex,p_iva10_sp_ex,p_iva21_sp_ex,p_iva4_isp,p_iva10_isp,p_iva21_isp,p_iva4_isp_bi,p_iva10_isp_bi,p_iva21_isp_bi"
+aeat_mod390_map_line_28,28,amount,True,aeat_mod390_map,regular,IVA devengado en otros supuestos de inversión del sujeto pasivo - Cuota,both,common_472,"p_iva4_sp_ex,p_iva10_sp_ex,p_iva21_sp_ex,p_iva4_isp,p_iva10_isp,p_iva21_isp,p_iva4_isp_bi,p_iva10_isp_bi,p_iva21_isp_bi"
+aeat_mod390_map_line_29_sale,29,base,False,aeat_mod390_map,refund,Modificación de bases (ventas),both,,"s_iva0b,s_iva0s,s_iva4b,s_iva4s,s_iva5b,s_iva5s,s_iva10b,s_iva10s,s_iva21b,s_iva21s"
+aeat_mod390_map_line_29_purchase,29,base,True,aeat_mod390_map,refund,Modificación de bases (compras),both,,"p_iva0_ic_bc,p_iva4_ic_bc,p_iva5_ic_bc,p_iva4_sp_in,p_iva4_ic_bi,p_iva10_ic_bc,p_iva10_sp_in,p_iva10_ic_bi,p_iva21_ic_bc,p_iva21_sp_in,p_iva21_ic_bi,p_iva4_sp_ex,p_iva10_sp_ex,p_iva21_sp_ex,p_iva4_isp,p_iva10_isp,p_iva21_isp,p_iva4_isp_bi,p_iva10_isp_bi,p_iva21_isp_bi"
+aeat_mod390_map_line_30_sale,30,amount,False,aeat_mod390_map,refund,Modificación de cuotas (ventas),both,common_477,"s_iva4b,s_iva4s,s_iva5b,s_iva5s,s_iva10b,s_iva10s,s_iva21b,s_iva21s"
+aeat_mod390_map_line_30_purchase,30,amount,False,aeat_mod390_map,refund,Modificación de cuotas (compras),both,common_477,"p_iva0_ic_bc,p_iva4_ic_bc,p_iva5_ic_bc,p_iva4_sp_in,p_iva4_ic_bi,p_iva10_ic_bc,p_iva10_sp_in,p_iva10_ic_bi,p_iva21_ic_bc,p_iva21_sp_in,p_iva21_ic_bi,p_iva4_sp_ex,p_iva10_sp_ex,p_iva21_sp_ex,p_iva4_isp,p_iva10_isp,p_iva21_isp,p_iva4_isp_bi,p_iva10_isp_bi,p_iva21_isp_bi"
+aeat_mod390_map_line_663,663,base,False,aeat_mod390_map,regular,Recargo de equivalencia - Base 0%,both,,s_req0
+aeat_mod390_map_line_664,664,amount,False,aeat_mod390_map,regular,Recargo de equivalencia - Cuota 0%,both,,s_req0
+aeat_mod390_map_line_35,35,base,False,aeat_mod390_map,regular,"Recargo de equivalencia - Base 0,5%",both,,s_req05
+aeat_mod390_map_line_36,36,amount,False,aeat_mod390_map,regular,"Recargo de equivalencia - Cuota 0,5%",both,,s_req05
+aeat_mod390_map_line_665,665,base,False,aeat_mod390_map,regular,"Recargo de equivalencia - Base 0,62%",both,,s_req062
+aeat_mod390_map_line_666,666,amount,False,aeat_mod390_map,regular,"Recargo de equivalencia - Cuota 0,62%",both,,s_req062
+aeat_mod390_map_line_599,599,base,False,aeat_mod390_map,regular,"Recargo de equivalencia - Base 1,4%",both,,s_req014
+aeat_mod390_map_line_600,600,amount,False,aeat_mod390_map,regular,"Recargo de equivalencia - Cuota 1,4%",both,,s_req014
+aeat_mod390_map_line_601,601,base,False,aeat_mod390_map,regular,"Recargo de equivalencia - Base 5,2%",both,,s_req52
+aeat_mod390_map_line_602,602,amount,False,aeat_mod390_map,regular,"Recargo de equivalencia - Cuota 5,2%",both,,s_req52
+aeat_mod390_map_line_43,43,base,False,aeat_mod390_map,refund,Modificación recargo equivalencia - Base,both,,"s_req0,s_req05,s_req062,s_req014,s_req52"
+aeat_mod390_map_line_44,44,amount,False,aeat_mod390_map,refund,Modificación recargo equivalencia - Cuota,both,,"s_req0,s_req05,s_req062,s_req014,s_req52"
+aeat_mod390_map_line_190,190,base,True,aeat_mod390_map,regular,IVA deducible en operaciones corrientes de bienes y servicios - Base 4%,both,,"p_iva4_sc,p_iva4_bc,p_iva4_sp_ex,p_iva4_isp"
+aeat_mod390_map_line_191,191,amount,True,aeat_mod390_map,regular,IVA deducible en operaciones corrientes de bienes y servicios - Cuota 4%,both,common_472,"p_iva4_sc,p_iva4_bc,p_iva4_sp_ex,p_iva4_isp"
+aeat_mod390_map_line_603,603,base,True,aeat_mod390_map,regular,IVA deducible en operaciones corrientes de bienes y servicios - Base 10%,both,,"p_iva10_sc,p_iva10_bc,p_iva10_sp_ex,p_iva10_isp"
+aeat_mod390_map_line_604,604,amount,True,aeat_mod390_map,regular,IVA deducible en operaciones corrientes de bienes y servicios - Cuota 10%,both,common_472,"p_iva10_sc,p_iva10_bc,p_iva10_sp_ex,p_iva10_isp"
+aeat_mod390_map_line_605,605,base,True,aeat_mod390_map,regular,IVA deducible en operaciones corrientes de bienes y servicios - Base 21%,both,,"p_iva21_sc,p_iva21_bc,p_iva21_sp_ex,p_iva21_isp"
+aeat_mod390_map_line_606,606,amount,True,aeat_mod390_map,regular,IVA deducible en operaciones corrientes de bienes y servicios - Cuota 21%,both,common_472,"p_iva21_sc,p_iva21_bc,p_iva21_sp_ex,p_iva21_isp"
+aeat_mod390_map_line_196,196,base,True,aeat_mod390_map,regular,IVA deducible en operaciones interiores de bienes de inversión - Base imponible 4%,both,,"p_iva4_bi,p_iva4_isp_bi"
+aeat_mod390_map_line_197,197,amount,True,aeat_mod390_map,regular,IVA deducible en operaciones interiores de bienes de inversión - Cuota 4%,both,,"p_iva4_bi,p_iva4_isp_bi"
+aeat_mod390_map_line_611,611,base,True,aeat_mod390_map,regular,IVA deducible en operaciones interiores de bienes de inversión - Base imponible 10%,both,,"p_iva10_bi,p_iva10_isp_bi"
+aeat_mod390_map_line_612,612,amount,True,aeat_mod390_map,regular,IVA deducible en operaciones interiores de bienes de inversión - Cuota 10%,both,,"p_iva10_bi,p_iva10_isp_bi"
+aeat_mod390_map_line_613,613,base,True,aeat_mod390_map,regular,IVA deducible en operaciones interiores de bienes de inversión - Base imponible 21%,both,,"p_iva21_bi,p_iva21_isp_bi"
+aeat_mod390_map_line_614,614,amount,True,aeat_mod390_map,regular,IVA deducible en operaciones interiores de bienes de inversión - Cuota 21%,both,,"p_iva21_bi,p_iva21_isp_bi"
+aeat_mod390_map_line_202,202,base,True,aeat_mod390_map,regular,IVA deducible en importaciones de bienes corrientes - Base 4%,both,,p_iva4_ibc
+aeat_mod390_map_line_203,203,amount,True,aeat_mod390_map,regular,IVA deducible en importaciones de bienes corrientes - Cuota 4%,both,,p_iva4_ibc
+aeat_mod390_map_line_619,619,base,True,aeat_mod390_map,regular,IVA deducible en importaciones de bienes corrientes - Base 10%,both,,p_iva10_ibc
+aeat_mod390_map_line_620,620,amount,True,aeat_mod390_map,regular,IVA deducible en importaciones de bienes corrientes - Cuota 10%,both,,p_iva10_ibc
+aeat_mod390_map_line_621,621,base,True,aeat_mod390_map,regular,IVA deducible en importaciones de bienes corrientes - Base 21%,both,,p_iva21_ibc
+aeat_mod390_map_line_622,622,amount,True,aeat_mod390_map,regular,IVA deducible en importaciones de bienes corrientes - Cuota 21%,both,,p_iva21_ibc
+aeat_mod390_map_line_208,208,base,True,aeat_mod390_map,regular,IVA deducible en importaciones de bienes de inversión - Base 4%,both,,p_iva4_ibi
+aeat_mod390_map_line_209,209,amount,True,aeat_mod390_map,regular,IVA deducible en importaciones de bienes de inversión - Cuota 4%,both,,p_iva4_ibi
+aeat_mod390_map_line_623,623,base,True,aeat_mod390_map,regular,IVA deducible en importaciones de bienes de inversión - Base 10%,both,,p_iva10_ibi
+aeat_mod390_map_line_624,624,amount,True,aeat_mod390_map,regular,IVA deducible en importaciones de bienes de inversión - Cuota 10%,both,,p_iva10_ibi
+aeat_mod390_map_line_625,625,base,True,aeat_mod390_map,regular,IVA deducible en importaciones de bienes de inversión - Base 21%,both,,p_iva21_ibi
+aeat_mod390_map_line_626,626,amount,True,aeat_mod390_map,regular,IVA deducible en importaciones de bienes de inversión - Cuota 21%,both,,p_iva21_ibi
+aeat_mod390_map_line_214,214,base,True,aeat_mod390_map,regular,IVA deducible en adquisiciones intracomunitarias de bienes corrientes - Base 4%,both,,p_iva4_ic_bc
+aeat_mod390_map_line_215,215,amount,True,aeat_mod390_map,regular,IVA deducible en adquisiciones intracomunitarias de bienes corrientes - Cuota 4%,both,common_472,p_iva4_ic_bc
+aeat_mod390_map_line_627,627,base,True,aeat_mod390_map,regular,IVA deducible en adquisiciones intracomunitarias de bienes corrientes - Base 10%,both,,p_iva10_ic_bc
+aeat_mod390_map_line_628,628,amount,True,aeat_mod390_map,regular,IVA deducible en adquisiciones intracomunitarias de bienes corrientes - Cuota 10%,both,common_472,p_iva10_ic_bc
+aeat_mod390_map_line_629,629,base,True,aeat_mod390_map,regular,IVA deducible en adquisiciones intracomunitarias de bienes corrientes - Base 21%,both,,p_iva21_ic_bc
+aeat_mod390_map_line_630,630,amount,True,aeat_mod390_map,regular,IVA deducible en adquisiciones intracomunitarias de bienes corrientes - Cuota 21%,both,common_472,p_iva21_ic_bc
+aeat_mod390_map_line_220,220,base,True,aeat_mod390_map,regular,IVA deducible en adquisiciones intracomunitarias de bienes de inversión - Base 4%,both,,p_iva4_ic_bi
+aeat_mod390_map_line_221,221,amount,True,aeat_mod390_map,regular,IVA deducible en adquisiciones intracomunitarias de bienes de inversión - Cuota 4%,both,common_472,p_iva4_ic_bi
+aeat_mod390_map_line_631,631,base,True,aeat_mod390_map,regular,IVA deducible en adquisiciones intracomunitarias de bienes de inversión - Base 10%,both,,p_iva10_ic_bi
+aeat_mod390_map_line_632,632,amount,True,aeat_mod390_map,regular,IVA deducible en adquisiciones intracomunitarias de bienes de inversión - Cuota 10%,both,common_472,p_iva10_ic_bi
+aeat_mod390_map_line_633,633,base,True,aeat_mod390_map,regular,IVA deducible en adquisiciones intracomunitarias de bienes de inversión - Base 21%,both,,p_iva21_ic_bi
+aeat_mod390_map_line_634,634,amount,True,aeat_mod390_map,regular,IVA deducible en adquisiciones intracomunitarias de bienes de inversión - Cuota 21%,both,common_472,p_iva21_ic_bi
+aeat_mod390_map_line_587,587,base,True,aeat_mod390_map,regular,IVA deducible en adquisiciones intracomunitarias de servicios - Base 4%,both,,p_iva4_sp_in
+aeat_mod390_map_line_588,588,amount,True,aeat_mod390_map,regular,IVA deducible en adquisiciones intracomunitarias de servicios - Cuota 4%,both,common_472,p_iva4_sp_in
+aeat_mod390_map_line_635,635,base,True,aeat_mod390_map,regular,IVA deducible en adquisiciones intracomunitarias de servicios - Base 10%,both,,p_iva10_sp_in
+aeat_mod390_map_line_636,636,amount,True,aeat_mod390_map,regular,IVA deducible en adquisiciones intracomunitarias de servicios - Cuota 10%,both,common_472,p_iva10_sp_in
+aeat_mod390_map_line_637,637,base,True,aeat_mod390_map,regular,IVA deducible en adquisiciones intracomunitarias de servicios - Base 21%,both,,p_iva21_sp_in
+aeat_mod390_map_line_638,638,amount,True,aeat_mod390_map,regular,IVA deducible en adquisiciones intracomunitarias de servicios - Cuota 21%,both,common_472,p_iva21_sp_in
+aeat_mod390_map_line_639,639,base,True,aeat_mod390_map,refund,Rectificación de deducciones - Base,both,,"p_req05,p_req062,p_req014,p_req52,p_iva4_bc,p_iva4_sc,p_iva5_bc,p_iva5_sc,p_iva4_bi,p_iva4_ibc,p_iva4_ibi,p_iva0_ic_bc,p_iva4_ic_bc,p_iva5_ic_bc,p_iva4_ic_bi,p_iva4_sp_in,p_iva4_sp_ex,p_iva4_isp,p_iva10_bc,p_iva10_sc,p_iva10_bi,p_iva10_ibc,p_iva10_ibi,p_iva10_ic_bc,p_iva10_ic_bi,p_iva10_sp_in,p_iva10_sp_ex,p_iva10_isp,p_iva21_bc,p_iva21_sc,p_iva21_bi,p_iva21_ibc,p_iva21_ibi,p_iva21_ic_bc,p_iva21_ic_bi,p_iva21_sp_in,p_iva21_sp_ex,p_iva21_isp,p_iva4_isp,p_iva10_isp,p_iva21_isp,p_iva4_isp_bi,p_iva10_isp_bi,p_iva21_isp_bi"
+aeat_mod390_map_line_62,62,amount,True,aeat_mod390_map,refund,Rectificación de deducciones - Cuota,both,common_472,"p_req05,p_req062,p_req014,p_req52,p_iva4_bc,p_iva4_sc,p_iva5_bc,p_iva5_sc,p_iva4_bi,p_iva4_ibc,p_iva4_ibi,p_iva0_ic_bc,p_iva4_ic_bc,p_iva5_ic_bc,p_iva4_ic_bi,p_iva4_sp_in,p_iva4_sp_ex,p_iva4_isp,p_iva10_bc,p_iva10_sc,p_iva10_bi,p_iva10_ibc,p_iva10_ibi,p_iva10_ic_bc,p_iva10_ic_bi,p_iva10_sp_in,p_iva10_sp_ex,p_iva10_isp,p_iva21_bc,p_iva21_sc,p_iva21_bi,p_iva21_ibc,p_iva21_ibi,p_iva21_ic_bc,p_iva21_ic_bi,p_iva21_sp_in,p_iva21_sp_ex,p_iva21_isp,p_iva4_isp,p_iva10_isp,p_iva21_isp,p_iva4_isp_bi,p_iva10_isp_bi,p_iva21_isp_bi"
+aeat_mod390_map_line_99,99,base,False,aeat_mod390_map,all,Volumen de operaciones,both,,"s_iva21b,s_iva21s,s_iva10b,s_iva10s,s_iva5b,s_iva5s,s_iva4b,s_iva4s"
+aeat_mod390_map_line_103,103,base,False,aeat_mod390_map,all,Entregas intracomunitarias exentas,both,,"s_iva0_ic,s_iva0_sp_i"
+aeat_mod390_map_line_104,104,base,False,aeat_mod390_map,all,Exportaciones y otras operaciones exentas con derecho a deducción,both,,s_iva0_e
+aeat_mod390_map_line_105,105,base,False,aeat_mod390_map,all,Operaciones exentas sin derecho a deducción,both,,"s_iva0,s_iva0_ns"
+aeat_mod390_map_line_110,110,base,False,aeat_mod390_map,all,Operaciones no sujetas por regla de localización (excepto las incluidas en la casilla 126),both,,"s_iva_e,s_iva_ns,s_iva_ns_b"
+aeat_mod390_map_line_102,102,base,True,aeat_mod390_map,all,Operaciones realizadas por sujetos pasivos acogidos al régimen especial del recargo de equivalencia,both,,
+aeat_mod390_map_line_230,230,base,True,aeat_mod390_map,all,Adquisiciones interiores exentas,both,,p_iva0_bc
+aeat_mod390_map_line_109,109,base,True,aeat_mod390_map,all,Adquisiciones intracomunitarias exentas,both,,
+aeat_mod390_map_line_231,231,base,False,aeat_mod390_map,all,Importaciones exentas,both,,
+aeat_mod390_map_line_232,232,base,True,aeat_mod390_map,all,Bases imponibles del IVA soportado no deducible,both,,"p_iva0_nd,p_iva10_nd,p_iva4_nd"
+aeat_mod390_map_line_700,700,base,False,aeat_mod390_map,regular,Régimen ordinario - Base imponible 0%,both,,"s_iva0b,s_iva0s"
+aeat_mod390_map_line_701,701,amount,False,aeat_mod390_map,regular,Régimen ordinario - Cuota 0%,both,,"s_iva0b,s_iva0s"
+aeat_mod390_map_line_702,702,base,False,aeat_mod390_map,regular,Régimen ordinario - Base imponible 5%,both,,"s_iva5b,s_iva5s"
+aeat_mod390_map_line_703,703,amount,False,aeat_mod390_map,regular,Régimen ordinario - Cuota 5%,both,,"s_iva5b,s_iva5s"
+aeat_mod390_map_line_716,716,base,True,aeat_mod390_map,regular,Adquisiciones intracomunitarias de bienes - Base 0%,both,,p_iva0_ic_bc
+aeat_mod390_map_line_717,717,amount,False,aeat_mod390_map,regular,Adquisiciones intracomunitarias de bienes - Cuota 0%,both,common_477,p_iva0_ic_bc
+aeat_mod390_map_line_718,718,base,True,aeat_mod390_map,regular,Adquisiciones intracomunitarias de bienes - Base 5%,both,,p_iva5_ic_bc
+aeat_mod390_map_line_719,719,amount,False,aeat_mod390_map,regular,Adquisiciones intracomunitarias de bienes - Cuota 5%,both,common_477,p_iva5_ic_bc
+aeat_mod390_map_line_720,720,base,True,aeat_mod390_map,regular,Adquisiciones intracomunitarias de servicios - Base 0%,both,,p_iva0_ic_sc
+aeat_mod390_map_line_721,721,amount,True,aeat_mod390_map,regular,Adquisiciones intracomunitarias de servicios - Cuota 0%,both,common_472,p_iva0_ic_sc
+aeat_mod390_map_line_722,722,base,True,aeat_mod390_map,regular,Adquisiciones intracomunitarias de servicios - Base 5%,both,,p_iva5_ic_sc
+aeat_mod390_map_line_723,723,amount,True,aeat_mod390_map,regular,Adquisiciones intracomunitarias de servicios - Cuota 5%,both,common_472,p_iva5_ic_sc
+aeat_mod390_map_line_724,724,base,True,aeat_mod390_map,regular,IVA deducible en operaciones corrientes de bienes y servicios - Base 5%,both,,"p_iva5_sc,p_iva5_bc"
+aeat_mod390_map_line_725,725,amount,True,aeat_mod390_map,regular,IVA deducible en operaciones corrientes de bienes y servicios - Cuota 5%,both,,"p_iva5_sc,p_iva5_bc"
+aeat_mod390_map_line_736,736,base,True,aeat_mod390_map,regular,IVA deducible en adquisiciones intracomunitarias de bienes corrientes - Base 5%,both,,p_iva5_ic_bc
+aeat_mod390_map_line_737,737,amount,True,aeat_mod390_map,regular,IVA deducible en adquisiciones intracomunitarias de bienes corrientes - Cuota 5%,both,common_472,p_iva5_ic_bc
