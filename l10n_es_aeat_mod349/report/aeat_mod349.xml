@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="l10n_es_aeat_mod349.report_aeat_mod349_document">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <div class="oe_structure" />
+                <div class="row mb32">
+                    <div class="col-xs-12 text-center" id="title">
+                        <h4>Form 349. Information Return. Recapitulatory
+                            return of intracommunity transactions.</h4>
+                    </div>
+                </div>
+                <t t-call="l10n_es_aeat_mod349.mod349_summary" />
+                <div class="row mt32 mb32">
+                    <div class="col-xs-12" id="title_partner_records">
+                        <h4>Partner records</h4>
+                    </div>
+                </div>
+                <table class="table table-sm" id="partner_record_table">
+                    <t t-call="l10n_es_aeat_mod349.mod349_partner_record_head" />
+                    <tbody>
+                        <tr t-foreach="o.partner_record_ids" t-as="l">
+                            <t t-call="l10n_es_aeat_mod349.mod349_partner_record" />
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row mt32 mb32">
+                    <div class="col-xs-12" id="title_refund_records">
+                        <h4>Refund records</h4>
+                    </div>
+                </div>
+                <table class="table table-sm" id="partner_refund_table">
+                    <t t-call="l10n_es_aeat_mod349.mod349_partner_refund_head" />
+                    <tbody>
+                        <tr t-foreach="o.partner_refund_ids" t-as="l">
+                            <t t-call="l10n_es_aeat_mod349.mod349_refund_record" />
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+    <template id="report_l10n_es_mod349_pdf">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="l10n_es_aeat_mod349.report_aeat_mod349_document" />
+            </t>
+        </t>
+    </template>
+</odoo>
