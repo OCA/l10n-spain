@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- ###### VISTA DE LOS REGISTROS ###### -->
+    <!-- Tree view -->
+    <record id="view_l10n_es_aeat_mod592_report_tree" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod592.report.tree</field>
+        <field name="model">l10n.es.aeat.mod592.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree" />
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="string">AEAT 592 reports</attribute>
+            </tree>
+            <field name="period_type" position="after">
+                <field
+                    name="total_acquirer_entries"
+                    groups="l10n_es_aeat_mod592.group_mod592_acquirer"
+                    optional="hide"
+                    string="Total entries (Acquirer)"
+                />
+                <field
+                    name="total_weight_acquirer"
+                    groups="l10n_es_aeat_mod592.group_mod592_acquirer"
+                    optional="hide"
+                    string="Total weight (Acquirer)"
+                />
+                <field
+                    name="total_manufacturer_entries"
+                    groups="l10n_es_aeat_mod592.group_mod592_manufacturer"
+                    optional="hide"
+                    string="Total entries (Manufacturer)"
+                />
+                <field
+                    name="total_weight_manufacturer"
+                    groups="l10n_es_aeat_mod592.group_mod592_manufacturer"
+                    optional="hide"
+                    string="Total weight (Manufacturer)"
+                />
+            </field>
+        </field>
+    </record>
+    <!-- Form view -->
+    <record id="view_l10n_es_aeat_mod592_report_form" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod592.report.form</field>
+        <field name="model">l10n.es.aeat.mod592.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
+        <field name="arch" type="xml">
+            <header position="inside">
+                <!-- MANUFACTURER -->
+                <button
+                    name="export_csv_manufacturer"
+                    string="Export CSV Manufacturer"
+                    type="object"
+                    icon="fa-share"
+                    attrs="{'invisible':['|', ('state', '!=', 'done'), ('total_manufacturer_entries', '=', 0)]}"
+                    groups="l10n_es_aeat_mod592.group_mod592_manufacturer"
+                />
+                <button
+                    name="export_xlsx_manufacturer"
+                    string="Export XLSX Manufacturer"
+                    type="object"
+                    icon="fa-share"
+                    attrs="{'invisible':['|', ('state', '!=', 'done'), ('total_manufacturer_entries', '=', 0)]}"
+                    groups="l10n_es_aeat_mod592.group_mod592_manufacturer"
+                />
+                <!-- ACQUIRER -->
+                <button
+                    name="export_csv_acquirer"
+                    string="Export CSV Acquirer"
+                    type="object"
+                    icon="fa-share"
+                    attrs="{'invisible':['|', ('state', '!=', 'done'), ('total_acquirer_entries', '=', 0)]}"
+                    groups="l10n_es_aeat_mod592.group_mod592_acquirer"
+                />
+                <button
+                    name="export_xlsx_acquirer"
+                    string="Export XLSX Acquirer"
+                    type="object"
+                    icon="fa-share"
+                    attrs="{'invisible':['|', ('state', '!=', 'done'), ('total_acquirer_entries', '=', 0)]}"
+                    groups="l10n_es_aeat_mod592.group_mod592_acquirer"
+                />
+            </header>
+            <field name="allow_posting" position="before">
+                <field
+                    name="acquirer_line_ids"
+                    invisible="1"
+                    groups="l10n_es_aeat_mod592.group_mod592_acquirer"
+                />
+                <field
+                    name="manufacturer_line_ids"
+                    invisible="1"
+                    groups="l10n_es_aeat_mod592.group_mod592_manufacturer"
+                />
+                <field name="company_plastic_acquirer" invisible="1" />
+                <field name="company_plastic_manufacturer" invisible="1" />
+                <div class="oe_button_box" name="button_box">
+                    <button
+                        class="oe_stat_button"
+                        name="view_action_mod592_report_line_acquirer"
+                        type="object"
+                        attrs="{'invisible': ['|', ('num_lines_acquirer', '=', 0),('company_plastic_acquirer', '=', False)]}"
+                        icon="fa-list"
+                        groups="l10n_es_aeat_mod592.group_mod592_acquirer"
+                    >
+                        <field
+                            name="num_lines_acquirer"
+                            string="Acquirer entries"
+                            widget="statinfo"
+                        />
+                    </button>
+                    <button
+                        class="oe_stat_button"
+                        name="view_action_mod592_report_line_manufacturer"
+                        type="object"
+                        attrs="{'invisible': ['|', ('num_lines_manufacturer', '=', 0),('company_plastic_manufacturer', '=', False)]}"
+                        icon="fa-list"
+                        groups="l10n_es_aeat_mod592.group_mod592_manufacturer"
+                    >
+                        <field
+                            name="num_lines_manufacturer"
+                            string="Manufacturer entries"
+                            widget="statinfo"
+                        />
+                    </button>
+                </div>
+            </field>
+            <group name="group_declaration" position="before">
+                <field
+                    name="show_error_acquirer"
+                    invisible="1"
+                    groups="l10n_es_aeat_mod592.group_mod592_acquirer"
+                />
+                <field
+                    name="show_error_manufacturer"
+                    invisible="1"
+                    groups="l10n_es_aeat_mod592.group_mod592_manufacturer"
+                />
+                <div
+                    style="color:red"
+                    attrs="{'invisible': ['|', ('show_error_acquirer', '=', False),('company_plastic_acquirer', '=', False)]}"
+                    groups="l10n_es_aeat_mod592.group_mod592_acquirer"
+                >
+                    <h2>Acquirer lines with errors</h2>
+                </div>
+                <div
+                    style="color:red"
+                    attrs="{'invisible': ['|', ('show_error_manufacturer', '=', False),('company_plastic_manufacturer', '=', False)]}"
+                    groups="l10n_es_aeat_mod592.group_mod592_manufacturer"
+                >
+                    <h2>Manufacturer lines with errors</h2>
+                </div>
+            </group>
+            <group name="group_declaration" position="after">
+                <notebook colspan="4">
+                    <page string="General">
+                        <group string="Generic">
+                            <field name="amount_plastic_tax" col="2" />
+                        </group>
+                        <group>
+                            <group
+                                string="Manufacturer Result"
+                                groups="l10n_es_aeat_mod592.group_mod592_manufacturer"
+                                attrs="{'invisible': [('company_plastic_manufacturer', '=', False)]}"
+                            >
+                                <field
+                                    name="total_manufacturer_entries"
+                                    string="Total entries"
+                                />
+                                <field
+                                    name="total_weight_manufacturer"
+                                    string="Total weight"
+                                />
+                                <field
+                                    name="total_weight_manufacturer_non_reclyclable"
+                                    string="Total weight (non reclyclable)"
+                                />
+                                <field
+                                    name="total_amount_manufacturer"
+                                    string="Total amount"
+                                />
+                            </group>
+                            <group
+                                string="Acquirer Result"
+                                groups="l10n_es_aeat_mod592.group_mod592_acquirer"
+                                attrs="{'invisible': [('company_plastic_acquirer', '=', False)]}"
+                            >
+                                <field
+                                    name="total_acquirer_entries"
+                                    string="Total entries"
+                                />
+                                <field
+                                    name="total_weight_acquirer"
+                                    string="Total weight"
+                                />
+                                <field
+                                    name="total_weight_acquirer_non_reclyclable"
+                                    string="Total weight (non reclyclable)"
+                                />
+                                <field
+                                    name="total_amount_acquirer"
+                                    string="Total amount"
+                                />
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+            </group>
+            <form position="inside">
+                <div class="oe_chatter">
+                    <field
+                        name="message_follower_ids"
+                        widget="mail_followers"
+                        groups="base.group_user"
+                    />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <!-- Window action -->
+    <record id="action_l10n_es_aeat_mod592_report" model="ir.actions.act_window">
+        <field name="name">AEAT 592 Model</field>
+        <field name="res_model">l10n.es.aeat.mod592.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help">Create and query AEAT 592 Model reports</field>
+    </record>
+    <record
+        id="action_l10n_es_aeat_mod303_report_tree"
+        model="ir.actions.act_window.view"
+    >
+        <field name="sequence" eval="2" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod592_report_tree" />
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod592_report" />
+    </record>
+    <record
+        id="action_l10n_es_aeat_mod592_report_form"
+        model="ir.actions.act_window.view"
+    >
+        <field name="sequence" eval="3" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod592_report_form" />
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod592_report" />
+    </record>
+    <!-- Menu action -->
+    <menuitem
+        id="menu_aeat_mod592_report"
+        parent="l10n_es_aeat.menu_root_aeat"
+        action="action_l10n_es_aeat_mod592_report"
+        sequence="592"
+        name="AEAT 592 Model"
+    />
+</odoo>
