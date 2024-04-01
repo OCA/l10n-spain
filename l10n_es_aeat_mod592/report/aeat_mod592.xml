@@ -9,20 +9,45 @@
                         <h4>Form 592 Plastic tax</h4>
                     </div>
                 </div>
-                <t t-call="l10n_es_aeat_mod592.mod592_summary" />
-                <div class="row mt32 mb32">
-                    <div class="col-xs-12" id="title_entries_records">
-                        <h4>Entries records</h4>
+                <!-- Acquirer records-->
+                <t t-if="o.company_plastic_acquirer">
+                    <t t-call="l10n_es_aeat_mod592.mod592_acquirer_summary" />
+                    <div class="row mt32 mb32">
+                        <div class="col-xs-12" id="title_entries_records">
+                            <h4>Acquirer records</h4>
+                        </div>
                     </div>
-                </div>
-                <table class="table table-sm" id="entries_record_table">
-                    <t t-call="l10n_es_aeat_mod592.mod592_entries_record_head" />
-                    <tbody>
-                        <tr t-foreach="o.entries_record_ids" t-as="l">
-                            <t t-call="l10n_es_aeat_mod592.mod592_entries_record" />
-                        </tr>
-                    </tbody>
-                </table>
+                    <table class="table table-sm" id="entries_record_table">
+                        <t t-call="l10n_es_aeat_mod592.mod592_acquirer_record_head" />
+                        <tbody>
+                            <tr t-foreach="o.acquirer_line_ids" t-as="l">
+                                <t
+                                    t-call="l10n_es_aeat_mod592.mod592_acquirer_record"
+                                />
+                            </tr>
+                        </tbody>
+                    </table>
+                </t>
+                <!-- Manufacturer records-->
+                <t t-if="o.company_plastic_manufacturer">
+                    <div class="row mt32 mb32">
+                        <div class="col-xs-12" id="title_entries_records">
+                            <h4>Manufacturer records</h4>
+                        </div>
+                    </div>
+                    <table class="table table-sm" id="entries_record_table">
+                        <t
+                            t-call="l10n_es_aeat_mod592.mod592_manufacturer_record_head"
+                        />
+                        <tbody>
+                            <tr t-foreach="o.manufacturer_line_ids" t-as="l">
+                                <t
+                                    t-call="l10n_es_aeat_mod592.mod592_manufacturer_record"
+                                />
+                            </tr>
+                        </tbody>
+                    </table>
+                </t>
             </div>
         </t>
     </template>
