@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-04-25 18:05+0000\n"
+"PO-Revision-Date: 2024-04-03 13:35+0000\n"
 "Last-Translator: jabelchi <jabelchi@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ca\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__account_move__l10n_es_facturae_status__face-2400
@@ -112,7 +112,7 @@ msgstr "Registre d'intercanvi EDI"
 #. module: l10n_es_facturae_face
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae_face.edi_l10n_es_facturae_face_cancel_form_view
 msgid "Edi L10n Es Facturae FACe Cancel"
-msgstr ""
+msgstr "Cancela Edi L10n Es Facturae FACe"
 
 #. module: l10n_es_facturae_face
 #. odoo-python
@@ -130,7 +130,7 @@ msgstr "FACe"
 #: model:ir.actions.server,name:l10n_es_facturae_face.update_face_job_ir_actions_server
 #: model:ir.cron,cron_name:l10n_es_facturae_face.update_face_job
 msgid "FACe update Job"
-msgstr ""
+msgstr "Actualitzar tasca FACe"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_company__face_email
@@ -240,12 +240,12 @@ msgstr "OK"
 #: code:addons/l10n_es_facturae_face/models/account_move.py:0
 #, python-format
 msgid "Organo Gestor not provided"
-msgstr ""
+msgstr "No s'ha informat organ gestor"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__account_move__l10n_es_facturae_status__face-2500
 msgid "Paid"
-msgstr ""
+msgstr "Pagat"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__account_move__l10n_es_facturae_status__face-1300
