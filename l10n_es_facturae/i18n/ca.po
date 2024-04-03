@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-06 09:08+0000\n"
-"PO-Revision-Date: 2023-06-23 13:11+0000\n"
-"Last-Translator: eccit-quim <quim@eccit.com>\n"
+"PO-Revision-Date: 2024-04-03 13:35+0000\n"
+"Last-Translator: jabelchi <jabelchi@gmail.com>\n"
 "Language-Team: \n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
 msgid "&gt;"
-msgstr ""
+msgstr "&gt;"
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
@@ -33,6 +33,8 @@ msgid ""
 "&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae"
 "\""
 msgstr ""
+"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/"
+"Facturae\""
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
@@ -40,6 +42,8 @@ msgid ""
 "&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2014/v3.2.1/"
 "Facturae\""
 msgstr ""
+"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2014/v3.2.1/"
+"Facturae\""
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
@@ -47,6 +51,8 @@ msgid ""
 "&lt;fe:Facturae xmlns:fe=\"http://www.facturae.gob.es/formato/Versiones/"
 "Facturaev3_2_2.xml\""
 msgstr ""
+"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.gob.es/formato/Versiones/"
+"Facturaev3_2_2.xml\""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__res_company__facturae_version__3_2
@@ -145,28 +151,28 @@ msgstr "Companyies"
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Company city not provided"
-msgstr ""
+msgstr "No s'ha informat ciutat de l'empresa"
 
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Company country not provided"
-msgstr ""
+msgstr "No s'ha informat país de l'empresa"
 
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Company state not provided"
-msgstr ""
+msgstr "No s'ha informat província de l'empresa"
 
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Company street not provided"
-msgstr ""
+msgstr "No s'ha informat adreça de l'empresa"
 
 #. module: l10n_es_facturae
 #. odoo-python
@@ -187,7 +193,7 @@ msgstr "No s'ha facilitat el NIF de la companyia"
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Company zip not provided"
-msgstr ""
+msgstr "No s'ha informat codi postal de l'empresa"
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_res_partner
@@ -207,7 +213,7 @@ msgstr "Mètode de correcció"
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
 msgid "Country must be defined for factura-e enabled partners."
-msgstr ""
+msgstr "Cal definir país als contactes habilitats per factura-e."
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.wizard_create_facturae
@@ -502,7 +508,7 @@ msgstr "Primer"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__facturae_hide_discount
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__facturae_hide_discount
 msgid "Hide Facturae discount"
-msgstr ""
+msgstr "Ocultar descompte Facturae"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__12
@@ -628,7 +634,7 @@ msgstr "Factura %s"
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
 msgid "Invoicing Period"
-msgstr ""
+msgstr "Període de facturació"
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_move
@@ -710,7 +716,7 @@ msgstr "Oficina comptable"
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Oficina Contable not provided"
-msgstr ""
+msgstr "No s'ha informat oficina comptable"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__organo_gestor
@@ -721,7 +727,7 @@ msgstr "Òrgan gestor"
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
 msgid "Other facturae fields"
-msgstr ""
+msgstr "Altres camps facturae"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__05
@@ -741,7 +747,7 @@ msgstr "No s'ha informat de l'estat del partner"
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Partner street address is not provided"
-msgstr ""
+msgstr "No s'ha informat adreça del contacte"
 
 #. module: l10n_es_facturae
 #. odoo-python
@@ -870,14 +876,14 @@ msgstr "Estat"
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
 msgid "State must be defined for factura-e enabled partners."
-msgstr ""
+msgstr "Cal definir la província per a contactes habilitats per factura-e."
 
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
 msgid "Street must be defined for factura-e enabled partners."
-msgstr ""
+msgstr "Cal definir adreça per a contactes habilitats per factura-e."
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_tax
@@ -916,7 +922,7 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_facturae.field_res_partner__facturae_hide_discount
 #: model:ir.model.fields,help:l10n_es_facturae.field_res_users__facturae_hide_discount
 msgid "The unit price will be recalculated applying the discount"
-msgstr ""
+msgstr "Es recalcularà el preu unitari aplicant el descompte"
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.wizard_create_facturae
@@ -934,14 +940,14 @@ msgstr "Unitat tramitadora"
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Unidad Tramitadora not provided"
-msgstr ""
+msgstr "No s'ha informat unitat tramitadora"
 
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
 msgid "Vat must be defined for factura-e enabled partners."
-msgstr ""
+msgstr "Cal definir el NIF per a contactes habilitats per a factura-e."
 
 #. module: l10n_es_facturae
 #. odoo-python
