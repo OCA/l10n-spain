@@ -375,6 +375,18 @@ class AccountMove(models.Model):
             )
         return re_tax
 
+    def _get_lroe_concept_group_account(self, tax_line):
+        concepto = ""
+        lines_with_tax = self.line_ids.filtered(
+            lambda l: tax_line["tax"].id in l.tax_ids.ids
+        )
+        if lines_with_tax:
+            for line in lines_with_tax:
+                concepto = line.account_id.group_id.code_prefix_start
+                if concepto:
+                    break
+        return concepto
+
     @api.model
     def _get_lroe_tax_dict(self, tax_line, tax_lines, deductible=True):
         """Get the LROE tax dictionary for the passed tax line.
@@ -404,11 +416,12 @@ class AccountMove(models.Model):
                 ]
             )
         else:
+            concept = self._get_lroe_concept_group_account(tax_line)
             tax_dict = OrderedDict(
                 [
                     ("Epigrafe", self.company_id.main_activity_iae),
                     # TODO: 140 - BienAfectoIRPFYOIVA --> valor por defecto "N"
-                    # TODO: 140 - Concepto --> grupo de cuenta contable L20
+                    ("Concepto", concept),
                     # TODO: 140 - ReferenciaBien
                     ("InversionSujetoPasivo", "N"),
                     # TODO: 140 - OperacionEnRecargoDeEquivalenciaORegimenSimplificado
@@ -416,7 +429,7 @@ class AccountMove(models.Model):
                     ("TipoImpositivo", str(tax_type)),
                     ("CuotaIVASoportada", cuota),
                     ("CuotaIVADeducible", cuota * int(deductible)),
-                    # TODO: 140 - ImporteGastoIRPF
+                    ("ImporteGastoIRPF", base),
                     # TODO: 140 - CriterioCobrosYPagos
                 ]
             )
