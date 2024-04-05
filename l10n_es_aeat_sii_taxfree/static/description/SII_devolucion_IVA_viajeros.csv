@@ -1,0 +1,85 @@
+Última cabecera enviada al SII?
+{
+"    ""IDVersionSii"": ""1.1"","
+    "Titular": {
+"        ""NombreRazon"": ""CERTIFICADO FISICA PRUEBAS"","
+        "NIF": "99999910G"
+"    },"
+    "TipoComunicacion": "A5"
+}
+Último contenido enviado al SII?
+{
+    "IDFactura": {
+        "IDEmisorFactura": {
+            "NIF": "99999910G"
+"        },"
+"        ""NumSerieFacturaEmisor"": ""11073451979483059518"","
+        "FechaExpedicionFacturaEmisor": "31-12-2023"
+"    },"
+    "PeriodoLiquidacion": {
+"        ""Ejercicio"": 2023,"
+        "Periodo": "12"
+"    },"
+    "FacturaExpedida": {
+"        ""TipoFactura"": ""F1"","
+"        ""ClaveRegimenEspecialOTrascendencia"": ""02"","
+"        ""DescripcionOperacion"": ""Factura de venta | Tax Free"","
+        "TipoDesglose": {
+            "DesgloseTipoOperacion": {
+                "Entrega": {
+                    "Sujeta": {
+                        "NoExenta": {
+"                            ""TipoNoExenta"": ""S1"","
+                            "DesgloseIVA": {
+                                "DetalleIVA": [
+                                    {
+"                                        ""TipoImpositivo"": ""21.0"","
+"                                        ""BaseImponible"": -106.61,"
+                                        "CuotaRepercutida": -22.39
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+"        },"
+        "Contraparte": {
+"            ""NombreRazon"": ""TAX FREE, S.L."","
+            "NIF": "A12345674"
+        }
+    }
+}
+Retorno SII?
+{
+"    'CSV': 'M37EKUNA4F99XHRK',"
+    'DatosPresentacion': {
+"        'NIFPresentador': '99999910G',"
+        'TimestampPresentacion': '11-01-2024 14:17:17'
+"    },"
+    'Cabecera': {
+"        'IDVersionSii': '1.1',"
+        'Titular': {
+"            'NombreRazon': 'CERTIFICADO FISICO PRUEBAS',"
+"            'NIFRepresentante': None,"
+            'NIF': '99999910G'
+"        },"
+        'TipoComunicacion': 'A5'
+"    },"
+"    'EstadoEnvio': 'Correcto',"
+    'RespuestaLinea': [
+        {
+            'IDFactura': {
+                'IDEmisorFactura': {
+                    'NIF': '99999910G'
+"                },"
+"                'NumSerieFacturaEmisor': '11073451979483059518',"
+"                'NumSerieFacturaEmisorResumenFin': None,"
+                'FechaExpedicionFacturaEmisor': '31-12-2023'
+"            },"
+"            'RefExterna': None,"
+"            'EstadoRegistro': 'Correcto',"
+"            'CodigoErrorRegistro': None,"
+"            'DescripcionErrorRegistro': None,"
+"            'CSV': None,"
+            'RegistroDuplicado': None
