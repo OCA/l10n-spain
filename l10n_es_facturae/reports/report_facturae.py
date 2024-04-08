@@ -27,7 +27,7 @@ class ReportFacturae(models.AbstractModel):
     _description = "Account Move Facturae Signed"
 
     def _get_report_values(self, docids, data=None):
-        result = super(ReportFacturae, self)._get_report_values(docids, data=data)
+        result = super()._get_report_values(docids, data=data)
         result["docs"] = self.env["account.move"].browse(docids)
         return result
 
@@ -63,7 +63,6 @@ class ReportFacturae(models.AbstractModel):
             etree.parse(self._get_facturae_schema_file(move))
         )
         try:
-
             facturae_schema.assertValid(etree.fromstring(xml_string))
         except Exception as e:
             _logger.warning("The XML file is invalid against the XML Schema Definition")
