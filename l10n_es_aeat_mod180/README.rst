@@ -71,6 +71,7 @@ Contributors
 
 * Jesús Cuevas (http://www.netkia.es)
 * Hugo Martínez (http://www.netkia.es)
+* Marián Cuadra (http://www.netkia.es)
 
 Maintainers
 ~~~~~~~~~~~

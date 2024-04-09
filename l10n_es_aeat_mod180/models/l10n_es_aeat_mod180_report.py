@@ -87,18 +87,6 @@ class L10nEsAeatMod180Report(models.Model):
         string="Registros de perceptores",
     )
 
-    def default_get(self, field_list):
-        res = super().default_get(field_list)
-        if res.get("company_id", False):
-            bank_ids = (
-                self.env["res.company"]
-                .browse(res.get("company_id"))
-                .partner_id.bank_ids
-            )
-            if bank_ids:
-                res.update({"partner_bank_id": bank_ids[0].id})
-        return res
-
     @api.depends("tipo_declaracion")
     def _compute_tipo_declaracion(self):
         for rec in self:

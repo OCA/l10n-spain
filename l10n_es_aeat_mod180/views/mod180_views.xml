@@ -174,7 +174,7 @@
         parent="l10n_es_aeat.menu_root_aeat"
         action="action_l10n_es_aeat_mod180_report"
         sequence="180"
-        name="Modelo 180"
+        name="AEAT 180 model"
     />
     <function model="l10n.es.aeat.mod180.report" name="action_init_hook" />
 </odoo>

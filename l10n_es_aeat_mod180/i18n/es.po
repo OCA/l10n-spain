@@ -58,7 +58,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod180
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod180.action_l10n_es_aeat_mod180_report
 msgid "AEAT model 180"
-msgstr ""
+msgstr "Modelo AEAT 180"
 
 #. module: l10n_es_aeat_mod180
 #: model:ir.model,name:l10n_es_aeat_mod180.model_l10n_es_aeat_tax_line
@@ -181,11 +181,6 @@ msgid "Company bank account used for the presentation"
 msgstr "Cuenta bancaria de la compañía usada para la presentación"
 
 #. module: l10n_es_aeat_mod180
-#: selection:l10n.es.aeat.mod180.report,type:0
-msgid "Complementary"
-msgstr "Complementaria"
-
-#. module: l10n_es_aeat_mod180
 #: model:ir.model,name:l10n_es_aeat_mod180.model_res_partner
 msgid "Contact"
 msgstr "Contacto"
@@ -203,7 +198,7 @@ msgstr "Cuenta contrapartida"
 #. module: l10n_es_aeat_mod180
 #: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod180.action_l10n_es_aeat_mod180_report
 msgid "Create and query AEAT Model 180 reports."
-msgstr ""
+msgstr "Crea y consulta las declaraciones del modelo 180 de la AEAT."
 
 #. module: l10n_es_aeat_mod180
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod180.field_informacion_catastral__create_uid
@@ -271,16 +266,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod180.field_registro_perceptor__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
-
-#. module: l10n_es_aeat_mod180
-#: selection:l10n.es.aeat.mod180.report,state:0
-msgid "Done"
-msgstr "Hecha"
-
-#. module: l10n_es_aeat_mod180
-#: selection:l10n.es.aeat.mod180.report,state:0
-msgid "Draft"
-msgstr "Borrador"
 
 #. module: l10n_es_aeat_mod180
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod180.field_registro_perceptor__ejercicio_devengo
@@ -535,8 +520,8 @@ msgstr "Nº modelo"
 
 #. module: l10n_es_aeat_mod180
 #: model:ir.ui.menu,name:l10n_es_aeat_mod180.menu_aeat_mod180_report
-msgid "Modelo 180"
-msgstr ""
+msgid "AEAT 180 Model"
+msgstr "Modelo 180"
 
 #. module: l10n_es_aeat_mod180
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod180.field_informacion_catastral__municipio
@@ -652,20 +637,12 @@ msgstr ""
 msgid "Positivo"
 msgstr ""
 
-#. module: l10n_es_aeat_mod180
-#: selection:l10n.es.aeat.mod180.report,state:0
-msgid "Posted"
-msgstr ""
 
 #. module: l10n_es_aeat_mod180
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod180.field_l10n_es_aeat_mod180_report__previous_number
 msgid "Previous declaration number"
 msgstr "Nº previo de declaración"
 
-#. module: l10n_es_aeat_mod180
-#: selection:l10n.es.aeat.mod180.report,state:0
-msgid "Processed"
-msgstr "Procesada"
 
 #. module: l10n_es_aeat_mod180
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod180.account_move_line_mod180_view_tree
@@ -779,7 +756,7 @@ msgid "State"
 msgstr "Estado"
 
 #. module: l10n_es_aeat_mod180
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod180.field_l10n_es_aeat_mod180_report__type
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod180.field_l10n_es_aeat_mod180_report__statement_type
 msgid "Statement Type"
 msgstr "Tipo de declaración"
 
@@ -864,8 +841,8 @@ msgid "To enter on CCT"
 msgstr "Ingreso a anotar en CCT"
 
 #. module: l10n_es_aeat_mod180
-#: selection:l10n.es.aeat.mod180.report,tipo_declaracion:0
-#: selection:l10n.es.aeat.mod180.report,tipo_declaracion_negativa:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod180.selection__l10n_es_aeat_mod180_report__tipo_declaracion__n
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod180.selection__l10n_es_aeat_mod180_report__tipo_declaracion_negativa__n
 msgid "To return"
 msgstr "Negativa"
 
