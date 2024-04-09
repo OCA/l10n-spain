@@ -4,7 +4,7 @@
         <field name="name">informacion.catastral.view.tree</field>
         <field name="model">informacion.catastral</field>
         <field name="arch" type="xml">
-            <tree name="info_catastral_tree" string="Información catastral">
+            <tree name="info_catastral_tree">
                 <field name="cod_postal" />
                 <field name="situacion_inmueble" />
                 <field name="referencia_catastral" />

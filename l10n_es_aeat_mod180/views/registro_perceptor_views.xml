@@ -26,7 +26,7 @@
         <field name="name">registro.perceptor.view.tree</field>
         <field name="model">registro.perceptor</field>
         <field name="arch" type="xml">
-            <tree string="Registro de perceptor">
+            <tree>
                 <field name="partner_id" />
                 <field name="informacion_catastral_id" />
                 <field name="base_retenciones" />

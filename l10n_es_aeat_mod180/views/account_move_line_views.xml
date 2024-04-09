@@ -6,7 +6,7 @@
         <field name="model">account.move.line</field>
         <field name="priority">500</field>
         <field name="arch" type="xml">
-            <tree string="Apuntes contables" create="false" delete="false">
+            <tree create="false" delete="false">
                 <field name="date" string="Fecha" />
                 <field
                     name="move_id"
