@@ -1,0 +1,6 @@
+"id","sequence","description","description@es","invoice_label","type_tax_use","name","name@es","description@es","amount","amount_type","tax_group_id","analytic","l10n_es_type","l10n_es_exempt_reason","l10n_es_bien_inversion","tax_scope","include_base_amount","repartition_line_ids/repartition_type","repartition_line_ids/tag_ids","repartition_line_ids/document_type","repartition_line_ids/account_id","repartition_line_ids/factor_percent","invoice_label@es","children_tax_ids"
+"account_tax_template_p_dua0","","Exempt DUA","DUA exento","","purchase","Exempt DUA","DUA exento","","0.0","percent","tax_group_dua_exento","","dua","","","consu","","","","","","","",""
+"","","","","","","","","","","","","","","","","","","base","","invoice","","100","",""
+"","","","","","","","","","","","","","","","","","","tax","","invoice","","100","",""
+"","","","","","","","","","","","","","","","","","","base","","refund","","100","",""
+"","","","","","","","","","","","","","","","","","","tax","","refund","","100","",""
