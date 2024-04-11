@@ -62,7 +62,7 @@
                 <br /><span
                     style="font-size: 70%; opacity: 0.7;"
                 >Aportación SIGAUS (RD 679/2006): <span
-                        t-field="move_line.sigaus_amount_total"
+                        t-field="move_line.sigaus_amount_subtotal"
                         t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"
                     /></span>
             </t>
