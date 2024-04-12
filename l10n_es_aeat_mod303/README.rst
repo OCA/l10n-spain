@@ -112,6 +112,9 @@ Known issues / Roadmap
    5%, a la espera de si Hacienda cambia el modelo para alojar dicho
    valor.
 
+-  No se ha comprobado en producción la funcionalidad de comunicaciones
+   usando la opción de cuenta tributaria (tipos de resultado "G" y "V").
+
 Bug Tracker
 ===========
 
