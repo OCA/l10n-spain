@@ -449,7 +449,11 @@ class L10nEsAeatMod303Report(models.Model):
             if result == 0:
                 report.result_type = "N"
             elif result == 1:
-                report.result_type = "I"
+                if report.marca_sepa in {"1", "2"}:
+                    # Domiciliar ingreso porque se indicó un banco SEPA
+                    report.result_type = "U"
+                else:
+                    report.result_type = "I"
             else:
                 if report.devolucion_mensual or report.period_type in ("4T", "12"):
                     report.result_type = "D" if report.marca_sepa == "1" else "X"
