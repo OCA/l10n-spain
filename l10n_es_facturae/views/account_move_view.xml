@@ -8,15 +8,14 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='thirdparty_invoice']" position="attributes">
                 <attribute
-                    name="attrs"
-                >{'invisible': [('move_type', 'not in', ('in_invoice', 'out_invoice',
-                    'out_refund', 'in_refund'))]}</attribute>
+                    name="invisible"
+                >move_type not in ('in_invoice', 'out_invoice', 'out_refund', 'in_refund')</attribute>
             </xpath>
             <xpath expr="//field[@name='thirdparty_number']" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'required': [('thirdparty_invoice', '=', True)], 'invisible':
-                    [('thirdparty_invoice', '=', False)]}</attribute>
+                <attribute name="required"> thirdparty_invoice</attribute>
+            <attribute name="invisible">
+                not thirdparty_invoice
+            </attribute>
             </xpath>
             <field name="name" position="after">
                 <field name="facturae" invisible="1" />
@@ -28,26 +27,24 @@
                 <button
                     name="button_edit_facturae_fields"
                     icon="fa-tags"
-                    attrs="{'column_invisible': [('parent.facturae','=', False)]}"
+                    column_invisible="not parent.facturae"
                     type="object"
                     title="Edit"
                 />
             </xpath>
             <notebook position="inside">
-                <page
-                    name="facturae"
-                    string="Facturae"
-                    attrs="{'invisible': [('facturae', '=', False)]}"
-                >
+                <page name="facturae" string="Facturae" invisible="not facturae">
                     <group>
                         <group string="Invoicing Period">
                             <field
                                 name="facturae_start_date"
-                                attrs="{'invisible': [('facturae', '=', False)]}"
+                                invisible="not facturae"
+                                readonly="state != 'draft'"
                             />
                             <field
                                 name="facturae_end_date"
-                                attrs="{'invisible': [('facturae', '=', False)]}"
+                                invisible="not facturae"
+                                readonly="state != 'draft'"
                             />
                         </group>
                         <group string="Other facturae fields">
@@ -88,61 +85,61 @@
                     <group>
                         <field
                             name="facturae_issuer_contract_reference"
-                            attrs="{'readonly': [('parent_state', '!=', 'draft')]}"
+                            readonly="parent_state != 'draft'"
                         />
                         <field
                             name="facturae_issuer_contract_date"
-                            attrs="{'readonly': [('parent_state', '!=', 'draft')]}"
+                            readonly="parent_state != 'draft'"
                         />
                     </group>
                     <group>
                         <field
                             name="facturae_receiver_contract_reference"
-                            attrs="{'readonly': [('parent_state', '!=', 'draft')]}"
+                            readonly="parent_state != 'draft'"
                         />
                         <field
                             name="facturae_receiver_contract_date"
-                            attrs="{'readonly': [('parent_state', '!=', 'draft')]}"
+                            readonly="parent_state != 'draft'"
                         />
                     </group>
                     <group>
                         <field
                             name="facturae_issuer_transaction_reference"
-                            attrs="{'readonly': [('parent_state', '!=', 'draft')]}"
+                            readonly="parent_state != 'draft'"
                         />
                         <field
                             name="facturae_issuer_transaction_date"
-                            attrs="{'readonly': [('parent_state', '!=', 'draft')]}"
+                            readonly="parent_state != 'draft'"
                         />
                     </group>
                     <group>
                         <field
                             name="facturae_receiver_transaction_reference"
-                            attrs="{'readonly': [('parent_state', '!=', 'draft')]}"
+                            readonly="parent_state != 'draft'"
                         />
                         <field
                             name="facturae_receiver_transaction_date"
-                            attrs="{'readonly': [('parent_state', '!=', 'draft')]}"
+                            readonly="parent_state != 'draft'"
                         />
                     </group>
                     <group>
                         <field
                             name="facturae_file_reference"
-                            attrs="{'readonly': [('parent_state', '!=', 'draft')]}"
+                            readonly="parent_state != 'draft'"
                         />
                         <field
                             name="facturae_file_date"
-                            attrs="{'readonly': [('parent_state', '!=', 'draft')]}"
+                            readonly="parent_state != 'draft'"
                         />
                     </group>
                     <group>
                         <field
                             name="facturae_start_date"
-                            attrs="{'readonly': [('parent_state', '!=', 'draft')]}"
+                            readonly="parent_state != 'draft'"
                         />
                         <field
                             name="facturae_end_date"
-                            attrs="{'readonly': [('parent_state', '!=', 'draft')]}"
+                            readonly="parent_state != 'draft'"
                         />
                     </group>
                 </group>

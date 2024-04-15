@@ -9,11 +9,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='child_ids']/form/sheet/group" position="inside">
                 <group groups="account.group_account_invoice">
-                    <group
-                        string="Facturae"
-                        attrs="{'invisible': [('facturae', '=', False)]}"
-                        colspan="5"
-                    >
+                    <group string="Facturae" invisible="not facturae" colspan="5">
                         <field name="facturae" invisible="1" />
                         <field name="facturae_version" />
                         <field name="organo_gestor" />
@@ -35,34 +31,13 @@
                     groups="account.group_account_invoice"
                 >
                     <field name="facturae" />
-                    <field
-                        name="facturae_version"
-                        attrs="{'invisible': [('facturae', '=', False)]}"
-                    />
-                    <field
-                        name="organo_gestor"
-                        attrs="{'invisible': [('facturae', '=', False)]}"
-                    />
-                    <field
-                        name="unidad_tramitadora"
-                        attrs="{'invisible': [('facturae', '=', False)]}"
-                    />
-                    <field
-                        name="oficina_contable"
-                        attrs="{'invisible': [('facturae', '=', False)]}"
-                    />
-                    <field
-                        name="organo_proponente"
-                        attrs="{'invisible': [('facturae', '=', False)]}"
-                    />
-                    <field
-                        name="attach_invoice_as_annex"
-                        attrs="{'invisible': [('facturae', '=', False)]}"
-                    />
-                    <field
-                        name="facturae_hide_discount"
-                        attrs="{'invisible': [('facturae', '=', False)]}"
-                    />
+                    <field name="facturae_version" invisible="not facturae" />
+                    <field name="organo_gestor" invisible="not facturae" />
+                    <field name="unidad_tramitadora" invisible="not facturae" />
+                    <field name="oficina_contable" invisible="not facturae" />
+                    <field name="organo_proponente" invisible="not facturae" />
+                    <field name="attach_invoice_as_annex" invisible="not facturae" />
+                    <field name="facturae_hide_discount" invisible="not facturae" />
                 </group>
             </group>
             <page name="accounting_disabled" position="inside">
@@ -72,30 +47,12 @@
                     groups="account.group_account_invoice"
                 >
                     <field name="facturae" />
-                    <field
-                        name="facturae_version"
-                        attrs="{'invisible': [('facturae', '=', False)]}"
-                    />
-                    <field
-                        name="organo_gestor"
-                        attrs="{'invisible': [('facturae', '=', False)]}"
-                    />
-                    <field
-                        name="unidad_tramitadora"
-                        attrs="{'invisible': [('facturae', '=', False)]}"
-                    />
-                    <field
-                        name="oficina_contable"
-                        attrs="{'invisible': [('facturae', '=', False)]}"
-                    />
-                    <field
-                        name="organo_proponente"
-                        attrs="{'invisible': [('facturae', '=', False)]}"
-                    />
-                    <field
-                        name="attach_invoice_as_annex"
-                        attrs="{'invisible': [('facturae', '=', False)]}"
-                    />
+                    <field name="facturae_version" invisible="not facturae" />
+                    <field name="organo_gestor" invisible="not facturae" />
+                    <field name="unidad_tramitadora" invisible="not facturae" />
+                    <field name="oficina_contable" invisible="not facturae" />
+                    <field name="organo_proponente" invisible="not facturae" />
+                    <field name="attach_invoice_as_annex" invisible="not facturae" />
                 </group>
             </page>
         </field>

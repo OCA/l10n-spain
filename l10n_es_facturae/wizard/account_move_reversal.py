@@ -66,7 +66,7 @@ class AccountMoveReversal(models.TransientModel):
                 values[key] = self.env.context[key]
         return values
 
-    def reverse_moves(self):
+    def reverse_moves(self, is_modify=False):
         """Inject in the context the Facturae refund values for being later
         added to the dictionary values for creating the refund.
         """
@@ -76,4 +76,4 @@ class AccountMoveReversal(models.TransientModel):
                 correction_method=self.correction_method,
                 facturae_refund_reason=self.refund_reason,
             ),
-        ).reverse_moves()
+        ).reverse_moves(is_modify)

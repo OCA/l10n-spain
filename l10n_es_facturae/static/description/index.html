@@ -368,22 +368,23 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:861bc2fd8ae24ee7db33d5371b6fc74073b0e00359b3daf036953fd99d3f14a3
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_facturae"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-16-0/l10n-spain-16-0-l10n_es_facturae"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>En virtud de la Ley 25/2013, de 27 de diciembre, de impulso de la factura
-electrónica y creación del registro contable de facturas en el Sector Público,
-desde el día 15 de enero de 2015 todas las facturas remitidas a las
-administraciones públicas tienen que ser electrónicas.
-Téngase en cuenta, no obstante, que muchas Administraciones Públicas,
-y entre ellas la Administración General del Estado, han hecho uso de la
-potestad de exonerar de esta obligación a las facturas de hasta 5.000 euros.
-Estas facturas electrónicas se enviarán a través de los puntos generales de
-entrada de facturas electrónicas de la administración correspondiente.
-Estos puntos generales le permitirán consultar electrónicamente el estado de
-tramitación de su factura, una vez remitida. El de la Administración General
-del Estado se denomina FACe (www.face.gob.es).
-En estas facturas electrónicas habrá que indicar la oficina contable,
-el órgano gestor y la unidad tramitadora, para que llegue correctamente
-a su destino. La administración le proporcionará estos datos.</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_facturae"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-17-0/l10n-spain-17-0-l10n_es_facturae"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>En virtud de la Ley 25/2013, de 27 de diciembre, de impulso de la
+factura electrónica y creación del registro contable de facturas en el
+Sector Público, desde el día 15 de enero de 2015 todas las facturas
+remitidas a las administraciones públicas tienen que ser electrónicas.
+Téngase en cuenta, no obstante, que muchas Administraciones Públicas, y
+entre ellas la Administración General del Estado, han hecho uso de la
+potestad de exonerar de esta obligación a las facturas de hasta 5.000
+euros. Estas facturas electrónicas se enviarán a través de los puntos
+generales de entrada de facturas electrónicas de la administración
+correspondiente. Estos puntos generales le permitirán consultar
+electrónicamente el estado de tramitación de su factura, una vez
+remitida. El de la Administración General del Estado se denomina FACe
+(<a class="reference external" href="http://www.face.gob.es">www.face.gob.es</a>). En estas facturas
+electrónicas habrá que indicar la oficina contable, el órgano gestor y
+la unidad tramitadora, para que llegue correctamente a su destino. La
+administración le proporcionará estos datos.</p>
 <p>Informacion sobre el formato:</p>
 <ul class="simple">
 <li><a class="reference external" href="https://www.facturae.gob.es/formato/Versiones/Esquema_castellano_v3_2_x_06_06_2017_unificado.pdf">https://www.facturae.gob.es/formato/Versiones/Esquema_castellano_v3_2_x_06_06_2017_unificado.pdf</a></li>
@@ -411,61 +412,72 @@ a su destino. La administración le proporcionará estos datos.</p>
 <div class="section" id="installation">
 <h1><a class="toc-backref" href="#toc-entry-1">Installation</a></h1>
 <p>Este módulo depende del módulo <em>account_payment_partner</em> y sus
-dependencias, que se encuentran en <a class="reference external" href="https://github.com/OCA/bank-payment">https://github.com/OCA/bank-payment</a>.</p>
-<p>Para generar el archivo XML, hace falta el módulo <em>report_xml</em> que se encuentra
-en <a class="reference external" href="https://github.com/OCA/reporting-engine">https://github.com/OCA/reporting-engine</a>.</p>
-<p>En el caso de querer firmar el formato Facturae desde Odoo, debe instalarse la
-última versión de xmlsig mediante el comando ´pip install xmlsig´. La versión
-mínima de la misma debe ser 0.1.2.</p>
-<p>Si se instalan los módulos <em>account_banking_mandate</em> o <em>partner_firstname</em>, se
-utilizará para el XML generado la cuenta bancaria de los mandatos o los
-apellidos respectivamente.</p>
+dependencias, que se encuentran en
+<a class="reference external" href="https://github.com/OCA/bank-payment">https://github.com/OCA/bank-payment</a>.</p>
+<p>Para generar el archivo XML, hace falta el módulo <em>report_xml</em> que se
+encuentra en
+<a class="reference external" href="https://github.com/OCA/reporting-engine">https://github.com/OCA/reporting-engine</a>.</p>
+<p>En el caso de querer firmar el formato Facturae desde Odoo, debe
+instalarse la última versión de xmlsig mediante el comando ´pip install
+xmlsig´. La versión mínima de la misma debe ser 0.1.2.</p>
+<p>Si se instalan los módulos <em>account_banking_mandate</em> o
+<em>partner_firstname</em>, se utilizará para el XML generado la cuenta
+bancaria de los mandatos o los apellidos respectivamente.</p>
 </div>
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#toc-entry-2">Configuration</a></h1>
 <ul class="simple">
-<li>Es necesario ir a los modos de pago e indicar su correspondencia con los
-códigos de Facturae.</li>
-<li>La dirección a la que se remite la factura de venta que queremos exportar
-debe estar marcada como facturae y debe tener cubiertos los datos de
-Oficina contable, Órgano gestor y Unidad tramitadora.</li>
-<li>Si se desea firmar el xml generado desde Odoo, tenemos que irnos al
-formulario de las compañías y subir el certificado en formato .pfx y
-escribir la contraseña de acceso al certificado.</li>
-<li>Actualizar los impuestos usando su clave Facturae</li>
+<li>Es necesario ir a los modos de pago e indicar su correspondencia con
+los códigos de Facturae.</li>
+<li>La dirección del partner establecido en la factura, a la cual se va a
+remitir la factura de venta que queremos exportar, debe estar marcada
+como facturae y debe tener cubiertos los datos de Oficina contable,
+Órgano gestor y Unidad tramitadora.</li>
+<li>Si deseamos permitir la firma del xml generado desde Odoo mediante la
+opción que ofrece el wizard de exportación, tenemos que irnos a
+Invoicing -&gt; Configuration -&gt; Certificates AEAT. Crearemos un nuevo
+certificado donde cargaremos el fichero .pfx que hayamos obtenido,
+estableceremos un nombre para el certificado y la carpeta donde se
+ubicará. Una vez creado pulsaremos el botón <strong>Obtain Keys</strong> y nos
+pedirá que introduzcamos la contraseña del certificado. Una vez
+obtenidas las claves activaremos el certificado pulsando sobre el
+botón “To Active”.</li>
 </ul>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-3">Usage</a></h1>
 <p>Desde el botón “Más” del formulario de factura, ejecutamos el asistente
-denominado “Crear fichero Facturae”
-Podremos visualizar automáticamente campos extra de facturación electrónica si
-el cliente es de facturación electrónica. Estos campos se podrán editar a nivel
-de factura o de línea. En el caso de línea, aparecera un botón con un pop-up
-con todo el detalle que podemos editar.</p>
+denominado “Crear fichero Facturae” Podremos visualizar automáticamente
+campos extra de facturación electrónica si el cliente es de facturación
+electrónica. Estos campos se podrán editar a nivel de factura o de
+línea. En el caso de línea, aparecera un botón con un pop-up con todo el
+detalle que podemos editar.</p>
 </div>
 <div class="section" id="known-issues-roadmap">
 <h1><a class="toc-backref" href="#toc-entry-4">Known issues / Roadmap</a></h1>
 <ul class="simple">
-<li>No está soportada la exportación de facturas rectificativas.
-Fallan las series.</li>
+<li>No está soportada la exportación de facturas rectificativas. Fallan
+las series.</li>
 <li>El certificado y la contraseña de acceso al certificado no se guardan
 cifrados en la base de datos.</li>
 <li>Ver la posibilidad de exportar varias facturas juntas.</li>
-<li>Las facturas con recargo de equivalencia no generan un formato correcto.</li>
-<li>Debido a un cambio de certificados, mal hechos desde Camerfirma, se ha eliminado
-el cálculo automático del hash del método de firma.</li>
+<li>Las facturas con recargo de equivalencia no generan un formato
+correcto.</li>
+<li>Debido a un cambio de certificados, mal hechos desde Camerfirma, se
+ha eliminado el cálculo automático del hash del método de firma.</li>
 </ul>
 </div>
 <div class="section" id="changelog">
 <h1><a class="toc-backref" href="#toc-entry-5">Changelog</a></h1>
 <div class="section" id="section-1">
 <h2><a class="toc-backref" href="#toc-entry-6">13.0.2.0.0</a></h2>
-<p>A la hora de integrar con los diferentes sistemas, se utilizará la configuración
-definida en <cite>edi</cite>. Es decir, se gestionará con <cite>edi.document</cite> y componentes.</p>
-<p>Será potestad de los módulos que utilizen el antiguo <cite>account.invoice.integration</cite>
-migrarlo a su configuración respectiva. En la migración no se eliminaran las tablas
-antiguas para permitir la migración necesaria.</p>
+<p>A la hora de integrar con los diferentes sistemas, se utilizará la
+configuración definida en edi. Es decir, se gestionará con edi.document
+y componentes.</p>
+<p>Será potestad de los módulos que utilizen el antiguo
+account.invoice.integration migrarlo a su configuración respectiva. En
+la migración no se eliminaran las tablas antiguas para permitir la
+migración necesaria.</p>
 </div>
 </div>
 <div class="section" id="bug-tracker">
@@ -473,7 +485,7 @@ antiguas para permitir la migración necesaria.</p>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-spain/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_facturae%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_facturae%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -493,19 +505,22 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <h2><a class="toc-backref" href="#toc-entry-10">Contributors</a></h2>
 <ul class="simple">
 <li>ASR-OSS (<a class="reference external" href="http://www.asr-oss.com">http://www.asr-oss.com</a>)</li>
-<li>FactorLibre (<a class="reference external" href="http://www.factorlibre.com">http://www.factorlibre.com</a>)</li>
+<li>FactorLibre
+(<a class="reference external" href="http://www.factorlibre.com">http://www.factorlibre.com</a>)</li>
 <li>Tecon (<a class="reference external" href="http://www.tecon.es">http://www.tecon.es</a>)</li>
 <li>Pexego (<a class="reference external" href="http://www.pexego.es">http://www.pexego.es</a>)</li>
 <li>Malagatic (<a class="reference external" href="http://www.malagatic.es">http://www.malagatic.es</a>)</li>
 <li>Comunitea (<a class="reference external" href="http://www.comunitea.com">http://www.comunitea.com</a>)</li>
-<li>Pedro M. Baeza (<a class="reference external" href="http://www.tecnativa.com">http://www.tecnativa.com</a>)</li>
+<li>Pedro M. Baeza
+(<a class="reference external" href="http://www.tecnativa.com">http://www.tecnativa.com</a>)</li>
 <li>Javi Melendez &lt;<a class="reference external" href="mailto:javimelex&#64;gmail.com">javimelex&#64;gmail.com</a>&gt;</li>
 <li>Enric Tobella &lt;<a class="reference external" href="mailto:enric.tobella&#64;dixmit.com">enric.tobella&#64;dixmit.com</a>&gt;</li>
 <li>Adrián Gómez &lt;<a class="reference external" href="mailto:adrian.gomez&#64;pesol.es">adrian.gomez&#64;pesol.es</a>&gt;</li>
 <li>Eduardo de Miguel (<a class="reference external" href="mailto:edu&#64;moduon.team">edu&#64;moduon.team</a>)</li>
 <li>Eric Antones (<a class="reference external" href="mailto:eantones&#64;nuobit.com">eantones&#64;nuobit.com</a>&gt;</li>
 <li>Alberto Martínez (<a class="reference external" href="mailto:alberto.martinez&#64;sygel.es">alberto.martinez&#64;sygel.es</a>)</li>
-<li>Carolina Fernandez (<a class="reference external" href="http://www.tecnativa.com">http://www.tecnativa.com</a>)</li>
+<li>Carolina Fernandez
+(<a class="reference external" href="http://www.tecnativa.com">http://www.tecnativa.com</a>)</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
@@ -517,7 +532,7 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/etobella"><img alt="etobella" src="https://github.com/etobella.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_facturae">OCA/l10n-spain</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_facturae">OCA/l10n-spain</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
