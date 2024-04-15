@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="aeat_mod123_2024_map" model="l10n.es.aeat.map.tax">
+        <field name="model">123</field>
+        <field name="date_from">2024-01-01</field>
+    </record>
+    <record id="aeat_mod123_2024_map_line_04" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod123_2024_map" />
+        <field name="field_number">04</field>
+        <field
+            name="name"
+        >Dividendos y otras rentas de participación en fondos propios de entidades
+            - Base de Retenciones e ingresos a cuenta</field>
+        <field name="to_regularize" eval="True" />
+        <field name="move_type">regular</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True" />
+        <field
+            name="tax_ids"
+            eval="[(4, ref('l10n_es.account_tax_template_p_rp19')), (4, ref('l10n_es.account_tax_template_p_rrD19')), (4, ref('l10n_es.account_tax_template_p_irpf24_rdc'))]"
+        />
+    </record>
+    <record id="aeat_mod123_2024_map_line_05" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod123_2024_map" />
+        <field name="field_number">05</field>
+        <field
+            name="name"
+        >Resto de rentas - Base de Retenciones e ingresos a cuenta</field>
+        <field name="to_regularize" eval="True" />
+        <field name="move_type">regular</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True" />
+        <!-- Uncomment tax when PR https://github.com/odoo/odoo/pull/161633/files is merged -->
+        <!-- <field
+            name="tax_ids"
+            eval="[(4, ref(l10n_es.account_tax_template_p_irpf19cs))]"
+        /> -->
+    </record>
+    <record id="aeat_mod123_2024_map_line_07" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod123_2024_map" />
+        <field name="field_number">07</field>
+        <field
+            name="name"
+        >Dividendos y otras rentas de participación en fondos propios de entidades
+            - Retenciones e ingresos a cuenta</field>
+        <field name="to_regularize" eval="True" />
+        <field name="move_type">regular</field>
+        <field name="field_type">amount</field>
+        <field name="sum_type">credit</field>
+        <field name="inverse" eval="False" />
+        <field
+            name="tax_ids"
+            eval="[(4, ref('l10n_es.account_tax_template_p_rp19')), (4, ref('l10n_es.account_tax_template_p_rrD19')), (4, ref('l10n_es.account_tax_template_p_irpf24_rdc'))]"
+        />
+    </record>
+    <record id="aeat_mod123_2024_map_line_08" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod123_2024_map" />
+        <field name="field_number">08</field>
+        <field name="name">Resto de rentas - Retenciones e ingresos a cuenta</field>
+        <field name="to_regularize" eval="True" />
+        <field name="move_type">regular</field>
+        <field name="field_type">amount</field>
+        <field name="sum_type">credit</field>
+        <field name="inverse" eval="False" />
+        <!-- Uncomment tax when PR https://github.com/odoo/odoo/pull/161633/files is merged -->
+        <!-- <field
+            name="tax_ids"
+            eval="[(4, ref(l10n_es.account_tax_template_p_irpf19cs))]"
+        /> -->
+    </record>
+</odoo>
