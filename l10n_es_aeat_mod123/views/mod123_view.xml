@@ -9,10 +9,12 @@
                 <field name="tipo_declaracion" />
             </field>
             <group name="group_declaration" position="after">
+                <!-- View 2016-2023 -->
                 <group
                     string="Resultado"
                     colspan="4"
                     states="calculated,done,cancelled"
+                    attrs="{'invisible': [('year', '&gt;=', 2024)]}"
                 >
                     <group string="Retenciones e ingresos a cuenta">
                         <field name="casilla_01" />
@@ -53,6 +55,164 @@
                         />
                         <field
                             name="casilla_08"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                </group>
+                <!-- View 2024 -->
+                <group
+                    string="Número de rentas"
+                    col="3"
+                    states="calculated,done,cancelled"
+                    attrs="{'invisible': [('year', '&lt;', 2024)]}"
+                >
+                    <group>
+                        <label
+                            for="casilla_01_2024"
+                            string="[01] Dividendos y otras rentas de participación en fondos propios de entidades"
+                        />
+                        <field name="casilla_01_2024" nolabel="1" />
+                    </group>
+                    <group>
+                        <label for="casilla_02_2024" string="[02] Resto de rentas" />
+                        <field name="casilla_02_2024" nolabel="1" />
+
+                    </group>
+                    <group>
+                        <label for="casilla_03_2024" string="[03] Totales" />
+                        <field name="casilla_03_2024" nolabel="1" />
+                    </group>
+                </group>
+                <group
+                    string="Base de retenciones e ingresos a cuenta"
+                    col="3"
+                    states="calculated,done,cancelled"
+                    attrs="{'invisible': [('year', '&lt;', 2024)]}"
+                >
+                    <group>
+                        <label
+                            for="casilla_04_2024"
+                            string="[04] Dividendos y otras rentas de participación en fondos propios de entidades"
+                        />
+                        <field
+                            name="casilla_04_2024"
+                            nolabel="1"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                    <group>
+                        <label for="casilla_05_2024" string="[05] Resto de rentas" />
+                        <field
+                            name="casilla_05_2024"
+                            nolabel="1"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+
+                    </group>
+                    <group>
+                        <label for="casilla_06_2024" string="[06] Totales" />
+                        <field
+                            name="casilla_06_2024"
+                            nolabel="1"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                </group>
+                <group
+                    string="Retenciones e ingresos a cuenta"
+                    col="3"
+                    states="calculated,done,cancelled"
+                    attrs="{'invisible': [('year', '&lt;', 2024)]}"
+                >
+                    <group>
+                        <label
+                            for="casilla_07_2024"
+                            string="[07] Dividendos y otras rentas de participación en fondos propios de entidades"
+                        />
+                        <field
+                            name="casilla_07_2024"
+                            nolabel="1"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                    <group>
+                        <label for="casilla_08_2024" string="[08] Resto de rentas" />
+                        <field
+                            name="casilla_08_2024"
+                            nolabel="1"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+
+                    </group>
+                    <group>
+                        <label for="casilla_09_2024" string="[09] Totales" />
+                        <field
+                            name="casilla_09_2024"
+                            nolabel="1"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                </group>
+                <group
+                    string="Periodificación"
+                    col="3"
+                    states="calculated,done,cancelled"
+                    attrs="{'invisible': [('year', '&lt;', 2024)]}"
+                >
+                    <group />
+                    <group>
+                        <field
+                            name="casilla_10_2024"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                    <group>
+                        <field
+                            name="casilla_11_2024"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                </group>
+                <group
+                    string="Total Liquidación"
+                    col="3"
+                    states="calculated,done,cancelled"
+                    attrs="{'invisible': [('year', '&lt;', 2024)]}"
+                >
+                    <group />
+                    <group />
+                    <group>
+                        <label
+                            for="casilla_12_2024"
+                            string="[12] Total retenciones ([09] + [11])"
+                        />
+                        <field
+                            name="casilla_12_2024"
+                            nolabel="1"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="casilla_13_2024"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <label
+                            for="casilla_14_2024"
+                            string="[14] Resultado a ingresar ([12] - [13])"
+                        />
+                        <field
+                            name="casilla_14_2024"
+                            nolabel="1"
                             widget="monetary"
                             options="{'currency_field': 'currency_id'}"
                         />

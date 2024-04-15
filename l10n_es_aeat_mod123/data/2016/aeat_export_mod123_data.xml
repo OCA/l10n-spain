@@ -123,7 +123,8 @@
         <field name="export_config_id" ref="aeat_mod123_sub01_export_config" />
         <field
             name="name"
-        >Liquidación(3). Retenciones e ingresos a cuenta. Base retenciones e ingresos a cuenta [02]</field>
+        >Liquidación(3). Retenciones e ingresos a cuenta. Base retenciones e ingresos
+            a cuenta [02]</field>
         <field name="expression">${object.casilla_02}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True" />
@@ -136,7 +137,8 @@
         <field name="export_config_id" ref="aeat_mod123_sub01_export_config" />
         <field
             name="name"
-        >Liquidación(3). Retenciones e ingresos a cuenta. Retenciones e ingresos a cuenta, [03]</field>
+        >Liquidación(3). Retenciones e ingresos a cuenta. Retenciones e ingresos a
+            cuenta, [03]</field>
         <field name="expression">${object.casilla_03}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True" />
@@ -173,7 +175,8 @@
         <field name="export_config_id" ref="aeat_mod123_sub01_export_config" />
         <field
             name="name"
-        >Liquidación(3). Total liquidación. Suma de retenciones e ingresos a cuenta y regularización. [03] + [05]</field>
+        >Liquidación(3). Total liquidación. Suma de retenciones e ingresos a cuenta y
+            regularización. [03] + [05]</field>
         <field name="expression">${object.casilla_06}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True" />
@@ -186,7 +189,8 @@
         <field name="export_config_id" ref="aeat_mod123_sub01_export_config" />
         <field
             name="name"
-        >Liquidación(3). Total liquidación. Resultado de anteriores declaraciones. [07]</field>
+        >Liquidación(3). Total liquidación. Resultado de anteriores declaraciones.
+            [07]</field>
         <field name="expression">${object.casilla_07}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True" />
@@ -268,8 +272,9 @@
     </record>
     <!--  MAIN-123  -->
     <record id="aeat_mod123_main_export_config" model="aeat.model.export.config">
-        <field name="name">Mod. 123 2016-actualidad</field>
+        <field name="name">Mod. 123 2016-2023</field>
         <field name="date_start">2016-01-01</field>
+        <field name="date_end">2023-12-31</field>
         <field name="model_number">123</field>
         <field name="model_id" ref="model_l10n_es_aeat_mod123_report" />
     </record>
