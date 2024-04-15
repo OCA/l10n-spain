@@ -2,10 +2,10 @@
 # Copyright 2017 Creu Blanca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from .common import CommonTest
+from . import common
 
 
-class TestL10nEsFacturae(CommonTest):
+class TestL10nEsFacturae(common.CommonTest):
     def setUp(self):
         super().setUp()
         self.fe = "http://www.facturae.es/Facturae/2009/v3.2/Facturae"

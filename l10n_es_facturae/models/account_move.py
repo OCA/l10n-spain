@@ -4,6 +4,8 @@
 import base64
 from collections import defaultdict
 
+from markupsafe import Markup
+
 from odoo import _, api, fields, models, tools
 from odoo.exceptions import ValidationError
 from odoo.tools import html2plaintext
@@ -62,11 +64,9 @@ class AccountMove(models.Model):
     )
     facturae_start_date = fields.Date(
         readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     facturae_end_date = fields.Date(
         readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     l10n_es_facturae_attachment_ids = fields.One2many(
         "l10n.es.facturae.attachment",
@@ -262,7 +262,7 @@ class AccountMove(models.Model):
         return html2plaintext(self.narration)
 
     def _get_facturae_headers(self):
-        return 'xmlns:ds="http://www.w3.org/2000/09/xmldsig#"'
+        return Markup('xmlns:ds="http://www.w3.org/2000/09/xmldsig#"')
 
     def _facturae_has_extensions(self):
         return False
@@ -351,12 +351,3 @@ class AccountMoveLine(models.Model):
             )
             return taxes_res["total_excluded"]
         return self.price_unit
-
-
-class L10nEsFacturaeAttachment(models.Model):
-    _name = "l10n.es.facturae.attachment"
-    _description = "Facturae Attachment"
-
-    move_id = fields.Many2one("account.move", required=True, ondelete="cascade")
-    file = fields.Binary(required=True)
-    filename = fields.Char()

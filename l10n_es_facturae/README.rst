@@ -17,36 +17,37 @@ Creación de Facturae
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_facturae
+    :target: https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_facturae
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-16-0/l10n-spain-16-0-l10n_es_facturae
+    :target: https://translation.odoo-community.org/projects/l10n-spain-17-0/l10n-spain-17-0-l10n_es_facturae
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-En virtud de la Ley 25/2013, de 27 de diciembre, de impulso de la factura
-electrónica y creación del registro contable de facturas en el Sector Público,
-desde el día 15 de enero de 2015 todas las facturas remitidas a las
-administraciones públicas tienen que ser electrónicas.
-Téngase en cuenta, no obstante, que muchas Administraciones Públicas,
-y entre ellas la Administración General del Estado, han hecho uso de la
-potestad de exonerar de esta obligación a las facturas de hasta 5.000 euros.
-Estas facturas electrónicas se enviarán a través de los puntos generales de
-entrada de facturas electrónicas de la administración correspondiente.
-Estos puntos generales le permitirán consultar electrónicamente el estado de
-tramitación de su factura, una vez remitida. El de la Administración General
-del Estado se denomina FACe (www.face.gob.es).
-En estas facturas electrónicas habrá que indicar la oficina contable,
-el órgano gestor y la unidad tramitadora, para que llegue correctamente
-a su destino. La administración le proporcionará estos datos.
+En virtud de la Ley 25/2013, de 27 de diciembre, de impulso de la
+factura electrónica y creación del registro contable de facturas en el
+Sector Público, desde el día 15 de enero de 2015 todas las facturas
+remitidas a las administraciones públicas tienen que ser electrónicas.
+Téngase en cuenta, no obstante, que muchas Administraciones Públicas, y
+entre ellas la Administración General del Estado, han hecho uso de la
+potestad de exonerar de esta obligación a las facturas de hasta 5.000
+euros. Estas facturas electrónicas se enviarán a través de los puntos
+generales de entrada de facturas electrónicas de la administración
+correspondiente. Estos puntos generales le permitirán consultar
+electrónicamente el estado de tramitación de su factura, una vez
+remitida. El de la Administración General del Estado se denomina FACe
+(`www.face.gob.es <http://www.face.gob.es>`__). En estas facturas
+electrónicas habrá que indicar la oficina contable, el órgano gestor y
+la unidad tramitadora, para que llegue correctamente a su destino. La
+administración le proporcionará estos datos.
 
 Informacion sobre el formato:
 
-* https://www.facturae.gob.es/formato/Versiones/Esquema_castellano_v3_2_x_06_06_2017_unificado.pdf
+-  `https://www.facturae.gob.es/formato/Versiones/Esquema_castellano_v3_2_x_06_06_2017_unificado.pdf <https://www.facturae.gob.es/formato/Versiones/Esquema_castellano_v3_2_x_06_06_2017_unificado.pdf>`__
 
 **Table of contents**
 
@@ -57,66 +58,77 @@ Installation
 ============
 
 Este módulo depende del módulo *account_payment_partner* y sus
-dependencias, que se encuentran en https://github.com/OCA/bank-payment.
+dependencias, que se encuentran en
+`https://github.com/OCA/bank-payment <https://github.com/OCA/bank-payment>`__.
 
-Para generar el archivo XML, hace falta el módulo *report_xml* que se encuentra
-en https://github.com/OCA/reporting-engine.
+Para generar el archivo XML, hace falta el módulo *report_xml* que se
+encuentra en
+`https://github.com/OCA/reporting-engine <https://github.com/OCA/reporting-engine>`__.
 
-En el caso de querer firmar el formato Facturae desde Odoo, debe instalarse la
-última versión de xmlsig mediante el comando ´pip install xmlsig´. La versión
-mínima de la misma debe ser 0.1.2.
+En el caso de querer firmar el formato Facturae desde Odoo, debe
+instalarse la última versión de xmlsig mediante el comando ´pip install
+xmlsig´. La versión mínima de la misma debe ser 0.1.2.
 
-Si se instalan los módulos *account_banking_mandate* o *partner_firstname*, se
-utilizará para el XML generado la cuenta bancaria de los mandatos o los
-apellidos respectivamente.
+Si se instalan los módulos *account_banking_mandate* o
+*partner_firstname*, se utilizará para el XML generado la cuenta
+bancaria de los mandatos o los apellidos respectivamente.
 
 Configuration
 =============
 
-* Es necesario ir a los modos de pago e indicar su correspondencia con los
-  códigos de Facturae.
-* La dirección a la que se remite la factura de venta que queremos exportar
-  debe estar marcada como facturae y debe tener cubiertos los datos de
-  Oficina contable, Órgano gestor y Unidad tramitadora.
-* Si se desea firmar el xml generado desde Odoo, tenemos que irnos al
-  formulario de las compañías y subir el certificado en formato .pfx y
-  escribir la contraseña de acceso al certificado.
-* Actualizar los impuestos usando su clave Facturae
+-  Es necesario ir a los modos de pago e indicar su correspondencia con
+   los códigos de Facturae.
+-  La dirección del partner establecido en la factura, a la cual se va a
+   remitir la factura de venta que queremos exportar, debe estar marcada
+   como facturae y debe tener cubiertos los datos de Oficina contable,
+   Órgano gestor y Unidad tramitadora.
+-  Si deseamos permitir la firma del xml generado desde Odoo mediante la
+   opción que ofrece el wizard de exportación, tenemos que irnos a
+   Invoicing -> Configuration -> Certificates AEAT. Crearemos un nuevo
+   certificado donde cargaremos el fichero .pfx que hayamos obtenido,
+   estableceremos un nombre para el certificado y la carpeta donde se
+   ubicará. Una vez creado pulsaremos el botón **Obtain Keys** y nos
+   pedirá que introduzcamos la contraseña del certificado. Una vez
+   obtenidas las claves activaremos el certificado pulsando sobre el
+   botón "To Active".
 
 Usage
 =====
 
 Desde el botón "Más" del formulario de factura, ejecutamos el asistente
-denominado "Crear fichero Facturae"
-Podremos visualizar automáticamente campos extra de facturación electrónica si
-el cliente es de facturación electrónica. Estos campos se podrán editar a nivel
-de factura o de línea. En el caso de línea, aparecera un botón con un pop-up
-con todo el detalle que podemos editar.
+denominado "Crear fichero Facturae" Podremos visualizar automáticamente
+campos extra de facturación electrónica si el cliente es de facturación
+electrónica. Estos campos se podrán editar a nivel de factura o de
+línea. En el caso de línea, aparecera un botón con un pop-up con todo el
+detalle que podemos editar.
 
 Known issues / Roadmap
 ======================
 
-* No está soportada la exportación de facturas rectificativas.
-  Fallan las series.
-* El certificado y la contraseña de acceso al certificado no se guardan
-  cifrados en la base de datos.
-* Ver la posibilidad de exportar varias facturas juntas.
-* Las facturas con recargo de equivalencia no generan un formato correcto.
-* Debido a un cambio de certificados, mal hechos desde Camerfirma, se ha eliminado
-  el cálculo automático del hash del método de firma.
+-  No está soportada la exportación de facturas rectificativas. Fallan
+   las series.
+-  El certificado y la contraseña de acceso al certificado no se guardan
+   cifrados en la base de datos.
+-  Ver la posibilidad de exportar varias facturas juntas.
+-  Las facturas con recargo de equivalencia no generan un formato
+   correcto.
+-  Debido a un cambio de certificados, mal hechos desde Camerfirma, se
+   ha eliminado el cálculo automático del hash del método de firma.
 
 Changelog
 =========
 
 13.0.2.0.0
-~~~~~~~~~~
+----------
 
-A la hora de integrar con los diferentes sistemas, se utilizará la configuración
-definida en `edi`. Es decir, se gestionará con `edi.document` y componentes.
+A la hora de integrar con los diferentes sistemas, se utilizará la
+configuración definida en edi. Es decir, se gestionará con edi.document
+y componentes.
 
-Será potestad de los módulos que utilizen el antiguo `account.invoice.integration`
-migrarlo a su configuración respectiva. En la migración no se eliminaran las tablas
-antiguas para permitir la migración necesaria.
+Será potestad de los módulos que utilizen el antiguo
+account.invoice.integration migrarlo a su configuración respectiva. En
+la migración no se eliminaran las tablas antiguas para permitir la
+migración necesaria.
 
 Bug Tracker
 ===========
@@ -124,7 +136,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_facturae%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_facturae%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -132,7 +144,7 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * ASR-OSS
 * FactorLibre
@@ -142,25 +154,28 @@ Authors
 * Creu Blanca
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* ASR-OSS (http://www.asr-oss.com)
-* FactorLibre (http://www.factorlibre.com)
-* Tecon (http://www.tecon.es)
-* Pexego (http://www.pexego.es)
-* Malagatic (http://www.malagatic.es)
-* Comunitea (http://www.comunitea.com)
-* Pedro M. Baeza (http://www.tecnativa.com)
-* Javi Melendez <javimelex@gmail.com>
-* Enric Tobella <enric.tobella@dixmit.com>
-* Adrián Gómez <adrian.gomez@pesol.es>
-* Eduardo de Miguel (edu@moduon.team)
-* Eric Antones (eantones@nuobit.com>
-* Alberto Martínez (alberto.martinez@sygel.es)
-* Carolina Fernandez (http://www.tecnativa.com)
+-  ASR-OSS (`http://www.asr-oss.com <http://www.asr-oss.com>`__)
+-  FactorLibre
+   (`http://www.factorlibre.com <http://www.factorlibre.com>`__)
+-  Tecon (`http://www.tecon.es <http://www.tecon.es>`__)
+-  Pexego (`http://www.pexego.es <http://www.pexego.es>`__)
+-  Malagatic (`http://www.malagatic.es <http://www.malagatic.es>`__)
+-  Comunitea (`http://www.comunitea.com <http://www.comunitea.com>`__)
+-  Pedro M. Baeza
+   (`http://www.tecnativa.com <http://www.tecnativa.com>`__)
+-  Javi Melendez <javimelex@gmail.com>
+-  Enric Tobella <enric.tobella@dixmit.com>
+-  Adrián Gómez <adrian.gomez@pesol.es>
+-  Eduardo de Miguel (edu@moduon.team)
+-  Eric Antones (eantones@nuobit.com>
+-  Alberto Martínez (alberto.martinez@sygel.es)
+-  Carolina Fernandez
+   (`http://www.tecnativa.com <http://www.tecnativa.com>`__)
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -180,6 +195,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-etobella| 
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_facturae>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_facturae>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

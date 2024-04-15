@@ -49,8 +49,7 @@ class AccountTax(models.Model):
             ("15", "IMGSN: Impuesto municipal sobre gastos suntuarios en" " Navarra"),
             ("16", "IMPN: Impuesto municipal sobre publicidad en Navarra"),
             ("17", "REIVA: Régimen especial de IVA para agencias de viajes"),
-            ("18", "REIGIC: Régimen especial de IGIC: para agencias de" "viajes"),
+            ("18", "REIGIC: Régimen especial de IGIC: para agencias de viajes"),
             ("19", "REIPSI: Régimen especial de IPSI para agencias de viajes"),
         ],
-        default="01",
     )

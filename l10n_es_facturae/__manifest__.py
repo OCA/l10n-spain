@@ -6,11 +6,13 @@
 # Copyright 2022 Moduon - Eduardo de Miguel
 # Copyright 2022 NuoBiT - Eric Antones
 # Copyright 2024 Tecnativa - Carolina Fernandez
+# Copyright 2017-2023 CreuBlanca
+# Copyright 2024 Dixmit
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Creación de Facturae",
-    "version": "16.0.1.8.0",
+    "version": "17.0.1.0.0",
     "author": "ASR-OSS, "
     "FactorLibre, "
     "Tecon, "
@@ -33,7 +35,6 @@
     ],
     "data": [
         "security/ir.model.access.csv",
-        "data/account_tax_template.xml",
         "views/res_partner_view.xml",
         "views/res_company.xml",
         "views/payment_mode_view.xml",
@@ -45,6 +46,7 @@
         "views/account_journal_view.xml",
     ],
     "external_dependencies": {"python": ["pycountry", "xmlsig", "cryptography==3.4.8"]},
+    "post_init_hook": "post_init_hook",
     "installable": True,
     "maintainers": ["etobella"],
 }

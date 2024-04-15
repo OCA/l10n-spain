@@ -18,15 +18,6 @@ from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
 
 
 class CommonTestBase(TestL10nEsAeatCertificateBase):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # We want to avoid testing on the CommonTest class
-        if (
-            self.test_class == "CommonTest"
-            and self.__module__ == "odoo.addons.l10n_es_facturae.tests.common"
-        ):
-            self.test_tags -= {"at_install"}
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -144,13 +135,12 @@ class CommonTestBase(TestL10nEsAeatCertificateBase):
                 "refund_payment_mode_id": self.refund_payment_mode.id,
             }
         )
-
         self.account = self.env["account.account"].create(
             {
                 "company_id": main_company.id,
                 "name": "Facturae Product account",
-                "code": "facturae_product",
-                "user_type_id": self.env.ref("account.data_account_type_revenue").id,
+                "code": "facturae.product",
+                "account_type": "income_other",
             }
         )
         self.move = self.env["account.move"].create(
@@ -178,9 +168,7 @@ class CommonTestBase(TestL10nEsAeatCertificateBase):
                 ],
             }
         )
-        self.move.refresh()
         self.move_line = self.move.invoice_line_ids
-
         self.move_02 = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
@@ -206,8 +194,6 @@ class CommonTestBase(TestL10nEsAeatCertificateBase):
                 ],
             }
         )
-        self.move_02.refresh()
-
         self.move_line_02 = self.move_02.invoice_line_ids
         self.partner.vat = "ES05680675C"
         self.partner.is_company = False
@@ -250,7 +236,6 @@ class CommonTestBase(TestL10nEsAeatCertificateBase):
                 ],
             }
         )
-        self.refund_move.refresh()
         self.refund_check_amount = ["-100.000000", "-100.000000", "-100.00", "-21.00"]
         self.refund_check_totals = ["-100.00", "-100.00", "-21.00", "-121.00"]
         self.hided_discount_check_amount = [

@@ -7,9 +7,7 @@
         <field name="inherit_id" ref="l10n_es_aeat.view_account_journal_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='thirdparty_invoice']" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'invisible': [('type', 'not in', ('sale', 'purchase'))]}</attribute>
+                <attribute name="invisible">type not in ('sale', 'purchase')</attribute>
             </xpath>
         </field>
     </record>
