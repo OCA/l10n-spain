@@ -2,6 +2,7 @@
 <odoo>
     <record id="aeat_mod123_map" model="l10n.es.aeat.map.tax">
         <field name="model">123</field>
+        <field name="date_to">2023-12-31</field>
     </record>
     <record id="aeat_mod123_map_line_02" model="l10n.es.aeat.map.tax.line">
         <field name="map_parent_id" ref="aeat_mod123_map" />
