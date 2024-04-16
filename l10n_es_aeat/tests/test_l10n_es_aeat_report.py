@@ -6,6 +6,7 @@ from odoo_test_helper import FakeModelLoader
 
 from odoo import exceptions, fields
 from odoo.tests import common
+from odoo.tests.common import Form
 
 TEST_MODEL_NAME = "l10n.es.aeat.mod999.report"
 
@@ -83,3 +84,8 @@ class TestL10nEsAeatReport(common.TransactionCase):
                 [("name", "=", "aeat999-sequence"), ("company_id", "=", company.id)]
             )
         )
+
+    def test_default_representative_vat(self):
+        self.env.company.representative_vat = "36477262K"
+        report_form = Form(self.AeatReport)
+        self.assertEqual(report_form.representative_vat, "36477262K")

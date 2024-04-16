@@ -140,7 +140,10 @@
                                 name="counterpart_account_id"
                                 attrs="{'invisible': [('allow_posting', '=', False)]}"
                             />
-                            <field name="representative_vat" />
+                            <field
+                                name="representative_vat"
+                                attrs="{'readonly': [('state', '!=', 'draft')]}"
+                            />
                             <field name="support_type" />
                             <field name="calculation_date" readonly="1" />
                             <field name="partner_id" invisible="1" />
