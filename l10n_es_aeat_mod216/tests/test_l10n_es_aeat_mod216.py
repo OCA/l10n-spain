@@ -19,12 +19,13 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
         # tax code: (base, tax_amount)
         "l10n_es_irnr.account_tax_template_p_irpfnrnue24p": (1000, 240),
         "l10n_es_irnr.account_tax_template_p_irpfnrue19p": (2000, 380),
+        "l10n_es_irnr.account_tax_template_p_irpfnrnue0p": (3000, 0),
     }
     taxes_result = {
         # Rendimientos del trabajo (dinerarios) - Base
-        "2": 6000,
+        "2": 12000,
         # Rendimientos del trabajo (dinerarios) - Retenciones
-        "3": 1240,  # (2 * 240) + (2 * 380)
+        "3": 1240,  # (2 * 240) + (2 * 380) + (2 * 0)
     }
 
     def test_model_216(self):
