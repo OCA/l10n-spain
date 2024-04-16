@@ -17,16 +17,6 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: delivery_gls_asm
-#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__0
-msgid "10:00 Service"
-msgstr "10:00 Servicio"
-
-#. module: delivery_gls_asm
-#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__2
-msgid "14:00 Service"
-msgstr "14:00 Servicio"
-
-#. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__27
 msgid "14H SOBRES"
 msgstr "14H SOBRES"
@@ -151,8 +141,8 @@ msgid "BICI"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__3
-msgid "BusinessParcel"
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__96
+msgid "BUSINESS PARCEL"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -249,12 +239,14 @@ msgid "Con incidencia"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #, python-format
 msgid "Couldn't find the consignee street"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #, python-format
 msgid "Couldn't find the sender street"
@@ -346,8 +338,8 @@ msgid "EUROBUSINESS SMALL PARCEL"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__18
-msgid "EconomyParcel"
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__16
+msgid "Economy"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -386,6 +378,11 @@ msgid "Ent. Pto. ASM"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__18
+msgid "Entrega 24-48h (serv. 96) o 48h (serv. 37)"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__cancel_returned
 msgid "Entrega anulada (devuelta)"
 msgstr ""
@@ -416,6 +413,26 @@ msgid "Estado recogida GLS"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__17
+msgid "Express"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__0
+msgid "Express 10:00"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__2
+msgid "Express 14:00"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__3
+msgid "Express 19:00"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__9
 msgid "Franja Horaria"
 msgstr ""
@@ -439,6 +456,7 @@ msgid "GLS ASM"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #, python-format
 msgid ""
@@ -454,6 +472,7 @@ msgid "GLS Barcode"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #, python-format
 msgid "GLS Cancellation failed with reason: %s"
@@ -475,6 +494,7 @@ msgid "GLS Label"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #: model:ir.actions.act_window,name:delivery_gls_asm.action_delivery_gls_asm_manifest_wizard
 #: model:ir.actions.report,name:delivery_gls_asm.gls_asm_manifest_report
@@ -489,6 +509,7 @@ msgid "GLS Picking Reference"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #, python-format
 msgid ""
@@ -503,6 +524,7 @@ msgid "GLS Service"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #, python-format
 msgid ""
@@ -516,12 +538,14 @@ msgid "GLS UID"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/stock_picking.py:0
 #, python-format
 msgid "GLS label for %s"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
 msgid ""
@@ -531,6 +555,7 @@ msgid ""
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #, python-format
 msgid ""
@@ -547,6 +572,7 @@ msgid "GLS/ASM With return"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
 msgid ""
@@ -556,6 +582,7 @@ msgid ""
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
 msgid ""
@@ -627,6 +654,7 @@ msgid "Int. WEB"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/wizard/gls_asm_manifest_wizard.py:0
 #, python-format
 msgid ""
@@ -680,6 +708,7 @@ msgid "No Realizada"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
 msgid ""
@@ -881,7 +910,7 @@ msgstr ""
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__11
-msgid "Rec. en NAVE."
+msgid "Rec. en agencia"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -995,6 +1024,7 @@ msgid "Transfer"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #, python-format
 msgid ""
@@ -1022,3 +1052,9 @@ msgstr ""
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__35
 msgid "dPRO"
 msgstr ""
+
+#~ msgid "10:00 Service"
+#~ msgstr "10:00 Servicio"
+
+#~ msgid "14:00 Service"
+#~ msgstr "14:00 Servicio"
