@@ -11,4 +11,6 @@
   - Valentin Vinagre
 - [Ozono Multimedia](https://www.ozonomultimedia.com):
   - Iván Antón
-- Arantxa Sudón [Moduon](https://www.moduon.team)
+- [Moduon](https://www.moduon.team)
+  - Arantxa Sudón
+  - Rafael Blasco
