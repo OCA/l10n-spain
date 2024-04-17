@@ -37,6 +37,11 @@
             <field name="previous_number" position="after">
                 <field name="devolucion_mensual" readonly="state == 'done'" />
                 <field
+                    name="return_last_period"
+                    invisible="period_type not in ('4T', '12')"
+                    readonly="state == 'done'"
+                />
+                <field
                     name="exonerated_390"
                     readonly="state != 'draft'"
                     invisible="period_type not in ('4T', '12')"
