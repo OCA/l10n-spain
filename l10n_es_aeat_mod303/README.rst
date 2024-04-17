@@ -136,7 +136,11 @@ Contributors
 * `Ozono Multimedia <https://www.ozonomultimedia.com>`__:
 
   * Iván Antón
-* Arantxa Sudón [Moduon](https://www.moduon.team)
+
+* `Moduon <https://www.moduon.team/>`__:
+
+  * Arantxa Sudón
+  * Rafael Blasco
 
 Maintainers
 ~~~~~~~~~~~
