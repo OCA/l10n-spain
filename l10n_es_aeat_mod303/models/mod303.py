@@ -48,6 +48,14 @@ class L10nEsAeatMod303Report(models.Model):
         states=NON_EDITABLE_ON_DONE,
         help="Registered in the Register of Monthly Return",
     )
+    return_last_period = fields.Boolean(
+        string="Last Period Return",
+        states=NON_EDITABLE_ON_DONE,
+        help="Check if you are submitting the last period return",
+        compute="_compute_return_last_period",
+        store=True,
+        readonly=False,
+    )
     total_devengado = fields.Float(
         string="[27] VAT payable",
         readonly=True,
@@ -358,6 +366,12 @@ class L10nEsAeatMod303Report(models.Model):
             if record.period_type not in ("4T", "12"):
                 record.exonerated_390 = "2"
 
+    @api.depends("period_type")
+    def _compute_return_last_period(self):
+        for record in self:
+            if record.period_type not in ("4T", "12"):
+                record.return_last_period = False
+
     @api.depends("tax_line_ids", "tax_line_ids.amount")
     def _compute_total_devengado(self):
         casillas_devengado = (152, 3, 155, 6, 9, 11, 13, 15, 158, 18, 21, 24, 26)
@@ -448,6 +462,7 @@ class L10nEsAeatMod303Report(models.Model):
         "devolucion_mensual",
         "marca_sepa",
         "use_aeat_account",
+        "return_last_period",
     )
     def _compute_result_type(self):
         for report in self:
@@ -470,8 +485,10 @@ class L10nEsAeatMod303Report(models.Model):
                 if report.devolucion_mensual or report.period_type in ("4T", "12"):
                     if report.use_aeat_account:
                         report.result_type = "V"
-                    else:
+                    elif report.return_last_period:
                         report.result_type = "D" if report.marca_sepa == "1" else "X"
+                    else:
+                        report.result_type = "C"
                 else:
                     report.result_type = "C"
 
@@ -495,7 +512,7 @@ class L10nEsAeatMod303Report(models.Model):
                         - fields.Date.to_date(mod303.date_start)
                     ),
                 )
-                if (
+                if prev_report and (
                     prev_report.remaining_cuota_compensar > 0
                     or prev_report.result_type == "C"
                 ):
@@ -507,7 +524,9 @@ class L10nEsAeatMod303Report(models.Model):
                             ),
                         }
                     )
-            if (
+            if mod303.return_last_period:
+                cuota_compensar = mod303.potential_cuota_compensar
+            elif (
                 float_compare(
                     mod303.resultado_liquidacion,
                     0,
