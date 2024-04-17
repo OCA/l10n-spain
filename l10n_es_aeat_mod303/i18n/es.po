@@ -295,6 +295,11 @@ msgid "Calculation Date"
 msgstr "Fecha de cálculo"
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__return_last_period
+msgid "Check if you are submitting the last period return"
+msgstr "Marcar si quieres enviar la devolución en el último período"
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__company_id
 msgid "Company"
 msgstr "Compañía"
@@ -581,6 +586,11 @@ msgstr "Diario en el que se publica el movimiento."
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__representative_vat
 msgid "L.R. VAT number"
 msgstr "NIF del representante legal"
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__return_last_period
+msgid "Last Period Return"
+msgstr "Devolución último período"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__write_uid
@@ -1046,9 +1056,3 @@ msgstr "¿Volumen de operaciones?"
 
 #~ msgid "SMS Delivery error"
 #~ msgstr "SMS de error en la entrega"
-
-#~ msgid "Check if you are submitting the last period return"
-#~ msgstr "Marcar si quieres enviar la devolución en el último período"
-
-#~ msgid "Last Period Return"
-#~ msgstr "Devolución último período"
