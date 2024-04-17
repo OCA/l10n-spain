@@ -48,7 +48,9 @@ class TestL10nEsAeatModBase(common.TransactionCase):
             {"company_ids": [(4, cls.company.id)], "company_id": cls.company.id}
         )
         chart = cls.env["account.chart.template"]
-        chart.try_loading(template_code="es_pymes", company=cls.company)
+        chart.try_loading(
+            template_code="es_pymes", company=cls.company, install_demo=False
+        )
         cls.with_context(company_id=cls.company.id)
         return True
 
