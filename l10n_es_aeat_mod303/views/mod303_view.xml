@@ -34,6 +34,10 @@
             <field name="previous_number" position="after">
                 <field name="devolucion_mensual" />
                 <field
+                    name="return_last_period"
+                    attrs="{'invisible': [('period_type', 'not in', ('4T', '12'))]}"
+                />
+                <field
                     name="exonerated_390"
                     attrs="{'invisible': [('period_type', 'not in', ('4T', '12'))]}"
                 />
