@@ -248,11 +248,6 @@ msgid "L.R. VAT number"
 msgstr "Nombre del representante legal"
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
-
-#. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
@@ -266,11 +261,6 @@ msgstr "Última actualización en"
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__representative_vat
 msgid "Legal Representative VAT number."
 msgstr "NIF del representant legal."
-
-#. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "Adjunto principal"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_has_error
@@ -516,6 +506,11 @@ msgid "VAT number"
 msgstr "NIF"
 
 #. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__valued_tax_line_ids
+msgid "Valued tax lines"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__website_message_ids
 msgid "Website Messages"
 msgstr "Mensajes del sitio web"
@@ -552,6 +547,12 @@ msgstr "[05] Resultado a ingresar"
 
 #~ msgid "SMS Delivery error"
 #~ msgstr "SMS de error en la entrega"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
+
+#~ msgid "Main Attachment"
+#~ msgstr "Adjunto principal"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Nº de mensajes que requieren acción"
