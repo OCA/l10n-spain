@@ -104,6 +104,10 @@ Contributors
 
    -  Jorge Hernández <jhernandez@coninpe.com>
 
+-  `Sygel <https://www.sygel.es>`__:
+
+   -  Alberto Martínez <alberto.martinez@sygel.es>
+
 Maintainers
 -----------
 
