@@ -8,7 +8,6 @@ from odoo.exceptions import UserError, ValidationError
 
 
 class L10nEsAeatMod115Report(models.Model):
-
     _description = "AEAT 115 report"
     _inherit = "l10n.es.aeat.report.tax.mapping"
     _name = "l10n.es.aeat.mod115.report"
