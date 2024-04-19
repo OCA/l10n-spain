@@ -13,3 +13,5 @@
   - Raúl Fernández \<<raul.fernandez@qubiq.es>\>
 - [Coninpe](https://www.coninpe.es):
   - Jorge Hernández \<<jhernandez@coninpe.com>\>
+- [Sygel](https://www.sygel.es):
+  - Alberto Martínez \<<alberto.martinez@sygel.es>\>
