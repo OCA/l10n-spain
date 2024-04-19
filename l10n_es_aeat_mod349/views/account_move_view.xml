@@ -14,7 +14,11 @@
                 expr="//field[@name='invoice_line_ids']/tree/field[@name='tax_ids']"
                 position="after"
             >
-                <field name="l10n_es_aeat_349_operation_key" invisible="1" />
+                <field
+                    name="l10n_es_aeat_349_operation_key"
+                    invisible="1"
+                    groups="account.group_account_invoice"
+                />
             </xpath>
         </field>
     </record>
@@ -23,7 +27,10 @@
         <field name="inherit_id" ref="account.view_move_line_form" />
         <field name="arch" type="xml">
             <field name="tax_ids" position="after">
-                <field name="l10n_es_aeat_349_operation_key" />
+                <field
+                    name="l10n_es_aeat_349_operation_key"
+                    groups="account.group_account_invoice"
+                />
             </field>
         </field>
     </record>
