@@ -244,6 +244,13 @@ msgid "Country"
 msgstr "País"
 
 #. module: l10n_es_aeat_mod349
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
+#, python-format
+msgid "Country code not found in Europe"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod349.action_l10n_es_aeat_mod349_report
 msgid "Create and query AEAT Model 349 reports"
 msgstr "Crear i consultar informes AEAT Model 349"
@@ -543,6 +550,13 @@ msgstr "Ha de tenir nom i cognoms."
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__my_activity_date_deadline
 msgid "My Activity Deadline"
 msgstr "Data límit de la meva activitat"
+
+#. module: l10n_es_aeat_mod349
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
+#, python-format
+msgid "Negative amount"
+msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_refund_head
@@ -925,6 +939,14 @@ msgid "VAT number"
 msgstr "Número d'Identitat"
 
 #. module: l10n_es_aeat_mod349
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
+#: code:addons/l10n_es_aeat_mod349/tests/test_l10n_es_aeat_mod349.py:0
+#, python-format
+msgid "VAT without country code"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
 msgid "VAT:"
 msgstr "NIF:"
@@ -942,6 +964,7 @@ msgstr "Historial de comunicacions de la web"
 #. module: l10n_es_aeat_mod349
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
+#: code:addons/l10n_es_aeat_mod349/tests/test_l10n_es_aeat_mod349.py:0
 #, python-format
 msgid "Without Country"
 msgstr ""
@@ -956,6 +979,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
+#: code:addons/l10n_es_aeat_mod349/tests/test_l10n_es_aeat_mod349.py:0
 #, python-format
 msgid "Without VAT"
 msgstr ""
