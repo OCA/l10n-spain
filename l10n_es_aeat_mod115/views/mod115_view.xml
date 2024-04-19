@@ -26,12 +26,12 @@
                 <field
                     name="tipo_declaracion_positiva"
                     string="Result type"
-                    attrs="{'invisible': [('casilla_05', '&lt;=', 0.0)]}"
+                    invisible="casilla_05 &lt;= 0.0"
                 />
                 <field
                     name="tipo_declaracion_negativa"
                     string="Result type"
-                    attrs="{'invisible': [('casilla_05', '&gt;', 0.0)]}"
+                    invisible="casilla_05 &gt; 0.0"
                 />
                 <field name="tipo_declaracion" invisible="True" />
             </field>
@@ -39,7 +39,7 @@
                 <group
                     string="Result"
                     name="group_result"
-                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    invisible="state == 'draft'"
                     colspan="4"
                 >
                     <group string="Amounts retained">
@@ -55,7 +55,7 @@
                             name="casilla_04"
                             widget="monetary"
                             options="{'currency_field': 'currency_id'}"
-                            attrs="{'readonly': ['|', ('state', '!=', 'calculated'), ('statement_type', '!=', 'C')]}"
+                            readonly="state != 'calculated' or statement_type != 'C'"
                         />
                         <field
                             name="casilla_05"
@@ -63,22 +63,18 @@
                             options="{'currency_field': 'currency_id'}"
                         />
                     </group>
-                    <separator
-                        string="Tax lines"
-                        attrs="{'invisible': [('state', '=', 'draft')]}"
-                    />
+                    <separator string="Tax lines" invisible="state == 'draft'" />
                     <field
                         name="tax_line_ids"
                         nolabel="1"
                         readonly="1"
-                        attrs="{'invisible': [('state', '=', 'draft')]}"
+                        invisible="state == 'draft'"
                     />
                 </group>
             </group>
             <field name="partner_bank_id" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'required': [('tipo_declaracion', 'in', ('U', 'N',))]}</attribute>
+                <attribute name="required">tipo_declaracion in ('U', 'N')
+                </attribute>
             </field>
             <form position="inside">
                 <div class="oe_chatter">
