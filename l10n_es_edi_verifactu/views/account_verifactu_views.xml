@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2024 Binovo IT Human Project SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <menuitem name="Verifactu"
+              parent="account.menu_finance"
+              id="menu_account_l10n_es_edi_verifactu"
+              groups="account.group_account_manager"/>
+
+    <record id="view_tree_account_edi_document_verifactu" model="ir.ui.view">
+        <field name="name">view.tree.account.edi.document.verifactu</field>
+        <field name="model">account.edi.document</field>
+        <field name="arch" type="xml">
+            <tree create="false" delete="false" edit="false"
+                  decoration-info="blocking_level == 'info'"
+                  decoration-warning="blocking_level == 'warning'"
+                  decoration-danger="blocking_level == 'error'">
+                <field name="create_date"/>
+                <field name="name"/>
+                <field name="state"/>
+                <field name="error"/>
+                <field name="blocking_level" invisible="1" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_account_edi_document_es_verifactu" model="ir.actions.act_window">
+        <field name="name">Verifactu EDI Documents</field>
+        <field name="res_model">account.edi.document</field>
+        <field name="view_id" ref="l10n_es_edi_verifactu.view_tree_account_edi_document_verifactu"/>
+        <field name="view_mode">tree</field>
+        <field name="domain">[('edi_format_id.code', '=', 'es_verifactu')]</field>
+    </record>
+
+    <menuitem name="AEAT Queue"
+              parent="menu_account_l10n_es_edi_verifactu"
+              id="menu_account_l10n_es_edi_document_verifactu"
+              action="l10n_es_edi_verifactu.action_account_edi_document_es_verifactu"
+              groups="account.group_account_manager"/>
+
+</odoo>

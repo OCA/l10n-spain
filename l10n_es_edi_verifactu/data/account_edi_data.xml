@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2024 Binovo IT Human Project SL
+License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <data>
+        <record id="edi_es_verifactu" model="account.edi.format">
+            <field name="name">Verifactu (ES)</field>
+            <field name="code">es_verifactu</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="l10n_es_verifactu_partner_sp_uztapide" model="res.partner">
+        <field name="name">Uztapide</field>
+        <field name="is_company" eval="True"/>
+        <field name="street">Kale 1</field>
+        <field name="city">Zestoa</field>
+        <field name="zip">20740</field>
+        <field name="country_id" ref="base.es"/>
+        <field name="state_id" ref="base.state_es_ss"/>
+        <field name="vat">ES46764649Z</field>
+    </record>
+</odoo>

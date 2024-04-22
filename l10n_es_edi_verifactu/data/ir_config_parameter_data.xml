@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2024 Binovo IT Human Project SL
+License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <data noupdate="1">
+        <record id="param_verifactu_xml_cmd" model="ir.config_parameter">
+            <field name="key">l10n_es_edi_verifactu.verifactu_xml_cmd</field>
+            <field name="value">%(addon_dir)s/lib/verifactu-xmlgen</field>
+        </record>
+    </data>
+</odoo>

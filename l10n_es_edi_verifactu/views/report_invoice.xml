@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2024 Binovo IT Human Project SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template id="l10n_es_verifactu_report_invoice_document" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@id='qrcode']" position="after">
+            <div style="page-break-inside: avoid;" t-if="o.l10n_es_verifactu_is_in_chain()">
+                <div id="l10n_es_verifactu_id" class="row text-center">
+                    <div class="mt32 w-100">
+                        <strong>Verifactu QR</strong>
+                    </div>
+                </div>
+                <div id="l10n_es_verifactu_qr" class="row text-center">
+                    <div class="mb32 w-100">
+                        <img t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;barLevel=%s'%('QR', quote_plus(o.l10n_es_edi_verifactu_qr_url), 125, 125, 'M')"/>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

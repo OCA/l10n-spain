@@ -1,0 +1,284 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_edi_verifactu
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-11 07:46+0000\n"
+"PO-Revision-Date: 2024-04-11 07:46+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_edi_verifactu
+#: model_terms:ir.ui.view,arch_db:l10n_es_edi_verifactu.l10n_es_verifactu_report_invoice_document
+msgid "<strong>Verifactu QR</strong>"
+msgstr ""
+
+#. module: l10n_es_edi_verifactu
+#: model:ir.ui.menu,name:l10n_es_edi_verifactu.menu_account_l10n_es_edi_document_verifactu
+msgid "AEAT Queue"
+msgstr "AEAT ilara"
+
+#. module: l10n_es_edi_verifactu
+#: model:ir.model,name:l10n_es_edi_verifactu.model_ir_attachment
+msgid "Attachment"
+msgstr "Atxikia"
+
+#. module: l10n_es_edi_verifactu
+#: model:ir.model,name:l10n_es_edi_verifactu.model_res_company
+msgid "Companies"
+msgstr "Enpresak"
+
+#. module: l10n_es_edi_verifactu
+#: model:ir.model,name:l10n_es_edi_verifactu.model_res_config_settings
+msgid "Config Settings"
+msgstr "Konfigurazio ezarpenak"
+
+#. module: l10n_es_edi_verifactu
+#. odoo-python
+#: code:addons/l10n_es_edi_verifactu/models/account_edi_format.py:0
+#, python-format
+msgid "Country is missing on partner %s"
+msgstr "%s bezeroaren herrialdea konfiguratzea falta da"
+
+#. module: l10n_es_edi_verifactu
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_res_config_settings__config_verifactu_developer_id
+msgid "Developer ID"
+msgstr "Garatzailearen IFZ"
+
+#. module: l10n_es_edi_verifactu
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_res_config_settings__config_verifactu_developer_name
+msgid "Developer Name"
+msgstr "Garatzailearen izena"
+
+#. module: l10n_es_edi_verifactu
+#: model:ir.model,name:l10n_es_edi_verifactu.model_account_edi_format
+msgid "EDI format"
+msgstr "EDI formatua"
+
+#. module: l10n_es_edi_verifactu
+#: model:ir.model,name:l10n_es_edi_verifactu.model_account_edi_document
+msgid "Electronic Document for an account.move"
+msgstr "Dokumentu elektronikoa account.move batentzat."
+
+#. module: l10n_es_edi_verifactu
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_res_company__l10n_es_verifactu_enabled
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_res_config_settings__l10n_es_verifactu_enabled
+msgid "Enable Verifactu"
+msgstr "Verifactu gaitu"
+
+#. module: l10n_es_edi_verifactu
+#. odoo-python
+#: code:addons/l10n_es_edi_verifactu/models/account_edi_format.py:0
+#, python-format
+msgid ""
+"Invalid invoice configuration:\n"
+"\n"
+"%s"
+msgstr ""
+"Konfigurazio okerra:\n"
+"\n"
+"%s"
+
+#. module: l10n_es_edi_verifactu
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_account_bank_statement_line__l10n_es_edi_verifactu_is_required
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_account_move__l10n_es_edi_verifactu_is_required
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_account_payment__l10n_es_edi_verifactu_is_required
+msgid "Is the Spanish Verifactu needed"
+msgstr ""
+
+#. module: l10n_es_edi_verifactu
+#: model:ir.model,name:l10n_es_edi_verifactu.model_account_move
+msgid "Journal Entry"
+msgstr "Kontabilitate-idazpena"
+
+#. module: l10n_es_edi_verifactu
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_res_config_settings__config_verifactu_software_name
+msgid "Name"
+msgstr "Sistema informatikoaren izena"
+
+#. module: l10n_es_edi_verifactu
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_res_config_settings__config_verifactu_software_number
+msgid "Number"
+msgstr "Instalazio zenbakia"
+
+#. module: l10n_es_edi_verifactu
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_res_config_settings__config_verifactu_software_id
+msgid "Software ID"
+msgstr "Sistema informatikoaren IDa"
+
+#. module: l10n_es_edi_verifactu
+#. odoo-python
+#: code:addons/l10n_es_edi_verifactu/models/account_edi_format.py:0
+#, python-format
+msgid "VAT number is missing on company %s"
+msgstr "%s konpainiaren IFZ konfiguratzea falta da"
+
+#. module: l10n_es_edi_verifactu
+#: model:ir.ui.menu,name:l10n_es_edi_verifactu.menu_account_l10n_es_edi_verifactu
+msgid "Verifactu"
+msgstr ""
+
+#. module: l10n_es_edi_verifactu
+#: model:ir.actions.act_window,name:l10n_es_edi_verifactu.action_account_edi_document_es_verifactu
+msgid "Verifactu EDI Documents"
+msgstr "Verifactu EDI dokumentuak"
+
+#. module: l10n_es_edi_verifactu
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_account_bank_statement_line__l10n_es_edi_verifactu_xml
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_account_move__l10n_es_edi_verifactu_xml
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_account_payment__l10n_es_edi_verifactu_xml
+msgid "Verifactu XML"
+msgstr ""
+
+#. module: l10n_es_edi_verifactu
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_res_company__l10n_es_verifactu_chain_sequence_id
+msgid "Verifactu account.move chain sequence"
+msgstr ""
+
+#. module: l10n_es_edi_verifactu
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_account_bank_statement_line__l10n_es_edi_verifactu_cancel_xml
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_account_move__l10n_es_edi_verifactu_cancel_xml
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_account_payment__l10n_es_edi_verifactu_cancel_xml
+msgid "Verifactu cancel XML"
+msgstr ""
+
+#. module: l10n_es_edi_verifactu
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_account_bank_statement_line__l10n_es_edi_verifactu_chain_index
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_account_move__l10n_es_edi_verifactu_chain_index
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_account_payment__l10n_es_edi_verifactu_chain_index
+msgid "Verifactu chain index"
+msgstr ""
+
+#. module: l10n_es_edi_verifactu
+#. odoo-python
+#: code:addons/l10n_es_edi_verifactu/models/res_config_settings.py:0
+#, python-format
+msgid ""
+"Verifactu: Developer ID %s longer than expected. It must be maximum 9 "
+"characters length."
+msgstr ""
+"Verifactu: Garatzailearen IFZ %s behar baino luzeagoa. Gehienez 9 "
+"karaketere behar du."
+
+#. module: l10n_es_edi_verifactu
+#. odoo-python
+#: code:addons/l10n_es_edi_verifactu/models/res_config_settings.py:0
+#, python-format
+msgid ""
+"Verifactu: Developer Name %s longer than expected. It must be maximum 120 "
+"characters length."
+msgstr ""
+"Verifactu: Garatzailearen izena %s behar baino luzeagoa. Gehienez 120 "
+"karaketere behar du."
+
+#. module: l10n_es_edi_verifactu
+#. odoo-python
+#: code:addons/l10n_es_edi_verifactu/models/res_config_settings.py:0
+#, python-format
+msgid ""
+"Verifactu: Software ID %s longer than expected. It must be maximum 2 "
+"characters length."
+msgstr ""
+"Verifactu: sistema informatikoaren ID-a %s behar baino luzeagoa. Gehienez 2 "
+"karaketere behar du."
+
+#. module: l10n_es_edi_verifactu
+#. odoo-python
+#: code:addons/l10n_es_edi_verifactu/models/res_config_settings.py:0
+#, python-format
+msgid ""
+"Verifactu: Software name %s longer than expected. It must be maximum 30 "
+"characters length."
+msgstr ""
+"Verifactu: sistema informatikoaren izena %s behar baino luzeagoa. Gehienez 30 "
+"karaketere behar du."
+
+#. module: l10n_es_edi_verifactu
+#. odoo-python
+#: code:addons/l10n_es_edi_verifactu/models/res_config_settings.py:0
+#, python-format
+msgid ""
+"Verifactu: Software number %s longer than expected. It must be maximum 100 "
+"characters length."
+msgstr ""
+"Verifactu: instalazio zenbakia %s behar baino luzeagoa. Gehienez 100 "
+"karaketere behar du."
+
+#. module: l10n_es_edi_verifactu
+#. odoo-python
+#: code:addons/l10n_es_edi_verifactu/models/res_config_settings.py:0
+#, python-format
+msgid ""
+"Verifactu: Software version %s longer than expected. It must be maximum 50 "
+"characters length."
+msgstr ""
+"Verifactu: sistema informatikoaren bertsioa %s behar baino luzeagoa. Gehienez 50 "
+"karaketere behar du."
+
+#. module: l10n_es_edi_verifactu
+#. odoo-python
+#: code:addons/l10n_es_edi_verifactu/models/account_edi_format.py:0
+#, python-format
+msgid "Verifactu: invoice cancel not supported yet."
+msgstr "Verifactu: faktura ezeztapenak ez dira onartzen."
+
+#. module: l10n_es_edi_verifactu
+#. odoo-python
+#: code:addons/l10n_es_edi_verifactu/models/account_edi_format.py:0
+#, python-format
+msgid "Verifactu: invoice needed."
+msgstr "Verifactu: faktura beharrezkoa da."
+
+#. module: l10n_es_edi_verifactu
+#. odoo-python
+#: code:addons/l10n_es_edi_verifactu/models/account_edi_format.py:0
+#, python-format
+msgid "Verifactu: non Spanish customer invoices are not supported."
+msgstr "Verifactu: Espainiar estatuko bezeroak ez direnen fakturak ez daude onartuak."
+
+#. module: l10n_es_edi_verifactu
+#. odoo-python
+#: code:addons/l10n_es_edi_verifactu/models/account_edi_format.py:0
+#, python-format
+msgid "Verifactu: not supported invoice taxes."
+msgstr "Verifactu: zergetako bat ez da onartzen."
+
+#. module: l10n_es_edi_verifactu
+#. odoo-python
+#: code:addons/l10n_es_edi_verifactu/models/account_edi_format.py:0
+#, python-format
+msgid "Verifactu: please configure all software data in general settings."
+msgstr "Verifactu: mesedez, konfiguratu softwarearen datuak aukera orokorretan."
+
+#. module: l10n_es_edi_verifactu
+#. odoo-python
+#: code:addons/l10n_es_edi_verifactu/models/account_edi_format.py:0
+#, python-format
+msgid "Verifactu: refund invoices are not supported."
+msgstr "Verifactu: faktura zuzentzaileak ez dira onartzen."
+
+#. module: l10n_es_edi_verifactu
+#. odoo-python
+#: code:addons/l10n_es_edi_verifactu/models/account_edi_format.py:0
+#, python-format
+msgid "Verifactu: simplified invoices are not supported."
+msgstr "Verifactu: faktura sinplifikatuak ez dira onartzen."
+
+#. module: l10n_es_edi_verifactu
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_account_bank_statement_line__l10n_es_edi_verifactu_qr_url
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_account_move__l10n_es_edi_verifactu_qr_url
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_account_payment__l10n_es_edi_verifactu_qr_url
+msgid "Verifactu QR URL"
+msgstr "Verifactu QR URL"
+
+#. module: l10n_es_edi_verifactu
+#: model:ir.model.fields,field_description:l10n_es_edi_verifactu.field_res_config_settings__config_verifactu_software_version
+msgid "Version"
+msgstr "Sistema informatikoaren bertsioa"
