@@ -13,11 +13,13 @@
             <field name="method_time" position="after">
                 <field
                     name="annual_percentage"
-                    attrs="{'invisible': [('method_time', '!=', 'percentage')], 'required': [('method_time', '=', 'percentage')]}"
+                    invisible="method_time != 'percentage'"
+                    required="method_time == 'percentage'"
                 />
                 <field
                     name="method_percentage"
-                    attrs="{'invisible': ['|', ('method_time', '!=', 'percentage'), ('method_period', '=', 'year')], 'required': [('method_time', '=', 'percentage')]}"
+                    invisible="method_time != 'percentage' or method_period == 'year'"
+                    required="method_time == 'percentage'"
                 />
             </field>
         </field>
