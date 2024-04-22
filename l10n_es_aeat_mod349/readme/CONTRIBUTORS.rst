@@ -29,3 +29,4 @@
 * `Factor Libre <https://factorlibre.com>`_:
 
     * Luis J. Salvatierra <luis.salvatierra@factorlibre.com>
+    * Alejandro Ji Cheung <alejandro.jicheung@factorlibre.com>
