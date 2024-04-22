@@ -39,7 +39,7 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
                     "l10n_es_aeat_mod190.aeat_m190_perception_key_07"
                 ).id,
                 "aeat_perception_subkey_id": cls.env.ref(
-                    "l10n_es_aeat_mod190.aeat_m190_perception_subkey_13"
+                    "l10n_es_aeat_mod190.aeat_m190_perception_subkey_08_01"
                 ).id,
             }
         )
@@ -51,7 +51,7 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
                     "l10n_es_aeat_mod190.aeat_m190_perception_key_07"
                 ).id,
                 "aeat_perception_subkey_id": cls.env.ref(
-                    "l10n_es_aeat_mod190.aeat_m190_perception_subkey_14"
+                    "l10n_es_aeat_mod190.aeat_m190_perception_subkey_08_02"
                 ).id,
             }
         )
