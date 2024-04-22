@@ -516,12 +516,10 @@ class AccountInvoice(models.Model):
                     tax_line.base if tax in base_not_in_total else tax_line.amount_total
                 )
                 if self.currency_id != self.company_id.currency_id:
-                    amount = self.currency_id._convert(
-                        amount,
-                        self.company_id.currency_id,
-                        self.company_id,
-                        self._get_currency_rate_date(),
-                    )
+                    amount = self.currency_id.with_context(
+                        date=self._get_currency_rate_date(),
+                        company_id=self.company_id.id
+                    ).compute(amount, self.company_id.currency_id)
                 not_in_amount_total += amount
             if tax in breakdown_taxes:
                 tax_breakdown = taxes_dict.setdefault(
@@ -658,12 +656,10 @@ class AccountInvoice(models.Model):
                     tax_line.base if tax in base_not_in_total else tax_line.amount_total
                 )
                 if self.currency_id != self.company_id.currency_id:
-                    amount = self.currency_id._convert(
-                        amount,
-                        self.company_id.currency_id,
-                        self.company_id,
-                        self._get_currency_rate_date(),
-                    )
+                    amount = self.currency_id.with_context(
+                        date=self._get_currency_rate_date(),
+                        company_id=self.company_id.id
+                    ).compute(amount, self.company_id.currency_id)
                 not_in_amount_total += amount
             if tax in taxes_sfrisp:
                 base_dict = taxes_dict.setdefault(
