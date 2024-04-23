@@ -460,8 +460,8 @@ class L10nEsVatBook(models.Model):
                         lambda line: line.tax_ids & taxes
                         or (
                             line.tax_line_id in taxes
-                            and accounts.get(line.tax_line_id, line.account_id)
-                            == line.account_id
+                            and accounts.get(line.tax_line_id, line.account_id).group_id
+                            == line.account_id.group_id
                         )
                     )
                 else:
