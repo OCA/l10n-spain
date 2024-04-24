@@ -63,25 +63,33 @@
                         <field name="sii_registration_key_domain" invisible="1" />
                         <field
                             name="sii_registration_key"
+                            groups="account.group_account_invoice"
                             domain="[('type', '=', sii_registration_key_domain)]"
                             attrs="{'required': [('sii_enabled', '=', True)]}"
                             widget="selection"
                         />
                         <field
                             name="sii_registration_key_additional1"
+                            groups="account.group_account_invoice"
                             domain="[('type', '=', sii_registration_key_domain)]"
                             widget="selection"
                         />
                         <field
                             name="sii_registration_key_additional2"
+                            groups="account.group_account_invoice"
                             domain="[('type', '=', sii_registration_key_domain)]"
                             widget="selection"
                         />
-                        <field name="sii_registration_key_code" invisible="1" />
+                        <field
+                            name="sii_registration_key_code"
+                            groups="account.group_account_invoice"
+                            invisible="1"
+                        />
                         <field name="sii_enabled" invisible="1" />
                         <field name="sii_lc_operation" />
                         <field
                             name="sii_property_location"
+                            groups="account.group_account_invoice"
                             attrs="{
                                 'invisible': [
                                     '|',
@@ -96,6 +104,7 @@
                         />
                         <field
                             name="sii_property_cadastrial_code"
+                            groups="account.group_account_invoice"
                             attrs="{
                                 'invisible': [
                                     '|',
