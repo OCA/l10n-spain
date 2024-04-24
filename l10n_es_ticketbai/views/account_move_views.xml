@@ -49,6 +49,7 @@
                     >
                           <group
                             name="tbai_reversed_entry_id"
+                            groups="account.group_account_invoice"
                             attrs="{'invisible': ['|', '|', ('tbai_enabled', '!=', True), ('tbai_refund_origin_ids', '!=', []), ('move_type', '!=', 'out_refund')]}"
                         >
                               <field
@@ -76,6 +77,7 @@
                             name="tbai_refund_origin_invoices_data"
                             string="Origin Invoices Data"
                             cols="4"
+                            groups="account.group_account_invoice"
                             attrs="{'invisible': ['|', '|', ('tbai_enabled', '!=', True), ('reversed_entry_id', '!=', False), ('move_type', '!=', 'out_refund')]}"
                         >
                             <field
