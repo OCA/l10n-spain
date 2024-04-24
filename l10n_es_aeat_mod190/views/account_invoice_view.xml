@@ -11,7 +11,11 @@
                     groups="l10n_es_aeat.group_account_aeat"
                 />
                 <field name="aeat_perception_subkey_id" invisible="1" />
-                <field name="is_aeat_perception_subkey_visible" invisible="1" />
+                <field
+                    name="is_aeat_perception_subkey_visible"
+                    groups="l10n_es_aeat.group_account_aeat"
+                    invisible="1"
+                />
                 <field
                     name="aeat_perception_subkey_id"
                     groups="l10n_es_aeat.group_account_aeat"
