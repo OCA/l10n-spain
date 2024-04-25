@@ -75,9 +75,22 @@ msgid "Bank account"
 msgstr "Compte bancari"
 
 #. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "Base de retenciones e ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__calculation_date
 msgid "Calculation Date"
 msgstr "Data de càlcul"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_01_2024
+msgid ""
+"Casilla [01] Número de Rentas. Dividendos y otras rentas de participación en "
+"fondos propios de entidades. Totales de número de perceptores (se contará "
+"por números de NIF)."
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_01
@@ -90,9 +103,21 @@ msgid "Casilla [02] Base de la retención y/o del ingreso a cuenta"
 msgstr "Casella [02] Base de la retenció i / o de l'ingrés a compte"
 
 #. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_03_2024
+msgid "Casilla [03] ([01] + [02]). Número de Rentas. Totales."
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_03
 msgid "Casilla [03] Retenciones e ingresos a cuenta"
 msgstr "Casella [03] Retencions i ingressos a compte"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_04_2024
+msgid ""
+"Casilla [04] Base de retenciones e ingresos a cuenta. Dividendos y otras "
+"rentas de participación en fondos propios de entidades."
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_04
@@ -100,9 +125,19 @@ msgid "Casilla [04] Periodificación - Ingresos ejercicios anteriores"
 msgstr "Casella [04] Periodificació - Ingressos exercicis anteriors"
 
 #. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_05_2024
+msgid "Casilla [05] Base de retenciones e ingresos a cuenta. Resto de rentas."
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_05
 msgid "Casilla [05] Periodificación - Regularización"
 msgstr "Casella [05] Periodificació - Regularització"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_06_2024
+msgid "Casilla [06] ([05] + [06]). Base de retenciones e ingresos a cuenta."
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_06
@@ -123,6 +158,53 @@ msgstr ""
 "Casella [07] A deduir (exclusivament en cas de declaració complementària) "
 "Resultats a ingressar d'anteriors declaracions pel mateix concepte, exercici "
 "i període"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_07_2024
+msgid ""
+"Casilla [07] Retenciones e ingresos a cuenta. Dividendos y otras rentas de "
+"participación en fondos propios de entidades"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_08_2024
+msgid "Casilla [08] Retenciones e ingresos a cuenta. Resto de rentas."
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_09_2024
+msgid "Casilla [09]([07] + [08]). Retenciones e ingresos a cuenta."
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_10_2024
+msgid "Casilla [10] Periodificación - Ingresos ejercicios anteriores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_11_2024
+msgid "Casilla [11] Periodificación - Regularización"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_12_2024
+msgid ""
+"Casilla [12] Suma de retenciones e ingresos a cuenta y regularización, en su "
+"caso ([9] + [11])"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_13_2024
+msgid ""
+"Casilla [13] A deducir (exclusivamente en caso de declaración "
+"complementaria) Resultados a ingresar de anteriores declaraciones por el "
+"mismo concepto, ejercicio y período"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_14_2024
+msgid "Casilla [14] Resultado a ingresar ([12] - [13])"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__company_id
@@ -374,6 +456,18 @@ msgid "Number of messages with delivery error"
 msgstr "Nombre de missatges amb error de lliurament"
 
 #. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "Número de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_02_2024
+msgid ""
+"Número de rentas. Resto de rentas. Totales de número de perceptores (se "
+"contará por números de NIF)."
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__partner_id
 msgid "Partner"
 msgstr "Soci"
@@ -479,6 +573,11 @@ msgstr "Tipus de declaració"
 
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "Total Liquidación"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
 msgid "Total liquidación"
 msgstr "Total liquidació"
 
@@ -508,9 +607,23 @@ msgid "Year"
 msgstr "Any"
 
 #. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid ""
+"[01] Dividendos y otras rentas de participación en fondos propios de "
+"entidades"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_01
 msgid "[01] Número de perceptores"
 msgstr "[01] Número de preceptors"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_01_2024
+msgid ""
+"[01] Número de rentas. Dividendos y otras rentas de participación en fondos "
+"propios de entidades"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_02
@@ -518,9 +631,42 @@ msgid "[02] Base retenciones"
 msgstr "[02] Base retencions"
 
 #. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_02_2024
+msgid "[02] Número de Rentas. Resto de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "[02] Resto de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_03_2024
+msgid "[03] Número de Rentas. Totales"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_03
 msgid "[03] Retenciones"
 msgstr "[03] Retencions"
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "[03] Totales"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_04_2024
+msgid ""
+"[04] Base de retenciones e ingresos a cuenta. Dividendos y otras rentas."
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid ""
+"[04] Dividendos y otras rentas de participación en fondos propios de "
+"entidades"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_04
@@ -528,9 +674,24 @@ msgid "[04] Ingresos ejercicios anteriores"
 msgstr "[04] Ingressos exercicis anteriors"
 
 #. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_05_2024
+msgid "[05] Base de retenciones e ingresos a cuenta. Resto de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_05
 msgid "[05] Regularización"
 msgstr "[05] Regularització"
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "[05] Resto de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_06_2024
+msgid "[06] Base de Retenciones e ingresos a cuenta. Totales"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_06
@@ -538,14 +699,86 @@ msgid "[06] Total retenciones"
 msgstr "[06] Total retencions"
 
 #. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "[06] Totales"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid ""
+"[07] Dividendos y otras rentas de participación en fondos propios de "
+"entidades"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_07
 msgid "[07] Ingresos ejercicios anteriores"
 msgstr "[07] Ingressos exercicis anteriors"
 
 #. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_07_2024
+msgid "[07] Retenciones e ingresos a cuenta. Dividendos y otras rentas."
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "[08] Resto de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_08
 msgid "[08] Resultado a ingresar"
 msgstr "[08] Resultat a ingressar"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_08_2024
+msgid "[08] Retenciones e ingresos a cuenta. Resto de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_09_2024
+msgid "[09] Retenciones e ingresos a cuenta. Totales"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "[09] Totales"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_10_2024
+msgid "[10] Ingresos ejercicios anteriores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_11_2024
+msgid "[11] Regularización"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_12_2024
+msgid "[12] Total retenciones"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "[12] Total retenciones ([09] + [11])"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_13_2024
+msgid "[13] Ingresos ejercicios anteriores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_14_2024
+msgid "[14] Resultado a ingresar"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "[14] Resultado a ingresar ([12] - [13])"
+msgstr ""
 
 #~ msgid "SMS Delivery error"
 #~ msgstr "Error d'entrega d'SMS"
