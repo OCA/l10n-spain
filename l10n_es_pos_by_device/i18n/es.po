@@ -35,7 +35,7 @@ msgid "Available POS devices"
 msgstr "Dispositivos TPV disponibles"
 
 #. module: l10n_es_pos_by_device
-#. openerp-web
+#. odoo-javascript
 #: code:addons/l10n_es_pos_by_device/static/src/js/PaymentScreen.esm.js:0
 #: code:addons/l10n_es_pos_by_device/static/src/js/Screens/Chrome/Chrome.esm.js:0
 #, python-format
@@ -134,6 +134,11 @@ msgid "POS Physical devices"
 msgstr "Dispositivos físicos TPV"
 
 #. module: l10n_es_pos_by_device
+#: model:ir.model,name:l10n_es_pos_by_device.model_pos_device
+msgid "PoS Device"
+msgstr ""
+
+#. module: l10n_es_pos_by_device
 #: model:ir.model,name:l10n_es_pos_by_device.model_pos_config
 msgid "Point of Sale Configuration"
 msgstr "Configuración del TPV"
@@ -171,7 +176,8 @@ msgstr "Selecciona dispositivo físico"
 #. module: l10n_es_pos_by_device
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
 msgid "Select available physical devices for this POS configuration"
-msgstr "Selecciona los dispositivos físicos disponibles para esta configuración TPV"
+msgstr ""
+"Selecciona los dispositivos físicos disponibles para esta configuración TPV"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__sequence
@@ -221,9 +227,8 @@ msgstr "Desbloquear el dispositivo"
 #. module: l10n_es_pos_by_device
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
 msgid "Use a different subsequence for each physical device on POS."
-msgstr "Utilice una subsecuencia diferente para cada dispositivo físico en el TPV."
+msgstr ""
+"Utilice una subsecuencia diferente para cada dispositivo físico en el TPV."
 
-#. module: l10n_es_pos_by_device
-#: model:ir.model,name:l10n_es_pos_by_device.model_pos_device
-msgid "pos.device"
-msgstr "pos.dispositivo"
+#~ msgid "pos.device"
+#~ msgstr "pos.dispositivo"

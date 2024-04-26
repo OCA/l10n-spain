@@ -7,7 +7,7 @@
     "author": "Landoo Sistemas de Información S.L, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "maintainers": ["ao-landoo"],
     "depends": ["l10n_es_pos"],
     "data": [

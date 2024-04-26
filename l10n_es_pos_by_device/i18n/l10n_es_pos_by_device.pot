@@ -127,6 +127,11 @@ msgid "POS Physical devices"
 msgstr ""
 
 #. module: l10n_es_pos_by_device
+#: model:ir.model,name:l10n_es_pos_by_device.model_pos_device
+msgid "PoS Device"
+msgstr ""
+
+#. module: l10n_es_pos_by_device
 #: model:ir.model,name:l10n_es_pos_by_device.model_pos_config
 msgid "Point of Sale Configuration"
 msgstr ""
@@ -214,9 +219,4 @@ msgstr ""
 #. module: l10n_es_pos_by_device
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
 msgid "Use a different subsequence for each physical device on POS."
-msgstr ""
-
-#. module: l10n_es_pos_by_device
-#: model:ir.model,name:l10n_es_pos_by_device.model_pos_device
-msgid "pos.device"
 msgstr ""
