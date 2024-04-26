@@ -522,11 +522,9 @@ msgstr "Redactar correo electrónico"
 #. module: l10n_es_aeat_mod347
 #: model:mail.template,subject:l10n_es_aeat_mod347.email_template_347
 msgid ""
-"Comprobación datos de modelo 347 año {{object.report_id.year}} de {{user."
-"company_id.name}}"
+"Comprobación datos de modelo 347 año {{object.report_id.year}} de {{object."
+"report_id.company_id.name}}"
 msgstr ""
-"Comprobación datos de modelo 347 año {{object.report_id.year}} de {{user."
-"company_id.name}}"
 
 #. module: l10n_es_aeat_mod347
 #: model:mail.template,name:l10n_es_aeat_mod347.email_template_347
@@ -1674,6 +1672,13 @@ msgstr "Ya puede cerrar esta página si así lo desea."
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__year
 msgid "Year"
 msgstr "Año"
+
+#~ msgid ""
+#~ "Comprobación datos de modelo 347 año {{object.report_id.year}} de {{user."
+#~ "company_id.name}}"
+#~ msgstr ""
+#~ "Comprobación datos de modelo 347 año {{object.report_id.year}} de {{user."
+#~ "company_id.name}}"
 
 #~ msgid "SMS Delivery error"
 #~ msgstr "SMS de error en la entrega"
