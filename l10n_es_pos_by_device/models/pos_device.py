@@ -5,6 +5,7 @@ from odoo import api, fields, models
 
 class PosDevice(models.Model):
     _name = "pos.device"
+    _description = "PoS Device"
 
     name = fields.Char(required=True)
     sequence = fields.Many2one("ir.sequence", required=True)
