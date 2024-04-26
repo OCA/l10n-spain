@@ -7,7 +7,7 @@
         >{{(user.email and '&quot;%s&quot; &lt;%s&gt;' % (user.name, user.email) or '')}}</field>
         <field
             name="subject"
-        >Comprobación datos de modelo 347 año {{object.report_id.year}} de {{user.company_id.name}}</field>
+        >Comprobación datos de modelo 347 año {{object.report_id.year}} de {{object.report_id.company_id.name}}</field>
         <field
             name="partner_to"
         >{{object.partner_id.address_get(['invoice'])['invoice']}}</field>
