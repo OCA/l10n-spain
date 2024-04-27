@@ -1,0 +1,9 @@
+<odoo>
+
+    <template id="redirect_form">
+        <form t-att-action="api_url" method="GET">
+            <input type="hidden" name="product" t-att-value="product"/>
+        </form>
+    </template>
+
+</odoo>
