@@ -1,5 +1,3 @@
-# Instrucciones de uso
-
 Este módulo permite añadir [seQura](https://sequra.es) como proveedor de pago para el pago de los presupuestos. Como requisito previo, es necesario tener una cuenta en seQura y disponer del usuario, contraseña y código de comercio de su cuenta.
 
 ## Instalación

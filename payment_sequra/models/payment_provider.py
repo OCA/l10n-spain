@@ -10,7 +10,7 @@ from werkzeug import urls
 from odoo import _, api, fields, models, service
 from odoo.exceptions import ValidationError
 
-from . import const
+from .. import const
 
 _logger = logging.getLogger(__name__)
 
