@@ -18,6 +18,7 @@ def get_credentials(odoo_env, company):
         "software-number": license_dict.get("software_number"),
         "software-name": license_dict.get("software_name"),
         "software-version": license_dict.get("software_version"),
+        "software-use-multi": license_dict.get("software_use_multi"),
         "testing": company.l10n_es_edi_test_env,
     }
     return credentials
@@ -54,6 +55,8 @@ def verifactu_xmlgen(operation, data, odoo_env, company):
     ]
     if credentials.get("testing"):
         cmd.append("-e")
+    if credentials.get("software-use-multi"):
+        cmd.append("-m")
     try:
         sub_env = os.environ.copy()
         return subprocess.run(

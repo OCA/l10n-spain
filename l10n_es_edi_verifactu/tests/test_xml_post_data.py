@@ -52,7 +52,8 @@ SPANISH_INVOICE_XML_POST = """
                         <sum1:Version>16.0</sum1:Version>
                         <sum1:NumeroInstalacion>123</sum1:NumeroInstalacion>
                         <sum1:TipoUsoPosibleSoloVerifactu>S</sum1:TipoUsoPosibleSoloVerifactu>
-                        <sum1:TipoUsoPosibleMultiOT>N</sum1:TipoUsoPosibleMultiOT>
+                        <sum1:TipoUsoPosibleMultiOT>S</sum1:TipoUsoPosibleMultiOT>
+                        <sum1:IndicadorMultiplesOT>N</sum1:IndicadorMultiplesOT>
                     </sum1:SistemaInformatico>
                     <sum1:FechaHoraHusoGenRegistro>___ignore___</sum1:FechaHoraHusoGenRegistro>
                     <sum1:TipoHuella>01</sum1:TipoHuella>

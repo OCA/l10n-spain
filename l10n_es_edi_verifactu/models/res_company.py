@@ -2,7 +2,7 @@
 # Copyright 2024 Binovo IT Human Project SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields
+from odoo import api, models, fields
 
 
 class Company(models.Model):
@@ -38,7 +38,17 @@ class Company(models.Model):
             "software_version": SudoParam.get_param(
                 "l10n_es_edi_verifactu.verifactu_software_version", ""
             ),
+            "software_use_multi": self.l10n_es_verifactu_is_multi_software(),
         }
+
+    @api.model
+    def l10n_es_verifactu_is_multi_software(self):
+        # sudo() why: to avoid multi-company rules, need to read all companies
+        return (
+            True
+            if self.sudo().search_count([("l10n_es_verifactu_enabled", "=", True)]) > 1
+            else False
+        )
 
     def get_l10n_es_verifactu_next_chain_index(self):
         self.ensure_one()
