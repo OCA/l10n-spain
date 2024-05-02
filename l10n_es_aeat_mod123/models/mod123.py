@@ -13,32 +13,22 @@ class L10nEsAeatMod123Report(models.Model):
     number = fields.Char(default="123")
     casilla_01 = fields.Integer(
         string="[01] Número de perceptores",
-        readonly=True,
-        states={"calculated": [("readonly", False)]},
         help="Casilla [01] Número de perceptores",
     )
     casilla_02 = fields.Float(
         string="[02] Base retenciones",
-        readonly=True,
-        states={"calculated": [("readonly", False)]},
         help="Casilla [02] Base de la retención y/o del ingreso a cuenta",
     )
     casilla_03 = fields.Float(
         string="[03] Retenciones",
-        readonly=True,
-        states={"calculated": [("readonly", False)]},
         help="Casilla [03] Retenciones e ingresos a cuenta",
     )
     casilla_04 = fields.Float(
         string="[04] Ingresos ejercicios anteriores",
-        readonly=True,
-        states={"calculated": [("readonly", False)]},
         help="Casilla [04] Periodificación - Ingresos ejercicios anteriores",
     )
     casilla_05 = fields.Float(
         string="[05] Regularización",
-        readonly=True,
-        states={"calculated": [("readonly", False)]},
         help="Casilla [05] Periodificación - Regularización",
     )
     casilla_06 = fields.Float(
@@ -50,8 +40,6 @@ class L10nEsAeatMod123Report(models.Model):
     )
     casilla_07 = fields.Float(
         string="[07] Ingresos ejercicios anteriores",
-        readonly=True,
-        states={"calculated": [("readonly", False)]},
         help="Casilla [07] A deducir (exclusivamente en caso de declaración "
         "complementaria) Resultados a ingresar de anteriores "
         "declaraciones por el mismo concepto, ejercicio y período",
@@ -62,16 +50,12 @@ class L10nEsAeatMod123Report(models.Model):
     casilla_01_2024 = fields.Integer(
         string="[01] Número de rentas. Dividendos y otras rentas de participación "
         "en fondos propios de entidades",
-        readonly=True,
-        states={"calculated": [("readonly", False)]},
-        help="Casilla [01] Número de Rentas. Dividendos y otras rentas de participación "
-        "en fondos propios de entidades. Totales de número de perceptores (se contará "
-        "por números de NIF).",
+        help="Casilla [01] Número de Rentas. Dividendos y otras rentas de "
+        "participación en fondos propios de entidades. Totales de número de"
+        " perceptores (se contará por números de NIF).",
     )
     casilla_02_2024 = fields.Integer(
         string="[02] Número de Rentas. Resto de rentas",
-        readonly=True,
-        states={"calculated": [("readonly", False)]},
         help="Número de rentas. Resto de rentas. Totales de número de perceptores "
         "(se contará por números de NIF).",
     )
@@ -82,16 +66,13 @@ class L10nEsAeatMod123Report(models.Model):
         help="Casilla [03] ([01] + [02]). Número de Rentas. Totales.",
     )
     casilla_04_2024 = fields.Float(
-        string="[04] Base de retenciones e ingresos a cuenta. Dividendos y otras rentas.",
-        readonly=True,
-        states={"calculated": [("readonly", False)]},
+        string="[04] Base de retenciones e ingresos a cuenta. Dividendos y "
+        "otras rentas.",
         help="Casilla [04] Base de retenciones e ingresos a cuenta. Dividendos y otras "
         "rentas de participación en fondos propios de entidades.",
     )
     casilla_05_2024 = fields.Float(
         string="[05] Base de retenciones e ingresos a cuenta. Resto de rentas",
-        readonly=True,
-        states={"calculated": [("readonly", False)]},
         help="Casilla [05] Base de retenciones e ingresos a cuenta. Resto de rentas.",
     )
     casilla_06_2024 = fields.Float(
@@ -102,15 +83,11 @@ class L10nEsAeatMod123Report(models.Model):
     )
     casilla_07_2024 = fields.Float(
         string="[07] Retenciones e ingresos a cuenta. Dividendos y otras rentas.",
-        readonly=True,
-        states={"calculated": [("readonly", False)]},
         help="Casilla [07] Retenciones e ingresos a cuenta. Dividendos y otras "
         "rentas de participación en fondos propios de entidades",
     )
     casilla_08_2024 = fields.Float(
         string="[08] Retenciones e ingresos a cuenta. Resto de rentas",
-        readonly=True,
-        states={"calculated": [("readonly", False)]},
         help="Casilla [08] Retenciones e ingresos a cuenta. Resto de rentas.",
     )
     casilla_09_2024 = fields.Float(
@@ -121,14 +98,10 @@ class L10nEsAeatMod123Report(models.Model):
     )
     casilla_10_2024 = fields.Float(
         string="[10] Ingresos ejercicios anteriores",
-        readonly=True,
-        states={"calculated": [("readonly", False)]},
         help="Casilla [10] Periodificación - Ingresos ejercicios anteriores",
     )
     casilla_11_2024 = fields.Float(
         string="[11] Regularización",
-        readonly=True,
-        states={"calculated": [("readonly", False)]},
         help="Casilla [11] Periodificación - Regularización",
     )
     casilla_12_2024 = fields.Float(
@@ -140,8 +113,6 @@ class L10nEsAeatMod123Report(models.Model):
     )
     casilla_13_2024 = fields.Float(
         string="[13] Ingresos ejercicios anteriores",
-        readonly=True,
-        states={"calculated": [("readonly", False)]},
         help="Casilla [13] A deducir (exclusivamente en caso de declaración "
         "complementaria) Resultados a ingresar de anteriores "
         "declaraciones por el mismo concepto, ejercicio y período",
@@ -167,8 +138,6 @@ class L10nEsAeatMod123Report(models.Model):
             ("N", "Negativa"),
         ],
         string="Tipo de declaración",
-        readonly=True,
-        states={"draft": [("readonly", False)]},
         required=True,
     )
 
@@ -223,7 +192,7 @@ class L10nEsAeatMod123Report(models.Model):
             tax_lines = {}
             for field_number in field_numbers:
                 tax_lines[str(field_number)] = self.tax_line_ids.filtered(
-                    lambda r: r.field_number == field_number
+                    lambda r, field_number=field_number: r.field_number == field_number
                 )
                 self[f"casilla_{field_number:0>2}_2024"] = tax_lines[
                     str(field_number)
