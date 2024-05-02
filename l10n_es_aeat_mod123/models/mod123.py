@@ -225,7 +225,7 @@ class L10nEsAeatMod123Report(models.Model):
                 tax_lines[str(field_number)] = self.tax_line_ids.filtered(
                     lambda r: r.field_number == field_number
                 )
-                self["casilla_{:0>2}_2024".format(field_number)] = tax_lines[
+                self[f"casilla_{field_number:0>2}_2024"] = tax_lines[
                     str(field_number)
                 ].amount
             self.casilla_01_2024 = len(
