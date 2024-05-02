@@ -63,7 +63,9 @@ class TestL10nEsAeatMod123(TestL10nEsAeatModBase):
         # Check tax lines
         for box, result in self.taxes_result.items():
             _logger.debug("Checking tax line: %s" % box)
-            lines = model123.tax_line_ids.filtered(lambda x: x.field_number == int(box))
+            lines = model123.tax_line_ids.filtered(
+                lambda x, box=box: x.field_number == int(box)
+            )
             self.assertAlmostEqual(sum(lines.mapped("amount")), result, 2)
         export_to_boe = self.env["l10n.es.aeat.report.export_to_boe"].create(
             {"name": "test_export_to_boe.txt"}
@@ -113,7 +115,9 @@ class TestL10nEsAeatMod123(TestL10nEsAeatModBase):
         # Check tax lines
         for box, result in self.taxes_result.items():
             _logger.debug("Checking tax line: %s" % box)
-            lines = model123.tax_line_ids.filtered(lambda x: x.field_number == int(box))
+            lines = model123.tax_line_ids.filtered(
+                lambda x, box=box: x.field_number == int(box)
+            )
             self.assertAlmostEqual(sum(lines.mapped("amount")), result, 2)
         # Check result
         _logger.debug("Checking results")
