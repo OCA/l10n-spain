@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -369,19 +368,19 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:c61d0c77454c633b3f90874ead3dc9d385d660681fc2be259259f233ca511fe0
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_aeat_mod123"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-16-0/l10n-spain-16-0-l10n_es_aeat_mod123"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>Modelo 123 de la AEAT. Retenciones e ingresos a cuenta del Impuesto sobre la
-Renta de las Personas Físicas, Impuesto sobre Sociedades y del Impuesto sobre
-la Renta de no Residentes (establecimientos permanentes). Determinados
-rendimientos del capital mobiliario o determinadas rentas.</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_aeat_mod123"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-17-0/l10n-spain-17-0-l10n_es_aeat_mod123"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>Modelo 123 de la AEAT. Retenciones e ingresos a cuenta del Impuesto
+sobre la Renta de las Personas Físicas, Impuesto sobre Sociedades y del
+Impuesto sobre la Renta de no Residentes (establecimientos permanentes).
+Determinados rendimientos del capital mobiliario o determinadas rentas.</p>
 <p>Este modelo tiene su utilidad sobre todo en préstamos entre empresas o
 particulares, o financiaciones recibidas por ENISA (Empresa Nacional de
 Innovación) o CDTI (Centro para el Desarrollo Tecnológico Industrial).</p>
 <p>Otra utilidad que se le da es para las retenciones en los repartos de
 dividendos.</p>
-<p>El modelo se presentará mensualmente para grandes empresas, y trimestralmente
-para el resto, por parte de aquellas empresas que deban abonar intereses de
-esos préstamos.</p>
+<p>El modelo se presentará mensualmente para grandes empresas, y
+trimestralmente para el resto, por parte de aquellas empresas que deban
+abonar intereses de esos préstamos.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -399,18 +398,19 @@ esos préstamos.</p>
 <h1><a class="toc-backref" href="#toc-entry-1">Usage</a></h1>
 <p>Para introducir datos válidos para el modelo:</p>
 <ol class="arabic simple">
-<li>Realizar una factura de proveedor de los intereses cobrados por la empresa
-o particular prestatario con impuesto “Retenciones 19% (préstamos)”.</li>
-<li>O también puede realizar una factura de proveedor del reparto de dividendos
-con el impuesto “Retenciones 19% (dividendos)”.</li>
+<li>Realizar una factura de proveedor de los intereses cobrados por la
+empresa o particular prestatario con impuesto “Retenciones 19%
+(préstamos)”.</li>
+<li>O también puede realizar una factura de proveedor del reparto de
+dividendos con el impuesto “Retenciones 19% (dividendos)”.</li>
 <li>Validarla.</li>
 </ol>
 <p>Para crear una declaración del modelo:</p>
 <ol class="arabic simple">
 <li>Ir a <em>Facturación &gt; Informes AEAT &gt; Modelo 123</em>.</li>
 <li>Pulsar en el botón “Crear”.</li>
-<li>Seleccionar el ejercicio fiscal y el tipo de período. Los periodos incluidos
-se calculan automáticamente.</li>
+<li>Seleccionar el ejercicio fiscal y el tipo de período. Los periodos
+incluidos se calculan automáticamente.</li>
 <li>Seleccionar el tipo de declaración.</li>
 <li>Rellenar el teléfono, necesario para la exportacion BOE.</li>
 <li>Guardar y pulsar en el botón “Calcular”.</li>
@@ -424,7 +424,7 @@ telemáticamente en el portal de la AEAT.</li>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-spain/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_mod123%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_mod123%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -458,7 +458,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_aeat_mod123">OCA/l10n-spain</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_aeat_mod123">OCA/l10n-spain</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
