@@ -1,0 +1,698 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_aeat_mod123
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-16 10:40+0000\n"
+"PO-Revision-Date: 2024-04-16 12:44+0200\n"
+"Last-Translator: Emilio Pascual <emilio@moduom.team>\n"
+"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.ui.menu,name:l10n_es_aeat_mod123.menu_aeat_mod123_report
+msgid "AEAT 123 Model"
+msgstr "Modelo 123"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model,name:l10n_es_aeat_mod123.model_l10n_es_aeat_mod123_report
+msgid "AEAT 123 report"
+msgstr "Declaración AEAT 123"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__move_id
+msgid "Account entry"
+msgstr "Asiento contable"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_needaction
+msgid "Action Needed"
+msgstr "Acción necesaria"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Actividad Excepción Decoración"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_state
+msgid "Activity State"
+msgstr "Estado de la actividad"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icono para el tipo de actividad"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__allow_posting
+msgid "Allow Posting"
+msgstr "Permitir publicación"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_attachment_count
+msgid "Attachment Count"
+msgstr "Contador de adjuntos"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__partner_bank_id
+msgid "Bank account"
+msgstr "Cuenta bancaria"
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "Base de retenciones e ingresos a cuenta"
+msgstr "Base de retenciones e ingresos a cuenta"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__calculation_date
+msgid "Calculation Date"
+msgstr "Fecha de cálculo"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_01
+msgid ""
+"Casilla [01] Número de Rentas. Dividendos y otras rentas de participación en "
+"fondos propios de entidades. Totales de número de perceptores (se contará "
+"por números de NIF)."
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_03
+msgid "Casilla [03] ([01] + [02]). Número de Rentas. Totales."
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_04
+msgid ""
+"Casilla [04] Base de retenciones e ingresos a cuenta. Dividendos y otras "
+"rentas de participación en fondos propios de entidades."
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_05
+msgid "Casilla [05] Base de retenciones e ingresos a cuenta. Resto de rentas."
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_06
+msgid "Casilla [06] ([05] + [06]). Base de retenciones e ingresos a cuenta."
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_07
+msgid ""
+"Casilla [07] Retenciones e ingresos a cuenta. Dividendos y otras rentas de "
+"participación en fondos propios de entidades"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_08
+msgid "Casilla [08] Retenciones e ingresos a cuenta. Resto de rentas."
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_09
+msgid "Casilla [09]([07] + [08]). Retenciones e ingresos a cuenta."
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_10
+msgid "Casilla [10] Periodificación - Ingresos ejercicios anteriores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_11
+msgid "Casilla [11] Periodificación - Regularización"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_12
+msgid ""
+"Casilla [12] Suma de retenciones e ingresos a cuenta y regularización, en su "
+"caso ([9] + [11])"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_13
+msgid ""
+"Casilla [13] A deducir (exclusivamente en caso de declaración "
+"complementaria) Resultados a ingresar de anteriores declaraciones por el "
+"mismo concepto, ejercicio y período"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_14
+msgid "Casilla [14] Resultado a ingresar ([12] - [13])"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__partner_bank_id
+msgid "Company bank account used for the presentation"
+msgstr "Cuenta bancaria de la empresa utilizada para la presentación"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__contact_email
+msgid "Contact Email"
+msgstr "Correo electrónico de contacto"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__counterpart_account_id
+msgid "Counterpart account"
+msgstr "Cuenta contrapartida"
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod123.action_l10n_es_aeat_mod123_report
+msgid ""
+"Crea y consulta las declaraciones del modelo 123 de\n"
+"            la AEAT."
+msgstr ""
+"Crea y consulta las declaraciones del modelo 123 de\n"
+"            la AEAT."
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_tree
+msgid "Declaraciones AEAT 123"
+msgstr "Declaraciones AEAT 123"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.actions.act_window,name:l10n_es_aeat_mod123.action_l10n_es_aeat_mod123_report
+msgid "Declaración AEAT 123"
+msgstr "Declaración AEAT 123"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod123.selection__l10n_es_aeat_mod123_report__tipo_declaracion__u
+msgid "Domiciliación"
+msgstr "Domiciliación"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__date_end
+msgid "Ending date"
+msgstr "Fecha final"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__error_count
+msgid "Error Count"
+msgstr "Conteo de errores"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__export_config_id
+msgid "Export config"
+msgstr "Configuración de exportación"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Socios)"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icono de fuente impresionante, por ejemplo fa-tasks"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__contact_name
+msgid "Full Name"
+msgstr "Nombre completo"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__has_message
+msgid "Has Message"
+msgstr "Tiene mensaje"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_exception_icon
+msgid "Icon"
+msgstr "Icono"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icono para indicar una actividad de excepción."
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_has_error
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcado, algunos mensajes tienen un error en el envío."
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod123.selection__l10n_es_aeat_mod123_report__tipo_declaracion__i
+msgid "Ingreso"
+msgstr "Ingreso"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod123.selection__l10n_es_aeat_mod123_report__tipo_declaracion__g
+msgid "Ingreso a anotar en CCT"
+msgstr "Ingreso a anotar en CCT"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_is_follower
+msgid "Is Follower"
+msgstr "Es seguidor"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__journal_id
+msgid "Journal"
+msgstr "Diario"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__journal_id
+msgid "Journal in which post the move."
+msgstr "Diario en el que publicar el movimiento."
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__representative_vat
+msgid "L.R. VAT number"
+msgstr "NIF repr. legal"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__representative_vat
+msgid "Legal Representative VAT number."
+msgstr "NIF del representant legal."
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Adjunto principal"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_has_error
+msgid "Message Delivery error"
+msgstr "Error en el envío del mensaje"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__number
+msgid "Model number"
+msgstr "Nº modelo"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__currency_id
+msgid "Moneda"
+msgstr "Moneda"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__contact_name
+msgid "Must have name and surname."
+msgstr "Debe tener nombre y apellidos."
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Fecha límite de Mi Actividad"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod123.selection__l10n_es_aeat_mod123_report__tipo_declaracion__n
+msgid "Negativa"
+msgstr "Negativa"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Fecha límite de la siguiente actividad"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de la siguiente actividad"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipo de la siguiente actividad"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de acciones"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Nº de mensajes con error de entrega"
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "Número de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_02
+msgid ""
+"Número de rentas. Resto de rentas. Totales de número de perceptores (se "
+"contará por números de NIF)."
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__partner_id
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__period_type
+msgid "Period Type"
+msgstr "Tipo de Período"
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "Periodificación"
+msgstr "Periodificación"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__contact_phone
+msgid "Phone"
+msgstr "Teléfono"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__previous_number
+msgid "Previous declaration number"
+msgstr "Nº previo declaración"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__name
+msgid "Report identifier"
+msgstr "Identificador del informe"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario responsable"
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_tree
+msgid "Resultado"
+msgstr "Resultado"
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "Retenciones e ingresos a cuenta"
+msgstr "Retenciones e ingresos a cuenta"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_has_sms_error
+#, fuzzy
+#| msgid "Message Delivery error"
+msgid "SMS Delivery error"
+msgstr "Error en el envío del mensaje"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__date_start
+msgid "Starting date"
+msgstr "Fecha inicial"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__state
+msgid "State"
+msgstr "Estado"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__statement_type
+msgid "Statement Type"
+msgstr "Tipo de declaración"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estado basado en las actividades\n"
+"Atrasado: La fecha de vencimiento ya está vencida\n"
+"Hoy: La fecha de la actividad es hoy\n"
+"Planificado: Actividades futuras."
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__support_type
+msgid "Support Type"
+msgstr "Tipo de soporte"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__tax_agency_ids
+msgid "Tax Agency"
+msgstr "Agencia Tributaria"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__tax_line_ids
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "Tax lines"
+msgstr "Líneas de impuesto"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__counterpart_account_id
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
+"Esta cuenta será la contrapartida para todos los elementos del diario que "
+"están regularizados al contabilizar el informe."
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__tipo_declaracion
+msgid "Tipo de declaración"
+msgstr "Resultado declaración"
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "Total Liquidación"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo de actividad de excepción registrada."
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__company_vat
+msgid "VAT number"
+msgstr "NIF"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__year
+msgid "Year"
+msgstr "Año"
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid ""
+"[01] Dividendos y otras rentas de participación en fondos propios de "
+"entidades"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_01
+msgid ""
+"[01] Número de rentas. Dividendos y otras rentas de participación en fondos "
+"propios de entidades"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_02
+msgid "[02] Número de Rentas. Resto de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "[02] Resto de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_03
+msgid "[03] Número de Rentas. Totales"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "[03] Totales"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_04
+msgid ""
+"[04] Base de retenciones e ingresos a cuenta. Dividendos y otras rentas."
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid ""
+"[04] Dividendos y otras rentas de participación en fondos propios de "
+"entidades"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_05
+msgid "[05] Base de retenciones e ingresos a cuenta. Resto de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "[05] Resto de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_06
+msgid "[06] Base de Retenciones e ingresos a cuenta. Totales"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "[06] Totales"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid ""
+"[07] Dividendos y otras rentas de participación en fondos propios de "
+"entidades"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_07
+msgid "[07] Retenciones e ingresos a cuenta. Dividendos y otras rentas."
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "[08] Resto de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_08
+msgid "[08] Retenciones e ingresos a cuenta. Resto de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_09
+msgid "[09] Retenciones e ingresos a cuenta. Totales"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "[09] Totales"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_10
+msgid "[10] Ingresos ejercicios anteriores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_11
+msgid "[11] Regularización"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_12
+msgid "[12] Total retenciones"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "[12] Total retenciones ([09] + [11])"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_13
+msgid "[13] Ingresos ejercicios anteriores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_14
+msgid "[14] Resultado a ingresar"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+msgid "[14] Resultado a ingresar ([12] - [13])"
+msgstr ""

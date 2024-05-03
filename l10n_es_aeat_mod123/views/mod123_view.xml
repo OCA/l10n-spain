@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_l10n_es_aeat_mod123_report_form" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod123.report.form</field>
+        <field name="model">l10n.es.aeat.mod123.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
+        <field name="arch" type="xml">
+            <field name="previous_number" position="after">
+                <field name="tipo_declaracion" readonly="state != 'draft'" />
+            </field>
+            <group name="group_declaration" position="after">
+                <!-- View 2016-2023 -->
+                <group
+                    string="Resultado"
+                    colspan="4"
+                    invisible="state not in ['calculated','done','cancelled'] or year >= 2024"
+                >
+                    <group string="Retenciones e ingresos a cuenta">
+                        <field name="casilla_01" readonly="state != 'calculated'" />
+                        <field
+                            name="casilla_02"
+                            readonly="state != 'calculated'"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="casilla_03"
+                            readonly="state != 'calculated'"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                    <group string="Periodificación">
+                        <field
+                            name="casilla_04"
+                            readonly="state != 'calculated'"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="casilla_05"
+                            readonly="state != 'calculated'"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                    <group string="Total liquidación">
+                        <field
+                            name="casilla_06"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="casilla_07"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                            readonly="state != 'calculated' or statement_type != 'C'"
+                        />
+                        <field
+                            name="casilla_08"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                </group>
+                <!-- View 2024 -->
+                <group
+                    string="Número de rentas"
+                    col="3"
+                    invisible="year &lt; 2024 or state not in ['calculated', 'done', 'cancelled']"
+                >
+                    <group>
+                        <label
+                            for="casilla_01_2024"
+                            string="[01] Dividendos y otras rentas de participación en fondos propios de entidades"
+                        />
+                        <field
+                            name="casilla_01_2024"
+                            nolabel="1"
+                            readonly="state != 'calculated'"
+                        />
+                    </group>
+                    <group>
+                        <label for="casilla_02_2024" string="[02] Resto de rentas" />
+                        <field
+                            name="casilla_02_2024"
+                            nolabel="1"
+                            readonly="state != 'calculated'"
+                        />
+
+                    </group>
+                    <group>
+                        <label for="casilla_03_2024" string="[03] Totales" />
+                        <field name="casilla_03_2024" nolabel="1" />
+                    </group>
+                </group>
+                <group
+                    string="Base de retenciones e ingresos a cuenta"
+                    col="3"
+                    invisible="year &lt; 2024 or state not in ['calculated', 'done', 'cancelled']"
+                >
+                    <group>
+                        <label
+                            for="casilla_04_2024"
+                            string="[04] Dividendos y otras rentas de participación en fondos propios de entidades"
+                        />
+                        <field
+                            name="casilla_04_2024"
+                            nolabel="1"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                            readonly="state != 'calculated'"
+                        />
+                    </group>
+                    <group>
+                        <label for="casilla_05_2024" string="[05] Resto de rentas" />
+                        <field
+                            name="casilla_05_2024"
+                            nolabel="1"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                            readonly="state != 'calculated'"
+                        />
+
+                    </group>
+                    <group>
+                        <label for="casilla_06_2024" string="[06] Totales" />
+                        <field
+                            name="casilla_06_2024"
+                            nolabel="1"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                </group>
+                <group
+                    string="Retenciones e ingresos a cuenta"
+                    col="3"
+                    invisible="year &lt; 2024 or state not in ['calculated', 'done', 'cancelled']"
+                >
+                    <group>
+                        <label
+                            for="casilla_07_2024"
+                            string="[07] Dividendos y otras rentas de participación en fondos propios de entidades"
+                        />
+                        <field
+                            name="casilla_07_2024"
+                            nolabel="1"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                            readonly="state != 'calculated'"
+                        />
+                    </group>
+                    <group>
+                        <label for="casilla_08_2024" string="[08] Resto de rentas" />
+                        <field
+                            name="casilla_08_2024"
+                            nolabel="1"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                            readonly="state != 'calculated'"
+                        />
+
+                    </group>
+                    <group>
+                        <label for="casilla_09_2024" string="[09] Totales" />
+                        <field
+                            name="casilla_09_2024"
+                            nolabel="1"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                </group>
+                <group
+                    string="Periodificación"
+                    col="3"
+                    invisible="year &lt; 2024 or state not in ['calculated', 'done', 'cancelled']"
+                >
+                    <group />
+                    <group>
+                        <field
+                            name="casilla_10_2024"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                            readonly="state != 'calculated'"
+                        />
+                    </group>
+                    <group>
+                        <field
+                            name="casilla_11_2024"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                            readonly="state != 'calculated'"
+                        />
+                    </group>
+                </group>
+                <group
+                    string="Total Liquidación"
+                    col="3"
+                    invisible="year &lt; 2024 or state not in ['calculated', 'done', 'cancelled']"
+                >
+                    <group />
+                    <group />
+                    <group>
+                        <label
+                            for="casilla_12_2024"
+                            string="[12] Total retenciones ([09] + [11])"
+                        />
+                        <field
+                            name="casilla_12_2024"
+                            nolabel="1"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="casilla_13_2024"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                            readonly="state != 'calculated'"
+                        />
+                        <label
+                            for="casilla_14_2024"
+                            string="[14] Resultado a ingresar ([12] - [13])"
+                        />
+                        <field
+                            name="casilla_14_2024"
+                            nolabel="1"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                </group>
+                <separator string="Tax lines" invisible="state == 'draft'" />
+                <field
+                    name="tax_line_ids"
+                    nolabel="1"
+                    readonly="1"
+                    invisible="state == 'draft'"
+                />
+            </group>
+            <form position="inside">
+                <div class="oe_chatter">
+                    <field
+                        name="message_follower_ids"
+                        widget="mail_followers"
+                        groups="base.group_user"
+                    />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="view_l10n_es_aeat_mod123_report_tree" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod123.report.tree</field>
+        <field name="model">l10n.es.aeat.mod123.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree" />
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="string">Declaraciones AEAT 123</attribute>
+            </tree>
+            <field name="period_type" position="after">
+                <field name="casilla_08" string="Resultado" />
+            </field>
+        </field>
+    </record>
+    <record id="action_l10n_es_aeat_mod123_report" model="ir.actions.act_window">
+        <field name="name">Declaración AEAT 123</field>
+        <field name="res_model">l10n.es.aeat.mod123.report</field>
+        <field name="view_mode">form,tree</field>
+        <field name="help">Crea y consulta las declaraciones del modelo 123 de
+            la AEAT.
+        </field>
+    </record>
+    <!-- Needed because of inheritance issues -->
+    <record
+        id="action_l10n_es_aeat_mod123_report_form"
+        model="ir.actions.act_window.view"
+    >
+        <field name="sequence" eval="3" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod123_report_form" />
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod123_report" />
+    </record>
+    <!-- Needed because of inheritance issues -->
+    <record
+        id="action_l10n_es_aeat_mod123_report_tree"
+        model="ir.actions.act_window.view"
+    >
+        <field name="sequence" eval="2" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod123_report_tree" />
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod123_report" />
+    </record>
+    <menuitem
+        id="menu_aeat_mod123_report"
+        parent="l10n_es_aeat.menu_root_aeat"
+        action="action_l10n_es_aeat_mod123_report"
+        sequence="123"
+        name="AEAT 123 Model"
+    />
+</odoo>
