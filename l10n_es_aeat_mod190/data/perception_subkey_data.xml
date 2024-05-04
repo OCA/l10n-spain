@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record
-        id="aeat_m190_perception_subkey_01"
+        id="aeat_m190_perception_subkey_02_01"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_02" />
@@ -27,7 +27,7 @@
         <field name="ad_required">1</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_02"
+        id="aeat_m190_perception_subkey_02_02"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_02" />
@@ -43,7 +43,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_03"
+        id="aeat_m190_perception_subkey_02_03"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_02" />
@@ -58,7 +58,128 @@
         <field name="ad_required">1</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_04"
+        id="aeat_m190_perception_subkey_03_01"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_03" />
+        <field name="name">01</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Prestaciones por desempleo. Se incluirán en
+            esta subclave las prestaciones por desempleo que,
+            debiendo relacionarse en el modelo 190, sean
+            distintas de las específicamente señaladas en las
+            subclaves siguientes.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_03_02"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_03" />
+        <field name="name">02</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Prestaciones por desempleo ERE. Se
+            consignarán en esta subclave las prestaciones por
+            desempleo satisfechas vinculadas a la normativa
+            reguladora de los expedientes de regulación de
+            empleo (ERE).
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_03_03"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_03" />
+        <field name="name">03</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Prestaciones por desempleo ERTE. Se
+            consignarán en esta subclave las prestaciones por
+            desempleo satisfechas vinculadas a un expediente
+            de regulación temporal de empleo (ERTE).
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_03_04"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_03" />
+        <field name="name">04</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Prestación por cese de actividad de
+            trabajadores autónomos. Se consignarán en esta
+            subclave las prestaciones por cese de actividad
+            (de carácter extraordinario o no) satisfechas a
+            trabajadores autónomos.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_03_05"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_03" />
+        <field name="name">05</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Subsidios por desempleo. Se consignarán en
+            esta subclave los diferentes subsidios satisfechos,
+            en su modalidad no contributiva, tales como los
+            subsidios por cotización insuficiente, subsidios
+            para mayores de 45 o 52 años, para emigrantes
+            retornados, el subsidio extraordinario por
+            desempleo y otros subsidios de carácter no
+            contributivo, a excepción de la renta activa de
+            inserción, que se reflejará en la subclave 06
+            siguiente.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_03_06"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_03" />
+        <field name="name">06</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Renta activa de inserción. Ayuda económica
+            satisfecha vinculada a la realización de las
+            acciones en materia de políticas activas de empleo
+            que no conlleven retribuciones salariales.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_03_07"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_03" />
+        <field name="name">07</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Otras prestaciones, subsidios o ayudas. Se
+            consignarán en esta subclave las prestaciones,
+            subsidios o ayudas satisfechas que no deban
+            reflejarse en las subclaves anteriores
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_05_01"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_05" />
@@ -75,7 +196,7 @@
         <field name="ad_required">1</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_05"
+        id="aeat_m190_perception_subkey_05_02"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_05" />
@@ -95,7 +216,7 @@
         <field name="ad_required">1</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_06"
+        id="aeat_m190_perception_subkey_05_03"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_05" />
@@ -114,7 +235,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_07"
+        id="aeat_m190_perception_subkey_05_04"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_05" />
@@ -129,7 +250,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_08"
+        id="aeat_m190_perception_subkey_06_01"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_06" />
@@ -145,22 +266,106 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_09"
+        id="aeat_m190_perception_subkey_06_02"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_06" />
         <field name="name">02</field>
         <field name="aeat_number">190</field>
         <field name="description">
-            Se consignará esta subclave en todas las percepciones
-            de la clave F distintas de las que deban relacionarse bajo
-            la subclave 01.
+            Rendimientos del trabajo derivados de impartir
+            cursos, conferencias, coloquios y similares.
         </field>
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_10"
+        id="aeat_m190_perception_subkey_06_03"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_06" />
+        <field name="name">03</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Rendimientos del trabajo derivados de la
+            elaboración de obras literarias, artísticas o
+            científicas a los que resulte aplicable el tipo de
+            retención establecido con carácter general en el
+            artículo 101.3 de la Ley del Impuesto.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_06_04"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_06" />
+        <field name="name">04</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Rendimientos del trabajo derivados de la
+            elaboración de obras literarias, artísticas o
+            científicas a los que resulte aplicable el tipo de
+            retención reducido establecido en el artículo 101.3
+            de la Ley del Impuesto.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_06_05"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_06" />
+        <field name="name">05</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Rendimientos derivados de la propiedad
+            intelectual, cuando tengan la consideración de
+            rendimientos del trabajo, a los que sea aplicable el
+            tipo general establecido en el artículo 101.9 de la
+            ley del Impuesto.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_06_06"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_06" />
+        <field name="name">06</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Rendimientos derivados de la propiedad
+            intelectual, cuando tengan la consideración de
+            rendimientos del trabajo, a los que sea aplicable el
+            tipo de retención reducido establecido en el
+            artículo 101.9 de la Ley del Impuesto.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_06_07"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_06" />
+        <field name="name">07</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Anticipos a cuenta derivados de la cesión de la
+            explotación de los derechos de autor, cuando tales
+            anticipos tengan la consideración de rendimientos
+            del trabajo, que se vayan a devengar a lo largo de
+            varios años.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_07_01"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_07" />
@@ -176,7 +381,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_11"
+        id="aeat_m190_perception_subkey_07_02"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_07" />
@@ -196,7 +401,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_12"
+        id="aeat_m190_perception_subkey_07_03"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_07" />
@@ -215,7 +420,90 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_13"
+        id="aeat_m190_perception_subkey_07_04"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_07" />
+        <field name="name">04</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Se consignará esta subclave cuando se trate de
+            percepciones a las que resulte aplicable el tipo de
+            retención especifico establecido en la letra d) del
+            artículo 95.1 del Reglamento del Impuesto.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_07_05"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_07" />
+        <field name="name">05</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Rendimientos derivados de la propiedad
+            intelectual, a los que resulte aplicable el tipo
+            general de retención previsto en el artículo 101.9
+            de la Ley del Impuesto.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_07_06"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_07" />
+        <field name="name">06</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Rendimientos derivados de la propiedad
+            intelectual, a los que resulte aplicable el tipo de
+            retención reducido previsto en el artículo 101.9 de
+            la Ley del Impuesto.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_07_07"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_07" />
+        <field name="name">07</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Anticipos a cuenta derivados de la cesión de la
+            explotación de derechos de autor, cuando tales
+            anticipos tengan la consideración de rendimientos
+            de actividades profesionales, que se vayan a
+            devengar a lo largo de varios años.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_07_08"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_07" />
+        <field name="name">08</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Rendimientos derivados de la cesión del
+            derecho a la explotación de la imagen. Se
+            consignará esta subclave cuando las percepciones
+            satisfechas por dicha cesión tengan para su
+            perceptor la calificación de rendimientos derivados
+            de su actividad profesional.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_08_01"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_08" />
@@ -231,7 +519,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_14"
+        id="aeat_m190_perception_subkey_08_02"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_08" />
@@ -240,23 +528,24 @@
         <field name="description">
             Se consignará esta subclave cuando se trate de
             percepciones a las que resulte aplicable el tipo de
-            retención específico establecido en el artículo 95.4.1.o del
-            Reglamento del Impuesto para los rendimientos que sean
-            contraprestación de actividades ganaderas de engorde de
-            porcino y avicultura.
+            retención específico establecido en el artículo
+            95.4.1.º del Reglamento del Impuesto para los
+            rendimientos que sean contraprestación de
+            actividades ganaderas de engorde de porcino y
+            avicultura.
         </field>
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_15"
+        id="aeat_m190_perception_subkey_08_03"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_08" />
         <field name="name">03</field>
         <field name="aeat_number">190</field>
         <field name="description">
-            03 Se consignará esta subclave cuando las percepciones
+            Se consignará esta subclave cuando las percepciones
             satisfechas sean contraprestación de las actividades
             forestales a que se refiere el artículo 95.5 del Reglamento
             del Impuesto.
@@ -265,7 +554,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_16"
+        id="aeat_m190_perception_subkey_08_04"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_08" />
@@ -281,7 +570,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_17"
+        id="aeat_m190_perception_subkey_09_01"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_09" />
@@ -298,7 +587,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_18"
+        id="aeat_m190_perception_subkey_09_02"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_09" />
@@ -315,7 +604,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_19"
+        id="aeat_m190_perception_subkey_11_01"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_11" />
@@ -340,7 +629,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_20"
+        id="aeat_m190_perception_subkey_11_02"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_11" />
@@ -356,7 +645,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_21"
+        id="aeat_m190_perception_subkey_11_03"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_11" />
@@ -379,7 +668,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_22"
+        id="aeat_m190_perception_subkey_12_01"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -394,7 +683,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_23"
+        id="aeat_m190_perception_subkey_12_02"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -411,7 +700,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_24"
+        id="aeat_m190_perception_subkey_12_03"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -426,7 +715,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_25"
+        id="aeat_m190_perception_subkey_12_04"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -442,7 +731,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_26"
+        id="aeat_m190_perception_subkey_12_05"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -458,7 +747,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_27"
+        id="aeat_m190_perception_subkey_12_06"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -474,7 +763,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_28"
+        id="aeat_m190_perception_subkey_12_07"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -489,7 +778,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_29"
+        id="aeat_m190_perception_subkey_12_08"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -504,7 +793,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_30"
+        id="aeat_m190_perception_subkey_12_09"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -524,7 +813,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_31"
+        id="aeat_m190_perception_subkey_12_10"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -538,7 +827,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_32"
+        id="aeat_m190_perception_subkey_12_11"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -554,7 +843,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_33"
+        id="aeat_m190_perception_subkey_12_12"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -570,7 +859,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_34"
+        id="aeat_m190_perception_subkey_12_13"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -586,7 +875,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_35"
+        id="aeat_m190_perception_subkey_12_14"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -603,7 +892,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_36"
+        id="aeat_m190_perception_subkey_12_15"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -619,7 +908,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_37"
+        id="aeat_m190_perception_subkey_12_16"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -634,7 +923,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_38"
+        id="aeat_m190_perception_subkey_12_17"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -651,7 +940,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_39"
+        id="aeat_m190_perception_subkey_12_18"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -668,7 +957,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_40"
+        id="aeat_m190_perception_subkey_12_19"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -687,7 +976,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_41"
+        id="aeat_m190_perception_subkey_12_20"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -703,7 +992,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_42"
+        id="aeat_m190_perception_subkey_12_21"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -721,7 +1010,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_43"
+        id="aeat_m190_perception_subkey_12_22"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -745,7 +1034,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_44"
+        id="aeat_m190_perception_subkey_12_23"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -767,7 +1056,7 @@
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_45"
+        id="aeat_m190_perception_subkey_12_24"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
@@ -775,29 +1064,163 @@
         <field name="aeat_number">190</field>
         <field name="description">
             Rendimientos del trabajo en especie exentos de
-            acuerdo con lo dispuesto en las letras a) a f) del artículo
-            42.3 de la Ley del Impuesto. No obstante, respecto de los
-            rendimientos del trabajo exentos previstos en las letras a)
-            y b) de dicho apartado, únicamente se exigirán datos
-            cuando para la prestación de los servicios se utilicen
-            fórmulas indirectas.
+            acuerdo con lo dispuesto en las letras a) b), c), y
+            e), del artículo 42.3 de la Ley del Impuesto, sin
+            incluir en esta subclave los rendimientos del
+            trabajo en especie exentos que deban consignarse
+            en la subclave 25 siguiente.
+            No obstante, respecto de los rendimientos del
+            trabajo exentos previstos en las letras a) y b) del
+            artículo 42.3 de la Ley del Impuesto que se
+            incluyan en esta subclave 24, únicamente se
+            exigirán datos cuando para la prestación de los
+            servicios se utilicen fórmulas indirectas.
         </field>
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
     <record
-        id="aeat_m190_perception_subkey_46"
+        id="aeat_m190_perception_subkey_12_25"
         model="l10n.es.aeat.report.perception.subkey"
     >
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">25</field>
         <field name="aeat_number">190</field>
         <field name="description">
-            Otras rentas exentas. Se incluirán en esta subclave las
-            rentas exentas del Impuesto sobre la Renta de las
-            Personas Físicas que, debiendo relacionarse en el modelo
-            190, sean distintas de las específicamente señaladas en
-            las subclaves anteriores.
+            Rendimientos del trabajo en especie exentos
+            de acuerdo con lo dispuesto en la letra b) del
+            artículo 42.3 de la Ley del Impuesto,
+            exclusivamente referidos a aquellos destinados
+            por las empresas o empleadores a prestar el
+            servicio de primer ciclo de educación infantil a los
+            hijos de sus trabajadores. No obstante, respecto
+            de los rendimientos del trabajo exentos previstos
+            en esta subclave, únicamente se exigirán datos
+            cuando para la prestación de los servicios se
+            utilicen fórmulas indirectas.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_12_26"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
+        <field name="name">26</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Rendimientos del trabajo en especie exentos de
+            acuerdo con lo dispuesto en la letra d) del artículo
+            42.3 de la Ley del Impuesto.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_12_27"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
+        <field name="name">27</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Prestaciones públicas por maternidad o
+            paternidad exentas del IRPF.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_12_28"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
+        <field name="name">28</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Prestaciones económicas establecidas por las
+            Comunidades Autónomas en concepto de renta
+            mínima de inserción para garantizar recursos
+            económicos de subsistencia a las personas que
+            carezcan de ellos y que estén exentas en virtud
+            de lo establecido en el primer párrafo de la letra
+            y) del artículo 7 de la Ley del Impuesto, sin incluir
+            en esta subclave el resto de ayudas exentas
+            establecidas en este primer párrafo de la letra y)
+            que deban consignarse en la subclave 22
+            anterior
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_12_29"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
+        <field name="name">29</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Prestación económica de la Seguridad Social
+            correspondiente al Ingreso Mínimo Vital.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_12_30"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
+        <field name="name">30</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Rendimientos del trabajo en especie exentos
+            previstos en la letra f) del artículo 42.3 de la Ley
+            del Impuesto, derivados de la entrega a los
+            trabajadores en activo, de forma gratuita o por
+            precio inferior al normal de mercado, de acciones o
+            participaciones de la propia empresa o de otras
+            empresas del grupo de sociedades, que no deban
+            incluirse en la subclave 31 siguiente
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_12_31"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
+        <field name="name">31</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Rendimientos del trabajo en especie exentos
+            previstos en la letra f) del artículo 42.3 de la Ley
+            del Impuesto, derivados de la entrega de acciones
+            o participaciones concedidas a los trabajadores de
+            una empresa emergente a las que se refiere la Ley
+            28/2022, de 21 de diciembre, de fomento del
+            ecosistema de las empresas emergentes.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_12_99"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
+        <field name="name">99</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Otras rentas exentas. Se incluirán en esta
+            subclave las rentas exentas del Impuesto sobre la
+            Renta de las Personas Físicas que, debiendo
+            relacionarse en el modelo 190, sean distintas de
+            las específicamente señaladas en las subclaves
+            anteriores.
         </field>
         <field name="active">True</field>
         <field name="ad_required">0</field>
