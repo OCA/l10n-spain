@@ -322,6 +322,7 @@ msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__message_has_error
+#: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcado, hay mensajes que tienen error de entrega."
 
@@ -404,16 +405,6 @@ msgid "L.R. VAT number"
 msgstr "NIF repr. legal"
 
 #. module: l10n_es_vat_book
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line____last_update
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book____last_update
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line____last_update
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax____last_update
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary____last_update
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
-
-#. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__write_uid
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__write_uid
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line__write_uid
@@ -447,11 +438,6 @@ msgstr "Libro de IVA"
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line__line_type
 msgid "Line Type"
 msgstr "Tipo línea"
-
-#. module: l10n_es_vat_book
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "Adjunto principal"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__message_has_error
@@ -622,6 +608,11 @@ msgid "Responsible User"
 msgstr "Usuario responsable"
 
 #. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "SMS Error de entrega"
+
+#. module: l10n_es_vat_book
 #: model:ir.model,name:l10n_es_vat_book.model_l10n_es_vat_book_line
 msgid "Spanish VAT book line"
 msgstr "Linea del libro de IVA"
@@ -729,7 +720,7 @@ msgid "Tax"
 msgstr "Impuesto"
 
 #. module: l10n_es_vat_book
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__tax_account_id
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__account_xmlid_id
 msgid "Tax Account Restriction"
 msgstr "Restricción de la cuenta de impuestos"
 
@@ -767,7 +758,7 @@ msgid "Tax fee"
 msgstr "Cuota"
 
 #. module: l10n_es_vat_book
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__tax_tmpl_ids
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__tax_xmlid_ids
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_line_form
 msgid "Taxes"
 msgstr "Impuestos"
@@ -923,8 +914,11 @@ msgstr "Año"
 msgid "object.get_report_file_name()"
 msgstr "object.get_report_file_name()"
 
-#~ msgid "SMS Delivery error"
-#~ msgstr "SMS Error de entrega"
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
+
+#~ msgid "Main Attachment"
+#~ msgstr "Adjunto principal"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Nº de mensajes que requieren acción"
