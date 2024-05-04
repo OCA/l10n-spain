@@ -323,6 +323,7 @@ msgstr ""
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__message_has_error
+#: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -405,16 +406,6 @@ msgid "L.R. VAT number"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line____last_update
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book____last_update
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line____last_update
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax____last_update
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary____last_update
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary____last_update
-msgid "Last Modified on"
-msgstr "Laatst bijgewerkt op"
-
-#. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__write_uid
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__write_uid
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line__write_uid
@@ -447,11 +438,6 @@ msgstr ""
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line__line_type
 msgid "Line Type"
-msgstr ""
-
-#. module: l10n_es_vat_book
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__message_main_attachment_id
-msgid "Main Attachment"
 msgstr ""
 
 #. module: l10n_es_vat_book
@@ -623,6 +609,11 @@ msgid "Responsible User"
 msgstr ""
 
 #. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: l10n_es_vat_book
 #: model:ir.model,name:l10n_es_vat_book.model_l10n_es_vat_book_line
 msgid "Spanish VAT book line"
 msgstr ""
@@ -726,7 +717,7 @@ msgid "Tax"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__tax_account_id
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__account_xmlid_id
 msgid "Tax Account Restriction"
 msgstr ""
 
@@ -764,7 +755,7 @@ msgid "Tax fee"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__tax_tmpl_ids
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__tax_xmlid_ids
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_line_form
 msgid "Taxes"
 msgstr ""
@@ -917,6 +908,9 @@ msgstr ""
 #: model:ir.actions.report,print_report_name:l10n_es_vat_book.l10n_es_vat_book_xlsx
 msgid "object.get_report_file_name()"
 msgstr ""
+
+#~ msgid "Last Modified on"
+#~ msgstr "Laatst bijgewerkt op"
 
 #~ msgid "Invoice"
 #~ msgstr "Factuur"
