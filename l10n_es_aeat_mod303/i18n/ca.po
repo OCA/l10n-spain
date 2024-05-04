@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-17 10:44+0000\n"
-"PO-Revision-Date: 2023-06-23 13:11+0000\n"
-"Last-Translator: eccit-quim <quim@eccit.com>\n"
+"PO-Revision-Date: 2024-05-04 09:37+0000\n"
+"Last-Translator: pere-aquarian <pere@aquarian.tech>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_46
 msgid "(VAT payable - VAT receivable)"
-msgstr "(IVA devengado - IVA deducible)"
+msgstr "(IVA devengat - IVA deduible)"
 
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_12_0
@@ -144,7 +144,7 @@ msgstr "A02 - Arrendadors de bens immobles"
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A02
 msgid "A02 - Ganadería independiente"
-msgstr ""
+msgstr "A02 - Ramaderia independent"
 
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A03
@@ -152,21 +152,23 @@ msgid ""
 "A03 - Resto de actividades empresariales no incluidas en los dos subtipos "
 "anteriores"
 msgstr ""
+"A03 - Resta d'activitats empresarials no incloses en els dos subtipus "
+"anteriors"
 
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A04
 msgid "A04 - Actividades profesionales de carácter artístico o deportivo"
-msgstr ""
+msgstr "A04 - Activitats professionals de caràcter artístic o esportiu"
 
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A05
 msgid "A05 - Resto de actividades profesionales"
-msgstr ""
+msgstr "A05 - Resta d'activitats professionals"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model,name:l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_report
 msgid "AEAT 303 Report"
-msgstr "Declaración AEAT 303"
+msgstr "Declaració AEAT 303"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model,name:l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_report_activity_code
@@ -181,23 +183,23 @@ msgstr "Codis d'activitat AEAT 303"
 #. module: l10n_es_aeat_mod303
 #: model:ir.ui.menu,name:l10n_es_aeat_mod303.menu_aeat_mod303_report
 msgid "AEAT 303 model"
-msgstr "Modelo 303"
+msgstr "Model AEAT 303"
 
 #. module: l10n_es_aeat_mod303
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_tree
 msgid "AEAT 303 reports"
-msgstr "Declaraciones AEAT 303"
+msgstr "Declaracions AEAT 303"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod303.action_l10n_es_aeat_mod303_report
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod303.action_l10n_es_aeat_mod303_report_activity_code
 msgid "AEAT model 303"
-msgstr "Modelo AEAT 303"
+msgstr "Model AEAT 303"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__move_id
 msgid "Account entry"
-msgstr "Entrada de compte"
+msgstr "Entrada al compte"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_needaction
@@ -242,7 +244,7 @@ msgstr "Nom de l'activitat"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__allow_posting
 msgid "Allow Posting"
-msgstr ""
+msgstr "Permetre publicació"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_attachment_count
@@ -252,17 +254,17 @@ msgstr "Recompte de fitxers adjunts"
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B01
 msgid "B01 - Actividad agrícola"
-msgstr ""
+msgstr "B01 - Activitat agrícola"
 
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B02
 msgid "B02 - Actividad ganadera dependiente"
-msgstr ""
+msgstr "B02 - Activitat ramadera depenent"
 
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B03
 msgid "B03 - Actividad forestal"
-msgstr ""
+msgstr "B03 - Activitat forestal"
 
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_B04
@@ -284,12 +286,12 @@ msgstr "Compte bancari"
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_C
 msgid "C - Actividades no iniciadas"
-msgstr ""
+msgstr "C - Activitats no iniciades"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__calculation_date
 msgid "Calculation Date"
-msgstr ""
+msgstr "Data de càlcul"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__company_id
@@ -304,7 +306,7 @@ msgstr "Compte bancari de l'empresa utilitzat per a la presentació"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__contact_email
 msgid "Contact Email"
-msgstr ""
+msgstr "Correu electrònic del contacte"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_77
@@ -328,7 +330,7 @@ msgstr "Compte de contrapartida"
 #. module: l10n_es_aeat_mod303
 #: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod303.action_l10n_es_aeat_mod303_report
 msgid "Create and query AEAT Model 303 reports"
-msgstr "Crea i consulta declaració AEAT del model 303"
+msgstr "Crea i consulta declaració del model 303 de la AEAT"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__create_uid
@@ -432,7 +434,7 @@ msgstr "Epígraf I.A.E. activitat principal"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__error_count
 msgid "Error Count"
-msgstr ""
+msgstr "Error de compte"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__exonerated_390__1
@@ -490,7 +492,7 @@ msgstr "Nom complet"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "Té missatge"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__id
@@ -540,11 +542,11 @@ msgid ""
 "State and the Autonomous Community the Basque Country and the Economic "
 "Agreement between the State and Navarre."
 msgstr ""
-"En la última autoliquidación del año (la del período 4T o mes 12) se hará "
-"constar, con el signo que corresponda, el resultado de la regularización "
-"anual conforme disponen las Leyes por las que se aprueban el Concierto "
-"Económico entre el Estado y la Comunidad Autónoma del País Vasco y el "
-"Convenio Económico entre el Estado y la Comunidad Foral de Navarra."
+"A l'última autoliquidació de l'any (la del període 4T o mes 12) es farà "
+"constar, amb el signe que correspongui, el resultat de la regularització "
+"anual conforme disposen les lleis pel que fa a l'aprovació del Conveni "
+"Econòmic entre l'Estat i la Comunitat Autònoma del País Basc i el Conveni "
+"Econòmic entre l'Estat i la Comunitat Foral de Navarra."
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_88
@@ -690,7 +692,7 @@ msgstr "Número d'errors"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "Nombre de missatges que requereixen una acció"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_has_error_counter
@@ -766,7 +768,7 @@ msgstr "Usuari responsable"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__result_type
 msgid "Result Type"
-msgstr ""
+msgstr "Tipus de resultat"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__previous_result
@@ -795,6 +797,8 @@ msgid ""
 "Si está suscrito a la cuenta corriente en materia tributaria, active esta "
 "opción para usarla en el ingreso o devolución."
 msgstr ""
+"Si està subscrit al compte corrent en matèria tributària, activi aquesta "
+"opció per a fer-la servir en l'ingrés o devolució."
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__date_start
@@ -833,7 +837,7 @@ msgstr "Tipus de suport"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__tax_agency_ids
 msgid "Tax Agency"
-msgstr ""
+msgstr "Agència Tributària"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__tax_line_ids
@@ -884,12 +888,12 @@ msgstr "A ingressar"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__result_type__g
 msgid "To enter - AEAT account"
-msgstr ""
+msgstr "A ingressar - Compte AEAT"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__result_type__u
 msgid "To enter - Bank account debit"
-msgstr ""
+msgstr "A ingressar - Dèbit del compte bancari"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__result_type__d
@@ -899,12 +903,12 @@ msgstr "A retornar"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__result_type__v
 msgid "To return - AEAT account"
-msgstr ""
+msgstr "A retornar - Compte AEAT"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__result_type__x
 msgid "To return - Foreign bank account"
-msgstr ""
+msgstr "A retornar - Compte bancari extern"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__activity_exception_decoration
@@ -914,7 +918,7 @@ msgstr "Tipus d'activitat d'excepció registrada."
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__use_aeat_account
 msgid "Usar cuenta corriente tributaria"
-msgstr ""
+msgstr "Fer servir un compte corrent tributari"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__company_vat
