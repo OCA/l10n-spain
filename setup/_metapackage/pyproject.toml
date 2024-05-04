@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-l10n-spain"
-version = "17.0.20240503.0"
+version = "17.0.20240504.0"
 dependencies = [
     "odoo-addon-l10n_es_aeat>=17.0dev,<17.1dev",
     "odoo-addon-l10n_es_aeat_mod111>=17.0dev,<17.1dev",
@@ -10,6 +10,7 @@ dependencies = [
     "odoo-addon-l10n_es_partner>=17.0dev,<17.1dev",
     "odoo-addon-l10n_es_partner_mercantil>=17.0dev,<17.1dev",
     "odoo-addon-l10n_es_toponyms>=17.0dev,<17.1dev",
+    "odoo-addon-l10n_es_vat_book>=17.0dev,<17.1dev",
 ]
 classifiers=[
     "Programming Language :: Python",
