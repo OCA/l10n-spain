@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="l10n_es_vat_book.vat_book_dates">
+        <div class="col-12 text-center" id="dates_div">
+            <table class="detail_table" id="fiscal_periods_table">
+                <tbody class="invoice_tbody">
+                    <tr>
+                        <td class="text-right td_detail_table">
+                           Company:
+                          </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.company_id" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right td_detail_table">
+                           Fiscal Year:
+                          </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.year" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right td_detail_table">
+                           Date Range:
+                          </td>
+                        <td class="td_detail_table">
+                              <span t-esc="o._format_date(o.date_start)" />-<span
+                                t-esc="o._format_date(o.date_end)"
+                            />
+                          </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+    <template id="l10n_es_vat_book.vat_book_contact">
+        <div class="col-12 text-center" id="vat_book_contact_div">
+            <table class="detail_table" id="vat_book_contact_table">
+                <tbody class="invoice_tbody">
+                    <tr>
+                        <td class="text-right td_detail_table">
+                       VAT:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.company_vat" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right td_detail_table">
+                       Contact phone:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.contact_phone" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right td_detail_table">
+                       Surnames and name contact:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.contact_name" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+    <template id="l10n_es_vat_book.vat_book_invoices_head">
+        <thead>
+            <tr>
+                <td id="detail_invoice_number">Number</td>
+                <td id="detail_invoice_date">Issue Date</td>
+                <td id="detail_company">Company Name</td>
+                <td id="detail_vat">VAT</td>
+                <td class="text-right" id="detail_base">Base</td>
+                <td id="detail_tax">Tax</td>
+                <td class="text-right" id="detail_fee">Fee</td>
+                <td class="text-right" id="detail_total">Total</td>
+            </tr>
+        </thead>
+    </template>
+    <template id="l10n_es_vat_book.vat_book_line">
+        <td id="data_odoo_invoice">
+            <t t-set="res_model" t-value="'account.move'" />
+            <span t-if="l.move_id">
+                <a
+                    t-att-data-active-id="l.move_id.id"
+                    t-att-data-res-model="res_model"
+                    class="o_aeat_reports_web_action underline-on-hover"
+                    style="color: black; cursor: pointer;"
+                >
+                    <t-raw t-field="l.ref" />
+                </a>
+            </span>
+        </td>
+        <td id="data_invoice_date">
+            <span t-esc="o._format_date(l.invoice_date)" />
+        </td>
+        <td id="data_company">
+            <t t-set="res_model" t-value="'res.partner'" />
+            <span t-if="l.partner_id">
+                <a
+                    t-att-data-active-id="l.partner_id.id"
+                    t-att-data-res-model="res_model"
+                    class="o_aeat_reports_web_action underline-on-hover"
+                    style="color: black; cursor: pointer;"
+                >
+                    <t-raw t-field="l.partner_id.name" />
+                </a>
+            </span>
+        </td>
+        <td id="data_vat">
+            <span t-field="l.vat_number" />
+        </td>
+        <t t-set="number_taxes" t-value="0" />
+        <t t-foreach="l.tax_line_ids" t-as="tax">
+            <t t-if="number_taxes != 0">
+                <tr>
+                    <td id="data_tax_invoice_number" />
+                    <td id="data_tax_invoice_date" />
+                    <td id="data_tax_company" />
+                    <td id="data_tax_vat" />
+                    <td class="text-right" id="data_tax_base_amount_first">
+                        <span
+                            t-field="tax.base_amount"
+                            t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
+                        />
+                    </td>
+                    <td id="data_tax_name_first">
+                        <span t-field="tax.tax_id.name" />
+                    </td>
+                    <td class="text-right" id="data_tax_amount_first">
+                        <span
+                            t-field="tax.tax_amount"
+                            t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
+                        />
+                    </td>
+                    <td class="text-right" id="data_tax_total_amount">
+                        <span
+                            t-field="tax.total_amount"
+                            t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
+                        />
+                    </td>
+                </tr>
+            </t>
+            <t t-if="number_taxes == 0">
+                <td class="text-right" id="data_tax_base_amount_first">
+                    <span
+                        t-field="tax.base_amount"
+                        t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
+                    />
+                </td>
+                <td id="data_tax_name_first">
+                    <span t-field="tax.tax_id.name" />
+                </td>
+                <td class="text-right" id="data_tax_amount_first">
+                    <span
+                        t-field="tax.tax_amount"
+                        t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
+                    />
+                </td>
+                <td class="text-right" id="data_tax_total_amount">
+                    <span
+                        t-field="tax.total_amount"
+                        t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
+                    />
+                </td>
+            </t>
+            <t t-set="number_taxes" t-value="number_taxes + 1" />
+        </t>
+    </template>
+    <template id="l10n_es_vat_book.vat_book_taxes_head">
+        <thead>
+            <tr>
+                <td id="summary_invoice_number" />
+                <td id="summary_invoice_date" />
+                <td id="summary_company" />
+                <td id="summary_vat" />
+                <td class="text-right" id="summary_base">Base</td>
+                <td id="summary_tax">Tax</td>
+                <td class="text-right" id="summary_fee">Fee</td>
+                <td class="text-right" id="summary_total">Total</td>
+            </tr>
+        </thead>
+    </template>
+    <template id="l10n_es_vat_book.vat_book_tax_summary">
+        <td id="data_summary_invoice_number" />
+        <td id="data_summary_invoice_date" />
+        <td id="data_summary_invoice_company" />
+        <td id="data_summary_invoice_vat" />
+        <td class="text-right" id="data_summary_base_amount">
+            <span
+                t-field="s.base_amount"
+                t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
+            />
+        </td>
+        <td id="data_summary_tax_name">
+            <span t-field="s.tax_id.name" />
+        </td>
+        <td class="text-right" id="data_summary_tax_amount">
+            <span
+                t-field="s.tax_amount"
+                t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
+            />
+        </td>
+        <td class="text-right" id="data_summary_tax_total_amount">
+            <span
+                t-field="s.total_amount"
+                t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
+            />
+        </td>
+    </template>
+    <template id="l10n_es_vat_book.vat_book_summary">
+        <td id="total_summary_invoice_number" />
+        <td id="total_summary_invoice_date" />
+        <td id="total_summary_invoice_company" />
+        <td id="total_summary_vat">
+            <strong>Total</strong>
+        </td>
+        <td class="text-right" id="total_summary_base_amount">
+            <span
+                t-field="s.base_amount"
+                t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
+            />
+        </td>
+        <td id="data_summary_tax_name" />
+        <td class="text-right" id="total_summary_tax_amount">
+            <span
+                t-field="s.tax_amount"
+                t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
+            />
+        </td>
+        <td class="text-right" id="data_summary_tax_total_amount">
+            <span
+                t-field="s.total_amount"
+                t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
+            />
+        </td>
+    </template>
+</odoo>
