@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-17 11:49+0000\n"
-"PO-Revision-Date: 2024-02-28 21:36+0000\n"
+"PO-Revision-Date: 2024-05-14 09:08+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -330,6 +330,13 @@ msgstr "Es devolución"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__is_page_8_line
 msgid "Is part of page 8"
 msgstr "Es línea de la página 8"
+
+#. module: l10n_es_aeat_mod369
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod369/models/mod369.py:0
+#, python-format
+msgid "It is not possible to create a move if the total amount is 0."
+msgstr "No es posible generar un asiento si el saldo total a ingresar es igual a 0."
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__journal_id
