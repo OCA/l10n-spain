@@ -14,16 +14,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: delivery_gls_asm
-#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__0
-msgid "10:00 Service"
-msgstr ""
-
-#. module: delivery_gls_asm
-#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__2
-msgid "14:00 Service"
-msgstr ""
-
-#. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__27
 msgid "14H SOBRES"
 msgstr ""
@@ -149,11 +139,6 @@ msgstr ""
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__96
 msgid "BUSINESS PARCEL"
-msgstr ""
-
-#. module: delivery_gls_asm
-#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__3
-msgid "BusinessParcel"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -350,8 +335,8 @@ msgid "EUROBUSINESS SMALL PARCEL"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__18
-msgid "EconomyParcel"
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__16
+msgid "Economy"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -390,6 +375,11 @@ msgid "Ent. Pto. ASM"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__18
+msgid "Entrega 24-48h (serv. 96) o 48h (serv. 37)"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__cancel_returned
 msgid "Entrega anulada (devuelta)"
 msgstr ""
@@ -417,6 +407,26 @@ msgstr ""
 #. module: delivery_gls_asm
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_stock_picking__gls_pickup_state
 msgid "Estado recogida GLS"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__17
+msgid "Express"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__0
+msgid "Express 10:00"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__2
+msgid "Express 14:00"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__3
+msgid "Express 19:00"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -899,7 +909,7 @@ msgstr ""
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__11
-msgid "Rec. en NAVE."
+msgid "Rec. en agencia"
 msgstr ""
 
 #. module: delivery_gls_asm
