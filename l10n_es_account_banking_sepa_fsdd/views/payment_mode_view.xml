@@ -9,10 +9,7 @@
         />
         <field name="arch" type="xml">
             <field name="payment_type" position="after">
-                <field
-                    name="charge_financed"
-                    attrs="{'invisible': [('payment_type', '!=', 'inbound')]}"
-                />
+                <field name="charge_financed" invisible="payment_type != 'inbound'" />
             </field>
         </field>
     </record>
