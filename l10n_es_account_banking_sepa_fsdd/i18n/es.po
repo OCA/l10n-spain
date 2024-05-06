@@ -1,0 +1,47 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_account_banking_sepa_fsdd
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-24 09:27+0000\n"
+"PO-Revision-Date: 2022-05-24 20:05+0000\n"
+"Last-Translator: Luis D. Lafaurie <luislafaurie@hotmail.com>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: l10n_es_account_banking_sepa_fsdd
+#: model:ir.model.fields,help:l10n_es_account_banking_sepa_fsdd.field_account_payment_mode__charge_financed
+msgid "Adds FSDD prefix to sepa file id"
+msgstr "Añade el prefijo FSDD al identificador del fichero sepa"
+
+#. module: l10n_es_account_banking_sepa_fsdd
+#: model:ir.model.fields,field_description:l10n_es_account_banking_sepa_fsdd.field_account_payment_mode__charge_financed
+msgid "Financed Charge"
+msgstr "Cobro financiado"
+
+#. module: l10n_es_account_banking_sepa_fsdd
+#: model:ir.model,name:l10n_es_account_banking_sepa_fsdd.model_account_payment_mode
+msgid "Payment Modes"
+msgstr "Modos de pago"
+
+#. module: l10n_es_account_banking_sepa_fsdd
+#: model:ir.model,name:l10n_es_account_banking_sepa_fsdd.model_account_payment_order
+msgid "Payment Order"
+msgstr "Orden de pago"
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre a mostrar"
+
+#~ msgid "ID"
+#~ msgstr "ID (identificación)"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
