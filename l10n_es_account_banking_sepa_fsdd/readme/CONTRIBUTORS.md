@@ -1,0 +1,9 @@
+- Omar Castiñeira Saavedra \<<omar@comunitea.com>\>
+- Jaume Planas \<<jaume.planas@minorisa.net>\>
+- [Tecnativa](https://www.tecnativa.com):
+  - Luis M. Ontalba
+  - Pedro M. Baeza
+- [Landoo](https://www.landoo.es/):
+  - Aritz Olea
+- [Sygel](https://www.sygel.es/):
+  - Ángel García de la Chica Herrera
