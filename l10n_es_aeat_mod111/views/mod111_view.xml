@@ -25,6 +25,7 @@
         <field name="arch" type="xml">
             <field name="previous_number" position="after">
                 <field name="tipo_declaracion" />
+                <field name="tax_agency_ids" widget="many2many_tags" />
                 <field name="colegio_concertado" />
             </field>
             <group name="group_declaration" position="after">

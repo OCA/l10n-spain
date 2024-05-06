@@ -13,6 +13,7 @@
                             name="aeat_identification"
                             attrs="{'required': [('aeat_identification_type', '!=', False)], 'invisible': [('aeat_identification_type', '=', False)]}"
                         />
+                        <field name="tax_agency_id" />
                     </group>
                 </page>
             </notebook>
