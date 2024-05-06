@@ -125,6 +125,10 @@ class L10nEsAeatMod369Report(models.Model):
         states={"draft": [("readonly", False)]},
     )
 
+    def _compute_allow_posting(self):
+        for report in self:
+            report.allow_posting = True
+
     @api.model
     def _get_period_from_date(self, date, monthly=False):
         month = date.month
@@ -334,3 +338,52 @@ class L10nEsAeatMod369Report(models.Model):
             )
             groups._compute_totals()
         return res
+
+    @api.model
+    def _prepare_regularization_move_line(self):
+        if self.total_amount > 0:
+            account_template = self.env.ref("l10n_es.account_common_4750")
+            account_4750 = self.company_id.get_account_from_template(account_template)
+            return {
+                "name": account_4750.name,
+                "account_id": account_4750.id,
+                "debit": 0,
+                "credit": self.total_amount,
+            }
+        elif self.total_amount < 0:
+            account_template = self.env.ref("l10n_es.account_common_4700")
+            account_4700 = self.company_id.get_account_from_template(account_template)
+            return {
+                "name": account_4700.name,
+                "account_id": account_4700.id,
+                "debit": -self.total_amount,
+                "credit": 0,
+            }
+        return False
+
+    def _prepare_regularization_move_lines(self):
+        """Prepare the list of dictionaries for the regularization move lines."""
+        self.ensure_one()
+        regularization_ml = self._prepare_regularization_move_line()
+        lines = [regularization_ml] if regularization_ml else []
+        lines += self._prepare_regularization_extra_move_lines()
+        debit = sum(x["debit"] for x in lines)
+        credit = sum(x["credit"] for x in lines)
+        lines.append(
+            self._prepare_counterpart_move_line(
+                self.counterpart_account_id, debit, credit
+            )
+        )
+        return lines
+
+    @api.model
+    def _prepare_counterpart_move_line(self, account, debit, credit):
+        vals = {
+            "name": account.name,
+            "account_id": account.id,
+        }
+        precision = self.env["decimal.precision"].precision_get("Account")
+        balance = round(debit - credit, precision)
+        vals["debit"] = 0.0 if debit > credit else -balance
+        vals["credit"] = balance if debit > credit else 0.0
+        return vals

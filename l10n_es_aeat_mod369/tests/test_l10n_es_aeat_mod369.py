@@ -170,3 +170,57 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
 
             total_sale_invoices_tax += sale_invoice_by_key.amount_tax
         self.assertEqual(self.model369.total_amount, total_sale_invoices_tax)
+
+    def create_account_move(self):
+        self.model369.journal_id = self.journal_misc.id
+        account_template = self.env.ref("l10n_es.account_common_477")
+        account_477 = self.model369.company_id.get_account_from_template(
+            account_template
+        )
+        self.model369.counterpart_account_id = account_477.id
+        self.model369.button_confirm()
+        self.model369.button_post()
+
+    def test_model_369_account_move_positive_amount(self):
+        self.model369.button_calculate()
+        self.create_account_move()
+
+        self.assertEqual(self.model369.name, self.model369.move_id.ref)
+        self.assertEqual(self.model369.move_id.journal_id, self.model369.journal_id)
+
+        account_template = self.env.ref("l10n_es.account_common_4750")
+        account_4750 = self.model369.company_id.get_account_from_template(
+            account_template
+        )
+        for ml in self.model369.move_id.line_ids:
+            if ml.debit > 0:
+                self.assertEqual(
+                    self.model369.counterpart_account_id.id, ml.account_id.id
+                )
+                self.assertEqual(ml.debit, self.model369.total_amount)
+            elif ml.credit > 0:
+                self.assertEqual(account_4750.id, ml.account_id.id)
+                self.assertEqual(ml.credit, self.model369.total_amount)
+
+    def test_model_369_account_move_negative_amount(self):
+        self.model369.button_calculate()
+        self.model369.total_amount *= -1
+        self.create_account_move()
+
+        self.assertEqual(self.model369.name, self.model369.move_id.ref)
+        self.assertEqual(self.model369.move_id.journal_id, self.model369.journal_id)
+
+        account_template = self.env.ref("l10n_es.account_common_4700")
+        account_4700 = self.model369.company_id.get_account_from_template(
+            account_template
+        )
+
+        for ml in self.model369.move_id.line_ids:
+            if ml.credit > 0:
+                self.assertEqual(
+                    self.model369.counterpart_account_id.id, ml.account_id.id
+                )
+                self.assertEqual(ml.credit, abs(self.model369.total_amount))
+            elif ml.debit > 0:
+                self.assertEqual(account_4700.id, ml.account_id.id)
+                self.assertEqual(ml.debit, abs(self.model369.total_amount))
