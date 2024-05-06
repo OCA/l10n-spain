@@ -3,6 +3,8 @@
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 import logging
 
+from odoo.exceptions import UserError
+
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
 )
@@ -170,3 +172,60 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
 
             total_sale_invoices_tax += sale_invoice_by_key.amount_tax
         self.assertEqual(self.model369.total_amount, total_sale_invoices_tax)
+
+    def create_account_move(self):
+        self.model369.journal_id = self.journal_misc.id
+        account_template = self.env.ref("l10n_es.account_common_477")
+        account_477 = self.model369.company_id.get_account_from_template(
+            account_template
+        )
+        self.model369.counterpart_account_id = account_477.id
+        self.model369.button_confirm()
+        self.model369.button_post()
+
+    def test_model_369_account_move_positive_amount(self):
+        self.model369.button_calculate()
+        self.create_account_move()
+        self.assertEqual(self.model369.name, self.model369.move_id.ref)
+        self.assertEqual(self.model369.move_id.journal_id, self.model369.journal_id)
+        account_4750 = self.env["account.account"].search(
+            [
+                ("company_id", "=", self.model369.company_id.id),
+                ("code", "=ilike", "4750%"),
+            ]
+        )
+        debit_line = self.model369.move_id.line_ids[1]
+        credit_line = self.model369.move_id.line_ids[0]
+        self.assertEqual(
+            self.model369.counterpart_account_id.id, debit_line.account_id.id
+        )
+        self.assertEqual(debit_line.debit, self.model369.total_amount)
+        self.assertEqual(account_4750.id, credit_line.account_id.id)
+        self.assertEqual(credit_line.credit, self.model369.total_amount)
+
+    def test_model_369_account_move_negative_amount(self):
+        self.model369.button_calculate()
+        self.model369.total_amount *= -1
+        self.create_account_move()
+        self.assertEqual(self.model369.name, self.model369.move_id.ref)
+        self.assertEqual(self.model369.move_id.journal_id, self.model369.journal_id)
+        account_4700 = self.env["account.account"].search(
+            [
+                ("company_id", "=", self.model369.company_id.id),
+                ("code", "=ilike", "4700%"),
+            ]
+        )
+        debit_line = self.model369.move_id.line_ids[0]
+        credit_line = self.model369.move_id.line_ids[1]
+        self.assertEqual(
+            self.model369.counterpart_account_id.id, credit_line.account_id.id
+        )
+        self.assertEqual(credit_line.credit, abs(self.model369.total_amount))
+        self.assertEqual(account_4700.id, debit_line.account_id.id)
+        self.assertEqual(debit_line.debit, abs(self.model369.total_amount))
+
+    def test_model_369_account_move_zero_amount(self):
+        self.model369.button_calculate()
+        self.model369.total_amount = 0
+        with self.assertRaises(UserError):
+            self.create_account_move()
