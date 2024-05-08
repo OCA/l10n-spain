@@ -5,10 +5,7 @@
         <field name="inherit_id" ref="account.view_account_journal_form" />
         <field name="arch" type="xml">
             <xpath expr="//page[@name='advanced_settings']/group" position="inside">
-                <group
-                    string="Norm 43 options"
-                    attrs="{'invisible': [('type','!=','bank')]}"
-                >
+                <group string="Norm 43 options" invisible="type != 'bank'">
                     <field name="n43_date_type" />
                 </group>
             </xpath>
