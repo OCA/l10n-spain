@@ -30,6 +30,7 @@ class L10nEsAccountStatementImportN43(common.TransactionCase):
             }
         )
         eur_currency = cls.env.ref("base.EUR")
+        eur_currency.write({"active": True})
         cls.journal = cls.env["account.journal"].create(
             {
                 "type": "bank",
