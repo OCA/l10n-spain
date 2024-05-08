@@ -77,6 +77,7 @@
                     <field name="tbai_enabled" invisible="1" />
                     <group
                         name="lroe_refund"
+                        groups="account.group_account_invoice"
                         string="Refund"
                         attrs="{'invisible': ['|', '|', ('tbai_enabled', '!=', True), ('tbai_refund_origin_ids', '!=', []), ('move_type', '!=', 'in_refund')]}"
                     >
@@ -108,6 +109,7 @@
                         name="tbai_refund_origin_invoices_data"
                         string="Origin Invoices Data"
                         cols="4"
+                        groups="account.group_account_invoice"
                         attrs="{'invisible': ['|', '|', ('tbai_enabled', '!=', True), ('reversed_entry_id', '!=', False), ('move_type', '!=', 'in_refund')]}"
                     >
                             <field
