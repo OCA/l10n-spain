@@ -68,7 +68,7 @@ class AccountStatementImport(models.TransientModel):
             "divisa": line[47:50],
             "modalidad": line[50:51],  # 1, 2 o 3
             "nombre_propietario": line[51:77],
-            "saldo_ini": float("{}.{}".format(line[33:45], line[45:47])),
+            "saldo_ini": float(f"{line[33:45]}.{line[45:47]}"),
             "saldo_fin": 0,
             "num_debe": 0,
             "debe": 0,
@@ -118,10 +118,10 @@ class AccountStatementImport(models.TransientModel):
     def _process_record_33(self, st_group, line):
         """33 - Registro final de cuenta"""
         st_group["num_debe"] += int(line[20:25])
-        st_group["debe"] += float("{}.{}".format(line[25:37], line[37:39]))
+        st_group["debe"] += float(f"{line[25:37]}.{line[37:39]}")
         st_group["num_haber"] += int(line[39:44])
-        st_group["haber"] += float("{}.{}".format(line[44:56], line[56:58]))
-        st_group["saldo_fin"] += float("{}.{}".format(line[59:71], line[71:73]))
+        st_group["haber"] += float(f"{line[44:56]}.{line[56:58]}")
+        st_group["saldo_fin"] += float(f"{line[59:71]}.{line[71:73]}")
         if line[58:59] == "1":  # pragma: no cover
             st_group["saldo_fin"] *= -1
         # Group level checks
