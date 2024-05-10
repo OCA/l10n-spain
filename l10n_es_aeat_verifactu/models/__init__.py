@@ -1,3 +1,4 @@
+from . import account_journal
 from . import res_company
 from . import verifactu_mixin
 from . import account_move
