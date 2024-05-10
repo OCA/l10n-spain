@@ -6,7 +6,7 @@
     "version": "16.0.1.0.0",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
-    "author": "Aures Tic," "Odoo Community Association (OCA)",
+    "author": "Aures Tic, ForgeFlow," "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
@@ -23,5 +23,6 @@
         "views/account_fiscal_position_view.xml",
         "views/res_company_view.xml",
         "views/res_partner_view.xml",
+        "views/account_journal_views.xml",
     ],
 }
