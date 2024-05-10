@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Aures TIC - Jose Zambudio
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="invoice_verifactu_form" model="ir.ui.view">
+        <field name="name">account.invoice.verifactu.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_move_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page
+                    string="Veri*FACTU"
+                    name="page_aeat"
+                    attrs="{'invisible': [('verifactu_enabled', '=', False)]}"
+                >
+                    <group
+                        string="Veri*FACTU Information"
+                        name="group_aeat_information"
+                    >
+                        <field name="verifactu_enabled" invisible="1" />
+                    </group>
+                    <group
+                        string="Veri*FACTU Result"
+                        name="group_aeat_result"
+                        groups="l10n_es_aeat.group_account_aeat"
+                    >
+                        <notebook colspan="2">
+                            <page name="page_aeat_result_general" string="General">
+                                <group>
+                                    <field name="aeat_state" />
+                                    <field
+                                        name="aeat_send_failed"
+                                        attrs="{'invisible': [('aeat_send_failed', '=', False)]}"
+                                    />
+                                    <field
+                                        name="aeat_send_error"
+                                        attrs="{'invisible': [('aeat_send_failed', '=', False)]}"
+                                    />
+                                </group>
+                            </page>
+                            <page
+                                name="page_aeat_result_technical"
+                                string="Technical"
+                                groups="base.group_no_one"
+                            >
+                                <group>
+                                    <label for="aeat_header_sent" />
+                                </group>
+                                <field name="aeat_header_sent" />
+                                <group>
+                                    <label for="aeat_content_sent" />
+                                </group>
+                                <field name="aeat_content_sent" />
+                            </page>
+                        </notebook>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
