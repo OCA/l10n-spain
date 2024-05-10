@@ -35,8 +35,8 @@ class AccountMove(models.Model):
                     invoice.fiscal_position_id.sii_forced_communication_type
                 )
 
-    def _get_sii_header(self, tipo_comunicacion=False, cancellation=False):
-        header = super()._get_sii_header(tipo_comunicacion, cancellation)
+    def _get_aeat_header(self, tipo_comunicacion=False, cancellation=False):
+        header = super()._get_aeat_header(tipo_comunicacion, cancellation)
         if (
             self.sii_allow_force_communication_type
             and self.sii_force_communication_type

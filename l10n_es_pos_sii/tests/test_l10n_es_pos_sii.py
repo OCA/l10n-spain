@@ -60,7 +60,7 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
                 .create(
                     {
                         "name": "Test simplified default customer",
-                        "sii_simplified_invoice": True,
+                        "aeat_simplified_invoice": True,
                     }
                 )
                 .id,
@@ -199,7 +199,7 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
     def _compare_sii_dict(self, json_file, order):
         """Helper method for comparing the expected SII dict with ."""
         module = "l10n_es_pos_sii"
-        result_dict = order._get_sii_invoice_dict()
+        result_dict = order._get_aeat_invoice_dict()
         path = get_resource_path(module, "tests/json", json_file)
         if not path:
             raise Exception("Incorrect JSON file: %s" % json_file)
@@ -248,9 +248,9 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
             order.send_sii()
             self.assertTrue(order.order_jobs_ids)
 
-    def test_04_is_sii_simplified_invoice(self):
+    def test_04_is_aeat_simplified_invoice(self):
         for order in self.session.order_ids:
-            self.assertTrue(order._is_sii_simplified_invoice())
+            self.assertTrue(order._is_aeat_simplified_invoice())
 
     def test_05_sii_description(self):
         self.order.company_id.write(

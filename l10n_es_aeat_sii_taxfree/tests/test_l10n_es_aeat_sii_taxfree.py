@@ -18,12 +18,12 @@ class TestL10nEsAeatSiiTaxfree(TestL10nEsAeatSii):
         invoice.fiscal_position_id.write({"sii_refund_as_regular": False})
         self.assertFalse(invoice.fiscal_position_id.sii_refund_as_regular)
         invoice.partner_id.commercial_partner_id.write(
-            {"sii_simplified_invoice": False}
+            {"aeat_simplified_invoice": False}
         )
         self.assertFalse(
-            invoice.partner_id.commercial_partner_id.sii_simplified_invoice
+            invoice.partner_id.commercial_partner_id.aeat_simplified_invoice
         )
-        inv_dict = invoice._get_sii_invoice_dict_out()
+        inv_dict = invoice._get_aeat_invoice_dict_out()
         self.assertEqual(inv_dict["FacturaExpedida"]["TipoFactura"], "F1")
 
         invoice_1 = self._create_invoice_for_sii("out_invoice")
@@ -31,12 +31,12 @@ class TestL10nEsAeatSiiTaxfree(TestL10nEsAeatSii):
         invoice_1.fiscal_position_id.write({"sii_refund_as_regular": True})
         self.assertTrue(invoice_1.fiscal_position_id.sii_refund_as_regular)
         invoice_1.partner_id.commercial_partner_id.write(
-            {"sii_simplified_invoice": True}
+            {"aeat_simplified_invoice": True}
         )
         self.assertTrue(
-            invoice_1.partner_id.commercial_partner_id.sii_simplified_invoice
+            invoice_1.partner_id.commercial_partner_id.aeat_simplified_invoice
         )
-        inv_dict_1 = invoice_1._get_sii_invoice_dict_out()
+        inv_dict_1 = invoice_1._get_aeat_invoice_dict_out()
         self.assertEqual(inv_dict_1["FacturaExpedida"]["TipoFactura"], "F2")
         self.assertFalse(inv_dict_1["FacturaExpedida"].get("TipoRectificativa", False))
         self.assertFalse(inv_dict_1["FacturaExpedida"].get("ImporteTotal", False))

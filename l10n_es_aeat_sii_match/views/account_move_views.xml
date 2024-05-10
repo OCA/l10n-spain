@@ -18,7 +18,7 @@
                     groups="l10n_es_aeat.group_account_aeat"
                 />
             </field>
-            <field name="sii_state" position="after">
+            <field name="aeat_state" position="after">
                 <field
                     name="sii_match_state"
                     groups="l10n_es_aeat.group_account_aeat"

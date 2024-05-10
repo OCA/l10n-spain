@@ -373,9 +373,9 @@ class SiiMatchReport(models.Model):
             serv = (
                 self.env["account.move"]
                 .search([("company_id", "in", [self.company_id.id, False])], limit=1)
-                ._connect_sii(mapping_key)
+                ._connect_aeat(mapping_key)
             )
-            header = sii_match_report._get_sii_header()
+            header = sii_match_report._get_aeat_header()
             match_vals = {}
             summary = {}
             try:
@@ -428,7 +428,7 @@ class SiiMatchReport(models.Model):
                 new_cr.close()
                 raise
 
-    def _get_sii_header(self):
+    def _get_aeat_header(self):
         """Builds SII send header
 
         :return Dict with header data depending on cancellation

@@ -47,23 +47,23 @@ class TestL10nEsAeatSiiForceType(common.TransactionCase):
         )
 
     @mute_logger("odoo.models", "odoo.models.unlink", "odoo.addons.base.ir.ir_model")
-    def test_01_get_sii_header(self):
+    def test_01_get_aeat_header(self):
         # Tests with sii_allow_force_communication_type = False
         self.fiscal_position.sii_allow_force_communication_type = False
         self.assertFalse(self.fiscal_position.sii_allow_force_communication_type)
-        self.assertFalse(self.invoice._get_sii_header().get("TipoComunicacion"))
+        self.assertFalse(self.invoice._get_aeat_header().get("TipoComunicacion"))
 
         # Tests with sii_allow_force_communication_type = True
         self.fiscal_position.sii_allow_force_communication_type = True
         self.fiscal_position.sii_forced_communication_type = "A0"
         self.assertTrue(self.fiscal_position.sii_allow_force_communication_type)
         self.assertEqual(self.fiscal_position.sii_forced_communication_type, "A0")
-        self.assertEqual(self.invoice._get_sii_header().get("TipoComunicacion"), "A0")
+        self.assertEqual(self.invoice._get_aeat_header().get("TipoComunicacion"), "A0")
         self.invoice.fiscal_position_id = self.env["account.fiscal.position"]
         self.fiscal_position.sii_forced_communication_type = "A1"
         self.invoice.fiscal_position_id = self.fiscal_position
         self.assertEqual(self.fiscal_position.sii_forced_communication_type, "A1")
-        self.assertEqual(self.invoice._get_sii_header().get("TipoComunicacion"), "A1")
+        self.assertEqual(self.invoice._get_aeat_header().get("TipoComunicacion"), "A1")
 
     def test_02_invoice_form_value_update(self):
         with Form(self.invoice) as invoice_form:
