@@ -17,6 +17,13 @@
                     </group>
                 </page>
             </notebook>
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="aeat_sending_enabled" invisible="1" />
+                <field
+                    name="aeat_simplified_invoice"
+                    invisible="not aeat_sending_enabled"
+                />
+            </xpath>
         </field>
     </record>
 </odoo>
