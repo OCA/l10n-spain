@@ -22,7 +22,7 @@ class TestL10nEsAeatSiiMatch(TestL10nEsAeatSiiBase):
     def test_invoice_diffs_values(self):
         self._activate_certificate()
         invoice = self.invoice
-        invoice.sii_state = "sent"
-        invoice.sii_csv = invoice._get_sii_invoice_dict()
+        invoice.aeat_state = "sent"
+        invoice.sii_csv = invoice._get_aeat_invoice_dict()
         res = invoice._get_diffs_values(invoice.sii_csv)
         self.assertEqual(res, [])
