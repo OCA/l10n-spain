@@ -12,8 +12,8 @@ class AccountMove(models.Model):
     sii_invoice_summary_start = fields.Char("SII Invoice Summary: First Invoice")
     sii_invoice_summary_end = fields.Char("SII Invoice Summary: Last Invoice")
 
-    def _get_sii_invoice_dict_out(self, cancel=False):
-        inv_dict = super()._get_sii_invoice_dict_out(cancel=cancel)
+    def _get_aeat_invoice_dict_out(self, cancel=False):
+        inv_dict = super()._get_aeat_invoice_dict_out(cancel=cancel)
         if self.is_invoice_summary and self.is_sale_document():
             tipo_factura = "F4"
             if self.sii_invoice_summary_start:
@@ -39,11 +39,11 @@ class AccountMove(models.Model):
 
         return inv_dict
 
-    def _sii_check_exceptions(self):
+    def _aeat_check_exceptions(self):
         """Inheritable method for exceptions control when sending SII invoices."""
         res = False
         try:
-            res = super()._sii_check_exceptions()
+            res = super()._aeat_check_exceptions()
         except exceptions.UserError as e:
             if (
                 e.args[0] == _("The partner has not a VAT configured.")
@@ -61,7 +61,7 @@ class AccountMove(models.Model):
         """Cannot let change sii_invoice_summary fields
         values in a SII registered supplier invoice"""
         for invoice in self.filtered(
-            lambda x: x.is_invoice_summary and x.sii_state != "not_sent"
+            lambda x: x.is_invoice_summary and x.aeat_state != "not_sent"
         ):
             if "sii_invoice_summary_start" in vals:
                 invoice._raise_exception_sii(_("SII Invoice Summary: First Invoice"))
