@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Aures TIC - Jose Zambudio <jose@aurestic.es>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="view_account_position_form" model="ir.ui.view">
+        <field name="name">account.fiscal.position.form</field>
+        <field name="model">account.fiscal.position</field>
+        <field name="inherit_id" ref="account.view_account_position_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='country_group_id']/.." position="after">
+                <field name="verifactu_enabled" invisible="1" />
+                <group
+                    string="veri*FACTU"
+                    name="group_verifactu"
+                    attrs="{'invisible': [('verifactu_enabled', '=', False)]}"
+                >
+                    <field name="aeat_active" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
