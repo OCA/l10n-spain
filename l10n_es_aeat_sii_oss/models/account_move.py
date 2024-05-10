@@ -8,9 +8,9 @@ from odoo import models
 class AccountMove(models.Model):
     _inherit = "account.move"
 
-    def _get_sii_taxes_map(self, codes, date):
+    def _get_aeat_taxes_map(self, codes, date):
         """Inject OSS taxes when querying not subjected invoices."""
-        taxes = super()._get_sii_taxes_map(codes, date)
+        taxes = super()._get_aeat_taxes_map(codes, date)
         if any([x in ["SFENS", "NotIncludedInTotal"] for x in codes]):
             taxes |= self.env["account.tax"].search(
                 [
