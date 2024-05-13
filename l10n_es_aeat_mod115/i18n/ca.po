@@ -1,0 +1,611 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_aeat_mod115
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-18 11:09+0000\n"
+"PO-Revision-Date: 2023-06-23 13:11+0000\n"
+"Last-Translator: eccit-quim <quim@eccit.com>\n"
+"Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.ui.menu,name:l10n_es_aeat_mod115.menu_aeat_mod115_report
+msgid "AEAT 115 model"
+msgstr "Model AEAT 115"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model,name:l10n_es_aeat_mod115.model_l10n_es_aeat_mod115_report
+msgid "AEAT 115 report"
+msgstr "Informe AEAT 115"
+
+#. module: l10n_es_aeat_mod115
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_tree
+msgid "AEAT 115 reports"
+msgstr "Informes AEAT 115"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.actions.act_window,name:l10n_es_aeat_mod115.action_l10n_es_aeat_mod115_report
+msgid "AEAT model 115"
+msgstr "Model 115 AEAT"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__move_id
+msgid "Account entry"
+msgstr "Compte de l'assentament"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_needaction
+msgid "Action Needed"
+msgstr "Acció necessària"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_ids
+msgid "Activities"
+msgstr "Activitats"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoració d’excepcions d’activitats"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_state
+msgid "Activity State"
+msgstr "Estat de l’activitat"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icona de tipus d'activitat"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__allow_posting
+msgid "Allow Posting"
+msgstr "Permetre la publicació"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_03
+msgid "Amount of retentions"
+msgstr "Suma de les retencions"
+
+#. module: l10n_es_aeat_mod115
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
+msgid "Amounts retained"
+msgstr "Import dels ingressos a compte"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_attachment_count
+msgid "Attachment Count"
+msgstr "Recompte de fitxers adjunts"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__partner_bank_id
+msgid "Bank account"
+msgstr "Compte bancari"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__calculation_date
+msgid "Calculation Date"
+msgstr "Data de càlcul"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__company_id
+msgid "Company"
+msgstr "Empresa"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__partner_bank_id
+msgid "Company bank account used for the presentation"
+msgstr "Compte bancari de l'empresa utilitzat per a la presentació"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__contact_email
+msgid "Contact Email"
+msgstr "Correu electrònic de contacte"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__counterpart_account_id
+msgid "Counterpart account"
+msgstr "Compte de la contrapartida"
+
+#. module: l10n_es_aeat_mod115
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod115.action_l10n_es_aeat_mod115_report
+msgid "Create and query AEAT Model 115 reports."
+msgstr "Crear i consultar les declaracions del model AEAT 115."
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__create_uid
+msgid "Created by"
+msgstr "Creat per"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__create_date
+msgid "Created on"
+msgstr "Creat el"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod115.selection__l10n_es_aeat_mod115_report__tipo_declaracion__u
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod115.selection__l10n_es_aeat_mod115_report__tipo_declaracion_positiva__u
+msgid "Direct debit"
+msgstr "Domiciliació"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__display_name
+msgid "Display Name"
+msgstr "Nom a mostrar"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__date_end
+msgid "Ending date"
+msgstr "Data de finalització"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__error_count
+msgid "Error Count"
+msgstr "Recompte d'errors"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__export_config_id
+msgid "Export config"
+msgstr "Configuració d'exportació"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_04
+msgid ""
+"Fee to compensate for prior results with same subject, fiscal year and "
+"period (in which his statement was to return and compensation back option "
+"was chosen)."
+msgstr ""
+"A deduir (exclusivament en cas d'auto-liquidació complementària): Resultats "
+"a ingressar d'anteriors auto-liquidacions per el mateix concepte, exercici i "
+"període."
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_follower_ids
+msgid "Followers"
+msgstr "Seguidors"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidors (socis)"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icona de lletra impressionant, p. ex. fa-tasques"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__contact_name
+msgid "Full Name"
+msgstr "Nom sencer"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__has_message
+msgid "Has Message"
+msgstr "Té missatge"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_exception_icon
+msgid "Icon"
+msgstr "Icona"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icona per indicar una activitat d’excepció."
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si està marcat, els missatges nous requereixen la vostra atenció."
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si està marcat, alguns missatges tenen un error de lliurament."
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_is_follower
+msgid "Is Follower"
+msgstr "És seguidor"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__journal_id
+msgid "Journal"
+msgstr "Diari"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__journal_id
+msgid "Journal in which post the move."
+msgstr "Diari on publicar el moviment."
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__representative_vat
+msgid "L.R. VAT number"
+msgstr "NIF repr. legal"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report____last_update
+msgid "Last Modified on"
+msgstr "Darrera modificació el"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__write_uid
+msgid "Last Updated by"
+msgstr "Darrera Actualització per"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__write_date
+msgid "Last Updated on"
+msgstr "Darrera Actualització el"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__representative_vat
+msgid "Legal Representative VAT number."
+msgstr "NIF del representant legal."
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Arxiu adjunt principal"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de lliurament de missatges"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_ids
+msgid "Messages"
+msgstr "Missatges"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__number
+msgid "Model number"
+msgstr "No de model"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__contact_name
+msgid "Must have name and surname."
+msgstr "Ha de tenir nom i cognoms."
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Data límit de la meva activitat"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Data límit de la propera activitat"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resum de la següent activitat"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipus d'activitat següent"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Nombre d'accions"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_has_error_counter
+msgid "Number of errors"
+msgstr "Nombre d'errors"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Nombre de missatges amb error de lliurament"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_01
+msgid "Number of recipients"
+msgstr "Nombre de destinataris"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__partner_id
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__period_type
+msgid "Period Type"
+msgstr "Tipus de període"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__contact_phone
+msgid "Phone"
+msgstr "Telèfon"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__previous_number
+msgid "Previous declaration number"
+msgstr "No previ de declaració"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__name
+msgid "Report identifier"
+msgstr "Identificador de l'informe"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_user_id
+msgid "Responsible User"
+msgstr "Usuari responsable"
+
+#. module: l10n_es_aeat_mod115
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
+msgid "Result"
+msgstr "Resultat"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__tipo_declaracion
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
+msgid "Result type"
+msgstr "Tipus de resultat"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__tipo_declaracion_negativa
+msgid "Result type (negative)"
+msgstr "Tipus de resultat (negatiu)"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__tipo_declaracion_positiva
+msgid "Result type (positive)"
+msgstr "Tipus de resultat (positiu)"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_05
+msgid "Result: ([03] - [04])"
+msgstr "Resultat: ([03]-[04])"
+
+#. module: l10n_es_aeat_mod115
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
+#, python-format
+msgid "Select an account for making the charge"
+msgstr "Seleccioneu un compte per a realitzar el càrrec"
+
+#. module: l10n_es_aeat_mod115
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
+#, python-format
+msgid "Select an account for receiving the money"
+msgstr "Seleccioneu un compte per rebre els diners"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__date_start
+msgid "Starting date"
+msgstr "Data inicial"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__state
+msgid "State"
+msgstr "Estat"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__statement_type
+msgid "Statement Type"
+msgstr "Tipus de declaració"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estat basat en activitats\n"
+"Vencida: la data de venciment ja ha passat\n"
+"Avui: la data de l'activitat és avui\n"
+"Planificades: activitats futures."
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__support_type
+msgid "Support Type"
+msgstr "Tipus de suport"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__tax_agency_ids
+msgid "Tax Agency"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__tax_line_ids
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
+msgid "Tax lines"
+msgstr "Línies d'impostos"
+
+#. module: l10n_es_aeat_mod115
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
+#, python-format
+msgid ""
+"The result of the declaration is negative. You should select another Result "
+"type"
+msgstr ""
+"El resultat de la declaració és negatiu. Heu de seleccionar un altre tipus "
+"de resultat"
+
+#. module: l10n_es_aeat_mod115
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
+#, python-format
+msgid ""
+"The result of the declaration is positive. You should select another Result "
+"type"
+msgstr ""
+"El resultat de la declaració és positiu. Heu de seleccionar un altre tipus "
+"de resultat"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__counterpart_account_id
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
+"Aquest compte serà la contrapartida per tots els elements del diari que "
+"estiguin regularitzats al comptabilitzar l'informe."
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod115.selection__l10n_es_aeat_mod115_report__tipo_declaracion__i
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod115.selection__l10n_es_aeat_mod115_report__tipo_declaracion_positiva__i
+msgid "To enter"
+msgstr "A ingressar"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod115.selection__l10n_es_aeat_mod115_report__tipo_declaracion__g
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod115.selection__l10n_es_aeat_mod115_report__tipo_declaracion_positiva__g
+msgid "To enter on CCT"
+msgstr "Ingrés a anotar al CCT"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod115.selection__l10n_es_aeat_mod115_report__tipo_declaracion__n
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod115.selection__l10n_es_aeat_mod115_report__tipo_declaracion_negativa__n
+msgid "To return"
+msgstr "A retornar"
+
+#. module: l10n_es_aeat_mod115
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
+msgid "Totals"
+msgstr "Totals"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipus d'activitat d'excepció registrada."
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__company_vat
+msgid "VAT number"
+msgstr "NIF / CIF"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__website_message_ids
+msgid "Website Messages"
+msgstr "Missatges del lloc web"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicacions de llocs web"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__year
+msgid "Year"
+msgstr "Any"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_01
+msgid "[01] # Recipients"
+msgstr "[01] No de destinataris"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_03
+msgid "[03] Amount of retentions"
+msgstr "[03] Suma de les retencions"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_04
+msgid "[04] Fees to compensate"
+msgstr "[04] Quotes a compensar"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_05
+msgid "[05] Result"
+msgstr "[05] Resultat"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error de lliurament d'SMS"
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "Nombre de missatges que requereixen una acció"
+
+#~ msgid "Model"
+#~ msgstr "Model"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Nombre de missatges no llegits"
+
+#~ msgid "Unread Messages"
+#~ msgstr "Missatges no llegits"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Comptador de missatges no llegits"
+
+#~ msgid "Calculation date"
+#~ msgstr "Data de càlcul"
+
+#~ msgid "Contact email"
+#~ msgstr "Email contacte"
+
+#~ msgid "Followers (Channels)"
+#~ msgstr "Seguidors (canals)"
+
+#~ msgid "Period type"
+#~ msgstr "Tipus de període"
+
+#~ msgid "Cancelled"
+#~ msgstr "Cancel·lada"
+
+#~ msgid "Complementary"
+#~ msgstr "Complementària"
+
+#~ msgid "DVD"
+#~ msgstr "DVD"
+
+#~ msgid "Done"
+#~ msgstr "Fet"
+
+#~ msgid "Draft"
+#~ msgstr "Esborrany"
+
+#~ msgid "Normal"
+#~ msgstr "Normal"
+
+#~ msgid "Posted"
+#~ msgstr "Comptabilitzat"
+
+#~ msgid "Processed"
+#~ msgstr "Processat"
+
+#~ msgid "Substitutive"
+#~ msgstr "Substitutiva"
+
+#~ msgid "Telematics"
+#~ msgstr "Telemàtica"
