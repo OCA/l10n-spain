@@ -13,8 +13,7 @@
                 <group
                     string="Resultado"
                     colspan="4"
-                    states="calculated,done,cancelled"
-                    attrs="{'invisible': [('year', '&gt;=', 2024)]}"
+                    attrs="{'invisible': ['|', ('state', '=', 'draft'), ('year', '&gt;=', 2024)]}"
                 >
                     <group string="Retenciones e ingresos a cuenta">
                         <field name="casilla_01" />
@@ -64,8 +63,7 @@
                 <group
                     string="Número de rentas"
                     col="3"
-                    states="calculated,done,cancelled"
-                    attrs="{'invisible': [('year', '&lt;', 2024)]}"
+                    attrs="{'invisible': ['|', ('state', '=', 'draft'), ('year', '&lt;', 2024)]}"
                 >
                     <group>
                         <label
@@ -87,8 +85,7 @@
                 <group
                     string="Base de retenciones e ingresos a cuenta"
                     col="3"
-                    states="calculated,done,cancelled"
-                    attrs="{'invisible': [('year', '&lt;', 2024)]}"
+                    attrs="{'invisible': ['|', ('state', '=', 'draft'), ('year', '&lt;', 2024)]}"
                 >
                     <group>
                         <label
@@ -125,8 +122,7 @@
                 <group
                     string="Retenciones e ingresos a cuenta"
                     col="3"
-                    states="calculated,done,cancelled"
-                    attrs="{'invisible': [('year', '&lt;', 2024)]}"
+                    attrs="{'invisible': ['|', ('state', '=', 'draft'), ('year', '&lt;', 2024)]}"
                 >
                     <group>
                         <label
@@ -163,8 +159,7 @@
                 <group
                     string="Periodificación"
                     col="3"
-                    states="calculated,done,cancelled"
-                    attrs="{'invisible': [('year', '&lt;', 2024)]}"
+                    attrs="{'invisible': ['|', ('state', '=', 'draft'), ('year', '&lt;', 2024)]}"
                 >
                     <group />
                     <group>
@@ -185,8 +180,7 @@
                 <group
                     string="Total Liquidación"
                     col="3"
-                    states="calculated,done,cancelled"
-                    attrs="{'invisible': [('year', '&lt;', 2024)]}"
+                    attrs="{'invisible': ['|', ('state', '=', 'draft'), ('year', '&lt;', 2024)]}"
                 >
                     <group />
                     <group />
