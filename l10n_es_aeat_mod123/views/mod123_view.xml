@@ -261,7 +261,7 @@
                 <attribute name="string">Declaraciones AEAT 123</attribute>
             </tree>
             <field name="period_type" position="after">
-                <field name="casilla_08" string="Resultado" />
+                <field name="amount_result" />
             </field>
         </field>
     </record>
