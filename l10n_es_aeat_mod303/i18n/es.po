@@ -523,7 +523,6 @@ msgstr "Si está marcado, los nuevos mensajes requerirán su atención."
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
 
@@ -798,11 +797,6 @@ msgid "Resultado"
 msgstr "Resultado"
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "SMS de error en la entrega"
-
-#. module: l10n_es_aeat_mod303
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod303/models/mod303.py:0
 #, python-format
@@ -1063,6 +1057,9 @@ msgstr "¿SII voluntario?"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__has_operation_volume
 msgid "¿Volumen de operaciones?"
 msgstr "¿Volumen de operaciones?"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "SMS de error en la entrega"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Número de mensajes que requieren una acción"

@@ -285,6 +285,11 @@ msgid "Calculation Date"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__return_last_period
+msgid "Check if you are submitting the last period return"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__company_id
 msgid "Company"
 msgstr ""
@@ -568,6 +573,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_activity_code____last_update
 msgid "Last Modified on"
 msgstr "Modificado por última vez o"
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__return_last_period
+msgid "Last Period Return"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__write_uid
