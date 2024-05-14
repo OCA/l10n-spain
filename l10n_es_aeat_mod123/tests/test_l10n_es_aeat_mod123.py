@@ -65,6 +65,8 @@ class TestL10nEsAeatMod123(TestL10nEsAeatModBase):
             _logger.debug("Checking tax line: %s" % box)
             lines = model123.tax_line_ids.filtered(lambda x: x.field_number == int(box))
             self.assertAlmostEqual(sum(lines.mapped("amount")), result, 2)
+        self.assertEqual(model123.casilla_08, 627.0)
+        self.assertEqual(model123.amount_result, 627.0)
         export_to_boe = self.env["l10n.es.aeat.report.export_to_boe"].create(
             {"name": "test_export_to_boe.txt"}
         )
@@ -129,10 +131,13 @@ class TestL10nEsAeatMod123(TestL10nEsAeatModBase):
         self.assertEqual(model123.casilla_10_2024, 0)
         self.assertEqual(model123.casilla_12_2024, 627.0)
         self.assertEqual(model123.casilla_14_2024, 627.0)
+        self.assertEqual(model123.amount_result, 627.0)
         model123.casilla_11_2024 = 180
         self.assertEqual(model123.casilla_12_2024, 807.0)
+        self.assertEqual(model123.amount_result, 807.0)
         model123.casilla_13_2024 = 240
         self.assertEqual(model123.casilla_14_2024, 567.0)
+        self.assertEqual(model123.amount_result, 567.0)
         # Export to BOE
         export_to_boe = self.env["l10n.es.aeat.report.export_to_boe"].create(
             {"name": "test_export_to_boe.txt"}
