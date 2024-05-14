@@ -121,6 +121,7 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
             move_line_domain.append(("debit", ">", 0))
         elif map_line.sum_type == "credit":
             move_line_domain.append(("credit", ">", 0))
+        move_line_domain += self._get_partner_domain()
         if map_line.exigible_type == "yes":
             move_line_domain.extend(
                 (
@@ -139,7 +140,6 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
                     ("tax_ids.tax_exigibility", "=", "on_payment"),
                 )
             )
-        move_line_domain += self._get_partner_domain()
         return move_line_domain
 
     def _get_tax_lines(self, date_start, date_end, map_line):

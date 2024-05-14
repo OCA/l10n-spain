@@ -71,6 +71,15 @@ class L10nEsAeatMod190Report(models.Model):
         self._check_report_lines()
         return super().button_confirm()
 
+    def _get_partner_domain(self):
+        domain = super()._get_partner_domain()
+        for report in self:
+            if report.tax_agency_ids:
+                domain.extend(
+                    [("partner_id.tax_agency_id", "in", report.tax_agency_ids.ids)]
+                )
+        return domain
+
     # flake8: noqa: C901
     def calculate(self):
         res = super().calculate()

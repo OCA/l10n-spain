@@ -29,6 +29,7 @@ class ResPartner(models.Model):
             ("06", "Another document"),
         ],
     )
+    tax_agency_id = fields.Many2one("aeat.tax.agency", string="Tax Agency")
     aeat_identification = fields.Char(help="Identification for AEAT purposes")
     # There are other options (but these options are managed automatically
     #   on _parse_aeat_vat_info):

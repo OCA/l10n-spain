@@ -378,3 +378,12 @@ class L10nEsAeatMod111Report(models.Model):
     def _compute_casilla_30(self):
         for report in self:
             report.casilla_30 = report.casilla_28 - report.casilla_29
+
+    def _get_partner_domain(self):
+        domain = super()._get_partner_domain()
+        for report in self:
+            if report.tax_agency_ids:
+                domain.extend(
+                    [("partner_id.tax_agency_id", "in", report.tax_agency_ids.ids)]
+                )
+        return domain
