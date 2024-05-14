@@ -5,7 +5,7 @@
 # Copyright 2018 Juan Vicente Pascual <jvpascual@puntsistemes.es>
 # Copyright 2019 Tecnativa - Carlos Dauden
 # Copyright 2013-2021 Tecnativa - Pedro M. Baeza
-# Copyright 2022 Moduon - Eduardo de Miguel
+# Copyright 2022-2023 Moduon - Eduardo de Miguel
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
 {
@@ -30,6 +30,7 @@
         "data/aeat_partner.xml",
         "data/ir_config_parameter.xml",
         "data/aeat_tax_agency_data.xml",
+        "data/aeat_township_data.xml",
         "wizard/export_to_boe_wizard.xml",
         "wizard/compare_boe_file_views.xml",
         "wizard/aeat_certificate_password_view.xml",
@@ -45,6 +46,7 @@
         "views/aeat_certificate_view.xml",
         "views/account_journal_view.xml",
         "views/account_move_view.xml",
+        "views/l10n_es_aeat_real_estate_view.xml",
     ],
     "installable": True,
     "maintainers": ["pedrobaeza"],

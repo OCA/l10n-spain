@@ -11,7 +11,7 @@ from datetime import datetime
 from odoo import _, api, exceptions, fields, models
 from odoo.tools import config
 
-from .spanish_states_mapping import SPANISH_STATES as ss
+from .aeat_data import AEAT_STATES_CODE_MAP as ascm
 
 
 class L10nEsAeatReport(models.AbstractModel):
@@ -24,7 +24,7 @@ class L10nEsAeatReport(models.AbstractModel):
     _period_quarterly = True
     _period_monthly = True
     _period_yearly = False
-    SPANISH_STATES = ss
+    SPANISH_STATES = ascm
 
     def _default_journal(self):
         return self.env["account.journal"].search(
