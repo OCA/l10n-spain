@@ -397,7 +397,6 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
             lambda x: x.partner_vat == "BE0477472701"
         )
         self.assertTrue(partner_record.partner_record_ok)
-
         # No country code in vat and GR country
         self.customer.write(
             {"vat": "12345670", "country_id": self.env.ref("base.gr").id}
@@ -407,10 +406,14 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
             lambda x: x.partner_vat == "EL12345670"
         )
         self.assertTrue(partner_record.partner_record_ok)
-
         # Reset vat and country
+        # Peppol eas is set so peppol check does not fail
         self.customer.write(
-            {"vat": "BE0411905847", "country_id": self.env.ref("base.be").id}
+            {
+                "vat": "BE0411905847",
+                "country_id": self.env.ref("base.be").id,
+                "peppol_eas": "9925",
+            }
         )
         model349_errors.button_recalculate()
         partner_record = model349_errors.partner_record_ids.filtered(
