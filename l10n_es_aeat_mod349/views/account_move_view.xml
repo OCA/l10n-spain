@@ -8,6 +8,7 @@
                 <field
                     name="eu_triangular_deal"
                     groups="l10n_es_aeat.group_account_aeat"
+                    readonly="state != 'draft'"
                 />
             </field>
             <xpath

@@ -14,7 +14,6 @@ class AccountMove(models.Model):
         help="This invoice constitutes a triangular operation for the "
         "purposes of intra-community operations.",
         readonly=True,
-        states={"draft": [("readonly", False)]},
     )
 
 
@@ -35,7 +34,15 @@ class AccountMoveLine(models.Model):
         ],
         string="AEAT 349 Operation key",
         compute="_compute_l10n_es_aeat_349_operation_key",
+        compute_sudo=True,
+        search="_search_l10n_es_aeat_349_operation_key",
     )
+
+    def _search_l10n_es_aeat_349_operation_key(self, operator, value):
+        if value == "T":
+            return ["move_id.eu_triangular_deal", "=", True]
+        else:
+            return [("tax_ids.l10n_es_aeat_349_operation_key", operator, value)]
 
     @api.depends("tax_ids", "move_id.eu_triangular_deal")
     def _compute_l10n_es_aeat_349_operation_key(self):

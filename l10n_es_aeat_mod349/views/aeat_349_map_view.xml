@@ -18,7 +18,7 @@
             <tree editable="bottom">
                 <field name="operation_key" />
                 <field name="physical_product" />
-                <field name="tax_tmpl_ids" widget="many2many_tags" />
+                <field name="tax_xmlid_ids" widget="many2many_tags" />
             </tree>
         </field>
     </record>
