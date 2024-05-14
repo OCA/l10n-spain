@@ -171,6 +171,9 @@ class L10nEsAeatMod123Report(models.Model):
         states={"draft": [("readonly", False)]},
         required=True,
     )
+    amount_result = fields.Float(
+        compute="_compute_amount_result", string="Resultado a ingresar"
+    )
 
     @api.depends("casilla_03", "casilla_05")
     def _compute_casilla06(self):
@@ -206,6 +209,14 @@ class L10nEsAeatMod123Report(models.Model):
     def _compute_casilla14_2024(self):
         for report in self:
             report.casilla_14_2024 = report.casilla_12_2024 - report.casilla_13_2024
+
+    @api.depends("casilla_08", "casilla_14_2024", "year")
+    def _compute_amount_result(self):
+        for report in self:
+            if report.year < 2024:
+                report.amount_result = report.casilla_08
+            else:
+                report.amount_result = report.casilla_14_2024
 
     def calculate(self):
         pred = super().calculate()
