@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_account_tax_add_mod349_form" model="ir.ui.view">
+        <field name="name">Tax | add 'aeat_349_operation_key' field (form)</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form" />
+        <field name="arch" type="xml">
+            <field name="include_base_amount" position="after">
+                <field name="l10n_es_aeat_349_operation_key" />
+            </field>
+        </field>
+    </record>
+</odoo>
