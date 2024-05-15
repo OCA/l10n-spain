@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2023-12-12 09:51+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -48,7 +49,6 @@ msgstr "Modelo 349 - Detalle de abonos de empresa"
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move_line__l10n_es_aeat_349_operation_key
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax__l10n_es_aeat_349_operation_key
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax_template__aeat_349_map_line
 msgid "AEAT 349 Operation key"
 msgstr "AEAT 349 Clave de operación"
 
@@ -142,8 +142,8 @@ msgstr "Mapeo de Línea Aeat 349"
 #, python-format
 msgid "All partner records fields (country, VAT number) must be filled."
 msgstr ""
-"Todos los campos de los registros de empresas (país, número NIF) deben estar"
-" rellenados."
+"Todos los campos de los registros de empresas (país, número NIF) deben estar "
+"rellenados."
 
 #. module: l10n_es_aeat_mod349
 #. odoo-python
@@ -426,6 +426,7 @@ msgstr "Si está seleccionado, nuevos mensajes requieren su atención."
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_has_error
+#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está seleccionado, algunos mensajes tienen un error de entrega."
 
@@ -484,16 +485,6 @@ msgid "L.R. VAT number"
 msgstr "Número NIF"
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_detail____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
-
-#. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line__write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record__write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__write_uid
@@ -522,11 +513,6 @@ msgstr "NIF del Representante legal."
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
 msgid "Legal representative VAT:"
 msgstr "NIF del Representante legal:"
-
-#. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "Adjunto principal"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_has_error
@@ -566,11 +552,6 @@ msgid "New (Rectified) Amount"
 msgstr "Importe rectificado"
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__activity_calendar_event_id
-msgid "Next Activity Calendar Event"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__activity_date_deadline
 msgid "Next Activity Deadline"
 msgstr "Próxima fecha límite de actividad"
@@ -604,8 +585,8 @@ msgstr "Número de errores"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "Número de mensajes que requieren una acción"
+msgid "Number of messages requiring action"
+msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_has_error_counter
@@ -798,17 +779,8 @@ msgid "S - Intra-Community services"
 msgstr "S - Servicios intracomunitarios"
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move__smart_search
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move_line__smart_search
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax__smart_search
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax_template__smart_search
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line__smart_search
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record__smart_search
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__smart_search
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund__smart_search
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_detail__smart_search
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__smart_search
-msgid "Smart Search"
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_has_sms_error
+msgid "SMS Delivery error"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -877,14 +849,9 @@ msgid "Tax Agency"
 msgstr "Agencia Tributaria"
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line__tax_tmpl_ids
-msgid "Taxes"
-msgstr "Impuestos"
-
-#. module: l10n_es_aeat_mod349
-#: model:ir.model,name:l10n_es_aeat_mod349.model_account_tax_template
-msgid "Templates for Taxes"
-msgstr "Plantilla de impuestos"
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line__tax_xmlid_ids
+msgid "Taxes templates"
+msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.constraint,message:l10n_es_aeat_mod349.constraint_aeat_349_map_line_unique_operation_key
@@ -1015,3 +982,18 @@ msgstr "Año"
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod349.action_aeat_349_mapping
 msgid "aeat 349 Map"
 msgstr "Mapeo aeat 349"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"
+
+#~ msgid "Main Attachment"
+#~ msgstr "Adjunto principal"
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "Número de mensajes que requieren una acción"
+
+#~ msgid "Taxes"
+#~ msgstr "Impuestos"
+
+#~ msgid "Templates for Taxes"
+#~ msgstr "Plantilla de impuestos"
