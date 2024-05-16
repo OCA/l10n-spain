@@ -57,6 +57,9 @@ Contributors
 ------------
 
 -  Nicolás Ramos <n.ramos@binhex.es>
+-  `APSL-Nagarro <https://apsl.tech>`__:
+
+   -  Miquel Pascual <mpascual@apsl.net>
 
 Maintainers
 -----------
