@@ -47,6 +47,7 @@ setuptools.setup(
         'odoo-addon-l10n_es_partner>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_partner_mercantil>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_payment_order_confirming_aef>=15.0dev,<15.1dev',
+        'odoo-addon-l10n_es_payment_order_confirming_sabadell>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_pos>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_pos_by_device>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_pos_sii>=15.0dev,<15.1dev',
