@@ -30,6 +30,7 @@ addon | version | maintainers | summary
 [l10n_es_aeat_mod303](l10n_es_aeat_mod303/) | 17.0.1.2.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | AEAT modelo 303
 [l10n_es_aeat_mod347](l10n_es_aeat_mod347/) | 17.0.1.0.1 |  | AEAT modelo 347
 [l10n_es_aeat_mod349](l10n_es_aeat_mod349/) | 17.0.1.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | AEAT modelo 349
+[l10n_es_aeat_mod390](l10n_es_aeat_mod390/) | 17.0.1.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | AEAT modelo 390
 [l10n_es_atc](l10n_es_atc/) | 17.0.1.0.0 |  | Modulo 'glue' de la AEAT para el menú de la ATC
 [l10n_es_partner](l10n_es_partner/) | 17.0.1.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Adaptación de los clientes, proveedores y bancos para España
 [l10n_es_partner_mercantil](l10n_es_partner_mercantil/) | 17.0.1.0.0 |  | Añade los datos del registro mercantil a la empresa
