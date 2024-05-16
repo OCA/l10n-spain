@@ -443,6 +443,7 @@ msgstr "Si está marcado, hay nuevos mensajes que requieren de su atención."
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_has_error
+#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcado, hay mensajes con error de entrega."
 
@@ -467,11 +468,6 @@ msgid "L.R. VAT number"
 msgstr "Nombre del representante legal"
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
-
-#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización de"
@@ -485,11 +481,6 @@ msgstr "Última actualización en"
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__representative_vat
 msgid "Legal Representative VAT number."
 msgstr "NIF del representant legal."
-
-#. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "Adjunto principal"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__has_347
@@ -676,6 +667,11 @@ msgstr "Identificador del informe"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__activity_user_id
 msgid "Responsible User"
 msgstr "Usuario responsable"
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de entrega de SMS"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_95
@@ -969,8 +965,11 @@ msgstr "[98] Result. 303 último periodo a devolver"
 msgid "¿Obligación del 347?"
 msgstr "¿Obligación del 347?"
 
-#~ msgid "SMS Delivery error"
-#~ msgstr "Error de entrega de SMS"
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"
+
+#~ msgid "Main Attachment"
+#~ msgstr "Adjunto principal"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Nº de mensajes que requieren una acción"
