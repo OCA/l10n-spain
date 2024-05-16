@@ -1,5 +1,5 @@
 - Accede a la companía y marca que aplica prorrata
-- Define el porcentaje de prorata (se aplica por fechas)
+- Define el porcentaje de prorrata (se aplica por fechas)
 
-Los impuestos de las facturas de cliente se dividiran según la prorata
-activa.
+Los impuestos de las facturas de proveedor se dividirán según la
+prorrata activa.

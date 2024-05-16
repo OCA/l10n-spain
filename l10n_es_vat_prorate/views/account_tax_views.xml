@@ -10,13 +10,13 @@
             <field name="tax_group_id" position="after">
                 <field
                     name="with_vat_prorate"
-                    attrs="{'invisible': [('company_with_vat_prorate', '=', False)]}"
+                    invisible="not company_with_vat_prorate"
                 />
                 <field name="company_with_vat_prorate" invisible="1" />
                 <field
                     name="prorate_account_ids"
                     widget="many2many_tags"
-                    attrs="{'invisible': [('company_with_vat_prorate', '=', False)]}"
+                    invisible="not company_with_vat_prorate"
                 />
             </field>
         </field>
