@@ -18,7 +18,7 @@ from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 class TestVatProrate(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls):
-        super().setUpClass(chart_template_ref="l10n_es.account_chart_template_pymes")
+        super().setUpClass(chart_template_ref="es_pymes")
         cls.env = cls.env(
             context=dict(
                 cls.env.context,
@@ -56,10 +56,12 @@ class TestVatProrate(AccountTestInvoicingCommon):
     # gets incoherent after returning from the SQL constraint violation
     @mute_logger("odoo.sql_db")
     def test_zzz_company_vat_prorate_out_of_range(self):
+        vat_prorate_line = self.env.company.vat_prorate_ids[0]
         with self.assertRaises(IntegrityError):
-            self.env.company.vat_prorate_ids[0].vat_prorate = 200
+            vat_prorate_line.vat_prorate = 200
 
     def test_no_company_vat_prorate_information(self):
+        self.assertTrue(self.env.company.vat_prorate_ids)
         with self.assertRaises(exceptions.ValidationError):
             self.env.company.write({"vat_prorate_ids": False})
 
@@ -90,6 +92,17 @@ class TestVatProrate(AccountTestInvoicingCommon):
                 )
             ),
         )
+
+    def test_prorate_tax_with_prorate_account(self):
+        # 21% EU S (Services) tax
+        tax = self.env.ref(
+            f"account.{self.env.company.id}_account_tax_template_p_iva21_sp_in"
+        )
+        invoice = self.init_invoice(
+            "in_invoice", products=[self.product_a, self.product_b], taxes=[tax]
+        )
+        self.assertEqual(7, len(invoice.line_ids))
+        self.assertEqual(4, len(invoice.line_ids.filtered(lambda r: r.tax_line_id)))
 
     def test_prorate_same_accounts_in_invoice(self):
         self.product_b.property_account_expense_id = self.company_data[
