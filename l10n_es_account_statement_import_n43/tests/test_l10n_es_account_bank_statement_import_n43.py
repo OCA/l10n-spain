@@ -17,14 +17,14 @@ class L10nEsAccountStatementImportN43(common.TransactionCase):
         )
         cls.partner_bank = cls.env["res.partner.bank"].create(
             {
-                "acc_number": "000000000000000000000000",
+                "acc_number": "ES9121000418450200051332",
                 "company_id": cls.env.company.id,
                 "partner_id": cls.env.company.partner_id.id,
             }
         )
         cls.partner_bank_01 = cls.env["res.partner.bank"].create(
             {
-                "acc_number": "000000000000001000000000",
+                "acc_number": "ES7921000813610123456789",
                 "company_id": cls.env.company.id,
                 "partner_id": cls.env.company.partner_id.id,
             }
