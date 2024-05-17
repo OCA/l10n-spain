@@ -45,12 +45,6 @@ msgid "Correo"
 msgstr "Correo"
 
 #. module: l10n_es_payment_order_confirming_sabadell
-#: model:ir.model.fields,field_description:l10n_es_payment_order_confirming_sabadell.field_account_payment_mode__display_name
-#: model:ir.model.fields,field_description:l10n_es_payment_order_confirming_sabadell.field_account_payment_order__display_name
-msgid "Display Name"
-msgstr "Nombre mostrado"
-
-#. module: l10n_es_payment_order_confirming_sabadell
 #: code:addons/l10n_es_payment_order_confirming_sabadell/models/confirming_sabadell.py:0
 #, python-format
 msgid "El Proveedor %s no tiene establecida la Ciudad."
@@ -91,12 +85,6 @@ msgid "Fax"
 msgstr "Fax"
 
 #. module: l10n_es_payment_order_confirming_sabadell
-#: model:ir.model.fields,field_description:l10n_es_payment_order_confirming_sabadell.field_account_payment_mode__id
-#: model:ir.model.fields,field_description:l10n_es_payment_order_confirming_sabadell.field_account_payment_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: l10n_es_payment_order_confirming_sabadell
 #: code:addons/l10n_es_payment_order_confirming_sabadell/models/confirming_sabadell.py:0
 #, python-format
 msgid "La Cuenta del Proveedor: %s tiene que estar en formato IBAN."
@@ -117,12 +105,6 @@ msgid ""
 msgstr ""
 "La referencia de factura %s de proveedor no puede ocupar más de 15 "
 "caracteres."
-
-#. module: l10n_es_payment_order_confirming_sabadell
-#: model:ir.model.fields,field_description:l10n_es_payment_order_confirming_sabadell.field_account_payment_mode____last_update
-#: model:ir.model.fields,field_description:l10n_es_payment_order_confirming_sabadell.field_account_payment_order____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
 
 #. module: l10n_es_payment_order_confirming_sabadell
 #: model:ir.model,name:l10n_es_payment_order_confirming_sabadell.model_account_payment_mode
@@ -164,3 +146,12 @@ msgstr "Transferencia"
 #: model:ir.model.fields.selection,name:l10n_es_payment_order_confirming_sabadell.selection__account_payment_mode__conf_sabadell_type__58
 msgid "Transferencia al extranjero"
 msgstr "Transferencia al extranjero"
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre mostrado"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"
