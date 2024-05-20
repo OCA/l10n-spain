@@ -73,7 +73,6 @@ Authors
 ~~~~~~~
 
 * FactorLibre
-* ProcessControl
 
 Contributors
 ~~~~~~~~~~~~
