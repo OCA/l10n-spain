@@ -581,13 +581,17 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         self.ensure_one()
         return self._notify_get_action_link("controller", controller="/mod347/reject")
 
+    @api.model
+    def _get_partner_report_email_template(self):
+        return self.env.ref("l10n_es_aeat_mod347.email_template_347")
+
     def action_confirm(self):
         self.write({"state": "confirmed"})
 
     def action_send(self):
         self.write({"state": "sent"})
         self.ensure_one()
-        template = self.env.ref("l10n_es_aeat_mod347.email_template_347")
+        template = self._get_partner_report_email_template()
         compose_form = self.env.ref("mail.email_compose_message_wizard_form")
         ctx = dict(
             default_model=self._name,
@@ -624,7 +628,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         self.action_pending()
 
     def send_email_direct(self):
-        template = self.env.ref("l10n_es_aeat_mod347.email_template_347")
+        template = self._get_partner_report_email_template()
         for record in self:
             template.send_mail(record.id)
         self.write({"state": "sent"})
