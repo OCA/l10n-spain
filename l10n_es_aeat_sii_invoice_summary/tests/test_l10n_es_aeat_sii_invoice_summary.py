@@ -4,11 +4,11 @@
 from odoo import exceptions
 
 from odoo.addons.l10n_es_aeat_sii_oca.tests.test_l10n_es_aeat_sii import (
-    TestL10nEsAeatSii,
+    TestL10nEsAeatSiiBase,
 )
 
 
-class TestL10nEsAeatSiiSummary(TestL10nEsAeatSii):
+class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiBase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -253,12 +253,8 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSii):
     def _compare_sii_dict(
         self, json_file, inv_type, lines, extra_vals=None, module=None
     ):
-        if extra_vals.get("sii_invoice_summary_start"):
-            if extra_vals.get("sii_invoice_summary_start") == extra_vals.get(
-                "sii_invoice_summary_end"
-            ):
-                json_file = json_file.replace("dict.json", "same_dict.json")
-
-        return super(TestL10nEsAeatSiiSummary, self)._compare_sii_dict(
-            json_file, inv_type, lines, extra_vals, module
-        )
+        if extra_vals.get("sii_invoice_summary_start") and extra_vals.get(
+            "sii_invoice_summary_start"
+        ) == extra_vals.get("sii_invoice_summary_end"):
+            json_file = json_file.replace("dict.json", "same_dict.json")
+        return super()._compare_sii_dict(json_file, inv_type, lines, extra_vals, module)
