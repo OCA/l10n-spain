@@ -1,4 +1,5 @@
 # Copyright 2020 Creu Blanca
+# Copyright 2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -9,6 +10,8 @@ class AccountMove(models.Model):
 
     aeat_perception_key_id = fields.Many2one(
         comodel_name="l10n.es.aeat.report.perception.key",
+        compute="_compute_aeat_perception_key_id",
+        store=True,
         string="Clave percepción",
         help="Se consignará la clave alfabética que corresponda a las "
         "percepciones de que se trate.",
@@ -17,6 +20,8 @@ class AccountMove(models.Model):
     )
     aeat_perception_subkey_id = fields.Many2one(
         comodel_name="l10n.es.aeat.report.perception.subkey",
+        compute="_compute_aeat_perception_subkey_id",
+        store=True,
         string="Subclave",
         help="""Tratándose de percepciones correspondientes a las claves
                 B, E, F, G, H, I, K y L, deberá consignarse, además, la
@@ -38,30 +43,14 @@ class AccountMove(models.Model):
         states={"draft": [("readonly", False)]},
     )
 
-    def add_keys(self, set_fiscal_position=True):
-        FiscalPosition = self.env["account.fiscal.position"]
-        for invoice in self:
-            if set_fiscal_position:
-                delivery_partner_id = invoice._get_invoice_delivery_partner_id()
-                invoice.fiscal_position_id = FiscalPosition.with_company(
-                    invoice.company_id.id
-                ).get_fiscal_position(
-                    invoice.partner_id.id, delivery_id=delivery_partner_id
-                )
-            if invoice.fiscal_position_id.aeat_perception_key_id:
-                fp = invoice.fiscal_position_id
-                invoice.aeat_perception_key_id = fp.aeat_perception_key_id
-                invoice.aeat_perception_subkey_id = fp.aeat_perception_subkey_id
+    @api.depends("fiscal_position_id")
+    def _compute_aeat_perception_key_id(self):
+        for item in self.filtered(lambda x: x.fiscal_position_id):
+            item.aeat_perception_key_id = item.fiscal_position_id.aeat_perception_key_id
 
-    @api.onchange("partner_id")
-    def _onchange_partner_id(self):
-        res = super()._onchange_partner_id()
-        self.add_keys(set_fiscal_position=False)
-        return res
-
-    @api.model_create_multi
-    def create(self, vals_list):
-        """Call add_keys() function only if fp not set in vals."""
-        res = super().create(vals_list)
-        res.filtered(lambda x: not x.fiscal_position_id).add_keys()
-        return res
+    @api.depends("fiscal_position_id")
+    def _compute_aeat_perception_subkey_id(self):
+        for item in self.filtered(lambda x: x.fiscal_position_id):
+            item.aeat_perception_subkey_id = (
+                item.fiscal_position_id.aeat_perception_subkey_id
+            )
