@@ -130,16 +130,19 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__situation__1
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_real_estate_record__situation__1
 msgid "1 - Spain but Basque Country and Navarra"
 msgstr "1 - Espanya excepte País Basc i Navarra"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__situation__2
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_real_estate_record__situation__2
 msgid "2 - Basque Country and Navarra"
 msgstr "2 - País Basc o Navarra"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__situation__3
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_real_estate_record__situation__3
 msgid "3 - Spain, without catastral reference"
 msgstr "3 - Espanya, sense referència cadastral"
 
@@ -155,6 +158,7 @@ msgstr "Detalls"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__situation__4
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_real_estate_record__situation__4
 msgid "4 - Foreign"
 msgstr "4 - Estranger"
 
@@ -206,6 +210,7 @@ msgstr "<strong>Clau d'operació:</strong>"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__operation_key__a
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_partner_record__operation_key__a
 msgid "A - Adquisiciones de bienes y servicios superiores al límite (1)"
 msgstr "A - Adquisicions de bens i serveis superiors al límit (1)"
 
@@ -291,6 +296,7 @@ msgstr "Import"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_calification__ant
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_real_estate_record__number_calification__ant
 msgid "Ant"
 msgstr "Ant"
 
@@ -302,6 +308,7 @@ msgstr "Comptador adjunts"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__operation_key__b
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_partner_record__operation_key__b
 msgid "B - Entregas de bienes y servicios superiores al límite (1)"
 msgstr "B - Entregues de bens i serveis superiors al límit (1)"
 
@@ -321,6 +328,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_calification__bis
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_real_estate_record__number_calification__bis
 msgid "Bis"
 msgstr "Bis"
 
@@ -336,6 +344,7 @@ msgstr "Arrendament local negoci"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__operation_key__c
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_partner_record__operation_key__c
 msgid "C - Cobros por cuenta de terceros superiores al límite (3)"
 msgstr "C - Cobraments per compte de tercers superiors al límit (3)"
 
@@ -442,6 +451,7 @@ msgstr "Confirmar com a vàlid"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__state__confirmed
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_partner_record__state__confirmed
 msgid "Confirmed"
 msgstr "Confirmat"
 
@@ -493,6 +503,7 @@ msgstr "URL del portal de client"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__operation_key__d
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_partner_record__operation_key__d
 msgid ""
 "D - Adquisiciones efectuadas por Entidades Públicas (...) superiores al "
 "límite (1)"
@@ -526,11 +537,13 @@ msgstr "Porta"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_calification__dup
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_real_estate_record__number_calification__dup
 msgid "Dup"
 msgstr "Dup"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__operation_key__e
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_partner_record__operation_key__e
 msgid ""
 "E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas superiores "
 "al límite (1)"
@@ -560,6 +573,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__state__exception
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_partner_record__state__exception
 msgid "Exception"
 msgstr "Excepció"
 
@@ -570,6 +584,7 @@ msgstr "Configuració d'exportació"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__operation_key__f
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_partner_record__operation_key__f
 msgid "F - Ventas agencia viaje"
 msgstr "F - Vendes agència viatge"
 
@@ -630,6 +645,7 @@ msgstr "Cognoms i nom"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__operation_key__g
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_partner_record__operation_key__g
 msgid "G - Compras agencia viaje"
 msgstr "G - Compres agència viatge"
 
@@ -761,6 +777,7 @@ msgstr "Diari per a registrar el moviment."
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_type__km_
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_real_estate_record__number_type__km_
 msgid "Kilometer"
 msgstr "Quilòmetre"
 
@@ -831,6 +848,7 @@ msgstr "Missatges"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_calification__mod
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_real_estate_record__number_calification__mod
 msgid "Mod"
 msgstr "Mod"
 
@@ -905,6 +923,7 @@ msgstr "No inclosa en el model 347"
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__number
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_type__num
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_real_estate_record__number_type__num
 msgid "Number"
 msgstr "Número"
 
@@ -1057,6 +1076,7 @@ msgstr "Registres de partner"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__state__pending
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_partner_record__state__pending
 msgid "Pending"
 msgstr "Pendent"
 
@@ -1274,6 +1294,7 @@ msgstr "Enviar emails"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__state__sent
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_partner_record__state__sent
 msgid "Sent"
 msgstr "Enviat"
 
@@ -1562,6 +1583,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_type__s/n
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_real_estate_record__number_type__s/n
 msgid "Without number"
 msgstr "Sense número"
 
