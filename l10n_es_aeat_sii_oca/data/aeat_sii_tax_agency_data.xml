@@ -96,52 +96,6 @@
             name="sii_wsdl_ps_test_address"
         >https://sii-prep.egoitza.gipuzkoa.eus/JBS/HACI/SSII-FACT/ws/fr/SiiFactPAGV1SOAP</field>
     </record>
-    <!-- TODO: remove?-->
-    <record id="aeat_sii_tax_agency_gipuzkoa_1_0" model="aeat.tax.agency">
-        <field name="name">Hacienda Foral de Gipuzkoa (antiguo WDSL 1.0)</field>
-        <field
-            name="sii_wsdl_out"
-        >https://egoitza.gipuzkoa.eus/ogasuna/sii/ficheros/v1.0/SuministroFactEmitidas.wsdl</field>
-        <field
-            name="sii_wsdl_out_test_address"
-        >https://prep9.gipuzkoa.eus/JBS/HACI/SSII-FACT/ws/fe/SiiFactFEV1SOAP</field>
-        <field
-            name="sii_wsdl_in"
-        >https://egoitza.gipuzkoa.eus/ogasuna/sii/ficheros/v1.0/SuministroFactRecibidas.wsdl</field>
-        <field
-            name="sii_wsdl_in_test_address"
-        >https://prep9.gipuzkoa.eus/JBS/HACI/SSII-FACT/ws/fr/SiiFactFRV1SOAP</field>
-        <field
-            name="sii_wsdl_pi"
-        >https://egoitza.gipuzkoa.eus/ogasuna/sii/ficheros/v1.0/SuministroBienesInversion.wsdl</field>
-        <field
-            name="sii_wsdl_pi_test_address"
-        >https://prep9.gipuzkoa.eus/JBS/HACI/SSII-FACT/ws/bi/SiiFactBIV1SOAP</field>
-        <field
-            name="sii_wsdl_ic"
-        >https://egoitza.gipuzkoa.eus/ogasuna/sii/ficheros/v1.0/SuministroOpIntracomunitarias.wsdl</field>
-        <field
-            name="sii_wsdl_ic_test_address"
-        >https://prep9.gipuzkoa.eus/JBS/HACI/SSII-FACT/ws/oi/SiiFactOIV1SOAP</field>
-        <field
-            name="sii_wsdl_pr"
-        >https://egoitza.gipuzkoa.eus/ogasuna/sii/ficheros/v1.0/SuministroCobrosEmitidas.wsdl</field>
-        <field
-            name="sii_wsdl_pr_test_address"
-        >https://prep9.gipuzkoa.eus/JBS/HACI/SSII-FACT/ws/fe/SiiFactCOBV1SOAP</field>
-        <field
-            name="sii_wsdl_ott"
-        >https://egoitza.gipuzkoa.eus/ogasuna/sii/ficheros/v1.0/SuministroOpTrascendTribu.wsdl</field>
-        <field
-            name="sii_wsdl_ott_test_address"
-        >https://prep9.gipuzkoa.eus/JBS/HACI/SSII-FACT/ws/pm/SiiFactCMV1SOAP</field>
-        <field
-            name="sii_wsdl_ps"
-        >https://egoitza.gipuzkoa.eus/ogasuna/sii/ficheros/v1.0/SuministroPagosRecibidas.wsdl</field>
-        <field
-            name="sii_wsdl_ps_test_address"
-        >https://prep9.gipuzkoa.eus/JBS/HACI/SSII-FACT/ws/fr/SiiFactPAGV1SOAP</field>
-    </record>
     <record id="l10n_es_aeat.aeat_tax_agency_araba" model="aeat.tax.agency">
         <field name="name">Hacienda Foral de Araba/Alava (1.1)</field>
         <field
