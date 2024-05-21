@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_415_partner">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t
+                    t-call="l10n_es_aeat_mod347.report_347_partner_document"
+                    t-lang="o.partner_id.lang"
+                />
+            </t>
+        </t>
+    </template>
+    <record id="415_partner" model="ir.actions.report">
+        <field name="name">415 Partner Detail</field>
+        <field name="model">l10n.es.atc.mod415.partner_record</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_es_atc_mod415.report_415_partner</field>
+        <field name="report_file">l10n_es_atc_mod415.report_415_partner</field>
+        <field name="binding_model_id" ref="model_l10n_es_atc_mod415_partner_record" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
