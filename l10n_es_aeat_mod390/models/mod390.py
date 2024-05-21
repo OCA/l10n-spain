@@ -782,5 +782,4 @@ class L10nEsAeatMod390Report(models.Model):
             res += [("move_id.is_bankrupcy_uncollectible_debt", "=", True)]
         elif map_line.field_number in {29, 30, 99}:
             res += [("move_id.is_bankrupcy_uncollectible_debt", "=", False)]
-
         return res

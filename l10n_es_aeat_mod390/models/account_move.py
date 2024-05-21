@@ -9,7 +9,7 @@ class AccountMove(models.Model):
 
     is_bankrupcy_uncollectible_debt = fields.Boolean(
         string="Bankrupcy/uncollectible debt",
-        help="When set this is set the tax base and rate will "
+        help="When this is set, the tax base and rate will "
         "be reflected in fields 31 and 32 of the AEAT 390 model",
         readonly=True,
         states={"draft": [("readonly", False)]},
