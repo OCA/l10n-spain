@@ -205,6 +205,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__active
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_mixin__active
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey__active
 msgid "Active"
 msgstr ""
@@ -236,6 +237,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__ad_required
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_mixin__ad_required
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey__ad_required
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__ad_required
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__ad_required
@@ -387,11 +389,6 @@ msgid "Bigger than 75 years"
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__calculado
-msgid "Calculated"
-msgstr ""
-
-#. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__calculation_date
 msgid "Calculation Date"
 msgstr ""
@@ -421,6 +418,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod190
 #: model:ir.model,name:l10n_es_aeat_mod190.model_l10n_es_aeat_report_perception_key
 msgid "Clave percepcion"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model,name:l10n_es_aeat_mod190.model_l10n_es_aeat_report_perception_mixin
+msgid "Clave percepcion (mixin)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
@@ -599,6 +601,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__description
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_mixin__description
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey__description
 msgid "Description"
 msgstr ""
@@ -931,6 +934,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__number
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__aeat_number
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_mixin__aeat_number
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey__aeat_number
 msgid "Model number"
 msgstr ""
@@ -1009,6 +1013,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_mixin__name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey__name
 msgid "Name"
 msgstr ""
@@ -1233,6 +1238,7 @@ msgid "SI"
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__ceuta_melilla
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__ceuta_melilla
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_users__ceuta_melilla
 msgid ""
@@ -1539,13 +1545,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__a_nacimiento
 msgid "Year of birth"
-msgstr ""
-
-#. module: l10n_es_aeat_mod190
-#. odoo-python
-#: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
-#, python-format
-msgid "You have to recalculate the report before confirm it."
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
