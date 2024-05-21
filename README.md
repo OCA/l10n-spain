@@ -34,7 +34,7 @@ addon | version | maintainers | summary
 [l10n_es_aeat_mod123](l10n_es_aeat_mod123/) | 14.0.1.0.1 |  | AEAT modelo 123
 [l10n_es_aeat_mod130](l10n_es_aeat_mod130/) | 14.0.1.0.2 |  | AEAT modelo 130
 [l10n_es_aeat_mod190](l10n_es_aeat_mod190/) | 14.0.1.0.0 |  | AEAT modelo 190
-[l10n_es_aeat_mod216](l10n_es_aeat_mod216/) | 14.0.1.1.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | AEAT modelo 216
+[l10n_es_aeat_mod216](l10n_es_aeat_mod216/) | 14.0.1.2.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | AEAT modelo 216
 [l10n_es_aeat_mod303](l10n_es_aeat_mod303/) | 14.0.4.4.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | AEAT modelo 303
 [l10n_es_aeat_mod303_oss](l10n_es_aeat_mod303_oss/) | 14.0.1.1.0 |  | AEAT modelo 303 - OSS
 [l10n_es_aeat_mod303_vat_prorate](l10n_es_aeat_mod303_vat_prorate/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Prorrata de IVA [303]
@@ -57,7 +57,7 @@ addon | version | maintainers | summary
 [l10n_es_facturae_face](l10n_es_facturae_face/) | 14.0.2.6.0 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Envío de Facturae a FACe
 [l10n_es_facturae_sale_stock](l10n_es_facturae_sale_stock/) | 14.0.1.0.0 |  | Entregas en Factura-e
 [l10n_es_intrastat_report](l10n_es_intrastat_report/) | 14.0.4.1.0 |  | Spanish Intrastat Product Declaration
-[l10n_es_irnr](l10n_es_irnr/) | 14.0.1.0.1 |  | Retenciones IRNR (No residentes)
+[l10n_es_irnr](l10n_es_irnr/) | 14.0.1.1.0 |  | Retenciones IRNR (No residentes)
 [l10n_es_location_nuts](l10n_es_location_nuts/) | 14.0.1.0.0 |  | NUTS specific options for Spain
 [l10n_es_mis_report](l10n_es_mis_report/) | 14.0.1.4.0 |  | Plantillas MIS Builder para informes contables españoles
 [l10n_es_partner](l10n_es_partner/) | 14.0.1.0.6 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Adaptación de los clientes, proveedores y bancos para España
