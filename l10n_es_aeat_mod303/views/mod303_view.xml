@@ -23,10 +23,13 @@
         <field name="model">l10n.es.aeat.mod303.report</field>
         <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
         <field name="arch" type="xml">
+            <field name="partner_bank_id" position="before">
+                <field name="use_aeat_account" />
+            </field>
             <field name="partner_bank_id" position="attributes">
                 <attribute
                     name="attrs"
-                >{'invisible': [('result_type', 'not in', ('D', 'V', 'X', 'I', 'G', 'U'))], 'required': [('result_type', 'in', ('D', 'V', 'X'))]}</attribute>
+                >{'invisible': ['|', ('use_aeat_account', '=', True), ('result_type', 'not in', ('D', 'X', 'I', 'U'))], 'required': [('use_aeat_account', '=', False), ('result_type', 'in', ('D', 'X'))]}</attribute>
             </field>
             <field name="previous_number" position="after">
                 <field name="devolucion_mensual" />

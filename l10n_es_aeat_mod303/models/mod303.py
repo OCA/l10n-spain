@@ -143,6 +143,13 @@ class L10nEsAeatMod303Report(models.Model):
         compute="_compute_resultado_liquidacion",
         store=True,
     )
+    use_aeat_account = fields.Boolean(
+        "Usar cuenta corriente tributaria",
+        help=(
+            "Si está suscrito a la cuenta corriente en materia tributaria, "
+            "active esta opción para usarla en el ingreso o devolución."
+        ),
+    )
     result_type = fields.Selection(
         selection=[
             ("I", "To enter"),
@@ -284,10 +291,12 @@ class L10nEsAeatMod303Report(models.Model):
         compute="_compute_marca_sepa",
     )
 
-    @api.depends("partner_bank_id")
+    @api.depends("partner_bank_id", "use_aeat_account")
     def _compute_marca_sepa(self):
         for record in self:
-            if record.partner_bank_id.bank_id.country == self.env.ref("base.es"):
+            if record.use_aeat_account:
+                record.marca_sepa = "0"
+            elif record.partner_bank_id.bank_id.country == self.env.ref("base.es"):
                 record.marca_sepa = "1"
             elif (
                 record.partner_bank_id.bank_id.country
@@ -438,6 +447,7 @@ class L10nEsAeatMod303Report(models.Model):
         "period_type",
         "devolucion_mensual",
         "marca_sepa",
+        "use_aeat_account",
     )
     def _compute_result_type(self):
         for report in self:
@@ -449,14 +459,19 @@ class L10nEsAeatMod303Report(models.Model):
             if result == 0:
                 report.result_type = "N"
             elif result == 1:
-                if report.marca_sepa in {"1", "2"}:
+                if report.use_aeat_account:
+                    report.result_type = "G"
+                elif report.marca_sepa in {"1", "2"}:
                     # Domiciliar ingreso porque se indicó un banco SEPA
                     report.result_type = "U"
                 else:
                     report.result_type = "I"
             else:
                 if report.devolucion_mensual or report.period_type in ("4T", "12"):
-                    report.result_type = "D" if report.marca_sepa == "1" else "X"
+                    if report.use_aeat_account:
+                        report.result_type = "V"
+                    else:
+                        report.result_type = "D" if report.marca_sepa == "1" else "X"
                 else:
                     report.result_type = "C"
 
