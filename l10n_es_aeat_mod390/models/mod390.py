@@ -774,3 +774,12 @@ class L10nEsAeatMod390Report(models.Model):
                 )
             )
         return super().button_confirm()
+
+    def _get_move_line_domain(self, date_start, date_end, map_line):
+        """Consider Bankrupcy proceedings or uncollectible debt."""
+        res = super()._get_move_line_domain(date_start, date_end, map_line)
+        if map_line.field_number in {31, 32}:
+            res += [("move_id.is_bankrupcy_uncollectible_debt", "=", True)]
+        elif map_line.field_number in {29, 30, 99}:
+            res += [("move_id.is_bankrupcy_uncollectible_debt", "=", False)]
+        return res
