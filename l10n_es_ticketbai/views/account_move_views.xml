@@ -14,7 +14,7 @@
             <xpath expr="//field[@name='invoice_date']" position="after">
                 <div
                     colspan="2"
-                    attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund'))]}"
+                    attrs="{'invisible': ['|', '|', '|', ('tbai_enabled', '=', False), ('tbai_send_invoice', '=', False), ('state', '!=', 'draft'), ('move_type', 'not in', ('out_invoice', 'out_refund'))]}"
                 >
                     <p
                         class="alert alert-warning"
@@ -24,7 +24,9 @@
             <xpath expr="//field[@name='invoice_date']" position="attributes">
                 <attribute
                     name="attrs"
-                >{'readonly': ['|', ('state', '!=', 'draft'), '&amp;', ('tbai_enabled', '=', True), '&amp;', ('tbai_send_invoice', '=', True), ('move_type', 'in', ('out_invoice', 'out_refund', 'out_receipt'))]}</attribute>
+                >{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))],
+                    'readonly': ['|', ('state', '!=', 'draft'), '&amp;', ('tbai_enabled', '=', True), '&amp;', ('tbai_send_invoice', '=', True), ('move_type', 'in', ('out_invoice', 'out_refund', 'out_receipt'))]
+                }</attribute>
             </xpath>
             <xpath
                 expr="//group[@id='header_right_group']/field[@name='date']"
