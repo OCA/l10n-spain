@@ -58,7 +58,8 @@ class PaymentTransaction(models.Model):
         :return: The request payload
         :rtype: dict
         """
-        order = self.env["sale.order"].search([("name", "=", reference.split("-")[0])])
+        order_name = reference[: reference.rfind("-")]
+        order = self.env["sale.order"].search([("name", "=", order_name)])
         if not order:
             return False
         base_url = self.provider_id.get_base_url()
