@@ -383,8 +383,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             invoice.company_id.tax_agency_id = False
             self._check_binding_address(invoice)
 
-    def _test_tax_agencies_sandbox(self):
-        # Disabled this test for now as there's a timeout connecting
+    def test_tax_agencies_sandbox(self):
         self.sii_cert.company_id = self.invoice.company_id.id
         self._activate_certificate()
         self.invoice.company_id.sii_test = True
@@ -392,8 +391,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         in_invoice = self._create_invoice("in_invoice")
         self._check_tax_agencies(in_invoice)
 
-    def _test_tax_agencies_production(self):
-        # Disabled this test for now as there's a timeout connecting
+    def test_tax_agencies_production(self):
         self.sii_cert.company_id = self.invoice.company_id.id
         self._activate_certificate()
         self.invoice.company_id.sii_test = False
