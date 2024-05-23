@@ -28,6 +28,7 @@
         "data/l10n.es.aeat.map.tax.line.tax.csv",  # Should be before the main one
         "data/l10n.es.aeat.map.tax.line.csv",
         "views/mod390_view.xml",
+        "views/account_move_view.xml",
         "security/ir.model.access.csv",
         "security/l10n_es_aeat_mod390_security.xml",
     ],
