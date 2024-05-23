@@ -32,6 +32,7 @@ setuptools.setup(
         'odoo14-addon-l10n_es_aeat_mod390',
         'odoo14-addon-l10n_es_aeat_mod390_oss',
         'odoo14-addon-l10n_es_aeat_partner_check',
+        'odoo14-addon-l10n_es_aeat_sii_invoice_summary',
         'odoo14-addon-l10n_es_aeat_sii_oca',
         'odoo14-addon-l10n_es_aeat_sii_oss',
         'odoo14-addon-l10n_es_aeat_vat_prorrate',
