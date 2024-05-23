@@ -1,0 +1,6 @@
+- Enric Tobella
+- [Tecnativa](https://www.tecnativa.com/):
+  - Pedro M. Baeza
+  - Carolina Fernandez
+- [Sygel](https://www.sygel.es/):
+  - Manuel Regidor
