@@ -82,6 +82,10 @@ Contributors
 * Omar Castiñeira <omar@comunitea.com> (https://comunitea.com/)
 * David Ramia <david.ramia@processcontrol.es> (https://processcontrol.es)
 
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+  * Víctor Martínez
+
 Maintainers
 ~~~~~~~~~~~
 
