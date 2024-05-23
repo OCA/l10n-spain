@@ -202,6 +202,13 @@ msgid "Bank account"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_account_bank_statement_line__is_bankrupcy_uncollectible_debt
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_account_move__is_bankrupcy_uncollectible_debt
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_account_payment__is_bankrupcy_uncollectible_debt
+msgid "Bankrupcy/uncollectible debt"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__calculation_date
 msgid "Calculation Date"
 msgstr ""
@@ -441,6 +448,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__journal_id
 msgid "Journal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model,name:l10n_es_aeat_mod390.model_account_move
+msgid "Journal Entry"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
@@ -779,6 +791,15 @@ msgstr ""
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__website_message_ids
 msgid "Website communication history"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_account_bank_statement_line__is_bankrupcy_uncollectible_debt
+#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_account_move__is_bankrupcy_uncollectible_debt
+#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_account_payment__is_bankrupcy_uncollectible_debt
+msgid ""
+"When this is set, the tax base and rate will be reflected in fields 31 and "
+"32 of the AEAT 390 model"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
