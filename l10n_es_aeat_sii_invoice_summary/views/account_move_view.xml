@@ -9,14 +9,17 @@
         <field name="inherit_id" ref="l10n_es_aeat_sii_oca.invoice_sii_form" />
         <field name="arch" type="xml">
             <field name="sii_description" position="before">
-                <field name="is_invoice_summary" />
+                <field
+                    name="is_invoice_summary"
+                    attrs="{'invisible': [('move_type', 'not in', ('out_invoice','out_refund'))]}"
+                />
                 <field
                     name="sii_invoice_summary_start"
-                    attrs="{'invisible': [('is_invoice_summary', '=', False)]}"
+                    attrs="{'invisible': ['|', ('move_type', 'not in', ('out_invoice','out_refund')), ('is_invoice_summary', '=', False)]}"
                 />
                 <field
                     name="sii_invoice_summary_end"
-                    attrs="{'invisible': [('is_invoice_summary', '=', False)]}"
+                    attrs="{'invisible': ['|', ('move_type', 'not in', ('out_invoice','out_refund')), ('is_invoice_summary', '=', False)]}"
                 />
             </field>
         </field>
