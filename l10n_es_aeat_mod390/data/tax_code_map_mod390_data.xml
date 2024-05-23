@@ -342,6 +342,68 @@
             eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva0_ic_bc'), ref('l10n_es.account_tax_template_p_iva4_ic_bc'), ref('l10n_es.account_tax_template_p_iva5_ic_bc'), ref('l10n_es.account_tax_template_p_iva4_sp_in'), ref('l10n_es.account_tax_template_p_iva4_ic_bi'), ref('l10n_es.account_tax_template_p_iva10_ic_bc'), ref('l10n_es.account_tax_template_p_iva10_sp_in'), ref('l10n_es.account_tax_template_p_iva10_ic_bi'), ref('l10n_es.account_tax_template_p_iva21_ic_bc'), ref('l10n_es.account_tax_template_p_iva21_sp_in'), ref('l10n_es.account_tax_template_p_iva21_ic_bi'), ref('l10n_es.account_tax_template_p_iva4_sp_ex'), ref('l10n_es.account_tax_template_p_iva10_sp_ex'), ref('l10n_es.account_tax_template_p_iva21_sp_ex'), ref('l10n_es.account_tax_template_p_iva4_isp'), ref('l10n_es.account_tax_template_p_iva10_isp'), ref('l10n_es.account_tax_template_p_iva21_isp'), ref('l10n_es.account_tax_template_p_iva4_isp_bi'), ref('l10n_es.account_tax_template_p_iva10_isp_bi'), ref('l10n_es.account_tax_template_p_iva21_isp_bi')])]"
         />
     </record>
+    <record id="aeat_mod390_map_line_31_sale" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">31</field>
+        <field
+            name="name"
+        >Modificación de bases por auto de declaración de concurso de acreedores (ventas)</field>
+        <field name="move_type">refund</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva0b'), ref('l10n_es.account_tax_template_s_iva0s'), ref('l10n_es.account_tax_template_s_iva4b'), ref('l10n_es.account_tax_template_s_iva4s'), ref('l10n_es.account_tax_template_s_iva5b'), ref('l10n_es.account_tax_template_s_iva5s'), ref('l10n_es.account_tax_template_s_iva10b'), ref('l10n_es.account_tax_template_s_iva10s'), ref('l10n_es.account_tax_template_s_iva21b'), ref('l10n_es.account_tax_template_s_iva21s')])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_31_purchase" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">31</field>
+        <field
+            name="name"
+        >Modificación de bases por auto de declaración de concurso de acreedores (compras)</field>
+        <field name="move_type">refund</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva0_ic_bc'), ref('l10n_es.account_tax_template_p_iva4_ic_bc'), ref('l10n_es.account_tax_template_p_iva5_ic_bc'), ref('l10n_es.account_tax_template_p_iva4_sp_in'), ref('l10n_es.account_tax_template_p_iva4_ic_bi'), ref('l10n_es.account_tax_template_p_iva10_ic_bc'), ref('l10n_es.account_tax_template_p_iva10_sp_in'), ref('l10n_es.account_tax_template_p_iva10_ic_bi'), ref('l10n_es.account_tax_template_p_iva21_ic_bc'), ref('l10n_es.account_tax_template_p_iva21_sp_in'), ref('l10n_es.account_tax_template_p_iva21_ic_bi'), ref('l10n_es.account_tax_template_p_iva4_sp_ex'), ref('l10n_es.account_tax_template_p_iva10_sp_ex'), ref('l10n_es.account_tax_template_p_iva21_sp_ex'), ref('l10n_es.account_tax_template_p_iva4_isp'), ref('l10n_es.account_tax_template_p_iva10_isp'), ref('l10n_es.account_tax_template_p_iva21_isp'), ref('l10n_es.account_tax_template_p_iva4_isp_bi'), ref('l10n_es.account_tax_template_p_iva10_isp_bi'), ref('l10n_es.account_tax_template_p_iva21_isp_bi')])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_32_sale" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">32</field>
+        <field
+            name="name"
+        >Modificación de cuotas por auto de declaración de concurso de acreedores (ventas)</field>
+        <field name="move_type">refund</field>
+        <field name="field_type">amount</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <field name="account_id" ref="l10n_es.account_common_477" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva4b'), ref('l10n_es.account_tax_template_s_iva4s'), ref('l10n_es.account_tax_template_s_iva5b'), ref('l10n_es.account_tax_template_s_iva5s'), ref('l10n_es.account_tax_template_s_iva10b'), ref('l10n_es.account_tax_template_s_iva10s'), ref('l10n_es.account_tax_template_s_iva21b'), ref('l10n_es.account_tax_template_s_iva21s')])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_32_purchase" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">32</field>
+        <field
+            name="name"
+        >Modificación de cuotas por auto de declaración de concurso de acreedores  (compras)</field>
+        <field name="move_type">refund</field>
+        <field name="field_type">amount</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <field name="account_id" ref="l10n_es.account_common_477" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva0_ic_bc'), ref('l10n_es.account_tax_template_p_iva4_ic_bc'), ref('l10n_es.account_tax_template_p_iva5_ic_bc'), ref('l10n_es.account_tax_template_p_iva4_sp_in'), ref('l10n_es.account_tax_template_p_iva4_ic_bi'), ref('l10n_es.account_tax_template_p_iva10_ic_bc'), ref('l10n_es.account_tax_template_p_iva10_sp_in'), ref('l10n_es.account_tax_template_p_iva10_ic_bi'), ref('l10n_es.account_tax_template_p_iva21_ic_bc'), ref('l10n_es.account_tax_template_p_iva21_sp_in'), ref('l10n_es.account_tax_template_p_iva21_ic_bi'), ref('l10n_es.account_tax_template_p_iva4_sp_ex'), ref('l10n_es.account_tax_template_p_iva10_sp_ex'), ref('l10n_es.account_tax_template_p_iva21_sp_ex'), ref('l10n_es.account_tax_template_p_iva4_isp'), ref('l10n_es.account_tax_template_p_iva10_isp'), ref('l10n_es.account_tax_template_p_iva21_isp'), ref('l10n_es.account_tax_template_p_iva4_isp_bi'), ref('l10n_es.account_tax_template_p_iva10_isp_bi'), ref('l10n_es.account_tax_template_p_iva21_isp_bi')])]"
+        />
+    </record>
     <record id="aeat_mod390_map_line_663" model="l10n.es.aeat.map.tax.line">
         <field name="map_parent_id" ref="aeat_mod390_map" />
         <field name="field_number">663</field>
