@@ -37,7 +37,7 @@ class AccountMoveReversal(models.TransientModel):
         if (
             "sii_refund_type" in fields_list
             or "sii_refund_type_required" in fields_list
-        ):
+        ) and self.env.context.get("active_model") == "account.move":
             invoices = self.env["account.move"].browse(
                 self.env.context.get("active_ids"),
             )
