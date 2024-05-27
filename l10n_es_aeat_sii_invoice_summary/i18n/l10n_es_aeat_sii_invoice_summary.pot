@@ -19,6 +19,11 @@ msgid "Display Name"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_invoice_summary
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_invoice_summary.invoice_sii_move_summary_form_view
+msgid "First Invoice"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_invoice_summary
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_move__id
 msgid "ID"
 msgstr ""
@@ -33,6 +38,11 @@ msgstr ""
 #. module: l10n_es_aeat_sii_invoice_summary
 #: model:ir.model,name:l10n_es_aeat_sii_invoice_summary.model_account_move
 msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_invoice_summary
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_invoice_summary.invoice_sii_move_summary_form_view
+msgid "Last Invoice"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_invoice_summary

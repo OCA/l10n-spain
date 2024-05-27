@@ -15,10 +15,12 @@
                 />
                 <field
                     name="sii_invoice_summary_start"
+                    string="First Invoice"
                     attrs="{'invisible': ['|', ('move_type', 'not in', ('out_invoice','out_refund')), ('is_invoice_summary', '=', False)]}"
                 />
                 <field
                     name="sii_invoice_summary_end"
+                    string="Last Invoice"
                     attrs="{'invisible': ['|', ('move_type', 'not in', ('out_invoice','out_refund')), ('is_invoice_summary', '=', False)]}"
                 />
             </field>
