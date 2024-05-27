@@ -274,7 +274,8 @@ class DeliveryCarrier(models.Model):
         for picking in pickings:
             if picking.carrier_id.gls_is_pickup_service:
                 continue
-            if len(picking.name) > 15:
+            vals = self._prepare_gls_asm_shipping(picking)
+            if len(vals.get("referencia_c", "")) > 15:
                 raise UserError(
                     _(
                         "GLS-ASM API doesn't admit a reference number higher than "
@@ -285,7 +286,6 @@ class DeliveryCarrier(models.Model):
                         "sequence to a max of 15 characters."
                     )
                 )
-            vals = self._prepare_gls_asm_shipping(picking)
             vals.update({"tracking_number": False, "exact_price": 0})
             response = gls_request._send_shipping(vals)
             self.log_xml(
