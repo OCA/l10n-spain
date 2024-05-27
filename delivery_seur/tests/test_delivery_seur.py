@@ -29,7 +29,7 @@ class TestDeliverySeurBase(common.TransactionCase):
         cls.product = cls.env.ref("product.product_delivery_01")
         cls.sale = cls._create_sale_order(cls)
         cls.picking = cls.sale.picking_ids[0]
-        cls.picking.move_lines.quantity_done = 1
+        cls.picking.move_ids.quantity_done = 1
 
     def _create_sale_order(self):
         order_form = Form(self.env["sale.order"])
