@@ -62,6 +62,7 @@ setuptools.setup(
         'odoo14-addon-l10n_es_ticketbai_pos',
         'odoo14-addon-l10n_es_toponyms',
         'odoo14-addon-l10n_es_vat_book',
+        'odoo14-addon-l10n_es_vat_book_invoice_summary',
         'odoo14-addon-l10n_es_vat_book_oss',
         'odoo14-addon-l10n_es_vat_prorate',
         'odoo14-addon-payment_redsys',
