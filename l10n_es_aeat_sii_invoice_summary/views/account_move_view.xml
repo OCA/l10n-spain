@@ -11,17 +11,17 @@
             <field name="sii_description" position="before">
                 <field
                     name="is_invoice_summary"
-                    attrs="{'invisible': [('move_type', 'not in', ('out_invoice','out_refund'))]}"
+                    attrs="{'invisible': [('move_type', 'not in', ('out_invoice','out_refund'))], 'readonly': [('state', '!=', 'draft')]}"
                 />
                 <field
                     name="sii_invoice_summary_start"
                     string="First Invoice"
-                    attrs="{'invisible': ['|', ('move_type', 'not in', ('out_invoice','out_refund')), ('is_invoice_summary', '=', False)]}"
+                    attrs="{'invisible': ['|', ('move_type', 'not in', ('out_invoice','out_refund')), ('is_invoice_summary', '=', False)], 'required': [('is_invoice_summary', '=', True)], 'readonly': [('state', '!=', 'draft')]}"
                 />
                 <field
                     name="sii_invoice_summary_end"
                     string="Last Invoice"
-                    attrs="{'invisible': ['|', ('move_type', 'not in', ('out_invoice','out_refund')), ('is_invoice_summary', '=', False)]}"
+                    attrs="{'invisible': ['|', ('move_type', 'not in', ('out_invoice','out_refund')), ('is_invoice_summary', '=', False)], 'required': [('is_invoice_summary', '=', True)], 'readonly': [('state', '!=', 'draft')]}"
                 />
             </field>
         </field>
