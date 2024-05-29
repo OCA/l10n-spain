@@ -54,3 +54,15 @@ class AccountMove(models.Model):
 
         if self.is_invoice_summary and self.is_purchase_document():
             raise exceptions.UserError(_("You can't make a supplier summary invoice."))
+
+    def write(self, vals):
+        """Cannot let change sii_invoice_summary fields
+        values in a SII registered supplier invoice"""
+        for invoice in self.filtered(
+            lambda x: x.is_invoice_summary and x.sii_state != "not_sent"
+        ):
+            if "sii_invoice_summary_start" in vals:
+                invoice._raise_exception_sii(_("SII Invoice Summary: First Invoice"))
+            if "sii_invoice_summary_end" in vals:
+                invoice._raise_exception_sii(_("SII Invoice Summary: Last Invoice"))
+        return super().write(vals)
