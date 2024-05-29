@@ -55,16 +55,20 @@ msgid "Last Modified on"
 msgstr "Modificado por última vez el"
 
 #. module: l10n_es_aeat_sii_invoice_summary
+#: code:addons/l10n_es_aeat_sii_invoice_summary/models/account_move.py:0
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_bank_statement_line__sii_invoice_summary_start
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_move__sii_invoice_summary_start
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_payment__sii_invoice_summary_start
+#, python-format
 msgid "SII Invoice Summary: First Invoice"
 msgstr "Resumen facturas simplificadas SII: Primera factura"
 
 #. module: l10n_es_aeat_sii_invoice_summary
+#: code:addons/l10n_es_aeat_sii_invoice_summary/models/account_move.py:0
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_bank_statement_line__sii_invoice_summary_end
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_move__sii_invoice_summary_end
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_payment__sii_invoice_summary_end
+#, python-format
 msgid "SII Invoice Summary: Last Invoice"
 msgstr "Resumen facturas simplificadas SII: Última factura"
 

@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Envio de factura simplificada resumen TPV a SII",
-    "version": "14.0.1.2.0",
+    "version": "14.0.1.3.0",
     "depends": ["l10n_es_aeat_sii_oca"],
     "category": "Accounting & Finance",
     "author": "FactorLibre, Odoo Community Association (OCA)",

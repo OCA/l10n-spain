@@ -43,6 +43,11 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiBase):
             }
         )
         invoice._sii_check_exceptions()
+        invoice.sii_state = "sent"
+        with self.assertRaises(exceptions.UserError):
+            invoice.write({"sii_invoice_summary_start": 2})
+        with self.assertRaises(exceptions.UserError):
+            invoice.write({"sii_invoice_summary_end": 20})
 
     def test_get_invoice_data_summary_case_same_number(self):
         mapping = [
