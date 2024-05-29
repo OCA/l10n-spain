@@ -10,259 +10,171 @@ msgstr ""
 "PO-Revision-Date: 2024-05-29 12:00+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: ca\n"
 "X-Generator: Poedit 2.3\n"
 
 #. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_10_21
-msgid "10.21 - Processing of fish, crustaceans and molluscs"
-msgstr "10.21 - Processament del peix, crustacis o mol·luscs"
+#: model:ir.model,name:l10n_es_cnae.model_res_partner_industry_eu_nace_wizard
+msgid "Partner Industry by EU NACE Wizard"
+msgstr ""
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_10_22
-msgid "10.22 - Manufacture of preserved fish"
-msgstr "10.22 - Elaboració de conserves de peix"
+#~ msgid "10.21 - Processing of fish, crustaceans and molluscs"
+#~ msgstr "10.21 - Processament del peix, crustacis o mol·luscs"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_10_43
-msgid "10.43 - Manufacture of olive oil"
-msgstr "10.43 - Elaboració d'oli d'oliva"
+#~ msgid "10.22 - Manufacture of preserved fish"
+#~ msgstr "10.22 - Elaboració de conserves de peix"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_10_44
-msgid "10.44 - Manufacture of other oils and fats"
-msgstr "10.44 - Elaboració d'altres olis i greixos"
+#~ msgid "10.43 - Manufacture of olive oil"
+#~ msgstr "10.43 - Elaboració d'oli d'oliva"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_10_53
-msgid "10.53 - Manufacture of cheeses"
-msgstr "10.53 - Elaboració de formatges"
+#~ msgid "10.44 - Manufacture of other oils and fats"
+#~ msgstr "10.44 - Elaboració d'altres olis i greixos"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_10_54
-msgid "10.54 - Manufacture of milk and other dairies"
-msgstr "10.54 - Elaboració de llet i altres derivats"
+#~ msgid "10.53 - Manufacture of cheeses"
+#~ msgstr "10.53 - Elaboració de formatges"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_35_15
-msgid "35.15 - Production of hydro-electric electricity"
-msgstr "35.15 - Producció d'energia hidroelèctrica"
+#~ msgid "10.54 - Manufacture of milk and other dairies"
+#~ msgstr "10.54 - Elaboració de llet i altres derivats"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_35_16
-msgid "35.16 - Production of electric energy of conventional thermal origin"
-msgstr "35.16 - Producció d'energia elèctrica d'origen tèrmic convencional"
+#~ msgid "35.15 - Production of hydro-electric electricity"
+#~ msgstr "35.15 - Producció d'energia hidroelèctrica"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_35_17
-msgid "35.17 - Production of electric energy of nuclear origin"
-msgstr "35.17 - Producció d'energia elèctrica d'origen nuclear"
+#~ msgid "35.16 - Production of electric energy of conventional thermal origin"
+#~ msgstr "35.16 - Producció d'energia elèctrica d'origen tèrmic convencional"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_35_18
-msgid "35.18 - Production of electric energy of eolian origin"
-msgstr "35.18 - Producció d'energia elèctrica d'origen eòlic"
+#~ msgid "35.17 - Production of electric energy of nuclear origin"
+#~ msgstr "35.17 - Producció d'energia elèctrica d'origen nuclear"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_35_19
-msgid "35.19 - Production of electric energy of other types"
-msgstr "35.19 - Producció d'energia elèctrica d'altres origens"
+#~ msgid "35.18 - Production of electric energy of eolian origin"
+#~ msgstr "35.18 - Producció d'energia elèctrica d'origen eòlic"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_41_21
-msgid "41.21 - Construction of residential buildings"
-msgstr "41.21 - Construcció d'edificis residencials"
+#~ msgid "35.19 - Production of electric energy of other types"
+#~ msgstr "35.19 - Producció d'energia elèctrica d'altres origens"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_41_22
-msgid "41.22 - Construction of non-residential buildings"
-msgstr "41.22 - Construcció d'edificis no residencials"
+#~ msgid "41.21 - Construction of residential buildings"
+#~ msgstr "41.21 - Construcció d'edificis residencials"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_59_15
-msgid "59.15 - Film and video production activities"
-msgstr "59.15 - Activitats de producció de cinema i vídeo"
+#~ msgid "41.22 - Construction of non-residential buildings"
+#~ msgstr "41.22 - Construcció d'edificis no residencials"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_59_16
-msgid "59.16 - Television programs production and distribution activities"
-msgstr "59.16 - Activitats de producció i distribució de programes de televisió"
+#~ msgid "59.15 - Film and video production activities"
+#~ msgstr "59.15 - Activitats de producció de cinema i vídeo"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_59_17
-msgid "59.17 - Film and video distribution activities"
-msgstr "59.17 - Activitats de distribució de cinema i vídeo"
+#~ msgid "59.16 - Television programs production and distribution activities"
+#~ msgstr ""
+#~ "59.16 - Activitats de producció i distribució de programes de televisió"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_59_18
-msgid "59.18 - Television programs distribution activities"
-msgstr "59.18 - Activitats de distribució de programes de televisió"
+#~ msgid "59.17 - Film and video distribution activities"
+#~ msgstr "59.17 - Activitats de distribució de cinema i vídeo"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_85_43
-msgid "85.43 - University education"
-msgstr "85.43 - Educació Universitaria"
+#~ msgid "59.18 - Television programs distribution activities"
+#~ msgstr "59.18 - Activitats de distribució de programes de televisió"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_85_44
-msgid "85.44 - Non-university tertiary education"
-msgstr "85.44 - Educació terciària no universitària"
+#~ msgid "85.43 - University education"
+#~ msgstr "85.43 - Educació Universitaria"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_87_31
-msgid "87.31 - Residential care activities for the elderly"
-msgstr "87.31 - Serveis socials amb allotjament a persones grans"
+#~ msgid "85.44 - Non-university tertiary education"
+#~ msgstr "85.44 - Educació terciària no universitària"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_87_32
-msgid "87.32 - Residential care activities for the disabled"
-msgstr "87.32 - Serveis socials amb allotjament a persones amb discapcitat"
+#~ msgid "87.31 - Residential care activities for the elderly"
+#~ msgstr "87.31 - Serveis socials amb allotjament a persones grans"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_88_11
-msgid "88.11 - Social work activities without accommodation for the elderly"
-msgstr "88.11 - Activitats de serveis socials sense allotjament a persones grans"
+#~ msgid "87.32 - Residential care activities for the disabled"
+#~ msgstr "87.32 - Serveis socials amb allotjament a persones amb discapcitat"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_88_12
-msgid "88.12 - Social work activities without accommodation for the disabled"
-msgstr "88.12 - Activitats de serveis socials sense allotjament a persones amb discapacitat"
+#~ msgid "88.11 - Social work activities without accommodation for the elderly"
+#~ msgstr ""
+#~ "88.11 - Activitats de serveis socials sense allotjament a persones grans"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_91_05
-msgid "91.05 - Library activities"
-msgstr "91.05 - Activitats bibliotecàries"
+#~ msgid ""
+#~ "88.12 - Social work activities without accommodation for the disabled"
+#~ msgstr ""
+#~ "88.12 - Activitats de serveis socials sense allotjament a persones amb "
+#~ "discapacitat"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,full_name:l10n_es_cnae.cnae_91_06
-msgid "91.06 - Archives activities"
-msgstr "91.06 - Activitats d'arxiu"
+#~ msgid "91.05 - Library activities"
+#~ msgstr "91.05 - Activitats bibliotecàries"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_91_06
-msgid "Archives activities"
-msgstr "Activitats d'arxiu"
+#~ msgid "91.06 - Archives activities"
+#~ msgstr "91.06 - Activitats d'arxiu"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_41_22
-msgid "Construction of non-residential buildings"
-msgstr "Construcció d'edificis no residencials"
+#~ msgid "Archives activities"
+#~ msgstr "Activitats d'arxiu"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_41_21
-msgid "Construction of residential buildings"
-msgstr "Construcció d'edificis residencials"
+#~ msgid "Construction of non-residential buildings"
+#~ msgstr "Construcció d'edificis no residencials"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_59_17
-msgid "Film and video distribution activities"
-msgstr "Activitats de distribució de cinema i vídeo"
+#~ msgid "Construction of residential buildings"
+#~ msgstr "Construcció d'edificis residencials"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_59_15
-msgid "Film and video production activities"
-msgstr "Activitats de producció de cinema i vídeo"
+#~ msgid "Film and video distribution activities"
+#~ msgstr "Activitats de distribució de cinema i vídeo"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_91_05
-msgid "Library activities"
-msgstr "Activitats bibliotecàries"
+#~ msgid "Film and video production activities"
+#~ msgstr "Activitats de producció de cinema i vídeo"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_10_53
-msgid "Manufacture of cheeses"
-msgstr "Elaboració de formatges"
+#~ msgid "Library activities"
+#~ msgstr "Activitats bibliotecàries"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_10_54
-msgid "Manufacture of milk and other dairies"
-msgstr "Elaboració de llet i altres derivats"
+#~ msgid "Manufacture of cheeses"
+#~ msgstr "Elaboració de formatges"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_10_43
-msgid "Manufacture of olive oil"
-msgstr "Elaboració d'oli d'oliva"
+#~ msgid "Manufacture of milk and other dairies"
+#~ msgstr "Elaboració de llet i altres derivats"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_10_44
-msgid "Manufacture of other oils and fats"
-msgstr "Elaboració d'altres olis i greixos"
+#~ msgid "Manufacture of olive oil"
+#~ msgstr "Elaboració d'oli d'oliva"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_10_22
-msgid "Manufacture of preserved fish"
-msgstr "Elaboració de conserves de peix"
+#~ msgid "Manufacture of other oils and fats"
+#~ msgstr "Elaboració d'altres olis i greixos"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_85_44
-msgid "Non-university tertiary education"
-msgstr "Educació terciària no universitària"
+#~ msgid "Manufacture of preserved fish"
+#~ msgstr "Elaboració de conserves de peix"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_10_21
-msgid "Processing of fish, crustaceans and molluscs"
-msgstr "Processament del peix, crustacis o mol·luscs"
+#~ msgid "Non-university tertiary education"
+#~ msgstr "Educació terciària no universitària"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_35_16
-msgid "Production of electric energy of conventional thermal origin"
-msgstr "Producció d'energia elèctrica d'origen tèrmic convencional"
+#~ msgid "Processing of fish, crustaceans and molluscs"
+#~ msgstr "Processament del peix, crustacis o mol·luscs"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_35_18
-msgid "Production of electric energy of eolian origin"
-msgstr "Producció d'energia elèctrica d'origen eòlic"
+#~ msgid "Production of electric energy of conventional thermal origin"
+#~ msgstr "Producció d'energia elèctrica d'origen tèrmic convencional"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_35_17
-msgid "Production of electric energy of nuclear origin"
-msgstr "Producció d'energia elèctrica d'origen nuclear"
+#~ msgid "Production of electric energy of eolian origin"
+#~ msgstr "Producció d'energia elèctrica d'origen eòlic"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_35_19
-msgid "Production of electric energy of other types"
-msgstr "Production of electric energy of other types"
+#~ msgid "Production of electric energy of nuclear origin"
+#~ msgstr "Producció d'energia elèctrica d'origen nuclear"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_35_15
-msgid "Production of hydro-electric electricity"
-msgstr "Producció d'energia hidroelèctrica"
+#~ msgid "Production of electric energy of other types"
+#~ msgstr "Production of electric energy of other types"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_87_32
-msgid "Residential care activities for the disabled"
-msgstr "Serveis socials amb allotjament a persones amb discapcitat"
+#~ msgid "Production of hydro-electric electricity"
+#~ msgstr "Producció d'energia hidroelèctrica"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_87_31
-msgid "Residential care activities for the elderly"
-msgstr "Serveis socials amb allotjament a persones grans"
+#~ msgid "Residential care activities for the disabled"
+#~ msgstr "Serveis socials amb allotjament a persones amb discapcitat"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_88_12
-msgid "Social work activities without accommodation for the disabled"
-msgstr "Activitats de serveis socials sense allotjament a persones amb discapacitat"
+#~ msgid "Residential care activities for the elderly"
+#~ msgstr "Serveis socials amb allotjament a persones grans"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_88_11
-msgid "Social work activities without accommodation for the elderly"
-msgstr "Activitats de serveis socials sense allotjament a persones grans"
+#~ msgid "Social work activities without accommodation for the disabled"
+#~ msgstr ""
+#~ "Activitats de serveis socials sense allotjament a persones amb "
+#~ "discapacitat"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_59_18
-msgid "Television programs distribution activities"
-msgstr "Activitats de distribució de programes de televisió"
+#~ msgid "Social work activities without accommodation for the elderly"
+#~ msgstr "Activitats de serveis socials sense allotjament a persones grans"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_59_16
-msgid "Television programs production and distribution activities"
-msgstr "Activitats de producció i distribució de programes de televisió"
+#~ msgid "Television programs distribution activities"
+#~ msgstr "Activitats de distribució de programes de televisió"
 
-#. module: l10n_es_cnae
-#: model:res.partner.industry,name:l10n_es_cnae.cnae_85_43
-msgid "University education"
-msgstr "Educació Universitaria"
+#~ msgid "Television programs production and distribution activities"
+#~ msgstr "Activitats de producció i distribució de programes de televisió"
+
+#~ msgid "University education"
+#~ msgstr "Educació Universitaria"
