@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Dixmit
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="company_payment_ratio_wizard_form_view">
+        <field name="model">company.payment.ratio.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Company Payment Ratio Wizard">
+                <!-- TODO -->
+                <group>
+                    <field name="company_id" />
+                    <field name="start_date" />
+                    <field name="end_date" />
+                    <field name="comparison" />
+                </group>
+                <footer>
+                    <button
+                        name="button_export_html"
+                        string="View"
+                        type="object"
+                        default_focus="1"
+                        class="oe_highlight"
+                    />
+                    or
+                    <button
+                        name="button_export_pdf"
+                        string="Export PDF"
+                        type="object"
+                    />
+                    or
+                    <button
+                        name="button_export_xlsx"
+                        string="Export XLSX"
+                        type="object"
+                    />
+                    or
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="company_payment_ratio_wizard_act_window">
+        <field name="name">Company Payment Ratio Wizard</field> <!-- TODO -->
+        <field name="res_model">company.payment.ratio.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
+
+
+    <record model="ir.ui.menu" id="company_payment_ratio_wizard_menu">
+        <field name="name">Company Payment Ratio Wizard</field>
+        <field name="parent_id" ref="account.menu_finance_reports" /> <!-- TODO -->
+        <field name="action" ref="company_payment_ratio_wizard_act_window" />
+        <field name="sequence" eval="16" /> <!-- TODO -->
+    </record>
+</odoo>
