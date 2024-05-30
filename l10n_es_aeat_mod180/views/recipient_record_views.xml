@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="registro_perceptor_view_form" model="ir.ui.view">
+        <field name="name">recipient.record.view.form</field>
+        <field name="model">recipient.record</field>
+        <field name="arch" type="xml">
+            <form string="Registro de perceptor">
+                <sheet>
+                    <group>
+                        <field name="partner_id" />
+                        <field name="retentions_base" />
+                        <field name="retentions_percentage" />
+                    </group>
+                    <group>
+                        <field name="l10n_es_aeat_real_estate_id" />
+                        <field name="retentions_fee" />
+                        <field name="accrual_year" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="registro_perceptor_view_tree" model="ir.ui.view">
+        <field name="name">recipient.record.view.tree</field>
+        <field name="model">recipient.record</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="partner_id" />
+                <field name="l10n_es_aeat_real_estate_id" />
+                <field name="retentions_base" />
+                <button
+                    name="action_get_base_move_lines"
+                    type="object"
+                    icon="fa-search-plus"
+                    title="search-plus"
+                />
+                <field name="retentions_fee" />
+                <field name="retentions_percentage" />
+                <field name="accrual_year" />
+            </tree>
+        </field>
+    </record>
+
+</odoo>
