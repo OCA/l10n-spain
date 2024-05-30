@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Dixmit
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="account_move_form_view">
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_payment_term_id']/.." position="after">
+                <field
+                    name="payment_date"
+                    attrs="{'invisible': [('payment_date', '=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+
+
+</odoo>

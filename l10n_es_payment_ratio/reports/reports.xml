@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="action_report_l10n_es_payment_ratio" model="ir.actions.report">
+        <field name="name">Payment Ratio</field>
+        <field name="model">company.payment.ratio.wizard</field>
+        <field name="type">ir.actions.report</field>
+        <field
+            name="report_name"
+        >l10n_es_payment_ratio.report_l10n_es_payment_ratio</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_file">report_l10n_payment_ratio</field>
+    </record>
+    <record id="action_report_l10n_es_payment_ratio_html" model="ir.actions.report">
+        <field name="name">Payment Ratio</field>
+        <field name="model">company.payment.ratio.wizard</field>
+        <field name="type">ir.actions.report</field>
+        <field
+            name="report_name"
+        >l10n_es_payment_ratio.report_l10n_es_payment_ratio</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_file">report_l10n_payment_ratio</field>
+    </record>
+    <record id="action_report_l10n_es_payment_ratio_xlsx" model="ir.actions.report">
+        <field name="name">Payment Ratio XLSX</field>
+        <field name="model">company.payment.ratio.wizard</field>
+        <field name="type">ir.actions.report</field>
+        <field
+            name="report_name"
+        >l10n_es_payment_ratio.report_l10n_es_payment_ratio_xlsx</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_file">report_l10n_payment_ratio_xlsx</field>
+    </record>
+    <template id="report_l10n_es_payment_ratio">
+        <t t-set="company" t-value="docs.env['res.company'].browse(res_company_id)" />
+
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>Payment Ratio</h2>
+                            <p>Start: <span
+                                    t-esc="start_date"
+                                    t-options="{'widget': 'date'}"
+                                /></p>
+                            <p>End: <span
+                                    t-esc="end_date"
+                                    t-options="{'widget': 'date'}"
+                                /></p>
+                            <p>Total payed amount: <span
+                                    t-esc="aggregated_data['amount_total']"
+                                    t-options="{'widget': 'monetary', 'display_currency': company.currency_id}"
+                                /></p>
+                            <p>Ratio of payed amount: <span
+                                    t-esc="aggregated_data[field] / aggregated_data['amount_total']"
+                                    t-options="{'widget': 'float', 'precision': 2}"
+                                    t-if="aggregated_data['amount_total']"
+                                /></p>
+                            <p>Pending amount: <span
+                                    t-esc="aggregated_data['pending_amount_total']"
+                                    t-options="{'widget': 'monetary', 'display_currency': company.currency_id}"
+                                /></p>
+                            <p>Ratio of pending amount: <span
+                                    t-esc="aggregated_data['pending_' + field] / aggregated_data['pending_amount_total']"
+                                    t-options="{'widget': 'float', 'precision': 2}"
+                                    t-if="aggregated_data['pending_amount_total']"
+                                /></p>
+                            <p>Ratio of payment: <span
+                                    t-esc="(aggregated_data['pending_' + field] + aggregated_data[field]) / (aggregated_data['amount_total'] + aggregated_data['pending_amount_total'])"
+                                    t-if="aggregated_data['amount_total'] + aggregated_data['pending_amount_total']"
+                                    t-options="{'widget': 'float', 'precision': 2}"
+                                /></p>
+                        </div>
+                    </div>
+                    <table
+                        class="table table-sm o_main_table"
+                        name="invoice_line_table"
+                    >
+                        <thead>
+                            <tr>
+                                <th name="th_description" class="text-left"><span
+                                    >Partner</span></th>
+                                <th name="th_payed" class="text-left"><span
+                                    >Payed</span></th>
+                                <th name="th_payed_ratio" class="text-left"><span
+                                    >Payed ratio</span></th>
+                                <th name="th_pending" class="text-left"><span
+                                    >Pending</span></th>
+                                <th name="th_pending_ratio" class="text-left"><span
+                                    >Pending ratio</span></th>
+                                <th name="th_partner_ratio" class="text-left"><span
+                                    >Partner ratio</span></th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="data" t-as="line">
+                                <td t-esc="line['partner_id'][1]" />
+                                <td
+                                    t-esc="line['amount_total']"
+                                    t-options="{'widget': 'monetary', 'display_currency': company.currency_id}"
+                                />
+                                <td><t
+                                        t-esc="line[field] / line['amount_total']"
+                                        t-if="line['amount_total']"
+                                        t-options="{'widget': 'float', 'precision': 2}"
+                                    /></td>
+                                <td><t
+                                        t-esc="line['pending_amount_total']"
+                                        t-options="{'widget': 'monetary', 'display_currency': company.currency_id}"
+                                    /></td>
+                                <td><t
+                                        t-esc="line['pending_' + field] / line['pending_amount_total']"
+                                        t-if="line['pending_amount_total']"
+                                        t-options="{'widget': 'float', 'precision': 2}"
+                                    /></td>
+                                <td><t
+                                        t-esc="(line['pending_' + field] + line[field]) / (line['amount_total'] + line['pending_amount_total'])"
+                                        t-if="line['amount_total'] + line['pending_amount_total']"
+                                        t-options="{'widget': 'float', 'precision': 2}"
+                                    /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
