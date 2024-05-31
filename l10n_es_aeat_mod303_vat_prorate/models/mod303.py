@@ -97,13 +97,16 @@ class L10nEsAeatMod303Report(models.Model):
         """Add the amount of the regularization to the liquidation entry."""
         lines = super()._prepare_regularization_extra_move_lines()
         if self.casilla_44 and self.with_vat_prorate:
-            lines.append(
-                {
-                    "name": _("VAT prorate regularization"),
-                    "account_id": self.prorate_account_id.id,
-                    "analytic_distribution": {self.prorate_analytic_account_id.id: 100},
-                    "debit": -self.casilla_44 if self.casilla_44 < 0 else 0.0,
-                    "credit": self.casilla_44 if self.casilla_44 > 0 else 0.0,
+            line_vals = {
+                "name": _("VAT prorate regularization"),
+                "account_id": self.prorate_account_id.id,
+                "debit": -self.casilla_44 if self.casilla_44 < 0 else 0.0,
+                "credit": self.casilla_44 if self.casilla_44 > 0 else 0.0,
+            }
+            # Add analytic_distribution only if prorate_analytic_account_id is set
+            if self.prorate_analytic_account_id:
+                line_vals["analytic_distribution"] = {
+                    self.prorate_analytic_account_id.id: 100
                 }
-            )
+            lines.append(line_vals)
         return lines
