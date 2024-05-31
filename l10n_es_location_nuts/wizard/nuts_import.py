@@ -5,7 +5,7 @@
 
 import logging
 
-from odoo import api, models
+from odoo import models
 
 logger = logging.getLogger(__name__)
 
@@ -75,15 +75,9 @@ class NutsImport(models.TransientModel):
         "ESZZZ": False,  # Extra-Regio NUTS 3
     }
 
-    @api.model
-    def state_mapping(self, data, node):
-        mapping = super().state_mapping(data, node)
-        level = data.get("level", 0)
-        code = data.get("code", "")
-        if self.current_country_id.code == "ES" and level == 4:
-            toponyms = self._es_state_map.get(code, False)
-            if toponyms:
-                state = self.env.ref(toponyms)
-                if state:
-                    mapping["state_id"] = state.id
-        return mapping
+    def _create_partner_nuts(self, nuts_data):
+        nuts_ids = super()._create_partner_nuts(nuts_data)
+        for nut in nuts_ids:
+            if self._es_state_map.get(nut.code, False):
+                nut.state_id = self.env.ref(self._es_state_map[nut.code])
+        return nuts_ids
