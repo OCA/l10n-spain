@@ -130,7 +130,9 @@ class ConfirmingAEF(object):
         # 137 - 139 Código divisa
         text += self._aef_convert_text(self.record.company_currency_id.name, 3)
         # 140 - 140 Estandar / Pronto Pago/ Otros
-        text += self._aef_convert_text("", 1)
+        text += self._aef_convert_text(
+            self.record.payment_mode_id.aef_confirming_modality or "", 1
+        )
         # 141 - 170 Referencia/Nombre fichero
         text += self._aef_convert_text("", 30)
         # 171 - 172 Tipo Formato
