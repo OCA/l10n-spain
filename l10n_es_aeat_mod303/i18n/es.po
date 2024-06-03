@@ -295,11 +295,6 @@ msgid "Calculation Date"
 msgstr "Fecha de cálculo"
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__return_last_period
-msgid "Check if you are submitting the last period return"
-msgstr "Marcar si quieres enviar la devolución en el último período"
-
-#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__company_id
 msgid "Company"
 msgstr "Compañía"
@@ -523,7 +518,6 @@ msgstr "Si está marcado, los nuevos mensajes requerirán su atención."
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
 
@@ -587,11 +581,6 @@ msgstr "Diario en el que se publica el movimiento."
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__representative_vat
 msgid "L.R. VAT number"
 msgstr "NIF del representante legal"
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__return_last_period
-msgid "Last Period Return"
-msgstr "Devolución último período"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__write_uid
@@ -753,6 +742,11 @@ msgid "Previous declaration number"
 msgstr "Número de declaración anterior"
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__devolucion_mensual
 msgid "Registered in the Register of Monthly Return"
 msgstr "Inscrito en el Registro de Devolución Mensual"
@@ -785,11 +779,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form
 msgid "Resultado"
 msgstr "Resultado"
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "SMS de error en la entrega"
 
 #. module: l10n_es_aeat_mod303
 #. odoo-python
@@ -1054,3 +1043,12 @@ msgstr "¿SII voluntario?"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__has_operation_volume
 msgid "¿Volumen de operaciones?"
 msgstr "¿Volumen de operaciones?"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "SMS de error en la entrega"
+
+#~ msgid "Check if you are submitting the last period return"
+#~ msgstr "Marcar si quieres enviar la devolución en el último período"
+
+#~ msgid "Last Period Return"
+#~ msgstr "Devolución último período"
