@@ -11,7 +11,19 @@
                 expr="//field[@name='line_ids']/tree/field[@name='tax_line_id']"
                 position="after"
             >
-                <field name="vat_prorate" invisible="1" />
+                <field name="vat_prorate" column_invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']" position="before">
+                <field name="with_special_vat_prorate" invisible="1" />
+            </xpath>
+            <xpath
+                expr="//field[@name='invoice_line_ids']/tree/field[@name='tax_ids']"
+                position="after"
+            >
+                <field
+                    name="with_vat_prorate"
+                    column_invisible="not parent.with_special_vat_prorate or parent.move_type not in ['in_invoice', 'in_refund']"
+                />
             </xpath>
         </field>
     </record>
