@@ -32,11 +32,10 @@
         <field name="field_type">base</field>
         <field name="sum_type">both</field>
         <field name="inverse" eval="True" />
-        <!-- Uncomment tax when PR https://github.com/odoo/odoo/pull/161633/files is merged -->
-        <!-- <field
+        <field
             name="tax_ids"
-            eval="[(4, ref(l10n_es.account_tax_template_p_irpf19cs))]"
-        /> -->
+            eval="[(4, ref('l10n_es.account_tax_template_p_irpf19cs'))]"
+        />
     </record>
     <record id="aeat_mod123_2024_map_line_07" model="l10n.es.aeat.map.tax.line">
         <field name="map_parent_id" ref="aeat_mod123_2024_map" />
@@ -64,10 +63,9 @@
         <field name="field_type">amount</field>
         <field name="sum_type">credit</field>
         <field name="inverse" eval="False" />
-        <!-- Uncomment tax when PR https://github.com/odoo/odoo/pull/161633/files is merged -->
-        <!-- <field
+        <field
             name="tax_ids"
-            eval="[(4, ref(l10n_es.account_tax_template_p_irpf19cs))]"
-        /> -->
+            eval="[(4, ref('l10n_es.account_tax_template_p_irpf19cs'))]"
+        />
     </record>
 </odoo>
