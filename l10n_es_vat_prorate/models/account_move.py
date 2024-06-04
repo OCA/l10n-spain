@@ -2,14 +2,54 @@
 # Copyright 2023 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import api, fields, models
 from odoo.tools import float_round, frozendict
+
+
+class AccountMove(models.Model):
+    _inherit = "account.move"
+
+    prorate_id = fields.Many2one(
+        string="Prorate",
+        comodel_name="res.company.vat.prorate",
+        compute="_compute_prorate_id",
+        ondelete="restrict",
+        store=True,
+    )
+    with_special_vat_prorate = fields.Boolean(compute="_compute_prorate_id", store=True)
+
+    @api.depends("company_id", "date", "invoice_date")
+    def _compute_prorate_id(self):
+        for rec in self:
+            if rec.company_id.with_vat_prorate:
+                prorate_date = rec.date or rec.invoice_date or fields.Date.today()
+                rec.prorate_id = rec.company_id.get_prorate(prorate_date)
+                rec.with_special_vat_prorate = rec.prorate_id.type == "special"
+            else:
+                rec.prorate_id = rec.with_special_vat_prorate = False
 
 
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
-    vat_prorate = fields.Boolean()
+    vat_prorate = fields.Boolean(
+        string="Is vat prorate", help="The line is a vat prorate"
+    )
+    with_vat_prorate = fields.Boolean(
+        string="With VAT Prorate",
+        help="The line will create a vat prorate",
+        compute="_compute_with_vat_prorate",
+        store=True,
+        readonly=False,
+    )
+
+    @api.depends("move_id.prorate_id", "company_id")
+    def _compute_with_vat_prorate(self):
+        for rec in self:
+            rec.with_vat_prorate = rec.move_id.company_id.with_vat_prorate and (
+                rec.move_id.prorate_id.type == "general"
+                or rec.move_id.prorate_id.special_vat_prorate_default
+            )
 
     def _process_aeat_tax_fee_info(self, res, tax, sign):
         result = super()._process_aeat_tax_fee_info(res, tax, sign)
@@ -28,6 +68,7 @@ class AccountMoveLine(models.Model):
             "analytic_distribution": self.analytic_distribution,
         }
 
+    @api.depends("with_vat_prorate")
     def _compute_all_tax(self):
         """After getting normal taxes dict that is dumped into this field, we loop
         into it to check if any of them applies VAT prorate, and if it's the case,
@@ -37,24 +78,24 @@ class AccountMoveLine(models.Model):
         for line in self:
             res = super(AccountMoveLine, line)._compute_all_tax()
             prorate_tax_list = {}
-            vat_prorate_date = line.date or line.invoice_date or fields.Date.today()
             for tax_key, tax_vals in line.compute_all_tax.items():
+                tax_vals["vat_prorate"] = False
                 tax = (
                     self.env["account.tax.repartition.line"]
                     .browse(tax_key.get("tax_repartition_line_id", False))
                     .tax_id
                 )
                 if (
-                    tax.with_vat_prorate
+                    line.with_vat_prorate
+                    and tax.with_vat_prorate
                     and tax_key.get("account_id")
                     and (
                         not tax.prorate_account_ids
                         or tax_key.get("account_id") in tax.prorate_account_ids.ids
                     )
                 ):
-                    tax_vals["vat_prorate"] = False  # assure value for regular tax line
                     prec = line.move_id.currency_id.rounding
-                    prorate = line.company_id.get_prorate(vat_prorate_date)
+                    prorate = line.move_id.prorate_id.vat_prorate
                     new_vals = tax_vals.copy()
                     for field in {"amount_currency", "balance"}:
                         tax_vals[field] = float_round(

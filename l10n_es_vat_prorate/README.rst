@@ -42,10 +42,20 @@ El módulo nos divide los IVA según la prorrata de la compañía.
 Configuration
 =============
 
-* Accede a la companía y marca que aplica prorrata
-* Define el porcentaje de prorata (se aplica por fechas)
+Para configurar la prorrata general:
 
-Los impuestos de las facturas de cliente se dividiran según la prorata activa.
+* Acceda a la compañía y marque que aplica prorrata.
+* Defina el porcentaje de prorrata (se aplica por fechas).
+
+Los impuestos de las facturas de proveedor se dividiran según la prorata activa.
+
+Para configurar la prorrata especial:
+
+* Acceda a la compañía y marque que aplica prorrata de IVA especial.
+* Marque el valor por defecto de la prorrata especial.
+
+En las líneas de factura aparecerá un nuevo campo editable, con el valor por defecto
+configurado, que permitirá definir que líneas serán prorrateadas.
 
 Known issues / Roadmap
 ======================
@@ -79,6 +89,9 @@ Contributors
 
   * Pedro M. Baeza
   * Carolina Fernandez
+* `Sygel <https://www.sygel.es/>`_:
+  * Harald Panten
+  * Alberto Martínez
 
 Maintainers
 ~~~~~~~~~~~

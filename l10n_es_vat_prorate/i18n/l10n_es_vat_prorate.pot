@@ -119,6 +119,11 @@ msgid "VAT Prorate"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
+#: model_terms:ir.ui.view,arch_db:l10n_es_vat_prorate.account_move_form_view
+msgid "VAT prorate?"
+msgstr ""
+
+#. module: l10n_es_vat_prorate
 #: model:ir.model,name:l10n_es_vat_prorate.model_res_company_vat_prorate
 msgid "VAT Prorate table"
 msgstr ""
@@ -136,9 +141,10 @@ msgid "Vat Prorate"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move_line__with_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_tax__with_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company__with_vat_prorate
-msgid "With Vat Prorate"
+msgid "With VAT Prorate"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
