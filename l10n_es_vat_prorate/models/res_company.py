@@ -12,9 +12,23 @@ from .prorate_taxes import PRORATE_TAXES
 class ResCompany(models.Model):
     _inherit = "res.company"
 
-    with_vat_prorate = fields.Boolean()
+    with_vat_prorate = fields.Boolean(
+        string="With VAT Prorate",
+        help="If this option is enabled, all invoice lines" "with VAT will be prorated",
+    )
     vat_prorate_ids = fields.One2many(
         "res.company.vat.prorate", inverse_name="company_id"
+    )
+
+    with_special_vat_prorate = fields.Boolean(
+        string="With Special VAT Prorate",
+        help="If this option is enabled, you will be able to select which "
+        "invoice lines will be prorated",
+    )
+    with_special_vat_prorate_default = fields.Boolean(
+        string="With Special VAT Prorate Default",
+        help="If the Special VAT Prorate is enabled, this value indicates "
+        "whether all the invoice lines will be prorated by default",
     )
 
     @ormcache("self")
