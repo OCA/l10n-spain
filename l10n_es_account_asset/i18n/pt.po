@@ -1,0 +1,57 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_account_asset
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-13 12:03+0000\n"
+"PO-Revision-Date: 2017-07-02 02:44+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_es_account_asset
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset__annual_percentage
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_profile__annual_percentage
+msgid "Annual depreciation percentage"
+msgstr ""
+
+#. module: l10n_es_account_asset
+#: model:ir.model,name:l10n_es_account_asset.model_account_asset
+msgid "Asset"
+msgstr ""
+
+#. module: l10n_es_account_asset
+#: model:ir.model,name:l10n_es_account_asset.model_account_asset_profile
+msgid "Asset profile"
+msgstr ""
+
+#. module: l10n_es_account_asset
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset__method_percentage
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_profile__method_percentage
+msgid "Depreciation percentage"
+msgstr ""
+
+#. module: l10n_es_account_asset
+#. odoo-python
+#: code:addons/l10n_es_account_asset/models/account_asset_profile.py:0
+#, python-format
+msgid "Fixed percentage"
+msgstr ""
+
+#. module: l10n_es_account_asset
+#: model:ir.model.constraint,message:l10n_es_account_asset.constraint_account_asset_annual_percentage
+#: model:ir.model.constraint,message:l10n_es_account_asset.constraint_account_asset_profile_annual_percentage
+msgid "Wrong percentage!"
+msgstr ""
+
+#~ msgid "Asset category"
+#~ msgstr "Categoria de activos"

@@ -1,0 +1,64 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_account_asset
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-13 12:03+0000\n"
+"PO-Revision-Date: 2021-02-11 11:45+0000\n"
+"Last-Translator: Mat-moran <amadeo.moran@gmail.com>\n"
+"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: l10n_es_account_asset
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset__annual_percentage
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_profile__annual_percentage
+msgid "Annual depreciation percentage"
+msgstr "Porcentaje anual de amortización"
+
+#. module: l10n_es_account_asset
+#: model:ir.model,name:l10n_es_account_asset.model_account_asset
+msgid "Asset"
+msgstr "Activo"
+
+#. module: l10n_es_account_asset
+#: model:ir.model,name:l10n_es_account_asset.model_account_asset_profile
+msgid "Asset profile"
+msgstr "Perfil de activo"
+
+#. module: l10n_es_account_asset
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset__method_percentage
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_profile__method_percentage
+msgid "Depreciation percentage"
+msgstr "Porcentaje de amortización"
+
+#. module: l10n_es_account_asset
+#. odoo-python
+#: code:addons/l10n_es_account_asset/models/account_asset_profile.py:0
+#, python-format
+msgid "Fixed percentage"
+msgstr "Porcentaje fijo"
+
+#. module: l10n_es_account_asset
+#: model:ir.model.constraint,message:l10n_es_account_asset.constraint_account_asset_annual_percentage
+#: model:ir.model.constraint,message:l10n_es_account_asset.constraint_account_asset_profile_annual_percentage
+msgid "Wrong percentage!"
+msgstr "¡Porcentaje incorrecto!"
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre mostrado"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación"
