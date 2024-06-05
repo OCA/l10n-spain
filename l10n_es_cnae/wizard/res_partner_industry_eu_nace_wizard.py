@@ -12,8 +12,7 @@ _logger = logging.getLogger(__name__)
 class ResPartnerIndustryEUNaceWizard(models.TransientModel):
     _inherit = "res.partner.industry.eu.nace.wizard"
 
-    def update_partner_industry_eu_nace(self):
-        ret_vals = super().update_partner_industry_eu_nace()
+    def create_spanish_industries(self):
         try:
             with file_open(
                 "l10n_es_cnae/data/res.partner.industry.csv", "rb"
@@ -27,6 +26,7 @@ class ResPartnerIndustryEUNaceWizard(models.TransientModel):
                     nace.get("full_name").split(" - ")[0]: nace.get("id")
                     for nace in all_naces
                 }
+                language_codes = self.env["res.lang"].search([]).mapped("code")
                 for row in reader:
                     nace_code = row[2]
                     nace_id = nace_map.get(nace_code, False)
@@ -35,8 +35,18 @@ class ResPartnerIndustryEUNaceWizard(models.TransientModel):
                         parent = nace_map.get(row[1])
                         if parent:
                             vals["parent_id"] = parent
-                        partner_industry_mod.create(vals)
-
+                        industry = partner_industry_mod.create(vals)
+                        if "es_ES" in language_codes:
+                            industry.with_context(lang="es_ES").write(
+                                {
+                                    "name": row[4],
+                                    "full_name": f"{nace_code} - {row[4]}",
+                                }
+                            )
         except Exception:
             _logger.exception("Could not create industries from module l10n_es_cnae.")
+
+    def update_partner_industry_eu_nace(self):
+        ret_vals = super().update_partner_industry_eu_nace()
+        self.create_spanish_industries()
         return ret_vals
