@@ -3,7 +3,7 @@
 # See README.rst file on addon root folder for more details
 {
     "name": "REAV - Régimen Especial Agencias de Viajes",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "development_status": "Beta",
     "category": "Localization/Account Charts",
     "website": "https://github.com/OCA/l10n-spain",
