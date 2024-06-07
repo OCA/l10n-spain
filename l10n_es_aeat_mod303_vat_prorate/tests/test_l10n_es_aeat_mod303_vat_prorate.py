@@ -20,8 +20,8 @@ class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
     }
 
     def test_model_303_without_prorate(self):
-        self._invoice_sale_create("2017-01-11")
-        self._invoice_purchase_create("2017-01-11")
+        self._invoice_sale_create("2024-01-01")
+        self._invoice_purchase_create("2024-01-01")
         self.model303.button_calculate()
         self.assertEqual(self.model303.total_devengado, 210)
         self.assertEqual(self.model303.total_deducir, 105)
@@ -34,21 +34,21 @@ class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
             {
                 "with_vat_prorate": True,
                 "vat_prorate_ids": [
-                    (0, 0, {"date": "2017-01-01", "vat_prorate": 90}),
+                    (0, 0, {"date": "2024-01-01", "vat_prorate": 90}),
                 ],
             }
         )
         # create invoices + model 303 for 1T
-        self._invoice_sale_create("2017-01-01")
-        self._invoice_purchase_create("2017-01-01")
+        self._invoice_sale_create("2024-01-01")
+        self._invoice_purchase_create("2024-01-01")
         self.model303.button_calculate()
         self.assertEqual(self.model303.total_devengado, 210)
         self.assertEqual(self.model303.total_deducir, 94.5)
         self.assertEqual(self.model303.resultado_liquidacion, 115.5)
         self.assertEqual(self.model303.casilla_44, 0)
         # create invoices + model 303 for 4T
-        self._invoice_sale_create("2017-11-01")
-        self._invoice_purchase_create("2017-11-01")
+        self._invoice_sale_create("2024-11-01")
+        self._invoice_purchase_create("2024-11-01")
         with self.assertRaises(exceptions.ValidationError):
             self.model303_4t.vat_prorate_percent = 101
         self.model303_4t.vat_prorate_percent = 89

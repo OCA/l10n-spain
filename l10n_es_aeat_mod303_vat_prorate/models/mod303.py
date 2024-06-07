@@ -12,7 +12,7 @@ class L10nEsAeatMod303Report(models.Model):
     casilla_44 = fields.Float(
         string="[44] Prorate regularization",
         default=0,
-        states={"done": [("readonly", True)]},
+        readonly=True,
         help="Regularización por aplicación del porcentaje definitivo de prorrata.",
     )
     with_vat_prorate = fields.Boolean(related="company_id.with_vat_prorate")
@@ -20,7 +20,6 @@ class L10nEsAeatMod303Report(models.Model):
         string="Definitive VAT prorate percentage",
         default=100,
         readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     prorate_account_id = fields.Many2one(
         comodel_name="account.account",
@@ -28,7 +27,6 @@ class L10nEsAeatMod303Report(models.Model):
         help="This account will be the one where charging the regularization of the VAT"
         " prorate.",
         readonly=True,
-        states={"calculated": [("readonly", False)]},
     )
     prorate_analytic_account_id = fields.Many2one(
         comodel_name="account.analytic.account",
@@ -36,7 +34,6 @@ class L10nEsAeatMod303Report(models.Model):
         help="This analytic account will be the one where charging the regularization "
         "of the VAT prorate.",
         readonly=True,
-        states={"calculated": [("readonly", False)]},
     )
 
     @api.constrains("vat_prorate_percent")
