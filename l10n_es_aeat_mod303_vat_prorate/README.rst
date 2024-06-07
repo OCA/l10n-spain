@@ -92,6 +92,11 @@ Contributors
    -  Víctor Martínez
    -  Carolina Fernandez
 
+-  `Sygel <https://www.sygel.es>`__
+
+   -  Manuel Regidor
+   -  Valentín Vinagre
+
 Maintainers
 -----------
 
