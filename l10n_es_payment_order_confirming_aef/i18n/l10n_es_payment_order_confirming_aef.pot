@@ -92,6 +92,26 @@ msgid "Contrato AEF Confirming         (13 o 15 dígitos)"
 msgstr ""
 
 #. module: l10n_es_payment_order_confirming_aef
+#: model:ir.model.fields.selection,name:l10n_es_payment_order_confirming_aef.selection__account_payment_mode__aef_confirming_modality__1
+msgid "Estandar"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_aef
+#: model:ir.model.fields,field_description:l10n_es_payment_order_confirming_aef.field_account_payment_mode__aef_confirming_modality
+msgid "Modalidad remesa"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_aef
+#: model:ir.model.fields,help:l10n_es_payment_order_confirming_aef.field_account_payment_mode__aef_confirming_modality
+msgid "Opcional: Consultar con la entidad bancaria"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_aef
+#: model:ir.model.fields.selection,name:l10n_es_payment_order_confirming_aef.selection__account_payment_mode__aef_confirming_modality__3
+msgid "Otros"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_aef
 #: model:ir.model,name:l10n_es_payment_order_confirming_aef.model_account_payment_mode
 msgid "Payment Modes"
 msgstr ""
@@ -99,6 +119,11 @@ msgstr ""
 #. module: l10n_es_payment_order_confirming_aef
 #: model:ir.model,name:l10n_es_payment_order_confirming_aef.model_account_payment_order
 msgid "Payment Order"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_aef
+#: model:ir.model.fields.selection,name:l10n_es_payment_order_confirming_aef.selection__account_payment_mode__aef_confirming_modality__2
+msgid "Pronto pago"
 msgstr ""
 
 #. module: l10n_es_payment_order_confirming_aef
