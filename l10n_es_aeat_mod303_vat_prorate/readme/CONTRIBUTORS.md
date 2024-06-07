@@ -2,3 +2,6 @@
   - Pedro M. Baeza
   - Víctor Martínez
   - Carolina Fernandez
+- [Sygel](https://www.sygel.es)
+  - Manuel Regidor
+  - Valentín Vinagre

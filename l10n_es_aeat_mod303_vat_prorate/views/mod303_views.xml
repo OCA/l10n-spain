@@ -14,21 +14,27 @@
                     name="casilla_44"
                     widget="monetary"
                     options="{'currency_field': 'currency_id'}"
-                    attrs="{'invisible': ['|', ('with_vat_prorate', '=', False), ('period_type', 'not in', ['4T', '12'])]}"
+                    invisible="not with_vat_prorate or period_type not in ['4T', '12']"
+                    readonly="state == 'done'"
                 />
             </field>
             <field name="statement_type" position="after">
                 <field
                     name="vat_prorate_percent"
-                    attrs="{'invisible': ['|', ('with_vat_prorate', '=', False), ('period_type', 'not in', ['4T', '12'])], 'required': [('with_vat_prorate', '=', True), ('period_type', 'in', ['4T', '12'])]}"
+                    invisible="not with_vat_prorate or period_type not in ['4T', '12']"
+                    required="with_vat_prorate and period_type in ['4T', '12']"
+                    readonly="state != 'draft'"
                 />
                 <field
                     name="prorate_account_id"
-                    attrs="{'invisible': ['|', ('with_vat_prorate', '=', False), ('period_type', 'not in', ['4T', '12'])], 'required': [('with_vat_prorate', '=', True), ('period_type', 'in', ['4T', '12']), ('state', 'in', 'calculated')]}"
+                    invisible="not with_vat_prorate or period_type not in ['4T', '12']"
+                    required="with_vat_prorate and period_type in ['4T', '12'] and state in ['calculated']"
+                    readonly="state != 'calculated'"
                 />
                 <field
                     name="prorate_analytic_account_id"
-                    attrs="{'invisible': ['|', ('with_vat_prorate', '=', False), ('period_type', 'not in', ['4T', '12'])]}"
+                    invisible="not with_vat_prorate or period_type not in ['4T', '12']"
+                    readonly="state != 'calculated'"
                 />
             </field>
         </field>
