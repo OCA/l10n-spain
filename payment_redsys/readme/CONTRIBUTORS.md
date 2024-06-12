@@ -1,0 +1,15 @@
+- [Tecnativa](https://www.tecnativa.com):
+  - Sergio Teruel
+  - Carlos Dauden
+  - Carlos Roca
+  - João Marques
+- Isaac Gallart \<<igallart@puntsistemes.es>\>
+- [Acysos S.L.](https://www.acysos.com):
+  - Ignacio Ibeas \<<ignacio@acysos.com>\>
+- [Planes Asesoria y Soluciones Informaticas
+  S.L.](https://www.planesnet.com):
+  - Luis Planes \<<luis@planesnet.com>\>
+- [Studio73](https://www.studio73.es/):
+  - Rafa Ferri \<<rafa.ferri@studio73.es>\>
+- [Factor Libre](https://factorlibre.com/):
+  - Pablo De Andrés \<<pablo.deandres@factorlibre.com>\>
