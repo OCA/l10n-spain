@@ -8,50 +8,23 @@
         <field name="inherit_id" ref="payment.payment_provider_form" />
         <field name="arch" type="xml">
             <xpath expr='//group[@name="provider_credentials"]' position='inside'>
-                <group attrs="{'invisible': [('code', '!=', 'redsys')]}">
-                    <field
-                        name="redsys_merchant_name"
-                        attrs="{'required': [('code', '=', 'redsys')]}"
-                    />
-                    <field
-                        name="redsys_merchant_code"
-                        attrs="{'required': [('code', '=', 'redsys')]}"
-                    />
-                    <field
-                        name="redsys_secret_key"
-                        attrs="{'required': [('code', '=', 'redsys')]}"
-                    />
-                    <field
-                        name="redsys_terminal"
-                        attrs="{'required': [('code', '=', 'redsys')]}"
-                    />
-                    <field
-                        name="redsys_currency"
-                        attrs="{'required': [('code', '=', 'redsys')]}"
-                    />
-                    <field
-                        name="redsys_transaction_type"
-                        attrs="{'required': [('code', '=', 'redsys')]}"
-                    />
-                    <field
-                        name="redsys_merchant_lang"
-                        attrs="{'required': [('code', '=', 'redsys')]}"
-                    />
-                    <field
-                        name="redsys_pay_method"
-                        attrs="{'required': [('code', '=', 'redsys')]}"
-                    />
-                    <field
-                        name="redsys_merchant_data"
-                        attrs="{'required': [('code', '=', 'redsys')]}"
-                    />
+                <group invisible="code  != 'redsys'">
+                    <field name="redsys_merchant_name" required="code == 'redsys'" />
+                    <field name="redsys_merchant_code" required="code == 'redsys'" />
+                    <field name="redsys_secret_key" required="code == 'redsys'" />
+                    <field name="redsys_terminal" required="code == 'redsys'" />
+                    <field name="redsys_currency" required="code == 'redsys'" />
+                    <field name="redsys_transaction_type" required="code == 'redsys'" />
+                    <field name="redsys_merchant_lang" required="code == 'redsys'" />
+                    <field name="redsys_pay_method" required="code == 'redsys'" />
+                    <field name="redsys_merchant_data" required="code == 'redsys'" />
                     <field
                         name="redsys_merchant_description"
-                        attrs="{'required': [('code', '=', 'redsys')]}"
+                        required="code == 'redsys'"
                     />
                     <field
                         name="redsys_signature_version"
-                        attrs="{'required': [('code', '=', 'redsys')]}"
+                        required="code == 'redsys'"
                     />
                 </group>
             </xpath>
