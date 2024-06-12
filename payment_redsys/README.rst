@@ -150,6 +150,10 @@ Contributors
 
    -  Pablo De Andrés <pablo.deandres@factorlibre.com>
 
+-  `APSL-Nagarro <https://apsl.tech>`__:
+
+   -  Antoni Marroig <amarroig@apsl.net>
+
 Maintainers
 -----------
 
