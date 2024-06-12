@@ -549,6 +549,11 @@ msgid "R.Eq."
 msgstr "R.Eq."
 
 #. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: l10n_es_vat_book
 #: model:ir.model.fields.selection,name:l10n_es_vat_book.selection__aeat_vat_book_map_line__book_type__received
 #: model:ir.model.fields.selection,name:l10n_es_vat_book.selection__l10n_es_vat_book_line__line_type__received
 #: model:ir.model.fields.selection,name:l10n_es_vat_book.selection__l10n_es_vat_book_summary__book_type__received
