@@ -47,7 +47,7 @@ class TxRedsys(models.Model):
         if not reference or not pay_id or not shasign:
             error_msg = (
                 "Redsys: received data with missing reference"
-                " (%s) or pay_id (%s) or shashign (%s)" % (reference, pay_id, shasign)
+                f" ({reference}) or pay_id ({pay_id}) or shashign ({shasign})"
             )
             if not test_env:
                 _logger.info(error_msg)
@@ -68,8 +68,8 @@ class TxRedsys(models.Model):
             )
             if shasign_check != shasign:
                 error_msg = (
-                    "Redsys: invalid shasign, received %s, computed %s, "
-                    "for data %s" % (shasign, shasign_check, data)
+                    "Redsys: invalid shasign, received {}, computed {}, "
+                    "for data {}".format(shasign, shasign_check, data)
                 )
                 _logger.info(error_msg)
                 raise ValidationError(error_msg)
