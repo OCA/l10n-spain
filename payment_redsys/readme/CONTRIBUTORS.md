@@ -13,3 +13,5 @@
   - Rafa Ferri \<<rafa.ferri@studio73.es>\>
 - [Factor Libre](https://factorlibre.com/):
   - Pablo De Andrés \<<pablo.deandres@factorlibre.com>\>
+- [APSL-Nagarro](https://apsl.tech):
+  - Antoni Marroig \<<amarroig@apsl.net>\>
