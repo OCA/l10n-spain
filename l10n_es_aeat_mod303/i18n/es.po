@@ -295,11 +295,6 @@ msgid "Calculation Date"
 msgstr "Fecha de cálculo"
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__return_last_period
-msgid "Check if you are submitting the last period return"
-msgstr "Marcar si quieres enviar la devolución en el último período"
-
-#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__company_id
 msgid "Company"
 msgstr "Compañía"
@@ -589,11 +584,6 @@ msgid "L.R. VAT number"
 msgstr "NIF del representante legal"
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__return_last_period
-msgid "Last Period Return"
-msgstr "Devolución último período"
-
-#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_activity_code__write_uid
 msgid "Last Updated by"
@@ -751,6 +741,11 @@ msgstr "Teléfono"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__previous_number
 msgid "Previous declaration number"
 msgstr "Número de declaración anterior"
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__rating_ids
+msgid "Ratings"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__devolucion_mensual
@@ -1054,3 +1049,9 @@ msgstr "¿SII voluntario?"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__has_operation_volume
 msgid "¿Volumen de operaciones?"
 msgstr "¿Volumen de operaciones?"
+
+#~ msgid "Check if you are submitting the last period return"
+#~ msgstr "Marcar si quieres enviar la devolución en el último período"
+
+#~ msgid "Last Period Return"
+#~ msgstr "Devolución último período"
