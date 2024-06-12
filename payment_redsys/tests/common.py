@@ -14,7 +14,8 @@ class RedsysCommon(PaymentCommon):
                 # Set values for create a new provider Redsys
                 "redsys_merchant_name": "Redsys test provider",
                 "redsys_merchant_code": "069611024",
-                "redsys_merchant_description": "Product description for Redsys test provider",
+                "redsys_merchant_description": "Product description for Redsys test"
+                + "provider",
                 "redsys_secret_key": "sq7HjrUOBfKmC576ILgskD5srU870gJ8",
                 "redsys_merchant_data": "Merchant data",
             },
