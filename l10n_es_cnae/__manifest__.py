@@ -3,7 +3,7 @@
 {
     "name": "Categorías de empresa CNAE 2009",
     "summary": "Extiende los códigos NACE europeos con los CNAE españoles",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.1.0",
     "category": "Localization",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Tecnativa, Odoo Community Association (OCA)",
