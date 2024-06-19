@@ -51,11 +51,11 @@ aeat_mod390_map_line_611,611,base,True,aeat_mod390_map,regular,IVA deducible en 
 aeat_mod390_map_line_612,612,amount,True,aeat_mod390_map,regular,IVA deducible en operaciones interiores de bienes de inversión - Cuota 10%,both,,"p_iva10_bi,p_iva10_isp_bi"
 aeat_mod390_map_line_613,613,base,True,aeat_mod390_map,regular,IVA deducible en operaciones interiores de bienes de inversión - Base imponible 21%,both,,"p_iva21_bi,p_iva21_isp_bi"
 aeat_mod390_map_line_614,614,amount,True,aeat_mod390_map,regular,IVA deducible en operaciones interiores de bienes de inversión - Cuota 21%,both,,"p_iva21_bi,p_iva21_isp_bi"
-aeat_mod390_map_line_202,202,base,True,aeat_mod390_map,regular,IVA deducible en importaciones de bienes corrientes - Base 4%,both,,p_iva4_ibc
+aeat_mod390_map_line_202,202,base,True,aeat_mod390_map,regular,IVA deducible en importaciones de bienes corrientes - Base 4%,both,,"p_iva4_ibc,p_iva4_ibc_group"
 aeat_mod390_map_line_203,203,amount,True,aeat_mod390_map,regular,IVA deducible en importaciones de bienes corrientes - Cuota 4%,both,,p_iva4_ibc
-aeat_mod390_map_line_619,619,base,True,aeat_mod390_map,regular,IVA deducible en importaciones de bienes corrientes - Base 10%,both,,p_iva10_ibc
+aeat_mod390_map_line_619,619,base,True,aeat_mod390_map,regular,IVA deducible en importaciones de bienes corrientes - Base 10%,both,,"p_iva10_ibc,p_iva10_ibc_group"
 aeat_mod390_map_line_620,620,amount,True,aeat_mod390_map,regular,IVA deducible en importaciones de bienes corrientes - Cuota 10%,both,,p_iva10_ibc
-aeat_mod390_map_line_621,621,base,True,aeat_mod390_map,regular,IVA deducible en importaciones de bienes corrientes - Base 21%,both,,p_iva21_ibc
+aeat_mod390_map_line_621,621,base,True,aeat_mod390_map,regular,IVA deducible en importaciones de bienes corrientes - Base 21%,both,,"p_iva21_ibc,p_iva21_ibc_group"
 aeat_mod390_map_line_622,622,amount,True,aeat_mod390_map,regular,IVA deducible en importaciones de bienes corrientes - Cuota 21%,both,,p_iva21_ibc
 aeat_mod390_map_line_208,208,base,True,aeat_mod390_map,regular,IVA deducible en importaciones de bienes de inversión - Base 4%,both,,p_iva4_ibi
 aeat_mod390_map_line_209,209,amount,True,aeat_mod390_map,regular,IVA deducible en importaciones de bienes de inversión - Cuota 4%,both,,p_iva4_ibi
