@@ -24,6 +24,11 @@ msgid "Definitive VAT prorate percentage"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303_vat_prorate
+#: model:ir.model.fields,help:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__with_vat_prorate
+msgid "If this option is enabled, all invoice lineswith VAT will be prorated"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__prorate_account_id
 msgid "Prorate regularization account"
 msgstr ""
@@ -68,7 +73,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__with_vat_prorate
-msgid "With Vat Prorate"
+msgid "With VAT Prorate"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303_vat_prorate
