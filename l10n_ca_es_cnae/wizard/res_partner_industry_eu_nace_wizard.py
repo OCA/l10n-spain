@@ -15,7 +15,7 @@ class ResPartnerIndustryEUNaceWizard(models.TransientModel):
     def spanish_industries_into_catalan(self):
         try:
             with file_open(
-                "l10n_ca_cnae/data/res.partner.industry.cat.csv", "rb"
+                "l10n_ca_es_cnae/data/res.partner.industry.cat.csv", "rb"
             ) as csvfile:
                 partner_industry_mod = self.env["res.partner.industry"]
                 all_naces = partner_industry_mod.search_read(

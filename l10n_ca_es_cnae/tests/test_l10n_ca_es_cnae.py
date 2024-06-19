@@ -32,7 +32,7 @@ TEST_CODES = [
 ]
 
 
-class TestL10nCaCnae(TransactionCase):
+class TestL10nCaEsCnae(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -43,7 +43,7 @@ class TestL10nCaCnae(TransactionCase):
         wizard.create_spanish_industries()
         wizard.spanish_industries_into_catalan()
         with file_open(
-            "l10n_ca_cnae/data/res.partner.industry.cat.csv", "rb"
+            "l10n_ca_es_cnae/data/res.partner.industry.cat.csv", "rb"
         ) as csvfile:
             reader = pycompat.csv_reader(csvfile, delimiter=",", quotechar='"')
             all_naces = self.env["res.partner.industry"].search_read(
