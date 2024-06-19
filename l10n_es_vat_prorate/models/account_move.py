@@ -2,14 +2,36 @@
 # Copyright 2023 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import api, fields, models
 from odoo.tools import float_round, frozendict
+
+
+class AccountMove(models.Model):
+    _inherit = "account.move"
+
+    with_special_vat_prorate = fields.Boolean(
+        related="company_id.with_special_vat_prorate"
+    )
 
 
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
-    vat_prorate = fields.Boolean()
+    vat_prorate = fields.Boolean(
+        string="Is vat prorate", help="The line is a vat prorate"
+    )
+
+    with_vat_prorate = fields.Boolean(
+        string="With Vat prorate",
+        help="The line will create a vat prorate",
+        default=lambda self: (
+            self.env.company.with_vat_prorate
+            and (
+                not self.env.company.with_special_vat_prorate
+                or self.env.company.with_special_vat_prorate_default
+            )
+        ),
+    )
 
     def _process_aeat_tax_fee_info(self, res, tax, sign):
         result = super()._process_aeat_tax_fee_info(res, tax, sign)
@@ -17,6 +39,7 @@ class AccountMoveLine(models.Model):
             res[tax]["deductible_amount"] -= self.balance * sign
         return result
 
+    @api.depends("with_vat_prorate")
     def _compute_all_tax(self):
         """After getting normal taxes dict that is dumped into this field, we loop
         into it to check if any of them applies VAT prorate, and if it's the case,
@@ -28,13 +51,15 @@ class AccountMoveLine(models.Model):
             prorate_tax_list = {}
             vat_prorate_date = line.date or line.invoice_date or fields.Date.today()
             for tax_key, tax_vals in line.compute_all_tax.items():
+                tax_vals["vat_prorate"] = False
                 tax = (
                     self.env["account.tax.repartition.line"]
                     .browse(tax_key.get("tax_repartition_line_id", False))
                     .tax_id
                 )
                 if (
-                    tax.with_vat_prorate
+                    line.with_vat_prorate
+                    and tax.with_vat_prorate
                     and tax_key.get("account_id")
                     and (
                         not tax.prorate_account_ids
