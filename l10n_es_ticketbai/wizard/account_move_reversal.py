@@ -18,3 +18,8 @@ class AccountMoveReversal(models.TransientModel):
         return super(
             AccountMoveReversal, self.with_context(refund_method=self.refund_method)
         ).reverse_moves()
+
+    def _prepare_default_reversal(self, move):
+        res = super()._prepare_default_reversal(move)
+        res.update({"company_id": self.move_ids[0].company_id.id})
+        return res

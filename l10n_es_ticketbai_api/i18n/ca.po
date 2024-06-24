@@ -84,6 +84,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/utils/utils.py:0
 #, python-format
 msgid ""
@@ -92,12 +93,14 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/res_partner.py:0
 #, python-format
 msgid "%s VAT Number"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/utils/utils.py:0
 #, python-format
 msgid "%s value must be a positive percentage."
@@ -206,6 +209,7 @@ msgid "Company"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/res_company.py:0
 #, python-format
 msgid ""
@@ -214,12 +218,14 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/res_company.py:0
 #, python-format
 msgid "Company %s TicketBAI Certificate is required."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/res_company.py:0
 #, python-format
 msgid "Company %s TicketBAI Tax Agency is required."
@@ -306,6 +312,7 @@ msgid "Developer"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:0
 #: model:ir.model.constraint,message:l10n_es_ticketbai_api.constraint_tbai_installation_developer_ref_uniq
 #, python-format
@@ -443,6 +450,7 @@ msgid "Identification Type Code"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/utils/utils.py:0
 #, python-format
 msgid "Invalid %(field)s format '%(value)s'."
@@ -530,6 +538,7 @@ msgid "License Key"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:0
 #: model:ir.model.constraint,message:l10n_es_ticketbai_api.constraint_tbai_installation_license_ref_uniq
 #, python-format
@@ -605,6 +614,7 @@ msgid "P12 Certificate"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/res_partner.py:0
 #, python-format
 msgid ""
@@ -734,6 +744,7 @@ msgid "Residence certificate"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "Response"
@@ -808,10 +819,17 @@ msgid "Software Name"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:0
 #: model:ir.model.constraint,message:l10n_es_ticketbai_api.constraint_tbai_installation_name_ref_uniq
 #, python-format
 msgid "Software Name must be unique!"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_company__tbai_software_version
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_installation__version
+msgid "Software Version"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
@@ -906,6 +924,7 @@ msgid "Tax Agency name"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/res_company.py:0
 #, python-format
 msgid "Tax agency cannot be modified after a TicketBAI invoice has been sent."
@@ -969,6 +988,7 @@ msgid "Test QR Base URL"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "The Company %s VAT Number is required."
@@ -977,11 +997,13 @@ msgstr ""
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_installation__vat
 msgid ""
-"The Tax Identification Number. Complete it if the contact is subjected to "
-"government taxes. Used in some legal statements."
+"The Tax Identification Number. Values here will be validated based on the "
+"country format. You can use '/' to indicate that the partner is not subject "
+"to tax."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/res_partner.py:0
 #, python-format
 msgid "The invoice customer %s does not have a valid country assigned."
@@ -1002,7 +1024,6 @@ msgstr ""
 #. module: l10n_es_ticketbai_api
 #: model:ir.actions.server,name:l10n_es_ticketbai_api.ir_cron_l10n_es_ticketbai_send_pending_invoices_ir_actions_server
 #: model:ir.cron,cron_name:l10n_es_ticketbai_api.ir_cron_l10n_es_ticketbai_send_pending_invoices
-#: model:ir.cron,name:l10n_es_ticketbai_api.ir_cron_l10n_es_ticketbai_send_pending_invoices
 msgid "TicketBAI - Send pending invoices"
 msgstr ""
 
@@ -1012,6 +1033,7 @@ msgid "TicketBAI API URL"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_response.py:0
 #, python-format
 msgid "TicketBAI API required fields missing."
@@ -1031,6 +1053,7 @@ msgid "TicketBAI Certificates"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/res_company.py:0
 #, python-format
 msgid ""
@@ -1039,6 +1062,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:0
 #, python-format
 msgid "TicketBAI Developer is required."
@@ -1059,6 +1083,7 @@ msgid "TicketBAI Installations"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1067,6 +1092,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1075,6 +1101,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
 #, python-format
 msgid ""
@@ -1084,6 +1111,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
 #, python-format
 msgid ""
@@ -1093,6 +1121,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
 #, python-format
 msgid ""
@@ -1102,6 +1131,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
 #, python-format
 msgid ""
@@ -1111,6 +1141,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
 #, python-format
 msgid ""
@@ -1120,6 +1151,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
 #, python-format
 msgid ""
@@ -1129,6 +1161,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_line.py:0
 #, python-format
 msgid ""
@@ -1137,6 +1170,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1145,6 +1179,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1154,6 +1189,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1163,6 +1199,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1171,6 +1208,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1179,6 +1217,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
 #, python-format
 msgid ""
@@ -1187,6 +1226,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1195,6 +1235,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
 #, python-format
 msgid ""
@@ -1203,36 +1244,42 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
 #, python-format
 msgid "TicketBAI Invoice %(name)s: Customer %(customer)s NIF"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_line.py:0
 #, python-format
 msgid "TicketBAI Invoice %(name)s: Line %(desc)s Amount Total"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_line.py:0
 #, python-format
 msgid "TicketBAI Invoice %(name)s: Line %(desc)s Discount Amount"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_line.py:0
 #, python-format
 msgid "TicketBAI Invoice %(name)s: Line %(desc)s Price Unit"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_line.py:0
 #, python-format
 msgid "TicketBAI Invoice %(name)s: Line %(desc)s Quantity"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1241,6 +1288,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1249,6 +1297,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1257,6 +1306,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1265,6 +1315,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1274,6 +1325,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1282,6 +1334,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1290,6 +1343,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1298,6 +1352,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1306,6 +1361,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1314,6 +1370,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1322,6 +1379,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1330,6 +1388,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
 #, python-format
 msgid ""
@@ -1339,6 +1398,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1347,6 +1407,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1355,6 +1416,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
@@ -1363,126 +1425,147 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Amount Total"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Exempted taxes are Subject to taxes."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Expedition Date"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Expedition Hour"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Max. number of exempted taxes is 7!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Max. number of not subject to taxes is 2!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Operation Date"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Refund Code and Type are required."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Second VAT Regime Key not valid."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Amount (%%)"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Amount Total"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Base"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Exempted cause is required."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Not exempted type is required."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Not subject to cause is required."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Surcharge Amount (%%)"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Tax Surcharge Amount Total"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Third VAT Regime Key not valid."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: VAT Regime Key not valid."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: XML Invoice schema not supported!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: XML schema not supported!"
@@ -1529,12 +1612,14 @@ msgid "TicketBAI Invoices"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:0
 #, python-format
 msgid "TicketBAI License Key is required."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:0
 #, python-format
 msgid ""
@@ -1553,6 +1638,7 @@ msgid "TicketBAI Refunded Invoices"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:0
 #, python-format
 msgid "TicketBAI Software Name is required."
@@ -1564,6 +1650,7 @@ msgid "TicketBAI Tax Agency"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_tax_agency.py:0
 #, python-format
 msgid ""
@@ -1572,6 +1659,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_tax_agency.py:0
 #, python-format
 msgid ""
@@ -1621,6 +1709,7 @@ msgid "URL"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_response.py:0
 #, python-format
 msgid "Unknown TicketBAI response code."
@@ -1642,6 +1731,12 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai_api.selection__res_partner__tbai_partner_idtype__02
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai_api.selection__tbai_invoice_customer__idtype__02
 msgid "VAT identification number"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: model:ir.model.fields,help:l10n_es_ticketbai_api.field_res_company__tbai_software_version
+#: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_installation__version
+msgid "Version of the software."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
