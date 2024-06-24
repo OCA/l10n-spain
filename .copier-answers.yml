@@ -1,8 +1,8 @@
 # Do NOT update manually; changes here will be overwritten by Copier
-_commit: v1.14.2
+_commit: v1.20
 _src_path: https://github.com/OCA/oca-addons-repo-template.git
 ci: GitHub
-dependency_installation_mode: PIP
+convert_readme_fragments_to_markdown: false
 generate_requirements_txt: false
 github_check_license: true
 github_ci_extra_env: {}
@@ -11,6 +11,7 @@ github_enable_makepot: true
 github_enable_stale_action: true
 github_enforce_dev_status_compatibility: true
 include_wkhtmltopdf: false
+odoo_test_flavor: Both
 odoo_version: 13.0
 org_name: Odoo Community Association (OCA)
 org_slug: OCA
@@ -22,6 +23,4 @@ repo_description: 'Repositorio de código del proyecto de la localización espa�
 repo_name: Localización española de Odoo
 repo_slug: l10n-spain
 repo_website: https://github.com/OCA/l10n-spain
-travis_apt_packages: []
-travis_apt_sources: []
 
