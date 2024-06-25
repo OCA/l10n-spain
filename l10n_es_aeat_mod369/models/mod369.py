@@ -266,12 +266,7 @@ class L10nEsAeatMod369Report(models.Model):
                 lines_index[tax.service_type][key_country] += 1
                 if len(move_lines) > 0:
                     # page 3, 4, 5 or 6
-                    key = "{}{}{}{}".format(
-                        oss_country.id,
-                        tax.id,
-                        tax.service_type,
-                        outside_spain,
-                    )
+                    key = f"{oss_country.id}{tax.id}{tax.service_type}{outside_spain}"
                     country_groups.setdefault(
                         key,
                         {
@@ -305,11 +300,7 @@ class L10nEsAeatMod369Report(models.Model):
                     refund_fiscal_year = orig_move.date.year
                     monthly = report.period_type not in ["1T", "2T", "3T", "4T"]
                     refund_period = self._get_period_from_date(orig_move.date, monthly)
-                    key = "{}{}{}".format(
-                        oss_country.id,
-                        refund_fiscal_year,
-                        refund_period,
-                    )
+                    key = f"{oss_country.id}{refund_fiscal_year}{refund_period}"
                     # page 7
                     country_groups.setdefault(
                         key,
