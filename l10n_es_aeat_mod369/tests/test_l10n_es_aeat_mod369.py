@@ -21,13 +21,13 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
         cls.company.country_id = cls.env.ref("base.es").id
         cls.company.account_fiscal_country_id = cls.env.ref("base.es").id
         general_tax = cls.env.ref(
-            "l10n_es.%s_account_tax_template_s_iva21b" % cls.company.id
+            f"account.{cls.company.id}_account_tax_template_s_iva21b"
         )
         reduced_tax = cls.env.ref(
-            "l10n_es.%s_account_tax_template_s_iva10b" % cls.company.id
+            f"account.{cls.company.id}_account_tax_template_s_iva10b"
         )
         superreduced_tax = cls.env.ref(
-            "l10n_es.%s_account_tax_template_s_iva4b" % cls.company.id
+            f"account.{cls.company.id}_account_tax_template_s_iva4b"
         )
         cls.oss_taxes = {}
         cls.oss_countries = {}
