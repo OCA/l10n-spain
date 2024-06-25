@@ -31,7 +31,7 @@ class L10nEsAeatMod369LineGrouped(models.Model):
             report = group.report_id
             for line in group.mod369_line_ids:
                 ref_move_lines = line.tax_line_id.move_line_ids.filtered(
-                    lambda ml: ml.move_type == "out_refund"
+                    lambda ml, report=report: ml.move_type == "out_refund"
                     and ml.move_id.reversed_entry_id
                     and ml.move_id.reversed_entry_id.invoice_date < report.date_start
                 )

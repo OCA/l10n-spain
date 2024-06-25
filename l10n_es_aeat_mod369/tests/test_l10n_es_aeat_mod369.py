@@ -151,7 +151,8 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
         for country_code in self.sale_invoices.keys():
             sale_invoice_by_key = self.sale_invoices[country_code]
             spain_goods_line_filter = self.model369.spain_goods_line_ids.filtered(
-                lambda x: x.country_code == country_code and not x.is_page_8_line
+                lambda x, country_code=country_code: x.country_code == country_code
+                and not x.is_page_8_line
             )
             # checking type of tax
             country_amount_tax = sum(tax.amount for tax in self.oss_taxes[country_code])

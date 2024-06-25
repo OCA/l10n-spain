@@ -90,18 +90,15 @@ class L10nEsAeatMod369Report(models.Model):
         selection=[("union", "Union"), ("export", "Export"), ("import", "Import")],
         readonly=True,
         default="union",
-        states={"draft": [("readonly", False)]},
     )
     nrc_reference = fields.Char(
         string="NRC Reference",
         readonly=True,
-        states={"draft": [("readonly", False)]},
         copy=False,
     )
     declaration_inactive = fields.Boolean(
         string="Declaration without activity",
         readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     payment_type = fields.Selection(
         selection=[
@@ -122,7 +119,6 @@ class L10nEsAeatMod369Report(models.Model):
         string="Payment type",
         default="I",
         readonly=True,
-        states={"draft": [("readonly", False)]},
     )
 
     @api.model
@@ -237,9 +233,9 @@ class L10nEsAeatMod369Report(models.Model):
         for report in self:
             # Remove placeholder lines and 0.0% as these shouldn't appear in the file
             report.mapped("tax_line_ids").filtered(
-                lambda l: (
-                    not l.mod369_line_id.oss_name
-                    or " 0.0%" in l.mod369_line_id.oss_name
+                lambda line: (
+                    not line.mod369_line_id.oss_name
+                    or " 0.0%" in line.mod369_line_id.oss_name
                 )
             ).unlink()
             # Seperate sequence per "type" to filter easily in export.config.lines
@@ -252,7 +248,7 @@ class L10nEsAeatMod369Report(models.Model):
             for line in tax_lines.filtered(lambda tl: len(tl.move_line_ids) > 0):
                 mod369_line = line.mod369_line_id
                 ref_move_lines = line.move_line_ids.filtered(
-                    lambda ml: ml.move_type == "out_refund"
+                    lambda ml, report=report: ml.move_type == "out_refund"
                     and ml.move_id.reversed_entry_id
                     and ml.move_id.reversed_entry_id.invoice_date < report.date_start
                 )
