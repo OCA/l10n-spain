@@ -18,6 +18,14 @@
             </notebook>
             <field name="company_registry" position="after">
                 <field name="with_vat_prorate" />
+                <field
+                    name="prorrate_asset_account_id"
+                    attrs="{'invisible': [('with_vat_prorate', '=', False)]}"
+                />
+                <field
+                    name="prorrate_investment_account_id"
+                    attrs="{'invisible': [('with_vat_prorate', '=', False)]}"
+                />
             </field>
         </field>
     </record>

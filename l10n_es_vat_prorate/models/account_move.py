@@ -55,7 +55,10 @@ class AccountMoveLine(models.Model):
                     new_key.update(
                         {
                             "vat_prorate": True,
-                            "account_id": line.account_id.id,
+                            "account_id": line.company_id._get_tax_prorrate_account_map().get(
+                                line.account_id.account_type
+                            )
+                            or line.account_id.id,
                             "analytic_distribution": line.analytic_distribution,
                         }
                     )

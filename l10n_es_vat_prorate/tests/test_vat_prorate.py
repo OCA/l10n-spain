@@ -63,6 +63,14 @@ class TestVatProrate(AccountTestInvoicingCommon):
         with self.assertRaises(exceptions.ValidationError):
             self.env.company.write({"vat_prorate_ids": False})
 
+    def test_company_configuration(self):
+        self.assertTrue(self.env.company.with_vat_prorate)
+        self.assertTrue(self.env.company.prorrate_asset_account_id)
+        self.assertTrue(self.env.company.prorrate_investment_account_id)
+        self.env.company.write({"with_vat_prorate": False})
+        self.assertFalse(self.env.company.prorrate_asset_account_id)
+        self.assertFalse(self.env.company.prorrate_investment_account_id)
+
     def test_no_prorate_in_invoice(self):
         self.env.company.write(
             {"with_vat_prorate": False}
@@ -79,6 +87,18 @@ class TestVatProrate(AccountTestInvoicingCommon):
         )
         self.assertEqual(6, len(invoice.line_ids))
         self.assertEqual(3, len(invoice.line_ids.filtered(lambda r: r.tax_line_id)))
+        self.assertTrue(
+            invoice.line_ids.filtered(
+                lambda r: r.tax_line_id
+                and r.account_id == self.product_a.property_account_expense_id
+            )
+        )
+        self.assertTrue(
+            invoice.line_ids.filtered(
+                lambda r: r.tax_line_id
+                and r.account_id == self.product_b.property_account_expense_id
+            )
+        )
         # Deal with analytics
         invoice.line_ids[0].analytic_distribution = {self.analytic_account.id: 100}
         self.assertEqual(6, len(invoice.line_ids))
@@ -104,6 +124,20 @@ class TestVatProrate(AccountTestInvoicingCommon):
         self.assertEqual(1, len(tax_lines.filtered("vat_prorate")))
         # One of the tax lines should have expense account and the other the tax account
         self.assertNotEqual(tax_lines[0].account_id, tax_lines[1].account_id)
+
+    def test_prorate_asset_in_invoice(self):
+        self.product_b.property_account_expense_id = self.company_data[
+            "default_account_assets"
+        ]
+        invoice = self.init_invoice("in_invoice", products=[self.product_b])
+        self.assertEqual(4, len(invoice.line_ids))
+        self.assertEqual(2, len(invoice.line_ids.filtered(lambda r: r.tax_line_id)))
+        self.assertFalse(
+            invoice.line_ids.filtered(
+                lambda r: r.tax_line_id
+                and r.account_id == self.product_b.property_account_expense_id
+            )
+        )
 
     def test_no_prorate_in_refund(self):
         self.env.company.write(
