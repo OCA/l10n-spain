@@ -30,18 +30,18 @@ Libro de IVA
 
 Módulo que calcula el libro de IVA español.
 
-Esto módulo introduce el menú "Libro de IVA" en Contabilidad -> Informe ->
-Declaraciones AEAT -> Libro de IVA.
+Esto módulo introduce el menú "Libro de IVA" en Contabilidad -> Informe
+-> Declaraciones AEAT -> Libro de IVA.
 
 Es posible visualizar e imprimir por separado:
 
-* Libro Registro de Facturas Emitidas
-* Libro Registro de Facturas Recibidas
+-  Libro Registro de Facturas Emitidas
+-  Libro Registro de Facturas Recibidas
 
 Es posible exportar los registros a archivo con extensión xlsx.
 
-En el modo de visualización de los informes es posible navegar a los asientos
-contables relacionados con la factura.
+En el modo de visualización de los informes es posible navegar a los
+asientos contables relacionados con la factura.
 
 **Table of contents**
 
@@ -53,22 +53,20 @@ Installation
 
 Para instalar este modulo necesitas:
 
-* account
-* base_vat
-* l10n_es
-* l10n_es_aeat
-* report_xlsx
+-  account
+-  base_vat
+-  l10n_es
+-  l10n_es_aeat
+-  report_xlsx
 
 Se instalan automáticamente si están disponibles en la lista de addons.
 
 Consideraciones adicionales:
 
-* Es importante que en facturas que deban aparecer en los libros registros,
-  no sujetos a IVA, informar el tipo de IVA 'No Sujeto' en facturas. Para
-  evitar que los usuarios olviden informarlo es recomendable instalar el
-  módulo 'account_invoice_tax_required', disponible en
-  `account_invoice_tax_required <https://github.com/OCA/account-financial-
-  tools/tree/12.0>`_.
+-  Es importante que en facturas que deban aparecer en los libros
+   registros, no sujetos a IVA, informar el tipo de IVA 'No Sujeto' en
+   facturas. Para evitar que los usuarios olviden informarlo es
+   recomendable instalar el módulo 'account_invoice_tax_required'.
 
 Configuration
 =============
@@ -76,26 +74,27 @@ Configuration
 Los códigos de impuestos incluidos en el Libro de IVA pueden verse en:
 Contabilidad -> Configuración -> AEAT -> Mapeo AEAT libro de IVA
 
-Los clientes utilizados para ventas por caja deben tener marcado el campo
-"AEAT - Cliente anónimo" para que no se muestren advertencias por no tener NIF
-informado siguiendo lo especificado en el formato BOE.
+Los clientes utilizados para ventas por caja deben tener marcado el
+campo "AEAT - Cliente anónimo" para que no se muestren advertencias por
+no tener NIF informado siguiendo lo especificado en el formato BOE.
 
 Usage
 =====
 
-#. Ve a *Contabilidad > Declaraciones AEAT > Libro de IVA*.
-#. Crea un nuevo registro.
-#. Escoge el periodo de tiempo para el libro.
-#. Pulsa en "Calcular".
-#. Escoge la opción de visualización o impresión preferida.
+1. Ve a *Contabilidad > Declaraciones AEAT > Libro de IVA*.
+2. Crea un nuevo registro.
+3. Escoge el periodo de tiempo para el libro.
+4. Pulsa en "Calcular".
+5. Escoge la opción de visualización o impresión preferida.
 
 Known issues / Roadmap
 ======================
 
 Funcionalidades del Libro Registro de IVA no incluídas por el momento:
 
-* Criterio de caja
-* Regímenes especiales de seguros, de agencias de viaje o de bienes usados.
+-  Criterio de caja
+-  Regímenes especiales de seguros, de agencias de viaje o de bienes
+   usados.
 
 Bug Tracker
 ===========
@@ -111,31 +110,32 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * PRAXYA
 * ForgeFlow
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Daniel Rodriguez <drl.9319@gmail.com>
-* Jordi Ballester (ForgeFlow) <jordi.ballester@forgeflow.com>
-* Luis M. Ontalba <luismaront@gmail.com>
-* `Tecnativa <https://www.tecnativa.com/>`_:
+-  Daniel Rodriguez <drl.9319@gmail.com>
+-  Jordi Ballester (ForgeFlow) <jordi.ballester@forgeflow.com>
+-  Luis M. Ontalba <luismaront@gmail.com>
+-  `Tecnativa <https://www.tecnativa.com/>`__:
 
-  * Pedro M. Baeza
-  * Carlos Dauden
-  * Ernesto Tejeda
-* Omar Castiñeira <omar@comunitea.com>
-* Fernando La Chica <fernandolachica@gmail.com>
-* Victor Garcia <victor.garcia@kayuulab.com>
-* Luis Lafaurie <ldlafaurie@gmail.com>
-* Eduardo de miguel <edu@moduon.team>
+   -  Pedro M. Baeza
+   -  Carlos Dauden
+   -  Ernesto Tejeda
+
+-  Omar Castiñeira <omar@comunitea.com>
+-  Fernando La Chica <fernandolachica@gmail.com>
+-  Victor Garcia <victor.garcia@kayuulab.com>
+-  Luis Lafaurie <ldlafaurie@gmail.com>
+-  Eduardo de miguel <edu@moduon.team>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
