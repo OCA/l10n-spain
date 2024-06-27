@@ -20,7 +20,7 @@ DHL_PARCEL_INCOTERMS_STATIC = [
 DHL_PATH = "https://external.dhl.es/cimapi/api/v1/customer/"
 
 
-class DhlParcelRequest(object):
+class DhlParcelRequest:
     """Interface between DHL Parcel API and Odoo recordset
     Abstract DHL Parcel API Operations to connect them with Odoo
     """
@@ -40,7 +40,7 @@ class DhlParcelRequest(object):
         try:
             auth = {}
             if not skip_auth:
-                auth = {"Authorization": "Bearer {}".format(self.token)}
+                auth = {"Authorization": f"Bearer {self.token}"}
             if request_type == "GET":
                 res = requests.get(url=url, headers=auth, timeout=60)
             elif request_type == "POST":
@@ -55,24 +55,16 @@ class DhlParcelRequest(object):
             )
             self.carrier_id.log_xml(dhl_parcel_last_request, "dhl_parcel_last_request")
             self.carrier_id.log_xml(res.text or "", "dhl_parcel_last_response")
-        except requests.exceptions.Timeout as e:
-            raise UserError(
-                _("Timeout: the server did not reply within 60s\n%(text)s")
-                % {"text": str(e)}
-            ) from e
-        except requests.exceptions.ConnectionError as e:
-            raise UserError(
-                _("Server not reachable, please try again later\n%(text)s")
-                % {"text": str(e)}
-            ) from e
+        except requests.exceptions.Timeout:
+            raise UserError(_("Timeout: the server did not reply within 60s")) from None
+        except (ValueError, requests.exceptions.ConnectionError):
+            raise UserError(_("Server not reachable, please try again later")) from None
         except requests.exceptions.HTTPError as e:
-            raise UserError(
-                _("%(text)s\n%(message)s")
-                % {
-                    "text": e,
-                    "message": res.json().get("Message", "") if res.text else "",
-                }
-            ) from e
+            error_message = _("%(error)s\n%(message)s") % {
+                "error": str(e),
+                "message": res.json().get("Message", "") if res.text else "",
+            }
+            raise UserError(error_message) from None
         return res
 
     def _get_new_auth_token(self, username, password):
@@ -139,7 +131,7 @@ class DhlParcelRequest(object):
         """
         res = self._send_api_request(
             request_type="GET",
-            url=(DHL_PATH + "track?id={}&idioma=es&show={}".format(reference, track)),
+            url=(DHL_PATH + f"track?id={reference}&idioma=es&show={track}"),
         )
         return res.json()
 
@@ -152,10 +144,8 @@ class DhlParcelRequest(object):
             request_type="GET",
             url=(
                 DHL_PATH + "shipment?"
-                "Year={}&Tracking={}&Action=PRINT"
-                "&LabelFrom={}&LabelTo={}&Format={}".format(
-                    self.year, reference, 1, 1, self.label_format
-                )
+                f"Year={self.year}&Tracking={reference}&Action=PRINT"
+                f"&LabelFrom={1}&LabelTo={1}&Format={self.label_format}"
             ),
         )
         return res.json().get("Label", False)
@@ -168,7 +158,7 @@ class DhlParcelRequest(object):
         res = self._send_api_request(
             request_type="GET",
             url=DHL_PATH + "shipment?"
-            "Year={}&Tracking={}&Action=DELETE".format(self.year, reference),
+            f"Year={self.year}&Tracking={reference}&Action=DELETE",
         )
         return True if res.status_code == 200 else False
 
@@ -180,7 +170,7 @@ class DhlParcelRequest(object):
         res = self._send_api_request(
             request_type="GET",
             url=DHL_PATH + "shipment?"
-            "Year={}&Tracking={}&Action=HOLD".format(self.year, reference),
+            f"Year={self.year}&Tracking={reference}&Action=HOLD",
         )
         return True if res.status_code == 200 else False
 
@@ -192,7 +182,7 @@ class DhlParcelRequest(object):
         res = self._send_api_request(
             request_type="GET",
             url=DHL_PATH + "shipment?"
-            "Year={}&Tracking={}&Action=RELEASE".format(self.year, reference),
+            f"Year={self.year}&Tracking={reference}&Action=RELEASE",
         )
         return True if res.status_code == 200 else False
 
