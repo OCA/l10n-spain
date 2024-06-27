@@ -46,7 +46,7 @@ class TestDeliveryDhlParcel(common.SingleTransactionCase):
         cls.sale_order.carrier_id = cls.carrier_dhl_parcel.id
         cls.sale_order.action_confirm()
         cls.picking = cls.sale_order.picking_ids[0]
-        cls.picking.move_lines.quantity_done = 20
+        cls.picking.move_ids.quantity = 20
 
     @mock.patch("%s._get_new_auth_token" % request_model, return_value="12345")
     @mock.patch(
