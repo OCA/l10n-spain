@@ -6,10 +6,7 @@
             <form string="DHL Parcel End day">
                 <group>
                     <field name="all_customer_accounts" />
-                    <field
-                        name="customer_accounts"
-                        attrs="{'invisible': [('all_customer_accounts', '=', True)]}"
-                    />
+                    <field name="customer_accounts" invisible="all_customer_accounts" />
                 </group>
                 <footer>
                     <button
