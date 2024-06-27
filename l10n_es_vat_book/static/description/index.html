@@ -370,16 +370,16 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_vat_book"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-17-0/l10n-spain-17-0-l10n_es_vat_book"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>Módulo que calcula el libro de IVA español.</p>
-<p>Esto módulo introduce el menú “Libro de IVA” en Contabilidad -&gt; Informe -&gt;
-Declaraciones AEAT -&gt; Libro de IVA.</p>
+<p>Esto módulo introduce el menú “Libro de IVA” en Contabilidad -&gt; Informe
+-&gt; Declaraciones AEAT -&gt; Libro de IVA.</p>
 <p>Es posible visualizar e imprimir por separado:</p>
 <ul class="simple">
 <li>Libro Registro de Facturas Emitidas</li>
 <li>Libro Registro de Facturas Recibidas</li>
 </ul>
 <p>Es posible exportar los registros a archivo con extensión xlsx.</p>
-<p>En el modo de visualización de los informes es posible navegar a los asientos
-contables relacionados con la factura.</p>
+<p>En el modo de visualización de los informes es posible navegar a los
+asientos contables relacionados con la factura.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -409,20 +409,19 @@ contables relacionados con la factura.</p>
 <p>Se instalan automáticamente si están disponibles en la lista de addons.</p>
 <p>Consideraciones adicionales:</p>
 <ul class="simple">
-<li>Es importante que en facturas que deban aparecer en los libros registros,
-no sujetos a IVA, informar el tipo de IVA ‘No Sujeto’ en facturas. Para
-evitar que los usuarios olviden informarlo es recomendable instalar el
-módulo ‘account_invoice_tax_required’, disponible en
-<a class="reference external" href="https://github.com/OCA/account-financial-tools/tree/12.0">account_invoice_tax_required</a>.</li>
+<li>Es importante que en facturas que deban aparecer en los libros
+registros, no sujetos a IVA, informar el tipo de IVA ‘No Sujeto’ en
+facturas. Para evitar que los usuarios olviden informarlo es
+recomendable instalar el módulo ‘account_invoice_tax_required’.</li>
 </ul>
 </div>
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#toc-entry-2">Configuration</a></h1>
 <p>Los códigos de impuestos incluidos en el Libro de IVA pueden verse en:
 Contabilidad -&gt; Configuración -&gt; AEAT -&gt; Mapeo AEAT libro de IVA</p>
-<p>Los clientes utilizados para ventas por caja deben tener marcado el campo
-“AEAT - Cliente anónimo” para que no se muestren advertencias por no tener NIF
-informado siguiendo lo especificado en el formato BOE.</p>
+<p>Los clientes utilizados para ventas por caja deben tener marcado el
+campo “AEAT - Cliente anónimo” para que no se muestren advertencias por
+no tener NIF informado siguiendo lo especificado en el formato BOE.</p>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-3">Usage</a></h1>
@@ -439,7 +438,8 @@ informado siguiendo lo especificado en el formato BOE.</p>
 <p>Funcionalidades del Libro Registro de IVA no incluídas por el momento:</p>
 <ul class="simple">
 <li>Criterio de caja</li>
-<li>Regímenes especiales de seguros, de agencias de viaje o de bienes usados.</li>
+<li>Regímenes especiales de seguros, de agencias de viaje o de bienes
+usados.</li>
 </ul>
 </div>
 <div class="section" id="bug-tracker">
