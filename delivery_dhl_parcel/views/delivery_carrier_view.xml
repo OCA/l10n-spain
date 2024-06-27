@@ -7,34 +7,34 @@
             <xpath expr="//notebook/page[1]" position='before'>
                 <page
                     string="DHL Parcel Configuration"
-                    attrs="{'invisible': [('delivery_type', '!=', 'dhl_parcel')]}"
+                    invisible="delivery_type != 'dhl_parcel'"
                 >
                     <group>
                         <group>
                             <field
                                 name="dhl_parcel_uid"
-                                attrs="{'required': [('delivery_type', '=', 'dhl_parcel')]}"
+                                required="delivery_type == 'dhl_parcel'"
                             />
                             <field
                                 name="dhl_parcel_password"
                                 password="True"
-                                attrs="{'required': [('delivery_type', '=', 'dhl_parcel')]}"
+                                required="delivery_type == 'dhl_parcel'"
                             />
                             <field
                                 name="dhl_parcel_customer_code"
-                                attrs="{'required': [('delivery_type', '=', 'dhl_parcel')]}"
+                                required="delivery_type == 'dhl_parcel'"
                             />
                             <field
                                 name="dhl_parcel_incoterm"
-                                attrs="{'required': [('delivery_type', '=', 'dhl_parcel')]}"
+                                required="delivery_type == 'dhl_parcel'"
                             />
                             <field
                                 name="dhl_parcel_product"
-                                attrs="{'required': [('delivery_type', '=', 'dhl_parcel')]}"
+                                required="delivery_type == 'dhl_parcel'"
                             />
                             <field
                                 name="dhl_parcel_label_format"
-                                attrs="{'required': [('delivery_type', '=', 'dhl_parcel')]}"
+                                required="delivery_type == 'dhl_parcel'"
                             />
                         </group>
                         <group>
@@ -58,7 +58,7 @@
                     type="object"
                     class="oe_stat_button"
                     icon="fa-file-text-o"
-                    attrs="{'invisible': [('delivery_type', '!=', 'dhl_parcel')]}"
+                    invisible="delivery_type != 'dhl_parcel'"
                 />
             </xpath>
         </field>

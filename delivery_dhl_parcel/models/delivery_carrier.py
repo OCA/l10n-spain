@@ -169,6 +169,7 @@ class DeliveryCarrier(models.Model):
                 result.append(vals)
                 continue
             vals["tracking_number"] = response.get("Tracking", "")
+            vals["response"] = response
             # We post an extra message in the chatter with the rest of the response
             body = _(
                 "DHL Parcel Shipping extra info:\n"
