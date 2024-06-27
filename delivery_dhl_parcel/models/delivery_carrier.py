@@ -17,10 +17,11 @@ class DeliveryCarrier(models.Model):
     _inherit = "delivery.carrier"
 
     def _compute_can_generate_return(self):
-        super()._compute_can_generate_return()
+        res = super()._compute_can_generate_return()
         for carrier in self:
             if carrier.delivery_type == "dhl_parcel":
                 carrier.can_generate_return = True
+        return res
 
     delivery_type = fields.Selection(
         selection_add=[("dhl_parcel", "DHL Parcel")],
@@ -171,13 +172,13 @@ class DeliveryCarrier(models.Model):
             # We post an extra message in the chatter with the rest of the response
             body = _(
                 "DHL Parcel Shipping extra info:\n"
-                "Origin: {}, Customer: {}, AWB: {}, LP: {}"
-            ).format(
-                response.get("Origin", "N/A"),
-                response.get("Customer", "N/A"),
-                response.get("AWB", "N/A"),
-                response.get("LP", "N/A"),
-            )
+                "Origin: %(origin)s, Customer: %(customer)s, AWB: %(awb)s, LP: %(lp)s"
+            ) % {
+                "origin": response.get("Origin", "N/A"),
+                "customer": response.get("Customer", "N/A"),
+                "awb": response.get("AWB", "N/A"),
+                "lp": response.get("LP", "N/A"),
+            }
             attachment = []
             if response.get("Label"):
                 label_format = picking.carrier_id.dhl_parcel_label_format.lower()

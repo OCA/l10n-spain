@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -9,10 +8,11 @@
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 8954 2022-01-20 10:10:25Z milde $
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
 
 See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
 customize this style sheet.
@@ -275,7 +275,7 @@ pre.literal-block, pre.doctest-block, pre.math, pre.code {
   margin-left: 2em ;
   margin-right: 2em }
 
-pre.code .ln { color: grey; } /* line numbers */
+pre.code .ln { color: gray; } /* line numbers */
 pre.code, code { background-color: #eeeeee }
 pre.code .comment, code .comment { color: #5C6576 }
 pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
@@ -301,7 +301,7 @@ span.option {
 span.pre {
   white-space: pre }
 
-span.problematic {
+span.problematic, pre.problematic {
   color: red }
 
 span.section-subtitle {
@@ -369,17 +369,16 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:deb7163f8fec3652201c513624bce833464d1d2b727b06d60eae2b832ea90b36
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/14.0/delivery_dhl_parcel"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-14-0/l10n-spain-14-0-delivery_dhl_parcel"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=14.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>Este módulo integra la API de DHL Parcel con Odoo. No es
-válido para otras integraciones de DHL como el Express, que usan otras APIs.</p>
-<p>IMPORTANTE:
-Hay varias APIs distintas para DHL España y DHL Parcel, esta API solo funciona para
-una de ellas. Para notificar y pedir las credenciales correctas a tu comercial
-de integración, se puede pasar el documento que hay en /doc para indicar
-exactamente cuál es la API que se quiere usar.
-El formato de las credenciales que se usan en esta es el siguiente:</p>
-<p>Usuario: 11000000EMPRESA
-Pass: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/17.0/delivery_dhl_parcel"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-17-0/l10n-spain-17-0-delivery_dhl_parcel"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>Este módulo integra la API de DHL Parcel con Odoo. No es válido para
+otras integraciones de DHL como el Express, que usan otras APIs.</p>
+<p>IMPORTANTE: Hay varias APIs distintas para DHL España y DHL Parcel, esta
+API solo funciona para una de ellas. Para notificar y pedir las
+credenciales correctas a tu comercial de integración, se puede pasar el
+documento que hay en /doc para indicar exactamente cuál es la API que se
+quiere usar. El formato de las credenciales que se usan en esta es el
+siguiente:</p>
+<p>Usuario: 11000000EMPRESA Pass: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</p>
 <p>Puede que acepte algún otro, pero no puedo verificarlo.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
@@ -408,23 +407,24 @@ Pass: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</p>
 </div>
 <div class="section" id="installation">
 <h1><a class="toc-backref" href="#toc-entry-1">Installation</a></h1>
-<p>Depende de los módulos de OCA/delivery-carrier <cite>delivery_package_number</cite> y <cite>delivery_state</cite>.</p>
-<p>La API de DHL Parcel no provee métodos de cálculo de precio, de modo que para poder
-calcular los costes de envío sería recomendable instalar el módulo
-<cite>delivery_price_method</cite>.</p>
+<p>Depende de los módulos de OCA/delivery-carrier delivery_package_number y
+delivery_state.</p>
+<p>La API de DHL Parcel no provee métodos de cálculo de precio, de modo que
+para poder calcular los costes de envío sería recomendable instalar el
+módulo delivery_price_method.</p>
 </div>
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#toc-entry-2">Configuration</a></h1>
 <p>Para configurar el transportista:</p>
 <ol class="arabic simple">
-<li>Vaya a <em>Inventario &gt; Configuración &gt; Entrega &gt; Método de envío</em> y cree uno
-nuevo.</li>
+<li>Vaya a <em>Inventario &gt; Configuración &gt; Entrega &gt; Método de envío</em> y
+cree uno nuevo.</li>
 <li>Escoja <em>DHL Parcel</em> Como proveedor.</li>
-<li>Configure los datos de servicio que tiene contratados y el producto de
-envío que desea utilizar.</li>
+<li>Configure los datos de servicio que tiene contratados y el producto
+de envío que desea utilizar.</li>
 </ol>
-<p>El código de cliente es el UID con un guión y sin letras al final
-i.e. UID = 08100000AB, tu Código de cliente sería 08-100000</p>
+<p>El código de cliente es el UID con un guión y sin letras al final i.e.
+UID = 08100000AB, tu Código de cliente sería 08-100000</p>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-3">Usage</a></h1>
@@ -434,13 +434,14 @@ i.e. UID = 08100000AB, tu Código de cliente sería 08-100000</p>
 <blockquote>
 <ol class="arabic simple">
 <li>Al confirmar el albarán, el servicio se grabará en DHL Parcel.</li>
-<li>Con la respuesta, se registrará en el chatter la referencia de envío y
-las etiquetas correspondientes.</li>
-<li>Para gestionar los bultos del envío, se puede utilizar el campo de número
-de bultos que añade <cite>delivery_package_number</cite> (ver el README para mayor
-información) o bien el flujo nativo de Odoo con paquetes de envío. El
-módulo mandará a la API de DHL Parcel el número correspondiente y podremos
-descargar las etiquetas en PDF con su correspondiente numeración.</li>
+<li>Con la respuesta, se registrará en el chatter la referencia de
+envío y las etiquetas correspondientes.</li>
+<li>Para gestionar los bultos del envío, se puede utilizar el campo de
+número de bultos que añade delivery_package_number (ver el README
+para mayor información) o bien el flujo nativo de Odoo con
+paquetes de envío. El módulo mandará a la API de DHL Parcel el
+número correspondiente y podremos descargar las etiquetas en PDF
+con su correspondiente numeración.</li>
 </ol>
 </blockquote>
 </div>
@@ -448,11 +449,13 @@ descargar las etiquetas en PDF con su correspondiente numeración.</li>
 <h2><a class="toc-backref" href="#toc-entry-5">Cancelar servicios</a></h2>
 <blockquote>
 <ol class="arabic simple">
-<li>Al igual que en otros métodos de envío, en los albaranes de salida podemos
-cancelar un servicio determinado mediante la acción correspondiente en la
-pestaña de <em>Información Adicional</em>, sección <em>Información de entrega</em> una
-vez el pedido esté confirmado y la expedición generada.</li>
-<li>Podremos generar una nueva expedición una vez cancelado si fuese necesario.</li>
+<li>Al igual que en otros métodos de envío, en los albaranes de salida
+podemos cancelar un servicio determinado mediante la acción
+correspondiente en la pestaña de <em>Información Adicional</em>, sección
+<em>Información de entrega</em> una vez el pedido esté confirmado y la
+expedición generada.</li>
+<li>Podremos generar una nueva expedición una vez cancelado si fuese
+necesario.</li>
 </ol>
 </blockquote>
 </div>
@@ -460,10 +463,10 @@ vez el pedido esté confirmado y la expedición generada.</li>
 <h2><a class="toc-backref" href="#toc-entry-6">Obtener etiquetas</a></h2>
 <blockquote>
 <ol class="arabic simple">
-<li>Si por error hubiésemos eliminado el adjunto de las etiquetas que obtuvimos
-en la grabación del servicio, podemos obtenerlas de nuevo pulsando en el
-botón “Etiqueta DHL Parcel” que tenemos en la parte superior de la vista
-formulario del albarán.</li>
+<li>Si por error hubiésemos eliminado el adjunto de las etiquetas que
+obtuvimos en la grabación del servicio, podemos obtenerlas de
+nuevo pulsando en el botón “Etiqueta DHL Parcel” que tenemos en la
+parte superior de la vista formulario del albarán.</li>
 </ol>
 </blockquote>
 </div>
@@ -471,12 +474,13 @@ formulario del albarán.</li>
 <h2><a class="toc-backref" href="#toc-entry-7">Seguimiento de envíos</a></h2>
 <blockquote>
 <ol class="arabic simple">
-<li>El módulo está integrado con <cite>delivery_state</cite> para poder recabar la
-información de seguimiento de nuestros envíos directamente desde la API de
-DHL Parcel.</li>
-<li>Para ello, vaya al albarán con un envío DHL Parcel ya grabado y en la pestaña de
-<em>Información adicional</em> verá el botón <em>Actualizar seguimiento</em> para pedir
-a la API que actualice el estado de este envío en Odoo.</li>
+<li>El módulo está integrado con delivery_state para poder recabar la
+información de seguimiento de nuestros envíos directamente desde
+la API de DHL Parcel.</li>
+<li>Para ello, vaya al albarán con un envío DHL Parcel ya grabado y en
+la pestaña de <em>Información adicional</em> verá el botón <em>Actualizar
+seguimiento</em> para pedir a la API que actualice el estado de este
+envío en Odoo.</li>
 </ol>
 </blockquote>
 </div>
@@ -493,10 +497,10 @@ cerrar el día manualmente.</li>
 <h2><a class="toc-backref" href="#toc-entry-9">Depuración de errores</a></h2>
 <blockquote>
 <ol class="arabic simple">
-<li>Es importante tener en cuenta que solo funcionará con códigos postales de
-España (por lo menos para el consignatario).</li>
-<li>También puede activar Odoo con <cite>–log-level=debug</cite> para registrar las
-peticiones y las respuestas en el log.</li>
+<li>Es importante tener en cuenta que solo funcionará con códigos
+postales de España (por lo menos para el consignatario).</li>
+<li>También puede activar Odoo con –log-level=debug para registrar
+las peticiones y las respuestas en el log.</li>
 </ol>
 </blockquote>
 </div>
@@ -504,9 +508,11 @@ peticiones y las respuestas en el log.</li>
 <h2><a class="toc-backref" href="#toc-entry-10">Contrareembolso</a></h2>
 <blockquote>
 <ol class="arabic simple">
-<li>Al crear un envío con un método que tiene marcado el check de contrareembolso, asumirá que hay un pedido
-vinculado al albarán y usará el importe total del pedido como importe del contrareembolso.
-Métodos de envío con este check no se encontrarán disponibles en la web si se está usando.</li>
+<li>Al crear un envío con un método que tiene marcado el check de
+contrareembolso, asumirá que hay un pedido vinculado al albarán y
+usará el importe total del pedido como importe del
+contrareembolso. Métodos de envío con este check no se encontrarán
+disponibles en la web si se está usando.</li>
 </ol>
 </blockquote>
 </div>
@@ -514,10 +520,11 @@ Métodos de envío con este check no se encontrarán disponibles en la web si se
 <div class="section" id="known-issues-roadmap">
 <h1><a class="toc-backref" href="#toc-entry-11">Known issues / Roadmap</a></h1>
 <ul class="simple">
-<li>La API no facilita métodos para cotizar el coste real de los envíos, por lo
-que siempre se cotizan a 0. Si la cotización de envíos es necesaria,
-puede instalarse el módulo OCA <cite>delivery_price_method</cite> o bien personalizar
-el método de cotización para este tipo de transportista.</li>
+<li>La API no facilita métodos para cotizar el coste real de los envíos,
+por lo que siempre se cotizan a 0. Si la cotización de envíos es
+necesaria, puede instalarse el módulo OCA delivery_price_method o
+bien personalizar el método de cotización para este tipo de
+transportista.</li>
 </ul>
 </div>
 <div class="section" id="bug-tracker">
@@ -525,7 +532,7 @@ el método de cotización para este tipo de transportista.</li>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-spain/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/l10n-spain/issues/new?body=module:%20delivery_dhl_parcel%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/l10n-spain/issues/new?body=module:%20delivery_dhl_parcel%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -552,13 +559,15 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <div class="section" id="maintainers">
 <h2><a class="toc-backref" href="#toc-entry-16">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
-<a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/hildickethan-S73"><img alt="hildickethan-S73" src="https://github.com/hildickethan-S73.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/14.0/delivery_dhl_parcel">OCA/l10n-spain</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/17.0/delivery_dhl_parcel">OCA/l10n-spain</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
