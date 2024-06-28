@@ -1228,7 +1228,7 @@ class TicketBAIInvoice(models.Model):
                         ("DescripcionDetalle", line.description),
                         ("Cantidad", line.quantity),
                         ("ImporteUnitario", line.price_unit),
-                        ("Descuento", line.discount_amount or "0.00"),
+                        ("Descuento", line.discount_amount or "0.00000000"),
                         ("ImporteTotal", line.amount_total),
                     ]
                 )

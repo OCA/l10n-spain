@@ -17,7 +17,7 @@ class TicketBaiInvoiceLine(models.Model):
     quantity = fields.Char(
         "Quantity",
         required=True,
-        help="String of float with 12 digits and 2 decimal points.",
+        help="String of float with 12 digits and 8 decimal points.",
     )
     price_unit = fields.Char(
         "Price Unit",
@@ -27,12 +27,12 @@ class TicketBaiInvoiceLine(models.Model):
     discount_amount = fields.Char(
         "Discount Amount",
         default="0.00",
-        help="String of float with 12 digits and 2 decimal points.",
+        help="String of float with 12 digits and 8 decimal points.",
     )
     amount_total = fields.Char(
         "Amount Total",
         required=True,
-        help="String of float with 12 digits and 2 decimal points.",
+        help="String of float with 12 digits and 8 decimal points.",
     )
 
     @api.constrains("description")
@@ -55,6 +55,7 @@ class TicketBaiInvoiceLine(models.Model):
                 _("TicketBAI Invoice %s: Line %s Quantity")
                 % (record.tbai_invoice_id.name, record.description),
                 record.quantity,
+                no_decimal_digits=8,
             )
 
     @api.constrains("price_unit")
@@ -75,6 +76,7 @@ class TicketBaiInvoiceLine(models.Model):
                     _("TicketBAI Invoice %s: Line %s Discount Amount")
                     % (record.tbai_invoice_id.name, record.description),
                     record.discount_amount,
+                    no_decimal_digits=8,
                 )
 
     @api.constrains("amount_total")
@@ -84,4 +86,5 @@ class TicketBaiInvoiceLine(models.Model):
                 _("TicketBAI Invoice %s: Line %s Amount Total")
                 % (record.tbai_invoice_id.name, record.description),
                 record.amount_total,
+                no_decimal_digits=8,
             )

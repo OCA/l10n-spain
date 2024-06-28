@@ -636,7 +636,7 @@ class AccountMoveLine(models.Model):
             sign = -1
         else:
             sign = 1
-        return "%.2f" % (sign * self.quantity)
+        return "%.8f" % (sign * self.quantity)
 
     def tbai_get_value_descuento(self, price_unit):
         if self.discount:
@@ -644,9 +644,9 @@ class AccountMoveLine(models.Model):
                 sign = -1
             else:
                 sign = 1
-            res = "%.2f" % (sign * self.quantity * price_unit * self.discount / 100.0)
+            res = "%.8f" % (sign * self.quantity * price_unit * self.discount / 100.0)
         else:
-            res = "0.00"
+            res = "0.00000000"
         return res
 
     def tbai_get_value_importe_total(self):
@@ -676,7 +676,7 @@ class AccountMoveLine(models.Model):
             sign = -1
         else:
             sign = 1
-        return "%.2f" % (sign * price_total)
+        return "%.8f" % (sign * price_total)
 
     def tbai_get_price_unit(self):
         price_unit = self.price_unit
