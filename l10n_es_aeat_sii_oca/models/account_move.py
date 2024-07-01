@@ -508,7 +508,7 @@ class AccountMove(models.Model):
         invoice_date = self._change_date_format(self.invoice_date)
         reg_date = self._change_date_format(self._get_account_registration_date())
         ejercicio = fields.Date.to_date(self.date).year
-        periodo = "%02d" % fields.Date.to_date(self.date).month
+        periodo = self._get_document_period()
         partner = self._aeat_get_partner()
         desglose_factura, tax_amount, not_in_amount_total = self._get_sii_in_taxes()
         inv_dict = {
