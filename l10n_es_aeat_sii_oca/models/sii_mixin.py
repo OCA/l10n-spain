@@ -345,7 +345,12 @@ class SiiMixin(models.AbstractModel):
         return fields.Date.to_date(self._get_document_fiscal_date()).year
 
     def _get_document_period(self):
-        return "%02d" % fields.Date.to_date(self._get_document_fiscal_date()).month
+        month = fields.Date.to_date(self._get_document_fiscal_date()).month
+        if self.company_id.sii_period == "monthly":
+            period = "%02d" % month
+        else:
+            period = str(int(((month - 1) / 3) + 1)) + "T"
+        return period
 
     def _get_document_product_exempt(self, applied_taxes):
         raise NotImplementedError()
