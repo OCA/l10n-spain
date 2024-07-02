@@ -6,7 +6,7 @@
     "version": "17.0.1.0.0",
     "category": "Localization",
     "website": "https://github.com/OCA/l10n-spain",
-    "author": "Tecnativa, Odoo Community Association (OCA)",
+    "author": "Sygel, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
