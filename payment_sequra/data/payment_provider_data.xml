@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="payment_provider_sequra" model="payment.provider">
+        <field name="code">sequra</field>
+        <field name="name">seQura</field>
+        <field name="module_id" ref="base.module_payment_sequra" />
+        <field
+            name="payment_method_ids"
+            eval="[Command.set([
+                  ref('payment_method_pp3'),
+              ])]"
+        />
+        <field
+            name="image_128"
+            type="base64"
+            file="payment_sequra/static/img/sequra-logo.png"
+        />
+        <field name="redirect_form_view_id" ref="redirect_form" />
+    </record>
+</odoo>
