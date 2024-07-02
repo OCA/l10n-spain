@@ -13,8 +13,8 @@ from odoo.addons.account_payment_order.tests.test_payment_order_outbound import 
 @tagged("post_install", "-at_install")
 class TestPaymentOrderOutboundBaseAEF(TestPaymentOrderOutboundBase):
     @classmethod
-    def setUpClass(cls, chart_template_ref=None):
-        super().setUpClass(chart_template_ref="l10n_es.account_chart_template_pymes")
+    def setUpClass(cls):
+        super().setUpClass(chart_template_ref="es_pymes")
 
     def order_creation(self, date_prefered):
         # Open invoice
@@ -36,7 +36,7 @@ class TestPaymentOrderOutboundBaseAEF(TestPaymentOrderOutboundBase):
             )
         )
         line_create.payment_mode = "any"
-        line_create.move_line_filters_change()
+        line_create._compute_move_line_domain()
         line_create.populate()
         line_create.create_payment_lines()
         order.draft2open()
