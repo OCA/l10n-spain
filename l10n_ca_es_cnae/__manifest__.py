@@ -3,7 +3,7 @@
 {
     "name": "Categorías de empresa CNAE 2009 (catalán)",
     "summary": "Genera la traducción al catalán de todos los códigos Nace",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.1.0",
     "category": "Localization",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Sygel, Odoo Community Association (OCA)",
