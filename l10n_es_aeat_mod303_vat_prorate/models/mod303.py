@@ -3,6 +3,8 @@
 # Copyright 2023 Tecnativa - Carolina Fernandez
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
+import datetime
+
 from odoo import _, api, exceptions, fields, models
 
 
@@ -16,6 +18,14 @@ class L10nEsAeatMod303Report(models.Model):
         help="Regularización por aplicación del porcentaje definitivo de prorrata.",
     )
     with_vat_prorate = fields.Boolean(related="company_id.with_vat_prorate")
+    prorate_id = fields.Many2one(
+        string="Prorate",
+        comodel_name="res.company.vat.prorate",
+        compute="_compute_prorate_id",
+        ondelete="restrict",
+        store=True,
+    )
+    with_special_vat_prorate = fields.Boolean(compute="_compute_prorate_id", store=True)
     vat_prorate_percent = fields.Float(
         string="Definitive VAT prorate percentage",
         default=100,
@@ -36,16 +46,30 @@ class L10nEsAeatMod303Report(models.Model):
         readonly=True,
     )
 
+    @api.depends(
+        "company_id.vat_prorate_ids",
+        "company_id.with_vat_prorate",
+        "date_start",
+    )
+    def _compute_prorate_id(self):
+        for rec in self:
+            if rec.company_id.with_vat_prorate:
+                prorate_date = rec.date_start or fields.Date.today()
+                rec.prorate_id = rec.company_id.get_prorate(prorate_date)
+                rec.with_special_vat_prorate = rec.prorate_id.type == "special"
+            else:
+                rec.prorate_id = rec.with_special_vat_prorate = False
+
     @api.constrains("vat_prorate_percent")
     def check_vat_prorate_percent(self):
-        if not (0 < self.vat_prorate_percent <= 100):
+        if not (0 <= self.vat_prorate_percent <= 100):
             raise exceptions.ValidationError(
-                _("VAT prorate percent must be between 0.01 and 100")
+                _("VAT prorate percent must be between 0.00 and 100")
             )
 
-    def _calculate_casilla_44_mod303_vat_prorate(self):
+    def _general_prorate_method(self):
         self.ensure_one()
-        theoretical_prorate = self.company_id.get_prorate(self.date_start).vat_prorate
+        theoretical_prorate = self.prorate_id.vat_prorate
         diff_perc = self.vat_prorate_percent - theoretical_prorate
         if not diff_perc:
             return
@@ -60,6 +84,33 @@ class L10nEsAeatMod303Report(models.Model):
         # Change the amount to deduce and set field 44
         self.total_deducir += diff_amount
         self.casilla_44 = round(result, 2)
+
+    def _special_prorate_method(self):
+        self.ensure_one()
+        domain = [
+            ("company_id", "child_of", self.company_id.id),
+            ("date", ">=", datetime.date(year=self.date_start.year, month=1, day=1)),
+            ("date", "<=", datetime.date(year=self.date_end.year, month=12, day=31)),
+            ("parent_state", "=", "posted"),
+            ("vat_prorate", "=", True),
+        ]
+        company_prorate = self.prorate_id.vat_prorate
+        theoretical_prorate = 100 - company_prorate
+        diff_perc = self.vat_prorate_percent - company_prorate
+        theoretical_result = sum(
+            self.env["account.move.line"].search(domain).mapped("debit")
+        )
+        result = theoretical_result * diff_perc / theoretical_prorate
+
+        self.total_deducir += result
+        self.casilla_44 = round(result, 2)
+
+    def _calculate_casilla_44_mod303_vat_prorate(self):
+        self.ensure_one()
+        if self.with_special_vat_prorate:
+            self._special_prorate_method()
+        else:
+            self._general_prorate_method()
 
     def calculate(self):
         """Calculate the field 44 according the definitive one and adjust results."""
