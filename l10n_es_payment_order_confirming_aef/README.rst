@@ -17,21 +17,22 @@ Exportación de fichero bancario Confirming estándar AEF
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_payment_order_confirming_aef
+    :target: https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_payment_order_confirming_aef
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-16-0/l10n-spain-16-0-l10n_es_payment_order_confirming_aef
+    :target: https://translation.odoo-community.org/projects/l10n-spain-17-0/l10n-spain-17-0-l10n_es_payment_order_confirming_aef
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Módulo para la exportación de ficheros bancarios según el formato confirming estándar AEF,
-que es una adaptación libre del formato CSB 34.
+Módulo para la exportación de ficheros bancarios según el formato
+confirming estándar AEF, que es una adaptación libre del formato CSB 34.
 
-Para consultar el diseño de registros, puede ir a https://docs.bankinter.com/stf/plataformas/empresas/gestion/ficheros/formatos_fichero/formato_confirming_aef_castellano.pdf.
+Para consultar el diseño de registros, puede ir a
+https://docs.bankinter.com/stf/plataformas/empresas/gestion/ficheros/formatos_fichero/formato_confirming_aef_castellano.pdf.
 
 **Table of contents**
 
@@ -41,22 +42,22 @@ Para consultar el diseño de registros, puede ir a https://docs.bankinter.com/st
 Configuration
 =============
 
-Para poder generar el archivo de exportación confirming AEF, hay que definir un modo de
-pago que use el tipo de pago "Confirming AEF". Para ello, vaya a Facturación / Contabilidad >
-Configuración > Modos de pago, y escoja el tipo de pago a realizar
-(Transferencia o cheque).
+Para poder generar el archivo de exportación confirming AEF, hay que
+definir un modo de pago que use el tipo de pago "Confirming AEF". Para
+ello, vaya a Facturación / Contabilidad > Configuración > Modos de pago,
+y escoja el tipo de pago a realizar (Transferencia o cheque).
 
-El nº de contrato de Confirming será el valor asignado en el campo `Contrato AEF Confirming`
-dentro del modo de pago creado anteriormente
+El nº de contrato de Confirming será el valor asignado en el campo
+Contrato AEF Confirming dentro del modo de pago creado anteriormente
 
 Usage
 =====
 
-Cree una orden de cobro en Contabilidad > Pago > Órdenes de pago, y escoja
-el modo de pago creado antes.
+Cree una orden de cobro en Contabilidad > Pago > Órdenes de pago, y
+escoja el modo de pago creado antes.
 
-Confirme la orden de pago, y pulse en el botón "Realizar pagos". Pulse en
-"Generar" en la pantalla resultante, y obtendra el archivo exportado.
+Confirme la orden de pago, y pulse en el botón "Realizar pagos". Pulse
+en "Generar" en la pantalla resultante, y obtendra el archivo exportado.
 
 Bug Tracker
 ===========
@@ -64,7 +65,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_payment_order_confirming_aef%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_payment_order_confirming_aef%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -72,19 +73,20 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com>`_:
-    * Pedro M. Baeza
-    * Ernesto García Medina
+-  `Tecnativa <https://www.tecnativa.com>`__:
+
+   -  Pedro M. Baeza
+   -  Ernesto García Medina
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -96,6 +98,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_payment_order_confirming_aef>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_payment_order_confirming_aef>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
