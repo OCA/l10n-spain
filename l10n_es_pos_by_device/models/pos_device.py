@@ -17,6 +17,14 @@ class PosDevice(models.Model):
         readonly=True,
         default=lambda self: self.env.company,
     )
+    pos_config_ids = fields.Many2many(
+        "pos.config",
+        string="Points of Sale",
+        relation="pos_config_pos_device_rel",
+        column1="pos_device_id",
+        column2="pos_config_id",
+        domain=[("pos_sequence_by_device", "=", True)],
+    )
     device_simplified_invoice_prefix = fields.Char(
         "Simplified Invoice prefix",
         readonly=True,
