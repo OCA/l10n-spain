@@ -10,6 +10,7 @@
         <field name="arch" type="xml">
             <field name="total_deducir" position="before">
                 <field name="with_vat_prorate" invisible="1" />
+                <field name="with_special_vat_prorate" invisible="1" />
                 <field
                     name="casilla_44"
                     widget="monetary"
