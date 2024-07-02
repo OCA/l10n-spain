@@ -1,3 +1,4 @@
-- Manuel Regidor (<manuel.regidor@sygel.es>)
-- Valentín Vinagre (<valentin.vinagre@sygel.es>)
-- Harald Panten (<harald.panten@sygel.es>)
+- [Sygel](https://www.sygel.es):
+  - Valentin Vinagre
+  - Manuel Regidor
+- [Tecnativa](https://www.tecnativa.com)
