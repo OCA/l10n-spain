@@ -73,8 +73,20 @@ class DeliveryCarrier(models.Model):
         address = partner.street or ""
         if partner.street2:
             address += " " + partner.street2
+        partner_name = partner.name
+        # We have a limit of 40 chars, so we'll try to allocate as much space possible
+        # for both parent an contact name, trying to use all the available space if
+        # possible and otherwise, cutting it to 19 chars max (letting 2 chars for
+        # the separation of both names)
+        if partner.parent_id:
+            max_parent_length = min(
+                len(partner.parent_id.name), 19 + max(19 - len(partner_name), 0)
+            )
+            partner_name = (
+                f"{partner.parent_id.name[:max_parent_length]}, {partner_name}"
+            )
         return {
-            "Name": partner.name or partner.parent_id.name or "",
+            "Name": partner_name[:40],
             "Address": address[:40],
             "City": partner.city or "",
             "PostalCode": partner.zip or "",
