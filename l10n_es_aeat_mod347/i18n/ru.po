@@ -16,9 +16,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #. module: l10n_es_aeat_mod347
 #: model:mail.template,body_html:l10n_es_aeat_mod347.email_template_347
@@ -43,8 +43,8 @@ msgid ""
 "  <strong>NIF:</strong> <t t-out=\"object.partner_vat\"/><br/>\n"
 "  <strong>Código de país:</strong> <t t-out=\"object.partner_country_code\"/"
 "><br/>\n"
-"  <strong>Código de provincia:</strong> <t t-out=\"object.partner_state_code"
-"\"/><br/>\n"
+"  <strong>Código de provincia:</strong> <t t-out=\"object."
+"partner_state_code\"/><br/>\n"
 "</p>\n"
 "<p>\n"
 "  <strong>Tipo de operación:</strong> <t t-out=\"object.operation_key\"/>\n"
@@ -1371,6 +1371,13 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__received_cash_limit
 msgid "The declaration will show the total of cash operations over this limit"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
+msgid "The selected partner doesn't have a VAT or a state code"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347

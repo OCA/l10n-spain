@@ -43,8 +43,8 @@ msgid ""
 "  <strong>NIF:</strong> <t t-out=\"object.partner_vat\"/><br/>\n"
 "  <strong>Código de país:</strong> <t t-out=\"object.partner_country_code\"/"
 "><br/>\n"
-"  <strong>Código de provincia:</strong> <t t-out=\"object.partner_state_code"
-"\"/><br/>\n"
+"  <strong>Código de provincia:</strong> <t t-out=\"object."
+"partner_state_code\"/><br/>\n"
 "</p>\n"
 "<p>\n"
 "  <strong>Tipo de operación:</strong> <t t-out=\"object.operation_key\"/>\n"
@@ -1426,6 +1426,13 @@ msgstr ""
 msgid "The declaration will show the total of cash operations over this limit"
 msgstr ""
 "A declaración amosará o total de operacións de caixa por riba deste límite."
+
+#. module: l10n_es_aeat_mod347
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
+msgid "The selected partner doesn't have a VAT or a state code"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__third_quarter
