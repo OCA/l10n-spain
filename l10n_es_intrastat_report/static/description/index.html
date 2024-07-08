@@ -8,10 +8,11 @@
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 8954 2022-01-20 10:10:25Z milde $
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
 
 See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
 customize this style sheet.
@@ -274,7 +275,7 @@ pre.literal-block, pre.doctest-block, pre.math, pre.code {
   margin-left: 2em ;
   margin-right: 2em }
 
-pre.code .ln { color: grey; } /* line numbers */
+pre.code .ln { color: gray; } /* line numbers */
 pre.code, code { background-color: #eeeeee }
 pre.code .comment, code .comment { color: #5C6576 }
 pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
@@ -300,7 +301,7 @@ span.option {
 span.pre {
   white-space: pre }
 
-span.problematic {
+span.problematic, pre.problematic {
   color: red }
 
 span.section-subtitle {
@@ -368,10 +369,10 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:6cd83513a2fd3ee39cfe4e43c26db6dd02b99cd7913ea8463fe41686c0a7c1f5
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_intrastat_report"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-16-0/l10n-spain-16-0-l10n_es_intrastat_report"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_intrastat_report"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-17-0/l10n-spain-17-0-l10n_es_intrastat_report"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>This module implements the Spanish Intrastat reporting.</p>
-<p>The report can be reviewed and corrected where needed before
-the creation of the csv file for the declaration.</p>
+<p>The report can be reviewed and corrected where needed before the
+creation of the csv file for the declaration.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -390,18 +391,20 @@ the creation of the csv file for the declaration.</p>
 </div>
 <div class="section" id="installation">
 <h1><a class="toc-backref" href="#toc-entry-1">Installation</a></h1>
-<p>WARNING: This module conflicts with the Intrastat modules from the official
-enterprise addons. If you have already installed these modules, you should
-uninstall them before installing this module.</p>
-<p>You need to add HS product codes for your company through the installation
-wizard. It’s automatically launched if installing the module from the UI.</p>
-<p>If any other installation method is used, you can go to
-<em>Settings &gt; Technical &gt; Actions &gt; Configuration Wizards</em> on developer mode,
-and launch there the wizard called “Import Spanish Product HS Codes”</p>
-<p>The included codes are for 2023. Please check possible updates for this codes in:</p>
+<p>WARNING: This module conflicts with the Intrastat modules from the
+official enterprise addons. If you have already installed these modules,
+you should uninstall them before installing this module.</p>
+<p>You need to add HS product codes for your company through the
+installation wizard. It’s automatically launched if installing the
+module from the UI.</p>
+<p>If any other installation method is used, you can go to <em>Settings &gt;
+Technical &gt; Actions &gt; Configuration Wizards</em> on developer mode, and
+launch there the wizard called “Import Spanish Product HS Codes”</p>
+<p>The included codes are for 2023. Please check possible updates for this
+codes in:</p>
 <p><a class="reference external" href="https://sede.agenciatributaria.gob.es/Sede/estadisticas/estadisticas-comercio-exterior/nomenclatura-combinada-ano.html">https://sede.agenciatributaria.gob.es/Sede/estadisticas/estadisticas-comercio-exterior/nomenclatura-combinada-ano.html</a></p>
-<p>This wizard also sets a sane default Intrastat transaction type for each kind
-of invoice at company level, but it can be changed later.</p>
+<p>This wizard also sets a sane default Intrastat transaction type for each
+kind of invoice at company level, but it can be changed later.</p>
 </div>
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#toc-entry-2">Configuration</a></h1>
@@ -419,23 +422,28 @@ of invoice at company level, but it can be changed later.</p>
 <li><p class="first">Warehouse</p>
 <ul>
 <li><p class="first">Intrastat State to cope with warehouses in different states</p>
-<p>The configuration of the Intrastat State on a Warehouse, requires a login
-belonging to the “Spanish Intrastat Product Declaration” security group.</p>
+<p>The configuration of the Intrastat State on a Warehouse, requires
+a login belonging to the “Spanish Intrastat Product Declaration”
+security group.</p>
 </li>
 </ul>
 </li>
-<li><p class="first">Intrastat Codes, Supplementary Units, Transaction Types, Transport Modes, States</p>
-<p>Cf. menu <em>Invoicing / Configuration / Miscellaneous / Intrastat Configuration</em></p>
+<li><p class="first">Intrastat Codes, Supplementary Units, Transaction Types, Transport
+Modes, States</p>
+<p>Cf. menu <em>Invoicing / Configuration / Miscellaneous / Intrastat
+Configuration</em></p>
 </li>
 <li><p class="first">Product</p>
-<p>You can define a default Intrastat Code on the Product or the Product Category.</p>
+<p>You can define a default Intrastat Code on the Product or the Product
+Category.</p>
 </li>
 </ul>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-3">Usage</a></h1>
 <ol class="arabic">
-<li><p class="first">Go to <em>Invocing &gt; Reporting &gt; Intrastat &gt; Spanish Intrastat Product Declaration</em>.</p>
+<li><p class="first">Go to <em>Invocing &gt; Reporting &gt; Intrastat &gt; Spanish Intrastat Product
+Declaration</em>.</p>
 </li>
 <li><p class="first">Create a new record.</p>
 </li>
@@ -446,22 +454,24 @@ belonging to the “Spanish Intrastat Product Declaration” security group.</p>
 <li>Type: for selecting if arrivals or dispatches.</li>
 <li>Reporting level: standard or extended.</li>
 <li>Action:<ul>
-<li>if “Nihil”, no recomputation is possible and the report is considered empty.</li>
+<li>if “Nihil”, no recomputation is possible and the report is
+considered empty.</li>
 <li>if “Replace”, everything is recomputed.</li>
 <li>if “Append”, only new lines are added.</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p class="first">Click on “Generate Lines from invoices” for populating transaction lines.</p>
+<li><p class="first">Click on “Generate Lines from invoices” for populating transaction
+lines.</p>
 <p>You can review them on “Transactions” page of the report.</p>
 </li>
-<li><p class="first">Click on “Generate Declaration Lines” for populating the lines that summarize
-transactions and will be the source for the exports.</p>
+<li><p class="first">Click on “Generate Declaration Lines” for populating the lines that
+summarize transactions and will be the source for the exports.</p>
 <p>You can review them on “Declaration Lines” page.</p>
 </li>
-<li><p class="first">Click on “Generate CSV Declaration Line” for getting the CSV for declaring
-the report in AEAT.</p>
+<li><p class="first">Click on “Generate CSV Declaration Line” for getting the CSV for
+declaring the report in AEAT.</p>
 </li>
 <li><p class="first">Click on “Excel Export” for having the information in a spreadsheet.</p>
 </li>
@@ -470,16 +480,17 @@ the report in AEAT.</p>
 <div class="section" id="known-issues-roadmap">
 <h1><a class="toc-backref" href="#toc-entry-4">Known issues / Roadmap</a></h1>
 <ul class="simple">
-<li>The current version of the Intrastat reporting module is only based on invoices.
-Since associated stock moves are not taken into consideration, it is possible that manual
-corrections are required, e.g.<ul>
-<li>Product movements without invoices are not included in the current version
-of this module and must be added manually to the report lines
-before generating the declaration.</li>
+<li>The current version of the Intrastat reporting module is only based
+on invoices. Since associated stock moves are not taken into
+consideration, it is possible that manual corrections are required,
+e.g.<ul>
+<li>Product movements without invoices are not included in the current
+version of this module and must be added manually to the report
+lines before generating the declaration.</li>
 </ul>
 </li>
-<li>The current version of the Intrastat reporting module does not perform a
-cross-check with the VAT declaration.</li>
+<li>The current version of the Intrastat reporting module does not
+perform a cross-check with the VAT declaration.</li>
 <li>Add tests.</li>
 </ul>
 </div>
@@ -488,7 +499,7 @@ cross-check with the VAT declaration.</li>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-spain/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_intrastat_report%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_intrastat_report%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -528,11 +539,13 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <div class="section" id="maintainers">
 <h2><a class="toc-backref" href="#toc-entry-9">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
-<a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_intrastat_report">OCA/l10n-spain</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_intrastat_report">OCA/l10n-spain</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
