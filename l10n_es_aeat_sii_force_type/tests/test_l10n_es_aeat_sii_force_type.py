@@ -1,6 +1,6 @@
 # © 2024 FactorLibre - Alejandro Ji Cheung <alejandro.jicheung@factorlibre.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo.tests import common, tagged
+from odoo.tests import Form, common, tagged
 from odoo.tools import mute_logger
 
 
@@ -47,11 +47,10 @@ class TestL10nEsAeatSiiForceType(common.TransactionCase):
         )
 
     @mute_logger("odoo.models", "odoo.models.unlink", "odoo.addons.base.ir.ir_model")
-    def test_get_sii_header(self):
+    def test_01_get_sii_header(self):
         # Tests with sii_allow_force_communication_type = False
         self.fiscal_position.sii_allow_force_communication_type = False
         self.assertFalse(self.fiscal_position.sii_allow_force_communication_type)
-        self.invoice._onchange_sii_allow_force_communication_type()
         self.assertFalse(self.invoice._get_sii_header().get("TipoComunicacion"))
 
         # Tests with sii_allow_force_communication_type = True
@@ -59,9 +58,25 @@ class TestL10nEsAeatSiiForceType(common.TransactionCase):
         self.fiscal_position.sii_forced_communication_type = "A0"
         self.assertTrue(self.fiscal_position.sii_allow_force_communication_type)
         self.assertEqual(self.fiscal_position.sii_forced_communication_type, "A0")
-        self.invoice._onchange_sii_allow_force_communication_type()
         self.assertEqual(self.invoice._get_sii_header().get("TipoComunicacion"), "A0")
+        self.invoice.fiscal_position_id = self.env["account.fiscal.position"]
         self.fiscal_position.sii_forced_communication_type = "A1"
+        self.invoice.fiscal_position_id = self.fiscal_position
         self.assertEqual(self.fiscal_position.sii_forced_communication_type, "A1")
-        self.invoice._onchange_sii_allow_force_communication_type()
         self.assertEqual(self.invoice._get_sii_header().get("TipoComunicacion"), "A1")
+
+    def test_02_invoice_form_value_update(self):
+        with Form(self.invoice) as invoice_form:
+            self.assertEqual(self.fiscal_position, invoice_form.fiscal_position_id)
+            self.assertFalse(self.fiscal_position.sii_allow_force_communication_type)
+            self.assertFalse(invoice_form.sii_allow_force_communication_type)
+            invoice_form.fiscal_position_id = self.env["account.fiscal.position"]
+            invoice_form.save()
+            self.fiscal_position.sii_allow_force_communication_type = True
+            invoice_form.fiscal_position_id = self.fiscal_position
+            invoice_form.save()
+            self.assertTrue(self.fiscal_position.sii_allow_force_communication_type)
+            self.assertTrue(invoice_form.sii_allow_force_communication_type)
+            invoice_form.fiscal_position_id = self.env["account.fiscal.position"]
+            invoice_form.save()
+            self.assertFalse(invoice_form.sii_allow_force_communication_type)
