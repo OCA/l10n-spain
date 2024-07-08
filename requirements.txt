@@ -1,11 +1,15 @@
-unidecode
-zeep
-xmlsig>=0.1.2
-paramiko
-pyOpenSSL
-pycryptodome
-xmlsec==1.3.3
+# generated from manifests external_dependencies
+chardet
 cryptography<39
+paramiko
+pycrypto
+pyOpenSSL
 qrcode
-xmltodict==0.11.0
-requests-pkcs12
+requests
+requests_pkcs12
+suds-jurko
+unidecode
+xmlsec
+xmlsig
+xmltodict
+zeep
