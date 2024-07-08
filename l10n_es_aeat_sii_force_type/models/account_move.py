@@ -1,5 +1,6 @@
 # © 2019 FactorLibre - Daniel Duque <daniel.duque@factorlibre.com>
 # © 2024 FactorLibre - Alejandro Ji Cheung <alejandro.jicheung@factorlibre.com>
+# © 2024 FactorLibre - Aritz Olea <aritz.olea@factorlibre.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import api, fields, models
 
@@ -9,6 +10,9 @@ class AccountMove(models.Model):
 
     sii_force_communication_type = fields.Selection(
         string="Force communication type",
+        compute="_compute_sii_force_communication_type",
+        store=True,
+        readonly=False,
         selection=[
             ("A0", "[A0] Alta de facturas/registro"),
             ("A1", "[A1] Modificación de facturas/registros (errores registrales)"),
@@ -23,8 +27,8 @@ class AccountMove(models.Model):
         related="fiscal_position_id.sii_allow_force_communication_type",
     )
 
-    @api.onchange("fiscal_position_id", "sii_allow_force_communication_type")
-    def _onchange_sii_allow_force_communication_type(self):
+    @api.depends("fiscal_position_id", "sii_allow_force_communication_type")
+    def _compute_sii_force_communication_type(self):
         for invoice in self.filtered("fiscal_position_id"):
             if invoice.sii_allow_force_communication_type:
                 invoice.sii_force_communication_type = (
