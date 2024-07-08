@@ -80,32 +80,28 @@ def migrate(env, version):
         )
     new_fields = ", ".join(f'"{f}"' for f in ["old_l10n_es_id"] + intr_prod_dec_fields)
     old_fields = ", ".join(f'"{f}"' for f in ["id"] + intr_prod_dec_fields)
-    query = """INSERT INTO intrastat_product_declaration ({new_fields})
+    query = f"""INSERT INTO intrastat_product_declaration ({new_fields})
         SELECT {old_fields} FROM l10n_es_intrastat_product_declaration
-    """.format(
-        new_fields=new_fields, old_fields=old_fields
-    )
+    """
     openupgrade.logged_query(env.cr, query)
 
     new_fields = ", ".join(
         f"{f}" for f in ["old_l10n_es_id"] + intr_prod_dec_lin_fields
     )
     old_fields = ", ".join(f"leipd.{f}" for f in ["id"] + intr_prod_dec_lin_fields)
-    query = """INSERT INTO intrastat_product_declaration_line (parent_id, {new_fields})
+    query = f"""INSERT INTO intrastat_product_declaration_line (parent_id, {new_fields})
         SELECT ipd.id, {old_fields}
         FROM l10n_es_intrastat_product_declaration_line AS leipd
         INNER JOIN intrastat_product_declaration
         AS ipd ON ipd.old_l10n_es_id = leipd.parent_id
-    """.format(
-        new_fields=new_fields, old_fields=old_fields
-    )
+    """
     openupgrade.logged_query(env.cr, query)
 
     new_fields = ", ".join(
         f"{f}" for f in ["old_l10n_es_id"] + intr_prod_comp_lin_fields
     )
     old_fields = ", ".join(f"leipc.{f}" for f in ["id"] + intr_prod_comp_lin_fields)
-    query = """INSERT INTO intrastat_product_computation_line
+    query = f"""INSERT INTO intrastat_product_computation_line
             (parent_id, declaration_line_id, {new_fields})
         SELECT ipd.id, leipd.id, {old_fields}
         FROM l10n_es_intrastat_product_computation_line AS leipc
@@ -113,7 +109,5 @@ def migrate(env, version):
         AS ipd ON ipd.old_l10n_es_id = leipc.parent_id
         INNER JOIN intrastat_product_declaration_line
         AS leipd ON leipd.old_l10n_es_id = leipc.declaration_line_id
-    """.format(
-        new_fields=new_fields, old_fields=old_fields
-    )
+    """
     openupgrade.logged_query(env.cr, query)
