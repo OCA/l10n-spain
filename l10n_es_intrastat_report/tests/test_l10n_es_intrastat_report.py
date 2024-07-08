@@ -136,6 +136,7 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
             for partner, fiscal in zip(
                 (cls.partner_1, cls.partner_2),
                 (cls.fiscal_position_b2b, cls.fiscal_position_b2c),
+                strict=True,
             ):
                 invoice = cls._create_invoice(inv_type, partner, fiscal)
                 cls.invoices[declaration_type]["invoices"].append(invoice)

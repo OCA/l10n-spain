@@ -84,7 +84,7 @@ class IntrastatProductDeclaration(models.Model):
         attach_id = super()._attach_xml_file(xml_string, declaration_name)
         self.ensure_one()
         attach = self.env["ir.attachment"].browse(attach_id)
-        filename = "{}_{}.csv".format(self.year_month, declaration_name)
+        filename = f"{self.year_month}_{declaration_name}.csv"
         attach.write({"name": filename})
         return attach.id
 
