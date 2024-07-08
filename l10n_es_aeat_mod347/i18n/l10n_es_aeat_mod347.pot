@@ -1342,6 +1342,13 @@ msgid "The declaration will show the total of cash operations over this limit"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
+msgid "The selected partner doesn't have a VAT or a state code"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__third_quarter
 msgid "Third quarter operations"
 msgstr ""
