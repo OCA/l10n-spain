@@ -17,38 +17,42 @@ Plantillas MIS Builder para informes contables españoles
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_mis_report
+    :target: https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_mis_report
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-16-0/l10n-spain-16-0-l10n_es_mis_report
+    :target: https://translation.odoo-community.org/projects/l10n-spain-17-0/l10n-spain-17-0-l10n_es_mis_report
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Incluye las siguientes plantillas para el motor de informes provisto
-por el módulo *mis_builder*:
+Incluye las siguientes plantillas para el motor de informes provisto por
+el módulo *mis_builder*:
 
-    * Balance PYMEs (PGCE 2008)
-    * Cuenta de pérdidas y ganancias PYMEs (PGCE 2008)
-    * Balance abreviado (PGCE 2008)
-    * Cuenta de pérdidas y ganancias abreviado (PGCE 2008)
-    * Balance normal (PGCE 2008)
-    * Cuenta de pérdidas y ganancias completo (PGCE 2008)
-    * Estado de ingresos y gastos reconocidos (PGCE 2008)
+   -  Balance PYMEs (PGCE 2008)
+   -  Cuenta de pérdidas y ganancias PYMEs (PGCE 2008)
+   -  Balance abreviado (PGCE 2008)
+   -  Cuenta de pérdidas y ganancias abreviado (PGCE 2008)
+   -  Balance normal (PGCE 2008)
+   -  Cuenta de pérdidas y ganancias completo (PGCE 2008)
+   -  Estado de ingresos y gastos reconocidos (PGCE 2008)
 
-Las plantillas están basadas en los modelos para el depósito de cuentas anuales
-del Registro Mercantil:
+Las plantillas están basadas en los modelos para el depósito de cuentas
+anuales del Registro Mercantil:
 
-* *Normal*: https://www.mjusticia.gob.es/es/Ciudadano/Registros/Documents/Normal%20Castellano%20Editable%202020.PDF
-* *Abreviado*: https://www.mjusticia.gob.es/es/Ciudadano/Registros/Documents/Abreviado%20Castellano%20Editable%202020.PDF
-* *PYMEs*: https://www.mjusticia.gob.es/es/Ciudadano/Registros/Documents/PYMES%20Castellano%20Editable%202020.PDF
+-  *Normal*:
+   https://www.mjusticia.gob.es/es/Ciudadano/Registros/Documents/Normal%20Castellano%20Editable%202020.PDF
+-  *Abreviado*:
+   https://www.mjusticia.gob.es/es/Ciudadano/Registros/Documents/Abreviado%20Castellano%20Editable%202020.PDF
+-  *PYMEs*:
+   https://www.mjusticia.gob.es/es/Ciudadano/Registros/Documents/PYMES%20Castellano%20Editable%202020.PDF
 
-La información general del Registro Mercantil se encuentra en el apartado 'Depósito de cuentas/Anexo I':
+La información general del Registro Mercantil se encuentra en el
+apartado 'Depósito de cuentas/Anexo I':
 
-* https://www.mjusticia.gob.es/es/ciudadania/registros/propiedad-mercantiles/registro-mercantil
+-  https://www.mjusticia.gob.es/es/ciudadania/registros/propiedad-mercantiles/registro-mercantil
 
 **Table of contents**
 
@@ -58,40 +62,43 @@ La información general del Registro Mercantil se encuentra en el apartado 'Dep�
 Installation
 ============
 
-Este módulo depende del módulo `mis_builder`, que puede obtenerse en
-https://odoo-community.org/shop, o bien en https://github.com/OCA/mis-builder.
+Este módulo depende del módulo mis_builder, que puede obtenerse en
+https://odoo-community.org/shop, o bien en
+https://github.com/OCA/mis-builder.
 
 Usage
 =====
 
-#. Acceda a *Contabilidad > Informes > MIS > Informes MIS*
-#. Cree un nuevo informe,
-#. Seleccione una de las plantillas que se corresponde con los informes
+1. Acceda a *Contabilidad > Informes > MIS > Informes MIS*
+2. Cree un nuevo informe,
+3. Seleccione una de las plantillas que se corresponde con los informes
    financieros españoles.
-#. Desmarque la opción de evitar auto-expansión de cuentas si desea que
+4. Desmarque la opción de evitar auto-expansión de cuentas si desea que
    se oculten las cuentas contables y se muestren solamente los niveles
    predefinidos por el formato oficial.
-#. Para seleccionar los periodos puede:
+5. Para seleccionar los periodos puede:
 
-   * Seleccionar directamente el intervalo de fechas deseado o el nombre del
-     rango para obtener el informe únicamente para ese periodo.
-   * Pulsar sobre "Modo de comparación", e introducir en la pestaña "Columnas"
-     tantas líneas como distintas periodos se quieran poner. Dichos periodos
-     se pueden definir también con fechas fijas, o poner periodos relativos
-     (por ejemplo "Tipo de periodo" = "Año", "Desplazamiento" = "0" y
-     "Duración" = "1" para el año N, y lo mismo pero con "Desplazamiento" =
-     "-1" para el año N - 1. No hay que olvidar que la fecha base del informe
-     esté en el año a analizar).
+   -  Seleccionar directamente el intervalo de fechas deseado o el
+      nombre del rango para obtener el informe únicamente para ese
+      periodo.
+   -  Pulsar sobre "Modo de comparación", e introducir en la pestaña
+      "Columnas" tantas líneas como distintas periodos se quieran poner.
+      Dichos periodos se pueden definir también con fechas fijas, o
+      poner periodos relativos (por ejemplo "Tipo de periodo" = "Año",
+      "Desplazamiento" = "0" y "Duración" = "1" para el año N, y lo
+      mismo pero con "Desplazamiento" = "-1" para el año N - 1. No hay
+      que olvidar que la fecha base del informe esté en el año a
+      analizar).
 
-#. Pulse sobre "Previsualizar", "Imprimir" o "Exportar" para calcular el
+6. Pulse sobre "Previsualizar", "Imprimir" o "Exportar" para calcular el
    informe y realizar la acción pulsada.
-#. Si está en modo previsualización, podrá pulsar sobre la cifra de las
+7. Si está en modo previsualización, podrá pulsar sobre la cifra de las
    filas detalle para ver los apuntes relacionados con dicha cifra.
 
-*AVISO*: El informe solamente considera las cuentas numeradas de acuerdo con el
-formato establecido por el PGCE. Cualquier cuenta personalizada que no sea
-subcuenta (tenga un código derivado incluido), deberá ser añadida manualmente
-a la plantilla.
+*AVISO*: El informe solamente considera las cuentas numeradas de acuerdo
+con el formato establecido por el PGCE. Cualquier cuenta personalizada
+que no sea subcuenta (tenga un código derivado incluido), deberá ser
+añadida manualmente a la plantilla.
 
 Bug Tracker
 ===========
@@ -99,7 +106,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_mis_report%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_mis_report%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -107,27 +114,26 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * ForgeFlow
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* ForgeFlow (https://www.forgeflow.com)
+-  ForgeFlow (https://www.forgeflow.com)
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-* `Tecnativa <https://www.tecnativa.com>`_:
+   -  Pedro M. Baeza
 
-  * Pedro M. Baeza
+-  `Sygel <http://www.sygel.es>`__:
 
-* `Sygel <http://www.sygel.es>`__:
-
-  * Harald Panten <harald.panten@sygel.es>
-  * Valentin Vinagre <valentin.vinagre@sygel.es>
+   -  Harald Panten <harald.panten@sygel.es>
+   -  Valentin Vinagre <valentin.vinagre@sygel.es>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -139,6 +145,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_mis_report>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_mis_report>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
