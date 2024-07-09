@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mis_report_es_pyg_pyme_sfl" model="mis.report">
+        <field name="name">Pérdidas y ganancias PYMESFL (PGCE 2008)</field>
+        <field
+            name="description"
+        >Pérdidas y ganancias de pequeñas y medianas entidades sin fines lucrativos</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_base" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">10</field>
+        <field name="name">es40000</field>
+        <field name="description">A) Excedente del ejercicio</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
+        <field name="expression"> +es41000 +es42000 +es43000 +es44000</field>
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40100" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">20</field>
+        <field name="name">es40100</field>
+        <field name="description">1. Ingresos de la actividad propia</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="expression"> +es40110 +es40120 +es40130 +es40140 +es40150</field>
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40110" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">30</field>
+        <field name="name">es40110</field>
+        <field name="description">a) Cuotas de asociados y afiliados</field>
+        <field name="expression">-balp[720%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40120" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">40</field>
+        <field name="name">es40120</field>
+        <field name="description">b) Aportaciones de usuarios</field>
+        <field name="expression">-balp[721%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40130" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">50</field>
+        <field name="name">es40130</field>
+        <field
+            name="description"
+        >c) Ingresos de promociones, patrocinadores y colaboraciones</field>
+        <field name="expression">-balp[722%,723%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40140" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">60</field>
+        <field name="name">es40140</field>
+        <field
+            name="description"
+        >d) Subvenciones,donaciones y legados imputados al excedente del ejercicio</field>
+        <field name="expression">-balp[740%,747%,748%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40150" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">70</field>
+        <field name="name">es40150</field>
+        <field name="description">e) Reintegro de ayudas y asignaciones</field>
+        <field name="expression">-balp[728%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40200" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">80</field>
+        <field name="name">es40200</field>
+        <field
+            name="description"
+        >2. Ventas y otros ingresos de la actividad mercantil</field>
+        <field
+            name="expression"
+        >-balp[700%,701%,702%,703%,704%,705%,706%,708%,709%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40300" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">90</field>
+        <field name="name">es40300</field>
+        <field name="description">3. Gastos por ayudas y otros </field>
+        <field name="expression"> +es40310 + es40320 +es40330</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40310" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">100</field>
+        <field name="name">es40310</field>
+        <field name="description">a) Ayudas monetarias</field>
+        <field name="expression">-balp[650%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40320" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">110</field>
+        <field name="name">es40320</field>
+        <field name="description">b) Ayudas no monetarias</field>
+        <field name="expression">-balp[650%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40330" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">120</field>
+        <field name="name">es40330</field>
+        <field
+            name="description"
+        >c) Gastos por colaboraciones y del órgano de gobierno</field>
+        <field name="expression">-balp[653%,654%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40340" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">130</field>
+        <field name="name">es40340</field>
+        <field
+            name="description"
+        >d) Reintegro de subvenciones, donaciones y legados</field>
+        <field name="expression">-balp[658%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40400" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">140</field>
+        <field name="name">es40400</field>
+        <field
+            name="description"
+        >4. Variación de existencias productos terminados y en curso de fabricación</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="expression">-balp[6930%,71%,7930%]</field>
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40500" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">150</field>
+        <field name="name">es40500</field>
+        <field
+            name="description"
+        >5. Trabajos realizados por la entidad para su activo</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="expression">-balp[73%]</field>
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40600" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">160</field>
+        <field name="name">es40600</field>
+        <field name="description">6. Aprovisionamientos</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field
+            name="expression"
+        >-balp[600%,601%,602%,606%,607%,608%,609%,61%,6931%,6932%,6933%,7931%,7932%,7933%]</field>
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40700" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">170</field>
+        <field name="name">es40700</field>
+        <field name="description">7. Otros ingresos de la actividad</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="expression">-balp[75%]</field>
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40800" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">180</field>
+        <field name="name">es40800</field>
+        <field name="description">8. Gastos de personal</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="expression">-balp[64%]</field>
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40900" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">190</field>
+        <field name="name">es40900</field>
+        <field name="description">9. Otros gastos de la actividad</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field
+            name="expression"
+        >-balp[62%,631%,634%,636%,639%,655%,794%,7954%,656%,659%,694%,695%]</field>
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40A00" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">200</field>
+        <field name="name">es40A00</field>
+        <field name="description">10. Amortización del inmovilizado</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="expression">-balp[68%]</field>
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40B00" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">210</field>
+        <field name="name">es40B00</field>
+        <field
+            name="description"
+        >11. Subvenciones, donaciones y legados de capital traspasados al excedente del ejercicio</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="expression">-balp[745%,746%]</field>
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40C00" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">220</field>
+        <field name="name">es40C00</field>
+        <field name="description">12. Excesos de provisiones</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="expression">-balp[7951%,7952%,7955%,7956%]</field>
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40D00" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">230</field>
+        <field name="name">es40D00</field>
+        <field
+            name="description"
+        >13. Deterioro y resultado por enajenación de inmovilizado</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field
+            name="expression"
+        >-balp[670%,671%,672%,690%,691%,692%,770%,771%,772%,790%,791%,792%]</field>
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_41000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">240</field>
+        <field name="name">es41000</field>
+        <field name="description">A.1) EXCEDENTE DE LA ACTIVIDAD</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field
+            name="expression"
+        > +es40100 +es40200 +es40300 +es40400 +es40500 +es40600 +es40700 +es40800 +es40900 +es40A00 +es40B00 +es40C00 +es40D00</field>
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_41100" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">250</field>
+        <field name="name">es41100</field>
+        <field name="description">14. Ingresos financieros</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="expression">-balp[760%,761%,762%,769%]</field>
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_41200" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">260</field>
+        <field name="name">es41200</field>
+        <field name="description">15. Gastos financieros</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="expression">-balp[660%,661%,662%,665%,669%]</field>
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_41300" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">270</field>
+        <field name="name">es41300</field>
+        <field
+            name="description"
+        >16. Variación de valor razonable en instrumentos financieros</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="expression">-balp[663%,763%]</field>
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_41400" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">280</field>
+        <field name="name">es41400</field>
+        <field name="description">17. Diferencias de cambio</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="expression">-balp[668%,768%]</field>
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_41500" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">290</field>
+        <field name="name">es41500</field>
+        <field
+            name="description"
+        >18. Deterioro y resultado por enajenaciones de instrumentos financieros</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field
+            name="expression"
+        >-balp[666%,667%,673%,675%,696%,697%,698%,699%,766%,773%,775%,796%,797%,798%,799%]</field>
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_42000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">300</field>
+        <field name="name">es42000</field>
+        <field name="description">A.2) EXCEDENTE DE LAS OPERACIONES FINANCIERAS</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="expression"> +es41100 +es41200 +es41300 +es41400 +es41500</field>
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_43000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">310</field>
+        <field name="name">es43000</field>
+        <field name="description">A.3) EXCEDENTE ANTES DE IMPUESTOS</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="expression"> +es41000 +es42000</field>
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_43100" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">320</field>
+        <field name="name">es43100</field>
+        <field name="description">19. Impuestos sobre beneficios</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="expression">-balp[6300%,6301%,633%,638%]</field>
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_44000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">330</field>
+        <field name="name">es44000</field>
+        <field
+            name="description"
+        >A.4) Variación de patrimonio neto reconocida en el excedente del ejercicio</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+        <field name="expression"> +es43000 +es43100</field>
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_45000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">340</field>
+        <field name="name">es45000</field>
+        <field
+            name="description"
+        >B) Ingresos y gastos imputados directamente al patrimonio neto.</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
+        <field name="expression" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_45100" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">350</field>
+        <field name="name">es45100</field>
+        <field name="description">1. Subvenciones recibidas.</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="expression" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_45200" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">360</field>
+        <field name="name">es45200</field>
+        <field name="description">2. Donaciones y legados recibidos.</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="expression" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_45300" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">370</field>
+        <field name="name">es45300</field>
+        <field name="description">3. Otros ingresos y gastos.</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="expression" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_45400" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">380</field>
+        <field name="name">es45400</field>
+        <field name="description">4. Efecto impositivo.</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="expression" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_46000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">390</field>
+        <field name="name">es46000</field>
+        <field
+            name="description"
+        >B.1) Variación de patrimonio neto por ingresos y gastos reconocidos directamente en el patrimonio neto</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
+        <field name="expression" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_47000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">400</field>
+        <field name="name">es47000</field>
+        <field
+            name="description"
+        >C) Reclasificaciones al excedente del ejercicio</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
+        <field name="expression" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_47100" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">410</field>
+        <field name="name">es47100</field>
+        <field name="description">3. Subvenciones recibidas.</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="expression" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_47200" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">420</field>
+        <field name="name">es47200</field>
+        <field name="description">4. Donaciones y legados recibidos.</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="expression" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_47300" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">430</field>
+        <field name="name">es47300</field>
+        <field name="description">3. Otros ingresos y gastos.</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="expression" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_47400" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">440</field>
+        <field name="name">es47400</field>
+        <field name="description">5. Efecto impositivo.</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="expression" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_48000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">450</field>
+        <field name="name">es48000</field>
+        <field
+            name="description"
+        >C.1) Variación de patrimonio neto por reclasificaciones al excedente del ejercicio</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
+        <field name="expression" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_49000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">460</field>
+        <field name="name">es49000</field>
+        <field
+            name="description"
+        >D)Variaciones de pratrimonio neto por ingresos y gastos imputados directamente patrimonio neto</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
+        <field name="expression" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_4A000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">470</field>
+        <field name="name">es4A000</field>
+        <field name="description">E) Ajustes por cambios de criterio</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
+        <field name="expression" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_4B000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">480</field>
+        <field name="name">es4B000</field>
+        <field name="description">F) Ajustes por errores</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
+        <field name="expression" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_4C000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">490</field>
+        <field name="name">es4C000</field>
+        <field
+            name="description"
+        >G) Variaciones en la dotación fundacional o fondo social</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
+        <field name="expression" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_4D000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">500</field>
+        <field name="name">es4D000</field>
+        <field name="description">H) Otras variaciones</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
+        <field name="expression" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_4E000" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">510</field>
+        <field name="name">es4E000</field>
+        <field
+            name="description"
+        >I) RESULTADO TOTAL, VARIACIÓN DEL PATRIMONIO NETO EN EL EJERCICIO</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field
+            name="expression"
+        > +es44000 +es49000 +es4A000 +es4B000 +es4C000 +es4D000</field>
+    </record>
+</odoo>
