@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -9,10 +8,11 @@
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 8954 2022-01-20 10:10:25Z milde $
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
 
 See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
 customize this style sheet.
@@ -275,7 +275,7 @@ pre.literal-block, pre.doctest-block, pre.math, pre.code {
   margin-left: 2em ;
   margin-right: 2em }
 
-pre.code .ln { color: grey; } /* line numbers */
+pre.code .ln { color: gray; } /* line numbers */
 pre.code, code { background-color: #eeeeee }
 pre.code .comment, code .comment { color: #5C6576 }
 pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
@@ -301,7 +301,7 @@ span.option {
 span.pre {
   white-space: pre }
 
-span.problematic {
+span.problematic, pre.problematic {
   color: red }
 
 span.section-subtitle {
@@ -369,9 +369,9 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:1465d875255aaa68d6b12cc57253a0bd8f35b90ac850183a0f8bab6de7ddf7bb
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_mis_report"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-16-0/l10n-spain-16-0-l10n_es_mis_report"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>Incluye las siguientes plantillas para el motor de informes provisto
-por el módulo <em>mis_builder</em>:</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_mis_report"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-17-0/l10n-spain-17-0-l10n_es_mis_report"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>Incluye las siguientes plantillas para el motor de informes provisto por
+el módulo <em>mis_builder</em>:</p>
 <blockquote>
 <ul class="simple">
 <li>Balance PYMEs (PGCE 2008)</li>
@@ -383,14 +383,18 @@ por el módulo <em>mis_builder</em>:</p>
 <li>Estado de ingresos y gastos reconocidos (PGCE 2008)</li>
 </ul>
 </blockquote>
-<p>Las plantillas están basadas en los modelos para el depósito de cuentas anuales
-del Registro Mercantil:</p>
+<p>Las plantillas están basadas en los modelos para el depósito de cuentas
+anuales del Registro Mercantil:</p>
 <ul class="simple">
-<li><em>Normal</em>: <a class="reference external" href="https://www.mjusticia.gob.es/es/Ciudadano/Registros/Documents/Normal%20Castellano%20Editable%202020.PDF">https://www.mjusticia.gob.es/es/Ciudadano/Registros/Documents/Normal%20Castellano%20Editable%202020.PDF</a></li>
-<li><em>Abreviado</em>: <a class="reference external" href="https://www.mjusticia.gob.es/es/Ciudadano/Registros/Documents/Abreviado%20Castellano%20Editable%202020.PDF">https://www.mjusticia.gob.es/es/Ciudadano/Registros/Documents/Abreviado%20Castellano%20Editable%202020.PDF</a></li>
-<li><em>PYMEs</em>: <a class="reference external" href="https://www.mjusticia.gob.es/es/Ciudadano/Registros/Documents/PYMES%20Castellano%20Editable%202020.PDF">https://www.mjusticia.gob.es/es/Ciudadano/Registros/Documents/PYMES%20Castellano%20Editable%202020.PDF</a></li>
+<li><em>Normal</em>:
+<a class="reference external" href="https://www.mjusticia.gob.es/es/Ciudadano/Registros/Documents/Normal%20Castellano%20Editable%202020.PDF">https://www.mjusticia.gob.es/es/Ciudadano/Registros/Documents/Normal%20Castellano%20Editable%202020.PDF</a></li>
+<li><em>Abreviado</em>:
+<a class="reference external" href="https://www.mjusticia.gob.es/es/Ciudadano/Registros/Documents/Abreviado%20Castellano%20Editable%202020.PDF">https://www.mjusticia.gob.es/es/Ciudadano/Registros/Documents/Abreviado%20Castellano%20Editable%202020.PDF</a></li>
+<li><em>PYMEs</em>:
+<a class="reference external" href="https://www.mjusticia.gob.es/es/Ciudadano/Registros/Documents/PYMES%20Castellano%20Editable%202020.PDF">https://www.mjusticia.gob.es/es/Ciudadano/Registros/Documents/PYMES%20Castellano%20Editable%202020.PDF</a></li>
 </ul>
-<p>La información general del Registro Mercantil se encuentra en el apartado ‘Depósito de cuentas/Anexo I’:</p>
+<p>La información general del Registro Mercantil se encuentra en el
+apartado ‘Depósito de cuentas/Anexo I’:</p>
 <ul class="simple">
 <li><a class="reference external" href="https://www.mjusticia.gob.es/es/ciudadania/registros/propiedad-mercantiles/registro-mercantil">https://www.mjusticia.gob.es/es/ciudadania/registros/propiedad-mercantiles/registro-mercantil</a></li>
 </ul>
@@ -410,8 +414,9 @@ del Registro Mercantil:</p>
 </div>
 <div class="section" id="installation">
 <h1><a class="toc-backref" href="#toc-entry-1">Installation</a></h1>
-<p>Este módulo depende del módulo <cite>mis_builder</cite>, que puede obtenerse en
-<a class="reference external" href="https://odoo-community.org/shop">https://odoo-community.org/shop</a>, o bien en <a class="reference external" href="https://github.com/OCA/mis-builder">https://github.com/OCA/mis-builder</a>.</p>
+<p>Este módulo depende del módulo mis_builder, que puede obtenerse en
+<a class="reference external" href="https://odoo-community.org/shop">https://odoo-community.org/shop</a>, o bien en
+<a class="reference external" href="https://github.com/OCA/mis-builder">https://github.com/OCA/mis-builder</a>.</p>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-2">Usage</a></h1>
@@ -424,15 +429,17 @@ financieros españoles.</li>
 se oculten las cuentas contables y se muestren solamente los niveles
 predefinidos por el formato oficial.</li>
 <li>Para seleccionar los periodos puede:<ul>
-<li>Seleccionar directamente el intervalo de fechas deseado o el nombre del
-rango para obtener el informe únicamente para ese periodo.</li>
-<li>Pulsar sobre “Modo de comparación”, e introducir en la pestaña “Columnas”
-tantas líneas como distintas periodos se quieran poner. Dichos periodos
-se pueden definir también con fechas fijas, o poner periodos relativos
-(por ejemplo “Tipo de periodo” = “Año”, “Desplazamiento” = “0” y
-“Duración” = “1” para el año N, y lo mismo pero con “Desplazamiento” =
-“-1” para el año N - 1. No hay que olvidar que la fecha base del informe
-esté en el año a analizar).</li>
+<li>Seleccionar directamente el intervalo de fechas deseado o el
+nombre del rango para obtener el informe únicamente para ese
+periodo.</li>
+<li>Pulsar sobre “Modo de comparación”, e introducir en la pestaña
+“Columnas” tantas líneas como distintas periodos se quieran poner.
+Dichos periodos se pueden definir también con fechas fijas, o
+poner periodos relativos (por ejemplo “Tipo de periodo” = “Año”,
+“Desplazamiento” = “0” y “Duración” = “1” para el año N, y lo
+mismo pero con “Desplazamiento” = “-1” para el año N - 1. No hay
+que olvidar que la fecha base del informe esté en el año a
+analizar).</li>
 </ul>
 </li>
 <li>Pulse sobre “Previsualizar”, “Imprimir” o “Exportar” para calcular el
@@ -440,17 +447,17 @@ informe y realizar la acción pulsada.</li>
 <li>Si está en modo previsualización, podrá pulsar sobre la cifra de las
 filas detalle para ver los apuntes relacionados con dicha cifra.</li>
 </ol>
-<p><em>AVISO</em>: El informe solamente considera las cuentas numeradas de acuerdo con el
-formato establecido por el PGCE. Cualquier cuenta personalizada que no sea
-subcuenta (tenga un código derivado incluido), deberá ser añadida manualmente
-a la plantilla.</p>
+<p><em>AVISO</em>: El informe solamente considera las cuentas numeradas de acuerdo
+con el formato establecido por el PGCE. Cualquier cuenta personalizada
+que no sea subcuenta (tenga un código derivado incluido), deberá ser
+añadida manualmente a la plantilla.</p>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#toc-entry-3">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-spain/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_mis_report%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_mis_report%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -480,11 +487,13 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <div class="section" id="maintainers">
 <h2><a class="toc-backref" href="#toc-entry-7">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
-<a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_mis_report">OCA/l10n-spain</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_mis_report">OCA/l10n-spain</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
