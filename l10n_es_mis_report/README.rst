@@ -132,6 +132,10 @@ Contributors
    -  Harald Panten <harald.panten@sygel.es>
    -  Valentin Vinagre <valentin.vinagre@sygel.es>
 
+-  `APSL - Nagarro <http://www.apsl.tech>`__:
+
+   -  Miquel Pascual <mpascual@apsl.net>
+
 Maintainers
 -----------
 
