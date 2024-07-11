@@ -423,7 +423,6 @@ msgstr "Si està marcat, els missatges nous requereixen la vostra atenció."
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si està marcat, alguns missatges tenen un error d'entrega."
 
@@ -781,11 +780,6 @@ msgid "S - Intra-Community services"
 msgstr "S - Serveis intracomunitaris"
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Error d'entrega d'SMS"
-
-#. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__date_start
 msgid "Starting date"
 msgstr "Data d'inici"
@@ -984,6 +978,9 @@ msgstr "Any"
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod349.action_aeat_349_mapping
 msgid "aeat 349 Map"
 msgstr "Mapa AEAT 349"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error d'entrega d'SMS"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Última modificació el"
