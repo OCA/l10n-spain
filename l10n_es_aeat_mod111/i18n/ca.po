@@ -406,7 +406,6 @@ msgstr "Si està marcat, els missatges nous requereixen la vostra atenció."
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si està marcat, alguns missatges tenen un error d'enviament."
 
@@ -564,11 +563,6 @@ msgstr "Tipus de resultat"
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_30
 msgid "Result: ([28] - [29])"
 msgstr "Resultat: ([28] - [29])"
-
-#. module: l10n_es_aeat_mod111
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Error d'entrega d'SMS"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__date_start
@@ -844,6 +838,9 @@ msgstr "[29] Tarifes per compensar"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_30
 msgid "[30] Result"
 msgstr "[30] Resultat"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error d'entrega d'SMS"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Última modificació el"

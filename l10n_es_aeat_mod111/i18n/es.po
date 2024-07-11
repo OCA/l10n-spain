@@ -417,7 +417,6 @@ msgstr "Si está marcado, los nuevos mensajes requieren su atención."
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
 
@@ -575,11 +574,6 @@ msgstr "Tipo de resultado"
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_30
 msgid "Result: ([28] - [29])"
 msgstr "Resultado a ingresar: ([28] - [29])"
-
-#. module: l10n_es_aeat_mod111
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "SMS Error de entrega"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__date_start
@@ -855,6 +849,9 @@ msgstr "[29] Resultados a ingresar anteriores"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_30
 msgid "[30] Result"
 msgstr "[30] Resultado a ingresar"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "SMS Error de entrega"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Última modificación en"
