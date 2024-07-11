@@ -1,0 +1,39 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_dua
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_dua
+#: model:product.template,name:l10n_es_dua.producto_dua_compensacion_product_template
+msgid "DUA Compensación"
+msgstr ""
+
+#. module: l10n_es_dua
+#: model:product.template,name:l10n_es_dua.producto_dua_valoracion_10_product_template
+msgid "DUA Valoración IVA 10%"
+msgstr ""
+
+#. module: l10n_es_dua
+#: model:product.template,name:l10n_es_dua.producto_dua_valoracion_21_product_template
+msgid "DUA Valoración IVA 21%"
+msgstr ""
+
+#. module: l10n_es_dua
+#: model:product.template,name:l10n_es_dua.producto_dua_valoracion_4_product_template
+msgid "DUA Valoración IVA 4%"
+msgstr ""
+
+#. module: l10n_es_dua
+#: model:account.tax.group,name:l10n_es_dua.tax_group_dua_exento
+msgid "DUA exento"
+msgstr ""
