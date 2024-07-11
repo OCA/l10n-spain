@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form" />
+        <field name="priority">99</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='child_ids']/form/sheet/group" position="inside">
+                <group groups="account.group_account_invoice">
+                    <group string="Facturae" invisible="not facturae" colspan="5">
+                        <field name="facturae" invisible="1" />
+                        <field name="facturae_version" />
+                        <field name="organo_gestor" />
+                        <field name="unidad_tramitadora" />
+                        <field name="oficina_contable" />
+                        <field name="organo_proponente" />
+                        <field name="attach_invoice_as_annex" />
+                        <field name="facturae_hide_discount" />
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="/form" position="inside">
+                <field name="facturae" invisible="1" />
+            </xpath>
+            <group name="accounting_entries" position="after">
+                <group
+                    name="group_facturae"
+                    string="Facturae"
+                    groups="account.group_account_invoice"
+                >
+                    <field name="facturae" />
+                    <field name="facturae_version" invisible="not facturae" />
+                    <field name="organo_gestor" invisible="not facturae" />
+                    <field name="unidad_tramitadora" invisible="not facturae" />
+                    <field name="oficina_contable" invisible="not facturae" />
+                    <field name="organo_proponente" invisible="not facturae" />
+                    <field name="attach_invoice_as_annex" invisible="not facturae" />
+                    <field name="facturae_hide_discount" invisible="not facturae" />
+                </group>
+            </group>
+            <page name="accounting_disabled" position="inside">
+                <group
+                    name="group_facturae_wo_accounting"
+                    string="Facturae"
+                    groups="account.group_account_invoice"
+                >
+                    <field name="facturae" />
+                    <field name="facturae_version" invisible="not facturae" />
+                    <field name="organo_gestor" invisible="not facturae" />
+                    <field name="unidad_tramitadora" invisible="not facturae" />
+                    <field name="oficina_contable" invisible="not facturae" />
+                    <field name="organo_proponente" invisible="not facturae" />
+                    <field name="attach_invoice_as_annex" invisible="not facturae" />
+                </group>
+            </page>
+        </field>
+    </record>
+</odoo>

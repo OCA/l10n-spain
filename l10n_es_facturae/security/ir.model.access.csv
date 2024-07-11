@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_es_facturae_attachment,access_l10n_es_facturae_attachment,model_l10n_es_facturae_attachment,base.group_user,1,0,0,0
+manage_l10n_es_facturae_attachment,manage_l10n_es_facturae_attachment,model_l10n_es_facturae_attachment,account.group_account_invoice,1,1,1,1
+access_create_facturae,access_create_facturae,model_create_facturae,account.group_account_invoice,1,1,1,0
