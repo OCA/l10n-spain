@@ -41,8 +41,9 @@ class AccountMove(models.Model):
 
     def _sii_check_exceptions(self):
         """Inheritable method for exceptions control when sending SII invoices."""
+        res = False
         try:
-            super()._sii_check_exceptions()
+            res = super()._sii_check_exceptions()
         except exceptions.UserError as e:
             if (
                 e.args[0] == _("The partner has not a VAT configured.")
@@ -54,6 +55,7 @@ class AccountMove(models.Model):
 
         if self.is_invoice_summary and self.is_purchase_document():
             raise exceptions.UserError(_("You can't make a supplier summary invoice."))
+        return res
 
     def write(self, vals):
         """Cannot let change sii_invoice_summary fields
