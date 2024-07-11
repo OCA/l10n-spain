@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+   <record id="producto_atc_dua_valoracion_0" model="product.product">
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field name="name">DUA Valoración IGIC 0%</field>
+        <field name="categ_id" ref="product.product_category_all" />
+        <field name="type">service</field>
+        <field name="sale_ok" eval="False" />
+        <field name="purchase_ok" eval="True" />
+    </record>
+    <record id="producto_atc_dua_valoracion_03" model="product.product">
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field name="name">DUA Valoración IGIC 3%</field>
+        <field name="categ_id" ref="product.product_category_all" />
+        <field name="type">service</field>
+        <field name="sale_ok" eval="False" />
+        <field name="purchase_ok" eval="True" />
+    </record>
+    <record id="producto_atc_dua_valoracion_07" model="product.product">
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field name="name">DUA Valoración IGIC 7%</field>
+        <field name="categ_id" ref="product.product_category_all" />
+        <field name="type">service</field>
+        <field name="sale_ok" eval="False" />
+        <field name="purchase_ok" eval="True" />
+    </record>
+    <record id="producto_atc_dua_valoracion_95" model="product.product">
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field name="name">DUA Valoración IGIC 9.5%</field>
+        <field name="categ_id" ref="product.product_category_all" />
+        <field name="type">service</field>
+        <field name="sale_ok" eval="False" />
+        <field name="purchase_ok" eval="True" />
+    </record>
+    <record id="producto_atc_dua_valoracion_15" model="product.product">
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field name="name">DUA Valoración IGIC 15%</field>
+        <field name="categ_id" ref="product.product_category_all" />
+        <field name="type">service</field>
+        <field name="sale_ok" eval="False" />
+        <field name="purchase_ok" eval="True" />
+    </record>
+    <record id="producto_atc_dua_valoracion_20" model="product.product">
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field name="name">DUA Valoración IGIC 20%</field>
+        <field name="categ_id" ref="product.product_category_all" />
+        <field name="type">service</field>
+        <field name="sale_ok" eval="False" />
+        <field name="purchase_ok" eval="True" />
+    </record>
+    <record id="producto_atc_dua_compensacion" model="product.product">
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field name="name">DUA ATC Compensación</field>
+        <field name="categ_id" ref="product.product_category_all" />
+        <field name="type">service</field>
+        <field name="sale_ok" eval="False" />
+        <field name="purchase_ok" eval="True" />
+    </record>
+</odoo>
