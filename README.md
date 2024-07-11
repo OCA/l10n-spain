@@ -36,6 +36,7 @@ addon | version | maintainers | summary
 [l10n_es_aeat_mod390](l10n_es_aeat_mod390/) | 17.0.1.2.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | AEAT modelo 390
 [l10n_es_atc](l10n_es_atc/) | 17.0.1.0.0 |  | Modulo 'glue' de la AEAT para el menú de la ATC
 [l10n_es_cnae](l10n_es_cnae/) | 17.0.1.1.0 |  | Extiende los códigos NACE europeos con los CNAE españoles
+[l10n_es_facturae](l10n_es_facturae/) | 17.0.1.0.0 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Creación de Facturae
 [l10n_es_mis_report](l10n_es_mis_report/) | 17.0.1.0.0 |  | Plantillas MIS Builder para informes contables españoles
 [l10n_es_partner](l10n_es_partner/) | 17.0.1.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Adaptación de los clientes, proveedores y bancos para España
 [l10n_es_partner_mercantil](l10n_es_partner_mercantil/) | 17.0.1.0.0 |  | Añade los datos del registro mercantil a la empresa
