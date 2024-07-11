@@ -30,8 +30,8 @@ msgstr "&lt;/fe:Facturae&gt;"
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
 msgid ""
-"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae"
-"\""
+"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/"
+"Facturae\""
 msgstr ""
 "&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/"
 "Facturae\""
@@ -71,6 +71,11 @@ msgstr "3.2.1"
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__res_partner__facturae_version__3_2_2
 msgid "3.2.2"
 msgstr "3.2.2"
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_account_chart_template
+msgid "Account Chart Template"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_report_l10n_es_facturae_facturae_signed
@@ -344,7 +349,6 @@ msgstr "Adjunto Facturae"
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment_mode__facturae_code
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_tax__facturae_code
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_tax_template__facturae_code
 msgid "Facturae Code"
 msgstr "Código Facturae"
 
@@ -514,7 +518,6 @@ msgstr "Ocultar descuentos en Facturae"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__12
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__12
 msgid "ICIO: Impuesto sobre las construcciones, instalaciones y obras"
 msgstr "ICIO: Impuesto sobre las construcciones, instalaciones y obras"
 
@@ -526,13 +529,11 @@ msgstr "Identificador"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__07
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__07
 msgid "IE: Impuestos especiales"
 msgstr "IE: Impuestos especiales"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__10
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__10
 msgid ""
 "IECDPCAC: Impuesto especial sobre los combustibles derivados del petróleo en "
 "la Comunidad Autonoma Canaria"
@@ -542,13 +543,11 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__03
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__03
 msgid "IGIC: Impuesto general indirecto de Canarias"
 msgstr "IGIC: Impuesto general indirecto de Canarias"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__09
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__09
 msgid ""
 "IGTECM: Impuesto general sobre el tráfico de empresas que se aplica en Ceuta "
 "y Melilla"
@@ -558,7 +557,6 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__11
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__11
 msgid ""
 "IIIMAB: Impuesto sobre las instalaciones que inciden sobre el medio ambiente "
 "en la Baleares"
@@ -568,43 +566,36 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__15
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__15
 msgid "IMGSN: Impuesto municipal sobre gastos suntuarios en Navarra"
 msgstr "IMGSN: Impuesto municipal sobre gastos suntuarios en Navarra"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__16
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__16
 msgid "IMPN: Impuesto municipal sobre publicidad en Navarra"
 msgstr "IMPN: Impuesto municipal sobre publicidad en Navarra"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__14
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__14
 msgid "IMSN: Impuesto municipal sobre solares en Navarra"
 msgstr "IMSN: Impuesto municipal sobre solares en Navarra"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__13
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__13
 msgid "IMVDN: Impuesto municipal sobre las viviendas desocupadas en Navarra"
 msgstr "IMVDN: Impuesto municipal sobre las viviendas desocupadas en Navarra"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__02
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__02
 msgid "IPSI: Impuesto sobre la producción, los servicios y la importación"
 msgstr "IPSI: Impuesto sobre la producción, los servicios y la importación"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__04
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__04
 msgid "IRPF: Impuesto sobre la Renta de las personas físicas"
 msgstr "IRPF: Impuesto sobre la Renta de las personas físicas"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__06
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__06
 msgid ""
 "ITPAJD: Impuesto sobre transmisiones patrimoniales y actos jurídicos "
 "documentados"
@@ -614,7 +605,6 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__01
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__01
 msgid "IVA: Impuesto sobre el valor añadido"
 msgstr "IVA: Impuesto sobre el valor añadido"
 
@@ -658,12 +648,6 @@ msgstr "Apunte contable"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__l10n_es_facturae_attachment_ids
 msgid "L10N Es Facturae Attachment"
 msgstr "Adjunto l10n es Facturae"
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae____last_update
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__write_uid
@@ -737,7 +721,6 @@ msgstr "Otros campos de facturae"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__05
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__05
 msgid "Otro"
 msgstr "Otro"
 
@@ -789,25 +772,21 @@ msgstr "Porcentaje impositivo a aplicar"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__18
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__18
-msgid "REIGIC: Régimen especial de IGIC: para agencias deviajes"
-msgstr "REIGIC: Régimen especial de IGIC: para agencias de viajes"
+msgid "REIGIC: Régimen especial de IGIC: para agencias de viajes"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__19
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__19
 msgid "REIPSI: Régimen especial de IPSI para agencias de viajes"
 msgstr "REIPSI: Régimen especial de IPSI para agencias de viajes"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__17
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__17
 msgid "REIVA: Régimen especial de IVA para agencias de viajes"
 msgstr "REIVA: Régimen especial de IVA para agencias de viajes"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__08
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__08
 msgid "Ra: Renta aduanas"
 msgstr "Ra: Renta aduanas"
 
@@ -903,11 +882,6 @@ msgstr "Impuesto"
 #, python-format
 msgid "Taxes not provided in move line %s"
 msgstr "Impuestos no proporcionados en la línea de movimiento %s"
-
-#. module: l10n_es_facturae
-#: model:ir.model,name:l10n_es_facturae.model_account_tax_template
-msgid "Templates for Taxes"
-msgstr "Plantilla de impuestos"
 
 #. module: l10n_es_facturae
 #. odoo-python
@@ -1071,6 +1045,15 @@ msgstr "[19] Pago mediante tarjeta"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_proponente
 msgid "Órgano proponente"
 msgstr "Órgano proponente"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"
+
+#~ msgid "REIGIC: Régimen especial de IGIC: para agencias deviajes"
+#~ msgstr "REIGIC: Régimen especial de IGIC: para agencias de viajes"
+
+#~ msgid "Templates for Taxes"
+#~ msgstr "Plantilla de impuestos"
 
 #~ msgid ""
 #~ "&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/"
