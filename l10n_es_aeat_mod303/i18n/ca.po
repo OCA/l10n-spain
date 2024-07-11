@@ -515,7 +515,6 @@ msgstr "Si està marcat, els missatges nous requereixen la vostra atenció."
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si està marcat, alguns missatges tenen un error d'entrega."
 
@@ -778,11 +777,6 @@ msgid "Resultado"
 msgstr "Resultat"
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Error d'entrega d'SMS"
-
-#. module: l10n_es_aeat_mod303
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod303/models/mod303.py:0
 #, python-format
@@ -1043,6 +1037,9 @@ msgstr "SII voluntari?"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__has_operation_volume
 msgid "¿Volumen de operaciones?"
 msgstr "Volumen d'operacions?"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error d'entrega d'SMS"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Última modificació el"
