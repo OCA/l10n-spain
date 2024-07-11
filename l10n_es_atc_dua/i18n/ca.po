@@ -1,0 +1,45 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_dua
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2021-03-30 09:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
+"Language-Team: none\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: l10n_es_dua
+#: model:product.template,name:l10n_es_dua.producto_dua_compensacion_product_template
+msgid "DUA Compensación"
+msgstr "DUA Compensació"
+
+#. module: l10n_es_dua
+#: model:product.template,name:l10n_es_dua.producto_dua_valoracion_10_product_template
+msgid "DUA Valoración IVA 10%"
+msgstr "DUA Valoració IVA 10%"
+
+#. module: l10n_es_dua
+#: model:product.template,name:l10n_es_dua.producto_dua_valoracion_21_product_template
+msgid "DUA Valoración IVA 21%"
+msgstr "DUA Valoració IVA el 21%"
+
+#. module: l10n_es_dua
+#: model:product.template,name:l10n_es_dua.producto_dua_valoracion_4_product_template
+msgid "DUA Valoración IVA 4%"
+msgstr "DUA Valoració IVA 4%"
+
+#. module: l10n_es_dua
+#: model:account.tax.group,name:l10n_es_dua.tax_group_dua_exento
+msgid "DUA exento"
+msgstr "DUA exempt"
+
+#~ msgid "Units"
+#~ msgstr "Unitats"
