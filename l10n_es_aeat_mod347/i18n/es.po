@@ -40,8 +40,8 @@ msgid ""
 "  <strong>NIF:</strong> <t t-out=\"object.partner_vat\"/><br/>\n"
 "  <strong>Código de país:</strong> <t t-out=\"object.partner_country_code\"/"
 "><br/>\n"
-"  <strong>Código de provincia:</strong> <t t-out=\"object.partner_state_code"
-"\"/><br/>\n"
+"  <strong>Código de provincia:</strong> <t t-out=\"object."
+"partner_state_code\"/><br/>\n"
 "</p>\n"
 "<p>\n"
 "  <strong>Tipo de operación:</strong> <t t-out=\"object.operation_key\"/>\n"
@@ -138,8 +138,8 @@ msgstr ""
 "  <strong>NIF:</strong> <t t-out=\"object.partner_vat\"/><br/>\n"
 "  <strong>Código de país:</strong> <t t-out=\"object.partner_country_code\"/"
 "><br/>\n"
-"  <strong>Código de provincia:</strong> <t t-out=\"object.partner_state_code"
-"\"/><br/>\n"
+"  <strong>Código de provincia:</strong> <t t-out=\"object."
+"partner_state_code\"/><br/>\n"
 "</p>\n"
 "<p>\n"
 "  <strong>Tipo de operación:</strong> <t t-out=\"object.operation_key\"/>\n"
@@ -774,9 +774,7 @@ msgstr "Si está marcado, los nuevos mensajes requerirán su atención."
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_has_sms_error
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
 
@@ -1315,12 +1313,6 @@ msgstr ""
 "nosotros."
 
 #. module: l10n_es_aeat_mod347
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_has_sms_error
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "SMS de error en la entrega"
-
-#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__user_id
 msgid "Salesperson"
 msgstr "Comercial"
@@ -1660,6 +1652,9 @@ msgstr "Ya puede cerrar esta página si así lo desea."
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__year
 msgid "Year"
 msgstr "Año"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "SMS de error en la entrega"
 
 #~ msgid ""
 #~ "Comprobación datos de modelo 347 año {{object.report_id.year}} de {{user."
