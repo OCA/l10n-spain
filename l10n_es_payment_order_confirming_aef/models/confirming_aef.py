@@ -240,7 +240,7 @@ class ConfirmingAEF(object):
         # 1 Valor fijo
         text = "6"
         # 2 - 21 Num factura
-        referencia_factura = line.move_line_id.move_id.ref or line.communication
+        referencia_factura = line.communication or line.move_line_id.move_id.ref
         text += self._aef_convert_text(referencia_factura.replace("-", ""), 20, "left")
         # 22 - 22 signo
         signo_factura = "+" if line.amount_currency >= 0 else "-"

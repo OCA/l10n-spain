@@ -198,7 +198,7 @@ class ConfirmingSabadell(object):
         )
         text += self._sab_convert_text(cuenta, 20, "left")
         # 52 - 66 Num Factura
-        num_factura = line.move_line_id.move_id.ref or line.communication
+        num_factura = line.communication or line.move_line_id.move_id.ref
         text += self._sab_convert_text(num_factura, 15, "left")
         # 67 - 81 Importe de la factura
         text += self._sab_convert_text(line.amount_currency, 14)
