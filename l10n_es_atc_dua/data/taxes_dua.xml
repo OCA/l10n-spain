@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="account_tax_template_p_atc_dua0" model="account.tax.template">
-        <field name="chart_template_id" ref="l10n_es_igic.account_chart_template_common_canary" />
+        <field
+            name="chart_template_id"
+            ref="l10n_es_igic.account_chart_template_common_canary"
+        />
         <field name="description">DUA ATC exento</field>
         <field name="name">DUA ATC Exento</field>
         <field eval="0.00" name="amount" />

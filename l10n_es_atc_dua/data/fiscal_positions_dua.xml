@@ -2,6 +2,9 @@
 <odoo>
     <record id="fp_atc_dua" model="account.fiscal.position.template">
         <field name="name">Importación con DUA ATC</field>
-        <field name="chart_template_id" ref="l10n_es_igic.account_chart_template_common_canary" />
+        <field 
+            name="chart_template_id" 
+            ref="l10n_es_igic.account_chart_template_common_canary" 
+        />
     </record>
 </odoo>

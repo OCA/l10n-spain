@@ -2,7 +2,10 @@
 <odoo>
         <record id="fptt_atc_dua_0_inv" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="fp_atc_dua" />
-        <field name="tax_src_id" ref="l10n_es_igic.account_tax_template_igic_sop_0_inv" />
+        <field 
+            name="tax_src_id" 
+            ref="l10n_es_igic.account_tax_template_igic_sop_0_inv" 
+        />
         <field name="tax_dest_id" ref="account_tax_template_p_atc_dua0" />
     </record>
     <record id="fptt_atc_dua_0" model="account.fiscal.position.tax.template">
@@ -12,7 +15,10 @@
     </record>
     <record id="fptt_atc_dua_3_inv" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="fp_atc_dua" />
-        <field name="tax_src_id" ref="l10n_es_igic.account_tax_template_igic_sop_3_inv" />
+        <field 
+            name="tax_src_id" 
+            ref="l10n_es_igic.account_tax_template_igic_sop_3_inv"
+         />
         <field name="tax_dest_id" ref="account_tax_template_p_atc_dua0" />
     </record>
     <record id="fptt_atc_dua_3" model="account.fiscal.position.tax.template">
@@ -22,7 +28,10 @@
     </record>
     <record id="fptt_atc_dua_7_inv" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="fp_atc_dua" />
-        <field name="tax_src_id" ref="l10n_es_igic.account_tax_template_igic_sop_7_inv" />
+        <field 
+            name="tax_src_id" 
+            ref="l10n_es_igic.account_tax_template_igic_sop_7_inv" 
+        />
         <field name="tax_dest_id" ref="account_tax_template_p_atc_dua0" />
     </record>
     <record id="fptt_atc_dua_7" model="account.fiscal.position.tax.template">
@@ -32,7 +41,10 @@
     </record>
     <record id="fptt_atc_dua_95_inv" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="fp_atc_dua" />
-        <field name="tax_src_id" ref="l10n_es_igic.account_tax_template_igic_sop_9_5_inv" />
+        <field 
+            name="tax_src_id" 
+            ref="l10n_es_igic.account_tax_template_igic_sop_9_5_inv" 
+        />
         <field name="tax_dest_id" ref="account_tax_template_p_atc_dua0" />
     </record>
     <record id="fptt_atc_dua_95" model="account.fiscal.position.tax.template">
@@ -47,7 +59,10 @@
     </record>
     <record id="fptt_atc_dua_15_inv" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="fp_atc_dua" />
-        <field name="tax_src_id" ref="l10n_es_igic.account_tax_template_igic_sop_15_inv" />
+        <field 
+            name="tax_src_id" 
+            ref="l10n_es_igic.account_tax_template_igic_sop_15_inv" +
+        />
         <field name="tax_dest_id" ref="account_tax_template_p_atc_dua0" />
     </record>
     <record id="fptt_atc_dua_20" model="account.fiscal.position.tax.template">

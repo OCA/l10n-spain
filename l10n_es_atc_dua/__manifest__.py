@@ -1,6 +1,3 @@
-# Copyright 2017 Tecnativa - Antonio Espinosa
-# Copyright 2019 Tecnativa - Pedro M. Baeza
-# Copyright 2019 Sygel Technology - Harald Panten
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 # See README.rst file on addon root folder for more details
 
