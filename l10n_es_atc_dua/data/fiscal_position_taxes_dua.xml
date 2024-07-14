@@ -61,7 +61,7 @@
         <field name="position_id" ref="fp_atc_dua" />
         <field 
             name="tax_src_id" 
-            ref="l10n_es_igic.account_tax_template_igic_sop_15_inv" +
+            ref="l10n_es_igic.account_tax_template_igic_sop_15_inv"
         />
         <field name="tax_dest_id" ref="account_tax_template_p_atc_dua0" />
     </record>
