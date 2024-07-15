@@ -11,9 +11,10 @@ class VatNumberXlsx(models.AbstractModel):
         self, sheet, row, line, tax_line, with_total, draft_export
     ):
         """Add final number if move has is_invoice_summary."""
-        super().fill_issued_row_data(
+        res = super().fill_issued_row_data(
             sheet, row, line, tax_line, with_total, draft_export
         )
         if line.move_id.is_invoice_summary:
             sheet.write("D" + str(row), line.move_id.sii_invoice_summary_start)
             sheet.write("E" + str(row), line.move_id.sii_invoice_summary_end)
+        return res
