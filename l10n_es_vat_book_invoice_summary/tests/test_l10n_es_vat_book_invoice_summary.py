@@ -45,7 +45,7 @@ class TestL10nEsVatBookInvoiceSummary(TestL10nEsAeatModBase):
         vat_book.button_calculate()
         # Export to XLSX + check specific values
         report_name = "l10n_es_vat_book.l10n_es_vat_book_xlsx"
-        report_xlsx = self.env.ref(report_name)._render(vat_book.ids)
+        report_xlsx = self.env["ir.actions.report"]._render(report_name, vat_book.ids)
         wb = open_workbook(file_contents=report_xlsx[0])
         sheet = wb.sheet_by_index(0)
         self.assertEqual(sheet.cell(7, 3).value, "SALE-START")
