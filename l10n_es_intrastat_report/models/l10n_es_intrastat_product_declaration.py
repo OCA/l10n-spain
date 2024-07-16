@@ -197,8 +197,8 @@ class IntrastatProductComputationLine(models.Model):
             vals["partner_vat"] = self.partner_vat
         return vals
 
-    def _prepare_declaration_line(self):
-        vals = super()._prepare_declaration_line()
+    def _prepare_declaration_line(self, line_number):
+        vals = super()._prepare_declaration_line(line_number)
         # Avoid rounding in weight and fiscal value
         vals["weight"] = 0.0
         vals["amount_company_currency"] = 0.0

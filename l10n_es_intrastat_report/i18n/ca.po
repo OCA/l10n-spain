@@ -17,8 +17,8 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_intrastat_report
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_computation_line_view_tree
-msgid "/&gt;"
+#: model:ir.model,name:l10n_es_intrastat_report.model_account_chart_template
+msgid "Account Chart Template"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
@@ -154,11 +154,6 @@ msgid "Is Follower"
 msgstr "És seguidor"
 
 #. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import____last_update
-msgid "Last Modified on"
-msgstr "Darrera modificació el"
-
-#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__write_uid
 msgid "Last Updated by"
 msgstr "Darrera actualització per"
@@ -167,11 +162,6 @@ msgstr "Darrera actualització per"
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__write_date
 msgid "Last Updated on"
 msgstr "Darrera actualització el"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "Adjunt principal"
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_has_error
@@ -354,158 +344,11 @@ msgstr "Historial de comunicació del web"
 msgid "Weight"
 msgstr "Pes"
 
-#~ msgid "SMS Delivery error"
-#~ msgstr "Error de lliurament SMS"
+#~ msgid "Last Modified on"
+#~ msgstr "Darrera modificació el"
 
-#~ msgid "Accessory Costs"
-#~ msgstr "Costos accessoris"
-
-#~ msgid "Action"
-#~ msgstr "Acció"
-
-#~ msgid "Activities"
-#~ msgstr "Activitats"
-
-#~ msgid "Activity Exception Decoration"
-#~ msgstr "Decoració d'activitat d'excepció"
-
-#~ msgid "Activity State"
-#~ msgstr "Estat activitat"
-
-#~ msgid "Activity Type Icon"
-#~ msgstr "Icona tipus d'activitat"
-
-#~ msgid ""
-#~ "Amount in company currency of the accessory costs related to this invoice "
-#~ "line (by default, these accessory costs are computed at the pro-rata of "
-#~ "the amount of each invoice line."
-#~ msgstr ""
-#~ "Import, en moneda de la companyia, dels costos accessoris relatius a "
-#~ "aquesta línia de factura (per defecte, aquests costos accessoris es "
-#~ "calculen proporcionalment a l'import de cada línia)."
-
-#~ msgid ""
-#~ "Amount in company currency to write in the declaration. Amount in company "
-#~ "currency = amount in invoice currency converted to company currency with "
-#~ "the rate of the invoice date."
-#~ msgstr ""
-#~ "Import, en moneda de la companyia, a anotar a la declaració. Import en "
-#~ "moneda de la companyia = import en moneda de la factura convertit amb el "
-#~ "tipus de canvi a la data de la factura."
-
-#~ msgid "Company"
-#~ msgstr "Companyia"
-
-#~ msgid "Company Country Code"
-#~ msgstr "Codi de país de la companyia"
-
-#~ msgid "Company currency"
-#~ msgstr "Divisa de la companyia"
-
-#~ msgid "Computation Lines"
-#~ msgstr "Línies de càlcul"
-
-#~ msgid "Country"
-#~ msgstr "País"
-
-#~ msgid "Country of Origin of the Product"
-#~ msgstr "País d'origen del producte"
-
-#~ msgid "Country of Origin/Destination"
-#~ msgstr "País d'origen/destí"
-
-#~ msgid "Country of origin of the product i.e. product 'made in ____'"
-#~ msgstr "País d'origen del producte p. e. producte 'fabricat a _____'"
-
-#~ msgid "Currency"
-#~ msgstr "Moneda"
-
-#~ msgid "Declaration Line"
-#~ msgstr "Línia de declaració"
-
-#~ msgid "Fiscal Value"
-#~ msgstr "Valor fiscal"
-
-#~ msgid "Font awesome icon e.g. fa-tasks"
-#~ msgstr "Icona Font Awesome p. e. fa-tasks"
-
-#~ msgid "Generate CSV Declaration File"
-#~ msgstr "Generar fitxer CSV de la declaració"
-
-#~ msgid "Icon"
-#~ msgstr "Icona"
-
-#~ msgid "Icon to indicate an exception activity."
-#~ msgstr "Icona per a indicar una activitat d'excepció."
-
-#~ msgid "Incoterm"
-#~ msgstr "Incoterm"
-
-#~ msgid "Intrastat Code"
-#~ msgstr "Codi intrastat"
-
-#~ msgid "Intrastat Product Computation Lines"
-#~ msgstr "Línies de càlcul de producte Intrastat"
-
-#~ msgid "Intrastat Product Declaration"
-#~ msgstr "Declaració de productes Intrastat"
-
-#~ msgid "Intrastat Product Declaration Lines"
-#~ msgstr "Línies de declaració de producte Intrastat"
-
-#~ msgid "Intrastat Region"
-#~ msgstr "Regió Intrastat"
-
-#~ msgid "Intrastat Supplementary Unit"
-#~ msgstr "Unitat suplementaria Intrastat"
-
-#~ msgid "Intrastat Transaction"
-#~ msgstr "Transacció Intrastat"
-
-#~ msgid "Invoice"
-#~ msgstr "Factura"
-
-#~ msgid "Invoice Line"
-#~ msgstr "Línia de factura"
-
-#~ msgid "Month"
-#~ msgstr "Mes"
-
-#~ msgid "My Activity Deadline"
-#~ msgstr "Data límit activitat"
-
-#~ msgid "Net weight in Kg"
-#~ msgstr "Pes net en Kg"
-
-#~ msgid "Next Activity Deadline"
-#~ msgstr "Data límit de la següent activitat"
-
-#~ msgid "Next Activity Summary"
-#~ msgstr "Resum de la següent activitat"
-
-#~ msgid "Next Activity Type"
-#~ msgstr "Tipus de la següent activitat"
-
-#~ msgid "Notes"
-#~ msgstr "Notes"
-
-#~ msgid "Number of Declaration Lines"
-#~ msgstr "Nombre de línies de declaració"
-
-#~ msgid "Number of messages which requires an action"
-#~ msgstr "Nº de missatges que requereixen acció"
-
-#~ msgid "Number of unread messages"
-#~ msgstr "Nº de missatges sense llegir"
-
-#~ msgid "Partner"
-#~ msgstr "Empresa"
-
-#~ msgid "Period"
-#~ msgstr "Període"
-
-#~ msgid "Product"
-#~ msgstr "Producte"
+#~ msgid "Main Attachment"
+#~ msgstr "Adjunt principal"
 
 #~ msgid "Reporting Level"
 #~ msgstr "Nivell d'informe"

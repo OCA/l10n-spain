@@ -18,9 +18,9 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_intrastat_report
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_computation_line_view_tree
-msgid "/&gt;"
-msgstr "/&gt;"
+#: model:ir.model,name:l10n_es_intrastat_report.model_account_chart_template
+msgid "Account Chart Template"
+msgstr ""
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_needaction
@@ -158,11 +158,6 @@ msgid "Is Follower"
 msgstr "Es un seguidor"
 
 #. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
-
-#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
@@ -171,11 +166,6 @@ msgstr "Última actualización por"
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__write_date
 msgid "Last Updated on"
 msgstr "Última actualización el"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "Adjunto principal"
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_has_error
@@ -378,346 +368,14 @@ msgstr "Historial de comunicación del sitio web"
 msgid "Weight"
 msgstr "Peso"
 
-#~ msgid ""
-#~ "Despacho de mercancías a libre práctica en un Estado miembro con una "
-#~ "exportación posterior a otro Estado miembro. Transacciones con miras al "
-#~ "despacho de aduanas (que no implica cambio de titularidad, relacionados "
-#~ "con mercancías en cuasi-importación o exportación)."
-#~ msgstr ""
-#~ "Despacho de mercancías a libre práctica en un Estado miembro con una "
-#~ "exportación posterior a otro Estado miembro. Transacciones con miras al "
-#~ "despacho de aduanas (que no implica cambio de titularidad, relacionados "
-#~ "con mercancías en cuasi-importación o exportación)."
+#~ msgid "/&gt;"
+#~ msgstr "/&gt;"
 
-#~ msgid ""
-#~ "Devolución y sustitución gratuita de mercancías después del registro de "
-#~ "la transacción original: Devolución de mercancías."
-#~ msgstr ""
-#~ "Devolución y sustitución gratuita de mercancías después del registro de "
-#~ "la transacción original: Devolución de mercancías."
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
 
-#~ msgid ""
-#~ "Devolución y sustitución gratuita de mercancías después del registro de "
-#~ "la transacción original: Sustitución (por ejemplo, bajo garantía) de "
-#~ "mercancías no devueltas."
-#~ msgstr ""
-#~ "Devolución y sustitución gratuita de mercancías después del registro de "
-#~ "la transacción original: Sustitución (por ejemplo, bajo garantía) de "
-#~ "mercancías no devueltas."
-
-#~ msgid ""
-#~ "Devolución y sustitución gratuita de mercancías después del registro de "
-#~ "la transacción original: Sustitución de mercancías devueltas."
-#~ msgstr ""
-#~ "Devolución y sustitución gratuita de mercancías después del registro de "
-#~ "la transacción original: Sustitución de mercancías devueltas."
-
-#~ msgid ""
-#~ "Operaciones con vistas a un perfeccionamiento bajo contrato (no se "
-#~ "traspasa la propiedad al contratista): Mercancías destinadas a regresar "
-#~ "al Estado miembro de expedición inicial."
-#~ msgstr ""
-#~ "Operaciones con vistas a un perfeccionamiento bajo contrato (no se "
-#~ "traspasa la propiedad al contratista): Mercancías destinadas a regresar "
-#~ "al Estado miembro de expedición inicial."
-
-#~ msgid ""
-#~ "Operaciones con vistas a un perfeccionamiento bajo contrato (no se "
-#~ "traspasa la propiedad al contratista): Mercancías no destinadas a "
-#~ "regresar al Estado miembro de expedición inicial."
-#~ msgstr ""
-#~ "Operaciones con vistas a un perfeccionamiento bajo contrato (no se "
-#~ "traspasa la propiedad al contratista): Mercancías no destinadas a "
-#~ "regresar al Estado miembro de expedición inicial."
-
-#~ msgid ""
-#~ "Operaciones posteriores al perfeccionamiento bajo contrato (no se "
-#~ "traspasa la propiedad al contratista): Mercancías que no regresan al "
-#~ "Estado miembro de expedición."
-#~ msgstr ""
-#~ "Operaciones posteriores al perfeccionamiento bajo contrato (no se "
-#~ "traspasa la propiedad al contratista): Mercancías que no regresan al "
-#~ "Estado miembro de expedición."
-
-#~ msgid ""
-#~ "Operaciones posteriores al perfeccionamiento bajo contrato (no se "
-#~ "traspasa la propiedad al contratista): Mercancías que regresan al Estado "
-#~ "miembro de expedición."
-#~ msgstr ""
-#~ "Operaciones posteriores al perfeccionamiento bajo contrato (no se "
-#~ "traspasa la propiedad al contratista): Mercancías que regresan al Estado "
-#~ "miembro de expedición."
-
-#~ msgid ""
-#~ "Otras transacciones que no se pueden clasificar bajo otros códigos. Otras."
-#~ msgstr ""
-#~ "Otras transacciones que no se pueden clasificar bajo otros códigos. Otras."
-
-#~ msgid ""
-#~ "Suministro de materiales de construcción y maquinaria para trabajos en el "
-#~ "marco de un contrato general de construcción o ingeniería."
-#~ msgstr ""
-#~ "Suministro de materiales de construcción y maquinaria para trabajos en el "
-#~ "marco de un contrato general de construcción o ingeniería."
-
-#~ msgid ""
-#~ "Transacciones que implican transferencia de propiedad sin compensación "
-#~ "económica. Transacciones que implican el cambio previsto de propiedad o "
-#~ "cambio de propiedad sin compensación financiera."
-#~ msgstr ""
-#~ "Transacciones que implican transferencia de propiedad sin compensación "
-#~ "económica. Transacciones que implican el cambio previsto de propiedad o "
-#~ "cambio de propiedad sin compensación financiera."
-
-#~ msgid ""
-#~ "Transacciones que supongan un traspaso de propiedad real o previsto de "
-#~ "residentes a no residentes a cambio de una compensación financiera o de "
-#~ "otro tipo: Compra/Venta en firme."
-#~ msgstr ""
-#~ "Transacciones que supongan un traspaso de propiedad real o previsto de "
-#~ "residentes a no residentes a cambio de una compensación financiera o de "
-#~ "otro tipo: Compra/Venta en firme."
-
-#~ msgid ""
-#~ "Transacciones que supongan un traspaso de propiedad real o previsto de "
-#~ "residentes a no residentes a cambio de una compensación financiera o de "
-#~ "otro tipo: Entrega para venta a la vista o de prueba, para consignación o "
-#~ "con la mediación de un agente comisionado."
-#~ msgstr ""
-#~ "Transacciones que supongan un traspaso de propiedad real o previsto de "
-#~ "residentes a no residentes a cambio de una compensación financiera o de "
-#~ "otro tipo: Entrega para venta a la vista o de prueba, para consignación o "
-#~ "con la mediación de un agente comisionado."
-
-#~ msgid ""
-#~ "Transacciones que supongan un traspaso de propiedad sin compensación "
-#~ "financiera o en especie: Mercancías suministradas en el marco de "
-#~ "programas de ayuda promovidos o financiados parcial o totalmente por la "
-#~ "Unión Europea."
-#~ msgstr ""
-#~ "Transacciones que supongan un traspaso de propiedad sin compensación "
-#~ "financiera o en especie: Mercancías suministradas en el marco de "
-#~ "programas de ayuda promovidos o financiados parcial o totalmente por la "
-#~ "Unión Europea."
-
-#~ msgid ""
-#~ "Transacciones que supongan un traspaso de propiedad sin compensación "
-#~ "financiera o en especie: Otras ayudas (particulares, organizaciones no "
-#~ "gubernamentales)."
-#~ msgstr ""
-#~ "Transacciones que supongan un traspaso de propiedad sin compensación "
-#~ "financiera o en especie: Otras ayudas (particulares, organizaciones no "
-#~ "gubernamentales)."
-
-#~ msgid ""
-#~ "Transacciones que supongan un traspaso de propiedad sin compensación "
-#~ "financiera o en especie: Otras entregas de ayuda gubernamental."
-#~ msgstr ""
-#~ "Transacciones que supongan un traspaso de propiedad sin compensación "
-#~ "financiera o en especie: Otras entregas de ayuda gubernamental."
-
-#~ msgid ""
-#~ "Transporte de mercancías de un miembr Estado a otro Estado miembro para "
-#~ "colocar el mercancías en régimen de exportación. Transacciones con miras "
-#~ "al despacho de aduanas (que no implica cambio de titularidad, "
-#~ "relacionados con mercancías en cuasi-importación o exportación)."
-#~ msgstr ""
-#~ "Transporte de mercancías de un miembr Estado a otro Estado miembro para "
-#~ "colocar el mercancías en régimen de exportación. Transacciones con miras "
-#~ "al despacho de aduanas (que no implica cambio de titularidad, "
-#~ "relacionados con mercancías en cuasi-importación o exportación)."
-
-#~ msgid "SMS Delivery error"
-#~ msgstr "Error de entrega de SMS"
-
-#~ msgid "Accessory Costs"
-#~ msgstr "Costes accesorios"
-
-#~ msgid "Action"
-#~ msgstr "Acción"
-
-#~ msgid "Activities"
-#~ msgstr "Actividades"
-
-#~ msgid "Activity Exception Decoration"
-#~ msgstr "Actividad Excepción Decoración"
-
-#~ msgid "Activity State"
-#~ msgstr "Estado de actividad"
-
-#~ msgid ""
-#~ "Amount in company currency of the accessory costs related to this invoice "
-#~ "line (by default, these accessory costs are computed at the pro-rata of "
-#~ "the amount of each invoice line."
-#~ msgstr ""
-#~ "Importe en la moneda de la compañía de los costes accesorios relacionados "
-#~ "con esta línea de factura (por defecto, estos costes accesorios se "
-#~ "calculan prorrateados del importe de cada línea de factura)."
-
-#~ msgid ""
-#~ "Amount in company currency to write in the declaration. Amount in company "
-#~ "currency = amount in invoice currency converted to company currency with "
-#~ "the rate of the invoice date."
-#~ msgstr ""
-#~ "Importe en la moneda la compañía a escribir en la declaración. Si la "
-#~ "moneda no es la misma, se calcula con la tasa de cambio de la fecha de "
-#~ "factura."
-
-#~ msgid "Company"
-#~ msgstr "Compañía"
-
-#~ msgid "Company Country Code"
-#~ msgstr "Código de país de la compañía"
-
-#~ msgid "Company currency"
-#~ msgstr "Moneda de la compañía"
-
-#~ msgid "Computation Lines"
-#~ msgstr "Líneas de cálculo"
-
-#~ msgid "Country"
-#~ msgstr "País"
-
-#~ msgid "Country of Origin of the Product"
-#~ msgstr "País de origen del producto"
-
-#~ msgid "Country of Origin/Destination"
-#~ msgstr "País de origen/destino"
-
-#~ msgid "Country of origin of the product i.e. product 'made in ____'"
-#~ msgstr "País de origen del producto, como por ejemplo 'Hecho en ____'"
-
-#~ msgid "Currency"
-#~ msgstr "Moneda"
-
-#~ msgid "Declaration Line"
-#~ msgstr "Línea de declaración"
-
-#~ msgid "Fiscal Value"
-#~ msgstr "Valor fiscal"
-
-#~ msgid "Generate CSV Declaration File"
-#~ msgstr "Generar declaración en CSV"
-
-#~ msgid "Icon"
-#~ msgstr "Icono"
-
-#~ msgid "Icon to indicate an exception activity."
-#~ msgstr "Icono para indicar una actividad de excepción."
-
-#~ msgid "Incoterm"
-#~ msgstr "Incoterm"
-
-#~ msgid "Intrastat Code"
-#~ msgstr "Código Intrastat"
-
-#~ msgid "Intrastat Product Computation Lines"
-#~ msgstr "Líneas de cálculo de Intrastat"
-
-#~ msgid "Intrastat Product Declaration"
-#~ msgstr "Declaración de producto Intrastat"
-
-#~ msgid "Intrastat Product Declaration Lines"
-#~ msgstr "Líneas de declaración Intrastat"
-
-#~ msgid "Intrastat Region"
-#~ msgstr "Región Intrastat"
-
-#~ msgid "Intrastat Supplementary Unit"
-#~ msgstr "Unidad Suplementaria Intrastat"
-
-#~ msgid "Intrastat Transaction"
-#~ msgstr "Transacción Intrastat"
-
-#~ msgid "Invoice"
-#~ msgstr "Factura"
-
-#~ msgid "Invoice Line"
-#~ msgstr "Línea de factura"
-
-#~ msgid "Month"
-#~ msgstr "Mes"
-
-#~ msgid "Net weight in Kg"
-#~ msgstr "Peso neto en kg"
-
-#~ msgid "Next Activity Deadline"
-#~ msgstr "Fecha límite de la siguiente actividad"
-
-#~ msgid "Next Activity Summary"
-#~ msgstr "Resumen de la siguiente actividad"
-
-#~ msgid "Next Activity Type"
-#~ msgstr "Tipo de la siguiente actividad"
-
-#~ msgid "Notes"
-#~ msgstr "Notas"
-
-#~ msgid "Number of Declaration Lines"
-#~ msgstr "Nº de líneas de declaración"
-
-#~ msgid "Number of messages which requires an action"
-#~ msgstr "Nº de mensajes que requieren una acción"
-
-#~ msgid "Number of unread messages"
-#~ msgstr "Nº de mensajes sin leer"
-
-#~ msgid "Period"
-#~ msgstr "Periodo"
-
-#~ msgid "Product"
-#~ msgstr "Producto"
-
-#~ msgid "Reporting Level"
-#~ msgstr "Nivel de informe"
-
-#~ msgid "Responsible User"
-#~ msgstr "Usuario responsable"
-
-#~ msgid "Revision"
-#~ msgstr "Revisión"
-
-#~ msgid "State"
-#~ msgstr "Provincia"
-
-#~ msgid ""
-#~ "State of the declaration. When the state is set to 'Done', the parameters "
-#~ "become read-only."
-#~ msgstr ""
-#~ "Estado de la declaración. Cuando el estado está como 'Realizado', los "
-#~ "parámetros se convierten a solo lectura."
-
-#~ msgid ""
-#~ "Status based on activities\n"
-#~ "Overdue: Due date is already passed\n"
-#~ "Today: Activity date is today\n"
-#~ "Planned: Future activities."
-#~ msgstr ""
-#~ "Estado basado en las actividades\n"
-#~ "Atrasado: La fecha de vencimiento ya está vencida\n"
-#~ "Hoy: La fecha de la actividad es hoy\n"
-#~ "Planificado: Actividades futuras."
-
-#~ msgid "Suppl. Unit"
-#~ msgstr "Unid. supl."
-
-#~ msgid "Suppl. Unit Qty"
-#~ msgstr "Ctd. unid. supl."
-
-#~ msgid "Supplementary Units Quantity"
-#~ msgstr "Cantidad de unidades suplementarias"
-
-#~ msgid "Total Fiscal Amount"
-#~ msgstr "Importe fiscal total"
-
-#~ msgid "Total fiscal amount in company currency of the declaration."
-#~ msgstr "Importe fiscal total de la declaración en la moneda de la compañía."
-
-#~ msgid "Transport Mode"
-#~ msgstr "Modo de transporte"
-
-#~ msgid "Type"
-#~ msgstr "Tipo"
+#~ msgid "Main Attachment"
+#~ msgstr "Adjunto principal"
 
 #~ msgid "Type of the exception activity on record."
 #~ msgstr "Tipo de actividad de excepción registrada."

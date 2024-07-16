@@ -2,12 +2,11 @@
 # Copyright 2021 Tecnativa - João Marques
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3).
 
-import os
 
 import xlrd
 
 from odoo import _, exceptions, models, tools
-from odoo.modules.module import get_resource_path
+from odoo.tools.misc import file_path
 
 UOM_MAPPING = {
     "p/st": "intrastat_unit_pce",
@@ -32,9 +31,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
 
     def _import_hs_codes(self):
         code_obj = self.env["hs.code"].with_context(active_test=False)
-        path = os.path.join(
-            get_resource_path("l10n_es_intrastat_report"), "data", "Estruc_NC2023.xlsx"
-        )
+        path = file_path("l10n_es_intrastat_report/data/Estruc_NC2023.xlsx")
         workbook = xlrd.open_workbook(path)
         sheet = workbook.sheet_by_index(0)
         vals_list = []
