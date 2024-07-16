@@ -57,10 +57,7 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
 
     @classmethod
     def setUpClass(cls, chart_template_ref=None):
-        chart_template_ref = (
-            "l10n_es.account_chart_template_common" or chart_template_ref
-        )
-        super().setUpClass(chart_template_ref=chart_template_ref)
+        super().setUpClass(chart_template_ref="es_full")
         cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         # Set current company to Spanish
         intrastat_transport = cls.env["intrastat.transport_mode"].search([], limit=1)
@@ -157,7 +154,7 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
                 "res_id": fp.id,
             }
         )
-        post_init_hook(self.env.cr, None)
+        post_init_hook(self.env)
         fp = self.env["account.fiscal.position"].browse(item.res_id)
         self.assertTrue(fp.intrastat)
 

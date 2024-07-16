@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record
         id="l10n_es_intrastat_product_computation_line_view_form"
@@ -6,25 +6,23 @@
     >
         <field name="name">intrastat.product.computation.line.form</field>
         <field name="model">intrastat.product.computation.line</field>
-        <field name="mode">primary</field>
         <field
             name="inherit_id"
             ref="intrastat_product.intrastat_product_computation_line_view_form"
         />
+        <field name="mode">primary</field>
         <field name="arch" type="xml">
             <field name="region_id" position="after">
                 <field name="intrastat_state_id" />
             </field>
             <field name="incoterm_id" position="attributes">
-                <attribute name="invisible" />
-                <attribute
-                    name="attrs"
-                >{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}</attribute>
+                <attribute name="invisible">reporting_level != 'extended'</attribute>
+                <attribute name="required">reporting_level == 'extended'</attribute>
             </field>
             <field name="invoice_id" position="after">
                 <field
                     name="partner_vat"
-                    attrs="{'invisible': [('declaration_type', '!=', 'dispatches')]}"
+                    invisible="declaration_type != 'dispatches'"
                 />
             </field>
         </field>
@@ -44,9 +42,7 @@
             <field name="region_id" position="after">
                 <field name="intrastat_state_id" />
             </field>
-            <field name="amount_accessory_cost_company_currency" position="attributes">
-                <attribute name="invisible">1</attribute>/>
-            </field>
+            <field name="amount_accessory_cost_company_currency" invisible="True" />
             <field name="invoice_id" position="after">
                 <field name="partner_vat" />
             </field>
@@ -65,15 +61,13 @@
         />
         <field name="arch" type="xml">
             <field name="incoterm_id" position="attributes">
-                <attribute name="invisible" />
-                <attribute
-                    name="attrs"
-                >{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}</attribute>
+                <attribute name="invisible">reporting_level != 'extended'</attribute>
+                <attribute name="required">reporting_level == 'extended'</attribute>
             </field>
             <field name="hs_code_id" position="after">
                 <field
                     name="partner_vat"
-                    attrs="{'invisible': [('declaration_type', '!=', 'dispatches')]}"
+                    invisible="declaration_type != 'dispatches'"
                 />
             </field>
         </field>
@@ -112,9 +106,7 @@
                     name="string"
                 >Spanish Intrastat Product Declaration</attribute>
             </form>
-            <field name="reporting_level" position="attributes">
-                <attribute name="invisible" />
-            </field>
+            <field name="reporting_level" invisible="False" />
         </field>
     </record>
     <record id="l10n_es_intrastat_product_declaration_view_tree" model="ir.ui.view">
