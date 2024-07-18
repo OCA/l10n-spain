@@ -1,5 +1,5 @@
 # Copyright 2014-2019 Tecnativa - Pedro M. Baeza
-
+# Copyright 2024 Tecnativa - Carolina Fernandez
 from odoo import _, api, exceptions, fields, models
 from odoo.tools import float_compare
 
@@ -21,15 +21,11 @@ class L10nEsAeatMod130Report(models.Model):
             ("other", "Actividad distinta a las anteriores"),
         ],
         string="Tipo de actividad",
-        states={"draft": [("readonly", False)]},
-        readonly=True,
         required=True,
         default="other",
     )
     has_deduccion_80 = fields.Boolean(
         string="¿Deducción por art. 80 bis?",
-        states={"draft": [("readonly", False)]},
-        readonly=True,
         help="Permite indicar si puede beneficiarse de la deducción por "
         "obtención de rendimientos de actividades económicas a efectos del "
         "pago fraccionado por cumplir el siguiente requisito:\n Que, en el "
@@ -44,8 +40,6 @@ class L10nEsAeatMod130Report(models.Model):
     )
     has_prestamo = fields.Boolean(
         string="¿Préstamo para vivienda habitual?",
-        states={"draft": [("readonly", False)]},
-        readonly=True,
         help="Permite indicar si destina cantidades al pago de préstamos "
         "para la adquisición o rehabilitación de la vivienda habitual. Si "
         "marca la casilla, se podrá realiza un 2% de deducción sobre el "
@@ -58,9 +52,7 @@ class L10nEsAeatMod130Report(models.Model):
     comments = fields.Char(
         string="Observaciones",
         size=350,
-        readonly=True,
         help="Observaciones que se adjuntarán con el modelo",
-        states={"draft": [("readonly", False)]},
     )
     casilla_01 = fields.Monetary(
         string="Casilla [01] - Ingresos",
