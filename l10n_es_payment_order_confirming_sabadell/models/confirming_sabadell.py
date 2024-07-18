@@ -9,7 +9,7 @@ from odoo import _, fields
 from odoo.exceptions import UserError
 
 
-class ConfirmingSabadell(object):
+class ConfirmingSabadell:
     def __init__(self, record):
         self.record = record
 
