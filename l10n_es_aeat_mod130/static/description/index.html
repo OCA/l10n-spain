@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -369,11 +368,12 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:95e1984cfcd599fa3608d1a243d65e6876cc9dd437c34ce056b181fd270175f4
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/15.0/l10n_es_aeat_mod130"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-15-0/l10n-spain-15-0-l10n_es_aeat_mod130"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=15.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>Módulo para la presentación del modelo 130 (Pago fraccionado IRPF - Impuesto
-sobre la Renta de las Personas Físicas - para empresarios y profesionales en
-estimación directa) de la Agencia Española de Administración Tributaria.
-Instrucciones del modelo: <a class="reference external" href="http://goo.gl/StTY2h">http://goo.gl/StTY2h</a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_aeat_mod130"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-17-0/l10n-spain-17-0-l10n_es_aeat_mod130"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>Módulo para la presentación del modelo 130 (Pago fraccionado IRPF -
+Impuesto sobre la Renta de las Personas Físicas - para empresarios y
+profesionales en estimación directa) de la Agencia Española de
+Administración Tributaria. Instrucciones del modelo:
+<a class="reference external" href="http://goo.gl/StTY2h">http://goo.gl/StTY2h</a></p>
 <p>Incluye la exportación al formato BOE para su uso telemático.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
@@ -390,22 +390,24 @@ Instrucciones del modelo: <a class="reference external" href="http://goo.gl/StTY
 </div>
 <div class="section" id="known-issues-roadmap">
 <h1><a class="toc-backref" href="#toc-entry-1">Known issues / Roadmap</a></h1>
-<p><strong>AVISO</strong>: Este modelo no cubre el 100% de las posibilidades que se pueden
-dar en la declaración, por lo que se exime a los desarrolladores de cualquier
-responsabilidad derivada de su uso. Carencias conocidas:</p>
+<p><strong>AVISO</strong>: Este modelo no cubre el 100% de las posibilidades que se
+pueden dar en la declaración, por lo que se exime a los desarrolladores
+de cualquier responsabilidad derivada de su uso. Carencias conocidas:</p>
 <ul class="simple">
-<li>La casilla [02] no se calculará correctamente si se incluyen en la partida
-de gastos (familia de cuentas 6), gastos que no son deducibles.</li>
-<li>No se controla el límite máximo de 2000 € en los gastos no deducibles de
-difícil justificación.</li>
-<li>En la casilla [04], no se tienen en cuenta deducciones para rentas obtenidas
-en Ceuta o Melilla.</li>
-<li>No se tienen en cuenta las retenciones e ingresos a cuenta soportados sobre
-los rendimientos procedentes de las actividades económicas (casilla [06]).</li>
-<li>No se pueden realizar declaraciones para actividades agrícolas, ganaderas,
-forestales y pesqueras (casillas [08] a [11]).</li>
-<li>No se pueden aplicar las deducciones correspondientes por el artículo 80 bis
-(casilla [13]).</li>
+<li>La casilla [02] no se calculará correctamente si se incluyen en la
+partida de gastos (familia de cuentas 6), gastos que no son
+deducibles.</li>
+<li>No se controla el límite máximo de 2000 € en los gastos no deducibles
+de difícil justificación.</li>
+<li>En la casilla [04], no se tienen en cuenta deducciones para rentas
+obtenidas en Ceuta o Melilla.</li>
+<li>No se tienen en cuenta las retenciones e ingresos a cuenta soportados
+sobre los rendimientos procedentes de las actividades económicas
+(casilla [06]).</li>
+<li>No se pueden realizar declaraciones para actividades agrícolas,
+ganaderas, forestales y pesqueras (casillas [08] a [11]).</li>
+<li>No se pueden aplicar las deducciones correspondientes por el artículo
+80 bis (casilla [13]).</li>
 <li>No se pueden deducir resultados negativos de anteriores declaraciones
 (casilla [15]).</li>
 </ul>
@@ -415,7 +417,7 @@ forestales y pesqueras (casillas [08] a [11]).</li>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-spain/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_mod130%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_mod130%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -445,7 +447,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/15.0/l10n_es_aeat_mod130">OCA/l10n-spain</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_aeat_mod130">OCA/l10n-spain</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
