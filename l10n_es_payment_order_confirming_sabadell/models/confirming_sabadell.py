@@ -70,7 +70,8 @@ class ConfirmingSabadell:
             if not line.partner_bank_id.bank_bic:
                 raise UserError(
                     _(
-                        "La cuenta bancaria del Proveedor %s no tiene establecido el SWIFT."
+                        "La cuenta bancaria del Proveedor %s \
+                        no tiene establecido el SWIFT."
                     )
                     % line.partner_id.name
                 )

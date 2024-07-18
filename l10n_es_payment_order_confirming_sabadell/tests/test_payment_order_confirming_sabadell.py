@@ -91,7 +91,6 @@ class TestPaymentOrderConfirmingSabadell(common.TransactionCase):
             .create({"date_type": "move", "move_date": fields.date.today()})
         )
         line_create.journal_ids = self.purchase_journal.ids
-        line_create.move_line_filters_change()
         line_create.populate()
         line_create.create_payment_lines()
         return payment_order
