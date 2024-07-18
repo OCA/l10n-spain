@@ -24,24 +24,22 @@
             <xpath expr="//group[@name='group_declaration']" position="after">
                 <group string="Datos a completar" colspan="4" col="6">
                     <group colspan="2">
-                        <field name="activity_type" />
+                        <field name="activity_type" readonly="state != 'draft'" />
                     </group>
                     <group colspan="2">
-                        <field name="has_deduccion_80" />
+                        <field name="has_deduccion_80" readonly="state != 'draft'" />
                     </group>
                     <group colspan="2">
-                        <field name="has_prestamo" />
+                        <field name="has_prestamo" readonly="state != 'draft'" />
                     </group>
                 </group>
                 <group
                     string="Resultado"
                     colspan="4"
-                    states="calculated,done,cancelled"
+                    invisible="state not in ['calculated','done','cancelled']"
                 >
                     <group>
-                        <group
-                            attrs="{'invisible': [('activity_type', '=', 'primary')]}"
-                        >
+                        <group invisible="activity_type == 'primary'">
                             <field
                                 name="casilla_01"
                                 string="[01] Ingresos computables"
@@ -67,7 +65,7 @@
                                 string="[07] Pago fraccionado previo del trimestre"
                             />
                         </group>
-                        <group attrs="{'invisible': [('activity_type', '=', 'other')]}">
+                        <group invisible="activity_type == 'other'">
                             <field
                                 name="casilla_08"
                                 string="[08] Volumen de ingresos"
@@ -78,7 +76,7 @@
                             />
                         </group>
                     </group>
-                    <group attrs="{'invisible': [('activity_type', '=', 'primary')]}">
+                    <group invisible="activity_type == 'primary'">
                         <field
                             name="casilla_12"
                             string="[12] Suma de pagos fraccionados previos del trimestre"
@@ -100,7 +98,7 @@
                         <field
                             name="casilla_18"
                             string="[18] A deducir - Resultado de las anteriores declaraciones"
-                            attrs="{'readonly': ['|', ('state', 'not in', ['done', 'cancelled', 'posted']), ('statement_type', '!=', 'C')]}"
+                            readonly="state not in ['done', 'cancelled', 'posted'] or statement_type != 'C'"
                         />
                     </group>
                     <group class="oe_subtotal_footer oe_right" colspan="2">
@@ -109,12 +107,12 @@
                     </group>
                 </group>
                 <group string="Observaciones" colspan="4">
-                    <field name="comments" nolabel="1" />
+                    <field name="comments" nolabel="1" readonly="state != 'draft'" />
                 </group>
                 <field name="partner_bank_id" position="attributes">
                     <attribute
-                        name="attrs"
-                    >{'invisible': [('tipo_declaracion', 'not in', ('I'))]}</attribute>
+                        name="invisible"
+                    >tipo_declaracion not in ('I')</attribute>
                 </field>
             </xpath>
             <xpath expr="//sheet" position="after">
