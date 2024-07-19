@@ -18,21 +18,18 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_location_nuts
-#: model:ir.model.fields,field_description:l10n_es_location_nuts.field_nuts_import__display_name
-msgid "Display Name"
-msgstr "Mostrar Nombre"
-
-#. module: l10n_es_location_nuts
-#: model:ir.model.fields,field_description:l10n_es_location_nuts.field_nuts_import__id
-msgid "ID"
-msgstr "ID"
-
-#. module: l10n_es_location_nuts
 #: model:ir.model,name:l10n_es_location_nuts.model_nuts_import
-msgid "Import NUTS items from European RAMON service"
-msgstr "Importar regiones NUTS desde el servicio europeo RAMON"
+msgid "Import NUTS items from European ShowVoc service"
+msgstr ""
 
-#. module: l10n_es_location_nuts
-#: model:ir.model.fields,field_description:l10n_es_location_nuts.field_nuts_import____last_update
-msgid "Last Modified on"
-msgstr "Última Modificación el"
+#~ msgid "Display Name"
+#~ msgstr "Mostrar Nombre"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Import NUTS items from European RAMON service"
+#~ msgstr "Importar regiones NUTS desde el servicio europeo RAMON"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificación el"
