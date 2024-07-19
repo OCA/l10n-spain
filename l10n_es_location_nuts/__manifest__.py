@@ -5,7 +5,7 @@
 {
     "name": "NUTS Regions for Spain",
     "summary": "NUTS specific options for Spain",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Localisation/Europe",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Tecnativa, Odoo Community Association (OCA)",
