@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3;\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
 "X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_es_aeat
@@ -113,6 +113,7 @@ msgstr ""
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod111_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod115_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod123_report_name_uniq
+#: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod130_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod190_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod216_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod296_report_name_uniq
@@ -342,6 +343,7 @@ msgstr "Preklic"
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__state__cancelled
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod115_report__state__cancelled
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod123_report__state__cancelled
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod130_report__state__cancelled
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod190_report__state__cancelled
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod216_report__state__cancelled
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod296_report__state__cancelled
@@ -427,6 +429,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__statement_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod115_report__statement_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod123_report__statement_type__c
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod130_report__statement_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod190_report__statement_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod216_report__statement_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod296_report__statement_type__c
@@ -551,6 +554,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__support_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod115_report__support_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod123_report__support_type__c
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod130_report__support_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod190_report__support_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod216_report__support_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod296_report__support_type__c
@@ -611,6 +615,7 @@ msgstr "Prikazani naziv"
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__state__done
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod115_report__state__done
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod123_report__state__done
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod130_report__state__done
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod190_report__state__done
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod216_report__state__done
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod296_report__state__done
@@ -632,6 +637,7 @@ msgstr "Opravljeno"
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__state__draft
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod115_report__state__draft
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod123_report__state__draft
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod130_report__state__draft
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod190_report__state__draft
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod216_report__state__draft
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod296_report__state__draft
@@ -1181,6 +1187,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__statement_type__n
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod115_report__statement_type__n
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod123_report__statement_type__n
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod130_report__statement_type__n
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod190_report__statement_type__n
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod216_report__statement_type__n
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod296_report__statement_type__n
@@ -1331,6 +1338,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__state__posted
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod115_report__state__posted
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod123_report__state__posted
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod130_report__state__posted
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod190_report__state__posted
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod216_report__state__posted
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod296_report__state__posted
@@ -1361,6 +1369,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__state__calculated
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod115_report__state__calculated
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod123_report__state__calculated
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod130_report__state__calculated
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod190_report__state__calculated
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod216_report__state__calculated
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod296_report__state__calculated
@@ -1525,6 +1534,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__statement_type__s
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod115_report__statement_type__s
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod123_report__statement_type__s
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod130_report__statement_type__s
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod190_report__statement_type__s
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod216_report__statement_type__s
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod296_report__statement_type__s
@@ -1603,6 +1613,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__support_type__t
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod115_report__support_type__t
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod123_report__support_type__t
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod130_report__support_type__t
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod190_report__support_type__t
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod216_report__support_type__t
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod296_report__support_type__t
