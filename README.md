@@ -29,6 +29,7 @@ addon | version | maintainers | summary
 [l10n_es_aeat_mod111](l10n_es_aeat_mod111/) | 17.0.1.0.0 |  | AEAT modelo 111
 [l10n_es_aeat_mod115](l10n_es_aeat_mod115/) | 17.0.1.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | AEAT modelo 115
 [l10n_es_aeat_mod123](l10n_es_aeat_mod123/) | 17.0.1.1.0 |  | AEAT modelo 123
+[l10n_es_aeat_mod130](l10n_es_aeat_mod130/) | 17.0.1.0.0 |  | AEAT modelo 130
 [l10n_es_aeat_mod303](l10n_es_aeat_mod303/) | 17.0.1.3.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | AEAT modelo 303
 [l10n_es_aeat_mod303_vat_prorate](l10n_es_aeat_mod303_vat_prorate/) | 17.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Prorrata de IVA [303]
 [l10n_es_aeat_mod347](l10n_es_aeat_mod347/) | 17.0.1.0.1 |  | AEAT modelo 347

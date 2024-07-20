@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-l10n-spain"
-version = "17.0.20240711.0"
+version = "17.0.20240720.0"
 dependencies = [
     "odoo-addon-l10n_ca_es_cnae>=17.0dev,<17.1dev",
     "odoo-addon-l10n_es_account_asset>=17.0dev,<17.1dev",
@@ -10,6 +10,7 @@ dependencies = [
     "odoo-addon-l10n_es_aeat_mod111>=17.0dev,<17.1dev",
     "odoo-addon-l10n_es_aeat_mod115>=17.0dev,<17.1dev",
     "odoo-addon-l10n_es_aeat_mod123>=17.0dev,<17.1dev",
+    "odoo-addon-l10n_es_aeat_mod130>=17.0dev,<17.1dev",
     "odoo-addon-l10n_es_aeat_mod303>=17.0dev,<17.1dev",
     "odoo-addon-l10n_es_aeat_mod303_vat_prorate>=17.0dev,<17.1dev",
     "odoo-addon-l10n_es_aeat_mod347>=17.0dev,<17.1dev",
