@@ -8,7 +8,7 @@ class AccountMove(models.Model):
 
     def _get_aeat_invoice_dict_out(self, cancel=False):
         inv_dict = super()._get_aeat_invoice_dict_out(cancel=cancel)
-        if self.fiscal_position_id.sii_refund_as_regular:
+        if not cancel and self.fiscal_position_id.sii_refund_as_regular:
             if inv_dict["FacturaExpedida"].get("TipoRectificativa", False):
                 del inv_dict["FacturaExpedida"]["TipoRectificativa"]
             inv_dict["FacturaExpedida"]["TipoFactura"] = (
