@@ -17,20 +17,20 @@ Envío de Facturae a FACe
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_facturae_face
+    :target: https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_facturae_face
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-16-0/l10n-spain-16-0-l10n_es_facturae_face
+    :target: https://translation.odoo-community.org/projects/l10n-spain-17-0/l10n-spain-17-0-l10n_es_facturae_face
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Este módulo permite la gestión del envío de la facturación electrónica española
-a FACe.
-La gestión del envío se realiza mediante los certificados con los que se firma.
+Este módulo permite la gestión del envío de la facturación electrónica
+española a FACe. La gestión del envío se realiza mediante los
+certificados con los que se firma.
 
 **Table of contents**
 
@@ -40,72 +40,85 @@ La gestión del envío se realiza mediante los certificados con los que se firma
 Configuration
 =============
 
-* Es necesario añadir el correo electrónico al que notificar los cambios de
-  estado en la empresa
-* Se debe configurar el servidor de envío
-* Por defecto se añado el servicio web de test:
-  https://se-face-webservice.redsara.es/facturasspp2
-* Si queremos añadir el de producción, debemos cambiar el parámetro por
-  https://webservice.face.gob.es/facturasspp2 y modificar el certificado en
-  parámetros de sistema
+-  Es necesario añadir el correo electrónico al que notificar los
+   cambios de estado en la empresa
+-  Se debe configurar el servidor de envío
+-  Por defecto se añado el servicio web de test:
+   https://se-face-webservice.redsara.es/facturasspp2
+-  Si queremos añadir el de producción, debemos cambiar el parámetro por
+   https://webservice.face.gob.es/facturasspp2 y modificar el
+   certificado en parámetros de sistema
 
-Para poder enviar correctamente, debemos subir el certificado al entorno correspondiente,
-para ello, accederemos a https://face.gob.es (Producción) o https://se-face.redsara.es
-(Desarrollo).
-Allí, accederemos a `Integradores/Gestión de certificados` y nos loguearemos con
-Certificado Electrónico.
-Una vez dentro, debemos darnos de alta como integrador creando una incidencia en la URL que nos aparecerá.
-El siguiente `documento <https://administracionelectronica.gob.es/PAe/FACE/altaintegrador>`_ tiene toda la información detallada.
+Para poder enviar correctamente, debemos subir el certificado al entorno
+correspondiente, para ello, accederemos a https://face.gob.es
+(Producción) o https://se-face.redsara.es (Desarrollo). Allí,
+accederemos a Integradores/Gestión de certificados y nos loguearemos con
+Certificado Electrónico. Una vez dentro, debemos darnos de alta como
+integrador creando una incidencia en la URL que nos aparecerá. El
+siguiente
+`documento <https://administracionelectronica.gob.es/PAe/FACE/altaintegrador>`__
+tiene toda la información detallada.
 
-Cuando nos confirmen el alta, será necesario subir la parte pública de nuestro certificado, un comando para exportarlo es:
+Cuando nos confirmen el alta, será necesario subir la parte pública de
+nuestro certificado, un comando para exportarlo es:
 
-.. code-block:: bash
+.. code:: bash
 
-    openssl pkcs12 -in MI_CERTIFICADO.pfx -out MI_CERTIFICADO.crt -nokeys -clcerts
-    cat MI_CERTIFICADO.crt
+   openssl pkcs12 -in MI_CERTIFICADO.pfx -out MI_CERTIFICADO.crt -nokeys -clcerts
+   cat MI_CERTIFICADO.crt
 
-Deberemos añadir toda la parte entre `-----BEGIN CERTIFICATE-----` y
-`-----END CERTIFICATE-----` incluidos ambos.
+Deberemos añadir toda la parte entre -----BEGIN CERTIFICATE----- y
+-----END CERTIFICATE----- incluidos ambos.
 
 Usage
 =====
 
 Configurar clientes
-~~~~~~~~~~~~~~~~~~~
+-------------------
 
-* Accedemos a un cliente
+-  Accedemos a un cliente
 
-  *  Le configuramos la opción de factura electrónica y rellenamos los datos obligatorios
-  * Marcamos como método de envío FACe
+   -  Le configuramos la opción de factura electrónica y rellenamos los
+      datos obligatorios
+   -  Marcamos como método de envío FACe
 
-* A partir de este momento, todas las facturas que validemos del cliente se enviarán automáticamente a no ser
-  que marquemos la opción de `Deshabilitar envío EDI`
+-  A partir de este momento, todas las facturas que validemos del
+   cliente se enviarán automáticamente a no ser que marquemos la opción
+   de Deshabilitar envío EDI
 
 Envío de facturas
-~~~~~~~~~~~~~~~~~
-* Cuando validemos una factura de un cliente configurado a enviar por FACe se creará un registro de Envío EDI
-* Mediante un job,  se generarán los datos necesarios y, posteriormente, se enviará como un registro EDI estándar
-* Una vez se envíe, se alamacenará en la factura el resultado y el número de registro
-* Tras eso, podremos actualizar el estado de forma online presionando el botón Actualizar Estado FACe
-* Además, también podremos solicitar la anulación de la factura
-  pulsando 'Cancelar Envío' e introduciendo el motivo
+-----------------
+
+-  Cuando validemos una factura de un cliente configurado a enviar por
+   FACe se creará un registro de Envío EDI
+-  Mediante un job, se generarán los datos necesarios y, posteriormente,
+   se enviará como un registro EDI estándar
+-  Una vez se envíe, se alamacenará en la factura el resultado y el
+   número de registro
+-  Tras eso, podremos actualizar el estado de forma online presionando
+   el botón Actualizar Estado FACe
+-  Además, también podremos solicitar la anulación de la factura
+   pulsando 'Cancelar Envío' e introduciendo el motivo
 
 Es importante tener en cuenta que:
 
-* Un registro Enviado correctamente no puede ser Eliminado
-* Sólo puede existir un envío Enviado correctamente (no cancelado)
-* Se genera una tarea programada que actualiza los registros enviados
-  correctamente no pagados y no anulados
-* En caso de que se anule la factura por parte del cliente, podremos reenviarla de nuevo
+-  Un registro Enviado correctamente no puede ser Eliminado
+-  Sólo puede existir un envío Enviado correctamente (no cancelado)
+-  Se genera una tarea programada que actualiza los registros enviados
+   correctamente no pagados y no anulados
+-  En caso de que se anule la factura por parte del cliente, podremos
+   reenviarla de nuevo
 
 Envío manual de facturas
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
-* Esto podría pasarnos con facturas antiguas en las que configuramos el cliente tras emitir
-  la factura o en las que hemos deshabilitado el envío automático
-* Accedemos a una factura validada del cliente no enviada y pulsamos el botón
-  'Spanish Facturae'. En caso de salirnos una opción de elección, deberemos seleccionara FACe
-* Tras esto, funcionará de la misma forma que un envío estándar
+-  Esto podría pasarnos con facturas antiguas en las que configuramos el
+   cliente tras emitir la factura o en las que hemos deshabilitado el
+   envío automático
+-  Accedemos a una factura validada del cliente no enviada y pulsamos el
+   botón 'Spanish Facturae'. En caso de salirnos una opción de elección,
+   deberemos seleccionara FACe
+-  Tras esto, funcionará de la misma forma que un envío estándar
 
 Bug Tracker
 ===========
@@ -113,7 +126,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_facturae_face%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_facturae_face%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -121,18 +134,18 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Creu Blanca
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Enric Tobella <etobella@creublanca.es>
-* Eric Antones <eantones@nuobit.com>
+-  Enric Tobella <etobella@creublanca.es>
+-  Eric Antones <eantones@nuobit.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -152,6 +165,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-etobella| 
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_facturae_face>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_facturae_face>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

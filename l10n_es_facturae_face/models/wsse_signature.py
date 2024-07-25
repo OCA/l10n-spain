@@ -27,7 +27,7 @@ try:
     from zeep.exceptions import SignatureVerificationFailed
     from zeep.utils import detect_soap_env
     from zeep.wsse.utils import ensure_id, get_security_header
-except (ImportError, IOError) as err:
+except (OSError, ImportError) as err:
     logging.info(err)
 
 # SOAP envelope
@@ -39,7 +39,7 @@ def _read_file(f_name):
         return f.read()
 
 
-class MemorySignature(object):
+class MemorySignature:
     """Sign given SOAP envelope with WSSE sig using given key and cert."""
 
     def __init__(self, public_cert, private_key, cert_data, password=None):

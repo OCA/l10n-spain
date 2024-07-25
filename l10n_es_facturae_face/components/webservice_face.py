@@ -19,7 +19,7 @@ from ..models.wsse_signature import MemorySignature
 _logger = logging.getLogger(__name__)
 try:
     from zeep import Client
-except (ImportError, IOError) as err:
+except (OSError, ImportError) as err:
     _logger.info(err)
 
 
