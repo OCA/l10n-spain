@@ -64,9 +64,7 @@ class Signature(MemorySignature):
     cert file."""
 
     def __init__(self, key_file, certfile, password=None):
-        super(Signature, self).__init__(
-            _read_file(key_file), _read_file(certfile), password
-        )
+        super().__init__(_read_file(key_file), _read_file(certfile), password)
 
 
 def sign_envelope(envelope, public_cert, private_key, certfile, password):
