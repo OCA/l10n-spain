@@ -14,7 +14,7 @@ from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
 _logger = logging.getLogger(__name__)
 try:
     from zeep import Client
-except (ImportError, IOError) as err:
+except (OSError, ImportError) as err:
     _logger.info(err)
 
 
@@ -221,7 +221,7 @@ class EDIBackendTestCase(
             wizard.create_facturae_file()
 
     def test_facturae_face_0(self):
-        class DemoService(object):
+        class DemoService:
             def __init__(self, value):
                 self.value = value
 
@@ -274,7 +274,7 @@ class EDIBackendTestCase(
             self.move.edi_create_exchange_record(self.face_update_type.id)
 
     def test_facturae_face(self):
-        class DemoService(object):
+        class DemoService:
             def __init__(self, value):
                 self.value = value
 
