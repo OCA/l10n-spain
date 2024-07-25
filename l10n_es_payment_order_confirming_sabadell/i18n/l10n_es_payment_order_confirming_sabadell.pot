@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -95,7 +95,9 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_es_payment_order_confirming_sabadell/models/confirming_sabadell.py:0
 #, python-format
-msgid "La cuenta bancaria del Proveedor %s no tiene establecido el SWIFT."
+msgid ""
+"La cuenta bancaria del Proveedor %s                         no tiene "
+"establecido el SWIFT."
 msgstr ""
 
 #. module: l10n_es_payment_order_confirming_sabadell
