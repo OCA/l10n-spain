@@ -11,7 +11,7 @@
                 <page
                     name="facturae"
                     string="Facturae"
-                    attrs="{'invisible': [('type_id', '!=', %(l10n_es_facturae_face.facturae_exchange_type)s)]}"
+                    invisible="type_id != %(l10n_es_facturae_face.facturae_exchange_type)s"
                 >
                     <group>
                         <group name="facturae_group">

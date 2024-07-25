@@ -4,6 +4,8 @@
 import logging
 from unittest import mock
 
+import requests
+
 from odoo import exceptions
 
 from odoo.addons.edi_oca.tests.common import EDIBackendCommonComponentRegistryTestCase
@@ -23,6 +25,7 @@ class EDIBackendTestCase(
 ):
     @classmethod
     def setUpClass(cls):
+        cls._super_send = requests.Session.send
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
 
@@ -145,7 +148,6 @@ class EDIBackendTestCase(
         self.move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
-                # "account_id": self.partner.property_account_receivable_id.id,
                 "journal_id": self.sale_journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
@@ -173,6 +175,11 @@ class EDIBackendTestCase(
         self.face_update_type = self.env.ref(
             "l10n_es_facturae_face.facturae_face_update_exchange_type"
         )
+
+    # Don't block external requests.
+    @classmethod
+    def _request_handler(cls, s, r, /, **kw):
+        return cls._super_send(s, r, **kw)
 
     def test_constrain_company_mail(self):
         with self.assertRaises(exceptions.ValidationError):

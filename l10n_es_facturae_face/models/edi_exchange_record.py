@@ -62,7 +62,7 @@ class EdiExchangeRecord(models.Model):
             return
         for company in self.env["res.company"].search(company_domain):
             company_integrations = integrations.filtered(
-                lambda r: r.record.company_id == company
+                lambda r, company=company: r.record.company_id == company
             )
             if not company_integrations:
                 continue
