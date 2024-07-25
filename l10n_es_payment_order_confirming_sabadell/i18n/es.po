@@ -1,0 +1,187 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_payment_order_confirming_sabadell
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-13 07:41+0000\n"
+"PO-Revision-Date: 2024-03-18 15:37+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#: model:ir.model.fields.selection,name:l10n_es_payment_order_confirming_sabadell.selection__account_payment_mode__conf_sabadell_type__57
+msgid "Cheque"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#: model:ir.model.fields,field_description:l10n_es_payment_order_confirming_sabadell.field_account_payment_mode__codigo_estadistico
+msgid ""
+"Codigo Estadístico para         Transferencia Internacional (6 caracteres)"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#: model:account.payment.method,name:l10n_es_payment_order_confirming_sabadell.confirming_sabadell
+msgid "Confirming Sabadell"
+msgstr "Confirmando Sabadell"
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#: model:ir.model.fields,field_description:l10n_es_payment_order_confirming_sabadell.field_account_payment_mode__contrato_bsconfirming
+msgid "Contrato BSConfirming         (12 dígitos)"
+msgstr "Contrato BSConfirming         (12 dígitos)"
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#: model:ir.model.fields.selection,name:l10n_es_payment_order_confirming_sabadell.selection__account_payment_mode__tipo_envio_info__1
+msgid "Correo"
+msgstr "Correo"
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#. odoo-python
+#: code:addons/l10n_es_payment_order_confirming_sabadell/models/confirming_sabadell.py:0
+#, python-format
+msgid "El Proveedor %s no tiene establecida la Ciudad."
+msgstr "El Proveedor %s no tiene establecida la Ciudad."
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#. odoo-python
+#: code:addons/l10n_es_payment_order_confirming_sabadell/models/confirming_sabadell.py:0
+#, python-format
+msgid "El Proveedor %s no tiene establecido el C.P."
+msgstr "El Proveedor %s no tiene establecido el C.P."
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#. odoo-python
+#: code:addons/l10n_es_payment_order_confirming_sabadell/models/confirming_sabadell.py:0
+#, python-format
+msgid "El Proveedor %s no tiene establecido el Domicilio."
+msgstr "El Proveedor %s no tiene establecido el Domicilio."
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#. odoo-python
+#: code:addons/l10n_es_payment_order_confirming_sabadell/models/confirming_sabadell.py:0
+#, python-format
+msgid "El Proveedor %s no tiene establecido el NIF."
+msgstr "El Proveedor %s no tiene establecido el NIF."
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#. odoo-python
+#: code:addons/l10n_es_payment_order_confirming_sabadell/models/confirming_sabadell.py:0
+#, python-format
+msgid "El Proveedor %s no tiene establecido el País."
+msgstr "El Proveedor %s no tiene establecido el País."
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#: model:ir.model.fields.selection,name:l10n_es_payment_order_confirming_sabadell.selection__account_payment_mode__tipo_envio_info__3
+msgid "Email"
+msgstr "Correo Electrónico"
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#: model:ir.model.fields.selection,name:l10n_es_payment_order_confirming_sabadell.selection__account_payment_mode__tipo_envio_info__2
+msgid "Fax"
+msgstr "Fax"
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#. odoo-python
+#: code:addons/l10n_es_payment_order_confirming_sabadell/models/confirming_sabadell.py:0
+#, python-format
+msgid "La Cuenta del Proveedor: %s tiene que estar en formato IBAN."
+msgstr "La Cuenta del Proveedor: %s tiene que estar en formato IBAN."
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#. odoo-python
+#: code:addons/l10n_es_payment_order_confirming_sabadell/models/confirming_sabadell.py:0
+#, python-format
+msgid "La cuenta bancaria del Proveedor %s no tiene establecido el SWIFT."
+msgstr "La cuenta bancaria del Proveedor %s no tiene establecido el SWIFT."
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#. odoo-python
+#: code:addons/l10n_es_payment_order_confirming_sabadell/models/confirming_sabadell.py:0
+#, python-format
+msgid ""
+"La referencia de factura %s de proveedor no puede ocupar más de 15 "
+"caracteres."
+msgstr ""
+"La referencia de factura %s de proveedor no puede ocupar más de 15 "
+"caracteres."
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#: model:ir.model,name:l10n_es_payment_order_confirming_sabadell.model_account_payment_method
+msgid "Payment Methods"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#: model:ir.model,name:l10n_es_payment_order_confirming_sabadell.model_account_payment_mode
+msgid "Payment Modes"
+msgstr "Modos de pago"
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#: model:ir.model,name:l10n_es_payment_order_confirming_sabadell.model_account_payment_order
+msgid "Payment Order"
+msgstr "Orden de pago"
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#. odoo-python
+#: code:addons/l10n_es_payment_order_confirming_sabadell/models/confirming_sabadell.py:0
+#, python-format
+msgid "Propietario de la cuenta %s no tiene un NIF establecido."
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#. odoo-python
+#: code:addons/l10n_es_payment_order_confirming_sabadell/models/confirming_sabadell.py:0
+#, python-format
+msgid "Propietario de la cuenta no establecido para la cuenta %s."
+msgstr "Propietario de la cuenta no establecido para la cuenta %s."
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_order_confirming_sabadell.account_payment_mode_form
+msgid "Sabadell Confirming Configuration"
+msgstr "Sabadell Confirmando Configuración"
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#: model:ir.model.fields,field_description:l10n_es_payment_order_confirming_sabadell.field_account_payment_mode__conf_sabadell_type
+msgid "Tipo de pago"
+msgstr "Tipo de pago"
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#: model:ir.model.fields,field_description:l10n_es_payment_order_confirming_sabadell.field_account_payment_mode__tipo_envio_info
+msgid "Tipo envío información"
+msgstr "Tipo envío información"
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#: model:ir.model.fields.selection,name:l10n_es_payment_order_confirming_sabadell.selection__account_payment_mode__conf_sabadell_type__56
+msgid "Tranferencia"
+msgstr "Transferencia"
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#: model:ir.model.fields.selection,name:l10n_es_payment_order_confirming_sabadell.selection__account_payment_mode__conf_sabadell_type__58
+msgid "Transferencia al extranjero"
+msgstr ""
+
+#~ msgid "Cheques"
+#~ msgstr "Cheques"
+
+#~ msgid ""
+#~ "Codigo Estadistico para         Transferencia Internacional (6 carácteres)"
+#~ msgstr "Statistical Code for International Transfer (6 characters)"
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre mostrado"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"
+
+#~ msgid "Tranferencia extranjero"
+#~ msgstr "Transferencia extranjero"
