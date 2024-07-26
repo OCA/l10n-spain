@@ -118,7 +118,7 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
         return invoice
 
     @classmethod
-    def _create_invoice(cls, move_type):
+    def _create_invoice_for_sii(cls, move_type):
         return cls.env["account.move"].create(
             {
                 "company_id": cls.company.id,
@@ -154,7 +154,7 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
         cls.account_expense = cls.env.ref(
             "l10n_es.%s_account_common_600" % cls.company.id
         )
-        cls.invoice = cls._create_invoice("out_invoice")
+        cls.invoice = cls._create_invoice_for_sii("out_invoice")
         cls.company.write(
             {
                 "sii_enabled": True,
@@ -336,7 +336,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             self.invoice.sii_description,
             "Test customer header | Test description",
         )
-        invoice_temp = self._create_invoice("in_invoice")
+        invoice_temp = self._create_invoice_for_sii("in_invoice")
         self.assertEqual(
             invoice_temp.sii_description,
             "Test supplier header | Test description",
@@ -388,7 +388,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self._activate_certificate()
         self.invoice.company_id.sii_test = True
         self._check_tax_agencies(self.invoice)
-        in_invoice = self._create_invoice("in_invoice")
+        in_invoice = self._create_invoice_for_sii("in_invoice")
         self._check_tax_agencies(in_invoice)
 
     def test_tax_agencies_production(self):
@@ -396,7 +396,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self._activate_certificate()
         self.invoice.company_id.sii_test = False
         self._check_tax_agencies(self.invoice)
-        in_invoice = self._create_invoice("in_invoice")
+        in_invoice = self._create_invoice_for_sii("in_invoice")
         self._check_tax_agencies(in_invoice)
 
     def test_refund_sii_refund_type(self):
@@ -486,7 +486,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         with self.assertRaises(exceptions.UserError):
             self.invoice.write({"thirdparty_number": "CUSTOM"})
         # in_invoice
-        in_invoice = self._create_invoice("in_invoice")
+        in_invoice = self._create_invoice_for_sii("in_invoice")
         in_invoice.ref = "REF"
         in_invoice.sii_state = "sent"
         partner = self.partner.copy()
