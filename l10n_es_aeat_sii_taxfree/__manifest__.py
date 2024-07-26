@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Régimen Especial de Viajeros - SII",
-    "version": "16.0.1.1.0",
+    "version": "16.0.1.1.1",
     "depends": ["l10n_es_aeat_sii_oca"],
     "category": "Accounting & Finance",
     "author": "FactorLibre, Odoo Community Association (OCA)",
