@@ -13,7 +13,7 @@ class TestL10nEsAeatSiiTaxfree(TestL10nEsAeatSii):
                 "name": "Test fiscal position",
             }
         )
-        invoice = self._create_invoice("out_invoice")
+        invoice = self._create_invoice_for_sii("out_invoice")
         invoice.fiscal_position_id = fiscal_position
         invoice.fiscal_position_id.write({"sii_refund_as_regular": False})
         self.assertFalse(invoice.fiscal_position_id.sii_refund_as_regular)
@@ -26,7 +26,7 @@ class TestL10nEsAeatSiiTaxfree(TestL10nEsAeatSii):
         inv_dict = invoice._get_sii_invoice_dict_out()
         self.assertEqual(inv_dict["FacturaExpedida"]["TipoFactura"], "F1")
 
-        invoice_1 = self._create_invoice("out_invoice")
+        invoice_1 = self._create_invoice_for_sii("out_invoice")
         invoice_1.fiscal_position_id = fiscal_position
         invoice_1.fiscal_position_id.write({"sii_refund_as_regular": True})
         self.assertTrue(invoice_1.fiscal_position_id.sii_refund_as_regular)
