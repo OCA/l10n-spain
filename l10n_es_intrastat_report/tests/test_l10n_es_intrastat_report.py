@@ -16,7 +16,7 @@ from ..hooks import post_init_hook
 @tagged("post_install", "-at_install")
 class TestL10nIntraStatReport(AccountTestInvoicingCommon):
     @classmethod
-    def _create_invoice(cls, inv_type, partner, fiscal_pos, product=None):
+    def _create_invoice_for_intrastat(cls, inv_type, partner, fiscal_pos, product=None):
         product = product or cls.product
         if inv_type in ("out_invoice", "in_refund"):
             account = cls.company_data["default_account_revenue"]
@@ -137,7 +137,7 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
                 (cls.partner_1, cls.partner_2),
                 (cls.fiscal_position_b2b, cls.fiscal_position_b2c),
             ):
-                invoice = cls._create_invoice(inv_type, partner, fiscal)
+                invoice = cls._create_invoice_for_intrastat(inv_type, partner, fiscal)
                 cls.invoices[declaration_type]["invoices"].append(invoice)
                 cls.invoices[declaration_type][partner.country_id] += 1
 
