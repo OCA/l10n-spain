@@ -57,31 +57,33 @@ msgid "Display Name"
 msgstr "Nom de visualització"
 
 #. module: l10n_es_vat_prorate
+#: model:ir.model.fields.selection,name:l10n_es_vat_prorate.selection__res_company_vat_prorate__type__general
+msgid "General"
+msgstr ""
+
+#. module: l10n_es_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate__id
 msgid "ID"
 msgstr "Identificació"
 
 #. module: l10n_es_vat_prorate
-#: model:ir.model.fields,help:l10n_es_vat_prorate.field_res_company__with_special_vat_prorate_default
+#: model:ir.model.fields,help:l10n_es_vat_prorate.field_res_company_vat_prorate__special_vat_prorate_default
 msgid ""
 "If the Special VAT Prorate is enabled, this value indicates whether all the "
 "invoice lines will be prorated by default"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
-#: model:ir.model.fields,help:l10n_es_vat_prorate.field_account_tax__company_with_vat_prorate
-#: model:ir.model.fields,help:l10n_es_vat_prorate.field_res_company__with_vat_prorate
-msgid "If this option is enabled, all invoice lineswith VAT will be prorated"
+#: model:ir.model.fields,help:l10n_es_vat_prorate.field_res_company_vat_prorate__type
+msgid ""
+"If the special prorate is enabled, you will be able to select which invoice "
+"lines will be prorated."
 msgstr ""
 
 #. module: l10n_es_vat_prorate
-#: model:ir.model.fields,help:l10n_es_vat_prorate.field_account_bank_statement_line__with_special_vat_prorate
-#: model:ir.model.fields,help:l10n_es_vat_prorate.field_account_move__with_special_vat_prorate
-#: model:ir.model.fields,help:l10n_es_vat_prorate.field_account_payment__with_special_vat_prorate
-#: model:ir.model.fields,help:l10n_es_vat_prorate.field_res_company__with_special_vat_prorate
-msgid ""
-"If this option is enabled, you will be able to select which invoice lines "
-"will be prorated"
+#: model:ir.model.fields,help:l10n_es_vat_prorate.field_account_tax__company_with_vat_prorate
+#: model:ir.model.fields,help:l10n_es_vat_prorate.field_res_company__with_vat_prorate
+msgid "If this option is enabled, all invoice lineswith VAT will be prorated"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
@@ -110,9 +112,26 @@ msgid "Last Updated on"
 msgstr "Última actualització a"
 
 #. module: l10n_es_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_bank_statement_line__prorate_id
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move__prorate_id
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_payment__prorate_id
+msgid "Prorate"
+msgstr ""
+
+#. module: l10n_es_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_tax__prorate_account_ids
 msgid "Prorate Account"
 msgstr "Compte prorratejat"
+
+#. module: l10n_es_vat_prorate
+#: model:ir.model.fields.selection,name:l10n_es_vat_prorate.selection__res_company_vat_prorate__type__special
+msgid "Special"
+msgstr ""
+
+#. module: l10n_es_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate__special_vat_prorate_default
+msgid "Special VAT Prorate Default"
+msgstr ""
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model,name:l10n_es_vat_prorate.model_account_tax
@@ -127,6 +146,11 @@ msgstr ""
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,help:l10n_es_vat_prorate.field_account_move_line__with_vat_prorate
 msgid "The line will create a vat prorate"
+msgstr ""
+
+#. module: l10n_es_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate__type
+msgid "Type"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
@@ -147,6 +171,7 @@ msgstr "El prorrateig de l'IVA ha d'estar entre 0,01 i 100!"
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company__vat_prorate_ids
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate__vat_prorate
+#: model_terms:ir.ui.view,arch_db:l10n_es_vat_prorate.account_move_form_view
 msgid "Vat Prorate"
 msgstr "Prorrateig de l'IVA"
 
@@ -154,13 +179,7 @@ msgstr "Prorrateig de l'IVA"
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_bank_statement_line__with_special_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move__with_special_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_payment__with_special_vat_prorate
-#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company__with_special_vat_prorate
-msgid "With Special VAT Prorate"
-msgstr ""
-
-#. module: l10n_es_vat_prorate
-#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company__with_special_vat_prorate_default
-msgid "With Special VAT Prorate Default"
+msgid "With Special Vat Prorate"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
@@ -176,6 +195,13 @@ msgstr "Amb prorrateig d'IVA"
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move_line__with_vat_prorate
 msgid "With Vat prorate"
+msgstr ""
+
+#. module: l10n_es_vat_prorate
+#. odoo-python
+#: code:addons/l10n_es_vat_prorate/models/res_company.py:0
+#, python-format
+msgid "You can't have a special VAT prorrate of 100%"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
