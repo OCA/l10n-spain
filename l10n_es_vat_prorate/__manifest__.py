@@ -9,6 +9,7 @@
     "license": "AGPL-3",
     "author": "Creu Blanca, Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
+    "pre_init_hook": "pre_init_hook",
     "depends": ["l10n_es_aeat"],
     "data": [
         "security/ir.model.access.csv",

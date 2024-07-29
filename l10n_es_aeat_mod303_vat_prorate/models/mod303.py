@@ -45,7 +45,7 @@ class L10nEsAeatMod303Report(models.Model):
 
     def _calculate_casilla_44_mod303_vat_prorate(self):
         self.ensure_one()
-        theoretical_prorate = self.company_id.get_prorate(self.date_start)
+        theoretical_prorate = self.company_id.get_prorate(self.date_start).vat_prorate
         diff_perc = self.vat_prorate_percent - theoretical_prorate
         if not diff_perc:
             return
