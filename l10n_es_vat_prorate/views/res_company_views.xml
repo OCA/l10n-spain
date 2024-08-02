@@ -18,14 +18,6 @@
             </notebook>
             <field name="company_registry" position="after">
                 <field name="with_vat_prorate" />
-                <field
-                    name="with_special_vat_prorate"
-                    invisible="not with_vat_prorate"
-                />
-                <field
-                    name="with_special_vat_prorate_default"
-                    invisible="not with_special_vat_prorate"
-                />
             </field>
         </field>
     </record>

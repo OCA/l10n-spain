@@ -20,17 +20,6 @@ class ResCompany(models.Model):
         "res.company.vat.prorate", inverse_name="company_id"
     )
 
-    with_special_vat_prorate = fields.Boolean(
-        string="With Special VAT Prorate",
-        help="If this option is enabled, you will be able to select which "
-        "invoice lines will be prorated",
-    )
-    with_special_vat_prorate_default = fields.Boolean(
-        string="With Special VAT Prorate Default",
-        help="If the Special VAT Prorate is enabled, this value indicates "
-        "whether all the invoice lines will be prorated by default",
-    )
-
     @ormcache("self")
     def _get_prorate_accounts(self):
         prorate_taxes_mapping = {}
@@ -49,12 +38,11 @@ class ResCompany(models.Model):
 
     def get_prorate(self, date):
         self.ensure_one()
-        prorate = self.env["res.company.vat.prorate"].search(
+        return self.env["res.company.vat.prorate"].search(
             [("company_id", "=", self.id), ("date", "<=", date)],
             order="date DESC",
             limit=1,
         )
-        return prorate.vat_prorate
 
     @api.constrains("with_vat_prorate", "vat_prorate_ids")
     def _check_vat_prorate_ids(self):
@@ -71,6 +59,18 @@ class ResCompanyVatProrate(models.Model):
 
     company_id = fields.Many2one("res.company", required=True)
     date = fields.Date(required=True, default=fields.Date.today())
+    type = fields.Selection(
+        selection=[("general", "General"), ("special", "Special")],
+        required=True,
+        default="general",
+        help="If the special prorate is enabled, you will be able to select which "
+        "invoice lines will be prorated.",
+    )
+    special_vat_prorate_default = fields.Boolean(
+        string="Special VAT Prorate Default",
+        help="If the Special VAT Prorate is enabled, this value indicates "
+        "whether all the invoice lines will be prorated by default",
+    )
     vat_prorate = fields.Float()
 
     _sql_constraints = [
@@ -80,3 +80,11 @@ class ResCompanyVatProrate(models.Model):
             "VAT prorate must be between 0.01 and 100!",
         ),
     ]
+
+    @api.constrains("type", "vat_prorate")
+    def _check_vat_with_special_prorate_percent(self):
+        for rec in self.sudo():
+            if rec.type == "special" and rec.vat_prorate == 100:
+                raise ValidationError(
+                    _("You can't have a special VAT prorrate of 100%")
+                )
