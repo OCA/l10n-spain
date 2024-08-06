@@ -7,10 +7,6 @@
         <field name="fee_type_xlsx_column">N</field>
         <field name="fee_amount_xlsx_column">O</field>
         <field
-            name="tax_agency_ids"
-            eval="[ Command.link(ref('l10n_es_aeat.aeat_tax_agency_canarias')) ]"
-        />
-        <field
             name="tax_tmpl_ids"
             eval="[
             Command.link(ref('l10n_es_igic.account_tax_template_igic_r_0')),
@@ -32,10 +28,6 @@
         <field name="special_tax_group" eval="False" />
         <field name="fee_type_xlsx_column">O</field>
         <field name="fee_amount_xlsx_column">P</field>
-        <field
-            name="tax_agency_ids"
-            eval="[ Command.link(ref('l10n_es_aeat.aeat_tax_agency_canarias')) ]"
-        />
         <field name="tax_account_id" ref="l10n_es_igic.account_common_canary_4727" />
         <field
             name="tax_tmpl_ids"
@@ -81,10 +73,6 @@
         <field name="special_tax_group">req</field>
         <field name="fee_type_xlsx_column">R</field>
         <field name="fee_amount_xlsx_column">S</field>
-        <field
-            name="tax_agency_ids"
-            eval="[ Command.link(ref('l10n_es_aeat.aeat_tax_agency_canarias')) ]"
-        />
         <field
             name="tax_tmpl_ids"
             eval="[
