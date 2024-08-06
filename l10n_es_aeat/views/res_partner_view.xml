@@ -5,7 +5,7 @@
         <field name="inherit_id" ref="account.view_partner_property_form" />
         <field name="arch" type="xml">
             <notebook position="inside">
-                <page string="AEAT" id="aeat">
+                <page string="AEAT" id="aeat" groups="l10n_es_aeat.group_account_aeat">
                     <group name="aeat_general">
                         <field name="aeat_anonymous_cash_customer" />
                         <field name="aeat_identification_type" />
