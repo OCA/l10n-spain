@@ -5,6 +5,8 @@ from openupgradelib import openupgrade
 
 @openupgrade.migrate()
 def migrate(env, version):
+    if not openupgrade.column_exists(env.cr, "account_invoice", "old_invoice_id"):
+        return
     openupgrade.logged_query(
         env.cr,
         """
