@@ -9,16 +9,18 @@ _logger = logging.getLogger("aeat.vat.book")
 
 def link_invoices(cr):
     _logger.info("vat book: adding relation to account move")
+    if not openupgrade.column_exists(cr, "account_move_line", "invoice_id"):
+        return
     cr.execute(
         """
-    UPDATE l10n_es_vat_book_line vbl0
-    SET move_id = am.id
-    FROM l10n_es_vat_book_line vbl
-    INNER JOIN account_invoice ai ON vbl.invoice_id = ai.id
-    INNER JOIN account_move_line aml ON aml.invoice_id = ai.id
-    INNER JOIN account_move am ON aml.move_id = am.id
-    WHERE vbl.id = vbl0.id
-    """
+        UPDATE l10n_es_vat_book_line vbl0
+        SET move_id = am.id
+        FROM l10n_es_vat_book_line vbl
+        INNER JOIN account_invoice ai ON vbl.invoice_id = ai.id
+        INNER JOIN account_move_line aml ON aml.invoice_id = ai.id
+        INNER JOIN account_move am ON aml.move_id = am.id
+        WHERE vbl.id = vbl0.id
+        """
     )
 
 
