@@ -8,6 +8,8 @@ from openupgradelib import openupgrade
 def migrate(env, version):
     # Set 'redsys_form' template to the field 'redirect_form_view_id'
     # in Redsys payment acquires
+    if not openupgrade.table_exists(env.cr, "payment_acquirer"):
+        return
     env["payment.acquirer"].search([("provider", "=", "redsys")]).write(
         {"redirect_form_view_id": env.ref("payment_redsys.redsys_form").id}
     )
