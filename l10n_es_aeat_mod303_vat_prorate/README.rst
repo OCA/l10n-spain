@@ -60,7 +60,6 @@ Usage
 Known issues / Roadmap
 ======================
 
--  La prorrata especial de IVA no está contemplada.
 -  No se incluye la posibilidad de las facturas de actividad
    diferenciada, de las que te puedes deducir el 100% del IVA de la
    factura.
@@ -94,8 +93,10 @@ Contributors
 
 -  `Sygel <https://www.sygel.es>`__
 
+   -  Harald Panten
    -  Manuel Regidor
    -  Valentín Vinagre
+   -  Alberto Martínez
 
 Maintainers
 -----------
