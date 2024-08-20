@@ -33,6 +33,11 @@ msgid "If this option is enabled, all invoice lineswith VAT will be prorated"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__prorate_id
+msgid "Prorate"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__prorate_account_id
 msgid "Prorate regularization account"
 msgstr "Cuenta de regularización de prorrata"
@@ -69,8 +74,8 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod303_vat_prorate/models/mod303.py:0
 #, python-format
-msgid "VAT prorate percent must be between 0.01 and 100"
-msgstr "El porcentaje de prorrata debe estar entre 0.01 y 100"
+msgid "VAT prorate percent must be between 0.00 and 100"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #. odoo-python
@@ -78,6 +83,11 @@ msgstr "El porcentaje de prorrata debe estar entre 0.01 y 100"
 #, python-format
 msgid "VAT prorate regularization"
 msgstr "Regularización de prorrata de IVA"
+
+#. module: l10n_es_aeat_mod303_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__with_special_vat_prorate
+msgid "With Special Vat Prorate"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__with_vat_prorate
@@ -88,6 +98,10 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__casilla_44
 msgid "[44] Prorate regularization"
 msgstr "[44] Regularización de prorrata"
+
+#, python-format
+#~ msgid "VAT prorate percent must be between 0.01 and 100"
+#~ msgstr "El porcentaje de prorrata debe estar entre 0.01 y 100"
 
 #~ msgid "With Vat Prorate"
 #~ msgstr "Con prorrata de IVA"
