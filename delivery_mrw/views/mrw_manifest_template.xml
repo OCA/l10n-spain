@@ -2,10 +2,7 @@
 <odoo>
     <record id="paperformat_manifest" model="report.paperformat">
         <field name="name">Manifest A4</field>
-        <!--field name="default" eval="True"/-->
         <field name="format">A4</field>
-        <!--field name="page_height">80</field>
-        <field name="page_width">175</field-->
         <field name="margin_top">10</field>
         <field name="margin_bottom">2</field>
         <field name="margin_left">1</field>
@@ -16,7 +13,6 @@
     </record>
     <template id="mrw_manifest_report_view">
         <t t-call="web.basic_layout">
-
             <div
                 style="font-size:14px; margin-left:-5px; margin-right:0px; margin-bottom: 5px;"
             >
@@ -112,7 +108,6 @@
                             <th width="1%" class="text-center">Packages</th>
                             <th width="1%" class="text-center">Weight</th>
                             <th width="1%" class="text-center">Refund</th>
-
                         </tr>
                         <t t-foreach="deliveries" t-as="delivery">
                             <tr>

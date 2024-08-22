@@ -49,36 +49,46 @@ class DeliveryMRWManifiestoWizard(models.TransientModel):
             manifest_data.append(
                 {
                     "carrier_tracking_ref": picking.carrier_tracking_ref,
-                    "reference": picking.sudo().sale_id.client_order_ref
-                    or picking.sudo().sale_id.name
-                    or "",
+                    "reference": (
+                        picking.sudo().sale_id.client_order_ref
+                        or picking.sudo().sale_id.name
+                        or ""
+                    ),
                     "note": picking.note[:25] + "..." if picking.note else "",
                     "date": picking.scheduled_date.date(),
                     "partner": picking.partner_id.name or "",
                     "zip": picking.partner_id.zip or "",
-                    "address": picking.partner_id.street
-                    + " "
-                    + (picking.partner_id.street2 or ""),
+                    "address": (
+                        picking.partner_id.street
+                        + " "
+                        + (picking.partner_id.street2 or "")
+                    ),
                     "city": picking.partner_id.city or "",
                     "state": picking.partner_id.state_id.name or "",
-                    "service": picking.carrier_id.name
-                    + ": "
-                    + self.get_service_selection_value("mrw_national_service", picking)
-                    if not picking.carrier_id.international_shipping
-                    else self.get_service_selection_value(
-                        "mrw_international_service", picking
+                    "service": (
+                        picking.carrier_id.name
+                        + ": "
+                        + self.get_service_selection_value(
+                            "mrw_national_service", picking
+                        )
+                        if not picking.carrier_id.international_shipping
+                        else self.get_service_selection_value(
+                            "mrw_international_service", picking
+                        )
                     ),
                     "number_of_packages": picking.number_of_packages,
                     "weight": picking.weight or "0",
-                    "refund": picking.sudo().sale_id.amount_total
-                    if picking.carrier_id.mrw_reembolso != "N"
-                    else "",
+                    "refund": (
+                        picking.sudo().sale_id.amount_total
+                        if picking.carrier_id.mrw_reembolso != "N"
+                        else ""
+                    ),
                 }
             )
         if not manifest_data:
             raise UserError(
                 _(
-                    "It wasn't possible to get the manifest. Maybe there aren't"
+                    "It was not possible to get the manifest. Maybe there are not"
                     "deliveries for the selected date."
                 )
             )

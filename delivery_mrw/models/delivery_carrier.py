@@ -1,4 +1,5 @@
-# Copyright 2022 ForgeFlow S.L.
+# Copyright 2022 ForgeFlow, S.L.
+# Copyright 2023 NuoBiT Solutions, S.L. - Eric Antones <eantones@nuobit.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import re
@@ -55,7 +56,12 @@ class DeliveryCarrier(models.Model):
     _inherit = "delivery.carrier"
 
     delivery_type = fields.Selection(
-        selection_add=[("mrw", "MRW")], ondelete={"mrw": "set default"}
+        selection_add=[
+            ("mrw", "MRW"),
+        ],
+        ondelete={
+            "mrw": "set default",
+        },
     )
 
     mrw_username = fields.Char(string="Username")
@@ -83,13 +89,13 @@ class DeliveryCarrier(models.Model):
         selection=MRW_INTERNATIONAL_SERVICES,
         string="MRW Service",
         help="Set the MRW Service",
-        default="PAC",  # Courier
+        default="PAC",
     )
     mrw_national_service = fields.Selection(
         selection=MRW_NATIONAL_SERVICES,
         string="MRW Service",
         help="Set the MRW Service",
-        default="0300",  # Courier
+        default="0300",
     )
 
     mrw_horario_from = fields.Float()
@@ -107,7 +113,11 @@ class DeliveryCarrier(models.Model):
     )
 
     mrw_notification_channel = fields.Selection(
-        string="Notification Channel", selection=[("1", "Email"), ("2", "SMS")]
+        string="Notification Channel",
+        selection=[
+            ("1", "Email"),
+            ("2", "SMS"),
+        ],
     )
     mrw_notification_type = fields.Selection(
         string="Notification Type",
@@ -118,10 +128,11 @@ class DeliveryCarrier(models.Model):
             ("4", "Preaviso de entrega"),
             ("5", "Confirmación de recogida (solo SMS)"),
         ],
-        help="Confirmación de entrega: informa de la entrega del envío en destino."
+        help="Confirmación de entrega: informa de la entrega del envío en "
+        "destino."
         "Nota: Solo para SMS.\n"
-        "Seguimiento de envío: informa los diferentes estados de tránsito"
-        "del envío.\n"
+        "Seguimiento de envío: informa los diferentes estados de tránsito del "
+        "envío.\n"
         "Aviso de entrega en franquicia: informa al destinatario del envío"
         "que la mercancía está disponible en la franquicia de destino. Solo"
         "tendrá sentido para entrega en franquicia, y será obligatorio.\n"
@@ -182,8 +193,6 @@ class DeliveryCarrier(models.Model):
 
     @api.model
     def _mrw_log_request(self, mrw_request):
-        """Helper to write raw request/response to the current picking. If debug
-        is active in the carrier, those will be logged in the ir.logging as well"""
         mrw_last_request = mrw_last_response = False
         try:
             mrw_last_request = etree.tostring(
@@ -196,10 +205,8 @@ class DeliveryCarrier(models.Model):
                 encoding="UTF-8",
                 pretty_print=True,
             )
-        # Don't fail hard on this. Sometimes zeep could not be able to keep history
         except Exception:
             return
-        # Debug must be active in the carrier
         self.log_xml(mrw_last_request, "mrw_request")
         self.log_xml(mrw_last_response, "mrw_response")
 
@@ -218,14 +225,10 @@ class DeliveryCarrier(models.Model):
         return regex, string
 
     def mrw_address(self, partner, international):
-        # Method to get parameters CodigoTipoVia. Via, Numero, Resto from odoo address.
-        # If street and number are in the first address line, and floor and door in the
-        # second one, it will always work properly.Otherwise, it could assign them wrong
-
         street = partner.street.replace(",", "") if partner.street else ""
         street2 = partner.street2.replace(",", "") if partner.street2 else ""
         if not street:
-            raise UserError(_("Couldn't find partner %s street") % partner.name)
+            raise UserError(_("Could not find partner %s street") % partner.name)
         if international:
             return {
                 "Via": street + street2,
@@ -234,36 +237,31 @@ class DeliveryCarrier(models.Model):
                 "Estado": partner.state_id.name,
                 "CodigoPais": partner.country_id.code,
             }
-        # we find s/n or any number that is not d-d, dºor dª in street
-        numero = re.search(
+        number = re.search(
             r"(?!(\d+[ºª]?-))(?!(\d+[ºª]))(?<![-\d])\d+", street
         ) or re.search(r"S\/N|s\/n", street)
-        if not numero:
+        if not number:
             if re.search(r"\d+-\d+", street):
-                # there are street numbers in an interval like 1-3 that indicate
-                # the same building/house. But MRW API doesn't accept them.
                 raise UserError(
                     _(
-                        "Solamente se permiten caracteres numéricos en el campo número"
-                        " de la dirección. Número: %s"
+                        "Solamente se permiten caracteres numéricos en el campo "
+                        "número de la dirección. Número: %s"
                     )
-                    % re.search(r"\d+-\d+", street)[0]
+                    % (re.search(r"\d+-\d+", street)[0])
                 )
-            # we search in street 2
-            numero2 = re.search(
+            number2 = re.search(
                 r"(?!(\d+[ºª]?-))(?!(\d+[ºª]))(?<![-\d])\d+", street2
             ) or re.search(r"S\/N|s\/n", street2)
-            if numero2:
-                numero2, street2 = self.remove_found_regex_from_string(numero2, street2)
-        if numero:
-            numero, street = self.remove_found_regex_from_string(numero, street)
-            piso_puerta = re.search(r"(\d+[ºª]?[- ]?)(\d+[ºª]?)", street)
-            if piso_puerta:
-                piso_puerta, street = self.remove_found_regex_from_string(
-                    piso_puerta, street
+            if number2:
+                number2, street2 = self.remove_found_regex_from_string(number2, street2)
+        if number:
+            number, street = self.remove_found_regex_from_string(number, street)
+            floor_door = re.search(r"(\d+[ºª]?[- ]?)(\d+[ºª]?)", street)
+            if floor_door:
+                floor_door, street = self.remove_found_regex_from_string(
+                    floor_door, street
                 )
-                street2 = piso_puerta + " " + street2
-        # check if in the beggining of the street we have something like cl/ cl. ...
+                street2 = floor_door + " " + street2
         street_type = re.search(r"^[a-zA-Z]{1,4}[\/|\.]", street)
         if street_type:
             limit = street_type.span()[1]
@@ -273,26 +271,25 @@ class DeliveryCarrier(models.Model):
         return {
             "CodigoTipoVia": street_type or "",
             "Via": street,
-            "Numero": numero or numero2 or "",
+            "Numero": number or number2 or "",
             "Resto": street2 or "",
             "CodigoPostal": partner.zip or "",
             "Poblacion": partner.city or "",
         }
 
-    def get_notificaciones(self, partner):
-        notificaciones = {}
+    def get_notifications(self, partner):
+        notifications = {}
         channel = self.mrw_notification_channel
         if channel:
-            notificaciones["NotificacionRequest"] = {}
-            notificaciones["NotificacionRequest"]["CanalNotificacion"] = channel
-            notificaciones["NotificacionRequest"][
+            notifications["NotificacionRequest"] = {}
+            notifications["NotificacionRequest"]["CanalNotificacion"] = channel
+            notifications["NotificacionRequest"][
                 "TipoNotificacion"
             ] = self.mrw_notification_type
-            notificaciones["NotificacionRequest"]["MailSMS"] = (
+            notifications["NotificacionRequest"]["MailSMS"] = (
                 partner.email if channel == "1" else partner.mobile
             )
-
-        return notificaciones
+        return notifications
 
     def _prepare_mrw_shipping(self, picking):
         """Convert picking values for mrw api
@@ -303,10 +300,6 @@ class DeliveryCarrier(models.Model):
         receiving_partner = picking.partner_id
         today = datetime.today()
         vals = {
-            # Nodo opcional que contendrá información sobre los datos de recogida u
-            # origen del envío solicitado.
-            # De momento no esta implementada la funcionalidad, así que se le pasen
-            # datos o no, siempre se cogerá la información del abonado.
             "DatosRecogida": "",
             "DatosEntrega": {
                 "Direccion": self.mrw_address(
@@ -318,29 +311,19 @@ class DeliveryCarrier(models.Model):
                 "ALaAtencionDe": "",
                 "Observaciones": picking.note or "",
             },
-            # nodo opcional
             "DatosServicio": {
                 "Fecha": today,
-                # número opcional de referencia del envío del cliente
                 "Referencia": picking.name,
                 "CodigoServicio": self.mrw_service,
                 "Bultos": "",
-                # Será obligatorio informar en caso que no haya desglose de bultos.
-                "NumeroBultos": picking.number_of_packages,
-                # El separador decimal debe de ser la coma (,).
+                "NumeroBultos": picking.number_of_packages or 1,
                 "Peso": str(picking.shipping_weight).replace(".", ","),
-                "Notificaciones": self.get_notificaciones(receiving_partner)
-                # Hay más campos no obligatorios no puestos aqui
+                "Notificaciones": self.get_notifications(receiving_partner),
             },
         }
 
         if not self.international_shipping:
-            # Campos específicos de envío nacional en DatosEntrega
             vals["DatosEntrega"]["Contacto"] = ""
-            # Lista opcional de rangos horarios. Contendrá una lista de nodos con
-            # los siguientes elementos:
-            #  -Desde: Rango inferior del horario en formato HH:MM
-            #  -Hasta: Rango superior del horario en formato HH:MM
             if self.mrw_horario_from == 0.0 and self.mrw_horario_to == 23.99:
                 horario = []
             else:
@@ -353,17 +336,10 @@ class DeliveryCarrier(models.Model):
                     }
                 }
             vals["DatosEntrega"]["Horario"] = horario
-
-            # Campos específicos de envío nacional en DatosServicio
-            # Indicador de recogida/entrega en franquicia. De momento la única
-            # que esta implementada es la entrega en franquicia.
             vals["DatosServicio"]["EnFranquicia"] = self.mrw_en_franquicia
-            # En caso de servicio URGENTE HOY hay que indicar en que frecuencia
-            # saldrá el servicio. Valores posibles: Frecuencia 1, Frecuencia 2
             vals["DatosServicio"]["Frecuencia"] = (
                 "Frecuencia 1" if self.mrw_service == "0005" else ""
             )
-            # Número sobre para servicios prepagados.
             vals["DatosServicio"]["NumeroSobre"] = ""
             vals["DatosServicio"]["Reembolso"] = self.mrw_reembolso
             vals["DatosServicio"]["ImporteReembolso"] = (
@@ -373,10 +349,7 @@ class DeliveryCarrier(models.Model):
             )
             vals["DatosServicio"]["Retorno"] = self.mrw_retorno
         else:
-            # Codigo de moneda asociado a ValorEstadistico
             vals["DatosServicio"]["CodigoMoneda"] = ""
-            # Valor estadístico del envío interpretado con la moneda indicada
-            # en CodigoMoneda.
             vals["DatosServicio"]["ValorEstadistico"] = ""
             vals["DatosServicio"]["ValorEstadisticoEuros"] = ""
         return vals
@@ -401,8 +374,6 @@ class DeliveryCarrier(models.Model):
         mrw_tracking_ref = response["NumeroEnvio"]
         vals["tracking_number"] = mrw_tracking_ref or ""
         label = self.mrw_get_label(mrw_tracking_ref, picking)
-        # We post an extra message in the chatter with the barcode and the
-        # label because there's clean way to override the one sent by core.
         body = _(response_message + "<br> MRW Shipping Label:")
         attachment = []
         if label["EtiquetaFile"]:
@@ -421,29 +392,28 @@ class DeliveryCarrier(models.Model):
             "success": True,
             "price": self.product_id.lst_price,
             "error_message": _(
-                "MRW API doesn't provide methods to compute delivery rates so you"
-                " should rely on another price method instead or override this one in"
-                " your custom code.\n"
-                " Zero price can also be set in order to invoice it later to the"
-                " customer: check the field 'Free if order amount is above' and put"
-                " Import=0."
+                "MRW API does not provide methods to compute delivery rates so "
+                "you should rely on another price method instead or override "
+                "this one in your custom code.\n"
+                " Zero price can also be set in order to invoice it later to "
+                'the customer: check the field "Free if order amount is above" '
+                "and put Import=0."
             ),
             "warning_message": _(
-                "MRW API doesn't provide methods to compute delivery rates so you"
-                " should rely on another price method instead or override this one in"
-                " your custom code.\n"
-                " Zero price can also be set in order to invoice it later to the"
-                " customer: check the field 'Free if order amount is above' and put"
-                " Import=0."
+                "MRW API does not provide methods to compute delivery rates so "
+                "you should rely on another price method instead or override "
+                "this one in your custom code.\n"
+                " Zero price can also be set in order to invoice it later to "
+                'the customer: check the field "Free if order amount is above" '
+                "and put Import=0."
             ),
         }
 
     def mrw_cancel_shipment(self, pickings):
-        """ "Cancel the expedition
+        """'Cancel the expedition
         :param pickings - stock.picking recordset
         :returns tracking_number of shippig cancelled
         """
-
         for picking in pickings.filtered("carrier_tracking_ref"):
             mrw_request = MRWRequest(self)
             response = mrw_request._cancel_shipment(picking.carrier_tracking_ref)
@@ -475,8 +445,8 @@ class DeliveryCarrier(models.Model):
     def mrw_get_tracking_link(self, picking):
         """Provide tracking link for the customer"""
         tracking_url = (
-            "https://www.mrw.es/seguimiento_envios/MRW_resultados_consultas.asp?"
-            "modo={}&envio={}"
+            "https://www.mrw.es/seguimiento_envios/MRW_resultados_consultas.asp"
+            "?modo={}&envio={}"
         )
         modo = "internacional" if self.international_shipping else "nacional"
         return tracking_url.format(modo, picking.carrier_tracking_ref)

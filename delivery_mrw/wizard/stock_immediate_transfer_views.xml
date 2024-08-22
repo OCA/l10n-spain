@@ -7,7 +7,6 @@
             ref="delivery_package_number.view_immediate_transfer"
         />
         <field name="arch" type="xml">
-
             <xpath expr="//footer" position="before">
                 <p
                     name="mrw_address_text"

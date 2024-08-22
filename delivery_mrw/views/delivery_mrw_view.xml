@@ -4,7 +4,6 @@
         <field name="model">delivery.carrier</field>
         <field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
         <field name="arch" type="xml">
-
             <xpath expr="//notebook/page[1]" position='before'>
                 <page
                     string="MRW Configuration"
@@ -35,7 +34,6 @@
                             />
                         </group>
                         <group string="Service">
-<!--                            we make international shipping invisible because it's not supported-->
                             <field
                                 name="international_shipping"
                                 invisible="1"
@@ -93,7 +91,6 @@
                                 attrs="{'required': [('delivery_type', '=', 'mrw')],
                                 'invisible': [('international_shipping', '=', True)]}"
                             />
-
                         </group>
                         <group string="Notifications">
                             <field name="mrw_notification_channel" />
