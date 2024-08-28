@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="atc_sii_map" model="aeat.sii.map">
+        <field name="name">SII - ATC</field>
+        <field name="tax_agency_id" ref="l10n_es_aeat.aeat_tax_agency_canarias" />
+    </record>
+    <record id="atc_sii_map_line_SFESB" model="aeat.sii.map.lines">
+        <field name="code">SFESB</field>
+        <field
+            name="taxes"
+            eval="[(6, 0, [
+                ref('l10n_es_igic.account_tax_template_igic_r_0'),
+                ref('l10n_es_igic.account_tax_template_igic_r_3'),
+                ref('l10n_es_igic.account_tax_template_igic_r_7'),
+                ref('l10n_es_igic.account_tax_template_igic_r_9_5'),
+                ref('l10n_es_igic.account_tax_template_igic_r_15'),
+		        ref('l10n_es_igic.account_tax_template_igic_r_20'),
+            ])]"
+        />
+        <field name="sii_map_id" ref="atc_sii_map" />
+        <field name="name">SuministroFactEmitidas Sujetas Bienes</field>
+    </record>
+    <record id="atc_sii_map_line_SFESISP" model="aeat.sii.map.lines">
+        <field name="code">SFESISP</field>
+        <field
+            name="taxes"
+            eval="[(6, 0, [
+		        ref('l10n_es_igic.account_tax_template_igic_s_ISP0'),
+            ])]"
+        />
+        <field name="sii_map_id" ref="atc_sii_map" />
+        <field name="name">SuministroFactEmitidas Sujetas ISP</field>
+    </record>
+
+    <record id="aeat_sii_map_line_SFESSE" model="aeat.sii.map.lines">
+        <field name="code">SFESSE</field>
+        <field
+            name="taxes"
+            eval="[(6, 0, [
+                ref('l10n_es_igic.account_tax_template_igic_re_ex'),
+            ])]"
+        />
+        <field name="sii_map_id" ref="atc_sii_map" />
+        <field name="name">SuministroFactEmitidas Servicios Exento</field>
+    </record>
+
+
+    <record id="aeat_sii_map_line_SFRS" model="aeat.sii.map.lines">
+        <field name="code">SFRS</field>
+        <field
+            name="taxes"
+            eval="[(6, 0, [
+                ref('l10n_es_igic.account_tax_template_igic_p_ex'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_0'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_3'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_7'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_9_5'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_15'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_20'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_i_0'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_i_3'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_i_7'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_i_9_5'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_i_15'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_i_20'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_0_inv'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_3_inv'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_7_inv'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_9_5_inv'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_15_inv'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_20_inv'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_i_0_inv'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_i_3_inv'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_i_7_inv'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_i_9_5_inv'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_i_15_inv'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_i_20_inv'),
+            ])]"
+        />
+        <field name="sii_map_id" ref="atc_sii_map" />
+        <field name="name">SuministroFactRecibidas Sujetas</field>
+    </record>
+    <record id="aeat_sii_map_line_SFRISP" model="aeat.sii.map.lines">
+        <field name="code">SFRISP</field>
+        <field
+            name="taxes"
+            eval="[(6, 0, [
+	        ref('l10n_es_igic.account_tax_template_igic_ISP0'),
+                ref('l10n_es_igic.account_tax_template_igic_ISP3'),
+                ref('l10n_es_igic.account_tax_template_igic_ISP7'),
+                ref('l10n_es_igic.account_tax_template_igic_ISP95'),
+                ref('l10n_es_igic.account_tax_template_igic_ISP15'),
+                ref('l10n_es_igic.account_tax_template_igic_ISP20'),
+            ])]"
+        />
+        <field name="sii_map_id" ref="atc_sii_map" />
+        <field name="name">SuministroFactRecibidas ISP</field>
+    </record>
+    <record id="aeat_sii_map_line_SFRBI" model="aeat.sii.map.lines">
+        <field name="code">SFRBI</field>
+        <field
+            name="taxes"
+            eval="[(6, 0, [
+                ref('l10n_es_igic.account_tax_template_igic_sop_0_inv'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_3_inv'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_7_inv'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_9_5_inv'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_15_inv'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_20_inv'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_i_0_inv'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_i_3_inv'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_i_7_inv'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_i_9_5_inv'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_i_15_inv'),
+                ref('l10n_es_igic.account_tax_template_igic_sop_i_20_inv'),
+            ])]"
+        />
+        <field name="sii_map_id" ref="atc_sii_map" />
+        <field name="name">SuministroFactRecibidas Bienes de Inversión</field>
+    </record>
+
+    <record id="aeat_sii_map_line_RE" model="aeat.sii.map.lines">
+        <field name="code">RE</field>
+        <field
+            name="taxes"
+            eval="[(6, 0, [
+                ref('l10n_es_igic.account_tax_template_igic_p_re03'),
+                ref('l10n_es_igic.account_tax_template_igic_p_re07'),
+                ref('l10n_es_igic.account_tax_template_igic_p_re095'),
+                ref('l10n_es_igic.account_tax_template_igic_p_re15'),
+                ref('l10n_es_igic.account_tax_template_igic_p_re20'),
+            ])]"
+        />
+        <field name="sii_map_id" ref="atc_sii_map" />
+        <field name="name">SuministroFact Recargo Equivalencia</field>
+    </record>
+</odoo>
