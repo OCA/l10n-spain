@@ -9,7 +9,7 @@
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Studio73, Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "external_dependencies": {"python": ["deepdiff", "zeep"]},
+    "external_dependencies": {"python": ["deepdiff<8", "zeep"]},
     "depends": ["l10n_es_aeat_sii_oca"],
     "data": [
         "security/ir.model.access.csv",
