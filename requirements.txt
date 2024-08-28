@@ -1,7 +1,7 @@
 # generated from manifests external_dependencies
 chardet
 cryptography==3.4.8
-deepdiff
+deepdiff<8
 pycountry
 pycryptodome
 qrcode
