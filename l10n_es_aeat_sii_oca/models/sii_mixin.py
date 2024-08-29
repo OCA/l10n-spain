@@ -301,21 +301,28 @@ class SiiMixin(models.AbstractModel):
         raise NotImplementedError()
 
     def send_sii(self):
-        documents = self.filtered(
-            lambda document: (
-                document.sii_enabled
-                and document.state in self._get_valid_document_states()
-                and document.sii_state not in ["sent", "cancelled"]
-            )
-        )
-        if not documents._cancel_sii_jobs():
-            raise UserError(
-                _(
-                    "You can not communicate this document at this moment "
-                    "because there is a job running!"
-                )
-            )
-        documents._process_sii_send()
+        """General public method for filtering out of the starting recordset the records
+        that shouldn't be sent to the SII:
+
+        - Documents of companies with SII not enabled (through sii_enabled).
+        - Documents not applicable to be sent to SII (through sii_enabled).
+        - Documents in non applicable states (for example, cancelled invoices).
+        - Documents already sent to the SII.
+        - Documents with sending jobs pending to be executed.
+        """
+        valid_states = self._get_valid_document_states()
+        jobs_field_name = self._get_sii_jobs_field_name()
+        for document in self:
+            if (
+                not document.sii_enabled
+                or document.state not in valid_states
+                or document.sii_state in ["sent", "cancelled"]
+            ):
+                continue
+            job_states = document.sudo().mapped(jobs_field_name).mapped("state")
+            if any([x in ("started", "pending", "enqueued") for x in job_states]):
+                continue
+            document._process_sii_send()
 
     def _process_sii_send(self):
         """Process document sending to the SII. Adds general checks from
