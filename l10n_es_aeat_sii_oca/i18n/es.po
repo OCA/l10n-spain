@@ -1143,17 +1143,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
-#: code:addons/l10n_es_aeat_sii_oca/models/sii_mixin.py:0
-#, python-format
-msgid ""
-"You can not communicate this document at this moment because there is a job "
-"running!"
-msgstr ""
-"¡En este momento no puede comunicar este documento porque hay un trabajo en "
-"curso!"
-
-#. module: l10n_es_aeat_sii_oca
-#. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
@@ -1312,6 +1301,14 @@ msgstr "número de factura del proveedor"
 #, python-format
 msgid "third-party number"
 msgstr "número de factura de terceros"
+
+#, python-format
+#~ msgid ""
+#~ "You can not communicate this document at this moment because there is a "
+#~ "job running!"
+#~ msgstr ""
+#~ "¡En este momento no puede comunicar este documento porque hay un trabajo "
+#~ "en curso!"
 
 #~ msgid ""
 #~ "Check to confirm that the invoice has an absolute amount greater o equal "
