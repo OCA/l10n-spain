@@ -6,48 +6,52 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-09-02 11:06+0000\n"
+"Last-Translator: Alberto Martínez <alberto.martinez@sygel.es>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model,name:l10n_es_aeat_mod303_vat_prorate.model_l10n_es_aeat_mod303_report
 msgid "AEAT 303 Report"
-msgstr ""
+msgstr "Declaration AEAT 303"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__vat_prorate_percent
 msgid "Definitive VAT prorate percentage"
-msgstr ""
+msgstr "Percentatge de prorrateig d'IVA definitiu"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,help:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__with_vat_prorate
 msgid "If this option is enabled, all invoice lineswith VAT will be prorated"
 msgstr ""
+"Si aquesta opció està activada, es prorratejaran totes les línies de factura "
+"amb IVA"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__prorate_id
 msgid "Prorate"
-msgstr ""
+msgstr "Prorrateig"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__prorate_account_id
 msgid "Prorate regularization account"
-msgstr ""
+msgstr "Prorrateig compte de regularització"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__prorate_analytic_account_id
 msgid "Prorate regularization analytic account"
-msgstr ""
+msgstr "Prorrateig compte analític de regularització"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,help:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__casilla_44
 msgid "Regularización por aplicación del porcentaje definitivo de prorrata."
-msgstr ""
+msgstr "Regularització per aplicació del percentatge definitiu de prorrateig."
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,help:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__prorate_account_id
@@ -55,6 +59,7 @@ msgid ""
 "This account will be the one where charging the regularization of the VAT "
 "prorate."
 msgstr ""
+"Aquest compte serà el que cobrarà la regularització del prorrateig d'IVA."
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,help:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__prorate_analytic_account_id
@@ -62,32 +67,34 @@ msgid ""
 "This analytic account will be the one where charging the regularization of "
 "the VAT prorate."
 msgstr ""
+"Aquest compte analític serà el que cobrarà la regularització del prorrateig "
+"d'IVA."
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod303_vat_prorate/models/mod303.py:0
 #, python-format
 msgid "VAT prorate percent must be between 0.00 and 100"
-msgstr ""
+msgstr "El percentatge de prorrateig de l'IVA ha d'estar entre 0,00 i 100"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod303_vat_prorate/models/mod303.py:0
 #, python-format
 msgid "VAT prorate regularization"
-msgstr ""
+msgstr "VAT prorrateig regularization"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__with_special_vat_prorate
 msgid "With Special Vat Prorate"
-msgstr ""
+msgstr "Amb prorrateig d'IVA especial"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__with_vat_prorate
 msgid "With VAT Prorate"
-msgstr ""
+msgstr "Amb prorrateig d'IVA"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__casilla_44
 msgid "[44] Prorate regularization"
-msgstr ""
+msgstr "[44] Prorrateig regularització"
