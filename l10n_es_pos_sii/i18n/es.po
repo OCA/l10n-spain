@@ -17,6 +17,26 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_pos_sii
+#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__aeat_send_error
+msgid "AEAT Send Error"
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__aeat_content_sent
+msgid "AEAT last content sent"
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__aeat_header_sent
+msgid "AEAT last header sent"
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__aeat_state
+msgid "AEAT send state"
+msgstr ""
+
+#. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_order_filter
 msgid "Already sent but with local changes not sent yet"
 msgstr "Enviada previamente al SII pero con cambios locales no enviados"
@@ -81,7 +101,7 @@ msgid "General"
 msgstr "General"
 
 #. module: l10n_es_pos_sii
-#: model:ir.model.fields,help:l10n_es_pos_sii.field_pos_order__sii_send_failed
+#: model:ir.model.fields,help:l10n_es_pos_sii.field_pos_order__aeat_send_failed
 msgid ""
 "Indicates that the last attempt to communicate this document to the SII has "
 "failed. See SII return for details"
@@ -101,11 +121,11 @@ msgstr ""
 "fecha del asiento contable de la factura"
 
 #. module: l10n_es_pos_sii
-#: model:ir.model.fields,help:l10n_es_pos_sii.field_pos_order__sii_state
+#: model:ir.model.fields,help:l10n_es_pos_sii.field_pos_order__aeat_state
 msgid ""
 "Indicates the state of this document in relation with the presentation at "
-"the SII"
-msgstr "Indica el estado de esta factura en relación al registro en el SII"
+"the AEAT"
+msgstr ""
 
 #. module: l10n_es_pos_sii
 #. odoo-javascript
@@ -182,11 +202,6 @@ msgid "SII Return"
 msgstr "Retorno SII"
 
 #. module: l10n_es_pos_sii
-#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_send_error
-msgid "SII Send Error"
-msgstr "Error de envío SII"
-
-#. module: l10n_es_pos_sii
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_account_registration_date
 msgid "SII account registration date"
 msgstr "Fecha de registro contable SII"
@@ -217,16 +232,6 @@ msgid "SII filters"
 msgstr "Filtros SII"
 
 #. module: l10n_es_pos_sii
-#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_content_sent
-msgid "SII last content sent"
-msgstr "Último contenido enviado al SII"
-
-#. module: l10n_es_pos_sii
-#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_header_sent
-msgid "SII last header sent"
-msgstr "Última cabecera enviada al SII"
-
-#. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_order_filter
 msgid "SII not sent"
 msgstr "No enviadas SII"
@@ -242,14 +247,9 @@ msgid "SII registration key domain"
 msgstr "Dominio de clave de registro SII"
 
 #. module: l10n_es_pos_sii
-#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_send_failed
+#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__aeat_send_failed
 msgid "SII send failed"
 msgstr "Envío SII fallido"
-
-#. module: l10n_es_pos_sii
-#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_state
-msgid "SII send state"
-msgstr "Estado de envío SII"
 
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_order_filter
@@ -301,3 +301,20 @@ msgstr "Modificaciones no enviadas al SII"
 #, python-format
 msgid "You must define a default partner for POS {}"
 msgstr "Es necesario definir un cliente por defecto para el TPV {}"
+
+#~ msgid ""
+#~ "Indicates the state of this document in relation with the presentation at "
+#~ "the SII"
+#~ msgstr "Indica el estado de esta factura en relación al registro en el SII"
+
+#~ msgid "SII Send Error"
+#~ msgstr "Error de envío SII"
+
+#~ msgid "SII last content sent"
+#~ msgstr "Último contenido enviado al SII"
+
+#~ msgid "SII last header sent"
+#~ msgstr "Última cabecera enviada al SII"
+
+#~ msgid "SII send state"
+#~ msgstr "Estado de envío SII"
