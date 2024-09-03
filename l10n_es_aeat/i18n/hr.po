@@ -53,6 +53,11 @@ msgid "AEAT - Anonymous customer"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_account_fiscal_position__aeat_active
+msgid "AEAT Active"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_certificate
 msgid "AEAT Certificate"
 msgstr ""
@@ -74,6 +79,11 @@ msgid "AEAT SOAP"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_mixin__aeat_send_error
+msgid "AEAT Send Error"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_aeat_model_export_config
 msgid "AEAT export configuration"
 msgstr ""
@@ -82,6 +92,16 @@ msgstr ""
 #: model:ir.model,name:l10n_es_aeat.model_aeat_model_export_config_line
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_line_form
 msgid "AEAT export configuration line"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_mixin__aeat_content_sent
+msgid "AEAT last content sent"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_mixin__aeat_header_sent
+msgid "AEAT last header sent"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -129,6 +149,11 @@ msgid "AEAT reports"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_mixin__aeat_state
+msgid "AEAT send state"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_tax_line
 msgid "AEAT tax line"
 msgstr ""
@@ -151,6 +176,11 @@ msgstr ""
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_map_tax_line_tax
 msgid "AEAT tax mapping line - Tax"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_mixin__aeat_state__sent_w_errors
+msgid "Accepted with errors"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -209,6 +239,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner__aeat_identification
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_res_users__aeat_identification
 msgid "Aeat Identification"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_aeat_mixin
+msgid "Aeat Mixin"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner__aeat_sending_enabled
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_users__aeat_sending_enabled
+msgid "Aeat Sending Enabled"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -374,6 +415,14 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_aeat.field_res_partner__aeat_anonymous_cash_customer
 #: model:ir.model.fields,help:l10n_es_aeat.field_res_users__aeat_anonymous_cash_customer
 msgid "Check this for anonymous cash customer. AEAT communication"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_res_partner__aeat_simplified_invoice
+#: model:ir.model.fields,help:l10n_es_aeat.field_res_users__aeat_simplified_invoice
+msgid ""
+"Checking this mark, invoices done to this partner will be sent to AEAT as "
+"simplified invoices."
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -646,6 +695,11 @@ msgid "Draft models"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_account_fiscal_position__aeat_active
+msgid "Enable AEAT communication for this fiscal position?"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__date_end
 msgid "End Date"
 msgstr ""
@@ -783,6 +837,11 @@ msgid "File name"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_account_fiscal_position
+msgid "Fiscal Position"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
 msgid "Fiscal year"
 msgstr ""
@@ -917,6 +976,20 @@ msgstr ""
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
 msgid "In process models"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_aeat_mixin__aeat_send_failed
+msgid ""
+"Indicates that the last attempt to communicate this document to the SII has "
+"failed. See SII return for details"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_aeat_mixin__aeat_state
+msgid ""
+"Indicates the state of this document in relation with the presentation at "
+"the AEAT"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -1160,6 +1233,11 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_tax_mapping__statement_type__n
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_vat_book__statement_type__n
 msgid "Normal"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_mixin__aeat_state__not_sent
+msgid "Not sent"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -1417,6 +1495,16 @@ msgid "Right"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_mixin__aeat_send_failed
+msgid "SII send failed"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_mixin__aeat_state__sent
+msgid "Sent"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__sequence
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__sequence
 msgid "Sequence"
@@ -1430,6 +1518,12 @@ msgstr ""
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Show move"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner__aeat_simplified_invoice
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_users__aeat_simplified_invoice
+msgid "Simplified invoices in AEAT?"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -1582,6 +1676,13 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat
+#. odoo-python
+#: code:addons/l10n_es_aeat/models/aeat_mixin.py:0
+#, python-format
+msgid "The partner has not a VAT configured."
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_account_bank_statement_line__thirdparty_invoice
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_account_journal__thirdparty_invoice
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_account_move__thirdparty_invoice
@@ -1651,13 +1752,13 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_aeat.field_res_partner__aeat_identification_type
 #: model:ir.model.fields,help:l10n_es_aeat.field_res_users__aeat_identification_type
 msgid ""
-"Used to specify an identification type to send to SII. Normally for sending "
-"national and export invoices to SII where the customer country is not Spain, "
-"it would calculate an identification type of 04 if the VAT field is filled "
-"and 06 if it was not. This field is to specify types of 03 through 05, in "
-"the event that the customer doesn't identify with a foreign VAT and instead "
-"with their passport or residential certificate. If there is no value it will "
-"work as before."
+"Used to specify an identification type to send to AEAT. Normally for sending "
+"national and export invoices to AEAT where the customer country is not "
+"Spain, it would calculate an identification type of 04 if the VAT field is "
+"filled and 06 if it was not. This field is to specify types of 03 through "
+"05, in the event that the customer doesn't identify with a foreign VAT and "
+"instead with their passport or residential certificate. If there is no value "
+"it will work as before."
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -1720,6 +1821,13 @@ msgstr ""
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "You have"
+msgstr ""
+
+#. module: l10n_es_aeat
+#. odoo-python
+#: code:addons/l10n_es_aeat/models/aeat_mixin.py:0
+#, python-format
+msgid "You have to select what account chart template use this company."
 msgstr ""
 
 #. module: l10n_es_aeat
