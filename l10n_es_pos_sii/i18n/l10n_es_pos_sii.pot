@@ -14,6 +14,26 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_pos_sii
+#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__aeat_send_error
+msgid "AEAT Send Error"
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__aeat_content_sent
+msgid "AEAT last content sent"
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__aeat_header_sent
+msgid "AEAT last header sent"
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__aeat_state
+msgid "AEAT send state"
+msgstr ""
+
+#. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_order_filter
 msgid "Already sent but with local changes not sent yet"
 msgstr ""
@@ -76,7 +96,7 @@ msgid "General"
 msgstr ""
 
 #. module: l10n_es_pos_sii
-#: model:ir.model.fields,help:l10n_es_pos_sii.field_pos_order__sii_send_failed
+#: model:ir.model.fields,help:l10n_es_pos_sii.field_pos_order__aeat_send_failed
 msgid ""
 "Indicates that the last attempt to communicate this document to the SII has "
 "failed. See SII return for details"
@@ -91,10 +111,10 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_pos_sii
-#: model:ir.model.fields,help:l10n_es_pos_sii.field_pos_order__sii_state
+#: model:ir.model.fields,help:l10n_es_pos_sii.field_pos_order__aeat_state
 msgid ""
 "Indicates the state of this document in relation with the presentation at "
-"the SII"
+"the AEAT"
 msgstr ""
 
 #. module: l10n_es_pos_sii
@@ -172,11 +192,6 @@ msgid "SII Return"
 msgstr ""
 
 #. module: l10n_es_pos_sii
-#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_send_error
-msgid "SII Send Error"
-msgstr ""
-
-#. module: l10n_es_pos_sii
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_account_registration_date
 msgid "SII account registration date"
 msgstr ""
@@ -207,16 +222,6 @@ msgid "SII filters"
 msgstr ""
 
 #. module: l10n_es_pos_sii
-#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_content_sent
-msgid "SII last content sent"
-msgstr ""
-
-#. module: l10n_es_pos_sii
-#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_header_sent
-msgid "SII last header sent"
-msgstr ""
-
-#. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_order_filter
 msgid "SII not sent"
 msgstr ""
@@ -232,13 +237,8 @@ msgid "SII registration key domain"
 msgstr ""
 
 #. module: l10n_es_pos_sii
-#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_send_failed
+#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__aeat_send_failed
 msgid "SII send failed"
-msgstr ""
-
-#. module: l10n_es_pos_sii
-#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_state
-msgid "SII send state"
 msgstr ""
 
 #. module: l10n_es_pos_sii
