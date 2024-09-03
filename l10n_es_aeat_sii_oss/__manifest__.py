@@ -3,7 +3,7 @@
 
 {
     "name": "Suministro Inmediato de Información en el IVA: OSS",
-    "version": "16.0.1.0.0",
+    "version": "16.0.2.0.0",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "FactorLibre, Tecnativa, Odoo Community Association (OCA)",
