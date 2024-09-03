@@ -8,15 +8,20 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     verifactu_enabled = fields.Boolean(
-        compute="_compute_verifactu_enabled",
+        compute="_compute_aeat_sending_enabled",
     )
 
     @api.depends("company_id")
-    def _compute_verifactu_enabled(self):
+    def _compute_aeat_sending_enabled(self):
+        res = super()._compute_aeat_sending_enabled()
         verifactu_enabled = any(self.env.companies.mapped("verifactu_enabled"))
         for partner in self:
-            partner.verifactu_enabled = (
+            verifactu_enabled = (
                 partner.company_id.verifactu_enabled
                 if partner.company_id
                 else verifactu_enabled
             )
+            partner.verifactu_enabled = verifactu_enabled
+            if verifactu_enabled:
+                partner.aeat_sending_enabled = True
+        return res
