@@ -104,8 +104,8 @@ class AccountMove(models.Model):
     def _get_diffs_values(self, sii_values):
         self.ensure_one()
         res = []
-        if self.sii_content_sent:
-            odoo_values = json.loads(self.sii_content_sent)
+        if self.aeat_content_sent:
+            odoo_values = json.loads(self.aeat_content_sent)
             if self.move_type in ["out_invoice", "out_refund"]:
                 res += self._get_diffs(
                     odoo_values["FacturaExpedida"], sii_values["DatosFacturaEmitida"]
@@ -135,7 +135,7 @@ class AccountMove(models.Model):
     def contrast_aeat(self):
         invoices = self.filtered(
             lambda i: (
-                i.sii_state == "sent"
+                i.aeat_state == "sent"
                 and i.state == "posted"
                 and i.sii_csv
                 and i.sii_enabled
@@ -162,7 +162,7 @@ class AccountMove(models.Model):
         if (
             self.sii_csv
             and self.sii_enabled
-            and self.sii_state == "sent"
+            and self.aeat_state == "sent"
             and self.state == "posted"
         ):
             self._contrast_invoice_to_aeat()
@@ -197,7 +197,7 @@ class AccountMove(models.Model):
                 "FechaExpedicionFacturaEmisor": invoice_date,
             },
         }
-        if not partner.sii_simplified_invoice:
+        if not partner.aeat_simplified_invoice:
             # Simplified invoices don't have counterpart
             inv_dict["Contraparte"] = {"NombreRazon": partner.name[0:120]}
             # Uso condicional de IDOtro/NIF
@@ -231,7 +231,7 @@ class AccountMove(models.Model):
 
     def _get_contrast_invoice_dict(self):
         self.ensure_one()
-        self._sii_check_exceptions()
+        self._aeat_check_exceptions()
         if self.move_type in ["out_invoice", "out_refund"]:
             return self._get_contrast_invoice_dict_out()
         elif self.move_type in ["in_invoice", "in_refund"]:
@@ -240,8 +240,8 @@ class AccountMove(models.Model):
 
     def _contrast_invoice_to_aeat(self):
         for invoice in self.filtered(lambda i: i.state == "posted"):
-            serv = invoice._connect_sii(invoice.move_type)
-            header = invoice._get_sii_header(False, True)
+            serv = invoice._connect_aeat(invoice.move_type)
+            header = invoice._get_aeat_header(False, True)
             inv_vals = {}
             try:
                 inv_dict = invoice._get_contrast_invoice_dict()

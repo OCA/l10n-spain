@@ -16,7 +16,7 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiBase):
         cls.invoice.sii_invoice_summary_start = True
         cls.invoice.sii_invoice_summary_end = True
 
-    def test_sii_check_exceptions_case_supplier_summary(self):
+    def test_aeat_check_exceptions_case_supplier_summary(self):
         invoice = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
@@ -28,9 +28,9 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiBase):
             }
         )
         with self.assertRaises(exceptions.UserError):
-            invoice._sii_check_exceptions()
+            invoice._aeat_check_exceptions()
 
-    def test_sii_check_exceptions_case_summary_vat(self):
+    def test_aeat_check_exceptions_case_summary_vat(self):
         partner = self.env["res.partner"].create({"name": "Test partner"})
         invoice = self.env["account.move"].create(
             {
@@ -42,8 +42,8 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiBase):
                 "sii_invoice_summary_end": 10,
             }
         )
-        invoice._sii_check_exceptions()
-        invoice.sii_state = "sent"
+        invoice._aeat_check_exceptions()
+        invoice.aeat_state = "sent"
         with self.assertRaises(exceptions.UserError):
             invoice.write({"sii_invoice_summary_start": 2})
         with self.assertRaises(exceptions.UserError):
