@@ -2,6 +2,8 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 from unittest import mock
 
+import requests
+
 from odoo.tests import common
 
 soap_model = "odoo.addons.l10n_es_aeat.models.aeat_soap.L10nEsAeatSoap"
@@ -15,6 +17,7 @@ partner_model = "odoo.addons.l10n_es_aeat_partner_check.models.res_partner.ResPa
 class TestResPartner(common.SingleTransactionCase):
     @classmethod
     def setUpClass(cls):
+        cls._super_send = requests.Session.send
         super().setUpClass()
         cls.partner = cls.env["res.partner"].create(
             {
@@ -23,7 +26,6 @@ class TestResPartner(common.SingleTransactionCase):
                 "vat": "ESA12345674",
             }
         )
-
         cls.partner_in = cls.env["res.partner"].create(
             {
                 "name": "Block no. 401",
@@ -31,6 +33,11 @@ class TestResPartner(common.SingleTransactionCase):
                 "vat": "36BBBFF5679L8ZR",
             }
         )
+
+    @classmethod
+    def _request_handler(cls, s, r, /, **kw):
+        """Don't block external requests."""
+        return cls._super_send(s, r, **kw)
 
     @mock.patch(
         "%s.send_soap" % soap_model,

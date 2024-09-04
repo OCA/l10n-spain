@@ -5,6 +5,7 @@
 import requests
 
 from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 RESULTS = [
     ("NO IDENTIFICADO", _("No identificado")),
@@ -64,9 +65,12 @@ class ResPartner(models.Model):
             if country_code != "ES":
                 continue
             request = {"Nif": vat_number, "Nombre": partner.name}
-            res = soap_obj.sudo().send_soap(
-                service, wsdl, port_name, partner, operation, request
-            )
+            try:
+                res = soap_obj.sudo().send_soap(
+                    service, wsdl, port_name, partner, operation, request
+                )
+            except Exception as e:
+                raise UserError(str(e)) from e
             vals = {
                 "aeat_partner_vat": None,
                 "aeat_partner_name": None,
