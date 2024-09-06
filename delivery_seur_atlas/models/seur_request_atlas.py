@@ -15,32 +15,6 @@ ATLAS_API_DOMAINS = {
 }
 
 
-def log_request(method):
-    """Decorator to write raw request/response in the SEUR request object"""
-
-    def wrapper(*args, **kwargs):
-        res = method(*args, **kwargs)
-        try:
-            res = args[0].response
-            args[0].last_request = (
-                f"{res.request.method} request to {res.request.url}\n"
-                f"Headers: {res.request.headers}\n"
-                f"Body: {res.request.body}"
-            )
-            args[0].last_response = (
-                f"{res.status_code} {res.reason} {res.url}\n"
-                f"Headers: {res.headers}\n"
-                f"Response:\n{res.text}"
-            )
-        # Allow the decorator to fail
-        except Exception:
-            return res
-        return res
-
-    return wrapper
-
-
-@log_request
 def seur_method(http_method):
     """Decorator to attach our request custom headers in the SEUR request object"""
 
@@ -81,7 +55,20 @@ class SeurAtlasRequest:
         self.api_url = f"https://{ATLAS_API_DOMAINS['prod' if prod else 'test']}"
         self._set_token()
 
-    @log_request
+    def _log_request(self):
+        """Store the last request and response for easier debugging"""
+        self.last_request = (
+            f"{self.response.request.method} request to {self.response.request.url}\n"
+            f"Headers: {self.response.request.headers}\n"
+            f"Body: {self.response.request.body}"
+        )
+        self.last_response = (
+            f"{self.response.status_code} {self.response.reason} {self.response.url}\n"
+            f"Headers: {self.response.headers}\n"
+            f"Response:\n{self.response.text}"
+        )
+
+    # @log_request
     def _set_token(self):
         """In order to operate, we should gather a token from the API. This token
         lasts for 30 seconds. After that, we must gather a new one"""
@@ -95,12 +82,12 @@ class SeurAtlasRequest:
                 "password": self.password,
             },
         )
+        self._log_request()
         if not self.response.ok:
             self.error = self.response.json()
             return
         self.token = self.response.json()["access_token"]
 
-    @log_request
     def request(self, request_method, seur_method, **kwargs):
         """Raw query. It can be used as it is calling any API method, although its
         recomended to implement the proper methods in this connector so we abstract
@@ -120,6 +107,7 @@ class SeurAtlasRequest:
         _logger.debug(f"SEUR Request to {seur_method}: {request_params}")
         self.response = requests.request(**request_params)
         _logger.debug(f"SEUR Response from {seur_method}: {self.response.content}")
+        self._log_request()
         if not self.response.ok:
             self.error = "\n".join(
                 [
