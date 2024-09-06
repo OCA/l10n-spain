@@ -77,6 +77,7 @@ class DeliveryCarrier(models.Model):
             client_id=self.seur_atlas_client,
             acc_number=self.seur_atlas_account_code,
             id_number=self.seur_atlas_vat,
+            prod=self.prod_environment,
         )
 
     @api.model
