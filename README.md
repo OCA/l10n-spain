@@ -77,7 +77,7 @@ addon | version | maintainers | summary
 [l10n_es_vat_book](l10n_es_vat_book/) | 14.0.2.8.1 |  | Libro de IVA
 [l10n_es_vat_book_invoice_summary](l10n_es_vat_book_invoice_summary/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Facturas resumen en libro de IVA
 [l10n_es_vat_book_oss](l10n_es_vat_book_oss/) | 14.0.1.0.0 |  | Libro de IVA OSS
-[l10n_es_vat_prorate](l10n_es_vat_prorate/) | 14.0.2.0.2 |  | Prorrata de IVA para la localización española
+[l10n_es_vat_prorate](l10n_es_vat_prorate/) | 14.0.2.1.0 |  | Prorrata de IVA para la localización española
 [payment_redsys](payment_redsys/) | 14.0.2.0.4 |  | Payment Acquirer: Redsys Implementation
 
 [//]: # (end addons)
