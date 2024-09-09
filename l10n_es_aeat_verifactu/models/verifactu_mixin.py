@@ -1,9 +1,16 @@
-from odoo import _, fields, models
+# Copyright 2024 Aures TIC - Jose Zambudio <jose@aurestic.es>
+# Copyright 2024 Aures TIC - Almudena de La Puente <almudena@aurestic.es>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+from hashlib import sha256
+
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 from odoo.addons.l10n_es_aeat.models.aeat_mixin import round_by_keys
 
 VERIFACTU_VERSION = "0.12.2"
+VERIFACTU_DATE_FORMAT = "%d-%m-%Y"
 
 
 class VerifactuMixin(models.AbstractModel):
@@ -15,6 +22,8 @@ class VerifactuMixin(models.AbstractModel):
         string="Enable AEAT",
         compute="_compute_verifactu_enabled",
     )
+    verifactu_hash_string = fields.Char(compute="_compute_verifactu_hash")
+    verifactu_hash = fields.Char(compute="_compute_verifactu_hash")
 
     def _compute_verifactu_enabled(self):
         raise NotImplementedError
@@ -118,3 +127,23 @@ class VerifactuMixin(models.AbstractModel):
         if self.company_id.verifactu_enabled and not self.verifactu_enabled:
             raise UserError(_("This invoice is not veri*FACTU enabled."))
         return res
+
+    def _change_date_format(self, date):
+        datetimeobject = fields.Date.to_date(date)
+        new_date = datetimeobject.strftime(VERIFACTU_DATE_FORMAT)
+        return new_date
+
+    @api.model
+    def _get_verifactu_hash_string(self):
+        raise NotImplementedError
+
+    def _compute_verifactu_hash(self):
+        # TODO  by the moment those fields are not stored,
+        # but they must be stored because are unalterable
+        # when invoice is sent to verifactu, because the hash depends
+        # on previous sent hash..
+        for record in self:
+            verifactu_hash_values = record._get_verifactu_hash_string()
+            record.verifactu_hash_string = verifactu_hash_values
+            hash_string = sha256(verifactu_hash_values.encode("utf-8"))
+            record.verifactu_hash = hash_string.hexdigest().upper()

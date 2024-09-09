@@ -18,6 +18,9 @@
                         name="group_aeat_information"
                     >
                         <field name="verifactu_enabled" invisible="1" />
+                        <field name="verifactu_document_type" />
+                        <field name="verifactu_hash_string" />
+                        <field name="verifactu_hash" />
                     </group>
                     <group
                         string="Veri*FACTU Result"
