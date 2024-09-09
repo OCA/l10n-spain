@@ -21,6 +21,11 @@
                             <field name="verifactu_test" />
                         </group>
                     </group>
+                    <group attrs="{'invisible': [('verifactu_enabled', '=', False)]}">
+                        <group name="verifactu_description">
+                            <field name="verifactu_description" />
+                        </group>
+                    </group>
                 </page>
             </notebook>
         </field>
