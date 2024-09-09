@@ -33,6 +33,7 @@ class TestDeliveryMRW(common.SavepointCase):
                 "street": "Calle de La Rua, 3",
                 "street2": "4-1",
                 "country_id": spain.id,
+                "phone": "777777777",
             }
         )
         order_form = Form(cls.env["sale.order"].with_context(tracking_disable=True))
@@ -46,17 +47,16 @@ class TestDeliveryMRW(common.SavepointCase):
         cls.sale_order.action_confirm()
         cls.picking = cls.sale_order.picking_ids
         cls.picking.move_lines.quantity_done = 20
+        cls.picking.name = "picking1"
+        cls.picking.number_of_packages = 1
+        cls.picking.button_validate()
 
     def test_01_mrw_picking_confirm_simple(self):
         """The picking is confirmed and the shipping is recorded to MRW"""
-        self.picking.name = "picking1"
-        self.picking.button_validate()
         self.assertTrue(self.picking.carrier_tracking_ref)
 
     def test_02_mrw_manifest(self):
         """Manifest is created"""
-        self.picking.name = "picking1"
-        self.picking.button_validate()
         wizard = self.env["mrw.manifest.wizard"].create(
             {"carrier_id": self.carrier_mrw.id, "date_from": datetime.date.today()}
         )
