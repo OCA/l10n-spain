@@ -5,3 +5,6 @@ from . import account_move
 from . import aeat_tax_agency
 from . import account_fiscal_position
 from . import res_partner
+from . import aeat_verifactu_map
+from . import aeat_verifactu_map_lines
+from . import aeat_verifactu_registration_keys

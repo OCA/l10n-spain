@@ -15,6 +15,11 @@
                     attrs="{'invisible': [('verifactu_enabled', '=', False)]}"
                 >
                     <field name="aeat_active" />
+                    <field name="verifactu_tax_key" />
+                    <field
+                        name="verifactu_registration_key"
+                        domain="[('verifactu_tax_key', '=', verifactu_tax_key)]"
+                    />
                 </group>
             </xpath>
         </field>

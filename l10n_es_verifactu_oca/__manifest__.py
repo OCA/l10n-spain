@@ -1,4 +1,5 @@
 # Copyright 2024 Aures Tic - Jose Zambudio <jose@aurestic.es>
+# Copyright 2024 Aures TIC - Almudena de La Puente <almudena@aurestic.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
@@ -10,19 +11,25 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    # "external_dependencies": {"python": ["zeep", "requests"]},
     "depends": [
         "l10n_es",
         "l10n_es_aeat",
-        # "queue_job",
+        "account_invoice_refund_link",
+        "queue_job",
     ],
     "data": [
-        "data/aeat_sii_tax_agency_data.xml",
+        "data/aeat_verifactu_tax_agency_data.xml",
+        "data/aeat_verifactu_registration_keys.xml",
+        "data/aeat_verifactu_map_data.xml",
+        "security/ir.model.access.csv",
         "views/aeat_tax_agency_view.xml",
         "views/account_move_view.xml",
         "views/account_fiscal_position_view.xml",
         "views/res_company_view.xml",
         "views/res_partner_view.xml",
-        "views/account_journal_views.xml",
+        "views/account_journal_view.xml",
+        "views/aeat_verifactu_map_view.xml",
+        "views/aeat_verifactu_map_lines_view.xml",
+        "views/aeat_verifactu_registration_keys_view.xml",
     ],
 }
