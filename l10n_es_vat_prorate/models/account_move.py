@@ -29,7 +29,12 @@ class AccountMove(models.Model):
         result = super()._get_tax_grouping_key_from_base_line(base_line, tax_vals)
         result["vat_prorate"] = tax_vals.get("vat_prorate", False)
         if result["vat_prorate"]:
-            result["account_id"] = base_line.account_id.id
+            result["account_id"] = (
+                base_line.company_id._get_tax_prorrate_account_map().get(
+                    base_line.account_id.user_type_id.id
+                )
+                or base_line.account_id.id
+            )
             result["analytic_account_id"] = base_line.analytic_account_id.id
             result["analytic_tag_ids"] = [(6, 0, base_line.analytic_tag_ids.ids or [])]
         return result
