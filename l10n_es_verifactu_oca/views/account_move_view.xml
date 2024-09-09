@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2024 Aures TIC - Jose Zambudio
+    Copyright 2024 Aures TIC - Almudena de La Puente
     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
 <odoo>
     <record id="invoice_verifactu_form" model="ir.ui.view">
@@ -7,6 +8,22 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="l10n_es_aeat.view_move_form" />
         <field name="arch" type="xml">
+            <button name="button_draft" position="after">
+                <button
+                    type="object"
+                    string="Send to Verifactu"
+                    name="send_verifactu"
+                    groups="l10n_es_aeat.group_account_aeat"
+                    attrs="{'invisible': ['|','|',('verifactu_enabled', '=', False), ('state', 'not in', ['posted']), ('aeat_state','in',['sent','cancelled'])]}"
+                />
+                <button
+                    type="object"
+                    string="Send cancellation to Verifactu"
+                    name="cancel_verifactu"
+                    groups="l10n_es_aeat.group_account_aeat"
+                    attrs="{'invisible': ['|','|',('verifactu_enabled', '=', False), ('state', 'not in', ['cancel']), ('aeat_state', 'not in', ['sent','sent_w_errors','sent_modified'])]}"
+                />
+            </button>
             <notebook position="inside">
                 <page
                     string="Veri*FACTU"
@@ -17,7 +34,14 @@
                         string="Veri*FACTU Information"
                         name="group_aeat_information"
                     >
-                        <field name="verifactu_enabled" invisible="1" />
+                        <field name="verifactu_enabled" invisible="0" readonly="1" />
+                        <field name="verifactu_description" />
+                        <field name="verifactu_refund_type" />
+                        <field name="verifactu_refund_specific_invoice_type" />
+                        <field name="verifactu_tax_key" />
+                        <field name="verifactu_registration_key" />
+                        <field name="verifactu_hash_string" />
+                        <field name="verifactu_hash" />
                     </group>
                     <group
                         string="Veri*FACTU Result"
@@ -28,6 +52,7 @@
                             <page name="page_aeat_result_general" string="General">
                                 <group>
                                     <field name="aeat_state" />
+                                    <field name="verifactu_csv" />
                                     <field
                                         name="aeat_send_failed"
                                         attrs="{'invisible': [('aeat_send_failed', '=', False)]}"

@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_model_aeat_verifactu_map_admin,aeat.verifactu.map admin,model_aeat_verifactu_map,base.group_system,1,1,1,1
+access_model_aeat_verifactu_map_aeat,aeat.verifactu.map aeat,model_aeat_verifactu_map,l10n_es_aeat.group_account_aeat,1,0,0,0
+access_model_aeat_verifactu_map_lines_admin,aeat.verifactu.map.lines admin,model_aeat_verifactu_map_lines,base.group_system,1,1,1,1
+access_model_aeat_verifactu_map_lines_aeat,aeat.verifactu.map.lines aeat,model_aeat_verifactu_map_lines,l10n_es_aeat.group_account_aeat,1,0,0,0
+access_model_aeat_verifactu_registration_keys_admin,aeat.verifactu.registration.keys admin,model_aeat_verifactu_registration_keys,base.group_system,1,1,1,1
+access_model_aeat_verifactu_registration_keys_aeat,aeat.verifactu.registration.keys aeat,model_aeat_verifactu_registration_keys,l10n_es_aeat.group_account_aeat,1,0,0,0
+access_model_aeat_verifactu_registration_keys_aeat_account,aeat.verifactu.registration.keys aeat,model_aeat_verifactu_registration_keys,account.group_account_invoice,1,0,0,0
