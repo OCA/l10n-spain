@@ -1,3 +1,7 @@
+# Copyright 2024 Aures TIC - Jose Zambudio <jose@aurestic.es>
+# Copyright 2024 Aures TIC - Almudena de La Puente <almudena@aurestic.es>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
@@ -5,6 +9,12 @@ from odoo.exceptions import ValidationError
 class AccountJournal(models.Model):
     _inherit = "account.journal"
 
+    # TODEL?
+    # no vamos autilizar el hash de odoo porque la estructura no nos sirve
+    # para verifactu, por lo que este código no nos terminaría de valer.
+    # De momento lo dejamos hasta saber cómo vamos a controlar
+    # el tema de la factura anterior enviada a verifactu para el cálculo
+    # del hash, y el control de modificaciones en las facturas ya enviadas.
     restrict_mode_hash_table = fields.Boolean(
         compute="_compute_restrict_mode_hash_table",
         store=True,
