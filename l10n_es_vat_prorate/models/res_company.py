@@ -81,7 +81,7 @@ class ResCompanyVatProrate(models.Model):
     _rec_name = "date"
     _order = "date DESC"
 
-    company_id = fields.Many2one("res.company", required=True)
+    company_id = fields.Many2one("res.company", required=True, ondelete="cascade")
     date = fields.Date(required=True, default=fields.Date.today())
     vat_prorate = fields.Float()
 
