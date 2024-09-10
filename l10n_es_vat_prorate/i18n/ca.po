@@ -92,6 +92,16 @@ msgid "Prorate Account Template"
 msgstr "Plantilla del compte prorratejat"
 
 #. module: l10n_es_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company__prorrate_asset_account_id
+msgid "Prorrate Asset Account"
+msgstr ""
+
+#. module: l10n_es_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company__prorrate_investment_account_id
+msgid "Prorrate Investment Account"
+msgstr ""
+
+#. module: l10n_es_vat_prorate
 #: model:ir.model,name:l10n_es_vat_prorate.model_account_tax
 msgid "Tax"
 msgstr "Impost"
