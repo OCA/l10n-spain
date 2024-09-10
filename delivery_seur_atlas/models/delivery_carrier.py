@@ -118,11 +118,14 @@ class DeliveryCarrier(models.Model):
         return {
             "serviceCode": int(self.seur_atlas_service_code),
             "productCode": int(self.seur_atlas_product_code),
-            "charges": "P",  # ??
+            # P: paid by the company, D: paid by the customer. There's no mechanism
+            # to select this, but the most common scenario is that the company pays
+            # for the delivery charging the customer in the invoice directly.
+            "charges": "P",
             "reference": picking.name,
             "receiver": {
                 "name": partner_name,
-                "email": partner.email,
+                "email": partner.email or "",
                 "phone": phone or mobile,
                 "contactName": partner_att,
                 "address": {
