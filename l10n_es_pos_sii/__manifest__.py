@@ -14,6 +14,7 @@
         "pos_default_partner",
     ],
     "data": [
+        "data/aeat_sii_queue_job.xml",
         "views/pos_order.xml",
         "views/res_company.xml",
     ],

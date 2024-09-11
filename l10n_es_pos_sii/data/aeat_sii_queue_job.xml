@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="pos_order_validate_sii" model="queue.job.channel">
+        <field name="name">pos_order_validate_sii</field>
+        <field name="parent_id" ref="queue_job.channel_root" />
+    </record>
+    <record id="job_function_confirm_one_document" model="queue.job.function">
+        <field name="model_id" ref="point_of_sale.model_pos_order" />
+        <field name="method">confirm_one_document</field>
+        <field name="channel_id" ref="pos_order_validate_sii" />
+    </record>
+    <record id="job_function_cancel_one_invoice" model="queue.job.function">
+        <field name="model_id" ref="point_of_sale.model_pos_order" />
+        <field name="method">cancel_one_invoice</field>
+        <field name="channel_id" ref="pos_order_validate_sii" />
+    </record>
+</odoo>
