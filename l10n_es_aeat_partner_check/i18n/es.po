@@ -1,0 +1,216 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_aeat_partner_check
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-01-20 18:33+0000\n"
+"PO-Revision-Date: 2023-04-17 17:34+0000\n"
+"Last-Translator: gelo joga Rodríguez <gelo.joga@factorlibre.com>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+
+#. module: l10n_es_aeat_partner_check
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.res_config_settings_aeat_partner_check_view_form
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Los valores establecidos "
+"aquí, son específicos de la compañia.\" groups=\"base.group_multi_company\"/>"
+
+#. module: l10n_es_aeat_partner_check
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_partner_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_partner_name
+msgid "AEAT Name"
+msgstr "Nombre AEAT"
+
+#. module: l10n_es_aeat_partner_check
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_partner_vat
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_partner_vat
+msgid "AEAT VAT"
+msgstr "AEAT NIF"
+
+#. module: l10n_es_aeat_partner_check
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_partner_aeat_form
+msgid "Check Partner Data"
+msgstr "Comprobar datos de la empresa"
+
+#. module: l10n_es_aeat_partner_check
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_partner_check_result
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_partner_check_result
+msgid "Check Result"
+msgstr "Resultado"
+
+#. module: l10n_es_aeat_partner_check
+#: model:ir.model,name:l10n_es_aeat_partner_check.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: l10n_es_aeat_partner_check
+#: model:ir.model,name:l10n_es_aeat_partner_check.model_res_config_settings
+msgid "Config Settings"
+msgstr "Opciones de configuración"
+
+#. module: l10n_es_aeat_partner_check
+#: model:ir.model,name:l10n_es_aeat_partner_check.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: l10n_es_aeat_partner_check
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_res_partner_aeat_filter
+msgid "Data Diff"
+msgstr "Datos diferentes"
+
+#. module: l10n_es_aeat_partner_check
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_data_diff
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_data_diff
+msgid "Data different"
+msgstr "Datos diferentes"
+
+#. module: l10n_es_aeat_partner_check
+#. odoo-python
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_check_result__identificado
+#, python-format
+msgid "Identificado"
+msgstr "Identificado"
+
+#. module: l10n_es_aeat_partner_check
+#. odoo-python
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_check_result__identificado-baja
+#, python-format
+msgid "Identificado, baja"
+msgstr "Identificado, baja"
+
+#. module: l10n_es_aeat_partner_check
+#. odoo-python
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_check_result__identificado-revocado
+#, python-format
+msgid "Identificado, revocado"
+msgstr "Identificado, revocado"
+
+#. module: l10n_es_aeat_partner_check
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_res_partner_aeat_filter
+msgid "Identified"
+msgstr "Identificado"
+
+#. module: l10n_es_aeat_partner_check
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.company_form_vat
+msgid ""
+"If this checkbox is ticked, you will check the partner information in AEAT "
+"in create and write partner"
+msgstr ""
+"Si esta activado, se comprobará la información de la empresa en la AEAT al "
+"crear o modificar la empresa"
+
+#. module: l10n_es_aeat_partner_check
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.res_config_settings_aeat_partner_check_view_form
+msgid ""
+"If this checkbox is ticked, you will check the partner information in AEAT "
+"in create and write partner."
+msgstr ""
+"Si esta activado, se comprobará la información de la empresa en la AEAT al "
+"crear o modificar la empresa."
+
+#. module: l10n_es_aeat_partner_check
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_last_checked
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_last_checked
+msgid "Latest AEAT check"
+msgstr "Última petición"
+
+#. module: l10n_es_aeat_partner_check
+#. odoo-python
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_check_result__no_identificable
+#, python-format
+msgid "No identificable"
+msgstr "No identificable"
+
+#. module: l10n_es_aeat_partner_check
+#. odoo-python
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_check_result__no_identificado
+#, python-format
+msgid "No identificado"
+msgstr "No identificado"
+
+#. module: l10n_es_aeat_partner_check
+#. odoo-python
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_check_result__no_procesado
+#, python-format
+msgid "No procesado"
+msgstr "No procesado"
+
+#. module: l10n_es_aeat_partner_check
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_res_partner_aeat_filter
+msgid "Not Identifiable"
+msgstr "No identificable"
+
+#. module: l10n_es_aeat_partner_check
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_res_partner_aeat_filter
+msgid "Not Identified"
+msgstr "No identificado"
+
+#. module: l10n_es_aeat_partner_check
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_res_partner_aeat_filter
+msgid "Not Processed"
+msgstr "No procesado"
+
+#. module: l10n_es_aeat_partner_check
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_partner_aeat_form
+msgid "Partner Data Quality"
+msgstr "Calidad de datos de la empresa"
+
+#. module: l10n_es_aeat_partner_check
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_partner_type
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_partner_type
+msgid "Partner type"
+msgstr "Tipo asociado"
+
+#. module: l10n_es_aeat_partner_check
+#. odoo-python
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_type__sales_equalization
+#, python-format
+msgid "Régimen de recargo de equivalencia"
+msgstr "Régimen de recargo de equivalencia"
+
+#. module: l10n_es_aeat_partner_check
+#. odoo-python
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_type__standard
+#, python-format
+msgid "Régimen estándar"
+msgstr "Régimen estándar"
+
+#. module: l10n_es_aeat_partner_check
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_res_partner_aeat_filter
+msgid "Sales Equiv. regimen"
+msgstr "Régimen de recargo de equivalencia"
+
+#. module: l10n_es_aeat_partner_check
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_res_partner_aeat_filter
+msgid "Standard regimen"
+msgstr "Régimen estándar"
+
+#. module: l10n_es_aeat_partner_check
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_company__vat_check_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_config_settings__vat_check_aeat
+msgid "Verify AEAT Partner Data"
+msgstr "Verificar información en la AEAT"
+
+#. module: l10n_es_aeat_partner_check
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.res_config_settings_aeat_partner_check_view_form
+msgid "Verify Partner Data using AEAT Census."
+msgstr "Verificar información de la empresa usando el censo de la AEAT."
