@@ -23,6 +23,9 @@ _logger = logging.getLogger(__name__)
 class PaymentProvider(models.Model):
     _inherit = "payment.provider"
 
+    redsys_secret_key = fields.Char(string='Redsys Secret Key')
+    redsys_currency = fields.Char(string='Redsys Currency')
+
     def _redsys_get_api_url(self):
         if self.state == "enabled":
             return "https://sis.redsys.es/sis/realizarPago/"
@@ -37,15 +40,15 @@ class PaymentProvider(models.Model):
     redsys_merchant_description = fields.Char(
         "Product Description", required_if_provider="redsys"
     )
-    redsys_secret_key = fields.Char("Secret Key", required_if_provider="redsys")
+    redsys_secret_key = fields.Char("Redsys Secret Key", required_if_provider="redsys")
     redsys_terminal = fields.Char(
         "Terminal", default="1", required_if_provider="redsys"
     )
     redsys_currency = fields.Char(
-        "Currency", default="978", required_if_provider="redsys"
+        "Redsys Currency", default="978", required_if_provider="redsys"
     )
     redsys_transaction_type = fields.Char(
-        "Transtaction Type", default="0", required_if_provider="redsys"
+        "Transaction Type", default="0", required_if_provider="redsys"
     )
     redsys_merchant_data = fields.Char("Merchant Data")
     redsys_merchant_lang = fields.Selection(
