@@ -1,0 +1,75 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_sigaus_stock_picking_report_valued
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-07-09 15:58+0000\n"
+"Last-Translator: Jaime Ruiz Maccione <jaime.ruiz@sygel.es>\n"
+"Language-Team: none\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: l10n_es_sigaus_stock_picking_report_valued
+#: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_stock_picking_report_valued.l10n_es_sigaus_report_delivery_document
+msgid "<strong>SIGAUS Taxes</strong>"
+msgstr "<strong>Impostos SIGAUS</strong>"
+
+#. module: l10n_es_sigaus_stock_picking_report_valued
+#: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_stock_picking_report_valued.l10n_es_sigaus_report_delivery_document
+msgid "<strong>SIGAUS Untaxed Amount</strong>"
+msgstr "<strong>Import sense impostos SIGAUS</strong>"
+
+#. module: l10n_es_sigaus_stock_picking_report_valued
+#: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_stock_picking_report_valued.l10n_es_sigaus_report_delivery_document
+msgid "<strong>Total Picking</strong>"
+msgstr "<strong>Total recollida</strong>"
+
+#. module: l10n_es_sigaus_stock_picking_report_valued
+#: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_stock_picking_report_valued.l10n_es_sigaus_report_delivery_document
+msgid "<strong>Total SIGAUS</strong>"
+msgstr "<strong>Total SIGAUS</strong>"
+
+#. module: l10n_es_sigaus_stock_picking_report_valued
+#: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_stock_picking_report_valued.l10n_es_sigaus_stock_report_delivery_has_serial_move_line_sigaus
+msgid "Aportación SIGAUS (RD 679/2006):"
+msgstr "Aportació SIGAUS (RD 679/2006):"
+
+#. module: l10n_es_sigaus_stock_picking_report_valued
+#: model:ir.model.fields,field_description:l10n_es_sigaus_stock_picking_report_valued.field_stock_picking__picking_total_with_sigaus
+msgid "Picking Total With Sigaus"
+msgstr "Total recollida amb SIGAUS"
+
+#. module: l10n_es_sigaus_stock_picking_report_valued
+#: model:ir.model,name:l10n_es_sigaus_stock_picking_report_valued.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "Moviments de producte (Línia de moviment d'estoc)"
+
+#. module: l10n_es_sigaus_stock_picking_report_valued
+#: model:ir.model.fields,field_description:l10n_es_sigaus_stock_picking_report_valued.field_stock_move_line__sigaus_amount_subtotal
+#: model:ir.model.fields,field_description:l10n_es_sigaus_stock_picking_report_valued.field_stock_picking__sigaus_amount_subtotal
+msgid "Sigaus Amount Subtotal"
+msgstr "Subtotal import SIGAUS"
+
+#. module: l10n_es_sigaus_stock_picking_report_valued
+#: model:ir.model.fields,field_description:l10n_es_sigaus_stock_picking_report_valued.field_stock_move_line__sigaus_amount_tax
+#: model:ir.model.fields,field_description:l10n_es_sigaus_stock_picking_report_valued.field_stock_picking__sigaus_amount_tax
+msgid "Sigaus Amount Tax"
+msgstr "Impost de l'import SIGAUS"
+
+#. module: l10n_es_sigaus_stock_picking_report_valued
+#: model:ir.model.fields,field_description:l10n_es_sigaus_stock_picking_report_valued.field_stock_move_line__sigaus_amount_total
+#: model:ir.model.fields,field_description:l10n_es_sigaus_stock_picking_report_valued.field_stock_picking__sigaus_amount_total
+msgid "Sigaus Amount Total"
+msgstr "Import total SIGAUS"
+
+#. module: l10n_es_sigaus_stock_picking_report_valued
+#: model:ir.model,name:l10n_es_sigaus_stock_picking_report_valued.model_stock_picking
+msgid "Transfer"
+msgstr "Transferència"

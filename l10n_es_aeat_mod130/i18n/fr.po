@@ -1,0 +1,759 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_aeat_mod130
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-spain (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-01 19:35+0000\n"
+"PO-Revision-Date: 2017-05-05 21:20+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
+"language/fr/)\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod130.selection__l10n_es_aeat_mod130_report__tipo_declaracion__b
+msgid "A deducir"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod130.selection__l10n_es_aeat_mod130_report__tipo_declaracion__i
+msgid "A ingresar"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.ui.menu,name:l10n_es_aeat_mod130.menu_aeat_mod130_report
+msgid "AEAT 130 model"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model,name:l10n_es_aeat_mod130.model_l10n_es_aeat_mod130_report
+msgid "AEAT 130 report"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_tree
+msgid "AEAT 130 reports"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.actions.act_window,name:l10n_es_aeat_mod130.action_l10n_es_aeat_mod130_report
+msgid "AEAT model 130"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__move_id
+msgid "Account entry"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod130.selection__l10n_es_aeat_mod130_report__activity_type__primary
+msgid "Actividad agrícola, ganadera, forestal o pesquera"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod130.selection__l10n_es_aeat_mod130_report__activity_type__other
+msgid "Actividad distinta a las anteriores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__allow_posting
+msgid "Allow Posting"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__partner_bank_id
+msgid "Bank account"
+msgstr "Compte bancaire"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__non_justified_expenses
+msgid ""
+"Calculado como el 5% del rendimiento del periodo (ingresos - gastos reales)."
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__calculation_date
+msgid "Calculation Date"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__casilla_01
+msgid "Casilla [01] - Ingresos"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__casilla_02
+msgid "Casilla [02] - Gastos"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__casilla_03
+msgid "Casilla [03] - Rendimiento"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__casilla_04
+msgid "Casilla [04] - IRPF"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__casilla_05
+msgid "Casilla [05]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__casilla_06
+msgid "Casilla [06]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__casilla_07
+msgid "Casilla [07]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__casilla_08
+msgid "Casilla [08] - Ingresos primario"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__casilla_09
+msgid "Casilla [09] - IRPF primario"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__casilla_10
+msgid "Casilla [10]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__casilla_11
+msgid "Casilla [11]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__casilla_12
+msgid "Casilla [12]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__casilla_13
+msgid "Casilla [13] - Deducción art. 80 bis"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__casilla_14
+msgid "Casilla [14]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__casilla_15
+msgid "Casilla [15]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__casilla_16
+msgid "Casilla [16] - Deducción por pago de hipoteca"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__casilla_17
+msgid "Casilla [17]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__casilla_18
+msgid "Casilla [18]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__company_id
+msgid "Company"
+msgstr "Société"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__partner_bank_id
+msgid "Company bank account used for the presentation"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__contact_email
+msgid "Contact Email"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__counterpart_account_id
+msgid "Counterpart account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod130.action_l10n_es_aeat_mod130_report
+msgid "Create and query AEAT Model 130 reports"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__create_date
+msgid "Created on"
+msgstr "Date"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__currency_id
+msgid "Currency"
+msgstr "Devise"
+
+#. module: l10n_es_aeat_mod130
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
+msgid "Datos a completar"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
+#, python-format
+msgid ""
+"Debe introducir una cantidad en la casilla 18 como ha marcado la casilla de "
+"declaración complementaria."
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__display_name
+msgid "Display Name"
+msgstr "Nom à afficher"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__date_end
+msgid "Ending date"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__error_count
+msgid "Error Count"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
+#, python-format
+msgid "Este tipo de actividad no está aún soportado por el módulo."
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__export_config_id
+msgid "Export config"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__contact_name
+msgid "Full Name"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__non_justified_expenses
+msgid "Gastos de difícil justificación"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__real_expenses
+msgid ""
+"Gastos en el periodo sin contar con el 5% adicional de difícil justificación."
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__real_expenses
+msgid "Gastos reales"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__journal_id
+msgid "Journal"
+msgstr "Journal"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__journal_id
+msgid "Journal in which post the move."
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__representative_vat
+msgid "L.R. VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__representative_vat
+msgid "Legal Representative VAT number."
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__number
+msgid "Model number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__contact_name
+msgid "Must have name and surname."
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod130.selection__l10n_es_aeat_mod130_report__tipo_declaracion__n
+msgid "Negativa"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
+#, python-format
+msgid "No implementado"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
+#, python-format
+msgid ""
+"No se pueden calcular por el momento declaraciones que contengan deducciones "
+"por el artículo 80 bis."
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__comments
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
+msgid "Observaciones"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__comments
+msgid "Observaciones que se adjuntarán con el modelo"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__partner_id
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__period_type
+msgid "Period Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__has_prestamo
+msgid ""
+"Permite indicar si destina cantidades al pago de préstamos para la "
+"adquisición o rehabilitación de la vivienda habitual. Si marca la casilla, "
+"se podrá realiza un 2% de deducción sobre el importe de la casilla [03], con "
+"un máximo de 660,14 € por trimestre, o del 2% de la casilla [08], con un "
+"máximo de 660,14 euros anuales. \n"
+"Debe consultar las excepciones para las que no se computaría la deducción a "
+"pesar del préstamo."
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__has_deduccion_80
+msgid ""
+"Permite indicar si puede beneficiarse de la deducción por obtención de "
+"rendimientos de actividades económicas a efectos del pago fraccionado por "
+"cumplir el siguiente requisito:\n"
+" Que, en el primer trimestre del ejercicio o en el primer trimestre de "
+"inicio de actividades, la suma del resultado de elevar al año el importe de "
+"la casilla 03 y/o, en su caso, el resultado de elevar al año el 25 por 100 "
+"de la casilla 08, sea igual o inferior a 12.000 euros. En los supuestos de "
+"inicio de la actividad a lo largo del ejercicio en la elevación al año se "
+"tendrán en consideración los días que resten hasta el final del año."
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__contact_phone
+msgid "Phone"
+msgstr "Téléphone"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__previous_number
+msgid "Previous declaration number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__name
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__result
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
+msgid "Resultado"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__date_start
+msgid "Starting date"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__state
+msgid "State"
+msgstr "État"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__statement_type
+msgid "Statement Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__support_type
+msgid "Support Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__tax_agency_ids
+msgid "Tax Agency"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__counterpart_account_id
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_type
+msgid "Tipo de actividad"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__tipo_declaracion
+msgid "Tipo declaración"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__company_vat
+msgid "VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__year
+msgid "Year"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
+msgid "[01] Ingresos computables"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
+msgid "[02] Gastos fiscalmente deducibles"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
+msgid "[03] Rendimiento neto"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
+msgid "[04] 20% casilla (03)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
+msgid "[05] A deducir - De los trimestres anteriores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
+msgid "[06] A deducir - Retenciones e ingr. a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
+msgid "[07] Pago fraccionado previo del trimestre"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
+msgid "[08] Volumen de ingresos"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
+msgid "[09] 2% de la casilla [08]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
+msgid "[12] Suma de pagos fraccionados previos del trimestre"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
+msgid "[13] Minoración por aplicación de la deducción. Artículo 80 bis"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
+msgid "[14] Diferencia (12) - (13)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
+msgid "[15] A deducir - Resultados negativos de trimestres anteriores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
+msgid "[16] Pago de préstamos para la adquisición de vivienda habitual"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
+msgid "[17] Total (14) - (15)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
+msgid "[18] A deducir - Resultado de las anteriores declaraciones"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__has_deduccion_80
+msgid "¿Deducción por art. 80 bis?"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__has_prestamo
+msgid "¿Préstamo para vivienda habitual?"
+msgstr ""
+
+#~ msgid "Model"
+#~ msgstr "Modèle"
+
+#, fuzzy
+#~ msgid "Period type"
+#~ msgstr "Period"
+
+#~ msgid "Cancelled"
+#~ msgstr "Annulé"
+
+#, fuzzy
+#~ msgid "Company partner"
+#~ msgstr "Société"
+
+#, fuzzy
+#~ msgid "Complementary"
+#~ msgstr "Société"
+
+#~ msgid "Done"
+#~ msgstr "Terminé"
+
+#~ msgid "Draft"
+#~ msgstr "Brouillon"
+
+#~ msgid "Normal"
+#~ msgstr "Normale"
+
+#~ msgid "Posted"
+#~ msgstr "Comptabilisé"
+
+#~ msgid "File"
+#~ msgstr "Fichier"
+
+#~ msgid "File name"
+#~ msgstr "Nom du fichier"
+
+#~ msgid "Fiscal year"
+#~ msgstr "Exercice fiscal"
+
+#~ msgid "open"
+#~ msgstr "Ouvert"

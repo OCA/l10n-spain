@@ -31,7 +31,7 @@ class TestL10nEsAeatSiiBaseOss(TestL10nEsAeatSiiBase):
         )
 
     def test_invoice_sii_oss(self):
-        self.partner.sii_simplified_invoice = True
+        self.partner.aeat_simplified_invoice = True
         invoice_vals = {
             "move_type": "out_invoice",
             "partner_id": self.partner.id,
@@ -51,6 +51,6 @@ class TestL10nEsAeatSiiBaseOss(TestL10nEsAeatSiiBase):
             ],
         }
         invoice = self.env["account.move"].create(invoice_vals)
-        res = invoice._get_sii_invoice_dict()
+        res = invoice._get_aeat_invoice_dict()
         res_issue = res["FacturaExpedida"]
         self.assertEqual(res_issue["ImporteTotal"], 100)

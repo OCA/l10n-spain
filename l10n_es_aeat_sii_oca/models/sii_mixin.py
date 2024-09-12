@@ -7,26 +7,16 @@
 import json
 import logging
 
-from requests import Session
-
 from odoo import _, api, exceptions, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.modules.registry import Registry
 from odoo.tools.float_utils import float_compare
 
+from odoo.addons.l10n_es_aeat.models.aeat_mixin import round_by_keys
+
 _logger = logging.getLogger(__name__)
 
-try:
-    from zeep import Client
-    from zeep.plugins import HistoryPlugin
-    from zeep.transports import Transport
-except (ImportError, IOError) as err:
-    _logger.debug(err)
-
 SII_STATES = [
-    ("not_sent", "Not sent"),
-    ("sent", "Sent"),
-    ("sent_w_errors", "Accepted with errors"),
     ("sent_modified", "Registered in SII but last modifications not sent"),
     ("cancelled", "Cancelled"),
     ("cancelled_modified", "Cancelled in SII but last modifications not sent"),
@@ -36,24 +26,9 @@ SII_MACRODATA_LIMIT = 100000000.0
 SII_DATE_FORMAT = "%d-%m-%Y"
 
 
-def round_by_keys(elem, search_keys, prec=2):
-    """This uses ``round`` method directly as if has been tested that Odoo's
-    ``float_round`` still returns incorrect amounts for certain values. Try
-    3 units x 3,77 €/unit with 10% tax and you will be hit by the error
-    (on regular x86 architectures)."""
-    if isinstance(elem, dict):
-        for key, value in elem.items():
-            if key in search_keys:
-                elem[key] = round(elem[key], prec)
-            else:
-                round_by_keys(value, search_keys)
-    elif isinstance(elem, list):
-        for value in elem:
-            round_by_keys(value, search_keys)
-
-
 class SiiMixin(models.AbstractModel):
     _name = "sii.mixin"
+    _inherit = "aeat.mixin"
     _description = "SII Mixin"
 
     company_id = fields.Many2one(
@@ -68,38 +43,11 @@ class SiiMixin(models.AbstractModel):
         readonly=False,
         copy=False,
     )
-    sii_state = fields.Selection(
-        selection=SII_STATES,
-        string="SII send state",
-        default="not_sent",
-        readonly=True,
-        copy=False,
-        help="Indicates the state of this document in relation with the "
-        "presentation at the SII",
+    aeat_state = fields.Selection(
+        selection_add=SII_STATES,
     )
     sii_csv = fields.Char(string="SII CSV", copy=False, readonly=True)
     sii_return = fields.Text(string="SII Return", copy=False, readonly=True)
-    sii_header_sent = fields.Text(
-        string="SII last header sent",
-        copy=False,
-        readonly=True,
-    )
-    sii_content_sent = fields.Text(
-        string="SII last content sent",
-        copy=False,
-        readonly=True,
-    )
-    sii_send_error = fields.Text(
-        string="SII Send Error",
-        readonly=True,
-        copy=False,
-    )
-    sii_send_failed = fields.Boolean(
-        string="SII send failed",
-        copy=False,
-        help="Indicates that the last attempt to communicate this document to "
-        "the SII has failed. See SII return for details",
-    )
     sii_refund_type = fields.Selection(
         selection=[
             # ('S', 'By substitution'), - Removed as not fully supported
@@ -214,17 +162,10 @@ class SiiMixin(models.AbstractModel):
                 >= 0
             )
 
-    def _sii_get_partner(self):
-        raise NotImplementedError
-
-    def _get_sii_country_code(self):
-        self.ensure_one()
-        return self._sii_get_partner()._parse_aeat_vat_info()[0]
-
     def _filter_sii_unlink_not_possible(self):
         """Filter records that we do not allow to be deleted, all those
         that are not in not_sent sii status."""
-        return self.filtered(lambda rec: rec.sii_state != "not_sent")
+        return self.filtered(lambda rec: rec.aeat_state != "not_sent")
 
     @api.ondelete(at_uninstall=False)
     def _unlink_except_sii(self):
@@ -235,7 +176,7 @@ class SiiMixin(models.AbstractModel):
             )
 
     @api.model
-    def _get_sii_taxes_map(self, codes, date):
+    def _get_aeat_taxes_map(self, codes, date):
         """Return the codes that correspond to that sii map line codes.
 
         :param codes: List of code strings to get the mapping.
@@ -257,12 +198,7 @@ class SiiMixin(models.AbstractModel):
         tax_templates = sii_map.map_lines.filtered(lambda x: x.code in codes).taxes
         return self.company_id.get_taxes_from_templates(tax_templates)
 
-    def _change_date_format(self, date):
-        datetimeobject = fields.Date.to_date(date)
-        new_date = datetimeobject.strftime(SII_DATE_FORMAT)
-        return new_date
-
-    def _get_sii_header(self, tipo_comunicacion=False, cancellation=False):
+    def _get_aeat_header(self, tipo_comunicacion=False, cancellation=False):
         """Builds SII send header
 
         :param tipo_comunicacion String 'A0': new reg, 'A1': modification
@@ -297,25 +233,29 @@ class SiiMixin(models.AbstractModel):
                 queue.unlink()
         return True
 
-    def _get_valid_document_states(self):
-        raise NotImplementedError()
-
     def send_sii(self):
-        documents = self.filtered(
-            lambda document: (
-                document.sii_enabled
-                and document.state in self._get_valid_document_states()
-                and document.sii_state not in ["sent", "cancelled"]
-            )
-        )
-        if not documents._cancel_sii_jobs():
-            raise UserError(
-                _(
-                    "You can not communicate this document at this moment "
-                    "because there is a job running!"
-                )
-            )
-        documents._process_sii_send()
+        """General public method for filtering out of the starting recordset the records
+        that shouldn't be sent to the SII:
+
+        - Documents of companies with SII not enabled (through sii_enabled).
+        - Documents not applicable to be sent to SII (through sii_enabled).
+        - Documents in non applicable states (for example, cancelled invoices).
+        - Documents already sent to the SII.
+        - Documents with sending jobs pending to be executed.
+        """
+        valid_states = self._get_valid_document_states()
+        jobs_field_name = self._get_sii_jobs_field_name()
+        for document in self:
+            if (
+                not document.sii_enabled
+                or document.state not in valid_states
+                or document.aeat_state in ["sent", "cancelled"]
+            ):
+                continue
+            job_states = document.sudo().mapped(jobs_field_name).mapped("state")
+            if any([x in ("started", "pending", "enqueued") for x in job_states]):
+                continue
+            document._process_sii_send()
 
     def _process_sii_send(self):
         """Process document sending to the SII. Adds general checks from
@@ -332,20 +272,20 @@ class SiiMixin(models.AbstractModel):
                 new_delay = (
                     record.sudo()
                     .with_context(company_id=company.id)
-                    .with_delay(eta=eta if not record.sii_send_failed else False)
+                    .with_delay(eta=eta if not record.aeat_send_failed else False)
                     .confirm_one_document()
                 )
                 job = queue_obj.search([("uuid", "=", new_delay.uuid)], limit=1)
                 setattr(record.sudo(), self._get_sii_jobs_field_name(), [(4, job.id)])
 
-    def _bind_sii(self, client, port_name, address=None):
+    def _bind_service(self, client, port_name, address=None):
         self.ensure_one()
         service = client._get_service("siiService")
         port = client._get_port(service, port_name)
         address = address or port.binding_options["address"]
         return client.create_service(port.binding.name, address)
 
-    def _connect_params_sii(self, mapping_key):
+    def _connect_params_aeat(self, mapping_key):
         self.ensure_one()
         agency = self.company_id.tax_agency_id
         if not agency:
@@ -355,19 +295,6 @@ class SiiMixin(models.AbstractModel):
             # here.
             agency = self.env.ref("l10n_es_aeat.aeat_tax_agency_spain")
         return agency._connect_params_sii(mapping_key, self.company_id)
-
-    def _connect_sii(self, mapping_key):
-        self.ensure_one()
-        public_crt, private_key = self.env["l10n.es.aeat.certificate"].get_certificates(
-            company=self.company_id
-        )
-        params = self._connect_params_sii(mapping_key)
-        session = Session()
-        session.cert = (public_crt, private_key)
-        transport = Transport(session=session)
-        history = HistoryPlugin()
-        client = Client(wsdl=params["wsdl"], transport=transport, plugins=[history])
-        return self._bind_sii(client, params["port_name"], params["address"])
 
     def _get_sii_gen_type(self):
         """Make a choice for general invoice type
@@ -387,39 +314,29 @@ class SiiMixin(models.AbstractModel):
             res = 1
         return res
 
-    def _is_sii_simplified_invoice(self):
+    def _is_aeat_simplified_invoice(self):
         """Inheritable method to allow control when an
         invoice are simplified or normal"""
-        partner = self._sii_get_partner()
-        return partner.sii_simplified_invoice
+        partner = self._aeat_get_partner()
+        return partner.aeat_simplified_invoice
 
-    def _sii_check_exceptions(self):
+    def _aeat_check_exceptions(self):
         """Inheritable method for exceptions control when sending SII invoices."""
-        self.ensure_one()
-        gen_type = self._get_sii_gen_type()
-        partner = self._sii_get_partner()
-        country_code = self._get_sii_country_code()
-        is_simplified_invoice = self._is_sii_simplified_invoice()
-        if (
-            (gen_type != 3 or country_code == "ES")
-            and not partner.vat
-            and not is_simplified_invoice
-        ):
-            raise UserError(_("The partner has not a VAT configured."))
-        if not self.company_id.chart_template_id:
-            raise UserError(
-                _("You have to select what account chart template use this" " company.")
-            )
-        if not self.company_id.sii_enabled:
-            raise UserError(_("This company doesn't have SII enabled."))
-        if not self.sii_enabled:
-            raise UserError(_("This invoice is not SII enabled."))
-
-    def _get_mapping_key(self):
-        raise NotImplementedError()
-
-    def _get_document_date(self):
-        raise NotImplementedError()
+        res = super()._aeat_check_exceptions()
+        if self.company_id.sii_enabled:
+            gen_type = self._get_sii_gen_type()
+            partner = self._aeat_get_partner()
+            country_code = self._get_aeat_country_code()
+            is_simplified_invoice = self._is_aeat_simplified_invoice()
+            if (
+                (gen_type != 3 or country_code == "ES")
+                and not partner.vat
+                and not is_simplified_invoice
+            ):
+                raise UserError(_("The partner has not a VAT configured."))
+            if not self.sii_enabled:
+                raise UserError(_("This invoice is not SII enabled."))
+        return res
 
     def _get_document_fiscal_date(self):
         raise NotImplementedError()
@@ -429,9 +346,6 @@ class SiiMixin(models.AbstractModel):
 
     def _get_document_period(self):
         return "%02d" % fields.Date.to_date(self._get_document_fiscal_date()).month
-
-    def _get_document_serial_number(self):
-        raise NotImplementedError()
 
     def _get_document_product_exempt(self, applied_taxes):
         raise NotImplementedError()
@@ -517,7 +431,7 @@ class SiiMixin(models.AbstractModel):
         self.ensure_one()
         if "DesgloseFactura" not in taxes_dict:
             return False
-        country_code = self._get_sii_country_code()
+        country_code = self._get_aeat_country_code()
         sii_gen_type = self._get_sii_gen_type()
         if "DesgloseTipoOperacion" in taxes_dict:
             # DesgloseTipoOperacion and DesgloseFactura are Exclusive
@@ -530,7 +444,7 @@ class SiiMixin(models.AbstractModel):
             # DesgloseTipoOperacion required for national operations
             # with 'IDOtro' in the SII identifier block
             return True
-        elif sii_gen_type == 1 and (self._sii_get_partner().vat or "").startswith(
+        elif sii_gen_type == 1 and (self._aeat_get_partner().vat or "").startswith(
             "ESN"
         ):
             # DesgloseTipoOperacion required if customer's country is Spain and
@@ -546,19 +460,19 @@ class SiiMixin(models.AbstractModel):
         self.ensure_one()
         taxes_dict = {}
         date = self._get_document_fiscal_date()
-        taxes_sfesb = self._get_sii_taxes_map(["SFESB"], date)
-        taxes_sfesbe = self._get_sii_taxes_map(["SFESBE"], date)
-        taxes_sfesisp = self._get_sii_taxes_map(["SFESISP"], date)
+        taxes_sfesb = self._get_aeat_taxes_map(["SFESB"], date)
+        taxes_sfesbe = self._get_aeat_taxes_map(["SFESBE"], date)
+        taxes_sfesisp = self._get_aeat_taxes_map(["SFESISP"], date)
         # taxes_sfesisps = self._get_taxes_map(['SFESISPS'])
-        taxes_sfens = self._get_sii_taxes_map(["SFENS"], date)
-        taxes_sfess = self._get_sii_taxes_map(["SFESS"], date)
-        taxes_sfesse = self._get_sii_taxes_map(["SFESSE"], date)
-        taxes_sfesns = self._get_sii_taxes_map(["SFESNS"], date)
-        taxes_not_in_total = self._get_sii_taxes_map(["NotIncludedInTotal"], date)
-        taxes_not_in_total_neg = self._get_sii_taxes_map(
+        taxes_sfens = self._get_aeat_taxes_map(["SFENS"], date)
+        taxes_sfess = self._get_aeat_taxes_map(["SFESS"], date)
+        taxes_sfesse = self._get_aeat_taxes_map(["SFESSE"], date)
+        taxes_sfesns = self._get_aeat_taxes_map(["SFESNS"], date)
+        taxes_not_in_total = self._get_aeat_taxes_map(["NotIncludedInTotal"], date)
+        taxes_not_in_total_neg = self._get_aeat_taxes_map(
             ["NotIncludedInTotalNegative"], date
         )
-        base_not_in_total = self._get_sii_taxes_map(["BaseNotIncludedInTotal"], date)
+        base_not_in_total = self._get_aeat_taxes_map(["BaseNotIncludedInTotal"], date)
         not_in_amount_total = 0
         exempt_cause = self._get_sii_exempt_cause(taxes_sfesbe + taxes_sfesse)
         tax_lines = self._get_tax_info()
@@ -660,9 +574,6 @@ class SiiMixin(models.AbstractModel):
             del taxes_dict["DesgloseFactura"]
         return taxes_dict, not_in_amount_total
 
-    def _get_document_amount_total(self):
-        raise NotImplementedError()
-
     def _get_sii_invoice_type(self):
         raise NotImplementedError()
 
@@ -676,7 +587,7 @@ class SiiMixin(models.AbstractModel):
             country_code,
             identifier_type,
             identifier,
-        ) = self._sii_get_partner()._parse_aeat_vat_info()
+        ) = self._aeat_get_partner()._parse_aeat_vat_info()
         # Limpiar alfanum
         if identifier:
             identifier = "".join(e for e in identifier if e.isalnum()).upper()
@@ -684,7 +595,7 @@ class SiiMixin(models.AbstractModel):
             identifier = "NO_DISPONIBLE"
             identifier_type = "06"
         if gen_type == 1:
-            if "1117" in (self.sii_send_error or ""):
+            if "1117" in (self.aeat_send_error or ""):
                 return {
                     "IDOtro": {
                         "CodigoPais": country_code,
@@ -700,8 +611,8 @@ class SiiMixin(models.AbstractModel):
                         "CodigoPais": country_code,
                         "IDType": identifier_type,
                         "ID": country_code + identifier
-                        if self._sii_get_partner()._map_aeat_country_code(country_code)
-                        in self._sii_get_partner()._get_aeat_europe_codes()
+                        if self._aeat_get_partner()._map_aeat_country_code(country_code)
+                        in self._aeat_get_partner()._get_aeat_europe_codes()
                         else identifier,
                     },
                 }
@@ -723,7 +634,7 @@ class SiiMixin(models.AbstractModel):
         elif gen_type == 3:
             return {"NIF": identifier}
 
-    def _get_sii_invoice_dict_out(self, cancel=False):
+    def _get_aeat_invoice_dict_out(self, cancel=False):
         """Build dict with data to send to AEAT WS for document types:
         out_invoice and out_refund.
 
@@ -733,11 +644,11 @@ class SiiMixin(models.AbstractModel):
         """
         self.ensure_one()
         document_date = self._change_date_format(self._get_document_date())
-        partner = self._sii_get_partner()
+        partner = self._aeat_get_partner()
         company = self.company_id
         fiscal_year = self._get_document_fiscal_year()
         period = self._get_document_period()
-        is_simplified_invoice = self._is_sii_simplified_invoice()
+        is_simplified_invoice = self._is_aeat_simplified_invoice()
         serial_number = self._get_document_serial_number()
         inv_dict = {
             "IDFactura": {
@@ -775,7 +686,7 @@ class SiiMixin(models.AbstractModel):
                 exp_dict["Contraparte"].update(self._get_sii_identifier())
         return inv_dict
 
-    def _get_sii_invoice_dict_in(self, cancel=False):
+    def _get_aeat_invoice_dict_in(self, cancel=False):
         """Build dict with data to send to AEAT WS for invoice types:
         in_invoice and in_refund.
 
@@ -785,15 +696,15 @@ class SiiMixin(models.AbstractModel):
         """
         raise NotImplementedError()
 
-    def _get_sii_invoice_dict(self):
+    def _get_aeat_invoice_dict(self):
         self.ensure_one()
-        self._sii_check_exceptions()
+        self._aeat_check_exceptions()
         inv_dict = {}
         mapping_key = self._get_mapping_key()
         if mapping_key in ["out_invoice", "out_refund"]:
-            inv_dict = self._get_sii_invoice_dict_out()
+            inv_dict = self._get_aeat_invoice_dict_out()
         elif mapping_key in ["in_invoice", "in_refund"]:
-            inv_dict = self._get_sii_invoice_dict_in()
+            inv_dict = self._get_aeat_invoice_dict_in()
         round_by_keys(
             inv_dict,
             [
@@ -828,24 +739,24 @@ class SiiMixin(models.AbstractModel):
         for document in self.filtered(
             lambda i: i.state in self._get_valid_document_states()
         ):
-            if document.sii_state == "not_sent":
+            if document.aeat_state == "not_sent":
                 tipo_comunicacion = "A0"
             else:
                 tipo_comunicacion = "A1"
-            header = document._get_sii_header(tipo_comunicacion)
+            header = document._get_aeat_header(tipo_comunicacion)
             doc_vals = {
-                "sii_header_sent": json.dumps(header, indent=4),
+                "aeat_header_sent": json.dumps(header, indent=4),
             }
-            # add this extra try except in case _get_sii_invoice_dict fails
+            # add this extra try except in case _get_aeat_invoice_dict fails
             # if not, get the value doc_dict for the next try and except below
             try:
-                inv_dict = document._get_sii_invoice_dict()
+                inv_dict = document._get_aeat_invoice_dict()
             except Exception as fault:
                 raise ValidationError(fault) from fault
             try:
                 mapping_key = document._get_mapping_key()
-                serv = document._connect_sii(mapping_key)
-                doc_vals["sii_content_sent"] = json.dumps(inv_dict, indent=4)
+                serv = document._connect_aeat(mapping_key)
+                doc_vals["aeat_content_sent"] = json.dumps(inv_dict, indent=4)
                 if mapping_key in ["out_invoice", "out_refund"]:
                     res = serv.SuministroLRFacturasEmitidas(header, inv_dict)
                 elif mapping_key in ["in_invoice", "in_refund"]:
@@ -859,9 +770,9 @@ class SiiMixin(models.AbstractModel):
                 if res["EstadoEnvio"] == "Correcto":
                     doc_vals.update(
                         {
-                            "sii_state": "sent",
+                            "aeat_state": "sent",
                             "sii_csv": res["CSV"],
-                            "sii_send_failed": False,
+                            "aeat_send_failed": False,
                         }
                     )
                 elif (
@@ -870,15 +781,15 @@ class SiiMixin(models.AbstractModel):
                 ):
                     doc_vals.update(
                         {
-                            "sii_state": "sent_w_errors",
+                            "aeat_state": "sent_w_errors",
                             "sii_csv": res["CSV"],
-                            "sii_send_failed": True,
+                            "aeat_send_failed": True,
                         }
                     )
                 else:
-                    doc_vals["sii_send_failed"] = True
+                    doc_vals["aeat_send_failed"] = True
                 if (
-                    "sii_state" in doc_vals
+                    "aeat_state" in doc_vals
                     and not document.sii_account_registration_date
                     and mapping_key[:2] == "in"
                 ):
@@ -892,7 +803,7 @@ class SiiMixin(models.AbstractModel):
                         str(res_line["CodigoErrorRegistro"]),
                         str(res_line["DescripcionErrorRegistro"])[:60],
                     )
-                doc_vals["sii_send_error"] = send_error
+                doc_vals["aeat_send_error"] = send_error
                 document.write(doc_vals)
             except Exception as fault:
                 new_cr = Registry(self.env.cr.dbname).cursor()
@@ -900,10 +811,10 @@ class SiiMixin(models.AbstractModel):
                 document = env[document._name].browse(document.id)
                 doc_vals.update(
                     {
-                        "sii_send_failed": True,
-                        "sii_send_error": repr(fault)[:60],
+                        "aeat_send_failed": True,
+                        "aeat_send_error": repr(fault)[:60],
                         "sii_return": repr(fault),
-                        "sii_content_sent": json.dumps(inv_dict, indent=4),
+                        "aeat_content_sent": json.dumps(inv_dict, indent=4),
                     }
                 )
                 document.write(doc_vals)

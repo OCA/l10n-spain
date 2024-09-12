@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- © 2018 Victor Rodrigo <victor.rodrigo@factorlibre.com>
+     © 2022 ProcessControl - David Ramia <david.ramia@processcontrol.es>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="invoice_sii_move_summary_form_view" model="ir.ui.view">
+        <field name="name">account.move.sii.invoice.summary.form.view</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="l10n_es_aeat_sii_oca.invoice_sii_form" />
+        <field name="arch" type="xml">
+            <field name="sii_description" position="before">
+                <field
+                    name="is_invoice_summary"
+                    attrs="{'invisible': [('move_type', 'not in', ('out_invoice','out_refund'))], 'readonly': [('state', '!=', 'draft')]}"
+                />
+                <field
+                    name="sii_invoice_summary_start"
+                    string="First Invoice"
+                    attrs="{'invisible': ['|', ('move_type', 'not in', ('out_invoice','out_refund')), ('is_invoice_summary', '=', False)], 'required': [('is_invoice_summary', '=', True)], 'readonly': [('state', '!=', 'draft')]}"
+                />
+                <field
+                    name="sii_invoice_summary_end"
+                    string="Last Invoice"
+                    attrs="{'invisible': ['|', ('move_type', 'not in', ('out_invoice','out_refund')), ('is_invoice_summary', '=', False)], 'required': [('is_invoice_summary', '=', True)], 'readonly': [('state', '!=', 'draft')]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

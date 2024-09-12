@@ -15,6 +15,7 @@
                     attrs="{'invisible': [('payment_method_code', '!=', 'confirming_aef')]}"
                 >
                     <field name="aef_confirming_type" />
+                    <field name="aef_confirming_modality" />
                     <field
                         name="aef_confirming_contract"
                         attrs="{'required': [('payment_method_code', '=', 'confirming_aef')]}"

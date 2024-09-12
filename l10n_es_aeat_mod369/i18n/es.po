@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-17 11:49+0000\n"
-"PO-Revision-Date: 2024-02-28 21:36+0000\n"
+"PO-Revision-Date: 2024-05-14 09:08+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -108,6 +108,11 @@ msgid "Amount"
 msgstr "Cuota"
 
 #. module: l10n_es_aeat_mod369
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__amount_str
+msgid "Amount Str"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__amount
 msgid "Amount total"
 msgstr "Cuota total"
@@ -126,6 +131,11 @@ msgstr "Saldo a ingresar en España"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__partner_bank_id
 msgid "Bank account"
 msgstr "Cuenta bancaria"
+
+#. module: l10n_es_aeat_mod369
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__base_str
+msgid "Base Str"
+msgstr ""
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__base
@@ -330,6 +340,14 @@ msgstr "Es devolución"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__is_page_8_line
 msgid "Is part of page 8"
 msgstr "Es línea de la página 8"
+
+#. module: l10n_es_aeat_mod369
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod369/models/mod369.py:0
+#, python-format
+msgid "It is not possible to create a move if the total amount is 0."
+msgstr ""
+"No es posible generar un asiento si el saldo total a ingresar es igual a 0."
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__journal_id
@@ -661,9 +679,19 @@ msgid "Tax"
 msgstr "Impuesto"
 
 #. module: l10n_es_aeat_mod369
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__tax_agency_ids
+msgid "Tax Agency"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__tax_correction
 msgid "Tax Correction"
 msgstr "Corrección de la cuota"
+
+#. module: l10n_es_aeat_mod369
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__tax_correction_str
+msgid "Tax Correction Str"
+msgstr ""
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__tax_line_ids
@@ -674,15 +702,6 @@ msgstr "Líneas de impuestos"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_account_tax__tax_reduction_type
 msgid "Tax type"
 msgstr "Tipo de impuesto"
-
-#. module: l10n_es_aeat_mod369
-#: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__country_code
-msgid ""
-"The ISO country code in two chars. \n"
-"You can use this field for quick search."
-msgstr ""
-"Código ISO del país en dos caracteres.\n"
-"Puedes utilizar este campo para la búsqueda rápida."
 
 #. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,help:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__counterpart_account_id
@@ -747,6 +766,11 @@ msgid "VAT number"
 msgstr "NIF"
 
 #. module: l10n_es_aeat_mod369
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_line_grouped__vat_type_str
+msgid "Vat Type Str"
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__website_message_ids
 msgid "Website Messages"
 msgstr "Mensajes del sitio web"
@@ -793,3 +817,10 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod369.selection__l10n_es_aeat_mod369_report__payment_type__t
 msgid "[T] Ingreso por transferencia desde el extranjero"
 msgstr "[T] Ingreso por transferencia desde el extranjero"
+
+#~ msgid ""
+#~ "The ISO country code in two chars. \n"
+#~ "You can use this field for quick search."
+#~ msgstr ""
+#~ "Código ISO del país en dos caracteres.\n"
+#~ "Puedes utilizar este campo para la búsqueda rápida."

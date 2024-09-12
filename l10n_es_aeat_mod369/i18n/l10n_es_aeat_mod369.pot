@@ -338,6 +338,13 @@ msgid "Is part of page 8"
 msgstr ""
 
 #. module: l10n_es_aeat_mod369
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod369/models/mod369.py:0
+#, python-format
+msgid "It is not possible to create a move if the total amount is 0."
+msgstr ""
+
+#. module: l10n_es_aeat_mod369
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod369.field_l10n_es_aeat_mod369_report__journal_id
 msgid "Journal"
 msgstr ""

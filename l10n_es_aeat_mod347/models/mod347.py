@@ -746,6 +746,10 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
         """Loads some partner data when the selected partner changes."""
         if self.partner_id:
             vals = self.report_id._get_partner_347_identification(self.partner_id)
+            if not vals.get("partner_vat") or not vals.get("partner_state_code"):
+                raise exceptions.ValidationError(
+                    _("The selected partner doesn't have a VAT or a state code")
+                )
             self.update(
                 {
                     "partner_vat": vals.pop("partner_vat"),

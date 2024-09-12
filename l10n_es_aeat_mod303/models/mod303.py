@@ -485,7 +485,7 @@ class L10nEsAeatMod303Report(models.Model):
                 if report.devolucion_mensual or report.period_type in ("4T", "12"):
                     if report.use_aeat_account:
                         report.result_type = "V"
-                    elif report.return_last_period:
+                    elif report.return_last_period or report.devolucion_mensual:
                         report.result_type = "D" if report.marca_sepa == "1" else "X"
                     else:
                         report.result_type = "C"
