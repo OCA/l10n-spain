@@ -17,15 +17,6 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_aeat_partner_check
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.res_config_settings_aeat_partner_check_view_form
-msgid ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" groups=\"base.group_multi_company\"/>"
-msgstr ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" groups=\"base.group_multi_company\"/>"
-
-#. module: l10n_es_aeat_partner_check
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_partner_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_partner_name
 msgid "AEAT Name"
@@ -211,8 +202,18 @@ msgstr "Verifiqueu les dades del soci AEAT"
 
 #. module: l10n_es_aeat_partner_check
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.res_config_settings_aeat_partner_check_view_form
-msgid "Verify Partner Data using AEAT Census."
-msgstr "Verifiqueu les dades dels socis mitjançant el cens AEAT."
+msgid "Verify Partner Data using AEAT Census"
+msgstr ""
+
+#~ msgid ""
+#~ "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are "
+#~ "company-specific.\" groups=\"base.group_multi_company\"/>"
+#~ msgstr ""
+#~ "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are "
+#~ "company-specific.\" groups=\"base.group_multi_company\"/>"
+
+#~ msgid "Verify Partner Data using AEAT Census."
+#~ msgstr "Verifiqueu les dades dels socis mitjançant el cens AEAT."
 
 #~ msgid "Display Name"
 #~ msgstr "Nom de visualització"

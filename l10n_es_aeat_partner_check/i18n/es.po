@@ -18,15 +18,6 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_es_aeat_partner_check
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.res_config_settings_aeat_partner_check_view_form
-msgid ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" groups=\"base.group_multi_company\"/>"
-msgstr ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Los valores establecidos "
-"aquí, son específicos de la compañia.\" groups=\"base.group_multi_company\"/>"
-
-#. module: l10n_es_aeat_partner_check
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_partner_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_partner_name
 msgid "AEAT Name"
@@ -212,5 +203,16 @@ msgstr "Verificar información en la AEAT"
 
 #. module: l10n_es_aeat_partner_check
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.res_config_settings_aeat_partner_check_view_form
-msgid "Verify Partner Data using AEAT Census."
-msgstr "Verificar información de la empresa usando el censo de la AEAT."
+msgid "Verify Partner Data using AEAT Census"
+msgstr ""
+
+#~ msgid ""
+#~ "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are "
+#~ "company-specific.\" groups=\"base.group_multi_company\"/>"
+#~ msgstr ""
+#~ "<span class=\"fa fa-lg fa-building-o\" title=\"Los valores establecidos "
+#~ "aquí, son específicos de la compañia.\" groups=\"base."
+#~ "group_multi_company\"/>"
+
+#~ msgid "Verify Partner Data using AEAT Census."
+#~ msgstr "Verificar información de la empresa usando el censo de la AEAT."
