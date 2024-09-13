@@ -89,7 +89,7 @@ class StockPicking(models.Model):
     def _compute_volume(self):
         for record in self:
             record.volume = sum(
-                move.product_id.volume * move.product_uom_qty
+                move.product_id.volume * move.quantity_done
                 for move in record.move_ids_without_package
             )
 
