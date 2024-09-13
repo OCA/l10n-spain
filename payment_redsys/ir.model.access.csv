@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_payment_acquirer,payment.acquirer,model_payment_acquirer,base.group_user,1,1,1,1
+access_payment_transaction,payment.transaction,model_payment_transaction,base.group_user,1,1,1,1
+access_ir_ui_view,ir.ui.view,model_ir_ui_view,base.group_user,1,1,1,1
+access_res_users,res.users,model_res_users,base.group_user,1,1,1,1
