@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2016 FactorLibre - Janire Olagibel
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record model="ir.ui.view" id="nan_product_pack_form">
+        <field name="name">product.product.pack.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Ecoembes">
+                    <group name="ecoembes_header">
+                        <group name="ecoembes_left">
+                            <field name="ecoembes_product_master" />
+                            <field name="ecoembes_date_expiry" />
+                            <field name="ecoembes_sig" />
+                            <field name="weight_net_gram_round" readonly="True" />
+                        </group>
+                        <group name="ecoembes_header_right">
+                            <field name="ecoembes_comment" />
+                        </group>
+                    </group>
+                    <group string="Compositions" name="ecoembes_compositions">
+                        <field name="composition_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="order" widget="handle" />
+                                <field name="material_id" />
+                                <field
+                                    name="submaterial_id"
+                                    domain="[('material_id','=',material_id)]"
+                                />
+                                <field name="packaging_id" />
+                                <field name="market_type_id" />
+                                <field name="composition" />
+                                <field name="weight" />
+                                <field name="volume" />
+                                <field name="qty" />
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
