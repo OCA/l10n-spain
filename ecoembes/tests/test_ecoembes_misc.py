@@ -1,11 +1,12 @@
 # Copyright 2021-2022 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import exceptions
-from odoo.tests.common import users
+from odoo.tests.common import tagged, users
 
 from .common import TestEcoembesBase
 
 
+@tagged("post_install", "-at_install")
 class TestEcoembesMisc(TestEcoembesBase):
     @classmethod
     def setUpClass(cls):

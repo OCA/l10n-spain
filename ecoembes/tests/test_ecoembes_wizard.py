@@ -1,11 +1,12 @@
 # Copyright 2021-2022 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import fields
-from odoo.tests.common import Form, users
+from odoo.tests.common import Form, tagged, users
 
 from .common import TestEcoembesBase
 
 
+@tagged("post_install", "-at_install")
 class TestEcoembesWizard(TestEcoembesBase):
     @classmethod
     def setUpClass(cls):
@@ -67,13 +68,17 @@ class TestEcoembesWizard(TestEcoembesBase):
     def _create_invoice(self, invoice_date):
         move_form = Form(
             self.env["account.move"].with_context(
-                default_type="out_invoice", default_company_id=self.company.id
+                default_move_type="out_invoice",
+                default_company_id=self.company.id,
             )
         )
-        move_form.currency_id = self.currency
-        move_form.invoice_date = invoice_date
+        if not move_form._get_modifier("currency_id", "invisible"):
+            move_form.currency_id = self.currency
+        if not move_form._get_modifier("invoice_date", "invisible"):
+            move_form.invoice_date = invoice_date
         move_form.partner_id = self.partner
-        move_form.journal_id = self.journal
+        if not move_form._get_modifier("journal_id", "invisible"):
+            move_form.journal_id = self.journal
         with move_form.invoice_line_ids.new() as line_form:
             line_form.product_id = self.product_a
         with move_form.invoice_line_ids.new() as line_form:
@@ -110,8 +115,8 @@ class TestEcoembesWizard(TestEcoembesBase):
         self.assertTrue(self.product_b in items.mapped("product_id"))
         self.assertEqual(sum(items.mapped("billing")), 20)
         # Example report invoice
-        html = self.env.ref(
-            "account.account_invoices_without_payment"
-        ).render_qweb_html(invoice.ids)
-        self.assertRegexpMatches(str(html[0]), "REI-RAEE-123456")
-        self.assertRegexpMatches(str(html[0]), "ECO-12345")
+        html = self.env["ir.actions.report"]._render_qweb_html(
+            "account.report_invoice_with_payments", invoice.ids
+        )
+        self.assertRegex(str(html[0]), "REI-RAEE-123456")
+        self.assertRegex(str(html[0]), "ECO-12345")
