@@ -67,7 +67,7 @@ addon | version | maintainers | summary
 [l10n_es_payment_order_confirming_sabadell](l10n_es_payment_order_confirming_sabadell/) | 16.0.1.0.1 |  | Exportación de fichero bancario Confirming para Banco Sabadell
 [l10n_es_pos](l10n_es_pos/) | 16.0.1.0.2 |  | Punto de venta adaptado a la legislación española
 [l10n_es_pos_by_device](l10n_es_pos_by_device/) | 16.0.1.0.1 | [![ao-landoo](https://github.com/ao-landoo.png?size=30px)](https://github.com/ao-landoo) | Múltiples dispositivos por sesión en el punto de venta
-[l10n_es_pos_sii](l10n_es_pos_sii/) | 16.0.2.0.0 |  | Envío de pedidos del TPV al SII
+[l10n_es_pos_sii](l10n_es_pos_sii/) | 16.0.2.1.0 |  | Envío de pedidos del TPV al SII
 [l10n_es_sigaus_account](l10n_es_sigaus_account/) | 16.0.1.0.0 |  | Sistema de gestión de aceites industriales usados en España - Facturación
 [l10n_es_sigaus_purchase](l10n_es_sigaus_purchase/) | 16.0.1.0.1 |  | Sistema de gestión de aceites industriales usados en España - Compras
 [l10n_es_sigaus_sale](l10n_es_sigaus_sale/) | 16.0.1.0.1 |  | Sist. gestión aceites industriales usados en España - Ventas
