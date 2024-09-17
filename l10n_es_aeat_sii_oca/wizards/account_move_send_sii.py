@@ -8,34 +8,34 @@ class SendSIIWizard(models.TransientModel):
     _name = "wizard.send.sii"
     _description = "Send SII Wizard"
 
-    sending_number = fields.Integer(string="Invoices Jobs Process Sending")
-    sent_number = fields.Integer(string="Invoices SII Sent")
+    sending_number = fields.Integer()
+    not_send_without_errors_number = fields.Integer()
+    with_errors_number = fields.Integer()
+    modified_number = fields.Integer()
     account_move_ids = fields.Many2many("account.move", string="Invoices")
 
     def default_get(self, fields):
         res = super().default_get(fields)
-        # get the records selected
         active_model = self.env.context.get("active_model")
         active_ids = self.env.context.get("active_ids", [])
         account_moves = self.env[active_model].browse(active_ids)
-        # filter the records that have jobs associated
-        invoices_with_jobs_ids = account_moves.filtered(lambda i: (i.invoice_jobs_ids))
-        # and calculate the number of invoices in process of sending or sent
-        sending_number = len(invoices_with_jobs_ids)
-        sent_number = 0
-        for invoice in invoices_with_jobs_ids:
-            if all(invoice.invoice_jobs_ids.mapped("state")) == "failed":
-                sending_number -= 1
-            elif all(invoice.invoice_jobs_ids.mapped("state")) == "cancelled":
-                sending_number -= 1
-            elif any(invoice.invoice_jobs_ids.mapped("state")) == "done":
-                sent_number += 1
-        # update the values of the wizard
+        invoices_with_triggers = account_moves.filtered(
+            lambda i: (i.invoice_cron_trigger_ids)
+        )
+        invoices_without_triggers = account_moves - invoices_with_triggers
+        not_send_without_errors = invoices_without_triggers.filtered(
+            lambda a: a.aeat_state == "not_sent" and not a.sii_send_failed
+        )
+        with_errors = invoices_without_triggers.filtered(lambda a: a.sii_send_failed)
+        modified = invoices_without_triggers.filtered(
+            lambda a: a.aeat_state in ["sent_modified", "cancelled_modified"]
+        )
         res.update(
             {
-                "sending_number": sending_number,
-                "sent_number": sent_number,
-                "account_move_ids": [(6, 0, active_ids)],
+                "sending_number": len(invoices_with_triggers),
+                "not_send_without_errors_number": len(not_send_without_errors),
+                "with_errors_number": len(with_errors),
+                "modified_number": len(modified),
             }
         )
         return res

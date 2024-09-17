@@ -52,7 +52,7 @@
             <tree editable="bottom">
                 <field name="code" />
                 <field name="name" />
-                <field name="taxes" widget="many2many_tags" />
+                <field name="tax_xmlid_ids" widget="many2many_tags" />
             </tree>
         </field>
     </record>

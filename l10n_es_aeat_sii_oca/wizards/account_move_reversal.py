@@ -56,9 +56,9 @@ class AccountMoveReversal(models.TransientModel):
                 )
         return defaults
 
-    def reverse_moves(self):
+    def reverse_moves(self, is_modify=False):
         obj = self.with_context(
             sii_refund_type=self.sii_refund_type,
             supplier_invoice_number=self.supplier_invoice_number_refund,
         )
-        return super(AccountMoveReversal, obj).reverse_moves()
+        return super(AccountMoveReversal, obj).reverse_moves(is_modify)

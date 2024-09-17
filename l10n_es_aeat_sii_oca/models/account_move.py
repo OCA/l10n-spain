@@ -14,24 +14,13 @@
 
 import json
 import logging
+from datetime import datetime
 
 from odoo import _, api, exceptions, fields, models
 from odoo.modules.registry import Registry
 
 SII_VALID_INVOICE_STATES = ["posted"]
 _logger = logging.getLogger(__name__)
-
-
-try:
-    from odoo.addons.queue_job.job import job
-except ImportError:
-    _logger.debug("Can not `import queue_job`.")
-    import functools
-
-    def empty_decorator_factory(*argv, **kwargs):
-        return functools.partial
-
-    job = empty_decorator_factory
 
 
 class AccountMove(models.Model):
@@ -94,12 +83,12 @@ class AccountMove(models.Model):
         "The invoice number should start with LC, QZC, QRC, A01 or A02.",
         copy=False,
     )
-    invoice_jobs_ids = fields.Many2many(
-        comodel_name="queue.job",
+    invoice_cron_trigger_ids = fields.Many2many(
+        comodel_name="ir.cron.trigger",
         column1="invoice_id",
-        column2="job_id",
-        relation="account_move_queue_job_rel",
-        string="Connector Jobs",
+        column2="trigger_id",
+        relation="account_move_cron_trigger_rel",
+        string="Cron Triggers",
         copy=False,
     )
 
@@ -123,7 +112,7 @@ class AccountMove(models.Model):
     def _compute_macrodata(self):
         return super()._compute_macrodata()
 
-    def _sii_get_partner(self):
+    def _aeat_get_partner(self):
         return self.commercial_partner_id
 
     def _raise_exception_sii(self, field_name):
@@ -141,7 +130,7 @@ class AccountMove(models.Model):
         VAT/ID Otro and the supplier invoice number. Cannot let change these
         values in a SII registered supplier invoice"""
         for invoice in self.filtered(
-            lambda x: x.is_invoice() and x.sii_state != "not_sent"
+            lambda x: x.is_invoice() and x.aeat_state != "not_sent"
         ):
             if "invoice_date" in vals:
                 self._raise_exception_sii(_("invoice date"))
@@ -149,7 +138,7 @@ class AccountMove(models.Model):
                 self._raise_exception_sii(_("third-party number"))
             if invoice.move_type in ["in_invoice", "in_refund"]:
                 if "partner_id" in vals:
-                    correct_partners = invoice._sii_get_partner()
+                    correct_partners = invoice._aeat_get_partner()
                     correct_partners |= correct_partners.child_ids
                     if vals["partner_id"] not in correct_partners.ids:
                         self._raise_exception_sii(_("supplier"))
@@ -173,7 +162,7 @@ class AccountMove(models.Model):
         :return: REQ tax (or empty recordset) linked to the provided tax.
         """
         self.ensure_one()
-        taxes_req = self._get_sii_taxes_map(["RE"], self._get_document_fiscal_date())
+        taxes_req = self._get_aeat_taxes_map(["RE"], self._get_document_fiscal_date())
         re_lines = self.line_ids.filtered(
             lambda x: tax in x.tax_ids and x.tax_ids & taxes_req
         )
@@ -223,19 +212,19 @@ class AccountMove(models.Model):
         """
         self.ensure_one()
         taxes_dict = {}
-        taxes_sfesb = self._get_sii_taxes_map(["SFESB"], self.date)
-        taxes_sfesbe = self._get_sii_taxes_map(["SFESBE"], self.date)
-        taxes_sfesisp = self._get_sii_taxes_map(["SFESISP"], self.date)
+        taxes_sfesb = self._get_aeat_taxes_map(["SFESB"], self.date)
+        taxes_sfesbe = self._get_aeat_taxes_map(["SFESBE"], self.date)
+        taxes_sfesisp = self._get_aeat_taxes_map(["SFESISP"], self.date)
         # taxes_sfesisps = self._get_taxes_map(['SFESISPS'])
-        taxes_sfens = self._get_sii_taxes_map(["SFENS"], self.date)
-        taxes_sfess = self._get_sii_taxes_map(["SFESS"], self.date)
-        taxes_sfesse = self._get_sii_taxes_map(["SFESSE"], self.date)
-        taxes_sfesns = self._get_sii_taxes_map(["SFESNS"], self.date)
-        taxes_not_in_total = self._get_sii_taxes_map(["NotIncludedInTotal"], self.date)
-        taxes_not_in_total_neg = self._get_sii_taxes_map(
+        taxes_sfens = self._get_aeat_taxes_map(["SFENS"], self.date)
+        taxes_sfess = self._get_aeat_taxes_map(["SFESS"], self.date)
+        taxes_sfesse = self._get_aeat_taxes_map(["SFESSE"], self.date)
+        taxes_sfesns = self._get_aeat_taxes_map(["SFESNS"], self.date)
+        taxes_not_in_total = self._get_aeat_taxes_map(["NotIncludedInTotal"], self.date)
+        taxes_not_in_total_neg = self._get_aeat_taxes_map(
             ["NotIncludedInTotalNegative"], self.date
         )
-        base_not_in_total = self._get_sii_taxes_map(
+        base_not_in_total = self._get_aeat_taxes_map(
             ["BaseNotIncludedInTotal"], self.date
         )
         not_in_amount_total = 0
@@ -356,17 +345,17 @@ class AccountMove(models.Model):
         """
         self.ensure_one()
         taxes_dict = {}
-        taxes_sfrs = self._get_sii_taxes_map(["SFRS"], self.date)
-        taxes_sfrsa = self._get_sii_taxes_map(["SFRSA"], self.date)
-        taxes_sfrisp = self._get_sii_taxes_map(["SFRISP"], self.date)
-        taxes_sfrns = self._get_sii_taxes_map(["SFRNS"], self.date)
-        taxes_sfrnd = self._get_sii_taxes_map(["SFRND"], self.date)
-        taxes_sfrbi = self._get_sii_taxes_map(["SFRBI"], self.date)
-        taxes_not_in_total = self._get_sii_taxes_map(["NotIncludedInTotal"], self.date)
-        taxes_not_in_total_neg = self._get_sii_taxes_map(
+        taxes_sfrs = self._get_aeat_taxes_map(["SFRS"], self.date)
+        taxes_sfrsa = self._get_aeat_taxes_map(["SFRSA"], self.date)
+        taxes_sfrisp = self._get_aeat_taxes_map(["SFRISP"], self.date)
+        taxes_sfrns = self._get_aeat_taxes_map(["SFRNS"], self.date)
+        taxes_sfrnd = self._get_aeat_taxes_map(["SFRND"], self.date)
+        taxes_sfrbi = self._get_aeat_taxes_map(["SFRBI"], self.date)
+        taxes_not_in_total = self._get_aeat_taxes_map(["NotIncludedInTotal"], self.date)
+        taxes_not_in_total_neg = self._get_aeat_taxes_map(
             ["NotIncludedInTotalNegative"], self.date
         )
-        base_not_in_total = self._get_sii_taxes_map(
+        base_not_in_total = self._get_aeat_taxes_map(
             ["BaseNotIncludedInTotal"], self.date
         )
         tax_amount = 0.0
@@ -415,9 +404,9 @@ class AccountMove(models.Model):
     def _get_mapping_key(self):
         return self.move_type
 
-    def _sii_check_exceptions(self):
-        res = super()._sii_check_exceptions()
-        is_simplified_invoice = self._is_sii_simplified_invoice()
+    def _aeat_check_exceptions(self):
+        res = super()._aeat_check_exceptions()
+        is_simplified_invoice = self._is_aeat_simplified_invoice()
         if is_simplified_invoice and self.move_type[:2] == "in":
             raise exceptions.UserError(
                 _("You can't make a supplier simplified invoice.")
@@ -433,7 +422,7 @@ class AccountMove(models.Model):
         if self.move_type in ["in_invoice", "in_refund"]:
             invoice_type = "R4" if self.move_type == "in_refund" else "F1"
         elif self.move_type in ["out_invoice", "out_refund"]:
-            is_simplified = self._is_sii_simplified_invoice()
+            is_simplified = self._is_aeat_simplified_invoice()
             invoice_type = "F2" if is_simplified else "F1"
             if self.move_type == "out_refund":
                 if self.sii_refund_specific_invoice_type:
@@ -442,8 +431,8 @@ class AccountMove(models.Model):
                     invoice_type = "R5" if is_simplified else "R1"
         return invoice_type
 
-    def _get_sii_invoice_dict_out(self, cancel=False):
-        inv_dict = super()._get_sii_invoice_dict_out(cancel=cancel)
+    def _get_aeat_invoice_dict_out(self, cancel=False):
+        inv_dict = super()._get_aeat_invoice_dict_out(cancel=cancel)
         if cancel:
             return inv_dict
         if self.thirdparty_invoice:
@@ -496,7 +485,7 @@ class AccountMove(models.Model):
             serial_number = self.thirdparty_number[0:60]
         return serial_number
 
-    def _get_sii_invoice_dict_in(self, cancel=False):
+    def _get_aeat_invoice_dict_in(self, cancel=False):
         """Build dict with data to send to AEAT WS for invoice types:
         in_invoice and in_refund.
 
@@ -509,7 +498,7 @@ class AccountMove(models.Model):
         reg_date = self._change_date_format(self._get_account_registration_date())
         ejercicio = fields.Date.to_date(self.date).year
         periodo = "%02d" % fields.Date.to_date(self.date).month
-        partner = self._sii_get_partner()
+        partner = self._aeat_get_partner()
         desglose_factura, tax_amount, not_in_amount_total = self._get_sii_in_taxes()
         inv_dict = {
             "IDFactura": {
@@ -574,34 +563,34 @@ class AccountMove(models.Model):
 
     def _get_cancel_sii_invoice_dict(self):
         self.ensure_one()
-        self._sii_check_exceptions()
+        self._aeat_check_exceptions()
         if self.move_type in ["out_invoice", "out_refund"]:
-            return self._get_sii_invoice_dict_out(cancel=True)
+            return self._get_aeat_invoice_dict_out(cancel=True)
         elif self.move_type in ["in_invoice", "in_refund"]:
-            return self._get_sii_invoice_dict_in(cancel=True)
+            return self._get_aeat_invoice_dict_in(cancel=True)
         return {}
 
     def _sii_invoice_dict_not_modified(self):
         self.ensure_one()
-        to_send = self._get_sii_invoice_dict()
-        content_sent = json.loads(self.sii_content_sent)
+        to_send = self._get_aeat_invoice_dict()
+        content_sent = json.loads(self.aeat_content_sent)
         return to_send == content_sent
 
     def _post(self, soft=True):
         res = super()._post(soft=soft)
         for invoice in self.filtered(lambda x: x.sii_enabled and x.is_invoice()):
-            invoice._sii_check_exceptions()
+            invoice._aeat_check_exceptions()
             if (
-                invoice.sii_state in ["sent_modified", "sent"]
+                invoice.aeat_state in ["sent_modified", "sent"]
                 and invoice._sii_invoice_dict_not_modified()
             ):
-                if invoice.sii_state == "sent_modified":
-                    invoice.sii_state = "sent"
+                if invoice.aeat_state == "sent_modified":
+                    invoice.aeat_state = "sent"
                 continue
-            if invoice.sii_state == "sent":
-                invoice.sii_state = "sent_modified"
-            elif invoice.sii_state == "cancelled":
-                invoice.sii_state = "cancelled_modified"
+            if invoice.aeat_state == "sent":
+                invoice.aeat_state = "sent_modified"
+            elif invoice.aeat_state == "cancelled":
+                invoice.aeat_state = "cancelled_modified"
             company = invoice.company_id
             if company.sii_method != "auto":
                 continue
@@ -619,19 +608,20 @@ class AccountMove(models.Model):
             "context": self.env.context,
         }
 
-    def _get_sii_jobs_field_name(self):
-        return "invoice_jobs_ids"
+    def _get_sii_triggers_field_name(self):
+        return "invoice_cron_trigger_ids"
 
+    @api.model
     def _get_valid_document_states(self):
         return SII_VALID_INVOICE_STATES
 
     def _cancel_invoice_to_sii(self):
         for invoice in self.filtered(lambda i: i.state in ["cancel"]):
-            serv = invoice._connect_sii(invoice.move_type)
-            header = invoice._get_sii_header(cancellation=True)
+            serv = invoice._connect_aeat(invoice.move_type)
+            header = invoice._get_aeat_header(cancellation=True)
             inv_vals = {
-                "sii_send_failed": True,
-                "sii_send_error": False,
+                "aeat_send_failed": True,
+                "aeat_send_error": False,
             }
             try:
                 inv_dict = invoice._get_cancel_sii_invoice_dict()
@@ -648,14 +638,14 @@ class AccountMove(models.Model):
                 if res["EstadoEnvio"] == "Correcto":
                     inv_vals.update(
                         {
-                            "sii_state": "cancelled",
+                            "aeat_state": "cancelled",
                             "sii_csv": res["CSV"],
-                            "sii_send_failed": False,
+                            "aeat_send_failed": False,
                         }
                     )
                 res_line = res["RespuestaLinea"][0]
                 if res_line["CodigoErrorRegistro"]:
-                    inv_vals["sii_send_error"] = "{} | {}".format(
+                    inv_vals["aeat_send_error"] = "{} | {}".format(
                         str(res_line["CodigoErrorRegistro"]),
                         str(res_line["DescripcionErrorRegistro"])[:60],
                     )
@@ -666,8 +656,8 @@ class AccountMove(models.Model):
                 invoice = env["account.move"].browse(invoice.id)
                 inv_vals.update(
                     {
-                        "sii_send_failed": True,
-                        "sii_send_error": repr(fault)[:60],
+                        "aeat_send_failed": True,
+                        "aeat_send_error": repr(fault)[:60],
                         "sii_return": repr(fault),
                     }
                 )
@@ -681,53 +671,50 @@ class AccountMove(models.Model):
             lambda i: (
                 i.sii_enabled
                 and i.state in ["cancel"]
-                and i.sii_state in ["sent", "sent_w_errors", "sent_modified"]
+                and i.aeat_state in ["sent", "sent_w_errors", "sent_modified"]
             )
         )
-        if not invoices._cancel_sii_jobs():
+        if not invoices._cancel_sii_triggers():
             raise exceptions.UserError(
                 _(
                     "You can not communicate the cancellation of this invoice "
-                    "at this moment because there is a job running!"
+                    "at this moment. Please, try again later."
                 )
             )
-        queue_obj = self.env["queue.job"]
         for invoice in invoices:
             company = invoice.company_id
-            if not company.use_connector:
+            cron_trigger_obj = self.env["ir.cron.trigger"].sudo()
+            sii_send_cron = self.env.ref("l10n_es_aeat_sii_oca.invoice_send_to_sii")
+            if not company.use_cron:
                 invoice._cancel_invoice_to_sii()
             else:
-                eta = company._get_sii_eta()
-                new_delay = (
-                    self.sudo()
-                    .with_context(company_id=company.id)
-                    .with_delay(eta=eta)
-                    .cancel_one_invoice()
+                sii_sending_time = company._get_sii_sending_time()
+                trigger = cron_trigger_obj.create(
+                    {"cron_id": sii_send_cron.id, "call_at": sii_sending_time}
                 )
-                job = queue_obj.search([("uuid", "=", new_delay.uuid)], limit=1)
-                invoice.sudo().invoice_jobs_ids |= job
+                invoice.sudo().invoice_cron_trigger_ids |= trigger
 
     def button_cancel(self):
-        if not self._cancel_sii_jobs():
+        if not self._cancel_sii_triggers():
             raise exceptions.UserError(
-                _("You can not cancel this invoice because" " there is a job running!")
+                _("You cannot cancel this invoice. Please, try again later.")
             )
         res = super().button_cancel()
         for invoice in self.filtered(lambda x: x.sii_enabled):
-            if invoice.sii_state == "sent":
-                invoice.sii_state = "sent_modified"
-            elif invoice.sii_state == "cancelled_modified":
+            if invoice.aeat_state == "sent":
+                invoice.aeat_state = "sent_modified"
+            elif invoice.aeat_state == "cancelled_modified":
                 # Case when repoen a cancelled invoice, validate and cancel
                 # again without any SII communication.
-                invoice.sii_state = "cancelled"
+                invoice.aeat_state = "cancelled"
         return res
 
     def button_draft(self):
-        if not self._cancel_sii_jobs():
+        if not self._cancel_sii_triggers():
             raise exceptions.UserError(
                 _(
                     "You can not set to draft this invoice because"
-                    " there is a job running!"
+                    " the SII cron could not be cancelled."
                 )
             )
         return super().button_draft()
@@ -791,14 +778,15 @@ class AccountMove(models.Model):
         "company_id.sii_enabled",
         "move_type",
         "fiscal_position_id",
-        "fiscal_position_id.sii_active",
+        "fiscal_position_id.aeat_active",
     )
     def _compute_sii_enabled(self):
         """Compute if the invoice is enabled for the SII"""
         for invoice in self:
             if invoice.company_id.sii_enabled and invoice.is_invoice():
                 invoice.sii_enabled = (
-                    invoice.fiscal_position_id and invoice.fiscal_position_id.sii_active
+                    invoice.fiscal_position_id
+                    and invoice.fiscal_position_id.aeat_active
                 ) or not invoice.fiscal_position_id
             else:
                 invoice.sii_enabled = False
@@ -807,7 +795,7 @@ class AccountMove(models.Model):
         # OVERRIDE
         if not default_values_list:
             default_values_list = [{} for move in self]
-        for move, default_values in zip(self, default_values_list):
+        for move, default_values in zip(self, default_values_list, strict=False):
             if move.sii_enabled:
                 extra_dict = {}
                 sii_refund_type = self.env.context.get("sii_refund_type", False)
@@ -828,3 +816,46 @@ class AccountMove(models.Model):
 
     def cancel_one_invoice(self):
         self.sudo()._cancel_invoice_to_sii()
+
+    @api.model
+    def _send_to_sii(self):
+        documents = all_documents = self.search(
+            [
+                ("state", "in", self._get_valid_document_states()),
+                (
+                    "aeat_state",
+                    "not in",
+                    ["sent", "cancelled"],
+                ),
+                ("sii_send_date", "<=", fields.Datetime.now()),
+            ]
+        )
+        if documents:
+            cron_trigger_obj = self.env["ir.cron.trigger"].sudo()
+            sii_send_cron = self.env.ref("l10n_es_aeat_sii_oca.invoice_send_to_sii")
+            remaining_documents = False
+            batch = (
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param("l10n_es_aeat_sii_oca.sii_batch")
+            )
+            if batch:
+                try:
+                    batch = int(batch)
+                except ValueError as e:
+                    raise exceptions.UserError(
+                        _(
+                            "The value in l10n_es_aeat_sii_oca.sii_batch system"
+                            " parameter must be an integer. Please, check the "
+                            "value of the parameter."
+                        )
+                    ) from e
+            if batch:
+                documents = all_documents[:batch]
+                remaining_documents = all_documents - documents
+            documents.confirm_one_document()
+            for document in remaining_documents:
+                trigger = cron_trigger_obj.create(
+                    {"cron_id": sii_send_cron.id, "call_at": datetime.now()}
+                )
+                document.sudo().invoice_cron_trigger_ids |= trigger
