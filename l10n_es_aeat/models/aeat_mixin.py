@@ -157,7 +157,7 @@ class AeatMixin(models.AbstractModel):
         is_simplified_invoice = self._is_aeat_simplified_invoice()
         if country_code == "ES" and not partner.vat and not is_simplified_invoice:
             raise UserError(_("The partner has not a VAT configured."))
-        if not self.company_id.chart_template_id:
+        if not self.company_id.chart_template:
             raise UserError(
                 _("You have to select what account chart template use this" " company.")
             )
