@@ -8,7 +8,7 @@
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "category": "Tools",
-    "version": "16.0.1.3.0",
+    "version": "16.0.1.0.0",
     "depends": ["account"],
     "data": [
         "data/ecoembes.market.type.csv",
