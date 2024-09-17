@@ -21,7 +21,7 @@
                         </group>
                     </group>
                     <group string="Compositions" name="ecoembes_compositions">
-                        <field name="composition_ids" nolabel="1">
+                        <field name="composition_ids" nolabel="1" colspan="2">
                             <tree editable="bottom">
                                 <field name="order" widget="handle" />
                                 <field name="material_id" />

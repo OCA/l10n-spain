@@ -100,7 +100,7 @@ class EcoembesSigReportWizard(models.TransientModel):
             x += 1
         excel_temp = BytesIO()
         w.save(excel_temp)
-        out = base64.encodestring(excel_temp.getvalue())
+        out = base64.encodebytes(excel_temp.getvalue())
         excel_temp.close()
         self.write(
             {"datas": out, "name": _("SIG-%s.xls") % (datetime.now()), "state": "end"}
