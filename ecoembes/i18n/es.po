@@ -25,7 +25,7 @@ msgstr "<strong>Inscripción Ecoembes:</strong>"
 #. module: ecoembes
 #: model_terms:ir.ui.view,arch_db:ecoembes.external_layout_standard_ecoembes
 msgid "<strong>Ecoembes Partner Member:</strong>"
-msgstr ""
+msgstr "<strong>Miembro asociado de Ecoembes:</strong>"
 
 #. module: ecoembes
 #: model:ir.model.fields,field_description:ecoembes.field_ecoembes_market_type__reference
@@ -145,7 +145,7 @@ msgstr ""
 #. module: ecoembes
 #: model:ir.model.fields,field_description:ecoembes.field_res_company__ecoembes_inscription
 msgid "Ecoembes Inscription"
-msgstr ""
+msgstr "Inscripción Ecoembes"
 
 #. module: ecoembes
 #: model:res.groups,name:ecoembes.group_ecoembes_manager
@@ -155,13 +155,13 @@ msgstr "Gestor Ecoembes"
 #. module: ecoembes
 #: model:ir.model.fields,field_description:ecoembes.field_res_company__ecoembes_partner_member
 msgid "Ecoembes Partner Member"
-msgstr ""
+msgstr "Miembro asociado de Ecoembes"
 
 #. module: ecoembes
 #: model:ir.actions.act_window,name:ecoembes.action_ecoembes_sig_report_wizard
 #: model_terms:ir.ui.view,arch_db:ecoembes.ecoembes_sig_report_wizard_form
 msgid "Ecoembes Sig Report"
-msgstr ""
+msgstr "Informe SIG Ecoembes"
 
 #. module: ecoembes
 #: model:ir.model,name:ecoembes.model_ecoembes_sig_report_wizard
@@ -171,7 +171,7 @@ msgstr ""
 #. module: ecoembes
 #: model:ir.actions.act_window,name:ecoembes.action_ecoembes_packaging
 msgid "Ecoembes packaging"
-msgstr ""
+msgstr "Embalaje Ecoembes"
 
 #. module: ecoembes
 #: code:addons/ecoembes/wizard/ecoembes_sig_report_wizard.py:0
