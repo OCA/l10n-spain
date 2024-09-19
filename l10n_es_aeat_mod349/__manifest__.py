@@ -9,7 +9,7 @@
 
 {
     "name": "AEAT modelo 349",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.0.1",
     "author": "Tecnativa, ForgeFlow, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Localisation/Accounting",
