@@ -129,7 +129,6 @@ msgstr "FACe"
 
 #. module: l10n_es_facturae_face
 #: model:ir.actions.server,name:l10n_es_facturae_face.update_face_job_ir_actions_server
-#: model:ir.cron,cron_name:l10n_es_facturae_face.update_face_job
 msgid "FACe update Job"
 msgstr "Actualizar estados FACe"
 
@@ -200,11 +199,6 @@ msgstr "Email de Facturae inválido"
 #: model:ir.model,name:l10n_es_facturae_face.model_account_move
 msgid "Journal Entry"
 msgstr "Asiento contable"
-
-#. module: l10n_es_facturae_face
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel__write_uid
@@ -284,3 +278,6 @@ msgstr ""
 #, python-format
 msgid "Vat must be defined in order to send to FACe"
 msgstr "El identificador fiscal debe estar definido para poder enviar por FACe"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
