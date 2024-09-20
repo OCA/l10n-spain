@@ -128,7 +128,6 @@ msgstr "FACe"
 
 #. module: l10n_es_facturae_face
 #: model:ir.actions.server,name:l10n_es_facturae_face.update_face_job_ir_actions_server
-#: model:ir.cron,cron_name:l10n_es_facturae_face.update_face_job
 msgid "FACe update Job"
 msgstr "Actualitzar tasca FACe"
 
@@ -199,11 +198,6 @@ msgstr "Email Facturae no vàlid"
 #: model:ir.model,name:l10n_es_facturae_face.model_account_move
 msgid "Journal Entry"
 msgstr "Apunt comptable"
-
-#. module: l10n_es_facturae_face
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel____last_update
-msgid "Last Modified on"
-msgstr "Darrera modificació el"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel__write_uid
@@ -281,6 +275,9 @@ msgstr "Cal definir la província d'Espanya per a enviar a FACe"
 #, python-format
 msgid "Vat must be defined in order to send to FACe"
 msgstr "Cal definir el NIF per a enviar per FACe"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Darrera modificació el"
 
 #~ msgid "Protocol"
 #~ msgstr "Protocol"
