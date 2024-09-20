@@ -224,25 +224,12 @@ class Mod349(models.Model):
             if original_details:
                 # There's at least one previous 349 declaration report
                 report = original_details.mapped("report_id")[:1]
-                partner_id = original_details.mapped("partner_id")[:1]
                 original_details = original_details.filtered(
                     lambda d: d.report_id == report
                 )
                 origin_amount = sum(original_details.mapped("amount_untaxed"))
                 period_type = report.period_type
                 year = str(report.year)
-
-                # Sum all details period origin
-                all_details_period = detail_obj.search(
-                    [
-                        ("partner_id", "=", partner_id.id),
-                        ("partner_record_id.operation_key", "=", op_key),
-                        ("report_id", "=", report.id),
-                    ],
-                    order="report_id desc",
-                )
-                origin_amount = sum(all_details_period.mapped("amount_untaxed"))
-
                 # If there are intermediate periods between the original
                 # period and the period where the rectification is taking
                 # place, it's necessary to check if there is any rectification
@@ -261,7 +248,6 @@ class Mod349(models.Model):
                 )
                 if last_refund_detail:
                     origin_amount = last_refund_detail.refund_id.total_operation_amount
-
             else:
                 # There's no previous 349 declaration report in Odoo
                 original_amls = move_line_obj.search(
