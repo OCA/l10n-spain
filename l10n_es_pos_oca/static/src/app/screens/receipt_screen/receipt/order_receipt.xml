@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t
+        t-name="OrderReceipt"
+        t-inherit="point_of_sale.OrderReceipt"
+        t-inherit-mode="extension"
+    >
+        <xpath expr="//div[@t-if='props.data.pos_qr_code']" position="attributes">
+            <attribute
+                name="t-if"
+            >props.data.pos_qr_code and (!props.data.is_simplified_config or props.data.is_to_invoice)</attribute>
+        </xpath>
+        <xpath expr="//div[@t-if='props.data.ticket_code']" position="attributes">
+            <attribute
+                name="t-if"
+            >props.data.ticket_code and (!props.data.is_simplified_config or props.data.is_to_invoice)</attribute>
+        </xpath>
+    </t>
+</templates>
