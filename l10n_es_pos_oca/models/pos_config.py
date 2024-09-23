@@ -31,7 +31,6 @@ class PosConfig(models.Model):
         string="Simplified Invoice IDs Sequence",
         help="Autogenerate for each POS created",
         copy=False,
-        readonly=True,
     )
     l10n_es_simplified_invoice_limit = fields.Float(
         string="Sim.Inv limit amount",
@@ -42,24 +41,30 @@ class PosConfig(models.Model):
     )
     l10n_es_simplified_invoice_prefix = fields.Char(
         "Simplified Invoice prefix",
-        readonly=True,
         compute="_compute_simplified_invoice_sequence",
     )
     l10n_es_simplified_invoice_padding = fields.Integer(
         "Simplified Invoice padding",
-        readonly=True,
         compute="_compute_simplified_invoice_sequence",
     )
     l10n_es_simplified_invoice_number = fields.Integer(
         "Sim.Inv number",
-        readonly=True,
         compute="_compute_simplified_invoice_sequence",
+    )
+    simplified_partner_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="Simplified invoice partner",
+        compute="_compute_simplified_partner_id",
     )
 
     @api.depends("iface_l10n_es_simplified_invoice")
     def _compute_simplified_config(self):
         for pos in self:
             pos.is_simplified_config = pos.iface_l10n_es_simplified_invoice
+
+    def _compute_simplified_partner_id(self):
+        for config in self:
+            config.simplified_partner_id = self.env.ref("l10n_es.partner_simplified").id
 
     @api.model_create_multi
     def create(self, vals_list):

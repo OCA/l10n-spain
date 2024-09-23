@@ -1,12 +1,9 @@
 # Copyright 2018 David Vidal <david.vidal@tecnativa.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import SUPERUSER_ID, api
 
-
-def post_init_hook(cr, registry, vals=None):
+def post_init_hook(env, vals=None):
     """For brand new installations"""
-    env = api.Environment(cr, SUPERUSER_ID, {})
     IrSequence = env["ir.sequence"]
     pos_config = env["pos.config"].search(
         [("l10n_es_simplified_invoice_sequence_id", "=", False)]
@@ -47,6 +44,5 @@ def post_init_hook(cr, registry, vals=None):
         )
 
 
-def uninstall_hook(cr, registry):
-    env = api.Environment(cr, SUPERUSER_ID, {})
+def uninstall_hook(env):
     env["ir.sequence"].search([("code", "=", "pos.config.simplified_invoice")]).unlink()
