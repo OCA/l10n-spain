@@ -16,3 +16,5 @@
   - Manuel Regidor
 - [Factor Libre](https://factorlibre.com/):
   - Daniel Duque \<<daniel.duque@factorlibre.com>\>
+- [APSL-Nagarro](https://www.apsl.tech):
+  - Antoni Marroig \<<amarroig@apsl.net>\>

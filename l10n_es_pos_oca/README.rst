@@ -137,6 +137,10 @@ Contributors
 
    -  Daniel Duque <daniel.duque@factorlibre.com>
 
+-  `APSL-Nagarro <https://www.apsl.tech>`__:
+
+   -  Antoni Marroig <amarroig@apsl.net>
+
 Maintainers
 -----------
 
