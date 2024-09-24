@@ -101,6 +101,10 @@ class DeliveryCarrier(models.Model):
         """The payload isn't compatible with the legacy API so a brand new method
         has to be made"""
         partner = picking.partner_id
+        partner_country_code = partner.country_id.code or ""
+        # SEUR oddity: Andorra is treated as domestic delivery
+        if partner_country_code == "AD":
+            partner_country_code = "ES"
         partner_name = partner.display_name
         # When we get a specific delivery address we want to prioritize its
         # name over the commercial one
@@ -134,7 +138,7 @@ class DeliveryCarrier(models.Model):
                     ),
                     "cityName": partner.city,
                     "postalCode": partner.zip,
-                    "country": (partner.country_id and partner.country_id.code or ""),
+                    "country": partner_country_code,
                 },
             },
             "sender": {
