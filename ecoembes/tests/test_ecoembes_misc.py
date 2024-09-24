@@ -12,10 +12,37 @@ class TestEcoembesMisc(TestEcoembesBase):
     def setUpClass(cls):
         super().setUpClass()
         cls.ecoembes_market_type = cls.env["ecoembes.market.type"]
+        cls.ecoembes_submaterial = cls.env["ecoembes.submaterial"]
+        cls.ecoembes_composition = cls.env["product.composition"]
         cls.ecoembes_material_01 = cls.env.ref("ecoembes.ecoembes_material_01")
         cls.product = cls.env["product.product"].create(
             {"name": "Test Product", "default_code": "ECOEMBES"}
         )
+
+    def test_ecoembes_composition_name_get(self):
+        record = self.ecoembes_composition.create(
+            {
+                "product_id": self.product.id,
+                "material_id": self.ecoembes_material_01.id,
+                "submaterial_id": self.env.ref("ecoembes.ecoembes_material_07").id,
+                "packaging_id": self.env.ref("ecoembes.ecoembes_packaging_101").id,
+                "market_type_id": self.env.ref("ecoembes.ecoembes_market_type_c").id,
+            }
+        )
+        self.assertEqual(
+            record.name_get(),
+            [(record.id, "[ECOEMBES]CERAMICA")],
+        )
+
+    def test_ecoembes_submaterial_name_get(self):
+        items = self.ecoembes_submaterial.name_search(name="41")
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0][1], "METALES - ALUMINIO")
+        items = self.ecoembes_submaterial.name_search(
+            name="HDPE Flexible", operator="="
+        )
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0][1], "PLASTICOS - HDPE Flexible")
 
     def test_ecoembes_market_type_name_get(self):
         items = self.ecoembes_market_type.name_search(name="C")
