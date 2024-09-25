@@ -71,7 +71,7 @@ class PosConfig(models.Model):
             ith = 0
             while self.env["ir.sequence"].search_count([("prefix", "=", prefix)]):
                 ith += 1
-                prefix = "{}_{}".format(initial_prefix, ith)
+                prefix = f"{initial_prefix}_{ith}"
             simp_inv_seq_id = self.env["ir.sequence"].create(
                 {
                     "name": _("Simplified Invoice %s") % vals["name"],

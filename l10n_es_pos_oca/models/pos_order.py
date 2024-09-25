@@ -26,7 +26,7 @@ class PosOrder(models.Model):
 
     @api.model
     def _order_fields(self, ui_order):
-        res = super(PosOrder, self)._order_fields(ui_order)
+        res = super()._order_fields(ui_order)
         if ui_order.get("l10n_es_unique_id", False):
             res.update(
                 {

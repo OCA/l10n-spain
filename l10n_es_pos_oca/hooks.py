@@ -29,7 +29,7 @@ def post_init_hook(cr, registry, vals=None):
             ith = 0
             while IrSequence.search_count([("prefix", "=", pos_vals["prefix"])]):
                 ith += 1
-                pos_vals["prefix"] = "{}_{}".format(initial_prefix, ith)
+                pos_vals["prefix"] = f"{initial_prefix}_{ith}"
         pos.l10n_es_simplified_invoice_sequence_id = IrSequence.create(
             {
                 "name": (
@@ -37,7 +37,7 @@ def post_init_hook(cr, registry, vals=None):
                     % pos_name
                 ),
                 "prefix": pos_vals.get(
-                    "prefix", "{}{}".format(pos_name, pos._get_default_prefix())
+                    "prefix", f"{pos_name}{pos._get_default_prefix()}"
                 ),
                 "padding": pos_vals.get("padding", pos._get_default_padding()),
                 "implementation": pos_vals.get("implementation", "standard"),
