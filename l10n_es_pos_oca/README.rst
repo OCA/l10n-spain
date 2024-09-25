@@ -17,25 +17,26 @@ Punto de venta adaptado a la legislación española
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_pos
+    :target: https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_pos_oca
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-16-0/l10n-spain-16-0-l10n_es_pos
+    :target: https://translation.odoo-community.org/projects/l10n-spain-17-0/l10n-spain-17-0-l10n_es_pos_oca
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-* Adapta el terminal punto de venta a la legislación Española (no se permite la
-  emisión de tiquets, todo deben ser facturas o facturas simplificadas con
-  numeración)
-* Adapta el ticket de venta a la factura simplificada, añadiendo una secuencia
-  correlativa y el NIF del emisor.
-* Incluye los datos del cliente (nombre, NIF y dirección) si hay uno asignado.
-* Chequea que no se realice una factura simplificada con valor
-  superior a 3.000 euros (la cantidad es configurable por TPV).
+-  Adapta el terminal punto de venta a la legislación Española (no se
+   permite la emisión de tiquets, todo deben ser facturas o facturas
+   simplificadas con numeración)
+-  Adapta el ticket de venta a la factura simplificada, añadiendo una
+   secuencia correlativa y el NIF del emisor.
+-  Incluye los datos del cliente (nombre, NIF y dirección) si hay uno
+   asignado.
+-  Chequea que no se realice una factura simplificada con valor superior
+   a 3.000 euros (la cantidad es configurable por TPV).
 
 **Table of contents**
 
@@ -45,40 +46,43 @@ Punto de venta adaptado a la legislación española
 Installation
 ============
 
-Antes de instalar el módulo, podemos definir el relleno y el prefijo automático
-en *Configuración > Parámetros del sistema*:
+Antes de instalar el módulo, podemos definir el relleno y el prefijo
+automático en *Configuración > Parámetros del sistema*:
 
-- `l10n_es_pos.simplified_invoice_sequence.padding` (o 4 cifras por defecto)
-- `l10n_es_pos.simplified_invoice_sequence.prefix` (nombre del TPV más este
-  valor)
+-  l10n_es_pos.simplified_invoice_sequence.padding (o 4 cifras por
+   defecto)
+-  l10n_es_pos.simplified_invoice_sequence.prefix (nombre del TPV más
+   este valor)
 
-Al instalarse el módulo, se define una secuencia para factura simplificada por
-cada TPV existente.
+Al instalarse el módulo, se define una secuencia para factura
+simplificada por cada TPV existente.
 
 Configuration
 =============
 
-Para activar la factura simplificada en un TPV, iremos a
-*Punto de Venta > Configuración > Punto de Venta* y escogeremos uno de la
-lista. En la sección *Facturación y recibos* activaremos la opción
-*Secuencia de Factura Simplificada*. Podemos configurar el límite a partir del
-cual no se considera factura simplificada, que por defecto es 3.000,00 €.
+Para activar la factura simplificada en un TPV, iremos a *Punto de Venta
+> Configuración > Punto de Venta* y escogeremos uno de la lista. En la
+sección *Facturación y recibos* activaremos la opción *Secuencia de
+Factura Simplificada*. Podemos configurar el límite a partir del cual no
+se considera factura simplificada, que por defecto es 3.000,00 €.
 
 Si entramos en la configuración del TPV en modo debug, podremos también
 configurar la sequencia asociada al TPV.
 
-`Ver enlace de la AEAT <https://www.agenciatributaria.es/AEAT.internet/Inicio/_Segmentos_/Empresas_y_profesionales/Empresas/IVA/Obligaciones_de_facturacion/Tipos_de_factura.shtml>`_
+`Ver enlace de la
+AEAT <https://www.agenciatributaria.es/AEAT.internet/Inicio/_Segmentos_/Empresas_y_profesionales/Empresas/IVA/Obligaciones_de_facturacion/Tipos_de_factura.shtml>`__
 
 Known issues / Roadmap
 ======================
 
-* No se comprueba el límite en operaciones separadas para un mismo cliente, algo
-  que Hacienda proscribe.
-* El soporte para usuarios concurrentes sobre una misma sesión es limitado y solo es
-  fiable si ambos puestos están online. En el caso de que cualquiera de ellos estuviese
-  offline, se correría el riesgo de solapar la secuencia de factura simplificada. Se
-  recomienda que en estos casos se añada mejor una configuración de punto de venta
-  adicional.
+-  No se comprueba el límite en operaciones separadas para un mismo
+   cliente, algo que Hacienda proscribe.
+-  El soporte para usuarios concurrentes sobre una misma sesión es
+   limitado y solo es fiable si ambos puestos están online. En el caso
+   de que cualquiera de ellos estuviese offline, se correría el riesgo
+   de solapar la secuencia de factura simplificada. Se recomienda que en
+   estos casos se añada mejor una configuración de punto de venta
+   adicional.
 
 Bug Tracker
 ===========
@@ -86,7 +90,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_pos%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_pos_oca%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -94,47 +98,47 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 * Aselcis Consulting
 * Acysos S.L.
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Antiun <https://www.antiun.com>`_:
+-  `Antiun <https://www.antiun.com>`__:
 
-  * Endika Iglesias <endikaig@antiun.com>
+   -  Endika Iglesias <endikaig@antiun.com>
 
-* `Aselcis <https://www.aselcis.com>`_:
+-  `Aselcis <https://www.aselcis.com>`__:
 
-  * David Gómez <david.gomez@aselcis.com>
-  * Miguel Paraíso <miguel.paraiso@aselcis.com>
+   -  David Gómez <david.gomez@aselcis.com>
+   -  Miguel Paraíso <miguel.paraiso@aselcis.com>
 
-* `Acysos <https://www.acysos.com>`_:
+-  `Acysos <https://www.acysos.com>`__:
 
-  * Ignacio Ibeas <ignacio@acysos.com>
+   -  Ignacio Ibeas <ignacio@acysos.com>
 
-* `Tecnativa <https://www.tecnativa.com>`_:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  * David Vidal
-  * Pedro M. Baeza
-  * Antonio Espinosa
-  * Rafael Blasco
-  * Carlos Roca
-  * João Marques
+   -  David Vidal
+   -  Pedro M. Baeza
+   -  Antonio Espinosa
+   -  Rafael Blasco
+   -  Carlos Roca
+   -  João Marques
 
-* `Sygel <https://www.sygel.es>`_:
+-  `Sygel <https://www.sygel.es>`__:
 
-  * Manuel Regidor
+   -  Manuel Regidor
 
-* `Factor Libre <https://factorlibre.com/>`_:
+-  `Factor Libre <https://factorlibre.com/>`__:
 
-  * Daniel Duque <daniel.duque@factorlibre.com>
+   -  Daniel Duque <daniel.duque@factorlibre.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -146,6 +150,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_pos>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_pos_oca>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
