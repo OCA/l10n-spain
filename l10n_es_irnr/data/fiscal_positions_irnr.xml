@@ -10,4 +10,15 @@
         <field name="name">Retención IRPF No residentes UE 19%</field>
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
     </record>
+    <record id="fp_irpfnrue0" model="account.fiscal.position.template">
+        <field name="name">Retención IRPF No residentes UE exento por convenio</field>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+    </record>
+
+    <record id="fp_irpfnrnue0" model="account.fiscal.position.template">
+        <field
+            name="name"
+        >Retención IRPF No residentes no-UE exento por convenio</field>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+    </record>
 </odoo>
