@@ -19,6 +19,7 @@
                             <group name="ticketbai" colspan="2" col="2">
                                 <field name="tbai_enabled" invisible="1"/>
                                 <field name="tbai_send_invoice" invisible="1"/>
+                                <field name="tbai_invoice_issuer" invisible="1"/>
                                 <field name="tbai_invoice_id" readonly="1" options="{'no_create':True}"
                                        attrs="{'invisible': [('tbai_invoice_id', '=', False)]}"/>
                                 <field name="tbai_cancellation_id" readonly="1" options="{'no_create':True}"
