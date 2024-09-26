@@ -558,6 +558,11 @@ msgid "Model"
 msgstr "Modelo"
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__res_company__sii_period__monthly
+msgid "Monthly"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_mapping_registration_keys__name
 msgid "Name"
@@ -615,6 +620,11 @@ msgstr "Plantilla de producto"
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__aeat_sii_mapping_registration_keys__type__purchase
 msgid "Purchase"
 msgstr "Compras"
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__res_company__sii_period__quarterly
+msgid "Quarterly"
+msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model,name:l10n_es_aeat_sii_oca.model_queue_job
@@ -906,6 +916,11 @@ msgstr "Hora de envío"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_users__sii_enabled
 msgid "Sii Enabled"
 msgstr "SII habilitado"
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_period
+msgid "Sii Period"
+msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_refund_specific_invoice_type
