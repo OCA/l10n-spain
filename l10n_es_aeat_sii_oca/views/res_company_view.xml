@@ -13,7 +13,7 @@
                     <group name="sii_enabled">
                         <field name="sii_enabled" />
                     </group>
-                    <group attrs="{'invisible': [('sii_enabled', '=', False)]}">
+                    <group invisible="not sii_enabled">
                         <group name="sii_config">
                             <field name="sii_test" />
                             <field name="sii_method" />
@@ -23,26 +23,23 @@
                             <field name="sii_description_method" />
                             <field
                                 name="sii_description"
-                                attrs="{'invisible': [('sii_description_method', '!=', 'fixed')]}"
+                                invisible="sii_description_method != 'fixed'"
                             />
                             <field name="sii_header_customer" />
                             <field name="sii_header_supplier" />
                         </group>
-                        <group name="sii_connector" string="Connector config">
-                            <field name="use_connector" />
-                            <field
-                                name="send_mode"
-                                attrs="{'invisible': [('use_connector', '=', False)]}"
-                            />
+                        <group name="use_cron" string="Connector config">
+                            <field name="use_cron" />
+                            <field name="send_mode" invisible="not use_cron" />
                             <field
                                 name='sent_time'
                                 widget='float_time'
-                                attrs="{'invisible': ['|', ('use_connector', '=', False), ('send_mode', '!=', 'fixed')]}"
+                                invisible="not use_cron or send_mode != 'fixed'"
                             />
                             <field
                                 name='delay_time'
                                 widget='float_time'
-                                attrs="{'invisible': ['|', ('use_connector', '=', False), ('send_mode', '!=', 'delayed')]}"
+                                invisible="not use_cron or send_mode != 'delayed'"
                             />
                         </group>
                     </group>

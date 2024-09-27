@@ -14,11 +14,12 @@
 # Copyright 2023 Aures Tic - Jose Zambudio <jose@aurestic.es>
 # Copyright 2023 Pol Reig <pol.reig@qubiq.es>
 # Copyright 2017-2024 Tecnativa - Pedro M. Baeza
+# Copyright 2024 Manuel Regidor <manuel.regidor@sygel.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Suministro Inmediato de Información en el IVA",
-    "version": "16.0.2.0.0",
+    "version": "17.0.1.0.0",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Acysos S.L.,"
@@ -30,6 +31,7 @@
     "Otherway,"
     "Tecnativa,"
     "Javi Melendez,"
+    "Sygel,"
     "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
@@ -39,12 +41,11 @@
     "external_dependencies": {"python": ["zeep", "requests"]},
     "depends": [
         "account_invoice_refund_link",
-        "l10n_es",
         "l10n_es_aeat",
-        "queue_job",
     ],
     "data": [
-        "data/aeat_sii_queue_job.xml",
+        "data/ir_config_parameter_data.xml",
+        "data/ir_cron.xml",
         "data/aeat_sii_tax_agency_data.xml",
         "views/res_company_view.xml",
         "views/account_move_views.xml",
@@ -53,11 +54,12 @@
         "views/aeat_sii_mapping_registration_keys_view.xml",
         "data/aeat_sii_mapping_registration_keys_data.xml",
         "views/aeat_sii_map_view.xml",
+        "data/l10n.es.aeat.map.tax.line.tax.csv",
         "data/aeat_sii_map_data.xml",
         "security/ir.model.access.csv",
         "security/aeat_sii.xml",
         "views/product_view.xml",
-        "views/queue_job_views.xml",
+        "views/ir_cron_trigger_views.xml",
         "views/account_fiscal_position_view.xml",
         "views/res_partner_views.xml",
         "views/aeat_tax_agency_view.xml",

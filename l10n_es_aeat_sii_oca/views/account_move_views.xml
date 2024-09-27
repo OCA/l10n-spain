@@ -12,13 +12,12 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='thirdparty_invoice']" position="attributes">
                 <attribute
-                    name="attrs"
-                >{'invisible': [('move_type', 'not in', ('in_invoice', 'out_invoice', 'out_refund', 'in_refund'))]}</attribute>
+                    name="invisible"
+                >move_type not in ['in_invoice', 'out_invoice', 'out_refund', 'in_refund']</attribute>
             </xpath>
             <xpath expr="//field[@name='thirdparty_number']" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'required': [('thirdparty_invoice', '=', True)], 'invisible': [('thirdparty_invoice', '=', False)]}</attribute>
+                <attribute name="required">thirdparty_invoice</attribute>
+                <attribute name="invisible">not thirdparty_invoice</attribute>
             </xpath>
             <button name="button_draft" position="after">
                 <button
@@ -26,46 +25,41 @@
                     string="Send to SII"
                     name="send_sii"
                     groups="l10n_es_aeat.group_account_aeat"
-                    attrs="{'invisible': ['|','|',('sii_enabled', '=', False), ('state', 'not in', ['posted']), ('aeat_state','in',['sent','cancelled'])]}"
+                    invisible="not sii_enabled or state not in ['posted'] or aeat_state in ['sent','cancelled']"
                 />
                 <button
                     type="object"
                     string="Send cancellation to SII"
                     name="cancel_sii"
                     groups="l10n_es_aeat.group_account_aeat"
-                    attrs="{'invisible': ['|','|',('sii_enabled', '=', False), ('state', 'not in', ['cancel']), ('aeat_state', 'not in', ['sent','sent_w_errors','sent_modified'])]}"
+                    invisible="not sii_enabled or state not in ['cancel'] or aeat_state not in ['sent','sent_w_errors','sent_modified']"
                 />
             </button>
             <notebook position="inside">
-                <page
-                    string="SII"
-                    name="page_sii"
-                    attrs="{'invisible': [('sii_enabled', '=', False)]}"
-                >
+                <page string="SII" name="page_sii" invisible="not sii_enabled">
                     <group string="SII Information" name="group_sii_information">
-                        <field
-                            name="sii_description"
-                            attrs="{'required': [('sii_enabled', '=', True)]}"
-                        />
+                        <field name="sii_description" required="sii_enabled" />
                         <field name="thirdparty_invoice" />
                         <field
                             name="thirdparty_number"
-                            attrs="{'required': [('thirdparty_invoice', '=', True)], 'invisible': [('thirdparty_invoice', '=', False)]}"
+                            required="thirdparty_invoice"
+                            invisible="not thirdparty_invoice"
                         />
                         <field
                             name="sii_refund_type"
-                            attrs="{'required': [('sii_enabled', '=', True),('move_type', 'in', ('out_refund','in_refund'))], 'invisible': [('move_type', 'not in', ('out_refund','in_refund'))]}"
+                            required="sii_enabled and move_type in ['out_refund','in_refund']"
+                            invisible="move_type not in ['out_refund','in_refund']"
                         />
                         <field
                             name="sii_refund_specific_invoice_type"
-                            attrs="{'invisible': [('move_type', '!=', 'out_refund')]}"
+                            invisible="move_type != 'out_refund'"
                         />
                         <field name="sii_registration_key_domain" invisible="1" />
                         <field
                             name="sii_registration_key"
                             groups="account.group_account_invoice"
                             domain="[('type', '=', sii_registration_key_domain)]"
-                            attrs="{'required': [('sii_enabled', '=', True)]}"
+                            required="sii_enabled"
                             widget="selection"
                         />
                         <field
@@ -90,33 +84,14 @@
                         <field
                             name="sii_property_location"
                             groups="account.group_account_invoice"
-                            attrs="{
-                                'invisible': [
-                                    '|',
-                                    ('sii_registration_key_code', 'not in', ['12', '13']),
-                                    ('move_type', 'not in', ['out_invoice', 'out_refund']),
-                                ],
-                                'required': [
-                                    ('sii_registration_key_code', 'in', ['12', '13']),
-                                    ('move_type', 'in', ['out_invoice', 'out_refund']),
-                                ],
-                            }"
+                            invisible="sii_registration_key_code not in ['12', '13'] or move_type not in ['out_invoice', 'out_refund']"
+                            required="sii_registration_key_code in ['12', '13'] and move_type in ['out_invoice', 'out_refund']"
                         />
                         <field
                             name="sii_property_cadastrial_code"
                             groups="account.group_account_invoice"
-                            attrs="{
-                                'invisible': [
-                                    '|',
-                                    ('sii_registration_key_code', 'not in', ['12', '13']),
-                                    ('move_type', 'not in', ['out_invoice', 'out_refund']),
-                                ],
-                                'required': [
-                                    ('sii_registration_key_code', 'in', ['12', '13']),
-                                    ('sii_property_location', 'in', ['1', '2']),
-                                    ('move_type', 'in', ['out_invoice', 'out_refund']),
-                                ],
-                            }"
+                            invisible="sii_registration_key_code not in ['12', '13'] or move_type not in ['out_invoice', 'out_refund']"
+                            required="sii_registration_key_code in ['12', '13'] and sii_property_location in ['1', '2'] and move_type in ['out_invoice', 'out_refund']"
                         />
                     </group>
                     <group
@@ -130,15 +105,15 @@
                                     <field name="aeat_state" />
                                     <field
                                         name="sii_account_registration_date"
-                                        attrs="{'invisible': ['|',('sii_account_registration_date', '=', False),('move_type', 'not in', ['in_invoice', 'in_refund'])]}"
+                                        invisible="not sii_account_registration_date or move_type not in ['in_invoice', 'in_refund']"
                                     />
                                     <field
                                         name="aeat_send_failed"
-                                        attrs="{'invisible': [('aeat_send_failed', '=', False)]}"
+                                        invisible="not aeat_send_failed"
                                     />
                                     <field
                                         name="aeat_send_error"
-                                        attrs="{'invisible': [('aeat_send_failed', '=', False)]}"
+                                        invisible="not aeat_send_failed"
                                     />
                                     <field name="sii_csv" />
                                 </group>
@@ -174,18 +149,18 @@
         <field name="arch" type="xml">
             <group name="group_sii_result" position="after">
                 <group
-                    string="Connector Jobs"
-                    name="group_sii_jobs"
+                    string="Cron Triggers"
+                    name="group_sii_triggers"
                     groups="l10n_es_aeat.group_account_aeat"
                     cols="4"
                 >
                     <field
-                        name="invoice_jobs_ids"
+                        name="invoice_cron_trigger_ids"
                         options="{'reload_on_button': true}"
                         nolabel="1"
                         colspan="2"
                         readonly="1"
-                        context="{'tree_view_ref': 'l10n_es_aeat_sii_oca.view_queue_job_sii'}"
+                        context="{'tree_view_ref': 'l10n_es_aeat_sii_oca.view_cron_trigger_sii'}"
                     />
                 </group>
             </group>

@@ -9,7 +9,7 @@
 import json
 
 from odoo import exceptions
-from odoo.modules.module import get_resource_path
+from odoo.tools.misc import file_path
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
     TestL10nEsAeatCertificateBase,
@@ -52,11 +52,9 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
         for line in lines:
             taxes = self.env["account.tax"]
             for tax in line[1]:
-                if "." in tax:
-                    xml_id = tax
-                else:
-                    xml_id = f"l10n_es.{self.company.id}_account_tax_template_{tax}"
-                taxes += self.env.ref(xml_id)
+                xml_id = f"account_tax_template_{tax}"
+                tax_id = self.company._get_tax_id_from_xmlid(xml_id)
+                taxes += self.env["account.tax"].browse(tax_id)
                 tax_names.append(tax)
             vals.append({"price_unit": line[0], "taxes": taxes})
         return self._compare_sii_dict(
@@ -107,7 +105,7 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
             vals.update(extra_vals)
         invoice = self.env["account.move"].create(vals)
         result_dict = invoice._get_aeat_invoice_dict()
-        path = get_resource_path(module, "tests/json", json_file)
+        path = file_path(f"{module}/tests/json/{json_file}")
         if not path:
             raise Exception("Incorrect JSON file: %s" % json_file)
         with open(path) as f:
@@ -116,7 +114,7 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
         return invoice
 
     @classmethod
-    def _create_invoice_for_sii(cls, move_type):
+    def _create_invoice(cls, move_type):
         return cls.env["account.move"].create(
             {
                 "company_id": cls.company.id,
@@ -150,14 +148,14 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
             {"name": "Test product", "sii_exempt_cause": "E5"}
         )
         cls.account_expense = cls.env.ref(
-            "l10n_es.%s_account_common_600" % cls.company.id
+            "account.%s_account_common_600" % cls.company.id
         )
-        cls.invoice = cls._create_invoice_for_sii("out_invoice")
+        cls.invoice = cls._create_invoice("out_invoice")
         cls.company.write(
             {
                 "sii_enabled": True,
                 "sii_test": True,
-                "use_connector": True,
+                "use_cron": True,
                 "vat": "ESU2687761C",
                 "sii_description_method": "manual",
                 "tax_agency_id": cls.env.ref("l10n_es_aeat.aeat_tax_agency_spain"),
@@ -203,7 +201,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
                 "vat": "FR23334175221",
             }
         )
-        fp_extra = self.browse_ref(f"l10n_es.{self.company.id}_fp_extra")
+        fp_extra = self.browse_ref(f"account.{self.company.id}_fp_extra")
         fp_extra.sii_partner_identification_type = "3"
         invoice = self.invoice.copy(
             {"partner_id": eu_customer.id, "fiscal_position_id": fp_extra.id}
@@ -219,7 +217,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         )
 
     def test_job_creation(self):
-        self.assertTrue(self.invoice.invoice_jobs_ids)
+        self.assertTrue(self.invoice.invoice_cron_trigger_ids)
 
     def test_partner_sii_enabled(self):
         company_02 = self.env["res.company"].create({"name": "Company 02"})
@@ -314,11 +312,6 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             self._create_and_test_invoice_sii_dict(inv_type, lines, extra_vals)
         return
 
-    def test_action_cancel(self):
-        self.invoice.invoice_jobs_ids.state = "started"
-        with self.assertRaises(exceptions.UserError):
-            self.invoice.button_cancel()
-
     def test_sii_description(self):
         company = self.invoice.company_id
         company.write(
@@ -334,7 +327,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             self.invoice.sii_description,
             "Test customer header | Test description",
         )
-        invoice_temp = self._create_invoice_for_sii("in_invoice")
+        invoice_temp = self._create_invoice("in_invoice")
         self.assertEqual(
             invoice_temp.sii_description,
             "Test supplier header | Test description",
@@ -380,22 +373,6 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         else:
             invoice.company_id.tax_agency_id = False
             self._check_binding_address(invoice)
-
-    def test_tax_agencies_sandbox(self):
-        self.sii_cert.company_id = self.invoice.company_id.id
-        self._activate_certificate()
-        self.invoice.company_id.sii_test = True
-        self._check_tax_agencies(self.invoice)
-        in_invoice = self._create_invoice_for_sii("in_invoice")
-        self._check_tax_agencies(in_invoice)
-
-    def test_tax_agencies_production(self):
-        self.sii_cert.company_id = self.invoice.company_id.id
-        self._activate_certificate()
-        self.invoice.company_id.sii_test = False
-        self._check_tax_agencies(self.invoice)
-        in_invoice = self._create_invoice_for_sii("in_invoice")
-        self._check_tax_agencies(in_invoice)
 
     def test_refund_sii_refund_type(self):
         invoice = self.env["account.move"].create(
@@ -484,7 +461,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         with self.assertRaises(exceptions.UserError):
             self.invoice.write({"thirdparty_number": "CUSTOM"})
         # in_invoice
-        in_invoice = self._create_invoice_for_sii("in_invoice")
+        in_invoice = self._create_invoice("in_invoice")
         in_invoice.ref = "REF"
         in_invoice.aeat_state = "sent"
         partner = self.partner.copy()

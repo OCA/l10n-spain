@@ -14,24 +14,13 @@
 
 import json
 import logging
+from datetime import datetime
 
 from odoo import _, api, exceptions, fields, models
 from odoo.modules.registry import Registry
 
 SII_VALID_INVOICE_STATES = ["posted"]
 _logger = logging.getLogger(__name__)
-
-
-try:
-    from odoo.addons.queue_job.job import job
-except ImportError:
-    _logger.debug("Can not `import queue_job`.")
-    import functools
-
-    def empty_decorator_factory(*argv, **kwargs):
-        return functools.partial
-
-    job = empty_decorator_factory
 
 
 class AccountMove(models.Model):
@@ -94,12 +83,12 @@ class AccountMove(models.Model):
         "The invoice number should start with LC, QZC, QRC, A01 or A02.",
         copy=False,
     )
-    invoice_jobs_ids = fields.Many2many(
-        comodel_name="queue.job",
+    invoice_cron_trigger_ids = fields.Many2many(
+        comodel_name="ir.cron.trigger",
         column1="invoice_id",
-        column2="job_id",
-        relation="account_move_queue_job_rel",
-        string="Connector Jobs",
+        column2="trigger_id",
+        relation="account_move_cron_trigger_rel",
+        string="Cron Triggers",
         copy=False,
     )
 
@@ -619,9 +608,10 @@ class AccountMove(models.Model):
             "context": self.env.context,
         }
 
-    def _get_sii_jobs_field_name(self):
-        return "invoice_jobs_ids"
+    def _get_sii_triggers_field_name(self):
+        return "invoice_cron_trigger_ids"
 
+    @api.model
     def _get_valid_document_states(self):
         return SII_VALID_INVOICE_STATES
 
@@ -684,33 +674,30 @@ class AccountMove(models.Model):
                 and i.aeat_state in ["sent", "sent_w_errors", "sent_modified"]
             )
         )
-        if not invoices._cancel_sii_jobs():
+        if not invoices._cancel_sii_triggers():
             raise exceptions.UserError(
                 _(
                     "You can not communicate the cancellation of this invoice "
-                    "at this moment because there is a job running!"
+                    "at this moment. Please, try again later."
                 )
             )
-        queue_obj = self.env["queue.job"]
         for invoice in invoices:
             company = invoice.company_id
-            if not company.use_connector:
+            cron_trigger_obj = self.env["ir.cron.trigger"].sudo()
+            sii_send_cron = self.env.ref("l10n_es_aeat_sii_oca.invoice_send_to_sii")
+            if not company.use_cron:
                 invoice._cancel_invoice_to_sii()
             else:
-                eta = company._get_sii_eta()
-                new_delay = (
-                    self.sudo()
-                    .with_context(company_id=company.id)
-                    .with_delay(eta=eta)
-                    .cancel_one_invoice()
+                sii_sending_time = company._get_sii_sending_time()
+                trigger = cron_trigger_obj.create(
+                    {"cron_id": sii_send_cron.id, "call_at": sii_sending_time}
                 )
-                job = queue_obj.search([("uuid", "=", new_delay.uuid)], limit=1)
-                invoice.sudo().invoice_jobs_ids |= job
+                invoice.sudo().invoice_cron_trigger_ids |= trigger
 
     def button_cancel(self):
-        if not self._cancel_sii_jobs():
+        if not self._cancel_sii_triggers():
             raise exceptions.UserError(
-                _("You can not cancel this invoice because" " there is a job running!")
+                _("You cannot cancel this invoice. Please, try again later.")
             )
         res = super().button_cancel()
         for invoice in self.filtered(lambda x: x.sii_enabled):
@@ -723,11 +710,11 @@ class AccountMove(models.Model):
         return res
 
     def button_draft(self):
-        if not self._cancel_sii_jobs():
+        if not self._cancel_sii_triggers():
             raise exceptions.UserError(
                 _(
                     "You can not set to draft this invoice because"
-                    " there is a job running!"
+                    " the SII cron could not be cancelled."
                 )
             )
         return super().button_draft()
@@ -808,7 +795,7 @@ class AccountMove(models.Model):
         # OVERRIDE
         if not default_values_list:
             default_values_list = [{} for move in self]
-        for move, default_values in zip(self, default_values_list):
+        for move, default_values in zip(self, default_values_list, strict=False):
             if move.sii_enabled:
                 extra_dict = {}
                 sii_refund_type = self.env.context.get("sii_refund_type", False)
@@ -829,3 +816,46 @@ class AccountMove(models.Model):
 
     def cancel_one_invoice(self):
         self.sudo()._cancel_invoice_to_sii()
+
+    @api.model
+    def _send_to_sii(self):
+        documents = all_documents = self.search(
+            [
+                ("state", "in", self._get_valid_document_states()),
+                (
+                    "aeat_state",
+                    "not in",
+                    ["sent", "cancelled"],
+                ),
+                ("sii_send_date", "<=", fields.Datetime.now()),
+            ]
+        )
+        if documents:
+            cron_trigger_obj = self.env["ir.cron.trigger"].sudo()
+            sii_send_cron = self.env.ref("l10n_es_aeat_sii_oca.invoice_send_to_sii")
+            remaining_documents = False
+            batch = (
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param("l10n_es_aeat_sii_oca.sii_batch")
+            )
+            if batch:
+                try:
+                    batch = int(batch)
+                except ValueError as e:
+                    raise exceptions.UserError(
+                        _(
+                            "The value in l10n_es_aeat_sii_oca.sii_batch system"
+                            " parameter must be an integer. Please, check the "
+                            "value of the parameter."
+                        )
+                    ) from e
+            if batch:
+                documents = all_documents[:batch]
+                remaining_documents = all_documents - documents
+            documents.confirm_one_document()
+            for document in remaining_documents:
+                trigger = cron_trigger_obj.create(
+                    {"cron_id": sii_send_cron.id, "call_at": datetime.now()}
+                )
+                document.sudo().invoice_cron_trigger_ids |= trigger
