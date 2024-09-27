@@ -59,7 +59,9 @@ class AeatSiiMapLines(models.Model):
 
     code = fields.Char(required=True)
     name = fields.Char()
-    taxes = fields.Many2many(comodel_name="account.tax.template")
+    tax_xmlid_ids = fields.Many2many(
+        comodel_name="l10n.es.aeat.map.tax.line.tax", string="Taxes templates"
+    )
     sii_map_id = fields.Many2one(
         comodel_name="aeat.sii.map", string="Aeat SII Map", ondelete="cascade"
     )

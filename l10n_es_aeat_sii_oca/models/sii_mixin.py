@@ -96,6 +96,8 @@ class SiiMixin(models.AbstractModel):
         "greater o equal to 100 000 000,00 euros.",
         compute="_compute_macrodata",
     )
+    sii_send_date = fields.Datetime(string="SII Send Date", index=True)
+    sii_needs_cancel = fields.Boolean(readonly=True)
 
     def _compute_sii_refund_type(self):
         self.sii_refund_type = False
@@ -139,13 +141,6 @@ class SiiMixin(models.AbstractModel):
 
     @api.depends("sii_registration_key")
     def _compute_sii_registration_key_code(self):
-        """
-        Para evitar tiempos de instalación largos en BBDD grandes, es necesario que
-        sólo dependa de sii_registration_key, ya que en caso de añadirlo odoo buscará
-        todos los movimientos y cuando escribamos el key, aunque sea un campo no almacenado
-        A partir de v16.0 este cambio ya no es necesario, ya que el sistema ya revisa que el
-        campo sea almacenado o que este visualizandose (en caché)
-        """
         for record in self:
             record.sii_registration_key_code = record.sii_registration_key.code
 
@@ -206,8 +201,14 @@ class SiiMixin(models.AbstractModel):
             ],
             limit=1,
         )
-        tax_templates = sii_map.map_lines.filtered(lambda x: x.code in codes).taxes
-        return self.company_id.get_taxes_from_templates(tax_templates)
+        tax_templates = sii_map.map_lines.filtered(
+            lambda x: x.code in codes
+        ).tax_xmlid_ids
+        taxes = self.env["account.tax"]
+        for template in tax_templates:
+            tax_id = self.company_id._get_tax_id_from_xmlid(template.name)
+            taxes |= self.env["account.tax"].browse(tax_id)
+        return taxes
 
     def _get_aeat_header(self, tipo_comunicacion=False, cancellation=False):
         """Builds SII send header
@@ -233,61 +234,52 @@ class SiiMixin(models.AbstractModel):
             header.update({"TipoComunicacion": tipo_comunicacion})
         return header
 
-    def _get_sii_jobs_field_name(self):
-        raise NotImplementedError()
-
-    def _cancel_sii_jobs(self):
-        for queue in self.sudo().mapped(self._get_sii_jobs_field_name()):
-            if queue.state == "started":
-                return False
-            elif queue.state in ("pending", "enqueued", "failed"):
-                queue.unlink()
+    def _cancel_send_to_sii(self):
+        try:
+            self.sudo().write({"sii_send_date": False})
+        except Exception:
+            return False
         return True
 
     def send_sii(self):
-        """General public method for filtering out of the starting recordset the records
-        that shouldn't be sent to the SII:
-
-        - Documents of companies with SII not enabled (through sii_enabled).
-        - Documents not applicable to be sent to SII (through sii_enabled).
-        - Documents in non applicable states (for example, cancelled invoices).
-        - Documents already sent to the SII.
-        - Documents with sending jobs pending to be executed.
-        """
-        valid_states = self._get_valid_document_states()
-        jobs_field_name = self._get_sii_jobs_field_name()
-        for document in self:
-            if (
-                not document.sii_enabled
-                or document.state not in valid_states
-                or document.aeat_state in ["sent", "cancelled"]
-            ):
-                continue
-            job_states = document.sudo().mapped(jobs_field_name).mapped("state")
-            if any([x in ("started", "pending", "enqueued") for x in job_states]):
-                continue
-            document._process_sii_send()
+        documents = self.filtered(
+            lambda document: (
+                document.sii_enabled
+                and document.state in self._get_valid_document_states()
+                and document.aeat_state not in ["sent", "cancelled"]
+            )
+        )
+        if not documents._cancel_send_to_sii():
+            raise UserError(
+                _(
+                    "You can not communicate this document at this moment. "
+                    "Please, try again later."
+                )
+            )
+        if documents:
+            documents.with_context(bypass_sii_send=True)._process_sii_send()
+            sii_send_cron = self.env.ref("l10n_es_aeat_sii_oca.invoice_send_to_sii")
+            self.env["ir.cron.trigger"].sudo().create(
+                {"cron_id": sii_send_cron.id, "call_at": fields.Datetime.now()}
+            )
 
     def _process_sii_send(self):
         """Process document sending to the SII. Adds general checks from
-        configuration parameters and document availability for SII. If the
-        document is to be sent the decides the send method: direct send or
-        via connector depending on 'Use connector' configuration"""
-        queue_obj = self.env["queue.job"].sudo()
+        configuration parameters and document availability for SII."""
         for record in self:
             company = record.company_id
-            if not company.use_connector:
-                record.confirm_one_document()
-            else:
-                eta = company._get_sii_eta()
-                new_delay = (
-                    record.sudo()
-                    .with_context(company_id=company.id)
-                    .with_delay(eta=eta if not record.aeat_send_failed else False)
-                    .confirm_one_document()
-                )
-                job = queue_obj.search([("uuid", "=", new_delay.uuid)], limit=1)
-                setattr(record.sudo(), self._get_sii_jobs_field_name(), [(4, job.id)])
+            sii_sending_time = company._get_sii_sending_time()
+            record.sii_send_date = sii_sending_time
+        # Create trigger if any company needs to send doc to SII now
+        # so the sending to SII cron is executed as soon as possible
+        if self.company_id.filtered(
+            lambda company: company.send_mode == "auto"
+            or (company.send_mode == "delayed" and company.delay_time == 0.0)
+        ) and not self.env.context.get("bypass_sii_send", False):
+            sii_send_cron = self.env.ref("l10n_es_aeat_sii_oca.invoice_send_to_sii")
+            self.env["ir.cron.trigger"].sudo().create(
+                {"cron_id": sii_send_cron.id, "call_at": fields.Datetime.now()}
+            )
 
     def _bind_service(self, client, port_name, address=None):
         self.ensure_one()
@@ -811,7 +803,7 @@ class SiiMixin(models.AbstractModel):
                 ):
                     doc_vals[
                         "sii_account_registration_date"
-                    ] = self._get_account_registration_date()
+                    ] = document._get_account_registration_date()
                 doc_vals["sii_return"] = res
                 send_error = False
                 if res_line["CodigoErrorRegistro"]:
@@ -831,12 +823,12 @@ class SiiMixin(models.AbstractModel):
                         "aeat_send_error": repr(fault)[:60],
                         "sii_return": repr(fault),
                         "aeat_content_sent": json.dumps(inv_dict, indent=4),
+                        "sii_send_date": False,
                     }
                 )
                 document.write(doc_vals)
                 new_cr.commit()
                 new_cr.close()
-                raise ValidationError(fault) from fault
 
     def confirm_one_document(self):
         self.sudo()._send_document_to_sii()

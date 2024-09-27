@@ -13,6 +13,7 @@
 - Eric Antonés - NuoBiT Solutions, S.L. \<<eantones@nuobit.com>\>
 - [Sygel](https://www.sygel.es):
   - Valentin Vinagre
+  - Manuel Regidor
 - [Tecnativa](https://www.tecnativa.com):
   - Pedro M. Baeza
   - João Marques
