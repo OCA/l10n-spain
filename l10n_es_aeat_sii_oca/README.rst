@@ -17,13 +17,13 @@ Suministro Inmediato de Información en el IVA
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_aeat_sii_oca
+    :target: https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_aeat_sii_oca
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-16-0/l10n-spain-16-0-l10n_es_aeat_sii_oca
+    :target: https://translation.odoo-community.org/projects/l10n-spain-17-0/l10n-spain-17-0-l10n_es_aeat_sii_oca
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -41,10 +41,12 @@ Installation
 
 Para instalar esté módulo necesita:
 
-#. Libreria Python Zeep, se puede instalar con el comando 'pip install zeep'
-#. Libreria Python Requests, se puede instalar con el comando 'pip install requests'
+1. Libreria Python Zeep, se puede instalar con el comando 'pip install
+   zeep'
+2. Libreria Python Requests, se puede instalar con el comando 'pip
+   install requests'
 
-y el módulo `queue_job` que se encuentra en:
+y el módulo queue_job que se encuentra en:
 
 https://github.com/OCA/queue
 
@@ -53,62 +55,64 @@ Configuration
 
 Para configurar este módulo es necesario:
 
-#. En la compañia se almacenan las URLs del servicio SOAP de hacienda.
+1. En la compañia se almacenan las URLs del servicio SOAP de hacienda.
    Estas URLs pueden cambiar según comunidades
-#. Los certificados deben alojarse en una carpeta accesible por la instalación
-   de Odoo.
-#. Preparar el certificado. El certificado enviado por la FMNT es en formato
-   p12, este certificado no se puede usar directamente con Zeep. Se tiene que
-   extraer la clave pública y la clave privada.
+2. Los certificados deben alojarse en una carpeta accesible por la
+   instalación de Odoo.
+3. Preparar el certificado. El certificado enviado por la FMNT es en
+   formato p12, este certificado no se puede usar directamente con Zeep.
+   Se tiene que extraer la clave pública y la clave privada.
 
 En Linux se pueden usar los siguientes comandos:
 
-- Clave pública: "openssl pkcs12 -in Certificado.p12 -nokeys -out publicCert.crt -nodes"
-- Clave privada: "openssl pkcs12 -in Certifcado.p12 -nocerts -out privateKey.pem -nodes"
+-  Clave pública: "openssl pkcs12 -in Certificado.p12 -nokeys -out
+   publicCert.crt -nodes"
+-  Clave privada: "openssl pkcs12 -in Certifcado.p12 -nocerts -out
+   privateKey.pem -nodes"
 
-Además, el módulo `queue_job` necesita estar configurado de una de estas formas:
+Además, el módulo queue_job necesita estar configurado de una de estas
+formas:
 
-#. Ajustando variables de entorno:
+1. Ajustando variables de entorno:
 
-     ODOO_QUEUE_JOB_CHANNELS=root:4
+      ODOO_QUEUE_JOB_CHANNELS=root:4
 
    u otro canal de configuración. Por defecto es root:1
 
    Si xmlrpc_port no está definido: ODOO_QUEUE_JOB_PORT=8069
 
-#. Otra alternativa es usuando un fichero de configuración:
+2. Otra alternativa es usuando un fichero de configuración:
 
-     [options]
-     (...)
-     workers = 4
-     server_wide_modules = web,base_sparse_field,queue_job
+      [options] (...) workers = 4 server_wide_modules =
+      web,base_sparse_field,queue_job
 
-     (...)
-     [queue_job]
-     channels = root:4
+      (...) [queue_job] channels = root:4
 
-#. Por último, arrancando Odoo con --load=web,base_sparse_field,queue_job y --workers más grande que 1.
+3. Por último, arrancando Odoo con
+   --load=web,base_sparse_field,queue_job y --workers más grande que 1.
 
 Más información http://odoo-connector.com
 
 Usage
 =====
 
-Cuando se valida una factura automáticamente envia la comunicación al servidor
-de AEAT.
+Cuando se valida una factura automáticamente envia la comunicación al
+servidor de AEAT.
 
 Known issues / Roadmap
 ======================
 
-* Comunicación de cobros y pagos.
-* Determinadas facturas intracomunitarias (Articulo 66 RIVA).
-* Asistente para consultar los documentos comunicados.
-* Libro de bienes de inversión (Libro anual se crea un módulo aparte).
-* Regímenes especiales de seguros, de agencias de viaje o de bienes usados.
-* Devolución de IVA de viajeros.
-* Facturas rectificativas por sustitución.
-* Soportar facturas de canje de facturas simplificadas por facturas completas.
-  Ver https://github.com/OCA/l10n-spain/issues/1171 para más información.
+-  Comunicación de cobros y pagos.
+-  Determinadas facturas intracomunitarias (Articulo 66 RIVA).
+-  Asistente para consultar los documentos comunicados.
+-  Libro de bienes de inversión (Libro anual se crea un módulo aparte).
+-  Regímenes especiales de seguros, de agencias de viaje o de bienes
+   usados.
+-  Devolución de IVA de viajeros.
+-  Facturas rectificativas por sustitución.
+-  Soportar facturas de canje de facturas simplificadas por facturas
+   completas. Ver https://github.com/OCA/l10n-spain/issues/1171 para más
+   información.
 
 Bug Tracker
 ===========
@@ -116,7 +120,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_sii_oca%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_sii_oca%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -124,7 +128,7 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Acysos S.L.
 * Diagram
@@ -137,36 +141,39 @@ Authors
 * Javi Melendez
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Ignacio Ibeas <ignacio@acysos.com>
-* Rubén Cerdà <ruben.cerda.roig@diagram.es>
-* Ramon Guiu <ramon.guiu@minorisa.net>
-* Pablo Fuentes <pablo@studio73.es>
-* Jordi Tolsà <jordi@studio73.es>
-* Ismael Calvo <ismael.calvo@factorlibre.es>
-* Omar Castiñeira - Comunitea S.L. <omar@comunitea.com>
-* Juanjo Algaz <jalgaz@gmail.com>, Planeta Huerto <juanjoalgaz@planetahuerto.es>
-* Javi Melendez <javimelex@gmail.com>
-* Santi Argüeso - Comunitea S.L. <santi@comunitea.com>
-* Angel Moya - PESOL <angel.moya@pesol.es>
-* Eric Antonés - NuoBiT Solutions, S.L. <eantones@nuobit.com>
-* `Sygel <https://www.sygel.es>`__:
+-  Ignacio Ibeas <ignacio@acysos.com>
+-  Rubén Cerdà <ruben.cerda.roig@diagram.es>
+-  Ramon Guiu <ramon.guiu@minorisa.net>
+-  Pablo Fuentes <pablo@studio73.es>
+-  Jordi Tolsà <jordi@studio73.es>
+-  Ismael Calvo <ismael.calvo@factorlibre.es>
+-  Omar Castiñeira - Comunitea S.L. <omar@comunitea.com>
+-  Juanjo Algaz <jalgaz@gmail.com>, Planeta Huerto
+   <juanjoalgaz@planetahuerto.es>
+-  Javi Melendez <javimelex@gmail.com>
+-  Santi Argüeso - Comunitea S.L. <santi@comunitea.com>
+-  Angel Moya - PESOL <angel.moya@pesol.es>
+-  Eric Antonés - NuoBiT Solutions, S.L. <eantones@nuobit.com>
+-  `Sygel <https://www.sygel.es>`__:
 
-  * Valentin Vinagre
-* `Tecnativa <https://www.tecnativa.com>`__:
+   -  Valentin Vinagre
 
-  * Pedro M. Baeza
-  * João Marques
-* Lois Rilo Antelo <lois.rilo@forgeflow.com>
-* Eduardo de Miguel (edu@moduon.team)
-* Jose Zambudio <jose@aurestic.es>
-* `Factor Libre <https://factorlibre.com>`__:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  * Luis J. Salvatierra <luis.salvatierra@factorlibre.com>
+   -  Pedro M. Baeza
+   -  João Marques
+
+-  Lois Rilo Antelo <lois.rilo@forgeflow.com>
+-  Eduardo de Miguel (edu@moduon.team)
+-  Jose Zambudio <jose@aurestic.es>
+-  `Factor Libre <https://factorlibre.com>`__:
+
+   -  Luis J. Salvatierra <luis.salvatierra@factorlibre.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -186,6 +193,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-pedrobaeza| 
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_aeat_sii_oca>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_aeat_sii_oca>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

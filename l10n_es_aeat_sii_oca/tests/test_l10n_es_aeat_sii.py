@@ -55,9 +55,7 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
                 if "." in tax:
                     xml_id = tax
                 else:
-                    xml_id = "l10n_es.{}_account_tax_template_{}".format(
-                        self.company.id, tax
-                    )
+                    xml_id = f"l10n_es.{self.company.id}_account_tax_template_{tax}"
                 taxes += self.env.ref(xml_id)
                 tax_names.append(tax)
             vals.append({"price_unit": line[0], "taxes": taxes})
@@ -112,7 +110,7 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
         path = get_resource_path(module, "tests/json", json_file)
         if not path:
             raise Exception("Incorrect JSON file: %s" % json_file)
-        with open(path, "r") as f:
+        with open(path) as f:
             expected_dict = json.loads(f.read())
         self.assertEqual(expected_dict, result_dict)
         return invoice
