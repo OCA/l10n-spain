@@ -11,31 +11,21 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='country_group_id']/.." position="after">
                 <field name="sii_enabled" invisible="1" />
-                <group
-                    string="SII"
-                    name="group_sii"
-                    attrs="{'invisible': [('sii_enabled', '=', False)]}"
-                >
+                <group string="SII" name="group_sii" invisible="not sii_enabled">
                     <field name="aeat_active" />
                     <field
                         name="sii_registration_key_sale"
-                        attrs="{'invisible': [('aeat_active', '!=', True)]}"
+                        invisible="not aeat_active"
                     />
                     <field
                         name="sii_registration_key_purchase"
-                        attrs="{'invisible': [('aeat_active', '!=', True)]}"
+                        invisible="not aeat_active"
                     />
-                    <field
-                        name="sii_no_taxable_cause"
-                        attrs="{'invisible': [('aeat_active', '!=', True)]}"
-                    />
-                    <field
-                        name="sii_exempt_cause"
-                        attrs="{'invisible': [('aeat_active', '!=', True)]}"
-                    />
+                    <field name="sii_no_taxable_cause" invisible="not aeat_active" />
+                    <field name="sii_exempt_cause" invisible="not aeat_active" />
                     <field
                         name="sii_partner_identification_type"
-                        attrs="{'invisible': [('aeat_active', '!=', True)]}"
+                        invisible="not aeat_active"
                     />
                 </group>
             </xpath>
