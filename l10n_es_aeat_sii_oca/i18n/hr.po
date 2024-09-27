@@ -532,6 +532,11 @@ msgid "Model"
 msgstr "Model"
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__res_company__sii_period__monthly
+msgid "Monthly"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_mapping_registration_keys__name
 msgid "Name"
@@ -582,6 +587,11 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__aeat_sii_mapping_registration_keys__type__purchase
 msgid "Purchase"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__res_company__sii_period__quarterly
+msgid "Quarterly"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
@@ -827,6 +837,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_partner__sii_enabled
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_users__sii_enabled
 msgid "Sii Enabled"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_period
+msgid "Sii Period"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
