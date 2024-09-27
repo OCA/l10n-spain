@@ -18,6 +18,6 @@ class AeatSiiMappingRegistrationKeys(models.Model):
     def name_get(self):
         vals = []
         for record in self:
-            name = "[{}]-{}".format(record.code, record.name)
+            name = f"[{record.code}]-{record.name}"
             vals.append(tuple([record.id, name]))
         return vals
