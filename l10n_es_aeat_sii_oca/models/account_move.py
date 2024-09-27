@@ -23,18 +23,6 @@ SII_VALID_INVOICE_STATES = ["posted"]
 _logger = logging.getLogger(__name__)
 
 
-try:
-    from odoo.addons.queue_job.job import job
-except ImportError:
-    _logger.debug("Can not `import queue_job`.")
-    import functools
-
-    def empty_decorator_factory(*argv, **kwargs):
-        return functools.partial
-
-    job = empty_decorator_factory
-
-
 class AccountMove(models.Model):
     _name = "account.move"
     _inherit = ["account.move", "sii.mixin"]
@@ -95,14 +83,7 @@ class AccountMove(models.Model):
         "The invoice number should start with LC, QZC, QRC, A01 or A02.",
         copy=False,
     )
-    invoice_jobs_ids = fields.Many2many(
-        comodel_name="queue.job",
-        column1="invoice_id",
-        column2="job_id",
-        relation="account_move_queue_job_rel",
-        string="Connector Jobs",
-        copy=False,
-    )
+    sii_dua_invoice = fields.Boolean(compute="_compute_dua_invoice")
 
     @api.depends("move_type")
     def _compute_sii_refund_type(self):
@@ -620,9 +601,7 @@ class AccountMove(models.Model):
             "context": self.env.context,
         }
 
-    def _get_sii_jobs_field_name(self):
-        return "invoice_jobs_ids"
-
+    @api.model
     def _get_valid_document_states(self):
         return SII_VALID_INVOICE_STATES
 
@@ -652,6 +631,7 @@ class AccountMove(models.Model):
                             "aeat_state": "cancelled",
                             "sii_csv": res["CSV"],
                             "aeat_send_failed": False,
+                            "sii_needs_cancel": False,
                         }
                     )
                 res_line = res["RespuestaLinea"][0]
@@ -685,33 +665,32 @@ class AccountMove(models.Model):
                 and i.aeat_state in ["sent", "sent_w_errors", "sent_modified"]
             )
         )
-        if not invoices._cancel_sii_jobs():
+        if not invoices._cancel_send_to_sii():
             raise exceptions.UserError(
                 _(
                     "You can not communicate the cancellation of this invoice "
-                    "at this moment because there is a job running!"
+                    "at this moment. Please, try again later."
                 )
             )
-        queue_obj = self.env["queue.job"]
         for invoice in invoices:
             company = invoice.company_id
-            if not company.use_connector:
-                invoice._cancel_invoice_to_sii()
-            else:
-                eta = company._get_sii_eta()
-                new_delay = (
-                    self.sudo()
-                    .with_context(company_id=company.id)
-                    .with_delay(eta=eta)
-                    .cancel_one_invoice()
+            sii_sending_time = company._get_sii_sending_time()
+            invoice.write({"sii_send_date": sii_sending_time, "sii_needs_cancel": True})
+            # Create trigger if any company needs to send doc to SII now
+            # so the sending to SII cron is executed as soon as possible
+            if invoices.company_id.filtered(
+                lambda company: company.send_mode == "auto"
+                or (company.send_mode == "delayed" and company.delay_time == 0.0)
+            ):
+                sii_send_cron = self.env.ref("l10n_es_aeat_sii_oca.invoice_send_to_sii")
+                self.env["ir.cron.trigger"].sudo().create(
+                    {"cron_id": sii_send_cron.id, "call_at": fields.Datetime.now()}
                 )
-                job = queue_obj.search([("uuid", "=", new_delay.uuid)], limit=1)
-                invoice.sudo().invoice_jobs_ids |= job
 
     def button_cancel(self):
-        if not self._cancel_sii_jobs():
+        if not self._cancel_send_to_sii():
             raise exceptions.UserError(
-                _("You can not cancel this invoice because" " there is a job running!")
+                _("You cannot cancel this invoice. Please, try again later.")
             )
         res = super().button_cancel()
         for invoice in self.filtered(lambda x: x.sii_enabled):
@@ -724,11 +703,11 @@ class AccountMove(models.Model):
         return res
 
     def button_draft(self):
-        if not self._cancel_sii_jobs():
+        if not self._cancel_send_to_sii():
             raise exceptions.UserError(
                 _(
                     "You can not set to draft this invoice because"
-                    " there is a job running!"
+                    " the SII trigger could not be cancelled."
                 )
             )
         return super().button_draft()
@@ -833,7 +812,7 @@ class AccountMove(models.Model):
         # OVERRIDE
         if not default_values_list:
             default_values_list = [{} for move in self]
-        for move, default_values in zip(self, default_values_list):
+        for move, default_values in zip(self, default_values_list, strict=False):
             if move.sii_enabled:
                 extra_dict = {}
                 sii_refund_type = self.env.context.get("sii_refund_type", False)
@@ -854,3 +833,74 @@ class AccountMove(models.Model):
 
     def cancel_one_invoice(self):
         self.sudo()._cancel_invoice_to_sii()
+
+    @api.model
+    def _get_sii_batch(self):
+        try:
+            return int(
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param("l10n_es_aeat_sii_oca.sii_batch", "50")
+            )
+        except ValueError as e:
+            raise exceptions.UserError(
+                _(
+                    "The value in l10n_es_aeat_sii_oca.sii_batch system"
+                    " parameter must be an integer. Please, check the "
+                    "value of the parameter."
+                )
+            ) from e
+
+    @api.model
+    def _send_to_sii_valid(self):
+        remaining_documents = self.env["account.move"]
+        documents = all_documents = self.search(
+            [
+                ("state", "in", self._get_valid_document_states()),
+                (
+                    "aeat_state",
+                    "not in",
+                    ["sent", "cancelled"],
+                ),
+                ("sii_send_date", "<=", fields.Datetime.now()),
+            ]
+        )
+        if documents:
+            batch = self._get_sii_batch()
+            documents = all_documents[:batch]
+            remaining_documents = all_documents - documents
+            documents.confirm_one_document()
+        return remaining_documents
+
+    @api.model
+    def _send_to_sii_cancel(self):
+        remaining_cancel_documents = self.env["account.move"]
+        cancel_documents = all_cancel_documents = self.search(
+            [
+                ("state", "in", ["cancel"]),
+                (
+                    "aeat_state",
+                    "in",
+                    ["sent", "sent_w_errors", "sent_modified"],
+                ),
+                ("sii_needs_cancel", "=", True),
+                ("sii_send_date", "<=", fields.Datetime.now()),
+            ]
+        )
+        if cancel_documents:
+            batch = self._get_sii_batch()
+            cancel_documents = all_cancel_documents[:batch]
+            remaining_cancel_documents = all_cancel_documents - cancel_documents
+            cancel_documents.cancel_one_invoice()
+        return remaining_cancel_documents
+
+    @api.model
+    def _send_to_sii(self):
+        remaining_documents = self._send_to_sii_valid()
+        remaining_cancel_documents = self._send_to_sii_cancel()
+        # Manage remaining invoices
+        if remaining_documents or remaining_cancel_documents:
+            sii_send_cron = self.env.ref("l10n_es_aeat_sii_oca.invoice_send_to_sii")
+            self.env["ir.cron.trigger"].sudo().create(
+                {"cron_id": sii_send_cron.id, "call_at": fields.Datetime.now()}
+            )

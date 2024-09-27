@@ -6,6 +6,7 @@
   usados.
 - Devolución de IVA de viajeros.
 - Facturas rectificativas por sustitución.
+- Sistema de control de número de reintentos en caso de error en el envío.
 - Soportar facturas de canje de facturas simplificadas por facturas
   completas. Ver <https://github.com/OCA/l10n-spain/issues/1171> para
   más información.
