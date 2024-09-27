@@ -9,7 +9,7 @@
             name="parent_id"
             search="[('child_id', 'in', ref('account.menu_finance_receivables'))]"
         />
-        <field name="groups_id" eval="[(4, ref('group_account_aeat'))]" />
+        <field name="groups_id" eval="[(4, ref('l10n_es_aeat.group_account_aeat'))]" />
     </record>
     <menuitem
         id="menu_l10n_es_aeat_config"

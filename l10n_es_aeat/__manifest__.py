@@ -21,7 +21,7 @@
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Accounting & Finance",
     "development_status": "Mature",
-    "depends": ["l10n_es", "account_tax_balance"],
+    "depends": ["l10n_es", "account_tax_balance", "l10n_es_aeat"],
     # odoo_test_helper is needed for the tests
     "external_dependencies": {"python": ["unidecode", "cryptography==3.4.8"]},
     "data": [
