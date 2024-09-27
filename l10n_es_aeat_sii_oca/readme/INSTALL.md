@@ -4,7 +4,3 @@ Para instalar esté módulo necesita:
     zeep'
 2.  Libreria Python Requests, se puede instalar con el comando 'pip
     install requests'
-
-y el módulo queue_job que se encuentra en:
-
-<https://github.com/OCA/queue>

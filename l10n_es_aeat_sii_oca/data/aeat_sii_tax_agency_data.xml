@@ -26,31 +26,6 @@
             name="sii_wsdl_ps"
         >https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii_1_1_bis/fact/ws/SuministroPagosRecibidas.wsdl</field>
     </record>
-    <!-- TODO: remove?-->
-    <record id="aeat_sii_tax_agency_spain_1_0" model="aeat.tax.agency">
-        <field name="name">Agencia Tributaria española (antiguo WDSL 1.0)</field>
-        <field
-            name="sii_wsdl_out"
-        >https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii/fact/ws/SuministroFactEmitidas.wsdl</field>
-        <field
-            name="sii_wsdl_in"
-        >https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii/fact/ws/SuministroFactRecibidas.wsdl</field>
-        <field
-            name="sii_wsdl_pi"
-        >https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii/fact/ws/SuministroBienesInversion.wsdl</field>
-        <field
-            name="sii_wsdl_ic"
-        >https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii/fact/ws/SuministroOpIntracomunitarias.wsdl</field>
-        <field
-            name="sii_wsdl_pr"
-        >https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii/fact/ws/SuministroCobrosEmitidas.wsdl</field>
-        <field
-            name="sii_wsdl_ott"
-        >https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii/fact/ws/SuministroOpTrascendTribu.wsdl</field>
-        <field
-            name="sii_wsdl_ps"
-        >https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii/fact/ws/SuministroPagosRecibidas.wsdl</field>
-    </record>
     <record id="l10n_es_aeat.aeat_tax_agency_gipuzkoa" model="aeat.tax.agency">
         <field name="name">Hacienda Foral de Gipuzkoa (1.1)</field>
         <field
