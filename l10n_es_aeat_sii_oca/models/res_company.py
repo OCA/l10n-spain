@@ -55,17 +55,13 @@ class ResCompany(models.Model):
         help="By default, the invoice is sent/queued in validation process. "
         "With manual method, there's a button to send the invoice.",
     )
-    use_connector = fields.Boolean(
-        help="Check it to use connector instead of sending the invoice "
-        "directly when it's validated",
-    )
     send_mode = fields.Selection(
         selection=[
             ("auto", "On validate"),
             ("fixed", "At fixed time"),
             ("delayed", "With delay"),
         ],
-        default="auto",
+        default="delayed",
     )
     sent_time = fields.Float()
     delay_time = fields.Float()
@@ -77,7 +73,7 @@ class ResCompany(models.Model):
         default="monthly",
     )
 
-    def _get_sii_eta(self):
+    def _get_sii_sending_time(self):
         if self.send_mode == "fixed":
             tz = self.env.context.get("tz", self.env.user.partner_id.tz)
             offset = datetime.now(pytz.timezone(tz)).strftime("%z") if tz else "+00"
@@ -90,7 +86,10 @@ class ResCompany(models.Model):
                 now += timedelta(days=1)
             now = now.replace(hour=hour, minute=minute)
             return now
-        elif self.send_mode == "delayed":
-            return datetime.now() + timedelta(seconds=self.delay_time * 3600)
         else:
-            return None
+            delay_time = (
+                0.0
+                if self.send_mode == "auto" or not self.delay_time
+                else self.delay_time
+            )
+            return datetime.now() + timedelta(hours=delay_time)
