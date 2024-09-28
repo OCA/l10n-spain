@@ -11,7 +11,7 @@
 # Copyright 2021 Tecnativa - João Marques
 # Copyright 2022 ForgeFlow - Lois Rilo
 # Copyright 2022-2023 Moduon - Eduardo de Miguel
-# Copyright 2017-2023 Tecnativa - Pedro M. Baeza
+# Copyright 2017-2024 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
