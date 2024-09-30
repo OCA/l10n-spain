@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
-     Copyright 2018 Tecnativa - Pedro M. Baeza
+     Copyright 2018,2024 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="l10n_es_aeat_map_tax_tree" model="ir.ui.view">
@@ -28,7 +28,12 @@
                         </group>
                     </group>
                     <group string="Mapping Lines" col="4">
-                        <field name="map_line_ids" nolabel="1" colspan="4" />
+                        <field
+                            name="map_line_ids"
+                            context="{'active_test': False}"
+                            nolabel="1"
+                            colspan="4"
+                        />
                     </group>
                 </sheet>
             </form>
