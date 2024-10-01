@@ -54,11 +54,11 @@ plantillas:
 -  PGCE completo 2008
 
 Para aplicar los cambios al plan contable que tengamos configurado en
-nuestra compañía es posible que sea necesario instalar el addon
-'OCA/account-financial-tools/account_chart_update' y actualizar:
+nuestra compañía es posible que sea necesario actualizar la localización
+fiscal. Para ello debemos:
 
--  Impuestos
--  Posiciones fiscales
+1. Ir a Configuración > Facturación / Contabilidad > Localización fiscal
+2. Pulsar el botón "Recargar"
 
 Usage
 =====
@@ -106,6 +106,10 @@ Contributors
 -  `Bilbonet <https://www.bilbonet.net>`__:
 
    -  Jesus Ramiro <jesus@bilbonet.net>
+
+-  `Dixmit <https://www.dixmit.com>`__:
+
+   -  Luis Rodríguez
 
 Maintainers
 -----------
