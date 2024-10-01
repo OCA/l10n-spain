@@ -369,13 +369,15 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:b1340cefc495348fee951bcb983c84981d4abc36d385af9b4a81300c54e0c01d
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/15.0/l10n_es_reav"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-15-0/l10n-spain-15-0-l10n_es_reav"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=15.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>Este addon añade a la contabilidad los impuestos y posiciones fiscales para
-ayudar en el cáluculo de la Base Imponible, que en el caso de las agencias
-de viajes es el margen bruto, que se define como la diferencia entre la cantidad
-total cargada al cliente y el importe total impuestos incluidos de los bienes y
-servicios adquiridos para la realización del viaje.</p>
-<p><a class="reference external" href="https://sede.agenciatributaria.gob.es/Sede/iva/regimenes-tributacion-iva/regimen-especial-agencias-viajes.html">Ver enlace de la AEAT</a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_reav"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-17-0/l10n-spain-17-0-l10n_es_reav"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>Este addon añade a la contabilidad los impuestos y posiciones fiscales
+para ayudar en el cáluculo de la Base Imponible, que en el caso de las
+agencias de viajes es el margen bruto, que se define como la diferencia
+entre la cantidad total cargada al cliente y el importe total impuestos
+incluidos de los bienes y servicios adquiridos para la realización del
+viaje.</p>
+<p><a class="reference external" href="https://sede.agenciatributaria.gob.es/Sede/iva/regimenes-tributacion-iva/regimen-especial-agencias-viajes.html">Ver enlace de la
+AEAT</a></p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -392,14 +394,15 @@ servicios adquiridos para la realización del viaje.</p>
 </div>
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
-<p>Este addon añade los impuestos y posiciones fiscales a las siguientes plantillas:</p>
+<p>Este addon añade los impuestos y posiciones fiscales a las siguientes
+plantillas:</p>
 <ul class="simple">
 <li>PGCE entidades sin ánimo de lucro 2008</li>
 <li>PGCE PYMEs 2008</li>
 <li>PGCE completo 2008</li>
 </ul>
-<p>Para aplicar los cambios al plan contable que tengamos configurado en nuestra
-compañía es posible que sea necesario instalar el addon
+<p>Para aplicar los cambios al plan contable que tengamos configurado en
+nuestra compañía es posible que sea necesario instalar el addon
 ‘OCA/account-financial-tools/account_chart_update’ y actualizar:</p>
 <ul class="simple">
 <li>Impuestos</li>
@@ -410,27 +413,29 @@ compañía es posible que sea necesario instalar el addon
 <h1><a class="toc-backref" href="#toc-entry-2">Usage</a></h1>
 <p>Una vez actualizado el plan contable (Impuestos y Posiciones fiscales)
 podremos asignar los impuestos REAV a los productos de la empresa:</p>
-<ol class="arabic simple">
-<li>Crear o ir a la ficha de un producto</li>
-<li><dl class="first docutils">
-<dt>Asignar el siguiente impuesto en el campo “Impuestos cliente”</dt>
-<dd><em>IVA Repercutido incluido REAV</em></dd>
-</dl>
+<ol class="arabic">
+<li><p class="first">Crear o ir a la ficha de un producto</p>
 </li>
-<li><dl class="first docutils">
-<dt>Asignar el siguiente impuesto en el campo “Impuestos proveedor”</dt>
-<dd><em>IVA Soportado no deducible REAV</em></dd>
-</dl>
+<li><div class="first line-block">
+<div class="line">Asignar el siguiente impuesto en el campo “Impuestos cliente”</div>
+<div class="line"><em>IVA Repercutido incluido REAV</em></div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line">Asignar el siguiente impuesto en el campo “Impuestos proveedor”</div>
+<div class="line"><em>IVA Soportado no deducible REAV</em></div>
+</div>
 </li>
 </ol>
 <p>Tambien podemos asignar la posicion fiscal a los proveedores y clientes
 para cambiar los impuestos de compra y venta en las facturas:</p>
-<ol class="arabic simple">
-<li>Crear o ir a la ficha de un contacto</li>
-<li><dl class="first docutils">
-<dt>Asignar la siguiente posición fiscal en el campo “Posición fiscal”</dt>
-<dd><em>REAV - Agencias de viajes</em></dd>
-</dl>
+<ol class="arabic">
+<li><p class="first">Crear o ir a la ficha de un contacto</p>
+</li>
+<li><div class="first line-block">
+<div class="line">Asignar la siguiente posición fiscal en el campo “Posición fiscal”</div>
+<div class="line"><em>REAV - Agencias de viajes</em></div>
+</div>
 </li>
 </ol>
 </div>
@@ -439,7 +444,7 @@ para cambiar los impuestos de compra y venta en las facturas:</p>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-spain/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_reav%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_reav%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -470,7 +475,7 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/Bilbonet"><img alt="Bilbonet" src="https://github.com/Bilbonet.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/15.0/l10n_es_reav">OCA/l10n-spain</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_reav">OCA/l10n-spain</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
