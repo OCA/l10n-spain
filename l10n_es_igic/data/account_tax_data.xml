@@ -54,6 +54,34 @@
                   ]"
         />
     </record>
+    <record id="account_tax_template_igic_r_5" model="account.tax.template">
+        <field name="type_tax_use">sale</field>
+        <field name="name">IGIC 5%</field>
+        <field name="chart_template_id" ref="account_chart_template_common_canary" />
+        <field name="amount" eval="5" />
+        <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_5" />
+        <field
+            name="invoice_repartition_line_ids"
+            eval="[(5, 0, 0),
+                   (0, 0, {'repartition_type': 'base',}),
+                   (0, 0, {'repartition_type': 'tax',
+                           'account_id':
+                           ref('l10n_es_igic.account_common_canary_4777'),
+                          }),
+                  ]"
+        />
+        <field
+            name="refund_repartition_line_ids"
+            eval="[(5, 0, 0),
+                   (0, 0, {'repartition_type': 'base',}),
+                   (0, 0, {'repartition_type': 'tax',
+                           'account_id':
+                           ref('l10n_es_igic.account_common_canary_4777'),
+                          }),
+                  ]"
+        />
+    </record>
     <record id="account_tax_template_igic_r_7" model="account.tax.template">
         <field
             name="sequence"
@@ -316,6 +344,35 @@
                   ]"
         />
     </record>
+    <record id="account_tax_template_igic_sop_5_cmino" model="account.tax.template">
+        <field name="type_tax_use">purchase</field>
+        <field name="name">IGIC 5% Soportado (Comercio minorista)</field>
+        <field name="chart_template_id" ref="account_chart_template_common_canary" />
+        <field eval="3.5" name="amount" />
+        <field name="amount_type">percent</field>
+        <field name="price_include" eval="True" />
+        <field name="tax_group_id" ref="tax_group_igic_cmino" />
+        <field
+            name="invoice_repartition_line_ids"
+            eval="[(5, 0, 0),
+                   (0, 0, {'repartition_type': 'base',}),
+                   (0, 0, {'repartition_type': 'tax',
+                           'account_id':
+                           ref('l10n_es_igic.account_common_canary_4727'),
+                          }),
+                  ]"
+        />
+        <field
+            name="refund_repartition_line_ids"
+            eval="[(5, 0, 0),
+                   (0, 0, {'repartition_type': 'base',}),
+                   (0, 0, {'repartition_type': 'tax',
+                           'account_id':
+                           ref('l10n_es_igic.account_common_canary_4727'),
+                          }),
+                  ]"
+        />
+    </record>
     <record id="account_tax_template_igic_sop_7_cmino" model="account.tax.template">
         <field
             name="sequence"
@@ -514,6 +571,34 @@
                   ]"
         />
     </record>
+    <record id="account_tax_template_igic_sop_5" model="account.tax.template">
+        <field name="type_tax_use">purchase</field>
+        <field name="name">IGIC 5% Soportado (Operaciones corrientes)</field>
+        <field name="chart_template_id" ref="account_chart_template_common_canary" />
+        <field eval="5" name="amount" />
+        <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_5" />
+        <field
+            name="invoice_repartition_line_ids"
+            eval="[(5, 0, 0),
+                   (0, 0, {'repartition_type': 'base',}),
+                   (0, 0, {'repartition_type': 'tax',
+                           'account_id':
+                           ref('l10n_es_igic.account_common_canary_4727'),
+                          }),
+                  ]"
+        />
+        <field
+            name="refund_repartition_line_ids"
+            eval="[(5, 0, 0),
+                   (0, 0, {'repartition_type': 'base',}),
+                   (0, 0, {'repartition_type': 'tax',
+                           'account_id':
+                           ref('l10n_es_igic.account_common_canary_4727'),
+                          }),
+                  ]"
+        />
+    </record>
     <record id="account_tax_template_igic_sop_7" model="account.tax.template">
         <field
             name="sequence"
@@ -661,6 +746,34 @@
         <field eval="3" name="amount" />
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_3" />
+        <field
+            name="invoice_repartition_line_ids"
+            eval="[(5, 0, 0),
+                   (0, 0, {'repartition_type': 'base',}),
+                   (0, 0, {'repartition_type': 'tax',
+                           'account_id':
+                           ref('l10n_es_igic.account_common_canary_4727'),
+                          }),
+                  ]"
+        />
+        <field
+            name="refund_repartition_line_ids"
+            eval="[(5, 0, 0),
+                   (0, 0, {'repartition_type': 'base',}),
+                   (0, 0, {'repartition_type': 'tax',
+                           'account_id':
+                           ref('l10n_es_igic.account_common_canary_4727'),
+                          }),
+                  ]"
+        />
+    </record>
+    <record id="account_tax_template_igic_sop_5_inv" model="account.tax.template">
+        <field name="type_tax_use">purchase</field>
+        <field name="name">IGIC 5% Soportado (Operaciones de inversión)</field>
+        <field name="chart_template_id" ref="account_chart_template_common_canary" />
+        <field eval="5" name="amount" />
+        <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_5" />
         <field
             name="invoice_repartition_line_ids"
             eval="[(5, 0, 0),
@@ -846,6 +959,34 @@
                   ]"
         />
     </record>
+    <record id="account_tax_template_igic_sop_i_5" model="account.tax.template">
+        <field name="type_tax_use">purchase</field>
+        <field name="name">IGIC 5% Importaciones (Operaciones corrientes)</field>
+        <field name="chart_template_id" ref="account_chart_template_common_canary" />
+        <field eval="5" name="amount" />
+        <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_5" />
+        <field
+            name="invoice_repartition_line_ids"
+            eval="[(5, 0, 0),
+                   (0, 0, {'repartition_type': 'base',}),
+                   (0, 0, {'repartition_type': 'tax',
+                           'account_id':
+                           ref('l10n_es_igic.account_common_canary_4727'),
+                          }),
+                  ]"
+        />
+        <field
+            name="refund_repartition_line_ids"
+            eval="[(5, 0, 0),
+                   (0, 0, {'repartition_type': 'base',}),
+                   (0, 0, {'repartition_type': 'tax',
+                           'account_id':
+                           ref('l10n_es_igic.account_common_canary_4727'),
+                          }),
+                  ]"
+        />
+    </record>
     <record id="account_tax_template_igic_sop_i_7" model="account.tax.template">
         <field name="type_tax_use">purchase</field>
         <field name="name">IGIC 7% Importaciones (Operaciones corrientes)</field>
@@ -989,6 +1130,34 @@
         <field eval="3" name="amount" />
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_3" />
+        <field
+            name="invoice_repartition_line_ids"
+            eval="[(5, 0, 0),
+                   (0, 0, {'repartition_type': 'base',}),
+                   (0, 0, {'repartition_type': 'tax',
+                           'account_id':
+                           ref('l10n_es_igic.account_common_canary_4727'),
+                          }),
+                  ]"
+        />
+        <field
+            name="refund_repartition_line_ids"
+            eval="[(5, 0, 0),
+                   (0, 0, {'repartition_type': 'base',}),
+                   (0, 0, {'repartition_type': 'tax',
+                           'account_id':
+                           ref('l10n_es_igic.account_common_canary_4727'),
+                          }),
+                  ]"
+        />
+    </record>
+    <record id="account_tax_template_igic_sop_i_5_inv" model="account.tax.template">
+        <field name="type_tax_use">purchase</field>
+        <field name="name">IGIC 5% Importaciones (Operaciones de inversión)</field>
+        <field name="chart_template_id" ref="account_chart_template_common_canary" />
+        <field eval="5" name="amount" />
+        <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_5" />
         <field
             name="invoice_repartition_line_ids"
             eval="[(5, 0, 0),
@@ -1156,6 +1325,44 @@
         <field name="chart_template_id" ref="account_chart_template_common_canary" />
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_3" />
+        <field
+            name="invoice_repartition_line_ids"
+            eval="[(5, 0, 0),
+                   (0, 0, {'repartition_type': 'base',}),
+                   (0, 0, {'repartition_type': 'tax',
+                           'account_id':
+                           ref('l10n_es_igic.account_common_canary_4727'),
+                          }),
+                   (0, 0, {'factor_percent': -100,
+                           'repartition_type': 'tax',
+                           'account_id':
+                           ref('l10n_es_igic.account_common_canary_4777'),
+                          }),
+                  ]"
+        />
+        <field
+            name="refund_repartition_line_ids"
+            eval="[(5, 0, 0),
+                   (0, 0, {'repartition_type': 'base',}),
+                   (0, 0, {'repartition_type': 'tax',
+                           'account_id':
+                           ref('l10n_es_igic.account_common_canary_4727'),
+                          }),
+                   (0, 0, {'factor_percent': -100,
+                           'repartition_type': 'tax',
+                           'account_id':
+                           ref('l10n_es_igic.account_common_canary_4777'),
+                          }),
+                  ]"
+        />
+    </record>
+    <record id="account_tax_template_igic_ISP5" model="account.tax.template">
+        <field name="type_tax_use">purchase</field>
+        <field name="name">IGIC 5% Compra con Inversión del Sujeto Pasivo</field>
+        <field name="amount_type">percent</field>
+        <field name="amount" eval="5" />
+        <field name="chart_template_id" ref="account_chart_template_common_canary" />
+        <field name="tax_group_id" ref="tax_group_igic_5" />
         <field
             name="invoice_repartition_line_ids"
             eval="[(5, 0, 0),
@@ -1370,6 +1577,34 @@
         <field name="amount" eval="0.3" />
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_re_03" />
+        <field
+            name="invoice_repartition_line_ids"
+            eval="[(5, 0, 0),
+                   (0, 0, {'repartition_type': 'base',}),
+                   (0, 0, {'repartition_type': 'tax',
+                           'account_id':
+                           ref('l10n_es_igic.account_common_canary_4727'),
+                          }),
+                  ]"
+        />
+        <field
+            name="refund_repartition_line_ids"
+            eval="[(5, 0, 0),
+                   (0, 0, {'repartition_type': 'base',}),
+                   (0, 0, {'repartition_type': 'tax',
+                           'account_id':
+                           ref('l10n_es_igic.account_common_canary_4727'),
+                          }),
+                  ]"
+        />
+    </record>
+    <record id="account_tax_template_igic_p_re05" model="account.tax.template">
+        <field name="type_tax_use">purchase</field>
+        <field name="name">IGIC 0,5% Compras (Recargo a la importación)</field>
+        <field name="chart_template_id" ref="account_chart_template_common_canary" />
+        <field name="amount" eval="0.5" />
+        <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_re_05" />
         <field
             name="invoice_repartition_line_ids"
             eval="[(5, 0, 0),
