@@ -10,3 +10,4 @@
 * Adrián Gómez <adrian.gomez@pesol.es>
 * Eduardo de Miguel (edu@moduon.team)
 * Alberto Martínez (alberto.martinez@sygel.es)
+* Carolina Fernandez (http://www.tecnativa.com)
