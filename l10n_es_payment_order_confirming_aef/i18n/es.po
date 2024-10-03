@@ -1,0 +1,154 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_payment_order_confirming_aef
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-10-09 05:51+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: l10n_es_payment_order_confirming_aef
+#. odoo-python
+#: code:addons/l10n_es_payment_order_confirming_aef/models/confirming_aef.py:0
+#, python-format
+msgid "- El proveedor %s no tiene establecida la ciudad."
+msgstr "- El proveedor %s no tiene establecida la ciudad."
+
+#. module: l10n_es_payment_order_confirming_aef
+#. odoo-python
+#: code:addons/l10n_es_payment_order_confirming_aef/models/confirming_aef.py:0
+#, python-format
+msgid "- El proveedor %s no tiene establecido el NIF."
+msgstr "- El proveedor %s no tiene establecido el NIF."
+
+#. module: l10n_es_payment_order_confirming_aef
+#. odoo-python
+#: code:addons/l10n_es_payment_order_confirming_aef/models/confirming_aef.py:0
+#, python-format
+msgid "- El proveedor %s no tiene establecido el domicilio."
+msgstr "- El proveedor %s no tiene establecido el domicilio."
+
+#. module: l10n_es_payment_order_confirming_aef
+#. odoo-python
+#: code:addons/l10n_es_payment_order_confirming_aef/models/confirming_aef.py:0
+#, python-format
+msgid "- El proveedor %s no tiene establecido el país."
+msgstr "- El proveedor %s no tiene establecido el país."
+
+#. module: l10n_es_payment_order_confirming_aef
+#. odoo-python
+#: code:addons/l10n_es_payment_order_confirming_aef/models/confirming_aef.py:0
+#, python-format
+msgid "- La cuenta bancaria del Proveedor %s no tiene establecido el SWIFT."
+msgstr "- La cuenta bancaria del Proveedor %s no tiene establecido el SWIFT."
+
+#. module: l10n_es_payment_order_confirming_aef
+#. odoo-python
+#: code:addons/l10n_es_payment_order_confirming_aef/models/confirming_aef.py:0
+#, python-format
+msgid ""
+"- La referencia de factura %s de proveedor no puede ocupar más de 15 "
+"caracteres."
+msgstr ""
+"- La referencia de factura %s de proveedor no puede ocupar más de 15 "
+"caracteres."
+
+#. module: l10n_es_payment_order_confirming_aef
+#. odoo-python
+#: code:addons/l10n_es_payment_order_confirming_aef/models/confirming_aef.py:0
+#, python-format
+msgid "- País del propietario no establecido %s."
+msgstr "- País del propietario no establecido %s."
+
+#. module: l10n_es_payment_order_confirming_aef
+#. odoo-python
+#: code:addons/l10n_es_payment_order_confirming_aef/models/confirming_aef.py:0
+#, python-format
+msgid "- Propietario de la cuenta no establecido para la cuenta %s."
+msgstr "- Propietario de la cuenta no establecido para la cuenta %s."
+
+#. module: l10n_es_payment_order_confirming_aef
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_order_confirming_aef.account_payment_mode_form_aef
+msgid "AEF Confirming Configuration"
+msgstr "Configuración de confirmación de AEF"
+
+#. module: l10n_es_payment_order_confirming_aef
+#: model:ir.model.fields.selection,name:l10n_es_payment_order_confirming_aef.selection__account_payment_mode__aef_confirming_type__c
+msgid "Cheque"
+msgstr "Cheque"
+
+#. module: l10n_es_payment_order_confirming_aef
+#: model:account.payment.method,name:l10n_es_payment_order_confirming_aef.export_confirming_aef
+msgid "Confirming AEF"
+msgstr "Confirmación de AEF"
+
+#. module: l10n_es_payment_order_confirming_aef
+#: model:ir.model.fields,field_description:l10n_es_payment_order_confirming_aef.field_account_payment_mode__aef_confirming_contract
+msgid "Contrato AEF Confirming         (13 o 15 dígitos)"
+msgstr "Contrato AEF Confirmando         (13 o 15 dígitos)"
+
+#. module: l10n_es_payment_order_confirming_aef
+#: model:ir.model.fields.selection,name:l10n_es_payment_order_confirming_aef.selection__account_payment_mode__aef_confirming_modality__1
+msgid "Estandar"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_aef
+#: model:ir.model.fields,field_description:l10n_es_payment_order_confirming_aef.field_account_payment_mode__aef_confirming_modality
+msgid "Modalidad remesa"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_aef
+#: model:ir.model.fields,help:l10n_es_payment_order_confirming_aef.field_account_payment_mode__aef_confirming_modality
+msgid "Opcional: Consultar con la entidad bancaria"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_aef
+#: model:ir.model.fields.selection,name:l10n_es_payment_order_confirming_aef.selection__account_payment_mode__aef_confirming_modality__3
+msgid "Otros"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_aef
+#: model:ir.model,name:l10n_es_payment_order_confirming_aef.model_account_payment_method
+msgid "Payment Methods"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_aef
+#: model:ir.model,name:l10n_es_payment_order_confirming_aef.model_account_payment_mode
+msgid "Payment Modes"
+msgstr "Métodos de pago"
+
+#. module: l10n_es_payment_order_confirming_aef
+#: model:ir.model,name:l10n_es_payment_order_confirming_aef.model_account_payment_order
+msgid "Payment Order"
+msgstr "Orden de pago"
+
+#. module: l10n_es_payment_order_confirming_aef
+#: model:ir.model.fields.selection,name:l10n_es_payment_order_confirming_aef.selection__account_payment_mode__aef_confirming_modality__2
+msgid "Pronto pago"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_aef
+#. odoo-python
+#: code:addons/l10n_es_payment_order_confirming_aef/models/confirming_aef.py:0
+#, python-format
+msgid "Se han encontrado los siguientes errores:\n"
+msgstr "Se han encontrado los siguientes errores:\n"
+
+#. module: l10n_es_payment_order_confirming_aef
+#: model:ir.model.fields,field_description:l10n_es_payment_order_confirming_aef.field_account_payment_mode__aef_confirming_type
+msgid "Tipo de pago"
+msgstr "Tipo de pago"
+
+#. module: l10n_es_payment_order_confirming_aef
+#: model:ir.model.fields.selection,name:l10n_es_payment_order_confirming_aef.selection__account_payment_mode__aef_confirming_type__t
+msgid "Transferencia"
+msgstr "Transferencia"
