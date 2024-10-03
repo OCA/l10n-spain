@@ -46,6 +46,7 @@ addon | version | maintainers | summary
 [l10n_es_partner_mercantil](l10n_es_partner_mercantil/) | 17.0.1.0.0 |  | Añade los datos del registro mercantil a la empresa
 [l10n_es_payment_order_confirming_aef](l10n_es_payment_order_confirming_aef/) | 17.0.1.0.0 |  | Exportación de fichero bancario Confirming estándar AEF
 [l10n_es_payment_order_confirming_sabadell](l10n_es_payment_order_confirming_sabadell/) | 17.0.1.0.0 |  | Exportación de fichero bancario Confirming para Banco Sabadell
+[l10n_es_reav](l10n_es_reav/) | 17.0.1.0.0 | [![Bilbonet](https://github.com/Bilbonet.png?size=30px)](https://github.com/Bilbonet) | REAV - Régimen Especial Agencias de Viajes
 [l10n_es_toponyms](l10n_es_toponyms/) | 17.0.1.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Topónimos españoles
 [l10n_es_vat_book](l10n_es_vat_book/) | 17.0.1.0.0 |  | Libro de IVA
 [l10n_es_vat_prorate](l10n_es_vat_prorate/) | 17.0.3.0.0 |  | Prorrata de IVA para la localización española

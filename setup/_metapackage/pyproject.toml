@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-l10n-spain"
-version = "17.0.20241003.0"
+version = "17.0.20241003.1"
 dependencies = [
     "odoo-addon-l10n_ca_es_cnae>=17.0dev,<17.1dev",
     "odoo-addon-l10n_es_account_asset>=17.0dev,<17.1dev",
@@ -27,6 +27,7 @@ dependencies = [
     "odoo-addon-l10n_es_partner_mercantil>=17.0dev,<17.1dev",
     "odoo-addon-l10n_es_payment_order_confirming_aef>=17.0dev,<17.1dev",
     "odoo-addon-l10n_es_payment_order_confirming_sabadell>=17.0dev,<17.1dev",
+    "odoo-addon-l10n_es_reav>=17.0dev,<17.1dev",
     "odoo-addon-l10n_es_toponyms>=17.0dev,<17.1dev",
     "odoo-addon-l10n_es_vat_book>=17.0dev,<17.1dev",
     "odoo-addon-l10n_es_vat_prorate>=17.0dev,<17.1dev",
