@@ -105,7 +105,7 @@ class PaymentProvider(models.Model):
             or self.env.context.get("website_id")
             and self.env["website"].browse(self.env.context["website_id"])
         )
-        domain = website and website.domain or ""
+        domain = website and website.domain
         if domain and domain != "localhost":
             # Check domain scheme as Odoo does in `website._get_http_domain()`
             parsed_url = urls.url_parse(domain)
