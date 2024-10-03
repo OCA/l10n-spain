@@ -6,7 +6,7 @@ from odoo import _, fields
 from odoo.exceptions import UserError
 
 
-class ConfirmingAEF(object):
+class ConfirmingAEF:
     def __init__(self, record):
         self.record = record
         self.partner_bank = record.company_partner_bank_id.partner_id
