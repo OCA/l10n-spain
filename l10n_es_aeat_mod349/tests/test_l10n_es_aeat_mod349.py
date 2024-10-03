@@ -28,6 +28,14 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
     }
 
     @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        # Compatibility with account_edi_ubl_cii
+        # It is necessary to set the value of company_registry so that if we define
+        # as country_id=BE the tests do not fail.
+        cls.customer.write({"company_registry": "0411905847"})
+
+    @classmethod
     def _invoice_refund(cls, invoice, dt, price_unit=None):
         _logger.debug(
             "Refund {} invoice: date = {}: price_unit = {}".format(
@@ -407,13 +415,8 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         )
         self.assertTrue(partner_record.partner_record_ok)
         # Reset vat and country
-        # Peppol eas is set so peppol check does not fail
         self.customer.write(
-            {
-                "vat": "BE0411905847",
-                "country_id": self.env.ref("base.be").id,
-                "peppol_eas": "9925",
-            }
+            {"vat": "BE0411905847", "country_id": self.env.ref("base.be").id}
         )
         model349_errors.button_recalculate()
         partner_record = model349_errors.partner_record_ids.filtered(
