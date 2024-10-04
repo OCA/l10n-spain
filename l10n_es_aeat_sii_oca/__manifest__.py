@@ -15,9 +15,11 @@
 # Copyright 2017-2023 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+# Nota Interna: Insertado mapeo impuestos de la Versión 16 l10n_es_aeat_sii_oca para nuevos impuestos 2024
+
 {
     "name": "Suministro Inmediato de Información en el IVA",
-    "version": "14.0.2.10.2",
+    "version": "14.0.2.10.3",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Acysos S.L.,"
