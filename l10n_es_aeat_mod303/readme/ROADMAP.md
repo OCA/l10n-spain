@@ -14,6 +14,9 @@
 - Posibilidad de marcar en el resultado el ingreso/devolución en la
   cuenta corriente tributaria.
 
+- No se pueden rellenar las casillas \[108\] y \[111\] de rectificación de
+  autoliquidación.
+
 - No se puede rellenar la casilla \[109\]: Devoluciones acordadas por la
   Agencia Tributaria como consecuencia de la tramitación de anteriores
   autoliquidaciones correspondientes al ejercicio y período objeto de la
