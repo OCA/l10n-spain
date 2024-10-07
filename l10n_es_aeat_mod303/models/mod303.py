@@ -298,6 +298,15 @@ class L10nEsAeatMod303Report(models.Model):
         compute="_compute_marca_sepa",
     )
 
+    def _get_export_config(self, date):
+        # Force the configuration of 2024-10 for 2024/09, as it can't be obtained with
+        # the usual dates search
+        if self.period_type == "3T" and self.year == 2024:
+            return self.env.ref(
+                "l10n_es_aeat_mod303.aeat_mod303_2024_10_main_export_config"
+            )
+        return super()._get_export_config(date)
+
     @api.depends("partner_bank_id", "use_aeat_account")
     def _compute_marca_sepa(self):
         for record in self:
@@ -374,11 +383,9 @@ class L10nEsAeatMod303Report(models.Model):
 
     @api.depends("tax_line_ids", "tax_line_ids.amount")
     def _compute_total_devengado(self):
-        casillas_devengado = (152, 3, 155, 6, 9, 11, 13, 15, 158, 18, 21, 24, 26)
+        cells = (152, 167, 3, 155, 6, 9, 11, 13, 15, 158, 170, 18, 21, 24, 26)
         for report in self:
-            tax_lines = report.tax_line_ids.filtered(
-                lambda x: x.field_number in casillas_devengado
-            )
+            tax_lines = report.tax_line_ids.filtered(lambda x: x.field_number in cells)
             report.total_devengado = report.currency_id.round(
                 sum(tax_lines.mapped("amount"))
             )
