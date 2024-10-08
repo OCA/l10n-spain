@@ -1,6 +1,6 @@
-========================================
-IGIC (Impuesto General Indirecto Canario
-========================================
+=========================================
+IGIC (Impuesto General Indirecto Canario)
+=========================================
 
 .. 
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -42,12 +42,6 @@ Installation
 En caso de no estar instalado el módulo l10n_es, se debe instalar
 directamente este módulo.
 
-En caso contrario:
-
--  Instalar este módulo.
--  Instalar account_chart_update (OCA account-financial-tools)
--  Ejecutar el asistente de actualización del plan contable español
-
 Bug Tracker
 ===========
 
@@ -68,6 +62,7 @@ Authors
 * Atlantux Consultores - Enrique Zanardi
 * Sistemas de Datos
 * Comunitea
+* Moisés Fargnoli
 
 Contributors
 ------------
