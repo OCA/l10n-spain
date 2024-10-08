@@ -17,19 +17,19 @@ IGIC (Impuesto General Indirecto Canario
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_igic
+    :target: https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_igic
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-16-0/l10n-spain-16-0-l10n_es_igic
+    :target: https://translation.odoo-community.org/projects/l10n-spain-17-0/l10n-spain-17-0-l10n_es_igic
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Módulo que amplía la contabilidad española introduciendo
-los impuestos y posiciones fiscales para el IGIC.
+Módulo que amplía la contabilidad española introduciendo los impuestos y
+posiciones fiscales para el IGIC.
 
 **Table of contents**
 
@@ -39,13 +39,14 @@ los impuestos y posiciones fiscales para el IGIC.
 Installation
 ============
 
-En caso de no estar instalado el módulo l10n_es, se debe instalar directamente este módulo.
+En caso de no estar instalado el módulo l10n_es, se debe instalar
+directamente este módulo.
 
 En caso contrario:
 
-* Instalar este módulo.
-* Instalar account_chart_update (OCA account-financial-tools)
-* Ejecutar el asistente de actualización del plan contable español
+-  Instalar este módulo.
+-  Instalar account_chart_update (OCA account-financial-tools)
+-  Ejecutar el asistente de actualización del plan contable español
 
 Bug Tracker
 ===========
@@ -53,7 +54,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_igic%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_igic%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -61,7 +62,7 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * David Diz Martínez
 * Atlantux Consultores - Enrique Zanardi
@@ -69,14 +70,14 @@ Authors
 * Comunitea
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Rodrigo Colombo <rodrigo.covl@gmail.com> <rcolombo@sdatos.es>
-* Hector Ravelo <alu0100603170@ull.edu.es>
-* Omar Castiñeira Saavedra <omar@comunitea.com>
+-  Rodrigo Colombo <rodrigo.covl@gmail.com> <rcolombo@sdatos.es>
+-  Hector Ravelo <alu0100603170@ull.edu.es>
+-  Omar Castiñeira Saavedra <omar@comunitea.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -88,6 +89,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_igic>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_igic>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
