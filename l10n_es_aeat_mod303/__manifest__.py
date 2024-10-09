@@ -16,7 +16,7 @@
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
-    "depends": ["l10n_es", "l10n_es_aeat"],
+    "depends": ["l10n_es", "l10n_es_aeat", "l10n_es_extra_data"],
     "data": [
         "data/2021-07/aeat.model.export.config.csv",
         "data/2021-07/aeat.model.export.config.line.csv",
