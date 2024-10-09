@@ -39,6 +39,7 @@ setuptools.setup(
         'odoo13-addon-l10n_es_dua',
         'odoo13-addon-l10n_es_dua_sii',
         'odoo13-addon-l10n_es_dua_ticketbai_batuz',
+        'odoo13-addon-l10n_es_extra_data',
         'odoo13-addon-l10n_es_facturae',
         'odoo13-addon-l10n_es_facturae_efact',
         'odoo13-addon-l10n_es_facturae_face',
