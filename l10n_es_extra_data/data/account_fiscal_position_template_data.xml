@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="fptt_extra_2b" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_extra" />
+        <field name="tax_src_id" ref="account_tax_template_p_iva2_bc" />
+        <field name="tax_dest_id" ref="account_tax_template_p_iva2_ibc" />
+    </record>
+    <record id="fptt_extra_2s" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_extra" />
+        <field name="tax_src_id" ref="account_tax_template_p_iva2_sc" />
+        <field name="tax_dest_id" ref="account_tax_template_p_iva2_isc" />
+    </record>
+    <record id="fptt_extra_7-5b" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_extra" />
+        <field name="tax_src_id" ref="account_tax_template_p_iva7-5_bc" />
+        <field name="tax_dest_id" ref="account_tax_template_p_iva7-5_ibc" />
+    </record>
+    <record id="fptt_extra_7-5s" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_extra" />
+        <field name="tax_src_id" ref="account_tax_template_p_iva7-5_sc" />
+        <field name="tax_dest_id" ref="account_tax_template_p_iva7-5_isc" />
+    </record>
+    <record id="fptt_extra_ventas_2b" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_extra" />
+        <field name="tax_src_id" ref="account_tax_template_s_iva2b" />
+        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva0_e" />
+    </record>
+    <record id="fptt_extra_ventas_2s" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_extra" />
+        <field name="tax_src_id" ref="account_tax_template_s_iva2s" />
+        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva_e" />
+    </record>
+    <record id="fptt_extra_ventas_7-5b" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_extra" />
+        <field name="tax_src_id" ref="account_tax_template_s_iva7-5b" />
+        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva0_e" />
+    </record>
+    <record id="fptt_extra_ventas_7-5s" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_extra" />
+        <field name="tax_src_id" ref="account_tax_template_s_iva7-5s" />
+        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva_e" />
+    </record>
+    <record id="fptt_intra_2b" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_intra" />
+        <field name="tax_src_id" ref="account_tax_template_p_iva2_bc" />
+        <field name="tax_dest_id" ref="account_tax_template_p_iva2_ic_bc" />
+    </record>
+    <record id="fptt_intra_2s" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_intra" />
+        <field name="tax_src_id" ref="account_tax_template_p_iva2_sc" />
+        <field name="tax_dest_id" ref="account_tax_template_p_iva2_ic_sc" />
+    </record>
+    <record id="fptt_intra_7-5b" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_intra" />
+        <field name="tax_src_id" ref="account_tax_template_p_iva7-5_bc" />
+        <field name="tax_dest_id" ref="account_tax_template_p_iva7-5_ic_bc" />
+    </record>
+    <record id="fptt_intra_7-5s" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_intra" />
+        <field name="tax_src_id" ref="account_tax_template_p_iva7-5_sc" />
+        <field name="tax_dest_id" ref="account_tax_template_p_iva7-5_ic_sc" />
+    </record>
+    <record id="fptt_intra_ventas_2b" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_intra" />
+        <field name="tax_src_id" ref="account_tax_template_s_iva2b" />
+        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva0_ic" />
+    </record>
+    <record id="fptt_intra_ventas_2s" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_intra" />
+        <field name="tax_src_id" ref="account_tax_template_s_iva2s" />
+        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva0_sp_i" />
+    </record>
+    <record id="fptt_intra_ventas_7-5b" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_intra" />
+        <field name="tax_src_id" ref="account_tax_template_s_iva7-5b" />
+        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva0_ic" />
+    </record>
+    <record id="fptt_intra_ventas_7-5s" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_intra" />
+        <field name="tax_src_id" ref="account_tax_template_s_iva7-5s" />
+        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva0_sp_i" />
+    </record>
+    <record id="fptt_recargo_2b" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_recargo" />
+        <field name="tax_src_id" ref="account_tax_template_s_iva2b" />
+        <field name="tax_dest_id" ref="account_tax_template_s_iva2b" />
+    </record>
+    <record id="fptt_recargo_2b_2" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_recargo" />
+        <field name="tax_src_id" ref="account_tax_template_s_iva2b" />
+        <field name="tax_dest_id" ref="account_tax_template_s_req026" />
+    </record>
+    <record id="fptt_recargo_2s" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_recargo" />
+        <field name="tax_src_id" ref="account_tax_template_s_iva2s" />
+        <field name="tax_dest_id" ref="account_tax_template_s_iva2s" />
+    </record>
+    <record id="fptt_recargo_2s_2" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_recargo" />
+        <field name="tax_src_id" ref="account_tax_template_s_iva2s" />
+        <field name="tax_dest_id" ref="account_tax_template_s_req026" />
+    </record>
+    <record id="fptt_recargo7-5b" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_recargo" />
+        <field name="tax_src_id" ref="account_tax_template_s_iva7-5b" />
+        <field name="tax_dest_id" ref="account_tax_template_s_iva7-5b" />
+    </record>
+    <record id="fptt_recargo_7-5b_2" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_recargo" />
+        <field name="tax_src_id" ref="account_tax_template_s_iva7-5b" />
+        <field name="tax_dest_id" ref="account_tax_template_s_req1" />
+    </record>
+    <record id="fptt_recargo_7-5s" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_recargo" />
+        <field name="tax_src_id" ref="account_tax_template_s_iva7-5s" />
+        <field name="tax_dest_id" ref="account_tax_template_s_iva7-5s" />
+    </record>
+    <record id="fptt_recargo_7-5s_2" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_recargo" />
+        <field name="tax_src_id" ref="account_tax_template_s_iva7-5s" />
+        <field name="tax_dest_id" ref="account_tax_template_s_req1" />
+    </record>
+    <record id="fptt_recargo_buy_2b" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_recargo" />
+        <field name="tax_src_id" ref="account_tax_template_p_iva2_bc" />
+        <field name="tax_dest_id" ref="account_tax_template_p_iva2_bc" />
+    </record>
+    <record id="fptt_recargo_buy_2b_2" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_recargo" />
+        <field name="tax_src_id" ref="account_tax_template_p_iva2_bc" />
+        <field name="tax_dest_id" ref="account_tax_template_p_req026" />
+    </record>
+    <record id="fptt_recargo_buy_2s" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_recargo" />
+        <field name="tax_src_id" ref="account_tax_template_p_iva2_sc" />
+        <field name="tax_dest_id" ref="account_tax_template_p_iva2_sc" />
+    </record>
+    <record id="fptt_recargo_buy_2s_2" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_recargo" />
+        <field name="tax_src_id" ref="account_tax_template_p_iva2_sc" />
+        <field name="tax_dest_id" ref="account_tax_template_p_req026" />
+    </record>
+    <record id="fptt_recargo_buy_7-5b" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_recargo" />
+        <field name="tax_src_id" ref="account_tax_template_p_iva7-5_bc" />
+        <field name="tax_dest_id" ref="account_tax_template_p_iva7-5_bc" />
+    </record>
+    <record id="fptt_recargo_buy_7-5b_2" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_recargo" />
+        <field name="tax_src_id" ref="account_tax_template_p_iva7-5_bc" />
+        <field name="tax_dest_id" ref="account_tax_template_p_req1" />
+    </record>
+    <record id="fptt_recargo_buy_7-5s" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_recargo" />
+        <field name="tax_src_id" ref="account_tax_template_p_iva7-5_sc" />
+        <field name="tax_dest_id" ref="account_tax_template_p_iva7-5_sc" />
+    </record>
+    <record id="fptt_recargo_buy_7-5s_2" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="l10n_es.fp_recargo" />
+        <field name="tax_src_id" ref="account_tax_template_p_iva7-5_sc" />
+        <field name="tax_dest_id" ref="account_tax_template_p_req1" />
+    </record>
+</odoo>
