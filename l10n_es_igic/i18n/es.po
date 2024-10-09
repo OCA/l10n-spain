@@ -17,71 +17,64 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_0
-msgid "IGIC 0%"
-msgstr "IGIC 0%"
+#. odoo-python
+#: code:addons/l10n_es_igic/models/template_es_canary.py:0
+#, python-format
+msgid "Completo (2008) - Islas Canarias"
+msgstr ""
 
 #. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_15
-msgid "IGIC 15%"
-msgstr "IGIC 15%"
+#. odoo-python
+#: code:addons/l10n_es_igic/models/template_es_canary.py:0
+#, python-format
+msgid "Entidades sin ánimo de lucro (2008) - Islas Canarias"
+msgstr ""
 
 #. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_20
-msgid "IGIC 20%"
-msgstr "IGIC 20%"
+#. odoo-python
+#: code:addons/l10n_es_igic/models/template_es_canary.py:0
+#, python-format
+msgid "PyMEs (2008) - Islas Canarias"
+msgstr ""
 
-#. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_3
-msgid "IGIC 3%"
-msgstr "IGIC 3%"
+#~ msgid "IGIC 0%"
+#~ msgstr "IGIC 0%"
 
-#. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_7
-msgid "IGIC 7%"
-msgstr "IGIC 7%"
+#~ msgid "IGIC 15%"
+#~ msgstr "IGIC 15%"
 
-#. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_95
-msgid "IGIC 9,5%"
-msgstr "IGIC 9,5%"
+#~ msgid "IGIC 20%"
+#~ msgstr "IGIC 20%"
 
-#. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_cmino
-msgid "IGIC Comercio Minorista"
-msgstr "IGIC Comercio Minorista"
+#~ msgid "IGIC 3%"
+#~ msgstr "IGIC 3%"
 
-#. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_ex
-msgid "IGIC EXENTO"
-msgstr "IGIC EXENTO"
+#~ msgid "IGIC 7%"
+#~ msgstr "IGIC 7%"
 
-#. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_re_0
-msgid "IGIC Recargo de Equivalencia 0%"
-msgstr "IGIC Recargo de Equivalencia 0%"
+#~ msgid "IGIC 9,5%"
+#~ msgstr "IGIC 9,5%"
 
-#. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_re_03
-msgid "IGIC Recargo de Equivalencia 0,3%"
-msgstr "IGIC Recargo de Equivalencia 0,3%"
+#~ msgid "IGIC Comercio Minorista"
+#~ msgstr "IGIC Comercio Minorista"
 
-#. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_re_07
-msgid "IGIC Recargo de Equivalencia 0,7%"
-msgstr "IGIC Recargo de Equivalencia 0,7%"
+#~ msgid "IGIC EXENTO"
+#~ msgstr "IGIC EXENTO"
 
-#. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_re_095
-msgid "IGIC Recargo de Equivalencia 0,95%"
-msgstr "IGIC Recargo de Equivalencia 0,95%"
+#~ msgid "IGIC Recargo de Equivalencia 0%"
+#~ msgstr "IGIC Recargo de Equivalencia 0%"
 
-#. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_re_15
-msgid "IGIC Recargo de Equivalencia 1,5%"
-msgstr "IGIC Recargo de Equivalencia 1,5%"
+#~ msgid "IGIC Recargo de Equivalencia 0,3%"
+#~ msgstr "IGIC Recargo de Equivalencia 0,3%"
 
-#. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_re_20
-msgid "IGIC Recargo de Equivalencia 2%"
-msgstr "IGIC Recargo de Equivalencia 2%"
+#~ msgid "IGIC Recargo de Equivalencia 0,7%"
+#~ msgstr "IGIC Recargo de Equivalencia 0,7%"
+
+#~ msgid "IGIC Recargo de Equivalencia 0,95%"
+#~ msgstr "IGIC Recargo de Equivalencia 0,95%"
+
+#~ msgid "IGIC Recargo de Equivalencia 1,5%"
+#~ msgstr "IGIC Recargo de Equivalencia 1,5%"
+
+#~ msgid "IGIC Recargo de Equivalencia 2%"
+#~ msgstr "IGIC Recargo de Equivalencia 2%"
