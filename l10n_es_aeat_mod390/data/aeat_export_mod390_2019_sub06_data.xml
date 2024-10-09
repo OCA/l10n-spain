@@ -413,7 +413,7 @@
         <field
             name="name"
         >9. Resultado de las liquidaciones - Cuotas pendientes de compensación al término del ejercicio [662]</field>
-        <field name="fixed_value">0</field>
+        <field name="expression">${object.casilla_662}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="False" />
         <field name="size">17</field>

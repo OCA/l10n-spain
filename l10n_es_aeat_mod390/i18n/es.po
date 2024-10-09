@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-29 15:09+0000\n"
-"PO-Revision-Date: 2023-11-07 19:37+0000\n"
-"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"POT-Creation-Date: 2024-01-30 12:59+0000\n"
+"PO-Revision-Date: 2024-01-30 14:01+0100\n"
+"Last-Translator: Emilio Pascual <emilio@moduom.team>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. module: l10n_es_aeat_mod390
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390.view_l10n_es_aeat_mod390_report_form
@@ -450,8 +450,18 @@ msgstr "Si está marcado, hay nuevos mensajes que requieren de su atención."
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_has_error
+#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcado, hay mensajes con error de entrega."
+
+#. module: l10n_es_aeat_mod390
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390.view_l10n_es_aeat_mod390_report_form
+msgid ""
+"If you do not want to use the 303 models for the automatic calculation,\n"
+"                        uncheck Use 303 models option."
+msgstr ""
+"Si no desea utilizar los modelos 303 para el cálculo automático,\n"
+"                        desmarque la opción Utilizar modelos 303."
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_is_follower
@@ -690,6 +700,11 @@ msgid "Responsible User"
 msgstr "Usuario responsable"
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de entrega de mensaje"
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_95
 msgid ""
 "Se consignará la suma de las cantidades a ingresar por el Impuesto como "
@@ -817,6 +832,11 @@ msgid "Type of the exception activity on record."
 msgstr "Tipo de la excepción de la actividad en el registro."
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__use_303
+msgid "Use 303 models"
+msgstr "Utilizar modelos 303"
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__company_vat
 msgid "VAT number"
 msgstr "NIF"
@@ -844,6 +864,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__year
 msgid "Year"
 msgstr "Año"
+
+#. module: l10n_es_aeat_mod390
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390.view_l10n_es_aeat_mod390_report_form
+msgid ""
+"You are using the 303 models for automatic calculations. The calculations\n"
+"                        may not be correct if there are duplicate or out-of-"
+"date 303 models."
+msgstr ""
+"Está utilizando los modelos 303 para cálculos automáticos. Los cálculos\n"
+"                        pueden no ser correctos si hay modelos 303 "
+"duplicados o desactualizados."
 
 #. module: l10n_es_aeat_mod390
 #. odoo-python
@@ -961,6 +992,20 @@ msgid "[65] Result. rég. gral."
 msgstr "[65] Result. rég. gral."
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_662
+msgid "[662] Cuotas pendientes de compensación al término del ejercicio"
+msgstr "[662] Cuotas pendientes de compensación al término del ejercicio"
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_662
+msgid ""
+"[662] Cuotas pendientes de compensación generadas en el ejercicio y "
+"distintas de las incluidas en la casilla 97"
+msgstr ""
+"[662] Cuotas pendientes de compensación generadas en el ejercicio y "
+"distintas de las incluidas en la casilla 97"
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_85
 msgid "[85] Compens. ejercicio anterior"
 msgstr "[85] Compens. ejercicio anterior"
@@ -989,86 +1034,3 @@ msgstr "[98] Result. 303 último periodo a devolver"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__has_347
 msgid "¿Obligación del 347?"
 msgstr "¿Obligación del 347?"
-
-#~ msgid "SMS Delivery error"
-#~ msgstr "Error de entrega de SMS"
-
-#~ msgid "Number of messages which requires an action"
-#~ msgstr "Nº de mensajes que requieren una acción"
-
-#~ msgid "Model"
-#~ msgstr "Modelo"
-
-#~ msgid "Number of unread messages"
-#~ msgstr "Nº de mensajes no leídos"
-
-#~ msgid "Unread Messages"
-#~ msgstr "Mensajes sin leer"
-
-#~ msgid "Unread Messages Counter"
-#~ msgstr "Nº de mensajes sin leer"
-
-#~ msgid "Calculation date"
-#~ msgstr "Fecha de cálculo"
-
-#~ msgid "Contact email"
-#~ msgstr "Email contacto"
-
-#~ msgid "Followers (Channels)"
-#~ msgstr "Seguidores (Canales)"
-
-#~ msgid "Period type"
-#~ msgstr "Tipo de periodo"
-
-#~ msgid "Cancelled"
-#~ msgstr "Cancelada"
-
-#~ msgid "Complementary"
-#~ msgstr "Complementaria"
-
-#~ msgid "DVD"
-#~ msgstr "DVD"
-
-#~ msgid "Done"
-#~ msgstr "Realizada"
-
-#~ msgid "Draft"
-#~ msgstr "Borrador"
-
-#~ msgid "If checked new messages require your attention."
-#~ msgstr "Si está marcado, hay nuevos mensajes que requieren de su atención."
-
-#~ msgid "Normal"
-#~ msgstr "Normal"
-
-#~ msgid "Number of error"
-#~ msgstr "Nº de error"
-
-#~ msgid "Overdue"
-#~ msgstr "Retrasado"
-
-#~ msgid "Planned"
-#~ msgstr "Planificado"
-
-#~ msgid "Posted"
-#~ msgstr "Contabilizada"
-
-#~ msgid "Processed"
-#~ msgstr "Procesada"
-
-#~ msgid "Substitutive"
-#~ msgstr "Sustitutiva"
-
-#~ msgid "Telematics"
-#~ msgstr "Telemática"
-
-#~ msgid "Today"
-#~ msgstr "Hoy"
-
-#, fuzzy
-#~ msgid ""
-#~ "CÃ³digo de la notarÃ­a en la que se concediÃ³ el poder de representaciÃ³n "
-#~ "para esta persona."
-#~ msgstr ""
-#~ "Código de la notaría en la que se concedió el poder de representación "
-#~ "para esta persona."
