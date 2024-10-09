@@ -417,6 +417,12 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_company__delay_time
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_company__sent_time
+msgid "In hours"
+msgstr "En horas"
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__sii_send_failed
 msgid ""
 "Indicates that the last attempt to communicate this invoice to the SII has "
@@ -1287,9 +1293,6 @@ msgstr "[E6] Otros"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.l10n_es_sii_password_wizard_view
 msgid "or"
 msgstr "o"
-
-#~ msgid "In hours"
-#~ msgstr "En horas"
 
 #~ msgid "Journal"
 #~ msgstr "Diario"
