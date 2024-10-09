@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,71 +14,22 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_0
-msgid "IGIC 0%"
+#. odoo-python
+#: code:addons/l10n_es_igic/models/template_es_canary.py:0
+#, python-format
+msgid "Completo (2008) - Islas Canarias"
 msgstr ""
 
 #. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_15
-msgid "IGIC 15%"
+#. odoo-python
+#: code:addons/l10n_es_igic/models/template_es_canary.py:0
+#, python-format
+msgid "Entidades sin ánimo de lucro (2008) - Islas Canarias"
 msgstr ""
 
 #. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_20
-msgid "IGIC 20%"
-msgstr ""
-
-#. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_3
-msgid "IGIC 3%"
-msgstr ""
-
-#. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_7
-msgid "IGIC 7%"
-msgstr ""
-
-#. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_95
-msgid "IGIC 9,5%"
-msgstr ""
-
-#. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_cmino
-msgid "IGIC Comercio Minorista"
-msgstr ""
-
-#. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_ex
-msgid "IGIC EXENTO"
-msgstr ""
-
-#. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_re_0
-msgid "IGIC Recargo de Equivalencia 0%"
-msgstr ""
-
-#. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_re_03
-msgid "IGIC Recargo de Equivalencia 0,3%"
-msgstr ""
-
-#. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_re_07
-msgid "IGIC Recargo de Equivalencia 0,7%"
-msgstr ""
-
-#. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_re_095
-msgid "IGIC Recargo de Equivalencia 0,95%"
-msgstr ""
-
-#. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_re_15
-msgid "IGIC Recargo de Equivalencia 1,5%"
-msgstr ""
-
-#. module: l10n_es_igic
-#: model:account.tax.group,name:l10n_es_igic.tax_group_igic_re_20
-msgid "IGIC Recargo de Equivalencia 2%"
+#. odoo-python
+#: code:addons/l10n_es_igic/models/template_es_canary.py:0
+#, python-format
+msgid "PyMEs (2008) - Islas Canarias"
 msgstr ""
