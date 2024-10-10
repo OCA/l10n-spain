@@ -144,8 +144,13 @@ msgid "Sabadell Confirming Configuration"
 msgstr ""
 
 #. module: l10n_es_payment_order_confirming_sabadell
-#: model:ir.model.fields,field_description:l10n_es_payment_order_confirming_sabadell.field_account_payment_mode__conf_sabadell_type
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_order_confirming_sabadell.account_payment_mode_form
 msgid "Tipo de pago"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_sabadell
+#: model:ir.model.fields,field_description:l10n_es_payment_order_confirming_sabadell.field_account_payment_mode__conf_sabadell_type
+msgid "Tipo de pago (Sabadell)"
 msgstr ""
 
 #. module: l10n_es_payment_order_confirming_sabadell
