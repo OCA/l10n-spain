@@ -7,7 +7,7 @@
 
 {
     "name": "Exportación de fichero bancario Confirming para Banco Sabadell",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.1.0",
     "author": "Soluntec, Odoo Community Association (OCA), Tecnativa",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
