@@ -4,7 +4,7 @@
 {
     "name": "Partner Mercantil",
     "summary": "Añade los datos del registro mercantil a la empresa",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.0.1",
     "development_status": "Mature",
     "author": "Spanish Localization Team, "
     "Tecnativa, "
