@@ -14,7 +14,7 @@
                     name="config_confirming_aef"
                     invisible="payment_method_code != 'confirming_aef'"
                 >
-                    <field name="aef_confirming_type" />
+                    <field name="aef_confirming_type" string="Tipo de pago" />
                     <field name="aef_confirming_modality" />
                     <field
                         name="aef_confirming_contract"
