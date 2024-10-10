@@ -14,7 +14,7 @@
                     name="config_confirming_sabadell"
                     invisible="payment_method_code != 'conf_sabadell'"
                 >
-                    <field name="conf_sabadell_type" />
+                    <field name="conf_sabadell_type" string="Tipo de pago" />
                     <field
                         name="contrato_bsconfirming"
                         required="payment_method_code == 'conf_sabadell'"
