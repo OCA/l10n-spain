@@ -144,9 +144,14 @@ msgid "Se han encontrado los siguientes errores:\n"
 msgstr "Se han encontrado los siguientes errores:\n"
 
 #. module: l10n_es_payment_order_confirming_aef
-#: model:ir.model.fields,field_description:l10n_es_payment_order_confirming_aef.field_account_payment_mode__aef_confirming_type
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_order_confirming_aef.account_payment_mode_form_aef
 msgid "Tipo de pago"
 msgstr "Tipo de pago"
+
+#. module: l10n_es_payment_order_confirming_aef
+#: model:ir.model.fields,field_description:l10n_es_payment_order_confirming_aef.field_account_payment_mode__aef_confirming_type
+msgid "Tipo de pago (AEF)"
+msgstr ""
 
 #. module: l10n_es_payment_order_confirming_aef
 #: model:ir.model.fields.selection,name:l10n_es_payment_order_confirming_aef.selection__account_payment_mode__aef_confirming_type__t
