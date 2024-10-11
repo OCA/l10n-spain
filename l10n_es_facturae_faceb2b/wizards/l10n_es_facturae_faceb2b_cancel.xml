@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Dixmit
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="l10n_es_facturae_faceb2b_cancel_form_view">
+        <field
+            name="name"
+        >l10n.es.facturae.faceb2b.cancel.form (in l10n_es_facturae_faceb2b)</field>
+        <field name="model">l10n.es.facturae.faceb2b.cancel</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="motive" />
+                    <field name="move_id" invisible="1" />
+                </group>
+                <footer>
+                    <button
+                        name="cancel_faceb2b"
+                        string="OK"
+                        class="btn-primary"
+                        type="object"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record
+        model="ir.actions.act_window"
+        id="l10n_es_facturae_faceb2b_cancel_act_window"
+    >
+        <field name="name">Cancel FACeB2b</field>
+        <field name="res_model">l10n.es.facturae.faceb2b.cancel</field>
+        <field name="view_mode">form</field>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
+
+
+</odoo>

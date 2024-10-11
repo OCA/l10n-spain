@@ -11,8 +11,6 @@ class ResPartner(models.Model):
     l10n_es_facturae_sending_code = fields.Selection(
         [("face", "FACe")], string="Sending method"
     )
-    # TODO: Replace this by a boolean on 15.0. We are keeping this on 13 and 14 because
-    #  migration might be problematic
 
     @api.constrains(
         "facturae",
@@ -20,12 +18,15 @@ class ResPartner(models.Model):
         "country_id",
         "state_id",
         "l10n_es_facturae_sending_code",
+        "organo_gestor",
+        "unidad_tramitadora",
+        "oficina_contable",
     )
     def _constrain_l10n_es_facturae_sending_code_face(self):
         for record in self:
             if (
                 not record.l10n_es_facturae_sending_code
-                or record.l10n_es_facturae_sending_code != "face"
+                or record.l10n_es_facturae_sending_code not in ["face"]
             ):
                 continue
             if not record.facturae:
@@ -45,3 +46,25 @@ class ResPartner(models.Model):
                     raise exceptions.ValidationError(
                         _("State must be defined in Spain in order to send to FACe")
                     )
+            if not record.organo_gestor:
+                raise exceptions.ValidationError(
+                    _("Organo Gestor must be defined in Spain in order to send to FACe")
+                )
+            if not record.unidad_tramitadora:
+                raise exceptions.ValidationError(
+                    _(
+                        "Unidad Tramitadora must be defined in Spain in order to send to FACe"
+                    )
+                )
+            if not record.oficina_contable:
+                raise exceptions.ValidationError(
+                    _(
+                        "Oficina Contable must be defined in Spain in order to send to FACe"
+                    )
+                )
+
+    def _get_facturae_backend(self):
+        return self.env.ref("l10n_es_facturae_face.face_backend")
+
+    def _get_facturae_exchange_type(self):
+        return self.env.ref("l10n_es_facturae_face.facturae_exchange_type")

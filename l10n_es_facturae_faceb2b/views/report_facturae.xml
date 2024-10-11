@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="template_facturae" inherit_id="l10n_es_facturae.template_facturae">
+        <xpath expr="//AdditionalData/Extensions" position="inside">
+            &lt;fb2b:FaceB2BExtension&gt;
+                <buyerCentres>
+                    <receiverAdministrativeCentre>
+                        <code t-esc="move_partner.facturae_faceb2b_dire" />
+                        <name t-esc="move_partner.name" />
+                    </receiverAdministrativeCentre>
+                </buyerCentres>
+            &lt;/fb2b:FaceB2BExtension&gt;
+        </xpath>
+    </template>
+
+</odoo>

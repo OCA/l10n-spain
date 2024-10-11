@@ -1,0 +1,194 @@
+<fe:Facturae xmlns:fe="http://www.facturae.es/Facturae/2009/v3.2/Facturae" xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+    <FileHeader>
+        <SchemaVersion>3.2</SchemaVersion>
+        <Modality>I</Modality>
+        <InvoiceIssuerType>EM</InvoiceIssuerType>
+        <Batch>
+            <BatchIdentifier>INV/2023/04/0002ES59962470K</BatchIdentifier>
+            <InvoicesCount>1</InvoicesCount>
+            <TotalInvoicesAmount>
+                <TotalAmount>177.87</TotalAmount>
+                <EquivalentInEuros>177.87</EquivalentInEuros>
+            </TotalInvoicesAmount>
+            <TotalOutstandingAmount>
+                <TotalAmount>177.87</TotalAmount>
+                <EquivalentInEuros>177.87</EquivalentInEuros>
+            </TotalOutstandingAmount>
+            <TotalExecutableAmount>
+                <TotalAmount>177.87</TotalAmount>
+                <EquivalentInEuros>177.87</EquivalentInEuros>
+            </TotalExecutableAmount>
+            <InvoiceCurrencyCode>EUR</InvoiceCurrencyCode>
+        </Batch>
+    </FileHeader>
+    <Parties>
+        <SellerParty>
+            <TaxIdentification>
+                <PersonTypeCode>F</PersonTypeCode>
+                <ResidenceTypeCode>R</ResidenceTypeCode>
+                <TaxIdentificationNumber>ES59962470K</TaxIdentificationNumber>
+            </TaxIdentification>
+            <Individual>
+                <Name>ES Company</Name>
+                <FirstSurname/>
+                <SecondSurname/>
+                <AddressInSpain>
+                    <Address>A</Address>
+                    <PostCode>00000</PostCode>
+                    <Town>Candasnos</Town>
+                    <Province>Zaragoza</Province>
+                    <CountryCode>ESP</CountryCode>
+                </AddressInSpain>
+                <ContactDetails>
+                    <Telephone>+34 612 34 56 7</Telephone>
+                    <WebAddress>http://www.esexample.com</WebAddress>
+                    <ElectronicMail>info@company.esexample.com</ElectronicMail>
+                    <ContactPersons>ES Company</ContactPersons>
+                </ContactDetails>
+            </Individual>
+        </SellerParty>
+        <BuyerParty>
+            <TaxIdentification>
+                <PersonTypeCode>J</PersonTypeCode>
+                <ResidenceTypeCode>R</ResidenceTypeCode>
+                <TaxIdentificationNumber>ESA12345674</TaxIdentificationNumber>
+            </TaxIdentification>
+            <AdministrativeCentres>
+                <AdministrativeCentre>
+                    <CentreCode>1</CentreCode>
+                    <RoleTypeCode>01</RoleTypeCode>
+                    <AddressInSpain>
+                        <Address>4557 De Silva St</Address>
+                        <PostCode>94538</PostCode>
+                        <Town>Fremont</Town>
+                        <Province>Albacete</Province>
+                        <CountryCode>ESP</CountryCode>
+                    </AddressInSpain>
+                    <ContactDetails>
+                        <Telephone>(870)-931-0505</Telephone>
+                        <WebAddress>http://www.azure-interior.com</WebAddress>
+                        <ElectronicMail>azure.Interior24@example.com</ElectronicMail>
+                        <ContactPersons>Azure Interior</ContactPersons>
+                    </ContactDetails>
+                    <CentreDescription>Azure Interior</CentreDescription>
+                </AdministrativeCentre>
+                <AdministrativeCentre>
+                    <CentreCode>1</CentreCode>
+                    <RoleTypeCode>02</RoleTypeCode>
+                    <AddressInSpain>
+                        <Address>4557 De Silva St</Address>
+                        <PostCode>94538</PostCode>
+                        <Town>Fremont</Town>
+                        <Province>Albacete</Province>
+                        <CountryCode>ESP</CountryCode>
+                    </AddressInSpain>
+                    <ContactDetails>
+                        <Telephone>(870)-931-0505</Telephone>
+                        <WebAddress>http://www.azure-interior.com</WebAddress>
+                        <ElectronicMail>azure.Interior24@example.com</ElectronicMail>
+                        <ContactPersons>Azure Interior</ContactPersons>
+                    </ContactDetails>
+                    <CentreDescription>Azure Interior</CentreDescription>
+                </AdministrativeCentre>
+                <AdministrativeCentre>
+                    <CentreCode>1</CentreCode>
+                    <RoleTypeCode>03</RoleTypeCode>
+                    <AddressInSpain>
+                        <Address>4557 De Silva St</Address>
+                        <PostCode>94538</PostCode>
+                        <Town>Fremont</Town>
+                        <Province>Albacete</Province>
+                        <CountryCode>ESP</CountryCode>
+                    </AddressInSpain>
+                    <ContactDetails>
+                        <Telephone>(870)-931-0505</Telephone>
+                        <WebAddress>http://www.azure-interior.com</WebAddress>
+                        <ElectronicMail>azure.Interior24@example.com</ElectronicMail>
+                        <ContactPersons>Azure Interior</ContactPersons>
+                    </ContactDetails>
+                    <CentreDescription>Azure Interior</CentreDescription>
+                </AdministrativeCentre>
+            </AdministrativeCentres>
+            <LegalEntity>
+                <CorporateName>Azure Interior</CorporateName>
+                <TradeName>Azure Interior</TradeName>
+                <AddressInSpain>
+                    <Address>4557 De Silva St</Address>
+                    <PostCode>94538</PostCode>
+                    <Town>Fremont</Town>
+                    <Province>Albacete</Province>
+                    <CountryCode>ESP</CountryCode>
+                </AddressInSpain>
+                <ContactDetails>
+                    <Telephone>(870)-931-0505</Telephone>
+                    <WebAddress>http://www.azure-interior.com</WebAddress>
+                    <ElectronicMail>azure.Interior24@example.com</ElectronicMail>
+                    <ContactPersons>Azure Interior</ContactPersons>
+                </ContactDetails>
+            </LegalEntity>
+        </BuyerParty>
+    </Parties>
+    <Invoices>
+        <Invoice>
+            <InvoiceHeader>
+                <InvoiceNumber>INV/2023/04/0002</InvoiceNumber>
+                <InvoiceSeriesCode/>
+                <InvoiceDocumentType>FC</InvoiceDocumentType>
+                <InvoiceClass>OO</InvoiceClass>
+            </InvoiceHeader>
+            <InvoiceIssueData>
+                <IssueDate>2023-04-12</IssueDate>
+                <InvoiceCurrencyCode>EUR</InvoiceCurrencyCode>
+                <TaxCurrencyCode>EUR</TaxCurrencyCode>
+                <LanguageName>en</LanguageName>
+            </InvoiceIssueData>
+            <TaxesOutputs>
+                <Tax>
+                    <TaxTypeCode>01</TaxTypeCode>
+                    <TaxRate>21.00</TaxRate>
+                    <TaxableBase>
+                        <TotalAmount>147.00</TotalAmount>
+                        <EquivalentInEuros>147.00</EquivalentInEuros>
+                    </TaxableBase>
+                    <TaxAmount>
+                        <TotalAmount>30.87</TotalAmount>
+                        <EquivalentInEuros>30.87</EquivalentInEuros>
+                    </TaxAmount>
+                </Tax>
+            </TaxesOutputs>
+            <InvoiceTotals>
+                <TotalGrossAmount>147.00</TotalGrossAmount>
+                <TotalGrossAmountBeforeTaxes>147.00</TotalGrossAmountBeforeTaxes>
+                <TotalTaxOutputs>30.87</TotalTaxOutputs>
+                <TotalTaxesWithheld>-0.00</TotalTaxesWithheld>
+                <InvoiceTotal>177.87</InvoiceTotal>
+                <TotalOutstandingAmount>177.87</TotalOutstandingAmount>
+                <TotalExecutableAmount>177.87</TotalExecutableAmount>
+            </InvoiceTotals>
+            <Items>
+                <InvoiceLine>
+                    <ItemDescription>[E-COM06] Corner Desk Right Sit</ItemDescription>
+                    <Quantity>1.0</Quantity>
+                    <UnitPriceWithoutTax>147.000000</UnitPriceWithoutTax>
+                    <TotalCost>147.000000</TotalCost>
+                    <GrossAmount>147.000000</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.00</TaxRate>
+                            <TaxableBase>
+                                <TotalAmount>147.00</TotalAmount>
+                                <EquivalentInEuros>147.00</EquivalentInEuros>
+                            </TaxableBase>
+                            <TaxAmount>
+                                <TotalAmount>30.87</TotalAmount>
+                                <EquivalentInEuros>30.87</EquivalentInEuros>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                    <ArticleCode>E-COM06</ArticleCode>
+                </InvoiceLine>
+            </Items>
+        </Invoice>
+    </Invoices>
+</fe:Facturae>
