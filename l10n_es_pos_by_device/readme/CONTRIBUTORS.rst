@@ -6,3 +6,4 @@
 * `Factor Libre <https://www.factorlibre.com>`_:
 
   * Juan Carlos Bonilla <juancarlos.bonilla@factorlibre.com>
+  * Pablo Calvo <pablo.calvo@factorlibre.com>

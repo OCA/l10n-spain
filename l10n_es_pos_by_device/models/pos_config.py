@@ -7,7 +7,7 @@ from odoo.exceptions import ValidationError
 class PosConfig(models.Model):
     _inherit = "pos.config"
 
-    pos_sequence_by_device = fields.Boolean(related="company_id.pos_sequence_by_device")
+    pos_sequence_by_device = fields.Boolean()
     pos_device_ids = fields.Many2many(
         "pos.device",
         string="Available POS devices",

@@ -1,6 +1,7 @@
 **Activación de secuencia por dispositivo**
 
-* Esta configuración se activa en *Punto de venta > Configuración > Ajustes > Secuenciación > Secuencia TPV por dispositivo*.
+* Esta configuración se activa en *Punto de venta > Configuración > Ajustes > Secuenciación > Secuencia TPV por dispositivo*
+   y aplica unicamente al TPV en el que se esté configurando.
 
 **Configuración de dispositivos físicos por TPV**
 
@@ -10,4 +11,6 @@
 
 * En *Punto de venta > Configuración > Ajustes > Secuenciación > Dispositivos físicos TPV*.
    - Establecer los dispositivos físicos disponibles en ese punto de venta.
-     Si se deja en blanco, se podrán seleccionar todos los dispositivos creados.
+
+* En *Punto de venta > Configuración > Dispositivos Físicos TPV*.
+   - Establecer los TPVs a los que pertenece cada dispositivo.
