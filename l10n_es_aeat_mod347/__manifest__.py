@@ -6,6 +6,7 @@
 # Copyright 2016 Tecnativa - Angel Moya <odoo@tecnativa.com>
 # Copyright 2018 PESOL - Angel Moya <info@pesol.es>
 # Copyright 2014-2022 Tecnativa - Pedro M. Baeza
+# Copyright 2023 FactorLibre - Alejandro Ji Cheung
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
