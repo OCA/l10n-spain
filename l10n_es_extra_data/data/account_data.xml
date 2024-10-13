@@ -9,4 +9,19 @@
     <record id="tax_group_recargo_0-62" model="account.tax.group">
         <field name="name">Recargo de Equivalencia 0.62%</field>
     </record>
+    <record id="tax_group_iva_2" model="account.tax.group">
+        <field name="name">IVA 2%</field>
+    </record>
+    <record id="tax_group_iva_7-5" model="account.tax.group">
+        <field name="name">IVA 7.5%</field>
+    </record>
+    <record id="tax_group_recargo_0-26" model="account.tax.group">
+        <field name="name">Recargo de Equivalencia 0.26%</field>
+    </record>
+    <record id="tax_group_recargo_1" model="account.tax.group">
+        <field name="name">Recargo de Equivalencia 1%</field>
+    </record>
+    <record id="tax_group_iva_nd" model="account.tax.group">
+        <field name="name">IVA no deducible</field>
+    </record>
 </odoo>
