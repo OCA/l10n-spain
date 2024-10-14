@@ -345,7 +345,13 @@
                                 ref('l10n_es_igic.account_tax_template_igic_p_re07'),
                                 ref('l10n_es_igic.account_tax_template_igic_p_re095'),
                                 ref('l10n_es_igic.account_tax_template_igic_p_re15'),
-                                ref('l10n_es_igic.account_tax_template_igic_p_re20')])]"
+                                ref('l10n_es_igic.account_tax_template_igic_p_re20'),
+                                ref('l10n_es_igic.account_tax_template_igic_sop_cmino'),
+                                ref('l10n_es_igic.account_tax_template_igic_sop_3_cmino'),
+                                ref('l10n_es_igic.account_tax_template_igic_sop_7_cmino'),
+                                ref('l10n_es_igic.account_tax_template_igic_sop_9_5_cmino'),
+                                ref('l10n_es_igic.account_tax_template_igic_sop_15_cmino'),
+                                ref('l10n_es_igic.account_tax_template_igic_sop_20_cmino')])]"
         />
 	</record>
 	<record id="atc_mod420_map_line_27" model="l10n.es.aeat.map.tax.line">
@@ -378,7 +384,13 @@
                                 ref('l10n_es_igic.account_tax_template_igic_p_re07'),
                                 ref('l10n_es_igic.account_tax_template_igic_p_re095'),
                                 ref('l10n_es_igic.account_tax_template_igic_p_re15'),
-                                ref('l10n_es_igic.account_tax_template_igic_p_re20')])]"
+                                ref('l10n_es_igic.account_tax_template_igic_p_re20'),
+                                ref('l10n_es_igic.account_tax_template_igic_sop_cmino'),
+                                ref('l10n_es_igic.account_tax_template_igic_sop_3_cmino'),
+                                ref('l10n_es_igic.account_tax_template_igic_sop_7_cmino'),
+                                ref('l10n_es_igic.account_tax_template_igic_sop_9_5_cmino'),
+                                ref('l10n_es_igic.account_tax_template_igic_sop_15_cmino'),
+                                ref('l10n_es_igic.account_tax_template_igic_sop_20_cmino')])]"
         />
 	</record>
 
