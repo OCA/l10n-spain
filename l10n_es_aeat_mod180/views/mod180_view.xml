@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_l10n_es_aeat_mod180_report_tree" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod180.report.tree</field>
+        <field name="model">l10n.es.aeat.mod180.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree" />
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="string">AEAT 180 reports</attribute>
+            </tree>
+            <field name="period_type" position="after">
+                <field name="casilla_03" />
+                <!--                <field name="casilla_04"/>-->
+                <!--                <field name="casilla_05"/>-->
+            </field>
+        </field>
+    </record>
+
+    <record id="view_l10n_es_aeat_mod180_report_form" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod180.report.form</field>
+        <field name="model">l10n.es.aeat.mod180.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
+        <field name="arch" type="xml">
+            <field name="previous_number" position="after">
+                <field
+                    name="tipo_declaracion_positiva"
+                    string="Result type"
+                    attrs="{'invisible': [('casilla_05', '&lt;=', 0.0)]}"
+                />
+                <field
+                    name="tipo_declaracion_negativa"
+                    string="Result type"
+                    attrs="{'invisible': [('casilla_05', '&gt;', 0.0)]}"
+                />
+                <field name="tipo_declaracion" invisible="True" />
+            </field>
+            <group name="group_declaration" position="after">
+                <group
+                    string="Result"
+                    name="group_result"
+                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    colspan="4"
+                >
+                    <group string="Amounts retained">
+                        <field name="casilla_01" />
+                        <field
+                            name="casilla_02"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field name="sign" />
+                        <field
+                            name="casilla_03"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                    <group string="Totals" invisible="1">
+                        <field
+                            name="casilla_04"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="casilla_05"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+
+                    <notebook colspan="2">
+                        <page string="General" invisible="1">
+                            <group>
+                                <group string="Calculation parameters">
+                                    <!--                                <field name="operations_limit" attrs="{'readonly':
+                                    [('state', '!=', 'draft')]}"/>-->
+                                    <!--                                <field name="received_cash_limit" attrs="{'readonly':
+                                    [('state', '!=', 'draft')]}"/>-->
+                                </group>
+                                <group
+                                    string="Summary"
+                                    attrs="{'invisible': [('state', 'in', ('draft', 'cancelled'))]}"
+                                >
+                                    <!--                                <field name="total_partner_records"/>-->
+                                    <!--                                <field name="total_amount"/>-->
+                                    <!--                                <field name="total_real_estate_records"/>-->
+                                    <!--                                <field name="total_real_estate_amount"/>-->
+                                </group>
+                            </group>
+                        </page>
+                        <page
+                            string="Líneas de impuestos"
+                            attrs="{'invisible': [('state', 'in', ('draft', 'cancelled'))]}"
+                        >
+                            <!--                        <div class="oe_button_box" name="button_box">-->
+                            <!--                            <button class="oe_stat_button" name="btn_list_records"
+                            type="object" icon="fa-file">-->
+                            <!--                                <field name="total_partner_records" widget="statinfo"
+                            string="Records"/>-->
+                            <!--                            </button>-->
+                            <!--                        </div>-->
+                            <!--                        <field name="partner_record_ids" nolabel="1" />-->
+                            <field
+                                name="tax_line_ids"
+                                nolabel="1"
+                                readonly="1"
+                                force_save="1"
+                            />
+                        </page>
+                        <page
+                            string="Registro de perceptores"
+                            attrs="{'invisible': [('state', 'in', ('draft', 'cancelled'))]}"
+                        >
+                            <!--                        <div class="alert alert-info" role="alert"
+                            style="margin-bottom:0px;">-->
+                            <!--                            This should be only filled in case the real state rents are
+                            exempted of retentions and are not declared through model 115.-->
+                            <!--                        </div>-->
+                            <field name="recipient_record_ids" nolabel="1" />
+                        </page>
+                    </notebook>
+
+                </group>
+            </group>
+            <field name="partner_bank_id" position="attributes">
+                <attribute name="attrs">{'required': False}</attribute>
+            </field>
+            <form position="inside">
+                <div class="oe_chatter">
+                    <field
+                        name="message_follower_ids"
+                        widget="mail_followers"
+                        groups="base.group_user"
+                    />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_es_aeat_mod180_report" model="ir.actions.act_window">
+        <field name="name">AEAT model 180</field>
+        <field name="res_model">l10n.es.aeat.mod180.report</field>
+        <field name="view_mode">form,tree</field>
+        <field name="help">Create and query AEAT Model 180 reports.</field>
+    </record>
+
+    <record
+        id="action_l10n_es_aeat_mod180_report_tree"
+        model="ir.actions.act_window.view"
+    >
+        <field name="sequence" eval="2" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod180_report_tree" />
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod180_report" />
+    </record>
+
+    <record
+        id="action_l10n_es_aeat_mod180_report_form"
+        model="ir.actions.act_window.view"
+    >
+        <field name="sequence" eval="3" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod180_report_form" />
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod180_report" />
+    </record>
+
+    <menuitem
+        id="menu_aeat_mod180_report"
+        parent="l10n_es_aeat.menu_root_aeat"
+        action="action_l10n_es_aeat_mod180_report"
+        sequence="180"
+        name="AEAT 180 model"
+    />
+    <function model="l10n.es.aeat.mod180.report" name="action_init_hook" />
+</odoo>
