@@ -128,7 +128,8 @@ class L10nEsAeatMod303Report(models.Model):
         compute="_compute_casilla_69",
         help="[66] Attributable to the Administration - "
         "[67] Fees to compensate + "
-        "[68] Annual regularization",
+        "[68] Annual regularization +"
+        "[108] Other Adjustments",
         store=True,
     )
     casilla_77 = fields.Float(
@@ -138,6 +139,19 @@ class L10nEsAeatMod303Report(models.Model):
         "in the settlement period. You can only complete this box "
         "when the requirements of Article 74.1 of the Tax Regulations "
         "Value Added are met.",
+    )
+    casilla_108 = fields.Float(
+        string="[108] Other Adjustments",
+        help="Exclusively for certain cases of rectifying self-assessment due "
+        "to discrepancy of administrative criteria that should not be "
+        "included in other boxes. Other adjustments",
+    )
+    casilla_111 = fields.Float(
+        string="[111] Refund of improperly collected funds",
+        help="I request that the amount that, if applicable, may be refunded "
+        "as a consequence of the rectification, be paid to me by bank "
+        "transfer to the indicated account of which I am the account holder"
+        " to the indicated bank account of which I am the account holder",
     )
     previous_result = fields.Float(
         string="[70] To be deducted",
@@ -423,7 +437,11 @@ class L10nEsAeatMod303Report(models.Model):
             )
 
     @api.depends(
-        "atribuible_estado", "cuota_compensar", "regularizacion_anual", "casilla_77"
+        "atribuible_estado",
+        "cuota_compensar",
+        "regularizacion_anual",
+        "casilla_77",
+        "casilla_108",
     )
     def _compute_casilla_69(self):
         for report in self:
@@ -432,6 +450,7 @@ class L10nEsAeatMod303Report(models.Model):
                 + report.casilla_77
                 - report.cuota_compensar
                 + report.regularizacion_anual
+                + report.casilla_108
             )
 
     @api.depends("casilla_69", "previous_result")

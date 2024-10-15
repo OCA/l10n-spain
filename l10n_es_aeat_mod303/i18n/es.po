@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-02 11:29+0000\n"
 "PO-Revision-Date: 2025-01-02 12:31+0100\n"
@@ -450,6 +450,17 @@ msgid "Error Count"
 msgstr "Número de errores"
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_108
+msgid ""
+"Exclusively for certain cases of rectifying self-assessment due to "
+"discrepancy of administrative criteria that should not be included in other "
+"boxes. Other adjustments"
+msgstr ""
+"Exclusivamente para ciertos casos de rectificación de autoliquidación "
+"debido a discrepancias de criterios administrativos que no deben incluirse "
+"en otras casillas. Otros ajustes"
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__exonerated_390__1
 msgid "Exonerado"
 msgstr "Exonerado"
@@ -508,6 +519,18 @@ msgid "Has Message"
 msgstr "Hay mensajes"
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_111
+msgid ""
+"I request that the amount that, if applicable, may be refunded as a "
+"consequence of the rectification, be paid to me by bank transfer to the "
+"indicated account of which I am the account holder to the indicated bank "
+"account of which I am the account holder"
+msgstr ""
+"Solicito que el importe que, en su caso, pueda ser reembolsado como "
+"consecuencia de la rectificación, me sea pagado mediante transferencia "
+"bancaria a la cuenta indicada de la cual soy titular"
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_activity_code__id
 msgid "ID"
@@ -530,6 +553,7 @@ msgstr "Si está marcado, los nuevos mensajes requerirán su atención."
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_has_error
+#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
 
@@ -804,6 +828,11 @@ msgid "Resultado"
 msgstr "Resultado"
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de entrega del SMS"
+
+#. module: l10n_es_aeat_mod303
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod303/models/mod303.py:0
 #, python-format
@@ -964,9 +993,19 @@ msgid "Year"
 msgstr "Año"
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_108
+msgid "[108] Other Adjustments"
+msgstr "[108] Otros Ajustes"
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__potential_cuota_compensar
 msgid "[110] Pending fees to compensate"
 msgstr "[110] A compensar pendiente"
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_111
+msgid "[111] Refund of improperly collected funds"
+msgstr "[111] Devolución de ingresos efectuados indebidamente"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__total_devengado
@@ -997,10 +1036,10 @@ msgstr "[66] Atribuible a la Administración"
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_69
 msgid ""
 "[66] Attributable to the Administration - [67] Fees to compensate + [68] "
-"Annual regularization"
+"Annual regularization +[108] Other Adjustments"
 msgstr ""
 "Atribuible a la Administración [66] - Cuotas a compensar [67] + "
-"Regularización anual [68]"
+"Regularización anual [68] + [108] Otros ajustes"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__regularizacion_anual
