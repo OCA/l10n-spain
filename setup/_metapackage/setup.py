@@ -40,6 +40,7 @@ setuptools.setup(
         'odoo14-addon-l10n_es_dua',
         'odoo14-addon-l10n_es_dua_sii',
         'odoo14-addon-l10n_es_dua_ticketbai_batuz',
+        'odoo14-addon-l10n_es_extra_data',
         'odoo14-addon-l10n_es_facturae',
         'odoo14-addon-l10n_es_facturae_efact',
         'odoo14-addon-l10n_es_facturae_face',
