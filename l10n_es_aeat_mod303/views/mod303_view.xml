@@ -139,8 +139,21 @@
                     <field name="casilla_77"
                             widget="monetary"
                             options="{'currency_field': 'currency_id'}"
-                    />
-                    <field name="casilla_69"
+                        />
+                        <field
+                            name="casilla_108"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                            attrs="{'invisible': [('type', '!=', 'S')]}"
+                        />
+                        <field
+                            name="casilla_111"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                            attrs="{'invisible': [('type', '!=', 'S')]}"
+                        />
+                        <field
+                            name="casilla_69"
                             widget="monetary"
                             options="{'currency_field': 'currency_id'}"
                     />

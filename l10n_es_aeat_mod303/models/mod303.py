@@ -90,15 +90,32 @@ class L10nEsAeatMod303Report(models.Model):
     casilla_69 = fields.Float(
         string="[69] Result", readonly=True, compute='_compute_casilla_69',
         help="[66] Attributable to the Administration - "
-             "[67] Fees to compensate + "
-             "[68] Annual regularization", store=True)
+        "[67] Fees to compensate + "
+        "[68] Annual regularization +"
+        "[108] Other Adjustments",
+        store=True,
+    )
     casilla_77 = fields.Float(
         string="[77] VAT deferred (Settle by customs)",
         help="Contributions of import tax included in the documents "
-             "evidencing the payment made by the Administration and received "
-             "in the settlement period. You can only complete this box "
-             "when the requirements of Article 74.1 of the Tax Regulations "
-             "Value Added are met.")
+        "evidencing the payment made by the Administration and received "
+        "in the settlement period. You can only complete this box "
+        "when the requirements of Article 74.1 of the Tax Regulations "
+        "Value Added are met.",
+    )
+    casilla_108 = fields.Float(
+        string="[108] Other Adjustments",
+        help="Exclusively for certain cases of rectifying self-assessment due "
+        "to discrepancy of administrative criteria that should not be "
+        "included in other boxes. Other adjustments",
+    )
+    casilla_111 = fields.Float(
+        string="[111] Refund of improperly collected funds",
+        help="I request that the amount that, if applicable, may be refunded "
+        "as a consequence of the rectification, be paid to me by bank "
+        "transfer to the indicated account of which I am the account holder"
+        " to the indicated bank account of which I am the account holder",
+    )
     previous_result = fields.Float(
         string="[70] To be deducted",
         help="Result of the previous or prior statements of the same concept, "
@@ -365,14 +382,22 @@ class L10nEsAeatMod303Report(models.Model):
                 record.potential_cuota_compensar - record.cuota_compensar
             )
 
-    @api.multi
-    @api.depends('atribuible_estado', 'cuota_compensar',
-                 'regularizacion_anual', 'casilla_77')
+    @api.depends(
+        "atribuible_estado",
+        "cuota_compensar",
+        "regularizacion_anual",
+        "casilla_77",
+        "casilla_108",
+    )
     def _compute_casilla_69(self):
         for report in self:
-            report.casilla_69 = (
-                report.atribuible_estado + report.casilla_77 -
-                report.cuota_compensar + report.regularizacion_anual)
+            report.casilla_69 = report.currency_id.round(
+                report.atribuible_estado
+                + report.casilla_77
+                - report.cuota_compensar
+                + report.regularizacion_anual
+                + report.casilla_108
+            )
 
     @api.multi
     @api.depends('casilla_69', 'previous_result')
@@ -453,7 +478,7 @@ class L10nEsAeatMod303Report(models.Model):
     @api.multi
     def calculate(self):
         res = super(L10nEsAeatMod303Report, self).calculate()
-        self.cuota_compensar = 0
+        self.write({"cuota_compensar": 0})
         for mod303 in self:
             prev_reports = self.search(
                 [("date_start", "<", mod303.date_start)]
