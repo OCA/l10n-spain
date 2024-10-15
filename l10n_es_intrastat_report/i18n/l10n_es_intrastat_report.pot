@@ -1,0 +1,347 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_intrastat_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_intrastat_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_computation_line_view_tree
+msgid "/&gt;"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration_line__amount_company_currency
+msgid "Amount Company Currency"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#. odoo-python
+#: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:0
+#, python-format
+msgid "Current company is not Spanish, so it can't be configured."
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_computation_line__partner_vat
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration_line__partner_vat
+msgid "Customer VAT"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_29
+msgid ""
+"Devolución y sustitución gratuita de mercancías después del registro de la "
+"transacción original: Otras."
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_intrastat_product_declaration__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_intrastat_product_declaration__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.view_l10n_es_intrastat_code_import
+msgid "Import"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.actions.act_window,name:l10n_es_intrastat_report.action_l10n_es_intrastat_code_import
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.view_l10n_es_intrastat_code_import
+msgid "Import Spanish Product HS Codes"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_l10n_es_intrastat_code_import
+msgid "Intrastat HS Code Import for Spain"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_intrastat_product_computation_line
+msgid "Intrastat Product Computation Line for Spain"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_intrastat_product_declaration_line
+msgid "Intrastat Product Declaration Line for Spain"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_intrastat_product_declaration
+msgid "Intrastat Product Declaration for Spain"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_computation_line__intrastat_state_id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration_line__intrastat_state_id
+msgid "Intrastat State"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_report_intrastat_product_product_declaration_xls
+msgid "Intrastat declaration"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_stock_location
+msgid "Inventory Locations"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#. odoo-python
+#: code:addons/l10n_es_intrastat_report/tests/test_l10n_es_intrastat_report.py:0
+#, python-format
+msgid "Missing <em>Country of Origin</em> <small>"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#. odoo-python
+#: code:addons/l10n_es_intrastat_report/tests/test_l10n_es_intrastat_report.py:0
+#, python-format
+msgid "Missing <em>VAT Number</em> <small>"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#. odoo-python
+#: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
+#, python-format
+msgid "Missing partner <em>VAT Number</em>"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_intrastat_product_declaration__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_intrastat_product_declaration__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_44
+msgid ""
+"Operaciones con vistas a un perfeccionamiento bajo contrato (no se traspasa "
+"la propiedad al contratista): Reparación o mantenimiento a título gratuito."
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_45
+msgid ""
+"Operaciones con vistas a un perfeccionamiento bajo contrato (no se traspasa "
+"la propiedad al contratista): Reparación o mantenimiento a título oneroso."
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_70
+msgid ""
+"Operaciones en el marco de programas comunes de defensa u otros programas "
+"intergubernamentales de producción conjunta."
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_54
+msgid ""
+"Operaciones posteriores al perfeccionamiento bajo contrato (no se traspasa "
+"la propiedad al contratista): Reparación o mantenimiento a título gratuito."
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_55
+msgid ""
+"Operaciones posteriores al perfeccionamiento bajo contrato (no se traspasa "
+"la propiedad al contratista): Reparación o mantenimiento a título oneroso."
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_search
+msgid "Search Spanish Intrastat Product Declaration"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.actions.act_window,name:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_action
+#: model:ir.ui.menu,name:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_menu
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_graph
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_tree
+msgid "Spanish Intrastat Product Declaration"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#. odoo-python
+#: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
+#, python-format
+msgid ""
+"The Spanish Intrastat Declaration requires the Company's Country to be equal"
+" to 'Spain'."
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.view_l10n_es_intrastat_code_import
+msgid ""
+"This wizard will import Spanish Product HS Codes from the local copy and set"
+" company Instrastat type defaults at company level."
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_60
+msgid ""
+"Transacciones particulares registradas para fines nacionales, como "
+"reparaciones."
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_14
+msgid ""
+"Transacciones que supongan un traspaso de propiedad real o previsto de "
+"residentes a no residentes a cambio de una compensación financiera o de otro"
+" tipo: Arrendamiento financiero (alquiler - compra)."
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_19
+msgid ""
+"Transacciones que supongan un traspaso de propiedad real o previsto de "
+"residentes a no residentes a cambio de una compensación financiera o de otro"
+" tipo: Otras."
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_13
+msgid ""
+"Transacciones que supongan un traspaso de propiedad real o previsto de "
+"residentes a no residentes a cambio de una compensación financiera o de otro"
+" tipo: Trueque (compensación en especie)."
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#. odoo-python
+#: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:0
+#, python-format
+msgid "Unit not found: '%s'"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#. odoo-python
+#: code:addons/l10n_es_intrastat_report/report/intrastat_product_report_xls.py:0
+#, python-format
+msgid "VAT"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_intrastat_product_declaration__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration_line__weight
+msgid "Weight"
+msgstr ""

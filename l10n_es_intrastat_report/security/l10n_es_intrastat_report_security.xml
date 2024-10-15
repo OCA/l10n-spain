@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data noupdate="1">
+    <record id="l10n_es_intrastat_company_rule" model="ir.rule">
+        <field name="name">Spanish Intrastat multi-company</field>
+        <field
+            name="model_id"
+            ref="intrastat_product.model_intrastat_product_declaration"
+        />
+        <field name="global" eval="True" />
+        <field
+            name="domain_force"
+        >['|',('company_id','=',False),('company_id','in',company_ids)]</field>
+    </record>
+</data>

@@ -1,0 +1,822 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_intrastat_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-22 12:41+0000\n"
+"PO-Revision-Date: 2023-11-11 15:21+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: l10n_es_intrastat_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_computation_line_view_tree
+msgid "/&gt;"
+msgstr "/&gt;"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_needaction
+msgid "Action Needed"
+msgstr "Acción necesaria"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration_line__amount_company_currency
+msgid "Amount Company Currency"
+msgstr "Importe en la moneda de la compañía"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_attachment_count
+msgid "Attachment Count"
+msgstr "Nº de adjuntos"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: l10n_es_intrastat_report
+#. odoo-python
+#: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:0
+#, python-format
+msgid "Current company is not Spanish, so it can't be configured."
+msgstr ""
+"La compañía actual no es española, por lo que no puede ser configurada."
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_computation_line__partner_vat
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration_line__partner_vat
+msgid "Customer VAT"
+msgstr "NIF del cliente"
+
+#. module: l10n_es_intrastat_report
+#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_29
+msgid ""
+"Devolución y sustitución gratuita de mercancías después del registro de la "
+"transacción original: Otras."
+msgstr ""
+"Devolución y sustitución gratuita de mercancías después del registro de la "
+"transacción original: Otras."
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Contactos)"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__has_message
+msgid "Has Message"
+msgstr "Tiene mensaje"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_intrastat_product_declaration__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_intrastat_product_declaration__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcado, hay mensajes que han tenido un error de entrega."
+
+#. module: l10n_es_intrastat_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.view_l10n_es_intrastat_code_import
+msgid "Import"
+msgstr "Importar"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.actions.act_window,name:l10n_es_intrastat_report.action_l10n_es_intrastat_code_import
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.view_l10n_es_intrastat_code_import
+msgid "Import Spanish Product HS Codes"
+msgstr "Importar Códigos HS españoles de producto"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_l10n_es_intrastat_code_import
+msgid "Intrastat HS Code Import for Spain"
+msgstr "Intrastat Código HS Importación para España"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_intrastat_product_computation_line
+msgid "Intrastat Product Computation Line for Spain"
+msgstr "Línea de cálculo de productos Intrastat para España"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_intrastat_product_declaration_line
+msgid "Intrastat Product Declaration Line for Spain"
+msgstr "Línea de declaración de productos Intrastat para España"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_intrastat_product_declaration
+msgid "Intrastat Product Declaration for Spain"
+msgstr "Declaración de producto Intrastat para España"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_computation_line__intrastat_state_id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration_line__intrastat_state_id
+msgid "Intrastat State"
+msgstr "Provincia Intrastat"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_report_intrastat_product_product_declaration_xls
+msgid "Intrastat declaration"
+msgstr "Declaración de producto Intrastat"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_stock_location
+msgid "Inventory Locations"
+msgstr "Ubicaciones de inventario"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_is_follower
+msgid "Is Follower"
+msgstr "Es un seguidor"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Adjunto principal"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_has_error
+msgid "Message Delivery error"
+msgstr "Erro de envío de mensaje"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: l10n_es_intrastat_report
+#. odoo-python
+#: code:addons/l10n_es_intrastat_report/tests/test_l10n_es_intrastat_report.py:0
+#, python-format
+msgid "Missing <em>Country of Origin</em> <small>"
+msgstr "Falta <em>País de origen</em><small>"
+
+#. module: l10n_es_intrastat_report
+#. odoo-python
+#: code:addons/l10n_es_intrastat_report/tests/test_l10n_es_intrastat_report.py:0
+#, python-format
+msgid "Missing <em>VAT Number</em> <small>"
+msgstr "Falta <em>NIF</em><small>"
+
+#. module: l10n_es_intrastat_report
+#. odoo-python
+#: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
+#, python-format
+msgid "Missing partner <em>VAT Number</em>"
+msgstr "Falta  <em>NIF</em> del cliente"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Nº de acciones"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_intrastat_product_declaration__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_intrastat_product_declaration__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Nº de mensajes con error de entrega"
+
+#. module: l10n_es_intrastat_report
+#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_44
+msgid ""
+"Operaciones con vistas a un perfeccionamiento bajo contrato (no se traspasa "
+"la propiedad al contratista): Reparación o mantenimiento a título gratuito."
+msgstr ""
+"Operaciones con vistas a un perfeccionamiento bajo contrato (no se traspasa "
+"la propiedad al contratista): Reparación o mantenimiento a título gratuito."
+
+#. module: l10n_es_intrastat_report
+#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_45
+msgid ""
+"Operaciones con vistas a un perfeccionamiento bajo contrato (no se traspasa "
+"la propiedad al contratista): Reparación o mantenimiento a título oneroso."
+msgstr ""
+"Operaciones con vistas a un perfeccionamiento bajo contrato (no se traspasa "
+"la propiedad al contratista): Reparación o mantenimiento a título oneroso."
+
+#. module: l10n_es_intrastat_report
+#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_70
+msgid ""
+"Operaciones en el marco de programas comunes de defensa u otros programas "
+"intergubernamentales de producción conjunta."
+msgstr ""
+"Operaciones en el marco de programas comunes de defensa u otros programas "
+"intergubernamentales de producción conjunta."
+
+#. module: l10n_es_intrastat_report
+#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_54
+msgid ""
+"Operaciones posteriores al perfeccionamiento bajo contrato (no se traspasa "
+"la propiedad al contratista): Reparación o mantenimiento a título gratuito."
+msgstr ""
+"Operaciones posteriores al perfeccionamiento bajo contrato (no se traspasa "
+"la propiedad al contratista): Reparación o mantenimiento a título gratuito."
+
+#. module: l10n_es_intrastat_report
+#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_55
+msgid ""
+"Operaciones posteriores al perfeccionamiento bajo contrato (no se traspasa "
+"la propiedad al contratista): Reparación o mantenimiento a título oneroso."
+msgstr ""
+"Operaciones posteriores al perfeccionamiento bajo contrato (no se traspasa "
+"la propiedad al contratista): Reparación o mantenimiento a título oneroso."
+
+#. module: l10n_es_intrastat_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_search
+msgid "Search Spanish Intrastat Product Declaration"
+msgstr "Buscar declaraciones de producto Intrastat españolas"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.actions.act_window,name:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_action
+#: model:ir.ui.menu,name:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_menu
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_graph
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_tree
+msgid "Spanish Intrastat Product Declaration"
+msgstr "Declaración de producto Intrastat española"
+
+#. module: l10n_es_intrastat_report
+#. odoo-python
+#: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
+#, python-format
+msgid ""
+"The Spanish Intrastat Declaration requires the Company's Country to be equal "
+"to 'Spain'."
+msgstr ""
+"La declaración Intrastat española requiere que el país de la compañía sea "
+"'España'."
+
+#. module: l10n_es_intrastat_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.view_l10n_es_intrastat_code_import
+msgid ""
+"This wizard will import Spanish Product HS Codes from the local copy and set "
+"company Instrastat type defaults at company level."
+msgstr ""
+"Este asistente importará los códigos HS españoles de producto de una copia "
+"local y establecerá los tipos Intrastat por defecto a nivel de compañía."
+
+#. module: l10n_es_intrastat_report
+#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_60
+msgid ""
+"Transacciones particulares registradas para fines nacionales, como "
+"reparaciones."
+msgstr ""
+"Transacciones particulares registradas para fines nacionales, como "
+"reparaciones."
+
+#. module: l10n_es_intrastat_report
+#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_14
+msgid ""
+"Transacciones que supongan un traspaso de propiedad real o previsto de "
+"residentes a no residentes a cambio de una compensación financiera o de otro "
+"tipo: Arrendamiento financiero (alquiler - compra)."
+msgstr ""
+"Transacciones que supongan un traspaso de propiedad real o previsto de "
+"residentes a no residentes a cambio de una compensación financiera o de otro "
+"tipo: Arrendamiento financiero (alquiler - compra)."
+
+#. module: l10n_es_intrastat_report
+#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_19
+msgid ""
+"Transacciones que supongan un traspaso de propiedad real o previsto de "
+"residentes a no residentes a cambio de una compensación financiera o de otro "
+"tipo: Otras."
+msgstr ""
+"Transacciones que supongan un traspaso de propiedad real o previsto de "
+"residentes a no residentes a cambio de una compensación financiera o de otro "
+"tipo: Otras."
+
+#. module: l10n_es_intrastat_report
+#: model:intrastat.transaction,description:l10n_es_intrastat_report.intrastat_transaction_13
+msgid ""
+"Transacciones que supongan un traspaso de propiedad real o previsto de "
+"residentes a no residentes a cambio de una compensación financiera o de otro "
+"tipo: Trueque (compensación en especie)."
+msgstr ""
+"Transacciones que supongan un traspaso de propiedad real o previsto de "
+"residentes a no residentes a cambio de una compensación financiera o de otro "
+"tipo: Trueque (compensación en especie)."
+
+#. module: l10n_es_intrastat_report
+#. odoo-python
+#: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:0
+#, python-format
+msgid "Unit not found: '%s'"
+msgstr "Unidad no encontrada: '%s'"
+
+#. module: l10n_es_intrastat_report
+#. odoo-python
+#: code:addons/l10n_es_intrastat_report/report/intrastat_product_report_xls.py:0
+#, python-format
+msgid "VAT"
+msgstr "NIF"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_intrastat_product_declaration__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration_line__weight
+msgid "Weight"
+msgstr "Peso"
+
+#~ msgid ""
+#~ "Despacho de mercancías a libre práctica en un Estado miembro con una "
+#~ "exportación posterior a otro Estado miembro. Transacciones con miras al "
+#~ "despacho de aduanas (que no implica cambio de titularidad, relacionados "
+#~ "con mercancías en cuasi-importación o exportación)."
+#~ msgstr ""
+#~ "Despacho de mercancías a libre práctica en un Estado miembro con una "
+#~ "exportación posterior a otro Estado miembro. Transacciones con miras al "
+#~ "despacho de aduanas (que no implica cambio de titularidad, relacionados "
+#~ "con mercancías en cuasi-importación o exportación)."
+
+#~ msgid ""
+#~ "Devolución y sustitución gratuita de mercancías después del registro de "
+#~ "la transacción original: Devolución de mercancías."
+#~ msgstr ""
+#~ "Devolución y sustitución gratuita de mercancías después del registro de "
+#~ "la transacción original: Devolución de mercancías."
+
+#~ msgid ""
+#~ "Devolución y sustitución gratuita de mercancías después del registro de "
+#~ "la transacción original: Sustitución (por ejemplo, bajo garantía) de "
+#~ "mercancías no devueltas."
+#~ msgstr ""
+#~ "Devolución y sustitución gratuita de mercancías después del registro de "
+#~ "la transacción original: Sustitución (por ejemplo, bajo garantía) de "
+#~ "mercancías no devueltas."
+
+#~ msgid ""
+#~ "Devolución y sustitución gratuita de mercancías después del registro de "
+#~ "la transacción original: Sustitución de mercancías devueltas."
+#~ msgstr ""
+#~ "Devolución y sustitución gratuita de mercancías después del registro de "
+#~ "la transacción original: Sustitución de mercancías devueltas."
+
+#~ msgid ""
+#~ "Operaciones con vistas a un perfeccionamiento bajo contrato (no se "
+#~ "traspasa la propiedad al contratista): Mercancías destinadas a regresar "
+#~ "al Estado miembro de expedición inicial."
+#~ msgstr ""
+#~ "Operaciones con vistas a un perfeccionamiento bajo contrato (no se "
+#~ "traspasa la propiedad al contratista): Mercancías destinadas a regresar "
+#~ "al Estado miembro de expedición inicial."
+
+#~ msgid ""
+#~ "Operaciones con vistas a un perfeccionamiento bajo contrato (no se "
+#~ "traspasa la propiedad al contratista): Mercancías no destinadas a "
+#~ "regresar al Estado miembro de expedición inicial."
+#~ msgstr ""
+#~ "Operaciones con vistas a un perfeccionamiento bajo contrato (no se "
+#~ "traspasa la propiedad al contratista): Mercancías no destinadas a "
+#~ "regresar al Estado miembro de expedición inicial."
+
+#~ msgid ""
+#~ "Operaciones posteriores al perfeccionamiento bajo contrato (no se "
+#~ "traspasa la propiedad al contratista): Mercancías que no regresan al "
+#~ "Estado miembro de expedición."
+#~ msgstr ""
+#~ "Operaciones posteriores al perfeccionamiento bajo contrato (no se "
+#~ "traspasa la propiedad al contratista): Mercancías que no regresan al "
+#~ "Estado miembro de expedición."
+
+#~ msgid ""
+#~ "Operaciones posteriores al perfeccionamiento bajo contrato (no se "
+#~ "traspasa la propiedad al contratista): Mercancías que regresan al Estado "
+#~ "miembro de expedición."
+#~ msgstr ""
+#~ "Operaciones posteriores al perfeccionamiento bajo contrato (no se "
+#~ "traspasa la propiedad al contratista): Mercancías que regresan al Estado "
+#~ "miembro de expedición."
+
+#~ msgid ""
+#~ "Otras transacciones que no se pueden clasificar bajo otros códigos. Otras."
+#~ msgstr ""
+#~ "Otras transacciones que no se pueden clasificar bajo otros códigos. Otras."
+
+#~ msgid ""
+#~ "Suministro de materiales de construcción y maquinaria para trabajos en el "
+#~ "marco de un contrato general de construcción o ingeniería."
+#~ msgstr ""
+#~ "Suministro de materiales de construcción y maquinaria para trabajos en el "
+#~ "marco de un contrato general de construcción o ingeniería."
+
+#~ msgid ""
+#~ "Transacciones que implican transferencia de propiedad sin compensación "
+#~ "económica. Transacciones que implican el cambio previsto de propiedad o "
+#~ "cambio de propiedad sin compensación financiera."
+#~ msgstr ""
+#~ "Transacciones que implican transferencia de propiedad sin compensación "
+#~ "económica. Transacciones que implican el cambio previsto de propiedad o "
+#~ "cambio de propiedad sin compensación financiera."
+
+#~ msgid ""
+#~ "Transacciones que supongan un traspaso de propiedad real o previsto de "
+#~ "residentes a no residentes a cambio de una compensación financiera o de "
+#~ "otro tipo: Compra/Venta en firme."
+#~ msgstr ""
+#~ "Transacciones que supongan un traspaso de propiedad real o previsto de "
+#~ "residentes a no residentes a cambio de una compensación financiera o de "
+#~ "otro tipo: Compra/Venta en firme."
+
+#~ msgid ""
+#~ "Transacciones que supongan un traspaso de propiedad real o previsto de "
+#~ "residentes a no residentes a cambio de una compensación financiera o de "
+#~ "otro tipo: Entrega para venta a la vista o de prueba, para consignación o "
+#~ "con la mediación de un agente comisionado."
+#~ msgstr ""
+#~ "Transacciones que supongan un traspaso de propiedad real o previsto de "
+#~ "residentes a no residentes a cambio de una compensación financiera o de "
+#~ "otro tipo: Entrega para venta a la vista o de prueba, para consignación o "
+#~ "con la mediación de un agente comisionado."
+
+#~ msgid ""
+#~ "Transacciones que supongan un traspaso de propiedad sin compensación "
+#~ "financiera o en especie: Mercancías suministradas en el marco de "
+#~ "programas de ayuda promovidos o financiados parcial o totalmente por la "
+#~ "Unión Europea."
+#~ msgstr ""
+#~ "Transacciones que supongan un traspaso de propiedad sin compensación "
+#~ "financiera o en especie: Mercancías suministradas en el marco de "
+#~ "programas de ayuda promovidos o financiados parcial o totalmente por la "
+#~ "Unión Europea."
+
+#~ msgid ""
+#~ "Transacciones que supongan un traspaso de propiedad sin compensación "
+#~ "financiera o en especie: Otras ayudas (particulares, organizaciones no "
+#~ "gubernamentales)."
+#~ msgstr ""
+#~ "Transacciones que supongan un traspaso de propiedad sin compensación "
+#~ "financiera o en especie: Otras ayudas (particulares, organizaciones no "
+#~ "gubernamentales)."
+
+#~ msgid ""
+#~ "Transacciones que supongan un traspaso de propiedad sin compensación "
+#~ "financiera o en especie: Otras entregas de ayuda gubernamental."
+#~ msgstr ""
+#~ "Transacciones que supongan un traspaso de propiedad sin compensación "
+#~ "financiera o en especie: Otras entregas de ayuda gubernamental."
+
+#~ msgid ""
+#~ "Transporte de mercancías de un miembr Estado a otro Estado miembro para "
+#~ "colocar el mercancías en régimen de exportación. Transacciones con miras "
+#~ "al despacho de aduanas (que no implica cambio de titularidad, "
+#~ "relacionados con mercancías en cuasi-importación o exportación)."
+#~ msgstr ""
+#~ "Transporte de mercancías de un miembr Estado a otro Estado miembro para "
+#~ "colocar el mercancías en régimen de exportación. Transacciones con miras "
+#~ "al despacho de aduanas (que no implica cambio de titularidad, "
+#~ "relacionados con mercancías en cuasi-importación o exportación)."
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error de entrega de SMS"
+
+#~ msgid "Accessory Costs"
+#~ msgstr "Costes accesorios"
+
+#~ msgid "Action"
+#~ msgstr "Acción"
+
+#~ msgid "Activities"
+#~ msgstr "Actividades"
+
+#~ msgid "Activity Exception Decoration"
+#~ msgstr "Actividad Excepción Decoración"
+
+#~ msgid "Activity State"
+#~ msgstr "Estado de actividad"
+
+#~ msgid ""
+#~ "Amount in company currency of the accessory costs related to this invoice "
+#~ "line (by default, these accessory costs are computed at the pro-rata of "
+#~ "the amount of each invoice line."
+#~ msgstr ""
+#~ "Importe en la moneda de la compañía de los costes accesorios relacionados "
+#~ "con esta línea de factura (por defecto, estos costes accesorios se "
+#~ "calculan prorrateados del importe de cada línea de factura)."
+
+#~ msgid ""
+#~ "Amount in company currency to write in the declaration. Amount in company "
+#~ "currency = amount in invoice currency converted to company currency with "
+#~ "the rate of the invoice date."
+#~ msgstr ""
+#~ "Importe en la moneda la compañía a escribir en la declaración. Si la "
+#~ "moneda no es la misma, se calcula con la tasa de cambio de la fecha de "
+#~ "factura."
+
+#~ msgid "Company"
+#~ msgstr "Compañía"
+
+#~ msgid "Company Country Code"
+#~ msgstr "Código de país de la compañía"
+
+#~ msgid "Company currency"
+#~ msgstr "Moneda de la compañía"
+
+#~ msgid "Computation Lines"
+#~ msgstr "Líneas de cálculo"
+
+#~ msgid "Country"
+#~ msgstr "País"
+
+#~ msgid "Country of Origin of the Product"
+#~ msgstr "País de origen del producto"
+
+#~ msgid "Country of Origin/Destination"
+#~ msgstr "País de origen/destino"
+
+#~ msgid "Country of origin of the product i.e. product 'made in ____'"
+#~ msgstr "País de origen del producto, como por ejemplo 'Hecho en ____'"
+
+#~ msgid "Currency"
+#~ msgstr "Moneda"
+
+#~ msgid "Declaration Line"
+#~ msgstr "Línea de declaración"
+
+#~ msgid "Fiscal Value"
+#~ msgstr "Valor fiscal"
+
+#~ msgid "Generate CSV Declaration File"
+#~ msgstr "Generar declaración en CSV"
+
+#~ msgid "Icon"
+#~ msgstr "Icono"
+
+#~ msgid "Icon to indicate an exception activity."
+#~ msgstr "Icono para indicar una actividad de excepción."
+
+#~ msgid "Incoterm"
+#~ msgstr "Incoterm"
+
+#~ msgid "Intrastat Code"
+#~ msgstr "Código Intrastat"
+
+#~ msgid "Intrastat Product Computation Lines"
+#~ msgstr "Líneas de cálculo de Intrastat"
+
+#~ msgid "Intrastat Product Declaration"
+#~ msgstr "Declaración de producto Intrastat"
+
+#~ msgid "Intrastat Product Declaration Lines"
+#~ msgstr "Líneas de declaración Intrastat"
+
+#~ msgid "Intrastat Region"
+#~ msgstr "Región Intrastat"
+
+#~ msgid "Intrastat Supplementary Unit"
+#~ msgstr "Unidad Suplementaria Intrastat"
+
+#~ msgid "Intrastat Transaction"
+#~ msgstr "Transacción Intrastat"
+
+#~ msgid "Invoice"
+#~ msgstr "Factura"
+
+#~ msgid "Invoice Line"
+#~ msgstr "Línea de factura"
+
+#~ msgid "Month"
+#~ msgstr "Mes"
+
+#~ msgid "Net weight in Kg"
+#~ msgstr "Peso neto en kg"
+
+#~ msgid "Next Activity Deadline"
+#~ msgstr "Fecha límite de la siguiente actividad"
+
+#~ msgid "Next Activity Summary"
+#~ msgstr "Resumen de la siguiente actividad"
+
+#~ msgid "Next Activity Type"
+#~ msgstr "Tipo de la siguiente actividad"
+
+#~ msgid "Notes"
+#~ msgstr "Notas"
+
+#~ msgid "Number of Declaration Lines"
+#~ msgstr "Nº de líneas de declaración"
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "Nº de mensajes que requieren una acción"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Nº de mensajes sin leer"
+
+#~ msgid "Period"
+#~ msgstr "Periodo"
+
+#~ msgid "Product"
+#~ msgstr "Producto"
+
+#~ msgid "Reporting Level"
+#~ msgstr "Nivel de informe"
+
+#~ msgid "Responsible User"
+#~ msgstr "Usuario responsable"
+
+#~ msgid "Revision"
+#~ msgstr "Revisión"
+
+#~ msgid "State"
+#~ msgstr "Provincia"
+
+#~ msgid ""
+#~ "State of the declaration. When the state is set to 'Done', the parameters "
+#~ "become read-only."
+#~ msgstr ""
+#~ "Estado de la declaración. Cuando el estado está como 'Realizado', los "
+#~ "parámetros se convierten a solo lectura."
+
+#~ msgid ""
+#~ "Status based on activities\n"
+#~ "Overdue: Due date is already passed\n"
+#~ "Today: Activity date is today\n"
+#~ "Planned: Future activities."
+#~ msgstr ""
+#~ "Estado basado en las actividades\n"
+#~ "Atrasado: La fecha de vencimiento ya está vencida\n"
+#~ "Hoy: La fecha de la actividad es hoy\n"
+#~ "Planificado: Actividades futuras."
+
+#~ msgid "Suppl. Unit"
+#~ msgstr "Unid. supl."
+
+#~ msgid "Suppl. Unit Qty"
+#~ msgstr "Ctd. unid. supl."
+
+#~ msgid "Supplementary Units Quantity"
+#~ msgstr "Cantidad de unidades suplementarias"
+
+#~ msgid "Total Fiscal Amount"
+#~ msgstr "Importe fiscal total"
+
+#~ msgid "Total fiscal amount in company currency of the declaration."
+#~ msgstr "Importe fiscal total de la declaración en la moneda de la compañía."
+
+#~ msgid "Transport Mode"
+#~ msgstr "Modo de transporte"
+
+#~ msgid "Type"
+#~ msgstr "Tipo"
+
+#~ msgid "Type of the exception activity on record."
+#~ msgstr "Tipo de actividad de excepción registrada."
+
+#~ msgid "Unread Messages"
+#~ msgstr "Mensajes sin leer"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Contador de mensajes sin leer"
+
+#~ msgid "Used to keep track of changes"
+#~ msgstr "Usado para rastrear los cambios"
+
+#~ msgid "Valid"
+#~ msgstr "Válido"
+
+#~ msgid "Year"
+#~ msgstr "Año"
+
+#~ msgid "Year and month of the declaration."
+#~ msgstr "Año y mes de la declaración."
+
+#~ msgid "You can add some comments here if you want."
+#~ msgstr "Puede añadir algunos comentarios aquí si lo prefiere."
+
+#~ msgid "Followers (Channels)"
+#~ msgstr "Seguidores (Canales)"
+
+#, python-format
+#~ msgid "Missing origin country on product %s."
+#~ msgstr "Falta el país de origen en el producto %s."
+
+#, python-format
+#~ msgid "Missing partner vat on invoice %s."
+#~ msgstr "Falta el NIF del contacto en la factura %s."
+
+#, python-format
+#~ msgid "xlrd library not found."
+#~ msgstr "Librería xlrd no encontrada."
+
+#~ msgid "Used in views and methods of localization modules."
+#~ msgstr "Usado en vistas y métodos de módulos de localización."
+
+#~ msgid "01"
+#~ msgstr "01"
+
+#~ msgid "02"
+#~ msgstr "02"
+
+#~ msgid "03"
+#~ msgstr "03"
+
+#~ msgid "04"
+#~ msgstr "04"
+
+#~ msgid "05"
+#~ msgstr "05"
+
+#~ msgid "06"
+#~ msgstr "06"
+
+#~ msgid "07"
+#~ msgstr "07"
+
+#~ msgid "08"
+#~ msgstr "08"
+
+#~ msgid "09"
+#~ msgstr "09"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "11"
+#~ msgstr "11"
+
+#~ msgid "12"
+#~ msgstr "12"
+
+#~ msgid "Done"
+#~ msgstr "Realizado"
+
+#~ msgid "Draft"
+#~ msgstr "Borrador"
+
+#~ msgid "If checked new messages require your attention."
+#~ msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
+
+#~ msgid "Number of error"
+#~ msgstr "Nº de errores"
+
+#~ msgid "Select the declaration type."
+#~ msgstr "Seleccione el tipo de declaración."
+
+#~ msgid "l10n.es.intrastat.code.import"
+#~ msgstr "l10n.es.intrastat.code.import"
+
+#~ msgid "l10n.es.intrastat.product.computation.line"
+#~ msgstr "l10n.es.intrastat.product.computation.line"
+
+#~ msgid "l10n.es.intrastat.product.declaration.line"
+#~ msgstr "l10n.es.intrastat.product.declaration.line"
