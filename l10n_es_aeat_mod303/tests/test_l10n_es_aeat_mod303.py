@@ -337,7 +337,8 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             '29', '31', '33', '35', '37', '39', '41', '42', '43', '44')])
         subtotal = round(devengado - deducir, 3)
         estado = round(subtotal * 0.95, 3)
-        result = round(estado + 455 - 250, 3)
+        self.model303.casilla_108 = 200
+        result = round(estado + 455 - 250 + 200, 3)
         self.assertAlmostEqual(self.model303.total_devengado, devengado, 2)
         self.assertAlmostEqual(self.model303.total_deducir, deducir, 2)
         self.assertAlmostEqual(self.model303.casilla_46, subtotal, 2)
