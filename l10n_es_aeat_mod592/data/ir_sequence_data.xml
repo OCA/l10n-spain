@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <!-- Sequence for l10n.es.aeat.mod592.report.line.manufacturer -->
+    <record id="seq_mod592_report_manufacturer" model="ir.sequence">
+        <field name="name">Mod592 Sequence Manufacturer</field>
+        <field name="code">l10n.es.aeat.mod592.report.line.manufacturer</field>
+        <field name="prefix">M</field>
+        <field name="padding">3</field>
+        <field name="company_id" eval="False" />
+    </record>
+    <!-- Sequence for l10n.es.aeat.mod592.report.line.acquirer -->
+    <record id="seq_mod592_report_acquirer" model="ir.sequence">
+        <field name="name">Mod592 Sequence Acquirer</field>
+        <field name="code">l10n.es.aeat.mod592.report.line.acquirer</field>
+        <field name="prefix">A</field>
+        <field name="padding">3</field>
+        <field name="company_id" eval="False" />
+    </record>
+</odoo>
