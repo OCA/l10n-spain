@@ -9,6 +9,10 @@
         <field name="name">IGIC 3%</field>
         <field name="country_id" ref="base.es" />
     </record>
+    <record id="tax_group_igic_5" model="account.tax.group">
+        <field name="name">IGIC 5%</field>
+        <field name="country_id" ref="base.es" />
+    </record>
     <record id="tax_group_igic_7" model="account.tax.group">
         <field name="name">IGIC 7%</field>
         <field name="country_id" ref="base.es" />
@@ -35,6 +39,10 @@
     </record>
     <record id="tax_group_igic_re_03" model="account.tax.group">
         <field name="name">IGIC Recargo de Equivalencia 0,3%</field>
+        <field name="country_id" ref="base.es" />
+    </record>
+    <record id="tax_group_igic_re_05" model="account.tax.group">
+        <field name="name">IGIC Recargo de Equivalencia 0,5%</field>
         <field name="country_id" ref="base.es" />
     </record>
     <record id="tax_group_igic_re_07" model="account.tax.group">
