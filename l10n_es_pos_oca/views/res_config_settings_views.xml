@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='pos_accounting_section']" position="inside">
+                <setting id="l10n_es_pos_simp_seq">
+                        <field name="pos_iface_l10n_es_simplified_invoice" />
+                        <label
+                        for="pos_l10n_es_simplified_invoice_sequence_id"
+                        string="Simplified Invoice Sequence"
+                    />
+                        <div class="text-muted">
+                            Set simplified invoice sequence for this POS
+                        </div>
+                        <div class="content-group mt16" groups="base.group_no_one">
+                            <field name="pos_l10n_es_simplified_invoice_sequence_id" />
+                        </div>
+                        <field
+                        name="pos_l10n_es_simplified_invoice_sequence_id"
+                        invisible="1"
+                    />
+                </setting>
+                <setting
+                    id="l10n_es_pos_simp_limit"
+                    invisible="not pos_iface_l10n_es_simplified_invoice"
+                >
+                        <label
+                        for="pos_l10n_es_simplified_invoice_limit"
+                        string="Simplified Invoice Limit"
+                    />
+                        <div class="text-muted">
+                            Above this limit the simplified invoice won't be made
+                        </div>
+                        <div class="content-group mt16">
+                            <field
+                            name="pos_l10n_es_simplified_invoice_limit"
+                            class="oe_inline"
+                        />
+                        </div>
+                </setting>
+            </xpath>
+
+            <xpath expr="//field[@name='pos_invoice_journal_id']" position="attributes">
+                <attribute
+                    name="required"
+                >pos_company_has_template or pos_l10n_es_simplified_invoice_sequence_id</attribute>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
