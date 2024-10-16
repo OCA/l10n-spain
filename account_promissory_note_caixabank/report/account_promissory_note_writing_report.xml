@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="action_report_promissory_footer_cb" model="ir.actions.report">
+        <field name="name">Payment Promissory Note CaixaBank</field>
+        <field name="model">account.payment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >account_promissory_note_caixabank.report_check_cb_a4</field>
+        <field
+            name="report_file"
+        >account_promissory_note_caixabank.report_check_cb_a4</field>
+        <field
+            name="paperformat_id"
+            ref="account_check_printing_report_base.paperformat_euro_no_margin"
+        />
+    </record>
+</odoo>
