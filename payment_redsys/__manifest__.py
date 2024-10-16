@@ -8,7 +8,7 @@
     "version": "16.0.1.0.1",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
-    "depends": ["payment", "website_sale"],
+    "depends": ["payment"],
     "external_dependencies": {"python": ["pycryptodome"]},
     "data": [
         "views/payment_provider.xml",
