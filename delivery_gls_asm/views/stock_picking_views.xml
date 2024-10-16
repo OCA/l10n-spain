@@ -51,6 +51,18 @@
                 />
                 <field name="gls_carrier_is_pickup_service" invisible="1" />
             </xpath>
+            <xpath expr="//group[@name='carrier_data']" position='inside'>
+                <label for="volume" string="Volumen para el envio" />
+                        <div>
+                            <field name="volume" class="oe_inline" />
+                            <field
+                        name="volume_uom_name"
+                        nolabel="1"
+                        class="oe_inline"
+                        style="margin-left:5px"
+                    />
+                        </div>
+            </xpath>
         </field>
     </record>
     <record id="view_picking_withcarrier_out_form" model="ir.ui.view">
