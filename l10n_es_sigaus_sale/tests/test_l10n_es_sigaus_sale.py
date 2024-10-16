@@ -131,7 +131,7 @@ class TestL10nEsSigausSales(TestL10nEsSigausCommon):
             },
         ]
         sale = self.create_sale_order("2023-01-01", self.fiscal_position_sigaus, lines)
-        sale.action_done()
+        sale.action_confirm()
         invoice = sale._create_invoices()
         self.assertTrue(invoice.sigaus_has_line)
         self.assertEqual(invoice.amount_untaxed, 20.3)
@@ -187,9 +187,9 @@ class TestL10nEsSigausSales(TestL10nEsSigausCommon):
             "2023-01-01", self.fiscal_position_sigaus, lines_2
         )
         sale_1_sigaus_line = sale_1.order_line.filtered("is_sigaus")
-        sale_1.action_done()
+        sale_1.action_confirm()
         sale_2_sigaus_line = sale_2.order_line.filtered("is_sigaus")
-        sale_2.action_done()
+        sale_2.action_confirm()
         invoice = (sale_1 + sale_2)._create_invoices()
         sigaus_lines = invoice.invoice_line_ids.filtered("is_sigaus")
         self.assertEqual(len(sigaus_lines), 2)
@@ -287,7 +287,7 @@ class TestL10nEsSigausSales(TestL10nEsSigausCommon):
             },
         ]
         sale = self.create_sale_order("2023-01-01", self.fiscal_position_sigaus, lines)
-        sale.action_done()
+        sale.action_confirm()
         sale._create_invoices()
         sigaus_line = sale.order_line.filtered(lambda a: a.is_sigaus)
         sigaus_invoice_line = sigaus_line.invoice_lines
