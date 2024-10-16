@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_picking_withcarrier_out_form" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field
+            name="inherit_id"
+            ref="stock_delivery.view_picking_withcarrier_out_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='tracking']" position="after">
+                <field
+                    name="dhl_parcel_shipment_held"
+                    invisible="delivery_type != 'dhl_parcel' or not carrier_tracking_ref"
+                    readonly="1"
+                />
+            </xpath>
+            <xpath expr="//button[@name='print_return_label']/.." position='inside'>
+                <button
+                    name="dhl_parcel_get_label"
+                    string="DHL Parcel Label"
+                    type="object"
+                    invisible="delivery_type != 'dhl_parcel' or state != 'done' or not carrier_tracking_ref"
+                />
+                <button
+                    name="dhl_parcel_toggle_hold_shipment"
+                    string="Hold DHL Parcel shipment"
+                    type="object"
+                    invisible="delivery_type != 'dhl_parcel' or state != 'done' or not carrier_tracking_ref or dhl_parcel_shipment_held"
+                />
+                <button
+                    name="dhl_parcel_toggle_hold_shipment"
+                    string="Release DHL Parcel shipment"
+                    type="object"
+                    invisible="delivery_type != 'dhl_parcel' or state != 'done' or not carrier_tracking_ref or dhl_parcel_shipment_held"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
