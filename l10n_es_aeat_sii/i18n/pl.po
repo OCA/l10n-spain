@@ -16,9 +16,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
-"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
-"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
+"(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
+"n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #. module: l10n_es_aeat_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii.view_company_sii_form
@@ -136,6 +136,11 @@ msgstr ""
 #. module: l10n_es_aeat_sii
 #: selection:res.company,send_mode:0
 msgid "At fixed time"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: selection:res.company,send_mode:0
+msgid "At the end of the quarter"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -398,6 +403,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password__id
 msgid "ID"
 msgstr "ID"
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,help:l10n_es_aeat_sii.field_res_company__delay_time
+#: model:ir.model.fields,help:l10n_es_aeat_sii.field_res_company__sent_time
+msgid "In hours"
+msgstr ""
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,help:l10n_es_aeat_sii.field_account_invoice__sii_send_failed
