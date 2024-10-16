@@ -65,10 +65,11 @@ class L10nEsAeatMod369LineGrouped(models.Model):
                         ("is_refund", "=", True),
                         ("country_code", "=", group.country_code),
                     ],
-                    limit=1,
                 )
                 if refund_line:
-                    group_keys["neg_corrections"] = refund_line.tax_correction
+                    group_keys["neg_corrections"] = sum(
+                        refund_line.mapped("tax_correction")
+                    )
                 group_keys["result_total"] = (
                     group_keys["amount"]
                     + group_keys["pos_corrections"]
