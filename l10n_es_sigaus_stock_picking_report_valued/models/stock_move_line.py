@@ -37,7 +37,7 @@ class StockMoveLine(models.Model):
             quantity=qty,
         )
 
-    @api.depends("product_id", "date", "qty_done", "reserved_qty")
+    @api.depends("product_id", "date", "quantity_product_uom")
     def _compute_sigaus_amount(self):
         for line in self:
             subtotal = 0.0

@@ -54,7 +54,7 @@ class TestL10nEsSigausStockPickingReportValued(TestL10nEsSigausCommon):
         )
 
         # With 'done' quantity
-        line.write({"qty_done": 6})
+        line.write({"quantity_product_uom": 6})
         # Force amounts recomputation, as stock_picking_report_valued module d
         # does not do it
         line._compute_sale_order_line_fields()
@@ -68,7 +68,7 @@ class TestL10nEsSigausStockPickingReportValued(TestL10nEsSigausCommon):
         self.assertAlmostEqual(picking.picking_total_with_sigaus, 14.9556, places=2)
 
         # All 'done'
-        line.write({"qty_done": 10})
+        line.write({"quantity_product_uom": 10})
         # Force amounts recomputation, as stock_picking_report_valued module d
         # does not do it
         line._compute_sale_order_line_fields()

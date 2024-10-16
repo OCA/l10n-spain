@@ -4,7 +4,7 @@
 {
     "name": "SIGAUS Report Picking Valued",
     "summary": "Show SIGAUS amount in valued stock pickings.",
-    "version": "16.0.1.0.1",
+    "version": "17.0.1.0.0",
     "license": "AGPL-3",
     "author": "Sygel, Odoo Community Association (OCA)",
     "category": "Stock",
