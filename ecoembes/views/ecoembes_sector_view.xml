@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2016 FactorLibre - Janire Olagibel
+     Copyright 2021 Tecnativa - Víctor Martínez
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="view_ecoembes_sector_tree" model="ir.ui.view">
+        <field name="name">view.ecoembes.sector.tree</field>
+        <field name="model">ecoembes.sector</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="reference" />
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_ecoembes_sector_form" model="ir.ui.view">
+        <field name="name">view.ecoembes.sector.form</field>
+        <field name="model">ecoembes.sector</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title" style="width:100%;">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group name="header">
+                        <field name="reference" style="width:40%;" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_ecoembes_sector_search" model="ir.ui.view">
+        <field name="name">view.ecoembes.sector.search</field>
+        <field name="model">ecoembes.sector</field>
+        <field name="arch" type="xml">
+            <search string="Search EcoembesSector">
+                <field
+                    name="name"
+                    filter_domain="[('name','ilike',self)]"
+                    string="Sector"
+                />
+                <field name="reference" />
+            </search>
+        </field>
+    </record>
+    <record id="action_ecoembes_sector" model="ir.actions.act_window">
+        <field name="name">Sector</field>
+        <field name="res_model">ecoembes.sector</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

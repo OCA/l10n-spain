@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2016 FactorLibre - Janire Olagibel
+     Copyright 2021 Tecnativa - Víctor Martínez
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="view_product_composition_tree" model="ir.ui.view">
+        <field name="name">view.product.composition.tree</field>
+        <field name="model">product.composition</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="product_id" />
+                <field name="product_tmpl_id" />
+                <field name="material_id" />
+                <field name="submaterial_id" />
+                <field name="packaging_id" />
+                <field name="market_type_id" />
+                <field name="composition" />
+                <field name="weight" />
+                <field name="volume" />
+                <field name="qty" />
+                <field name="order" invisible="1" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_product_composition_form" model="ir.ui.view">
+        <field name="name">view.product.composition.form</field>
+        <field name="model">product.composition</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="product_id" />
+                            <field name="product_tmpl_id" />
+                            <field name="material_id" />
+                            <field
+                                name="submaterial_id"
+                                domain="[('material_id','=',material_id)]"
+                            />
+                            <field name="packaging_id" />
+                            <field name="market_type_id" />
+                        </group>
+                        <group>
+                            <field name="composition" />
+                            <field name="weight" />
+                            <field name="volume" />
+                            <field name="qty" />
+                            <field name="order" invisible="1" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_product_composition_search" model="ir.ui.view">
+        <field name="name">view.product.composition.search</field>
+        <field name="model">product.composition</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="product_id" />
+                <field name="product_tmpl_id" />
+                <field name="material_id" />
+                <field name="submaterial_id" />
+                <field name="packaging_id" />
+                <field name="market_type_id" />
+                <field name="composition" />
+                <field name="weight" />
+                <field name="volume" />
+                <field name="qty" />
+                <separator />
+                <filter
+                    string="No composition"
+                    name="type_no_composition"
+                    domain="[('composition','=',0)]"
+                />
+                <filter
+                    string="Composition"
+                    name="type_composition"
+                    domain="[('composition','=',1)]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="group_product_id"
+                        string="Product"
+                        context="{'group_by': 'product_id'}"
+                    />
+                    <filter
+                        name="group_material_id"
+                        string="Material"
+                        context="{'group_by': 'material_id'}"
+                    />
+                    <filter
+                        name="group_submaterial_id"
+                        string="Submaterial"
+                        context="{'group_by': 'submaterial_id'}"
+                    />
+                    <filter
+                        name="group_packaging_id"
+                        string="Packaging"
+                        context="{'group_by': 'packaging_id'}"
+                    />
+                    <filter
+                        name="group_market_type_id"
+                        string="Market Type"
+                        context="{'group_by': 'market_type_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_product_composition" model="ir.actions.act_window">
+        <field name="name">Product Composition</field>
+        <field name="res_model">product.composition</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

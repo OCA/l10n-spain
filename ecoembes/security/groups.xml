@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="group_ecoembes_manager" model="res.groups">
+        <field name="name">Ecoembes Manager</field>
+    </record>
+</odoo>
