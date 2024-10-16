@@ -4,8 +4,9 @@
 <odoo>
 
     <record id="aeat_mod390_2021_main_export_config" model="aeat.model.export.config">
-        <field name="name">Mod.390 2021-actualidad</field>
+        <field name="name">Mod.390 2021</field>
         <field name="date_start">2021-01-01</field>
+        <field name="date_end">2021-12-31</field>
         <field name="model_number">390</field>
         <field name="model_id" ref="model_l10n_es_aeat_mod390_report"/>
     </record>

@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 /.venv
 /.pytest_cache
+/.ruff_cache
 
 # C extensions
 *.so
@@ -15,7 +16,6 @@ build/
 develop-eggs/
 dist/
 eggs/
-lib/
 lib64/
 parts/
 sdist/
@@ -24,6 +24,15 @@ var/
 .installed.cfg
 *.egg
 *.eggs
+
+# Debian packages
+*.deb
+
+# Redhat packages
+*.rpm
+
+# MacOS packages
+*.dmg
 
 # Installer logs
 pip-log.txt
