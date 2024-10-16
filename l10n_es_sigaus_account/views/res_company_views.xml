@@ -10,13 +10,13 @@
                 <page name="Sigaus" string="Sigaus">
                     <group>
                         <field name="sigaus_enable" />
-                        <field
+                         <field
                             name="sigaus_date_from"
-                            attrs="{'invisible': [('sigaus_enable', '=', False)], 'required': [('sigaus_date_from', '=', True)]}"
+                            modifiers="{'invisible': [('sigaus_enable', '=', False)], 'required': [('sigaus_date_from', '=', False)]}"
                         />
                         <field
                             name="sigaus_show_in_reports"
-                            attrs="{'invisible': [('sigaus_enable', '=', False)]}"
+                            modifiers="{'invisible': [('sigaus_enable', '=', False)]}"
                         />
                     </group>
                 </page>

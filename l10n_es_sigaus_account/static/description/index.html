@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -9,10 +8,11 @@
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 8954 2022-01-20 10:10:25Z milde $
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
 
 See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
 customize this style sheet.
@@ -275,7 +275,7 @@ pre.literal-block, pre.doctest-block, pre.math, pre.code {
   margin-left: 2em ;
   margin-right: 2em }
 
-pre.code .ln { color: grey; } /* line numbers */
+pre.code .ln { color: gray; } /* line numbers */
 pre.code, code { background-color: #eeeeee }
 pre.code .comment, code .comment { color: #5C6576 }
 pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
@@ -301,7 +301,7 @@ span.option {
 span.pre {
   white-space: pre }
 
-span.problematic {
+span.problematic, pre.problematic {
   color: red }
 
 span.section-subtitle {
@@ -369,13 +369,14 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:f908f4dbd0a1bbbfb163b42dcae80a66019b600a45a7bbe337034d4892f99a97
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_sigaus_account"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-16-0/l10n-spain-16-0-l10n_es_sigaus_account"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>El origen de SIGAUS responde a la iniciativa de los fabricantes de lubricantes que, a
-través de su participación en este Sistema, cumplen con las obligaciones establecidas
-en la normativa sobre aceites usados (Real Decreto 679/2006, de 2 de junio, por el que
-se regula la gestión de los aceites industriales usados).</p>
-<p>Este módulo permite el cálculo de la aportación SIGAUS en las facturas a partir del
-peso de aquellos productos en los que se aplica.</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_sigaus_account"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-17-0/l10n-spain-17-0-l10n_es_sigaus_account"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>El origen de SIGAUS responde a la iniciativa de los fabricantes de
+lubricantes que, a través de su participación en este Sistema, cumplen
+con las obligaciones establecidas en la normativa sobre aceites usados
+(Real Decreto 679/2006, de 2 de junio, por el que se regula la gestión
+de los aceites industriales usados).</p>
+<p>Este módulo permite el cálculo de la aportación SIGAUS en las facturas a
+partir del peso de aquellos productos en los que se aplica.</p>
 <ul class="simple">
 <li>Más información en <a class="reference external" href="https://www.sigaus.es">https://www.sigaus.es</a></li>
 </ul>
@@ -398,69 +399,80 @@ peso de aquellos productos en los que se aplica.</p>
 <h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
 <p>Se tienen que configurar los siguientes aspectos:</p>
 <ul class="simple">
-<li>En la ficha del producto “Aportación SIGAUS (R.D. 679/2006)” establecer el impuesto
-correspondiente.</li>
-<li>La configuración del precio de la aportación SIGAUS que se aplica durante un periodo
-de tiempo se realiza desde Facturación &gt; Configuración &gt; Aportación SIGAUS. En caso
-de no rellenar el campo “Fecha hasta”, el precio seleccionado se aplicará a partir de
-la fecha indicada en “Fecha desde”. El precio establecido dentro del periodo marcado
-se utilizará siempre que se calcule la aportación SIGAUS en las facturas.</li>
-<li>Es necesario indicar aquellas compañías en las que se aplicará la aportación SIGAUS.
-Para ello, hay que acceder a la pestaña SIGAUS de la configuración de la compañía y
-marcar la casilla “Habilitar SIGAUS”. Asimismo, es obligatorio indicar la fecha a
-partir de la que la aportación SIGAUS se podrá aplicar en el campo “SIGAUS fecha
-desde”. No será posible calcular la aportación SIGAUS con fecha anterior a la
-seleccionada en este campo. Cuando la opción “Habilitar SIGAUS” está activada, se
-muestra el campo “Mostrar cantidades de SIGAUS en líneas de informes” que, si está
-marcada, permite mostrar la aportación SIGAUS de cada una de las líneas de facturas
-en los informes.</li>
-<li>Las posiciones fiscales con las que se aplicará la aportación SIGAUS tienen que
-indicarse. Para ello hay que acceder a Facturación &gt; Configuración &gt; Posiciones
-Fiscales y marcar la casilla “Sujeto a SIGAUS” en aquellas en las que se aplicará.</li>
-<li>Se puede establecer que los productos de ciertas categorías estén sujetas a SIGAUS
-accediendo a la configuración de la categoría y marcando la casilla “Sujeto a
-SIGAUS”.</li>
-<li>Desde la ficha de los productos, pueden establecerse varias opciones de sujeción a la
-aportación SIGAUS desde el campo “Sujeto a SIGAUS”. Existen tres opciones:<ul>
-<li>“Categoría”: La aplicación o no de la aportación SIGAUS para ese producto depende
-de si la casilla “Sujeto a SIGAUS” está o no marcada en la categoría establecida.</li>
-<li>“Sí”: Se aplica siempre la aportación SIGAUS, independientemente de lo seleccionado
-en la categoría de producto.</li>
-<li>“No”: No se aplica nunca la aportación SIGAUS, independientemente de lo
-seleccionado en la categoría de producto.</li>
+<li>En la ficha del producto “Aportación SIGAUS (R.D. 679/2006)”
+establecer el impuesto correspondiente.</li>
+<li>La configuración del precio de la aportación SIGAUS que se aplica
+durante un periodo de tiempo se realiza desde Facturación &gt;
+Configuración &gt; Aportación SIGAUS. En caso de no rellenar el campo
+“Fecha hasta”, el precio seleccionado se aplicará a partir de la fecha
+indicada en “Fecha desde”. El precio establecido dentro del periodo
+marcado se utilizará siempre que se calcule la aportación SIGAUS en
+las facturas.</li>
+<li>Es necesario indicar aquellas compañías en las que se aplicará la
+aportación SIGAUS. Para ello, hay que acceder a la pestaña SIGAUS de
+la configuración de la compañía y marcar la casilla “Habilitar
+SIGAUS”. Asimismo, es obligatorio indicar la fecha a partir de la que
+la aportación SIGAUS se podrá aplicar en el campo “SIGAUS fecha
+desde”. No será posible calcular la aportación SIGAUS con fecha
+anterior a la seleccionada en este campo. Cuando la opción “Habilitar
+SIGAUS” está activada, se muestra el campo “Mostrar cantidades de
+SIGAUS en líneas de informes” que, si está marcada, permite mostrar la
+aportación SIGAUS de cada una de las líneas de facturas en los
+informes.</li>
+<li>Las posiciones fiscales con las que se aplicará la aportación SIGAUS
+tienen que indicarse. Para ello hay que acceder a Facturación &gt;
+Configuración &gt; Posiciones Fiscales y marcar la casilla “Sujeto a
+SIGAUS” en aquellas en las que se aplicará.</li>
+<li>Se puede establecer que los productos de ciertas categorías estén
+sujetas a SIGAUS accediendo a la configuración de la categoría y
+marcando la casilla “Sujeto a SIGAUS”.</li>
+<li>Desde la ficha de los productos, pueden establecerse varias opciones
+de sujeción a la aportación SIGAUS desde el campo “Sujeto a SIGAUS”.
+Existen tres opciones:<ul>
+<li>“Categoría”: La aplicación o no de la aportación SIGAUS para ese
+producto depende de si la casilla “Sujeto a SIGAUS” está o no
+marcada en la categoría establecida.</li>
+<li>“Sí”: Se aplica siempre la aportación SIGAUS, independientemente de
+lo seleccionado en la categoría de producto.</li>
+<li>“No”: No se aplica nunca la aportación SIGAUS, independientemente de
+lo seleccionado en la categoría de producto.</li>
 </ul>
 </li>
 </ul>
-<p>Cuando se calcule la aportación SIGAUS en facturas, se tendrá en cuenta el peso de
-todos aquellos productos a los que se les aplica la aportación SIGAUS para determinar
-el importe.</p>
+<p>Cuando se calcule la aportación SIGAUS en facturas, se tendrá en cuenta
+el peso de todos aquellos productos a los que se les aplica la
+aportación SIGAUS para determinar el importe.</p>
 <ul class="simple">
-<li>Todos los productos a los que se les aplica la aportación SIGAUS deben tener un peso
-establecido.</li>
+<li>Todos los productos a los que se les aplica la aportación SIGAUS deben
+tener un peso establecido.</li>
 </ul>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-2">Usage</a></h1>
 <ul class="simple">
-<li>El importe de la aportación SIGAUS se calculará a partir de los pesos de aquellos
-productos sujetos a dicha aportación y el precio establecido en “Aportación SIGAUS”
-según la fecha de factura o, en su defecto, la fecha de creación.</li>
+<li>El importe de la aportación SIGAUS se calculará a partir de los pesos
+de aquellos productos sujetos a dicha aportación y el precio
+establecido en “Aportación SIGAUS” según la fecha de factura o, en su
+defecto, la fecha de creación.</li>
 <li>Los productos sujetos a aportación SIGAUS son los siguientes:<ul>
-<li>Aquellos que tienen establecida la opción “Sí” en el campo “Sujeto a SIGAUS”.</li>
-<li>Aquellos que tienen establecida la opción “Categoría” en el campo “Sujeto a SIGAUS”
-y cuya categoría tenga marcada la opción “Sujeto a SIGAUS”.</li>
+<li>Aquellos que tienen establecida la opción “Sí” en el campo “Sujeto a
+SIGAUS”.</li>
+<li>Aquellos que tienen establecida la opción “Categoría” en el campo
+“Sujeto a SIGAUS” y cuya categoría tenga marcada la opción “Sujeto a
+SIGAUS”.</li>
 </ul>
 </li>
-<li>Se mostrará un mensaje en el chatter si al calcular la aportación SIGAUS, alguno de
-los productos sujetos no tiene un peso establecido.</li>
-<li>Si se desmarca la opción “Sujeto a SIGAUS”, no se aplicará la aportación SIGAUS.</li>
+<li>Se mostrará un mensaje en el chatter si al calcular la aportación
+SIGAUS, alguno de los productos sujetos no tiene un peso establecido.</li>
+<li>Si se desmarca la opción “Sujeto a SIGAUS”, no se aplicará la
+aportación SIGAUS.</li>
 </ul>
 </div>
 <div class="section" id="known-issues-roadmap">
 <h1><a class="toc-backref" href="#toc-entry-3">Known issues / Roadmap</a></h1>
 <ul class="simple">
-<li>El módulo no está preparado para añadir automáticamente las líneas de aportación
-SIGAUS a los pedidos procedentes del comercio online.</li>
+<li>El módulo no está preparado para añadir automáticamente las líneas de
+aportación SIGAUS a los pedidos procedentes del comercio online.</li>
 </ul>
 </div>
 <div class="section" id="bug-tracker">
@@ -468,7 +480,7 @@ SIGAUS a los pedidos procedentes del comercio online.</li>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-spain/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_sigaus_account%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_sigaus_account%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -493,11 +505,13 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <div class="section" id="maintainers">
 <h2><a class="toc-backref" href="#toc-entry-8">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
-<a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_sigaus_account">OCA/l10n-spain</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_sigaus_account">OCA/l10n-spain</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>

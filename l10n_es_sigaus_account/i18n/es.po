@@ -4,18 +4,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-15 09:55+0000\n"
-"PO-Revision-Date: 2024-02-29 00:13+0000\n"
-"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"POT-Creation-Date: 2024-10-16 08:53+0000\n"
+"PO-Revision-Date: 2024-10-16 08:53+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: l10n_es_sigaus_account
 #. odoo-python
@@ -23,7 +21,6 @@ msgstr ""
 #, python-format
 msgid "'Sigaus Date From' is mandatory for companies with SIGAUS enabled."
 msgstr ""
-"'SIGAUS fecha desde' es obligatorio para las compañías con SIGAUS habilitado."
 
 #. module: l10n_es_sigaus_account
 #: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_account.exception_sigaus
@@ -32,17 +29,14 @@ msgid ""
 "            The following products are subject to SIGAUS but have no weight."
 msgstr ""
 ".\n"
-"            Los siguientes productos están sujetos a SIGAUS pero no tienen "
-"peso."
+"            Los siguientes productos están sujetos a SIGAUS pero no tienen peso."
 
 #. module: l10n_es_sigaus_account
 #: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_account.l10n_es_sigaus_account_amount_form_view
 msgid ""
-"<i class=\"fa fa-long-arrow-right mx-1\" aria-label=\"Arrow icon\" title="
-"\"Arrow\"/>"
+"<i class=\"fa fa-long-arrow-right mx-1\" aria-label=\"Arrow icon\" "
+"title=\"Arrow\"/>"
 msgstr ""
-"<i class=\"fa fa-long-arrow-right mx-1\" aria-label=\"Arrow icon\" title="
-"\"Arrow\"/>"
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model,name:l10n_es_sigaus_account.model_account_move_reversal
@@ -57,7 +51,7 @@ msgstr "Aportación SIGAUS (RD 679/2006):"
 #. module: l10n_es_sigaus_account
 #: model:product.template,name:l10n_es_sigaus_account.aportacion_sigaus_product_template_product_template
 msgid "Aportación SIGAUS (R.D. 679/2006)"
-msgstr "Aportación SIGAUS (R.D. 679/2006)"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields.selection,name:l10n_es_sigaus_account.selection__product_template__sigaus_subject__category
@@ -112,7 +106,7 @@ msgstr "Posición fiscal"
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_l10n_es_sigaus_amount__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,help:l10n_es_sigaus_account.field_res_company__sigaus_show_in_reports
@@ -133,18 +127,13 @@ msgstr "Asiento contable"
 #. module: l10n_es_sigaus_account
 #: model:ir.model,name:l10n_es_sigaus_account.model_account_move_line
 msgid "Journal Item"
-msgstr "Artículo del Diario"
+msgstr "Apunte contable"
 
 #. module: l10n_es_sigaus_account
 #: model:ir.actions.act_window,name:l10n_es_sigaus_account.l10n_es_sigaus_account_amount_action
 #: model:ir.ui.menu,name:l10n_es_sigaus_account.menu_l10n_es_sigaus_account_amount
 msgid "L10n Es Sigaus Amount"
 msgstr "Aportación SIGAUS"
-
-#. module: l10n_es_sigaus_account
-#: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_l10n_es_sigaus_amount____last_update
-msgid "Last Modified on"
-msgstr "Modificado por última vez el"
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_l10n_es_sigaus_amount__write_uid
@@ -164,7 +153,7 @@ msgstr "Nombre"
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields.selection,name:l10n_es_sigaus_account.selection__product_template__sigaus_subject__no
 msgid "No"
-msgstr "No"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_l10n_es_sigaus_amount__price
@@ -194,7 +183,7 @@ msgstr "Producto(s):"
 #. module: l10n_es_sigaus_account
 #: model:ir.ui.menu,name:l10n_es_sigaus_account.menu_l10n_es_sigaus
 msgid "SIGAUS"
-msgstr "SIGAUS"
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,help:l10n_es_sigaus_account.field_res_company__sigaus_date_from
@@ -301,16 +290,16 @@ msgid ""
 "SIGAUS is equal or after the date selected in the company from which SIGAUS "
 "has to be applied."
 msgstr ""
-"Campo técnico para determinar si la fecha de un documento sujeto a SIGAUS es "
-"igual o posterior a la fecha seleccionada en la compañía a partir de la que "
-"el SIGAUS puede aplicarse."
+"Campo técnico para determinar si la fecha de un documento sujeto a SIGAUS es"
+" igual o posterior a la fecha seleccionada en la compañía a partir de la que"
+" el SIGAUS puede aplicarse."
 
 #. module: l10n_es_sigaus_account
 #. odoo-python
 #: code:addons/l10n_es_sigaus_account/models/l10n_es_sigaus_amount.py:0
 #, python-format
 msgid "The ending date must not be prior to the starting date."
-msgstr "La fecha de finalización debe ser anterior a la de inicio."
+msgstr ""
 
 #. module: l10n_es_sigaus_account
 #. odoo-python
@@ -318,13 +307,9 @@ msgstr "La fecha de finalización debe ser anterior a la de inicio."
 #, python-format
 msgid ""
 "There is not a SIGAUS price set for the date: {}. Please, go to Invoicing > "
-"Configuration > L10n Es Sigaus Amount and make sure that the date is include "
-"in one of the configured date ranges."
+"Configuration > L10n Es Sigaus Amount and make sure that the date is include"
+" in one of the configured date ranges."
 msgstr ""
-"No hay un importe de aportación SIGAUS establecido para la fecha actual: {}. "
-"Por favor, vaya a Facturación > Configuración > Aportación SIGAUS y "
-"asegúrese de que la fecha está incluida en alguno de los rangos de fechas "
-"configurados."
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields.selection,name:l10n_es_sigaus_account.selection__product_template__sigaus_subject__yes
@@ -336,4 +321,4 @@ msgstr "Sí"
 #: code:addons/l10n_es_sigaus_account/models/l10n_es_sigaus_amount.py:0
 #, python-format
 msgid "You can not have overlapping date ranges."
-msgstr "No se permiten rangos de fechas que se solapan."
+msgstr ""

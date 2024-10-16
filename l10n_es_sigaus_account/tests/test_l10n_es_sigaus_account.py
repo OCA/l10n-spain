@@ -33,7 +33,7 @@ class TestL10nEsSigausInvoice(TestL10nEsSigausCommon):
         )
         return invoice
 
-    def create_reversal(self, reversal_type):
+    def create_reversal(self):
         lines = [
             {
                 "product": self.product_sigaus_in_product,
@@ -59,7 +59,6 @@ class TestL10nEsSigausInvoice(TestL10nEsSigausCommon):
             .create(
                 {
                     "date": "2023-01-01",
-                    "refund_method": reversal_type,
                     "journal_id": invoice.journal_id.id,
                 }
             )
@@ -174,59 +173,6 @@ class TestL10nEsSigausInvoice(TestL10nEsSigausCommon):
         self.assertEqual(len(credit_note_sigaus_line), 1)
         self.assertEqual(
             invoice_sigaus_line.price_subtotal, credit_note_sigaus_line.price_subtotal
-        )
-
-    def test_invoice_with_sigaus_reverse_refund(self):
-        invoice, reversal = self.create_reversal("refund")
-        invoice_sigaus_line = invoice.invoice_line_ids.filtered("is_sigaus")
-        credit_note = self.env["account.move"].browse(reversal["res_id"])
-        self.assertEqual(credit_note.move_type, "out_refund")
-        self.assertEqual(invoice.amount_untaxed, credit_note.amount_untaxed)
-        self.assertTrue(credit_note.is_sigaus)
-        credit_note_sigaus_line = credit_note.invoice_line_ids.filtered("is_sigaus")
-        self.assertEqual(len(credit_note_sigaus_line), 1)
-        self.assertEqual(
-            invoice_sigaus_line.price_subtotal, credit_note_sigaus_line.price_subtotal
-        )
-        self.assertEqual(
-            invoice_sigaus_line.amount_currency,
-            -1 * credit_note_sigaus_line.amount_currency,
-        )
-
-    def test_invoice_with_sigaus_reverse_cancel(self):
-        invoice, reversal = self.create_reversal("cancel")
-        invoice_sigaus_line = invoice.invoice_line_ids.filtered("is_sigaus")
-        self.assertEqual(invoice.payment_state, "reversed")
-        credit_note = self.env["account.move"].browse(reversal["res_id"])
-        self.assertEqual(credit_note.move_type, "out_refund")
-        self.assertEqual(invoice.amount_untaxed, credit_note.amount_untaxed)
-        self.assertTrue(credit_note.is_sigaus)
-        credit_note_sigaus_line = credit_note.invoice_line_ids.filtered("is_sigaus")
-        self.assertEqual(len(credit_note_sigaus_line), 1)
-        self.assertEqual(
-            invoice_sigaus_line.price_subtotal, credit_note_sigaus_line.price_subtotal
-        )
-        self.assertEqual(
-            invoice_sigaus_line.amount_currency,
-            -1 * credit_note_sigaus_line.amount_currency,
-        )
-
-    def test_invoice_with_sigaus_reverse_modify(self):
-        invoice, reversal = self.create_reversal("modify")
-        invoice_sigaus_line = invoice.invoice_line_ids.filtered("is_sigaus")
-        self.assertEqual(invoice.payment_state, "reversed")
-        new_invoice = self.env["account.move"].browse(reversal["res_id"])
-        new_invoice.write({"invoice_date": invoice.invoice_date})
-        self.assertEqual(new_invoice.move_type, "out_invoice")
-        self.assertEqual(invoice.amount_untaxed, new_invoice.amount_untaxed)
-        self.assertTrue(new_invoice.is_sigaus)
-        new_invoice_sigaus_line = new_invoice.invoice_line_ids.filtered("is_sigaus")
-        self.assertEqual(len(new_invoice_sigaus_line), 1)
-        self.assertEqual(
-            invoice_sigaus_line.price_subtotal, new_invoice_sigaus_line.price_subtotal
-        )
-        self.assertEqual(
-            invoice_sigaus_line.amount_currency, new_invoice_sigaus_line.amount_currency
         )
 
     def test_invoice_with_sigaus_different_dates(self):

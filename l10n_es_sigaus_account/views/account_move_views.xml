@@ -8,9 +8,9 @@
         <field name="arch" type="xml">
             <xpath expr="//group[@id='header_right_group']" position="inside">
                 <field name="sigaus_company" invisible="1" />
-                <field
+                 <field
                     name="is_sigaus"
-                    attrs="{'readonly': [('state', '!=', 'draft')], 'invisible': [('sigaus_company', '=', False)]}"
+                    modifiers="{'invisible': [('sigaus_company', '=', False)], 'readonly': [('state', '!=', 'draft')]}"
                 />
             </xpath>
             <xpath
