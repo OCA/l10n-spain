@@ -34,9 +34,10 @@ class AccountMove(models.Model):
             lambda a: a.is_sigaus and a.purchase_order_id
         )
         for sigaus_line in sigaus_lines:
-            order_id = sigaus_line.purchase_order_id
             lines_from_order = self.invoice_line_ids.filtered(
-                lambda a: a.purchase_order_id == order_id
+                lambda a,
+                purchase_order_id=sigaus_line.purchase_order_id: a.purchase_order_id
+                == purchase_order_id
                 and a.product_id
                 and a.product_id.sigaus_has_amount
             )
@@ -50,9 +51,8 @@ class AccountMove(models.Model):
             "purchase_line_id"
         )
         for sigaus_line in not_used_sigaus_lines_in_orders:
-            order_id = sigaus_line.order_id
             lines = self.invoice_line_ids.filtered(
-                lambda a: a.purchase_order_id == order_id
+                lambda a, order_id=sigaus_line.order_id: a.purchase_order_id == order_id
                 and a.product_id
                 and a.product_id.sigaus_has_amount
             )

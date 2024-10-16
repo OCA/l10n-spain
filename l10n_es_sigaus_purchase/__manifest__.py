@@ -4,7 +4,7 @@
 {
     "name": "SIGAUS - Compras",
     "summary": "Sistema de gestión de aceites industriales usados en España - Compras",
-    "version": "16.0.1.0.1",
+    "version": "17.0.1.0.1",
     "license": "AGPL-3",
     "author": "Sygel, Odoo Community Association (OCA)",
     "category": "Sales",
