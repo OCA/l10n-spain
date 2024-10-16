@@ -270,7 +270,7 @@
         <field name="description">P_IVA0_ISC_1</field>
         <field name="sequence" eval="10"/>
         <field name="type_tax_use">purchase</field>
-        <field name="name">IVA 0% Importaciones servicios corrientes (1)</field>
+        <field name="name">IVA 0% Adquisición de servicios extracomunitarios (1)</field>
         <field name="account_id" ref="l10n_es.account_common_472"/>
         <field name="refund_account_id" ref="l10n_es.account_common_472"/>
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
@@ -283,7 +283,7 @@
         <field name="description">P_IVA0_ISC_2</field>
         <field name="type_tax_use">purchase</field>
         <field name="sequence" eval="20"/>
-        <field name="name">IVA 0% Importaciones servicios corrientes (2)</field>
+        <field name="name">IVA 0% Adquisición de servicios extracomunitarios (2)</field>
         <field name="account_id" ref="l10n_es.account_common_477"/>
         <field name="refund_account_id" ref="l10n_es.account_common_477"/>
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
@@ -295,7 +295,7 @@
     <record id="account_tax_template_p_iva0_isc" model="account.tax.template">
         <field name="description">P_IVA0_ISC</field>
         <field name="type_tax_use">purchase</field>
-        <field name="name">IVA 0% Importaciones servicios corrientes</field>
+        <field name="name">IVA 0% Adquisición de servicios extracomunitarios</field>
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount" eval="100"/>
         <field name="amount_type">group</field>
