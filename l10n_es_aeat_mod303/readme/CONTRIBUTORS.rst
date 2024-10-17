@@ -7,3 +7,15 @@
   * Antonio Espinosa
   * Luis M. Ontalba
   * Pedro M. Baeza
+* `Sygel <https://www.sygel.es>`__:
+
+  * Harald Panten
+  * Valentin Vinagre
+* `Ozono Multimedia <https://www.ozonomultimedia.com>`__:
+
+  * Iván Antón
+
+* `Moduon <https://www.moduon.team/>`__:
+
+  * Arantxa Sudón
+  * Rafael Blasco
