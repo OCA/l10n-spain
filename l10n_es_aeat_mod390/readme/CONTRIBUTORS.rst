@@ -16,3 +16,5 @@
 * `Dixmit <https://www.dixmit.com>`_:
 
   * Enric Tobella
+
+* Arantxa Sudón (https://www.moduon.team)
