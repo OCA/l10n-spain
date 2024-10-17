@@ -10,7 +10,7 @@
     "author": "AvanzOSC, Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
-    "depends": ["l10n_es_aeat", "l10n_es_irnr"],
+    "depends": ["l10n_es_aeat"],
     "data": [
         "security/ir.model.access.csv",
         "security/ir_rule.xml",

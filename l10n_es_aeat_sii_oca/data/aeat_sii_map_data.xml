@@ -304,6 +304,10 @@
               ref('l10n_es.account_tax_template_p_irpf21te'),
               ref('l10n_es.account_tax_template_s_irpf24'),
               ref('l10n_es.account_tax_template_p_irpf24'),
+              ref('l10n_es.account_tax_template_s_irpfnrnue24'),
+              ref('l10n_es.account_tax_template_p_irpfnrnue24p'),
+              ref('l10n_es.account_tax_template_s_irpfnrue19'),
+              ref('l10n_es.account_tax_template_p_irpfnrue19p'),
             ])]"
         />
         <field name="sii_map_id" ref="aeat_sii_map" />
