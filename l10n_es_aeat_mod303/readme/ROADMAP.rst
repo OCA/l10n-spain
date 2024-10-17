@@ -6,6 +6,7 @@
   Foral.
 * Posibilidad de marcar en el resultado el ingreso/devolución en la cuenta
   corriente tributaria.
+* No se pueden rellenar las casillas [108] y [111] de rectificación de autoliquidación.
 * No se puede rellenar la casilla [109]: Devoluciones acordadas por la Agencia
   Tributaria como consecuencia de la tramitación de anteriores autoliquidaciones
   correspondientes al ejercicio y período objeto de la autoliquidación.
@@ -24,3 +25,7 @@
   posiciones fiscales.
 
   Más información en https://www.boe.es/diario_boe/txt.php?id=BOE-A-2014-12329
+* No se han mapeado las ventas con el nuevo IVA a la electricidad del 5%, a la
+  espera de si Hacienda cambia el modelo para alojar dicho valor.
+* No se ha comprobado en producción la funcionalidad de comunicaciones usando
+  la opción de cuenta tributaria (tipos de resultado "G" y "V").
