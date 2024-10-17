@@ -8,7 +8,7 @@
     >
         <field
             name="taxes"
-            eval="[(4, ref('l10n_es_irnr.account_tax_template_s_irpfnrnue24')), (4, ref('l10n_es_irnr.account_tax_template_p_irpfnrnue24p')), (4, ref('l10n_es_irnr.account_tax_template_s_irpfnrue19')), (4, ref('l10n_es_irnr.account_tax_template_p_irpfnrue19p')),]"
+            eval="[(4, ref('l10n_es.account_tax_template_s_irpfnrnue24')), (4, ref('l10n_es.account_tax_template_p_irpfnrnue24p')), (4, ref('l10n_es.account_tax_template_s_irpfnrue19')), (4, ref('l10n_es.account_tax_template_p_irpfnrue19p')),]"
         />
     </record>
 </odoo>
