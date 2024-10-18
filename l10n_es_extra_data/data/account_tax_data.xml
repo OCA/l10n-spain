@@ -3,52 +3,42 @@
     <record id="mod_303_150" model="account.account.tag">
         <field name="name">mod303[150]</field>
         <field name="applicability">taxes</field>
-        <field name="country_id" ref="base.es"/>
     </record>
     <record id="mod_303_152" model="account.account.tag">
         <field name="name">mod303[152]</field>
         <field name="applicability">taxes</field>
-        <field name="country_id" ref="base.es"/>
     </record>
     <record id="mod_303_153" model="account.account.tag">
         <field name="name">mod303[153]</field>
         <field name="applicability">taxes</field>
-        <field name="country_id" ref="base.es"/>
     </record>
     <record id="mod_303_155" model="account.account.tag">
         <field name="name">mod303[155]</field>
         <field name="applicability">taxes</field>
-        <field name="country_id" ref="base.es"/>
     </record>
     <record id="mod_303_156" model="account.account.tag">
         <field name="name">mod303[156]</field>
         <field name="applicability">taxes</field>
-        <field name="country_id" ref="base.es"/>
     </record>
     <record id="mod_303_158" model="account.account.tag">
         <field name="name">mod303[158]</field>
         <field name="applicability">taxes</field>
-        <field name="country_id" ref="base.es"/>
     </record>
     <record id="mod_303_165" model="account.account.tag">
         <field name="name">mod303[165]</field>
         <field name="applicability">taxes</field>
-        <field name="country_id" ref="base.es" />
     </record>
     <record id="mod_303_167" model="account.account.tag">
         <field name="name">mod303[167]</field>
         <field name="applicability">taxes</field>
-        <field name="country_id" ref="base.es" />
     </record>
     <record id="mod_303_168" model="account.account.tag">
         <field name="name">mod303[168]</field>
         <field name="applicability">taxes</field>
-        <field name="country_id" ref="base.es" />
     </record>
     <record id="mod_303_170" model="account.account.tag">
         <field name="name">mod303[170]</field>
         <field name="applicability">taxes</field>
-        <field name="country_id" ref="base.es" />
     </record>
     <record id="account_tax_template_p_iva0_sc" model="account.tax.template">
         <field name="description">P_IVA0_S_SC</field>
@@ -61,6 +51,7 @@
         <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_28_29'), ref('l10n_es.mod_303_40_41')])]"/>
     </record>
     <record id="account_tax_template_p_iva5_sc" model="account.tax.template">
+        <field name="active" eval="False"/>
         <field name="description">P_IVA5_S_SC</field>
         <field name="type_tax_use">purchase</field>
         <field name="account_id" ref="l10n_es.account_common_472"/>
@@ -73,6 +64,7 @@
         <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_28_29'), ref('l10n_es.mod_303_40_41')])]"/>
     </record>
     <record id="account_tax_template_s_iva5s" model="account.tax.template">
+        <field name="active" eval="False"/>
         <field name="description">S_IVA5S</field>
         <field name="type_tax_use">sale</field>
         <field name="account_id" ref="l10n_es.account_common_477"/>
@@ -142,7 +134,18 @@
         <field name="tax_group_id" ref="l10n_es.tax_group_iva_0"/>
         <field name="tag_ids" eval="[(6, False, [ref('mod_303_150'), ref('mod_303_152'), ref('l10n_es.mod_303_14_15_sale')])]"/>
     </record>
+    <record id="account_tax_template_s_iva0b" model="account.tax.template">
+        <field name="description">S_IVA0B</field>
+        <field name="type_tax_use">sale</field>
+        <field name="name">IVA 0% (Bienes)</field>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
+        <field name="amount" eval="0"/>
+        <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="l10n_es.tax_group_iva_0"/>
+        <field name="tag_ids" eval="[(6, False, [ref('mod_303_150'), ref('mod_303_152'), ref('l10n_es.mod_303_14_15_sale')])]"/>
+    </record>
     <record id="account_tax_template_p_iva5_isc_1" model="account.tax.template">
+        <field name="active" eval="False"/>
         <field name="description">P_IVA5_ISC_1</field>
         <field name="sequence" eval="10"/>
         <field name="type_tax_use">purchase</field>
@@ -156,6 +159,7 @@
         <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_28_29'), ref('l10n_es.mod_303_40_41')])]"/>
     </record>
     <record id="account_tax_template_p_iva5_isc_2" model="account.tax.template">
+        <field name="active" eval="False"/>
         <field name="description">P_IVA5_ISC_2</field>
         <field name="type_tax_use">purchase</field>
         <field name="sequence" eval="20"/>
@@ -169,6 +173,7 @@
         <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_12_13'), ref('l10n_es.mod_303_14_15_purchase')])]"/>
     </record>
     <record id="account_tax_template_p_iva5_isc" model="account.tax.template">
+        <field name="active" eval="False"/>
         <field name="description">P_IVA5_ISC</field>
         <field name="type_tax_use">purchase</field>
         <field name="name">IVA 5% Adquisición de servicios extracomunitarios</field>
@@ -291,6 +296,7 @@
         <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_10_11'), ref('l10n_es.mod_303_14_15_purchase'), ref('l10n_es.mod_303_36_37'), ref('l10n_es.mod_303_40_41')])]"/>
     </record>
     <record id="account_tax_template_p_iva5_ic_sc_1" model="account.tax.template">
+        <field name="active" eval="False"/>
         <field name="description">P_IVA5_IC_SC_1</field>
         <field name="type_tax_use">purchase</field>
         <field name="sequence" eval="10"/>
@@ -304,6 +310,7 @@
         <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_36_37'), ref('l10n_es.mod_303_40_41')])]"/>
     </record>
     <record id="account_tax_template_p_iva5_ic_sc_2" model="account.tax.template">
+        <field name="active" eval="False"/>
         <field name="description">P_IVA5_IC_SC_2</field>
         <field name="type_tax_use">purchase</field>
         <field name="sequence" eval="20"/>
@@ -317,6 +324,7 @@
         <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_10_11'), ref('l10n_es.mod_303_14_15_purchase')])]"/>
     </record>
     <record id="account_tax_template_p_iva5_ic_sc" model="account.tax.template">
+        <field name="active" eval="False"/>
         <field name="description">P_IVA5_IC_SC</field>
         <field name="type_tax_use">purchase</field>
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
@@ -401,6 +409,7 @@
         <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_16_18'), ref('l10n_es.mod_303_25_26')])]"/>
     </record>
     <record id="account_tax_template_s_req062" model="account.tax.template">
+        <field name="active" eval="False"/>
         <field name="description">S_REQ062</field>
         <field name="type_tax_use">sale</field>
         <field name="account_id" ref="l10n_es.account_common_477"/>
@@ -425,6 +434,7 @@
         <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_28_29'), ref('l10n_es.mod_303_40_41')])]"/>
     </record>
     <record id="account_tax_template_p_req062" model="account.tax.template">
+        <field name="active" eval="False"/>
         <field name="description">P_REQ062</field>
         <field name="type_tax_use">purchase</field>
         <field name="account_id" ref="l10n_es.account_common_472"/>
@@ -733,6 +743,17 @@
         <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_12_13'), ref('l10n_es.mod_303_14_15_purchase'), ref('l10n_es.mod_303_28_29'), ref('l10n_es.mod_303_40_41')])]"/>
     </record>
 
+    <record id="account_tax_template_p_iva0_ic_bc" model="account.tax.template">
+        <field name="description">P_IVA0_IC_BC</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="name">IVA 0% Adquisición Intracomunitario. Bienes corrientes</field>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="amount" eval="0" />
+        <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="l10n_es.tax_group_iva_0" />
+        <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_10_11'), ref('l10n_es.mod_303_14_15_purchase'), ref('l10n_es.mod_303_36_37'), ref('l10n_es.mod_303_40_41')])]"/>
+    </record>
+
     <record id="account_tax_template_p_iva7-5_ibc" model="account.tax.template">
         <field name="description">P_IVA75_IC_BC</field>
         <field name="type_tax_use">purchase</field>
@@ -849,5 +870,116 @@
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_recargo_1"/>
         <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_28_29'), ref('l10n_es.mod_303_40_41')])]"/>
+    </record>
+    <record id="account_tax_template_p_iva4_isp_bi_1" model="account.tax.template">
+        <field name="name">IVA 4% ISP (bienes de inversión) (1)</field>
+        <field name="description">P_IVA4_ISP_BI_1</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="amount_type">percent</field>
+        <field name="amount" eval="4"/>
+        <field name="sequence" eval="10"/>
+        <field name="refund_account_id" ref="l10n_es.account_common_472"/>
+        <field name="account_id" ref="l10n_es.account_common_472"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
+        <field name="tax_group_id" ref="l10n_es.tax_group_iva_4"/>
+        <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_30_31'), ref('l10n_es.mod_303_40_41')])]"/>
+    </record>
+    <record id="account_tax_template_p_iva4_isp_bi_2" model="account.tax.template">
+        <field name="name">IVA 4% ISP (bienes de inversión) (2)</field>
+        <field name="description">P_IVA4_ISP_BI_2</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="amount_type">percent</field>
+        <field name="amount" eval="-4"/>
+        <field name="sequence" eval="20"/>
+        <field name="refund_account_id" ref="l10n_es.account_common_477"/>
+        <field name="account_id" ref="l10n_es.account_common_477"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
+        <field name="tax_group_id" ref="l10n_es.tax_group_iva_4"/>
+        <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_12_13'), ref('l10n_es.mod_303_14_15_purchase')])]"/>
+    </record>
+    <record id="account_tax_template_p_iva4_isp_bi" model="account.tax.template">
+        <field name="description">P_IVA4_ISP</field>
+        <field name="name">IVA 4% ISP (bienes de inversión)</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="amount_type">group</field>
+        <field name="amount" eval="100"/>
+        <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_p_iva4_isp_bi_1'), ref('account_tax_template_p_iva4_isp_bi_2')])]"/>
+        <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_30_31'), ref('l10n_es.mod_303_40_41'), ref('l10n_es.mod_303_12_13'), ref('l10n_es.mod_303_14_15_purchase')])]"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
+        <field name="tax_group_id" ref="l10n_es.tax_group_iva_4"/>
+    </record>
+    <record id="account_tax_template_p_iva10_isp_bi_1" model="account.tax.template">
+        <field name="name">IVA 10% ISP (bienes de inversión) (1)</field>
+        <field name="description">P_IVA10_ISP_BI_1</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="amount_type">percent</field>
+        <field name="amount" eval="10"/>
+        <field name="sequence" eval="10"/>
+        <field name="refund_account_id" ref="l10n_es.account_common_472"/>
+        <field name="account_id" ref="l10n_es.account_common_472"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
+        <field name="tax_group_id" ref="l10n_es.tax_group_iva_10"/>
+        <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_30_31'), ref('l10n_es.mod_303_40_41')])]"/>
+    </record>
+    <record id="account_tax_template_p_iva10_isp_bi_2" model="account.tax.template">
+        <field name="name">IVA 10% ISP (bienes de inversión) (2)</field>
+        <field name="description">P_IVA10_ISP_BI_2</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="amount_type">percent</field>
+        <field name="amount" eval="-10"/>
+        <field name="sequence" eval="20"/>
+        <field name="refund_account_id" ref="l10n_es.account_common_477"/>
+        <field name="account_id" ref="l10n_es.account_common_477"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
+        <field name="tax_group_id" ref="l10n_es.tax_group_iva_10"/>
+        <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_12_13'), ref('l10n_es.mod_303_14_15_purchase')])]"/>
+    </record>
+    <record id="account_tax_template_p_iva10_isp_bi" model="account.tax.template">
+        <field name="description">P_IVA10_ISP_BI</field>
+        <field name="name">IVA 10% ISP (bienes de inversión)</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="amount_type">group</field>
+        <field name="amount" eval="100"/>
+        <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_p_iva10_isp_bi_1'), ref('account_tax_template_p_iva10_isp_bi_2')])]"/>
+        <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_30_31'), ref('l10n_es.mod_303_40_41'), ref('l10n_es.mod_303_12_13'), ref('l10n_es.mod_303_14_15_purchase')])]"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
+        <field name="tax_group_id" ref="l10n_es.tax_group_iva_10"/>
+    </record>
+    <record id="account_tax_template_p_iva21_isp_bi_1" model="account.tax.template">
+        <field name="name">IVA 21% ISP (bienes de inversión) (1)</field>
+        <field name="description">P_IVA21_ISP_BI_1</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="amount_type">percent</field>
+        <field name="amount" eval="21"/>
+        <field name="sequence" eval="10"/>
+        <field name="refund_account_id" ref="l10n_es.account_common_472"/>
+        <field name="account_id" ref="l10n_es.account_common_472"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
+        <field name="tax_group_id" ref="l10n_es.tax_group_iva_21"/>
+        <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_30_31'), ref('l10n_es.mod_303_40_41')])]"/>
+    </record>
+    <record id="account_tax_template_p_iva21_isp_bi_2" model="account.tax.template">
+        <field name="name">IVA 21% ISP (bienes de inversión) (2)</field>
+        <field name="description">P_IVA21_ISP_BI_2</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="amount_type">percent</field>
+        <field name="amount" eval="-21"/>
+        <field name="sequence" eval="20"/>
+        <field name="refund_account_id" ref="l10n_es.account_common_477"/>
+        <field name="account_id" ref="l10n_es.account_common_477"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
+        <field name="tax_group_id" ref="l10n_es.tax_group_iva_21"/>
+        <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_12_13'), ref('l10n_es.mod_303_14_15_purchase')])]"/>
+    </record>
+    <record id="account_tax_template_p_iva21_is_bi" model="account.tax.template">
+        <field name="description">P_IVA21_ISP_BI</field>
+        <field name="name">IVA 21% ISP (bienes de inversión)</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="amount_type">group</field>
+        <field name="amount" eval="100"/>
+        <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_p_iva21_isp_bi_1'), ref('account_tax_template_p_iva21_isp_bi_2')])]"/>
+        <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_30_31'), ref('l10n_es.mod_303_40_41'), ref('l10n_es.mod_303_12_13'), ref('l10n_es.mod_303_14_15_purchase')])]"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
+        <field name="tax_group_id" ref="l10n_es.tax_group_iva_21"/>
     </record>
 </odoo>
