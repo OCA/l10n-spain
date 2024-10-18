@@ -9,3 +9,9 @@
 * `FactorLibre <http://factorlibre.com>`__:
 
   * Luis J. Salvatierra
+
+* `APSL - Nagarro <https://apsl.tech>`__:
+
+  * Miquel Pascual
+  * Bernat Obrador
+  * Miquel Alzanillas
