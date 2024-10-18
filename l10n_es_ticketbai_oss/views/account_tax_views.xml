@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="account_tax_tbai_form">
+        <field name="name">account.tax.tbai.form</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tax_group_id']" position="after">
+                <field
+                    name="tbai_tax_map_id"
+                    options="{'no_create': True, 'no_create_edit':True, 'no_open': True}"
+                />
+                <field name="not_subject_to_cause" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
