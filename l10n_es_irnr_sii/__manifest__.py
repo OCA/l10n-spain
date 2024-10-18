@@ -13,7 +13,7 @@
     "installable": True,
     "depends": [
         "l10n_es_aeat_sii_oca",
-        "l10n_es_irnr",
+        "l10n_es",
     ],
     "data": [
         "data/tax_code_map_irnr_sii_data.xml",
