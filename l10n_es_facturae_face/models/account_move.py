@@ -45,8 +45,8 @@ class AccountMove(models.Model):
         if not partner.facturae or not partner.l10n_es_facturae_sending_code:
             return False
         return not self._has_exchange_record(
-            self.env.ref("l10n_es_facturae_face.facturae_exchange_type"),
-            self.env.ref("l10n_es_facturae_face.backend_facturae"),
+            partner._get_facturae_exchange_type(),
+            partner._get_facturae_backend(),
         )
 
     @api.model
@@ -63,9 +63,7 @@ class AccountMove(models.Model):
         domain = super()._has_exchange_record_domain(
             exchange_type, backend=backend, extra_domain=extra_domain
         )
-        if exchange_type == self.env.ref(
-            "l10n_es_facturae_face.facturae_exchange_type"
-        ):
+        if exchange_type == self.partner_id._get_facturae_exchange_type():
             domain += [
                 "|",
                 ("l10n_es_facturae_status", "=", False),
