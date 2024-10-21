@@ -9,12 +9,7 @@
     "category": "Localization",
     "depends": ["l10n_es"],
     "development_status": "Mature",
-    "data": [
-        "data/account_data.xml",
-        "data/taxes_irnr.xml",
-        "data/fiscal_positions_irnr.xml",
-        "data/fiscal_position_taxes_irnr.xml",
-    ],
+    "data": [],
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
