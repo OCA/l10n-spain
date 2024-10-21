@@ -56,6 +56,7 @@
                 <field name="name" />
                 <field name="sequence" />
                 <field name="company_id" />
+                <field name="pos_config_ids" widget="many2many_tags" />
                 <field name="locked" invisible="1" />
                 <button
                     name="unlock_device"
