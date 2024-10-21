@@ -186,7 +186,7 @@
                             name="previous_result"
                             widget="monetary"
                             options="{'currency_field': 'currency_id'}"
-                            attrs="{'readonly': [('statement_type', '!=', 'C')], 'required': [('statement_type', '=', 'C')]}"
+                            attrs="{'readonly': [('type', '!=', 'C')], 'required': [('type', '=', 'C')]}"
                         />
                     </group>
                 </group>
