@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="payment_provider_sequra" model="payment.provider">
+        <field name="code">sequra</field>
+        <field name="name">seQura</field>
+        <field name="display_as">Paga a tu ritmo con seQura</field>
+        <field name="module_id" ref="base.module_payment_sequra" />
+        <field
+            name="image_128"
+            type="base64"
+            file="payment_sequra/static/img/sequra-logo.png"
+        />
+        <field name="redirect_form_view_id" ref="redirect_form" />
+    </record>
+</odoo>
