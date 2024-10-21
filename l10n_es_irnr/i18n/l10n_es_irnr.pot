@@ -1,6 +1,5 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* l10n_es_irnr
 #
 msgid ""
 msgstr ""
@@ -12,13 +11,3 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: l10n_es_irnr
-#: model:account.tax.group,name:l10n_es_irnr.tax_group_irnr_ue
-msgid "Retenciones no residentes UE"
-msgstr ""
-
-#. module: l10n_es_irnr
-#: model:account.tax.group,name:l10n_es_irnr.tax_group_irnr_no_ue
-msgid "Retenciones no residentes no-UE"
-msgstr ""
