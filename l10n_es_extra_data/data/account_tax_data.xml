@@ -669,7 +669,7 @@
         <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_36_37'), ref('l10n_es.mod_303_40_41')])]"/>
     </record>
     <record id="account_tax_template_p_iva2_ic_sc_2" model="account.tax.template">
-        <field name="description">P_IVA2_IC_BC_2</field>
+        <field name="description">P_IVA2_IC_SC_2</field>
         <field name="type_tax_use">purchase</field>
         <field name="sequence" eval="20"/>
         <field name="account_id" ref="l10n_es.account_common_477"/>
@@ -694,7 +694,7 @@
     </record>
 
     <record id="account_tax_template_p_iva2_ibc" model="account.tax.template">
-        <field name="description">P_IVA2_IC_BC</field>
+        <field name="description">P_IVA2_IBC</field>
         <field name="type_tax_use">purchase</field>
         <field name="name">IVA 2% Importaciones bienes corrientes</field>
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
@@ -755,7 +755,7 @@
     </record>
 
     <record id="account_tax_template_p_iva7-5_ibc" model="account.tax.template">
-        <field name="description">P_IVA75_IC_BC</field>
+        <field name="description">P_IVA75_IBC</field>
         <field name="type_tax_use">purchase</field>
         <field name="name">IVA 7.5% Importaciones bienes corrientes</field>
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
@@ -898,7 +898,7 @@
         <field name="tag_ids" eval="[(6, False, [ref('l10n_es.mod_303_12_13'), ref('l10n_es.mod_303_14_15_purchase')])]"/>
     </record>
     <record id="account_tax_template_p_iva4_isp_bi" model="account.tax.template">
-        <field name="description">P_IVA4_ISP</field>
+        <field name="description">P_IVA4_ISP_BI</field>
         <field name="name">IVA 4% ISP (bienes de inversión)</field>
         <field name="type_tax_use">purchase</field>
         <field name="amount_type">group</field>
