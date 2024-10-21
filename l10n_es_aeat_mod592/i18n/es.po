@@ -942,22 +942,6 @@ msgid "Mod 592 Report Lines"
 msgstr "Líneas de informe Mod 592"
 
 #. module: l10n_es_aeat_mod592
-#: model:ir.model,name:l10n_es_aeat_mod592.model_report_l10n_es_aeat_mod592_l10n_es_aeat_mod592_csv_acquirer
-msgid "Mod592 CSV Acquirer"
-msgstr "CSV del adquirente Mod592"
-
-#. module: l10n_es_aeat_mod592
-#: model:ir.model,name:l10n_es_aeat_mod592.model_report_l10n_es_aeat_mod592_l10n_es_aeat_mod592_csv_man
-msgid "Mod592 CSV Manufacturer"
-msgstr "CSV del fabricante Mod592"
-
-#. module: l10n_es_aeat_mod592
-#: model:ir.actions.report,name:l10n_es_aeat_mod592.l10n_es_aeat_mod592_csv_acquirer
-#: model:ir.actions.report,name:l10n_es_aeat_mod592.l10n_es_aeat_mod592_csv_man
-msgid "Mod592 CSV report"
-msgstr "CSV del informe Mod592"
-
-#. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__report_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__report_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_mixin__report_id
@@ -1077,6 +1061,7 @@ msgstr "Fabricante de plástico"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.product_template_form_view_inherit_l10n_es_aeat_mod592
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.product_variant_easy_edit_view_inherit_l10n_es_aeat_mod592
 msgid "Plastic Tax Parameters"
 msgstr "Parámetros de impuestos de plástico"
 
@@ -1518,9 +1503,16 @@ msgid "Year"
 msgstr "Año"
 
 #. module: l10n_es_aeat_mod592
-#: model:ir.actions.report,print_report_name:l10n_es_aeat_mod592.l10n_es_aeat_mod592_csv_acquirer
-#: model:ir.actions.report,print_report_name:l10n_es_aeat_mod592.l10n_es_aeat_mod592_csv_man
 #: model:ir.actions.report,print_report_name:l10n_es_aeat_mod592.l10n_es_aeat_mod592_xlsx_acquirer
 #: model:ir.actions.report,print_report_name:l10n_es_aeat_mod592.l10n_es_aeat_mod592_xlsx_man
 msgid "object.get_report_file_name()"
 msgstr "object.get_report_file_name()"
+
+#~ msgid "Mod592 CSV Acquirer"
+#~ msgstr "CSV del adquirente Mod592"
+
+#~ msgid "Mod592 CSV Manufacturer"
+#~ msgstr "CSV del fabricante Mod592"
+
+#~ msgid "Mod592 CSV report"
+#~ msgstr "CSV del informe Mod592"
