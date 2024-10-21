@@ -551,10 +551,11 @@ class L10nEsAeatMod190ReportLine(models.Model):
             tax_lines = item.report_id.tax_line_ids.filtered(
                 lambda x: x.field_number in (11, 15) and x.res_id == item.report_id.id
             )
-            value = 0.0
-            for move_line in tax_lines.move_line_ids:
-                value += move_line.debit - move_line.credit
-            item.percepciones_dinerarias = value
+            item.percepciones_dinerarias = sum(
+                tax_lines.move_line_ids.filtered(
+                    lambda mvl: mvl.partner_id == item.partner_id
+                ).mapped("balance")
+            )
 
     @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
     def _compute_retenciones_dinerarias(self):
@@ -564,10 +565,11 @@ class L10nEsAeatMod190ReportLine(models.Model):
             tax_lines = item.report_id.tax_line_ids.filtered(
                 lambda x: x.field_number in (12, 16) and x.res_id == item.report_id.id
             )
-            value = 0.0
-            for move_line in tax_lines.move_line_ids:
-                value += move_line.credit - move_line.debit
-            item.retenciones_dinerarias = value
+            item.retenciones_dinerarias = -1 * sum(
+                tax_lines.move_line_ids.filtered(
+                    lambda mvl: mvl.partner_id == item.partner_id
+                ).mapped("balance")
+            )
 
     @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
     def _compute_percepciones_en_especie(self):
@@ -577,10 +579,16 @@ class L10nEsAeatMod190ReportLine(models.Model):
             tax_lines = item.report_id.tax_line_ids.filtered(
                 lambda x: x.field_number == 13 and x.res_id == item.report_id.id
             )
-            pde = rde = 0.0
-            for move_line in tax_lines.move_line_ids:
-                pde += move_line.debit - move_line.credit
-                rde += move_line.credit - move_line.debit
+            pde = sum(
+                tax_lines.move_line_ids.filtered(
+                    lambda mvl: mvl.partner_id == item.partner_id
+                ).mapped("balance")
+            )
+            rde = -1 * sum(
+                tax_lines.move_line_ids.filtered(
+                    lambda mvl: mvl.partner_id == item.partner_id
+                ).mapped("balance")
+            )
             item.percepciones_en_especie = pde - rde
 
     @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
@@ -591,10 +599,11 @@ class L10nEsAeatMod190ReportLine(models.Model):
             tax_lines = item.report_id.tax_line_ids.filtered(
                 lambda x: x.field_number == 13 and x.res_id == item.report_id.id
             )
-            value = 0.0
-            for move_line in tax_lines.move_line_ids:
-                value += move_line.debit - move_line.credit
-            item.ingresos_a_cuenta_efectuados = value
+            item.ingresos_a_cuenta_efectuados = sum(
+                tax_lines.move_line_ids.filtered(
+                    lambda mvl: mvl.partner_id == item.partner_id
+                ).mapped("balance")
+            )
 
     @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
     def _compute_ingresos_a_cuenta_repercutidos(self):
@@ -604,72 +613,83 @@ class L10nEsAeatMod190ReportLine(models.Model):
             tax_lines = item.report_id.tax_line_ids.filtered(
                 lambda x: x.field_number == 13 and x.res_id == item.report_id.id
             )
-            value = 0.0
-            for move_line in tax_lines.move_line_ids:
-                value += move_line.credit - move_line.debit
-            item.ingresos_a_cuenta_repercutidos = value
+            item.ingresos_a_cuenta_repercutidos = -1 * sum(
+                tax_lines.move_line_ids.filtered(
+                    lambda mvl: mvl.partner_id == item.partner_id
+                ).mapped("balance")
+            )
 
     # Calculo campos CON incapacidad
     @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
     def _compute_percepciones_dinerarias_incap(self):
         """La misma lógica que para percepciones_dinerarias."""
-        for item in self.filtered(lambda x: x.discapacidad or x.discapacidad != "0"):
+        for item in self.filtered(lambda x: x.discapacidad and x.discapacidad != "0"):
             tax_lines = item.report_id.tax_line_ids.filtered(
                 lambda x: x.field_number in (11, 15) and x.res_id == item.report_id.id
             )
-            value = 0.0
-            for move_line in tax_lines.move_line_ids:
-                value += move_line.debit - move_line.credit
-            item.percepciones_dinerarias_incap = value
+            item.percepciones_dinerarias_incap = sum(
+                tax_lines.move_line_ids.filtered(
+                    lambda mvl: mvl.partner_id == item.partner_id
+                ).mapped("balance")
+            )
 
     @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
     def _compute_retenciones_dinerarias_incap(self):
         """La misma lógica que para retenciones_dinerarias."""
-        for item in self.filtered(lambda x: x.discapacidad or x.discapacidad != "0"):
+        for item in self.filtered(lambda x: x.discapacidad and x.discapacidad != "0"):
             tax_lines = item.report_id.tax_line_ids.filtered(
                 lambda x: x.field_number in (12, 16) and x.res_id == item.report_id.id
             )
-            value = 0.0
-            for move_line in tax_lines.move_line_ids:
-                value += move_line.credit - move_line.debit
-            item.retenciones_dinerarias_incap = value
+            item.retenciones_dinerarias_incap = -1 * sum(
+                tax_lines.move_line_ids.filtered(
+                    lambda mvl: mvl.partner_id == item.partner_id
+                ).mapped("balance")
+            )
 
     @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
     def _compute_percepciones_en_especie_incap(self):
         """La misma lógica que para percepciones_en_especie."""
-        for item in self.filtered(lambda x: x.discapacidad or x.discapacidad != "0"):
+        for item in self.filtered(lambda x: x.discapacidad and x.discapacidad != "0"):
             tax_lines = item.report_id.tax_line_ids.filtered(
                 lambda x: x.field_number == 13 and x.res_id == item.report_id.id
             )
-            pde = rde = 0.0
-            for move_line in tax_lines.move_line_ids:
-                pde += move_line.debit - move_line.credit
-                rde += move_line.credit - move_line.debit
+            pde = sum(
+                tax_lines.move_line_ids.filtered(
+                    lambda mvl: mvl.partner_id == item.partner_id
+                ).mapped("balance")
+            )
+            rde = -1 * sum(
+                tax_lines.move_line_ids.filtered(
+                    lambda mvl: mvl.partner_id == item.partner_id
+                ).mapped("balance")
+            )
             item.percepciones_en_especie_incap = pde - rde
 
     @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
     def _compute_ingresos_a_cuenta_efectuados_incap(self):
         """La misma lógica que para ingresos_a_cuenta_efectuados."""
-        for item in self.filtered(lambda x: x.discapacidad or x.discapacidad != "0"):
+        for item in self.filtered(lambda x: x.discapacidad and x.discapacidad != "0"):
             tax_lines = item.report_id.tax_line_ids.filtered(
                 lambda x: x.field_number == 13 and x.res_id == item.report_id.id
             )
-            value = 0.0
-            for move_line in tax_lines.move_line_ids:
-                value += move_line.debit - move_line.credit
-            item.ingresos_a_cuenta_efectuados_incap = value
+            item.ingresos_a_cuenta_efectuados_incap = sum(
+                tax_lines.move_line_ids.filtered(
+                    lambda mvl: mvl.partner_id == item.partner_id
+                ).mapped("balance")
+            )
 
     @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
     def _compute_ingresos_a_cuenta_repercutidos_incap(self):
         """La misma lógica que para ingresos_a_cuenta_repercutidos."""
-        for item in self.filtered(lambda x: x.discapacidad or x.discapacidad != "0"):
+        for item in self.filtered(lambda x: x.discapacidad and x.discapacidad != "0"):
             tax_lines = item.report_id.tax_line_ids.filtered(
                 lambda x: x.field_number == 13 and x.res_id == item.report_id.id
             )
-            value = 0.0
-            for move_line in tax_lines.move_line_ids:
-                value += move_line.credit - move_line.debit
-            item.ingresos_a_cuenta_repercutidos_incap = value
+            item.ingresos_a_cuenta_repercutidos_incap = -1 * sum(
+                tax_lines.move_line_ids.filtered(
+                    lambda mvl: mvl.partner_id == item.partner_id
+                ).mapped("balance")
+            )
 
     @api.onchange("partner_id")
     def onchange_partner_id(self):

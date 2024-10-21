@@ -5,6 +5,7 @@
 * Nestor Torres (https://www.vunkers.com)
 * Marc Sánchez Fauste (https://www.vunkers.com)
 * Manuel Regidor González (https://www.sygel.es)
+* Almudena de La Puente <almudena@aurestic.es>
 
 * `Tecnativa <https://www.tecnativa.com>`_:
 
