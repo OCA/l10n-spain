@@ -9,8 +9,8 @@
     <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree"/>
     <field name="arch" type="xml">
         <tree position="attributes">
-            <attribute name="string">AEAT 303 reports</attribute>=
-        </tree>
+        <attribute name="string">AEAT 303 reports</attribute>=
+    </tree>
         <field name="period_type" position="after">
             <field name="total_devengado"/>
             <field name="total_deducir"/>
@@ -25,11 +25,15 @@
     <field name="model">l10n.es.aeat.mod303.report</field>
     <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
     <field name="arch" type="xml">
+        <field name="partner_bank_id" position="before">
+            <field name="use_aeat_account" />
+        </field>
         <field name="partner_bank_id" position="attributes">
-            <attribute name="attrs">{'invisible': [('result_type', 'not in', ('D', 'B', 'I'))], 'required': [('result_type', '=', 'D')]}</attribute>
+            <attribute name="attrs">{'invisible': ['|', ('use_aeat_account', '=', True), ('result_type', 'not in', ('D', 'X', 'I', 'U'))], 'required': [('use_aeat_account', '=', False), ('result_type', 'in', ('D', 'X'))]}</attribute>
         </field>
         <field name="previous_number" position="after">
             <field name="devolucion_mensual"/>
+            <field name="return_last_period" attrs="{'invisible': [('period_type', 'not in', ('4T', '12'))]}"/>
             <field name="exonerated_390"
                 attrs="{'invisible': [('period_type', 'not in', ('4T', '12'))]}"
             />
@@ -89,84 +93,97 @@
                 </group>
             </group>
             <group string="Resultado"
-                   name="group_result"
-                   attrs="{'invisible': [('state', '=', 'draft')]}"
-                   col="3"
+                    name="group_result"
+                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    col="3"
             >
                 <group>
                     <field name="total_devengado"
-                           widget="monetary"
-                           options="{'currency_field': 'currency_id'}"
-                            />
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                    />
                     <field name="total_deducir"
-                           widget="monetary"
-                           options="{'currency_field': 'currency_id'}"
-                            />
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                    />
                     <field name="casilla_46"
-                           widget="monetary"
-                           options="{'currency_field': 'currency_id'}"
-                            />
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                    />
                 </group>
                 <group>
                     <field name="porcentaje_atribuible_estado"/>
                     <field name="atribuible_estado"
-                           widget="monetary"
-                           options="{'currency_field': 'currency_id'}"
-                            />
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                    />
                     <field name="potential_cuota_compensar"
-                           widget="monetary"
-                           options="{'currency_field': 'currency_id'}"
-                            />
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                    />
                     <field name="cuota_compensar"
-                           widget="monetary"
-                           options="{'currency_field': 'currency_id'}"
-                            />
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                    />
                     <field name="remaining_cuota_compensar"
-                           widget="monetary"
-                           options="{'currency_field': 'currency_id'}"
-                            />
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                    />
                 </group>
                 <group>
                     <field name="regularizacion_anual"
-                           widget="monetary"
-                           options="{'currency_field': 'currency_id'}"
-                           attrs="{'readonly': [('period_type', 'not in', ('4T', '12'))]}"
-                            />
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                            attrs="{'readonly': [('period_type', 'not in', ('4T', '12'))]}"
+                    />
                     <field name="casilla_77"
-                           widget="monetary"
-                           options="{'currency_field': 'currency_id'}"
-                            />
-                    <field name="casilla_69"
-                           widget="monetary"
-                           options="{'currency_field': 'currency_id'}"
-                            />
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="casilla_108"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                            attrs="{'invisible': [('type', '!=', 'S')]}"
+                        />
+                        <field
+                            name="casilla_111"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                            attrs="{'invisible': [('type', '!=', 'S')]}"
+                        />
+                        <field
+                            name="casilla_69"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                    />
                     <field name="previous_result"
-                           widget="monetary"
-                           options="{'currency_field': 'currency_id'}"
-                           attrs="{'readonly': [('type', '!=', 'C')], 'required': [('type', '=', 'C')]}"
-                            />
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                            attrs="{'readonly': [('type', '!=', 'C')], 'required': [('type', '=', 'C')]}"
+                    />
                 </group>
             </group>
             <group class="oe_subtotal_footer oe_right"
-                   attrs="{'invisible': [('state', '=', 'draft')]}"
-                   colspan="2">
+                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    colspan="2">
                 <field name="resultado_liquidacion"
-                       class="oe_subtotal_footer_separator"
-                       widget="monetary"
-                       options="{'currency_field': 'currency_id'}"
-                        />
+                        class="oe_subtotal_footer_separator"
+                        widget="monetary"
+                        options="{'currency_field': 'currency_id'}"
+                />
                 <field name="casilla_88"
-                    class="oe_subtotal_footer_separator"
-                    widget="monetary"
-                    attrs="{'invisible': [('exonerated_390', '=', '2')]}"
-                    options="{'currency_field': 'currency_id'}"
+                        class="oe_subtotal_footer_separator"
+                        widget="monetary"
+                        attrs="{'invisible': [('exonerated_390', '=', '2')]}"
+                        options="{'currency_field': 'currency_id'}"
                 />
                 <field name="result_type"/>
             </group>
             <group string="Tax lines"
-                   name="group_tax_lines"
-                   colspan="4"
-                   attrs="{'invisible': [('state', '=', 'draft')]}">
+                    name="group_tax_lines"
+                    colspan="4"
+                    attrs="{'invisible': [('state', '=', 'draft')]}">
                 <field name="tax_line_ids" nolabel="1" readonly="1"/>
             </group>
         </group>

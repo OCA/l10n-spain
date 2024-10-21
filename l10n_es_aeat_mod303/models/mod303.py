@@ -5,12 +5,17 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, exceptions, fields, models, _
+from odoo.tools import float_compare
 
 _ACCOUNT_PATTERN_MAP = {
-    'C': '4700',
-    'D': '4700',
-    'N': '4700',
-    'I': '4750',
+    "C": "4700",
+    "D": "4700",
+    "V": "4700",
+    "X": "4700",
+    "N": "4700",
+    "I": "4750",
+    "G": "4750",
+    "U": "4750",
 }
 
 NON_EDITABLE_ON_DONE = {'done': [('readonly', True)]}
@@ -32,6 +37,14 @@ class L10nEsAeatMod303Report(models.Model):
         string="Montly Return",
         states=NON_EDITABLE_ON_DONE,
         help="Registered in the Register of Monthly Return")
+    return_last_period = fields.Boolean(
+        string="Last Period Return",
+        states=NON_EDITABLE_ON_DONE,
+        help="Check if you are submitting the last period return",
+        compute="_compute_return_last_period",
+        store=True,
+        readonly=False,
+    )
     total_devengado = fields.Float(
         string="[27] VAT payable", readonly=True, compute_sudo=True,
         compute='_compute_total_devengado', store=True)
@@ -77,15 +90,32 @@ class L10nEsAeatMod303Report(models.Model):
     casilla_69 = fields.Float(
         string="[69] Result", readonly=True, compute='_compute_casilla_69',
         help="[66] Attributable to the Administration - "
-             "[67] Fees to compensate + "
-             "[68] Annual regularization", store=True)
+        "[67] Fees to compensate + "
+        "[68] Annual regularization +"
+        "[108] Other Adjustments",
+        store=True,
+    )
     casilla_77 = fields.Float(
         string="[77] VAT deferred (Settle by customs)",
         help="Contributions of import tax included in the documents "
-             "evidencing the payment made by the Administration and received "
-             "in the settlement period. You can only complete this box "
-             "when the requirements of Article 74.1 of the Tax Regulations "
-             "Value Added are met.")
+        "evidencing the payment made by the Administration and received "
+        "in the settlement period. You can only complete this box "
+        "when the requirements of Article 74.1 of the Tax Regulations "
+        "Value Added are met.",
+    )
+    casilla_108 = fields.Float(
+        string="[108] Other Adjustments",
+        help="Exclusively for certain cases of rectifying self-assessment due "
+        "to discrepancy of administrative criteria that should not be "
+        "included in other boxes. Other adjustments",
+    )
+    casilla_111 = fields.Float(
+        string="[111] Refund of improperly collected funds",
+        help="I request that the amount that, if applicable, may be refunded "
+        "as a consequence of the rectification, be paid to me by bank "
+        "transfer to the indicated account of which I am the account holder"
+        " to the indicated bank account of which I am the account holder",
+    )
     previous_result = fields.Float(
         string="[70] To be deducted",
         help="Result of the previous or prior statements of the same concept, "
@@ -94,18 +124,36 @@ class L10nEsAeatMod303Report(models.Model):
     resultado_liquidacion = fields.Float(
         string="[71] Settlement result", readonly=True,
         compute='_compute_resultado_liquidacion', store=True)
+    use_aeat_account = fields.Boolean(
+        "Usar cuenta corriente tributaria",
+        help=(
+            "Si está suscrito a la cuenta corriente en materia tributaria, "
+            "active esta opción para usarla en el ingreso o devolución."
+        ),
+    )
     result_type = fields.Selection(
         selection=[
-            ('I', 'To enter'),
-            ('D', 'To return'),
-            ('C', 'To compensate'),
-            ('N', 'No activity/Zero result'),
-        ], string="Result type", compute='_compute_result_type')
+            ("I", "To enter"),
+            ("G", "To enter - AEAT account"),
+            ("U", "To enter - Bank account debit"),
+            ("D", "To return"),
+            ("V", "To return - AEAT account"),
+            ("X", "To return - Foreign bank account"),
+            ("C", "To compensate"),
+            ("N", "No activity/Zero result"),
+        ],
+        string="Result type",
+        compute="_compute_result_type",
+    )
     counterpart_account_id = fields.Many2one(
         comodel_name='account.account', string="Counterpart account",
         default=_default_counterpart_303,
         domain="[('company_id', '=', company_id)]",
-        oldname='counterpart_account')
+        oldname='counterpart_account',
+        compute="_compute_counterpart_account_id",
+        store=True,
+        readonly=False,
+    )
     allow_posting = fields.Boolean(string="Allow posting", default=True)
     exonerated_390 = fields.Selection(
         selection=[
@@ -228,13 +276,21 @@ class L10nEsAeatMod303Report(models.Model):
         ],
         compute='_compute_marca_sepa')
 
-    @api.depends("partner_bank_id", "result_type")
+    def _get_export_config(self, date):
+        # Force the configuration of 2024-10 for 2024/09, as it can't be obtained with
+        # the usual dates search
+        if self.period_type == "3T" and self.year == 2024:
+            return self.env.ref(
+                "l10n_es_aeat_mod303.aeat_mod303_2024_10_main_export_config"
+            )
+        return super()._get_export_config(date)
+
+    @api.depends("partner_bank_id", "use_aeat_account")
     def _compute_marca_sepa(self):
         for record in self:
-            if record.result_type != 'D':
-                record.marca_sepa = '0'
-            elif record.partner_bank_id.bank_id.country == \
-                    self.env.ref("base.es"):
+            if record.use_aeat_account:
+                record.marca_sepa = "0"
+            elif record.partner_bank_id.bank_id.country == self.env.ref("base.es"):
                 record.marca_sepa = "1"
             elif record.partner_bank_id.bank_id.country in \
                     self.env.ref("base.europe").country_ids:
@@ -273,14 +329,29 @@ class L10nEsAeatMod303Report(models.Model):
                     "field '[67] Fees to compensate' in this declaration."
                 )
 
-    @api.multi
-    @api.depends('tax_line_ids', 'tax_line_ids.amount')
+    @api.depends("company_id", "result_type")
+    def _compute_counterpart_account_id(self):
+        for record in self:
+            code = ("%s%%" % _ACCOUNT_PATTERN_MAP.get(record.result_type, "4750"),)
+            record.counterpart_account_id = self.env["account.account"].search(
+                [("code", "=like", code[0]), ("company_id", "=", record.company_id.id)],
+                limit=1,
+            )
+
+    @api.depends("period_type")
+    def _compute_return_last_period(self):
+        for record in self:
+            if record.period_type not in ("4T", "12"):
+                record.return_last_period = False
+
+    @api.depends("tax_line_ids", "tax_line_ids.amount")
     def _compute_total_devengado(self):
-        casillas_devengado = (152, 3, 155, 6, 9, 11, 13, 15, 158, 18, 21, 24, 26)
+        cells = (152, 167, 3, 155, 6, 9, 11, 13, 15, 158, 170, 18, 21, 24, 26)
         for report in self:
-            tax_lines = report.tax_line_ids.filtered(
-                lambda x: x.field_number in casillas_devengado)
-            report.total_devengado = sum(tax_lines.mapped('amount'))
+            tax_lines = report.tax_line_ids.filtered(lambda x: x.field_number in cells)
+            report.total_devengado = report.currency_id.round(
+                sum(tax_lines.mapped("amount"))
+            )
 
     @api.multi
     @api.depends('tax_line_ids', 'tax_line_ids.amount')
@@ -311,14 +382,22 @@ class L10nEsAeatMod303Report(models.Model):
                 record.potential_cuota_compensar - record.cuota_compensar
             )
 
-    @api.multi
-    @api.depends('atribuible_estado', 'cuota_compensar',
-                 'regularizacion_anual', 'casilla_77')
+    @api.depends(
+        "atribuible_estado",
+        "cuota_compensar",
+        "regularizacion_anual",
+        "casilla_77",
+        "casilla_108",
+    )
     def _compute_casilla_69(self):
         for report in self:
-            report.casilla_69 = (
-                report.atribuible_estado + report.casilla_77 -
-                report.cuota_compensar + report.regularizacion_anual)
+            report.casilla_69 = report.currency_id.round(
+                report.atribuible_estado
+                + report.casilla_77
+                - report.cuota_compensar
+                + report.regularizacion_anual
+                + report.casilla_108
+            )
 
     @api.multi
     @api.depends('casilla_69', 'previous_result')
@@ -349,20 +428,38 @@ class L10nEsAeatMod303Report(models.Model):
 
     @api.multi
     @api.depends(
-        'resultado_liquidacion',
-        'period_type',
-        'devolucion_mensual',
+        "resultado_liquidacion",
+        "period_type",
+        "devolucion_mensual",
+        "marca_sepa",
+        "use_aeat_account",
+        "return_last_period",
     )
     def _compute_result_type(self):
         for report in self:
-            if report.resultado_liquidacion == 0:
-                report.result_type = 'N'
-            elif report.resultado_liquidacion > 0:
-                report.result_type = 'I'
+            result = float_compare(
+                report.resultado_liquidacion,
+                0,
+                precision_digits=report.currency_id.decimal_places,
+            )
+            if result == 0:
+                report.result_type = "N"
+            elif result == 1:
+                if report.use_aeat_account:
+                    report.result_type = "G"
+                elif report.marca_sepa in {"1", "2"}:
+                    # Domiciliar ingreso porque se indicó un banco SEPA
+                    report.result_type = "U"
+                else:
+                    report.result_type = "I"
             else:
-                if (report.devolucion_mensual or
-                        report.period_type in ('4T', '12')):
-                    report.result_type = 'D'
+                if report.devolucion_mensual or report.period_type in ("4T", "12"):
+                    if report.use_aeat_account:
+                        report.result_type = "V"
+                    elif report.return_last_period or report.devolucion_mensual:
+                        report.result_type = "D" if report.marca_sepa == "1" else "X"
+                    else:
+                        report.result_type = "C"
                 else:
                     report.result_type = 'C'
 
@@ -381,29 +478,48 @@ class L10nEsAeatMod303Report(models.Model):
     @api.multi
     def calculate(self):
         res = super(L10nEsAeatMod303Report, self).calculate()
+        self.write({"cuota_compensar": 0})
         for mod303 in self:
-            vals = {
-                "counterpart_account_id": self.env['account.account'].search([
-                    ('code', '=like', '%s%%' % _ACCOUNT_PATTERN_MAP.get(
-                        mod303.result_type, '4750')),
-                    ('company_id', '=', mod303.company_id.id),
-                ], limit=1).id,
-            }
-            prev_reports = mod303._get_previous_fiscalyear_reports(
-                mod303.date_start
-            ).filtered(lambda x: x.state not in ['draft', 'cancelled'])
-            if not prev_reports:
-                continue
-            prev_report = min(
-                prev_reports, key=lambda x: abs(
-                    fields.Date.from_string(x.date_end) -
-                    fields.Date.from_string(mod303.date_start)
-                ),
-            )
-            if prev_report.result_type == 'C':
-                vals["cuota_compensar"] = abs(prev_report.resultado_liquidacion)
-                vals["potential_cuota_compensar"] = vals["cuota_compensar"]
-            mod303.write(vals)
+            prev_reports = self.search(
+                [("date_start", "<", mod303.date_start)]
+            ).filtered(lambda m: m.state not in ["draft", "cancelled"])
+            if prev_reports:
+                prev_report = min(
+                    prev_reports,
+                    key=lambda x: abs(
+                        fields.Date.from_string(x.date_end)
+                        - fields.Date.from_string(mod303.date_start)
+                    ),
+                )
+                if prev_report and (
+                    prev_report.remaining_cuota_compensar > 0
+                    or prev_report.result_type == "C"
+                ):
+                    mod303.write(
+                        {
+                            "potential_cuota_compensar": (
+                                prev_report.remaining_cuota_compensar
+                                - prev_report.resultado_liquidacion
+                            ),
+                        }
+                    )
+            if mod303.return_last_period:
+                cuota_compensar = mod303.potential_cuota_compensar
+            elif (
+                float_compare(
+                    mod303.resultado_liquidacion,
+                    0,
+                    precision_digits=mod303.currency_id.decimal_places,
+                )
+                != -1
+            ):
+                cuota_compensar = min(
+                    mod303.potential_cuota_compensar, mod303.resultado_liquidacion
+                )
+            else:
+                cuota_compensar = 0
+            mod303.cuota_compensar = cuota_compensar
+
         return res
 
     @api.multi
