@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+"access_l10n_es_aeat_mod592_report_user","AEAT 592 Model: Report - Account User","model_l10n_es_aeat_mod592_report","account.group_account_user",1,0,0,0
+"access_l10n_es_aeat_mod592_report_manager","AEAT 592 Model: Report - Account Manager","model_l10n_es_aeat_mod592_report","account.group_account_manager",1,1,1,1
+"access_l10n_es_aeat_mod592_partner_record_manufacturer","AEAT 592 Manufacturer","model_l10n_es_aeat_mod592_report_line_manufacturer","account.group_account_manager",1,1,1,1
+"access_l10n_es_aeat_mod592_partner_record_acquirer","AEAT 592 Acquirer","model_l10n_es_aeat_mod592_report_line_acquirer","account.group_account_manager",1,1,1,1

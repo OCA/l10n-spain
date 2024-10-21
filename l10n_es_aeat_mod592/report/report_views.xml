@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="act_report_aeat_mod592_pdf" model="ir.actions.report">
+        <field name="name">AEAT 592 Model PDF</field>
+        <field name="model">l10n.es.aeat.mod592.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_es_aeat_mod592.report_l10n_es_mod592_pdf</field>
+        <field name="report_file">l10n_es_aeat_mod592.report_l10n_es_mod592</field>
+        <field
+            name="binding_model_id"
+            ref="l10n_es_aeat_mod592.model_l10n_es_aeat_mod592_report"
+        />
+        <field name="binding_type">report</field>
+    </record>
+    <record id="l10n_es_aeat_mod592_xlsx_acquirer" model="ir.actions.report">
+        <field name="name">AEAT 592 Model XLSX Acquirer report</field>
+        <field name="model">l10n.es.aeat.mod592.report</field>
+        <field name="report_type">xlsx</field>
+        <field
+            name="report_name"
+        >l10n_es_aeat_mod592.l10n_es_aeat_mod592_xlsx_acquirer</field>
+        <field
+            name="report_file"
+        >l10n_es_aeat_mod592.l10n_es_aeat_mod592_acquirer</field>
+        <field name="print_report_name">object.get_report_file_name()</field>
+        <field name="binding_type">report</field>
+    </record>
+    <record id="l10n_es_aeat_mod592_xlsx_man" model="ir.actions.report">
+        <field name="name">AEAT 592 Model XLSX Manufacturer report</field>
+        <field name="model">l10n.es.aeat.mod592.report</field>
+        <field name="report_type">xlsx</field>
+        <field
+            name="report_name"
+        >l10n_es_aeat_mod592.l10n_es_aeat_mod592_xlsx_man</field>
+        <field name="report_file">l10n_es_aeat_mod592.l10n_es_aeat_mod592_man</field>
+        <field name="print_report_name">object.get_report_file_name()</field>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
