@@ -9,6 +9,7 @@
     "license": "AGPL-3",
     "category": "Accounting & Finance",
     "version": "14.0.1.0.0",
+    "development_status": "Production/Stable",
     "depends": ["l10n_es"],
     "data": [
         "data/account_data.xml",
