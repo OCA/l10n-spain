@@ -268,7 +268,11 @@
         />
     </record>
 
-    <!-- Comerciantes Minoristas -->
+    <!--
+        Comerciantes Minoristas
+        Debemos usar tipo 'division' en los impuestos de compra por la siguiente consulta a la ATC
+        https://www3.gobiernodecanarias.org/tributos/atc/jsf/publico/infoTributaria/doctrina/ver.jsp?identificadorConsulta=49191&jftfdi&jffi=ver.jsp
+    -->
     <record id="account_tax_template_igic_cmino" model="account.tax.template">
         <field name="type_tax_use">sale</field>
         <field name="name">Exento por Comercio minorista</field>
@@ -297,7 +301,7 @@
         <field name="name">Exento por Comercio minorista</field>
         <field name="chart_template_id" ref="account_chart_template_common_canary" />
         <field name="amount" eval="0" />
-        <field name="amount_type">percent</field>
+        <field name="amount_type">division</field>
         <field name="tax_group_id" ref="tax_group_igic_cmino" />
         <field
             name="invoice_repartition_line_ids"
@@ -320,7 +324,7 @@
         <field name="name">IGIC 3% Soportado (Comercio minorista)</field>
         <field name="chart_template_id" ref="account_chart_template_common_canary" />
         <field eval="2.1" name="amount" />
-        <field name="amount_type">percent</field>
+        <field name="amount_type">division</field>
         <field name="price_include" eval="True" />
         <field name="tax_group_id" ref="tax_group_igic_cmino" />
         <field
@@ -349,7 +353,7 @@
         <field name="name">IGIC 5% Soportado (Comercio minorista)</field>
         <field name="chart_template_id" ref="account_chart_template_common_canary" />
         <field eval="3.5" name="amount" />
-        <field name="amount_type">percent</field>
+        <field name="amount_type">division</field>
         <field name="price_include" eval="True" />
         <field name="tax_group_id" ref="tax_group_igic_cmino" />
         <field
@@ -382,7 +386,7 @@
         <field name="name">IGIC 7% Soportado (Comercio minorista)</field>
         <field name="chart_template_id" ref="account_chart_template_common_canary" />
         <field eval="4.9" name="amount" />
-        <field name="amount_type">percent</field>
+        <field name="amount_type">division</field>
         <field name="price_include" eval="True" />
         <field name="tax_group_id" ref="tax_group_igic_cmino" />
         <field
@@ -411,7 +415,7 @@
         <field name="name">IGIC 9,5% Soportado (Comercio minorista)</field>
         <field name="chart_template_id" ref="account_chart_template_common_canary" />
         <field eval="6.65" name="amount" />
-        <field name="amount_type">percent</field>
+        <field name="amount_type">division</field>
         <field name="price_include" eval="True" />
         <field name="tax_group_id" ref="tax_group_igic_cmino" />
         <field
@@ -440,7 +444,7 @@
         <field name="name">IGIC 15% Soportado (Comercio minorista)</field>
         <field name="chart_template_id" ref="account_chart_template_common_canary" />
         <field eval="10.5" name="amount" />
-        <field name="amount_type">percent</field>
+        <field name="amount_type">division</field>
         <field name="price_include" eval="True" />
         <field name="tax_group_id" ref="tax_group_igic_cmino" />
         <field
@@ -469,7 +473,7 @@
         <field name="name">IGIC 20% Soportado (Comercio minorista)</field>
         <field name="chart_template_id" ref="account_chart_template_common_canary" />
         <field eval="14" name="amount" />
-        <field name="amount_type">percent</field>
+        <field name="amount_type">division</field>
         <field name="price_include" eval="True" />
         <field name="tax_group_id" ref="tax_group_igic_cmino" />
         <field
