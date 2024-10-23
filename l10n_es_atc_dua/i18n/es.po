@@ -1,0 +1,58 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_atc_dua
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-13 07:18+0000\n"
+"PO-Revision-Date: 2024-07-13 08:29+0100\n"
+"Last-Translator: Julian Ramos Marrero <julian@infinityloop.es>\n"
+"Language-Team: \n"
+"Language: dua\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.1\n"
+
+#. module: l10n_es_atc_dua
+#: model:product.template,name:l10n_es_atc_dua.producto_atc_dua_compensacion_product_template
+msgid "DUA ATC Compensación"
+msgstr "DUA ATC Compensación"
+
+#. module: l10n_es_atc_dua
+#: model:account.tax.group,name:l10n_es_atc_dua.tax_group_atc_dua_exento
+msgid "DUA ATC exento"
+msgstr "DUA ATC exento"
+
+#. module: l10n_es_atc_dua
+#: model:product.template,name:l10n_es_atc_dua.producto_atc_dua_valoracion_0_product_template
+msgid "DUA Valoración IGIC 0%"
+msgstr "DUA Valoración IGIC 0%"
+
+#. module: l10n_es_atc_dua
+#: model:product.template,name:l10n_es_atc_dua.producto_atc_dua_valoracion_15_product_template
+msgid "DUA Valoración IGIC 15%"
+msgstr "DUA Valoración IGIC 15%"
+
+#. module: l10n_es_atc_dua
+#: model:product.template,name:l10n_es_atc_dua.producto_atc_dua_valoracion_20_product_template
+msgid "DUA Valoración IGIC 20%"
+msgstr "DUA Valoración IGIC 20%"
+
+#. module: l10n_es_atc_dua
+#: model:product.template,name:l10n_es_atc_dua.producto_atc_dua_valoracion_03_product_template
+msgid "DUA Valoración IGIC 3%"
+msgstr "DUA Valoración IGIC 3%"
+
+#. module: l10n_es_atc_dua
+#: model:product.template,name:l10n_es_atc_dua.producto_atc_dua_valoracion_95_product_template
+msgid "DUA Valoración IGIC 9.5%"
+msgstr "DUA Valoración IGIC 9.5%"
+
+#. module: l10n_es_atc_dua
+#: model:product.template,name:l10n_es_atc_dua.producto_atc_dua_valoracion_07_product_template
+msgid "DUA Valoración IGIC 7%"
+msgstr "DUA Valoración IGIC 7%"
