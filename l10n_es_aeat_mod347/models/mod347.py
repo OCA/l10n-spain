@@ -7,6 +7,7 @@
 # Copyright 2018 PESOL - Angel Moya <info@pesol.es>
 # Copyright 2019 Tecnativa - Carlos Dauden
 # Copyright 2014-2022 Tecnativa - Pedro M. Baeza
+# Copyright 2023 FactorLibre - Alejandro Ji Cheung
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import datetime
@@ -175,7 +176,7 @@ class L10nEsAeatMod347Report(models.Model):
 
     def button_send_mails(self):
         self.partner_record_ids.filtered(
-            lambda x: x.state == "pending"
+            lambda x: x.state == "pending" and x.partner_id.email
         ).send_email_direct()
 
     def btn_list_records(self):
@@ -589,7 +590,6 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         self.write({"state": "confirmed"})
 
     def action_send(self):
-        self.write({"state": "sent"})
         self.ensure_one()
         template = self._get_partner_report_email_template()
         compose_form = self.env.ref("mail.email_compose_message_wizard_form")
@@ -629,9 +629,13 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
 
     def send_email_direct(self):
         template = self._get_partner_report_email_template()
+        sent_records = self.env["l10n.es.aeat.mod347.partner_record"]
         for record in self:
-            template.send_mail(record.id)
-        self.write({"state": "sent"})
+            mail_id = template.send_mail(record.id)
+            if mail_id:
+                sent_records |= record
+        if sent_records:
+            sent_records.write({"state": "sent"})
 
     def action_pending(self):
         self.write({"state": "pending"})
