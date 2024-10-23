@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Inherit the standard external layout -->
+    <template
+        id="external_layout_standard_ecoembes"
+        inherit_id="web.external_layout_standard"
+    >
+        <xpath expr="//li[@t-if='forced_vat']" position="before">
+            <t t-if="company.ecoembes_inscription">
+                <strong>Ecoembes Inscription:</strong>
+                <span t-field="company.ecoembes_inscription" />
+                <br />
+            </t>
+            <t t-if="company.ecoembes_partner_member">
+                <strong>Ecoembes Partner Member:</strong>
+                <span t-field="company.ecoembes_partner_member" />
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Inherit the boxed external layout -->
+    <template
+        id="external_layout_boxed_ecoembes"
+        inherit_id="web.external_layout_boxed"
+    >
+        <xpath expr="//li[@t-if='forced_vat']" position="before">
+            <t t-if="company.ecoembes_inscription">
+                <strong>Ecoembes Inscription:</strong>
+                <span t-field="company.ecoembes_inscription" />
+                <br />
+            </t>
+            <t t-if="company.ecoembes_partner_member">
+                <strong>Ecoembes Partner Member:</strong>
+                <span t-field="company.ecoembes_partner_member" />
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Inherit the bold external layout -->
+    <template id="external_layout_bold_ecoembes" inherit_id="web.external_layout_bold">
+        <xpath expr="//li[@t-if='forced_vat']" position="before">
+            <t t-if="company.ecoembes_inscription">
+                <strong>Ecoembes Inscription:</strong>
+                <span t-field="company.ecoembes_inscription" />
+                <br />
+            </t>
+            <t t-if="company.ecoembes_partner_member">
+                <strong>Ecoembes Partner Member:</strong>
+                <span t-field="company.ecoembes_partner_member" />
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Inherit the striped external layout -->
+    <template
+        id="external_layout_striped_ecoembes"
+        inherit_id="web.external_layout_striped"
+    >
+        <xpath expr="//li[@t-if='forced_vat']" position="before">
+            <t t-if="company.ecoembes_inscription">
+                <strong>Ecoembes Inscription:</strong>
+                <span t-field="company.ecoembes_inscription" />
+                <br />
+            </t>
+            <t t-if="company.ecoembes_partner_member">
+                <strong>Ecoembes Partner Member:</strong>
+                <span t-field="company.ecoembes_partner_member" />
+            </t>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Tecnativa - Víctor Martínez
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <menuitem
+        name="Ecoembes"
+        id="menu_ecoembes_main"
+        parent="base.menu_custom"
+        sequence="90"
+    />
+    <menuitem
+        id="menu_ecoembes_market_type"
+        name="Market Types"
+        parent="menu_ecoembes_main"
+        sequence="0"
+        action="action_ecoembes_market_type"
+    />
+    <menuitem
+        id="menu_ecoembes_material"
+        name="Materials"
+        parent="menu_ecoembes_main"
+        sequence="1"
+        action="action_ecoembes_material"
+    />
+    <menuitem
+        id="menu_ecoembes_packaging"
+        name="Packagings"
+        parent="menu_ecoembes_main"
+        sequence="2"
+        action="action_ecoembes_packaging"
+    />
+    <menuitem
+        id="menu_ecoembes_sector"
+        name="Sectors"
+        parent="menu_ecoembes_main"
+        sequence="3"
+        action="action_ecoembes_sector"
+    />
+    <menuitem
+        id="menu_ecoembes_submaterial"
+        name="Submaterials"
+        parent="menu_ecoembes_main"
+        sequence="4"
+        action="action_ecoembes_submaterial"
+    />
+    <menuitem
+        id="menu_ecoembes_product_composition"
+        name="Product Compositions"
+        parent="menu_ecoembes_main"
+        sequence="5"
+        action="action_product_composition"
+    />
+</odoo>
