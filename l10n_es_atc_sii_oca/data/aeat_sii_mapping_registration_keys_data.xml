@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+        <!-- CAMBIOS DE DESCRIPCION -->
+        <record
+        id="l10n_es_aeat_sii_oca.aeat_sii_mapping_registration_keys_06"
+        model="aeat.sii.mapping.registration.keys"
+    >
+            <field
+            name="name"
+        >Régimen especial grupo de entidades en IVA-IGIC (Nivel Avanzado)</field>
+        </record>
+        <record
+        id="l10n_es_aeat_sii_oca.aeat_sii_mapping_registration_keys_21"
+        model="aeat.sii.mapping.registration.keys"
+    >
+            <field
+            name="name"
+        >Régimen especial grupo de entidades en IVA-IGIC (Nivel Avanzado)</field>
+        </record>
+        <record
+        id="l10n_es_aeat_sii_oca.aeat_sii_mapping_registration_keys_08"
+        model="aeat.sii.mapping.registration.keys"
+    >
+            <field name="name">Operaciones sujetas al IPSI  / IGIC-IVA</field>
+        </record>
+        <record
+        id="l10n_es_aeat_sii_oca.aeat_sii_mapping_registration_keys_23"
+        model="aeat.sii.mapping.registration.keys"
+    >
+            <field name="name">Operaciones sujetas al IPSI  / IGIC-IVA</field>
+        </record>
+        <record
+        id="l10n_es_aeat_sii_oca.aeat_sii_mapping_registration_keys_14"
+        model="aeat.sii.mapping.registration.keys"
+    >
+            <field
+            name="name"
+        >Factura con IVA-IGIC pendiente de devengo (certificaciones de obra cuyo destinatario sea una Administración Pública)</field>
+        </record>
+        <record
+        id="l10n_es_aeat_sii_oca.aeat_sii_mapping_registration_keys_15"
+        model="aeat.sii.mapping.registration.keys"
+    >
+            <field
+            name="name"
+        >Factura con IVA-IGIC pendiente de devengo - operaciones de tracto sucesivo</field>
+        </record>
+        <record
+        id="l10n_es_aeat_sii_oca.aeat_sii_mapping_registration_keys_29"
+        model="aeat.sii.mapping.registration.keys"
+    >
+            <field name="name">Facturas anteriores a la inclusión en el SII</field>
+        </record>
+        <record
+        id="l10n_es_aeat_sii_oca.aeat_sii_mapping_registration_keys_30"
+        model="aeat.sii.mapping.registration.keys"
+    >
+            <field name="name">Facturas anteriores a la inclusión en el SII</field>
+        </record>
+        <!-- NUEVAS CLAVES -->
+        <record
+        id="aeat_sii_mapping_registration_keys_s_17"
+        model="aeat.sii.mapping.registration.keys"
+    >
+            <field name="code">17</field>
+            <field name="name">Régimen especial de comerciante minorista</field>
+            <field name="type">sale</field>
+        </record>
+        <record
+        id="aeat_sii_mapping_registration_keys_s_18"
+        model="aeat.sii.mapping.registration.keys"
+    >
+            <field name="code">18</field>
+            <field
+            name="name"
+        >Régimen especial del pequeño empresario o profesional</field>
+            <field name="type">sale</field>
+        </record>
+        <record
+        id="aeat_sii_mapping_registration_keys_s_19"
+        model="aeat.sii.mapping.registration.keys"
+    >
+            <field name="code">19</field>
+            <field
+            name="name"
+        >Operaciones interiores exentas por aplicación artículo 25 Ley 19/1994</field>
+            <field name="type">sale</field>
+        </record>
+        <record
+        id="aeat_sii_mapping_registration_keys_p_15"
+        model="aeat.sii.mapping.registration.keys"
+    >
+            <field name="code">15</field>
+            <field name="name">Régimen especial de comerciante minorista</field>
+            <field name="type">purchase</field>
+        </record>
+        <record
+        id="aeat_sii_mapping_registration_keys_p_16"
+        model="aeat.sii.mapping.registration.keys"
+    >
+            <field name="code">16</field>
+            <field
+            name="name"
+        >Régimen especial del pequeño empresario o profesional</field>
+            <field name="type">purchase</field>
+        </record>
+        <record
+        id="aeat_sii_mapping_registration_keys_p_17"
+        model="aeat.sii.mapping.registration.keys"
+    >
+            <field name="code">17</field>
+            <field
+            name="name"
+        >Operaciones interiores exentas por aplicación artículo 25 Ley 19/1994</field>
+            <field name="type">purchase</field>
+        </record>
+</odoo>

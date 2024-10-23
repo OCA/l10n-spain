@@ -192,6 +192,8 @@ class SiiMixin(models.AbstractModel):
                 "|",
                 ("date_to", ">=", date),
                 ("date_to", "=", False),
+                "&",
+                ("tax_agency_id", "=", self.company_id.tax_agency_id.id or False),
             ],
             limit=1,
         )

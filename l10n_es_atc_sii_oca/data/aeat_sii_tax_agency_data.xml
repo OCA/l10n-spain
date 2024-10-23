@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="l10n_es_aeat.aeat_tax_agency_canarias" model="aeat.tax.agency">
+        <field name="sii_wsdl_out">
+            https://www.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/wsdl/SuministroFactEmitidas.wsdl</field>
+        <field name="sii_wsdl_in">
+            https://www.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/wsdl/SuministroFactRecibidas.wsdl</field>
+        <field name="sii_wsdl_pi">
+            https://www.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/wsdl/SuministroBienesInversion.wsdl</field>
+        <field name="sii_wsdl_ic">
+            https://www.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/wsdl/SuministroInmueblesAdicionales.wsdl</field>
+        <field name="sii_wsdl_pr">
+            https://www.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/wsdl/SuministroCobrosEmitidas.wsdl</field>
+        <field name="sii_wsdl_ott">
+            https://www.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/wsdl/SuministroOpTrascendTribu.wsdl</field>
+        <field name="sii_wsdl_ps">
+            https://www.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/wsdl/SuministroPagosRecibidas.wsdl</field>
+    </record>
+</odoo>
