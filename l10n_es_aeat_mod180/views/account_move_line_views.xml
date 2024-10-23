@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="account_move_line_mod180_view_tree" model="ir.ui.view">
+        <field name="name">account.move.line.mod180.view.tree</field>
+        <field name="model">account.move.line</field>
+        <field name="priority">500</field>
+        <field name="arch" type="xml">
+            <tree create="false" delete="false">
+                <field name="date" string="Fecha" />
+                <field
+                    name="move_id"
+                    required="0"
+                    groups="account.group_account_user"
+                    string="Asiento contable"
+                />
+                <field
+                    name="journal_id"
+                    options="{&quot;no_open&quot;:True}"
+                    string="Diario"
+                />
+                <field name="name" string="Etiqueta" />
+                <field name="ref" string="Referencia" />
+                <field name="statement_id" invisible="1" />
+                <field name="partner_id" string="Empresa" />
+                <field name="l10n_es_aeat_real_estate_id" />
+                <field
+                    name="account_id"
+                    options="{&quot;no_open&quot;:True}"
+                    domain="[('company_id', '=', company_id)]"
+                    groups="account.group_account_user"
+                    string="Cuenta"
+                />
+                <field name="reconciled" invisible="1" />
+                <field name="full_reconcile_id" string="Asiento de conciliación" />
+                <field name="debit" sum="Total Debit" string="Debe" />
+                <field name="credit" sum="Total Credit" string="Haber" />
+                <field
+                    name="tax_ids"
+                    sum="Total taxes (Taxable base)"
+                    string="Impuestos (Base imponible)"
+                />
+                <field
+                    name="tax_line_id"
+                    sum="Total taxes (fee)"
+                    string="Impuestos (Cuota)"
+                />
+                <field
+                    name="amount_currency"
+                    readonly="True"
+                    groups="base.group_multi_currency"
+                    invisible="1"
+                />
+                <field name="currency_id" readonly="True" invisible="1" />
+                <field name="date_maturity" string="Fecha de vencimiento" />
+                <field name="company_currency_id" invisible="1" />
+                <field name="company_id" invisible="1" />
+            </tree>
+        </field>
+    </record>
+
+</odoo>

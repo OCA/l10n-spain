@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_partner_form_l10n_es_180_real_estate" model="ir.ui.view">
+        <field name="name">res.partner.form.l10n.es.180.real.estate</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <page name="accounting" position="after">
+                <page name="real_estate" string="Información catastral">
+                    <field name="real_estate_ids" />
+                </page>
+            </page>
+        </field>
+    </record>
+
+</odoo>
