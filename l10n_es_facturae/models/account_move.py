@@ -1,4 +1,5 @@
 # Copyright 2017 Creu Blanca
+# Copyright 2024 Tecnativa - Carolina Fernandez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import base64
@@ -213,6 +214,12 @@ class AccountMove(models.Model):
             or self.company_id.facturae_version
             or "3_2"
         )
+
+    def _get_facturae_headers(self):
+        return 'xmlns:ds="http://www.w3.org/2000/09/xmldsig#"'
+
+    def _facturae_has_extensions(self):
+        return False
 
     def _get_facturae_tax_info(self):
         self.ensure_one()

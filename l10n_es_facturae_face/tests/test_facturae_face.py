@@ -238,6 +238,39 @@ class EDIBackendTestCase(
         exchange_record.backend_id.exchange_send(exchange_record)
         self.assertEqual(exchange_record.edi_exchange_state, "output_error_on_send")
 
+    def test_create_facturae_file_without_organo_gestor(self):
+        self._activate_certificate(self.certificate_password)
+        self.move.action_post()
+        self.move.name = "2999/99999"
+        wizard = (
+            self.env["create.facturae"]
+            .with_context(active_ids=self.move.ids, active_model="account.move")
+            .create({})
+        )
+        self.partner.organo_gestor = False
+        with self.assertRaises(exceptions.ValidationError):
+            wizard.create_facturae_file()
+
+    def test_create_facturae_file_without_unidad_tramitadora(self):
+        wizard = (
+            self.env["create.facturae"]
+            .with_context(active_ids=self.move.ids, active_model="account.move")
+            .create({})
+        )
+        self.partner.unidad_tramitadora = False
+        with self.assertRaises(exceptions.ValidationError):
+            wizard.create_facturae_file()
+
+    def test_create_facturae_file_without_oficina_contable(self):
+        wizard = (
+            self.env["create.facturae"]
+            .with_context(active_ids=self.move.ids, active_model="account.move")
+            .create({})
+        )
+        self.partner.oficina_contable = False
+        with self.assertRaises(exceptions.ValidationError):
+            wizard.create_facturae_file()
+
     def test_facturae_face_0(self):
         class DemoService(object):
             def __init__(self, value):

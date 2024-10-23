@@ -26,7 +26,10 @@
                 </group>
             </xpath>
             <group name='accounting_entries' position="inside">
-                <field name="facturae" />
+                <field
+                    name="facturae"
+                    attrs="{'invisible': [('parent_id', '!=', False)]}"
+                />
             </group>
             <group name="accounting_entries" position="after">
                 <group
@@ -35,18 +38,9 @@
                     attrs="{'invisible': [('facturae', '=', False)]}"
                 >
                     <field name="facturae_version" />
-                    <field
-                        name="organo_gestor"
-                        attrs="{'required': [('facturae', '=', True)]}"
-                    />
-                    <field
-                        name="unidad_tramitadora"
-                        attrs="{'required': [('facturae', '=', True)]}"
-                    />
-                    <field
-                        name="oficina_contable"
-                        attrs="{'required': [('facturae', '=', True)]}"
-                    />
+                    <field name="organo_gestor" />
+                    <field name="unidad_tramitadora" />
+                    <field name="oficina_contable" />
                     <field name="organo_proponente" />
                     <field name="attach_invoice_as_annex" />
                     <field name="facturae_hide_discount" />

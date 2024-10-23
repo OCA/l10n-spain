@@ -232,6 +232,18 @@ msgid "OK"
 msgstr "Aceptar"
 
 #. module: l10n_es_facturae_face
+#: code:addons/l10n_es_facturae_face/models/account_move.py:0
+#, python-format
+msgid "Oficina Contable not provided"
+msgstr "La Oficina Contable es obligatoria"
+
+#. module: l10n_es_facturae_face
+#: code:addons/l10n_es_facturae_face/models/account_move.py:0
+#, python-format
+msgid "Organo Gestor not provided"
+msgstr "El Organo Gestor es obligatorio"
+
+#. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__account_move__l10n_es_facturae_status__face-2500
 msgid "Paid"
 msgstr "Pagado"
@@ -264,6 +276,12 @@ msgid "State must be defined in Spain in order to send to FACe"
 msgstr ""
 "La provincia debe estar definido si el país es España para poder enviar por "
 "FACe"
+
+#. module: l10n_es_facturae_face
+#: code:addons/l10n_es_facturae_face/models/account_move.py:0
+#, python-format
+msgid "Unidad Tramitadora not provided"
+msgstr "La Unidad Tramitadora es obligatoria"
 
 #. module: l10n_es_facturae_face
 #: code:addons/l10n_es_facturae_face/models/res_partner.py:0
