@@ -78,6 +78,31 @@ class AccountInvoice(models.Model):
         comodel_name='tbai.invoice.refund.origin',
         inverse_name='account_refund_invoice_id',
         string='TicketBAI Refund Origin References')
+    tbai_invoice_issuer = fields.Selection(
+        selection=[
+            ("N", "Invoice issued by the issuer itself"),
+            # Factura emitida por el propio emisor
+            ("T", "Invoice issued by a third party"),
+            # Factura emitida por tercero
+            ("D", "Invoice issued by recipient"),
+            # Factura emitida por destinatario
+        ],
+        string="TicketBai: Invoice issuer",
+        # TicketBai: Emisor de la factura
+        copy=False,
+        compute="_compute_tbai_invoice_issuer",
+        store=True,
+        readonly=False,
+    )
+
+    @api.multi
+    @api.depends("journal_id", "journal_id.tbai_invoice_issuer")
+    def _compute_tbai_invoice_issuer(self):
+        for invoice in self:
+            if invoice.journal_id and invoice.journal_id.tbai_invoice_issuer:
+                invoice.tbai_invoice_issuer = invoice.journal_id.tbai_invoice_issuer
+            else:
+                invoice.tbai_invoice_issuer = "N"
 
     @api.multi
     @api.constrains('state')
@@ -236,7 +261,8 @@ class AccountInvoice(models.Model):
             'amount_total': "%.2f" % self.amount_total_company_signed,
             'vat_regime_key': self.tbai_vat_regime_key.code,
             'vat_regime_key2': self.tbai_vat_regime_key2.code,
-            'vat_regime_key3': self.tbai_vat_regime_key3.code
+            'vat_regime_key3': self.tbai_vat_regime_key3.code,
+            "tbai_invoice_issuer": self.tbai_invoice_issuer
         }
         if partner and not partner.aeat_anonymous_cash_customer:
             vals['tbai_customer_ids'] = [(0, 0, {

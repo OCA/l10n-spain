@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-10 10:10+0000\n"
+"PO-Revision-Date: 2024-01-10 10:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -76,6 +78,7 @@ msgstr ""
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_invoice.py:326
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:352
 #, python-format
 msgid "Cancellation"
 msgstr ""
@@ -178,6 +181,12 @@ msgid "Display Name"
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#: sql_constraint:account.fp.tbai.tax:0
+#: sql_constraint:account.fp.tbai.tax_template:0
+msgid "El impuesto debe ser único por posición fiscal!"
+msgstr ""
+
+#. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_import_journal_creation__tbai_enabled
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_invoice__tbai_enabled
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_journal__tbai_enabled
@@ -277,6 +286,24 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_invoice_tax
 msgid "Invoice Tax"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: selection:account.invoice,tbai_invoice_issuer:0
+#: selection:account.journal,tbai_invoice_issuer:0
+msgid "Invoice issued by a third party"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: selection:account.invoice,tbai_invoice_issuer:0
+#: selection:account.journal,tbai_invoice_issuer:0
+msgid "Invoice issued by recipient"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: selection:account.invoice,tbai_invoice_issuer:0
+#: selection:account.journal,tbai_invoice_issuer:0
+msgid "Invoice issued by the issuer itself"
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -395,6 +422,7 @@ msgstr ""
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_invoice.py:371
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:397
 #, python-format
 msgid "Please, specify data for the original invoices that are going to be refunded"
 msgstr ""
@@ -416,6 +444,7 @@ msgstr ""
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_invoice.py:349
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:375
 #, python-format
 msgid "Refund invoices must be cancelled in order to cancel the original invoice."
 msgstr ""
@@ -473,12 +502,14 @@ msgstr ""
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_invoice.py:385
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:411
 #, python-format
 msgid "Some of the original invoices have related tbai cancelled invoices"
 msgstr ""
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_invoice.py:380
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:406
 #, python-format
 msgid "Some of the original invoices have related tbai invoices in inconsistent state please fix them beforehand."
 msgstr ""
@@ -507,8 +538,6 @@ msgid "Tax"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: sql_constraint:account.fp.tbai.tax:0
-#: sql_constraint:account.fp.tbai.tax_template:0
 #: code:addons/l10n_es_ticketbai/models/account_fiscal_position.py:35
 #: code:addons/l10n_es_ticketbai/models/chart_template.py:37
 #, python-format
@@ -742,6 +771,13 @@ msgid "TicketBAI: You cannot cancel and recreate an Invoice with a state differe
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_import_journal_creation__tbai_invoice_issuer
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_invoice__tbai_invoice_issuer
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_journal__tbai_invoice_issuer
+msgid "TicketBai: Invoice issuer"
+msgstr ""
+
+#. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax__tbai_vat_exemption_key
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax_template__tbai_vat_exemption_key
 msgid "VAT Exemption Key"
@@ -789,12 +825,14 @@ msgstr ""
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_invoice.py:89
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:114
 #, python-format
 msgid "You cannot change to draft a TicketBAI invoice!"
 msgstr ""
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_journal.py:39
+#: code:addons/l10n_es_ticketbai/models/account_journal.py:54
 #, python-format
 msgid "You cannot stop sending invoices from this journal, an invoice has already been sent."
 msgstr ""
