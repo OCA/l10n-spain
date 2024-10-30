@@ -210,6 +210,16 @@ class SiiMixin(models.AbstractModel):
             taxes |= self.env["account.tax"].browse(tax_id)
         return taxes
 
+    def _get_dua_sii_exempt_taxes(self):
+        self.ensure_one()
+        taxes = []
+        dua_exempt_tax = self.company_id._get_tax_id_from_xmlid(
+            "account_tax_template_p_dua_exempt"
+        )
+        if dua_exempt_tax:
+            taxes.append(dua_exempt_tax)
+        return taxes
+
     def _get_aeat_header(self, tipo_comunicacion=False, cancellation=False):
         """Builds SII send header
 

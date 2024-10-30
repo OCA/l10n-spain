@@ -243,22 +243,24 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
 
     def test_get_invoice_data(self):
         mapping = [
-            ("out_invoice", [(100, ["s_iva10b"]), (200, ["s_iva21s"])], {}),
-            ("out_invoice", [(100, ["s_iva10b"]), (200, ["s_iva0_ns"])], {}),
+            ("out_invoice", [(100, ["s_iva10b"]), (200, ["s_iva21s"])], {}, False),
+            ("out_invoice", [(100, ["s_iva10b"]), (200, ["s_iva0_ns"])], {}, False),
             (
                 "out_invoice",
                 [(100, ["s_iva10b", "s_req014"]), (200, ["s_iva21s", "s_req52"])],
                 {},
+                False,
             ),
             (
                 "out_refund",
                 [(100, ["s_iva10b"]), (100, ["s_iva10b"]), (200, ["s_iva21s"])],
                 {},
+                False,
             ),
-            ("out_invoice", [(100, ["s_iva0_sp_i"]), (200, ["s_iva0_ic"])], {}),
-            ("out_refund", [(100, ["s_iva0_sp_i"]), (200, ["s_iva0_ic"])], {}),
-            ("out_invoice", [(100, ["s_iva_e"]), (200, ["s_iva0_e"])], {}),
-            ("out_refund", [(100, ["s_iva_e"]), (200, ["s_iva0_e"])], {}),
+            ("out_invoice", [(100, ["s_iva0_sp_i"]), (200, ["s_iva0_ic"])], {}, False),
+            ("out_refund", [(100, ["s_iva0_sp_i"]), (200, ["s_iva0_ic"])], {}, False),
+            ("out_invoice", [(100, ["s_iva_e"]), (200, ["s_iva0_e"])], {}, False),
+            ("out_refund", [(100, ["s_iva_e"]), (200, ["s_iva0_e"])], {}, False),
             (
                 "in_invoice",
                 [(100, ["p_iva10_bc", "p_irpf19"]), (200, ["p_iva21_sc", "p_irpf19"])],
@@ -267,34 +269,40 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
                     "date": "2020-02-01",
                     "sii_account_registration_date": "2020-10-01",
                 },
+                False,
             ),
             (
                 "in_refund",
                 [(100, ["p_iva10_bc"])],
                 {"ref": "sup0002", "sii_account_registration_date": "2020-10-01"},
+                False,
             ),
             (
                 "in_invoice",
                 [(100, ["p_iva10_bc", "p_req014"]), (200, ["p_iva21_sc", "p_req52"])],
                 {"ref": "sup0003", "sii_account_registration_date": "2020-10-01"},
+                False,
             ),
             (
                 "in_invoice",
                 [(100, ["p_iva21_sp_ex"])],
                 {"ref": "sup0004", "sii_account_registration_date": "2020-10-01"},
+                False,
             ),
             (
                 "in_invoice",
                 [(100, ["p_iva0_ns"]), (200, ["p_iva10_bc"])],
                 {"ref": "sup0005", "sii_account_registration_date": "2020-10-01"},
+                False,
             ),
             # Out invoice with currency
-            ("out_invoice", [(100, ["s_iva10b"])], {"currency_id": self.usd.id}),
+            ("out_invoice", [(100, ["s_iva10b"])], {"currency_id": self.usd.id}, False),
             # Out invoice with currency and with not included in total amount
             (
                 "out_invoice",
                 [(100, ["s_iva10b", "s_irpf1"])],
                 {"currency_id": self.usd.id},
+                False,
             ),
             # In invoice with currency
             (
@@ -305,6 +313,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
                     "sii_account_registration_date": "2020-10-01",
                     "currency_id": self.usd.id,
                 },
+                False,
             ),
             # In invoice with currency and with not included in total amount
             (
@@ -315,16 +324,34 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
                     "sii_account_registration_date": "2020-10-01",
                     "currency_id": self.usd.id,
                 },
+                False,
             ),
             # Intra-community supplier refund with ImporteTotal with "one side"
             (
                 "in_refund",
                 [(100, ["p_iva21_sp_in"])],
                 {"ref": "sup0008", "sii_account_registration_date": "2020-10-01"},
+                False,
+            ),
+            (
+                "in_invoice",
+                [(100, ["p_iva21_ibc_group"])],
+                {
+                    "ref": "sup0001",
+                    "sii_account_registration_date": "2020-10-01",
+                    "currency_id": self.usd.id,
+                },
+                True,
             ),
         ]
-        for inv_type, lines, extra_vals in mapping:
-            self._create_and_test_invoice_sii_dict(inv_type, lines, extra_vals)
+        for inv_type, lines, extra_vals, is_dua in mapping:
+            invoice = self._create_and_test_invoice_sii_dict(
+                inv_type, lines, extra_vals
+            )
+            if is_dua:
+                self.assertTrue(invoice.sii_dua_invoice)
+            else:
+                self.assertFalse(invoice.sii_dua_invoice)
         return
 
     def test_sii_description(self):
@@ -502,3 +529,26 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self.assertEqual(reversal.sii_refund_type, "I")
         self.assertTrue(reversal.sii_refund_type_required)
         self.assertFalse(reversal.supplier_invoice_number_refund_required)
+
+    def test_dua_exempt_invoice(self):
+        self.partner.write({"country_id": self.env.ref("base.us").id})
+        invoice = self.env["account.move"].create(
+            {
+                "partner_id": self.partner.id,
+                "invoice_date": "2018-02-01",
+                "move_type": "in_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "name": "Test line",
+                            "quantity": 1.0,
+                            "price_unit": 100.00,
+                        },
+                    )
+                ],
+            }
+        )
+        self.assertFalse(invoice.sii_enabled)
