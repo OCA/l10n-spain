@@ -356,4 +356,25 @@
         <field name="sii_map_id" ref="aeat_sii_map" />
         <field name="name">Bases no incluidas en ImporteTotal</field>
     </record>
+    <record id="aeat_sii_map_line_DUA" model="aeat.sii.map.lines">
+        <field name="code">DUA</field>
+        <field
+            name="tax_xmlid_ids"
+            eval="[(6, 0, [
+        ref('p_iva21_ibc'),
+        ref('p_iva10_ibc'),
+        ref('p_iva7-5_ibc'),
+        ref('p_iva5_ibc'),
+        ref('p_iva4_ibc'),
+        ref('p_iva2_ibc'),
+        ref('p_iva0_ibc'),
+        ref('p_iva21_ibi'),
+        ref('p_iva4_ibi'),
+        ref('p_iva5_ibi'),
+        ref('p_iva10_ibi'),
+      ])]"
+        />
+        <field name="sii_map_id" ref="aeat_sii_map" />
+        <field name="name">DUA</field>
+    </record>
 </odoo>

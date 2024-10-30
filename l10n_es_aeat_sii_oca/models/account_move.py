@@ -105,6 +105,21 @@ class AccountMove(models.Model):
     def _compute_macrodata(self):
         return super()._compute_macrodata()
 
+    @api.depends("company_id", "fiscal_position_id", "invoice_line_ids.tax_ids")
+    def _compute_dua_invoice(self):
+        for invoice in self:
+            taxes = self.env["account.tax"]
+            for template in [
+                "account_tax_template_p_iva4_ibc_group",
+                "account_tax_template_p_iva10_ibc_group",
+                "account_tax_template_p_iva21_ibc_group",
+            ]:
+                tax_id = invoice.company_id._get_tax_id_from_xmlid(template)
+                taxes |= self.env["account.tax"].browse(tax_id)
+            invoice.sii_dua_invoice = invoice.line_ids.filtered(
+                lambda x, taxes=taxes: any([tax in taxes for tax in x.tax_ids])
+            )
+
     def _aeat_get_partner(self):
         return self.commercial_partner_id
 
@@ -509,18 +524,27 @@ class AccountMove(models.Model):
                 {"NombreRazon": partner.name[0:120]}
             )
         else:
-            amount_total = -self.amount_total_signed - not_in_amount_total
+            invoice_type = self._get_sii_invoice_type()
+            company_name = partner.name[0:120]
+            if self.sii_dua_invoice:
+                company_name = self.company_id.name
+                if not self.sii_lc_operation:
+                    invoice_type = "F5"
+
             inv_dict["FacturaRecibida"] = {
                 # TODO: Incluir los 5 tipos de facturas rectificativas
-                "TipoFactura": self._get_sii_invoice_type(),
+                "TipoFactura": invoice_type,
                 "ClaveRegimenEspecialOTrascendencia": self.sii_registration_key.code,
                 "DescripcionOperacion": self.sii_description,
                 "DesgloseFactura": desglose_factura,
-                "Contraparte": {"NombreRazon": partner.name[0:120]},
+                "Contraparte": {"NombreRazon": company_name},
                 "FechaRegContable": reg_date,
-                "ImporteTotal": amount_total,
                 "CuotaDeducible": tax_amount,
             }
+            if not self.sii_dua_invoice:
+                inv_dict["FacturaRecibida"]["ImporteTotal"] = (
+                    -self.amount_total_signed - not_in_amount_total
+                )
             if self.sii_macrodata:
                 inv_dict["FacturaRecibida"].update(Macrodato="S")
             if self.sii_registration_key_additional1:
@@ -552,6 +576,13 @@ class AccountMove(models.Model):
                         ),
                         "CuotaRectificada": refund_tax_amount,
                     }
+
+            if self.sii_dua_invoice:
+                inv_dict["FacturaRecibida"].pop("FechaOperacion", None)
+                nif = self.company_id.partner_id._parse_aeat_vat_info()[2]
+                inv_dict["FacturaRecibida"]["IDEmisorFactura"] = {"NIF": nif}
+                inv_dict["IDFactura"]["IDEmisorFactura"] = {"NIF": nif}
+                inv_dict["FacturaRecibida"]["Contraparte"]["NIF"] = nif
         return inv_dict
 
     def _get_cancel_sii_invoice_dict(self):
@@ -774,6 +805,7 @@ class AccountMove(models.Model):
         "move_type",
         "fiscal_position_id",
         "fiscal_position_id.aeat_active",
+        "invoice_line_ids",
     )
     def _compute_sii_enabled(self):
         """Compute if the invoice is enabled for the SII"""
@@ -785,9 +817,19 @@ class AccountMove(models.Model):
                 and invoice.is_invoice()
             ):
                 invoice.sii_enabled = (
-                    invoice.fiscal_position_id
-                    and invoice.fiscal_position_id.aeat_active
-                ) or not invoice.fiscal_position_id
+                    (
+                        invoice.fiscal_position_id
+                        and invoice.fiscal_position_id.aeat_active
+                    )
+                    or not invoice.fiscal_position_id
+                ) and (
+                    not dua_sii_exempt_taxes
+                    or not invoice.invoice_line_ids.filtered(
+                        lambda x, dua_taxes=dua_sii_exempt_taxes: any(
+                            [tax.id in dua_taxes for tax in x.tax_ids]
+                        )
+                    )
+                )
             else:
                 invoice.sii_enabled = False
 
