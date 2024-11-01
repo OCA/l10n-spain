@@ -48,6 +48,14 @@ class L10nEsAeatMod303Report(models.Model):
         states=NON_EDITABLE_ON_DONE,
         help="Registered in the Register of Monthly Return",
     )
+    return_last_period = fields.Boolean(
+        string="Last Period Return",
+        states=NON_EDITABLE_ON_DONE,
+        help="Check if you are submitting the last period return",
+        compute="_compute_return_last_period",
+        store=True,
+        readonly=False,
+    )
     total_devengado = fields.Float(
         string="[27] VAT payable",
         readonly=True,
@@ -107,7 +115,6 @@ class L10nEsAeatMod303Report(models.Model):
         compute="_compute_regularizacion_anual",
         readonly=False,
         store=True,
-        default=0.0,
         help="In the last auto settlement of the year, shall be recorded "
         "(the fourth period or 12th month), with the appropriate sign, "
         "the result of the annual adjustment as have the laws by the "
@@ -143,6 +150,13 @@ class L10nEsAeatMod303Report(models.Model):
         readonly=True,
         compute="_compute_resultado_liquidacion",
         store=True,
+    )
+    use_aeat_account = fields.Boolean(
+        "Usar cuenta corriente tributaria",
+        help=(
+            "Si está suscrito a la cuenta corriente en materia tributaria, "
+            "active esta opción para usarla en el ingreso o devolución."
+        ),
     )
     result_type = fields.Selection(
         selection=[
@@ -275,10 +289,21 @@ class L10nEsAeatMod303Report(models.Model):
         compute="_compute_marca_sepa",
     )
 
-    @api.depends("partner_bank_id")
+    def _get_export_config(self, date):
+        # Force the configuration of 2024-10 for 2024/09, as it can't be obtained with
+        # the usual dates search
+        if self.period_type == "3T" and self.year == 2024:
+            return self.env.ref(
+                "l10n_es_aeat_mod303.aeat_mod303_2024_10_main_export_config"
+            )
+        return super()._get_export_config(date)
+
+    @api.depends("partner_bank_id", "use_aeat_account")
     def _compute_marca_sepa(self):
         for record in self:
-            if record.partner_bank_id.bank_id.country == self.env.ref("base.es"):
+            if record.use_aeat_account:
+                record.marca_sepa = "0"
+            elif record.partner_bank_id.bank_id.country == self.env.ref("base.es"):
                 record.marca_sepa = "1"
             elif (
                 record.partner_bank_id.bank_id.country
@@ -340,13 +365,17 @@ class L10nEsAeatMod303Report(models.Model):
             if record.period_type not in ("4T", "12"):
                 record.exonerated_390 = "2"
 
+    @api.depends("period_type")
+    def _compute_return_last_period(self):
+        for record in self:
+            if record.period_type not in ("4T", "12"):
+                record.return_last_period = False
+
     @api.depends("tax_line_ids", "tax_line_ids.amount")
     def _compute_total_devengado(self):
-        casillas_devengado = (152, 3, 155, 6, 9, 11, 13, 15, 158, 18, 21, 24, 26)
+        cells = (152, 167, 3, 155, 6, 9, 11, 13, 15, 158, 170, 18, 21, 24, 26)
         for report in self:
-            tax_lines = report.tax_line_ids.filtered(
-                lambda x: x.field_number in casillas_devengado
-            )
+            tax_lines = report.tax_line_ids.filtered(lambda x: x.field_number in cells)
             report.total_devengado = report.currency_id.round(
                 sum(tax_lines.mapped("amount"))
             )
@@ -425,7 +454,12 @@ class L10nEsAeatMod303Report(models.Model):
             report.allow_posting = True
 
     @api.depends(
-        "resultado_liquidacion", "period_type", "devolucion_mensual", "marca_sepa"
+        "resultado_liquidacion",
+        "period_type",
+        "devolucion_mensual",
+        "marca_sepa",
+        "use_aeat_account",
+        "return_last_period",
     )
     def _compute_result_type(self):
         for report in self:
@@ -437,10 +471,21 @@ class L10nEsAeatMod303Report(models.Model):
             if result == 0:
                 report.result_type = "N"
             elif result == 1:
-                report.result_type = "I"
+                if report.use_aeat_account:
+                    report.result_type = "G"
+                elif report.marca_sepa in {"1", "2"}:
+                    # Domiciliar ingreso porque se indicó un banco SEPA
+                    report.result_type = "U"
+                else:
+                    report.result_type = "I"
             else:
                 if report.devolucion_mensual or report.period_type in ("4T", "12"):
-                    report.result_type = "D" if report.marca_sepa == "1" else "X"
+                    if report.use_aeat_account:
+                        report.result_type = "V"
+                    elif report.return_last_period or report.devolucion_mensual:
+                        report.result_type = "D" if report.marca_sepa == "1" else "X"
+                    else:
+                        report.result_type = "C"
                 else:
                     report.result_type = "C"
 
@@ -451,24 +496,48 @@ class L10nEsAeatMod303Report(models.Model):
 
     def calculate(self):
         res = super(L10nEsAeatMod303Report, self).calculate()
+        self.cuota_compensar = 0
         for mod303 in self:
-            prev_reports = mod303._get_previous_fiscalyear_reports(
-                mod303.date_start
-            ).filtered(lambda x: x.state not in ["draft", "cancelled"])
-            if not prev_reports:
-                continue
-            prev_report = min(
-                prev_reports,
-                key=lambda x: abs(
-                    fields.Date.to_date(x.date_end)
-                    - fields.Date.to_date(mod303.date_start)
-                ),
-            )
-            if prev_report.result_type == "C":
-                amount = abs(prev_report.resultado_liquidacion)
-                mod303.write(
-                    {"cuota_compensar": amount, "potential_cuota_compensar": amount}
+            prev_reports = self.search(
+                [("date_start", "<", mod303.date_start)]
+            ).filtered(lambda m: m.state not in ["draft", "cancelled"])
+            if prev_reports:
+                prev_report = min(
+                    prev_reports,
+                    key=lambda x: abs(
+                        fields.Date.to_date(x.date_end)
+                        - fields.Date.to_date(mod303.date_start)
+                    ),
                 )
+                if prev_report and (
+                    prev_report.remaining_cuota_compensar > 0
+                    or prev_report.result_type == "C"
+                ):
+                    mod303.write(
+                        {
+                            "potential_cuota_compensar": (
+                                prev_report.remaining_cuota_compensar
+                                - prev_report.resultado_liquidacion
+                            ),
+                        }
+                    )
+            if mod303.return_last_period:
+                cuota_compensar = mod303.potential_cuota_compensar
+            elif (
+                float_compare(
+                    mod303.resultado_liquidacion,
+                    0,
+                    precision_digits=mod303.currency_id.decimal_places,
+                )
+                != -1
+            ):
+                cuota_compensar = min(
+                    mod303.potential_cuota_compensar, mod303.resultado_liquidacion
+                )
+            else:
+                cuota_compensar = 0
+            mod303.cuota_compensar = cuota_compensar
+
         return res
 
     def button_confirm(self):
