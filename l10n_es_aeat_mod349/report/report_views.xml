@@ -6,6 +6,7 @@
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">l10n_es_aeat_mod349.report_l10n_es_mod349_pdf</field>
         <field name="report_file">l10n_es_aeat_mod349.report_l10n_es_mod349</field>
+        <field name="binding_model_id" ref="model_l10n_es_aeat_mod349_report" />
         <field name="binding_type">report</field>
     </record>
 </odoo>
