@@ -1,3 +1,7 @@
+# Copyright 2024 Aures TIC - Jose Zambudio <jose@aurestic.es>
+# Copyright 2024 Aures TIC - Almudena de La Puente <almudena@aurestic.es>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
