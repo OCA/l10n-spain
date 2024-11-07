@@ -2,15 +2,38 @@
 # Copyright 2024 Aures TIC - Almudena de La Puente <almudena@aurestic.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import json
+import logging
 from hashlib import sha256
 
+from requests import Session
+
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
+from odoo.modules.registry import Registry
+from odoo.tools.float_utils import float_compare
 
 from odoo.addons.l10n_es_aeat.models.aeat_mixin import round_by_keys
 
-VERIFACTU_VERSION = "0.12.2"
+###########################################
+# revisar los imports que no hagan falta
+# cuando funcione bien el _connect_aeat sin tener que poner
+# el forbid_entities, y se pueda borrar la función _connect_verifactu
+# de este fichero para usar la del aeat_mixin
+
+
+_logger = logging.getLogger(__name__)
+
+try:
+    from zeep import Client, Settings
+    from zeep.plugins import HistoryPlugin
+    from zeep.transports import Transport
+except (ImportError, IOError) as err:
+    _logger.debug(err)
+
+VERIFACTU_VERSION = 1.0
 VERIFACTU_DATE_FORMAT = "%d-%m-%Y"
+VERIFACTU_MACRODATA_LIMIT = 100000000.0
 
 
 class VerifactuMixin(models.AbstractModel):
@@ -24,9 +47,62 @@ class VerifactuMixin(models.AbstractModel):
     )
     verifactu_hash_string = fields.Char(compute="_compute_verifactu_hash")
     verifactu_hash = fields.Char(compute="_compute_verifactu_hash")
+    verifactu_refund_type = fields.Selection(
+        selection=[
+            # ('S', 'By substitution'), - en sii no está soportado, aquí igual?
+            ("I", "By differences"),
+        ],
+        compute="_compute_verifactu_refund_type",
+        store=True,
+        readonly=False,
+    )
+    verifactu_description = fields.Text(
+        copy=False,
+    )
+    verifactu_macrodata = fields.Boolean(
+        string="MacroData",
+        help="Check to confirm that the document has an absolute amount "
+        "greater o equal to 100 000 000,00 euros.",
+        compute="_compute_verifactu_macrodata",
+    )
+    verifactu_csv = fields.Char(copy=False, readonly=True)
+    verifactu_return = fields.Text(copy=False, readonly=True)
+    verifactu_registration_key = fields.Many2one(
+        comodel_name="aeat.verifactu.registration.keys",
+        compute="_compute_verifactu_registration_key",
+        store=True,
+        readonly=False,
+    )
+    verifactu_tax_key = fields.Selection(
+        string="Verifactu tax key",
+        selection="_get_verifactu_tax_keys",
+        compute="_compute_verifactu_tax_key",
+        store=True,
+        readonly=False,
+    )
+    verifactu_registration_key_code = fields.Char(
+        compute="_compute_verifactu_registration_key_code",
+        readonly=True,
+        string="Verifactu Code",
+    )
 
     def _compute_verifactu_enabled(self):
         raise NotImplementedError
+
+    def _compute_verifactu_macrodata(self):
+        for document in self:
+            document.verifactu_macrodata = (
+                float_compare(
+                    abs(document._get_verifactu_amount_total()),
+                    VERIFACTU_MACRODATA_LIMIT,
+                    precision_digits=2,
+                )
+                >= 0
+            )
+
+    @api.model
+    def _get_verifactu_tax_keys(self):
+        return self.env["account.fiscal.position"]._get_verifactu_tax_keys()
 
     def _connect_params_aeat(self, mapping_key):
         self.ensure_one()
@@ -53,73 +129,65 @@ class VerifactuMixin(models.AbstractModel):
                 _("No VAT configured for the company '{}'").format(self.company_id.name)
             )
         header = {
-            "IDVersion": VERIFACTU_VERSION,
             "ObligadoEmision": {
                 "NombreRazon": self.company_id.name[0:120],
                 "NIF": self.company_id.partner_id._parse_aeat_vat_info()[2],
             },
-            # "TipoRegistroAEAT": ,
-            # "FechaFinVeriactu": ,
         }
-        # if not cancellation:
-        #     header.update({"TipoComunicacion": tipo_comunicacion})
         return header
 
-    def _get_aeat_invoice_dict(self):
+    def _get_verifactu_invoice_dict(self):
         self.ensure_one()
         inv_dict = {}
         mapping_key = self._get_mapping_key()
         if mapping_key in ["out_invoice", "out_refund"]:
-            inv_dict = self._get_aeat_invoice_dict_out()
+            inv_dict = self._get_verifactu_invoice_dict_out()
         else:
             raise NotImplementedError
         round_by_keys(
             inv_dict,
             [
-                "BaseImponible",
+                "BaseImponibleOimporteNoSujeto",
                 "CuotaRepercutida",
-                "CuotaSoportada",
                 "TipoRecargoEquivalencia",
                 "CuotaRecargoEquivalencia",
-                "ImportePorArticulos7_14_Otros",
-                "ImporteTAIReglasLocalizacion",
+                "CuotaTotal",
                 "ImporteTotal",
                 "BaseRectificada",
                 "CuotaRectificada",
-                "CuotaDeducible",
-                "ImporteCompensacionREAGYP",
             ],
         )
         return inv_dict
 
     def _get_aeat_invoice_dict_out(self, cancel=False):
-        """Build dict with data to send to AEAT WS for document types:
-        out_invoice and out_refund.
+        raise NotImplementedError
 
-        :param cancel: It indicates if the dictionary is for sending a
-          cancellation of the document.
-        :return: documents (dict) : Dict XML with data for this document.
+    def _get_verifactu_developer_dict(self):
         """
-        self.ensure_one()
-        document_date = self._change_date_format(self._get_document_date())
-        company = self.company_id
-        fiscal_year = self._get_document_fiscal_year()
-        period = self._get_document_period()
-        serial_number = self._get_document_serial_number()
-        inv_dict = {
-            "IDFactura": {
-                "IDEmisorFactura": {
-                    "NIF": company.partner_id._parse_aeat_vat_info()[2]
-                },
-                "NumSerieFactura": serial_number,
-                "FechaExpedicionFactura": document_date,
-            },
-            "PeriodoLiquidacion": {
-                "Ejercicio": fiscal_year,
-                "Periodo": period,
+        TODO
+        Datos del desarrollador del sistema informático
+        """
+        return {
+            "NombreRazon": _("Asoc Española de Odoo"),
+            "NIF": "G87846952",
+            "NombreSistemaInformatico": "odoo",
+            "IdSistemaInformatico": "11",
+            "Version": "1.0",
+            "NumeroInstalacion": "1",
+            "TipoUsoPosibleSoloVerifactu": "N",
+            "TipoUsoPosibleMultiOT": "S",
+            "IndicadorMultiplesOT": "S",
+            "IDOtro": {
+                "IDType": "",
+                "ID": "",
             },
         }
-        return inv_dict
+
+    def _get_previous_invoice(self):
+        raise NotImplementedError
+
+    def _get_chaining_invoice_dict(self):
+        raise NotImplementedError
 
     def _aeat_check_exceptions(self):
         """Inheritable method for exceptions control when sending veri*FACTU invoices."""
@@ -133,7 +201,6 @@ class VerifactuMixin(models.AbstractModel):
         new_date = datetimeobject.strftime(VERIFACTU_DATE_FORMAT)
         return new_date
 
-    @api.model
     def _get_verifactu_hash_string(self):
         raise NotImplementedError
 
@@ -147,3 +214,219 @@ class VerifactuMixin(models.AbstractModel):
             record.verifactu_hash_string = verifactu_hash_values
             hash_string = sha256(verifactu_hash_values.encode("utf-8"))
             record.verifactu_hash = hash_string.hexdigest().upper()
+
+    def _get_verifactu_document_type(self):
+        raise NotImplementedError()
+
+    def _get_verifactu_description(self):
+        raise NotImplementedError()
+
+    def _get_verifactu_taxes_and_total(self):
+        raise NotImplementedError
+
+    def _get_verifactu_version(self):
+        return VERIFACTU_VERSION
+
+    def _get_receiver_dict(self):
+        raise NotImplementedError
+
+    def _compute_verifactu_refund_type(self):
+        self.verifactu_refund_type = False
+
+    def _is_aeat_simplified_invoice(self):
+        """Inheritable method to allow control when an
+        invoice are simplified or normal"""
+        partner = self._aeat_get_partner()
+        return partner.aeat_simplified_invoice
+
+    def _get_verifactu_jobs_field_name(self):
+        raise NotImplementedError
+
+    def send_verifactu(self):
+        """General public method for filtering out of the starting recordset the records
+        that shouldn't be sent to Verifactu:
+
+        - Documents of companies with Verifactu not enabled (through verifactu_enabled).
+        - Documents not applicable to be sent to Verifactu (through verifactu_enabled).
+        - Documents in non applicable states (for example, cancelled invoices).
+        - Documents already sent to Verifactu.
+        - Documents with sending jobs pending to be executed.
+        """
+        valid_states = self._get_valid_document_states()
+        for document in self:
+            if (
+                not document.verifactu_enabled
+                or document.state not in valid_states
+                or document.aeat_state in ["sent", "cancelled"]
+            ):
+                continue
+            document._process_verifactu_send()
+
+    def _process_verifactu_send(self):
+        """
+        Process document sending to Verifactu
+        TODO : use connector
+        """
+        for record in self:
+            record.confirm_verifactu_one_document()
+
+    def confirm_verifactu_one_document(self):
+        self.sudo()._send_document_to_verifactu()
+
+    def _send_document_to_verifactu(self):
+        for document in self.filtered(
+            lambda i: i.state in self._get_valid_document_states()
+        ):
+            if document.aeat_state == "not_sent":
+                tipo_comunicacion = "A0"
+            else:
+                tipo_comunicacion = "A1"
+            header = document._get_aeat_header(tipo_comunicacion)
+            doc_vals = {
+                "aeat_header_sent": json.dumps(header, indent=4),
+            }
+            try:
+                inv_dict = document._get_verifactu_invoice_dict()
+            except Exception as fault:
+                raise ValidationError(fault) from fault
+            try:
+                mapping_key = document._get_mapping_key()
+                serv = document._connect_verifactu(mapping_key)
+                doc_vals["aeat_content_sent"] = json.dumps(inv_dict, indent=4)
+                if mapping_key in ["out_invoice", "out_refund"]:
+                    res = serv.RegFactuSistemaFacturacion(header, inv_dict)
+                res_line = res["RespuestaLinea"][0]
+                if res["EstadoEnvio"] == "Correcto":
+                    doc_vals.update(
+                        {
+                            "aeat_state": "sent",
+                            "verifactu_csv": res["CSV"],
+                            "aeat_send_failed": False,
+                        }
+                    )
+                elif (
+                    res["EstadoEnvio"] == "ParcialmenteCorrecto"
+                    and res_line["EstadoRegistro"] == "AceptadoConErrores"
+                ):
+                    doc_vals.update(
+                        {
+                            "aeat_state": "sent_w_errors",
+                            "verifactu_csv": res["CSV"],
+                            "aeat_send_failed": True,
+                        }
+                    )
+                else:
+                    doc_vals["aeat_send_failed"] = True
+                doc_vals["verifactu_return"] = res
+                send_error = False
+                if res_line["CodigoErrorRegistro"]:
+                    send_error = "{} | {}".format(
+                        str(res_line["CodigoErrorRegistro"]),
+                        str(res_line["DescripcionErrorRegistro"]),
+                    )
+                doc_vals["aeat_send_error"] = send_error
+                document.write(doc_vals)
+            except Exception as fault:
+                new_cr = Registry(self.env.cr.dbname).cursor()
+                env = api.Environment(new_cr, self.env.uid, self.env.context)
+                document = env[document._name].browse(document.id)
+                doc_vals.update(
+                    {
+                        "aeat_send_failed": True,
+                        "aeat_send_error": repr(fault)[:200],
+                        "verifactu_return": repr(fault),
+                        "aeat_content_sent": json.dumps(inv_dict, indent=4),
+                    }
+                )
+                document.write(doc_vals)
+                new_cr.commit()
+                new_cr.close()
+                raise ValidationError(fault) from fault
+
+    def _connect_verifactu(self, mapping_key):
+        # de momento no puedo el _connect_aeat del aeat_mixin porque si no pongo
+        # forbid_entities en settings del Client da error de entities forbiden
+        self.ensure_one()
+        public_crt, private_key = self.env["l10n.es.aeat.certificate"].get_certificates(
+            company=self.company_id
+        )
+        params = self._connect_params_aeat(mapping_key)
+        session = Session()
+        session.cert = (public_crt, private_key)
+        transport = Transport(session=session)
+        history = HistoryPlugin()
+        settings = Settings(forbid_entities=False)
+        client = Client(
+            wsdl=params["wsdl"],
+            transport=transport,
+            plugins=[history],
+            settings=settings,
+        )
+        return self._bind_service(client, params["port_name"], params["address"])
+
+    def _bind_service(self, client, port_name, address=None):
+        self.ensure_one()
+        service = client._get_service("sfVerifactu")
+        port = client._get_port(service, port_name)
+        address = address or port.binding_options["address"]
+        return client.create_service(port.binding.name, address)
+
+    @api.model
+    def _get_verifactu_taxes_map(self, codes, date):
+        """Return the codes that correspond to verifactu map line codes.
+
+        :param codes: List of code strings to get the mapping.
+        :param date: Date to map
+        :return: Recordset with the corresponding codes
+        """
+        map_obj = self.env["aeat.verifactu.map"].sudo().with_context(active_test=False)
+        verifactu_map = map_obj.search(
+            [
+                "|",
+                ("date_from", "<=", date),
+                ("date_from", "=", False),
+                "|",
+                ("date_to", ">=", date),
+                ("date_to", "=", False),
+            ],
+            limit=1,
+        )
+        tax_templates = verifactu_map.map_lines.filtered(
+            lambda x: x.code in codes
+        ).taxes
+        return self.company_id.get_taxes_from_templates(tax_templates)
+
+    @api.depends("fiscal_position_id")
+    def _compute_verifactu_tax_key(self):
+        for document in self:
+            document.verifactu_tax_key = (
+                document.fiscal_position_id.verifactu_tax_key or "01"
+            )
+
+    @api.depends("fiscal_position_id")
+    def _compute_verifactu_registration_key(self):
+        for document in self:
+            if document.fiscal_position_id:
+                key = document.fiscal_position_id.verifactu_registration_key
+                if key:
+                    document.verifactu_registration_key = key
+            else:
+                domain = [
+                    ("code", "=", "01"),
+                    (
+                        "verifactu_tax_key",
+                        "=",
+                        "iva",
+                    ),
+                ]
+                verifactu_key_obj = self.env["aeat.verifactu.registration.keys"]
+                document.verifactu_registration_key = verifactu_key_obj.search(
+                    domain, limit=1
+                )
+
+    @api.depends("verifactu_registration_key")
+    def _compute_verifactu_registration_key_code(self):
+        for record in self:
+            record.verifactu_registration_key_code = (
+                record.verifactu_registration_key.code
+            )
