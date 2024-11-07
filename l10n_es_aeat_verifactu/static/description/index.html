@@ -374,30 +374,90 @@ ul.auto-toc {
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-1">Known issues / Roadmap</a></li>
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-2">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-3">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-4">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-5">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-6">Maintainers</a></li>
+<li><a class="reference internal" href="#installation" id="toc-entry-1">Installation</a></li>
+<li><a class="reference internal" href="#configuration" id="toc-entry-2">Configuration</a></li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-3">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-4">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-5">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-6">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-7">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-8">Maintainers</a></li>
 </ul>
 </li>
 </ul>
 </div>
+<div class="section" id="installation">
+<h1><a class="toc-backref" href="#toc-entry-1">Installation</a></h1>
+<p>Para instalar esté módulo necesita:</p>
+<ol class="arabic simple">
+<li>Libreria Python Zeep, se puede instalar con el comando ‘pip install zeep’</li>
+<li>Libreria Python Requests, se puede instalar con el comando ‘pip install requests’</li>
+</ol>
+<p>y el módulo <cite>queue_job</cite> que se encuentra en:</p>
+<p><a class="reference external" href="https://github.com/OCA/queue">https://github.com/OCA/queue</a></p>
+</div>
+<div class="section" id="configuration">
+<h1><a class="toc-backref" href="#toc-entry-2">Configuration</a></h1>
+<p>Para configurar este módulo es necesario:</p>
+<ol class="arabic simple">
+<li>En la compañia se almacenan las URLs del servicio SOAP de hacienda.
+Estas URLs pueden cambiar según comunidades</li>
+<li>Los certificados deben alojarse en una carpeta accesible por la instalación
+de Odoo.</li>
+<li>Preparar el certificado. El certificado enviado por la FMNT es en formato
+p12, este certificado no se puede usar directamente con Zeep. Se tiene que
+extraer la clave pública y la clave privada.</li>
+</ol>
+<p>En Linux se pueden usar los siguientes comandos:</p>
+<ul class="simple">
+<li>Clave pública: “openssl pkcs12 -in Certificado.p12 -nokeys -out publicCert.crt -nodes”</li>
+<li>Clave privada: “openssl pkcs12 -in Certifcado.p12 -nocerts -out privateKey.pem -nodes”</li>
+</ul>
+<p>Además, el módulo <cite>queue_job</cite> necesita estar configurado de una de estas formas:</p>
+<ol class="arabic">
+<li><p class="first">Ajustando variables de entorno:</p>
+<blockquote>
+<p>ODOO_QUEUE_JOB_CHANNELS=root:4</p>
+</blockquote>
+<p>u otro canal de configuración. Por defecto es root:1</p>
+<p>Si xmlrpc_port no está definido: ODOO_QUEUE_JOB_PORT=8069</p>
+</li>
+<li><p class="first">Otra alternativa es usuando un fichero de configuración:</p>
+<blockquote>
+<p>[options]
+(…)
+workers = 4
+server_wide_modules = web,base_sparse_field,queue_job</p>
+<p>(…)
+[queue_job]
+channels = root:4</p>
+</blockquote>
+</li>
+<li><p class="first">Por último, arrancando Odoo con –load=web,base_sparse_field,queue_job y –workers más grande que 1.</p>
+</li>
+</ol>
+<p>Más información <a class="reference external" href="http://odoo-connector.com">http://odoo-connector.com</a></p>
+<ol class="arabic simple">
+<li>Establecer en las posiciones fiscales la clave de impuestos y la clave de registro verifactu.</li>
+</ol>
+</div>
 <div class="section" id="known-issues-roadmap">
-<h1><a class="toc-backref" href="#toc-entry-1">Known issues / Roadmap</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-3">Known issues / Roadmap</a></h1>
 <blockquote>
 <ul class="simple">
-<li>Refactorización SII en l10n_es_aeat</li>
-<li>Creación documento a enviar a Veri*FACTU</li>
-<li>Creación cabecera Veri*FACTU</li>
-<li>Conexión WSDL</li>
-<li>Queue + Encadenamiento</li>
+<li>Refactorización SII-Verifactu en l10n_es_aeat cuando estén todos los procesos claros</li>
+<li>Envío de Facturas simplificadas, exentas, a terceros..</li>
+<li>Encadenamiento, obtener factura anterior y almacenamiento del hash inalterable.</li>
+<li>Datas de mapeos de impuestos, ya hay algunos.</li>
+<li>Datos reales del desarrollador del sistema informático.</li>
+<li>Envío con Queue.</li>
+<li>Modificación de facturas enviadas.</li>
+<li>Anulación de facturas enviadas.</li>
 </ul>
 </blockquote>
 </div>
 <div class="section" id="bug-tracker">
-<h1><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-4">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-spain/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
@@ -405,24 +465,25 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h1><a class="toc-backref" href="#toc-entry-3">Credits</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-5">Credits</a></h1>
 <div class="section" id="authors">
-<h2><a class="toc-backref" href="#toc-entry-4">Authors</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-6">Authors</a></h2>
 <ul class="simple">
 <li>Aures Tic</li>
 <li>ForgeFlow</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h2><a class="toc-backref" href="#toc-entry-5">Contributors</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-7">Contributors</a></h2>
 <ul class="simple">
 <li>Jose Zambudio &lt;<a class="reference external" href="mailto:jose&#64;aurestic.es">jose&#64;aurestic.es</a>&gt;</li>
+<li>Almudena de La Puente &lt;<a class="reference external" href="mailto:almudena&#64;aurestic.es">almudena&#64;aurestic.es</a>&gt;</li>
 <li>Laura Cazorla &lt;<a class="reference external" href="mailto:laura.cazorla&#64;forgeflow.com">laura.cazorla&#64;forgeflow.com</a>&gt;</li>
 <li>Andreu Orensanz &lt;<a class="reference external" href="mailto:andreu.orensanz&#64;forgeflow.com">andreu.orensanz&#64;forgeflow.com</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#toc-entry-6">Maintainers</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-8">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
