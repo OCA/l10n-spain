@@ -896,6 +896,13 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_facturae
+#. odoo-python
+#: code:addons/l10n_es_facturae/reports/report_facturae.py:0
+#, python-format
+msgid "The provided certificate is not found in the system."
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields,help:l10n_es_facturae.field_res_company__facturae_hide_discount
 #: model:ir.model.fields,help:l10n_es_facturae.field_res_partner__facturae_hide_discount
 #: model:ir.model.fields,help:l10n_es_facturae.field_res_users__facturae_hide_discount
