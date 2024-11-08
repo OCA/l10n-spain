@@ -32,8 +32,8 @@ msgstr ""
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
 msgid ""
-"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae"
-"\""
+"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/"
+"Facturae\""
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -897,6 +897,13 @@ msgid ""
 "Definition. The generated XML file and the full error have been written in "
 "the server logs. Here is the error, which may give you an idea on the cause "
 "of the problem : %s"
+msgstr ""
+
+#. module: l10n_es_facturae
+#. odoo-python
+#: code:addons/l10n_es_facturae/reports/report_facturae.py:0
+#, python-format
+msgid "The provided certificate is not found in the system."
 msgstr ""
 
 #. module: l10n_es_facturae

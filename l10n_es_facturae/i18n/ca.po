@@ -30,8 +30,8 @@ msgstr "&lt;/fe:Facturae&gt;"
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
 msgid ""
-"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae"
-"\""
+"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/"
+"Facturae\""
 msgstr ""
 "&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/"
 "Facturae\""
@@ -916,6 +916,13 @@ msgstr ""
 "enregistrat al log del servidor el fitxer XML generat i l'error complet. "
 "Aquí teniu l'error, el qual us pot donar una idea de la causa del problema : "
 "%s"
+
+#. module: l10n_es_facturae
+#. odoo-python
+#: code:addons/l10n_es_facturae/reports/report_facturae.py:0
+#, python-format
+msgid "The provided certificate is not found in the system."
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,help:l10n_es_facturae.field_res_company__facturae_hide_discount
