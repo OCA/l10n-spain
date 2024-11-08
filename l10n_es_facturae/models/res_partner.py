@@ -10,7 +10,7 @@ from odoo.exceptions import ValidationError
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    facturae = fields.Boolean("Factura electrónica")
+    facturae = fields.Boolean("Factura electrónica", copy=False)
     facturae_version = fields.Selection(
         [("3_2", "3.2"), ("3_2_1", "3.2.1"), ("3_2_2", "3.2.2")]
     )
