@@ -132,7 +132,10 @@ Contributors
 * Fernando La Chica <fernandolachica@gmail.com>
 * Victor Garcia <victor.garcia@kayuulab.com>
 * Luis Lafaurie <ldlafaurie@gmail.com>
-* Eduardo de miguel <edu@moduon.team>
+* `Moduon <https://www.moduon.team>`_:
+
+  * Eduardo de miguel <edu@moduon.team>
+  * Eduardo López <elp@moduon.team>
 
 Maintainers
 ~~~~~~~~~~~

@@ -31,6 +31,10 @@
             (4, ref('l10n_es.account_tax_template_s_iva_ns')),
             (4, ref('l10n_es.account_tax_template_s_iva_ns_b')),
             (4, ref('l10n_es.account_tax_template_s_iva_e')),
+            (4, ref('l10n_es.account_tax_template_s_iva7-5s')),
+            (4, ref('l10n_es.account_tax_template_s_iva7-5b')),
+            (4, ref('l10n_es.account_tax_template_s_iva2s')),
+            (4, ref('l10n_es.account_tax_template_s_iva2b')),
         ]"
         />
     </record>
@@ -97,6 +101,20 @@
             (4, ref('l10n_es.account_tax_template_p_iva21_bi')),
             (4, ref('l10n_es.account_tax_template_p_iva0_ns')),
             (4, ref('l10n_es.account_tax_template_p_iva0_ns_b')),
+            (4, ref('l10n_es.account_tax_template_p_iva7-5_ic_bc')),
+            (4, ref('l10n_es.account_tax_template_p_iva7-5_ic_sc')),
+            (4, ref('l10n_es.account_tax_template_p_iva7-5_ibc')),
+            (4, ref('l10n_es.account_tax_template_p_iva7-5_isc')),
+            (4, ref('l10n_es.account_tax_template_p_iva7-5_bc')),
+            (4, ref('l10n_es.account_tax_template_p_iva7-5_sc')),
+            (4, ref('l10n_es.account_tax_template_p_iva7-5_nd')),
+            (4, ref('l10n_es.account_tax_template_p_iva2_ic_bc')),
+            (4, ref('l10n_es.account_tax_template_p_iva2_ic_sc')),
+            (4, ref('l10n_es.account_tax_template_p_iva2_ibc')),
+            (4, ref('l10n_es.account_tax_template_p_iva2_isc')),
+            (4, ref('l10n_es.account_tax_template_p_iva2_bc')),
+            (4, ref('l10n_es.account_tax_template_p_iva2_sc')),
+            (4, ref('l10n_es.account_tax_template_p_iva2_nd')),
         ]"
         />
     </record>
