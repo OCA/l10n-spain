@@ -10,6 +10,7 @@
             <page id="aeat" position="inside">
                 <group string="Partner Data Quality">
                     <button
+                        colspan="2"
                         type="object"
                         string="Check Partner Data"
                         name="aeat_check_partner"
