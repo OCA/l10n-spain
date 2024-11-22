@@ -5,7 +5,7 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
-            <xpath expr="//div[@name='journal_div']" position="after">
+            <xpath expr="//field[@name='fiscal_position_id']" position="after">
                 <field name="not_in_mod347" />
             </xpath>
         </field>
