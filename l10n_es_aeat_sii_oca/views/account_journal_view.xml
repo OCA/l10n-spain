@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2022 Moduon - Eduardo de Miguel
+     Copyright 2024 Tecnativa - Víctor Martínez
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="view_account_journal_thirdparty_form" model="ir.ui.view">
@@ -10,6 +11,13 @@
                 <attribute
                     name="attrs"
                 >{'invisible': [('type', 'not in', ('sale', 'purchase'))]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='thirdparty_invoice']" position="after">
+                <field name="company_sii_enabled" invisible="1" />
+                <field
+                    name="sii_enabled"
+                    attrs="{'invisible': ['|', ('company_sii_enabled', '=', False), ('type', 'not in', ('sale', 'purchase'))]}"
+                />
             </xpath>
         </field>
     </record>
