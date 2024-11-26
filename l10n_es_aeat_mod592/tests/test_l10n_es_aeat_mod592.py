@@ -208,9 +208,8 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
         self.assertTrue(self.model592.get_report_file_name())
         # export_csv_acquirer
         csv_result_acquirer = self.model592.export_csv_acquirer()
-        res = self.report_obj._get_report_from_name(
-            csv_result_acquirer["report_name"]
-        )._render(self.model592.ids, {})
+        report_name = csv_result_acquirer["report_name"]
+        res = self.report_obj._render(report_name, self.model592.ids, {})
         str_io = StringIO(res[0])
         csv_lines_acquirer = list(
             csv.DictReader(str_io, delimiter=";", quoting=csv.QUOTE_ALL)
@@ -222,9 +221,10 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
         self.assertIn(self.picking.name, csv_line_1_acquirer)
         # export_csv_manufacturer
         csv_result_manufacturer = self.model592.export_csv_manufacturer()
-        res = self.report_obj._get_report_from_name(
+        report_csv_name = self.report_obj._get_report_from_name(
             csv_result_manufacturer["report_name"]
-        )._render(self.model592.ids, {})
+        ).report_name
+        res = self.report_obj._render(report_csv_name, self.model592.ids, {})
         str_io = StringIO(res[0])
         csv_lines_manufacturer = list(
             csv.DictReader(str_io, delimiter=";", quoting=csv.QUOTE_ALL)
@@ -235,7 +235,7 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
         # export_xlsx_acquirer
         xlsx_res = self.model592.export_xlsx_acquirer()
         res = self.report_obj._get_report_from_name(xlsx_res["report_name"])._render(
-            self.model592.ids, {}
+            xlsx_res["report_name"], self.model592.ids, {}
         )
         wb = open_workbook(file_contents=res[0])
         sheet = wb.sheet_by_index(0)
@@ -244,7 +244,7 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
         # export_xlsx_manufacturer
         xlsx_res = self.model592.export_xlsx_manufacturer()
         res = self.report_obj._get_report_from_name(xlsx_res["report_name"])._render(
-            self.model592.ids, {}
+            xlsx_res["report_name"], self.model592.ids, {}
         )
         wb = open_workbook(file_contents=res[0])
         sheet = wb.sheet_by_index(0)
@@ -252,7 +252,9 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
         # report_l10n_es_mod592_pdf
         res = self.report_obj._get_report_from_name(
             "l10n_es_aeat_mod592.report_l10n_es_mod592_pdf"
-        )._render_qweb_text(self.model592.ids)
+        )._render_qweb_text(
+            "l10n_es_aeat_mod592.report_l10n_es_mod592_pdf", self.model592.ids
+        )
         res_text = str(res[0])
         self.assertRegex(res_text, "A001")
         self.assertRegex(res_text, "A002")

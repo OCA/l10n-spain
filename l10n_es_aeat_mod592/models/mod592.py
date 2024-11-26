@@ -332,7 +332,7 @@ class L10nEsAeatmod592Report(models.Model):
                     else:
                         manufacturer_lines.append((0, 0, m_vals))
                 item.manufacturer_line_ids = manufacturer_lines
-        item.recompute()
+        item.env.flush_all()
         return res
 
     def button_recover(self):
