@@ -56,17 +56,12 @@ class AccountMoveLine(models.Model):
                 )
             )
 
-    @api.depends("move_id.aeat_perception_key_id")
+    @api.depends("move_id.aeat_perception_key_id", "move_id.aeat_perception_subkey_id")
     def _compute_aeat_perception_keys(self):
         for line in self:
             aeat_perception_key_id = False
             aeat_perception_subkey_id = False
-            if (
-                line.move_id.is_invoice()
-                and line.display_type == "product"
-                and line.id in line.move_id.invoice_line_ids.ids
-                and line.move_id.aeat_perception_key_id
-            ):
+            if line.move_id.is_invoice() and line.move_id.aeat_perception_key_id:
                 aeat_perception_key_id = line.move_id.aeat_perception_key_id.id
                 aeat_perception_subkey_id = line.move_id.aeat_perception_subkey_id.id
             line.update(
