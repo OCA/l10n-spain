@@ -545,67 +545,72 @@ class L10nEsAeatMod190ReportLine(models.Model):
     # Calculo campos SIN incapacidad
     @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
     def _compute_percepciones_dinerarias(self):
-        for item in self.filtered(
-            lambda x: not x.discapacidad or x.discapacidad == "0"
-        ):
+        for item in self:
+            if item.discapacidad and item.discapacidad != "0":
+                item.percepciones_dinerarias = 0.0
+                continue
             tax_lines = item.report_id.tax_line_ids.filtered(
                 lambda x: x.field_number in (11, 15) and x.res_id == item.report_id.id
             )
             value = 0.0
-            for move_line in tax_lines.move_line_ids:
+            for move_line in tax_lines.move_line_ids.filtered(item._check_lines):
                 value += move_line.debit - move_line.credit
             item.percepciones_dinerarias = value
 
     @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
     def _compute_retenciones_dinerarias(self):
-        for item in self.filtered(
-            lambda x: not x.discapacidad or x.discapacidad == "0"
-        ):
+        for item in self:
+            if item.discapacidad and item.discapacidad != "0":
+                item.retenciones_dinerarias = 0.0
+                continue
             tax_lines = item.report_id.tax_line_ids.filtered(
                 lambda x: x.field_number in (12, 16) and x.res_id == item.report_id.id
             )
             value = 0.0
-            for move_line in tax_lines.move_line_ids:
+            for move_line in tax_lines.move_line_ids.filtered(item._check_lines):
                 value += move_line.credit - move_line.debit
             item.retenciones_dinerarias = value
 
     @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
     def _compute_percepciones_en_especie(self):
-        for item in self.filtered(
-            lambda x: not x.discapacidad or x.discapacidad == "0"
-        ):
+        for item in self:
+            if item.discapacidad and item.discapacidad != "0":
+                item.percepciones_en_especie = 0.0
+                continue
             tax_lines = item.report_id.tax_line_ids.filtered(
                 lambda x: x.field_number == 13 and x.res_id == item.report_id.id
             )
             pde = rde = 0.0
-            for move_line in tax_lines.move_line_ids:
+            for move_line in tax_lines.move_line_ids.filtered(item._check_lines):
                 pde += move_line.debit - move_line.credit
                 rde += move_line.credit - move_line.debit
             item.percepciones_en_especie = pde - rde
 
     @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
     def _compute_ingresos_a_cuenta_efectuados(self):
-        for item in self.filtered(
-            lambda x: not x.discapacidad or x.discapacidad == "0"
-        ):
+        for item in self:
+            if item.discapacidad and item.discapacidad != "0":
+                item.ingresos_a_cuenta_efectuados = 0.0
+                continue
             tax_lines = item.report_id.tax_line_ids.filtered(
                 lambda x: x.field_number == 13 and x.res_id == item.report_id.id
             )
             value = 0.0
-            for move_line in tax_lines.move_line_ids:
+            for move_line in tax_lines.move_line_ids.filtered(item._check_lines):
                 value += move_line.debit - move_line.credit
             item.ingresos_a_cuenta_efectuados = value
 
     @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
     def _compute_ingresos_a_cuenta_repercutidos(self):
-        for item in self.filtered(
-            lambda x: not x.discapacidad or x.discapacidad == "0"
-        ):
+        for item in self:
+            if item.discapacidad and item.discapacidad != "0":
+                item.ingresos_a_cuenta_repercutidos = 0.0
+                continue
             tax_lines = item.report_id.tax_line_ids.filtered(
                 lambda x: x.field_number == 13 and x.res_id == item.report_id.id
             )
             value = 0.0
-            for move_line in tax_lines.move_line_ids:
+            for move_line in tax_lines.move_line_ids.filtered(item._check_lines):
                 value += move_line.credit - move_line.debit
             item.ingresos_a_cuenta_repercutidos = value
 
@@ -618,7 +623,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
                 lambda x: x.field_number in (11, 15) and x.res_id == item.report_id.id
             )
             value = 0.0
-            for move_line in tax_lines.move_line_ids:
+            for move_line in tax_lines.move_line_ids.filtered(item._check_lines):
                 value += move_line.debit - move_line.credit
             item.percepciones_dinerarias_incap = value
 
@@ -630,7 +635,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
                 lambda x: x.field_number in (12, 16) and x.res_id == item.report_id.id
             )
             value = 0.0
-            for move_line in tax_lines.move_line_ids:
+            for move_line in tax_lines.move_line_ids.filtered(item._check_lines):
                 value += move_line.credit - move_line.debit
             item.retenciones_dinerarias_incap = value
 
@@ -642,7 +647,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
                 lambda x: x.field_number == 13 and x.res_id == item.report_id.id
             )
             pde = rde = 0.0
-            for move_line in tax_lines.move_line_ids:
+            for move_line in tax_lines.move_line_ids.filtered(item._check_lines):
                 pde += move_line.debit - move_line.credit
                 rde += move_line.credit - move_line.debit
             item.percepciones_en_especie_incap = pde - rde
@@ -655,7 +660,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
                 lambda x: x.field_number == 13 and x.res_id == item.report_id.id
             )
             value = 0.0
-            for move_line in tax_lines.move_line_ids:
+            for move_line in tax_lines.move_line_ids.filtered(item._check_lines):
                 value += move_line.debit - move_line.credit
             item.ingresos_a_cuenta_efectuados_incap = value
 
@@ -667,7 +672,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
                 lambda x: x.field_number == 13 and x.res_id == item.report_id.id
             )
             value = 0.0
-            for move_line in tax_lines.move_line_ids:
+            for move_line in tax_lines.move_line_ids.filtered(item._check_lines):
                 value += move_line.credit - move_line.debit
             item.ingresos_a_cuenta_repercutidos_incap = value
 
@@ -686,3 +691,21 @@ class L10nEsAeatMod190ReportLine(models.Model):
     def onchange_aeat_perception_key_id(self):
         if self.aeat_perception_key_id:
             self.aeat_perception_subkey_id = False
+
+    def _check_lines(self, line):
+        return (
+            line.partner_id == self.partner_id
+            and (
+                (line.aeat_perception_key_id or line.partner_id.aeat_perception_key_id)
+                == self.aeat_perception_key_id
+            )
+            and (
+                (line.aeat_perception_subkey_id)
+                or (
+                    not line.aeat_perception_key_id
+                    and line.partner_id.aeat_perception_subkey_id
+                )
+                or self.env["l10n.es.aeat.report.perception.subkey"]
+            )
+            == self.aeat_perception_subkey_id
+        )
