@@ -21,6 +21,8 @@ class AeatTaxAgency(models.Model):
     verifactu_wsdl_out_test_address = fields.Char(
         string="SuministroInformacion Test Address"
     )
+    verifactu_qr_base_url = fields.Char(string="QR Base URL")
+    verifactu_qr_base_url_test_address = fields.Char(string="QR Base URL Test")
 
     def _connect_params_verifactu(self, mapping_key, company):
         self.ensure_one()
