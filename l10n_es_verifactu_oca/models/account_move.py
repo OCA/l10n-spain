@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import pytz
+from collections import OrderedDict
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
@@ -376,6 +377,19 @@ class AccountMove(models.Model):
                 # }
             }
         }
+
+    def _get_verifactu_qr_values(self):
+        """Get the QR values for the verifactu"""
+        self.ensure_one()
+        company_vat = self.company_id.partner_id._parse_aeat_vat_info()[2]
+        return OrderedDict(
+            [
+                ("nif", company_vat),
+                ("numserie", self.name),
+                ("fecha", self.invoice_date.strftime("%d-%m-%Y")),
+                ("importe", self.amount_total),
+            ]
+        )
 
     def cancel_verifactu(self):
         raise NotImplementedError
