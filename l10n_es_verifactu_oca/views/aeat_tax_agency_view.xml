@@ -17,6 +17,13 @@
                             />
                         </group>
                     </group>
+                    <group string="Validar QR">
+                        <field name="verifactu_qr_base_url" string="Base URL" />
+                        <field
+                            name="verifactu_qr_base_url_test_address"
+                            string="Test Base URL"
+                        />
+                    </group>
                 </page>
             </notebook>
         </field>

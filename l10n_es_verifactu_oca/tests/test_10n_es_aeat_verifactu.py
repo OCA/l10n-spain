@@ -3,6 +3,7 @@
 
 import json
 from hashlib import sha256
+from urllib.parse import urlparse, parse_qs
 
 from odoo.modules.module import get_resource_path
 
@@ -196,3 +197,103 @@ class TestL10nEsAeatVerifactu(TestL10nEsAeatVerifactuBase):
         for inv_type, lines, extra_vals in mapping:
             self._create_and_test_invoice_verifactu_dict(inv_type, lines, extra_vals)
         return
+
+
+class TestL10nEsAeatVerifactuQR(TestL10nEsAeatVerifactuBase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+
+    def _get_required_qr_params(self):
+        """Helper to generate the required QR code parameters."""
+        return {
+            "nif": self.invoice.company_id.partner_id._parse_aeat_vat_info()[2],
+            "numserie": self.invoice.name,
+            "fecha": self.invoice._change_date_format(self.invoice.invoice_date),
+            "importe": self.invoice.amount_total,
+        }
+
+    def test_verifactu_qr_generation(self):
+        """
+        Test the generation of the QR code image for the invoice.
+        """
+        self.invoice.action_post()
+        qr_code = self.invoice.verifactu_qr
+
+        self.assertTrue(qr_code, "QR code should be generated for the invoice.")
+        self.assertIsInstance(qr_code, bytes, "QR code should be in bytes format.")
+
+    def test_verifactu_qr_url_format(self):
+        """
+        Test the format of the generated QR URL to ensure it meets expected criteria.
+        """
+        self.invoice.action_post()
+        qr_url = self.invoice.verifactu_qr_url
+
+        self.assertTrue(qr_url, "QR URL should be generated for the invoice.")
+
+        test_url = self.env.ref(
+            "l10n_es_aeat.aeat_tax_agency_spain"
+        ).verifactu_qr_base_url_test_address
+        self.assertTrue(test_url, "Test URL should not be empty.")
+
+        parsed_url = urlparse(qr_url)
+        actual_params = parse_qs(parsed_url.query)
+
+        expected_params = self._get_required_qr_params()
+        for key, expected_value in expected_params.items():
+            self.assertIn(
+                key, actual_params, f"QR URL should contain the parameter: {key}"
+            )
+            self.assertEqual(
+                actual_params[key][0],
+                str(expected_value),
+                f"QR URL parameter '{key}' should have value '{expected_value}', got '{actual_params[key][0]}' instead.",
+            )
+
+    def test_verifactu_qr_code_generation_on_draft(self):
+        """
+        Ensure that the QR code is not generated for invoices in draft state.
+        """
+        qr_code = self.invoice.verifactu_qr
+        self.assertFalse(qr_code, "QR code should not be generated for draft invoices.")
+
+    def test_verifactu_qr_code_after_update(self):
+        """
+        Test that the QR code is regenerated if the invoice details are updated.
+        """
+        self.invoice.action_post()
+        original_qr_code = self.invoice.verifactu_qr
+
+        self.invoice.button_cancel()
+
+        self.invoice.button_draft()
+
+        self.invoice.write(
+            {
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "account_id": self.account_expense.id,
+                            "name": "Updated line",
+                            "price_unit": 200,
+                            "quantity": 1,
+                        },
+                    )
+                ]
+            }
+        )
+        self.invoice.action_post()
+
+        self.invoice.invalidate_model(["verifactu_qr_url", "verifactu_qr"])
+
+        updated_qr_code = self.invoice.verifactu_qr
+
+        self.assertNotEqual(
+            original_qr_code,
+            updated_qr_code,
+            "QR code should be regenerated after invoice update.",
+        )
