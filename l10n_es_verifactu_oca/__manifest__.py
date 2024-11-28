@@ -16,6 +16,7 @@
         "l10n_es_aeat",
         "account_invoice_refund_link",
         "queue_job",
+        "account",
     ],
     "data": [
         "data/aeat_verifactu_tax_agency_data.xml",
@@ -31,5 +32,6 @@
         "views/aeat_verifactu_map_view.xml",
         "views/aeat_verifactu_map_lines_view.xml",
         "views/aeat_verifactu_registration_keys_view.xml",
+        "views/report_invoice.xml",
     ],
 }
