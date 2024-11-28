@@ -2,9 +2,12 @@
 # Copyright 2024 Aures TIC - Almudena de La Puente <almudena@aurestic.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import base64
+import io
 import json
 import logging
 from hashlib import sha256
+from urllib.parse import urlencode
 
 from requests import Session
 
@@ -14,6 +17,14 @@ from odoo.modules.registry import Registry
 from odoo.tools.float_utils import float_compare
 
 from odoo.addons.l10n_es_aeat.models.aeat_mixin import round_by_keys
+
+_logger = logging.getLogger(__name__)
+
+try:
+    import qrcode
+except (ImportError, IOError) as err:
+    qrcode = None
+    _logger.error(err)
 
 ###########################################
 # revisar los imports que no hagan falta
@@ -85,6 +96,8 @@ class VerifactuMixin(models.AbstractModel):
         readonly=True,
         string="Verifactu Code",
     )
+    verifactu_qr_url = fields.Char("URL", compute="_compute_verifactu_qr_url")
+    verifactu_qr = fields.Binary(string="QR", compute="_compute_verifactu_qr")
 
     def _compute_verifactu_enabled(self):
         raise NotImplementedError
@@ -99,6 +112,56 @@ class VerifactuMixin(models.AbstractModel):
                 )
                 >= 0
             )
+
+    def _compute_verifactu_qr_url(self):
+        """Returns the URL to be used in the QR code. A sample URL would be (urlencoded):
+        https://prewww2.aeat.es/wlpl/TIKECONT/ValidarQR?nif=89890001K&numserie=12345678%26G33&fecha=01-01-2024&importe=241.4
+        """
+        for record in self:
+            agency = self.env.ref("l10n_es_aeat.aeat_tax_agency_spain")
+            if record.company_id.verifactu_test:
+                qr_base_url = agency.verifactu_qr_base_url_test_address
+            else:
+                qr_base_url = agency.verifactu_qr_base_url
+
+            qr_values = record._get_verifactu_qr_values()
+
+            # Check all values are ASCII between 32 and 126
+            for value in qr_values.values():
+                try:
+                    str(value).encode("ascii")
+                except UnicodeEncodeError:
+                    raise UserError(_("QR URL value '{}' is not ASCII").format(value))
+
+            # Build QR URL
+            qr_url = "{}?{}".format(
+                qr_base_url,
+                urlencode(qr_values, encoding="utf-8"),
+            )
+
+            record.verifactu_qr_url = qr_url
+
+    def _compute_verifactu_qr(self):
+        # If qrcode module is not available, we can't generate QR codes
+        if not qrcode:
+            _logger.error("qrcode module is not available")
+            return
+        for record in self:
+            if record.state != "posted" or not record.verifactu_enabled:
+                record.verifactu_qr = False
+                continue
+            qr = qrcode.QRCode(
+                border=0, error_correction=qrcode.constants.ERROR_CORRECT_M
+            )
+            qr.add_data(record.verifactu_qr_url)
+            qr.make()
+            img = qr.make_image()
+            with io.BytesIO() as temp:
+                img.save(temp, format="PNG")
+                record.verifactu_qr = base64.b64encode(temp.getvalue())
+
+    def _get_verifactu_qr_values(self):
+        raise NotImplementedError
 
     @api.model
     def _get_verifactu_tax_keys(self):
