@@ -227,7 +227,9 @@ class Mod349(models.Model):
                 original_details = original_details.filtered(
                     lambda d: d.report_id == report
                 )
-                origin_amount = sum(original_details.mapped("amount_untaxed"))
+                origin_amount = (
+                    original_details.partner_record_id.total_operation_amount
+                )
                 period_type = report.period_type
                 year = str(report.year)
                 # If there are intermediate periods between the original
@@ -279,9 +281,9 @@ class Mod349(models.Model):
                     period_type = month
             key = (partner, op_key, period_type, year)
             key_vals = data.setdefault(
-                key, {"original_amount": 0, "refund_details": refund_detail_obj}
+                key,
+                {"original_amount": origin_amount, "refund_details": refund_detail_obj},
             )
-            key_vals["original_amount"] += origin_amount
             key_vals["refund_details"] += refund_details
         for key, key_vals in data.items():
             partner, op_key, period_type, year = key
