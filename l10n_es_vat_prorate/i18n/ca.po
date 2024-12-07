@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-04 15:35+0000\n"
-"Last-Translator: BrunoBailo <bruno.bailo@qubiq.es>\n"
+"PO-Revision-Date: 2024-12-07 10:06+0000\n"
+"Last-Translator: QuiJoQuim <quim.rebull@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,help:l10n_es_vat_prorate.field_account_tax__prorate_account_ids
@@ -99,7 +99,7 @@ msgstr ""
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company__prorrate_investment_account_id
 msgid "Prorrate Investment Account"
-msgstr ""
+msgstr "Compte d'inversió prorratejada"
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model,name:l10n_es_vat_prorate.model_account_tax
