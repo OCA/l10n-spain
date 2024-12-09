@@ -17,6 +17,17 @@ class AccountMoveLine(models.Model):
             res[tax]["deductible_amount"] -= self.balance * sign
         return result
 
+    def _prepare_vat_prorate_key(self):
+        self.ensure_one()
+        return {
+            "vat_prorate": True,
+            "account_id": self.company_id._get_tax_prorrate_account_map().get(
+                self.account_id.account_type
+            )
+            or self.account_id.id,
+            "analytic_distribution": self.analytic_distribution,
+        }
+
     def _compute_all_tax(self):
         """After getting normal taxes dict that is dumped into this field, we loop
         into it to check if any of them applies VAT prorate, and if it's the case,
@@ -52,16 +63,7 @@ class AccountMoveLine(models.Model):
                         new_vals[field] -= tax_vals[field]
                     new_vals["vat_prorate"] = True
                     new_key = dict(tax_key)
-                    new_key.update(
-                        {
-                            "vat_prorate": True,
-                            "account_id": line.company_id._get_tax_prorrate_account_map().get(
-                                line.account_id.account_type
-                            )
-                            or line.account_id.id,
-                            "analytic_distribution": line.analytic_distribution,
-                        }
-                    )
+                    new_key.update(line._prepare_vat_prorate_key())
                     new_key = frozendict(new_key)
                     if prorate_tax_list.get(new_key):
                         for field in {"amount_currency", "balance"}:
