@@ -15,6 +15,6 @@ oficina contable, el órgano gestor y la unidad tramitadora, para que
 llegue correctamente a su destino. La administración le proporcionará
 estos datos.
 
-Informacion sobre el formato:
+Información sobre el formato:
 
 - <https://www.facturae.gob.es/formato/Versiones/Esquema_castellano_v3_2_x_06_06_2017_unificado.pdf>
