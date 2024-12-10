@@ -202,7 +202,7 @@
                     <filter
                         name="sii_not_sent"
                         string="SII not sent"
-                        domain="[('aeat_state', '=', 'not_sent'), ('date', '>=', '2017-01-01')]"
+                        domain="[('aeat_state', '=', 'not_sent'), ('sii_enabled', '=', True), ('date', '>=', '2017-01-01')]"
                         help="Never sent to SII"
                     />
                     <filter
