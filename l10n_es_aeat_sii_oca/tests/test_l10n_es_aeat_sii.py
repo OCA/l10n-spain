@@ -186,6 +186,25 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             [("sii_wsdl_out", "!=", False)]
         )
 
+    def test_invoice_search_sii_enabled(self):
+        domain_base = [("id", "=", self.invoice.id)]
+        domain_ok = domain_base + [("sii_enabled", "=", True)]
+        items = self.env["account.move"].search(domain_ok)
+        self.assertIn(self.invoice, items)
+        domain_ko_1 = domain_base + [("sii_enabled", "=", False)]
+        items = self.env["account.move"].search(domain_ko_1)
+        self.assertNotIn(self.invoice, items)
+        domain_ko_2 = domain_base + [("sii_enabled", "!=", True)]
+        items = self.env["account.move"].search(domain_ko_2)
+        self.assertNotIn(self.invoice, items)
+        self.invoice.journal_id.sii_enabled = False
+        items = self.env["account.move"].search(domain_ok)
+        self.assertNotIn(self.invoice, items)
+        items = self.env["account.move"].search(domain_ko_1)
+        self.assertIn(self.invoice, items)
+        items = self.env["account.move"].search(domain_ko_2)
+        self.assertIn(self.invoice, items)
+
     def test_intracomunitary_customer_extracomunitary_delivery(self):
         """Comprobar venta a un cliente intracomunitario enviada al extranjero.
 
