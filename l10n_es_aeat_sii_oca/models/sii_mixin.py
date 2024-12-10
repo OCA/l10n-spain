@@ -88,6 +88,7 @@ class SiiMixin(models.AbstractModel):
     sii_enabled = fields.Boolean(
         string="Enable SII",
         compute="_compute_sii_enabled",
+        search="_search_sii_enabled",
     )
     sii_macrodata = fields.Boolean(
         string="MacroData",
@@ -150,6 +151,16 @@ class SiiMixin(models.AbstractModel):
 
     def _compute_sii_enabled(self):
         raise NotImplementedError
+
+    @api.model
+    def _is_unsupported_search_operator(self, operator):
+        return operator not in ("=", "!=")
+
+    @api.model
+    def _search_sii_enabled(self, operator, value):
+        if self._is_unsupported_search_operator(operator):
+            raise ValueError(_("Unsupported search operator"))
+        return [("company_id.sii_enabled", operator, value)]
 
     def _compute_macrodata(self):
         for document in self:

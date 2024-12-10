@@ -17,6 +17,7 @@ import logging
 
 from odoo import _, api, exceptions, fields, models
 from odoo.modules.registry import Registry
+from odoo.osv.expression import AND, OR
 
 SII_VALID_INVOICE_STATES = ["posted"]
 _logger = logging.getLogger(__name__)
@@ -809,6 +810,23 @@ class AccountMove(models.Model):
                 ) or not invoice.fiscal_position_id
             else:
                 invoice.sii_enabled = False
+
+    @api.model
+    def _search_sii_enabled(self, operator, value):
+        domain = super()._search_sii_enabled(operator, value)
+        invoice_types = self.get_sale_types() + self.get_purchase_types()
+        condition_1 = [("journal_id.sii_enabled", operator, value)]
+        condition_2 = [("fiscal_position_id.aeat_active", operator, value)]
+        search_ko = (operator == "=" and not value) or (operator == "!=" and value)
+        exp_condition = OR if search_ko else AND
+        if not search_ko:
+            condition_2 = OR([condition_2, [("fiscal_position_id", "=", False)]])
+        return AND(
+            [
+                [("move_type", "in", invoice_types)],
+                exp_condition([domain, exp_condition([condition_1, condition_2])]),
+            ]
+        )
 
     def _reverse_moves(self, default_values_list=None, cancel=False):
         # OVERRIDE
