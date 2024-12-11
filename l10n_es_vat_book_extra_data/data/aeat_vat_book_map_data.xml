@@ -5,7 +5,11 @@
             (4, ref('l10n_es_extra_data.account_tax_template_s_iva5s')),
             (4, ref('l10n_es_extra_data.account_tax_template_s_iva5_a')),
             (4, ref('l10n_es_extra_data.account_tax_template_s_iva0_a')),
-            (4, ref('l10n_es_extra_data.account_tax_template_s_iva0s')),]"/>
+            (4, ref('l10n_es_extra_data.account_tax_template_s_iva0s')),
+            (4, ref('l10n_es_extra_data.account_tax_template_s_iva7-5s')),
+            (4, ref('l10n_es_extra_data.account_tax_template_s_iva7-5b')),
+            (4, ref('l10n_es_extra_data.account_tax_template_s_iva2s')),
+            (4, ref('l10n_es_extra_data.account_tax_template_s_iva2b')),]"/>
     </record>
     <record id="l10n_es_vat_book.aeat_vat_book_map_line_p_iva" model="aeat.vat.book.map.line">
         <field name="tax_tmpl_ids" eval="[
@@ -16,19 +20,53 @@
             (4, ref('l10n_es_extra_data.account_tax_template_p_iva0_ic_a_1')),
             (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_ic_sc_1')),
             (4, ref('l10n_es_extra_data.account_tax_template_p_iva0_ic_sc_1')),
-            (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_isc_1')),]"/>
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_isc_1')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva2_bc')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva2_sc')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva7-5_bc')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva7-5_sc')),
+            (4, ref('l10n_es_extra_data.account_tax_template_s_iva7-5s')),
+            (4, ref('l10n_es_extra_data.account_tax_template_s_iva7-5b')),
+            (4, ref('l10n_es_extra_data.account_tax_template_s_iva2s')),
+            (4, ref('l10n_es_extra_data.account_tax_template_s_iva2b')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva75_ic_sc_1')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva75_ic_sc_2')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva7-5_ic_sc')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva7-5_ic_bc_1')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva7-5_ic_bc_2')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva7-5_ic_bc')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva2_ic_bc1')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva2_ic_bc_2')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva2_ic_bc')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva2_ic_sc1')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva2_ic_sc_2')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva2_ic_sc')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva2_ibc')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva2_isc_1')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva2_isc_2')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva2_isc')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva7-5_ibc')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva7-5_isc_1')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva7-5_isc_2')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva7-5_isc')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva7-5_nd')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_iva2_nd')),]"/>
     </record>
 
     <record id="l10n_es_vat_book.aeat_vat_book_map_line_s_req" model="aeat.vat.book.map.line">
         <field name="tax_tmpl_ids" eval="[
             (4, ref('l10n_es_extra_data.account_tax_template_s_req062')),
-            (4, ref('l10n_es_extra_data.account_tax_template_s_req0')),]"/>
+            (4, ref('l10n_es_extra_data.account_tax_template_s_req0')),
+            (4, ref('l10n_es_extra_data.account_tax_template_s_req026')),
+            (4, ref('l10n_es_extra_data.account_tax_template_s_req1')),]"/>
     </record>
 
     <record id="l10n_es_vat_book.aeat_vat_book_map_line_p_req" model="aeat.vat.book.map.line">
         <field name="tax_tmpl_ids" eval="[
             (4, ref('l10n_es_extra_data.account_tax_template_p_req062')),
-            (4, ref('l10n_es_extra_data.account_tax_template_p_req0')),]"/>
+            (4, ref('l10n_es_extra_data.account_tax_template_p_req0')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_req026')),
+            (4, ref('l10n_es_extra_data.account_tax_template_p_req1')),]]"/>
     </record>
 
 </odoo>
