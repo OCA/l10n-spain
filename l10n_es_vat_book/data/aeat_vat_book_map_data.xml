@@ -107,14 +107,12 @@
             (4, ref('l10n_es.account_tax_template_p_iva7-5_isc')),
             (4, ref('l10n_es.account_tax_template_p_iva7-5_bc')),
             (4, ref('l10n_es.account_tax_template_p_iva7-5_sc')),
-            (4, ref('l10n_es.account_tax_template_p_iva7-5_nd')),
             (4, ref('l10n_es.account_tax_template_p_iva2_ic_bc')),
             (4, ref('l10n_es.account_tax_template_p_iva2_ic_sc')),
             (4, ref('l10n_es.account_tax_template_p_iva2_ibc')),
             (4, ref('l10n_es.account_tax_template_p_iva2_isc')),
             (4, ref('l10n_es.account_tax_template_p_iva2_bc')),
             (4, ref('l10n_es.account_tax_template_p_iva2_sc')),
-            (4, ref('l10n_es.account_tax_template_p_iva2_nd')),
         ]"
         />
     </record>
@@ -131,7 +129,10 @@
             eval="[
             (4, ref('l10n_es.account_tax_template_p_iva0_nd')),
             (4, ref('l10n_es.account_tax_template_p_iva10_nd')),
+            (4, ref('l10n_es.account_tax_template_p_iva7-5_nd')),
+            (4, ref('l10n_es.account_tax_template_p_iva5_nd')),
             (4, ref('l10n_es.account_tax_template_p_iva4_nd')),
+            (4, ref('l10n_es.account_tax_template_p_iva2_nd')),
         ]"
         />
     </record>
