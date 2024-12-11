@@ -23,11 +23,8 @@ class VatNumberXlsx(models.AbstractModel):
 
     @ormcache("self.env")
     def _get_undeductible_taxes(self, book):
-        tax_xmlid = self.env.ref("l10n_es_vat_book.p_iva_nd")
-        tax_id = book.company_id._get_tax_id_from_xmlid(tax_xmlid.name)
-        if tax_id:
-            return self.env["account.tax"].browse(tax_id)
-        return self.env["account.tax"]
+        map_line = self.env.ref("l10n_es_vat_book.aeat_vat_book_map_line_p_iva_nd")
+        return map_line.get_taxes_for_company(book.company_id)
 
     def _get_vat_book_map_lines(self, book_type):
         return self.env["aeat.vat.book.map.line"].search(
