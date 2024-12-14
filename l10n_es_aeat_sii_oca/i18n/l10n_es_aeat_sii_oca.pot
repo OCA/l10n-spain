@@ -190,8 +190,8 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_partner__sii_simplified_invoice
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_users__sii_simplified_invoice
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_partner__aeat_simplified_invoice
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_users__aeat_simplified_invoice
 msgid ""
 "Checking this mark, invoices done to this partner will be sent to SII as "
 "simplified invoices."
@@ -318,7 +318,7 @@ msgid "Enable SII"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_fiscal_position__sii_active
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_fiscal_position__aeat_active
 msgid "Enable SII for this fiscal position?"
 msgstr ""
 
@@ -641,7 +641,7 @@ msgid "SII"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_fiscal_position__sii_active
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_fiscal_position__aeat_active
 msgid "SII Active"
 msgstr ""
 
@@ -899,8 +899,8 @@ msgid "Sii Refund Specific Invoice Type"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_partner__sii_simplified_invoice
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_users__sii_simplified_invoice
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_partner__aeat_simplified_invoice
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_users__aeat_simplified_invoice
 msgid "Simplified invoices in SII?"
 msgstr ""
 

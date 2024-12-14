@@ -34,14 +34,14 @@ class PosOrder(models.Model):
         "company_id",
         "company_id.sii_enabled",
         "fiscal_position_id",
-        "fiscal_position_id.sii_active",
+        "fiscal_position_id.aeat_active",
     )
     def _compute_sii_enabled(self):
         """Compute if the order is enabled for the SII"""
         for order in self:
             if order.company_id.sii_enabled:
                 order.sii_enabled = (
-                    order.fiscal_position_id and order.fiscal_position_id.sii_active
+                    order.fiscal_position_id and order.fiscal_position_id.aeat_active
                 ) or not order.fiscal_position_id
             else:
                 order.sii_enabled = False
@@ -62,10 +62,10 @@ class PosOrder(models.Model):
     def _get_valid_document_states(self):
         return SII_VALID_POS_ORDER_STATES
 
-    def _sii_get_partner(self):
+    def _aeat_get_partner(self):
         return self.env["res.partner"].new({"name": "Cliente contado"})
 
-    def _is_sii_simplified_invoice(self):
+    def _is_aeat_simplified_invoice(self):
         return True
 
     def _get_mapping_key(self):
@@ -104,7 +104,7 @@ class PosOrder(models.Model):
                 line.order_id.pricelist_id.currency_id or self.session_id.currency_id,
                 line.qty,
                 product=line.product_id,
-                partner=self._sii_get_partner(),
+                partner=self._aeat_get_partner(),
             )
             for line_tax in line_taxes["taxes"]:
                 tax = self.env["account.tax"].browse(line_tax["id"])
@@ -124,7 +124,7 @@ class PosOrder(models.Model):
         :return: REQ tax (or empty recordset) linked to the provided tax.
         """
         self.ensure_one()
-        taxes_req = self._get_sii_taxes_map(["RE"], self._get_document_fiscal_date())
+        taxes_req = self._get_aeat_taxes_map(["RE"], self._get_document_fiscal_date())
         re_lines = self.lines.filtered(
             lambda x: tax in x.tax_ids_after_fiscal_position
             and x.tax_ids_after_fiscal_position & taxes_req
@@ -140,8 +140,8 @@ class PosOrder(models.Model):
     def _get_sii_invoice_type(self):
         return "R5" if self.amount_total < 0.0 else "F2"
 
-    def _get_sii_invoice_dict_out(self, cancel=False):
-        inv_dict = super()._get_sii_invoice_dict_out(cancel=cancel)
+    def _get_aeat_invoice_dict_out(self, cancel=False):
+        inv_dict = super()._get_aeat_invoice_dict_out(cancel=cancel)
         if self.amount_total < 0.0:
             inv_dict["FacturaExpedida"]["TipoRectificativa"] = "I"
         return inv_dict

@@ -34,7 +34,7 @@ class TestL10nEsAeatSiiBaseOss(TestL10nEsAeatSiiBase):
         )
 
     def test_invoice_sii_oss(self):
-        self.partner.sii_simplified_invoice = True
+        self.partner.aeat_simplified_invoice = True
         invoice_form = Form(
             self.env["account.move"].with_context(default_move_type="out_invoice")
         )
@@ -48,6 +48,6 @@ class TestL10nEsAeatSiiBaseOss(TestL10nEsAeatSiiBase):
             line_form.tax_ids.clear()
             line_form.tax_ids.add(self.tax_fr_20)
         invoice = invoice_form.save()
-        res = invoice._get_sii_invoice_dict()
+        res = invoice._get_aeat_invoice_dict()
         res_issue = res["FacturaExpedida"]
         self.assertEqual(res_issue["ImporteTotal"], 100)

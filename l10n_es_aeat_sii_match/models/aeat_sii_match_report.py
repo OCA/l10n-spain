@@ -371,9 +371,9 @@ class SiiMatchReport(models.Model):
             if sii_match_report.invoice_type == "in":
                 mapping_key = "in_invoice"
             serv = (
-                self.env["account.move"].search([], limit=1)._connect_sii(mapping_key)
+                self.env["account.move"].search([], limit=1)._connect_aeat(mapping_key)
             )
-            header = sii_match_report._get_sii_header()
+            header = sii_match_report._get_aeat_header()
             match_vals = {}
             summary = {}
             try:
@@ -426,7 +426,7 @@ class SiiMatchReport(models.Model):
                 new_cr.close()
                 raise
 
-    def _get_sii_header(self):
+    def _get_aeat_header(self):
         """Builds SII send header
 
         :return Dict with header data depending on cancellation

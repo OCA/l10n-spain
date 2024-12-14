@@ -18,7 +18,7 @@
                             ('sii_csv', '=', False)]}"
                 />
             </field>
-            <field name="sii_state" position="after">
+            <field name="aeat_state" position="after">
                 <field name="sii_match_state" />
                 <field name="sii_contrast_state" />
             </field>

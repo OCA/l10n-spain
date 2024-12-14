@@ -10,7 +10,7 @@ class ResPartner(models.Model):
     sii_enabled = fields.Boolean(
         compute="_compute_sii_enabled",
     )
-    sii_simplified_invoice = fields.Boolean(
+    aeat_simplified_invoice = fields.Boolean(
         string="Simplified invoices in SII?",
         help="Checking this mark, invoices done to this partner will be "
         "sent to SII as simplified invoices.",
