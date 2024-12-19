@@ -40,14 +40,14 @@ class ProductTemplate(models.Model):
     )
     plastic_tax_weight = fields.Float(
         string="Plastic weight",
-        digits=(16, 4),
+        digits="Stock Weight",
         compute="_compute_plastic_info",
         inverse="_inverse_plastic_info",
         search="_search_plastic_tax_weight",
     )
     plastic_weight_non_recyclable = fields.Float(
         string="Plastic weight non recyclable",
-        digits=(16, 4),
+        digits="Stock Weight",
         compute="_compute_plastic_info",
         inverse="_inverse_plastic_info",
         search="_search_plastic_weight_non_recyclable",
