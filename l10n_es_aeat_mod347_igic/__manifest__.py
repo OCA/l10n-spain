@@ -14,6 +14,6 @@
     "data": [
         "data/tax_code_map_mod347_igic_data.xml",
     ],
-    "maintainers": ["nicolasramos"],
+    "maintainers": ["Christian-RB"],
     "installable": True,
 }
