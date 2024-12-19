@@ -4,7 +4,10 @@
 <odoo>
     <record id="view_picking_form" model="ir.ui.view">
         <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form" />
+        <field
+            name="inherit_id"
+            ref="stock_delivery.view_picking_withcarrier_out_form"
+        />
         <field name="arch" type="xml">
             <xpath expr="//div[@name='tracking']" position="inside">
                 <!-- extra button that is visible outside of "done" to cancel pickups -->
@@ -13,27 +16,19 @@
                     class="fa fa-arrow-right oe_link"
                     name="cancel_shipment"
                     string="Cancel"
-                    attrs="{'invisible':[
-                        '|',
-                        '|',
-                        '|',
-                        '|',
-                        ('carrier_tracking_ref','=',False),
-                        ('delivery_type','in', ['fixed', 'base_on_rule']),
-                        ('delivery_type','=',False),
-                        ('delivery_type','!=','gls_asm'),
-                        ('state','=','done')]
-                    }"
+                    invisible="not carrier_tracking_ref or delivery_type != 'gls_asm' or state == 'done'"
                 />
             </xpath>
             <xpath expr="//div[@name='tracking']" position="after">
                 <field
                     name="gls_asm_public_tracking_ref"
-                    attrs="{'invisible':[('gls_asm_public_tracking_ref', '!=', 'False')]}"
+                    invisible="not gls_asm_public_tracking_ref"
+                    readonly="True"
                 />
                 <field
                     name="gls_asm_picking_ref"
-                    attrs="{'invisible':[('gls_asm_picking_ref', '=', False)]}"
+                    invisible="not gls_asm_picking_ref"
+                    readonly="True"
                 />
             </xpath>
             <xpath expr="//header" position='inside'>
@@ -41,13 +36,13 @@
                     name="gls_asm_get_label"
                     string="GLS Label"
                     type="object"
-                    attrs="{'invisible':['|', ('gls_asm_public_tracking_ref', '=', False), ('state', '!=', 'done')]}"
+                    invisible="not gls_asm_public_tracking_ref or state != 'done'"
                 />
                 <button
                     name="gls_asm_send_pickup"
                     string="Send pick-up"
                     type="object"
-                    attrs="{'invisible':['|', '|', ('gls_carrier_is_pickup_service', '=', False), ('carrier_tracking_ref', '!=', False), ('state', 'in', ['draft','cancel'])]}"
+                    invisible="not gls_carrier_is_pickup_service or carrier_tracking_ref or state in ['draft','cancel']"
                 />
                 <field name="gls_carrier_is_pickup_service" invisible="1" />
             </xpath>
@@ -61,44 +56,24 @@
         />
         <field name="arch" type="xml">
             <xpath expr="//group[@name='delivery_tracking']" position="attributes">
-                <attribute name="attrs">{
-                    'invisible': [
-                        '|',
-                        ('carrier_id', '=', False),
-                        '|',
-                        '&amp;',
-                        ('gls_carrier_is_pickup_service', '=', False),
-                        ('state', '!=', 'done'),
-                        '&amp;',
-                        ('gls_carrier_is_pickup_service', '=', True),
-                        ('state', '=', 'draft')
-                    ]
-                }</attribute>
+                <attribute name="invisible">
+                    not carrier_id or not gls_carrier_is_pickup_service and state != 'done' or gls_carrier_is_pickup_service and state == 'draft'
+                </attribute>
             </xpath>
             <xpath expr="//button[@name='tracking_state_update']" position="attributes">
-                <attribute name="attrs">{
-                    'invisible': [('delivery_type', 'in', ['base_one_rule', 'fixed'])]
-                }</attribute>
+                <attribute
+                    name="invisible"
+                >delivery_type in ['base_one_rule', 'fixed']</attribute>
             </xpath>
             <xpath expr="//field[@name='tracking_state']" position="after">
                 <field name="gls_carrier_is_pickup_service" invisible="1" />
                 <field
                     name="gls_pickup_state"
-                    attrs="{
-                    'invisible': [
-                        ('gls_carrier_is_pickup_service', '=', False)
-                    ]
-                }"
+                    invisible="not gls_carrier_is_pickup_service"
                 />
                 <field
                     name="gls_shipment_state"
-                    attrs="{
-                    'invisible': [
-                        '|',
-                        ('gls_carrier_is_pickup_service', '=', True),
-                        ('delivery_type', '!=', 'gls_asm')
-                    ]
-                }"
+                    invisible="gls_carrier_is_pickup_service or delivery_type != 'gls_asm'"
                 />
             </xpath>
         </field>
@@ -111,13 +86,7 @@
                 <field
                     name="gls_shipping_notes"
                     placeholder="Notas para GLS"
-                    attrs="{
-                    'invisible': [
-                        '|',
-                        ('gls_carrier_is_pickup_service', '=', True),
-                        ('delivery_type', '!=', 'gls_asm')
-                    ]
-                }"
+                    invisible="gls_carrier_is_pickup_service or delivery_type != 'gls_asm'"
                 />
             </xpath>
         </field>
