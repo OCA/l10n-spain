@@ -151,9 +151,7 @@ class L10nEsAeatmod592LineMixin(models.AbstractModel):
     @api.depends("entry_number", "product_key", "kgs", "no_recycling_kgs")
     def _compute_error_text(self):
         """Checks if all line fields are filled."""
-        precision = self.env["decimal.precision"].precision_get(
-            "Product Unit of Measure"
-        )
+        precision = self.env["decimal.precision"].precision_get("Stock Weight")
         for record in self:
             errors = []
             if not record.entry_number:
