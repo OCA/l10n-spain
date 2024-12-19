@@ -223,7 +223,8 @@ GLS_SHIPMENT_ERROR_CODES = {
     ),
     -57: (
         "Error, EuroEstandar/EBP service:"
-        "reported a country that is not included on the service (<Destinatario>.<Pais>)."
+        "reported a country that is not included "
+        "on the service (<Destinatario>.<Pais>)."
     ),
     -69: "Error, I can not Channeling, wrong consignee zipcode.",
     -70: "Error, The order number already exists to this date and customer code.",

@@ -441,9 +441,10 @@ class DeliveryCarrier(models.Model):
             if picking.delivery_state != "shipping_recorded_in_carrier":
                 raise UserError(
                     _(
-                        "Unable to cancel GLS Expedition with reference %(ref)s "
-                        + "as it is in state %(state)s.\nPlease manage the cancellation "
-                        + "of this shipment/pickup with GLS via email."
+                        "Unable to cancel GLS Expedition with reference "
+                        "%(ref)s as it is in state %(state)s.\n"
+                        "Please manage the cancellation of this "
+                        "shipment/pickup with GLS via email."
                     )
                     % {
                         "ref": picking.carrier_tracking_ref,
