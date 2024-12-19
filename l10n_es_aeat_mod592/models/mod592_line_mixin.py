@@ -41,13 +41,13 @@ class L10nEsAeatmod592LineMixin(models.AbstractModel):
     )
     kgs = fields.Float(
         string="Weight",
-        digits=(16, 4),
+        digits="Stock Weight",
         compute="_compute_kgs",
         store=True,
     )
     no_recycling_kgs = fields.Float(
         string="Weight non reclycable",
-        digits=(16, 4),
+        digits="Stock Weight",
         compute="_compute_no_recycling_kgs",
         store=True,
     )
@@ -61,7 +61,7 @@ class L10nEsAeatmod592LineMixin(models.AbstractModel):
     product_uom_qty = fields.Float(
         compute="_compute_product_uom_qty",
         store=True,
-        digits=(16, 4),
+        digits="Product Unit of Measure",
     )
     picking_id = fields.Many2one(
         comodel_name="stock.picking", related="stock_move_id.picking_id"
