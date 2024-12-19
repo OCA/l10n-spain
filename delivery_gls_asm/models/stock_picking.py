@@ -79,7 +79,7 @@ class StockPicking(models.Model):
         if self.delivery_type != "gls_asm" or not self.gls_asm_public_tracking_ref:
             return
         pdf = self.carrier_id.gls_asm_get_label(self.gls_asm_public_tracking_ref)
-        label_name = "gls_{}.pdf".format(self.gls_asm_public_tracking_ref)
+        label_name = f"gls_{self.gls_asm_public_tracking_ref}.pdf"
         self.message_post(
             body=(_("GLS label for %s") % self.gls_asm_public_tracking_ref),
             attachments=[(label_name, pdf)],
