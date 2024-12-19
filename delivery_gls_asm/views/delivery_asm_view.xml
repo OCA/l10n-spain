@@ -7,27 +7,24 @@
         <field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
         <field name="arch" type="xml">
             <xpath expr="//notebook/page[1]" position='before'>
-                <page
-                    string="GLS Configuration"
-                    attrs="{'invisible': [('delivery_type', '!=', 'gls_asm')]}"
-                >
+                <page string="GLS Configuration" invisible="delivery_type != 'gls_asm'">
                     <group>
                         <group>
                             <field
                                 name="gls_asm_uid"
-                                attrs="{'required': [('delivery_type', '=', 'gls_asm'), ('prod_environment', '!=', False)]}"
+                                required="delivery_type == 'gls_asm' and prod_environment"
                             />
                             <field
                                 name="gls_asm_service"
-                                attrs="{'required': [('delivery_type', '=', 'gls_asm'), ('prod_environment', '!=', False)]}"
+                                required="delivery_type == 'gls_asm' and prod_environment"
                             />
                             <field
                                 name="gls_asm_shiptime"
-                                attrs="{'required': [('delivery_type', '=', 'gls_asm'), ('prod_environment', '!=', False)]}"
+                                required="delivery_type == 'gls_asm' and prod_environment"
                             />
                             <field
                                 name="gls_asm_postage_type"
-                                attrs="{'required': [('delivery_type', '=', 'gls_asm'), ('prod_environment', '!=', False)]}"
+                                required="delivery_type == 'gls_asm' and prod_environment"
                             />
                             <field name="gls_asm_cash_on_delivery" />
                             <field name="gls_asm_with_return" />
@@ -42,7 +39,7 @@
                     type="object"
                     class="oe_stat_button"
                     icon="fa-file-text-o"
-                    attrs="{'invisible': [('delivery_type', '!=', 'gls_asm')]}"
+                    invisible="delivery_type != 'gls_asm'"
                 />
             </xpath>
         </field>
