@@ -15,7 +15,7 @@ try:
     from suds.client import Client
     from suds.sax.text import Raw
     from suds.sudsobject import asdict
-except (ImportError, IOError) as err:
+except (OSError, ImportError) as err:
     _logger.debug(err)
 
 
@@ -33,7 +33,7 @@ class GlsAsmRequest:
             os.path.dirname(os.path.realpath(__file__)), "../api/gls_asm_api.wsdl"
         )
         self.uidcustomer = uidcustomer or ""
-        self.client = Client("file:{}".format(wsdl_path), timeout=90)
+        self.client = Client(f"file:{wsdl_path}", timeout=90)
 
     def _recursive_asdict(self, suds_object):
         """As suds response is an special object, we convert it into
@@ -63,9 +63,7 @@ class GlsAsmRequest:
                        xmlns="http://www.asmred.com/">
                 <Envio referencia="{referencia}" />
             </Servicios>
-        """.format(
-            **kwargs
-        )
+        """.format(**kwargs)
 
     def _prepare_cancel_pickup_docin(self, **kwargs):
         return """
@@ -73,9 +71,7 @@ class GlsAsmRequest:
                        xmlns="http://www.asmred.com/">
                 <Recogida referencia="{referencia}" />
             </Servicios>
-        """.format(
-            **kwargs
-        )
+        """.format(**kwargs)
 
     def _prepare_send_shipping_docin(self, **kwargs):
         """ASM API is not very standard. Prepare parameters to pass them raw in
@@ -156,9 +152,7 @@ class GlsAsmRequest:
                     </Cliente>
                 </Envio>
             </Servicios>
-        """.format(
-            **kwargs
-        )
+        """.format(**kwargs)
 
     def _prepare_send_pickup_docin(self, **kwargs):
         """ASM API is not very standard. Prepare parameters to pass them raw in
@@ -212,9 +206,7 @@ class GlsAsmRequest:
                     </Referencias>
                 </Recogida>
             </Servicios>
-        """.format(
-            **kwargs
-        )
+        """.format(**kwargs)
 
     def _send_shipping(self, vals):
         """Create new shipment
@@ -321,13 +313,11 @@ class GlsAsmRequest:
 
     def _get_pickup_info(self, reference=False):
         xml = Raw(
-            """
-            <Servicios uidcliente="{uidcustomer}" xmlns="http://www.asmred.com/">
-                <Recogida codrecogida="{codrecogida}" />
+            f"""
+            <Servicios uidcliente="{self.uidcustomer}" xmlns="http://www.asmred.com/">
+                <Recogida codrecogida="{reference}" />
             </Servicios>
-        """.format(
-                uidcustomer=self.uidcustomer, codrecogida=reference
-            )
+        """
         )
         res = self.client.service.Tracking(docIn=xml)
         _logger.debug(res)
@@ -400,8 +390,8 @@ class GlsAsmRequest:
             _logger.debug(response)
         except Exception as e:
             _logger.error(
-                "No response from server canceling GLS ref {}.\n"
-                "Traceback:\n{}".format(reference, e)
+                f"No response from server canceling GLS ref {reference}.\n"
+                f"Traceback:\n{e}"
             )
             return {}
         response = self._recursive_asdict(response.Servicios.Envio.Resultado)
@@ -433,8 +423,8 @@ class GlsAsmRequest:
             _logger.debug(response)
         except Exception as e:
             _logger.error(
-                "No response from server canceling GLS ref {}.\n"
-                "Traceback:\n{}".format(reference, e)
+                f"No response from server canceling GLS ref {reference}.\n"
+                f"Traceback:\n{e}"
             )
             return {}
         response = self._recursive_asdict(response.Servicios.Recogida.Resultado)
