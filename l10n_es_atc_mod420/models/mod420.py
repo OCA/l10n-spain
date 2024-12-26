@@ -221,7 +221,7 @@ class L10nEsAtcMod420Report(models.Model):
 
     def button_modelo_sobre(self):
         self.ensure_one()
-        url = str("/l10n_es_atc_mod420/static/src/pdf/caratula_sobre_420.pdf")
+        url = "/l10n_es_atc_mod420/static/src/pdf/caratula_sobre_420.pdf"
         return {
             "type": "ir.actions.act_url",
             "url": url,
