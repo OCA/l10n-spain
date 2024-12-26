@@ -41,101 +41,56 @@
                 <group
                     string="Resultado"
                     name="group_result"
-                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    invisible="state == 'draft'"
                     col="3"
                 >
                     <group>
-                        <field
-                            name="casilla_23"
-                            widget="monetary"
-                            options="{'currency_field': 'currency_id'}"
-                        />
-                        <field
-                            name="casilla_24"
-                            widget="monetary"
-                            options="{'currency_field': 'currency_id'}"
-                        />
-                        <field
-                            name="total_devengado"
-                            widget="monetary"
-                            options="{'currency_field': 'currency_id'}"
-                        />
+                        <field name="casilla_23" readonly="state == 'done'" />
+                        <field name="casilla_24" readonly="state == 'done'" />
+                        <field name="total_devengado" />
                     </group>
                     <group col="3">
-                        <field
-                            name="casilla_36"
-                            widget="monetary"
-                            options="{'currency_field': 'currency_id'}"
-                        />
-                        <field
-                            name="casilla_37"
-                            widget="monetary"
-                            options="{'currency_field': 'currency_id'}"
-                        />
-                        <field
-                            name="casilla_38"
-                            widget="monetary"
-                            options="{'currency_field': 'currency_id'}"
-                        />
-                        <field
-                            name="casilla_39"
-                            widget="monetary"
-                            options="{'currency_field': 'currency_id'}"
-                        />
-                        <field
-                            name="total_deducir"
-                            widget="monetary"
-                            options="{'currency_field': 'currency_id'}"
-                        />
+                        <field name="casilla_36" readonly="state == 'done'" />
+                        <field name="casilla_37" readonly="state == 'done'" />
+                        <field name="casilla_38" readonly="state == 'done'" />
+                        <field name="casilla_39" readonly="state == 'done'" />
+                        <field name="total_deducir" />
                     </group>
                     <group col="3">
-                        <field
-                            name="diferencia"
-                            widget="monetary"
-                            options="{'currency_field': 'currency_id'}"
-                        />
+                        <field name="diferencia" />
                         <field
                             name="regularizacion_cuotas"
-                            widget="monetary"
-                            options="{'currency_field': 'currency_id'}"
+                            readonly="state == 'done'"
                         />
-                        <field
-                            name="cuotas_compensar"
-                            widget="monetary"
-                            options="{'currency_field': 'currency_id'}"
-                        />
-                        <field
-                            name="a_deducir"
-                            widget="monetary"
-                            options="{'currency_field': 'currency_id'}"
-                        />
+                        <field name="cuotas_compensar" readonly="state == 'done'" />
+                        <field name="a_deducir" readonly="state == 'done'" />
                     </group>
                 </group>
 
                 <group
                     class="oe_subtotal_footer oe_right"
-                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    invisible="state == 'draft'"
                     colspan="2"
                 >
                     <field
                         name="resultado_autoliquidacion"
                         class="oe_subtotal_footer_separator"
-                        widget="monetary"
-                        options="{'currency_field': 'currency_id'}"
                     />
                     <field name="result_type" />
                     <field name="company_partner_id" invisible="1" />
                     <field
                         name="bank_account_id"
                         domain="[('partner_id', '=', company_partner_id)]"
-                        attrs="{'invisible': [('result_type', 'not in', ('D', 'B', 'I'))], 'required': [('result_type', '=', 'D')]}"
+                        invisible="result_type not in ('D', 'B', 'I')"
+                        required="result_type == 'D'"
+                        readonly="state == 'done'"
                     />
                 </group>
                 <field
                     name="tax_line_ids"
                     nolabel="1"
                     readonly="1"
-                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    invisible="state == 'draft'"
                 />
 
             </group>
