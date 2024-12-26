@@ -9,6 +9,7 @@
 
 import logging
 
+from odoo.tests import tagged
 from odoo.tests.common import Form
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
@@ -18,6 +19,7 @@ from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
 _logger = logging.getLogger("atc")
 
 
+@tagged("post_install", "-at_install")
 class TestL10nEsAtcMod415(TestL10nEsAeatModBase):
     @classmethod
     def _chart_of_accounts_create(cls):
@@ -25,13 +27,13 @@ class TestL10nEsAtcMod415(TestL10nEsAeatModBase):
         cls.company = cls.env["res.company"].create(
             {"name": "Canary test company", "currency_id": cls.env.ref("base.EUR").id}
         )
-        cls.chart = cls.env.ref("l10n_es_igic.account_chart_template_pymes_canary")
+        cls.env["account.chart.template"].try_loading(
+            "es_pymes_canary", company=cls.company, install_demo=False
+        )
         cls.env.ref("base.group_multi_company").write({"users": [(4, cls.env.uid)]})
         cls.env.user.write(
             {"company_ids": [(4, cls.company.id)], "company_id": cls.company.id}
         )
-        chart = cls.env.ref("l10n_es_igic.account_chart_template_pymes_canary")
-        chart.try_loading()
         cls.with_context(company_id=cls.company.id)
         return True
 
@@ -171,7 +173,7 @@ class TestL10nEsAtcMod415(TestL10nEsAeatModBase):
         )
         for vals in partner_record_vals:
             partner_record = self.model415.partner_record_ids.filtered(
-                lambda x: x.partner_id == vals[1]
+                lambda x, vals=vals: x.partner_id == vals[1]
             )
             self.assertEqual(partner_record.operation_key, vals[0])
             self.assertAlmostEqual(partner_record.amount, vals[2])
@@ -201,13 +203,3 @@ class TestL10nEsAtcMod415(TestL10nEsAeatModBase):
         )
         self.assertEqual(partner_record.partner_vat, "B29805314")
         self.assertEqual(partner_record.partner_country_code, "ES")
-        # # Export to BOE
-        # export_to_boe = self.env["l10n.es.aeat.report.export_to_boe"].create(
-        #     {"name": "test_export_to_boe.txt"}
-        # )
-        # export_config_xml_ids = [
-        #     "l10n_es_atc_mod415.aeat_mod415_main_export_config",
-        # ]
-        # for xml_id in export_config_xml_ids:
-        #     export_config = self.env.ref(xml_id)
-        #     self.assertTrue(export_to_boe._export_config(self.model415, export_config))

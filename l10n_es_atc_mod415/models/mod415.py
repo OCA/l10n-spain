@@ -61,7 +61,7 @@ class L10nEsAtcMod415Report(models.Model):
         partner_record_obj = self.env["l10n.es.atc.mod415.partner_record"]
         partner_obj = self.env["res.partner"]
         map_line = self.env.ref(map_ref)
-        taxes = self._get_taxes(map_line)
+        taxes = map_line.get_taxes_for_company(self.company_id)
         domain = self._account_move_line_domain(taxes)
         if partner_record:
             domain += [("partner_id", "=", partner_record.partner_id.id)]
@@ -162,10 +162,9 @@ class L10nEsAtcMod415Report(models.Model):
         for report in self:
             # Delete previous partner records
             report.partner_record_ids.unlink()
-            with self.env.norecompute():
-                self._create_partner_records("A", KEY_TAX_MAPPING["A"])
-                self._create_partner_records("B", KEY_TAX_MAPPING["B"])
-                self._create_cash_moves()
+            self._create_partner_records("A", KEY_TAX_MAPPING["A"])
+            self._create_partner_records("B", KEY_TAX_MAPPING["B"])
+            self._create_cash_moves()
             self.flush_model()
             report.partner_record_ids.calculate_quarter_totals()
         return True

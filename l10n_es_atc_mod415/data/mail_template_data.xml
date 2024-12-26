@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="1">
-  <record id="email_template_415" model="mail.template">
-    <field name="name">Comprobación datos modelo 415</field>
-    <field
+    <record id="email_template_415" model="mail.template">
+        <field name="name">Comprobación datos modelo 415</field>
+        <field
             name="email_from"
         >{{(user.email and '&quot;%s&quot; &lt;%s&gt;' % (user.name, user.email) or '')}}</field>
-    <field
+        <field
             name="subject"
         >Comprobación datos de modelo 415 año {{object.report_id.year}} de {{user.company_id.name}}</field>
-    <field
+        <field
             name="partner_to"
         >{{object.partner_id.address_get(['invoice'])['invoice']}}</field>
-    <field
+        <field
             name="model_id"
             ref="l10n_es_atc_mod415.model_l10n_es_atc_mod415_partner_record"
         />
-    <field name="auto_delete" eval="True" />
-    <field name="report_template" ref="415_partner" />
-    <field name="report_name">415_details</field>
-    <field name="lang">{{object.partner_id.lang}}</field>
-    <field
+        <field name="auto_delete" eval="True" />
+        <field name="report_template_ids" eval="[(4, ref('415_partner'))]" />
+        <field name="lang">{{object.partner_id.lang}}</field>
+        <field
             name="body_html"
         ><![CDATA[
 <p>Estimado/a <t t-out="object.partner_id.name" />
