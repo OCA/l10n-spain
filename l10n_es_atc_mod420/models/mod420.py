@@ -5,8 +5,6 @@
 
 from odoo import _, api, fields, models
 
-NON_EDITABLE_ON_DONE = {"done": [("readonly", True)]}
-
 
 class L10nEsAtcMod420Report(models.Model):
     _inherit = "l10n.es.aeat.report.tax.mapping"
@@ -20,6 +18,7 @@ class L10nEsAtcMod420Report(models.Model):
     def _default_counterpart_420(self):
         return self.env["account.account"].search(
             [
+                ("company_id", "=", self.env.company.id),
                 ("code", "like", "4757%"),
             ]
         )[:1]
@@ -30,7 +29,7 @@ class L10nEsAtcMod420Report(models.Model):
         related="company_id.partner_id",
         store=True,
     )
-    total_devengado = fields.Float(
+    total_devengado = fields.Monetary(
         string="[25] Total accrued installments",
         readonly=True,
         compute_sudo=True,
@@ -39,55 +38,49 @@ class L10nEsAtcMod420Report(models.Model):
     )
 
     # Cuotas devueltas en regimen de viajeros
-    casilla_23 = fields.Float(
+    casilla_23 = fields.Monetary(
         string="[23] Traveler Base",
         default=0,
-        states=NON_EDITABLE_ON_DONE,
         help="Basis of the fee in the passenger regime made by the subject " "passive",
     )
-    casilla_24 = fields.Float(
+    casilla_24 = fields.Monetary(
         string="[24] Traveler Fees",
         default=0,
-        states=NON_EDITABLE_ON_DONE,
         help="Fee in the passenger regime made by the taxpayer",
     )
-    casilla_36 = fields.Float(
+    casilla_36 = fields.Monetary(
         string="[36] Livestock and fishing quotas",
         default=0,
-        states=NON_EDITABLE_ON_DONE,
         help="Quota of taxpayers covered by the special regime of the "
         "agriculture, Livestock and fishing",
     )
-    casilla_37 = fields.Float(
+    casilla_37 = fields.Monetary(
         string="[37] Quotas Investment goods",
         default=0,
-        states=NON_EDITABLE_ON_DONE,
         help="Quota with positive or negative sign, of the regularization of the "
         "quotas supported by the acquisition or import of goods of "
         "investment",
     )
-    casilla_38 = fields.Float(
+    casilla_38 = fields.Monetary(
         string="[38] Fee Before activity start",
         default=0,
-        states=NON_EDITABLE_ON_DONE,
         help="Quotas supported by the acquisition or importation of goods or "
         "services before the start of business activities or "
         "professionals",
     )
-    casilla_39 = fields.Float(
+    casilla_39 = fields.Monetary(
         string="[39] Pro rata fee",
         default=0,
-        states=NON_EDITABLE_ON_DONE,
         help="Quotas for application of the final percentage of pro rata",
     )
-    total_deducir = fields.Float(
+    total_deducir = fields.Monetary(
         string="[40] Total deductible installments",
         readonly=True,
         compute_sudo=True,
         compute="_compute_total_deducir",
         store=True,
     )
-    diferencia = fields.Float(
+    diferencia = fields.Monetary(
         string="[41] Difference",
         readonly=True,
         compute="_compute_diferencia",
@@ -95,30 +88,27 @@ class L10nEsAtcMod420Report(models.Model):
         help="Difference between the amounts of boxes 25-40, either its "
         "import positive or negative",
     )
-    regularizacion_cuotas = fields.Float(
+    regularizacion_cuotas = fields.Monetary(
         string="[42] Regularization of quotas",
         default=0,
-        states=NON_EDITABLE_ON_DONE,
         help="Amount corresponding to the quotas supported that could not "
         "be deducted and from which it is a debtor to the Treasury "
         "Public",
     )
-    cuotas_compensar = fields.Float(
+    cuotas_compensar = fields.Monetary(
         string="[43] quotas to compensate",
         default=0,
-        states=NON_EDITABLE_ON_DONE,
         help="The installments in favor of the taxpayer from previous periods "
         "pending compensation ",
     )
-    a_deducir = fields.Float(
+    a_deducir = fields.Monetary(
         string="[44] To deduct",
         default=0,
-        states=NON_EDITABLE_ON_DONE,
         help="This box will only be completed in the event of "
         "complementary self-assessment",
     )
 
-    resultado_autoliquidacion = fields.Float(
+    resultado_autoliquidacion = fields.Monetary(
         string="[45] Self-assessment result",
         readonly=True,
         compute="_compute_resultado_autoliquidacion",
@@ -137,7 +127,6 @@ class L10nEsAtcMod420Report(models.Model):
     bank_account_id = fields.Many2one(
         comodel_name="res.partner.bank",
         string="Bank account",
-        states=NON_EDITABLE_ON_DONE,
     )
     counterpart_account_id = fields.Many2one(
         comodel_name="account.account",
@@ -207,7 +196,7 @@ class L10nEsAtcMod420Report(models.Model):
             # Don't raise error, because data is not used
             # raise exceptions.Warning(msg)
             pass
-        return super(L10nEsAtcMod420Report, self).button_confirm()
+        return super().button_confirm()
 
     @api.model
     def _prepare_counterpart_move_line(self, account, debit, credit):

@@ -5,16 +5,19 @@
 
 import logging
 
+from odoo.tests import tagged
+
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
 )
 
-_logger = logging.getLogger("aeat.420")
+_logger = logging.getLogger("atc.420")
 
 
+@tagged("post_install", "-at_install")
 class TestL10nEsAtcMod420Base(TestL10nEsAeatModBase):
     # Set 'debug' attribute to True to easy debug this test
-    # Do not forget to include '--log-handler aeat:DEBUG' in Odoo command line
+    # Do not forget to include '--log-handler atc:DEBUG' in Odoo command line
     debug = False
     taxes_sale = {
         # tax code: (base, tax_amount)
@@ -388,13 +391,13 @@ class TestL10nEsAtcMod420Base(TestL10nEsAeatModBase):
         cls.company = cls.env["res.company"].create(
             {"name": "Canary test company", "currency_id": cls.env.ref("base.EUR").id}
         )
-        cls.chart = cls.env.ref("l10n_es_igic.account_chart_template_pymes_canary")
+        cls.env["account.chart.template"].try_loading(
+            "es_pymes_canary", company=cls.company, install_demo=False
+        )
         cls.env.ref("base.group_multi_company").write({"users": [(4, cls.env.uid)]})
         cls.env.user.write(
             {"company_ids": [(4, cls.company.id)], "company_id": cls.company.id}
         )
-        chart = cls.env.ref("l10n_es_igic.account_chart_template_pymes_canary")
-        chart.try_loading()
         cls.with_context(company_id=cls.company.id)
         return True
 
@@ -439,7 +442,7 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
         for field, result in iter(self.taxes_result.items()):
             _logger.debug("Checking tax line: %s" % field)
             lines = self.model420.tax_line_ids.filtered(
-                lambda x: x.field_number == int(field)
+                lambda x, field=field: x.field_number == int(field)
             )
             self.assertAlmostEqual(
                 sum(lines.mapped("amount")),
