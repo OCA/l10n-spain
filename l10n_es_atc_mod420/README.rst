@@ -17,21 +17,22 @@ ATC Modelo 420
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_atc_mod420
+    :target: https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_atc_mod420
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-16-0/l10n-spain-16-0-l10n_es_atc_mod420
+    :target: https://translation.odoo-community.org/projects/l10n-spain-17-0/l10n-spain-17-0-l10n_es_atc_mod420
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Módulo para la presentación del modelo 420 (IGIC - Autodeclaración) de la
-Agencia Tributaria Canaria.
+Módulo para la presentación del modelo 420 (IGIC - Autodeclaración) de
+la Agencia Tributaria Canaria.
 
-Instrucciones del modelo: https://www3.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/modelos/ref_y_propios/igic/mod420/pdf/instrucciones/420.pdf
+Instrucciones del modelo:
+https://www3.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/modelos/ref_y_propios/igic/mod420/pdf/instrucciones/420.pdf
 
 **Table of contents**
 
@@ -44,27 +45,37 @@ Usage
 Para crear un modelo, por ejemplo de un trimestre del año:
 
 1. Ir a Contabilidad > Declaraciones ATC > Modelo 420
-2. Pulsar en el botón "Crear"
-3. Seleccionar el ejercicio fiscal y el tipo de período, los periodos incluidos
-   se calculan automáticamente
-4. Guardar y pulsar en el botón "Calcular"
-5. Rellenar (si es necesario) aquellos campos que Odoo no calcula automáticamente:
 
-   * Viajeros Base: Casilla [23]
-   * Viajeros Cuota: Casilla [24]
-   * Cuotas ganaderas y pesqueras: Casilla [36]
-   * Cuotas de bienes de inversión: Casilla [37]
-   * Cuota Antes del inicio de la actividad: Casilla [38]
-   * Cuota prorrata: Casilla [39]
-   * Regularización de cuotas: Casilla [42]
-   * Cuotas a compensar: Casilla [43]
-   * A deducir: Casilla [44]
+2. Pulsar en el botón "Crear"
+
+3. Seleccionar el ejercicio fiscal y el tipo de período, los periodos
+   incluidos se calculan automáticamente
+
+4. Guardar y pulsar en el botón "Calcular"
+
+5. Rellenar (si es necesario) aquellos campos que Odoo no calcula
+   automáticamente:
+
+   - Viajeros Base: Casilla [23]
+   - Viajeros Cuota: Casilla [24]
+   - Cuotas ganaderas y pesqueras: Casilla [36]
+   - Cuotas de bienes de inversión: Casilla [37]
+   - Cuota Antes del inicio de la actividad: Casilla [38]
+   - Cuota prorrata: Casilla [39]
+   - Regularización de cuotas: Casilla [42]
+   - Cuotas a compensar: Casilla [43]
+   - A deducir: Casilla [44]
 
 6. Cuando los valores sean los correctos, pulsar en el botón "Confirmar"
-7. Para crear el movimiento correspondiente, pulsar en el botón "Crear asiento"
+
+7. Para crear el movimiento correspondiente, pulsar en el botón "Crear
+   asiento"
+
 8. Teniendo en cuenta los valores, rellenar el PDF modelo 420 de la AEAT
-9. La opción "Carátula sobre" permite imprimir la carátula del modelo 420 para su
-    presentación presencial
+
+9. | La opción "Carátula sobre" permite imprimir la carátula del modelo
+     420 para su
+   | presentación presencial
 
 Bug Tracker
 ===========
@@ -72,7 +83,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_atc_mod420%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_atc_mod420%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -80,18 +91,18 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Binhex
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Nicolás Ramos <n.ramos@binhex.cloud>
-* Christian Ramos <c.ramos@binhex.cloud>
+- Nicolás Ramos <n.ramos@binhex.cloud>
+- Christian Ramos <c.ramos@binhex.cloud>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -111,6 +122,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-Christian-RB| 
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_atc_mod420>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_atc_mod420>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
