@@ -369,10 +369,11 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:cd40ff1343e0041fbbffe8be29ef4f22786c331f9077ee1419afd7f64d00861c
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_atc_mod420"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-16-0/l10n-spain-16-0-l10n_es_atc_mod420"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>Módulo para la presentación del modelo 420 (IGIC - Autodeclaración) de la
-Agencia Tributaria Canaria.</p>
-<p>Instrucciones del modelo: <a class="reference external" href="https://www3.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/modelos/ref_y_propios/igic/mod420/pdf/instrucciones/420.pdf">https://www3.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/modelos/ref_y_propios/igic/mod420/pdf/instrucciones/420.pdf</a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_atc_mod420"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-17-0/l10n-spain-17-0-l10n_es_atc_mod420"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>Módulo para la presentación del modelo 420 (IGIC - Autodeclaración) de
+la Agencia Tributaria Canaria.</p>
+<p>Instrucciones del modelo:
+<a class="reference external" href="https://www3.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/modelos/ref_y_propios/igic/mod420/pdf/instrucciones/420.pdf">https://www3.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/modelos/ref_y_propios/igic/mod420/pdf/instrucciones/420.pdf</a></p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -389,13 +390,19 @@ Agencia Tributaria Canaria.</p>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-1">Usage</a></h1>
 <p>Para crear un modelo, por ejemplo de un trimestre del año:</p>
-<ol class="arabic simple">
-<li>Ir a Contabilidad &gt; Declaraciones ATC &gt; Modelo 420</li>
-<li>Pulsar en el botón “Crear”</li>
-<li>Seleccionar el ejercicio fiscal y el tipo de período, los periodos incluidos
-se calculan automáticamente</li>
-<li>Guardar y pulsar en el botón “Calcular”</li>
-<li>Rellenar (si es necesario) aquellos campos que Odoo no calcula automáticamente:<ul>
+<ol class="arabic">
+<li><p class="first">Ir a Contabilidad &gt; Declaraciones ATC &gt; Modelo 420</p>
+</li>
+<li><p class="first">Pulsar en el botón “Crear”</p>
+</li>
+<li><p class="first">Seleccionar el ejercicio fiscal y el tipo de período, los periodos
+incluidos se calculan automáticamente</p>
+</li>
+<li><p class="first">Guardar y pulsar en el botón “Calcular”</p>
+</li>
+<li><p class="first">Rellenar (si es necesario) aquellos campos que Odoo no calcula
+automáticamente:</p>
+<ul class="simple">
 <li>Viajeros Base: Casilla [23]</li>
 <li>Viajeros Cuota: Casilla [24]</li>
 <li>Cuotas ganaderas y pesqueras: Casilla [36]</li>
@@ -407,13 +414,18 @@ se calculan automáticamente</li>
 <li>A deducir: Casilla [44]</li>
 </ul>
 </li>
-<li>Cuando los valores sean los correctos, pulsar en el botón “Confirmar”</li>
-<li>Para crear el movimiento correspondiente, pulsar en el botón “Crear asiento”</li>
-<li>Teniendo en cuenta los valores, rellenar el PDF modelo 420 de la AEAT</li>
-<li><dl class="first docutils">
-<dt>La opción “Carátula sobre” permite imprimir la carátula del modelo 420 para su</dt>
-<dd>presentación presencial</dd>
-</dl>
+<li><p class="first">Cuando los valores sean los correctos, pulsar en el botón “Confirmar”</p>
+</li>
+<li><p class="first">Para crear el movimiento correspondiente, pulsar en el botón “Crear
+asiento”</p>
+</li>
+<li><p class="first">Teniendo en cuenta los valores, rellenar el PDF modelo 420 de la AEAT</p>
+</li>
+<li><div class="first line-block">
+<div class="line">La opción “Carátula sobre” permite imprimir la carátula del modelo
+420 para su</div>
+<div class="line">presentación presencial</div>
+</div>
 </li>
 </ol>
 </div>
@@ -422,7 +434,7 @@ se calculan automáticamente</li>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-spain/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_atc_mod420%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_atc_mod420%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -451,7 +463,7 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/Christian-RB"><img alt="Christian-RB" src="https://github.com/Christian-RB.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_atc_mod420">OCA/l10n-spain</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_atc_mod420">OCA/l10n-spain</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
