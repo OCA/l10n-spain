@@ -1,0 +1,30 @@
+<odoo>
+<!-- Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
+ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+    <data noupdate="1">
+        <record id="aportacion_sigaus_product_template" model="product.product">
+            <field name="name">Aportación SIGAUS (R.D. 679/2006)</field>
+            <field name="company_id" eval="False" />
+            <field name="detailed_type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="sigaus_subject">no</field>
+            <field name="taxes_id" eval="False" />
+            <field name="supplier_taxes_id" eval="False" />
+            <field name="uom_id" ref="uom.product_uom_kgm" />
+            <field name="uom_po_id" ref="uom.product_uom_kgm" />
+        </record>
+    </data>
+    <data noupdate="0">
+        <record id="aportacion_sigaus_2023" model="l10n.es.sigaus.amount">
+            <field name="name">Aportación SIGAUS 2023</field>
+            <field name="date_from">2023-1-1</field>
+            <field name="date_to">2023-12-31</field>
+            <field name="price">0.06</field>
+        </record>
+        <record id="aportacion_sigaus_2024" model="l10n.es.sigaus.amount">
+            <field name="name">Aportación SIGAUS 2024</field>
+            <field name="date_from">2024-1-1</field>
+            <field name="price">0.05</field>
+        </record>
+    </data>
+</odoo>
