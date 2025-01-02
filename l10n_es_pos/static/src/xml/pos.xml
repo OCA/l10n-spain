@@ -58,7 +58,7 @@
         >
             <attribute
                 name="t-if"
-            >!env.pos.config.is_simplified_config or receipt.is_to_invoice</attribute>
+            >!env.pos.config.is_simplified_config or receipt.is_to_invoice or env.pos.config.iface_printers</attribute>
         </xpath>
     </t>
 </templates>
