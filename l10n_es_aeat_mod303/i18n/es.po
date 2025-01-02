@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-17 10:44+0000\n"
-"PO-Revision-Date: 2024-10-12 11:29+0000\n"
-"Last-Translator: \"Pedro M. Baeza\" <pedro.baeza@gmail.com>\n"
+"POT-Creation-Date: 2025-01-02 11:29+0000\n"
+"PO-Revision-Date: 2025-01-02 12:31+0100\n"
+"Last-Translator: Emilio Pascual <emilio@moduon.team>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_46
@@ -308,6 +308,13 @@ msgstr "Compañía"
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__partner_bank_id
 msgid "Company bank account used for the presentation"
 msgstr "Cuenta bancaria de la compañía usada para la presentación"
+
+#. module: l10n_es_aeat_mod303
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:0
+#, python-format
+msgid "Compensation from previous periods"
+msgstr "Compensación de períodos previos"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__contact_email
@@ -1057,48 +1064,3 @@ msgstr "¿SII voluntario?"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__has_operation_volume
 msgid "¿Volumen de operaciones?"
 msgstr "¿Volumen de operaciones?"
-
-#~ msgid "SMS Delivery error"
-#~ msgstr "SMS de error en la entrega"
-
-#~ msgid "Number of messages which requires an action"
-#~ msgstr "Número de mensajes que requieren una acción"
-
-#~ msgid "Model"
-#~ msgstr "Modelo"
-
-#~ msgid "Number of unread messages"
-#~ msgstr "Número de mensajes no leídos"
-
-#~ msgid "Unread Messages"
-#~ msgstr "Mensajes no leídos"
-
-#~ msgid "Unread Messages Counter"
-#~ msgstr "Contador de mensajes no leídos"
-
-#~ msgid "Allow posting"
-#~ msgstr "Permitir generar asiento"
-
-#~ msgid "Calculation date"
-#~ msgstr "Fecha de cálculo"
-
-#~ msgid "Contact email"
-#~ msgstr "Email de contacto"
-
-#~ msgid "Followers (Channels)"
-#~ msgstr "Seguidores (Canales)"
-
-#~ msgid "Period type"
-#~ msgstr "Tipo de período"
-
-#~ msgid "Result type"
-#~ msgstr "Tipo de resultado"
-
-#~ msgid ""
-#~ "Información adicional - Operaciones realizadas en el ejercicio - Total "
-#~ "volumen de operaciones "
-#~ "([80]+[81]+[93]+[94]+[83]+[84]+[85]+[86]+[95]+[96]+[97]+[98]-[79]-[99])"
-#~ msgstr ""
-#~ "Información adicional - Operaciones realizadas en el ejercicio - Total "
-#~ "volumen de operaciones "
-#~ "([80]+[81]+[93]+[94]+[83]+[84]+[85]+[86]+[95]+[96]+[97]+[98]-[79]-[99])"
