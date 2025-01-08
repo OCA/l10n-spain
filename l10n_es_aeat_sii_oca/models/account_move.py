@@ -699,7 +699,7 @@ class AccountMove(models.Model):
             else:
                 eta = company._get_sii_eta()
                 new_delay = (
-                    self.sudo()
+                    invoice.sudo()
                     .with_context(company_id=company.id)
                     .with_delay(eta=eta)
                     .cancel_one_invoice()
