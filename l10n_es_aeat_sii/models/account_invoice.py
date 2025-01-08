@@ -103,7 +103,9 @@ class AccountInvoice(models.Model):
             key = sii_key_obj.search(
                 [('code', '=', '01'), ('type', '=', 'sale')], limit=1)
         return key
-
+    date_operation = fields.Date(
+        string='Operation Date', copy=False, track_visibility='always',
+        help="Fill only if the operation date is different from the accounting date. Will affect taxes")
     sii_manual_description = fields.Text(
         string='SII manual description', size=500, copy=False,
     )
@@ -778,6 +780,10 @@ class AccountInvoice(models.Model):
                 "TipoDesglose": tipo_desglose,
                 "ImporteTotal": amount_total,
             }
+            if self.date_operation:
+                inv_dict["FacturaExpedida"].update(
+                    {'FechaOperacion': self._change_date_format(self.date_operation)}
+                )
             if self.sii_macrodata:
                 inv_dict["FacturaExpedida"].update(Macrodato="S")
             if self.sii_registration_key_additional1:
@@ -882,6 +888,10 @@ class AccountInvoice(models.Model):
                 "ImporteTotal": amount_total,
                 "CuotaDeducible": tax_amount * sign,
             }
+            if self.date_operation:
+                inv_dict["FacturaRecibida"].update(
+                    {'FechaOperacion': self._change_date_format(self.date_operation)}
+                )
             if self.sii_macrodata:
                 inv_dict["FacturaRecibida"].update(Macrodato="S")
             if self.sii_registration_key_additional1:

@@ -20,7 +20,11 @@
                                 ('state', 'not in', ['cancel']),
                                 ('sii_state', 'not in', ['sent','sent_w_errors','sent_modified'])]}" />
                 </button>
-
+                <field name="date_invoice" position="after">
+                    <field name="date_operation" groups="l10n_es_aeat.group_account_aeat"
+                        attrs="{
+                         'readonly': [('state','!=','draft')]}"/>
+                </field>
                 <field name="reference" position="attributes">
                     <attribute name="attrs">{'required':[('state','not in',['open','paid','cancel'])]}</attribute>
                 </field>
@@ -150,6 +154,11 @@
         <field name="inherit_id" ref="invoice_sii_form" />
         <field name="groups_id" eval="[(4, ref('l10n_es_aeat.group_account_aeat'))]"/>
         <field name="arch" type="xml">
+            <field name="date_invoice" position="after">
+                <field name="date_operation" groups="l10n_es_aeat.group_account_aeat"
+                    attrs="{
+                     'readonly': [('state','!=','draft')]}"/>
+            </field>
             <group name="group_sii_result" position="after">
                 <group string="Connector Jobs" name="group_sii_jobs">
                     <field name="invoice_jobs_ids"
