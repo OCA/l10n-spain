@@ -105,7 +105,7 @@ class AccountInvoice(models.Model):
         return key
     date_operation = fields.Date(
         string='Operation Date', copy=False, track_visibility='always',
-        help="Fill only if the operation date is different from the accounting date. Will affect taxes")
+        help="Fill only if the operation date is different from the accounting date")
     sii_manual_description = fields.Text(
         string='SII manual description', size=500, copy=False,
     )
