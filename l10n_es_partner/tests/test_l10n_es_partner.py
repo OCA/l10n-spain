@@ -65,9 +65,23 @@ class TestL10nEsPartner(common.TransactionCase):
             "l10n_es_partner.name_pattern", "%(comercial_name)s (%(name)s)"
         )
         partner2 = self.env["res.partner"].create(
-            {"name": "Empresa de prueba", "comercial": "Nombre comercial"}
+            {
+                "name": "Empresa de prueba",
+                "comercial": "Nombre comercial",
+                "street": "My street",
+            }
         )
         self.assertEqual(partner2.display_name, "Nombre comercial (Empresa de prueba)")
+        self.assertEqual(partner2.complete_name, "Empresa de prueba")
+        self.assertEqual(
+            partner2.with_context(show_address=True).display_name,
+            "Nombre comercial (Empresa de prueba)\nMy street",
+        )
+        # We will enforce the computation, but nothing should change
+        partner2.with_context(
+            show_address=True, display_commercial=True
+        )._compute_complete_name()
+        self.assertEqual(partner2.complete_name, "Empresa de prueba")
         partner2.write({"comercial": "Nuevo nombre"})
         self.assertEqual(partner2.display_name, "Nuevo nombre (Empresa de prueba)")
         names = dict(

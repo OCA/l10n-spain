@@ -36,7 +36,8 @@ Incluye la siguiente funcionalidad:
    el nombre comercial de la empresa.
 -  Añade los campos nombre largo, NIF y web a los bancos.
 -  Añade los datos de los bancos españoles extraídos del registro
-   oficial del Banco de España (http://goo.gl/mtx6ic). El asistente
+   oficial del Banco de España
+   (`http://goo.gl/mtx6ic <http://goo.gl/mtx6ic>`__). El asistente
    realiza la descarga automática de Internet, pero si por cualquier
    razón hay algún problema, existe una copia local cuya última
    actualización fue el 26/10/2017.
@@ -50,7 +51,8 @@ Installation
 ============
 
 Este módulo depende de *base_bank_from_iban* que se encuentra en el
-repositorio https://github.com/OCA/community-data-files
+repositorio
+`https://github.com/OCA/community-data-files <https://github.com/OCA/community-data-files>`__
 
 Configuration
 =============
@@ -72,7 +74,8 @@ para nombre comercial.
 Known issues / Roadmap
 ======================
 
--  Take BICs from https://github.com/PeterNotenboom/SwiftCodes.
+-  Take BICs from
+   `https://github.com/PeterNotenboom/SwiftCodes <https://github.com/PeterNotenboom/SwiftCodes>`__.
 
 Bug Tracker
 ===========
@@ -107,6 +110,10 @@ Contributors
 -  `APSL <https://apsl.tech>`__:
 
    -  Javier Antó <janto@apsl.net>
+
+-  `Dixmit <https://www.dixmit.com>`__:
+
+   -  Enric Tobella
 
 Maintainers
 -----------

@@ -7,3 +7,5 @@
 - Manuel Regidor \<<manuel.regidor@sygel.es>\>
 - [APSL](https://apsl.tech):
   - Javier Antó \<<janto@apsl.net>\>
+- [Dixmit](https://www.dixmit.com):
+  - Enric Tobella
