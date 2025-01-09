@@ -613,7 +613,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
     @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
     def _compute_percepciones_dinerarias_incap(self):
         """La misma lógica que para percepciones_dinerarias."""
-        for item in self.filtered(lambda x: x.discapacidad or x.discapacidad != "0"):
+        for item in self.filtered(lambda x: x.discapacidad and x.discapacidad != "0"):
             tax_lines = item.report_id.tax_line_ids.filtered(
                 lambda x: x.field_number in (11, 15) and x.res_id == item.report_id.id
             )
@@ -625,7 +625,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
     @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
     def _compute_retenciones_dinerarias_incap(self):
         """La misma lógica que para retenciones_dinerarias."""
-        for item in self.filtered(lambda x: x.discapacidad or x.discapacidad != "0"):
+        for item in self.filtered(lambda x: x.discapacidad and x.discapacidad != "0"):
             tax_lines = item.report_id.tax_line_ids.filtered(
                 lambda x: x.field_number in (12, 16) and x.res_id == item.report_id.id
             )
@@ -637,7 +637,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
     @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
     def _compute_percepciones_en_especie_incap(self):
         """La misma lógica que para percepciones_en_especie."""
-        for item in self.filtered(lambda x: x.discapacidad or x.discapacidad != "0"):
+        for item in self.filtered(lambda x: x.discapacidad and x.discapacidad != "0"):
             tax_lines = item.report_id.tax_line_ids.filtered(
                 lambda x: x.field_number == 13 and x.res_id == item.report_id.id
             )
@@ -650,7 +650,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
     @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
     def _compute_ingresos_a_cuenta_efectuados_incap(self):
         """La misma lógica que para ingresos_a_cuenta_efectuados."""
-        for item in self.filtered(lambda x: x.discapacidad or x.discapacidad != "0"):
+        for item in self.filtered(lambda x: x.discapacidad and x.discapacidad != "0"):
             tax_lines = item.report_id.tax_line_ids.filtered(
                 lambda x: x.field_number == 13 and x.res_id == item.report_id.id
             )
@@ -662,7 +662,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
     @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
     def _compute_ingresos_a_cuenta_repercutidos_incap(self):
         """La misma lógica que para ingresos_a_cuenta_repercutidos."""
-        for item in self.filtered(lambda x: x.discapacidad or x.discapacidad != "0"):
+        for item in self.filtered(lambda x: x.discapacidad and x.discapacidad != "0"):
             tax_lines = item.report_id.tax_line_ids.filtered(
                 lambda x: x.field_number == 13 and x.res_id == item.report_id.id
             )
