@@ -168,6 +168,7 @@
             name="taxes"
             eval="[(6, 0, [
                 ref('l10n_es.account_tax_template_p_iva12_agr'),
+                ref('l10n_es.account_tax_template_p_iva105_gan'),
             ])]"
         />
         <field name="sii_map_id" ref="aeat_sii_map" />
