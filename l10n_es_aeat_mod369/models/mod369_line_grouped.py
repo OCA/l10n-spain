@@ -65,10 +65,11 @@ class L10nEsAeatMod369LineGrouped(models.Model):
                         ("is_refund", "=", True),
                         ("country_code", "=", group.country_code),
                     ],
-                    limit=1,
                 )
                 if refund_line:
-                    group_keys["neg_corrections"] = refund_line.tax_correction
+                    group_keys["neg_corrections"] = sum(
+                        refund_line.mapped("tax_correction")
+                    )
                 group_keys["result_total"] = (
                     group_keys["amount"]
                     + group_keys["pos_corrections"]
@@ -157,9 +158,9 @@ class L10nEsAeatMod369LineGrouped(models.Model):
     def _compute_tax_correction_str(self):
         for line in self:
             tax_correction_split = str(line.tax_correction).split(".")
-            line.tax_correction_str = tax_correction_split[0].zfill(
-                15
-            ) + tax_correction_split[1].zfill(2)
+            integer_part = tax_correction_split[0].zfill(15)
+            decimal_part = tax_correction_split[1].ljust(2, "0")
+            line.tax_correction_str = integer_part + decimal_part
 
     @api.depends("oss_country_id", "oss_country_id.code")
     def _compute_country_code(self):
