@@ -58,7 +58,7 @@
              P_IRPFTE -->
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_p_irpf21te')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_irpf21te'), ref('l10n_es.account_tax_template_p_irpf15e'), ref('l10n_es.account_tax_template_p_irpf7e')])]"
         />
     </record>
     <record id="aeat_mod190_map_line_14" model="l10n.es.aeat.map.tax.line">
@@ -74,7 +74,7 @@
              P_IRPFTE -->
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_p_irpf21te')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_irpf21te'), ref('l10n_es.account_tax_template_p_irpf15e'), ref('l10n_es.account_tax_template_p_irpf7e')])]"
         />
     </record>
     <record id="aeat_mod190_map_line_15" model="l10n.es.aeat.map.tax.line">
