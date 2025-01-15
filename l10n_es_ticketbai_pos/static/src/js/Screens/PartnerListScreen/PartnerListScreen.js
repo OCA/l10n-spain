@@ -4,59 +4,57 @@
    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 */
 
-odoo.define("l10n_es_ticketbai_pos.ClientListScreen", function (require) {
+odoo.define("l10n_es_ticketbai_pos.PartnerListScreen", function (require) {
     "use strict";
 
-    const ClientListScreen = require("point_of_sale.ClientListScreen");
+    const PartnerListScreen = require("point_of_sale.PartnerListScreen");
     const Registries = require("point_of_sale.Registries");
 
-    const L10nEsTicketBaiClientListScreen = (ClientListScreen) =>
-        class extends ClientListScreen {
-            clickClient(event) {
+    const L10nEsTicketBaiPartnerListScreen = (OriginalPartnerListScreen) =>
+        class extends OriginalPartnerListScreen {
+            clickPartner(partner) {
                 if (this.env.pos.company.tbai_enabled) {
-                    var customer = this.env.pos.db.get_partner_by_id(
-                        event.detail.client.id
-                    );
-                    var order = this.env.pos.get_order();
-                    var res = true;
+                    const order = this.currentOrder;
+                    let isSuccessful = true;
+                    const currentPartner = partner || order.get_partner();
 
-                    if (!order.check_customer_country_code(customer)) {
-                        res = false;
+                    if (!order.check_partner_country_code(currentPartner)) {
+                        isSuccessful = false;
                         this.showPopup("ErrorPopup", {
                             title: this.env._t("TicketBAI"),
                             body: _.str.sprintf(
                                 this.env._t("Please set Country for customer %s."),
-                                customer.name
+                                currentPartner.name
                             ),
                         });
                     } else if (
-                        !order.check_simplified_invoice_spanish_customer(customer)
+                        !order.check_simplified_invoice_spanish_partner(currentPartner)
                     ) {
-                        res = false;
+                        isSuccessful = false;
                         this.showPopup("ErrorPopup", {
                             title: this.env._t("TicketBAI"),
                             body: this.env._t(
                                 "Non spanish customers are not supported for Simplified Invoice."
                             ),
                         });
-                    } else if (!order.check_customer_vat(customer)) {
-                        res = false;
+                    } else if (!order.check_partner_vat(currentPartner)) {
+                        isSuccessful = false;
                         this.showPopup("ErrorPopup", {
                             title: this.env._t("TicketBAI"),
                             body: _.str.sprintf(
                                 this.env._t(
                                     "Please set VAT or TicketBAI Partner Identification Number for customer %s."
                                 ),
-                                customer.name
+                                currentPartner.name
                             ),
                         });
                     }
-                    if (res) {
-                        super.clickClient(event);
+                    if (isSuccessful) {
+                        return super.clickPartner(currentPartner);
                     }
                 }
             }
         };
-    Registries.Component.extend(ClientListScreen, L10nEsTicketBaiClientListScreen);
-    return ClientListScreen;
+    Registries.Component.extend(PartnerListScreen, L10nEsTicketBaiPartnerListScreen);
+    return PartnerListScreen;
 });

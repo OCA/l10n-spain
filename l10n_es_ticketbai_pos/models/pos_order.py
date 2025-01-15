@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import base64
 
-from odoo import _, api, exceptions, fields, models
+from odoo import Command, _, api, exceptions, fields, models
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 
 from odoo.addons.l10n_es_ticketbai_api.models.ticketbai_invoice import (
@@ -34,22 +34,23 @@ class PosOrder(models.Model):
         string="Responses",
     )
     tbai_vat_regime_key = fields.Many2one(
-        comodel_name="tbai.vat.regime.key", string="VAT Regime Key", copy=True
+        comodel_name="tbai.vat.regime.key", string="VAT Regime Key"
     )
 
     @api.depends("tbai_invoice_ids", "tbai_invoice_ids.state")
     def _compute_tbai_response_ids(self):
         for record in self:
             record.tbai_response_ids = [
-                (6, 0, record.tbai_invoice_ids.mapped("tbai_response_ids").ids)
+                Command.set(record.tbai_invoice_ids.mapped("tbai_response_ids").ids)
             ]
 
     @api.model
     def _order_fields(self, ui_order):
         res = super()._order_fields(ui_order)
-        session = self.env["pos.session"].browse(ui_order["pos_session_id"])
-        if session.config_id.tbai_enabled and not ui_order.get("to_invoice", False):
-            res["tbai_vat_regime_key"] = ui_order.get("tbai_vat_regime_key", False)
+        if ui_order.get("tbai_vat_regime_key", False) and not ui_order.get(
+            "to_invoice", False
+        ):
+            res["tbai_vat_regime_key"] = ui_order.get("tbai_vat_regime_key")
         return res
 
     def tbai_prepare_invoice_values(self, pos_order=None):
@@ -70,15 +71,13 @@ class PosOrder(models.Model):
             "expedition_date": expedition_date,
             "expedition_hour": expedition_hour,
             "description": "/",
-            "amount_total": "%.2f" % self.amount_total,
+            "amount_total": f"{self.amount_total:.2f}",  # noqa: E231
             "vat_regime_key": self.tbai_vat_regime_key.code,
             "state": TicketBaiInvoiceState.pending.value,
         }
         if partner:
             vals["tbai_customer_ids"] = [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "name": partner.tbai_get_value_apellidos_nombre_razon_social(),
                         "country_code": partner._parse_aeat_vat_info()[0],
@@ -88,7 +87,7 @@ class PosOrder(models.Model):
                         "idtype": partner.tbai_partner_idtype,
                         "address": partner.tbai_get_value_direccion(),
                         "zip": partner.zip,
-                    },
+                    }
                 )
             ]
         if pos_order is None:
@@ -99,7 +98,7 @@ class PosOrder(models.Model):
             )
             if previous_order_pos_reference:
                 tbai_previous_order = self.search(
-                    [("l10n_es_unique_id", "=", previous_order_pos_reference)]
+                    [("l10n_es_unique_id", "=", previous_order_pos_reference)], limit=1
                 )
                 vals[
                     "previous_tbai_invoice_id"
@@ -108,7 +107,9 @@ class PosOrder(models.Model):
             vals.update(
                 {
                     "datas": datas,
-                    "datas_fname": "%s.xsig" % self.l10n_es_unique_id.replace("/", "-"),
+                    "datas_fname": "{}.xsig".format(
+                        self.l10n_es_unique_id.replace("/", "-")
+                    ),
                     "file_size": len(datas),
                     "signature_value": pos_order["data"]["tbai_signature_value"],
                 }
@@ -150,33 +151,32 @@ class PosOrder(models.Model):
                 taxes[tax.id]["amount_total"] += amount_total
             if is_gipuzkoa_tax_agency or is_araba_tax_agency:
                 lines.append(
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "description": line.name,
-                            "quantity": "%.2f" % line.qty,
-                            "price_unit": "%.8f" % line.price_unit,
+                            "quantity": f"{line.qty:.2f}",  # noqa: E231
+                            "price_unit": f"{line.price_unit:.8f}",  # noqa: E231
                             "discount_amount": "%.2f"
                             % (line.qty * line.price_unit * line.discount / 100.0),
-                            "amount_total": "%.2f" % line.price_subtotal_incl,
-                        },
+                            "amount_total": f"{line.price_subtotal_incl:.2f}",  # noqa: E231
+                        }
                     )
                 )
         vals["tbai_tax_ids"] = []
-        for _tax_id, tax_values in taxes.items():
-            tax_values["base"] = "%.2f" % tax_values["base"]
-            tax_values["amount"] = "%.2f" % tax_values["amount"]
-            tax_values["amount_total"] = "%.2f" % tax_values["amount_total"]
-            vals["tbai_tax_ids"].append((0, 0, tax_values))
+        for tax_values in taxes.values():
+            tax_values["base"] = "{:.2f}".format(tax_values["base"])
+            tax_values["amount"] = "{:.2f}".format(tax_values["amount"])
+            tax_values["amount_total"] = "{:.2f}".format(tax_values["amount_total"])
+            vals["tbai_tax_ids"].append(Command.create(tax_values))
         if is_gipuzkoa_tax_agency or is_araba_tax_agency:
             vals["tbai_invoice_line_ids"] = lines
         return vals
 
     def _tbai_build_invoice(self):
+        TBAIInvoice = self.env["tbai.invoice"]
         for record in self:
             vals = record.tbai_prepare_invoice_values()
-            tbai_invoice = self.env["tbai.invoice"].create(vals)
+            tbai_invoice = TBAIInvoice.create(vals)
             tbai_invoice.build_tbai_simplified_invoice()
             record.tbai_invoice_id = tbai_invoice.id
 
@@ -184,21 +184,24 @@ class PosOrder(models.Model):
     def _process_order(self, pos_order, draft, existing_order):
         if draft:
             return super()._process_order(pos_order, draft, existing_order)
-        if pos_order["data"].get("tbai_vat_regime_key", False) and isinstance(
-            pos_order["data"]["tbai_vat_regime_key"], str
-        ):
-            regime_key = pos_order["data"]["tbai_vat_regime_key"]
+
+        tbai_vat_regime_key = pos_order["data"].get("tbai_vat_regime_key")
+        if tbai_vat_regime_key and isinstance(tbai_vat_regime_key, str):
             pos_order["data"]["tbai_vat_regime_key"] = (
                 self.env["tbai.vat.regime.key"]
-                .search([("code", "=", regime_key)], limit=1)
+                .search([("code", "=", tbai_vat_regime_key)], limit=1)
                 .id
             )
+
         order_id = super()._process_order(pos_order, draft, existing_order)
-        order = self.env["pos.order"].browse(order_id)
+        order = self.browse(order_id)
+
         if order.config_id.tbai_enabled and not pos_order.get("to_invoice", False):
             vals = order.tbai_prepare_invoice_values(pos_order)
-            order.tbai_invoice_id = self.env["tbai.invoice"].sudo().create(vals)
-            order.config_id.tbai_last_invoice_id = order.tbai_invoice_id
+            tbai_invoice = self.env["tbai.invoice"].sudo().create(vals)
+            order.tbai_invoice_id = tbai_invoice
+            order.config_id.tbai_last_invoice_id = tbai_invoice
+
         return order.id
 
     def _export_for_ui(self, order):
@@ -212,7 +215,7 @@ class PosOrder(models.Model):
         return res
 
     def _prepare_invoice_vals(self):
-        res = super(PosOrder, self)._prepare_invoice_vals()
+        res = super()._prepare_invoice_vals()
         if self.tbai_enabled:
             vat_regime_key_id = False
             if self.tbai_vat_regime_key:
@@ -220,8 +223,8 @@ class PosOrder(models.Model):
             elif self.fiscal_position_id:
                 vat_regime_key_id = self.fiscal_position_id.tbai_vat_regime_key.id
             elif self.partner_id:
-                fp = self.env["account.fiscal.position"].get_fiscal_position(
-                    self.partner_id.id
+                fp = self.env["account.fiscal.position"]._get_fiscal_position(
+                    self.partner_id
                 )
                 vat_regime_key_id = fp.tbai_vat_regime_key.id
             if not vat_regime_key_id:
@@ -243,11 +246,11 @@ class PosOrder(models.Model):
             sequence = self.pos_device_id.sequence
         else:
             sequence = self.config_id.l10n_es_simplified_invoice_sequence_id
-        date = fields.Datetime.context_timestamp(
+        order_date = fields.Datetime.context_timestamp(
             self, fields.Datetime.from_string(self.date_order)
         ).strftime(DEFAULT_SERVER_DATE_FORMAT)
         prefix, suffix = sequence.with_context(
-            ir_sequence_date=date, ir_sequence_date_range=date
+            ir_sequence_date=order_date, ir_sequence_date_range=order_date
         )._get_prefix_suffix()
         return prefix
 

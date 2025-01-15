@@ -1,451 +1,300 @@
 /* Copyright 2021 Binovo IT Human Project SL
    Copyright 2022 Landoo Sistemas de Informacion SL
+   Copyright 2025 Binhex
    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 */
-
 odoo.define("l10n_es_ticketbai_pos.models", function (require) {
     "use strict";
 
-    var models = require("point_of_sale.models");
-    var pos_super = models.PosModel.prototype;
-    var order_super = models.Order.prototype;
-    var orderLine_super = models.Orderline.prototype;
-    var core = require("web.core");
-    var _t = core._t;
-    var tbai_models = require("l10n_es_ticketbai_pos.tbai_models");
-    var rpc = require("web.rpc");
+    const {PosGlobalState, Order, Orderline} = require("point_of_sale.models");
+    const Registries = require("point_of_sale.Registries");
+    const {Gui} = require("point_of_sale.Gui");
+    const tbai_models = require("l10n_es_ticketbai_pos.tbai_models");
 
-    var tbai = window.tbai;
+    const core = require("web.core");
+    const _t = core._t;
+    const tbai = window.tbai;
 
-    models.load_fields("res.company", [
-        "tbai_enabled",
-        "tbai_test_enabled",
-        "tbai_license_key",
-        "tbai_developer_id",
-        "tbai_software_name",
-        "tbai_software_version",
-        "tbai_tax_agency_id",
-        "tbai_protected_data",
-        "tbai_protected_data_txt",
-        "tbai_vat_regime_simplified",
-    ]);
-
-    models.load_fields("res.country", ["code"]);
-    models.load_fields("res.partner", [
-        "tbai_partner_idtype",
-        "tbai_partner_identification_number",
-    ]);
-
-    models.load_models([
-        {
-            model: "res.partner",
-            fields: [
-                "vat",
-                "country_id",
-                "tbai_partner_idtype",
-                "tbai_partner_identification_number",
-            ],
-            condition: function (self) {
-                return self.company.tbai_enabled;
-            },
-            domain: function (self) {
-                return [
-                    ["customer_rank", "=", 0],
-                    ["id", "=", self.company.tbai_developer_id[0]],
-                ];
-            },
-            loaded: function (self, partner) {
-                if (partner.length === 1 && !self.db.get_partner_by_id(partner[0].id)) {
-                    self.partners.concat(partner);
-                    self.db.add_partners(partner);
+    const L10nEsTicketBAIPosGlobalState = (OriginalPosGlobalState) =>
+        class extends OriginalPosGlobalState {
+            constructor() {
+                super(...arguments);
+                this.tbai_version = null;
+                this.tbai_qr_base_url = null;
+                this.tbai_vat_regime_keys = null;
+                this.tbai_last_invoice_data = null;
+            }
+            async _processData(loadedData) {
+                await super._processData(...arguments);
+                if (this.company.tbai_enabled) {
+                    const config = loadedData["pos.config"];
+                    this.tbai_vat_regime_keys = loadedData.tbai_vat_regime_keys;
+                    this.tbai_version = loadedData.tbai_version;
+                    this.tbai_qr_base_url = loadedData.tbai_qr_base_url;
+                    this.tbai_last_invoice_data = loadedData.tbai_last_invoice_data;
+                    return this.env.services
+                        .rpc({
+                            model: "pos.config",
+                            method: "get_tbai_p12_and_friendlyname",
+                            args: [config.id],
+                        })
+                        .then((args) => {
+                            return tbai.TbaiSigner.fromBuffer(
+                                atob(args[0]),
+                                args[1],
+                                args[2]
+                            ).then(
+                                (signer) => {
+                                    this.tbai_signer = signer;
+                                },
+                                (err) => {
+                                    console.error(err);
+                                }
+                            );
+                        });
                 }
-            },
-        },
-        {
-            model: "tbai.invoice",
-            fields: ["signature_value", "number_prefix", "number", "expedition_date"],
-            condition: function (self) {
-                return self.company.tbai_enabled;
-            },
-            domain: function (self) {
-                return [["id", "=", self.config.tbai_last_invoice_id[0]]];
-            },
-            loaded: function (self, tbai_invoices) {
-                if (Array.isArray(tbai_invoices) && tbai_invoices.length === 1) {
-                    var tbai_inv = tbai_invoices[0];
-                    var tbai_last_invoice_data = {
-                        order: {
-                            simplified_invoice:
-                                tbai_inv.number_prefix + tbai_inv.number,
-                        },
-                        signature_value: tbai_inv.signature_value,
-                        number: tbai_inv.number,
-                        number_prefix: tbai_inv.number_prefix,
-                        expedition_date: moment(
-                            tbai_inv.expedition_date,
-                            "DD-MM-YYYY"
-                        ).toDate(),
-                    };
-                    self.set("tbai_last_invoice_data", tbai_last_invoice_data);
-                }
-            },
-        },
-        {
-            model: "pos.config",
-            fields: ["id"],
-            condition: function (self) {
-                return self.company.tbai_enabled;
-            },
-            domain: function (self) {
-                return [["id", "=", self.pos_session.config_id[0]]];
-            },
-            loaded: function (self, configs) {
-                self.set_tbai_last_invoice_data(self.get_tbai_last_invoice_data());
-                return rpc
-                    .query({
-                        model: "pos.config",
-                        method: "get_tbai_p12_and_friendlyname",
-                        args: [configs[0].id],
-                    })
-                    .then(function (args) {
-                        return tbai.TbaiSigner.fromBuffer(
-                            atob(args[0]),
-                            args[1],
-                            args[2]
-                        ).then(
-                            function (signer) {
-                                self.tbai_signer = signer;
+            }
+            get_country_by_id(id) {
+                return this.countries.find((country) => country.id === id) || null;
+            }
+            get_country_code_by_id(id) {
+                const country = this.get_country_by_id(id);
+                return (country && country.code.toUpperCase()) || null;
+            }
+            get_tbai_vat_regime_key_by_id(id) {
+                return this.tbai_vat_regime_keys.find((key) => key.id === id) || null;
+            }
+            get_tbai_vat_regime_key_code_by_id(id) {
+                const tbai_vat_regime_key = this.get_tbai_vat_regime_key_by_id(id);
+                return (tbai_vat_regime_key && tbai_vat_regime_key.code) || null;
+            }
+            push_single_order(order) {
+                if (this.company.tbai_enabled && order) {
+                    return order.tbai_current_invoice.then((tbai_inv) => {
+                        const tbai_last_invoice_data = {
+                            order: {
+                                simplified_invoice:
+                                    tbai_inv.number_prefix + tbai_inv.number,
                             },
-                            function (err) {
-                                console.error(err);
+                            signature_value: tbai_inv.signature_value,
+                            number: tbai_inv.number,
+                            number_prefix: tbai_inv.number_prefix,
+                            expedition_date: tbai_inv.expedition_date,
+                        };
+                        this.set_tbai_last_invoice_data(tbai_last_invoice_data);
+                        return super.push_single_order(...arguments);
+                    });
+                }
+                return super.push_single_order(...arguments);
+            }
+            get_tbai_last_invoice_data() {
+                /**
+                 * Retrieves the JSON data of the last invoice from the browser database.
+                 *
+                 * @constant {Object} db_json_last_invoice_data - The JSON data of the last invoice.
+                 * @property {Function} this.db.get_tbai_json_last_invoice_data - Function to get the last invoice data in JSON format from the browse database.
+                 */
+                const db_json_last_invoice_data =
+                    this.db.get_tbai_json_last_invoice_data();
+                return Object.keys(db_json_last_invoice_data).length
+                    ? db_json_last_invoice_data
+                    : this.tbai_last_invoice_data || null;
+            }
+            set_tbai_last_invoice_data(data) {
+                this.tbai_last_invoice_data = data;
+                this.db.set_tbai_json_last_invoice_data(data);
+            }
+            scan_product(parsed_code) {
+                if (this.company.tbai_enabled) {
+                    const product = this.db.get_product_by_barcode(
+                        parsed_code.base_code
+                    );
+                    if (!product) {
+                        return false;
+                    }
+                    if (product.taxes_id !== 1) {
+                        Gui.showPopup("Error", {
+                            title: _t("TicketBAI"),
+                            body: _t(
+                                `Please set a tax for product ${product.display_names}.`
+                            ),
+                        });
+                        return true;
+                    }
+                }
+                return super.scan_product(...arguments);
+            }
+        };
+    Registries.Model.extend(PosGlobalState, L10nEsTicketBAIPosGlobalState);
+
+    const L10nEsTicketBAIPosOrderline = (OriginalOrderline) =>
+        class extends OriginalOrderline {
+            export_as_JSON() {
+                const json = super.export_as_JSON(...arguments);
+                if (this.pos.company.tbai_enabled) {
+                    const product = this.get_product();
+                    const tax = this.get_taxes()[0];
+                    const fp_taxes = this.pos.get_taxes_after_fp(
+                        [tax.id],
+                        this.order.fiscal_position
+                    );
+                    json.tbai_description = product.display_name || "";
+                    if (fp_taxes) {
+                        json.tbai_vat_amount = tax.amount;
+                        json.tbai_price_without_tax = this.get_price_without_tax();
+                        json.tbai_price_with_tax = this.get_price_with_tax();
+                    }
+                    json.tbai_price_unit =
+                        fp_taxes.length > 0
+                            ? this.compute_all(
+                                  fp_taxes,
+                                  json.price_unit,
+                                  1,
+                                  this.pos.currency.rounding,
+                                  true
+                              ).total_excluded
+                            : json.price_unit;
+                }
+                return json;
+            }
+        };
+    Registries.Model.extend(Orderline, L10nEsTicketBAIPosOrderline);
+
+    const L10nEsTicketBAIPosOrder = (OriginalOrder) =>
+        class extends OriginalOrder {
+            constructor() {
+                super(...arguments);
+                this.tbai_simplified_invoice = null;
+                this.tbai_current_invoice = $.when();
+                if (this.pos.company.tbai_enabled && "json" in arguments[1]) {
+                    this.tbai_simplified_invoice =
+                        new tbai_models.TicketBAISimplifiedInvoice(
+                            {},
+                            {
+                                pos: this.pos,
+                                tbai_identifier: arguments[1].json.tbai_identifier,
+                                tbai_qr_src: arguments[1].json.tbai_qr_src,
                             }
                         );
+                }
+                return this;
+            }
+            check_products_have_taxes() {
+                return this.get_orderlines().every(
+                    (line) => line.get_taxes().length === 1
+                );
+            }
+            check_company_vat() {
+                return Boolean(this.pos.company.vat);
+            }
+            check_partner_country_code(partner) {
+                return Boolean(partner && partner.country_id);
+            }
+            check_simplified_invoice_spanish_partner(partner) {
+                if (!partner) {
+                    return true;
+                }
+                if (!this.check_partner_country_code(partner)) {
+                    return false;
+                }
+                const country_code = this.pos.get_country_code_by_id(
+                    partner.country_id[0]
+                );
+                return country_code === "ES" || this.to_invoice;
+            }
+            check_partner_vat(partner) {
+                if (!partner) return true;
+                if (!this.check_partner_country_code(partner)) return false;
+                const country_code = this.pos.get_country_code_by_id(
+                    partner.country_id[0]
+                );
+                if (country_code === "ES") {
+                    return Boolean(partner.vat);
+                }
+                return this._check_foreign_partner_vat(partner);
+            }
+            _check_foreign_partner_vat(partner) {
+                if (partner.tbai_partner_idtype === "02") {
+                    return Boolean(partner.vat);
+                }
+                return Boolean(partner.tbai_partner_identification_number);
+            }
+            check_fiscal_position_vat_regime_key() {
+                return !(
+                    this.fiscal_position && !this.fiscal_position.tbai_vat_regime_key
+                );
+            }
+            check_tbai_conf() {
+                return (
+                    this.check_company_vat() &&
+                    this.check_simplified_invoice_spanish_partner() &&
+                    this.check_partner_vat() &&
+                    this.check_fiscal_position_vat_regime_key() &&
+                    this.check_products_have_taxes()
+                );
+            }
+            export_as_JSON() {
+                const json = super.export_as_JSON(...arguments);
+                if (this.pos.company.tbai_enabled) {
+                    const taxLines = [];
+                    const order = this;
+                    this.get_tax_details().forEach((taxDetail) => {
+                        const taxLineDict = taxDetail;
+                        taxLineDict.baseAmount =
+                            order.get_base_by_tax()[taxDetail.tax.id];
+                        taxLines.push([0, 0, taxLineDict]);
                     });
-            },
-        },
-        {
-            model: "tbai.tax.agency",
-            fields: ["version", "qr_base_url", "test_qr_base_url"],
-            condition: function (self) {
-                return self.company.tbai_enabled;
-            },
-            domain: function (self) {
-                return [["id", "=", self.company.tbai_tax_agency_id[0]]];
-            },
-            loaded: function (self, tax_agencies) {
-                self.tbai_version = tax_agencies[0].version;
-                if (self.company.tbai_test_enabled) {
-                    self.tbai_qr_base_url = tax_agencies[0].test_qr_base_url;
-                } else {
-                    self.tbai_qr_base_url = tax_agencies[0].qr_base_url;
+                    json.taxLines = taxLines;
+                    const tbai_inv = this.tbai_simplified_invoice || null;
+                    if (tbai_inv !== null) {
+                        const datas = tbai_inv.datas;
+                        const signature_value = tbai_inv.signature_value;
+                        if (datas !== null && signature_value !== null) {
+                            json.tbai_signature_value = signature_value;
+                            json.tbai_datas = datas;
+                            json.tbai_vat_regime_key = tbai_inv.vat_regime_key;
+                            json.tbai_identifier = tbai_inv.tbai_identifier;
+                            json.tbai_qr_src = tbai_inv.tbai_qr_src;
+                            if (tbai_inv.previous_tbai_invoice !== null) {
+                                json.tbai_previous_order_pos_reference =
+                                    tbai_inv.previous_tbai_invoice.order.simplified_invoice;
+                            }
+                        }
+                    }
                 }
-            },
-        },
-        {
-            model: "tbai.vat.regime.key",
-            fields: ["code"],
-            condition: function (self) {
-                return self.company.tbai_enabled;
-            },
-            domain: [],
-            loaded: function (self, vat_regime_keys) {
-                self.tbai_vat_regime_keys = vat_regime_keys;
-            },
-        },
-    ]);
+                return json;
+            }
+            export_for_printing() {
+                const receipt = super.export_for_printing(...arguments);
+                if (this.pos.company.tbai_enabled) {
+                    const tbai_inv = this.tbai_simplified_invoice || null;
+                    if (tbai_inv !== null) {
+                        receipt.tbai_identifier = tbai_inv.tbai_identifier;
+                        receipt.tbai_qr_src = tbai_inv.tbai_qr_src;
+                    }
+                }
+                return receipt;
+            }
 
-    models.PosModel = models.PosModel.extend({
-        initialize: function () {
-            this.tbai_version = null;
-            this.tbai_signer = null;
-            this.tbai_qr_base_url = null;
-            this.tbai_vat_regime_keys = null;
-            this.set({tbai_last_invoice_data: null});
-            pos_super.initialize.apply(this, arguments);
-        },
-        get_country_by_id: function (id) {
-            var countries = this.countries;
-            var country = null;
-            var i = 0;
-            while (country === null && i < countries.length) {
-                if (id === countries[i].id) {
-                    country = countries[i];
+            async tbai_build_invoice() {
+                if (this.tbai_current_invoice.state === "rejected") {
+                    this.tbai_current_invoice = Promise.resolve();
                 }
-                i++;
-            }
-            return country;
-        },
-        get_country_code_by_id: function (id) {
-            var country = this.get_country_by_id(id);
-            return (country && country.code.toUpperCase()) || null;
-        },
-        get_tbai_vat_regime_key_by_id: function (id) {
-            var vat_regime_keys = this.tbai_vat_regime_keys;
-            var vat_regime_key = null;
-            var i = 0;
-            while (vat_regime_key === null && i < vat_regime_keys.length) {
-                if (id === vat_regime_keys[i].id) {
-                    vat_regime_key = vat_regime_keys[i];
-                }
-                i++;
-            }
-            return vat_regime_key;
-        },
-        get_tbai_vat_regime_key_code_by_id: function (id) {
-            var tbai_vat_regime_key = this.get_tbai_vat_regime_key_by_id(id);
-            return (tbai_vat_regime_key && tbai_vat_regime_key.code) || null;
-        },
-        push_single_order: function (order, opts) {
-            var self = this;
-            if (this.company.tbai_enabled && order) {
-                return order.tbai_current_invoice.then(function (tbai_inv) {
-                    var tbai_last_invoice_data = {
-                        order: {
-                            simplified_invoice:
-                                tbai_inv.number_prefix + tbai_inv.number,
-                        },
-                        signature_value: tbai_inv.signature_value,
-                        number: tbai_inv.number,
-                        number_prefix: tbai_inv.number_prefix,
-                        expedition_date: tbai_inv.expedition_date,
-                    };
-                    self.set_tbai_last_invoice_data(tbai_last_invoice_data);
-                    return pos_super.push_single_order.call(self, order, opts);
+                this.tbai_current_invoice = this.tbai_current_invoice.then(async () => {
+                    let tbai_inv = null;
+                    if (this.check_tbai_conf() && !this.to_invoice) {
+                        tbai_inv = new tbai_models.TicketBAISimplifiedInvoice(
+                            {},
+                            {
+                                pos: this.pos,
+                                order: this,
+                            }
+                        );
+                        await tbai_inv.build_invoice();
+                    }
+                    return tbai_inv;
                 });
             }
-            return pos_super.push_single_order.call(self, order, opts);
-        },
-        get_tbai_last_invoice_data: function () {
-            var db_json_last_invoice_data = this.db.get_tbai_json_last_invoice_data();
-            if (!(Object.keys(db_json_last_invoice_data).length === 0)) {
-                return db_json_last_invoice_data;
-            }
-            return this.get("tbai_last_invoice_data") || null;
-        },
-        set_tbai_last_invoice_data: function (data) {
-            this.set("tbai_last_invoice_data", data);
-            this.db.set_tbai_json_last_invoice_data(data);
-        },
-        scan_product: function (parsed_code) {
-            var res = true;
-            var ok = true;
-            if (this.company.tbai_enabled) {
-                var product = this.db.get_product_by_barcode(parsed_code.base_code);
-                if (!product) {
-                    res = false;
-                } else if (product.taxes_id !== 1) {
-                    ok = false;
-                    this.gui.show_popup("error", {
-                        title: _t("TicketBAI"),
-                        body: _.str.sprintf(
-                            _t("Please set a tax for product %s."),
-                            product.display_name
-                        ),
-                    });
-                }
-            }
-            if (ok) {
-                res = pos_super.scan_product.call(this, parsed_code);
-            } else {
-                res = true;
-            }
-            return res;
-        },
-    });
-
-    models.Orderline = models.Orderline.extend({
-        export_as_JSON: function () {
-            var json = orderLine_super.export_as_JSON.apply(this, arguments);
-            if (this.pos.company.tbai_enabled) {
-                var product = this.get_product();
-                var price_unit = null;
-                var tax = this.get_taxes()[0];
-                var fp_taxes = this._map_tax_fiscal_position(tax);
-                json.tbai_description = product.display_name || "";
-                if (fp_taxes) {
-                    json.tbai_vat_amount = tax.amount;
-                    json.tbai_price_without_tax = this.get_price_without_tax();
-                    json.tbai_price_with_tax = this.get_price_with_tax();
-                }
-                if (fp_taxes.length > 0) {
-                    price_unit = this.compute_all(
-                        fp_taxes,
-                        json.price_unit,
-                        1,
-                        this.pos.currency.rounding,
-                        true
-                    ).total_excluded;
-                } else {
-                    price_unit = json.price_unit;
-                }
-                json.tbai_price_unit = price_unit;
-            }
-            return json;
-        },
-    });
-
-    models.Order = models.Order.extend({
-        initialize: function () {
-            this.tbai_simplified_invoice = null;
-            this.tbai_current_invoice = $.when();
-            order_super.initialize.apply(this, arguments);
-            if (this.pos.company.tbai_enabled && "json" in arguments[1]) {
-                this.tbai_simplified_invoice =
-                    new tbai_models.TicketBAISimplifiedInvoice(
-                        {},
-                        {
-                            pos: this.pos,
-                            tbai_identifier: arguments[1].json.tbai_identifier,
-                            tbai_qr_src: arguments[1].json.tbai_qr_src,
-                        }
-                    );
-            }
-            return this;
-        },
-        check_products_have_taxes: function () {
-            var orderLines = this.get_orderlines();
-            var line = null;
-            var taxes = null;
-            var all_products_have_one_tax = true;
-            var i = 0;
-            while (all_products_have_one_tax && i < orderLines.length) {
-                line = orderLines[i];
-                taxes = line.get_taxes();
-                if (taxes.length !== 1) {
-                    all_products_have_one_tax = false;
-                }
-                i++;
-            }
-            return all_products_have_one_tax;
-        },
-        check_company_vat: function () {
-            return Boolean(this.pos.company.vat);
-        },
-        check_customer_country_code: function (client = null) {
-            var customer = client || this.get_client();
-            return !(!customer || (customer && !customer.country_id));
-        },
-        check_simplified_invoice_spanish_customer: function (client = null) {
-            var customer = client || this.get_client();
-            var ok = true;
-            if (customer !== null) {
-                ok = this.check_customer_country_code(customer);
-                if (ok) {
-                    var country_code = this.pos.get_country_code_by_id(
-                        customer.country_id[0]
-                    );
-                    if (country_code !== "ES" && !this.to_invoice) {
-                        ok = false;
-                    }
-                }
-            }
-            return ok;
-        },
-        check_customer_vat: function (client = null) {
-            var customer = client || this.get_client();
-            var ok = true;
-            if (customer !== null) {
-                ok = this.check_customer_country_code(customer);
-                if (ok) {
-                    var country_code = this.pos.get_country_code_by_id(
-                        customer.country_id[0]
-                    );
-                    if (country_code === "ES") {
-                        if (!customer.vat) {
-                            ok = false;
-                        }
-                    } else if (customer.tbai_partner_idtype === "02" && !customer.vat) {
-                        ok = false;
-                    } else if (
-                        customer.tbai_partner_idtype !== "02" &&
-                        !customer.tbai_partner_identification_number
-                    ) {
-                        ok = false;
-                    }
-                }
-            }
-            return ok;
-        },
-        check_fiscal_position_vat_regime_key: function () {
-            var ok = true;
-            if (this.fiscal_position && !this.fiscal_position.tbai_vat_regime_key) {
-                ok = false;
-            }
-            return ok;
-        },
-        check_tbai_conf: function () {
-            return (
-                this.check_company_vat() &&
-                this.check_simplified_invoice_spanish_customer() &&
-                this.check_customer_vat() &&
-                this.check_fiscal_position_vat_regime_key() &&
-                this.check_products_have_taxes()
-            );
-        },
-        export_as_JSON: function () {
-            var json = order_super.export_as_JSON.apply(this, arguments);
-            if (this.pos.company.tbai_enabled) {
-                var taxLines = [];
-                var order = this;
-                this.get_tax_details().forEach(function (taxDetail) {
-                    var taxLineDict = taxDetail;
-                    taxLineDict.baseAmount = order.get_base_by_tax()[taxDetail.tax.id];
-                    taxLines.push([0, 0, taxLineDict]);
-                });
-                json.taxLines = taxLines;
-                var tbai_inv = this.tbai_simplified_invoice || null;
-                if (tbai_inv !== null) {
-                    var datas = tbai_inv.datas;
-                    var signature_value = tbai_inv.signature_value;
-                    if (datas !== null && signature_value !== null) {
-                        json.tbai_signature_value = signature_value;
-                        json.tbai_datas = datas;
-                        json.tbai_vat_regime_key = tbai_inv.vat_regime_key;
-                        json.tbai_identifier = tbai_inv.tbai_identifier;
-                        json.tbai_qr_src = tbai_inv.tbai_qr_src;
-                        if (tbai_inv.previous_tbai_invoice !== null) {
-                            json.tbai_previous_order_pos_reference =
-                                tbai_inv.previous_tbai_invoice.order.simplified_invoice;
-                        }
-                    }
-                }
-            }
-            return json;
-        },
-        export_for_printing: function () {
-            var receipt = order_super.export_for_printing.apply(this, arguments);
-            if (this.pos.company.tbai_enabled) {
-                var tbai_inv = this.tbai_simplified_invoice || null;
-                if (tbai_inv !== null) {
-                    receipt.tbai_identifier = tbai_inv.tbai_identifier;
-                    receipt.tbai_qr_src = tbai_inv.tbai_qr_src;
-                }
-            }
-            return receipt;
-        },
-        tbai_build_invoice: function () {
-            var self = this;
-            if (self.tbai_current_invoice.state() === "rejected") {
-                self.tbai_current_invoice = new $.when();
-            }
-            self.tbai_current_invoice = self.tbai_current_invoice.then(function () {
-                var tbai_current_invoice = $.when();
-                var tbai_inv = null;
-                var ok = self.check_tbai_conf();
-                if (ok && !self.to_invoice) {
-                    tbai_inv = new tbai_models.TicketBAISimplifiedInvoice(
-                        {},
-                        {
-                            pos: self.pos,
-                            order: self,
-                        }
-                    );
-                    tbai_current_invoice = tbai_inv.build_invoice().then(function () {
-                        return tbai_inv;
-                    });
-                }
-                return tbai_current_invoice;
-            });
-        },
-    });
+        };
+    Registries.Model.extend(Order, L10nEsTicketBAIPosOrder);
 });

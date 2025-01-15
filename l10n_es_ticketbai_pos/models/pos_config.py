@@ -4,10 +4,9 @@
 import base64
 import logging
 
-from odoo import _, exceptions, fields, models
+from odoo import _, api, exceptions, fields, models
 
 _logger = logging.getLogger(__name__)
-
 
 try:
     from cryptography.hazmat.primitives.serialization import (
@@ -35,63 +34,42 @@ class PosConfig(models.Model):
     )
     iface_l10n_es_simplified_invoice = fields.Boolean(default=True)
 
+    def _get_certificate_details(self, certificate):
+        p12 = certificate.get_p12()
+        return p12[0], p12[1], certificate.name.encode("utf-8")
+
     def get_tbai_p12_and_friendlyname(self):
         self.ensure_one()
         record = self.sudo()
         if record.tbai_enabled:
-            if record.tbai_certificate_id:
-                # Serialize new PKCS12 unencrypted object
-                p12 = record.tbai_certificate_id.get_p12()
-                p12_priv_key = p12[0]
-                p12_cert = p12[1]
-                p12_friendlyname = record.tbai_certificate_id.name.encode("utf-8")
-                p12_password = record.tbai_certificate_id.password.encode()
-                p12_encryption = BestAvailableEncryption(p12_password)
-                certificate = pkcs12.serialize_key_and_certificates(
-                    p12_friendlyname, p12_priv_key, p12_cert, None, p12_encryption
-                )
+            cert = (
+                record.tbai_certificate_id or record.company_id.tbai_aeat_certificate_id
+            )
+            p12_priv_key, p12_cert, p12_friendlyname = self._get_certificate_details(
+                cert
+            )
+            p12_password = (
+                cert.password.encode() if cert == record.tbai_certificate_id else False
+            )
+            p12_encryption = (
+                BestAvailableEncryption(p12_password)
+                if p12_password
+                else NoEncryption()
+            )
+            certificate = pkcs12.serialize_key_and_certificates(
+                p12_friendlyname, p12_priv_key, p12_cert, None, p12_encryption
+            )
+            return base64.b64encode(certificate), p12_friendlyname, p12_password
+        return None, None, None
 
-                tbai_p12 = base64.b64encode(certificate)
-                tbai_p12_friendlyname = p12_friendlyname
-            else:
-                p12 = record.company_id.tbai_aeat_certificate_id.get_p12()
-                p12_priv_key = p12[0]
-                p12_cert = p12[1]
-                p12_friendlyname = (
-                    record.company_id.tbai_aeat_certificate_id.name.encode("utf-8")
-                )
-                p12_encryption = NoEncryption()
-                p12_password = False
-                certificate = pkcs12.serialize_key_and_certificates(
-                    p12_friendlyname, p12_priv_key, p12_cert, None, p12_encryption
-                )
-                tbai_p12 = base64.b64encode(certificate)
-                tbai_p12_friendlyname = p12_friendlyname
-        else:
-            tbai_p12 = None
-            tbai_p12_friendlyname = None
-        return tbai_p12, tbai_p12_friendlyname, p12_password
-
-    def open_ui(self):
-        self.ensure_one()
-        if self.tbai_enabled and not self.is_simplified_config:
+    @api.constrains("iface_l10n_es_simplified_invoice")
+    def _check_tbai(self):
+        if self.tbai_enabled and not self.iface_l10n_es_simplified_invoice:
             raise exceptions.ValidationError(
                 _("Simplified Invoice IDs Sequence is required")
             )
-        return super().open_ui()
-
-    def open_session_cb(self, check_coa=True):
-        self.ensure_one()
-        if self.tbai_enabled and not self.is_simplified_config:
-            raise exceptions.ValidationError(
-                _("Simplified Invoice IDs Sequence is required")
-            )
-        return super().open_session_cb(check_coa=check_coa)
 
     def open_existing_session_cb(self):
         self.ensure_one()
-        if self.tbai_enabled and not self.is_simplified_config:
-            raise exceptions.ValidationError(
-                _("Simplified Invoice IDs Sequence is required")
-            )
+        self._check_tbai()
         return super().open_existing_session_cb()

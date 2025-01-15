@@ -45,12 +45,13 @@
                         <group
                             name="tbai_sent_orders"
                             string="Orders"
-                            colspan="4"
+                            colspan="2"
                             attrs="{'invisible': [('tbai_invoice_ids', '=', [])]}"
                         >
                             <field
                                 name="tbai_invoice_ids"
                                 readonly="1"
+                                colspan="2"
                                 options="{'no_open':True,'no_create':True}"
                                 nolabel="1"
                             />
@@ -64,6 +65,7 @@
                         <field
                             name="tbai_response_ids"
                             nolabel="1"
+                            colspan="2"
                             options="{'no_create_edit': True}"
                         >
                             <form>

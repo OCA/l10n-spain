@@ -10,25 +10,24 @@ odoo.define("l10n_es_ticketbai_pos.ProductScreen", function (require) {
     const ProductScreen = require("point_of_sale.ProductScreen");
     const Registries = require("point_of_sale.Registries");
 
-    const L10nEsTicketBaiProductScreen = (ProductScreen) =>
-        class extends ProductScreen {
-            _clickProduct(event) {
-                const product = event.detail;
-                var res = true;
+    const L10nEsTicketBaiProductScreen = (OriginProductScreen) =>
+        class extends OriginProductScreen {
+            async _clickProduct(event) {
+                const selectedProduct = event.detail;
+                let isValid = true;
                 if (this.env.pos.company.tbai_enabled) {
-                    if (product.taxes_id.length !== 1) {
-                        res = false;
+                    if (selectedProduct.taxes_id.length !== 1) {
+                        isValid = false;
                         this.showPopup("ErrorPopup", {
                             title: this.env._t("TicketBAI"),
-                            body: _.str.sprintf(
-                                this.env._t("Please set a tax for product %s."),
-                                product.display_name
-                            ),
+                            body: `${this.env._t("Please set a tax for product")} ${
+                                selectedProduct.display_name
+                            }.`,
                         });
                     }
                 }
-                if (res) {
-                    super._clickProduct(event);
+                if (isValid) {
+                    return await super._clickProduct(event);
                 }
             }
         };

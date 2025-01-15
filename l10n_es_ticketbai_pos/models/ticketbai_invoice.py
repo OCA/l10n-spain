@@ -31,7 +31,7 @@ class TicketBAIInvoice(models.Model):
         root, signature_value = self.get_tbai_xml_signed_and_signature_value()
         root_str = etree.tostring(root, xml_declaration=True, encoding="utf-8")
         self.datas = base64.b64encode(root_str)
-        self.datas_fname = "%s.xsig" % self.name.replace("/", "-")
+        self.datas_fname = "{}.xsig".format(self.name.replace("/", "-"))
         self.file_size = len(self.datas)
         self.signature_value = signature_value
         self.mark_as_pending()
