@@ -75,6 +75,11 @@ las retenciones realizadas a éste proveedor se incluyan en el modelo 190.
 
 Antes de poder realizar el modelo, hay que introducir en los terceros, la información necesaria para el modelo.
 
+Known issues / Roadmap
+======================
+
+A dia de hoy, las retenciones en especie se computan como repercutidas al trabajador.
+
 Bug Tracker
 ===========
 
