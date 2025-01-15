@@ -15,7 +15,7 @@
             name="model_id"
             ref="l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_partner_record"
         />
-        <field name="auto_delete" eval="True" />
+        <field name="auto_delete" eval="False" />
         <field name="report_template_ids" eval="[(4, ref('347_partner'))]" />
         <field name="lang">{{object.partner_id.lang}}</field>
         <field
