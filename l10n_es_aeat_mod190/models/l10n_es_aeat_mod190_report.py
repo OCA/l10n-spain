@@ -171,6 +171,30 @@ class L10nEsAeatMod190Report(models.Model):
             "aeat_perception_subkey_id": subkey_id.id,
         }
 
+    def _get_grouped_data(self, field_number, domain):
+        return {
+            (
+                item["partner_id"][0],
+                item["aeat_perception_key_id"] and item["aeat_perception_key_id"][0],
+                item["aeat_perception_subkey_id"]
+                and item["aeat_perception_subkey_id"][0],
+            ): item["credit"]
+            - item["debit"]
+            for item in self.env["account.move.line"].read_group(
+                self._get_move_line_domain(
+                    self.date_start,
+                    self.date_end,
+                    self.tax_line_ids.filtered(
+                        lambda x: x.field_number == field_number
+                    ).map_line_id,
+                )
+                + domain,
+                ["credit", "debit"],
+                ["partner_id", "aeat_perception_key_id", "aeat_perception_subkey_id"],
+                lazy=False,
+            )
+        }
+
 
 class L10nEsAeatMod190ReportLine(models.Model):
     _name = "l10n.es.aeat.mod190.report.line"
@@ -210,51 +234,51 @@ class L10nEsAeatMod190ReportLine(models.Model):
     # Percepciones y Retenciones
     percepciones_dinerarias = fields.Float(
         string="Monetary perceptions",
-        compute="_compute_percepciones_dinerarias",
+        compute="_compute_percepciones",
         store=True,
     )
     retenciones_dinerarias = fields.Float(
         string="Money withholdings",
-        compute="_compute_retenciones_dinerarias",
+        compute="_compute_percepciones",
         store=True,
     )
     percepciones_en_especie = fields.Float(
-        string="Valuation", compute="_compute_percepciones_en_especie", store=True
+        string="Valuation", compute="_compute_percepciones", store=True
     )
     ingresos_a_cuenta_efectuados = fields.Float(
         string="Income paid on account",
-        compute="_compute_ingresos_a_cuenta_efectuados",
+        compute="_compute_percepciones",
         store=True,
     )
     ingresos_a_cuenta_repercutidos = fields.Float(
         string="Income paid into account",
-        compute="_compute_ingresos_a_cuenta_repercutidos",
+        compute="_compute_percepciones",
         store=True,
     )
     percepciones_dinerarias_incap = fields.Float(
         string="Monetary perceptions derived from incapacity for work",
-        compute="_compute_percepciones_dinerarias_incap",
+        compute="_compute_percepciones",
         store=True,
     )
     retenciones_dinerarias_incap = fields.Float(
         string="Monetary withholdings derived from incapacity for work",
-        compute="_compute_retenciones_dinerarias_incap",
+        compute="_compute_percepciones",
         store=True,
     )
     percepciones_en_especie_incap = fields.Float(
         string="Perceptions in kind arising from incapacity for work",
-        compute="_compute_percepciones_en_especie_incap",
+        compute="_compute_percepciones",
         store=True,
     )
     ingresos_a_cuenta_efectuados_incap = fields.Float(
         string="Income on account in kind made as a result of incapacity " "for work",
-        compute="_compute_ingresos_a_cuenta_efectuados_incap",
+        compute="_compute_percepciones",
         store=True,
     )
     ingresos_a_cuenta_repercutidos_incap = fields.Float(
         string="Income to account in kind, repercussions derived from "
         "incapacity for work",
-        compute="_compute_ingresos_a_cuenta_repercutidos_incap",
+        compute="_compute_percepciones",
         store=True,
     )
     codigo_provincia = fields.Char(
@@ -544,137 +568,66 @@ class L10nEsAeatMod190ReportLine(models.Model):
 
     # Calculo campos SIN incapacidad
     @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
-    def _compute_percepciones_dinerarias(self):
+    def _compute_percepciones(self):
+        tax_data = {}
+        domain = []
+        if len(self.partner_id) == 1:
+            # This should only happen when we are making a small update on 'discapacidad'
+            domain.append(("partner_id", "=", self.partner_id.id))
+        for report in self.report_id:
+            tax_data[report.id] = {
+                "11": report._get_grouped_data(11, domain),
+                "12": report._get_grouped_data(12, domain),
+                "13": report._get_grouped_data(13, domain),
+                "14": report._get_grouped_data(14, domain),
+                "15": report._get_grouped_data(15, domain),
+                "16": report._get_grouped_data(16, domain),
+            }
         for item in self:
-            if item.discapacidad and item.discapacidad != "0":
-                item.percepciones_dinerarias = 0.0
-                continue
-            tax_lines = item.report_id.tax_line_ids.filtered(
-                lambda x: x.field_number in (11, 15) and x.res_id == item.report_id.id
+            keys = [
+                (
+                    item.partner_id.id,
+                    item.aeat_perception_key_id.id,
+                    item.aeat_perception_subkey_id.id,
+                )
+            ]
+            if (
+                item.partner_id.aeat_perception_key_id == item.aeat_perception_key_id
+                and item.aeat_perception_subkey_id
+                == item.partner_id.aeat_perception_subkey_id
+            ):
+                keys.append((item.partner_id.id, False, False))
+            incapacidad = item.discapacidad and item.discapacidad != "0"
+            percepciones_dinerarias = -sum(
+                tax_data[item.report_id.id]["11"].get(key, 0) for key in keys
+            ) - sum(tax_data[item.report_id.id]["15"].get(key, 0) for key in keys)
+            retenciones_dinerarias = sum(
+                tax_data[item.report_id.id]["12"].get(key, 0) for key in keys
+            ) + sum(tax_data[item.report_id.id]["16"].get(key, 0) for key in keys)
+            percepciones_en_especie = -sum(
+                tax_data[item.report_id.id]["13"].get(key, 0) for key in keys
             )
-            value = 0.0
-            for move_line in tax_lines.move_line_ids.filtered(item._check_lines):
-                value += move_line.debit - move_line.credit
-            item.percepciones_dinerarias = value
-
-    @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
-    def _compute_retenciones_dinerarias(self):
-        for item in self:
-            if item.discapacidad and item.discapacidad != "0":
-                item.retenciones_dinerarias = 0.0
-                continue
-            tax_lines = item.report_id.tax_line_ids.filtered(
-                lambda x: x.field_number in (12, 16) and x.res_id == item.report_id.id
+            ingresos_a_cuenta_efectuados = sum(
+                tax_data[item.report_id.id]["14"].get(key, 0) for key in keys
             )
-            value = 0.0
-            for move_line in tax_lines.move_line_ids.filtered(item._check_lines):
-                value += move_line.credit - move_line.debit
-            item.retenciones_dinerarias = value
-
-    @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
-    def _compute_percepciones_en_especie(self):
-        for item in self:
-            if item.discapacidad and item.discapacidad != "0":
-                item.percepciones_en_especie = 0.0
-                continue
-            tax_lines = item.report_id.tax_line_ids.filtered(
-                lambda x: x.field_number == 13 and x.res_id == item.report_id.id
+            item.percepciones_dinerarias = not incapacidad and percepciones_dinerarias
+            item.percepciones_dinerarias_incap = incapacidad and percepciones_dinerarias
+            item.retenciones_dinerarias = not incapacidad and retenciones_dinerarias
+            item.retenciones_dinerarias_incap = incapacidad and retenciones_dinerarias
+            item.percepciones_en_especie = not incapacidad and percepciones_en_especie
+            item.percepciones_en_especie_incap = incapacidad and percepciones_en_especie
+            item.ingresos_a_cuenta_efectuados = (
+                not incapacidad and ingresos_a_cuenta_efectuados
             )
-            pde = rde = 0.0
-            for move_line in tax_lines.move_line_ids.filtered(item._check_lines):
-                pde += move_line.debit - move_line.credit
-                rde += move_line.credit - move_line.debit
-            item.percepciones_en_especie = pde - rde
-
-    @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
-    def _compute_ingresos_a_cuenta_efectuados(self):
-        for item in self:
-            if item.discapacidad and item.discapacidad != "0":
-                item.ingresos_a_cuenta_efectuados = 0.0
-                continue
-            tax_lines = item.report_id.tax_line_ids.filtered(
-                lambda x: x.field_number == 13 and x.res_id == item.report_id.id
+            item.ingresos_a_cuenta_efectuados_incap = (
+                incapacidad and ingresos_a_cuenta_efectuados
             )
-            value = 0.0
-            for move_line in tax_lines.move_line_ids.filtered(item._check_lines):
-                value += move_line.debit - move_line.credit
-            item.ingresos_a_cuenta_efectuados = value
-
-    @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
-    def _compute_ingresos_a_cuenta_repercutidos(self):
-        for item in self:
-            if item.discapacidad and item.discapacidad != "0":
-                item.ingresos_a_cuenta_repercutidos = 0.0
-                continue
-            tax_lines = item.report_id.tax_line_ids.filtered(
-                lambda x: x.field_number == 13 and x.res_id == item.report_id.id
+            item.ingresos_a_cuenta_repercutidos = (
+                not incapacidad and ingresos_a_cuenta_efectuados
             )
-            value = 0.0
-            for move_line in tax_lines.move_line_ids.filtered(item._check_lines):
-                value += move_line.credit - move_line.debit
-            item.ingresos_a_cuenta_repercutidos = value
-
-    # Calculo campos CON incapacidad
-    @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
-    def _compute_percepciones_dinerarias_incap(self):
-        """La misma lógica que para percepciones_dinerarias."""
-        for item in self.filtered(lambda x: x.discapacidad and x.discapacidad != "0"):
-            tax_lines = item.report_id.tax_line_ids.filtered(
-                lambda x: x.field_number in (11, 15) and x.res_id == item.report_id.id
+            item.ingresos_a_cuenta_repercutidos_incap = (
+                incapacidad and ingresos_a_cuenta_efectuados
             )
-            value = 0.0
-            for move_line in tax_lines.move_line_ids.filtered(item._check_lines):
-                value += move_line.debit - move_line.credit
-            item.percepciones_dinerarias_incap = value
-
-    @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
-    def _compute_retenciones_dinerarias_incap(self):
-        """La misma lógica que para retenciones_dinerarias."""
-        for item in self.filtered(lambda x: x.discapacidad and x.discapacidad != "0"):
-            tax_lines = item.report_id.tax_line_ids.filtered(
-                lambda x: x.field_number in (12, 16) and x.res_id == item.report_id.id
-            )
-            value = 0.0
-            for move_line in tax_lines.move_line_ids.filtered(item._check_lines):
-                value += move_line.credit - move_line.debit
-            item.retenciones_dinerarias_incap = value
-
-    @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
-    def _compute_percepciones_en_especie_incap(self):
-        """La misma lógica que para percepciones_en_especie."""
-        for item in self.filtered(lambda x: x.discapacidad and x.discapacidad != "0"):
-            tax_lines = item.report_id.tax_line_ids.filtered(
-                lambda x: x.field_number == 13 and x.res_id == item.report_id.id
-            )
-            pde = rde = 0.0
-            for move_line in tax_lines.move_line_ids.filtered(item._check_lines):
-                pde += move_line.debit - move_line.credit
-                rde += move_line.credit - move_line.debit
-            item.percepciones_en_especie_incap = pde - rde
-
-    @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
-    def _compute_ingresos_a_cuenta_efectuados_incap(self):
-        """La misma lógica que para ingresos_a_cuenta_efectuados."""
-        for item in self.filtered(lambda x: x.discapacidad and x.discapacidad != "0"):
-            tax_lines = item.report_id.tax_line_ids.filtered(
-                lambda x: x.field_number == 13 and x.res_id == item.report_id.id
-            )
-            value = 0.0
-            for move_line in tax_lines.move_line_ids.filtered(item._check_lines):
-                value += move_line.debit - move_line.credit
-            item.ingresos_a_cuenta_efectuados_incap = value
-
-    @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
-    def _compute_ingresos_a_cuenta_repercutidos_incap(self):
-        """La misma lógica que para ingresos_a_cuenta_repercutidos."""
-        for item in self.filtered(lambda x: x.discapacidad and x.discapacidad != "0"):
-            tax_lines = item.report_id.tax_line_ids.filtered(
-                lambda x: x.field_number == 13 and x.res_id == item.report_id.id
-            )
-            value = 0.0
-            for move_line in tax_lines.move_line_ids.filtered(item._check_lines):
-                value += move_line.credit - move_line.debit
-            item.ingresos_a_cuenta_repercutidos_incap = value
 
     @api.onchange("partner_id")
     def onchange_partner_id(self):
