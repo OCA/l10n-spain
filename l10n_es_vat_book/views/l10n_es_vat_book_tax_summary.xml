@@ -24,8 +24,25 @@
             <tree decoration-muted="special_tax_group">
                 <field name="special_tax_group" />
                 <field name="base_amount" />
+                <!-- We don't add a visibility condition, as that would mean to have
+                a field determining if there are moves or not, which can drain the
+                performance -->
+                <button
+                    name="view_move_lines_base"
+                    type="object"
+                    aria-label="Show journal items"
+                    title="Show journal items"
+                    icon="fa-search-plus"
+                />
                 <field name="tax_id" />
                 <field name="tax_amount" />
+                <button
+                    name="view_move_lines_tax"
+                    type="object"
+                    aria-label="Show journal items"
+                    title="Show journal items"
+                    icon="fa-search-plus"
+                />
                 <field name="total_amount" />
             </tree>
         </field>
