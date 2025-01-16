@@ -150,6 +150,8 @@ class L10nEsVatBook(models.Model):
                     "tax_id": tax_line.tax_id.id,
                     "vat_book_id": self.id,
                     "special_tax_group": tax_line.special_tax_group,
+                    "base_move_line_ids": tax_line.base_move_line_ids.ids,
+                    "move_line_ids": tax_line.move_line_ids.ids,
                 }
             tax_summary_data_recs[tax_line.tax_id][
                 "base_amount"
@@ -158,6 +160,12 @@ class L10nEsVatBook(models.Model):
             tax_summary_data_recs[tax_line.tax_id][
                 "total_amount"
             ] += tax_line.total_amount
+            tax_summary_data_recs[tax_line.tax_id][
+                "base_move_line_ids"
+            ] += tax_line.base_move_line_ids.ids
+            tax_summary_data_recs[tax_line.tax_id][
+                "move_line_ids"
+            ] += tax_line.move_line_ids.ids
         return tax_summary_data_recs
 
     @api.model
@@ -249,13 +257,19 @@ class L10nEsVatBook(models.Model):
             balance if move_line.tax_ids and not move_line.tax_line_id else 0.0
         )
         fee_amount_untaxed = balance if move_line.tax_line_id else 0.0
-        return {
+        vals = {
             "tax_id": move_line.tax_line_id.id,
             "base_amount": base_amount_untaxed,
             "tax_amount": fee_amount_untaxed,
-            "move_line_ids": [(4, move_line.id)],
+            "base_move_line_ids": [],
+            "move_line_ids": [],
             "special_tax_group": False,
         }
+        if move_line.tax_ids:
+            vals["base_move_line_ids"].append((4, move_line.id))
+        elif move_line.tax_line_id:
+            vals["move_line_ids"].append((4, move_line.id))
+        return vals
 
     def upsert_book_line_tax(self, move_line, vat_book_line, implied_taxes):
         vals = self._prepare_book_line_tax_vals(move_line, vat_book_line)
@@ -279,7 +293,7 @@ class L10nEsVatBook(models.Model):
                 tax_lines[key]["tax_id"] = tax.id
             else:
                 tax_lines[key]["base_amount"] += vals["base_amount"]
-                tax_lines[key]["move_line_ids"] += vals["move_line_ids"]
+                tax_lines[key]["base_move_line_ids"] += vals["base_move_line_ids"]
             # For later matching special taxes
             tax_lines[key]["other_tax_ids"] = (move_line.tax_ids - tax).ids
 
