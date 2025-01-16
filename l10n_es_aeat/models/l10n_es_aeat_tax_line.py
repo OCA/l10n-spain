@@ -34,8 +34,4 @@ class L10nEsAeatTaxLine(models.Model):
     model = fields.Char(index=True, readonly=True, required=True, string="Model name")
 
     def get_calculated_move_lines(self):
-        res = self.env.ref("account.action_account_moves_all_a").sudo().read()[0]
-        view = self.env.ref("l10n_es_aeat.view_move_line_tree")
-        res["views"] = [(view.id, "tree")]
-        res["domain"] = [("id", "in", self.move_line_ids.ids)]
-        return res
+        return self.env["l10n.es.aeat.report"]._view_move_lines(self.move_line_ids)
