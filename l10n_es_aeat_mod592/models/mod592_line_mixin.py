@@ -58,6 +58,9 @@ class L10nEsAeatmod592LineMixin(models.AbstractModel):
     product_id = fields.Many2one(
         comodel_name="product.product", related="stock_move_id.product_id"
     )
+    product_description = fields.Char(
+        string="Product description", compute="_compute_product_description"
+    )
     product_uom_qty = fields.Float(
         compute="_compute_product_uom_qty",
         store=True,
@@ -143,6 +146,11 @@ class L10nEsAeatmod592LineMixin(models.AbstractModel):
                 item.product_id.plastic_weight_non_recyclable * item.product_uom_qty
             )
 
+    @api.depends("product_id")
+    def _compute_product_description(self):
+        for item in self:
+            item.product_description = item.product_id.name
+
     @api.depends("error_text")
     def _compute_entries_ok(self):
         for item in self:
@@ -168,14 +176,16 @@ class L10nEsAeatmod592LineMixin(models.AbstractModel):
         self.ensure_one()
         return {
             "entry_number": self.entry_number,
-            "date_done": self.date_done.strftime("%d/%m/%Y"),
+            "date_done": self.date_done.strftime("%d-%m-%Y"),
+            "concept": self.concept,
             "product_key": self.product_key,
+            "product_description": self.product_description,
             "proof": self.proof,
             "supplier_document_type": self.supplier_document_type,
             "supplier_document_number": self.supplier_document_number,
             "supplier_social_reason": self.supplier_social_reason,
-            "kgs": self.kgs,
-            "no_recycling_kgs": self.no_recycling_kgs,
+            "kgs": str(self.kgs).replace(".", ","),
+            "no_recycling_kgs": str(self.no_recycling_kgs).replace(".", ","),
             "entry_note": self.entry_note or "",
         }
 
