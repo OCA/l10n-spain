@@ -54,9 +54,10 @@ class L10nEsAeatMod390Report(models.Model):
     )
     main_activity = fields.Char(
         string="Actividad principal",
-        readonly=True,
+        readonly=False,
         size=40,
-        states=REQUIRED_ON_CALCULATED,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     main_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
@@ -72,23 +73,27 @@ class L10nEsAeatMod390Report(models.Model):
         "   '|', ('date_end', '=', False), ('date_end', '>=', date_end),"
         "]",
         string="Código actividad principal",
+        readonly=False,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     main_activity_iae = fields.Char(
         string="Epígrafe I.A.E. actividad principal",
-        readonly=True,
+        readonly=False,
         size=4,
-        states=REQUIRED_ON_CALCULATED,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     other_first_activity = fields.Char(
         string="1ª actividad",
-        readonly=True,
+        readonly=False,
         size=40,
-        states=EDITABLE_ON_CALCULATED,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     other_first_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
         string="Código 1ª actividad (antiguo)",
-        readonly=True,
     )
     other_first_activity_code_id = fields.Many2one(
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
@@ -100,18 +105,23 @@ class L10nEsAeatMod390Report(models.Model):
         "   '|', ('date_end', '=', False), ('date_end', '>=', date_end),"
         "]",
         string="Código 1ª actividad",
+        readonly=False,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     other_first_activity_iae = fields.Char(
         string="Epígrafe I.A.E. 1ª actividad",
-        readonly=True,
+        readonly=False,
         size=4,
-        states=EDITABLE_ON_CALCULATED,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     other_second_activity = fields.Char(
         string="2ª actividad",
-        readonly=True,
+        readonly=False,
         size=40,
-        states=EDITABLE_ON_CALCULATED,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     other_second_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
@@ -129,18 +139,23 @@ class L10nEsAeatMod390Report(models.Model):
         "   '|', ('date_end', '=', False), ('date_end', '>=', date_end),"
         "]",
         string="Código 2ª actividad",
+        readonly=False,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     other_second_activity_iae = fields.Char(
         string="Epígrafe I.A.E. 2ª actividad",
-        readonly=True,
+        readonly=False,
         size=4,
-        states=EDITABLE_ON_CALCULATED,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     other_third_activity = fields.Char(
         string="3ª actividad",
-        readonly=True,
+        readonly=False,
         size=40,
-        states=EDITABLE_ON_CALCULATED,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     other_third_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
@@ -157,18 +172,23 @@ class L10nEsAeatMod390Report(models.Model):
         "   '|', ('date_end', '=', False), ('date_end', '>=', date_end),"
         "]",
         string="Código 3ª actividad",
+        readonly=False,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     other_third_activity_iae = fields.Char(
         string="Epígrafe I.A.E. 3ª actividad",
-        readonly=True,
+        readonly=False,
         size=4,
-        states=EDITABLE_ON_CALCULATED,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     other_fourth_activity = fields.Char(
         string="4ª actividad",
-        readonly=True,
+        readonly=False,
         size=40,
-        states=EDITABLE_ON_CALCULATED,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     other_fourth_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
@@ -185,18 +205,23 @@ class L10nEsAeatMod390Report(models.Model):
         "   '|', ('date_end', '=', False), ('date_end', '>=', date_end),"
         "]",
         string="Código 4ª actividad",
+        readonly=False,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     other_fourth_activity_iae = fields.Char(
         string="Epígrafe I.A.E. 4ª actividad",
-        readonly=True,
+        readonly=False,
         size=4,
-        states=EDITABLE_ON_CALCULATED,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     other_fifth_activity = fields.Char(
         string="5ª actividad",
-        readonly=True,
+        readonly=False,
         size=40,
-        states=EDITABLE_ON_CALCULATED,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     other_fifth_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
@@ -214,88 +239,106 @@ class L10nEsAeatMod390Report(models.Model):
         "   '|', ('date_end', '=', False), ('date_end', '>=', date_end),"
         "]",
         string="Código 5ª actividad",
+        readonly=False,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     other_fifth_activity_iae = fields.Char(
         string="Epígrafe I.A.E. 5ª actividad",
-        readonly=True,
+        readonly=False,
         size=4,
-        states=EDITABLE_ON_CALCULATED,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     # 4. Representantes
     first_representative_name = fields.Char(
         string="Nombre del primer representante",
-        readonly=True,
+        readonly=False,
         size=80,
         states=REQUIRED_ON_CALCULATED,
         help=REPRESENTATIVE_HELP,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     first_representative_vat = fields.Char(
         string="NIF del primer representante",
-        readonly=True,
+        readonly=False,
         size=9,
         states=REQUIRED_ON_CALCULATED,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     first_representative_date = fields.Date(
         string="Fecha poder del primer representante",
-        readonly=True,
-        states=EDITABLE_ON_CALCULATED,
+        readonly=False,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     first_representative_notary = fields.Char(
         string="Notaría del primer representante",
-        readonly=True,
+        readonly=False,
         size=12,
         help=NOTARY_CODE_HELP,
-        states=EDITABLE_ON_CALCULATED,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     second_representative_name = fields.Char(
         string="Nombre del segundo representante",
-        readonly=True,
+        readonly=False,
         size=80,
-        states=EDITABLE_ON_CALCULATED,
         help=REPRESENTATIVE_HELP,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     second_representative_vat = fields.Char(
         string="NIF del segundo representante",
-        readonly=True,
+        readonly=False,
         size=9,
-        states=EDITABLE_ON_CALCULATED,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     second_representative_date = fields.Date(
         string="Fecha poder del segundo representante",
-        readonly=True,
-        states=EDITABLE_ON_CALCULATED,
+        readonly=False,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     second_representative_notary = fields.Char(
         string="Notaría del segundo representante",
-        readonly=True,
+        readonly=False,
         size=12,
-        states=EDITABLE_ON_CALCULATED,
         help=NOTARY_CODE_HELP,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     third_representative_name = fields.Char(
         string="Nombre del tercer representante",
-        readonly=True,
+        readonly=False,
         size=80,
-        states=EDITABLE_ON_CALCULATED,
         help=REPRESENTATIVE_HELP,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     third_representative_vat = fields.Char(
         string="NIF del tercer representante",
-        readonly=True,
+        readonly=False,
         size=9,
-        states=EDITABLE_ON_CALCULATED,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     third_representative_date = fields.Date(
         string="Fecha poder del tercer representante",
-        readonly=True,
-        states=EDITABLE_ON_CALCULATED,
+        readonly=False,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     third_representative_notary = fields.Char(
         string="Notaría del tercer representante",
-        readonly=True,
+        readonly=False,
         size=12,
-        states=EDITABLE_ON_CALCULATED,
         help=NOTARY_CODE_HELP,
+        compute="_compute_activities_iae_representatives",
+        store=True,
     )
     # 5. Régimen general
     casilla_33 = fields.Float(
@@ -809,6 +852,116 @@ class L10nEsAeatMod390Report(models.Model):
                     lambda x: x.field_number in (106, 107)
                 ).mapped("amount")
             )
+
+    @api.depends("state", "company_id")
+    def _compute_activities_iae_representatives(self):
+        for record in self:
+            if record.state == "calculated":
+                record.main_activity = record.company_id.main_activity
+                record.main_activity_code_id = record.company_id.main_activity_code_id
+                record.main_activity_iae = record.company_id.main_activity_iae
+                record.other_first_activity = record.company_id.other_first_activity
+                record.other_first_activity_code_id = (
+                    record.company_id.other_first_activity_code_id
+                )
+                record.other_first_activity_iae = (
+                    record.company_id.other_first_activity_iae
+                )
+                record.other_second_activity = record.company_id.other_second_activity
+                record.other_second_activity_code_id = (
+                    record.company_id.other_second_activity_code_id
+                )
+                record.other_second_activity_iae = (
+                    record.company_id.other_second_activity_iae
+                )
+                record.other_third_activity = record.company_id.other_third_activity
+                record.other_third_activity_code_id = (
+                    record.company_id.other_third_activity_code_id
+                )
+                record.other_third_activity_iae = (
+                    record.company_id.other_third_activity_iae
+                )
+                record.other_fourth_activity = record.company_id.other_fourth_activity
+                record.other_fourth_activity_code_id = (
+                    record.company_id.other_fourth_activity_code_id
+                )
+                record.other_fourth_activity_iae = (
+                    record.company_id.other_fourth_activity_iae
+                )
+                record.other_fifth_activity = record.company_id.other_fifth_activity
+                record.other_fifth_activity_code_id = (
+                    record.company_id.other_fifth_activity_code_id
+                )
+                record.other_fifth_activity_iae = (
+                    record.company_id.other_fifth_activity_iae
+                )
+                record.first_representative_name = (
+                    record.company_id.first_representative_name
+                )
+                record.first_representative_vat = (
+                    record.company_id.first_representative_vat
+                )
+                record.first_representative_date = (
+                    record.company_id.first_representative_date
+                )
+                record.first_representative_notary = (
+                    record.company_id.first_representative_notary
+                )
+                record.second_representative_name = (
+                    record.company_id.second_representative_name
+                )
+                record.second_representative_vat = (
+                    record.company_id.second_representative_vat
+                )
+                record.second_representative_date = (
+                    record.company_id.second_representative_date
+                )
+                record.second_representative_notary = (
+                    record.company_id.second_representative_notary
+                )
+                record.third_representative_name = (
+                    record.company_id.third_representative_name
+                )
+                record.third_representative_vat = (
+                    record.company_id.third_representative_vat
+                )
+                record.third_representative_date = (
+                    record.company_id.third_representative_date
+                )
+                record.third_representative_notary = (
+                    record.company_id.third_representative_notary
+                )
+            elif record.state == "draft":
+                record.main_activity = False
+                record.main_activity_code_id = False
+                record.main_activity_iae = False
+                record.other_first_activity = False
+                record.other_first_activity_code_id = False
+                record.other_first_activity_iae = False
+                record.other_second_activity = False
+                record.other_second_activity_code_id = False
+                record.other_second_activity_iae = False
+                record.other_third_activity = False
+                record.other_third_activity_code_id = False
+                record.other_third_activity_iae = False
+                record.other_fourth_activity = False
+                record.other_fourth_activity_code_id = False
+                record.other_fourth_activity_iae = False
+                record.other_fifth_activity = False
+                record.other_fifth_activity_code_id = False
+                record.other_fifth_activity_iae = False
+                record.first_representative_name = False
+                record.first_representative_vat = False
+                record.first_representative_date = False
+                record.first_representative_notary = False
+                record.second_representative_name = False
+                record.second_representative_vat = False
+                record.second_representative_date = False
+                record.second_representative_notary = False
+                record.third_representative_name = False
+                record.third_representative_vat = False
+                record.third_representative_date = False
+                record.third_representative_notary = False
 
     @api.constrains("statement_type")
     def _check_type(self):

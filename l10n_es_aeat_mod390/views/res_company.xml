@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Emilio Pascual
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_company_aeat_mod390_form" model="ir.ui.view">
+        <field name="name">res.company.aeat.mod390.form</field>
+        <field name="model">res.company</field>
+        <field
+            name="inherit_id"
+            ref="l10n_es_aeat_mod303.view_company_aeat_mod303_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='main_activity_code_id']" position="before">
+                <field name="main_activity" />
+            </xpath>
+            <xpath
+                expr="//field[@name='other_first_activity_code_id']"
+                position="before"
+            >
+                <field name="other_first_activity" />
+            </xpath>
+            <xpath
+                expr="//field[@name='other_second_activity_code_id']"
+                position="before"
+            >
+                <field name="other_second_activity" />
+            </xpath>
+            <xpath
+                expr="//field[@name='other_third_activity_code_id']"
+                position="before"
+            >
+                <field name="other_third_activity" />
+            </xpath>
+            <xpath
+                expr="//field[@name='other_fourth_activity_code_id']"
+                position="before"
+            >
+                <field name="other_fourth_activity" />
+            </xpath>
+            <xpath
+                expr="//field[@name='other_fifth_activity_code_id']"
+                position="before"
+            >
+                <field name="other_fifth_activity" />
+            </xpath>
+            <xpath expr="//group[@name='default_values_aeat_303']" position="after">
+                <group name="representantes">
+                    <group
+                        name="group_first_representative"
+                        string="Primer representante"
+                    >
+                        <field name="first_representative_name" />
+                        <field name="first_representative_vat" />
+                        <field name="first_representative_date" />
+                        <field name="first_representative_notary" />
+                    </group>
+                    <group
+                        name="group_second_representative"
+                        string="Segundo representante"
+                    >
+                        <field name="second_representative_name" />
+                        <field name="second_representative_vat" />
+                        <field name="second_representative_date" />
+                        <field name="second_representative_notary" />
+                    </group>
+                    <group
+                        name="group_third_representative"
+                        string="Tercer representante"
+                    >
+                        <field name="third_representative_name" />
+                        <field name="third_representative_vat" />
+                        <field name="third_representative_date" />
+                        <field name="third_representative_notary" />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -42,7 +42,10 @@
                             <field name="has_347" />
                         </group>
                         <group string="Actividad principal" name="group_main_activity">
-                            <field name="main_activity" />
+                            <field
+                                name="main_activity"
+                                attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                            />
                             <field
                                 name="main_activity_code"
                                 attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)], 'required': [('state', '=', 'calculated'), ('year', '&lt;', 2022)]}"
@@ -51,14 +54,20 @@
                                 name="main_activity_code_id"
                                 attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)], 'required': [('state', '=', 'calculated'), ('year', '&gt;', 2021)]}"
                             />
-                            <field name="main_activity_iae" />
+                            <field
+                                name="main_activity_iae"
+                                attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                            />
                         </group>
                         <group>
                             <group
                                 string="Otras - 1ª actividad"
                                 name="group_other_first_activity"
                             >
-                                <field name="other_first_activity" />
+                                <field
+                                    name="other_first_activity"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                                />
                                 <field
                                     name="other_first_activity_code"
                                     attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)]}"
@@ -67,13 +76,19 @@
                                     name="other_first_activity_code_id"
                                     attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)]}"
                                 />
-                                <field name="other_first_activity_iae" />
+                                <field
+                                    name="other_first_activity_iae"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                                />
                             </group>
                             <group
                                 string="Otras - 2ª actividad"
                                 name="group_other_second_activity"
                             >
-                                <field name="other_second_activity" />
+                                <field
+                                    name="other_second_activity"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                                />
                                 <field
                                     name="other_second_activity_code"
                                     attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)]}"
@@ -82,13 +97,19 @@
                                     name="other_second_activity_code_id"
                                     attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)]}"
                                 />
-                                <field name="other_second_activity_iae" />
+                                <field
+                                    name="other_second_activity_iae"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                                />
                             </group>
                             <group
                                 string="Otras - 3ª actividad"
                                 name="group_other_third_activity"
                             >
-                                <field name="other_third_activity" />
+                                <field
+                                    name="other_third_activity"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                                />
                                 <field
                                     name="other_third_activity_code"
                                     attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)]}"
@@ -97,13 +118,19 @@
                                     name="other_third_activity_code_id"
                                     attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)]}"
                                 />
-                                <field name="other_third_activity_iae" />
+                                <field
+                                    name="other_third_activity_iae"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                                />
                             </group>
                             <group
                                 string="Otras - 4ª actividad"
                                 name="group_other_fourth_activity"
                             >
-                                <field name="other_fourth_activity" />
+                                <field
+                                    name="other_fourth_activity"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                                />
                                 <field
                                     name="other_fourth_activity_code"
                                     attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)]}"
@@ -112,13 +139,19 @@
                                     name="other_fourth_activity_code_id"
                                     attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)]}"
                                 />
-                                <field name="other_fourth_activity_iae" />
+                                <field
+                                    name="other_fourth_activity_iae"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                                />
                             </group>
                             <group
                                 string="Otras - 5ª actividad"
                                 name="group_other_fifth_activity"
                             >
-                                <field name="other_fifth_activity" />
+                                <field
+                                    name="other_fifth_activity"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                                />
                                 <field
                                     name="other_fifth_activity_code"
                                     attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&gt;', 2021)]}"
@@ -127,7 +160,10 @@
                                     name="other_fifth_activity_code_id"
                                     attrs="{'readonly': [('state', '!=', 'calculated')], 'invisible': [('year', '&lt;', 2022)]}"
                                 />
-                                <field name="other_fifth_activity_iae" />
+                                <field
+                                    name="other_fifth_activity_iae"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                                />
                             </group>
                         </group>
                     </page>
@@ -137,28 +173,64 @@
                                 name="group_first_representative"
                                 string="Primer representante"
                             >
-                                <field name="first_representative_name" />
-                                <field name="first_representative_vat" />
-                                <field name="first_representative_date" />
-                                <field name="first_representative_notary" />
+                                <field
+                                    name="first_representative_name"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                                />
+                                <field
+                                    name="first_representative_vat"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                                />
+                                <field
+                                    name="first_representative_date"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                                />
+                                <field
+                                    name="first_representative_notary"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                                />
                             </group>
                             <group
                                 name="group_second_representative"
                                 string="Segundo representante"
                             >
-                                <field name="second_representative_name" />
-                                <field name="second_representative_vat" />
-                                <field name="second_representative_date" />
-                                <field name="second_representative_notary" />
+                                <field
+                                    name="second_representative_name"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                                />
+                                <field
+                                    name="second_representative_vat"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                                />
+                                <field
+                                    name="second_representative_date"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                                />
+                                <field
+                                    name="second_representative_notary"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                                />
                             </group>
                             <group
                                 name="group_third_representative"
                                 string="Tercer representante"
                             >
-                                <field name="third_representative_name" />
-                                <field name="third_representative_vat" />
-                                <field name="third_representative_date" />
-                                <field name="third_representative_notary" />
+                                <field
+                                    name="third_representative_name"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                                />
+                                <field
+                                    name="third_representative_vat"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                                />
+                                <field
+                                    name="third_representative_date"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                                />
+                                <field
+                                    name="third_representative_notary"
+                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"
+                                />
                             </group>
                         </group>
                     </page>

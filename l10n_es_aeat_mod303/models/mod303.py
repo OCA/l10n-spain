@@ -217,68 +217,92 @@ class L10nEsAeatMod303Report(models.Model):
     main_activity_code = fields.Many2one(
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
         domain=ACTIVITY_CODE_DOMAIN,
-        states=NON_EDITABLE_ON_DONE,
         string="Código actividad principal",
+        readonly=False,
+        compute="_compute_activities_and_iae",
+        store=True,
     )
     main_activity_iae = fields.Char(
-        states=NON_EDITABLE_ON_DONE,
         string="Epígrafe I.A.E. actividad principal",
         size=4,
+        readonly=False,
+        compute="_compute_activities_and_iae",
+        store=True,
     )
     other_first_activity_code = fields.Many2one(
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
         domain=ACTIVITY_CODE_DOMAIN,
-        states=NON_EDITABLE_ON_DONE,
         string="Código 1ª actividad",
+        readonly=False,
+        compute="_compute_activities_and_iae",
+        store=True,
     )
     other_first_activity_iae = fields.Char(
         string="Epígrafe I.A.E. 1ª actividad",
-        states=NON_EDITABLE_ON_DONE,
         size=4,
+        readonly=False,
+        compute="_compute_activities_and_iae",
+        store=True,
     )
     other_second_activity_code = fields.Many2one(
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
         domain=ACTIVITY_CODE_DOMAIN,
-        states=NON_EDITABLE_ON_DONE,
         string="Código 2ª actividad",
+        readonly=False,
+        compute="_compute_activities_and_iae",
+        store=True,
     )
     other_second_activity_iae = fields.Char(
         string="Epígrafe I.A.E. 2ª actividad",
-        states=NON_EDITABLE_ON_DONE,
         size=4,
+        readonly=False,
+        compute="_compute_activities_and_iae",
+        store=True,
     )
     other_third_activity_code = fields.Many2one(
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
         domain=ACTIVITY_CODE_DOMAIN,
-        states=NON_EDITABLE_ON_DONE,
         string="Código 3ª actividad",
+        readonly=False,
+        compute="_compute_activities_and_iae",
+        store=True,
     )
     other_third_activity_iae = fields.Char(
         string="Epígrafe I.A.E. 3ª actividad",
-        states=NON_EDITABLE_ON_DONE,
         size=4,
+        readonly=False,
+        compute="_compute_activities_and_iae",
+        store=True,
     )
     other_fourth_activity_code = fields.Many2one(
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
         domain=ACTIVITY_CODE_DOMAIN,
-        states=NON_EDITABLE_ON_DONE,
         string="Código 4ª actividad",
+        readonly=False,
+        compute="_compute_activities_and_iae",
+        store=True,
     )
     other_fourth_activity_iae = fields.Char(
         string="Epígrafe I.A.E. 4ª actividad",
-        states=NON_EDITABLE_ON_DONE,
         size=4,
+        readonly=False,
+        compute="_compute_activities_and_iae",
+        store=True,
     )
     other_fifth_activity_code = fields.Many2one(
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
         domain=ACTIVITY_CODE_DOMAIN,
-        states=NON_EDITABLE_ON_DONE,
         string="Código 5ª actividad",
+        readonly=False,
+        compute="_compute_activities_and_iae",
+        store=True,
     )
     other_fifth_activity_iae = fields.Char(
         string="Epígrafe I.A.E. 5ª actividad",
-        states=NON_EDITABLE_ON_DONE,
         size=4,
+        readonly=False,
+        compute="_compute_activities_and_iae",
+        store=True,
     )
     casilla_88 = fields.Float(
         string="[88] Total volumen operaciones",
@@ -498,6 +522,56 @@ class L10nEsAeatMod303Report(models.Model):
                         report.result_type = "C"
                 else:
                     report.result_type = "C"
+
+    @api.depends("exonerated_390", "company_id")
+    def _compute_activities_and_iae(self):
+        for record in self:
+            if record.exonerated_390 != "2":
+                record.main_activity_code = record.company_id.main_activity_code_id
+                record.main_activity_iae = record.company_id.main_activity_iae
+                record.other_first_activity_code = (
+                    record.company_id.other_first_activity_code_id
+                )
+                record.other_first_activity_iae = (
+                    record.company_id.other_first_activity_iae
+                )
+                record.other_second_activity_code = (
+                    record.company_id.other_second_activity_code_id
+                )
+                record.other_second_activity_iae = (
+                    record.company_id.other_second_activity_iae
+                )
+                record.other_third_activity_code = (
+                    record.company_id.other_third_activity_code_id
+                )
+                record.other_third_activity_iae = (
+                    record.company_id.other_third_activity_iae
+                )
+                record.other_fourth_activity_code = (
+                    record.company_id.other_fourth_activity_code_id
+                )
+                record.other_fourth_activity_iae = (
+                    record.company_id.other_fourth_activity_iae
+                )
+                record.other_fifth_activity_code = (
+                    record.company_id.other_fifth_activity_code_id
+                )
+                record.other_fifth_activity_iae = (
+                    record.company_id.other_fifth_activity_iae
+                )
+            else:
+                record.main_activity_code = False
+                record.main_activity_iae = False
+                record.other_first_activity_code = False
+                record.other_first_activity_iae = False
+                record.other_second_activity_code = False
+                record.other_second_activity_iae = False
+                record.other_third_activity_code = False
+                record.other_third_activity_iae = False
+                record.other_fourth_activity_code = False
+                record.other_fourth_activity_iae = False
+                record.other_fifth_activity_code = False
+                record.other_fifth_activity_iae = False
 
     @api.onchange("statement_type")
     def onchange_type(self):

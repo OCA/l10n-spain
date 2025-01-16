@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Emilio Pascual
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_company_aeat_mod303_form" model="ir.ui.view">
+        <field name="name">res.company.aeat.mod303.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_company_aeat_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='aeat_config']/parent::group" position="after">
+                <group name="default_values_aeat_303">
+                    <group string="Actividad principal" name="group_main_activity">
+                        <field name="main_activity_code_id" />
+                        <field name="main_activity_iae" />
+                    </group>
+                    <group
+                        string="Otras - 1ª actividad"
+                        name="group_other_first_activity"
+                    >
+                        <field name="other_first_activity_code_id" />
+                        <field name="other_first_activity_iae" />
+                    </group>
+                    <group
+                        string="Otras - 2ª actividad"
+                        name="group_other_second_activity"
+                    >
+                        <field name="other_second_activity_code_id" />
+                        <field name="other_second_activity_iae" />
+                    </group>
+                    <group
+                        string="Otras - 3ª actividad"
+                        name="group_other_third_activity"
+                    >
+                        <field name="other_third_activity_code_id" />
+                        <field name="other_third_activity_iae" />
+                    </group>
+                    <group
+                        string="Otras - 4ª actividad"
+                        name="group_other_fourth_activity"
+                    >
+                        <field name="other_fourth_activity_code_id" />
+                        <field name="other_fourth_activity_iae" />
+                    </group>
+                    <group
+                        string="Otras - 5ª actividad"
+                        name="group_other_fifth_activity"
+                    >
+                        <field name="other_fifth_activity_code_id" />
+                        <field name="other_fifth_activity_iae" />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

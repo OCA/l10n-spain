@@ -3,7 +3,7 @@
 
 from collections import OrderedDict
 
-from odoo import exceptions
+from odoo import exceptions, fields
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
@@ -492,3 +492,156 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         self.assertAlmostEqual(self.model390_2018.casilla_97, 0.0, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_98, 100.00, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_662, 0.0, 2)
+
+    def test_default_values_in_company(self):
+        self.company.update(
+            {
+                "main_activity": "A01 Test",
+                "main_activity_code_id": self.env.ref(
+                    "l10n_es_aeat_mod303.aeat_mod303_activity_code_A01"
+                ),
+                "main_activity_iae": "A01",
+                "other_first_activity": "A02 Test",
+                "other_first_activity_code_id": self.env.ref(
+                    "l10n_es_aeat_mod303.aeat_mod303_activity_code_A02"
+                ),
+                "other_first_activity_iae": "A02",
+                "other_second_activity": "A03 Test",
+                "other_second_activity_code_id": self.env.ref(
+                    "l10n_es_aeat_mod303.aeat_mod303_activity_code_A03"
+                ),
+                "other_second_activity_iae": "A03",
+                "other_third_activity": "A04 Test",
+                "other_third_activity_code_id": self.env.ref(
+                    "l10n_es_aeat_mod303.aeat_mod303_activity_code_A04"
+                ),
+                "other_third_activity_iae": "A04",
+                "other_fourth_activity": "A05 Test",
+                "other_fourth_activity_code_id": self.env.ref(
+                    "l10n_es_aeat_mod303.aeat_mod303_activity_code_A05"
+                ),
+                "other_fourth_activity_iae": "A05",
+                "other_fifth_activity": "B01 Test",
+                "other_fifth_activity_code_id": self.env.ref(
+                    "l10n_es_aeat_mod303.aeat_mod303_activity_code_B01"
+                ),
+                "other_fifth_activity_iae": "B01",
+                "first_representative_name": "Test Name 1",
+                "first_representative_vat": "123456789",
+                "first_representative_date": "2018-01-01",
+                "first_representative_notary": "Test Notary1",
+                "second_representative_name": "Test Name 2",
+                "second_representative_vat": "987654321",
+                "second_representative_date": "2018-01-02",
+                "second_representative_notary": "Test Notary2",
+                "third_representative_name": "Test Name 3",
+                "third_representative_vat": "123456780",
+                "third_representative_date": "2018-01-03",
+                "third_representative_notary": "Test Notary3",
+            }
+        )
+        model390 = self.env["l10n.es.aeat.mod390.report"].create(
+            {
+                "name": "9990002024390",
+                "company_id": self.company.id,
+                "company_vat": "1234567890",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": 2024,
+                "period_type": "0A",
+                "date_start": "2024-01-01",
+                "date_end": "2024-12-31",
+                "journal_id": self.journal_misc.id,
+            }
+        )
+        model390.button_calculate()
+        self.assertRecordValues(
+            model390,
+            [
+                {
+                    "main_activity": "A01 Test",
+                    "main_activity_code_id": self.env.ref(
+                        "l10n_es_aeat_mod303.aeat_mod303_activity_code_A01"
+                    ).id,
+                    "main_activity_iae": "A01",
+                    "other_first_activity": "A02 Test",
+                    "other_first_activity_code_id": self.env.ref(
+                        "l10n_es_aeat_mod303.aeat_mod303_activity_code_A02"
+                    ).id,
+                    "other_first_activity_iae": "A02",
+                    "other_second_activity": "A03 Test",
+                    "other_second_activity_code_id": self.env.ref(
+                        "l10n_es_aeat_mod303.aeat_mod303_activity_code_A03"
+                    ).id,
+                    "other_second_activity_iae": "A03",
+                    "other_third_activity": "A04 Test",
+                    "other_third_activity_code_id": self.env.ref(
+                        "l10n_es_aeat_mod303.aeat_mod303_activity_code_A04"
+                    ).id,
+                    "other_third_activity_iae": "A04",
+                    "other_fourth_activity": "A05 Test",
+                    "other_fourth_activity_code_id": self.env.ref(
+                        "l10n_es_aeat_mod303.aeat_mod303_activity_code_A05"
+                    ).id,
+                    "other_fourth_activity_iae": "A05",
+                    "other_fifth_activity": "B01 Test",
+                    "other_fifth_activity_code_id": self.env.ref(
+                        "l10n_es_aeat_mod303.aeat_mod303_activity_code_B01"
+                    ).id,
+                    "other_fifth_activity_iae": "B01",
+                    "first_representative_name": "Test Name 1",
+                    "first_representative_vat": "123456789",
+                    "first_representative_date": fields.date(2018, 1, 1),
+                    "first_representative_notary": "Test Notary1",
+                    "second_representative_name": "Test Name 2",
+                    "second_representative_vat": "987654321",
+                    "second_representative_date": fields.date(2018, 1, 2),
+                    "second_representative_notary": "Test Notary2",
+                    "third_representative_name": "Test Name 3",
+                    "third_representative_vat": "123456780",
+                    "third_representative_date": fields.date(2018, 1, 3),
+                    "third_representative_notary": "Test Notary3",
+                }
+            ],
+        )
+        model390.button_cancel()
+        model390.button_recover()
+        self.assertRecordValues(
+            model390,
+            [
+                {
+                    "main_activity": False,
+                    "main_activity_code": False,
+                    "main_activity_iae": False,
+                    "other_first_activity": False,
+                    "other_first_activity_code": False,
+                    "other_first_activity_iae": False,
+                    "other_second_activity": False,
+                    "other_second_activity_code": False,
+                    "other_second_activity_iae": False,
+                    "other_third_activity": False,
+                    "other_third_activity_code": False,
+                    "other_third_activity_iae": False,
+                    "other_fourth_activity": False,
+                    "other_fourth_activity_code": False,
+                    "other_fourth_activity_iae": False,
+                    "other_fifth_activity": False,
+                    "other_fifth_activity_code": False,
+                    "other_fifth_activity_iae": False,
+                    "first_representative_name": False,
+                    "first_representative_vat": False,
+                    "first_representative_date": False,
+                    "first_representative_notary": False,
+                    "second_representative_name": False,
+                    "second_representative_vat": False,
+                    "second_representative_date": False,
+                    "second_representative_notary": False,
+                    "third_representative_name": False,
+                    "third_representative_vat": False,
+                    "third_representative_date": False,
+                    "third_representative_notary": False,
+                }
+            ],
+        )

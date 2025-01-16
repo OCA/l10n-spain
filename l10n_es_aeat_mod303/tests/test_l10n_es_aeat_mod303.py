@@ -617,3 +617,93 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         self.model303.date_end = "2020-03-31"
         self.model303.button_calculate()
         self._check_tax_lines()
+
+    def test_default_values_in_company(self):
+        self.company.update(
+            {
+                "main_activity_code_id": self.env.ref(
+                    "l10n_es_aeat_mod303.aeat_mod303_activity_code_A01"
+                ),
+                "main_activity_iae": "A01",
+                "other_first_activity_code_id": self.env.ref(
+                    "l10n_es_aeat_mod303.aeat_mod303_activity_code_A02"
+                ),
+                "other_first_activity_iae": "A02",
+                "other_second_activity_code_id": self.env.ref(
+                    "l10n_es_aeat_mod303.aeat_mod303_activity_code_A03"
+                ),
+                "other_second_activity_iae": "A03",
+                "other_third_activity_code_id": self.env.ref(
+                    "l10n_es_aeat_mod303.aeat_mod303_activity_code_A04"
+                ),
+                "other_third_activity_iae": "A04",
+                "other_fourth_activity_code_id": self.env.ref(
+                    "l10n_es_aeat_mod303.aeat_mod303_activity_code_A05"
+                ),
+                "other_fourth_activity_iae": "A05",
+                "other_fifth_activity_code_id": self.env.ref(
+                    "l10n_es_aeat_mod303.aeat_mod303_activity_code_B01"
+                ),
+                "other_fifth_activity_iae": "B01",
+            }
+        )
+        model303_2024_4T = self.model303.copy(
+            {
+                "name": "9994002024303",
+                "period_type": "4T",
+                "date_start": "2024-09-01",
+                "date_end": "2024-12-31",
+            }
+        )
+        model303_2024_4T.exonerated_390 = "1"
+        self.assertRecordValues(
+            model303_2024_4T,
+            [
+                {
+                    "main_activity_code": self.env.ref(
+                        "l10n_es_aeat_mod303.aeat_mod303_activity_code_A01"
+                    ).id,
+                    "main_activity_iae": "A01",
+                    "other_first_activity_code": self.env.ref(
+                        "l10n_es_aeat_mod303.aeat_mod303_activity_code_A02"
+                    ).id,
+                    "other_first_activity_iae": "A02",
+                    "other_second_activity_code": self.env.ref(
+                        "l10n_es_aeat_mod303.aeat_mod303_activity_code_A03"
+                    ).id,
+                    "other_second_activity_iae": "A03",
+                    "other_third_activity_code": self.env.ref(
+                        "l10n_es_aeat_mod303.aeat_mod303_activity_code_A04"
+                    ).id,
+                    "other_third_activity_iae": "A04",
+                    "other_fourth_activity_code": self.env.ref(
+                        "l10n_es_aeat_mod303.aeat_mod303_activity_code_A05"
+                    ).id,
+                    "other_fourth_activity_iae": "A05",
+                    "other_fifth_activity_code": self.env.ref(
+                        "l10n_es_aeat_mod303.aeat_mod303_activity_code_B01"
+                    ).id,
+                    "other_fifth_activity_iae": "B01",
+                }
+            ],
+        )
+        model303_2024_4T.exonerated_390 = "2"
+        self.assertRecordValues(
+            model303_2024_4T,
+            [
+                {
+                    "main_activity_code": False,
+                    "main_activity_iae": False,
+                    "other_first_activity_code": False,
+                    "other_first_activity_iae": False,
+                    "other_second_activity_code": False,
+                    "other_second_activity_iae": False,
+                    "other_third_activity_code": False,
+                    "other_third_activity_iae": False,
+                    "other_fourth_activity_code": False,
+                    "other_fourth_activity_iae": False,
+                    "other_fifth_activity_code": False,
+                    "other_fifth_activity_iae": False,
+                }
+            ],
+        )

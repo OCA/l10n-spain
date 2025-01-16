@@ -39,6 +39,7 @@
         "data/l10n.es.aeat.mod303.report.activity.code.csv",
         "views/mod303_view.xml",
         "views/l10n_es_aeat_mod303_report_activity_code_data_views.xml",
+        "views/res_company.xml",
         "security/l10n_es_aeat_mod303_security.xml",
         "security/ir.model.access.csv",
     ],
