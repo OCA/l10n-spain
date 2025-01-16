@@ -30,7 +30,11 @@ class L10nEsVatBookLineTax(models.Model):
         compute="_compute_total_amount",
         store=True,
     )
-
+    base_move_line_ids = fields.Many2many(
+        comodel_name="account.move.line",
+        string="Move Lines (Base)",
+        relation="account_move_line_l10n_es_vat_book_line_tax_base_rel",
+    )
     move_line_ids = fields.Many2many(
         comodel_name="account.move.line", string="Move Lines"
     )
