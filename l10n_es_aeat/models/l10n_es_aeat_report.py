@@ -541,3 +541,12 @@ class L10nEsAeatReport(models.AbstractModel):
                 rcontext
             )
         return result
+
+    @api.model
+    def _view_move_lines(self, amls):
+        res = self.env.ref("account.action_account_moves_all_a").sudo().read()[0]
+        view = self.env.ref("l10n_es_aeat.view_move_line_tree")
+        res["context"] = {"create": 0}
+        res["views"] = [(view.id, "tree")]
+        res["domain"] = [("id", "in", amls.ids)]
+        return res
