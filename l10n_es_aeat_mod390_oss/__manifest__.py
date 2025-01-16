@@ -9,7 +9,11 @@
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "depends": ["l10n_es_aeat_mod390", "l10n_eu_oss_oca"],
-    "data": ["data/tax_code_map_mod390_data.xml"],
+    "data": [
+        "data/tax_code_map_mod390_data.xml",
+        "data/2024/tax_code_map_mod390_data.xml",
+        "data/2024/aeat.model.export.config.line.csv",
+    ],
     "installable": True,
     "autoinstall": True,
 }

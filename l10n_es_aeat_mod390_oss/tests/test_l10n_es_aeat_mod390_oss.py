@@ -45,19 +45,19 @@ class TestL10nEsAeatMod390OSS(TestL10nEsAeatMod390Base):
             "invoice_line_ids": [(0, 0, line_data)],
             "fiscal_position_id": fr_fiscal_position.id,
         }
-        cls._invoice_sale_create("2021-01-01", extra_vals)
-        cls._invoice_sale_create("2021-12-31", extra_vals)
+        cls._invoice_sale_create("2024-01-01", extra_vals)
+        cls._invoice_sale_create("2024-12-31", extra_vals)
         # Create reports
         mod390_form = Form(cls.env["l10n.es.aeat.mod390.report"])
         mod390_form.company_id = cls.company
-        mod390_form.year = 2021
+        mod390_form.year = 2024
         mod390_form.company_vat = "1234567890"
         cls.model390 = mod390_form.save()
         cls.model390 = cls.model390.copy(
             {
                 "name": "OSS4000000390",
-                "date_start": "2021-01-01",
-                "date_end": "2021-12-31",
+                "date_start": "2024-01-01",
+                "date_end": "2024-12-31",
             }
         )
 
