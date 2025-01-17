@@ -1,7 +1,9 @@
-# Copyright 2024 Tecnativa - Víctor Martínez
+# Copyright 2024-2025 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import csv
 import logging
+from io import StringIO
 
 from freezegun import freeze_time
 from xlrd import open_workbook
@@ -206,16 +208,28 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
         self.assertTrue(self.model592.get_report_file_name())
         # export_csv_acquirer
         csv_result_acquirer = self.model592.export_csv_acquirer()
-        csv_lines_acquirer = csv_result_acquirer.decode("utf-8").splitlines()
-        csv_line_1_acquirer = csv_lines_acquirer[1]
-        csv_line_2_acquirer = csv_lines_acquirer[2]
+        res = self.report_obj._get_report_from_name(
+            csv_result_acquirer["report_name"]
+        )._render(self.model592.ids, {})
+        str_io = StringIO(res[0])
+        csv_lines_acquirer = list(
+            csv.DictReader(str_io, delimiter=";", quoting=csv.QUOTE_ALL)
+        )
+        csv_line_1_acquirer = list(csv_lines_acquirer[0].values())
+        csv_line_2_acquirer = list(csv_lines_acquirer[1].values())
         self.assertIn("A001", csv_line_1_acquirer)
         self.assertIn("A002", csv_line_2_acquirer)
         self.assertIn(self.picking.name, csv_line_1_acquirer)
         # export_csv_manufacturer
         csv_result_manufacturer = self.model592.export_csv_manufacturer()
-        csv_lines_manufacturer = csv_result_manufacturer.decode("utf-8").splitlines()
-        csv_line_1_manufacturer = csv_lines_manufacturer[1]
+        res = self.report_obj._get_report_from_name(
+            csv_result_manufacturer["report_name"]
+        )._render(self.model592.ids, {})
+        str_io = StringIO(res[0])
+        csv_lines_manufacturer = list(
+            csv.DictReader(str_io, delimiter=";", quoting=csv.QUOTE_ALL)
+        )
+        csv_line_1_manufacturer = list(csv_lines_manufacturer[0].values())
         self.assertIn("M001", csv_line_1_manufacturer)
         self.assertIn(self.picking.name, csv_line_1_manufacturer)
         # export_xlsx_acquirer

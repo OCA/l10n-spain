@@ -372,13 +372,9 @@ class L10nEsAeatmod592Report(models.Model):
 
     def export_csv_manufacturer(self):
         self.ensure_one()
-        rows = []
-        manufacturer_model = self.env["l10n.es.aeat.mod592.report.line.manufacturer"]
-        rows.append(manufacturer_model._get_csv_report_header())
-        for line in self.manufacturer_line_ids:
-            rows.append(line._get_csv_report_info_values())
-        csv_string = self._format_csv(rows, ";")
-        return csv_string.encode("utf-8")
+        return self.env.ref(
+            "l10n_es_aeat_mod592.l10n_es_aeat_mod592_csv_man"
+        ).report_action(self)
 
     def export_xlsx_acquirer(self):
         self.ensure_one()
@@ -388,13 +384,9 @@ class L10nEsAeatmod592Report(models.Model):
 
     def export_csv_acquirer(self):
         self.ensure_one()
-        rows = []
-        acquirer_model = self.env["l10n.es.aeat.mod592.report.line.acquirer"]
-        rows.append(acquirer_model._get_csv_report_header())
-        for line in self.acquirer_line_ids:
-            rows.append(line._get_csv_report_info_values())
-        csv_string = self._format_csv(rows, ";")
-        return csv_string.encode("utf-8")
+        return self.env.ref(
+            "l10n_es_aeat_mod592.l10n_es_aeat_mod592_csv_acquirer"
+        ).report_action(self)
 
     def _format_csv(self, rows, delimiter):
         csv_string = ""
