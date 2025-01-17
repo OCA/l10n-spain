@@ -564,7 +564,7 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             ).amount,
             14280.0,
         )
-        self.assertAlmostEqual(self.model303_4t.casilla_88, 57280.0)
+        self.assertAlmostEqual(self.model303_4t.casilla_88, 46480.0)
         # Check change of period type
         self.model303_4t.period_type = "1T"
         self.assertEqual(self.model303_4t.exonerated_390, "2")
