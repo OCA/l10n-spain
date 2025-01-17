@@ -12,6 +12,19 @@
         />
         <field name="binding_type">report</field>
     </record>
+    <record id="l10n_es_aeat_mod592_csv_acquirer" model="ir.actions.report">
+        <field name="name">AEAT 592 Model CSV Acquirer report</field>
+        <field name="model">l10n.es.aeat.mod592.report</field>
+        <field name="report_type">csv</field>
+        <field
+            name="report_name"
+        >l10n_es_aeat_mod592.l10n_es_aeat_mod592_csv_acquirer</field>
+        <field
+            name="report_file"
+        >l10n_es_aeat_mod592.l10n_es_aeat_mod592_acquirer</field>
+        <field name="print_report_name">object.get_report_file_name()</field>
+        <field name="binding_type">report</field>
+    </record>
     <record id="l10n_es_aeat_mod592_xlsx_acquirer" model="ir.actions.report">
         <field name="name">AEAT 592 Model XLSX Acquirer report</field>
         <field name="model">l10n.es.aeat.mod592.report</field>
@@ -22,6 +35,17 @@
         <field
             name="report_file"
         >l10n_es_aeat_mod592.l10n_es_aeat_mod592_acquirer</field>
+        <field name="print_report_name">object.get_report_file_name()</field>
+        <field name="binding_type">report</field>
+    </record>
+    <record id="l10n_es_aeat_mod592_csv_man" model="ir.actions.report">
+        <field name="name">AEAT 592 Model CSV Manufacturer report</field>
+        <field name="model">l10n.es.aeat.mod592.report</field>
+        <field name="report_type">csv</field>
+        <field
+            name="report_name"
+        >l10n_es_aeat_mod592.l10n_es_aeat_mod592_csv_man</field>
+        <field name="report_file">l10n_es_aeat_mod592.l10n_es_aeat_mod592_man</field>
         <field name="print_report_name">object.get_report_file_name()</field>
         <field name="binding_type">report</field>
     </record>
