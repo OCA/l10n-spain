@@ -7,7 +7,7 @@ import os
 from odoo import _
 from odoo.exceptions import UserError
 
-from .gls_asm_master_data import GLS_PICKUP_ERROR_CODES, GLS_SHIPMENT_ERROR_CODES
+from .gls_asm_master_data import GLS_PICKUP_ERROR_CODES
 
 _logger = logging.getLogger(__name__)
 

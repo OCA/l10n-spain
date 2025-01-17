@@ -67,19 +67,17 @@ GLS_ASM_SERVICES = [
 ]
 
 GLS_SHIPPING_TIMES = [
-    ("0", "Express 10:00"),
-    ("2", "Express 14:00"),
-    ("3", "Express 19:00"),
+    ("0", "10:00 Service"),
+    ("2", "14:00 Service"),
+    ("3", "BusinessParcel"),
     ("5", "SaturdayService"),
     ("7", "INTERDIA"),
     ("9", "Franja Horaria"),
     ("4", "Masivo"),
     ("10", "Maritimo"),
-    ("11", "Rec. en agencia"),
+    ("11", "Rec. en NAVE."),
     ("13", "Ent. Pto. ASM"),
-    ("16", "Economy"),
-    ("17", "Express"),
-    ("18", "Entrega 24-48h (serv. 96) o 48h (serv. 37)"),
+    ("18", "EconomyParcel"),
     ("19", "ParcelShop"),
 ]
 
