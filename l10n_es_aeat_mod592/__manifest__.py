@@ -10,7 +10,7 @@
     "author": "Tecnativa, Binhex System Solutions, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
-    "depends": ["l10n_es_aeat", "report_xlsx", "stock"],
+    "depends": ["l10n_es_aeat", "report_csv", "report_xlsx", "stock"],
     "data": [
         "data/ir_sequence_data.xml",
         "security/aeat_security.xml",
