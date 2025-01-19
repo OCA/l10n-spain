@@ -35,12 +35,6 @@ class PosConfig(models.Model):
                 config._check_available_devices()
         return super(PosConfig, self).open_ui()
 
-    def open_session_cb(self, check_coa=True):
-        for config in self:
-            if config.pos_sequence_by_device:
-                config._check_available_devices()
-        return super(PosConfig, self).open_session_cb(check_coa)
-
     def _open_session(self, session_id):
         for config in self:
             if config.pos_sequence_by_device:
