@@ -21,6 +21,7 @@
                             string="Razón social"
                             options="{'no_create_edit': True}"
                         />
+                        <field name="state" invisible="1" />
                     </group>
                     <group>
                         <group>
@@ -84,6 +85,7 @@
                             <field
                                 name="ingresos_a_cuenta_repercutidos"
                                 string="Ingresos a cuenta repercutidos"
+                                attrs="{'readonly': [('state', '!=', 'calculated')]}"
                             />
                         </group>
                         <group
@@ -112,6 +114,7 @@
                             <field
                                 name="ingresos_a_cuenta_repercutidos_incap"
                                 string="Ingresos a cuenta en especie"
+                                attrs="{'readonly': [('state', '!=', 'calculated')]}"
                             />
                         </group>
                     </group>
