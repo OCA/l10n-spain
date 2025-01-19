@@ -205,6 +205,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
         string="AEAT 190 Report ID",
         ondelete="cascade",
     )
+    state = fields.Selection(related="report_id.state")
     partner_record_ok = fields.Boolean(
         compute="_compute_partner_record_ok",
         store=True,
@@ -644,21 +645,3 @@ class L10nEsAeatMod190ReportLine(models.Model):
     def onchange_aeat_perception_key_id(self):
         if self.aeat_perception_key_id:
             self.aeat_perception_subkey_id = False
-
-    def _check_lines(self, line):
-        return (
-            line.partner_id == self.partner_id
-            and (
-                (line.aeat_perception_key_id or line.partner_id.aeat_perception_key_id)
-                == self.aeat_perception_key_id
-            )
-            and (
-                (line.aeat_perception_subkey_id)
-                or (
-                    not line.aeat_perception_key_id
-                    and line.partner_id.aeat_perception_subkey_id
-                )
-                or self.env["l10n.es.aeat.report.perception.subkey"]
-            )
-            == self.aeat_perception_subkey_id
-        )
