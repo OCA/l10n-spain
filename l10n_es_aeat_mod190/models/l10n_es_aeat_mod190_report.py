@@ -178,8 +178,7 @@ class L10nEsAeatMod190Report(models.Model):
                 item["aeat_perception_key_id"] and item["aeat_perception_key_id"][0],
                 item["aeat_perception_subkey_id"]
                 and item["aeat_perception_subkey_id"][0],
-            ): item["credit"]
-            - item["debit"]
+            ): item["credit"] - item["debit"]
             for item in self.env["account.move.line"].read_group(
                 self._get_move_line_domain(
                     self.date_start,

@@ -369,7 +369,7 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:3526e68b881f449e50be377b014d6fc4ab722afb0aea40c5205b89b85cb30c3c
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_aeat_mod190"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-16-0/l10n-spain-16-0-l10n_es_aeat_mod190"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_aeat_mod190"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-17-0/l10n-spain-17-0-l10n_es_aeat_mod190"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>Modelo 190 de la AEAT. Retenciones e ingresos a cuenta. Rendimientos del
 trabajo y de actividades económicas, premios y determinadas ganancias
 patrimoniales e imputaciones de Renta. Resumen anual.</p>
@@ -395,40 +395,47 @@ patrimoniales e imputaciones de Renta. Resumen anual.</p>
 <li>Pulsar en el botón “Crear”</li>
 <li>Seleccionar el ejercicio fiscal</li>
 <li>Seleccionar el tipo de declaración</li>
-<li>Se autorrellena el teléfono,el teléfono móvil y el correo electrónico del usuario, necesarios para la exportacion BOE</li>
+<li>Se autorrellena el teléfono,el teléfono móvil y el correo electrónico
+del usuario, necesarios para la exportacion BOE</li>
 <li>Guardar y pulsar en el botón “Calcular”</li>
 <li>Rellenar aquellos campos que Odoo no calcula automáticamente:<ul>
-<li>Información relacionada con datos sensibles del perceptor solo en las claves A, B.01, B.03, C, E.01 y E.02</li>
+<li>Información relacionada con datos sensibles del perceptor solo en
+las claves A, B.01, B.03, C, E.01 y E.02</li>
 </ul>
 </li>
-<li>Cuando los valores sean los correctos, pulsar en el botón “Confirmar”.</li>
-<li>Podemos exportar en formato BOE para presentarlo telemáticamente en el portal
-de la AEAT</li>
+<li>Cuando los valores sean los correctos, pulsar en el botón
+“Confirmar”.</li>
+<li>Podemos exportar en formato BOE para presentarlo telemáticamente en
+el portal de la AEAT</li>
 </ol>
-<p>PENDIENTE:
-- La información relativa a los perceptores, se ha añadido en una nueva pestaña en los terceros, queda pendiente del trato
-que se le debe de dar a esta información ya es información sensible según la LOPD, de momento, sólo el
-responsable de aeat, puede acceder a los datos.</p>
+<p>PENDIENTE: - La información relativa a los perceptores, se ha añadido en
+una nueva pestaña en los terceros, queda pendiente del trato que se le
+debe de dar a esta información ya es información sensible según la LOPD,
+de momento, sólo el responsable de aeat, puede acceder a los datos.</p>
 <ul class="simple">
-<li>Se puede añadir un adjunto en los terceros donde se guarde el justificante del consentimiento expreso del tercero.</li>
+<li>Se puede añadir un adjunto en los terceros donde se guarde el
+justificante del consentimiento expreso del tercero.</li>
 </ul>
-<p>NOTA: En el caso en que tengamos el addon ‘l10n_es_aeat_mod216’ deberemos
-indicar los proveedores que son residentes (éste es el valor por defecto),
-en la ficha de la empresa: Contabilidad &gt; Proveedores &gt; Proveedores, pestaña de
-Contabilidad. El campo “Es no residente” no debe estar marcado para que
-las retenciones realizadas a éste proveedor se incluyan en el modelo 190.</p>
-<p>Antes de poder realizar el modelo, hay que introducir en los terceros, la información necesaria para el modelo.</p>
+<p>NOTA: En el caso en que tengamos el addon ‘l10n_es_aeat_mod216’
+deberemos indicar los proveedores que son residentes (éste es el valor
+por defecto), en la ficha de la empresa: Contabilidad &gt; Proveedores &gt;
+Proveedores, pestaña de Contabilidad. El campo “Es no residente” no debe
+estar marcado para que las retenciones realizadas a éste proveedor se
+incluyan en el modelo 190.</p>
+<p>Antes de poder realizar el modelo, hay que introducir en los terceros,
+la información necesaria para el modelo.</p>
 </div>
 <div class="section" id="known-issues-roadmap">
 <h1><a class="toc-backref" href="#toc-entry-2">Known issues / Roadmap</a></h1>
-<p>A dia de hoy, las retenciones en especie se computan como repercutidas al trabajador.</p>
+<p>A dia de hoy, las retenciones en especie se computan como repercutidas
+al trabajador.</p>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#toc-entry-3">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-spain/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_mod190%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_mod190%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -465,7 +472,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_aeat_mod190">OCA/l10n-spain</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_aeat_mod190">OCA/l10n-spain</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
