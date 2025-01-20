@@ -2,7 +2,7 @@
 
 {
     "name": "AEAT modelo 190",
-    "version": "16.0.2.2.0",
+    "version": "17.0.1.0.0",
     "category": "Localization/Accounting",
     "author": "Punt Sistemes SLU,"
     "Odoo Community Association (OCA),"
@@ -15,7 +15,9 @@
         "data/perception_subkey_data.xml",
         "data/aeat_export_mod190_partner_data.xml",
         "data/aeat_export_mod190_data.xml",
-        "data/tax_code_map_mod190_data.xml",
+        "data/l10n.es.aeat.map.tax.csv",
+        "data/l10n.es.aeat.map.tax.line.tax.csv",  # This one should be before the next
+        "data/l10n.es.aeat.map.tax.line.csv",
         "views/account_fiscal_position.xml",
         "views/account_invoice_view.xml",
         "views/mod190_line_view.xml",

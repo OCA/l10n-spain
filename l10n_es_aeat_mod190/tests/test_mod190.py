@@ -7,6 +7,7 @@ import logging
 from odoo.exceptions import UserError
 from odoo.tests.common import Form
 
+from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
 )
@@ -25,16 +26,7 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(
-            context=dict(
-                cls.env.context,
-                mail_create_nolog=True,
-                mail_create_nosubscribe=True,
-                mail_notrack=True,
-                no_reset_password=True,
-                tracking_disable=True,
-            )
-        )
+        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.supplier.write(
             {
                 "incluir_190": True,
