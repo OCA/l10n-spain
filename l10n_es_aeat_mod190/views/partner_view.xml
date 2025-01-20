@@ -16,22 +16,19 @@
                         groups="account.group_account_invoice,l10n_es_aeat.group_account_aeat"
                         string="Performance key"
                         name="acc_sale"
-                        attrs="{'invisible':[('incluir_190', '=', False)]}"
+                        invisible="not incluir_190"
                     >
                         <field name="aeat_perception_key_id" widget="selection" />
                         <field
                             name="aeat_perception_subkey_id"
                             widget="selection"
                             domain="[('aeat_perception_key_id', '=', aeat_perception_key_id)]"
-                            attrs="{'invisible': [('is_aeat_perception_subkey_visible', '=', False)]}"
+                            invisible="not is_aeat_perception_subkey_visible"
                         />
                         <field name="ad_required" invisible="1" />
                         <field name="is_aeat_perception_subkey_visible" invisible="1" />
                     </group>
-                    <group
-                        string="Perception data"
-                        attrs="{'invisible':[('incluir_190', '=', False)]}"
-                    >
+                    <group string="Perception data" invisible="not incluir_190">
                         <group>
                             <field name="a_nacimiento" />
                             <field name="discapacidad" />
@@ -49,7 +46,7 @@
                 <group
                     string="Sons and other decendents"
                     col="3"
-                    attrs="{'invisible':[('incluir_190', '=', False)]}"
+                    invisible="not incluir_190"
                 >
                     <group string="Lower than 3 years">
                         <field name="hijos_y_descendientes_m" />
@@ -62,7 +59,7 @@
                     <group
                         groups="account.group_account_invoice,l10n_es_aeat.group_account_aeat"
                         string="First 3 compute"
-                        attrs="{'invisible': [('is_aeat_perception_subkey_visible', '=', False)]}"
+                        invisible="not is_aeat_perception_subkey_visible"
                     >
                         <field name="computo_primeros_hijos_1" string="1" />
                         <field name="computo_primeros_hijos_2" string="2" />
@@ -72,7 +69,7 @@
                 <group
                     string="Sons and other decendents with discapacity"
                     col="3"
-                    attrs="{'invisible':[('incluir_190', '=', False)]}"
+                    invisible="not incluir_190"
                 >
                     <group string="Between 33% and 65%">
                         <field name="hijos_y_desc_discapacidad_33" />
@@ -87,11 +84,7 @@
                         <field name="hijos_y_desc_discapacidad_entero_66" />
                     </group>
                 </group>
-                <group
-                    string="Ascendents"
-                    col="2"
-                    attrs="{'invisible':[('incluir_190', '=', False)]}"
-                >
+                <group string="Ascendents" col="2" invisible="not incluir_190">
                     <group string="Lower than 75 years">
                         <field name="ascendientes" />
                         <field name="ascendientes_entero" />
@@ -104,7 +97,7 @@
                 <group
                     string="Ascendents with discapacity"
                     col="3"
-                    attrs="{'invisible':[('incluir_190', '=', False)]}"
+                    invisible="not incluir_190"
                 >
                     <group string="Between 33% and 65%">
                         <field name="ascendientes_discapacidad_33" />

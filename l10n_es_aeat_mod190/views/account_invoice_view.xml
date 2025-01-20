@@ -8,6 +8,7 @@
                 <field name="aeat_perception_key_id" invisible="1" />
                 <field
                     name="aeat_perception_key_id"
+                    readonly="state!='draft'"
                     groups="l10n_es_aeat.group_account_aeat"
                 />
                 <field name="aeat_perception_subkey_id" invisible="1" />
@@ -18,8 +19,9 @@
                 />
                 <field
                     name="aeat_perception_subkey_id"
+                    readonly="state!='draft'"
                     groups="l10n_es_aeat.group_account_aeat"
-                    attrs="{'invisible': [('is_aeat_perception_subkey_visible', '=', False)]}"
+                    invisible="not is_aeat_perception_subkey_visible"
                 />
             </field>
         </field>
