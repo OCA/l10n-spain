@@ -10,6 +10,7 @@ class L10nEsAeatMod390Report(models.Model):
     def get_taxes_from_map(self, map_line):
         oss_map_lines = [
             self.env.ref("l10n_es_aeat_mod390_oss.aeat_mod390_map_line_126"),
+            self.env.ref("l10n_es_aeat_mod390_oss.aeat_mod390_2024_map_line_126"),
         ]
         if map_line in oss_map_lines:
             return self.env["account.tax"].search(
