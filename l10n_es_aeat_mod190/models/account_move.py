@@ -13,8 +13,6 @@ class AccountMove(models.Model):
         string="Clave percepción",
         help="Se consignará la clave alfabética que corresponda a las "
         "percepciones de que se trate.",
-        readonly=False,
-        states={"draft": [("readonly", False)]},
         store=True,
         compute="_compute_aeat_perception_key_id",
     )
@@ -37,8 +35,6 @@ class AccountMove(models.Model):
                 cada uno de ellos refleje exclusivamente los datos de
                 percepciones correspondientes a una misma clave y, en
                 su caso, subclave.""",
-        readonly=False,
-        states={"draft": [("readonly", False)]},
         store=True,
         compute="_compute_aeat_perception_subkey_id",
         domain="[('aeat_perception_key_id', '=', aeat_perception_key_id)]",

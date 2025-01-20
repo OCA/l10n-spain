@@ -127,7 +127,7 @@ class L10nEsAeatMod190Report(models.Model):
         manual_records.partner_record_ids.unlink()
         for report in self - manual_records:
             tax_lines = report.tax_line_ids.filtered(
-                lambda x: x.field_number in (11, 12, 13, 14, 15, 16)
+                lambda x, report=report: x.field_number in (11, 12, 13, 14, 15, 16)
                 and x.res_id == report.id
             )
             tax_line_vals = {}
@@ -572,7 +572,8 @@ class L10nEsAeatMod190ReportLine(models.Model):
         tax_data = {}
         domain = []
         if len(self.partner_id) == 1:
-            # This should only happen when we are making a small update on 'discapacidad'
+            # This should only happen when we are making a small update on
+            # 'discapacidad'
             domain.append(("partner_id", "=", self.partner_id.id))
         for report in self.report_id:
             tax_data[report.id] = {
