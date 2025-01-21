@@ -176,7 +176,7 @@ class L10nEsAeatMod347Report(models.Model):
 
     def button_send_mails(self):
         self.partner_record_ids.filtered(
-            lambda x: x.state == "pending" and x.partner_id.email
+            lambda x: x.state == "pending"
         ).send_email_direct()
 
     def btn_list_records(self):
@@ -619,13 +619,12 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
 
     def send_email_direct(self):
         template = self._get_partner_report_email_template()
-        sent_records = self.env["l10n.es.aeat.mod347.partner_record"]
-        for record in self:
-            mail_id = template.send_mail(record.id)
-            if mail_id:
-                sent_records |= record
-        if sent_records:
-            sent_records.write({"state": "sent"})
+        for rec in self:
+            address_id = rec.partner_id.address_get(["invoice"])["invoice"]
+            address = self.env["res.partner"].browse(address_id)
+            if address.email:
+                template.send_mail(rec.id)
+                rec.state = "sent"
 
     def action_pending(self):
         self.write({"state": "pending"})
