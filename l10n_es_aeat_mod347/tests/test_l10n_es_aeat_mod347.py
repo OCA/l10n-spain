@@ -200,9 +200,9 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
         self.assertTrue(first_partner_mod347_record.state, "pending")
         self.assertTrue(second_partner_mod347_record.state, "sent")
 
-        first_partner_mod347_record.action_send()
+        self.model347.button_send_mails()
         self.assertTrue(first_partner_mod347_record.state, "pending")
 
         first_partner.email = "test1@email.com"
-        first_partner_mod347_record.action_send()
+        self.model347.button_send_mails()
         self.assertTrue(first_partner_mod347_record.state, "sent")
