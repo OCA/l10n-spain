@@ -62,7 +62,9 @@
                             <tbody class="invoice_tbody">
                                 <tr t-foreach="o.move_record_ids" t-as="l">
                                     <td>
-                                        <span t-esc="l.move_id.ref or l.move_id.name" />
+                                        <span
+                                            t-esc="l.move_id.name if l.move_id.move_type in ['out_invoice', 'out_refund'] else (l.move_id.ref or l.move_id.name)"
+                                        />
                                     </td>
                                     <td>
                                         <span t-field="l.move_id.date" />
