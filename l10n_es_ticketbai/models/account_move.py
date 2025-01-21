@@ -115,43 +115,50 @@ class AccountMove(models.Model):
                     _("You cannot change to draft a TicketBAI invoice!")
                 )
 
-    @api.model
-    def create(self, vals):
-        if vals.get("company_id", False):
-            company = self.env["res.company"].browse(vals["company_id"])
-        else:
-            company = self.env.company
-        if company.tbai_enabled:
-            invoice_type = vals.get("move_type", False) or self._context.get(
-                "default_move_type", False
-            )
-            refund_method = (
-                self._context.get("refund_method", False)
-                or invoice_type == "out_refund"
-            )
-            if refund_method and invoice_type:
-                if "out_refund" == invoice_type:
-                    if not vals.get("tbai_refund_type", False):
-                        vals["tbai_refund_type"] = RefundType.differences.value
-                    if not vals.get("tbai_refund_key", False):
-                        if vals.get("partner_id", False):
-                            partner = self.env["res.partner"].browse(vals["partner_id"])
-                            if partner.aeat_anonymous_cash_customer:
-                                vals["tbai_refund_key"] = RefundCode.R5.value
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("company_id", False):
+                company = self.env["res.company"].browse(vals["company_id"])
+            else:
+                company = self.env.company
+            if company.tbai_enabled:
+                invoice_type = vals.get("move_type", False) or self._context.get(
+                    "default_move_type", False
+                )
+                refund_method = (
+                    self._context.get("refund_method", False)
+                    or invoice_type == "out_refund"
+                )
+                if refund_method and invoice_type:
+                    if "out_refund" == invoice_type:
+                        if not vals.get("tbai_refund_type", False):
+                            vals["tbai_refund_type"] = RefundType.differences.value
+                        if not vals.get("tbai_refund_key", False):
+                            if vals.get("partner_id", False):
+                                partner = self.env["res.partner"].browse(
+                                    vals["partner_id"]
+                                )
+                                if partner.aeat_anonymous_cash_customer:
+                                    vals["tbai_refund_key"] = RefundCode.R5.value
+                                else:
+                                    vals["tbai_refund_key"] = RefundCode.R1.value
                             else:
                                 vals["tbai_refund_key"] = RefundCode.R1.value
-                        else:
-                            vals["tbai_refund_key"] = RefundCode.R1.value
-            if vals.get("fiscal_position_id", False):
-                fiscal_position = self.env["account.fiscal.position"].browse(
-                    vals["fiscal_position_id"]
-                )
-                vals["tbai_vat_regime_key"] = fiscal_position.tbai_vat_regime_key.id
-                vals["tbai_vat_regime_key2"] = fiscal_position.tbai_vat_regime_key2.id
-                vals["tbai_vat_regime_key3"] = fiscal_position.tbai_vat_regime_key3.id
-            if "name" in vals and vals["name"]:
-                vals["tbai_description_operation"] = vals["name"]
-        return super().create(vals)
+                if vals.get("fiscal_position_id", False):
+                    fiscal_position = self.env["account.fiscal.position"].browse(
+                        vals["fiscal_position_id"]
+                    )
+                    vals["tbai_vat_regime_key"] = fiscal_position.tbai_vat_regime_key.id
+                    vals[
+                        "tbai_vat_regime_key2"
+                    ] = fiscal_position.tbai_vat_regime_key2.id
+                    vals[
+                        "tbai_vat_regime_key3"
+                    ] = fiscal_position.tbai_vat_regime_key3.id
+                if "name" in vals and vals["name"]:
+                    vals["tbai_description_operation"] = vals["name"]
+        return super().create(vals_list)
 
     @api.depends(
         "tbai_invoice_ids",
