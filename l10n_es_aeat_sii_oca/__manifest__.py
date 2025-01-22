@@ -36,7 +36,6 @@
     "installable": True,
     "development_status": "Mature",
     "maintainers": ["pedrobaeza"],
-    "external_dependencies": {"python": ["zeep", "requests"]},
     "depends": [
         "account_invoice_refund_link",
         "l10n_es",
