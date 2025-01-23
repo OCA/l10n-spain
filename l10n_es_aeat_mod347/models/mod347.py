@@ -208,7 +208,7 @@ class L10nEsAeatMod347Report(models.Model):
     def _get_taxes(self, map_rec):
         """Obtain all the taxes to be considered for 347."""
         self.ensure_one()
-        tax_templates = map_rec.mapped("tax_ids")
+        tax_templates = map_rec.with_context(active_test=False).tax_ids
         if not tax_templates:
             raise exceptions.UserError(_("No Tax Mapping was found"))
         return self.get_taxes_from_templates(tax_templates)
