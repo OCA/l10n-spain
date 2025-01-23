@@ -14,6 +14,7 @@ import datetime
 from calendar import monthrange
 
 from odoo import _, api, exceptions, fields, models
+from odoo.tools import float_compare
 
 KEY_TAX_MAPPING = {
     "A": "l10n_es_aeat_mod347.aeat_mod347_map_a",
@@ -566,10 +567,14 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         for record in self:
             year = record.report_id.year
             moves = record.move_record_ids
-            record.first_quarter = calc_amount_by_quarter(moves, year, 1)
-            record.second_quarter = calc_amount_by_quarter(moves, year, 4)
-            record.third_quarter = calc_amount_by_quarter(moves, year, 7)
-            record.fourth_quarter = calc_amount_by_quarter(moves, year, 10)
+            # Done this way for avoiding fake tracking changes messages when the amount
+            # is the same due to a ORM glitch with floats rounding
+            quarter_mapping = {1: "first", 4: "second", 7: "third", 10: "fourth"}
+            for i in range(1, 12, 3):
+                amount = calc_amount_by_quarter(moves, year, i)
+                field = f"{quarter_mapping[i]}_quarter"
+                if float_compare(record[field], amount, 2) != 0:
+                    record[field] = amount
 
     def action_exception(self):
         self.write({"state": "exception"})
