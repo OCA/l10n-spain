@@ -1,6 +1,4 @@
 * La declaración sólo se puede realizar para personas jurídicas.
-* No se han implementado todas las casillas de opciones de la empresa, como
-  por ejemplo si la empresa está en concurso de acreedores.
 * No se calculan operaciones intragrupo.
 * No se contempla el régimen de criterio de caja.
 * No se contempla el régimen especial de bienes usados, objetos de arte,
