@@ -510,7 +510,7 @@ class L10nEsAeatMod390Report(models.Model):
                         27,  # IVA otras operaciones sujeto pasivo
                         29,  # Modificación bases y cuotas
                         649,  # Modif. bases y cuotas intragrupo - no incluido aún
-                        31,  # Modif. bases y cuotas concurso ac. - no incluido aún
+                        31,  # Modif. bases y cuotas concurso ac.
                     )
                 ).mapped("amount")
             )
@@ -568,7 +568,7 @@ class L10nEsAeatMod390Report(models.Model):
                         28,  # IVA otras operaciones sujeto pasivo
                         30,  # Modificación bases y cuotas
                         650,  # Modif. bases y cuotas intragrupo - no incluido aún
-                        32,  # Modif. bases y cuotas concurso ac. - no incluido aún
+                        32,  # Modif. bases y cuotas concurso ac.
                     )
                 ).mapped("amount")
             )
@@ -589,7 +589,7 @@ class L10nEsAeatMod390Report(models.Model):
                         602,
                         42,  # Recargo de equivalencia
                         44,  # Modificación recargo de equivalencia
-                        46,  # Mod. recargo equiv. concurso - no incluido aún
+                        46,  # Mod. recargo equiv. concurso ac.
                     )
                 ).mapped("amount")
             )
@@ -906,8 +906,8 @@ class L10nEsAeatMod390Report(models.Model):
     def _get_move_line_domain(self, date_start, date_end, map_line):
         """Consider Bankrupcy proceedings or uncollectible debt."""
         res = super()._get_move_line_domain(date_start, date_end, map_line)
-        if map_line.field_number in {31, 32}:
+        if map_line.field_number in {31, 32, 45, 46}:
             res += [("move_id.is_bankrupcy_uncollectible_debt", "=", True)]
-        elif map_line.field_number in {29, 30, 99}:
+        elif map_line.field_number in {29, 30, 43, 44, 99}:
             res += [("move_id.is_bankrupcy_uncollectible_debt", "=", False)]
         return res

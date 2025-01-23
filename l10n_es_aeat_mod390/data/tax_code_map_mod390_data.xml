@@ -561,6 +561,36 @@
             eval="[(6, False, [ref('l10n_es.account_tax_template_s_req0'), ref('l10n_es.account_tax_template_s_req05'), ref('l10n_es.account_tax_template_s_req062'), ref('l10n_es.account_tax_template_s_req014'), ref('l10n_es.account_tax_template_s_req52')])]"
         />
     </record>
+    <record id="aeat_mod390_map_line_45" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">45</field>
+        <field
+            name="name"
+        >Modificación recargo equivalencia por auto de declaración de concurso de acreedores - Base</field>
+        <field name="move_type">refund</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_s_req0'), ref('l10n_es.account_tax_template_s_req05'), ref('l10n_es.account_tax_template_s_req062'), ref('l10n_es.account_tax_template_s_req014'), ref('l10n_es.account_tax_template_s_req52')])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_46" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">46</field>
+        <field
+            name="name"
+        >Modificación recargo equivalencia por auto de declaración de concurso de acreedores - Cuota</field>
+        <field name="move_type">refund</field>
+        <field name="field_type">amount</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_s_req0'), ref('l10n_es.account_tax_template_s_req05'), ref('l10n_es.account_tax_template_s_req062'), ref('l10n_es.account_tax_template_s_req014'), ref('l10n_es.account_tax_template_s_req52')])]"
+        />
+    </record>
     <record id="aeat_mod390_map_line_190" model="l10n.es.aeat.map.tax.line">
         <field name="map_parent_id" ref="aeat_mod390_map" />
         <field name="field_number">190</field>
