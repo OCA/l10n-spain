@@ -408,6 +408,26 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         model303_4T.button_calculate()
         self.model390_2018.button_calculate()
         # Check casilla_85, casilla_95, casilla_97, casilla_98, casilla_662
+        self.assertAlmostEqual(self.model390_2018.casilla_85, 0.0, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_95, 0.0, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_97, 0.0, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_98, 1235.33, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_662, 0.0, 2)
+
+        model303_1T.potential_cuota_compensar = 500.0
+        model303_1T.button_calculate()
+        self.model390_2018.button_calculate()
+        # Check casilla_85, casilla_95, casilla_97, casilla_98, casilla_662
+        self.assertAlmostEqual(self.model390_2018.casilla_85, 500.0, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_95, 0.0, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_97, 0.0, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_98, 1235.33, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_662, 0.0, 2)
+
+        model303_1T.potential_cuota_compensar = 1000.0
+        model303_1T.button_calculate()
+        self.model390_2018.button_calculate()
+        # Check casilla_85, casilla_95, casilla_97, casilla_98, casilla_662
         self.assertAlmostEqual(self.model390_2018.casilla_85, 674.48, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_95, 0.0, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_97, 0.0, 2)
@@ -477,8 +497,18 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         model303_4T.button_calculate()
         self.model390_2018.button_calculate()
         # Check casilla_85, casilla_95, casilla_97, casilla_98, casilla_662
-        self.assertAlmostEqual(self.model390_2018.casilla_85, 805.25, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_85, 0.0, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_95, 2302.12, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_97, 0.0, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_98, 0.0, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_662, 100.0, 2)
+
+        model303_1T.potential_cuota_compensar = 2000.0
+        model303_1T.button_calculate()
+        self.model390_2018.button_calculate()
+        # Check casilla_85, casilla_95, casilla_97, casilla_98, casilla_662
+        self.assertAlmostEqual(self.model390_2018.casilla_85, 1610.50, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_95, 1496.87, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_97, 0.0, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_98, 0.0, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_662, 100.0, 2)
@@ -487,8 +517,8 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         model303_4T.button_calculate()
         self.model390_2018.button_calculate()
         # Check casilla_85, casilla_95, casilla_97, casilla_98, casilla_662
-        self.assertAlmostEqual(self.model390_2018.casilla_85, 905.25, 2)
-        self.assertAlmostEqual(self.model390_2018.casilla_95, 2302.12, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_85, 1710.5, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_95, 1496.87, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_97, 0.0, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_98, 100.00, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_662, 0.0, 2)

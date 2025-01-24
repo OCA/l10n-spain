@@ -416,11 +416,10 @@ class L10nEsAeatMod390Report(models.Model):
         string="[85] Compens. ejercicio anterior",
         readonly=True,
         states=EDITABLE_ON_CALCULATED,
-        help="Si en la autoliquidación del último período del ejercicio "
-        "anterior resultó un saldo a su favor y usted optó por la "
-        "compensación, consigne en esta casilla la cantidad a "
-        "compensar, salvo que la misma haya sido modificada por la "
-        "Administración, en cuyo caso se consignará esta última.",
+        help="Se consignará el importe de las cuotas pendientes de compensación "
+        "generadas en ejercicios anteriores y aplicadas en el ejercicio (es "
+        "decir, que se hubiesen consignado en la casilla 78 de alguna de las "
+        "autoliquidaciones del periodo).",
     )
     casilla_86 = fields.Float(
         compute="_compute_casilla_86",
@@ -829,6 +828,27 @@ class L10nEsAeatMod390Report(models.Model):
                 _("You cannot make complementary reports for this model.")
             )
 
+    def _calculate_casilla_85(self, reports_303_this_year):
+        self.ensure_one()
+        report_303_first_period = reports_303_this_year.filtered(
+            lambda r: r.period_type in {"1T", "1"}
+        )
+        # Si no hay autoliquidaciones del primer periodo del ejercicio, asumimos
+        # que el total viene de ejercicios anteriores
+        if not report_303_first_period:
+            return sum(reports_303_this_year.mapped("cuota_compensar"))
+        # Obtenemos cuotas pendientes de compensación generadas en ejercicios anteriores
+        # Casilla [110] de la primera autoliquidación del ejercicio
+        remaining_cuota_compensar = report_303_first_period.potential_cuota_compensar
+        # Obtenemos total a compensar aplicado en el ejercicio
+        # Casilla [78] de todas las autoliquidaciones del ejercicio (suma)
+        total_cuota_compensar = sum(reports_303_this_year.mapped("cuota_compensar"))
+        # Si durante el ejercicio se ha aplicado más de remaining_cuota_compensar,
+        # entonces hemos aplicado el total durante el ejercicio.
+        # En caso contrario, solo hemos aplicado una parte de
+        # remaining_cuota_compensar, usamos la suma de las casillas [78]
+        return min(total_cuota_compensar, remaining_cuota_compensar)
+
     def calculate(self):
         res = super().calculate()
         for mod390 in self:
@@ -844,8 +864,9 @@ class L10nEsAeatMod390Report(models.Model):
             )
             if not reports_303_this_year:
                 continue
-            # casilla 85 = sumatorio de las casilla 78 de los periodos del año
-            casilla_85 = sum(reports_303_this_year.mapped("cuota_compensar"))
+            # casilla 85 = cuotas pendientes de compensación generadas en ejercicios
+            # anteriores y aplicadas en el ejercicio
+            casilla_85 = self._calculate_casilla_85(reports_303_this_year)
             # casilla 95 = sumatorio de las casilla 71 de los periodos del año que
             # sean a ingresar
             casilla_95 = sum(
