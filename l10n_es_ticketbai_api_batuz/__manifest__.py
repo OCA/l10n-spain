@@ -17,7 +17,12 @@
     "development_status": "Beta",
     "maintainers": ["ao-landoo"],
     "depends": ["l10n_es_ticketbai_api"],
-    "external_dependencies": {"python": ["xmltodict", "requests_pkcs12"]},
+    "external_dependencies": {
+        "python": [
+            "xmltodict",
+            "requests_pkcs12==1.22",  # compatible with python_version < '3.12' >= '3.12'
+        ]
+    },
     "data": [
         "security/ir.model.access.csv",
         "data/tax_agency_data.xml",
