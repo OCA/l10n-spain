@@ -71,12 +71,8 @@ class L10nEsAeatMod190Report(models.Model):
                     item.mapped("partner_record_ids.percepciones_en_especie_incap")
                 )
             else:
-                tax_lines = item.tax_line_ids.search(
-                    [
-                        ("field_number", "in", (11, 13, 15)),
-                        ("model", "=", item._name),
-                        ("res_id", "=", item.id),
-                    ]
+                tax_lines = item.tax_line_ids.filtered(
+                    lambda x: x.field_number in {11, 13, 15}
                 )
                 for move_line in tax_lines.move_line_ids:
                     value += move_line.debit - move_line.credit
@@ -98,12 +94,8 @@ class L10nEsAeatMod190Report(models.Model):
                     item.mapped("partner_record_ids.retenciones_dinerarias_incap")
                 )
             else:
-                tax_lines = self.tax_line_ids.search(
-                    [
-                        ("field_number", "in", (12, 14, 16)),
-                        ("model", "=", item._name),
-                        ("res_id", "=", item.id),
-                    ]
+                tax_lines = item.tax_line_ids.filtered(
+                    lambda x: x.field_number in {12, 14, 16}
                 )
                 for move_line in tax_lines.move_line_ids:
                     value += move_line.credit - move_line.debit
