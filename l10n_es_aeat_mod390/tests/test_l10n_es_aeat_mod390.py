@@ -479,9 +479,9 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         # Check casilla_85, casilla_95, casilla_97, casilla_98, casilla_662
         self.assertAlmostEqual(self.model390_2018.casilla_85, 805.25, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_95, 2302.12, 2)
-        self.assertAlmostEqual(self.model390_2018.casilla_97, 100.0, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_97, 0.0, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_98, 0.0, 2)
-        self.assertAlmostEqual(self.model390_2018.casilla_662, 0.0, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_662, 100.0, 2)
 
         model303_4T.return_last_period = True
         model303_4T.button_calculate()
