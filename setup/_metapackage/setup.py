@@ -39,6 +39,7 @@ setuptools.setup(
         'odoo-addon-l10n_es_atc_mod415>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_atc_mod420>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_dua>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_es_dua_igic>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_dua_sii>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_facturae>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_facturae_face>=16.0dev,<16.1dev',
