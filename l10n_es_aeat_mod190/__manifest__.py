@@ -2,7 +2,7 @@
 
 {
     "name": "AEAT modelo 190",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.0.1",
     "category": "Localization/Accounting",
     "author": "Punt Sistemes SLU,"
     "Odoo Community Association (OCA),"
