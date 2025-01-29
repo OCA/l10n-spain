@@ -129,7 +129,7 @@ Contributors
 
   * Enric Tobella
 
-* `Trey <https://www.trey.es>`_:
+* `Trey <https://www.trey.es>`__:
 
   * Vicent Cubells <vicent@trey.es>
 
