@@ -5,6 +5,8 @@ import json
 from hashlib import sha256
 from urllib.parse import parse_qs, urlparse
 
+from psycopg2 import OperationalError
+
 from odoo.modules.module import get_resource_path
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
@@ -155,6 +157,7 @@ class TestL10nEsAeatVerifactuBase(TestL10nEsAeatModBase, TestL10nEsAeatCertifica
         result_dict["RegistroAlta"].pop("FechaHoraHusoGenRegistro")
         result_dict["RegistroAlta"].pop("TipoHuella")
         result_dict["RegistroAlta"].pop("Huella")
+        result_dict["RegistroAlta"].pop("Encadenamiento")
         path = get_resource_path(module, "tests/json", json_file)
         if not path:
             raise Exception("Incorrect JSON file: %s" % json_file)
@@ -304,4 +307,87 @@ class TestL10nEsAeatVerifactuQR(TestL10nEsAeatVerifactuBase):
             original_qr_code,
             updated_qr_code,
             "QR code should be regenerated after invoice update.",
+        )
+
+
+class TestL10nEsAeatVerifactuChaining(TestL10nEsAeatVerifactuBase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+
+    def test_get_chaining_invoice_dict_first_record(self):
+        """Test chaining dict when there's no previous invoice."""
+        self.company.verifactu_last_invoice_id = False
+        result = self.invoice._get_chaining_invoice_dict()
+        self.assertEqual(
+            result,
+            {"PrimerRegistro": "S"},
+            "Should return first record indicator when no previous invoice exists",
+        )
+        self.assertEqual(
+            self.company.verifactu_last_invoice_id.id,
+            self.invoice.id,
+            "Company's last invoice should be updated even for first record",
+        )
+
+    def test_get_chaining_invoice_dict_with_previous(self):
+        """Test chaining dict when there's a previous invoice."""
+        prev_invoice = self.invoice.copy(
+            {
+                "invoice_date": "2024-01-01",
+                "name": "PREV001",
+            }
+        )
+        prev_invoice._get_verifactu_invoice_dict()
+        self.assertEqual(self.company.verifactu_last_invoice_id, prev_invoice)
+
+        result = self.invoice._get_chaining_invoice_dict()
+
+        expected = {
+            "RegistroAnterior": {
+                "IDEmisorFactura": prev_invoice._get_verifactu_issuer(),
+                "NumSerieFactura": prev_invoice._get_document_serial_number(),
+                "FechaExpedicionFactura": prev_invoice._change_date_format(
+                    prev_invoice._get_document_date()
+                ),
+                "Huella": prev_invoice.verifactu_hash,
+            }
+        }
+        self.assertEqual(
+            result,
+            expected,
+            "Should return previous invoice data in correct format",
+        )
+        self.assertEqual(
+            self.company.verifactu_last_invoice_id,
+            self.invoice,
+            "Should update company's last invoice reference",
+        )
+
+    def test_get_chaining_invoice_dict_operational_error(self):
+        """Test handling of OperationalError during chaining."""
+
+        def mock_execute(*args, **kwargs):
+            raise OperationalError("Test lock error")
+
+        self.company.verifactu_last_invoice_id = False
+        prev_invoice = self.invoice.copy(
+            {
+                "invoice_date": "2024-01-01",
+                "name": "PREV001",
+            }
+        )
+        prev_invoice._get_verifactu_invoice_dict()
+        self.assertEqual(self.company.verifactu_last_invoice_id, prev_invoice)
+
+        old_execute = self.cr.execute
+        with self.assertRaises(OperationalError):
+            with self.cr.savepoint():
+                self.cr.execute = mock_execute
+                self.invoice._get_chaining_invoice_dict()
+        self.cr.execute = old_execute
+        self.assertEqual(
+            self.company.verifactu_last_invoice_id,
+            prev_invoice,
+            "Should not update company's last invoice reference on error",
         )

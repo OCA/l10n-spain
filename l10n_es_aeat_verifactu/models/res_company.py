@@ -14,3 +14,8 @@ class ResCompany(models.Model):
         size=500,
         help="The description for Verifactu invoices if not set",
     )
+    verifactu_last_invoice_id = fields.Many2one(
+        string="Last veri*FACTU Invoice sent",
+        comodel_name="account.move",
+        copy=False,
+    )

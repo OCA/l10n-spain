@@ -1,17 +1,26 @@
 # Copyright 2024 Aures TIC - Almudena de La Puente <almudena@aurestic.es>
 # Copyright 2024 Aures Tic - Jose Zambudio <jose@aurestic.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+import logging
+from collections import OrderedDict
+from time import sleep
 
 from collections import OrderedDict
 from datetime import datetime
 from hashlib import sha256
+from psycopg2 import OperationalError
 
 import pytz
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools import config
+
+_logger = logging.getLogger(__name__)
 
 VERIFACTU_VALID_INVOICE_STATES = ["posted"]
+# TODO: review retry strategy
+SEND_TO_VERIFACTU_MAX_RETRIES = 5
 
 
 class AccountMove(models.Model):
@@ -34,6 +43,11 @@ class AccountMove(models.Model):
         " invoice type.",
     )
     verifactu_registration_date = fields.Datetime()
+    verifactu_previous_invoice_id = fields.Many2one(
+        string="Last veri*FACTU Invoice sent",
+        comodel_name="account.move",
+        copy=False,
+    )
 
     @api.depends("move_type")
     def _compute_verifactu_refund_type(self):
@@ -131,8 +145,7 @@ class AccountMove(models.Model):
         return self.amount_total_signed
 
     def _get_verifactu_previous_hash(self):
-        # TODO store it? search it by some kind of sequence?
-        return ""
+        return self.verifactu_previous_invoice_id.verifactu_hash
 
     def _get_verifactu_registration_date(self):
         # Date format must be ISO 8601
@@ -248,24 +261,45 @@ class AccountMove(models.Model):
         return registroAlta
 
     def _get_chaining_invoice_dict(self):
-        """
-        TODO
-        si no es el primer registro, hay que enviar el registro anterior.
-        Cuando sepamos cuál es el registro anterior
-        prev_invoice = self._get_previous_invoice()
-        return
-            {
-                "RegistroAnterior" = {
-                    "IDEmisorFactura": prev_invoice._get_verifactu_issuer()
-                    "NumSerieFactura": prev_invoice._get_document_serial_number()
-                    "FechaExpedicionFactura": prev_invoice._change_date_format(
-                        prev_invoice._get_document_date())
-                    "Huella": prev_invoice.verifactu_hash
+        """Retry handling should be done on caller method when OperationalError"""
+        inv_dict = {}
+        try:
+            self.company_id.flush_model(["verifactu_last_invoice_id"])
+            self._cr.execute(
+                "SELECT verifactu_last_invoice_id FROM"
+                " res_company WHERE id = %s FOR UPDATE NOWAIT",
+                [self.company_id.id],
+            )
+            result = self._cr.fetchone()
+            prev_inv = self.env["account.move"].browse(result[0]) if result else False
+            if prev_inv:
+                self.verifactu_previous_invoice_id = prev_inv
+                inv_dict = {
+                    "RegistroAnterior": {
+                        "IDEmisorFactura": prev_inv._get_verifactu_issuer(),
+                        "NumSerieFactura": prev_inv._get_document_serial_number(),
+                        "FechaExpedicionFactura": prev_inv._change_date_format(
+                            prev_inv._get_document_date()
+                        ),
+                        "Huella": prev_inv.verifactu_hash,
+                    }
                 }
-            }
-        mientras tanto para pruebas vamos a decir siempre que es el primer registro
-        """
-        return {"PrimerRegistro": "S"}
+            else:
+                inv_dict = {"PrimerRegistro": "S"}
+            self._cr.execute(
+                "UPDATE res_company SET "
+                "verifactu_last_invoice_id = %s WHERE id = %s",
+                (self.id, self.company_id.id),
+            )
+            self.company_id.invalidate_recordset(["verifactu_last_invoice_id"])
+        except OperationalError:
+            _logger.error(
+                "VERI*FACTU: Could not obtain lock for company %s and invoice %s",
+                self.company_id.id,
+                self.id,
+            )
+            raise
+        return inv_dict
 
     def _get_verifactu_tax_dict(self, tax_line, tax_lines):
         """Get the Verifactu tax dictionary for the passed tax line.
@@ -400,7 +434,39 @@ class AccountMove(models.Model):
             record.verifactu_hash_string = verifactu_hash_values
             hash_string = sha256(verifactu_hash_values.encode("utf-8"))
             record.verifactu_hash = hash_string.hexdigest().upper()
+
+        # TODO: review retry strategy
+        for invoice in self:
+            if not self._should_send_to_verifactu(invoice):
+                continue
+            for attempt in range(SEND_TO_VERIFACTU_MAX_RETRIES):
+                try:
+                    invoice.send_verifactu()
+                    break
+                except OperationalError:
+                    if attempt == SEND_TO_VERIFACTU_MAX_RETRIES - 1:
+                        # TODO: should we have a stopping mechanism and avoid sending more
+                        # invoices for this chain when it is no possible to obtain a lock
+                        # on verifactu_last_invoice_id (pos.config)?
+                        _logger.error(
+                            "Failed to send invoice %s with ID %d to Verifactu "
+                            "after %d attempts",
+                            invoice.name,
+                            invoice.id,
+                            SEND_TO_VERIFACTU_MAX_RETRIES,
+                        )
+                    else:
+                        sleep(1)  # Wait 1 second before next try
         return res
+
+    def _should_send_to_verifactu(self, invoice):
+        return (
+            not config["test_enable"]
+            and invoice.exists()
+            and invoice.is_invoice()
+            and invoice.verifactu_enabled
+            and invoice.state in VERIFACTU_VALID_INVOICE_STATES
+        )
 
     def cancel_verifactu(self):
         raise NotImplementedError

@@ -223,7 +223,7 @@ class VerifactuMixin(models.AbstractModel):
         )
         return inv_dict
 
-    def _get_aeat_invoice_dict_out(self, cancel=False):
+    def _get_verifactu_invoice_dict_out(self, cancel=False):
         raise NotImplementedError
 
     def _get_verifactu_developer_dict(self):
