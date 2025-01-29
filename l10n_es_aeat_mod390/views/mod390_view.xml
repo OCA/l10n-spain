@@ -219,16 +219,14 @@
                         </group>
                     </page>
                 </notebook>
-                <separator
-                    string="Tax lines"
-                    attrs="{'invisible': [('state', '=', 'draft')]}"
-                />
-                <field
-                    name="tax_line_ids"
-                    nolabel="1"
-                    readonly="1"
-                    attrs="{'invisible': [('state', '=', 'draft')]}"
-                />
+                <notebook attrs="{'invisible': [('state', '=', 'draft')]}">
+                    <page string="Valued tax lines">
+                        <field name="valued_tax_line_ids" nolabel="1" readonly="1" />
+                    </page>
+                    <page string="Tax lines">
+                        <field name="tax_line_ids" nolabel="1" readonly="1" />
+                    </page>
+                </notebook>
             </group>
             <form position="inside">
                 <div class="oe_chatter">
