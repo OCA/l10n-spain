@@ -20,6 +20,14 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         readonly=True,
         string="Tax lines",
     )
+    valued_tax_line_ids = fields.One2many(
+        comodel_name="l10n.es.aeat.tax.line",
+        inverse_name="res_id",
+        domain=lambda self: [("model", "=", self._name), ("amount", "!=", 0)],
+        auto_join=True,
+        readonly=True,
+        string="Valued tax lines",
+    )
 
     def calculate(self):
         res = super().calculate()
