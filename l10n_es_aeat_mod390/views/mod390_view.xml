@@ -193,6 +193,8 @@
                                 class="oe_subtotal_footer_separator"
                                 widget="monetary"
                             />
+                            <field name="casilla_658" widget="monetary" />
+                            <field name="casilla_84" widget="monetary" />
                             <field name="casilla_85" widget="monetary" />
                             <field
                                 name="casilla_86"
