@@ -323,10 +323,18 @@ class L10nEsAeatMod390Report(models.Model):
         store=True,
         string="[65] Result. rég. gral.",
     )
+    casilla_658 = fields.Monetary(
+        string="[658] Regularización cuotas art. 80. Cinco.5ª LIVA",
+    )
     casilla_662 = fields.Monetary(
         string="[662] Cuotas pendientes de compensación al término del ejercicio",
         help="[662] Cuotas pendientes de compensación generadas en el ejercicio "
         "y distintas de las incluidas en la casilla 97",
+    )
+    casilla_84 = fields.Monetary(
+        compute="_compute_casilla_84",
+        store=True,
+        string="[84] Suma de resultados",
     )
     casilla_85 = fields.Monetary(
         string="[85] Compens. ejercicio anterior",
@@ -690,11 +698,15 @@ class L10nEsAeatMod390Report(models.Model):
         for report in self:
             report.casilla_65 = report.casilla_47 - report.casilla_64
 
-    @api.depends("casilla_65", "casilla_85")
+    @api.depends("casilla_65", "casilla_658")
+    def _compute_casilla_84(self):
+        for report in self:
+            report.casilla_84 = report.casilla_65 + report.casilla_658
+
+    @api.depends("casilla_84", "casilla_85")
     def _compute_casilla_86(self):
         for report in self:
-            # It takes 65 instead of 84 + 659 as the rest are 0
-            report.casilla_86 = report.casilla_65 - report.casilla_85
+            report.casilla_86 = report.casilla_84 - report.casilla_85
 
     @api.depends("tax_line_ids", "tax_line_ids.amount")
     def _compute_casilla_108(self):

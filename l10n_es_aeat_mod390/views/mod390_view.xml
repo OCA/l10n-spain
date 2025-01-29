@@ -294,6 +294,11 @@
                                 name="casilla_65"
                                 class="oe_subtotal_footer_separator"
                             />
+                            <field
+                                name="casilla_658"
+                                readonly="state != 'calculated'"
+                            />
+                            <field name="casilla_84" readonly="state != 'calculated'" />
                             <field name="casilla_85" readonly="state != 'calculated'" />
                             <field
                                 name="casilla_86"
