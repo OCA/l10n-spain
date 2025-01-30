@@ -167,7 +167,6 @@ class L10nEsAeatMod369Report(models.Model):
         previous_tax_count = 0
         for country, taxes in oss_countries.items():
             if previous_country and country != previous_country:
-                line_number += 8 - (previous_tax_count * 2)
                 previous_tax_count = 0
             for tax in taxes:
                 previous_tax_count += 1
