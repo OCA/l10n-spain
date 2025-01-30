@@ -140,13 +140,15 @@ class L10nEsAeatMod369LineGrouped(models.Model):
     def _compute_vat_type_str(self):
         for line in self:
             vat_type_split = str(line.vat_type).split(".")
-            line.vat_type_str = vat_type_split[0].zfill(3) + vat_type_split[1].zfill(2)
+            line.vat_type_str = vat_type_split[0].zfill(3) + vat_type_split[1].ljust(
+                2, "0"
+            )
 
     @api.depends("base")
     def _compute_base_str(self):
         for line in self:
             base_split = str(line.base).split(".")
-            line.base_str = base_split[0].zfill(15) + base_split[1].zfill(2)
+            line.base_str = base_split[0].zfill(15) + base_split[1].ljust(2, "0")
 
     @api.depends("amount")
     def _compute_amount_str(self):
