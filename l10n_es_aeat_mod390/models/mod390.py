@@ -763,9 +763,9 @@ class L10nEsAeatMod390Report(models.Model):
                 + report.casilla_59
                 + report.casilla_598
                 + sum(
-                    report.tax_line_ids.filtered(lambda x: x.field_number == 62).mapped(
-                        "amount"
-                    )
+                    report.tax_line_ids.filtered(
+                        lambda x: x.field_number in (61, 62)
+                    ).mapped("amount")
                 )
             )
 
