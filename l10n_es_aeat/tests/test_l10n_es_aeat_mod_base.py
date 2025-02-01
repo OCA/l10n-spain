@@ -5,11 +5,12 @@
 
 import logging
 
-from odoo.tests import common
+from odoo.tests import common, tagged
 
 _logger = logging.getLogger("aeat")
 
 
+@tagged("post_install", "-at_install")
 class TestL10nEsAeatModBase(common.TransactionCase):
     accounts = {}
     # Set 'debug' attribute to True to easy debug this test
