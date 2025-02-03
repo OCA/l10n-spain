@@ -689,6 +689,15 @@ msgid "Responsible User"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_85
+msgid ""
+"Se consignará el importe de las cuotas pendientes de compensación generadas "
+"en ejercicios anteriores y aplicadas en el ejercicio (es decir, que se "
+"hubiesen consignado en la casilla 78 de alguna de las autoliquidaciones del "
+"periodo)."
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_95
 msgid ""
 "Se consignará la suma de las cantidades a ingresar por el Impuesto como "
@@ -715,15 +724,6 @@ msgstr ""
 msgid ""
 "Si el resultado de la última autoliquidación fue a devolver, consignará en "
 "esta casilla el importe de la misma."
-msgstr ""
-
-#. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_85
-msgid ""
-"Si en la autoliquidación del último período del ejercicio anterior resultó "
-"un saldo a su favor y usted optó por la compensación, consigne en esta "
-"casilla la cantidad a compensar, salvo que la misma haya sido modificada por"
-" la Administración, en cuyo caso se consignará esta última."
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
