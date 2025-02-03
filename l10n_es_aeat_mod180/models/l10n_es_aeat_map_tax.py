@@ -30,7 +30,6 @@ class L10nEsAeatMapTax(models.Model):
                     "&",
                     ("date_from", "=", False),
                     ("date_to", ">=", tax_map.date_from),
-                    "|",
                     "&",
                     ("date_to", "=", False),
                     ("date_from", "<=", tax_map.date_to),
@@ -41,9 +40,9 @@ class L10nEsAeatMapTax(models.Model):
                 domain += [("date_from", "<=", tax_map.date_to)]
             date_lst = tax_map.search(domain)
             if date_lst:
-                raise exceptions.Warning(
+                raise exceptions.UserError(
                     _(
-                        """Error! Las fechas de los registros
-                         se solapan con un registro existente."""
+                        "Error! Las fechas de los registros "
+                        "se solapan con un registro existente."
                     )
                 )

@@ -1,6 +1,7 @@
 # © 2024 Marián Cuadra <marian.cuadra@netkia.es>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 import logging
+from datetime import date
 
 from odoo import exceptions
 
@@ -92,6 +93,7 @@ class TestL10nEsAeatMod180Base(TestL10nEsAeatModBase):
                 _logger.debug("{:>14} {:>9}".format(desc, values[0]))
             # Allow to duplicate taxes skipping the unique key constraint
             re = cls._real_estate_create(reference)
+            re._onchange_postal_code()
             line_data = {
                 "name": "Test for tax(es) %s" % desc,
                 "account_id": cls.accounts["600000"].id,
@@ -106,6 +108,7 @@ class TestL10nEsAeatMod180Base(TestL10nEsAeatModBase):
         if extra_vals:
             data.update(extra_vals)
         inv = cls.env["account.move"].with_user(cls.billing_user).create(data)
+        inv.line_ids._compute_selectable_real_estate_ids()
         inv.action_post()
         if cls.debug:
             cls._print_move_lines(inv.line_ids)
@@ -142,6 +145,12 @@ class TestL10nEsAeatMod180Base(TestL10nEsAeatModBase):
         purchase = self._invoice_purchase_create_with_real_state("2023-06-03", 3)
         self._invoice_refund(purchase, "2023-01-18")
         self.model180 = self._create_model_180()
+        recipient = self.env["recipient.record"].create(
+            {
+                "report_id": self.model180.id,
+            }
+        )
+        lines = recipient.action_get_base_move_lines()
         self.model180.button_calculate()
         self.assertEqual(self.model180.tipo_declaracion, "I")
         self.assertEqual(self.model180.tipo_declaracion_positiva, "I")
@@ -186,3 +195,35 @@ class TestL10nEsAeatMod180Base(TestL10nEsAeatModBase):
             self.model180.tipo_declaracion = "I"
         # this doesn't rise any error
         self.model180.tipo_declaracion_negativa = "N"
+
+    def test_get_calculated_move_lines(self):
+        invoice = self._invoice_purchase_create_with_real_state("2023-01-01", 1)
+        tax_line = self.env["l10n.es.aeat.tax.line"].create(
+            {"model": "l10n.es.aeat.mod180.report", "res_id": invoice.id}
+        )
+        tax_line.get_calculated_move_lines()
+        self.assertEqual(tax_line.model, "l10n.es.aeat.mod180.report")
+
+    def test_create_tax_map(self):
+        new_tax_map = self.env["l10n.es.aeat.map.tax"].create(
+            {
+                "model": 180,
+                "date_from": date(2025, 1, 1),
+                "date_to": False,
+            }
+        )
+        self.assertEqual(new_tax_map.model, 180)
+        new_tax_map_copy = new_tax_map.copy()
+        self.assertEqual(new_tax_map_copy.model, 180)
+        with self.assertRaises(exceptions.UserError):
+            new_tax_map = self.env["l10n.es.aeat.map.tax"].create(
+                {
+                    "model": 180,
+                    "date_from": date(2025, 3, 1),
+                    "date_to": date(2025, 6, 1),
+                }
+            )
+        with self.assertRaises(exceptions.UserError):
+            new_tax_map = self.env["l10n.es.aeat.map.tax"].create(
+                {"model": 180, "date_from": False, "date_to": date(2025, 6, 1)}
+            )
