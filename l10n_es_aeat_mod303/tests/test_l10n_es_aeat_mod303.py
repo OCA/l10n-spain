@@ -27,7 +27,6 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         "S_IVA21B": (1400, 294),
         "S_IVA21B//neg": (-140, -29.4),
         "S_IVA21S": (1500, 315),
-        "S_IVA21ISP": (1600, 336),
         "S_REQ05": (1700, 8.5),
         "S_REQ014": (1800, 25.2),
         "S_REQ52": (1900, 98.8),
@@ -55,7 +54,6 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         "P_IVA21_SP_EX": (130, 0),
         "P_IVA4_ISP": (140, 0),
         "P_IVA10_ISP": (150, 0),
-        "P_IVA21_ISP": (160, 0),
         "P_IVA4_SC": (210, 8.4),
         "P_IVA4_SC//neg": (-21, -0.84),
         "P_IVA10_SC": (220, 22),
@@ -89,11 +87,11 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         # Régimen General - Cuota 10%
         "6": (3 * 120) + (3 * 130) - 3 * 12,  # S_IVA10B, S_IVA10S
         # Régimen General - Base imponible 21%
-        # S_IVA21B, S_IVA21S, S_IVA21ISP
-        "7": (3 * 1400) + (3 * 1500) + (3 * 1600) - 3 * 140,
+        # S_IVA21B, S_IVA21S
+        "7": (3 * 1400) + (3 * 1500) - 3 * 140,
         # Régimen General - Cuota 21%
-        # S_IVA21B, S_IVA21S, S_IVA21ISP
-        "9": (3 * 294) + (3 * 315) + (3 * 336) - 3 * 29.4,
+        # S_IVA21B, S_IVA21S
+        "9": (3 * 294) + (3 * 315) - 3 * 29.4,
         # Adq. intracomunitarias de bienes y servicios - Base
         "10": (
             (3 * 100)
@@ -125,7 +123,6 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
             + (3 * 130)
             + (3 * 140)  # P_IVAx_SP_EX_1
             + (3 * 150)
-            + (3 * 160)  # P_IVAx_ISP_2
         ),
         # Op. inv. del suj. pasivo (excepto adq. intracom.) - Cuota
         "13": (
@@ -134,7 +131,6 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
             + (3 * 27.3)
             + (3 * 5.6)  # P_IVAx_SP_EX_1
             + (3 * 15)
-            + (3 * 33.6)  # P_IVAx_ISP_2
         ),
         # Modificación bases y cuotas - Base (Compras y ventas)
         "14": (
@@ -148,9 +144,8 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
                 - 120
                 + 1400  # S_IVA10B, S_IVA10S
                 + 1500
-                + 1600
                 - 140
-                + 100  # S_IVA21B,S_IVA21S,S_IVA21ISP
+                + 100  # S_IVA21B,S_IVA21S
                 + 200
                 + 300
                 + 400  # P_IVAx_IC_BC_2
@@ -164,7 +159,6 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
                 + 130
                 + 140  # P_IVAx_SP_EX_1
                 + 150
-                + 160
             )  # P_IVAx_ISP_2
         ),
         # Modificación bases y cuotas - Cuota (Compras y ventas)
@@ -179,9 +173,8 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
                 - 12
                 + 294  # S_IVA10B, S_IVA10S
                 + 315
-                + 336
                 - 29.4
-                + 4  # S_IVA21B, S_IVA21S, S_IVA21ISP
+                + 4  # S_IVA21B, S_IVA21S
                 + 20
                 + 63
                 + 16  # P_IVAx_IC_BC_2
@@ -195,8 +188,7 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
                 + 27.3
                 + 5.6  # P_IVAx_SP_EX_1
                 + 15
-                + 33.6
-            )  # P_IVAx_ISP_2
+            )
         ),
         # Recargo equivalencia - Base imponible 0.5%
         "16": (3 * 1700),  # S_REQ05
@@ -221,7 +213,6 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
             + (3 * 130)
             + (3 * 140)  # P_IVAx_SP_EX_2
             + (3 * 150)
-            + (3 * 160)
             + (3 * 210)  # P_IVAx_ISP_1
             + (3 * 220)
             + (3 * 230)
@@ -242,7 +233,6 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
             + (3 * 27.3)
             + (3 * 5.6)  # P_IVAx_SP_EX_2
             + (3 * 15)
-            + (3 * 33.6)
             + (3 * 8.4)  # P_IVAx_ISP_1
             + (3 * 22)
             + (3 * 48.3)
@@ -329,7 +319,6 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
                 + 130
                 + 140  # P_IVAx_SP_EX_2
                 + 150
-                + 160  # P_IVAx_ISP_1
             )
         ),
         # Rectificación de deducciones - Cuota
@@ -371,7 +360,6 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
                 + 27.3
                 + 5.6  # P_IVAx_SP_EX_2
                 + 15
-                + 33.6  # P_IVAx_ISP_1
             )
         ),
         # Compensaciones Rég. especial A. G. y P. - Cuota compras
