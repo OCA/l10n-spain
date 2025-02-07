@@ -1033,6 +1033,13 @@ msgid "Type"
 msgstr "Tipo"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
+#: code:addons/l10n_es_aeat_sii_oca/models/sii_mixin.py:0
+#, python-format
+msgid "Unsupported search operator"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__use_connector
 msgid "Use Connector"
 msgstr ""
