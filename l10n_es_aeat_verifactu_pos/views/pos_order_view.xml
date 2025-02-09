@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_pos_order_verifactu_form" model="ir.ui.view">
+        <field name="name">pos.order.verifactu.form</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form" />
+        <field name="arch" type="xml">
+            <button name="action_pos_order_invoice" position="after">
+                <button
+                    type="object"
+                    string="Send to Verifactu"
+                    name="send_verifactu"
+                    groups="l10n_es_aeat.group_account_aeat"
+                    attrs="{'invisible': ['|','|',('verifactu_enabled', '=', False), ('state', 'not in', ['paid','done']), ('aeat_state','in',['sent','cancelled'])]}"
+                />
+                <button
+                    type="object"
+                    string="Send cancellation to Verifactu"
+                    name="cancel_verifactu"
+                    groups="l10n_es_aeat.group_account_aeat"
+                    attrs="{'invisible': ['|','|',('verifactu_enabled', '=', False), ('state', 'not in', ['cancel']), ('aeat_state', 'not in', ['sent','sent_w_errors','sent_modified'])]}"
+                />
+            </button>
+            <notebook position="inside">
+                <page
+                    string="Veri*FACTU"
+                    name="page_aeat"
+                    attrs="{'invisible': [('verifactu_enabled', '=', False)]}"
+                >
+                    <group
+                        string="Veri*FACTU Information"
+                        name="group_aeat_information"
+                    >
+                        <field name="verifactu_enabled" invisible="0" readonly="1" />
+                        <field
+                            name="verifactu_previous_invoice_id"
+                            invisible="0"
+                            readonly="1"
+                        />
+                        <field name="verifactu_description" />
+                        <field name="verifactu_tax_key" />
+                        <field name="verifactu_registration_key" />
+                        <field name="verifactu_hash_string" />
+                        <field name="verifactu_hash" />
+                    </group>
+                    <group
+                        string="Veri*FACTU Result"
+                        name="group_aeat_result"
+                        groups="l10n_es_aeat.group_account_aeat"
+                    >
+                        <notebook colspan="2">
+                            <page name="page_aeat_result_general" string="General">
+                                <group>
+                                    <field name="aeat_state" />
+                                    <field name="verifactu_csv" />
+                                    <field
+                                        name="aeat_send_failed"
+                                        attrs="{'invisible': [('aeat_send_failed', '=', False)]}"
+                                    />
+                                    <field
+                                        name="aeat_send_error"
+                                        attrs="{'invisible': [('aeat_send_failed', '=', False)]}"
+                                    />
+                                </group>
+                            </page>
+                            <page
+                                name="page_aeat_result_technical"
+                                string="Technical"
+                                groups="base.group_no_one"
+                            >
+                                <group>
+                                    <label for="aeat_header_sent" />
+                                </group>
+                                <field name="aeat_header_sent" />
+                                <group>
+                                    <label for="aeat_content_sent" />
+                                </group>
+                                <field name="aeat_content_sent" />
+                            </page>
+                        </notebook>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
