@@ -663,10 +663,8 @@ class TicketBAIInvoice(models.Model):
                         # successfully sent.
                         # Mark pending invoices as error, except in the following:
                         # - TicketBai (Invoice)
-                        #   - 005: Invoice already registered -> mark as sent.
                         #   - 006: service not available. Retry later.
                         # - AnulaTicketBai (Cancellation)
-                        #   - 011: Invoice already registered -> mark as sent.
                         #   - 012: service not available. Retry later.
                         error = True
                         # TicketBAI Response warning and error codes
@@ -678,12 +676,6 @@ class TicketBAIInvoice(models.Model):
                             == next_pending_invoice.schema
                         ):
                             if (
-                                InvoiceResponseCode.INVOICE_ALREADY_REGISTERED.value
-                                in response_codes
-                            ):
-                                next_pending_invoice.mark_as_sent()
-                                error = False
-                            elif (
                                 InvoiceResponseCode.SERVICE_NOT_AVAILABLE.value
                                 in response_codes
                             ):
@@ -694,12 +686,6 @@ class TicketBAIInvoice(models.Model):
                             == next_pending_invoice.schema
                         ):
                             if (
-                                CancellationResponseCode.INVOICE_ALREADY_CANCELLED.value
-                                in response_codes
-                            ):
-                                next_pending_invoice.mark_as_sent()
-                                error = False
-                            elif (
                                 CancellationResponseCode.SERVICE_NOT_AVAILABLE.value
                                 in response_codes
                             ):
@@ -835,9 +821,9 @@ class TicketBAIInvoice(models.Model):
         if self.simplified_invoice:
             res["FacturaSimplificada"] = self.simplified_invoice
         if self.substitutes_simplified_invoice:
-            res[
-                "FacturaEmitidaSustitucionSimplificada"
-            ] = self.substitutes_simplified_invoice
+            res["FacturaEmitidaSustitucionSimplificada"] = (
+                self.substitutes_simplified_invoice
+            )
         factura_rectificativa = self.build_factura_rectificativa()
         if factura_rectificativa:
             res["FacturaRectificativa"] = factura_rectificativa
@@ -1016,9 +1002,9 @@ class TicketBAIInvoice(models.Model):
                 tax_details["TipoRecargoEquivalencia"] = tax.re_amount
                 tax_details["CuotaRecargoEquivalencia"] = tax.re_amount_total
             if tax.surcharge_or_simplified_regime:
-                tax_details[
-                    "OperacionEnRecargoDeEquivalenciaORegimenSimplificado"
-                ] = tax.surcharge_or_simplified_regime
+                tax_details["OperacionEnRecargoDeEquivalenciaORegimenSimplificado"] = (
+                    tax.surcharge_or_simplified_regime
+                )
             if tax.not_exempted_type == "S1":
                 not_exempted_taxes_not_isp.setdefault("TipoNoExenta", "S1")
                 not_exempted_taxes_not_isp.setdefault("DesgloseIVA", {"DetalleIVA": []})
@@ -1176,9 +1162,9 @@ class TicketBAIInvoice(models.Model):
                 self.build_importe_rectificacion_sustitutiva()
             )
             if importe_rectificacion_sustitutiva:
-                res[
-                    "ImporteRectificacionSustitutiva"
-                ] = importe_rectificacion_sustitutiva
+                res["ImporteRectificacionSustitutiva"] = (
+                    importe_rectificacion_sustitutiva
+                )
         else:
             res = {}
         return res
