@@ -555,11 +555,13 @@ class TestL10nEsAeatMod322(TestL10nEsAeatMod322Base):
                 self.taxes_result.get(b, 0.0)
                 for b in (
                     "161",
+                    "173",
                     "3",
                     "164",
                     "6",
                     "9",
                     "152",
+                    "167",
                     "11",
                     "14",
                     "155",
@@ -570,6 +572,7 @@ class TestL10nEsAeatMod322(TestL10nEsAeatMod322Base):
                     "26",
                     "158",
                     "29",
+                    "170",
                     "32",
                     "35",
                     "37",
