@@ -821,9 +821,9 @@ class TicketBAIInvoice(models.Model):
         if self.simplified_invoice:
             res["FacturaSimplificada"] = self.simplified_invoice
         if self.substitutes_simplified_invoice:
-            res["FacturaEmitidaSustitucionSimplificada"] = (
-                self.substitutes_simplified_invoice
-            )
+            res[
+                "FacturaEmitidaSustitucionSimplificada"
+            ] = self.substitutes_simplified_invoice
         factura_rectificativa = self.build_factura_rectificativa()
         if factura_rectificativa:
             res["FacturaRectificativa"] = factura_rectificativa
@@ -1002,9 +1002,9 @@ class TicketBAIInvoice(models.Model):
                 tax_details["TipoRecargoEquivalencia"] = tax.re_amount
                 tax_details["CuotaRecargoEquivalencia"] = tax.re_amount_total
             if tax.surcharge_or_simplified_regime:
-                tax_details["OperacionEnRecargoDeEquivalenciaORegimenSimplificado"] = (
-                    tax.surcharge_or_simplified_regime
-                )
+                tax_details[
+                    "OperacionEnRecargoDeEquivalenciaORegimenSimplificado"
+                ] = tax.surcharge_or_simplified_regime
             if tax.not_exempted_type == "S1":
                 not_exempted_taxes_not_isp.setdefault("TipoNoExenta", "S1")
                 not_exempted_taxes_not_isp.setdefault("DesgloseIVA", {"DetalleIVA": []})
@@ -1162,9 +1162,9 @@ class TicketBAIInvoice(models.Model):
                 self.build_importe_rectificacion_sustitutiva()
             )
             if importe_rectificacion_sustitutiva:
-                res["ImporteRectificacionSustitutiva"] = (
-                    importe_rectificacion_sustitutiva
-                )
+                res[
+                    "ImporteRectificacionSustitutiva"
+                ] = importe_rectificacion_sustitutiva
         else:
             res = {}
         return res
