@@ -201,11 +201,13 @@ class L10nEsAeatMod322Report(models.Model):
                     lambda r: r.field_number
                     in [
                         161,
+                        173,
                         3,
                         164,
                         6,
                         9,
                         152,
+                        167,
                         11,
                         14,
                         155,
@@ -216,6 +218,7 @@ class L10nEsAeatMod322Report(models.Model):
                         26,
                         158,
                         29,
+                        170,
                         32,
                         35,
                         37,
@@ -287,6 +290,8 @@ class L10nEsAeatMod322Report(models.Model):
             161,
             162,
             164,
+            171,
+            173,
         ]:
             domain.append(("partner_id", "in", self.vinculated_partner_ids.ids))
         if map_line.field_number in [
@@ -310,6 +315,9 @@ class L10nEsAeatMod322Report(models.Model):
             153,
             154,
             155,
+            165,
+            166,
+            167,
         ]:
             domain += [
                 "|",
@@ -333,6 +341,16 @@ class L10nEsAeatMod322Report(models.Model):
                 or self.period_type not in ("4T", "12")
             ):
                 return self.env["account.move.line"]
+        if self.year == 2025 and (
+            162 <= map_line.field_number <= 173
+            or map_line.field_number
+            in [
+                153,
+                154,
+                155,
+            ]
+        ):
+            return self.env["account.move.line"]
         return super()._get_tax_lines(
             date_start,
             date_end,
