@@ -59,16 +59,17 @@ class L10nEsAeatMod369LineGrouped(models.Model):
                 )
 
             if group.is_page_8_line:
-                refund_line = self.env["l10n.es.aeat.mod369.line.grouped"].search(
+                refund_lines = self.env["l10n.es.aeat.mod369.line.grouped"].search(
                     [
                         ("report_id", "=", group.report_id.id),
                         ("is_refund", "=", True),
                         ("country_code", "=", group.country_code),
                     ],
-                    limit=1,
                 )
-                if refund_line:
-                    group_keys["neg_corrections"] = refund_line.tax_correction
+                if refund_lines:
+                    group_keys["neg_corrections"] = sum(
+                        refund_lines.mapped("tax_correction")
+                    )
                 group_keys["result_total"] = (
                     group_keys["amount"]
                     + group_keys["pos_corrections"]
