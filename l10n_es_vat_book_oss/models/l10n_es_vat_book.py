@@ -8,9 +8,7 @@ class L10nEsVatBook(models.Model):
     _inherit = "l10n.es.vat.book"
 
     def _prepare_book_line_tax_vals(self, move_line, vat_book_line):
-        values = super(L10nEsVatBook, self)._prepare_book_line_tax_vals(
-            move_line, vat_book_line
-        )
+        values = super()._prepare_book_line_tax_vals(move_line, vat_book_line)
         oss_taxes = self.env["account.tax"].search(
             [("oss_country_id", "!=", False), ("company_id", "=", self.company_id.id)]
         )
