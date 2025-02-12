@@ -9,24 +9,6 @@ from odoo import models
 class L10nEsAeatMod303Report(models.Model):
     _inherit = "l10n.es.aeat.mod303.report"
 
-    def get_taxes_from_map(self, map_line):
-        oss_map_lines = [
-            self.env.ref("l10n_es_aeat_mod303_oss.aeat_mod303_202107_map_line_123"),
-            self.env.ref("l10n_es_aeat_mod303_oss.aeat_mod303_202107_map_line_126"),
-            self.env.ref("l10n_es_aeat_mod303_oss.aeat_mod303_2023_map_line_123"),
-            self.env.ref("l10n_es_aeat_mod303_oss.aeat_mod303_2023_map_line_126"),
-            self.env.ref("l10n_es_aeat_mod303_oss.aeat_mod303_2024_10_map_line_123"),
-            self.env.ref("l10n_es_aeat_mod303_oss.aeat_mod303_2024_10_map_line_126"),
-        ]
-        if map_line in oss_map_lines:
-            return self.env["account.tax"].search(
-                [
-                    ("oss_country_id", "!=", False),
-                    ("company_id", "=", self.company_id.id),
-                ]
-            )
-        return super().get_taxes_from_map(map_line)
-
     def _get_tax_lines(self, date_start, date_end, map_line):
         """Don't populate results for fields 126-127 for reports different from
         last of the year one or when not exonerated of presenting model 390.
