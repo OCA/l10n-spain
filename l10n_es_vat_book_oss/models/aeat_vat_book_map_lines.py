@@ -7,15 +7,15 @@ from odoo import models
 class AeatVatBookMapLines(models.Model):
     _inherit = "aeat.vat.book.map.line"
 
-    def get_taxes(self, report):
+    def get_taxes_for_company(self, company):
         self.ensure_one()
         s_iva_map_line = self.env.ref("l10n_es_vat_book.aeat_vat_book_map_line_s_iva")
-        taxes = super().get_taxes(report)
+        taxes = super().get_taxes_for_company(company)
         if s_iva_map_line == self:
             taxes += self.env["account.tax"].search(
                 [
                     ("oss_country_id", "!=", False),
-                    ("company_id", "=", report.company_id.id),
+                    ("company_id", "=", company.id),
                 ]
             )
         return taxes

@@ -31,16 +31,17 @@ class TestL10nEsAeatVatBookOss(TestL10nEsAeatVatBook):
                 "country_id": cls.env.ref("base.es").id,
             }
         )
-        cls.company.write({"vat": "1234567890"})
+        cls.company.write({"vat": "ESA12345674"})
+        cls.general_tax = cls.env.ref(
+            f"account.{cls.company.id}_account_tax_template_s_iva21b"
+        )
+        cls.accounts["700000"].write({"tax_ids": [(4, cls.general_tax.id)]})
 
     def test_model_vat_book_oss(self):
-        sp_fiscal_position = self.env.ref(f"l10n_es.{self.company.id}_fp_nacional")
-        general_tax = self.env.ref(
-            f"l10n_es.{self.company.id}_account_tax_template_s_iva21b"
-        )
+        sp_fiscal_position = self.env.ref(f"account.{self.company.id}_fp_nacional")
         wizard_vals = {
             "company_id": self.company.id,
-            "general_tax": general_tax.id,
+            "general_tax": self.general_tax.id,
         }
         wizard = self.env["l10n.eu.oss.wizard"].create(wizard_vals)
         wizard.todo_country_ids = [
@@ -122,7 +123,7 @@ class TestL10nEsAeatVatBookOss(TestL10nEsAeatVatBook):
             {
                 "name": "Test VAT Book",
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "ESA12345674",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
@@ -136,24 +137,24 @@ class TestL10nEsAeatVatBookOss(TestL10nEsAeatVatBook):
         vat_book.button_calculate()
 
         # Test Issued Tax Summary
-        self.assertTrue(len(vat_book.issued_tax_summary_ids), 3)
+        self.assertEqual(len(vat_book.issued_tax_summary_ids), 3)
         es_line = vat_book.issued_tax_summary_ids.filtered(
             lambda a: a.tax_id == inv_es.invoice_line_ids.mapped("tax_ids")
         )
-        self.assertTrue(len(es_line), 1)
+        self.assertEqual(len(es_line), 1)
         self.assertEqual(es_line.base_amount, 10)
         self.assertNotEqual(es_line.tax_amount, 0)
 
         be_line = vat_book.issued_tax_summary_ids.filtered(
             lambda a: a.tax_id == inv_be.invoice_line_ids.mapped("tax_ids")
         )
-        self.assertTrue(len(be_line), 1)
+        self.assertEqual(len(be_line), 1)
         self.assertEqual(be_line.base_amount, 40)
         self.assertEqual(be_line.tax_amount, 0)
 
         pt_line = vat_book.issued_tax_summary_ids.filtered(
             lambda a: a.tax_id == inv_pt.invoice_line_ids.mapped("tax_ids")
         )
-        self.assertTrue(len(pt_line), 1)
+        self.assertEqual(len(pt_line), 1)
         self.assertEqual(pt_line.base_amount, 90)
         self.assertEqual(pt_line.tax_amount, 0)
