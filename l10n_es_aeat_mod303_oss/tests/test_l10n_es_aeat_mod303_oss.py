@@ -26,7 +26,7 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         cls.company.country_id = cls.env.ref("base.es").id
         cls.company.account_fiscal_country_id = cls.env.ref("base.es").id
         general_tax = cls.env.ref(
-            "l10n_es.%s_account_tax_template_s_iva21b" % cls.company.id
+            "account.%s_account_tax_template_s_iva21b" % cls.company.id
         )
         wizard = cls.env["l10n.eu.oss.wizard"].create(
             {
@@ -57,13 +57,16 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             "invoice_line_ids": [(0, 0, line_data)],
             "fiscal_position_id": cls.fr_fiscal_position.id,
         }
-        cls.invoice_1 = cls._invoice_sale_create("2021-07-01", extra_vals)
-        cls.invoice_2 = cls._invoice_sale_create("2021-11-01", extra_vals)
+        cls.invoice_1 = cls._invoice_sale_create("2025-01-01", extra_vals)
+        cls.invoice_2 = cls._invoice_sale_create("2025-11-01", extra_vals)
         # Create reports
-        mod303_form = Form(cls.env["l10n.es.aeat.mod303.report"])
+        mod303_form = Form(
+            cls.env["l10n.es.aeat.mod303.report"],
+            view="l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form",
+        )
         mod303_form.company_id = cls.company
-        mod303_form.year = 2021
-        mod303_form.period_type = "3T"
+        mod303_form.year = 2025
+        mod303_form.period_type = "1T"
         mod303_form.company_vat = "1234567890"
         cls.model303 = mod303_form.save()
         cls.model303_4t = cls.model303.copy(
@@ -72,8 +75,8 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
                 "exonerated_390": "1",
                 "has_operation_volume": True,
                 "period_type": "4T",
-                "date_start": "2021-10-01",
-                "date_end": "2021-12-31",
+                "date_start": "2025-10-01",
+                "date_end": "2025-12-31",
             }
         )
 
