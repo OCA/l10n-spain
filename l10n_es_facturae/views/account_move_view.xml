@@ -72,6 +72,16 @@
                                 </form>
                             </field>
                         </group>
+                        <group string="Withhelds">
+                            <field name="facturae_withheld_reason" string="Reason" />
+                            <field
+                                name="facturae_withheld_percent"
+                                widget="percentage"
+                                class="oe_inline"
+                                string="Percent"
+                            />
+                            <field name="facturae_withheld_amount" string="Amount" />
+                        </group>
                     </group>
                 </page>
             </notebook>

@@ -73,6 +73,11 @@ msgid "Account Move Reversal"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
+msgid "Amount"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__attach_invoice_as_annex
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__attach_invoice_as_annex
 msgid "Attach Invoice As Annex"
@@ -757,6 +762,11 @@ msgid "Payment mode is required"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
+msgid "Percent"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move__facturae_refund_reason__11
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move_reversal__refund_reason__11
 msgid "Porcentaje impositivo a aplicar"
@@ -784,6 +794,11 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax__facturae_code__08
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__08
 msgid "Ra: Renta aduanas"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
+msgid "Reason"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -932,6 +947,32 @@ msgstr ""
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
 msgid "Vat must be defined for factura-e enabled partners."
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae_withheld_amount
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae_withheld_amount
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae_withheld_amount
+msgid "Withheld Amount"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae_withheld_percent
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae_withheld_percent
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae_withheld_percent
+msgid "Withheld Percent"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae_withheld_reason
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae_withheld_reason
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae_withheld_reason
+msgid "Withheld Reason"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
+msgid "Withhelds"
 msgstr ""
 
 #. module: l10n_es_facturae
