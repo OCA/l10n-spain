@@ -2,10 +2,10 @@
 # Copyright 2017 Creu Blanca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from .common import CommonTest
+from . import common
 
 
-class TestL10nEsFacturae321(CommonTest):
+class TestL10nEsFacturae321(common.CommonTest):
     def setUp(self):
         super().setUp()
         self.partner.facturae_version = "3_2_1"

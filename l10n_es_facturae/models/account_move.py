@@ -4,6 +4,8 @@
 import base64
 from collections import defaultdict
 
+from markupsafe import Markup
+
 from odoo import _, api, fields, models, tools
 from odoo.exceptions import ValidationError
 from odoo.tools import html2plaintext
@@ -262,7 +264,7 @@ class AccountMove(models.Model):
         return html2plaintext(self.narration)
 
     def _get_facturae_headers(self):
-        return 'xmlns:ds="http://www.w3.org/2000/09/xmldsig#"'
+        return Markup('xmlns:ds="http://www.w3.org/2000/09/xmldsig#"')
 
     def _facturae_has_extensions(self):
         return False
