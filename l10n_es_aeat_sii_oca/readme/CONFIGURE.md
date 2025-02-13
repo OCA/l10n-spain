@@ -14,26 +14,3 @@ En Linux se pueden usar los siguientes comandos:
   publicCert.crt -nodes"
 - Clave privada: "openssl pkcs12 -in Certifcado.p12 -nocerts -out
   privateKey.pem -nodes"
-
-Además, el módulo queue_job necesita estar configurado de una de estas
-formas:
-
-1.  Ajustando variables de entorno:
-
-    > ODOO_QUEUE_JOB_CHANNELS=root:4
-
-    u otro canal de configuración. Por defecto es root:1
-
-    Si xmlrpc_port no está definido: ODOO_QUEUE_JOB_PORT=8069
-
-2.  Otra alternativa es usuando un fichero de configuración:
-
-    > \[options\] (...) workers = 4 server_wide_modules =
-    > web,base_sparse_field,queue_job
-    >
-    > (...) \[queue_job\] channels = root:4
-
-3.  Por último, arrancando Odoo con
-    --load=web,base_sparse_field,queue_job y --workers más grande que 1.
-
-Más información <http://odoo-connector.com>

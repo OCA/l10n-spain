@@ -6,5 +6,5 @@ access_model_aeat_sii_map_lines_aeat,aeat.sii.map.lines aeat,model_aeat_sii_map_
 access_model_aeat_sii_mapping_registration_keys_admin,aeat.sii.mapping.registration.keys admin,model_aeat_sii_mapping_registration_keys,base.group_system,1,1,1,1
 access_model_aeat_sii_mapping_registration_keys_aeat,aeat.sii.mapping.registration.keys aeat,model_aeat_sii_mapping_registration_keys,l10n_es_aeat.group_account_aeat,1,0,0,0
 access_model_aeat_sii_mapping_registration_keys_aeat_account,aeat.sii.mapping.registration.keys aeat,model_aeat_sii_mapping_registration_keys,account.group_account_invoice,1,0,0,0
-access_queue_job,access_queue_job aeat,queue_job.model_queue_job,l10n_es_aeat.group_account_aeat,1,0,0,0
+access_ir_cron_trigger,access_ir_cron_trigger aeat,base.model_ir_cron_trigger,l10n_es_aeat.group_account_aeat,1,0,0,0
 access_wizard_send_sii,access_wizard_send_sii,model_wizard_send_sii,l10n_es_aeat.group_account_aeat,1,1,1,1

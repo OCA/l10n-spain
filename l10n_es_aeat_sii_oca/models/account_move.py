@@ -14,6 +14,7 @@
 
 import json
 import logging
+from datetime import datetime
 
 from odoo import _, api, exceptions, fields, models
 from odoo.modules.registry import Registry
@@ -21,18 +22,6 @@ from odoo.osv.expression import AND, OR
 
 SII_VALID_INVOICE_STATES = ["posted"]
 _logger = logging.getLogger(__name__)
-
-
-try:
-    from odoo.addons.queue_job.job import job
-except ImportError:
-    _logger.debug("Can not `import queue_job`.")
-    import functools
-
-    def empty_decorator_factory(*argv, **kwargs):
-        return functools.partial
-
-    job = empty_decorator_factory
 
 
 class AccountMove(models.Model):
@@ -95,14 +84,15 @@ class AccountMove(models.Model):
         "The invoice number should start with LC, QZC, QRC, A01 or A02.",
         copy=False,
     )
-    invoice_jobs_ids = fields.Many2many(
-        comodel_name="queue.job",
+    invoice_cron_trigger_ids = fields.Many2many(
+        comodel_name="ir.cron.trigger",
         column1="invoice_id",
-        column2="job_id",
-        relation="account_move_queue_job_rel",
-        string="Connector Jobs",
+        column2="trigger_id",
+        relation="account_move_cron_trigger_rel",
+        string="Cron Triggers",
         copy=False,
     )
+    sii_dua_invoice = fields.Boolean(compute="_compute_dua_invoice")
 
     @api.depends("move_type")
     def _compute_sii_refund_type(self):
@@ -123,6 +113,21 @@ class AccountMove(models.Model):
     @api.depends("amount_total")
     def _compute_macrodata(self):
         return super()._compute_macrodata()
+
+    @api.depends("company_id", "fiscal_position_id", "invoice_line_ids.tax_ids")
+    def _compute_dua_invoice(self):
+        for invoice in self:
+            taxes = self.env["account.tax"]
+            for template in [
+                "account_tax_template_p_iva4_ibc_group",
+                "account_tax_template_p_iva10_ibc_group",
+                "account_tax_template_p_iva21_ibc_group",
+            ]:
+                tax_id = invoice.company_id._get_tax_id_from_xmlid(template)
+                taxes |= self.env["account.tax"].browse(tax_id)
+            invoice.sii_dua_invoice = invoice.line_ids.filtered(
+                lambda x, taxes=taxes: any([tax in taxes for tax in x.tax_ids])
+            )
 
     def _aeat_get_partner(self):
         return self.commercial_partner_id
@@ -528,18 +533,27 @@ class AccountMove(models.Model):
                 {"NombreRazon": partner.name[0:120]}
             )
         else:
-            amount_total = -self.amount_total_signed - not_in_amount_total
+            invoice_type = self._get_sii_invoice_type()
+            company_name = partner.name[0:120]
+            if self.sii_dua_invoice:
+                company_name = self.company_id.name
+                if not self.sii_lc_operation:
+                    invoice_type = "F5"
+
             inv_dict["FacturaRecibida"] = {
                 # TODO: Incluir los 5 tipos de facturas rectificativas
-                "TipoFactura": self._get_sii_invoice_type(),
+                "TipoFactura": invoice_type,
                 "ClaveRegimenEspecialOTrascendencia": self.sii_registration_key.code,
                 "DescripcionOperacion": self.sii_description,
                 "DesgloseFactura": desglose_factura,
-                "Contraparte": {"NombreRazon": partner.name[0:120]},
+                "Contraparte": {"NombreRazon": company_name},
                 "FechaRegContable": reg_date,
-                "ImporteTotal": amount_total,
                 "CuotaDeducible": tax_amount,
             }
+            if not self.sii_dua_invoice:
+                inv_dict["FacturaRecibida"]["ImporteTotal"] = (
+                    -self.amount_total_signed - not_in_amount_total
+                )
             if self.sii_macrodata:
                 inv_dict["FacturaRecibida"].update(Macrodato="S")
             if self.sii_registration_key_additional1:
@@ -571,6 +585,13 @@ class AccountMove(models.Model):
                         ),
                         "CuotaRectificada": refund_tax_amount,
                     }
+
+            if self.sii_dua_invoice:
+                inv_dict["FacturaRecibida"].pop("FechaOperacion", None)
+                nif = self.company_id.partner_id._parse_aeat_vat_info()[2]
+                inv_dict["FacturaRecibida"]["IDEmisorFactura"] = {"NIF": nif}
+                inv_dict["IDFactura"]["IDEmisorFactura"] = {"NIF": nif}
+                inv_dict["FacturaRecibida"]["Contraparte"]["NIF"] = nif
         return inv_dict
 
     def _get_cancel_sii_invoice_dict(self):
@@ -620,9 +641,10 @@ class AccountMove(models.Model):
             "context": self.env.context,
         }
 
-    def _get_sii_jobs_field_name(self):
-        return "invoice_jobs_ids"
+    def _get_sii_triggers_field_name(self):
+        return "invoice_cron_trigger_ids"
 
+    @api.model
     def _get_valid_document_states(self):
         return SII_VALID_INVOICE_STATES
 
@@ -685,33 +707,27 @@ class AccountMove(models.Model):
                 and i.aeat_state in ["sent", "sent_w_errors", "sent_modified"]
             )
         )
-        if not invoices._cancel_sii_jobs():
+        if not invoices._cancel_sii_triggers():
             raise exceptions.UserError(
                 _(
                     "You can not communicate the cancellation of this invoice "
-                    "at this moment because there is a job running!"
+                    "at this moment. Please, try again later."
                 )
             )
-        queue_obj = self.env["queue.job"]
         for invoice in invoices:
             company = invoice.company_id
-            if not company.use_connector:
-                invoice._cancel_invoice_to_sii()
-            else:
-                eta = company._get_sii_eta()
-                new_delay = (
-                    invoice.sudo()
-                    .with_context(company_id=company.id)
-                    .with_delay(eta=eta)
-                    .cancel_one_invoice()
-                )
-                job = queue_obj.search([("uuid", "=", new_delay.uuid)], limit=1)
-                invoice.sudo().invoice_jobs_ids |= job
+            cron_trigger_obj = self.env["ir.cron.trigger"].sudo()
+            sii_send_cron = self.env.ref("l10n_es_aeat_sii_oca.invoice_send_to_sii")
+            sii_sending_time = company._get_sii_sending_time()
+            trigger = cron_trigger_obj.create(
+                {"cron_id": sii_send_cron.id, "call_at": sii_sending_time}
+            )
+            invoice.sudo().invoice_cron_trigger_ids |= trigger
 
     def button_cancel(self):
-        if not self._cancel_sii_jobs():
+        if not self._cancel_sii_triggers():
             raise exceptions.UserError(
-                _("You can not cancel this invoice because" " there is a job running!")
+                _("You cannot cancel this invoice. Please, try again later.")
             )
         res = super().button_cancel()
         for invoice in self.filtered(lambda x: x.sii_enabled):
@@ -724,11 +740,11 @@ class AccountMove(models.Model):
         return res
 
     def button_draft(self):
-        if not self._cancel_sii_jobs():
+        if not self._cancel_sii_triggers():
             raise exceptions.UserError(
                 _(
                     "You can not set to draft this invoice because"
-                    " there is a job running!"
+                    " the SII cron could not be cancelled."
                 )
             )
         return super().button_draft()
@@ -795,19 +811,31 @@ class AccountMove(models.Model):
         "move_type",
         "fiscal_position_id",
         "fiscal_position_id.aeat_active",
+        "invoice_line_ids",
     )
     def _compute_sii_enabled(self):
         """Compute if the invoice is enabled for the SII"""
         for invoice in self:
+            dua_sii_exempt_taxes = invoice._get_dua_sii_exempt_taxes()
             if (
                 invoice.company_id.sii_enabled
                 and invoice.journal_id.sii_enabled
                 and invoice.is_invoice()
             ):
                 invoice.sii_enabled = (
-                    invoice.fiscal_position_id
-                    and invoice.fiscal_position_id.aeat_active
-                ) or not invoice.fiscal_position_id
+                    (
+                        invoice.fiscal_position_id
+                        and invoice.fiscal_position_id.aeat_active
+                    )
+                    or not invoice.fiscal_position_id
+                ) and (
+                    not dua_sii_exempt_taxes
+                    or not invoice.invoice_line_ids.filtered(
+                        lambda x, dua_taxes=dua_sii_exempt_taxes: any(
+                            [tax.id in dua_taxes for tax in x.tax_ids]
+                        )
+                    )
+                )
             else:
                 invoice.sii_enabled = False
 
@@ -832,7 +860,7 @@ class AccountMove(models.Model):
         # OVERRIDE
         if not default_values_list:
             default_values_list = [{} for move in self]
-        for move, default_values in zip(self, default_values_list):
+        for move, default_values in zip(self, default_values_list, strict=False):
             if move.sii_enabled:
                 extra_dict = {}
                 sii_refund_type = self.env.context.get("sii_refund_type", False)
@@ -853,3 +881,46 @@ class AccountMove(models.Model):
 
     def cancel_one_invoice(self):
         self.sudo()._cancel_invoice_to_sii()
+
+    @api.model
+    def _send_to_sii(self):
+        documents = all_documents = self.search(
+            [
+                ("state", "in", self._get_valid_document_states()),
+                (
+                    "aeat_state",
+                    "not in",
+                    ["sent", "cancelled"],
+                ),
+                ("sii_send_date", "<=", fields.Datetime.now()),
+            ]
+        )
+        if documents:
+            cron_trigger_obj = self.env["ir.cron.trigger"].sudo()
+            sii_send_cron = self.env.ref("l10n_es_aeat_sii_oca.invoice_send_to_sii")
+            remaining_documents = False
+            batch = (
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param("l10n_es_aeat_sii_oca.sii_batch")
+            )
+            if batch:
+                try:
+                    batch = int(batch)
+                except ValueError as e:
+                    raise exceptions.UserError(
+                        _(
+                            "The value in l10n_es_aeat_sii_oca.sii_batch system"
+                            " parameter must be an integer. Please, check the "
+                            "value of the parameter."
+                        )
+                    ) from e
+            if batch:
+                documents = all_documents[:batch]
+                remaining_documents = all_documents - documents
+            documents.confirm_one_document()
+            for document in remaining_documents:
+                trigger = cron_trigger_obj.create(
+                    {"cron_id": sii_send_cron.id, "call_at": datetime.now()}
+                )
+                document.sudo().invoice_cron_trigger_ids |= trigger

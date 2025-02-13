@@ -11,11 +11,13 @@
                 <field name="supplier_invoice_number_refund_required" invisible="1" />
                 <field
                     name="sii_refund_type"
-                    attrs="{'required': [('sii_refund_type_required', '=', True)], 'invisible': [('sii_refund_type_required', '=', False)]}"
+                    required="sii_refund_type_required"
+                    invisible="not sii_refund_type_required"
                 />
                 <field
                     name="supplier_invoice_number_refund"
-                    attrs="{'required': [('supplier_invoice_number_refund_required', '=', True)], 'invisible': [('supplier_invoice_number_refund_required', '=', False)]}"
+                    required="supplier_invoice_number_refund_required"
+                    invisible="not supplier_invoice_number_refund_required"
                 />
             </field>
         </field>
