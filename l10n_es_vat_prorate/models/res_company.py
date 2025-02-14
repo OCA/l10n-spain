@@ -1,9 +1,14 @@
 # Copyright 2022 Creu Blanca
 # Copyright 2023 Tecnativa Carolina Fernandez
+# Copyright 2025 Moduon Team
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import logging
+
 from odoo import _, api, fields, models, tools
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
+
+_logger = logging.getLogger(__name__)
 
 
 class ResCompany(models.Model):
@@ -98,6 +103,91 @@ class ResCompanyVatProrate(models.Model):
         "whether all the invoice lines will be prorated by default",
     )
     vat_prorate = fields.Float()
+    can_reprorate = fields.Selection(
+        string="Can re-prorate",
+        selection=[("yes", "Yes"), ("partial", "Partial"), ("no", "No")],
+        compute="_compute_can_reprorate",
+        help="Check if the period can be re-prorated",
+        store=False,
+    )
+
+    def _compute_can_reprorate(self):
+        self.can_reprorate = "no"
+        for record in self:
+            company = record.company_id
+            if company.tax_lock_date and company.tax_lock_date >= record.date:
+                continue
+            user_fiscal_lock_date = company._get_user_fiscal_lock_date()
+            if user_fiscal_lock_date < record.date:
+                record.can_reprorate = "yes"
+                continue
+
+            next_period = self.search(
+                [
+                    ("company_id", "=", company.id),
+                    ("date", ">", record.date),
+                ],
+                limit=1,
+            )
+            if not next_period and record.date < user_fiscal_lock_date:
+                record.can_reprorate = "partial"
+
+    def action_recompute_period(self):
+        self.ensure_one()
+        if self.can_reprorate == "no":
+            raise UserError(_("You cannot re-prorate this period"))
+        next_vat_prorate_period = self.search(
+            [
+                ("company_id", "=", self.company_id.id),
+                ("date", ">", self.date),
+            ],
+            limit=1,
+            order="date ASC",
+        )
+        move_domain = [
+            ("move_type", "in", ["in_invoice", "in_refund"]),
+            ("state", "=", "posted"),
+        ]
+        if self.can_reprorate == "yes":
+            move_domain.append(("date", ">=", self.date))
+        else:
+            move_domain.append(
+                ("date", ">", self.company_id._get_user_fiscal_lock_date())
+            )
+
+        if next_vat_prorate_period:
+            move_domain.append(("date", "<", next_vat_prorate_period.date))
+
+        unable_to_recompute_moves = self.env["account.move"].browse()
+        for move in self.env["account.move"].search(move_domain):
+            all_reconciled_lines = move.line_ids._all_reconciled_lines().filtered(
+                lambda l: l.matched_debit_ids or l.matched_credit_ids
+            )
+            # Reset to draft
+            try:
+                move.button_draft()
+            except Exception as ex:
+                _logger.warning("Unable to re-prorate %s", move, exc_info=ex)
+                unable_to_recompute_moves |= move
+                continue
+            # Clear and Set taxes
+            inv_line_map = {
+                inv_line: inv_line.tax_ids.ids for inv_line in move.invoice_line_ids
+            }
+            move.invoice_line_ids.write({"tax_ids": [(6, 0, [])]})
+            for inv_line, tax_ids in inv_line_map.items():
+                inv_line.write({"tax_ids": [(6, 0, tax_ids)]})
+            move.action_post()
+            all_reconciled_lines.filtered(lambda line: not line.reconciled).reconcile()
+
+        if not unable_to_recompute_moves:
+            # Everything went fine
+            return True
+
+        action = self.env.ref("account.action_move_in_invoice_type").read()[0]
+        action["display_name"] = _("Unable to recompute VAT prorate Bills and Refunds")
+        action["domain"] = [("id", "in", unable_to_recompute_moves.ids)]
+        return action
 
     _sql_constraints = [
         (

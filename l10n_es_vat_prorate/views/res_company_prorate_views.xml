@@ -7,7 +7,15 @@
         <field name="model">res.company.vat.prorate</field>
         <field name="arch" type="xml">
             <form>
-                <header />
+                <header>
+                    <button
+                        name="action_recompute_period"
+                        string="Recompute period"
+                        type="object"
+                        class="oe_highlight"
+                        confirm="This action will recompute Prorata in all Bills of this period"
+                    />
+                </header>
                 <sheet>
                     <group>
                         <field name="company_id" />
@@ -34,6 +42,29 @@
                 <field
                     name="special_vat_prorate_default"
                     attrs="{'invisible': [('type', '=', 'general')]}"
+                />
+                <field name="can_reprorate" invisible="1" />
+                <button
+                    name="action_recompute_period"
+                    string="Full reprorate"
+                    title="Recompute period"
+                    help="Recompute prorata in all Bills and Refunds of this period"
+                    icon="fa-history"
+                    type="object"
+                    class="btn-outline-primary text-uppercase"
+                    attrs="{'invisible': [('can_reprorate', 'in', ['no', 'partial'])]}"
+                    confirm="Are you sure you want to recompute prorata in all Bills and Refunds of this period? This action cannot be undone."
+                />
+                <button
+                    name="action_recompute_period"
+                    string="Partial reprorate"
+                    title="Recompute period partially"
+                    help="Recompute prorata in all Bills and Refunds of this period partially"
+                    icon="fa-history"
+                    type="object"
+                    class="btn-outline-warning text-uppercase"
+                    attrs="{'invisible': [('can_reprorate', 'in', ['no', 'yes'])]}"
+                    confirm="This period is partially allowed to be recomputed. Are you sure you want to recompute prorata in all Bills and Refunds of this partial period? This action cannot be undone."
                 />
             </tree>
         </field>

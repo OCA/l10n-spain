@@ -1,6 +1,7 @@
 # Copyright 2022 Creu Blanca
 # Copyright 2023 Tecnativa - Pedro M. Baeza
 # Copyright 2023 Tecnativa - Carolina Fernandez
+# Copyright 2025 Moduon Team
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import date
@@ -8,7 +9,7 @@ from datetime import date
 from psycopg2 import IntegrityError
 
 from odoo import exceptions
-from odoo.tests.common import tagged
+from odoo.tests.common import Form, tagged
 from odoo.tools import mute_logger
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
@@ -272,3 +273,81 @@ class TestVatProrate(AccountTestInvoicingCommon):
             * (100 - prorate_id.vat_prorate)
             / 10000,
         )
+
+    def test_prorate_can_reprorate(self):
+        self.assertEqual(self.env.company.vat_prorate_ids[1].date, date(2000, 1, 1))
+        self.assertEqual(self.env.company.vat_prorate_ids[0].date, date(2001, 1, 1))
+        # period_lock_date, able to reprorate with permissions
+        self.env.company.write(
+            {
+                "period_lock_date": "2000-12-31",
+                "tax_lock_date": False,
+                "fiscalyear_lock_date": False,
+            }
+        )
+        self.env.company.vat_prorate_ids.invalidate_recordset()
+        self.assertEqual(self.env.company.vat_prorate_ids[1].can_reprorate, "yes")
+        self.assertEqual(self.env.company.vat_prorate_ids[0].can_reprorate, "yes")
+        # tax_lock_date, unable to reprorate even with permissions
+        self.env.company.write(
+            {
+                "period_lock_date": False,
+                "tax_lock_date": "2000-12-31",
+                "fiscalyear_lock_date": False,
+            }
+        )
+        self.env.company.vat_prorate_ids.invalidate_recordset()
+        self.assertEqual(self.env.company.vat_prorate_ids[1].can_reprorate, "no")
+        self.assertEqual(self.env.company.vat_prorate_ids[0].can_reprorate, "yes")
+        # fiscalyear_lock_date, unable to reprorate even with permissions
+        self.env.company.write(
+            {
+                "period_lock_date": False,
+                "tax_lock_date": False,
+                "fiscalyear_lock_date": "2000-12-31",
+            }
+        )
+        self.env.company.vat_prorate_ids.invalidate_recordset()
+        self.assertEqual(self.env.company.vat_prorate_ids[1].can_reprorate, "no")
+        self.assertEqual(self.env.company.vat_prorate_ids[0].can_reprorate, "yes")
+        # fiscalyear_lock_date (middle of year), partial reprorate with permissions
+        self.env.company.write(
+            {
+                "period_lock_date": False,
+                "tax_lock_date": False,
+                "fiscalyear_lock_date": "2001-06-30",
+            }
+        )
+        self.env.company.vat_prorate_ids.invalidate_recordset()
+        self.assertEqual(self.env.company.vat_prorate_ids[1].can_reprorate, "no")
+        self.assertEqual(self.env.company.vat_prorate_ids[0].can_reprorate, "partial")
+
+    def test_prorate_recompute_period(self):
+        self.env.company.vat_prorate_ids.invalidate_recordset()
+        self.product_b.property_account_expense_id = self.company_data[
+            "default_account_assets"
+        ]
+        invoice = self.init_invoice("in_invoice", products=[self.product_b], post=True)
+        initial_prorate_amount = sum(
+            invoice.line_ids.filtered_domain([("vat_prorate", "=", True)]).mapped(
+                "balance"
+            )
+        )
+        action_data = invoice.action_register_payment()
+        wizard = Form(
+            self.env["account.payment.register"].with_context(**action_data["context"])
+        ).save()
+        wizard.action_create_payments()
+        self.assertIn(invoice.payment_state, ["in_payment", "paid"])
+        company_prorate = self.env.company.vat_prorate_ids[0]
+        company_prorate.vat_prorate += 10
+        company_prorate.action_recompute_period()
+        invoice.invalidate_recordset()
+        final_prorate_amount = sum(
+            invoice.line_ids.filtered_domain([("vat_prorate", "=", True)]).mapped(
+                "balance"
+            )
+        )
+        self.assertNotEqual(initial_prorate_amount, final_prorate_amount)
+        self.assertEqual(invoice.state, "posted")
+        self.assertIn(invoice.payment_state, ["in_payment", "paid"])

@@ -6,20 +6,41 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-07-16 16:12+0000\n"
-"Last-Translator: \"Pedro M. Baeza\" <pedro.baeza@tecnativa.com>\n"
+"POT-Creation-Date: 2025-07-29 11:20+0000\n"
+"PO-Revision-Date: 2025-07-29 12:21+0100\n"
+"Last-Translator: Jairo Llopis <jairo@moduon.team>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Poedit 3.5\n"
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,help:l10n_es_vat_prorate.field_account_tax__prorate_account_ids
 msgid "Accounts to apply the recompute"
 msgstr "Cuentas para aplicar el recálculo"
+
+#. module: l10n_es_vat_prorate
+#: model_terms:ir.ui.view,arch_db:l10n_es_vat_prorate.res_company_vat_prorate_tree_view
+msgid ""
+"Are you sure you want to recompute prorata in all Bills and Refunds of this "
+"period? This action cannot be undone."
+msgstr ""
+"¿Estás seguro que quieres recomputar la prórrata del IVA en todas las "
+"Facturas y Reembolsos de Proveedores para este periodo? Esta acción no se "
+"puede deshacer."
+
+#. module: l10n_es_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate__can_reprorate
+msgid "Can re-prorate"
+msgstr "Puede re-prorratearse"
+
+#. module: l10n_es_vat_prorate
+#: model:ir.model.fields,help:l10n_es_vat_prorate.field_res_company_vat_prorate__can_reprorate
+msgid "Check if the period can be re-prorated"
+msgstr "Comprueba si el periodo puede re-prorratearse"
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model,name:l10n_es_vat_prorate.model_res_company
@@ -55,6 +76,11 @@ msgstr "Fecha"
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate__display_name
 msgid "Display Name"
 msgstr "Mostrar Nombre"
+
+#. module: l10n_es_vat_prorate
+#: model_terms:ir.ui.view,arch_db:l10n_es_vat_prorate.res_company_vat_prorate_tree_view
+msgid "Full reprorate"
+msgstr "Reprorrateado completo"
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields.selection,name:l10n_es_vat_prorate.selection__res_company_vat_prorate__type__general
@@ -105,7 +131,7 @@ msgstr "Asiento contable"
 #. module: l10n_es_vat_prorate
 #: model:ir.model,name:l10n_es_vat_prorate.model_account_move_line
 msgid "Journal Item"
-msgstr "Artículo Diario"
+msgstr "Apunte contable"
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate____last_update
@@ -121,6 +147,21 @@ msgstr "Actualizado por Última vez por"
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate__write_date
 msgid "Last Updated on"
 msgstr "Última Actualización el"
+
+#. module: l10n_es_vat_prorate
+#: model:ir.model.fields.selection,name:l10n_es_vat_prorate.selection__res_company_vat_prorate__can_reprorate__no
+msgid "No"
+msgstr "No"
+
+#. module: l10n_es_vat_prorate
+#: model:ir.model.fields.selection,name:l10n_es_vat_prorate.selection__res_company_vat_prorate__can_reprorate__partial
+msgid "Partial"
+msgstr "Parcial"
+
+#. module: l10n_es_vat_prorate
+#: model_terms:ir.ui.view,arch_db:l10n_es_vat_prorate.res_company_vat_prorate_tree_view
+msgid "Partial reprorate"
+msgstr "Reprorrateado parcial"
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_bank_statement_line__prorate_id
@@ -150,6 +191,30 @@ msgid "Prorrate Investment Account"
 msgstr "Cuenta de inversión de prorrata"
 
 #. module: l10n_es_vat_prorate
+#: model_terms:ir.ui.view,arch_db:l10n_es_vat_prorate.res_company_vat_prorate_form_view
+#: model_terms:ir.ui.view,arch_db:l10n_es_vat_prorate.res_company_vat_prorate_tree_view
+msgid "Recompute period"
+msgstr "Recomputar periodo"
+
+#. module: l10n_es_vat_prorate
+#: model_terms:ir.ui.view,arch_db:l10n_es_vat_prorate.res_company_vat_prorate_tree_view
+msgid "Recompute period partially"
+msgstr "Recomputar periodo parcialmente"
+
+#. module: l10n_es_vat_prorate
+#: model_terms:ir.ui.view,arch_db:l10n_es_vat_prorate.res_company_vat_prorate_tree_view
+msgid "Recompute prorata in all Bills and Refunds of this period"
+msgstr ""
+"Recomputar la prórrata del IVA en estas Facturas y Reembolsos de este periodo"
+
+#. module: l10n_es_vat_prorate
+#: model_terms:ir.ui.view,arch_db:l10n_es_vat_prorate.res_company_vat_prorate_tree_view
+msgid "Recompute prorata in all Bills and Refunds of this period partially"
+msgstr ""
+"Recomputar la prórrata del IVA en estas Facturas y Reembolsos de este "
+"periodo parcialmente"
+
+#. module: l10n_es_vat_prorate
 #: model:ir.model.fields.selection,name:l10n_es_vat_prorate.selection__res_company_vat_prorate__type__special
 msgid "Special"
 msgstr "Especial"
@@ -172,7 +237,7 @@ msgstr "Plantilla con prorrateo del IVA"
 #. module: l10n_es_vat_prorate
 #: model:ir.model,name:l10n_es_vat_prorate.model_account_tax_template
 msgid "Templates for Taxes"
-msgstr "Plantillas para impuestos"
+msgstr "Plantilla de impuestos"
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,help:l10n_es_vat_prorate.field_account_move_line__vat_prorate
@@ -185,9 +250,36 @@ msgid "The line will create a vat prorate"
 msgstr "La línea creará una prorrata de IVA"
 
 #. module: l10n_es_vat_prorate
+#: model_terms:ir.ui.view,arch_db:l10n_es_vat_prorate.res_company_vat_prorate_form_view
+msgid "This action will recompute Prorata in all Bills of this period"
+msgstr ""
+"Esta acción recomputará la prórrata del IVA en todas las Facturas y "
+"Reembolsos de este periodo"
+
+#. module: l10n_es_vat_prorate
+#: model_terms:ir.ui.view,arch_db:l10n_es_vat_prorate.res_company_vat_prorate_tree_view
+msgid ""
+"This period is partially allowed to be recomputed. Are you sure you want to "
+"recompute prorata in all Bills and Refunds of this partial period? This "
+"action cannot be undone."
+msgstr ""
+"Este periodo es parcialmente recomputable ¿Estás seguro que quieres "
+"recomputar la prórrata del IVA en todas las Facturas y Reembolsos de "
+"Proveedores para este periodo de manera parcial? Esta acción no se puede "
+"deshacer."
+
+#. module: l10n_es_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate__type
 msgid "Type"
 msgstr "Tipo"
+
+#. module: l10n_es_vat_prorate
+#. odoo-python
+#: code:addons/l10n_es_vat_prorate/models/res_company.py:0
+#, python-format
+msgid "Unable to recompute VAT prorate Bills and Refunds"
+msgstr ""
+"Imposible recomputar la prórrata del IVA en estas Facturas y Reembolsos"
 
 #. module: l10n_es_vat_prorate
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_prorate.res_company_form_view
@@ -230,11 +322,23 @@ msgid "With VAT Prorate"
 msgstr "Con prorrata de IVA"
 
 #. module: l10n_es_vat_prorate
+#: model:ir.model.fields.selection,name:l10n_es_vat_prorate.selection__res_company_vat_prorate__can_reprorate__yes
+msgid "Yes"
+msgstr "Sí"
+
+#. module: l10n_es_vat_prorate
 #. odoo-python
 #: code:addons/l10n_es_vat_prorate/models/res_company.py:0
 #, python-format
 msgid "You can't have a special VAT prorrate of 100%"
 msgstr "No puede tener una prorrata especial de IVA del 100%"
+
+#. module: l10n_es_vat_prorate
+#. odoo-python
+#: code:addons/l10n_es_vat_prorate/models/res_company.py:0
+#, python-format
+msgid "You cannot re-prorate this period"
+msgstr "No puedes re-prorratear este periodo"
 
 #. module: l10n_es_vat_prorate
 #. odoo-python
