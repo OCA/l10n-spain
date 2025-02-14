@@ -1,18 +1,24 @@
 from datetime import date
+from unittest import skipIf
 
-from odoo.tests.common import tagged
+from odoo.tests.common import TransactionCase, tagged
 
-from odoo.addons.l10n_es_aeat_sii_oca.tests import test_l10n_es_aeat_sii
+try:
+    from odoo.addons.l10n_es_aeat_sii_oca.tests.test_l10n_es_aeat_sii import (
+        TestL10nEsAeatSiiBase,
+    )
+except ModuleNotFoundError:
+    TestL10nEsAeatSiiBase = TransactionCase
 
 
 @tagged("-at_install", "post_install")
-class TestSIIVatProrate(test_l10n_es_aeat_sii.TestL10nEsAeatSiiBase):
+@skipIf(
+    TestL10nEsAeatSiiBase is TransactionCase, "l10n_es_aeat_sii_oca seems not installed"
+)
+class TestSIIVatProrate(TestL10nEsAeatSiiBase):
     @classmethod
     def setUpClass(cls):
-        try:
-            super().setUpClass()
-        except Exception:
-            cls.skipTest(cls, "l10n_es_aeat_sii_oca seems not installed")
+        super().setUpClass()
         cls.company.write(
             {
                 "with_vat_prorate": True,
