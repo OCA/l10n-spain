@@ -84,6 +84,7 @@ class AccountMove(models.Model):
         compute="_compute_facturae_withheld_amount",
         store=True,
         string="Withheld Amount",
+        readonly=False,
     )
 
     @api.constrains("facturae_start_date", "facturae_end_date")
