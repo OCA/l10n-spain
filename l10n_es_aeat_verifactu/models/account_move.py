@@ -260,9 +260,9 @@ class AccountMove(models.Model):
         registroAlta.setdefault("RegistroAlta", inv_dict)
         return registroAlta
 
-    def _get_chaining_invoice_dict(self):
+    def _set_chaining_invoice(self):
         """Retry handling should be done on caller method when OperationalError"""
-        inv_dict = {}
+        prev_inv = False
         try:
             self.company_id.flush_model(["verifactu_last_invoice_id"])
             self._cr.execute(
@@ -274,18 +274,6 @@ class AccountMove(models.Model):
             prev_inv = self.env["account.move"].browse(result[0]) if result else False
             if prev_inv:
                 self.verifactu_previous_invoice_id = prev_inv
-                inv_dict = {
-                    "RegistroAnterior": {
-                        "IDEmisorFactura": prev_inv._get_verifactu_issuer(),
-                        "NumSerieFactura": prev_inv._get_document_serial_number(),
-                        "FechaExpedicionFactura": prev_inv._change_date_format(
-                            prev_inv._get_document_date()
-                        ),
-                        "Huella": prev_inv.verifactu_hash,
-                    }
-                }
-            else:
-                inv_dict = {"PrimerRegistro": "S"}
             self._cr.execute(
                 "UPDATE res_company SET "
                 "verifactu_last_invoice_id = %s WHERE id = %s",
@@ -299,7 +287,22 @@ class AccountMove(models.Model):
                 self.id,
             )
             raise
-        return inv_dict
+        return prev_inv
+
+    def _get_chaining_invoice_dict(self):
+        if self.verifactu_previous_invoice_id:
+            prev_inv = self.verifactu_previous_invoice_id
+            return {
+                "RegistroAnterior": {
+                    "IDEmisorFactura": prev_inv._get_verifactu_issuer(),
+                    "NumSerieFactura": prev_inv._get_document_serial_number(),
+                    "FechaExpedicionFactura": prev_inv._change_date_format(
+                        prev_inv._get_document_date()
+                    ),
+                    "Huella": prev_inv.verifactu_hash,
+                }
+            }
+        return {"PrimerRegistro": "S"}
 
     def _get_verifactu_tax_dict(self, tax_line, tax_lines):
         """Get the Verifactu tax dictionary for the passed tax line.
@@ -430,6 +433,7 @@ class AccountMove(models.Model):
         self.write({"verifactu_registration_date": verifactu_reg_date})
         res = super()._post(soft=soft)
         for record in self:
+            record._set_chaining_invoice()
             verifactu_hash_values = record._get_verifactu_hash_string()
             record.verifactu_hash_string = verifactu_hash_values
             hash_string = sha256(verifactu_hash_values.encode("utf-8"))
