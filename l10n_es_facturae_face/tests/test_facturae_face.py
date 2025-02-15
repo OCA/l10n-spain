@@ -267,8 +267,8 @@ class EDIBackendTestCase(
         self.move.invalidate_recordset()
         self.assertTrue(self.move.exchange_record_ids)
         self.assertIn(
-            str(self.face_update_type.id),
-            self.move.edi_config,
+            self.face_update_type.id,
+            [record["type"]["id"] for record in self.move.edi_config.values()],
         )
         with self.assertRaises(exceptions.UserError):
             self.move.edi_create_exchange_record(self.face_update_type.id)
@@ -330,8 +330,8 @@ class EDIBackendTestCase(
         )
         self.move.invalidate_recordset()
         self.assertIn(
-            str(self.face_update_type.id),
-            self.move.edi_config,
+            self.face_update_type.id,
+            [record["type"]["id"] for record in self.move.edi_config.values()],
         )
         try:
             self.move.edi_create_exchange_record(self.face_update_type.id)
