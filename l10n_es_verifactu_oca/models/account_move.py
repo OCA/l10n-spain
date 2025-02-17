@@ -2,8 +2,11 @@
 # Copyright 2024 Aures Tic - Jose Zambudio <jose@aurestic.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import pytz
 from collections import OrderedDict
+from datetime import datetime
+from hashlib import sha256
+
+import pytz
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
@@ -30,6 +33,7 @@ class AccountMove(models.Model):
         " of article 80 of LIVA for notifying to Vertifactu with the proper"
         " invoice type.",
     )
+    verifactu_registration_date = fields.Datetime()
 
     @api.depends("move_type")
     def _compute_verifactu_refund_type(self):
@@ -132,12 +136,8 @@ class AccountMove(models.Model):
 
     def _get_verifactu_registration_date(self):
         # Date format must be ISO 8601
-        """
-        TODO
-        enviamos fecha creación, fecha factura o fecha actual?
-        """
         return (
-            pytz.utc.localize(self.create_date)
+            pytz.utc.localize(self.verifactu_registration_date)
             .astimezone()
             .isoformat(timespec="seconds")
         )
@@ -154,8 +154,8 @@ class AccountMove(models.Model):
         serialNumber = self._get_document_serial_number()
         expeditionDate = self._change_date_format(self._get_document_date())
         documentType = self._get_verifactu_document_type()
-        amountTax = self._get_verifactu_amount_tax()
-        amountTotal = self._get_verifactu_amount_total()
+        amountTax = round(self._get_verifactu_amount_tax(), 2)
+        amountTotal = round(self._get_verifactu_amount_total(), 2)
         previousHash = self._get_verifactu_previous_hash()
         registrationDate = self._get_verifactu_registration_date()
         verifactu_hash_string = (
@@ -390,6 +390,17 @@ class AccountMove(models.Model):
                 ("importe", self.amount_total),
             ]
         )
+
+    def _post(self, soft=True):
+        verifactu_reg_date = datetime.now()
+        self.write({"verifactu_registration_date": verifactu_reg_date})
+        res = super()._post(soft=soft)
+        for record in self:
+            verifactu_hash_values = record._get_verifactu_hash_string()
+            record.verifactu_hash_string = verifactu_hash_values
+            hash_string = sha256(verifactu_hash_values.encode("utf-8"))
+            record.verifactu_hash = hash_string.hexdigest().upper()
+        return res
 
     def cancel_verifactu(self):
         raise NotImplementedError
