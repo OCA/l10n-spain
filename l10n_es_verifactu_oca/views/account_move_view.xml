@@ -36,12 +36,22 @@
                     >
                         <field name="verifactu_enabled" invisible="0" readonly="1" />
                         <field name="verifactu_description" />
-                        <field name="verifactu_refund_type" />
-                        <field name="verifactu_refund_specific_invoice_type" />
+                        <field
+                            name="verifactu_refund_type"
+                            attrs="{'required': [('verifactu_enabled', '=', True),('move_type', 'in', ('out_refund
+','in_refund'))], 'invisible': [('move_type', 'not in', ('out_refund','in_refund'))]}"
+                        />
+                        <field
+                            name="verifactu_refund_specific_invoice_type"
+                            attrs="{'invisible': [('move_type', '!=', 'out_refund')]}"
+                        />
                         <field name="verifactu_tax_key" />
-                        <field name="verifactu_registration_key" />
-                        <field name="verifactu_hash_string" />
-                        <field name="verifactu_hash" />
+                        <field
+                            name="verifactu_registration_key"
+                            attrs="{'required': [('verifactu_enabled', '=', True)]}"
+                        />
+                        <field name="verifactu_hash_string" readonly="1" />
+                        <field name="verifactu_hash" readonly="1" />
                     </group>
                     <group
                         string="Veri*FACTU Result"
