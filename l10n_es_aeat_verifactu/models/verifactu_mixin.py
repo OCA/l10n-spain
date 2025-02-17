@@ -6,7 +6,6 @@ import base64
 import io
 import json
 import logging
-from hashlib import sha256
 from urllib.parse import urlencode
 
 from requests import Session
@@ -56,8 +55,8 @@ class VerifactuMixin(models.AbstractModel):
         string="Enable AEAT",
         compute="_compute_verifactu_enabled",
     )
-    verifactu_hash_string = fields.Char(compute="_compute_verifactu_hash")
-    verifactu_hash = fields.Char(compute="_compute_verifactu_hash")
+    verifactu_hash_string = fields.Char(copy=False)
+    verifactu_hash = fields.Char(copy=False)
     verifactu_refund_type = fields.Selection(
         selection=[
             # ('S', 'By substitution'), - en sii no está soportado, aquí igual?
@@ -267,17 +266,6 @@ class VerifactuMixin(models.AbstractModel):
     def _get_verifactu_hash_string(self):
         raise NotImplementedError
 
-    def _compute_verifactu_hash(self):
-        # TODO  by the moment those fields are not stored,
-        # but they must be stored because are unalterable
-        # when invoice is sent to verifactu, because the hash depends
-        # on previous sent hash..
-        for record in self:
-            verifactu_hash_values = record._get_verifactu_hash_string()
-            record.verifactu_hash_string = verifactu_hash_values
-            hash_string = sha256(verifactu_hash_values.encode("utf-8"))
-            record.verifactu_hash = hash_string.hexdigest().upper()
-
     def _get_verifactu_document_type(self):
         raise NotImplementedError()
 
@@ -479,7 +467,7 @@ class VerifactuMixin(models.AbstractModel):
                     (
                         "verifactu_tax_key",
                         "=",
-                        "iva",
+                        "01",
                     ),
                 ]
                 verifactu_key_obj = self.env["aeat.verifactu.registration.keys"]
