@@ -648,6 +648,11 @@ class CommonTest(CommonTestBase):
             )[0].text,
             ("%.2f" if version == "3_2" else "%.8f") % 5,
         )
+        sign = -1 if move.move_type == "out_refund" else 1
+        self.assertEqual(
+            generated_facturae.xpath("//InvoiceTotals//TotalExecutableAmount")[0].text,
+            ("%.2f" if version == "3_2" else "%.8f") % (float(total) - (sign * 5)),
+        )
 
     def test_move_rounding(self):
         self._activate_certificate(self.certificate_password)

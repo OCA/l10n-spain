@@ -500,7 +500,7 @@
                             />
                         </AmountsWithheld>
                         <TotalExecutableAmount
-                            t-out="('%.2f' if version == '3_2' else '%.8f') % (sign * move.amount_total)"
+                            t-out="('%.2f' if version == '3_2' else '%.8f') % (sign * move.amount_total - (sign * move.facturae_withheld_amount))"
                         />
                         <TotalReimbursableExpenses t-if="False" />
                         <t t-if="version not in ('3_2', '3_2_1')">
