@@ -13,8 +13,8 @@ aeat_mod303_2024_10_map_line_14_sale,aeat_mod303_2024_10_map,14,Modificación ba
 aeat_mod303_2024_10_map_line_14_purchase,aeat_mod303_2024_10_map,14,Modificación bases y cuotas - Base imponible (Compras),0,refund,base,both,1,,"p_iva0_ic_bc,p_iva0_ic_sc,p_iva2_ic_bc,p_iva2_ic_sc,p_iva4_ic_bc,p_iva4_sp_in,p_iva4_ic_bi,p_iva5_ic_bc,p_iva5_ic_sc,p_iva7-5_ic_sc,p_iva7-5_ic_bc,p_iva10_ic_bc,p_iva10_sp_in,p_iva10_ic_bi,p_iva21_ic_bc,p_iva21_sp_in,p_iva21_ic_bi,p_iva0_isc,p_iva2_isc,p_iva4_sp_ex,p_iva4_isp,p_iva5_isc,p_iva7-5_isc,p_iva10_sp_ex,p_iva10_isp,p_iva21_sp_ex,p_iva21_isp,p_iva4_isp_bi,p_iva10_isp_bi,p_iva21_isp_bi"
 aeat_mod303_2024_10_map_line_15_sale,aeat_mod303_2024_10_map,15,Modificación bases y cuotas - Cuota (Ventas),1,refund,amount,both,0,,"s_iva0b,s_iva0s,s_iva2b,s_iva2s,s_iva4b,s_iva4s,s_iva5b,s_iva7-5b,s_iva7-5s,s_iva5s,s_iva10b,s_iva10s,s_iva21b,s_iva21s,s_iva21isp"
 aeat_mod303_2024_10_map_line_15_purchase,aeat_mod303_2024_10_map,15,Modificación bases y cuotas - Cuota (Compras),1,refund,amount,both,0,common_477,"p_iva0_ic_bc,p_iva0_ic_sc,p_iva2_ic_bc,p_iva2_ic_sc,p_iva4_ic_bc,p_iva4_sp_in,p_iva4_ic_bi,p_iva5_ic_bc,p_iva5_ic_sc,p_iva7-5_ic_bc,p_iva7-5_ic_sc,p_iva10_ic_bc,p_iva10_sp_in,p_iva10_ic_bi,p_iva21_ic_bc,p_iva21_sp_in,p_iva21_ic_bi,p_iva0_isc,p_iva2_isc,p_iva4_sp_ex,p_iva4_isp,p_iva5_isc,p_iva7-5_isc,p_iva10_sp_ex,p_iva10_isp,p_iva21_sp_ex,p_iva21_isp,p_iva4_isp_bi,p_iva10_isp_bi,p_iva21_isp_bi"
-aeat_mod303_2024_10_map_line_16,aeat_mod303_2024_10_map,16,Recargo equivalencia - Base imponible 0%/0.5%/0.62%/1%,0,regular,base,both,0,,"s_req0,s_req05,s_req062,s_req1"
-aeat_mod303_2024_10_map_line_18,aeat_mod303_2024_10_map,18,Recargo equivalencia - Cuota 0%/0.5%/0.62%/1%,1,regular,amount,both,0,,"s_req0,s_req05,s_req062,s_req1"
+aeat_mod303_2024_10_map_line_16,aeat_mod303_2024_10_map,16,Recargo equivalencia - Base imponible 0%/0.62%/1%,0,regular,base,both,0,,"s_req0,s_req062,s_req1"
+aeat_mod303_2024_10_map_line_18,aeat_mod303_2024_10_map,18,Recargo equivalencia - Cuota 0%/0.62%/1%,1,regular,amount,both,0,,"s_req0,s_req062,s_req1"
 aeat_mod303_2024_10_map_line_19,aeat_mod303_2024_10_map,19,Recargo equivalencia - Base imponible 1.4%,0,regular,base,both,0,,s_req014
 aeat_mod303_2024_10_map_line_21,aeat_mod303_2024_10_map,21,Recargo equivalencia - Cuota 1.4%,1,regular,amount,both,0,,s_req014
 aeat_mod303_2024_10_map_line_22,aeat_mod303_2024_10_map,22,Recargo equivalencia - Base imponible 5.2%,0,regular,base,both,0,,s_req52
@@ -58,5 +58,5 @@ aeat_mod303_2024_10_map_line_153,aeat_mod303_2024_10_map,153,Régimen General - 
 aeat_mod303_2024_10_map_line_155,aeat_mod303_2024_10_map,155,Régimen General - Cuota 5%/7.5%,1,regular,amount,both,0,,"s_iva5b,s_iva5s,s_iva7-5b,s_iva7-5s"
 aeat_mod303_2024_10_map_line_165,aeat_mod303_2024_10_map,165,Régimen General - Base imponible 2%,0,regular,base,both,0,,"s_iva2b,s_iva2s"
 aeat_mod303_2024_10_map_line_167,aeat_mod303_2024_10_map,167,Régimen General - Cuota 2%,1,regular,amount,both,0,,"s_iva2b,s_iva2s"
-aeat_mod303_2024_10_map_line_168,aeat_mod303_2024_10_map,168,Recargo equivalencia - Base imponible 0.26%,0,regular,base,both,0,,s_req026
-aeat_mod303_2024_10_map_line_170,aeat_mod303_2024_10_map,170,Recargo equivalencia - Cuota 0.26%,1,regular,amount,both,0,,s_req026
+aeat_mod303_2024_10_map_line_168,aeat_mod303_2024_10_map,168,Recargo equivalencia - Base imponible 0.5%,0,regular,base,both,0,,"s_req026,s_req05"
+aeat_mod303_2024_10_map_line_170,aeat_mod303_2024_10_map,170,Recargo equivalencia - Cuota 0.5%,1,regular,amount,both,0,,"s_req026,s_req05"
