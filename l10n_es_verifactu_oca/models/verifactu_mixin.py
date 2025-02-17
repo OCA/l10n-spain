@@ -6,7 +6,6 @@ import base64
 import io
 import json
 import logging
-from hashlib import sha256
 from urllib.parse import urlencode
 
 from requests import Session
@@ -56,8 +55,8 @@ class VerifactuMixin(models.AbstractModel):
         string="Enable AEAT",
         compute="_compute_verifactu_enabled",
     )
-    verifactu_hash_string = fields.Char(compute="_compute_verifactu_hash")
-    verifactu_hash = fields.Char(compute="_compute_verifactu_hash")
+    verifactu_hash_string = fields.Char(copy=False)
+    verifactu_hash = fields.Char(copy=False)
     verifactu_refund_type = fields.Selection(
         selection=[
             # ('S', 'By substitution'), - en sii no está soportado, aquí igual?
@@ -116,7 +115,7 @@ class VerifactuMixin(models.AbstractModel):
     def _compute_verifactu_qr_url(self):
         """Returns the URL to be used in the QR code. A sample URL would be (urlencoded):
         https://prewww2.aeat.es/wlpl/TIKECONT/ValidarQR?nif=89890001K&numserie=12345678%26G33&fecha=01-01-2024&importe=241.4
-        """
+        """  # noqa: B950
         for record in self:
             agency = self.env.ref("l10n_es_aeat.aeat_tax_agency_spain")
             if record.company_id.verifactu_test:
@@ -130,8 +129,10 @@ class VerifactuMixin(models.AbstractModel):
             for value in qr_values.values():
                 try:
                     str(value).encode("ascii")
-                except UnicodeEncodeError:
-                    raise UserError(_("QR URL value '{}' is not ASCII").format(value))
+                except UnicodeEncodeError as uee:
+                    raise UserError(
+                        _("QR URL value '{}' is not ASCII").format(value)
+                    ) from uee
 
             # Build QR URL
             qr_url = "{}?{}".format(
@@ -266,17 +267,6 @@ class VerifactuMixin(models.AbstractModel):
 
     def _get_verifactu_hash_string(self):
         raise NotImplementedError
-
-    def _compute_verifactu_hash(self):
-        # TODO  by the moment those fields are not stored,
-        # but they must be stored because are unalterable
-        # when invoice is sent to verifactu, because the hash depends
-        # on previous sent hash..
-        for record in self:
-            verifactu_hash_values = record._get_verifactu_hash_string()
-            record.verifactu_hash_string = verifactu_hash_values
-            hash_string = sha256(verifactu_hash_values.encode("utf-8"))
-            record.verifactu_hash = hash_string.hexdigest().upper()
 
     def _get_verifactu_document_type(self):
         raise NotImplementedError()
@@ -479,7 +469,7 @@ class VerifactuMixin(models.AbstractModel):
                     (
                         "verifactu_tax_key",
                         "=",
-                        "iva",
+                        "01",
                     ),
                 ]
                 verifactu_key_obj = self.env["aeat.verifactu.registration.keys"]
