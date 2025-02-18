@@ -13,6 +13,10 @@ class ResPartner(models.Model):
     display_name = fields.Char(compute="_compute_display_name")
 
     @api.depends("comercial")
+    def _compute_complete_name(self):
+        return super()._compute_complete_name()
+
+    @api.depends("comercial")
     @api.depends_context("no_display_commercial")
     def _compute_display_name(self):
         """
@@ -30,7 +34,12 @@ class ResPartner(models.Model):
 
     def _get_complete_name(self):
         name = super()._get_complete_name()
-        if self.env.context.get("display_commercial") and self.comercial:
+        display_commercial = self.env.context.get("display_commercial")
+        if not display_commercial:
+            display_commercial = not self.env.context.get(
+                "no_display_commercial", False
+            )
+        if display_commercial and self.comercial:
             name_pattern = (
                 self.env["ir.config_parameter"]
                 .sudo()
