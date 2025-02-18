@@ -19,7 +19,7 @@ class TestL10nEsToponyms(common.TransactionCase):
         return cls._super_send(s, r, **kw)
 
     def test_import(self):
-        self.wizard.with_context(max_import=10).execute()
+        self.wizard.with_context(max_import=10).action_import_geonames()
         cities = self.env["res.city"].search(
             [("country_id", "=", self.env.ref("base.es").id)]
         )
