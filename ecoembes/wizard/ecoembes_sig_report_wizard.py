@@ -45,30 +45,34 @@ class EcoembesSigReportWizard(models.TransientModel):
                 "borders: left thin, right thin, top thin, bottom thin;"
             ),
         }
-        style_default = xlwt.XFStyle()
-        style_default.borders = borders
         # int
-        style = style_default
+        style = xlwt.XFStyle()
+        style.borders = borders
         style.num_format_str = "0"
         styles.update({"int": style})
         # float
-        style = style_default
+        style = xlwt.XFStyle()
+        style.borders = borders
         style.num_format_str = "#,##0.00"
         styles.update({"float": style})
         # money
-        style = style_default
+        style = xlwt.XFStyle()
+        style.borders = borders
         style.num_format_str = "#,##0.00 [$€-C0A];-#,##0.00 [$€-C0A]"
         styles.update({"money": style})
         # percentage
-        style = style_default
+        style = xlwt.XFStyle()
+        style.borders = borders
         style.num_format_str = "0.00%"
         styles.update({"percentage": style})
         # date
         style = xlwt.XFStyle()
+        style.borders = borders
         style.num_format_str = "D-MMM-YY"
         styles.update({"date": style})
         # datetime
-        style = style_default
+        style = xlwt.XFStyle()
+        style.borders = borders
         style.num_format_str = "D-MMM-YY h:mm"
         styles.update({"datetime": style})
         return styles
