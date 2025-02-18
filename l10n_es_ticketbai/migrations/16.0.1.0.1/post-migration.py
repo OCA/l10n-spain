@@ -12,7 +12,7 @@ def migrate(env, version):
         sql.SQL(
             """
         UPDATE tbai_invoice_refund_origin
-        SET expedition_date = TO_DATE({}, 'DD-MM-YYYY')
+        SET expedition_date = TO_DATE({}::text, 'DD-MM-YYYY')
         """
         ).format(sql.Identifier(openupgrade.get_legacy_name("expedition_date"))),
     )
