@@ -145,7 +145,10 @@
                 t-length="80"
                 t-out="administrative_partner.street + (administrative_partner.street2 or '')"
             />
-            <PostCode t-length="5" t-out="administrative_partner.zip.zfill(5)" />
+            <PostCode
+                t-length="5"
+                t-out="(administrative_partner.zip or '').zfill(5)"
+            />
             <Town t-length="50" t-out="administrative_partner.city" />
             <Province t-length="20" t-out="administrative_partner.state_id.name" />
             <CountryCode t-out="administrative_partner.country_id.code_alpha3" />
