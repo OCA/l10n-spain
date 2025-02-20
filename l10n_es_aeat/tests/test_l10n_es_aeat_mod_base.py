@@ -5,12 +5,12 @@
 
 import logging
 
-from odoo.tests import common
+from odoo.addons.base.tests.common import BaseCommon
 
 _logger = logging.getLogger("aeat")
 
 
-class TestL10nEsAeatModBase(common.TransactionCase):
+class TestL10nEsAeatModBase(BaseCommon):
     accounts = {}
     # Set 'debug' attribute to True to easy debug this test
     # Do not forget to include '--log-handler aeat:DEBUG' in Odoo command line
@@ -48,9 +48,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
             {"company_ids": [(4, cls.company.id)], "company_id": cls.company.id}
         )
         chart = cls.env["account.chart.template"]
-        chart.try_loading(
-            template_code="es_pymes", company=cls.company, install_demo=False
-        )
+        chart._load(template_code="es_pymes", company=cls.company, install_demo=False)
         cls.with_context(company_id=cls.company.id)
         return True
 
@@ -70,7 +68,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
         }
         for code in codes:
             cls.accounts[code] = cls.env["account.account"].search(
-                [("company_id", "=", cls.company.id), ("code", "=", code)]
+                [("company_ids", "=", cls.company.id), ("code", "=", code)]
             )
         return True
 
@@ -124,7 +122,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
             "journal_id": cls.journal_sale.id,
             "invoice_line_ids": [],
         }
-        _logger.debug("Creating sale invoice: date = %s" % dt)
+        _logger.debug(f"Creating sale invoice: date = {dt}")
         if cls.debug:
             _logger.debug("{:>14} {:>9}".format("SALE TAX", "PRICE"))
         for desc, values in cls.taxes_sale.items():
@@ -132,7 +130,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
                 _logger.debug(f"{desc:>14} {values[0]:>9}")
             # Allow to duplicate taxes skipping the unique key constraint
             line_data = {
-                "name": "Test for tax(es) %s" % desc,
+                "name": f"Test for tax(es) {desc}",
                 "account_id": cls.accounts["700000"].id,
                 "price_unit": values[0],
                 "quantity": 1,
@@ -159,7 +157,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
             "journal_id": cls.journal_purchase.id,
             "invoice_line_ids": [],
         }
-        _logger.debug("Creating purchase invoice: date = %s" % dt)
+        _logger.debug(f"Creating purchase invoice: date = {dt}")
         if cls.debug:
             _logger.debug("{:>14} {:>9}".format("PURCHASE TAX", "PRICE"))
         for desc, values in cls.taxes_purchase.items():
@@ -167,7 +165,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
                 _logger.debug(f"{desc:>14} {values[0]:>9}")
             # Allow to duplicate taxes skipping the unique key constraint
             line_data = {
-                "name": "Test for tax(es) %s" % desc,
+                "name": f"Test for tax(es) {desc}",
                 "account_id": cls.accounts["600000"].id,
                 "price_unit": values[0],
                 "quantity": 1,

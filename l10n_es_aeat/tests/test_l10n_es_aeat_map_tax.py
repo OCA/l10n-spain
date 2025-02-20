@@ -4,7 +4,8 @@
 import logging
 
 from odoo import exceptions
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.base.tests.common import BaseCommon
 
 _logger = logging.getLogger("aeat")
 _DATES_MAPPING = [
@@ -49,7 +50,7 @@ _DATES_MAPPING = [
 ]
 
 
-class TestL10nEsAeat(TransactionCase):
+class TestL10nEsAeat(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

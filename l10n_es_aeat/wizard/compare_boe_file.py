@@ -4,7 +4,7 @@
 import base64
 import logging
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 from odoo.tools.safe_eval import safe_eval
 
 _logger = logging.getLogger(__name__)
@@ -68,7 +68,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         # Allow a bit of difference according presence of final CR+LF
         if abs(offset - len(data)) > 2:
             raise exceptions.UserError(
-                _(
+                self.env._(
                     "The length of the file is different from the expected one, "
                     "or there are conditional parts in the export configuration "
                     "that can't be evaled statically."

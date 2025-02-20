@@ -2,7 +2,7 @@
 # Copyright 2016,2024 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 
 
 class L10nEsAeatReportTaxMapping(models.AbstractModel):
@@ -190,7 +190,7 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
     @api.model
     def _prepare_counterpart_move_line(self, account, debit, credit):
         vals = {
-            "name": _("Regularization"),
+            "name": self.env._("Regularization"),
             "account_id": account.id,
             "partner_id": self.env.ref("l10n_es_aeat.res_partner_aeat").id,
         }
@@ -224,7 +224,7 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         self.ensure_one()
         if not self.counterpart_account_id or not self.journal_id:
             raise exceptions.UserError(
-                _("You must fill both journal and counterpart account.")
+                self.env._("You must fill both journal and counterpart account.")
             )
         move_vals = self._prepare_move_vals()
         line_vals_list = self._prepare_regularization_move_lines()

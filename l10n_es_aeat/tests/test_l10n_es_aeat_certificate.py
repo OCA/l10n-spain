@@ -12,7 +12,8 @@ from cryptography.hazmat.primitives.serialization import BestAvailableEncryption
 from cryptography.x509 import oid
 
 from odoo import exceptions
-from odoo.tests import common
+
+from odoo.addons.base.tests.common import BaseCommon
 
 CRYPTOGRAPHY_VERSION_3 = tuple(map(int, cryptography.__version__.split("."))) >= (3, 0)
 if not CRYPTOGRAPHY_VERSION_3:
@@ -63,7 +64,7 @@ else:
         )
 
 
-class TestL10nEsAeatCertificateBase(common.TransactionCase):
+class TestL10nEsAeatCertificateBase(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

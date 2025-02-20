@@ -8,7 +8,7 @@
 import base64
 import re
 
-from odoo import _, exceptions, fields, models, tools
+from odoo import exceptions, fields, models
 from odoo.tools.safe_eval import safe_eval
 
 EXPRESSION_PATTERN = re.compile(r"(\$\{.+?\})")
@@ -57,9 +57,9 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         elif align == ">":
             ascii_string = ascii_string.rjust(length, ascii_fill)
         else:
-            raise AssertionError(_("Wrong align option. It should be < or >"))
+            raise AssertionError(self.env._("Wrong align option. It should be < or >"))
         # Sanity-check
-        assert len(ascii_string) == length, _(
+        assert len(ascii_string) == length, self.env._(
             "The formated string must match the given length"
         )
         # Return string
@@ -113,7 +113,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         # Sanity-check
         assert (
             len(ascii_string) == (include_sign and 1 or 0) + int_length + dec_length
-        ), _("The formated string must match the given length")
+        ), self.env._("The formated string must match the given length")
         # Return the string assuring that is not unicode
         return str(ascii_string)
 
@@ -140,10 +140,10 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         if report.export_config_id:
             contents += self.action_get_file_from_config(report)
         else:
-            raise exceptions.UserError(_("No export configuration selected."))
+            raise exceptions.UserError(self.env._("No export configuration selected."))
         # Generate the file and save as attachment
         file = base64.encodebytes(contents)
-        file_name = _("%(number)s_report_%(date)s.txt") % {
+        file_name = self.env._("%(number)s_report_%(date)s.txt") % {
             "number": report.number,
             "date": fields.Date.today(),
         }
@@ -203,7 +203,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         def merge(match):
             exp = str(match.group()[2:-1]).strip()
             result = merge_eval(exp)
-            return result and tools.ustr(result) or ""
+            return result and str(result) or ""
 
         val = b""
         if line.conditional_expression:

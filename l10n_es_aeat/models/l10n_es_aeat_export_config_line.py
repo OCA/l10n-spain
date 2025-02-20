@@ -2,7 +2,7 @@
 # Copyright 2014-2017 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class AeatModelExportConfigLine(models.Model):
@@ -103,13 +103,15 @@ class AeatModelExportConfigLine(models.Model):
             if line.export_type == "subconfig":
                 line.value = "-"
             elif line.expression:
-                line.value = _("Expression: ")
+                line.value = self.env._("Expression: ")
                 if len(line.expression) > 35:
-                    line.value += '"%s…"' % line.expression[:34]
+                    line.value += f'"{line.expression[:34]}…"'
                 else:
-                    line.value += '"%s"' % line.expression
+                    line.value += f'"{line.expression}"'
             else:
-                line.value = _("Fixed: {}").format(line.fixed_value or _("<blank>"))
+                line.value = self.env._("Fixed: {}").format(
+                    line.fixed_value or self.env._("<blank>")
+                )
 
     @api.depends("export_type", "subconfig_id")
     def _compute_alignment(self):
