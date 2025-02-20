@@ -3,7 +3,7 @@
 # (c) 2019 Acysos S.L.
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from odoo import _, exceptions, fields, models
+from odoo import exceptions, fields, models
 
 
 class L10nEsAeatCertificate(models.Model):
@@ -32,7 +32,7 @@ class L10nEsAeatCertificate(models.Model):
         self.ensure_one()
         return {
             "type": "ir.actions.act_window",
-            "name": _("Insert Password"),
+            "name": self.env._("Insert Password"),
             "res_model": "l10n.es.aeat.certificate.password",
             "view_mode": "form",
             "views": [(False, "form")],
@@ -78,5 +78,5 @@ class L10nEsAeatCertificate(models.Model):
                 "l10n_es_aeat_certificate.privateKey", False
             )
         if not public_crt or not private_key:
-            raise exceptions.UserError(_("Error! There aren't certificates."))
+            raise exceptions.UserError(self.env._("Error! There aren't certificates."))
         return public_crt, private_key

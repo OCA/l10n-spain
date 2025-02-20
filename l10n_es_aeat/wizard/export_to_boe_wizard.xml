@@ -6,8 +6,6 @@
         <field name="model">l10n.es.aeat.report.export_to_boe</field>
         <field name="arch" type="xml">
             <form string="Export AEAT BOE file">
-                <field invisible="1" name="state" />
-                <field name="name" invisible="1" />
                 <div invisible="state != 'open'">
                     <p>Pulse el botón <strong
                     >Exportar</strong> para iniciar el proceso de exportación del archivo BOE de la AEAT.</p>

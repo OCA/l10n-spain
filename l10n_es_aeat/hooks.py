@@ -2,8 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import logging
 
-from odoo import tools
-from odoo.tools.sql import column_exists
+from odoo.tools.sql import column_exists, create_column
 
 _logger = logging.getLogger(__name__)
 
@@ -13,14 +12,14 @@ def create_column_thirdparty_invoice(cr):
         cr, "account_journal", "thirdparty_invoice"
     ) and not column_exists(cr, "account_move", "thirdparty_invoice"):
         _logger.info("Initializing column thirdparty_invoice on table account_move")
-        tools.create_column(
+        create_column(
             cr=cr,
             tablename="account_move",
             columnname="thirdparty_invoice",
             columntype="boolean",
             comment="Third-party invoice",
         )
-        tools.create_column(
+        create_column(
             cr=cr,
             tablename="account_journal",
             columnname="thirdparty_invoice",

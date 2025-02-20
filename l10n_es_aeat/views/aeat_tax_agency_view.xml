@@ -24,16 +24,16 @@
         <field name="name">aeat.tax.agency.tree</field>
         <field name="model">aeat.tax.agency</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="aeat_tax_agency_action" model="ir.actions.act_window">
         <field name="name">Tax Agency</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">aeat.tax.agency</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem
         id="aeat_tax_agency_menu"

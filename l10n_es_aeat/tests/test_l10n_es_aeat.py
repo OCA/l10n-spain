@@ -2,10 +2,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import exceptions
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestL10nEsAeat(TransactionCase):
+class TestL10nEsAeat(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -103,7 +104,7 @@ class TestL10nEsAeat(TransactionCase):
 
     def test_unique_date_range(self):
         self.env["l10n.es.aeat.map.tax"].create(
-            {"date_from": "2020-01-01", "model": 303}
+            {"date_from": "2020-01-01", "date_to": "2020-12-31", "model": 303}
         )
         with self.assertRaises(exceptions.UserError):
             self.env["l10n.es.aeat.map.tax"].create(

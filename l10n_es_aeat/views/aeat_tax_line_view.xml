@@ -6,7 +6,7 @@
         <field name="name">l10n.es.aeat.tax.line.tree</field>
         <field name="model">l10n.es.aeat.tax.line</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <list editable="bottom">
                 <field name="field_number" />
                 <field name="name" />
                 <field name="amount" />
@@ -18,7 +18,7 @@
                     title="Show journal items"
                     icon="fa-search-plus"
                 />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_l10n_es_aeat_tax_line_form" model="ir.ui.view">

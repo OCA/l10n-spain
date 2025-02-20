@@ -5,12 +5,13 @@
 from odoo_test_helper import FakeModelLoader
 
 from odoo import exceptions, fields
-from odoo.tests import common
+
+from odoo.addons.base.tests.common import BaseCommon
 
 TEST_MODEL_NAME = "l10n.es.aeat.mod999.report"
 
 
-class TestL10nEsAeatReport(common.TransactionCase):
+class TestL10nEsAeatReport(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

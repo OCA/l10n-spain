@@ -6,11 +6,11 @@
     <record id="l10n_es_aeat_map_tax_tree" model="ir.ui.view">
         <field name="model">l10n.es.aeat.map.tax</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="model" />
                 <field name="date_from" />
                 <field name="date_to" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="l10n_es_aeat_map_tax_form" model="ir.ui.view">
@@ -42,7 +42,7 @@
     <record id="l10n_es_aeat_map_tax_line_tree" model="ir.ui.view">
         <field name="model">l10n.es.aeat.map.tax.line</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <list editable="bottom">
                 <field name="field_number" />
                 <field name="name" />
                 <field name="to_regularize" />
@@ -53,7 +53,7 @@
                 <field name="sum_type" />
                 <field name="exigible_type" />
                 <field name="inverse" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="l10n_es_aeat_map_tax_line_form" model="ir.ui.view">
@@ -82,7 +82,7 @@
     <record model="ir.actions.act_window" id="action_l10n_es_aeat_map_tax">
         <field name="name">Tax mapping</field>
         <field name="res_model">l10n.es.aeat.map.tax</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem
         id="menu_l10n_es_aeat_map_tax_code"

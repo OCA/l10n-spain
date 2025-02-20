@@ -8,7 +8,7 @@ import re
 from calendar import monthrange
 from datetime import datetime
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 from odoo.tools import config
 
 from .spanish_states_mapping import SPANISH_STATES as ss
@@ -246,7 +246,7 @@ class L10nEsAeatReport(models.AbstractModel):
         for report in self:
             if report.statement_type in ("C", "S") and not report.previous_number:
                 raise exceptions.UserError(
-                    _(
+                    self.env._(
                         "If this declaration is complementary or substitutive, "
                         "a previous declaration number should be provided."
                     )
@@ -279,8 +279,8 @@ class L10nEsAeatReport(models.AbstractModel):
             else:
                 if report.period_type == "0A":
                     # Anual
-                    report.date_start = fields.Date.to_date("%s-01-01" % report.year)
-                    report.date_end = fields.Date.to_date("%s-12-31" % report.year)
+                    report.date_start = fields.Date.to_date(f"{report.year}-01-01")
+                    report.date_end = fields.Date.to_date(f"{report.year}-12-31")
                 elif report.period_type in ("1T", "2T", "3T", "4T"):
                     # Trimestral
                     starting_month = 1 + (int(report.period_type[0]) - 1) * 3
@@ -321,14 +321,14 @@ class L10nEsAeatReport(models.AbstractModel):
 
     @api.model
     def _report_identifier_get(self, vals):
-        seq_name = "aeat%s-sequence" % self._aeat_number
+        seq_name = f"aeat{self._aeat_number}-sequence"
         company_id = vals.get("company_id", self.env.user.company_id.id)
         seq = self.env["ir.sequence"].search(
             [("name", "=", seq_name), ("company_id", "=", company_id)], limit=1
         )
         if not seq:
             raise exceptions.UserError(
-                _(
+                self.env._(
                     "AEAT model sequence not found. You can try to restart your "
                     "Odoo service for recreating the sequences."
                 )
@@ -404,9 +404,7 @@ class L10nEsAeatReport(models.AbstractModel):
 
     def button_export(self):
         for report in self:
-            export_obj = self.env[
-                "l10n.es.aeat.report.%s.export_to_boe" % report.number
-            ]
+            export_obj = self.env[f"l10n.es.aeat.report.{report.number}.export_to_boe"]
             export_obj.export_boe_file(report)
         return True
 
@@ -422,7 +420,9 @@ class L10nEsAeatReport(models.AbstractModel):
     def unlink(self):
         if any(item.state not in ["draft", "cancelled"] for item in self):
             raise exceptions.UserError(
-                _("Only reports in 'draft' or 'cancelled' state can be removed")
+                self.env._(
+                    "Only reports in 'draft' or 'cancelled' state can be removed"
+                )
             )
         return super().unlink()
 
@@ -452,11 +452,13 @@ class L10nEsAeatReport(models.AbstractModel):
         aeat_num = getattr(self, "_aeat_number", False)
         if not aeat_num:
             raise exceptions.UserError(
-                _("Modelo no válido: %s. Debe declarar una variable " "'_aeat_number'")
+                self.env._(
+                    "Modelo no válido: %s. Debe declarar una variable " "'_aeat_number'"
+                )
                 % self._name
             )
         seq_obj = self.env["ir.sequence"]
-        sequence = "aeat%s-sequence" % aeat_num
+        sequence = f"aeat{aeat_num}-sequence"
         if not companies:
             companies = self.env["res.company"].search([])
         for company in companies:
@@ -501,6 +503,6 @@ class L10nEsAeatReport(models.AbstractModel):
         res = self.env.ref("account.action_account_moves_all_a").sudo().read()[0]
         view = self.env.ref("l10n_es_aeat.view_move_line_tree")
         res["context"] = {"create": 0}
-        res["views"] = [(view.id, "tree")]
+        res["views"] = [(view.id, "list")]
         res["domain"] = [("id", "in", amls.ids)]
         return res
