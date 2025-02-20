@@ -7,8 +7,7 @@
         <field name="model">aeat.tax.agency</field>
         <field name="arch" type="xml">
             <form string="Tax Agency">
-                <header>
-                </header>
+                <header />
                 <sheet>
                     <div class="oe_title">
                         <label for="name" class="oe_edit_only" />
@@ -16,8 +15,7 @@
                             <field name="name" />
                         </h1>
                     </div>
-                    <notebook>
-                    </notebook>
+                    <notebook />
                 </sheet>
             </form>
         </field>
