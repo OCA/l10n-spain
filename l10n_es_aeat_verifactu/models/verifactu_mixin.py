@@ -168,7 +168,7 @@ class VerifactuMixin(models.AbstractModel):
     def _get_verifactu_tax_keys(self):
         return self.env["account.fiscal.position"]._get_verifactu_tax_keys()
 
-    def _connect_params_aeat(self, mapping_key):
+    def _connect_params_aeat_verifactu(self, mapping_key):
         self.ensure_one()
         agency = self.company_id.tax_agency_id
         if not agency:
@@ -414,7 +414,7 @@ class VerifactuMixin(models.AbstractModel):
         public_crt, private_key = self.env["l10n.es.aeat.certificate"].get_certificates(
             company=self.company_id
         )
-        params = self._connect_params_aeat(mapping_key)
+        params = self._connect_params_aeat_verifactu(mapping_key)
         session = Session()
         session.cert = (public_crt, private_key)
         transport = Transport(session=session)
