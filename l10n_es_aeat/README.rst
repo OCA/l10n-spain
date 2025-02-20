@@ -17,35 +17,35 @@ AEAT Base
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_aeat
+    :target: https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_aeat
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-17-0/l10n-spain-17-0-l10n_es_aeat
+    :target: https://translation.odoo-community.org/projects/l10n-spain-18-0/l10n-spain-18-0-l10n_es_aeat
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=17.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 Módulo base para declaraciones de la AEAT, que incluye:
 
-- Campos base para todo los modelos AEAT.
-- Vista base para todos los modelos.
-- Crea una secuencia automática para los registros diferenciando por
-  modelo.
-- Exportación del BOE. Define una exportación básica, con los diferentes
-  registros del fichero.
-- Generación del registro del declarante con los campos genéricos de los
-  modelos.
-- Motor de exportación paramétrica basado en una configuración que puede
-  ser introducida por datos XML o por interfaz.
-- Visor de archivos BOE asociados a la configuración de exportación.
-- Motor de cálculo de importes por impuestos.
-- Generador del asiento de regularización con cargo a un proveedor
-  "Agencia Estatal de Administración Tributaria" creado al efecto.
-- Certificado para las declaraciones de la AEAT
-- Webservice AEAT SOAP
+-  Campos base para todo los modelos AEAT.
+-  Vista base para todos los modelos.
+-  Crea una secuencia automática para los registros diferenciando por
+   modelo.
+-  Exportación del BOE. Define una exportación básica, con los
+   diferentes registros del fichero.
+-  Generación del registro del declarante con los campos genéricos de
+   los modelos.
+-  Motor de exportación paramétrica basado en una configuración que
+   puede ser introducida por datos XML o por interfaz.
+-  Visor de archivos BOE asociados a la configuración de exportación.
+-  Motor de cálculo de importes por impuestos.
+-  Generador del asiento de regularización con cargo a un proveedor
+   "Agencia Estatal de Administración Tributaria" creado al efecto.
+-  Certificado para las declaraciones de la AEAT
+-  Webservice AEAT SOAP
 
 **Table of contents**
 
@@ -122,9 +122,10 @@ Para importar el certificado, hay que:
 Known issues / Roadmap
 ======================
 
-- La configuración de exportación a BOE no se filtran ni se
-  auto-selecciona por fechas de validez.
-- Las partes específicas de las Diputaciones Forales no están incluidas.
+-  La configuración de exportación a BOE no se filtran ni se
+   auto-selecciona por fechas de validez.
+-  Las partes específicas de las Diputaciones Forales no están
+   incluidas.
 
 Bug Tracker
 ===========
@@ -132,7 +133,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -150,24 +151,24 @@ Authors
 Contributors
 ------------
 
-- Pexego (http://www.pexego.es)
-- Ignacio Ibeas, Acysos (http://www.acysos.com)
-- Pedro M. Baeza <pedro.baeza@tecnativa.com>
-- Santi Argüeso <santi@comunitea.com>
-- cubells <info@obertix.net>
-- AvanzOSC (http://www.avanzosc.es)
-- Ainara Galdona
-- Antonio Espinosa <antonio.espinosa@tecnativa.com>
-- Juan Vicente Pascual <jvpascual@puntsistemes.es>
-- Abraham Anes <abraham@studio73.es>
-- Diagram Software S.L.
-- Consultoría Informática Studio 73 S.L.
-- Miquel Raïch <miquel.raich@forgeflow.com>
-- Iván Antón <ozono@ozonomultimedia.com>
-- Digital5 S.L.
-- Valentin Vinagre <valentin.vinagre@sygel.es>
-- Manuel Regidor <manuel.regidor@sygel.es>
-- Jairo Llopis (https://www.moduon.team)
+-  Pexego (http://www.pexego.es)
+-  Ignacio Ibeas, Acysos (http://www.acysos.com)
+-  Pedro M. Baeza <pedro.baeza@tecnativa.com>
+-  Santi Argüeso <santi@comunitea.com>
+-  cubells <info@obertix.net>
+-  AvanzOSC (http://www.avanzosc.es)
+-  Ainara Galdona
+-  Antonio Espinosa <antonio.espinosa@tecnativa.com>
+-  Juan Vicente Pascual <jvpascual@puntsistemes.es>
+-  Abraham Anes <abraham@studio73.es>
+-  Diagram Software S.L.
+-  Consultoría Informática Studio 73 S.L.
+-  Miquel Raïch <miquel.raich@forgeflow.com>
+-  Iván Antón <ozono@ozonomultimedia.com>
+-  Digital5 S.L.
+-  Valentin Vinagre <valentin.vinagre@sygel.es>
+-  Manuel Regidor <manuel.regidor@sygel.es>
+-  Jairo Llopis (https://www.moduon.team)
 
 Maintainers
 -----------
@@ -190,6 +191,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-pedrobaeza| 
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_aeat>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_aeat>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

@@ -10,19 +10,19 @@
                 <field name="name" invisible="1" />
                 <div invisible="state != 'open'">
                     <p>Pulse el botón <strong
-                        >Exportar</strong> para iniciar el proceso de exportación del archivo BOE de la AEAT.</p>
+                    >Exportar</strong> para iniciar el proceso de exportación del archivo BOE de la AEAT.</p>
                 </div>
                 <div invisible="state != 'get'">
                     <h2>Exportación completada</h2>
                     <p>Aquí está el archivo BOE de la AEAT exportado: <field
-                            name="data"
-                            readonly="1"
-                            filename="name"
-                        /></p>
+                        name="data"
+                        readonly="1"
+                        filename="name"
+                    /></p>
                     <p
                     >Ponga este archivo dentro de su carpeta personal de la AEAT, y úselo en el programa <strong
-                        >Informativas</strong> o pulsando en el botón <strong
-                        >Optativo: Importar datos de fichero</strong> en el formulario on-line.</p>
+                    >Informativas</strong> o pulsando en el botón <strong
+                    >Optativo: Importar datos de fichero</strong> en el formulario on-line.</p>
                 </div>
                 <footer invisible="state != 'open'">
                     <button
