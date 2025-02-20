@@ -1,9 +1,9 @@
 # © 2017 FactorLibre - Hugo Santos <hugo.santos@factorlibre.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
-from odoo.tests.common import TransactionCase
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestL10nEsAeatExportConfig(TransactionCase):
+class TestL10nEsAeatExportConfig(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
