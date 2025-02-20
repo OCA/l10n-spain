@@ -26,6 +26,23 @@
                             <field name="verifactu_description" />
                         </group>
                     </group>
+                    <group name="verifactu_connector" string="Connector config">
+                        <field name="use_connector_verifactu" />
+                        <field
+                            name="send_mode_verifactu"
+                            attrs="{'invisible': [('use_connector_verifactu', '=', False)]}"
+                        />
+                        <field
+                            name='sent_time_verifactu'
+                            widget='float_time'
+                            attrs="{'invisible': ['|', ('use_connector_verifactu', '=', False), ('send_mode_verifactu', '!=', 'fixed')]}"
+                        />
+                        <field
+                            name='delay_time_verifactu'
+                            widget='float_time'
+                            attrs="{'invisible': ['|', ('use_connector_verifactu', '=', False), ('send_mode_verifactu', '!=', 'delayed')]}"
+                        />
+                    </group>
                 </page>
             </notebook>
         </field>

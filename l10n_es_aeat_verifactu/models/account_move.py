@@ -48,6 +48,14 @@ class AccountMove(models.Model):
         comodel_name="account.move",
         copy=False,
     )
+    verifactu_invoice_jobs_ids = fields.Many2many(
+        comodel_name="queue.job",
+        column1="invoice_id",
+        column2="job_id",
+        relation="account_move_verifactu_queue_job_rel",
+        string="Connector Jobs",
+        copy=False,
+    )
 
     @api.depends("move_type")
     def _compute_verifactu_refund_type(self):
@@ -432,35 +440,29 @@ class AccountMove(models.Model):
         verifactu_reg_date = datetime.now()
         self.write({"verifactu_registration_date": verifactu_reg_date})
         res = super()._post(soft=soft)
+        # TODO: review retry strategy
         for record in self:
-            record._set_chaining_invoice()
+            for attempt in range(SEND_TO_VERIFACTU_MAX_RETRIES):
+                try:
+                    record._set_chaining_invoice()
+                    break
+                except OperationalError:
+                    if attempt == SEND_TO_VERIFACTU_MAX_RETRIES - 1:
+                        raise OperationalError(
+                            "Failed to chain invoice %s for Verifactu",
+                            record.name,
+                        )
+                    else:
+                        sleep(1)  # Wait 1 second before next try
             verifactu_hash_values = record._get_verifactu_hash_string()
             record.verifactu_hash_string = verifactu_hash_values
             hash_string = sha256(verifactu_hash_values.encode("utf-8"))
             record.verifactu_hash = hash_string.hexdigest().upper()
 
-        # TODO: review retry strategy
         for invoice in self:
             if not self._should_send_to_verifactu(invoice):
                 continue
-            for attempt in range(SEND_TO_VERIFACTU_MAX_RETRIES):
-                try:
-                    invoice.send_verifactu()
-                    break
-                except OperationalError:
-                    if attempt == SEND_TO_VERIFACTU_MAX_RETRIES - 1:
-                        # TODO: should we have a stopping mechanism and avoid sending more
-                        # invoices for this chain when it is no possible to obtain a lock
-                        # on verifactu_last_invoice_id (pos.config)?
-                        _logger.error(
-                            "Failed to send invoice %s with ID %d to Verifactu "
-                            "after %d attempts",
-                            invoice.name,
-                            invoice.id,
-                            SEND_TO_VERIFACTU_MAX_RETRIES,
-                        )
-                    else:
-                        sleep(1)  # Wait 1 second before next try
+            invoice.send_verifactu()
         return res
 
     def _should_send_to_verifactu(self, invoice):
@@ -474,3 +476,6 @@ class AccountMove(models.Model):
 
     def cancel_verifactu(self):
         raise NotImplementedError
+
+    def _get_verifactu_jobs_field_name(self):
+        return "verifactu_invoice_jobs_ids"

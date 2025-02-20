@@ -23,6 +23,7 @@
         "data/aeat_verifactu_tax_agency_data.xml",
         "data/aeat_verifactu_registration_keys.xml",
         "data/aeat_verifactu_map_data.xml",
+        "data/aeat_verifactu_queue_job.xml",
         "security/ir.model.access.csv",
         "views/aeat_tax_agency_view.xml",
         "views/account_move_view.xml",

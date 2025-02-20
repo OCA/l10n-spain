@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="invoice_validate_verifactu" model="queue.job.channel">
+        <field name="name">invoice_validate_verifactu</field>
+        <field name="parent_id" ref="queue_job.channel_root" />
+    </record>
+    <record id="job_function_confirm_verifactu_one_document" model="queue.job.function">
+        <field name="model_id" ref="account.model_account_move" />
+        <field name="method">confirm_verifactu_one_document</field>
+        <field name="channel_id" ref="invoice_validate_verifactu" />
+    </record>
+</odoo>

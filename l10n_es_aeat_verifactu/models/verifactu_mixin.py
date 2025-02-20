@@ -200,6 +200,9 @@ class VerifactuMixin(models.AbstractModel):
         }
         return header
 
+    def _get_verifactu_jobs_field_name(self):
+        raise NotImplementedError()
+
     def _get_verifactu_invoice_dict(self):
         self.ensure_one()
         inv_dict = {}
@@ -292,9 +295,6 @@ class VerifactuMixin(models.AbstractModel):
         partner = self._aeat_get_partner()
         return partner.aeat_simplified_invoice
 
-    def _get_verifactu_jobs_field_name(self):
-        raise NotImplementedError
-
     def send_verifactu(self):
         """General public method for filtering out of the starting recordset the records
         that shouldn't be sent to Verifactu:
@@ -316,12 +316,23 @@ class VerifactuMixin(models.AbstractModel):
             document._process_verifactu_send()
 
     def _process_verifactu_send(self):
-        """
-        Process document sending to Verifactu
-        TODO : use connector
-        """
+        queue_obj = self.env["queue.job"].sudo()
         for record in self:
-            record.confirm_verifactu_one_document()
+            company = record.company_id
+            if not company.use_connector_verifactu:
+                record.confirm_verifactu_one_document()
+            else:
+                eta = company._get_verifactu_eta()
+                new_delay = (
+                    record.sudo()
+                    .with_context(company_id=company.id)
+                    .with_delay(eta=eta if not record.aeat_send_failed else False)
+                    .confirm_verifactu_one_document()
+                )
+                job = queue_obj.search([("uuid", "=", new_delay.uuid)], limit=1)
+                setattr(
+                    record.sudo(), self._get_verifactu_jobs_field_name(), [(4, job.id)]
+                )
 
     def confirm_verifactu_one_document(self):
         self.sudo()._send_document_to_verifactu()
