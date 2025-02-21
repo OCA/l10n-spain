@@ -3,14 +3,12 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import logging
 from collections import OrderedDict
-from time import sleep
-
-from collections import OrderedDict
 from datetime import datetime
 from hashlib import sha256
-from psycopg2 import OperationalError
+from time import sleep
 
 import pytz
+from psycopg2 import OperationalError
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
@@ -449,12 +447,12 @@ class AccountMove(models.Model):
                 try:
                     record._set_chaining_invoice()
                     break
-                except OperationalError:
+                except OperationalError as oe:
                     if attempt == SEND_TO_VERIFACTU_MAX_RETRIES - 1:
                         raise OperationalError(
                             "Failed to chain invoice %s for Verifactu",
                             record.name,
-                        )
+                        ) from oe
                     else:
                         sleep(1)  # Wait 1 second before next try
             verifactu_hash_values = record._get_verifactu_hash_string()
@@ -469,11 +467,7 @@ class AccountMove(models.Model):
         return res
 
     def _is_verifactu_invoice(self, invoice):
-        return (
-            invoice.exists()
-            and invoice.is_invoice()
-            and invoice.verifactu_enabled
-        )
+        return invoice.exists() and invoice.is_invoice() and invoice.verifactu_enabled
 
     def _should_send_to_verifactu(self, invoice):
         return (
