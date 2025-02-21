@@ -10,9 +10,9 @@ AEAT modelo 592
    !! source digest: sha256:e97c74fdaa1e3e0a604a1ca357765eaabc9b8899b4ed6c24e530bbf7c23b2d99
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-.. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
+.. |badge1| image:: https://img.shields.io/badge/maturity-Production%2FStable-green.png
     :target: https://odoo-community.org/page/development-status
-    :alt: Beta
+    :alt: Production/Stable
 .. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
@@ -35,8 +35,8 @@ Informe -> Declaraciones AEAT -> AEAT 592 Model.
 
 Es posible visualizar e imprimir por separado:
 
--  Registro de asientos con productos en impuestos al plástico de los
-   asquirientes
+- Registro de asientos con productos en impuestos al plástico de los
+  asquirientes
 
 Es posible exportar los registros a archivo con extensión csv para subir
 a la web de la AEAT.
@@ -51,11 +51,11 @@ Configuration
 
 Se ha de confirgurar los tipos y pesos en la ficha del producto.
 
--  Si tiene impuesto al plástico.
--  Peso del plástico
--  Tipo de clave del producto
--  Concepto del producto
--  Regimen fiscal
+- Si tiene impuesto al plástico.
+- Peso del plástico
+- Tipo de clave del producto
+- Concepto del producto
+- Regimen fiscal
 
 El código de producto y nombre se capturan de forma automática de la
 ficha del producto
@@ -65,12 +65,12 @@ Usage
 
 Para instalar este modulo necesitas:
 
--  account
--  stock
--  l10n_es
--  l10n_es_aeat
--  report_xlsx
--  report_csv
+- account
+- stock
+- l10n_es
+- l10n_es_aeat
+- report_xlsx
+- report_csv
 
 Se instalan automáticamente si están disponibles en la lista de addons.
 
@@ -84,15 +84,15 @@ nivel de compañía (pestaña AEAT).
 Known issues / Roadmap
 ======================
 
--  Los movimientos que involucran adquisicion de plastico no reciclable
-   no se buscan por su fecha de factura, o día 15 del mes siguiente como
-   muy tarde. Solo se buscan en la fecha en que el movimiento quedó
-   realizado.
--  No se contempla el caso de Fabricantes. Eso debe venir en un módulo
-   aparte con dependencia de mrp, y tener una fuerte trazabilidad de
-   cada quant para contemplar todos los casos de la ley.
--  No se contempla el tratamiento de Canarias: Si el producto es
-   adquirido en Canarias con destino a la Península, debe tributar.
+- Los movimientos que involucran adquisicion de plastico no reciclable
+  no se buscan por su fecha de factura, o día 15 del mes siguiente como
+  muy tarde. Solo se buscan en la fecha en que el movimiento quedó
+  realizado.
+- No se contempla el caso de Fabricantes. Eso debe venir en un módulo
+  aparte con dependencia de mrp, y tener una fuerte trazabilidad de cada
+  quant para contemplar todos los casos de la ley.
+- No se contempla el tratamiento de Canarias: Si el producto es
+  adquirido en Canarias con destino a la Península, debe tributar.
 
 Bug Tracker
 ===========
@@ -116,12 +116,12 @@ Authors
 Contributors
 ------------
 
--  Nicolás Ramos (Binhex) <n.ramos@binhex.es>
--  Javier Colmenero (Comunitea) <javier@comunitea.com>
--  `Tecnativa <https://www.tecnativa.com>`__:
+- Nicolás Ramos (Binhex) <n.ramos@binhex.es>
+- Javier Colmenero (Comunitea) <javier@comunitea.com>
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-   -  Víctor Martínez
-   -  Pedro M. Baeza
+  - Víctor Martínez
+  - Pedro M. Baeza
 
 Maintainers
 -----------
@@ -135,6 +135,14 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-victoralmau| image:: https://github.com/victoralmau.png?size=40px
+    :target: https://github.com/victoralmau
+    :alt: victoralmau
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-victoralmau| 
 
 This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_aeat_mod592>`_ project on GitHub.
 
