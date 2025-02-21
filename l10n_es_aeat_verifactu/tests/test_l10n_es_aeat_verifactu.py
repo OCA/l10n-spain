@@ -318,6 +318,7 @@ class TestL10nEsAeatVerifactuChaining(TestL10nEsAeatVerifactuBase):
     def test_get_chaining_invoice_dict_first_record(self):
         """Test chaining dict when there's no previous invoice."""
         self.company.verifactu_last_invoice_id = False
+        self.invoice.action_post()
         result = self.invoice._get_chaining_invoice_dict()
         self.assertEqual(
             result,
@@ -332,35 +333,35 @@ class TestL10nEsAeatVerifactuChaining(TestL10nEsAeatVerifactuBase):
 
     def test_get_chaining_invoice_dict_with_previous(self):
         """Test chaining dict when there's a previous invoice."""
-        prev_invoice = self.invoice.copy(
+        self.invoice.action_post()
+        new_invoice = self.invoice.copy(
             {
                 "invoice_date": "2024-01-01",
                 "name": "PREV001",
             }
         )
-        prev_invoice._get_verifactu_invoice_dict()
-        self.assertEqual(self.company.verifactu_last_invoice_id, prev_invoice)
-
-        result = self.invoice._get_chaining_invoice_dict()
+        new_invoice.action_post()
+        new_invoice._get_verifactu_invoice_dict()
+        self.assertEqual(self.company.verifactu_last_invoice_id, new_invoice)
 
         expected = {
             "RegistroAnterior": {
-                "IDEmisorFactura": prev_invoice._get_verifactu_issuer(),
-                "NumSerieFactura": prev_invoice._get_document_serial_number(),
-                "FechaExpedicionFactura": prev_invoice._change_date_format(
-                    prev_invoice._get_document_date()
+                "IDEmisorFactura": self.invoice._get_verifactu_issuer(),
+                "NumSerieFactura": self.invoice._get_document_serial_number(),
+                "FechaExpedicionFactura": self.invoice._change_date_format(
+                    self.invoice._get_document_date()
                 ),
-                "Huella": prev_invoice.verifactu_hash,
+                "Huella": self.invoice.verifactu_hash,
             }
         }
         self.assertEqual(
-            result,
+            new_invoice._get_chaining_invoice_dict(),
             expected,
             "Should return previous invoice data in correct format",
         )
         self.assertEqual(
             self.company.verifactu_last_invoice_id,
-            self.invoice,
+            new_invoice,
             "Should update company's last invoice reference",
         )
 
@@ -371,23 +372,23 @@ class TestL10nEsAeatVerifactuChaining(TestL10nEsAeatVerifactuBase):
             raise OperationalError("Test lock error")
 
         self.company.verifactu_last_invoice_id = False
-        prev_invoice = self.invoice.copy(
+        self.invoice.action_post()
+        self.assertEqual(self.company.verifactu_last_invoice_id, self.invoice)
+        new_invoice = self.invoice.copy(
             {
                 "invoice_date": "2024-01-01",
                 "name": "PREV001",
             }
         )
-        prev_invoice._get_verifactu_invoice_dict()
-        self.assertEqual(self.company.verifactu_last_invoice_id, prev_invoice)
-
         old_execute = self.cr.execute
         with self.assertRaises(OperationalError):
             with self.cr.savepoint():
                 self.cr.execute = mock_execute
-                self.invoice._get_chaining_invoice_dict()
+                new_invoice.action_post()
         self.cr.execute = old_execute
+        self.assertEqual(new_invoice.state, "draft")
         self.assertEqual(
             self.company.verifactu_last_invoice_id,
-            prev_invoice,
+            self.invoice,
             "Should not update company's last invoice reference on error",
         )

@@ -441,7 +441,10 @@ class AccountMove(models.Model):
         self.write({"verifactu_registration_date": verifactu_reg_date})
         res = super()._post(soft=soft)
         # TODO: review retry strategy
-        for record in self:
+        verifactu_invoices = self.filtered(
+            lambda move: self._is_verifactu_invoice(move)
+        )
+        for record in verifactu_invoices:
             for attempt in range(SEND_TO_VERIFACTU_MAX_RETRIES):
                 try:
                     record._set_chaining_invoice()
@@ -465,12 +468,17 @@ class AccountMove(models.Model):
             invoice.send_verifactu()
         return res
 
-    def _should_send_to_verifactu(self, invoice):
+    def _is_verifactu_invoice(self, invoice):
         return (
-            not config["test_enable"]
-            and invoice.exists()
+            invoice.exists()
             and invoice.is_invoice()
             and invoice.verifactu_enabled
+        )
+
+    def _should_send_to_verifactu(self, invoice):
+        return (
+            self._is_verifactu_invoice(invoice)
+            and not config["test_enable"]
             and invoice.state in VERIFACTU_VALID_INVOICE_STATES
         )
 
