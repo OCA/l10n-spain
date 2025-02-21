@@ -176,7 +176,7 @@
         <field name="expression">${object.amount}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True" />
-        <field name="positive_sign"> </field>
+        <field name="positive_sign" />
         <field name="negative_sign">N</field>
         <field name="size">16</field>
         <field name="decimal_size">2</field>
@@ -191,7 +191,7 @@
         <field name="export_type">boolean</field>
         <field name="size">1</field>
         <field name="bool_yes">X</field>
-        <field name="bool_no"> </field>
+        <field name="bool_no" />
         <field name="alignment">left</field>
     </record>
     <!--             99          Arrendamiento local negocio -->
@@ -203,7 +203,7 @@
         <field name="export_type">boolean</field>
         <field name="size">1</field>
         <field name="bool_yes">X</field>
-        <field name="bool_no"> </field>
+        <field name="bool_no" />
         <field name="alignment">left</field>
     </record>
     <!--             100-114     Importe percibido en metálico -->
@@ -235,7 +235,7 @@
         <field name="expression">${object.real_estate_transmissions_amount}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True" />
-        <field name="positive_sign"> </field>
+        <field name="positive_sign" />
         <field name="negative_sign">N</field>
         <field name="size">16</field>
         <field name="decimal_size">2</field>
@@ -267,7 +267,7 @@
         <field name="expression">${object.first_quarter}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True" />
-        <field name="positive_sign"> </field>
+        <field name="positive_sign" />
         <field name="negative_sign">N</field>
         <field name="size">16</field>
         <field name="decimal_size">2</field>
@@ -289,7 +289,7 @@
         >${object.first_quarter_real_estate_transmission}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True" />
-        <field name="positive_sign"> </field>
+        <field name="positive_sign" />
         <field name="negative_sign">N</field>
         <field name="size">16</field>
         <field name="decimal_size">2</field>
@@ -306,7 +306,7 @@
         <field name="expression">${object.second_quarter}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True" />
-        <field name="positive_sign"> </field>
+        <field name="positive_sign" />
         <field name="negative_sign">N</field>
         <field name="size">16</field>
         <field name="decimal_size">2</field>
@@ -328,7 +328,7 @@
         >${object.second_quarter_real_estate_transmission}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True" />
-        <field name="positive_sign"> </field>
+        <field name="positive_sign" />
         <field name="negative_sign">N</field>
         <field name="size">16</field>
         <field name="decimal_size">2</field>
@@ -345,7 +345,7 @@
         <field name="expression">${object.third_quarter}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True" />
-        <field name="positive_sign"> </field>
+        <field name="positive_sign" />
         <field name="negative_sign">N</field>
         <field name="size">16</field>
         <field name="decimal_size">2</field>
@@ -367,7 +367,7 @@
         >${object.third_quarter_real_estate_transmission}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True" />
-        <field name="positive_sign"> </field>
+        <field name="positive_sign" />
         <field name="negative_sign">N</field>
         <field name="size">16</field>
         <field name="decimal_size">2</field>
@@ -384,7 +384,7 @@
         <field name="expression">${object.fourth_quarter}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True" />
-        <field name="positive_sign"> </field>
+        <field name="positive_sign" />
         <field name="negative_sign">N</field>
         <field name="size">16</field>
         <field name="decimal_size">2</field>
@@ -406,7 +406,7 @@
         >${object.fourth_quarter_real_estate_transmission}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True" />
-        <field name="positive_sign"> </field>
+        <field name="positive_sign" />
         <field name="negative_sign">N</field>
         <field name="size">16</field>
         <field name="decimal_size">2</field>
@@ -434,7 +434,7 @@
         <field name="export_type">boolean</field>
         <field name="size">1</field>
         <field name="bool_yes">X</field>
-        <field name="bool_no"> </field>
+        <field name="bool_no" />
         <field name="alignment">left</field>
     </record>
     <!--             282         'X' si son operaciones con inversión de sujeto pasivo -->
@@ -446,7 +446,7 @@
         <field name="export_type">boolean</field>
         <field name="size">1</field>
         <field name="bool_yes">X</field>
-        <field name="bool_no"> </field>
+        <field name="bool_no" />
         <field name="alignment">left</field>
     </record>
     <!--             283         'X' si son operaciones vinculadas al régimen de -->
@@ -461,7 +461,7 @@
         <field name="export_type">boolean</field>
         <field name="size">1</field>
         <field name="bool_yes">X</field>
-        <field name="bool_no"> </field>
+        <field name="bool_no" />
         <field name="alignment">left</field>
     </record>
     <!--             284-299     Importe de la operaciones anuales de criterio de caja -->
@@ -475,7 +475,7 @@
         <field name="fixed_value">0</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True" />
-        <field name="positive_sign"> </field>
+        <field name="positive_sign" />
         <field name="negative_sign">N</field>
         <field name="size">16</field>
         <field name="decimal_size">2</field>
