@@ -18,7 +18,7 @@
                 <field name="fiscal_acquirer" optional="show" />
                 <field name="supplier_social_reason" optional="show" />
                 <field name="supplier_document_number" optional="show" />
-                <field name="entries_ok" invisible="1" />
+                <field name="entries_ok" column_invisible="1" />
                 <field name="error_text" optional="show" />
                 <field name="entry_note" optional="hide" />
                 <field name="supplier_document_type" optional="hide" />
@@ -34,7 +34,7 @@
             <form string="AEAT 592 Acquirer Entries record detail">
                 <sheet>
                     <group>
-                         <field name="entry_number" />
+                        <field name="entry_number" />
                         <field name="concept" />
                         <field name="product_key" />
                         <field name="date_done" />
@@ -51,7 +51,7 @@
                         <field name="entries_ok" invisible="1" />
                         <field
                             name="error_text"
-                            attrs="{'invisible': [('entries_ok', '=', True)]}"
+                            invisible="entries_ok"
                             class="text-danger"
                         />
                         <field name="report_id" invisible="1" />

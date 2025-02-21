@@ -52,7 +52,7 @@
                     string="Export CSV Manufacturer"
                     type="object"
                     icon="fa-share"
-                    attrs="{'invisible':['|', ('state', '!=', 'done'), ('total_manufacturer_entries', '=', 0)]}"
+                    invisible="state!='done' or total_manufacturer_entries==0"
                     groups="l10n_es_aeat_mod592.group_mod592_manufacturer"
                 />
                 <button
@@ -60,7 +60,7 @@
                     string="Export XLSX Manufacturer"
                     type="object"
                     icon="fa-share"
-                    attrs="{'invisible':['|', ('state', '!=', 'done'), ('total_manufacturer_entries', '=', 0)]}"
+                    invisible="state!='done' or total_manufacturer_entries == 0"
                     groups="l10n_es_aeat_mod592.group_mod592_manufacturer"
                 />
                 <!-- ACQUIRER -->
@@ -69,7 +69,7 @@
                     string="Export CSV Acquirer"
                     type="object"
                     icon="fa-share"
-                    attrs="{'invisible':['|', ('state', '!=', 'done'), ('total_acquirer_entries', '=', 0)]}"
+                    invisible="state!='done' or total_acquirer_entries == 0"
                     groups="l10n_es_aeat_mod592.group_mod592_acquirer"
                 />
                 <button
@@ -77,7 +77,7 @@
                     string="Export XLSX Acquirer"
                     type="object"
                     icon="fa-share"
-                    attrs="{'invisible':['|', ('state', '!=', 'done'), ('total_acquirer_entries', '=', 0)]}"
+                    invisible="state!='done' or total_acquirer_entries == 0"
                     groups="l10n_es_aeat_mod592.group_mod592_acquirer"
                 />
             </header>
@@ -99,7 +99,7 @@
                         class="oe_stat_button"
                         name="view_action_mod592_report_line_acquirer"
                         type="object"
-                        attrs="{'invisible': ['|', ('num_lines_acquirer', '=', 0),('company_plastic_acquirer', '=', False)]}"
+                        invisible="num_lines_acquirer==0 or not company_plastic_acquirer"
                         icon="fa-list"
                         groups="l10n_es_aeat_mod592.group_mod592_acquirer"
                     >
@@ -113,7 +113,7 @@
                         class="oe_stat_button"
                         name="view_action_mod592_report_line_manufacturer"
                         type="object"
-                        attrs="{'invisible': ['|', ('num_lines_manufacturer', '=', 0),('company_plastic_manufacturer', '=', False)]}"
+                        invisible="num_lines_manufacturer==0 or not company_plastic_manufacturer"
                         icon="fa-list"
                         groups="l10n_es_aeat_mod592.group_mod592_manufacturer"
                     >
@@ -138,14 +138,14 @@
                 />
                 <div
                     style="color:red"
-                    attrs="{'invisible': ['|', ('show_error_acquirer', '=', False),('company_plastic_acquirer', '=', False)]}"
+                    invisible="not show_error_acquirer or not company_plastic_acquirer"
                     groups="l10n_es_aeat_mod592.group_mod592_acquirer"
                 >
                     <h2>Acquirer lines with errors</h2>
                 </div>
                 <div
                     style="color:red"
-                    attrs="{'invisible': ['|', ('show_error_manufacturer', '=', False),('company_plastic_manufacturer', '=', False)]}"
+                    invisible="not show_error_manufacturer or not company_plastic_manufacturer"
                     groups="l10n_es_aeat_mod592.group_mod592_manufacturer"
                 >
                     <h2>Manufacturer lines with errors</h2>
@@ -161,7 +161,7 @@
                             <group
                                 string="Manufacturer Result"
                                 groups="l10n_es_aeat_mod592.group_mod592_manufacturer"
-                                attrs="{'invisible': [('company_plastic_manufacturer', '=', False)]}"
+                                invisible="not company_plastic_manufacturer"
                             >
                                 <field
                                     name="total_manufacturer_entries"
@@ -183,7 +183,7 @@
                             <group
                                 string="Acquirer Result"
                                 groups="l10n_es_aeat_mod592.group_mod592_acquirer"
-                                attrs="{'invisible': [('company_plastic_acquirer', '=', False)]}"
+                                invisible="not company_plastic_acquirer"
                             >
                                 <field
                                     name="total_acquirer_entries"
