@@ -458,7 +458,7 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
 
     def _check_tax_lines(self):
         for field, result in iter(self.taxes_result.items()):
-            _logger.debug("Checking tax line: %s" % field)
+            _logger.debug(f"Checking tax line: {field}")
             lines = self.model303.tax_line_ids.filtered(
                 lambda x, field=field: x.field_number == int(field)
             )
@@ -466,7 +466,7 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
                 sum(lines.mapped("amount")),
                 result,
                 2,
-                "Incorrect result in field %s" % field,
+                f"Incorrect result in field {field}",
             )
 
     def test_model_303(self):
@@ -669,7 +669,7 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         model303_2T.button_confirm()
         model303_2T.button_post()
         account_470 = self.env["account.account"].search(
-            [("company_id", "=", self.company.id), ("code", "=", "470000")]
+            [("company_ids", "=", self.company.id), ("code", "=", "470000")]
         )
         # Check move lines from 303 2T 2025
         self.assertRecordValues(
