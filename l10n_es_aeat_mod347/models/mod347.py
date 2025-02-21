@@ -13,7 +13,7 @@
 import datetime
 from calendar import monthrange
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 from odoo.tools import float_compare
 
 KEY_TAX_MAPPING = {
@@ -115,7 +115,7 @@ class L10nEsAeatMod347Report(models.Model):
     )
 
     def _error_count(self, model):
-        records_error_group = self.env["l10n.es.aeat.mod347.%s" % model].read_group(
+        records_error_group = self.env[f"l10n.es.aeat.mod347.{model}"].read_group(
             domain=[("check_ok", "=", False), ("report_id", "in", self.ids)],
             fields=["report_id"],
             groupby=["report_id"],
@@ -144,7 +144,7 @@ class L10nEsAeatMod347Report(models.Model):
             for partner_record in item.partner_record_ids:
                 if not partner_record.check_ok:
                     partner_errors.append(
-                        _(
+                        self.env._(
                             "- %(name)s %(id)s",
                             name=partner_record.partner_id.name,
                             id=partner_record.partner_id.id,
@@ -154,22 +154,22 @@ class L10nEsAeatMod347Report(models.Model):
             for real_estate_record in item.real_estate_record_ids:
                 if not real_estate_record.check_ok:
                     real_state_errors.append(
-                        _(
+                        self.env._(
                             "- %(name)s %(id)s",
                             name=real_estate_record.partner_id.name,
                             id=real_estate_record.partner_id.id,
                         )
                     )
-            error = _(
+            error = self.env._(
                 "Please review partner and real estate records, "
                 "some of them are in red color:\n\n"
             )
             if partner_errors:
-                error += _("Partner record errors:\n")
+                error += self.env._("Partner record errors:\n")
                 error += "\n".join(partner_errors)
                 error += "\n\n"
             if real_state_errors:
-                error += _("Real estate record errors:\n")
+                error += self.env._("Real estate record errors:\n")
                 error += "\n".join(real_state_errors)
             if partner_errors or real_state_errors:
                 raise exceptions.ValidationError(error)
@@ -183,8 +183,8 @@ class L10nEsAeatMod347Report(models.Model):
     def btn_list_records(self):
         return {
             "domain": "[('report_id','in'," + str(self.ids) + ")]",
-            "name": _("Partner records"),
-            "view_mode": "tree,form",
+            "name": self.env._("Partner records"),
+            "view_mode": "list,form",
             "res_model": "l10n.es.aeat.mod347.partner_record",
             "type": "ir.actions.act_window",
         }
@@ -525,13 +525,13 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         for record in self:
             errors = []
             if not record.partner_country_code:
-                errors.append(_("Without country code"))
+                errors.append(self.env._("Without country code"))
             if not record.partner_state_code:
-                errors.append(_("Without state code"))
+                errors.append(self.env._("Without state code"))
             if record.partner_state_code and not record.partner_state_code.isdigit():
-                errors.append(_("State code can only contain digits"))
+                errors.append(self.env._("State code can only contain digits"))
             if not (record.partner_vat or record.partner_country_code != "ES"):
-                errors.append(_("VAT must be defined for Spanish Contacts"))
+                errors.append(self.env._("VAT must be defined for Spanish Contacts"))
             record.check_ok = not bool(errors)
             record.error_text = ", ".join(errors)
 
@@ -594,7 +594,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
             mark_invoice_as_sent=True,
         )
         return {
-            "name": _("Compose Email"),
+            "name": self.env._("Compose Email"),
             "type": "ir.actions.act_window",
             "view_mode": "form",
             "res_model": "mail.compose.message",
@@ -734,7 +734,7 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
         for record in self:
             errors = []
             if not record.state_code:
-                errors.append(_("Without state code"))
+                errors.append(self.env._("Without state code"))
             record.check_ok = not bool(errors)
             record.error_text = ", ".join(errors)
 
