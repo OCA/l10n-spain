@@ -11,9 +11,9 @@
                     />
                     <div t-if="o.partner_id.vat" class="mt16">
                         <t
-                            t-if="o.report_id.company_id.account_fiscal_country_id.vat_label"
-                            t-esc="o.report_id.company_id.account_fiscal_country_id.vat_label"
-                        />
+                        t-if="o.report_id.company_id.account_fiscal_country_id.vat_label"
+                        t-esc="o.report_id.company_id.account_fiscal_country_id.vat_label"
+                    />
                         <t t-else="">Tax ID</t>: <span t-field="o.partner_id.vat" />
                     </div>
                 </t>

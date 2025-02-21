@@ -136,7 +136,7 @@
         <field name="expression">${object.amount}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True" />
-        <field name="positive_sign"> </field>
+        <field name="positive_sign" />
         <field name="negative_sign">N</field>
         <field name="size">16</field>
         <field name="decimal_size">2</field>
