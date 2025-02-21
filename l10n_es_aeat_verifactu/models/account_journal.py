@@ -37,10 +37,12 @@ class AccountJournal(models.Model):
                 and record.company_id.country_code == "ES"
                 and record.type == "sale"
             ):
-                record.write({
-                    "restrict_mode_hash_table": True,
-                    "restrict_mode_hash_table_readonly": True
-                })
+                record.write(
+                    {
+                        "restrict_mode_hash_table": True,
+                        "restrict_mode_hash_table_readonly": True,
+                    }
+                )
 
     @api.model
     def check_hash_modification(self, country_code, journal_type, verifactu_enabled):

@@ -115,7 +115,7 @@ class VerifactuMixin(models.AbstractModel):
     def _compute_verifactu_qr_url(self):
         """Returns the URL to be used in the QR code. A sample URL would be (urlencoded):
         https://prewww2.aeat.es/wlpl/TIKECONT/ValidarQR?nif=89890001K&numserie=12345678%26G33&fecha=01-01-2024&importe=241.4
-        """
+        """  # noqa: B950
         for record in self:
             agency = self.env.ref("l10n_es_aeat.aeat_tax_agency_spain")
             if record.company_id.verifactu_test:
@@ -129,8 +129,10 @@ class VerifactuMixin(models.AbstractModel):
             for value in qr_values.values():
                 try:
                     str(value).encode("ascii")
-                except UnicodeEncodeError:
-                    raise UserError(_("QR URL value '{}' is not ASCII").format(value))
+                except UnicodeEncodeError as uee:
+                    raise UserError(
+                        _("QR URL value '{}' is not ASCII").format(value)
+                    ) from uee
 
             # Build QR URL
             qr_url = "{}?{}".format(

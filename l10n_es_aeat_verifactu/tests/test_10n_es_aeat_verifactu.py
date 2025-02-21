@@ -3,7 +3,7 @@
 
 import json
 from hashlib import sha256
-from urllib.parse import urlparse, parse_qs
+from urllib.parse import parse_qs, urlparse
 
 from odoo.modules.module import get_resource_path
 
@@ -200,7 +200,9 @@ class TestL10nEsAeatVerifactu(TestL10nEsAeatVerifactuBase):
             ),
         ]
         for name, inv_type, lines, extra_vals in mapping:
-            self._create_and_test_invoice_verifactu_dict(name, inv_type, lines, extra_vals)
+            self._create_and_test_invoice_verifactu_dict(
+                name, inv_type, lines, extra_vals
+            )
         return
 
 
@@ -253,7 +255,8 @@ class TestL10nEsAeatVerifactuQR(TestL10nEsAeatVerifactuBase):
             self.assertEqual(
                 actual_params[key][0],
                 str(expected_value),
-                f"QR URL parameter '{key}' should have value '{expected_value}', got '{actual_params[key][0]}' instead.",
+                f"QR URL parameter '{key}' should have value '{expected_value}', "
+                "got '{actual_params[key][0]}' instead.",
             )
 
     def test_verifactu_qr_code_generation_on_draft(self):

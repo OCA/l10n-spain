@@ -2,10 +2,11 @@
 # Copyright 2024 Aures Tic - Jose Zambudio <jose@aurestic.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import pytz
 from collections import OrderedDict
 from datetime import datetime
 from hashlib import sha256
+
+import pytz
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
