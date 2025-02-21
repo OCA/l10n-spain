@@ -8,7 +8,7 @@
         <field name="model">l10n.es.aeat.mod592.report.line.manufacturer</field>
         <field name="arch" type="xml">
             <tree decoration-danger="entries_ok==False">
-                <field name="sequence" invisible="1" />
+                <field name="sequence" column_invisible="1" />
                 <field name="entry_number" optional="show" />
                 <field name="stock_move_id" optional="show" />
                 <field name="date_done" optional="show" />
@@ -21,7 +21,7 @@
                 <field name="kgs" optional="show" />
                 <field name="no_recycling_kgs" optional="show" />
                 <field name="entry_note" optional="show" />
-                <field name="entries_ok" invisible="1" />
+                <field name="entries_ok" column_invisible="1" />
                 <field name="error_text" optional="hide" />
             </tree>
         </field>
@@ -35,7 +35,7 @@
                 <group>
                     <field
                         name="error_text"
-                        attrs="{'invisible': [('entries_ok', '=', True)]}"
+                        invisible="entries_ok"
                         class="text-danger"
                     />
                     <field name="entry_number" />
@@ -51,12 +51,6 @@
                     <field name="entry_note" />
                     <field name="sequence" invisible="1" />
                     <field name="entries_ok" invisible="1" />
-                    <field name="error_text" optional="show" />
-                    <field
-                        name="error_text"
-                        attrs="{'invisible': [('entries_ok', '=', True)]}"
-                        optional="hide"
-                    />
                     <field name="report_id" invisible="1" />
                 </group>
             </form>

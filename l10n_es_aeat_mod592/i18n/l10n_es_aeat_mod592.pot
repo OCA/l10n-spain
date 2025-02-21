@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,6 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/mod592_manufacturer.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__concept__1
 #, python-format
@@ -21,6 +22,7 @@ msgid "(1) Initial existence"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/mod592_acquirer.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__concept__1
 #, python-format
@@ -28,6 +30,7 @@ msgid "(1) Intra-community acquisition"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__supplier_document_type__1
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__supplier_document_type__1
@@ -38,6 +41,7 @@ msgid "(1) NIF or Spanish NIE"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__supplier_document_type__2
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__supplier_document_type__2
@@ -48,6 +52,7 @@ msgid "(2) Intra-Community VAT NIF"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/mod592_manufacturer.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__concept__2
 #, python-format
@@ -55,6 +60,7 @@ msgid "(2) Manufacturing"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/mod592_acquirer.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__concept__2
 #, python-format
@@ -62,6 +68,7 @@ msgid "(2) Shipping outside Spanish territory"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/mod592_acquirer.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__concept__3
 #, python-format
@@ -69,6 +76,7 @@ msgid "(3) Inadequacy or destruction"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__supplier_document_type__3
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__supplier_document_type__3
@@ -79,15 +87,17 @@ msgid "(3) Others"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/mod592_manufacturer.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__concept__3
 #, python-format
 msgid ""
-"(3) Return of products for destruction or reincorporation into the\n"
-"                manufacturing process"
+"(3) Return of products for destruction or reincorporation into the "
+"manufacturing process"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/mod592_manufacturer.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__concept__4
 #, python-format
@@ -95,6 +105,7 @@ msgid "(4) Delivery or making available of the products accounted for"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/mod592_acquirer.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__concept__4
 #, python-format
@@ -104,15 +115,17 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/mod592_manufacturer.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__concept__5
 #, python-format
 msgid ""
-"(5) Other cancellations of the products accounted for other than\n"
-"                their delivery or availability"
+"(5) Other cancellations of the products accounted for other than their "
+"delivery or availability"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__product_key__a
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__product_key__a
@@ -124,6 +137,7 @@ msgid "(A) Non-reusable"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__fiscal_manufacturer__a
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_manufacturer__a
@@ -133,6 +147,7 @@ msgid "(A) Subjection and non-exemption "
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__fiscal_acquirer__a
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_acquirer__a
@@ -142,6 +157,7 @@ msgid "(A) Subjection and non-exemption Law 7/2022, of April 8"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__fiscal_acquirer__b
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_acquirer__b
@@ -151,6 +167,7 @@ msgid "(B) Non-subjection article 73 c) Law 7/2022, of April 8"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__fiscal_manufacturer__b
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_manufacturer__b
@@ -160,6 +177,7 @@ msgid "(B) Not subject to article 73 a) Law 7/2022, of April 8"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__product_key__b
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__product_key__b
@@ -171,6 +189,7 @@ msgid "(B) Semi-finished"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__fiscal_manufacturer__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_manufacturer__c
@@ -180,6 +199,7 @@ msgid "(C) Not subject to article 73 b) Law 7/2022, of April 8"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__fiscal_acquirer__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_acquirer__c
@@ -189,6 +209,7 @@ msgid "(C) Not subject to article 73 d) Law 7/2022, of April 8"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__product_key__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__product_key__c
@@ -200,6 +221,7 @@ msgid "(C) Plastic product intended to allow the closure"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__fiscal_acquirer__d
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_acquirer__d
@@ -209,6 +231,7 @@ msgid "(D) Exemption article 75 a) 1º Law 7/2022, of April 8"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__fiscal_manufacturer__d
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_manufacturer__d
@@ -218,6 +241,7 @@ msgid "(D) Non-subjection article 73 c) Law 7/2022, of April 8"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__fiscal_acquirer__e
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_acquirer__e
@@ -227,6 +251,7 @@ msgid "(E) Exemption article 75 a) 2º Law 7/2022, of April 8"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__fiscal_manufacturer__e
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_manufacturer__e
@@ -236,6 +261,7 @@ msgid "(E) Not subject to article 73 d) Law 7/2022, of April 8"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__fiscal_manufacturer__f
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_manufacturer__f
@@ -245,6 +271,7 @@ msgid "(F) Exemption article 75 a) 1º Law 7/2022, of April 8"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__fiscal_acquirer__f
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_acquirer__f
@@ -254,6 +281,7 @@ msgid "(F) Exemption article 75 a) 3º Law 7/2022, of April 8"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__fiscal_manufacturer__g
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_manufacturer__g
@@ -263,6 +291,7 @@ msgid "(G) Exemption article 75 a) 2º Law 7/2022, of April 8"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__fiscal_acquirer__g
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_acquirer__g
@@ -272,6 +301,7 @@ msgid "(G) Exemption article 75 b) Law 7/2022, of April 8"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__fiscal_manufacturer__h
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_manufacturer__h
@@ -281,6 +311,7 @@ msgid "(H) Exemption article 75 a) 3º Law 7/2022, of April 8"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__fiscal_acquirer__h
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_acquirer__h
@@ -290,6 +321,7 @@ msgid "(H) Exemption article 75 c) Law 7/2022, of April 8"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__fiscal_manufacturer__i
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_manufacturer__i
@@ -299,6 +331,7 @@ msgid "(I) Exemption article 75 c) Law 7/2022, of April 8"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__fiscal_acquirer__i
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_acquirer__i
@@ -308,6 +341,7 @@ msgid "(I) Exemption article 75 d) Law 7/2022, of April 8"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__fiscal_acquirer__j
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_acquirer__j
@@ -317,6 +351,7 @@ msgid "(J) Exemption article 75 e) Law 7/2022, of April 8"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__fiscal_manufacturer__j
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_manufacturer__j
@@ -326,6 +361,7 @@ msgid "(J) Exemption article 75 g) 1º Law 7/2022, of April 8"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__fiscal_acquirer__k
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_acquirer__k
@@ -335,6 +371,7 @@ msgid "(K) Exemption article 75 f) Law 7/2022, of April 8"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__fiscal_manufacturer__k
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_manufacturer__k
@@ -344,6 +381,7 @@ msgid "(K) Exemption article 75 g) 2º Law 7/2022, of April 8"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__fiscal_acquirer__l
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_acquirer__l
@@ -353,6 +391,7 @@ msgid "(L) Exemption article 75 g) 1º Law 7/2022, of April 8"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__fiscal_acquirer__m
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__plastic_tax_regime_acquirer__m
@@ -433,6 +472,7 @@ msgid "Account entry"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/product_product.py:0
 #: code:addons/l10n_es_aeat_mod592/models/product_template.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__tax_plastic_type__acquirer
@@ -442,6 +482,7 @@ msgid "Acquirer"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/report/l10n_es_aeat_mod592_xlsx.py:0
 #, python-format
 msgid "Acquirer Items"
@@ -499,6 +540,7 @@ msgid "Activity Type Icon"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/mod592.py:0
 #, python-format
 msgid ""
@@ -527,6 +569,7 @@ msgid "Bank account"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/product_product.py:0
 #: code:addons/l10n_es_aeat_mod592/models/product_template.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__tax_plastic_type__both
@@ -795,7 +838,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_needaction
-#: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
@@ -837,13 +879,6 @@ msgid "L.R. VAT number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__write_uid
@@ -869,11 +904,7 @@ msgid "Legal representative VAT:"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_main_attachment_id
-msgid "Main Attachment"
-msgstr ""
-
-#. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/product_product.py:0
 #: code:addons/l10n_es_aeat_mod592/models/product_template.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_product__tax_plastic_type__manufacturer
@@ -883,6 +914,7 @@ msgid "Manufacturer"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/report/l10n_es_aeat_mod592_xlsx.py:0
 #, python-format
 msgid "Manufacturer Items"
@@ -1019,17 +1051,12 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_needaction_counter
-msgid "Number of messages which requires an action"
+msgid "Number of messages requiring action"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
-
-#. module: l10n_es_aeat_mod592
-#: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_unread_counter
-msgid "Number of unread messages"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
@@ -1116,7 +1143,7 @@ msgid "Previous declaration number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
-#: model:ir.model,name:l10n_es_aeat_mod592.model_product_product
+#: model:ir.model,name:l10n_es_aeat_mod592.model_product_template
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__product_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__product_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_mixin__product_id
@@ -1131,15 +1158,15 @@ msgid "Product Key"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
-#: model:ir.model,name:l10n_es_aeat_mod592.model_product_template
-msgid "Product Template"
-msgstr ""
-
-#. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__product_uom_qty
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__product_uom_qty
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_mixin__product_uom_qty
 msgid "Product Uom Qty"
+msgstr ""
+
+#. module: l10n_es_aeat_mod592
+#: model:ir.model,name:l10n_es_aeat_mod592.model_product_product
+msgid "Product Variant"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
@@ -1256,12 +1283,18 @@ msgid "Surnames and name contact:"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__tax_agency_ids
+msgid "Tax Agency"
+msgstr ""
+
+#. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_product_product__tax_plastic_type
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_product_template__tax_plastic_type
 msgid "Tax Plastic Type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/product_product.py:0
 #: code:addons/l10n_es_aeat_mod592/models/product_template.py:0
 #, python-format
@@ -1390,16 +1423,6 @@ msgid "Type of the exception activity on record."
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_unread
-msgid "Unread Messages"
-msgstr ""
-
-#. module: l10n_es_aeat_mod592
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr ""
-
-#. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__company_vat
 msgid "VAT number"
 msgstr ""
@@ -1447,42 +1470,49 @@ msgid "Weiht non reclycable"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/mod592_acquirer.py:0
 #, python-format
 msgid "Without VAT"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/mod592_line_mixin.py:0
 #, python-format
 msgid "Without Weiht"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/mod592_line_mixin.py:0
 #, python-format
 msgid "Without Weiht non recyclable"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/mod592_manufacturer.py:0
 #, python-format
 msgid "Without document number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/mod592_line_mixin.py:0
 #, python-format
 msgid "Without entrie number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/mod592_line_mixin.py:0
 #, python-format
 msgid "Without product key"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/mod592_acquirer.py:0
 #: code:addons/l10n_es_aeat_mod592/models/mod592_manufacturer.py:0
 #, python-format
@@ -1490,12 +1520,14 @@ msgid "Without regime"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/mod592_manufacturer.py:0
 #, python-format
 msgid "Without supplier document"
 msgstr ""
 
 #. module: l10n_es_aeat_mod592
+#. odoo-python
 #: code:addons/l10n_es_aeat_mod592/models/mod592_acquirer.py:0
 #: code:addons/l10n_es_aeat_mod592/models/mod592_manufacturer.py:0
 #, python-format

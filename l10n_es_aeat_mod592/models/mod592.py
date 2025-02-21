@@ -311,7 +311,7 @@ class L10nEsAeatmod592Report(models.Model):
                 acquirer_lines = []
                 for sm in item._get_acquirer_moves():
                     acquirer_line = item.acquirer_line_ids.filtered(
-                        lambda x: x.stock_move_id == sm
+                        lambda x, sm=sm: x.stock_move_id == sm
                     )
                     acquirer_vals = {"stock_move_id": sm.id}
                     if acquirer_line:
@@ -324,7 +324,7 @@ class L10nEsAeatmod592Report(models.Model):
                 manufacturer_lines = []
                 for sm in item._get_manufacturer_moves():
                     manufacturer_line = item.manufacturer_line_ids.filtered(
-                        lambda x: x.stock_move_id == sm
+                        lambda x, sm=sm: x.stock_move_id == sm
                     )
                     m_vals = {"stock_move_id": sm.id}
                     if manufacturer_line:
@@ -332,7 +332,6 @@ class L10nEsAeatmod592Report(models.Model):
                     else:
                         manufacturer_lines.append((0, 0, m_vals))
                 item.manufacturer_line_ids = manufacturer_lines
-        item.recompute()
         return res
 
     def button_recover(self):
