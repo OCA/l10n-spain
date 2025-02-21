@@ -7,9 +7,9 @@
         <field name="model">l10n.es.aeat.mod303.report</field>
         <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree" />
         <field name="arch" type="xml">
-            <tree position="attributes">
-            <attribute name="string">AEAT 303 reports</attribute>
-        </tree>
+            <list position="attributes">
+                <attribute name="string">AEAT 303 reports</attribute>
+            </list>
             <field name="period_type" position="after">
                 <field name="total_devengado" />
                 <field name="total_deducir" />
@@ -27,7 +27,7 @@
                 <field name="use_aeat_account" />
             </field>
             <field name="partner_bank_id" position="attributes">
-                <attribute name="invisble">
+                <attribute name="invisible">
                     use_aeat_account or result_type not in ('D', 'X', 'I', 'U')
                 </attribute>
                 <attribute name="required">
@@ -238,8 +238,8 @@
                             invisible="exonerated_390 == '2'"
                             options="{'currency_field': 'currency_id'}"
                         />
-                    <field name="result_type" />
-                </group>
+                        <field name="result_type" />
+                    </group>
                 </group>
                 <notebook invisible="state == 'draft'">
                     <page string="Valued tax lines">
@@ -251,22 +251,14 @@
                 </notebook>
             </group>
             <form position="inside">
-                <div class="oe_chatter">
-                    <field
-                        name="message_follower_ids"
-                        widget="mail_followers"
-                        groups="base.group_user"
-                    />
-                    <field name="activity_ids" widget="mail_activity" />
-                    <field name="message_ids" widget="mail_thread" />
-                </div>
+                <chatter />
             </form>
         </field>
     </record>
     <record id="action_l10n_es_aeat_mod303_report" model="ir.actions.act_window">
         <field name="name">AEAT model 303</field>
         <field name="res_model">l10n.es.aeat.mod303.report</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help">Create and query AEAT Model 303 reports</field>
     </record>
     <record
@@ -274,7 +266,7 @@
         id="action_l10n_es_aeat_mod303_report_tree"
     >
         <field name="sequence" eval="2" />
-        <field name="view_mode">tree</field>
+        <field name="view_mode">list</field>
         <field name="view_id" ref="view_l10n_es_aeat_mod303_report_tree" />
         <field name="act_window_id" ref="action_l10n_es_aeat_mod303_report" />
     </record>

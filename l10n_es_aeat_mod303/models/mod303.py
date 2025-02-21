@@ -5,7 +5,7 @@
 # Copyright 2014-2023 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 from odoo.tools import float_compare
 
 _ACCOUNT_PATTERN_MAP = {
@@ -160,7 +160,7 @@ class L10nEsAeatMod303Report(models.Model):
         comodel_name="account.account",
         string="Counterpart account",
         compute="_compute_counterpart_account_id",
-        domain="[('company_id', '=', company_id)]",
+        domain="[('company_ids', '=', company_id)]",
         store=True,
         readonly=False,
     )
@@ -316,7 +316,7 @@ class L10nEsAeatMod303Report(models.Model):
                     mod303.exception_msg += "\n"
                 else:
                     mod303.exception_msg = ""
-                mod303.exception_msg += _(
+                mod303.exception_msg += self.env._(
                     "In previous declarations this year you reported a "
                     "Result Type 'To Compensate'. You might need to fill "
                     "field '[67] Fees to compensate' in this declaration."
@@ -325,11 +325,19 @@ class L10nEsAeatMod303Report(models.Model):
     @api.depends("company_id", "result_type")
     def _compute_counterpart_account_id(self):
         for record in self:
-            code = ("%s%%" % _ACCOUNT_PATTERN_MAP.get(record.result_type, "4750"),)
-            record.counterpart_account_id = self.env["account.account"].search(
-                [("code", "=like", code[0]), ("company_id", "=", record.company_id.id)],
-                limit=1,
+            code = (f"{_ACCOUNT_PATTERN_MAP.get(record.result_type, '4750')}%",)
+            account = (
+                self.env["account.account"]
+                .with_company(record.company_id)
+                .search(
+                    [
+                        ("code", "=like", code[0]),
+                        ("company_ids", "=", record.company_id.id),
+                    ],
+                    limit=1,
+                )
             )
+            record.counterpart_account_id = account
 
     @api.depends("period_type")
     def _compute_regularizacion_anual(self):
@@ -515,7 +523,7 @@ class L10nEsAeatMod303Report(models.Model):
         msg = ""
         for mod303 in self:
             if mod303.result_type == "D" and not mod303.partner_bank_id:
-                msg = _("Select an account for receiving the money")
+                msg = self.env._("Select an account for receiving the money")
         if msg:
             raise exceptions.UserError(msg)
         return super().button_confirm()
@@ -530,7 +538,9 @@ class L10nEsAeatMod303Report(models.Model):
             )
         ):
             raise exceptions.ValidationError(
-                _("The fee to compensate must be indicated as a positive number.")
+                self.env._(
+                    "The fee to compensate must be indicated as a positive number."
+                )
             )
 
     def _get_tax_lines(self, date_start, date_end, map_line):
@@ -570,14 +580,18 @@ class L10nEsAeatMod303Report(models.Model):
         lines = super()._prepare_regularization_extra_move_lines()
         if not (self.result_type in {"I", "G", "U"} and self.cuota_compensar):
             return lines
-        code = ("%s%%" % _ACCOUNT_PATTERN_MAP.get("C", "4700"),)
-        compensation_account_id = self.env["account.account"].search(
-            [("code", "=like", code[0]), ("company_id", "=", self.company_id.id)],
-            limit=1,
+        code = (f"{_ACCOUNT_PATTERN_MAP.get('C', '4700')}%",)
+        compensation_account_id = (
+            self.env["account.account"]
+            .with_company(self.company_id)
+            .search(
+                [("code", "=like", code[0]), ("company_ids", "=", self.company_id.id)],
+                limit=1,
+            )
         )
         lines.append(
             {
-                "name": _("Compensation from previous periods"),
+                "name": self.env._("Compensation from previous periods"),
                 "account_id": compensation_account_id.id,
                 "partner_id": self.env.ref("l10n_es_aeat.res_partner_aeat").id,
                 "debit": 0.0,
