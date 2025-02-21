@@ -93,7 +93,7 @@ class TestL10nEsAeatVerifactuBase(TestL10nEsAeatModBase, TestL10nEsAeatCertifica
         self.assertEqual(hash_code, expected_hash)
 
     def _create_and_test_invoice_verifactu_dict(
-        self, inv_type, lines, extra_vals, module=None
+        self, name, inv_type, lines, extra_vals, module=None
     ):
         vals = []
         tax_names = []
@@ -111,6 +111,7 @@ class TestL10nEsAeatVerifactuBase(TestL10nEsAeatModBase, TestL10nEsAeatCertifica
             vals.append({"price_unit": line[0], "taxes": taxes})
         return self._compare_verifactu_dict(
             "verifactu_{}_{}_dict.json".format(inv_type, "_".join(tax_names)),
+            name,
             inv_type,
             vals,
             extra_vals=extra_vals,
@@ -118,14 +119,14 @@ class TestL10nEsAeatVerifactuBase(TestL10nEsAeatModBase, TestL10nEsAeatCertifica
         )
 
     def _compare_verifactu_dict(
-        self, json_file, inv_type, lines, extra_vals=None, module=None
+        self, json_file, name, inv_type, lines, extra_vals=None, module=None
     ):
         """Helper method for creating an invoice according arguments, and
         comparing the expected verifactu dict with .
         """
         module = module or "l10n_es_aeat_verifactu"
         vals = {
-            "name": "TEST001",
+            "name": name,
             "partner_id": self.partner.id,
             "invoice_date": "2024-01-01",
             "move_type": inv_type,
@@ -149,6 +150,7 @@ class TestL10nEsAeatVerifactuBase(TestL10nEsAeatModBase, TestL10nEsAeatCertifica
         if extra_vals:
             vals.update(extra_vals)
         invoice = self.env["account.move"].create(vals)
+        invoice.action_post()
         result_dict = invoice._get_verifactu_invoice_dict()
         result_dict["RegistroAlta"].pop("FechaHoraHusoGenRegistro")
         result_dict["RegistroAlta"].pop("TipoHuella")
@@ -170,6 +172,7 @@ class TestL10nEsAeatVerifactu(TestL10nEsAeatVerifactuBase):
     def test_get_verifactu_invoice_data(self):
         mapping = [
             (
+                "TEST001",
                 "out_invoice",
                 [(100, ["s_iva10b"]), (200, ["s_iva21s"])],
                 {
@@ -178,6 +181,7 @@ class TestL10nEsAeatVerifactu(TestL10nEsAeatVerifactuBase):
                 },
             ),
             (
+                "TEST002",
                 "out_refund",
                 [(100, ["s_iva10b"]), (100, ["s_iva10b"]), (200, ["s_iva21s"])],
                 {
@@ -186,6 +190,7 @@ class TestL10nEsAeatVerifactu(TestL10nEsAeatVerifactuBase):
                 },
             ),
             (
+                "TEST003",
                 "out_invoice",
                 [(200, ["s_iva21s", "s_req52"])],
                 {
@@ -194,8 +199,8 @@ class TestL10nEsAeatVerifactu(TestL10nEsAeatVerifactuBase):
                 },
             ),
         ]
-        for inv_type, lines, extra_vals in mapping:
-            self._create_and_test_invoice_verifactu_dict(inv_type, lines, extra_vals)
+        for name, inv_type, lines, extra_vals in mapping:
+            self._create_and_test_invoice_verifactu_dict(name, inv_type, lines, extra_vals)
         return
 
 
