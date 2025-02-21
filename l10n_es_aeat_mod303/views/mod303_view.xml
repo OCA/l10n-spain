@@ -8,8 +8,8 @@
         <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree" />
         <field name="arch" type="xml">
             <tree position="attributes">
-            <attribute name="string">AEAT 303 reports</attribute>
-        </tree>
+                <attribute name="string">AEAT 303 reports</attribute>
+            </tree>
             <field name="period_type" position="after">
                 <field name="total_devengado" />
                 <field name="total_deducir" />
@@ -238,8 +238,8 @@
                             invisible="exonerated_390 == '2'"
                             options="{'currency_field': 'currency_id'}"
                         />
-                    <field name="result_type" />
-                </group>
+                        <field name="result_type" />
+                    </group>
                 </group>
                 <notebook invisible="state == 'draft'">
                     <page string="Valued tax lines">
