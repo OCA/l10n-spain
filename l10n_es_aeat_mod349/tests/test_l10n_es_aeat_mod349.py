@@ -20,7 +20,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
     # Do not forget to include '--log-handler aeat:DEBUG' in Odoo command line
     debug = False
     taxes_sale = {
-        "S_IVA0_IC": (2400, 0),
+        "S_IVA0_G_I": (2400, 0),
     }
     taxes_purchase = {
         "P_IVA21_IC_BC": (150, 0),
@@ -358,10 +358,9 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         _logger.debug("Calculate AEAT 349 1T 2023")
         model349_errors.button_calculate()
         partner_record = model349_errors.partner_record_ids.filtered(
-            lambda x: x.partner_vat == self.customer.vat
+            lambda x: x.partner_id == self.customer
         )
         self.assertTrue(partner_record.partner_record_ok)
-
         # EL vat
         self.customer.write(
             {"vat": "EL12345670", "country_id": self.env.ref("base.gr").id}
@@ -371,7 +370,6 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
             lambda x: x.partner_vat == self.customer.vat
         )
         self.assertTrue(partner_record.partner_record_ok)
-
         # No vat
         self.customer.write({"vat": False, "country_id": self.env.ref("base.be").id})
         model349_errors.button_recalculate()
@@ -381,12 +379,11 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         self.assertFalse(partner_record.partner_record_ok)
         expected_note = _("Without VAT")
         self.assertIn(expected_note, partner_record.error_text)
-
         # No country code in vat and no country
         self.customer.write({"vat": "12345670", "country_id": False})
         model349_errors.button_recalculate()
         partner_record = model349_errors.partner_record_ids.filtered(
-            lambda x: x.partner_vat == self.customer.vat
+            lambda x: x.partner_id == self.customer
         )
         self.assertFalse(partner_record.partner_record_ok)
         expected_notes = [
@@ -395,7 +392,6 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         ]
         for expected_note in expected_notes:
             self.assertIn(expected_note, partner_record.error_text)
-
         # No country code in vat and BE country
         self.customer.write(
             {"vat": "0477472701", "country_id": self.env.ref("base.be").id}
