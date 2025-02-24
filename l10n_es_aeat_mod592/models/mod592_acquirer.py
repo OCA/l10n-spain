@@ -90,17 +90,18 @@ class L10nEsAeatmod592LineAcquirer(models.Model):
 
     def _get_csv_report_info_mapped(self, data):
         info_mapped = {
-            "Número de asiento": "entry_number",
+            "Número Asiento": "entry_number",
             "Fecha Hecho Contabilizado": "date_done",
             "Concepto": "concept",
             "Clave Producto": "product_key",
-            "Descripción Producto": "fiscal_acquirer",
+            "Descripción Producto": "product_description",
+            "Régimen Fiscal": "fiscal_acquirer",
             "Justificante": "proof",
+            "Prov./Dest.: Tipo Documento": "supplier_document_type",
+            "Prov./Dest.: Nº documento": "supplier_document_number",
+            "Prov./Dest.: Razón social": "supplier_social_reason",
             "Kilogramos": "kgs",
             "Kilogramos No Reciclados": "no_recycling_kgs",
-            "Prov./Dest.: Tipo Documento": "supplier_document_type",
-            "Prov./Dest.: Nº Documento": "supplier_document_number",
-            "Prov./Dest.: Razón Social": "supplier_social_reason",
             "Observaciones": "entry_note",
         }
         res = {}
@@ -114,6 +115,6 @@ class L10nEsAeatmod592LineAcquirer(models.Model):
     def _get_csv_report_info(self):
         self.ensure_one()
         data = super()._get_csv_report_info()
-        data["concept"] = self.concept
+        data["product_description"] = ""  # Campo ignorado para adquirientes
         data["fiscal_acquirer"] = self.fiscal_acquirer
         return self._get_csv_report_info_mapped(data)

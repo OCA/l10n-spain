@@ -37,9 +37,6 @@ class L10nEsAeatmod592LineManufacturer(models.Model):
         compute="_compute_concept",
         store=True,
     )
-    product_description = fields.Char(
-        string="Product description", compute="_compute_product_description"
-    )
     fiscal_manufacturer = fields.Selection(
         selection=FISCAL_MANUFACTURERS,
         string="Fiscal regime manufacturer",
@@ -75,11 +72,6 @@ class L10nEsAeatmod592LineManufacturer(models.Model):
             elif dest_loc_scrap:
                 concept = "5"
             item.concept = concept
-
-    @api.depends("product_id")
-    def _compute_product_description(self):
-        for item in self:
-            item.product_description = item.product_id.name
 
     @api.depends("product_id")
     def _compute_fiscal_manufacturer(self):
@@ -135,7 +127,5 @@ class L10nEsAeatmod592LineManufacturer(models.Model):
     def _get_csv_report_info(self):
         self.ensure_one()
         data = super()._get_csv_report_info()
-        data["concept"] = self.concept
-        data["product_description"] = self.product_description
         data["fiscal_manufacturer"] = self.fiscal_manufacturer
         return self._get_csv_report_info_mapped(data)
