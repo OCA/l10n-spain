@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,10 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: delivery_dhl_parcel
+#. odoo-python
 #: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
 #, python-format
 msgid ""
-"%(text)s\n"
+"%(error)s\n"
 "%(message)s"
 msgstr ""
 
@@ -67,6 +68,7 @@ msgid "DHL Parcel"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#. odoo-python
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
 #, python-format
@@ -77,6 +79,7 @@ msgid ""
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#. odoo-python
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
 #, python-format
 msgid "DHL Parcel Cancellation failed with reason: %s"
@@ -88,6 +91,7 @@ msgid "DHL Parcel Configuration"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#. odoo-python
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
 #, python-format
 msgid "DHL Parcel End Day"
@@ -99,6 +103,7 @@ msgid "DHL Parcel End day"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#. odoo-python
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
 #, python-format
 msgid "DHL Parcel Expedition with reference %s cancelled"
@@ -120,6 +125,7 @@ msgid "DHL Parcel Service"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#. odoo-python
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
 #, python-format
 msgid ""
@@ -143,6 +149,7 @@ msgid "DHL Parcel incoterms"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#. odoo-python
 #: code:addons/delivery_dhl_parcel/models/stock_picking.py:0
 #, python-format
 msgid "DHL Parcel label for %s"
@@ -185,6 +192,7 @@ msgid "Filename"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#. odoo-python
 #: code:addons/delivery_dhl_parcel/models/stock_picking.py:0
 #, python-format
 msgid "Held shipment for {}"
@@ -224,11 +232,6 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_label_format
 msgid "Label format"
-msgstr ""
-
-#. module: delivery_dhl_parcel
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: delivery_dhl_parcel
@@ -272,6 +275,7 @@ msgid "Release DHL Parcel shipment"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#. odoo-python
 #: code:addons/delivery_dhl_parcel/models/stock_picking.py:0
 #, python-format
 msgid "Released shipment for {}"
@@ -283,11 +287,10 @@ msgid "Sales Order"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#. odoo-python
 #: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
 #, python-format
-msgid ""
-"Server not reachable, please try again later\n"
-"%(text)s"
+msgid "Server not reachable, please try again later"
 msgstr ""
 
 #. module: delivery_dhl_parcel
@@ -296,11 +299,10 @@ msgid "Shipping Methods"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#. odoo-python
 #: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
 #, python-format
-msgid ""
-"Timeout: the server did not reply within 60s\n"
-"%(text)s"
+msgid "Timeout: the server did not reply within 60s"
 msgstr ""
 
 #. module: delivery_dhl_parcel
@@ -309,6 +311,7 @@ msgid "Transfer"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#. odoo-python
 #: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
 #, python-format
 msgid "Unsupported request type, please only use 'GET' or 'POST'"
