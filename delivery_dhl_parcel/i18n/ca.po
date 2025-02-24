@@ -17,6 +17,15 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: delivery_dhl_parcel
+#. odoo-python
+#: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
+#, python-format
+msgid ""
+"%(error)s\n"
+"%(message)s"
+msgstr ""
+
+#. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__all_customer_accounts
 msgid "All customer accounts"
 msgstr ""
@@ -62,6 +71,7 @@ msgid "DHL Parcel"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#. odoo-python
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
 #, python-format
 msgid ""
@@ -72,6 +82,7 @@ msgid ""
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#. odoo-python
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
 #, python-format
 msgid "DHL Parcel Cancellation failed with reason: %s"
@@ -83,6 +94,7 @@ msgid "DHL Parcel Configuration"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#. odoo-python
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
 #, python-format
 msgid "DHL Parcel End Day"
@@ -94,6 +106,7 @@ msgid "DHL Parcel End day"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#. odoo-python
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
 #, python-format
 msgid "DHL Parcel Expedition with reference %s cancelled"
@@ -115,11 +128,12 @@ msgid "DHL Parcel Service"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#. odoo-python
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
 #, python-format
 msgid ""
 "DHL Parcel Shipping extra info:\n"
-"Origin: {}, Customer: {}, AWB: {}, LP: {}"
+"Origin: %(origin)s, Customer: %(customer)s, AWB: %(awb)s, LP: %(lp)s"
 msgstr ""
 
 #. module: delivery_dhl_parcel
@@ -138,6 +152,7 @@ msgid "DHL Parcel incoterms"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#. odoo-python
 #: code:addons/delivery_dhl_parcel/models/stock_picking.py:0
 #, python-format
 msgid "DHL Parcel label for %s"
@@ -159,10 +174,7 @@ msgid "DHL Product"
 msgstr ""
 
 #. module: delivery_dhl_parcel
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__display_name
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__display_name
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_sale_order__display_name
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_stock_picking__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -183,6 +195,7 @@ msgid "Filename"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#. odoo-python
 #: code:addons/delivery_dhl_parcel/models/stock_picking.py:0
 #, python-format
 msgid "Held shipment for {}"
@@ -194,10 +207,7 @@ msgid "Hold DHL Parcel shipment"
 msgstr ""
 
 #. module: delivery_dhl_parcel
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__id
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__id
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_sale_order__id
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_stock_picking__id
 msgid "ID"
 msgstr "ID"
 
@@ -225,14 +235,6 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_label_format
 msgid "Label format"
-msgstr ""
-
-#. module: delivery_dhl_parcel
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier____last_update
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard____last_update
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_sale_order____last_update
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_stock_picking____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: delivery_dhl_parcel
@@ -276,6 +278,7 @@ msgid "Release DHL Parcel shipment"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#. odoo-python
 #: code:addons/delivery_dhl_parcel/models/stock_picking.py:0
 #, python-format
 msgid "Released shipment for {}"
@@ -287,6 +290,7 @@ msgid "Sales Order"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#. odoo-python
 #: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
 #, python-format
 msgid "Server not reachable, please try again later"
@@ -298,6 +302,7 @@ msgid "Shipping Methods"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#. odoo-python
 #: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
 #, python-format
 msgid "Timeout: the server did not reply within 60s"
@@ -309,6 +314,7 @@ msgid "Transfer"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#. odoo-python
 #: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
 #, python-format
 msgid "Unsupported request type, please only use 'GET' or 'POST'"
