@@ -20,6 +20,15 @@ class TestL10nEsAeatSiiForceType(common.TransactionCase):
             )
         )
         cls.company = cls.env.ref("base.main_company")
+        if not cls.company.chart_template_id:
+            # Load a CoA if there's none in the company
+            coa = cls.env.ref("l10n_generic_coa.configurable_chart_template", False)
+            if not coa:
+                # Load the first available CoA
+                coa = cls.env["account.chart.template"].search(
+                    [("visible", "=", True)], limit=1
+                )
+            coa.try_loading(company=cls.company, install_demo=False)
         cls.company.sii_enabled = True
         cls.company.vat = "ES98765432M"
         cls.fiscal_position = cls.env["account.fiscal.position"].create(

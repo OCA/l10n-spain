@@ -10,6 +10,7 @@ import xmlsig
 from lxml import etree
 
 from odoo import exceptions, fields
+from odoo.tests import tagged
 from odoo.tools.misc import mute_logger
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
@@ -17,6 +18,7 @@ from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
 )
 
 
+@tagged("post_install", "-at_install")
 class CommonTestBase(TestL10nEsAeatCertificateBase):
     @classmethod
     def setUpClass(cls):
@@ -29,6 +31,7 @@ class CommonTestBase(TestL10nEsAeatCertificateBase):
                 "amount": 21,
                 "type_tax_use": "sale",
                 "facturae_code": "01",
+                "country_id": cls.env.ref("base.es").id,
             }
         )
 
@@ -57,7 +60,16 @@ class CommonTestBase(TestL10nEsAeatCertificateBase):
         )
         main_company = self.env.ref("base.main_company")
         main_company.vat = "ESA12345674"
-        main_company.partner_id.country_id = self.env.ref("base.uk")
+        main_company.partner_id.country_id = self.env.ref("base.es")
+        if not main_company.chart_template_id:
+            # Load a CoA if there's none in the company
+            coa = cls.env.ref("l10n_generic_coa.configurable_chart_template", False)
+            if not coa:
+                # Load the first available CoA
+                coa = cls.env["account.chart.template"].search(
+                    [("visible", "=", True)], limit=1
+                )
+            coa.try_loading(company=main_company, install_demo=False)
         self.env["res.currency.rate"].search(
             [("currency_id", "=", main_company.currency_id.id)]
         ).write({"company_id": False})

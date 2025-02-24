@@ -1,14 +1,24 @@
-# Copyright 2021 Tecnativa - Víctor Martínez
+# Copyright 2021,2025 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields
-from odoo.tests import Form, common
+from odoo.tests import Form, common, tagged
 
 
+@tagged("post_install", "-at_install")
 class TestPaymentOrderConfirmingSabadell(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        if not cls.env.company.chart_template_id:
+            # Load a CoA if there's none in current company
+            coa = cls.env.ref("l10n_generic_coa.configurable_chart_template", False)
+            if not coa:
+                # Load the first available CoA
+                coa = cls.env["account.chart.template"].search(
+                    [("visible", "=", True)], limit=1
+                )
+            coa.try_loading(company=cls.env.company, install_demo=False)
         cls.a_expense = cls.env["account.account"].create(
             {
                 "code": "TEA",
