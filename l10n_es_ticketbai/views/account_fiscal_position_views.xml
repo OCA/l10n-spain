@@ -24,7 +24,7 @@
                         />
                     </group>
                     <group name="tbai_vat_exemptions" string="VAT Exemptions">
-                        <field name="tbai_vat_exemption_ids" nolabel="1">
+                        <field name="tbai_vat_exemption_ids" nolabel="1" colspan="2">
                             <tree editable="bottom">
                                 <field name="tax_id" />
                                 <field
