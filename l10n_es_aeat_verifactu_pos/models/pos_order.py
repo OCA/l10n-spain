@@ -1,5 +1,6 @@
 import logging
 from collections import OrderedDict
+from hashlib import sha256
 from time import sleep
 
 import pytz
@@ -87,6 +88,10 @@ class PosOrder(models.Model):
                     raise
                 else:
                     sleep(1)  # Wait 1 second before next try
+        verifactu_hash_values = pos_order._get_verifactu_hash_string()
+        pos_order.verifactu_hash_string = verifactu_hash_values
+        hash_string = sha256(verifactu_hash_values.encode("utf-8"))
+        pos_order.verifactu_hash = hash_string.hexdigest().upper()
 
         if self._should_send_to_verifactu(pos_order):
             pos_order.send_verifactu()
@@ -174,8 +179,8 @@ class PosOrder(models.Model):
         serialNumber = self._get_document_serial_number()
         expeditionDate = self._change_date_format(self._get_document_date())
         documentType = self._get_verifactu_document_type()
-        amountTax = self._get_verifactu_amount_tax()
-        amountTotal = self._get_verifactu_amount_total()
+        amountTax = round(self._get_verifactu_amount_tax(), 2)
+        amountTotal = round(self._get_verifactu_amount_total(), 2)
         previousHash = self._get_verifactu_previous_hash()
         registrationDate = self._get_verifactu_registration_date()
         verifactu_hash_string = (

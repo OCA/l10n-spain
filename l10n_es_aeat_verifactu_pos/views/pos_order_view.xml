@@ -39,9 +39,12 @@
                         />
                         <field name="verifactu_description" />
                         <field name="verifactu_tax_key" />
-                        <field name="verifactu_registration_key" />
-                        <field name="verifactu_hash_string" />
-                        <field name="verifactu_hash" />
+                        <field
+                            name="verifactu_registration_key"
+                            attrs="{'required': [('verifactu_enabled', '=', True)]}"
+                        />
+                        <field name="verifactu_hash_string" readonly="1" />
+                        <field name="verifactu_hash" readonly="1" />
                     </group>
                     <group
                         string="Veri*FACTU Result"
