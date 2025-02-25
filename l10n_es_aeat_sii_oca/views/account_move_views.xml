@@ -55,7 +55,6 @@
                             name="sii_refund_specific_invoice_type"
                             invisible="move_type != 'out_refund'"
                         />
-                        <field name="sii_registration_key_domain" invisible="1" />
                         <field
                             name="sii_registration_key"
                             groups="account.group_account_invoice"
@@ -74,11 +73,6 @@
                             groups="account.group_account_invoice"
                             domain="[('type', '=', sii_registration_key_domain)]"
                             widget="selection"
-                        />
-                        <field
-                            name="sii_registration_key_code"
-                            groups="account.group_account_invoice"
-                            invisible="1"
                         />
                         <label for="sii_send_date" />
                         <div
