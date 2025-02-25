@@ -160,6 +160,7 @@ class RedsysTest(RedsysCommon):
             "Ds_AuthorisationCode": "999999",
             "Ds_Response": "9999",
         }
-        post_data = self._prepare_post_data(values)
-        tx._handle_notification_data("redsys", post_data)
+        with mute_logger("odoo.addons.payment_redsys.models.payment_transaction"):
+            post_data = self._prepare_post_data(values)
+            tx._handle_notification_data("redsys", post_data)
         self.assertEqual(tx.state, "error", "Redsys: response error")
