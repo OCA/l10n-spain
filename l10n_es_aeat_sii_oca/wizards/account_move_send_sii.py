@@ -1,7 +1,7 @@
 # Copyright 2023 Pol Reig <pol.reig@qubiq.es>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import Command, fields, models
 
 
 class SendSIIWizard(models.TransientModel):
@@ -32,6 +32,7 @@ class SendSIIWizard(models.TransientModel):
                 "not_send_without_errors_number": len(not_send_without_errors),
                 "with_errors_number": len(with_errors),
                 "modified_number": len(modified),
+                "account_move_ids": [Command.set(account_moves.ids)],
             }
         )
         return res

@@ -1,7 +1,7 @@
 # Copyright 2017 Ignacio Ibeas <ignacio@acysos.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 
 
 class AeatSiiMap(models.Model):
@@ -42,7 +42,9 @@ class AeatSiiMap(models.Model):
         date_lst = self.search(domain)
         if date_lst:
             raise exceptions.UserError(
-                _("Error! The dates of the record overlap with an existing " "record.")
+                self.env._(
+                    "Error! The dates of the record overlap with an existing " "record."
+                )
             )
 
     name = fields.Char(string="Model", required=True)

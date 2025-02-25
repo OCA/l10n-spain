@@ -1,7 +1,7 @@
 # Copyright 2017 MINORISA (http://www.minorisa.net)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class AeatSiiMappingRegistrationKeys(models.Model):
@@ -15,9 +15,7 @@ class AeatSiiMappingRegistrationKeys(models.Model):
         required=True,
     )
 
-    def name_get(self):
-        vals = []
+    @api.depends("name", "code")
+    def _compute_display_name(self):
         for record in self:
-            name = f"[{record.code}]-{record.name}"
-            vals.append(tuple([record.id, name]))
-        return vals
+            record.display_name = f"[{record.code}]-{record.name}"

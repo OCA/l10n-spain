@@ -11,7 +11,6 @@
                 <attribute name="invisible">type not in ['sale', 'purchase']</attribute>
             </xpath>
             <xpath expr="//field[@name='thirdparty_invoice']" position="after">
-                <field name="company_sii_enabled" invisible="1" />
                 <field
                     name="sii_enabled"
                     invisible="not company_sii_enabled or type not in ['sale', 'purchase']"
