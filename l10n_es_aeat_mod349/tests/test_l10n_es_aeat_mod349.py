@@ -38,9 +38,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
     @classmethod
     def _invoice_refund(cls, invoice, dt, price_unit=None):
         _logger.debug(
-            "Refund {} invoice: date = {}: price_unit = {}".format(
-                invoice.move_type, dt, price_unit or 150.0
-            )
+            f"Refund {invoice.move_type} invoice: date = {dt}: price_unit = {price_unit or 150.0}"
         )
         default_values_list = [
             {"date": dt, "invoice_date": dt, "invoice_payment_term_id": None}
