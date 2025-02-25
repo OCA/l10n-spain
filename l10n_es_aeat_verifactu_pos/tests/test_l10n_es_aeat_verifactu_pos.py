@@ -331,20 +331,28 @@ class TestL10nEsAeatVerifactuPOS(TestL10nEsAeatVerifactuBase):
         second_order_data["data"]["name"] = "Order 0002"
         second_order_data["data"]["uid"] = str(uuid.uuid4())  # New unique ID
         second_order_data["id"] = second_order_data["data"]["uid"]
-        second_order_ids = self.env["pos.order"].create_from_ui([second_order_data])
-        second_order = self.env["pos.order"].browse(second_order_ids[0]["id"])
 
         old_execute = self.cr.execute
         with self.assertRaises(OperationalError):
             with self.cr.savepoint():
                 self.cr.execute = mock_execute
-                second_order._get_chaining_invoice_dict()
+                second_order_ids = self.env["pos.order"].create_from_ui(
+                    [second_order_data]
+                )
         self.cr.execute = old_execute
 
         self.assertEqual(
             self.pos_config.verifactu_last_invoice_id.id,
             first_order.id,
             "Should not update config's last order reference on error",
+        )
+
+        second_order_ids = self.env["pos.order"].create_from_ui([second_order_data])
+        second_order = self.env["pos.order"].browse(second_order_ids[0]["id"])
+        self.assertEqual(
+            self.pos_config.verifactu_last_invoice_id.id,
+            second_order.id,
+            "Should have updates config's last order to second_order",
         )
 
     def test_verifactu_chaining_invoiced_pos_order(self):

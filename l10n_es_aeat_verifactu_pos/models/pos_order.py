@@ -55,7 +55,7 @@ class PosOrder(models.Model):
         pos_order_id = super()._process_order(order, draft, existing_order)
         pos_order = self.env["pos.order"].browse(pos_order_id)
 
-        if not self._should_send_to_verifactu(pos_order):
+        if not self._is_verifactu_order(pos_order):
             return pos_order_id
 
         # TODO: review retry strategy
@@ -63,7 +63,7 @@ class PosOrder(models.Model):
         # from the same PoS Config
         for attempt in range(SEND_TO_VERIFACTU_MAX_RETRIES):
             try:
-                pos_order.send_verifactu()
+                pos_order._set_chaining_invoice()
                 break
             except OperationalError:
                 if attempt == SEND_TO_VERIFACTU_MAX_RETRIES - 1:
@@ -76,16 +76,26 @@ class PosOrder(models.Model):
                         pos_order.id,
                         SEND_TO_VERIFACTU_MAX_RETRIES,
                     )
+                    raise
                 else:
                     sleep(1)  # Wait 1 second before next try
+
+        if self._should_send_to_verifactu(pos_order):
+            pos_order.send_verifactu()
+
         return pos_order_id
+
+    def _is_verifactu_order(self, pos_order):
+        return (
+            pos_order.exists()
+            and not pos_order.to_invoice
+            and pos_order.verifactu_enabled
+        )
 
     def _should_send_to_verifactu(self, pos_order):
         return (
-            not config["test_enable"]
-            and pos_order.exists()
-            and not pos_order.to_invoice
-            and pos_order.verifactu_enabled
+            self._is_verifactu_order(pos_order)
+            and not config["test_enable"]
             and pos_order.state in VERIFACTU_VALID_POS_STATES
         )
 
@@ -204,9 +214,9 @@ class PosOrder(models.Model):
         registroAlta.setdefault("RegistroAlta", inv_dict)
         return registroAlta
 
-    def _get_chaining_invoice_dict(self):
-        """Get the chaining invoice dictionary for POS orders"""
-        inv_dict = {}
+    def _set_chaining_invoice(self):
+        """Set the chaining order"""
+        prev_order = False
         try:
             self.config_id.flush_model(["verifactu_last_invoice_id"])
             self._cr.execute(
@@ -218,22 +228,6 @@ class PosOrder(models.Model):
             prev_order = self.env["pos.order"].browse(result[0]) if result else False
             if prev_order and prev_order.exists():
                 self.verifactu_previous_invoice_id = prev_order
-                if prev_order.is_invoiced and prev_order.account_move.exists():
-                    prev_inv = prev_order.account_move
-                else:
-                    prev_inv = prev_order
-                inv_dict = {
-                    "RegistroAnterior": {
-                        "IDEmisorFactura": prev_inv._get_verifactu_issuer(),
-                        "NumSerieFactura": prev_inv._get_document_serial_number(),
-                        "FechaExpedicionFactura": prev_inv._change_date_format(
-                            prev_inv._get_document_date()
-                        ),
-                        "Huella": prev_inv.verifactu_hash,
-                    }
-                }
-            else:
-                inv_dict = {"PrimerRegistro": "S"}
             self._cr.execute(
                 "UPDATE pos_config SET verifactu_last_invoice_id = %s WHERE id = %s",
                 (self.id, self.config_id.id),
@@ -248,7 +242,23 @@ class PosOrder(models.Model):
                 self.id,
             )
             raise
-        return inv_dict
+        return prev_order
+
+    def _get_chaining_invoice_dict(self):
+        """Get the chaining invoice dictionary for POS orders"""
+        if self.verifactu_previous_invoice_id:
+            prev_order = self.verifactu_previous_invoice_id
+            return {
+                "RegistroAnterior": {
+                    "IDEmisorFactura": prev_order._get_verifactu_issuer(),
+                    "NumSerieFactura": prev_order._get_document_serial_number(),
+                    "FechaExpedicionFactura": prev_order._change_date_format(
+                        prev_order._get_document_date()
+                    ),
+                    "Huella": prev_order.verifactu_hash,
+                }
+            }
+        return {"PrimerRegistro": "S"}
 
     def _get_verifactu_taxes_and_total(self):
         """Get the tax breakdown for Verifactu from POS order lines.
