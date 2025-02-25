@@ -25,10 +25,10 @@ ACTIVITY_CODE_SELECTION = [
     ),
     ("6", "6: Otras actividades no sujetas al IAE"),
 ]
-REPRESENTATIVE_HELP = _("Nombre y apellidos del representante")
-NOTARY_CODE_HELP = _(
-    "Código de la notaría en la que se concedió el poder de representación "
-    "para esta persona."
+REPRESENTATIVE_HELP = "Nombre y apellidos del representante"
+NOTARY_CODE_HELP = (
+    "Código de la notaría en la que se concedió el poder de "
+    "representación para esta persona."
 )
 
 
@@ -513,7 +513,7 @@ class L10nEsAeatMod390Report(models.Model):
                         602,
                         42,  # Recargo de equivalencia
                         44,  # Modificación recargo de equivalencia
-                        46,  # Mod. recargo equiv. concurso ac.
+                        46,  # Mod. recargo equiv. concurso
                     )
                 ).mapped("amount")
             )
@@ -780,8 +780,7 @@ class L10nEsAeatMod390Report(models.Model):
             )
             if not reports_303_this_year:
                 continue
-            # casilla 85 = cuotas pendientes de compensación generadas en ejercicios
-            # anteriores y aplicadas en el ejercicio
+            # casilla 85 = sumatorio de las casilla 78 de los periodos del año
             casilla_85 = self._calculate_casilla_85(reports_303_this_year)
             # casilla 95 = sumatorio de las casilla 71 de los periodos del año que
             # sean a ingresar
@@ -832,7 +831,7 @@ class L10nEsAeatMod390Report(models.Model):
         return super().button_confirm()
 
     def _get_move_line_domain(self, date_start, date_end, map_line):
-        """Consider bankruptcy proceedings or uncollectible debt."""
+        """Consider bankrupcy proceedings or uncollectible debt."""
         res = super()._get_move_line_domain(date_start, date_end, map_line)
         if map_line.field_number in {31, 32, 45, 46}:
             res += [("move_id.is_bankrupcy_uncollectible_debt", "=", True)]
