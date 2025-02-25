@@ -10,7 +10,6 @@
         <field name="inherit_id" ref="account.view_account_position_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='country_group_id']/.." position="after">
-                <field name="sii_enabled" invisible="1" />
                 <group string="SII" name="group_sii" invisible="not sii_enabled">
                     <field name="aeat_active" />
                     <field
