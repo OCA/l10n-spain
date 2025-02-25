@@ -29,6 +29,14 @@ class PosOrder(models.Model):
         comodel_name="pos.order",
         copy=False,
     )
+    verifactu_pos_order_jobs_ids = fields.Many2many(
+        comodel_name="queue.job",
+        column1="pos_order_id",
+        column2="job_id",
+        relation="pos_order_verifactu_queue_job_rel",
+        string="Connector Jobs",
+        copy=False,
+    )
 
     @api.depends("amount_total")
     def _compute_verifactu_macrodata(self):
@@ -408,3 +416,6 @@ class PosOrder(models.Model):
 
     def cancel_verifactu(self):
         raise NotImplementedError
+
+    def _get_verifactu_jobs_field_name(self):
+        return "verifactu_pos_order_jobs_ids"
