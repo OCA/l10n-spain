@@ -7,7 +7,7 @@
 import json
 import logging
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.modules.registry import Registry
 from odoo.tools.float_utils import float_compare
@@ -154,7 +154,7 @@ class SiiMixin(models.AbstractModel):
     @api.model
     def _search_sii_enabled(self, operator, value):
         if self._is_unsupported_search_operator(operator):
-            raise ValueError(_("Unsupported search operator"))
+            raise ValueError(self.env._("Unsupported search operator"))
         return [("company_id.sii_enabled", operator, value)]
 
     def _compute_macrodata(self):
@@ -178,7 +178,9 @@ class SiiMixin(models.AbstractModel):
         """Do not allow the deletion of records already sent to the SII."""
         if self._filter_sii_unlink_not_possible():
             raise exceptions.UserError(
-                _("You cannot delete an invoice already registered at the SII.")
+                self.env._(
+                    "You cannot delete an invoice already registered at the SII."
+                )
             )
 
     @api.model
@@ -234,7 +236,9 @@ class SiiMixin(models.AbstractModel):
         self.ensure_one()
         if not self.company_id.vat:
             raise UserError(
-                _("No VAT configured for the company '{}'").format(self.company_id.name)
+                self.env._("No VAT configured for the company '{}'").format(
+                    self.company_id.name
+                )
             )
         header = {
             "IDVersionSii": SII_VERSION,
@@ -264,7 +268,7 @@ class SiiMixin(models.AbstractModel):
         )
         if not documents._cancel_send_to_sii():
             raise UserError(
-                _(
+                self.env._(
                     "You can not communicate this document at this moment. "
                     "Please, try again later."
                 )
@@ -352,9 +356,9 @@ class SiiMixin(models.AbstractModel):
                 and not partner.vat
                 and not is_simplified_invoice
             ):
-                raise UserError(_("The partner has not a VAT configured."))
+                raise UserError(self.env._("The partner has not a VAT configured."))
             if not self.sii_enabled:
-                raise UserError(_("This invoice is not SII enabled."))
+                raise UserError(self.env._("This invoice is not SII enabled."))
         return res
 
     def _get_document_fiscal_date(self):
@@ -388,7 +392,9 @@ class SiiMixin(models.AbstractModel):
             product_exempt_causes = self._get_document_product_exempt(applied_taxes)
             if len(product_exempt_causes) > 1:
                 raise UserError(
-                    _("Currently there's no support for multiple exempt causes.")
+                    self.env._(
+                        "Currently there's no support for multiple exempt causes."
+                    )
                 )
             if product_exempt_causes:
                 exempt_cause = product_exempt_causes.pop()
