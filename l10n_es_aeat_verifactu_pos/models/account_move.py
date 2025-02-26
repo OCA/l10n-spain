@@ -34,3 +34,15 @@ class AccountMove(models.Model):
             )
         else:
             return super()._get_chaining_invoice_dict()
+
+    def _get_verifactu_previous_hash(self):
+        if self.pos_order_ids and len(self.pos_order_ids.ids) == 1:
+            pos_order = self.pos_order_ids
+            return pos_order._get_verifactu_previous_hash()
+        elif len(self.pos_order_ids) > 1:
+            # TODO: is possible to have multiple PoS orders for the same Invoice?
+            raise exceptions.UserError(
+                _("VERI*FACTU: multiple PoS Orders not supported")
+            )
+        else:
+            return super()._get_verifactu_previous_hash()

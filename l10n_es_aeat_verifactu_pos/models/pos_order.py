@@ -143,7 +143,12 @@ class PosOrder(models.Model):
         return self.amount_total
 
     def _get_verifactu_previous_hash(self):
-        return self.verifactu_previous_invoice_id.verifactu_hash
+        previous_order = self.verifactu_previous_invoice_id
+        if not previous_order.is_invoiced:
+            return previous_order.verifactu_hash
+        else:
+            previous_inv = previous_order.account_move
+            return previous_inv.verifactu_hash
 
     def _get_verifactu_registration_date(self):
         return (
@@ -268,7 +273,7 @@ class PosOrder(models.Model):
                     "FechaExpedicionFactura": prev_order._change_date_format(
                         prev_order._get_document_date()
                     ),
-                    "Huella": prev_order.verifactu_hash,
+                    "Huella": self._get_verifactu_previous_hash(),
                 }
             }
         return {"PrimerRegistro": "S"}
