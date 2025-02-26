@@ -401,6 +401,8 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
 
         model303_4T.return_last_period = True
         model303_4T.button_calculate()
+        model303_4T.potential_cuota_compensar = 560.85
+        model303_4T.cuota_compensar = 560.85
         self.model390_2023.button_calculate()
         # Check casilla_85, casilla_95, casilla_97, casilla_98, casilla_662
         self.assertAlmostEqual(self.model390_2023.casilla_85, 0.0, 2)
