@@ -699,6 +699,15 @@ msgid "Responsible User"
 msgstr "Usuari responsable"
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_85
+msgid ""
+"Se consignará el importe de las cuotas pendientes de compensación generadas "
+"en ejercicios anteriores y aplicadas en el ejercicio (es decir, que se "
+"hubiesen consignado en la casilla 78 de alguna de las autoliquidaciones del "
+"periodo)."
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_95
 msgid ""
 "Se consignará la suma de las cantidades a ingresar por el Impuesto como "
@@ -735,19 +744,6 @@ msgid ""
 msgstr ""
 "Si el resultat de la darrera autoliquidació fou a tornar, consignareu en "
 "aquesta casella l'import de la mateixa."
-
-#. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_85
-msgid ""
-"Si en la autoliquidación del último período del ejercicio anterior resultó "
-"un saldo a su favor y usted optó por la compensación, consigne en esta "
-"casilla la cantidad a compensar, salvo que la misma haya sido modificada por "
-"la Administración, en cuyo caso se consignará esta última."
-msgstr ""
-"Si en l'autoliquidació del darrer període de l'exercici anterior va resultar "
-"un saldo al seu favor i vau optar per la compensació, consigneu en aquesta "
-"casella la quantitat a compensar, tret que la mateixa hagi estat modificada "
-"per l'Administració. En aquest cas es consignarà aquesta darrera."
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__date_start
@@ -1036,6 +1032,18 @@ msgstr "[98] Result. 303 darrer període a tornar"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__has_347
 msgid "¿Obligación del 347?"
 msgstr "Obligació del 347?"
+
+#~ msgid ""
+#~ "Si en la autoliquidación del último período del ejercicio anterior "
+#~ "resultó un saldo a su favor y usted optó por la compensación, consigne en "
+#~ "esta casilla la cantidad a compensar, salvo que la misma haya sido "
+#~ "modificada por la Administración, en cuyo caso se consignará esta última."
+#~ msgstr ""
+#~ "Si en l'autoliquidació del darrer període de l'exercici anterior va "
+#~ "resultar un saldo al seu favor i vau optar per la compensació, consigneu "
+#~ "en aquesta casella la quantitat a compensar, tret que la mateixa hagi "
+#~ "estat modificada per l'Administració. En aquest cas es consignarà aquesta "
+#~ "darrera."
 
 #, python-format
 #~ msgid ""
