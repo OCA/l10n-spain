@@ -698,6 +698,8 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             }
         )
         model303_3T.button_calculate()
+        model303_3T.potential_cuota_compensar = 819
+        model303_3T.cuota_compensar = 609
         model303_3T.button_confirm()
         model303_3T.button_post()
         # Check move lines from 303 3T 2025
