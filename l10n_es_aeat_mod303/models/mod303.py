@@ -487,18 +487,11 @@ class L10nEsAeatMod303Report(models.Model):
                         - fields.Date.to_date(mod303.date_start)
                     ),
                 )
-                if prev_report and (
-                    prev_report.remaining_cuota_compensar > 0
-                    or prev_report.result_type == "C"
-                ):
-                    mod303.write(
-                        {
-                            "potential_cuota_compensar": (
-                                prev_report.remaining_cuota_compensar
-                                - prev_report.resultado_liquidacion
-                            ),
-                        }
-                    )
+                if prev_report.remaining_cuota_compensar > 0:
+                    amount = prev_report.remaining_cuota_compensar
+                    if prev_report.result_type == "C":
+                        amount -= prev_report.resultado_liquidacion
+                    mod303.potential_cuota_compensar = amount if amount > 0 else 0
             if mod303.return_last_period:
                 cuota_compensar = mod303.potential_cuota_compensar
             elif (
@@ -515,7 +508,6 @@ class L10nEsAeatMod303Report(models.Model):
             else:
                 cuota_compensar = 0
             mod303.cuota_compensar = cuota_compensar
-
         return res
 
     def button_confirm(self):
