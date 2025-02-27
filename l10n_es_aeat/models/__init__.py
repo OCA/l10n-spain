@@ -8,6 +8,7 @@ from . import aeat_certificate
 from . import aeat_mixin
 from . import aeat_soap
 from . import aeat_tax_agency
+from . import ir_cron_trigger
 from . import l10n_es_aeat_export_config
 from . import l10n_es_aeat_export_config_line
 from . import l10n_es_aeat_map_tax
