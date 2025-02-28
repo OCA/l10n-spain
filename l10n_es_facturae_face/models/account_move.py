@@ -87,6 +87,19 @@ class AccountMove(models.Model):
 
     def validate_facturae_fields(self):
         super().validate_facturae_fields()
-        if not self.partner_id.organo_gestor:
+        if (
+            self.partner_id.l10n_es_facturae_sending_code == "face"
+            and not self.partner_id.organo_gestor
+        ):
             raise ValidationError(_("Organo Gestor not provided"))
+        if (
+            self.partner_id.l10n_es_facturae_sending_code == "face"
+            and not self.partner_id.unidad_tramitadora
+        ):
+            raise ValidationError(_("Unidad Tramitadora not provided"))
+        if (
+            self.partner_id.l10n_es_facturae_sending_code == "face"
+            and not self.partner_id.oficina_contable
+        ):
+            raise ValidationError(_("Oficina Contable not provided"))
         return
