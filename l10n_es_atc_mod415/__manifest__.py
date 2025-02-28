@@ -4,7 +4,7 @@
 # Basado en el modelo 347 de la AEAT
 {
     "name": "ATC Modelo 415",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "author": "Binhex System Solutions," "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Accounting",
