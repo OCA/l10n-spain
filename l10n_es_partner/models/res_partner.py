@@ -37,6 +37,9 @@ class ResPartner(models.Model):
         res += ["comercial"]
         return res
 
-    def _auto_init(self):
-        self.env["res.partner"]._rec_names_search.append("comercial")
-        return super()._auto_init()
+    @api.model
+    def name_search(self, name="", args=None, operator="ilike", limit=100):
+        # Inject the field comercial in _rec_names_search if not exists
+        if "comercial" not in self._rec_names_search:
+            self._rec_names_search.append("comercial")
+        return super().name_search(name=name, args=args, operator=operator, limit=limit)
