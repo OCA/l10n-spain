@@ -5,13 +5,13 @@
     >
         <field name="model">l10n.es.aeat.mod303.report.activity.code</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <list editable="bottom">
                 <field name="period_type" />
                 <field name="code" />
                 <field name="name" />
                 <field name="date_start" />
                 <field name="date_end" />
-            </tree>
+            </list>
         </field>
     </record>
     <record
