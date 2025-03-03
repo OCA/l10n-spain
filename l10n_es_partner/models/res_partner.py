@@ -1,7 +1,7 @@
 # Copyright 2009 Jordi Esteve <jesteve@zikzakmedia.com>
 # Copyright 2012-2014 Ignacio Ibeas <ignacio@acysos.com>
 # Copyright 2016 Tecnativa - Carlos Dauden
-# Copyright 2016-2022 Tecnativa - Pedro M. Baeza
+# Copyright 2016,2022,2025 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3).
 from odoo import api, fields, models
 
@@ -49,6 +49,9 @@ class ResPartner(models.Model):
         res += ["comercial"]
         return res
 
-    def _auto_init(self):
-        self.env["res.partner"]._rec_names_search.append("comercial")
-        return super()._auto_init()
+    @api.model
+    def name_search(self, name="", args=None, operator="ilike", limit=100):
+        # Inject the field comercial in _rec_names_search if not exists
+        if "comercial" not in self._rec_names_search:
+            self._rec_names_search.append("comercial")
+        return super().name_search(name=name, args=args, operator=operator, limit=limit)
