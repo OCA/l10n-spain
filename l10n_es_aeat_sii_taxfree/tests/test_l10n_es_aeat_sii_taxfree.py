@@ -1,11 +1,11 @@
 # © 2023 FactorLibre - Alejandro Ji Cheung <alejandro.jicheung@factorlibre.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo.addons.l10n_es_aeat_sii_oca.tests.test_l10n_es_aeat_sii import (
-    TestL10nEsAeatSii,
+    TestL10nEsAeatSiiBase,
 )
 
 
-class TestL10nEsAeatSiiTaxfree(TestL10nEsAeatSii):
+class TestL10nEsAeatSiiTaxfree(TestL10nEsAeatSiiBase):
     def test_tax_free_sii(self):
         """Test that the invoice is correctly generated."""
         fiscal_position = self.env["account.fiscal.position"].create(
