@@ -4,49 +4,54 @@
     <record model="ir.ui.view" id="l10n_es_partner_import_wizard">
         <field name="name">l10n.es.partner.import.form</field>
         <field name="model">l10n.es.partner.import.wizard</field>
-        <field name="inherit_id" ref="base.res_config_installer" />
         <field name="priority">99</field>
         <field name="arch" type="xml">
-            <data>
-                <form position="inside">
+            <form string="Import Spanish Bank Data">
+                <group>
                     <field name="import_fail" invisible="1" />
-                </form>
-                <form position="attributes">
-                    <attribute name="string">Import spanish bank data</attribute>
-                </form>
-                <separator position="replace">
-                    <group invisible="import_fail">
-                        <p
-                            colspan="2"
-                        >This wizard will import spanish bank data. You can choose to import it from:</p>
-                        <ul colspan="2">
-                            <li
-                            >Internet (from Bank of Spain). Maybe this source will be not available from certain moment in time. You will need xlrd Python library.</li>
-                            <li
-                            >Local file mirror. This copy was updated last time on 26/10/2017.</li>
-                        </ul>
-                    </group>
-                    <label
+                </group>
+                <group invisible="import_fail">
+                    <p
                         colspan="2"
-                        for="import_fail"
-                        invisible="not import_fail"
-                        string="Something has failed importing data from Internet. You will need to import local data instead."
+                    >This wizard will import Spanish bank data. You can choose to import it from:</p>
+                    <ul colspan="2">
+                        <li
+                        >Internet (from Bank of Spain). Maybe this source will not be available at a certain moment in time. You will need the xlrd Python library.</li>
+                        <li
+                        >Local file mirror. This copy was updated last time on 26/10/2017.</li>
+                    </ul>
+                </group>
+                <group invisible="not import_fail">
+                    <div
+                        class="o_form_label"
+                    >Something has failed importing data from the Internet. You will need to import local data instead.</div>
+                </group>
+                <footer>
+                    <button
+                        name="execute"
+                        string="Import from Internet"
+                        type="object"
+                        class="btn-primary"
+                        invisible="import_fail"
                     />
-                </separator>
-                <button name="action_next" position="after">
                     <button
                         name="import_local"
-                        string="Import from local file"
+                        string="Import from Local File"
                         type="object"
                     />
-                </button>
-                <button name="action_next" position="attributes">
-                    <attribute name="string">Import from Internet</attribute>
-                    <attribute name="invisible">import_fail</attribute>
-                </button>
-            </data>
+                    <button
+                        name="action_skip"
+                        type="object"
+                        special="cancel"
+                        data-hotkey="x"
+                        string="Skip"
+                        class="btn-secondary"
+                    />
+                </footer>
+            </form>
         </field>
     </record>
+
     <record id="action_l10n_es_partner_import" model="ir.actions.act_window">
         <field name="name">Import spanish bank data</field>
         <field name="type">ir.actions.act_window</field>
@@ -55,8 +60,7 @@
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
-    <!-- register on configuration -->
-    <record id="config_wizard_l10n_es_partner" model="ir.actions.todo">
+    <record id="config_l10n_es_partner_import" model="ir.actions.todo">
         <field name="name">Import spanish bank data</field>
         <field name="action_id" ref="action_l10n_es_partner_import" />
         <field name="sequence">20</field>
