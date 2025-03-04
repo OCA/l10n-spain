@@ -85,7 +85,9 @@
             />
         </TaxIdentification>
         <PartyIdentification t-if="False" />
-        <AdministrativeCentres t-if="partner.facturae">
+        <AdministrativeCentres
+            t-if="partner.facturae and (partner.oficina_contable or partner.organo_gestor or partner.unidad_tramitadora or partner.organo_proponente)"
+        >
             <t t-call="l10n_es_facturae.administrative_center">
                 <t
                     t-set="centre_code"
