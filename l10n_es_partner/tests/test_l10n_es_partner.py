@@ -2,12 +2,15 @@
 # Copyright 2017 Tecnativa - Carlos Dauden <carlos.dauden@tecnativa.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3).
 
+import requests
+
 from odoo.tests import common
 
 
 class TestL10nEsPartner(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
+        cls._super_send = requests.Session.send
         super().setUpClass()
         # Make sure there's no commercial name on display_name field
         cls.env["ir.config_parameter"].set_param("l10n_es_partner.name_pattern", "")
@@ -25,6 +28,11 @@ class TestL10nEsPartner(common.TransactionCase):
         cls.bank_obj = cls.env["res.partner.bank"].with_context(
             default_partner_id=cls.partner.id
         )
+
+    @classmethod
+    def _request_handler(cls, s, r, /, **kw):
+        """Don't block external requests."""
+        return cls._super_send(s, r, **kw)
 
     def test_search_commercial(self):
         partner_obj = self.env["res.partner"]

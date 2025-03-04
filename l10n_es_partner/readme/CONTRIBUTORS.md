@@ -5,7 +5,8 @@
 - Ismael Calvo \<<ismael.calvo@factorlibre.com>\>
 - Carlos Dauden \<<carlos.dauden@tecnativa.com>\>
 - Manuel Regidor \<<manuel.regidor@sygel.es>\>
-- [APSL](https://apsl.tech):
+- [APSL - Nagarro](https://apsl.tech):
   - Javier Antó \<<janto@apsl.net>\>
+  - Miquel Pascual \<<mpascual@apsl.net>\>
 - [Dixmit](https://www.dixmit.com):
   - Enric Tobella

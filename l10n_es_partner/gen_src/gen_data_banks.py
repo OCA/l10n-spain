@@ -138,7 +138,7 @@ def gen_bank_data_xml(src_path, dest_path):
     try:
         reader = XlsDictReader(src_path)
     except OSError:  # pragma: no cover
-        _logger.error("File '%s' not found." % src_path)
+        _logger.error(f"File {src_path} not found.")
         return
     # Preparar el archivo resultante
     output = codecs.open(dest_path, mode="w", encoding="utf-8")
@@ -148,7 +148,7 @@ def gen_bank_data_xml(src_path, dest_path):
     for row in reader:
         if row["FCHBAJA"]:
             continue
-        name = "res_bank_es_%s" % row["COD_BE"]
+        name = f'res_bank_es_{row["COD_BE"]}'
         numero = (
             int(row["NUMEROVIA"])
             if isinstance(row["NUMEROVIA"], float)
@@ -157,7 +157,7 @@ def gen_bank_data_xml(src_path, dest_path):
         street = "{}. {}, {}".format(
             row["SIGLAVIA"].title(), row["NOMBREVIA"].title(), numero
         )
-        output.write(indent + '<record id="%s" model="res.bank">\n' % name)
+        output.write(indent + f'<record id="{name}" model="res.bank">\n')
         output.write(
             indent * 2
             + '<field name="name">{}</field>\n'.format(
@@ -166,43 +166,39 @@ def gen_bank_data_xml(src_path, dest_path):
         )
         output.write(
             indent * 2
-            + '<field name="lname">%s</field>\n' % escape(row["NOMBRE105"].title())
+            + f'<field name="lname">{escape(row["NOMBRE105"].title())}</field>\n'
         )
         output.write(
-            indent * 2 + '<field name="code">%s</field>\n' % escape(row["COD_BE"])
+            indent * 2 + f'<field name="code">{escape(row["COD_BE"])}</field>\n'
         )
         # Han quitado el BIC del listado - Lo busco en una tabla estática
         if bics.get(row["COD_BE"]):
             output.write(
-                indent * 2 + '<field name="bic">%s</field>\n' % bics[row["COD_BE"]]
+                indent * 2 + f'<field name="bic">{bics[row["COD_BE"]]}</field>\n'
             )
-        output.write('        <field name="street">%s</field>\n' % escape(street))
+        output.write(f'        <field name="street">{escape(street)}</field>\n')
         if row["RESTODOM"]:
             output.write(
                 indent * 2
-                + '<field name="street2">%s</field>\n' % escape(row["RESTODOM"].title())
+                + f'<field name="street2">{escape(row["RESTODOM"].title())}</field>\n'
             )
         if row["DIRINTERNET"]:
             output.write(
-                indent * 2
-                + '<field name="website">%s</field>\n'
-                % escape(row["DIRINTERNET"].lower())
+                indent * 2 + f'<field name="website">'
+                f'{escape(row["DIRINTERNET"].lower())}</field>\n'
             )
         if row["CODIGOCIF"]:
             output.write(
-                indent * 2 + '<field name="vat">%s</field>\n' % escape(row["CODIGOCIF"])
+                indent * 2 + f'<field name="vat">{escape(row["CODIGOCIF"])}</field>\n'
             )
         output.write(
             indent * 2
-            + '<field name="city">%s</field>\n' % escape(row["POBLACION"].title())
+            + f'<field name="city">{escape(row["POBLACION"].title())}</field>\n'
         )
-        output.write(
-            '        <field name="zip">%s</field>\n' % escape(row["CODPOSTAL"])
-        )
+        output.write(f'        <field name="zip">{escape(row["CODPOSTAL"])}</field>\n')
         if row["TELEFONO"]:
             output.write(
-                indent * 2
-                + '<field name="phone">%s</field>\n' % escape(row["TELEFONO"])
+                indent * 2 + f'<field name="phone">{escape(row["TELEFONO"])}</field>\n'
             )
         output.write('        <field eval="1" name="active"/>\n')
         if row["CODPOSTAL"]:
