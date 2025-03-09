@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record
+        id="product_template_form_view_inherit_l10n_es_aeat_mod592"
+        model="ir.ui.view"
+    >
+        <field name="name">product.template.view.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='volume']" position="after">
+                <label
+                    for="is_plastic_tax"
+                    invisible="product_variant_count>1 and not is_product_variant"
+                />
+                <div
+                    class="o_row"
+                    name="is_plastic_tax"
+                    invisible="product_variant_count>1 and not is_product_variant"
+                >
+                    <field name="is_plastic_tax" />
+                </div>
+            </xpath>
+             <xpath expr="//group[@name='group_lots_and_weight']" position="after">
+                <group
+                    name="plastic_tax"
+                    string="Plastic Tax Parameters"
+                    invisible="not is_plastic_tax or (product_variant_count>1 and not is_product_variant)"
+                >
+                    <field name="tax_plastic_type" required="is_plastic_tax" />
+                    <field name="plastic_tax_weight" required="is_plastic_tax" />
+                    <field
+                        name="plastic_weight_non_recyclable"
+                        required="is_plastic_tax"
+                    />
+                    <field name="plastic_type_key" />
+                    <field
+                        name="plastic_tax_regime_manufacturer"
+                        invisible="tax_plastic_type=='acquirer'"
+                        groups="l10n_es_aeat_mod592.group_mod592_manufacturer"
+                    />
+                    <field
+                        name="plastic_tax_regime_acquirer"
+                        invisible="tax_plastic_type=='manufacturer'"
+                        groups="l10n_es_aeat_mod592.group_mod592_acquirer"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
