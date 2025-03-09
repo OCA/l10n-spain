@@ -5,6 +5,8 @@ import logging
 import os
 import tempfile
 
+import requests
+
 from odoo import fields, models, tools
 
 from ..gen_src.gen_data_banks import gen_bank_data_xml
@@ -29,7 +31,6 @@ class L10nEsPartnerImportWizard(models.TransientModel):
         return res
 
     def execute(self):
-        import requests
 
         src_file = tempfile.NamedTemporaryFile(delete=False)
         dest_file = tempfile.NamedTemporaryFile("w", delete=False)
