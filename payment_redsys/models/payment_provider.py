@@ -37,13 +37,13 @@ class PaymentProvider(models.Model):
     redsys_merchant_description = fields.Char(
         "Product Description", required_if_provider="redsys"
     )
-    redsys_secret_key = fields.Char("Secret Key", required_if_provider="redsys")
+    redsys_secret_key = fields.Char(
+        "Secret Key", required_if_provider="redsys", groups="base.group_system"
+    )
     redsys_terminal = fields.Char(
         "Terminal", default="1", required_if_provider="redsys"
     )
-    redsys_currency = fields.Char(
-        "Currency", default="978", required_if_provider="redsys"
-    )
+    redsys_currency = fields.Char(default="978", required_if_provider="redsys")
     redsys_transaction_type = fields.Char(
         "Transtaction Type", default="0", required_if_provider="redsys"
     )
@@ -127,15 +127,15 @@ class PaymentProvider(models.Model):
         values = {
             "Ds_Sermepa_Url": self.redsys_get_form_action_url(),
             "Ds_Merchant_Amount": str(int(round(tx_values["amount"] * 100))),
-            "Ds_Merchant_Currency": self.redsys_currency or "978",
+            "Ds_Merchant_Currency": self.redsys_currency,
             "Ds_Merchant_Order": (
                 tx_values["reference"] and tx_values["reference"][-12:] or False
             ),
             "Ds_Merchant_MerchantCode": (
                 self.redsys_merchant_code and self.redsys_merchant_code[:9]
             ),
-            "Ds_Merchant_Terminal": self.redsys_terminal or "1",
-            "Ds_Merchant_TransactionType": (self.redsys_transaction_type or "0"),
+            "Ds_Merchant_Terminal": self.redsys_terminal,
+            "Ds_Merchant_TransactionType": (self.redsys_transaction_type),
             "Ds_Merchant_Titular": tx_values.get(
                 "billing_partner", self.env.user.partner_id
             ).display_name[:60],
@@ -152,8 +152,8 @@ class PaymentProvider(models.Model):
                 and self.redsys_merchant_description[:125]
             ),
             "Ds_Merchant_ConsumerLanguage": (self.redsys_merchant_lang or "001"),
-            "Ds_Merchant_UrlOk": "%s/payment/redsys/result/redsys_result_ok" % base_url,
-            "Ds_Merchant_UrlKo": "%s/payment/redsys/result/redsys_result_ko" % base_url,
+            "Ds_Merchant_UrlOk": f"{base_url}/payment/redsys/result/redsys_result_ok",
+            "Ds_Merchant_UrlKo": f"{base_url}/payment/redsys/result/redsys_result_ko",
             "Ds_Merchant_Paymethods": self.redsys_pay_method or "T",
         }
         return self._url_encode64(json.dumps(values)).decode("utf-8")
@@ -185,14 +185,6 @@ class PaymentProvider(models.Model):
     def redsys_get_form_action_url(self):
         self.ensure_one()
         return self._redsys_get_api_url()
-
-    def _product_description(self, order_ref):
-        sale_order = self.env["sale.order"].search([("name", "=", order_ref)])
-        res = ""
-        if sale_order:
-            description = "|".join(x.name for x in sale_order.order_line)
-            res = description[:125]
-        return res
 
     def _get_default_payment_method_id(self, code):
         self.ensure_one()
