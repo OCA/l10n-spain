@@ -5,7 +5,7 @@
     "name": "Pasarela de pago Redsys",
     "category": "Payment Acquirer",
     "summary": "Payment Acquirer: Redsys Implementation",
-    "version": "17.0.1.0.2",
+    "version": "18.0.1.0.0",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "depends": ["payment"],
@@ -17,4 +17,6 @@
     ],
     "license": "AGPL-3",
     "installable": True,
+    "post_init_hook": "post_init_hook",
+    "uninstall_hook": "uninstall_hook",
 }
