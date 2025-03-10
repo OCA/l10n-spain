@@ -54,7 +54,7 @@ class TxRedsys(models.Model):
                 raise ValidationError(error_msg)
         tx = self.search([("reference", "=", reference)])
         if not tx or len(tx) > 1:
-            error_msg = "Redsys: received data for reference %s" % (reference)
+            error_msg = f"Redsys: received data for reference {reference}"
             if not tx:
                 error_msg += "; no order found"
             else:
@@ -68,8 +68,8 @@ class TxRedsys(models.Model):
             )
             if shasign_check != shasign:
                 error_msg = (
-                    "Redsys: invalid shasign, received {}, computed {}, "
-                    "for data {}".format(shasign, shasign_check, data)
+                    f"Redsys: invalid shasign, received {shasign}, computed "
+                    f" {shasign_check},\nfor data {data}"
                 )
                 _logger.info(error_msg)
                 raise ValidationError(error_msg)
@@ -106,7 +106,7 @@ class TxRedsys(models.Model):
         if state == "done":
             vals["state_message"] = _("Ok: %s") % params.get("Ds_Response")
             self._set_done()
-            self._finalize_post_processing()
+            self._post_process()
         elif state == "pending":  # 'Payment error: code: %s.'
             state_message = _("Error: %(status_code)s (%(error_code)s)")
             self._set_pending()
