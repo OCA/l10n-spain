@@ -2,12 +2,6 @@
 <!-- Copyright 2016-2017 Tecnativa - Sergio Teruel
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3). -->
 <odoo noupdate="1">
-    <record id="payment_method_redsys" model="account.payment.method">
-        <field name="name">Redsys</field>
-        <field name="code">redsys</field>
-        <field name="payment_type">inbound</field>
-    </record>
-
     <record id="payment_method_cc_bizum" model="payment.method">
         <field name="name">Bizum</field>
         <field name="code">Bizum</field>
