@@ -42,6 +42,13 @@ class ResPartner(models.Model):
                     raise ValidationError(
                         _("Vat must be defined for factura-e enabled partners.")
                     )
+                if record.type == "contact" and self.env.context.get(
+                    "sync_values_from_company", False
+                ):
+                    # Not check to check records that are updated when creating a child
+                    # contact of a company.
+                    # Address fields are written after creation.
+                    continue
                 if not record.street:
                     raise ValidationError(
                         _("Street must be defined for factura-e enabled partners.")
@@ -59,3 +66,11 @@ class ResPartner(models.Model):
     @api.model
     def _commercial_fields(self):
         return super()._commercial_fields() + ["facturae"]
+
+    def _commercial_sync_from_company(self):
+        """Inject context to know if the contact is created directly instead of company
+        contact as a child to avoid check address fields which are written after
+        contact creation"""
+        return super(
+            ResPartner, self.with_context(sync_values_from_company=True)
+        )._commercial_sync_from_company()
