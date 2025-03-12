@@ -7,10 +7,10 @@
             <xpath expr="//notebook" position="inside">
                 <page
                     string="Integration"
-                    attrs="{'invisible': ['|', ('delivery_type', '!=', 'seur_atlas'), ('integration_level', '!=', 'rate_and_ship')]}"
+                    invisible="delivery_type != 'seur_atlas' or integration_level != 'rate_and_ship'"
                 >
                     <group
-                        attrs="{'required': [('delivery_type', '=', 'seur_atlas'), ('integration_level', '=', 'rate_and_ship')]}"
+                        required="delivery_type == 'seur_atlas' and integration_level == 'rate_and_ship'"
                     >
                         <group string="Customer data">
                             <field name="seur_atlas_vat" />
