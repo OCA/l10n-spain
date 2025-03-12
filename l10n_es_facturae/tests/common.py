@@ -4,10 +4,10 @@
 
 import base64
 from datetime import timedelta
+from unittest.mock import patch
 
 import xmlsig
 from lxml import etree
-from mock import patch
 
 from odoo import exceptions, fields
 from odoo.tools.misc import mute_logger
