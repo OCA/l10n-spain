@@ -4,10 +4,10 @@
 
 import base64
 from datetime import timedelta
+from unittest.mock import patch
 
 import xmlsig
 from lxml import etree
-from mock import patch
 
 from odoo import exceptions, fields
 from odoo.tools.misc import mute_logger
@@ -768,3 +768,14 @@ class CommonTest(CommonTestBase):
             .create({})
         )
         return wizard
+
+    def test_facturae_contact_creation_directly(self):
+        """Create new child partner directly instead of parent form view"""
+        new_partner = self.env["res.partner"].create(
+            {
+                "name": "test contact child",
+                "type": "contact",
+                "parent_id": self.partner.id,
+            }
+        )
+        self.assertTrue(new_partner)
