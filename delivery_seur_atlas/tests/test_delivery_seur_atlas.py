@@ -63,7 +63,7 @@ class TestDeliverySeurAtlas(common.TransactionCase):
         # Ensure shipper address
         cls.sale_order.warehouse_id.partner_id = cls.wh_partner
         cls.picking = cls.sale_order.picking_ids
-        cls.picking.move_lines.quantity_done = 20
+        cls.picking.move_ids.quantity = 20
 
     @mute_logger("odoo.sql_db")
     @patch.object(SeurAtlasRequest, "_set_token", mock_set_token)

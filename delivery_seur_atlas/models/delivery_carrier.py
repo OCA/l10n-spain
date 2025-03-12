@@ -78,6 +78,10 @@ class DeliveryCarrier(models.Model):
             acc_number=self.seur_atlas_account_code,
             id_number=self.seur_atlas_vat,
             prod=self.prod_environment,
+            # We can modify the general request timeout if needed
+            timeout=self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("seur_atlas_timeout", default=5),
         )
 
     @api.model
