@@ -109,9 +109,7 @@ class DeliveryCarrier(models.Model):
         # When we get a specific delivery address we want to prioritize its
         # name over the commercial one
         if partner.parent_id and partner.type == "delivery" and partner.name:
-            partner_name = "{} ({})".format(
-                partner.name, partner.commercial_partner_id.name
-            )
+            partner_name = f"{partner.name} ({partner.commercial_partner_id.name})"
         partner_att = (
             partner.name if partner.parent_id and partner.type == "contact" else ""
         )
