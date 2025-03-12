@@ -40,7 +40,15 @@ class SeurAtlasRequest:
     """
 
     def __init__(
-        self, user, password, secret, client_id, acc_number, id_number, prod=False
+        self,
+        user,
+        password,
+        secret,
+        client_id,
+        acc_number,
+        id_number,
+        prod=False,
+        timeout=5,
     ):
         self.user = user
         self.password = password
@@ -53,6 +61,7 @@ class SeurAtlasRequest:
         self.response = False
         self.error = False
         self.api_url = f"https://{ATLAS_API_DOMAINS['prod' if prod else 'test']}"
+        self.timeout = timeout
         self._set_token()
 
     def _log_request(self):
@@ -68,7 +77,6 @@ class SeurAtlasRequest:
             f"Response:\n{self.response.text}"
         )
 
-    # @log_request
     def _set_token(self):
         """In order to operate, we should gather a token from the API. This token
         lasts for 30 seconds. After that, we must gather a new one"""
@@ -81,6 +89,7 @@ class SeurAtlasRequest:
                 "username": self.user,
                 "password": self.password,
             },
+            timeout=self.timeout,
         )
         self._log_request()
         if not self.response.ok:
@@ -105,7 +114,7 @@ class SeurAtlasRequest:
         elif request_method == "GET":
             request_params["params"] = {**kwargs}
         _logger.debug(f"SEUR Request to {seur_method}: {request_params}")
-        self.response = requests.request(**request_params)
+        self.response = requests.request(**request_params, timeout=self.timeout)
         _logger.debug(f"SEUR Response from {seur_method}: {self.response.content}")
         self._log_request()
         if not self.response.ok:

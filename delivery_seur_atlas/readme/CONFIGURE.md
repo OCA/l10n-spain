@@ -22,3 +22,5 @@ Para configurar tus servicios SEUR, debes ir a:
 Si deseas configurar varios servicios con las mismas credenciales, duplica un ya creado
 y cambia el servicio o el producto en la copia.
 
+El `timeout` por defecto para las peticiones a la API es de 5 segundos. Se puede
+configurar uno distinto con la clave `seur_atlas_timeout` en `ir.config_parameter`.
