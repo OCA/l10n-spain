@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_delivery_carrier_form" model="ir.ui.view">
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page
+                    string="Integration"
+                    invisible="delivery_type != 'seur_atlas' or integration_level != 'rate_and_ship'"
+                >
+                    <group
+                        required="delivery_type == 'seur_atlas' and integration_level == 'rate_and_ship'"
+                    >
+                        <group string="Customer data">
+                            <field name="seur_atlas_vat" />
+                            <field name="seur_atlas_account_code" />
+                        </group>
+                        <group string="API credentials">
+                            <field name="seur_atlas_username" />
+                            <field name="seur_atlas_password" widget="password" />
+                            <field name="seur_atlas_secret" widget="password" />
+                            <field name="seur_atlas_client" />
+                        </group>
+                        <group string="Service">
+                            <field name="seur_atlas_service_code" />
+                            <field name="seur_atlas_product_code" />
+                        </group>
+                        <group string="Label">
+                            <field name="seur_atlas_label_format" />
+                            <field name="seur_atlas_label_template" />
+                            <field name="seur_atlas_label_output_type" />
+                            <field name="seur_atlas_qr" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
