@@ -803,3 +803,14 @@ class CommonTest(CommonTestBase):
         self.partner.oficina_contable = False
         with self.assertRaises(exceptions.ValidationError):
             wizard.create_facturae_file()
+
+    def test_facturae_contact_creation_directly(self):
+        """Create new child partner directly instead of parent form view"""
+        new_partner = self.env["res.partner"].create(
+            {
+                "name": "test contact child",
+                "type": "contact",
+                "parent_id": self.partner.id,
+            }
+        )
+        self.assertTrue(new_partner)
