@@ -119,7 +119,7 @@ class L10nEsAeatMod190Report(models.Model):
         manual_records.partner_record_ids.unlink()
         for report in self - manual_records:
             tax_lines = report.tax_line_ids.filtered(
-                lambda x: x.field_number in (11, 12, 13, 14, 15, 16)
+                lambda x: x.field_number in (11, 12, 13, 14, 15, 16, 17)
                 and x.res_id == report.id
             )
             tax_line_vals = {}
@@ -347,7 +347,12 @@ class L10nEsAeatMod190ReportLine(models.Model):
         store=True,
     )
     reduccion_aplicable = fields.Float(string="Applicable reduction")
-    gastos_deducibles = fields.Float(string="Deductible expenses")
+    gastos_deducibles = fields.Float(
+        string="Deductible expenses",
+        compute="_compute_percepciones",
+        store=True,
+        readonly=False,
+    )
     pensiones_compensatorias = fields.Float(string="Compensatory pensions")
     anualidades_por_alimentos = fields.Float(string="Annuities for food")
     prestamos_vh = fields.Selection(
@@ -575,6 +580,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
                 "14": report._get_grouped_data(14, domain),
                 "15": report._get_grouped_data(15, domain),
                 "16": report._get_grouped_data(16, domain),
+                "17": report._get_grouped_data(17, domain),
             }
         for item in self:
             keys = [
@@ -620,6 +626,9 @@ class L10nEsAeatMod190ReportLine(models.Model):
             )
             item.ingresos_a_cuenta_repercutidos_incap = (
                 incapacidad and ingresos_a_cuenta_efectuados
+            )
+            item.gastos_deducibles = sum(
+                tax_data[item.report_id.id]["17"].get(key, 0) for key in keys
             )
 
     @api.onchange("partner_id")
