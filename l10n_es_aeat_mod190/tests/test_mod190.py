@@ -20,6 +20,7 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         # tax code: (base, tax_amount)
         "P_IRPF19": (100, -19),
         "P_IRPF20": (1000, -200),
+        "S_GD0": (100, 0),
     }
 
     @classmethod
@@ -104,6 +105,7 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         )
         self.assertEqual(supplier_record.percepciones_dinerarias, 2200)
         self.assertEqual(supplier_record.retenciones_dinerarias, 438)
+        self.assertEqual(supplier_record.gastos_deducibles, -200)
         self.assertEqual(2, supplier_record.ad_required)
         self.assertEqual(2, self.supplier.ad_required)
         self.customer.write(
