@@ -156,6 +156,7 @@
                                     <field
                                         name="gastos_deducibles"
                                         string="Gastos deducibles"
+                                        attrs="{'readonly': [('state', '!=', 'calculated')]}"
                                     />
                                 </group>
                                 <group>
