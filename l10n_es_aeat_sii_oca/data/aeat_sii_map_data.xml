@@ -89,8 +89,8 @@
         <field
             name="tax_xmlid_ids"
             eval="[(6, 0, [
-                ref('s_iva0_ic'),
-                ref('s_iva0_e'),
+                ref('s_iva0_g_i'),
+                ref('s_iva0_g_e'),
             ])]"
         />
         <field name="sii_map_id" ref="aeat_sii_map" />
@@ -102,6 +102,11 @@
             name="tax_xmlid_ids"
             eval="[(6, 0, [
                 ref('s_iva0'),
+                ref('s_iva0_art22'),
+                ref('s_iva0_art23'),
+                ref('s_iva0_e'),
+                ref('s_iva0_ic'),
+                ref('s_iva0_nsd'),
             ])]"
         />
         <field name="sii_map_id" ref="aeat_sii_map" />
