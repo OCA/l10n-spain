@@ -25,11 +25,11 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
         "S_REQ05": (1700, 8.5),
         "S_REQ014": (1800, 25.2),
         "S_REQ52": (1900, 98.8),
-        "S_IVA0_E": (2000, 0),
+        "S_IVA0_G_E": (2000, 0),
         "S_IVA_E": (2100, 0),
         "S_IVA_NS": (2200, 0),
         "S_IVA0_ISP": (2300, 0),
-        "S_IVA0_IC": (2400, 0),
+        "S_IVA0_G_I": (2400, 0),
         "S_IVA0_SP_I": (2500, 0),
         "S_IVA0": (2600, 0),
     }
