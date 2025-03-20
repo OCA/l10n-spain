@@ -30,13 +30,13 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         "S_REQ05": (1700, 8.5),
         "S_REQ014": (1800, 25.2),
         "S_REQ52": (1900, 98.8),
-        "S_IVA0_E": (2000, 0),
+        "S_IVA0_G_E": (2000, 0),
         "S_IVA_E": (2100, 0),
         "S_IVA_NS": (2200, 0),
         "S_IVA0_ISP": (2300, 0),
-        "S_IVA0_IC": (2400, 0),
+        "S_IVA0_G_I": (2400, 0),
         "S_IVA0_SP_I": (2500, 0),
-        "S_IVA0": (2600, 0),
+        "S_IVA0_E": (2600, 0),
     }
     taxes_purchase = {
         # tax code: (base, tax_amount)
@@ -369,9 +369,9 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         # Regularización por aplicación del porcentaje definitivo de prorrata
         "44": 0,
         # Entregas intra. de bienes y servicios - Base ventas
-        "59": (2 * 2400) + (2 * 2500),  # S_IVA0_IC, S_IVA0_SP_I
+        "59": (2 * 2400) + (2 * 2500),  # S_IVA0_G_I, S_IVA0_SP_I
         # Exportaciones y operaciones asimiladas - Base ventas
-        "60": (2 * 2000) + (2 * 2600),  # S_IVA0_E + S_IVA0
+        "60": (2 * 2000) + (2 * 2600),  # S_IVA0_G_E + S_IVA0
         # Importes de las entregas de bienes y prestaciones de servicios
         # a las que habiéndoles sido aplicado el régimen especial del
         # criterio de caja hubieran resultado devengadas conforme a la regla
