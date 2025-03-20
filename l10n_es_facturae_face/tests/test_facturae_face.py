@@ -232,6 +232,32 @@ class EDIBackendTestCase(
         with self.assertRaises(exceptions.ValidationError):
             wizard.create_facturae_file()
 
+    def test_create_facturae_file_without_unidad_tramitadora(self):
+        self._activate_certificate(self.certificate_password)
+        self.move.action_post()
+        self.move.name = "2999/99999"
+        wizard = (
+            self.env["create.facturae"]
+            .with_context(active_ids=self.move.ids, active_model="account.move")
+            .create({})
+        )
+        self.partner.unidad_tramitadora = False
+        with self.assertRaises(exceptions.ValidationError):
+            wizard.create_facturae_file()
+
+    def test_create_facturae_file_without_oficina_contable(self):
+        self._activate_certificate(self.certificate_password)
+        self.move.action_post()
+        self.move.name = "2999/99999"
+        wizard = (
+            self.env["create.facturae"]
+            .with_context(active_ids=self.move.ids, active_model="account.move")
+            .create({})
+        )
+        self.partner.oficina_contable = False
+        with self.assertRaises(exceptions.ValidationError):
+            wizard.create_facturae_file()
+
     def test_facturae_face_0(self):
         class DemoService(object):
             def __init__(self, value):
