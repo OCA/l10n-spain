@@ -717,13 +717,6 @@ msgid "Oficina Contable"
 msgstr "Oficina comptable"
 
 #. module: l10n_es_facturae
-#. odoo-python
-#: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
-msgid "Oficina Contable not provided"
-msgstr "No s'ha informat oficina comptable"
-
-#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__organo_gestor
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_gestor
 msgid "Organo Gestor"
@@ -959,13 +952,6 @@ msgstr "Unitat tramitadora"
 
 #. module: l10n_es_facturae
 #. odoo-python
-#: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
-msgid "Unidad Tramitadora not provided"
-msgstr "No s'ha informat unitat tramitadora"
-
-#. module: l10n_es_facturae
-#. odoo-python
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
 msgid "Vat must be defined for factura-e enabled partners."
@@ -1112,6 +1098,14 @@ msgstr "[19] Pagament amb targeta"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_proponente
 msgid "Órgano proponente"
 msgstr "Ôrgan proponent"
+
+#, python-format
+#~ msgid "Oficina Contable not provided"
+#~ msgstr "No s'ha informat oficina comptable"
+
+#, python-format
+#~ msgid "Unidad Tramitadora not provided"
+#~ msgstr "No s'ha informat unitat tramitadora"
 
 #~ msgid ""
 #~ "&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/"
