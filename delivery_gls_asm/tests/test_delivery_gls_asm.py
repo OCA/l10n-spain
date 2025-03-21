@@ -4,10 +4,12 @@
 import time
 
 from odoo.exceptions import UserError
-from odoo.tests import Form, common
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestDeliveryGlsAsm(common.TransactionCase):
+class TestDeliveryGlsAsm(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -23,7 +25,7 @@ class TestDeliveryGlsAsm(common.TransactionCase):
             }
         )
         cls.product = cls.env["product.product"].create(
-            {"type": "product", "name": "Test product"}
+            {"is_storable": True, "name": "Test product"}
         )
         cls.partner = cls.env["res.partner"].create(
             {
