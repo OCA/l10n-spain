@@ -130,8 +130,8 @@
                             <td style="font-size:14px;text-align:center;">
                                 <strong>
                                     <span
-                                        t-out="sum(x['bultos'] for x in deliveries)"
-                                    />
+                                    t-out="sum(x['bultos'] for x in deliveries)"
+                                />
                                     <br />(Packages)
                                 </strong>
                             </td>
