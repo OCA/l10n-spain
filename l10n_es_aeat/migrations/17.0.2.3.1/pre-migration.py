@@ -17,4 +17,4 @@ def migrate(env, version):
                         ("module", "=", "account"),
                         ("name", "=", f"{comp.id}_account_tax_template_{src}"),
                     ]
-                ).name = f"account.{comp.id}_account_tax_template_{dest}"
+                ).name = f"{comp.id}_account_tax_template_{dest}"
