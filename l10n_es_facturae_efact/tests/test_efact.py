@@ -82,7 +82,7 @@ class SftpConnection:
     def chdir(self, path):
         return
 
-    def open(self, path, type=""):
+    def open(self, path, file_type=""):
         return BytesIO(self.data)
 
     def listdir_attr(self, path):
@@ -307,7 +307,6 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
             self.partner.state_id = False
 
     def test_efact_sending(self):
-
         client = Client(wsdl=self.face_url)
         integration_code = "1234567890"
         response_ok = client.get_type("ns0:EnviarFacturaResponse")(
@@ -329,8 +328,7 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
         exchange_record.write(
             {
                 "backend_id": self.env.ref("l10n_es_facturae_efact.efact_backend").id,
-                "exchange_filename": "0123456789012345678901@"
-                "0123456789012345678901@R_0001",
+                "exchange_filename": "0123456789012345678901@0123456789012345678901@R_0001",
                 "external_identifier": False,
             }
         )
@@ -374,8 +372,7 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
         exchange_record.write(
             {
                 "backend_id": self.env.ref("l10n_es_facturae_efact.efact_backend").id,
-                "exchange_filename": "0123456789012345678901@"
-                "0123456789012345678901@R_0001",
+                "exchange_filename": "0123456789012345678901@0123456789012345678901@R_0001",
                 "external_identifier": False,
             }
         )
