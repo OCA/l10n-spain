@@ -1,0 +1,3 @@
+Este módulo extiende la funcionalidad de la Prorrata del IVA y el Libro de IVA para que la Cuota deducible se calcule correctamente según [Diseños de registro normalizados para los Libros Registro del IVA de personas jurídicas no incluidas en SII en los formatos XLS y CSV (actualizado 18-12-2024)](https://sede.agenciatributaria.gob.es/static_files/AEAT/LSIJ.xlsx)
+
+> * En "Cuota Deducible" se consignará el importe de la Cuota del IVA Soportado que sea deducible para cada tipo de IVA. Cuando toda la cuota soportada sea deducible, en la columna "Cuota Deducible" se consignará el mismo contenido que figure en la columna "Cuota IVA Soportado".

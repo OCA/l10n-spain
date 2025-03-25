@@ -252,12 +252,19 @@ class L10nEsVatBook(models.Model):
             "special_tax_group": False,
         }
 
-    def upsert_book_line_tax(self, move_line, vat_book_line, implied_taxes):
-        tax_lines = vat_book_line["tax_lines"]
-        default_dict = {
-            "base_amount": 0,
-            "tax_amount": 0,
-            "deductible_amount": 0,
+    def _prepare_book_line_tax_vals(self, move_line, vat_book_line):
+        balance = move_line.credit - move_line.debit
+        if vat_book_line["line_type"] in ["received", "rectification_received"]:
+            balance = -balance
+        base_amount_untaxed = (
+            balance if move_line.tax_ids and not move_line.tax_line_id else 0.0
+        )
+        fee_amount_untaxed = balance if move_line.tax_line_id else 0.0
+        vals = {
+            "tax_id": move_line.tax_line_id.id,
+            "base_amount": base_amount_untaxed,
+            "tax_amount": fee_amount_untaxed,
+            "deductible_amount": fee_amount_untaxed,
             "base_move_line_ids": [],
             "move_line_ids": [],
             "special_tax_group": False,
@@ -266,14 +273,14 @@ class L10nEsVatBook(models.Model):
         if vat_book_line["line_type"] in ["received", "rectification_received"]:
             sign = 1
         if move_line.tax_line_id:
-            res = {}
-            tax = move_line.tax_line_id
-            move_line._process_aeat_tax_fee_info(res, tax, sign)
-            key = self.get_book_line_tax_key(move_line, tax)
-            value = tax_lines.setdefault(key, default_dict | {"tax_id": tax.id})
-            value["tax_amount"] += res[tax]["amount"]
-            value["deductible_amount"] += res[tax]["deductible_amount"]
-            value["move_line_ids"].append((4, move_line.id))
+            key = self.get_book_line_tax_key(move_line, move_line.tax_line_id)
+            if key not in tax_lines:
+                tax_lines[key] = vals
+            else:
+                tax_lines[key]["tax_id"] = move_line.tax_line_id.id
+                tax_lines[key]["tax_amount"] += vals["tax_amount"]
+                tax_lines[key]["deductible_amount"] += vals["deductible_amount"]
+                tax_lines[key]["move_line_ids"] += vals["move_line_ids"]
         for i, tax in enumerate(move_line.tax_ids):
             res = {}
             move_line._process_aeat_tax_base_info(res, tax, sign)
@@ -433,6 +440,23 @@ class L10nEsVatBook(models.Model):
             lines_values.append(line_vals)
         VatBookLine.create(lines_values)
 
+    def _get_move_lines_with_taxes(self, move_lines, taxes, accounts):
+        """
+        This function filter the move lines with taxes and accounts mapped
+        """
+        if accounts:
+            return move_lines.filtered(
+                lambda line: line.tax_ids & taxes
+                or (
+                    line.tax_line_id in taxes
+                    and accounts.get(line.tax_line_id, line.account_id)
+                    == line.account_id
+                )
+            )
+        return move_lines.filtered(
+            lambda line: (line.tax_ids | line.tax_line_id) & taxes
+        )
+
     def _calculate_vat_book(self):
         """
         This function calculate all the taxes, from issued invoices,
@@ -466,19 +490,7 @@ class L10nEsVatBook(models.Model):
                         )
                         accounts.update({tax: account for tax in line_taxes})
                 # Filter in all possible data using sets for improving performance
-                if accounts:
-                    lines = moves.filtered(
-                        lambda line: line.tax_ids & taxes
-                        or (
-                            line.tax_line_id in taxes
-                            and accounts.get(line.tax_line_id, line.account_id)
-                            != line.account_id
-                        )
-                    )
-                else:
-                    lines = moves.filtered(
-                        lambda line: (line.tax_ids | line.tax_line_id) & taxes
-                    )
+                lines = rec._get_move_lines_with_taxes(moves, taxes, accounts)
                 if map_lines:
                     rec.create_vat_book_lines(lines, map_lines[:1].book_type, taxes)
             # Issued
