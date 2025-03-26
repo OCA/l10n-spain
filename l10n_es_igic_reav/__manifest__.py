@@ -3,7 +3,7 @@
 
 {
     "name": "Aplicación REAV en la localización canaria",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.0.1",
     "license": "AGPL-3",
     "author": "Dixmit,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
