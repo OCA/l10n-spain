@@ -153,19 +153,19 @@ class L10nEsVatBook(models.Model):
                     "base_move_line_ids": tax_line.base_move_line_ids.ids,
                     "move_line_ids": tax_line.move_line_ids.ids,
                 }
-            tax_summary_data_recs[tax_line.tax_id][
-                "base_amount"
-            ] += tax_line.base_amount
+            tax_summary_data_recs[tax_line.tax_id]["base_amount"] += (
+                tax_line.base_amount
+            )
             tax_summary_data_recs[tax_line.tax_id]["tax_amount"] += tax_line.tax_amount
-            tax_summary_data_recs[tax_line.tax_id][
-                "total_amount"
-            ] += tax_line.total_amount
-            tax_summary_data_recs[tax_line.tax_id][
-                "base_move_line_ids"
-            ] += tax_line.base_move_line_ids.ids
-            tax_summary_data_recs[tax_line.tax_id][
-                "move_line_ids"
-            ] += tax_line.move_line_ids.ids
+            tax_summary_data_recs[tax_line.tax_id]["total_amount"] += (
+                tax_line.total_amount
+            )
+            tax_summary_data_recs[tax_line.tax_id]["base_move_line_ids"] += (
+                tax_line.base_move_line_ids.ids
+            )
+            tax_summary_data_recs[tax_line.tax_id]["move_line_ids"] += (
+                tax_line.move_line_ids.ids
+            )
         return tax_summary_data_recs
 
     @api.model
