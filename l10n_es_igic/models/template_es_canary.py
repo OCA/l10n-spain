@@ -9,7 +9,7 @@ class AccountChartTemplate(models.AbstractModel):
     @template("es_common_canary")
     def _get_es_common_canary_template_data(self):
         return {
-            "name": _("Común (2008) - Islas Canarias"),
+            "name": _("Common (2008) - Canary Islands"),
             "visible": 0,
             "parent": "es_common",
         }
@@ -51,12 +51,20 @@ class AccountChartTemplate(models.AbstractModel):
 
     @template("es_common", "account.fiscal.position")
     def _get_es_common_force_account_fiscal_position(self):
-        return self._parse_csv("es_common", "account.fiscal.position", module="l10n_es")
+        es_common_account_fiscal_position = self._parse_csv(
+            "es_common", "account.fiscal.position", module="l10n_es"
+        )
+        es_common_account_fiscal_position.update(
+            self._parse_csv(
+                "es_common", "account.fiscal.position", module="l10n_es_igic"
+            )
+        )
+        return es_common_account_fiscal_position
 
     @template("es_full_canary")
     def _get_es_full_canary_template_data(self):
         return {
-            "name": _("Completo (2008) - Islas Canarias"),
+            "name": _("Full (2008) -Canary Islands"),
             "parent": "es_common_canary",
         }
 
@@ -76,7 +84,7 @@ class AccountChartTemplate(models.AbstractModel):
     @template("es_assoc_canary")
     def _get_es_assoc_canary_template_data(self):
         return {
-            "name": _("Entidades sin ánimo de lucro (2008) - Islas Canarias"),
+            "name": _("Non-profit organizations (2008) - Canary Islands"),
             "parent": "es_common_canary",
         }
 
@@ -96,7 +104,7 @@ class AccountChartTemplate(models.AbstractModel):
     @template("es_pymes_canary")
     def _get_es_pymes_canary_template_data(self):
         return {
-            "name": _("PyMEs (2008) - Islas Canarias"),
+            "name": _("PyMEs (2008) - Canary Islands"),
             "parent": "es_common_canary",
         }
 

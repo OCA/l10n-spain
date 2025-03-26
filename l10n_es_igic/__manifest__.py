@@ -16,10 +16,14 @@
     "Sistemas de Datos,"
     "Comunitea,"
     "Moisés Fargnoli,"
+    "Binhex,"
     "Odoo Community Association (OCA)",
     "category": "Accounting/Localizations/Account Charts",
     "website": "https://github.com/OCA/l10n-spain",
     "depends": ["l10n_es"],
+    "data": [
+        "data/products_dua.xml",
+    ],
     "license": "AGPL-3",
     "installable": True,
     "auto_install": False,
