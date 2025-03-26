@@ -379,7 +379,7 @@ class L10nEsVatBook(models.Model):
     def _check_exceptions(self, line_vals):
         rp_model = self.env["res.partner"]
         if not line_vals["partner_id"]:
-            line_vals["exception_text"] = _("Without Partner")
+            line_vals["exception_text"] = self.env._("Without Partner")
         elif not line_vals["vat_number"]:  # Doesn't have VAT
             partner = rp_model.browse(line_vals["partner_id"])
             country_code, identifier_type, vat_number = partner._parse_aeat_vat_info()
@@ -392,7 +392,7 @@ class L10nEsVatBook(models.Model):
                 identifier_type in req_vat_identif_types
                 and line_vals["partner_id"] not in self.get_pos_partner_ids()
             ):
-                line_vals["exception_text"] = _("Without VAT")
+                line_vals["exception_text"] = self.env._("Without VAT")
 
     def create_vat_book_lines(self, move_lines, line_type, taxes):
         VatBookLine = self.env["l10n.es.vat.book.line"]
@@ -447,7 +447,7 @@ class L10nEsVatBook(models.Model):
         """
         for rec in self:
             if not rec.company_id.partner_id.vat:
-                raise UserError(_("This company doesn't have VAT"))
+                raise UserError(self.env._("This company doesn't have VAT"))
             rec._clear_old_data()
             # Searches for all possible usable lines to report
             moves = rec._get_account_move_lines()
@@ -571,7 +571,7 @@ class L10nEsVatBook(models.Model):
 
     def button_confirm(self):
         if any(l.exception_text for l in self.line_ids):
-            raise UserError(_("This book has warnings. Fix it before confirm"))
+            raise UserError(self.env._("This book has warnings. Fix it before confirm"))
         return super().button_confirm()
 
     def export_xlsx(self):
