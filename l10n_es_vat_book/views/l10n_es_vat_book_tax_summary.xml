@@ -21,7 +21,7 @@
         <field name="name">view.l10n_es_vat_book_tax_summary.tree</field>
         <field name="model">l10n.es.vat.book.tax.summary</field>
         <field name="arch" type="xml">
-            <tree decoration-muted="special_tax_group">
+            <list decoration-muted="special_tax_group">
                 <field name="special_tax_group" />
                 <field name="base_amount" />
                 <!-- We don't add a visibility condition, as that would mean to have
@@ -44,7 +44,7 @@
                     icon="fa-search-plus"
                 />
                 <field name="total_amount" />
-            </tree>
+            </list>
         </field>
     </record>
 </odoo>

@@ -3,7 +3,7 @@
     <record model="ir.actions.act_window" id="action_aeat_vat_book_mapping">
         <field name="name">AEAT vat book map</field>
         <field name="res_model">aeat.vat.book.map.line</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem
         id="menu_aeat_vat_book_map"
@@ -15,7 +15,7 @@
         <field name="name">aeat.vat.book.map.lines.view.tree</field>
         <field name="model">aeat.vat.book.map.line</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <list editable="bottom">
                 <field name="name" />
                 <field name="book_type" />
                 <field name="special_tax_group" />
@@ -24,7 +24,7 @@
                 <field name="tax_xmlid_ids" widget="many2many_tags" />
                 <field name="account_xmlid_id" />
                 <field name="tax_agency_ids" widget="many2many_tags" />
-            </tree>
+            </list>
         </field>
     </record>
 </odoo>

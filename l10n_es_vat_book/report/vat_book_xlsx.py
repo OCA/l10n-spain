@@ -58,9 +58,9 @@ class VatNumberXlsx(models.AbstractModel):
         sheet = workbook.add_worksheet("EXPEDIDAS")
 
         sheet.merge_range("B1:Q1", "LIBRO REGISTRO FACTURAS EXPEDIDAS", title_format)
-        sheet.write("A2", "Ejercicio: %s" % book.year)
-        sheet.write("A3", "NIF: %s" % book.company_vat)
-        sheet.merge_range("A4:D4", "NOMBRE/RAZÓN SOCIAL: %s" % book.company_id.name)
+        sheet.write("A2", f"Ejercicio: {book.year}")
+        sheet.write("A3", f"NIF: {book.company_vat}")
+        sheet.write("A4:D4", f"NOMBRE/RAZÓN SOCIAL: {book.company_id.name}")
 
         sheet.merge_range("C6:E6", "Identificación de la Factura", header_format)
         sheet.merge_range("F6:H6", "NIF Destinatario", header_format)
@@ -212,9 +212,9 @@ class VatNumberXlsx(models.AbstractModel):
         sheet = workbook.add_worksheet("RECIBIDAS")
 
         sheet.merge_range("B1:S1", "LIBRO REGISTRO FACTURAS RECIBIDAS", title_format)
-        sheet.write("A2", "Ejercicio: %s" % book.year)
-        sheet.write("A3", "NIF: %s" % book.company_vat)
-        sheet.merge_range("A4:D4", "NOMBRE/RAZÓN SOCIAL: %s" % book.company_id.name)
+        sheet.write("A2", f"Ejercicio: {book.year}")
+        sheet.write("A3", f"NIF: {book.company_vat}")
+        sheet.write("A4:D4", f"NOMBRE/RAZÓN SOCIAL: {book.company_id.name}")
 
         sheet.merge_range(
             "C6:D6", "Identificación Factura del Expedidor", header_format
