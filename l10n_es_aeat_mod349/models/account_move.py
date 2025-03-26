@@ -35,6 +35,7 @@ class AccountMoveLine(models.Model):
         ],
         string="AEAT 349 Operation key",
         compute="_compute_l10n_es_aeat_349_operation_key",
+        search="_search_l10n_es_aeat_349_operation_key",
     )
 
     @api.depends("tax_ids", "move_id.eu_triangular_deal")
@@ -50,3 +51,19 @@ class AccountMoveLine(models.Model):
                             tax.l10n_es_aeat_349_operation_key
                         )
                         break
+
+    def _search_l10n_es_aeat_349_operation_key(self, operator, value):
+        if operator not in ["=", "!="]:
+            raise ValueError(
+                f"Operator {operator} is not supported for selection fields"
+            )
+        if value == "T":
+            amls = self.env["account.move.line"].search(
+                [("move_id.eu_triangular_deal", "=", True)]
+            )
+        else:
+            taxes = self.env["account.tax"].search(
+                [("l10n_es_aeat_349_operation_key", "=", value)]
+            )
+            amls = self.env["account.move.line"].search([("tax_ids", "in", taxes.ids)])
+        return [("id", "in", amls.ids)]

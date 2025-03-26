@@ -470,3 +470,45 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
             lambda x: x.partner_vat == self.customer.vat
         )
         self.assertTrue(partner_record.partner_record_ok)
+
+    def test_mod349_no_previous_349_declaration(self):
+        # Add some test data
+        self.supplier.write(
+            {"vat": "BG0000100159", "country_id": self.env.ref("base.bg").id}
+        )
+        # # Purchase invoices
+        p1 = self._invoice_purchase_create("2017-01-01")
+        self._invoice_refund(p1, "2017-04-01")
+        # Create model
+        model349_model = self.env["l10n.es.aeat.mod349.report"].with_user(
+            self.account_manager
+        )
+        model349_2t = model349_model.create(
+            {
+                "name": "3490000000001",
+                "company_id": self.company.id,
+                "company_vat": "1234567890",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": 2017,
+                "period_type": "2T",
+                "date_start": "2017-04-01",
+                "date_end": "2017-06-30",
+            }
+        )
+        # Calculate
+        _logger.debug("Calculate AEAT 349 2T 2017")
+        model349_2t.button_calculate()
+        # Direct search on account.move.line for l10n_es_aeat_349_operation_key
+        l10n_es_aeat_349_operation_key = p1.invoice_line_ids[
+            0
+        ].l10n_es_aeat_349_operation_key
+        amls = self.env["account.move.line"].search(
+            [
+                ("l10n_es_aeat_349_operation_key", "=", l10n_es_aeat_349_operation_key),
+                ("move_id", "=", p1.id),
+            ]
+        )
+        self.assertEqual(len(amls), 2)
