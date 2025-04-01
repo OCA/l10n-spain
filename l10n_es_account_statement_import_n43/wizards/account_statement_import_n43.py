@@ -395,6 +395,7 @@ class AccountStatementImport(models.TransientModel):
             "transactions": transactions,
             "balance_start": n43 and n43[0]["saldo_ini"] or 0.0,
             "balance_end_real": n43 and n43[-1]["saldo_fin"] or 0.0,
+            "creation_context": {"skip_retrieve_partner": True},
         }
         return (
             self._get_currency_iso4217(int(n43[0]["divisa"])),
