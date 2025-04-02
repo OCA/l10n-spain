@@ -818,9 +818,9 @@ class SiiMixin(models.AbstractModel):
                     and not document.sii_account_registration_date
                     and mapping_key[:2] == "in"
                 ):
-                    doc_vals[
-                        "sii_account_registration_date"
-                    ] = document._get_account_registration_date()
+                    doc_vals["sii_account_registration_date"] = (
+                        document._get_account_registration_date()
+                    )
                 doc_vals["sii_return"] = res
                 send_error = False
                 if res_line["CodigoErrorRegistro"]:
