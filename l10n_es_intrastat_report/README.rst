@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =======================================
 Intrastat Product Declaration for Spain
 =======================================
@@ -17,7 +13,7 @@ Intrastat Product Declaration for Spain
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
@@ -70,32 +66,32 @@ Configuration
 
 This module adds the following configuration parameters:
 
-- Company
+-  Company
 
-  - Arrivals : Exempt, Standard or Extended
-  - Dispatches : Exempt, Standard or Extended
-  - Default Intrastat Transaction
-  - Default Intrastat Transport Mode (Extended Declaration)
-  - Default Intrastat Incoterm (Extended Declaration)
+   -  Arrivals : Exempt, Standard or Extended
+   -  Dispatches : Exempt, Standard or Extended
+   -  Default Intrastat Transaction
+   -  Default Intrastat Transport Mode (Extended Declaration)
+   -  Default Intrastat Incoterm (Extended Declaration)
 
-- Warehouse
+-  Warehouse
 
-  - Intrastat State to cope with warehouses in different states
+   -  Intrastat State to cope with warehouses in different states
 
-    The configuration of the Intrastat State on a Warehouse, requires a
-    login belonging to the "Spanish Intrastat Product Declaration"
-    security group.
+      The configuration of the Intrastat State on a Warehouse, requires
+      a login belonging to the "Spanish Intrastat Product Declaration"
+      security group.
 
-- Intrastat Codes, Supplementary Units, Transaction Types, Transport
-  Modes, States
+-  Intrastat Codes, Supplementary Units, Transaction Types, Transport
+   Modes, States
 
-  Cf. menu *Invoicing / Configuration / Miscellaneous / Intrastat
-  Configuration*
+   Cf. menu *Invoicing / Configuration / Miscellaneous / Intrastat
+   Configuration*
 
-- Product
+-  Product
 
-  You can define a default Intrastat Code on the Product or the Product
-  Category.
+   You can define a default Intrastat Code on the Product or the Product
+   Category.
 
 Usage
 =====
@@ -107,16 +103,16 @@ Usage
 
 3. Select or input following data:
 
-   - Year
-   - Month
-   - Type: for selecting if arrivals or dispatches.
-   - Reporting level: standard or extended.
-   - Action:
+   -  Year
+   -  Month
+   -  Type: for selecting if arrivals or dispatches.
+   -  Reporting level: standard or extended.
+   -  Action:
 
-     - if "Nihil", no recomputation is possible and the report is
-       considered empty.
-     - if "Replace", everything is recomputed.
-     - if "Append", only new lines are added.
+      -  if "Nihil", no recomputation is possible and the report is
+         considered empty.
+      -  if "Replace", everything is recomputed.
+      -  if "Append", only new lines are added.
 
 4. Click on "Generate Lines from invoices" for populating transaction
    lines.
@@ -136,18 +132,18 @@ Usage
 Known issues / Roadmap
 ======================
 
-- The current version of the Intrastat reporting module is only based on
-  invoices. Since associated stock moves are not taken into
-  consideration, it is possible that manual corrections are required,
-  e.g.
+-  The current version of the Intrastat reporting module is only based
+   on invoices. Since associated stock moves are not taken into
+   consideration, it is possible that manual corrections are required,
+   e.g.
 
-  - Product movements without invoices are not included in the current
-    version of this module and must be added manually to the report
-    lines before generating the declaration.
+   -  Product movements without invoices are not included in the current
+      version of this module and must be added manually to the report
+      lines before generating the declaration.
 
-- The current version of the Intrastat reporting module does not perform
-  a cross-check with the VAT declaration.
-- Add tests.
+-  The current version of the Intrastat reporting module does not
+   perform a cross-check with the VAT declaration.
+-  Add tests.
 
 Bug Tracker
 ===========
@@ -172,24 +168,25 @@ Authors
 Contributors
 ------------
 
-- Ismael Calvo, FactorLibre <ismael.calvo@factorlibre.com>
-- Luc De Meyer, Noviat <info@noviat.com>
-- Daniel Duque <daniel.duque@factorlibre.com>
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  Ismael Calvo, FactorLibre <ismael.calvo@factorlibre.com>
+-  Luc De Meyer, Noviat <info@noviat.com>
+-  Daniel Duque <daniel.duque@factorlibre.com>
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Manuel Calero
-  - Pedro M. Baeza
-  - João Marques
-  - Víctor Martínez
+   -  Manuel Calero
+   -  Pedro M. Baeza
+   -  João Marques
+   -  Víctor Martínez
+   -  Juan Carlos Oñate
 
-- `Sygel <https://www.sygel.es>`__:
+-  `Sygel <https://www.sygel.es>`__:
 
-  - Harald Panten
-  - Valentin Vinagre
+   -  Harald Panten
+   -  Valentin Vinagre
 
-- `GreenIce <https://www.greenice.com>`__:
+-  `GreenIce <https://www.greenice.com>`__:
 
-  - Fernando La Chica
+   -  Fernando La Chica
 
 Maintainers
 -----------
