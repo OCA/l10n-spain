@@ -47,6 +47,34 @@ class TestL10nEsSigausSales(TestL10nEsSigausCommon):
         self.assertTrue(sale.is_sigaus)
         self.assertTrue(sale.sigaus_automated_exception_id)
 
+    def test_sale_line_with_sigaus(self):
+        sale = self.create_sale_order("2023-01-01", self.fiscal_position_sigaus, [])
+        self.env["sale.order.line"].create(
+            [
+                {
+                    "order_id": sale.id,
+                    "product_id": self.product_sigaus_in_product.id,
+                    "product_uom_qty": 1.0,
+                    "price_unit": 2,
+                },
+                {
+                    "order_id": sale.id,
+                    "product_id": self.product_sigaus_in_category.id,
+                    "product_uom_qty": 2.0,
+                    "price_unit": 3,
+                },
+                {
+                    "order_id": sale.id,
+                    "product_id": self.product_sigaus_in_category_excluded.id,
+                    "product_uom_qty": 3.0,
+                    "price_unit": 4,
+                },
+            ]
+        )
+        self.assertTrue(sale.is_sigaus)
+        self.assertTrue(sale.sigaus_has_line)
+        self.assertEqual(sale.amount_untaxed, 20.3)
+
     def test_sale_with_sigaus(self):
         lines = [
             {
