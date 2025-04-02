@@ -34,6 +34,8 @@ class IntrastatProductDeclaration(models.Model):
 
     def _update_computation_line_vals(self, inv_line, line_vals, notedict):
         result = super()._update_computation_line_vals(inv_line, line_vals, notedict)
+        if self.company_id.country_id.code != "ES":
+            return result
         intrastat_state = self._get_intrastat_state(inv_line)
         if intrastat_state:
             line_vals["intrastat_state_id"] = intrastat_state.id
@@ -71,6 +73,8 @@ class IntrastatProductDeclaration(models.Model):
         - companies subject to arrivals or dispatches only
         """
         domain = super()._prepare_invoice_domain()[:-1]
+        if self.company_id.country_id.code != "ES":
+            return super()._prepare_invoice_domain()
         if self.declaration_type == "arrivals":
             domain.append(("move_type", "in", ("in_invoice", "out_refund")))
         elif self.declaration_type == "dispatches":
@@ -82,6 +86,8 @@ class IntrastatProductDeclaration(models.Model):
 
     def _attach_xml_file(self, xml_string, declaration_name):
         attach_id = super()._attach_xml_file(xml_string, declaration_name)
+        if self.company_id.country_id.code != "ES":
+            return attach_id
         self.ensure_one()
         attach = self.env["ir.attachment"].browse(attach_id)
         filename = f"{self.year_month}_{declaration_name}.csv"
@@ -158,9 +164,10 @@ class IntrastatProductDeclaration(models.Model):
             "data": {"dynamic_report": True},
         }
 
-    @api.model
     def _xls_computation_line_fields(self):
         res = super()._xls_computation_line_fields()
+        if self.company_id.country_id.code != "ES":
+            return res
         if (
             self.env.context.get("declaration_type", False) == "dispatches"
             and int(self.env.context.get("declaration_year", 0)) >= 2022
@@ -168,9 +175,10 @@ class IntrastatProductDeclaration(models.Model):
             res.append("partner_vat")
         return res
 
-    @api.model
     def _xls_declaration_line_fields(self):
         res = super()._xls_declaration_line_fields()
+        if self.company_id.country_id.code != "ES":
+            return res
         if (
             self.env.context.get("declaration_type", False) == "dispatches"
             and int(self.env.context.get("declaration_year", 0)) >= 2022
@@ -190,6 +198,8 @@ class IntrastatProductComputationLine(models.Model):
 
     def _prepare_grouped_fields(self, fields_to_sum):
         vals = super()._prepare_grouped_fields(fields_to_sum)
+        if self.company_id.country_id.code != "ES":
+            return vals
         vals["intrastat_state_id"] = self.intrastat_state_id.id
         # TODO: Move set incoterm_id to intrastat_product
         vals["incoterm_id"] = self.incoterm_id.id
@@ -199,6 +209,8 @@ class IntrastatProductComputationLine(models.Model):
 
     def _prepare_declaration_line(self, line_number):
         vals = super()._prepare_declaration_line(line_number)
+        if self.company_id.country_id.code != "ES":
+            return vals
         # Avoid rounding in weight and fiscal value
         vals["weight"] = 0.0
         vals["amount_company_currency"] = 0.0
@@ -215,6 +227,8 @@ class IntrastatProductComputationLine(models.Model):
     @api.model
     def _group_line_hashcode_fields(self):
         res = super()._group_line_hashcode_fields()
+        if self.company_id.country_id.code != "ES":
+            return res
         res["intrastat_state_id"] = self.intrastat_state_id.id
         if self.declaration_type == "dispatches" and int(self.parent_id.year) >= 2022:
             res["partner_vat"] = self.partner_vat
