@@ -77,7 +77,9 @@ class SaleOrder(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        sales = super().create(vals_list)
+        sales = super(SaleOrder, self.with_context(avoid_line_recursion=True)).create(
+            vals_list
+        )
         for sale in sales.filtered(
             lambda a: a.is_sigaus
             and a.sigaus_is_date
