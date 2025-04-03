@@ -10,7 +10,7 @@
             <notebook position="inside">
                 <page name="verifactu" string="veri*FACTU">
                     <separator
-                        name="aeat_verifactu_config"
+                        name="verifactu_config"
                         string="AEAT veri*FACTU Configuration"
                     />
                     <group name="verifactu_enabled">
@@ -24,6 +24,16 @@
                     <group attrs="{'invisible': [('verifactu_enabled', '=', False)]}">
                         <group name="verifactu_description">
                             <field name="verifactu_description" />
+                        </group>
+                    </group>
+                    <group attrs="{'invisible': [('verifactu_enabled', '=', False)]}">
+                        <group name="verifactu_developer_id">
+                            <field name="verifactu_developer_id" />
+                        </group>
+                    </group>
+                    <group attrs="{'invisible': [('verifactu_enabled', '=', False)]}">
+                        <group name="verifactu_last_document_id">
+                            <field name="verifactu_last_document_id" />
                         </group>
                     </group>
                 </page>
