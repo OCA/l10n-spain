@@ -45,13 +45,33 @@
                             name="verifactu_refund_specific_invoice_type"
                             attrs="{'invisible': [('move_type', '!=', 'out_refund')]}"
                         />
-                        <field name="verifactu_tax_key" />
+                        <field
+                            name="verifactu_tax_key"
+                            attrs="{'required': [('verifactu_enabled', '=', True)], 'readonly': [('state', '!=', 'draft')]}"
+                        />
                         <field
                             name="verifactu_registration_key"
-                            attrs="{'required': [('verifactu_enabled', '=', True)]}"
+                            attrs="{'required': [('verifactu_enabled', '=', True)], 'readonly': [('state', '!=', 'draft')]}"
                         />
-                        <field name="verifactu_hash_string" readonly="1" />
-                        <field name="verifactu_hash" readonly="1" />
+                        <field
+                            name="verifactu_hash_string"
+                            readonly="1"
+                            groups="base.group_no_one"
+                        />
+                        <field
+                            name="verifactu_hash"
+                            readonly="1"
+                            groups="base.group_no_one"
+                        />
+                        <field name="verifactu_registration_date" readonly="1" />
+                        <field
+                            name="verifactu_previous_document_id"
+                            groups="base.group_no_one"
+                        />
+                        <field
+                            name="verifactu_next_document_id"
+                            groups="base.group_no_one"
+                        />
                     </group>
                     <group
                         string="Veri*FACTU Result"
@@ -91,6 +111,60 @@
                     </group>
                 </page>
             </notebook>
+        </field>
+    </record>
+
+    <record id="invoice_verifactu_search" model="ir.ui.view">
+        <field name="name">account.invoice.verifactu.search</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter" />
+        <field name="arch" type="xml">
+            <filter name="late" position="after">
+                <group string="Verifactu filters">
+                    <separator />
+                    <filter
+                        name="verifactu_not_sent"
+                        string="Verifactu not sent"
+                        domain="[('aeat_state', '=', 'not_sent'), ('verifactu_enabled', '=', True)]"
+                        help="Never sent to Verifactu"
+                    />
+                    <filter
+                        name="verifactu_pending"
+                        string="With modifications not sent to Verifactu"
+                        domain="[('aeat_state', 'in', ['sent_modified','cancelled_modified'])]"
+                        help="Already sent but with local changes not sent yet"
+                    />
+                    <filter
+                        name="verifactu_sent"
+                        string="Verifactu sent"
+                        domain="[('aeat_state', 'not in', ['not_sent'])]"
+                        help="Already sent to Verifactu. It includes cancelled invoices"
+                    />
+                    <filter
+                        name="aeat_send_failed"
+                        string="Verifactu failed"
+                        domain="[('aeat_send_failed', '=', True)]"
+                        help="The last attemp to sent to Verifactu has failed"
+                    />
+                    <separator />
+                    <filter
+                        name="verifactu_cancelled"
+                        string="Verifactu cancelled"
+                        domain="[('aeat_state', 'in', ['cancelled','cancelled_modified'])]"
+                        help="Cancelled invoices at Verifactu"
+                    />
+                    <separator />
+                </group>
+            </filter>
+            <xpath expr="//group" position="inside">
+                <separator />
+                <filter
+                    string="Verifactu error"
+                    name="verifactu_error"
+                    domain="[('aeat_send_failed', '=', True)]"
+                    context="{'group_by':'aeat_send_error'}"
+                />
+            </xpath>
         </field>
     </record>
 </odoo>

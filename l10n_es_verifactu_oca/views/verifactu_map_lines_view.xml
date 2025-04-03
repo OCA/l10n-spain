@@ -2,9 +2,9 @@
 <!--  Copyright 2024 Aures TIC - Almudena de La Puente
     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
 <odoo>
-    <record id="l10n_es_aeat_verifactu_map_lines_view_tree" model="ir.ui.view">
-        <field name="name">aeat.verifactu.map.lines.view.tree</field>
-        <field name="model">aeat.verifactu.map.lines</field>
+    <record id="l10n_es_verifactu_map_lines_view_tree" model="ir.ui.view">
+        <field name="name">verifactu.map.lines.view.tree</field>
+        <field name="model">verifactu.map.lines</field>
         <field name="arch" type="xml">
             <tree editable="bottom">
                 <field name="code" />
