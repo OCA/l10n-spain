@@ -65,7 +65,15 @@ class TestL10nEsPartner(common.TransactionCase):
             "l10n_es_partner.name_pattern", "%(comercial_name)s (%(name)s)"
         )
         partner2 = self.env["res.partner"].create(
-            {"name": "Empresa de prueba", "comercial": "Nombre comercial"}
+            {
+                "name": "Empresa de prueba",
+                "comercial": "Nombre comercial",
+                "street": "Calle Mayor, 1",
+                "zip": "50001",
+                "city": "Zaragoza",
+                "state_id": self.env.ref("base.state_es_z").id,
+                "country_id": self.country_spain.id,
+            }
         )
         self.assertEqual(partner2.display_name, "Nombre comercial (Empresa de prueba)")
         partner2.write({"comercial": "Nuevo nombre"})
@@ -74,3 +82,29 @@ class TestL10nEsPartner(common.TransactionCase):
         self.assertEqual(names.get(partner2.id), "Empresa de prueba")
         names = dict(partner2.name_get())
         self.assertEqual(names.get(partner2.id), "Nuevo nombre (Empresa de prueba)")
+        names = dict(partner2.with_context(show_address=True).name_get())
+        self.assertEqual(
+            names.get(partner2.id),
+            "Nuevo nombre (Empresa de prueba)\n"
+            "Calle Mayor, 1\n"
+            "50001 Zaragoza (Zaragoza)\n"
+            "Spain",
+        )
+        names = dict(
+            partner2.with_context(show_address=True, address_inline=True).name_get()
+        )
+        self.assertEqual(
+            names.get(partner2.id),
+            "Nuevo nombre (Empresa de prueba), Calle Mayor, 1, "
+            "50001 Zaragoza (Zaragoza), Spain",
+        )
+        names = dict(
+            partner2.with_context(show_address=True, html_format=True).name_get()
+        )
+        self.assertEqual(
+            names.get(partner2.id),
+            "Nuevo nombre (Empresa de prueba)<br/>"
+            "Calle Mayor, 1<br/>"
+            "50001 Zaragoza (Zaragoza)<br/>"
+            "Spain",
+        )

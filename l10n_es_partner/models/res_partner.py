@@ -29,6 +29,11 @@ class ResPartner(models.Model):
             or not self.comercial
         ):
             return origin
+        if self.env.context.get("show_address"):
+            return origin.replace(
+                self.name,
+                name_pattern % {"name": self.name, "comercial_name": self.comercial},
+            )
         return name_pattern % {"name": origin, "comercial_name": self.comercial}
 
     @api.model
