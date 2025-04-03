@@ -6,6 +6,7 @@ from collections import OrderedDict
 from datetime import datetime
 from hashlib import sha256
 
+import psycopg2
 import pytz
 
 from odoo import _, api, fields, models
@@ -33,7 +34,22 @@ class AccountMove(models.Model):
         " of article 80 of LIVA for notifying to Vertifactu with the proper"
         " invoice type.",
     )
-    verifactu_registration_date = fields.Datetime()
+    verifactu_registration_date = fields.Datetime(copy=False)
+    verifactu_registration_key = fields.Many2one(
+        comodel_name="verifactu.registration.keys",
+        compute="_compute_verifactu_registration_key",
+        store=True,
+        readonly=False,
+    )
+    verifactu_tax_key = fields.Selection(
+        compute="_compute_verifactu_tax_key",
+        store=True,
+        readonly=False,
+    )
+    verifactu_registration_key_code = fields.Char(
+        compute="_compute_verifactu_registration_key_code",
+        readonly=True,
+    )
 
     @api.depends("move_type")
     def _compute_verifactu_refund_type(self):
@@ -64,6 +80,41 @@ class AccountMove(models.Model):
                 ) or not invoice.fiscal_position_id
             else:
                 invoice.verifactu_enabled = False
+
+    @api.depends("fiscal_position_id")
+    def _compute_verifactu_tax_key(self):
+        for document in self:
+            document.verifactu_tax_key = (
+                document.fiscal_position_id.verifactu_tax_key or "01"
+            )
+
+    @api.depends("fiscal_position_id")
+    def _compute_verifactu_registration_key(self):
+        for document in self:
+            if document.fiscal_position_id:
+                key = document.fiscal_position_id.verifactu_registration_key
+                if key:
+                    document.verifactu_registration_key = key
+            else:
+                domain = [
+                    ("code", "=", "01"),
+                    (
+                        "verifactu_tax_key",
+                        "=",
+                        "01",
+                    ),
+                ]
+                verifactu_key_obj = self.env["verifactu.registration.keys"]
+                document.verifactu_registration_key = verifactu_key_obj.search(
+                    domain, limit=1
+                )
+
+    @api.depends("verifactu_registration_key")
+    def _compute_verifactu_registration_key_code(self):
+        for record in self:
+            record.verifactu_registration_key_code = (
+                record.verifactu_registration_key.code
+            )
 
     def _get_verifactu_document_type(self):
         invoice_type = ""
@@ -108,7 +159,7 @@ class AccountMove(models.Model):
         """
         return self.move_type
 
-    def _get_valid_document_states(self):
+    def _get_verifactu_valid_document_states(self):
         return VERIFACTU_VALID_INVOICE_STATES
 
     def _get_document_serial_number(self):
@@ -131,7 +182,8 @@ class AccountMove(models.Model):
         return self.amount_total_signed
 
     def _get_verifactu_previous_hash(self):
-        # TODO store it? search it by some kind of sequence?
+        if self.verifactu_previous_document_id:
+            return self.verifactu_previous_document_id.verifactu_hash
         return ""
 
     def _get_verifactu_registration_date(self):
@@ -169,6 +221,12 @@ class AccountMove(models.Model):
             f"FechaHoraHusoGenRegistro={registrationDate}"
         )
         return verifactu_hash_string
+
+    @api.model
+    def _get_subsanation_verifactu_hash(self):
+        verifactu_hash_values = self._get_verifactu_hash_string()
+        hash_string = sha256(verifactu_hash_values.encode("utf-8"))
+        return hash_string.hexdigest().upper()
 
     def _get_verifactu_invoice_dict_out(self, cancel=False):
         """Build dict with data to send to AEAT WS for document types:
@@ -228,43 +286,47 @@ class AccountMove(models.Model):
         if verifactu_doc_type not in ("F2", "R5"):
             inv_dict.update(
                 {
-                    "Destinatarios": self._get_receiver_dict(),
+                    "Destinatarios": self._get_verifactu_receiver_dict(),
                 }
             )
-
+        elif verifactu_doc_type in ("F2", "R5"):
+            inv_dict.update({"FacturaSinIdentifDestinatarioArt61d": "S"})
         inv_dict.update(
             {
                 "Desglose": taxes_dict,
                 "CuotaTotal": amount_tax,
                 "ImporteTotal": amount_total,
-                "Encadenamiento": self._get_chaining_invoice_dict(),
+                "Encadenamiento": self._get_verifactu_chaining_invoice_dict(),
                 "SistemaInformatico": self._get_verifactu_developer_dict(),
                 "FechaHoraHusoGenRegistro": self._get_verifactu_registration_date(),
                 "TipoHuella": "01",  # SHA-256
                 "Huella": self.verifactu_hash,
             }
         )
+        if self.aeat_state == "sent_w_errors":
+            inv_dict.update(
+                {
+                    "Subsanacion": "S",
+                    # "RechazoPrevio": "X",
+                    "Huella": self._get_subsanation_verifactu_hash(),
+                }
+            )
         registroAlta.setdefault("RegistroAlta", inv_dict)
         return registroAlta
 
-    def _get_chaining_invoice_dict(self):
-        """
-        TODO
-        si no es el primer registro, hay que enviar el registro anterior.
-        Cuando sepamos cuál es el registro anterior
-        prev_invoice = self._get_previous_invoice()
-        return
-            {
-                "RegistroAnterior" = {
-                    "IDEmisorFactura": prev_invoice._get_verifactu_issuer()
-                    "NumSerieFactura": prev_invoice._get_document_serial_number()
-                    "FechaExpedicionFactura": prev_invoice._change_date_format(
-                        prev_invoice._get_document_date())
-                    "Huella": prev_invoice.verifactu_hash
+    def _get_verifactu_chaining_invoice_dict(self):
+        prev_document = self.verifactu_previous_document_id
+        if prev_document:
+            return {
+                "RegistroAnterior": {
+                    "IDEmisorFactura": prev_document._get_verifactu_issuer(),
+                    "NumSerieFactura": prev_document._get_document_serial_number(),
+                    "FechaExpedicionFactura": prev_document._change_date_format(
+                        prev_document._get_document_date()
+                    ),
+                    "Huella": prev_document.verifactu_hash,
                 }
             }
-        mientras tanto para pruebas vamos a decir siempre que es el primer registro
-        """
         return {"PrimerRegistro": "S"}
 
     def _get_verifactu_tax_dict(self, tax_line, tax_lines):
@@ -327,7 +389,7 @@ class AccountMove(models.Model):
         for tax_line in tax_lines.values():
             tax = tax_line["tax"]
             if tax in breakdown_taxes:
-                operation_type = self._get_operation_type(
+                operation_type = self._get_verifactu_operation_type(
                     tax_line, taxes_S1, taxes_S2, taxes_N1, taxes_N2
                 )
                 tax_dict = {
@@ -345,7 +407,9 @@ class AccountMove(models.Model):
             self._get_verifactu_amount_total(),
         )
 
-    def _get_operation_type(self, tax_line, taxes_S1, taxes_S2, taxes_N1, taxes_N2):
+    def _get_verifactu_operation_type(
+        self, tax_line, taxes_S1, taxes_S2, taxes_N1, taxes_N2
+    ):
         """
         S1	Operación Sujeta y No exenta - Sin inversión del sujeto pasivo.
         S2	Operación Sujeta y No exenta - Con Inversión del sujeto pasivo
@@ -363,18 +427,34 @@ class AccountMove(models.Model):
             return "N2"
         return "S1"
 
-    def _get_receiver_dict(self):
+    def _get_verifactu_receiver_dict(self):
         self.ensure_one()
         receiver = self._aeat_get_partner()
-        vat_info = receiver._parse_aeat_vat_info()
+        (
+            country_code,
+            identifier_type,
+            identifier,
+        ) = receiver._parse_aeat_vat_info()
+        if identifier:
+            identifier = "".join(e for e in identifier if e.isalnum()).upper()
+        else:
+            identifier = "NO_DISPONIBLE"
+            identifier_type = "06"
+        if identifier_type == "":
+            return {
+                "IDDestinatario": {
+                    "NombreRazon": receiver.name,
+                    "NIF": identifier,
+                }
+            }
         return {
             "IDDestinatario": {
                 "NombreRazon": receiver.name,
-                "NIF": vat_info[2],
-                # "IDOtro": {
-                #     "IDType": vat_info[1],
-                #     "ID": vat_info[0],
-                # }
+                "IDOtro": {
+                    "CodigoPais": receiver.country_id.code,
+                    "IDType": identifier_type,
+                    "ID": country_code,
+                },
             }
         }
 
@@ -392,15 +472,123 @@ class AccountMove(models.Model):
         )
 
     def _post(self, soft=True):
-        verifactu_reg_date = datetime.now()
-        self.write({"verifactu_registration_date": verifactu_reg_date})
         res = super()._post(soft=soft)
         for record in self:
-            verifactu_hash_values = record._get_verifactu_hash_string()
-            record.verifactu_hash_string = verifactu_hash_values
-            hash_string = sha256(verifactu_hash_values.encode("utf-8"))
-            record.verifactu_hash = hash_string.hexdigest().upper()
+            if record.verifactu_enabled and record.aeat_state == "not_sent":
+                record._check_verifactu_configuration()
+                record.verifactu_registration_date = datetime.now()
+                record._generate_verifactu_chaining()
+                record._process_verifactu_send()
         return res
+
+    def _check_verifactu_configuration(self):
+        if not self.fiscal_position_id:
+            raise UserError(
+                _(
+                    "The invoice %s cannot be sent to Verifactu because it "
+                    "does not have a fiscal position."
+                )
+                % self.name
+            )
+        if not self.verifactu_tax_key:
+            raise UserError(
+                _(
+                    "The invoice %s cannot be sent to Verifactu because it "
+                    "does not have a tax key."
+                )
+                % self.name
+            )
+        if not self.verifactu_registration_key:
+            raise UserError(
+                _(
+                    "The invoice %s cannot be sent to Verifactu because it "
+                    "does not have a registration key."
+                )
+                % self.name
+            )
+        return super()._check_verifactu_configuration()
+
+    def _generate_verifactu_chaining(self):
+        self.ensure_one()
+        self.company_id.flush_recordset(["verifactu_last_document_id"])
+        try:
+            with self.env.cr.savepoint():
+                self.env.cr.execute(
+                    "SELECT verifactu_last_document_id FROM"
+                    " res_company WHERE id = %s FOR UPDATE NOWAIT",
+                    [self.company_id.id],
+                )
+                result = self.env.cr.fetchone()[0]
+                prev_doc = False
+                if result:
+                    document_data = result.split(",")
+                    prev_doc = self.env[document_data[0]].browse(int(document_data[1]))
+                self.verifactu_previous_document_id = prev_doc
+                verifactu_hash_values = self._get_verifactu_hash_string()
+                self.verifactu_hash_string = verifactu_hash_values
+                hash_string = sha256(verifactu_hash_values.encode("utf-8"))
+                self.verifactu_hash = hash_string.hexdigest().upper()
+                if prev_doc:
+                    prev_doc.verifactu_next_document_id = self
+                doc_reference = "{model},{id}".format(model=self._name, id=self.id)
+                self.env.cr.execute(
+                    "UPDATE res_company SET "
+                    "verifactu_last_document_id = %s"
+                    "WHERE id = %s",
+                    [doc_reference, self.company_id.id],
+                )
+                self.company_id.invalidate_recordset(["verifactu_last_document_id"])
+        except psycopg2.OperationalError as err:
+            if err.pgcode == "55P03":  # could not obtain the lock
+                raise UserError(
+                    _("Could not obtain last document sent to verifactu.")
+                ) from err
+            raise
 
     def cancel_verifactu(self):
         raise NotImplementedError
+
+    def write(self, vals):
+        for invoice in self.filtered(
+            lambda x: x.is_invoice() and x.aeat_state != "not_sent"
+        ):
+            if invoice.move_type in ["out_invoice", "out_refund"]:
+                if "invoice_date" in vals:
+                    self._raise_exception_verifactu(_("invoice date"))
+                elif "thirdparty_number" in vals:
+                    self._raise_exception_verifactu(_("third-party number"))
+                elif "name" in vals:
+                    self._raise_exception_verifactu(_("invoice number"))
+        return super().write(vals)
+
+    @api.model
+    def _send_to_verifactu_valid(self):
+        remaining_documents = self.env["account.move"]
+        documents = all_documents = self.search(
+            [
+                ("state", "in", self._get_verifactu_valid_document_states()),
+                (
+                    "aeat_state",
+                    "not in",
+                    ["sent", "cancelled"],
+                ),
+                ("verifactu_send_date", "<=", fields.Datetime.now()),
+            ]
+        )
+        if documents:
+            batch = self._get_verifactu_batch()
+            documents = all_documents[:batch]
+            remaining_documents = all_documents - documents
+            documents._process_verifactu_send()
+        return remaining_documents
+
+    @api.model
+    def _send_to_verifactu(self):
+        remaining_documents = self._send_to_verifactu_valid()
+        if remaining_documents:
+            verifactu_send_cron = self.env.ref(
+                "l10n_es_verifactu.invoice_send_to_verifactu"
+            )
+            self.env["ir.cron.trigger"].sudo().create(
+                {"cron_id": verifactu_send_cron.id, "call_at": fields.Datetime.now()}
+            )
