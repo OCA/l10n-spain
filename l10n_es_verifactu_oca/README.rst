@@ -47,10 +47,6 @@ Para instalar esté módulo necesita:
 #. Libreria Python Zeep, se puede instalar con el comando 'pip install zeep'
 #. Libreria Python Requests, se puede instalar con el comando 'pip install requests'
 
-y el módulo `queue_job` que se encuentra en:
-
-https://github.com/OCA/queue
-
 Configuration
 =============
 
@@ -67,32 +63,7 @@ Para configurar este módulo es necesario:
 En Linux se pueden usar los siguientes comandos:
 
 - Clave pública: "openssl pkcs12 -in Certificado.p12 -nokeys -out publicCert.crt -nodes"
-- Clave privada: "openssl pkcs12 -in Certifcado.p12 -nocerts -out privateKey.pem -nodes"
-
-Además, el módulo `queue_job` necesita estar configurado de una de estas formas:
-
-#. Ajustando variables de entorno:
-
-     ODOO_QUEUE_JOB_CHANNELS=root:4
-
-   u otro canal de configuración. Por defecto es root:1
-
-   Si xmlrpc_port no está definido: ODOO_QUEUE_JOB_PORT=8069
-
-#. Otra alternativa es usuando un fichero de configuración:
-
-     [options]
-     (...)
-     workers = 4
-     server_wide_modules = web,base_sparse_field,queue_job
-
-     (...)
-     [queue_job]
-     channels = root:4
-
-#. Por último, arrancando Odoo con --load=web,base_sparse_field,queue_job y --workers más grande que 1.
-
-Más información http://odoo-connector.com
+- Clave privada: "openssl pkcs12 -in Certificado.p12 -nocerts -out privateKey.pem -nodes"
 
 #. Establecer en las posiciones fiscales la clave de impuestos y la clave de registro verifactu.
 
@@ -104,7 +75,6 @@ Known issues / Roadmap
  * Encadenamiento, obtener factura anterior y almacenamiento del hash inalterable.
  * Datas de mapeos de impuestos, ya hay algunos.
  * Datos reales del desarrollador del sistema informático.
- * Envío con Queue.
  * Modificación de facturas enviadas.
  * Anulación de facturas enviadas.
 

@@ -2,9 +2,9 @@
 <!--  Copyright 2024 Aures TIC - Almudena de La Puente
     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
 <odoo>
-    <record id="aeat_verifactu_registration_keys_view_tree" model="ir.ui.view">
-        <field name="name">aeat.verifactu.registration.keys.view.tree</field>
-        <field name="model">aeat.verifactu.registration.keys</field>
+    <record id="verifactu_registration_keys_view_tree" model="ir.ui.view">
+        <field name="name">verifactu.registration.keys.view.tree</field>
+        <field name="model">verifactu.registration.keys</field>
         <field name="arch" type="xml">
             <tree editable="bottom">
                 <field name="code" />
@@ -13,9 +13,9 @@
             </tree>
         </field>
     </record>
-    <record id="aeat_verifactu_registration_keys_view_search" model="ir.ui.view">
-        <field name="name">aeat.verifactu.registration.keys.view.search</field>
-        <field name="model">aeat.verifactu.registration.keys</field>
+    <record id="verifactu_registration_keys_view_search" model="ir.ui.view">
+        <field name="name">verifactu.registration.keys.view.search</field>
+        <field name="model">verifactu.registration.keys</field>
         <field name="arch" type="xml">
             <search>
                 <field name="name" />
@@ -31,15 +31,15 @@
             </search>
         </field>
     </record>
-    <record id="action_aeat_verifactu_registration_keys" model="ir.actions.act_window">
+    <record id="action_verifactu_registration_keys" model="ir.actions.act_window">
         <field name="name">AEAT Verifactu Registration Keys</field>
-        <field name="res_model">aeat.verifactu.registration.keys</field>
+        <field name="res_model">verifactu.registration.keys</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem
-        id="menu_aeat_verifactu_registration_keys"
+        id="menu_verifactu_registration_keys"
         parent="l10n_es_aeat.menu_l10n_es_aeat_config"
-        action="action_aeat_verifactu_registration_keys"
+        action="action_verifactu_registration_keys"
         name="Verifactu Registration Keys"
     />
 </odoo>

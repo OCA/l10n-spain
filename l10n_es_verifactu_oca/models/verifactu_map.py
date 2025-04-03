@@ -4,14 +4,14 @@ from odoo import _, api, exceptions, fields, models
 
 
 class AeatVerifactuMap(models.Model):
-    _name = "aeat.verifactu.map"
+    _name = "verifactu.map"
     _description = "Aeat Verifactu Map"
 
     name = fields.Char(string="Model", required=True)
     date_from = fields.Date()
     date_to = fields.Date()
     map_lines = fields.One2many(
-        comodel_name="aeat.verifactu.map.lines",
+        comodel_name="verifactu.map.lines",
         inverse_name="verifactu_map_id",
         string="Lines",
     )

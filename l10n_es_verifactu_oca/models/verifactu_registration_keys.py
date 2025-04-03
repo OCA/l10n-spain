@@ -5,7 +5,7 @@ from odoo import api, fields, models
 
 
 class AeatVerifactuMappingRegistrationKeys(models.Model):
-    _name = "aeat.verifactu.registration.keys"
+    _name = "verifactu.registration.keys"
     _description = "Aeat Verifactu Registration Keys"
 
     code = fields.Char(required=True, size=2)
