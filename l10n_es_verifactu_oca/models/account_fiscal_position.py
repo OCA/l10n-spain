@@ -16,8 +16,13 @@ class AccountFiscalPosition(models.Model):
         selection="_get_verifactu_tax_keys",
     )
     verifactu_registration_key = fields.Many2one(
-        "aeat.verifactu.registration.keys",
+        "verifactu.registration.keys",
         ondelete="restrict",
+    )
+    verifactu_active = fields.Boolean(
+        copy=False,
+        default=True,
+        help="Enable Verifactu for this fiscal position?",
     )
 
     @api.model
