@@ -2,9 +2,9 @@
 <!--  Copyright 2024 Aures TIC - Almudena de La Puente
     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
 <odoo>
-    <record id="aeat_verifactu_map_view_tree" model="ir.ui.view">
-        <field name="name">aeat.verifactu.map.view.tree</field>
-        <field name="model">aeat.verifactu.map</field>
+    <record id="verifactu_map_view_tree" model="ir.ui.view">
+        <field name="name">verifactu.map.view.tree</field>
+        <field name="model">verifactu.map</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="name" />
@@ -13,9 +13,9 @@
             </tree>
         </field>
     </record>
-    <record id="aeat_verifactu_map_view_form" model="ir.ui.view">
-        <field name="name">aeat.verifactu.map.view.form</field>
-        <field name="model">aeat.verifactu.map</field>
+    <record id="verifactu_map_view_form" model="ir.ui.view">
+        <field name="name">verifactu.map.view.form</field>
+        <field name="model">verifactu.map</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
@@ -40,15 +40,15 @@
             </form>
         </field>
     </record>
-    <record id="action_aeat_verifactu_mapping" model="ir.actions.act_window">
+    <record id="action_verifactu_mapping" model="ir.actions.act_window">
         <field name="name">Aeat Verifactu Map</field>
-        <field name="res_model">aeat.verifactu.map</field>
+        <field name="res_model">verifactu.map</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem
-        id="menu_aeat_verifactu_map"
+        id="menu_verifactu_map"
         parent="l10n_es_aeat.menu_l10n_es_aeat_config"
-        action="action_aeat_verifactu_mapping"
+        action="action_verifactu_mapping"
         name="Aeat Verifactu Map"
     />
 
