@@ -26,6 +26,11 @@
                             <field name="verifactu_description" />
                         </group>
                     </group>
+                    <group attrs="{'invisible': [('verifactu_enabled', '=', False)]}">
+                        <group name="verifactu_last_document_id">
+                            <field name="verifactu_last_document_id" />
+                        </group>
+                    </group>
                 </page>
             </notebook>
         </field>

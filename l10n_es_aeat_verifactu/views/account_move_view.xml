@@ -52,6 +52,9 @@
                         />
                         <field name="verifactu_hash_string" readonly="1" />
                         <field name="verifactu_hash" readonly="1" />
+                        <field name="verifactu_registration_date" readonly="1" />
+                        <field name="verifactu_previous_document_id" />
+                        <field name="verifactu_next_document_id" />
                     </group>
                     <group
                         string="Veri*FACTU Result"

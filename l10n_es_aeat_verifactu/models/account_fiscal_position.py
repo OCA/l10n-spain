@@ -19,6 +19,11 @@ class AccountFiscalPosition(models.Model):
         "aeat.verifactu.registration.keys",
         ondelete="restrict",
     )
+    verifactu_active = fields.Boolean(
+        copy=False,
+        default=True,
+        help="Enable Verifactu for this fiscal position?",
+    )
 
     @api.model
     def default_verifactu_tax_key(self):
