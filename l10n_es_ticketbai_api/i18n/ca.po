@@ -17,6 +17,23 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_ticketbai_api
+#: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_invoice_tax__not_subject_to_cause
+msgid ""
+"\n"
+"        OT:\n"
+"          - No sujeto por el artículo 7 de la Norma Foral de IVA Otros "
+"supuestos de no\n"
+"          sujeción.\n"
+"        RL:\n"
+"          - No sujeto por reglas de localización.\n"
+"        IE:\n"
+"          - No sujeto en el TAI por reglas de localización, pero "
+"repercute\"\n"
+"          impuesto extranjero, IPS/IGIC o IVA de otro estado miembro UE.\n"
+"        "
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_invoice__schema
 msgid ""
 "\n"
@@ -35,19 +52,6 @@ msgid ""
 "    E4: Exenta por el artículo 23 y 24 de la Norma Foral del IVA.\n"
 "    E5: Exenta por el artículo 25 de la Norma Foral del IVA.\n"
 "    E6: Exenta por otra causa.\n"
-"    "
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_invoice_tax__not_subject_to_cause
-msgid ""
-"\n"
-"    OT:\n"
-"      - No sujeto por el artículo 7 de la Norma Foral de IVA Otros supuestos "
-"de no\n"
-"      sujeción.\n"
-"    RL:\n"
-"      - No sujeto por reglas de localización.\n"
 "    "
 msgstr ""
 
