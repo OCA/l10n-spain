@@ -28,7 +28,11 @@ class TestL10nEsAeatVerifactuBase(TestL10nEsAeatModBase, TestL10nEsAeatCertifica
         cls.fp_recargo = cls.env.ref(f"l10n_es.{cls.company.id}_fp_recargo")
         cls.fp_recargo.verifactu_registration_key = cls.fp_registration_key_01
         cls.partner = cls.env["res.partner"].create(
-            {"name": "Test partner", "vat": "89890001K"}
+            {
+                "name": "Test partner",
+                "vat": "89890001K",
+                "country_id": cls.env.ref("base.es").id,
+            }
         )
         cls.product = cls.env["product.product"].create({"name": "Test product"})
         cls.account_expense = cls.env.ref(
@@ -53,6 +57,7 @@ class TestL10nEsAeatVerifactuBase(TestL10nEsAeatModBase, TestL10nEsAeatCertifica
                         },
                     )
                 ],
+                "aeat_state": "sent",
             }
         )
         cls.company.write(
@@ -150,6 +155,8 @@ class TestL10nEsAeatVerifactuBase(TestL10nEsAeatModBase, TestL10nEsAeatCertifica
         if extra_vals:
             vals.update(extra_vals)
         invoice = self.env["account.move"].create(vals)
+        invoice.aeat_state = "sent"
+        self._activate_certificate(self.certificate_password)
         invoice.action_post()
         result_dict = invoice._get_verifactu_invoice_dict()
         result_dict["RegistroAlta"].pop("FechaHoraHusoGenRegistro")
@@ -178,6 +185,7 @@ class TestL10nEsAeatVerifactu(TestL10nEsAeatVerifactuBase):
                 {
                     "fiscal_position_id": self.fp_nacional.id,
                     "verifactu_registration_key": self.fp_registration_key_01.id,
+                    "verifactu_registration_date": "2024-01-01 19:20:30",
                 },
             ),
             (
@@ -187,6 +195,7 @@ class TestL10nEsAeatVerifactu(TestL10nEsAeatVerifactuBase):
                 {
                     "fiscal_position_id": self.fp_nacional.id,
                     "verifactu_registration_key": self.fp_registration_key_01.id,
+                    "verifactu_registration_date": "2024-01-01 19:20:30",
                 },
             ),
             (
@@ -196,6 +205,7 @@ class TestL10nEsAeatVerifactu(TestL10nEsAeatVerifactuBase):
                 {
                     "fiscal_position_id": self.fp_recargo.id,
                     "verifactu_registration_key": self.fp_registration_key_01.id,
+                    "verifactu_registration_date": "2024-01-01 19:20:30",
                 },
             ),
         ]
@@ -224,6 +234,7 @@ class TestL10nEsAeatVerifactuQR(TestL10nEsAeatVerifactuBase):
         """
         Test the generation of the QR code image for the invoice.
         """
+        self._activate_certificate(self.certificate_password)
         self.invoice.action_post()
         qr_code = self.invoice.verifactu_qr
 
@@ -234,6 +245,7 @@ class TestL10nEsAeatVerifactuQR(TestL10nEsAeatVerifactuBase):
         """
         Test the format of the generated QR URL to ensure it meets expected criteria.
         """
+        self._activate_certificate(self.certificate_password)
         self.invoice.action_post()
         qr_url = self.invoice.verifactu_qr_url
 
@@ -270,6 +282,7 @@ class TestL10nEsAeatVerifactuQR(TestL10nEsAeatVerifactuBase):
         """
         Test that the QR code is regenerated if the invoice details are updated.
         """
+        self._activate_certificate(self.certificate_password)
         self.invoice.action_post()
         original_qr_code = self.invoice.verifactu_qr
 

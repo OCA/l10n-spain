@@ -97,6 +97,26 @@ class VerifactuMixin(models.AbstractModel):
     )
     verifactu_qr_url = fields.Char("URL", compute="_compute_verifactu_qr_url")
     verifactu_qr = fields.Binary(string="QR", compute="_compute_verifactu_qr")
+    verifactu_previous_document_id = fields.Reference(
+        string="Previous Verifactu Document",
+        selection="_selection_verifactu_reference_models",
+        readonly=True,
+        copy=False,
+    )
+    verifactu_next_document_id = fields.Reference(
+        string="Next Verifactu Document",
+        selection="_selection_verifactu_reference_models",
+        readonly=True,
+        copy=False,
+    )
+    verifactu_send_date = fields.Datetime(index=True, copy=False)
+
+    @api.model
+    def _selection_verifactu_reference_models(self):
+        # this method is used to define the models that can be used as
+        # previous documents in the verifactu mixin
+        # it can be inherited to add others models if needed like pos.order
+        return [("account.move", "Invoice")]
 
     def _compute_verifactu_enabled(self):
         raise NotImplementedError
@@ -168,7 +188,7 @@ class VerifactuMixin(models.AbstractModel):
     def _get_verifactu_tax_keys(self):
         return self.env["account.fiscal.position"]._get_verifactu_tax_keys()
 
-    def _connect_params_aeat(self, mapping_key):
+    def _connect_verifactu_params_aeat(self, mapping_key):
         self.ensure_one()
         agency = self.company_id.tax_agency_id
         if not agency:
@@ -179,7 +199,7 @@ class VerifactuMixin(models.AbstractModel):
             agency = self.env.ref("l10n_es_aeat.aeat_tax_agency_spain")
         return agency._connect_params_verifactu(mapping_key, self.company_id)
 
-    def _get_aeat_header(self, tipo_comunicacion=False, cancellation=False):
+    def _get_verifactu_aeat_header(self, tipo_comunicacion=False, cancellation=False):
         """Builds VERIFACTU send header
 
         :param tipo_comunicacion String 'A0': new reg, 'A1': modification
@@ -198,6 +218,12 @@ class VerifactuMixin(models.AbstractModel):
                 "NIF": self.company_id.partner_id._parse_aeat_vat_info()[2],
             },
         }
+        registration_date = self.verifactu_registration_date
+        if (
+            self.aeat_state == "sent_w_errors"
+            and registration_date < fields.Datetime.now()
+        ):
+            header.update({"RemisionVoluntaria": {"Incidencia": "S"}})
         return header
 
     def _get_verifactu_invoice_dict(self):
@@ -223,9 +249,6 @@ class VerifactuMixin(models.AbstractModel):
         )
         return inv_dict
 
-    def _get_aeat_invoice_dict_out(self, cancel=False):
-        raise NotImplementedError
-
     def _get_verifactu_developer_dict(self):
         """
         TODO
@@ -247,10 +270,7 @@ class VerifactuMixin(models.AbstractModel):
             },
         }
 
-    def _get_previous_invoice(self):
-        raise NotImplementedError
-
-    def _get_chaining_invoice_dict(self):
+    def _get_verifactu_chaining_invoice_dict(self):
         raise NotImplementedError
 
     def _aeat_check_exceptions(self):
@@ -268,6 +288,9 @@ class VerifactuMixin(models.AbstractModel):
     def _get_verifactu_hash_string(self):
         raise NotImplementedError
 
+    def _generate_verifactu_chaining(self):
+        raise NotImplementedError
+
     def _get_verifactu_document_type(self):
         raise NotImplementedError()
 
@@ -280,7 +303,7 @@ class VerifactuMixin(models.AbstractModel):
     def _get_verifactu_version(self):
         return VERIFACTU_VERSION
 
-    def _get_receiver_dict(self):
+    def _get_verifactu_receiver_dict(self):
         raise NotImplementedError
 
     def _compute_verifactu_refund_type(self):
@@ -292,9 +315,6 @@ class VerifactuMixin(models.AbstractModel):
         partner = self._aeat_get_partner()
         return partner.aeat_simplified_invoice
 
-    def _get_verifactu_jobs_field_name(self):
-        raise NotImplementedError
-
     def send_verifactu(self):
         """General public method for filtering out of the starting recordset the records
         that shouldn't be sent to Verifactu:
@@ -305,22 +325,24 @@ class VerifactuMixin(models.AbstractModel):
         - Documents already sent to Verifactu.
         - Documents with sending jobs pending to be executed.
         """
-        valid_states = self._get_valid_document_states()
-        for document in self:
-            if (
-                not document.verifactu_enabled
-                or document.state not in valid_states
-                or document.aeat_state in ["sent", "cancelled"]
-            ):
-                continue
-            document._process_verifactu_send()
+        valid_states = self._get_verifactu_valid_document_states()
+        documents = self.filtered(
+            lambda doc: doc.state in valid_states
+            and doc.aeat_state in ["not_sent", "sent_w_errors"]
+            and doc.verifactu_enabled
+        )
+        if documents:
+            documents._process_verifactu_send()
+            verifactu_send_cron = self.env.ref(
+                "l10n_es_aeat_verifactu.invoice_send_to_verifactu"
+            )
+            self.env["ir.cron.trigger"].sudo().create(
+                {"cron_id": verifactu_send_cron.id, "call_at": fields.Datetime.now()}
+            )
 
     def _process_verifactu_send(self):
-        """
-        Process document sending to Verifactu
-        TODO : use connector
-        """
         for record in self:
+            record.verifactu_send_date = fields.Datetime.now()
             record.confirm_verifactu_one_document()
 
     def confirm_verifactu_one_document(self):
@@ -328,13 +350,13 @@ class VerifactuMixin(models.AbstractModel):
 
     def _send_document_to_verifactu(self):
         for document in self.filtered(
-            lambda i: i.state in self._get_valid_document_states()
+            lambda i: i.state in self._get_verifactu_valid_document_states()
         ):
             if document.aeat_state == "not_sent":
                 tipo_comunicacion = "A0"
             else:
                 tipo_comunicacion = "A1"
-            header = document._get_aeat_header(tipo_comunicacion)
+            header = document._get_verifactu_aeat_header(tipo_comunicacion)
             doc_vals = {
                 "aeat_header_sent": json.dumps(header, indent=4),
             }
@@ -403,7 +425,7 @@ class VerifactuMixin(models.AbstractModel):
         public_crt, private_key = self.env["l10n.es.aeat.certificate"].get_certificates(
             company=self.company_id
         )
-        params = self._connect_params_aeat(mapping_key)
+        params = self._connect_verifactu_params_aeat(mapping_key)
         session = Session()
         session.cert = (public_crt, private_key)
         transport = Transport(session=session)
@@ -415,9 +437,11 @@ class VerifactuMixin(models.AbstractModel):
             plugins=[history],
             settings=settings,
         )
-        return self._bind_service(client, params["port_name"], params["address"])
+        return self._bind_verifactu_service(
+            client, params["port_name"], params["address"]
+        )
 
-    def _bind_service(self, client, port_name, address=None):
+    def _bind_verifactu_service(self, client, port_name, address=None):
         self.ensure_one()
         service = client._get_service("sfVerifactu")
         port = client._get_port(service, port_name)
@@ -483,3 +507,30 @@ class VerifactuMixin(models.AbstractModel):
             record.verifactu_registration_key_code = (
                 record.verifactu_registration_key.code
             )
+
+    def _raise_exception_verifactu(self, field_name):
+        raise UserError(
+            _(
+                "You cannot change the %s of document"
+                "already registered at Verifactu. You must cancel the "
+                "document and create a new one with the correct value"
+            )
+            % field_name
+        )
+
+    @api.model
+    def _get_verifactu_batch(self):
+        try:
+            return int(
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param("l10n_es_aeat_verifactu.verifactu_batch", "50")
+            )
+        except ValueError as e:
+            raise UserError(
+                _(
+                    "The value in l10n_es_aeat_verifactu.verifactu_batch "
+                    "system parameter must be an integer. Please, check the "
+                    "value of the parameter."
+                )
+            ) from e
