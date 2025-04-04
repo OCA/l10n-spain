@@ -108,3 +108,14 @@ class TestL10nEsPartner(common.TransactionCase):
             "50001 Zaragoza (Zaragoza)<br/>"
             "Spain",
         )
+        # Make the partner match part of the address. It should be replaced with the pattern
+        # just once
+        partner2.name = "Zaragoza"
+        names = dict(partner2.with_context(show_address=True).name_get())
+        self.assertEqual(
+            names.get(partner2.id),
+            "Nuevo nombre (Zaragoza)\n"
+            "Calle Mayor, 1\n"
+            "50001 Zaragoza (Zaragoza)\n"
+            "Spain",
+        )
