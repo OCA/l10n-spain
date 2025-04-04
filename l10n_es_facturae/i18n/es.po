@@ -136,6 +136,13 @@ msgstr ""
 "Base imponible modificada por resolución firme, judicial o administrativa"
 
 #. module: l10n_es_facturae
+#. odoo-python
+#: code:addons/l10n_es_facturae/models/res_partner.py:0
+#, python-format
+msgid "City must be defined for factura-e enabled partners."
+msgstr "Se debe definir la ciudad para los socios habilitados para factura-e."
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move__facturae_refund_reason__14
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move_reversal__refund_reason__14
 msgid "Clase de factura"
@@ -891,7 +898,7 @@ msgstr "Estado"
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
 msgid "State must be defined for factura-e enabled partners."
-msgstr "Debe definirse el estado para los socios habilitados para factura-e."
+msgstr "Debe definirse la provincia para los socios habilitados para factura-e."
 
 #. module: l10n_es_facturae
 #. odoo-python
