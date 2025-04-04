@@ -44,6 +44,18 @@ msgid "Tax"
 msgstr ""
 
 #. module: l10n_es_ticketbai_oss
+#. odoo-python
+#: code:addons/l10n_es_ticketbai_oss/models/ticketbai_invoice_tax.py:0
+#, python-format
+msgid "TicketBAI Invoice %s: VAT Regime Key not valid."
+msgstr ""
+
+#. module: l10n_es_ticketbai_oss
 #: model:ir.model,name:l10n_es_ticketbai_oss.model_tbai_invoice_tax
 msgid "TicketBAI Invoice taxes"
+msgstr ""
+
+#. module: l10n_es_ticketbai_oss
+#: model:ir.model,name:l10n_es_ticketbai_oss.model_tbai_invoice
+msgid "TicketBAI Invoices"
 msgstr ""
