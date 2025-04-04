@@ -1,6 +1,7 @@
 # Copyright 2022 Landoo Sistemas de Informacion SL
-from odoo import fields, models
+from odoo import _, api, exceptions, fields, models
 
+from odoo.addons.l10n_es_ticketbai_api.ticketbai.xml_schema import TicketBaiSchema
 from odoo.addons.l10n_es_ticketbai_api.utils import utils as tbai_utils
 
 
@@ -10,6 +11,25 @@ class VATRegimeKey(tbai_utils.EnumValues):
 
 class NotSubjectToCause(tbai_utils.EnumValues):
     IE = "IE"
+
+
+class TicketBAIInvoice(models.Model):
+    _inherit = "tbai.invoice"
+
+    @api.constrains("vat_regime_key")
+    def _check_vat_regime_key(self):
+        try:
+            return super(TicketBAIInvoice, self)._check_vat_regime_key()
+        except exceptions.ValidationError as ve:
+            for record in self:
+                if record.schema == TicketBaiSchema.TicketBai.value and (
+                    not record.vat_regime_key
+                    or record.vat_regime_key not in VATRegimeKey.values()
+                ):
+                    raise exceptions.ValidationError(
+                        _("TicketBAI Invoice %s: VAT Regime Key not valid.")
+                        % record.name
+                    ) from ve
 
 
 class TicketBaiTax(models.Model):
