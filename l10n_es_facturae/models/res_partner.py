@@ -34,7 +34,7 @@ class ResPartner(models.Model):
                 return "U"
         return "E"
 
-    @api.constrains("facturae", "vat", "state_id", "country_id", "street")
+    @api.constrains("facturae", "vat", "city", "state_id", "country_id", "street")
     def check_facturae(self):
         for record in self:
             if record.facturae:
@@ -52,6 +52,12 @@ class ResPartner(models.Model):
                 if not record.street:
                     raise ValidationError(
                         _("Street must be defined for factura-e enabled partners.")
+                    )
+                if not record.city and record.country_id == self.env.ref("base.es"):
+                    raise ValidationError(
+                        _(
+                            "City must be defined for Spanish factura-e enabled partners."
+                        )
                     )
                 if not record.country_id:
                     raise ValidationError(
