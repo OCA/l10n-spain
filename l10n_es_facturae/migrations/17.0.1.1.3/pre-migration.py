@@ -10,7 +10,7 @@ def migrate(env, version):
     ):
         # Avoid computation of the field
         openupgrade.add_fields(
-            env.cr,
+            env,
             [
                 (
                     "facturae_withheld_amount",
