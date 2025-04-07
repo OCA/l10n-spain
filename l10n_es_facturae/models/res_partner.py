@@ -53,9 +53,9 @@ class ResPartner(models.Model):
                     raise ValidationError(
                         _("Street must be defined for factura-e enabled partners.")
                     )
-                if not record.city:
+                if not record.city and record.country_id == self.env.ref("base.es"):
                     raise ValidationError(
-                        _("City must be defined for factura-e enabled partners.")
+                        _("City must be defined for Spanish factura-e enabled partners.")
                     )
                 if not record.country_id:
                     raise ValidationError(
