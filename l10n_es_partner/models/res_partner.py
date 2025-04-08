@@ -31,8 +31,9 @@ class ResPartner(models.Model):
             return origin
         if self.env.context.get("show_address"):
             return origin.replace(
-                self.name,
-                name_pattern % {"name": self.name, "comercial_name": self.comercial},
+                self.name or "",
+                name_pattern
+                % {"name": self.name or "", "comercial_name": self.comercial},
                 1,  # Just replace the first occurrence
             )
         return name_pattern % {"name": origin, "comercial_name": self.comercial}
