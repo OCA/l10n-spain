@@ -150,38 +150,38 @@ class SigausMixin(models.AbstractModel):
         return sigaus_vals
 
     def automatic_sigaus_exception(self):
-        self.ensure_one()
-        products_without_weight = (
-            self[self._sigaus_secondary_unit_fields["line_ids"]]
-            .mapped("product_id")
-            .filtered(lambda a: a.sigaus_has_amount and a.weight <= 0.0)
-        )
-        if products_without_weight:
-            values = {
-                "model": self._name,
-                "origin": self.id,
-                "products": products_without_weight,
-            }
-            note = self.env["ir.qweb"]._render(
-                "l10n_es_sigaus_account.exception_sigaus", values
+        for rec in self:
+            products_without_weight = (
+                rec[rec._sigaus_secondary_unit_fields["line_ids"]]
+                .mapped("product_id")
+                .filtered(lambda a: a.sigaus_has_amount and a.weight <= 0.0)
             )
-            if not self.sigaus_automated_exception_id:
-                odoobot_id = self.env.ref("base.partner_root").id
-                activity = self.activity_schedule(
-                    "mail.mail_activity_data_warning",
-                    date.today(),
-                    note=note,
-                    user_id=self.user_id.id or SUPERUSER_ID,
+            if products_without_weight:
+                values = {
+                    "model": rec._name,
+                    "origin": rec.id,
+                    "products": products_without_weight,
+                }
+                note = rec.env["ir.qweb"]._render(
+                    "l10n_es_sigaus_account.exception_sigaus", values
                 )
-                activity.write(
-                    {
-                        "create_uid": odoobot_id,
-                    }
-                )
-                self.write(
-                    {
-                        "sigaus_automated_exception_id": activity.id,
-                    }
-                )
-            else:
-                self.sigaus_automated_exception_id.write({"note": note})
+                if not rec.sigaus_automated_exception_id:
+                    odoobot_id = rec.env.ref("base.partner_root").id
+                    activity = rec.activity_schedule(
+                        "mail.mail_activity_data_warning",
+                        date.today(),
+                        note=note,
+                        user_id=rec.user_id.id or SUPERUSER_ID,
+                    )
+                    activity.write(
+                        {
+                            "create_uid": odoobot_id,
+                        }
+                    )
+                    rec.write(
+                        {
+                            "sigaus_automated_exception_id": activity.id,
+                        }
+                    )
+                else:
+                    rec.sigaus_automated_exception_id.write({"note": note})
