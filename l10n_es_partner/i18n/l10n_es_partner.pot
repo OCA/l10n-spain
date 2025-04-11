@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -51,25 +51,29 @@ msgstr ""
 
 #. module: l10n_es_partner
 #: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+msgid "Import Spanish Bank Data"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
 msgid "Import from Internet"
 msgstr ""
 
 #. module: l10n_es_partner
 #: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
-msgid "Import from local file"
+msgid "Import from Local File"
 msgstr ""
 
 #. module: l10n_es_partner
 #: model:ir.actions.act_window,name:l10n_es_partner.action_l10n_es_partner_import
-#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
 msgid "Import spanish bank data"
 msgstr ""
 
 #. module: l10n_es_partner
 #: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
 msgid ""
-"Internet (from Bank of Spain). Maybe this source will be not available from "
-"certain moment in time. You will need xlrd Python library."
+"Internet (from Bank of Spain). Maybe this source will not be available at a "
+"certain moment in time. You will need the xlrd Python library."
 msgstr ""
 
 #. module: l10n_es_partner
@@ -94,15 +98,20 @@ msgstr ""
 
 #. module: l10n_es_partner
 #: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
-msgid ""
-"Something has failed importing data from Internet. You will need to import "
-"local data instead."
+msgid "Skip"
 msgstr ""
 
 #. module: l10n_es_partner
 #: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
 msgid ""
-"This wizard will import spanish bank data. You can choose to import it from:"
+"Something has failed importing data from the Internet. You will need to "
+"import local data instead."
+msgstr ""
+
+#. module: l10n_es_partner
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+msgid ""
+"This wizard will import Spanish bank data. You can choose to import it from:"
 msgstr ""
 
 #. module: l10n_es_partner
