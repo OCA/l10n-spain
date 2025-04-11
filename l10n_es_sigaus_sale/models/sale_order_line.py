@@ -40,3 +40,14 @@ class SaleOrderLine(models.Model):
             else:
                 line.invoice_status = "no"
         return super(SaleOrderLine, self - sigaus_lines)._compute_invoice_status()
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        lines = super().create(vals_list)
+        if not self.env.context.get("avoid_line_recursion"):
+            sales = lines.filtered(lambda li: li.product_id.sigaus_has_amount).mapped(
+                "order_id"
+            )
+            sales.automatic_sigaus_exception()
+            sales.apply_sigaus()
+        return lines

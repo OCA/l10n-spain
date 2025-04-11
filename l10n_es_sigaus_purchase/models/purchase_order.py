@@ -65,11 +65,10 @@ class PurchaseOrder(models.Model):
                 for line in a.order_line.filtered("product_id")
             )
         )
-        for purchase in sigaus_purchases.filtered("id"):
-            if self.env.context.get("avoid_recursion"):
-                continue
-            purchase.automatic_sigaus_exception()
-            purchase.apply_sigaus()
+        if not self.env.context.get("avoid_recursion"):
+            f_purchases = sigaus_purchases.filtered("id")
+            f_purchases.automatic_sigaus_exception()
+            f_purchases.apply_sigaus()
         (self - sigaus_purchases).filtered(
             lambda a: (
                 not a.is_sigaus
@@ -85,16 +84,16 @@ class PurchaseOrder(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         purchases = super().create(vals_list)
-        for purchase in purchases.filtered(
+        f_purchases = purchases.filtered(
             lambda a: a.is_sigaus
             and a.sigaus_is_date
             and any(
                 line.product_id.sigaus_has_amount
                 for line in a.order_line.filtered("product_id")
             )
-        ):
-            purchase.automatic_sigaus_exception()
-            purchase.apply_sigaus()
+        )
+        f_purchases.automatic_sigaus_exception()
+        f_purchases.apply_sigaus()
         return purchases
 
     def copy(self, default=None):
