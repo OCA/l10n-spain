@@ -5,13 +5,14 @@
 from odoo_test_helper import FakeModelLoader
 
 from odoo import exceptions, fields
-from odoo.tests import Form
+from odoo.tests import Form, tagged
 
 from odoo.addons.base.tests.common import BaseCommon
 
 TEST_MODEL_NAME = "l10n.es.aeat.mod999.report"
 
 
+@tagged("post_install", "-at_install")
 class TestL10nEsAeatReport(BaseCommon):
     @classmethod
     def setUpClass(cls):
