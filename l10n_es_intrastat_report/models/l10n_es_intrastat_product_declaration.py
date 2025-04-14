@@ -7,7 +7,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
 
 from odoo.addons.l10n_es_aeat.models.spanish_states_mapping import SPANISH_STATES
 
@@ -55,15 +54,6 @@ class IntrastatProductDeclaration(models.Model):
                     notedict["inv_origin"]
                 )
         return result
-
-    def _gather_invoices_init(self, notedict):
-        if self.company_id.country_id.code != "ES":
-            raise UserError(
-                _(
-                    "The Spanish Intrastat Declaration requires "
-                    "the Company's Country to be equal to 'Spain'."
-                )
-            )
 
     def _prepare_invoice_domain(self):
         # TODO: check with ES legislation
