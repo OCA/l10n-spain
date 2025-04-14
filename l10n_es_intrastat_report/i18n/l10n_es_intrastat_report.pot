@@ -269,15 +269,6 @@ msgid "Spanish Intrastat Product Declaration"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
-#. odoo-python
-#: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
-#, python-format
-msgid ""
-"The Spanish Intrastat Declaration requires the Company's Country to be equal"
-" to 'Spain'."
-msgstr ""
-
-#. module: l10n_es_intrastat_report
 #: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.view_l10n_es_intrastat_code_import
 msgid ""
 "This wizard will import Spanish Product HS Codes from the local copy and set"
