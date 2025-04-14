@@ -286,17 +286,6 @@ msgid "Spanish Intrastat Product Declaration"
 msgstr "Declaración de producto Intrastat española"
 
 #. module: l10n_es_intrastat_report
-#. odoo-python
-#: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
-#, python-format
-msgid ""
-"The Spanish Intrastat Declaration requires the Company's Country to be equal "
-"to 'Spain'."
-msgstr ""
-"La declaración Intrastat española requiere que el país de la compañía sea "
-"'España'."
-
-#. module: l10n_es_intrastat_report
 #: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.view_l10n_es_intrastat_code_import
 msgid ""
 "This wizard will import Spanish Product HS Codes from the local copy and set "
@@ -375,6 +364,14 @@ msgstr "Historial de comunicación del sitio web"
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration_line__weight
 msgid "Weight"
 msgstr "Peso"
+
+#, python-format
+#~ msgid ""
+#~ "The Spanish Intrastat Declaration requires the Company's Country to be "
+#~ "equal to 'Spain'."
+#~ msgstr ""
+#~ "La declaración Intrastat española requiere que el país de la compañía sea "
+#~ "'España'."
 
 #~ msgid ""
 #~ "Despacho de mercancías a libre práctica en un Estado miembro con una "
