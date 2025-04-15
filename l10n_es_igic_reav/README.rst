@@ -111,6 +111,10 @@ Contributors
 
   - Luis Rodríguez
 
+- `Binhex <https://www.binhex.cloud>`__:
+
+  - Christian Ramos Barrera
+
 Maintainers
 -----------
 
