@@ -3,7 +3,7 @@
 
 {
     "name": "AEAT modelo 390 - OSS",
-    "version": "15.0.1.0.1",
+    "version": "15.0.1.0.2",
     "category": "Accounting",
     "author": "Sygel, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
