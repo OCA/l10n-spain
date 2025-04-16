@@ -1,8 +1,9 @@
 # Copyright 2021 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 
-from odoo.tests.common import Form
+from odoo.tests import Form
 
+from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
 from odoo.addons.l10n_es_aeat_mod303.tests.test_l10n_es_aeat_mod303 import (
     TestL10nEsAeatMod303Base,
 )
@@ -12,16 +13,7 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(
-            context=dict(
-                cls.env.context,
-                mail_create_nolog=True,
-                mail_create_nosubscribe=True,
-                mail_notrack=True,
-                no_reset_password=True,
-                tracking_disable=True,
-            )
-        )
+        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.oss_country = cls.env.ref("base.fr")
         cls.company.country_id = cls.env.ref("base.es").id
         cls.company.account_fiscal_country_id = cls.env.ref("base.es").id
