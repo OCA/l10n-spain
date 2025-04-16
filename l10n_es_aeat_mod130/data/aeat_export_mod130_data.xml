@@ -365,7 +365,7 @@
         <field
             name="name"
         >Liquidación (3). III. Total Liquidación - [19] Resultado de la autoliquidación ([17]-[18])</field>
-        <field name="expression">${object.casilla_13}</field>
+        <field name="expression">${object.result}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True" />
         <field name="size">17</field>
