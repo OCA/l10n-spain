@@ -21,6 +21,14 @@
         <field name="model">l10n.es.aeat.mod130.report</field>
         <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
         <field name="arch" type="xml">
+            <field name="partner_bank_id" position="before">
+                <field name="use_aeat_account" />
+            </field>
+            <field name="partner_bank_id" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': ['|', ('use_aeat_account', '=', True), ('tipo_declaracion', 'not in', ('I', 'U', 'N'))], 'required': [('use_aeat_account', '=', False), ('tipo_declaracion', 'in', ('N'))]}</attribute>
+            </field>
             <xpath expr="//group[@name='group_declaration']" position="after">
                 <group string="Datos a completar" colspan="4" col="6">
                     <group colspan="2">
@@ -109,13 +117,8 @@
                     </group>
                 </group>
                 <group string="Observaciones" colspan="4">
-                    <field name="comments" nolabel="1" />
+                    <field name="comments" nolabel="1" colspan="2" />
                 </group>
-                <field name="partner_bank_id" position="attributes">
-                    <attribute
-                        name="attrs"
-                    >{'invisible': [('tipo_declaracion', 'not in', ('I'))]}</attribute>
-                </field>
             </xpath>
             <xpath expr="//sheet" position="after">
                 <div class="oe_chatter">
