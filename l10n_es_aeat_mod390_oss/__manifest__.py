@@ -10,7 +10,8 @@
     "license": "AGPL-3",
     "depends": ["l10n_es_aeat_mod390", "l10n_eu_oss_oca"],
     "data": [
-        "data/tax_code_map_mod390_data.xml",
+        "data/2023/tax_code_map_mod390_data.xml",
+        "data/2024/tax_code_map_mod390_data.xml",
         "data/aeat_export_mod390_sub06_data.xml",
     ],
     "installable": True,
