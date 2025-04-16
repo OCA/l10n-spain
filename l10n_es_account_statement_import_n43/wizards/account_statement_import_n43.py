@@ -5,7 +5,7 @@
 import logging
 from datetime import datetime
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -139,28 +139,28 @@ class AccountStatementImport(models.TransientModel):
         st_group["lines"] = [line for line in st_group["lines"] if line["importe"] != 0]
         if st_group["num_debe"] != debit_count:  # pragma: no cover
             raise exceptions.UserError(
-                _(
+                self.env._(
                     "Number of debit records doesn't match with the defined in "
                     "the last record of account."
                 )
             )
         if st_group["num_haber"] != credit_count:  # pragma: no cover
             raise exceptions.UserError(
-                _(
+                self.env._(
                     "Number of credit records doesn't match with the defined "
                     "in the last record of account."
                 )
             )
         if abs(st_group["debe"] - debit) > 0.005:  # pragma: no cover
             raise exceptions.UserError(
-                _(
+                self.env._(
                     "Debit amount doesn't match with the defined in the last "
                     "record of account."
                 )
             )
         if abs(st_group["haber"] - credit) > 0.005:  # pragma: no cover
             raise exceptions.UserError(
-                _(
+                self.env._(
                     "Credit amount doesn't match with the defined in the last "
                     "record of account."
                 )
@@ -172,7 +172,7 @@ class AccountStatementImport(models.TransientModel):
             balance = st_group["saldo_ini"] + credit - debit
             if abs(st_group["saldo_fin"] - balance) > 0.005:
                 raise exceptions.UserError(
-                    _(
+                    self.env._(
                         "Final balance amount = (initial balance + credit "
                         "- debit) doesn't match with the defined in the last "
                         "record of account."
@@ -191,7 +191,7 @@ class AccountStatementImport(models.TransientModel):
             abs(st_data["num_registros"] - st_data["_num_records"]) > 1
         ):  # pragma: no cover
             raise exceptions.UserError(
-                _(
+                self.env._(
                     "Number of records doesn't match with the defined in the "
                     "last record."
                 )
@@ -234,7 +234,7 @@ class AccountStatementImport(models.TransientModel):
                 continue
             else:  # pragma: no cover
                 raise exceptions.ValidationError(
-                    _("Record type %s is not valid.") % raw_line[0:2]
+                    self.env._("Record type %s is not valid.") % raw_line[0:2]
                 )
             # Update the record counter
             st_data["_num_records"] += 1
