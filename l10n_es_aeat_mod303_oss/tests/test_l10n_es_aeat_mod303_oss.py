@@ -26,7 +26,7 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         cls.company.country_id = cls.env.ref("base.es").id
         cls.company.account_fiscal_country_id = cls.env.ref("base.es").id
         general_tax = cls.env.ref(
-            "account.%s_account_tax_template_s_iva21b" % cls.company.id
+            f"account.{cls.company.id}_account_tax_template_s_iva21b"
         )
         wizard = cls.env["l10n.eu.oss.wizard"].create(
             {
