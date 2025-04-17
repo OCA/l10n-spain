@@ -5,7 +5,7 @@
 
 import xlrd
 
-from odoo import _, exceptions, models, tools
+from odoo import exceptions, models, tools
 from odoo.tools.misc import file_path
 
 UOM_MAPPING = {
@@ -22,7 +22,6 @@ UOM_MAPPING = {
 
 class L10nEsPartnerImportWizard(models.TransientModel):
     _name = "l10n.es.intrastat.code.import"
-    _inherit = "res.config.installer"
     _description = "Intrastat HS Code Import for Spain"
 
     @tools.ormcache("name")
@@ -66,15 +65,17 @@ class L10nEsPartnerImportWizard(models.TransientModel):
                     if iu_unit_id:
                         vals["intrastat_unit_id"] = iu_unit_id
                     else:
-                        raise exceptions.UserError(_("Unit not found: '%s'") % iu)
+                        raise exceptions.UserError(
+                            self.env._("Unit not found: '%s'") % iu
+                        )
                 vals_list.append(vals)
         if vals_list:
             code_obj.create(vals_list)
 
-    def execute(self):
+    def action_import_hs_codes(self):
         company = self.env.company
         if (company.country_id.code or "").lower() != "es":
             raise exceptions.UserError(
-                _("Current company is not Spanish, so it can't be configured.")
+                self.env._("Current company is not Spanish, so it can't be configured.")
             )
         self._import_hs_codes()

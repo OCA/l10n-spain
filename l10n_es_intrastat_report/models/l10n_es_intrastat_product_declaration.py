@@ -6,7 +6,7 @@
 # Copyright 2021 Tecnativa - João Marques
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 from odoo.addons.l10n_es_aeat.models.spanish_states_mapping import SPANISH_STATES
@@ -48,7 +48,7 @@ class IntrastatProductDeclaration(models.Model):
             if fiscal_pos and fiscal_pos.intrastat == "b2c":
                 return result
             if not inv_line.move_id.partner_shipping_id.vat:
-                msg = _("Missing partner <em>VAT Number</em>")
+                msg = self.env._("Missing partner <em>VAT Number</em>")
                 notedict["partner"][inv_line.move_id.partner_id.display_name][msg].add(
                     notedict["inv_origin"]
                 )
@@ -57,7 +57,7 @@ class IntrastatProductDeclaration(models.Model):
     def _gather_invoices_init(self, notedict):
         if self.company_id.country_id.code != "ES":
             raise UserError(
-                _(
+                self.env._(
                     "The Spanish Intrastat Declaration requires "
                     "the Company's Country to be equal to 'Spain'."
                 )
