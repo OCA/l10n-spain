@@ -59,7 +59,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
                 if iu and iu != "-":  # specific unit
                     if iu in UOM_MAPPING:
                         iu_unit_id = self.env.ref(
-                            "intrastat_product.%s" % UOM_MAPPING[iu]
+                            f"intrastat_product.{UOM_MAPPING[iu]}"
                         ).id
                     else:
                         iu_unit_id = self._get_intrastat_unit(iu)
