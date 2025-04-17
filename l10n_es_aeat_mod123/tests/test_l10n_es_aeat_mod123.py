@@ -62,7 +62,7 @@ class TestL10nEsAeatMod123(TestL10nEsAeatModBase):
             self._print_tax_lines(model123.tax_line_ids)
         # Check tax lines
         for box, result in self.taxes_result.items():
-            _logger.debug("Checking tax line: %s" % box)
+            _logger.debug(f"Checking tax line: {box}")
             lines = model123.tax_line_ids.filtered(
                 lambda x, box=box: x.field_number == int(box)
             )
@@ -116,7 +116,7 @@ class TestL10nEsAeatMod123(TestL10nEsAeatModBase):
             self._print_tax_lines(model123.tax_line_ids)
         # Check tax lines
         for box, result in self.taxes_result.items():
-            _logger.debug("Checking tax line: %s" % box)
+            _logger.debug(f"Checking tax line: {box}")
             lines = model123.tax_line_ids.filtered(
                 lambda x, box=box: x.field_number == int(box)
             )
