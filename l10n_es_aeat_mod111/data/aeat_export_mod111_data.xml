@@ -498,7 +498,7 @@
         <field name="export_type">boolean</field>
         <field name="size">1</field>
         <field name="bool_yes">X</field>
-        <field name="bool_no"> </field>
+        <field name="bool_no" />
         <field name="alignment">left</field>
     </record>
     <record id="aeat_mod111_sub01_export_line_43" model="aeat.model.export.config.line">
@@ -524,7 +524,7 @@
         <field name="export_type">boolean</field>
         <field name="size">1</field>
         <field name="bool_yes">X</field>
-        <field name="bool_no"> </field>
+        <field name="bool_no" />
         <field name="alignment">left</field>
     </record>
     <record id="aeat_mod111_sub01_export_line_45" model="aeat.model.export.config.line">
