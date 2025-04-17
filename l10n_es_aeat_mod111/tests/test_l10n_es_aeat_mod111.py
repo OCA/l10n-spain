@@ -130,7 +130,7 @@ class TestL10nEsAeatMod111Base(TestL10nEsAeatModBase):
 
         # Check tax lines
         for box, result in self.taxes_result.items():
-            _logger.debug("Checking tax line: %s" % box)
+            _logger.debug(f"Checking tax line: {box}")
             lines = self.model111.tax_line_ids.filtered(
                 lambda x, box=box: x.field_number == int(box)
             )
