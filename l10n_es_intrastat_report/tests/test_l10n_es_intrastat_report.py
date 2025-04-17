@@ -3,9 +3,7 @@
 
 from datetime import datetime
 
-from odoo import _
-from odoo.tests import tagged
-from odoo.tests.common import Form
+from odoo.tests import Form, tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
@@ -56,8 +54,9 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
         )
 
     @classmethod
-    def setUpClass(cls, chart_template_ref=None):
-        super().setUpClass(chart_template_ref="es_full")
+    @AccountTestInvoicingCommon.setup_chart_template("es_full")
+    def setUpClass(cls):
+        super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         # Set current company to Spanish
         intrastat_transport = cls.env["intrastat.transport_mode"].search([], limit=1)
@@ -103,7 +102,7 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
             {"name": "Test Partner PT", "country_id": cls.env.ref("base.pt").id}
         )
         # Import Intrastat data
-        cls.env["l10n.es.intrastat.code.import"].create({}).execute()
+        cls.env["l10n.es.intrastat.code.import"].create({}).action_import_hs_codes()
         # Create product ans assign random HS Code
         cls.hs_code = cls.env["hs.code"].search([], limit=1)
         cls.product = cls.env["product.product"].create(
@@ -255,8 +254,8 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
         report_dispatches = self._create_declaration("dispatches")
         expected_invoices = self.invoices["dispatches"]["invoices"]
         expected_notes = [
-            _("Missing <em>Country of Origin</em> <small>"),
-            _("Missing <em>VAT Number</em> <small>"),
+            self.env._("Missing <em>Country of Origin</em> <small>"),
+            self.env._("Missing <em>VAT Number</em> <small>"),
         ]
         report_dispatches.action_gather()
         for expected_note in expected_notes:

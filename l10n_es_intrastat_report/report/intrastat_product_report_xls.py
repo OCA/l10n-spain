@@ -16,7 +16,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
             and int(self.env.context.get("declaration_year", 0)) >= 2022
         ):
             aux_dict["partner_vat"] = {
-                "header": {"type": "string", "value": self._("VAT")},
+                "header": {"type": "string", "value": self.env._("VAT")},
                 "line": {"type": "string", "value": self._render("line.partner_vat")},
                 "width": 18,
             }
