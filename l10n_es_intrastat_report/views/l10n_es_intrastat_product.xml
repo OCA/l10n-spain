@@ -31,7 +31,7 @@
         id="l10n_es_intrastat_product_computation_line_view_tree"
         model="ir.ui.view"
     >
-        <field name="name">intrastat.product.computation.line.tree</field>
+        <field name="name">intrastat.product.computation.line.list</field>
         <field name="model">intrastat.product.computation.line</field>
         <field name="mode">primary</field>
         <field
@@ -78,7 +78,7 @@
         id="l10n_es_intrastat_product_declaration_line_view_tree"
         model="ir.ui.view"
     >
-        <field name="name">intrastat.product.declaration.line.tree</field>
+        <field name="name">intrastat.product.declaration.line.list</field>
         <field name="model">intrastat.product.declaration.line</field>
         <field name="mode">primary</field>
         <field
@@ -111,7 +111,7 @@
         </field>
     </record>
     <record id="l10n_es_intrastat_product_declaration_view_tree" model="ir.ui.view">
-        <field name="name">intrastat.product.declaration.tree</field>
+        <field name="name">intrastat.product.declaration.list</field>
         <field name="model">intrastat.product.declaration</field>
         <field name="mode">primary</field>
         <field
@@ -119,11 +119,11 @@
             ref="intrastat_product.intrastat_product_declaration_view_tree"
         />
         <field name="arch" type="xml">
-            <tree position="attributes">
+            <list position="attributes">
                 <attribute
                     name="string"
                 >Spanish Intrastat Product Declaration</attribute>
-            </tree>
+            </list>
         </field>
     </record>
     <record id="l10n_es_intrastat_product_declaration_view_search" model="ir.ui.view">
@@ -164,7 +164,7 @@
     >
         <field name="name">Spanish Intrastat Product Declaration</field>
         <field name="res_model">intrastat.product.declaration</field>
-        <field name="view_mode">tree,form,graph</field>
+        <field name="view_mode">list,form,graph</field>
     </record>
     <menuitem
         id="l10n_es_intrastat_product_declaration_menu"
