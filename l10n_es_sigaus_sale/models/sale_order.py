@@ -15,7 +15,7 @@ class SaleOrder(models.Model):
         "editable_states": ["draft", "sent"],
     }
 
-    @api.depends("company_id", "fiscal_position_id")
+    @api.depends("company_id", "fiscal_position_id", "partner_id")
     def _compute_is_sigaus(self):
         return super()._compute_is_sigaus()
 

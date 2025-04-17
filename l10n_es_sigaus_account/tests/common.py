@@ -22,6 +22,9 @@ class TestL10nEsSigausCommon(common.TransactionCase):
                 )
             coa.try_loading(company=cls.company, install_demo=False)
         cls.partner = cls.env["res.partner"].create({"name": "Test"})
+        cls.partner_no_sigaus = cls.env["res.partner"].create(
+            {"name": "Test", "sigaus_subject": False}
+        )
         cls.fiscal_position_sigaus = cls.env["account.fiscal.position"].create(
             {"name": "Test Fiscal Sigaus", "active": True, "sigaus_subject": True}
         )

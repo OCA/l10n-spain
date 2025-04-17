@@ -139,7 +139,19 @@ class TestL10nEsSigausInvoice(TestL10nEsSigausCommon):
         self.assertEqual(invoice.amount_untaxed, 22.36)
         invoice.write({"fiscal_position_id": self.fiscal_position_no_sigaus.id})
         self.assertEqual(invoice.amount_untaxed, 22.00)
-        invoice.write({"fiscal_position_id": False})
+        invoice.write(
+            {
+                "fiscal_position_id": self.fiscal_position_sigaus.id,
+                "partner_id": self.partner_no_sigaus.id,
+            }
+        )
+        self.assertEqual(invoice.amount_untaxed, 22.00)
+        invoice.write(
+            {
+                "fiscal_position_id": False,
+                "partner_id": self.partner.id,
+            }
+        )
         self.assertEqual(invoice.amount_untaxed, 22.36)
         invoice.write({"is_sigaus": False})
         self.assertEqual(invoice.amount_untaxed, 22.00)
