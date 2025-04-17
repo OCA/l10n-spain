@@ -87,7 +87,6 @@
                             nolabel="1"
                             readonly="state != 'calculated'"
                         />
-
                     </group>
                     <group>
                         <label for="casilla_03_2024" string="[03] Totales" />
@@ -121,7 +120,6 @@
                             options="{'currency_field': 'currency_id'}"
                             readonly="state != 'calculated'"
                         />
-
                     </group>
                     <group>
                         <label for="casilla_06_2024" string="[06] Totales" />
@@ -160,7 +158,6 @@
                             options="{'currency_field': 'currency_id'}"
                             readonly="state != 'calculated'"
                         />
-
                     </group>
                     <group>
                         <label for="casilla_09_2024" string="[09] Totales" />
