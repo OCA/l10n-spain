@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -21,7 +21,6 @@ msgstr ""
 #. module: l10n_es_account_statement_import_n43
 #. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
-#, python-format
 msgid ""
 "Credit amount doesn't match with the defined in the last record of account."
 msgstr ""
@@ -34,7 +33,6 @@ msgstr ""
 #. module: l10n_es_account_statement_import_n43
 #. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
-#, python-format
 msgid ""
 "Debit amount doesn't match with the defined in the last record of account."
 msgstr ""
@@ -42,7 +40,6 @@ msgstr ""
 #. module: l10n_es_account_statement_import_n43
 #. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
-#, python-format
 msgid ""
 "Final balance amount = (initial balance + credit - debit) doesn't match with"
 " the defined in the last record of account."
@@ -66,7 +63,6 @@ msgstr ""
 #. module: l10n_es_account_statement_import_n43
 #. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
-#, python-format
 msgid ""
 "Number of credit records doesn't match with the defined in the last record "
 "of account."
@@ -75,7 +71,6 @@ msgstr ""
 #. module: l10n_es_account_statement_import_n43
 #. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
-#, python-format
 msgid ""
 "Number of debit records doesn't match with the defined in the last record of"
 " account."
@@ -84,7 +79,6 @@ msgstr ""
 #. module: l10n_es_account_statement_import_n43
 #. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
-#, python-format
 msgid "Number of records doesn't match with the defined in the last record."
 msgstr ""
 
@@ -96,7 +90,6 @@ msgstr ""
 #. module: l10n_es_account_statement_import_n43
 #. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
-#, python-format
 msgid "Record type %s is not valid."
 msgstr ""
 
