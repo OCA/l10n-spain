@@ -72,21 +72,26 @@ class SeurAtlasRequest:
     def _set_token(self):
         """In order to operate, we should gather a token from the API. This token
         lasts for 30 seconds. After that, we must gather a new one"""
-        self.response = requests.post(
-            urljoin(self.api_url, "/pic_token"),
-            data={
-                "grant_type": "password",
-                "client_id": self.client_id,
-                "client_secret": self.secret,
-                "username": self.user,
-                "password": self.password,
-            },
-        )
-        self._log_request()
-        if not self.response.ok:
-            self.error = self.response.json()
-            return
-        self.token = self.response.json()["access_token"]
+        try:
+            self.response = requests.post(
+                urljoin(self.api_url, "/pic_token"),
+                data={
+                    "grant_type": "password",
+                    "client_id": self.client_id,
+                    "client_secret": self.secret,
+                    "username": self.user,
+                    "password": self.password,
+                },
+                timeout=30,
+            )
+            self._log_request()
+            if not self.response.ok:
+                self.error = self.response.json()
+                return
+            self.token = self.response.json()["access_token"]
+        except requests.exceptions.Timeout:
+            self.error = "Request timed out. Please try again later."
+            _logger.error(self.error)
 
     def request(self, request_method, seur_method, **kwargs):
         """Raw query. It can be used as it is calling any API method, although its
@@ -105,17 +110,22 @@ class SeurAtlasRequest:
         elif request_method == "GET":
             request_params["params"] = {**kwargs}
         _logger.debug(f"SEUR Request to {seur_method}: {request_params}")
-        self.response = requests.request(**request_params)
-        _logger.debug(f"SEUR Response from {seur_method}: {self.response.content}")
-        self._log_request()
-        if not self.response.ok:
-            self.error = "\n".join(
-                [
-                    f"{error['title']} ({error['status']}): {error['detail']}"
-                    for error in self.response.json().get("errors")
-                ]
-            )
-            raise UserError(f"SEUR ERROR: \n\n{self.error}")
+        try:
+            self.response = requests.request(**request_params, timeout=30)
+            _logger.debug(f"SEUR Response from {seur_method}: {self.response.content}")
+            self._log_request()
+            if not self.response.ok:
+                self.error = "\n".join(
+                    [
+                        f"{error['title']} ({error['status']}): {error['detail']}"
+                        for error in self.response.json().get("errors")
+                    ]
+                )
+                raise UserError(f"SEUR ERROR: \n\n{self.error}")
+        except requests.exceptions.Timeout:
+            self.error = "Request timed out. Please try again later."
+            _logger.error(self.error)
+            raise UserError(self.error) from None
 
     # SEUR ATLAS API METHODS
 
