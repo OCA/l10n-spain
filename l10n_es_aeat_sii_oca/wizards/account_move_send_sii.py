@@ -32,6 +32,7 @@ class SendSIIWizard(models.TransientModel):
                 "not_send_without_errors_number": len(not_send_without_errors),
                 "with_errors_number": len(with_errors),
                 "modified_number": len(modified),
+                'account_move_ids': account_moves
             }
         )
         return res
