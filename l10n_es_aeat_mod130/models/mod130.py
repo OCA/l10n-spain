@@ -157,6 +157,28 @@ class L10nEsAeatMod130Report(models.Model):
         ],
         compute="_compute_marca_sepa",
     )
+    firstname = fields.Char(string="Nombre", compute="_compute_firstname", store=False)
+    lastname = fields.Char(string="Apellidos", compute="_compute_lastname", store=False)
+
+    def _compute_firstname(self):
+        for record in self:
+            if record.partner_id.is_company:
+                record.firstname = ""
+            else:
+                record.firstname = (
+                    record.partner_id.firstname if hasattr(record.partner_id, 'firstname') 
+                    else record.company_id.name
+                )
+
+    def _compute_lastname(self):
+        for record in self:
+            if record.partner_id.is_company:
+                record.lastname = ""
+            else:
+                record.lastname = (
+                    record.partner_id.lastname if hasattr(record.partner_id, 'lastname') 
+                    else record.company_id.name
+                )
 
     @api.depends("partner_bank_id", "use_aeat_account")
     def _compute_marca_sepa(self):
