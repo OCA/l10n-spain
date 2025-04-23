@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+     <record id="l10n_es_aeat_mod303.aeat_mod303_2024_10_map_line_10" model="l10n.es.aeat.map.tax.line">
+        <field name="tax_ids" eval="[(4, ref('l10n_es_irnr.account_tax_template_s_irpfnrnue24')), (4, ref('l10n_es_irnr.account_tax_template_p_irpfnrnue24p')), (4, ref('l10n_es_irnr.account_tax_template_s_irpfnrue19')), (4, ref('l10n_es_irnr.account_tax_template_p_irpfnrue19p')), (4, ref('l10n_es_irnr.account_tax_template_s_irpfnrue0')), (4, ref('l10n_es_irnr.account_tax_template_p_irpfnrue0p'))]"/>
+    </record>
+    <record id="l10n_es_aeat_mod303.aeat_mod303_2024_10_map_line_36" model="l10n.es.aeat.map.tax.line">
+        <field name="tax_ids" eval="[(4, ref('l10n_es_irnr.account_tax_template_s_irpfnrnue24')), (4, ref('l10n_es_irnr.account_tax_template_p_irpfnrnue24p')), (4, ref('l10n_es_irnr.account_tax_template_s_irpfnrue19')), (4, ref('l10n_es_irnr.account_tax_template_p_irpfnrue19p')), (4, ref('l10n_es_irnr.account_tax_template_s_irpfnrue0')), (4, ref('l10n_es_irnr.account_tax_template_p_irpfnrue0p'))]"/>
+    </record>
+    <record id="l10n_es_aeat_mod303.aeat_mod303_2024_10_map_line_11" model="l10n.es.aeat.map.tax.line">
+        <field name="tax_ids" eval="[(4, ref('l10n_es_extra_data.account_tax_template_p_iva5_ic_sc_2')), (4, ref('l10n_es_extra_data.account_tax_template_p_iva0_ic_sc_2')), (4, ref('l10n_es_extra_data.account_tax_template_p_iva0_ic_a_2')), (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_ic_a_2'))]"/>
+    </record>
     <record id="l10n_es_aeat_mod303.aeat_mod303_map_line_28" model="l10n.es.aeat.map.tax.line">
         <field name="tax_ids" eval="[(4, ref('l10n_es_extra_data.account_tax_template_p_iva5_sc'))]"/>
     </record>
     <record id="l10n_es_aeat_mod303.aeat_mod303_map_line_29" model="l10n.es.aeat.map.tax.line">
         <field name="tax_ids" eval="[(4, ref('l10n_es_extra_data.account_tax_template_p_iva5_sc'))]"/>
+    </record>
+    <record id="l10n_es_aeat_mod303.aeat_mod303_map_line_37" model="l10n.es.aeat.map.tax.line">
+        <field name="tax_ids" eval="[(4, ref('l10n_es_extra_data.account_tax_template_p_iva5_ic_sc_1')), (4, ref('l10n_es_extra_data.account_tax_template_p_iva0_ic_sc_1')), (4, ref('l10n_es_extra_data.account_tax_template_p_iva0_ic_a_1')), (4, ref('l10n_es_extra_data.account_tax_template_p_iva5_ic_a_1'))]"/>
     </record>
     <record id="l10n_es_aeat_mod303.aeat_mod303_map_line_40" model="l10n.es.aeat.map.tax.line">
         <field name="tax_ids" eval="[(4, ref('l10n_es_extra_data.account_tax_template_p_iva5_sc'))]"/>

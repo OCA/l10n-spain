@@ -12,6 +12,7 @@
     "category": "Accounting & Finance",
     "version": "12.0.2.0.0",
     "depends": [
+        "l10n_es_irnr",
         "l10n_es_aeat_mod303",
         "l10n_es_extra_data",
     ],
