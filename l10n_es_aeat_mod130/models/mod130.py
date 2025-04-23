@@ -129,12 +129,47 @@ class L10nEsAeatMod130Report(models.Model):
         compute="_compute_result",
         store=True,
     )
+    use_aeat_account = fields.Boolean(
+        "Usar cuenta corriente tributaria",
+        help=(
+            "Si está suscrito a la cuenta corriente en materia tributaria, "
+            "active esta opción para usarla en el ingreso o devolución."
+        ),
+    )
     tipo_declaracion = fields.Selection(
-        selection=[("I", "A ingresar"), ("N", "Negativa"), ("B", "A deducir")],
+        selection=[
+            ("I", "A ingresar"),
+            ("U", "Domiciliación"),
+            ("G", "A ingresar en CCT"),
+            ("N", "Negativa"),
+            ("B", "A deducir"),
+        ],
         string="Tipo declaración",
         compute="_compute_tipo_declaracion",
         store=True,
     )
+    marca_sepa = fields.Selection(
+        selection=[
+            ("0", "0 No válida para domiciliación"),
+            ("1", "1 Cuenta España SEPA"),
+            ("2", "2 Unión Europea SEPA"),
+        ],
+        compute="_compute_marca_sepa",
+    )
+
+    @api.depends("partner_bank_id", "use_aeat_account")
+    def _compute_marca_sepa(self):
+        for record in self:
+            record.marca_sepa = "0"
+            if not record.use_aeat_account:
+                partner_bank = record.partner_bank_id
+                bank = partner_bank.bank_id if partner_bank else None
+                country = bank.country if bank else None
+                if country:
+                    if country == self.env.ref("base.es"):
+                        record.marca_sepa = "1"
+                    elif country in self.env.ref("base.europe").country_ids:
+                        record.marca_sepa = "2"
 
     @api.depends("real_expenses", "non_justified_expenses")
     def _compute_casilla_02(self):
@@ -207,7 +242,11 @@ class L10nEsAeatMod130Report(models.Model):
         for report in self:
             report.result = report.casilla_17 - report.casilla_18
 
-    @api.depends("result")
+    @api.depends(
+        "result",
+        "marca_sepa",
+        "use_aeat_account",
+    )
     def _compute_tipo_declaracion(self):
         for report in self:
             result = float_compare(report.result, 0, precision_digits=2)
@@ -216,7 +255,13 @@ class L10nEsAeatMod130Report(models.Model):
             elif result < 0:
                 report.tipo_declaracion = "B" if report.period_type != "4T" else "N"
             else:
-                report.tipo_declaracion = "I"
+                if report.use_aeat_account:
+                    report.tipo_declaracion = "G"
+                elif report.marca_sepa in {"1", "2"}:
+                    # Domiciliar ingreso porque se indicó un banco SEPA
+                    report.tipo_declaracion = "U"
+                else:
+                    report.tipo_declaracion = "I"
 
     def _calc_ingresos_gastos_retenciones(self):
         self.ensure_one()

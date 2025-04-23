@@ -129,3 +129,139 @@ class TestL10nEsAeatMod130Base(TestL10nEsAeatModBase):
         for xml_id in export_config_xml_ids:
             export_config = self.env.ref(xml_id)
             self.assertTrue(export_to_boe._export_config(model130, export_config))
+
+        # Test partner account at AEAT
+        model130_account_aeat = model130.copy(
+            {
+                "name": "9990000004130",
+                "activity_type": "other",
+                "date_start": "2019-01-01",
+                "date_end": "2019-03-31",
+                "use_aeat_account": True,
+            }
+        )
+        model130_account_aeat.button_calculate()
+        self.assertEqual(model130_account_aeat.tipo_declaracion, "G")
+
+        # Test Spanish bank account debit declaration
+        model130_es_bank_account = model130.copy(
+            {
+                "name": "9990000005130",
+                "activity_type": "other",
+                "date_start": "2019-01-01",
+                "date_end": "2019-03-31",
+                "use_aeat_account": False,
+            }
+        )
+        model130_es_bank_account.partner_bank_id = self.customer_bank.id
+        model130_es_bank_account.button_calculate()
+        self.assertEqual(model130_es_bank_account.tipo_declaracion, "U")
+        self.assertEqual(model130_es_bank_account.marca_sepa, "1")
+
+        # Test European, but not Spanish, bank account debit declaration
+        model130_eu_bank_account = model130.copy(
+            {
+                "name": "9990000006130",
+                "activity_type": "other",
+                "date_start": "2019-01-01",
+                "date_end": "2019-03-31",
+                "use_aeat_account": False,
+            }
+        )
+        Bank = self.env["res.bank"]
+        bic = "PSSTFRPPXXX"
+        bank = Bank.create(
+            {
+                "name": "LA BANQUE POSTALE",
+                "country": self.env.ref("base.fr").id,
+                "bic": bic,
+            }
+        )
+        bank_acc = self.env["res.partner.bank"].create(
+            {
+                "acc_number": "FR20 1242 1242 1242 1242 1242 124",
+                "partner_id": self.customer.id,
+                "bank_id": bank.id,
+            }
+        )
+        model130_eu_bank_account.partner_bank_id = bank_acc.id
+        model130_eu_bank_account._compute_marca_sepa()
+        model130_eu_bank_account.button_calculate()
+        self.assertEqual(model130_eu_bank_account.tipo_declaracion, "U")
+        self.assertEqual(model130_eu_bank_account.marca_sepa, "2")
+
+        # Test non European bank account debit declaration
+        model130_non_eu_bank_account = model130.copy(
+            {
+                "name": "9990000007130",
+                "activity_type": "other",
+                "date_start": "2019-01-01",
+                "date_end": "2019-03-31",
+                "use_aeat_account": False,
+            }
+        )
+        bic = "JPMGUS33XXX"
+        bank = Bank.create(
+            {
+                "name": "JPMorgan Chase & Co",
+                "country": self.env.ref("base.us").id,
+                "bic": bic,
+            }
+        )
+        bank_acc = self.env["res.partner.bank"].create(
+            {
+                "acc_number": "1234567890",
+                "partner_id": self.customer.id,
+                "bank_id": bank.id,
+            }
+        )
+        model130_non_eu_bank_account.partner_bank_id = bank_acc.id
+        model130_non_eu_bank_account.button_calculate()
+        self.assertEqual(model130_non_eu_bank_account.tipo_declaracion, "I")
+        self.assertEqual(model130_non_eu_bank_account.marca_sepa, "0")
+
+        # Test compensate result
+        model130_comp_result = model130.copy(
+            {
+                "name": "9990000008130",
+                "activity_type": "other",
+                "period_type": "1T",
+                "date_start": "2019-01-01",
+                "date_end": "2019-03-31",
+                "use_aeat_account": False,
+            }
+        )
+        self.taxes_purchase["P_IVA21_BC"] = (1200,)
+        self._invoice_purchase_create("2019-01-01")
+        model130_comp_result.button_calculate()
+        self.assertEqual(model130_comp_result.tipo_declaracion, "N")
+
+        # Test negative result
+        model130_neg_result = model130.copy(
+            {
+                "name": "9990000009130",
+                "activity_type": "other",
+                "period_type": "1T",
+                "date_start": "2019-01-01",
+                "date_end": "2019-03-31",
+                "use_aeat_account": False,
+                "casilla_18": 2000.0,
+            }
+        )
+        self.taxes_purchase["P_IVA21_BC"] = (1200,)
+        self._invoice_purchase_create("2019-01-01")
+        model130_neg_result.button_calculate()
+        self.assertEqual(model130_neg_result.tipo_declaracion, "B")
+
+        test_marca_sepa = model130.copy(
+            {
+                "name": "9990000010130",
+                "activity_type": "other",
+                "period_type": "1T",
+                "date_start": "2019-01-01",
+                "date_end": "2019-03-31",
+                "use_aeat_account": True,
+            }
+        )
+        test_marca_sepa._compute_marca_sepa()
+        self.assertEqual(test_marca_sepa.marca_sepa, "0")
