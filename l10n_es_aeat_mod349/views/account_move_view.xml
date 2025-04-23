@@ -17,7 +17,7 @@
             >
                 <field
                     name="l10n_es_aeat_349_operation_key"
-                    invisible="1"
+                    column_invisible="1"
                     groups="account.group_account_invoice"
                 />
             </xpath>

@@ -129,7 +129,7 @@
         <field name="model">l10n.es.aeat.mod349.partner_refund</field>
         <field name="arch" type="xml">
             <tree decoration-danger="not partner_refund_ok">
-                <field name="partner_refund_ok" invisible="1" />
+                <field name="partner_refund_ok" column_invisible="1" />
                 <field name="country_id" optional="show" />
                 <field name="partner_vat" optional="show" />
                 <field name="partner_id" optional="show" />
