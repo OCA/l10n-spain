@@ -21,12 +21,12 @@
                 <p
                     class="alert alert-warning"
                     role="alert"
-                    invisible="sending_number == 0"
+                    invisible="moves_to_send == 0"
                 >
                     <field
-                        name="sending_number"
+                        name="moves_to_send"
                         widget="statinfo"
-                        string="of the selected invoices are being processed to be sent to the SII. If you confirm, they will be resent."
+                        string="of the selected invoices are being processed to be sent to the SII. If you confirm, they will be sent."
                     />
                 </p>
                 <p
