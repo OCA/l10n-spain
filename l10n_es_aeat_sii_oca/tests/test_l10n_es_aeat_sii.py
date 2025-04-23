@@ -552,3 +552,32 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             }
         )
         self.assertFalse(invoice.sii_enabled)
+
+    def test_send_sii_wizard(self):
+        invoice = self._create_invoice("out_invoice")
+        invoice_sii_failed = self._create_invoice("out_invoice")
+        invoice_sii_modified = self._create_invoice("out_invoice")
+        (invoice + invoice_sii_failed + invoice_sii_modified).action_post()
+        (invoice + invoice_sii_failed + invoice_sii_modified).write(
+            {"sii_send_date": False}
+        )
+        invoice_sii_failed.write({"aeat_send_failed": True})
+        invoice_sii_modified.write({"aeat_state": "sent_modified"})
+        wizard = (
+            self.env["wizard.send.sii"]
+            .with_context(
+                active_model="account.move",
+                active_ids=[invoice_sii_failed.id, invoice_sii_modified.id, invoice.id],
+            )
+            .create({})
+        )
+        self.assertEqual(wizard.not_send_without_errors_number, 1)
+        self.assertEqual(wizard.with_errors_number, 1)
+        self.assertEqual(wizard.modified_number, 1)
+        self.assertFalse(invoice.sii_send_date)
+        self.assertFalse(invoice_sii_failed.sii_send_date)
+        self.assertFalse(invoice_sii_modified.sii_send_date)
+        wizard.action_confirm()
+        self.assertTrue(invoice.sii_send_date)
+        self.assertTrue(invoice_sii_failed.sii_send_date)
+        self.assertTrue(invoice_sii_modified.sii_send_date)

@@ -8,7 +8,7 @@ class SendSIIWizard(models.TransientModel):
     _name = "wizard.send.sii"
     _description = "Send SII Wizard"
 
-    sending_number = fields.Integer()
+    moves_to_send = fields.Integer()
     not_send_without_errors_number = fields.Integer()
     with_errors_number = fields.Integer()
     modified_number = fields.Integer()
@@ -26,9 +26,15 @@ class SendSIIWizard(models.TransientModel):
         modified = account_moves.filtered(
             lambda a: a.aeat_state in ["sent_modified", "cancelled_modified"]
         )
+        moves_to_send = account_moves.filtered(
+            lambda a: a.sii_enabled
+            and a.state in a._get_valid_document_states()
+            and a.aeat_state not in ["sent", "cancelled"]
+        )
         res.update(
             {
-                "sending_number": len(account_moves),
+                "moves_to_send": len(moves_to_send),
+                "account_move_ids": moves_to_send.ids,
                 "not_send_without_errors_number": len(not_send_without_errors),
                 "with_errors_number": len(with_errors),
                 "modified_number": len(modified),
