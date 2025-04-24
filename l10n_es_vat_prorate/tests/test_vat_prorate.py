@@ -59,6 +59,16 @@ class TestVatProrate(AccountTestInvoicingCommon):
         with self.assertRaises(IntegrityError):
             self.env.company.vat_prorate_ids[0].vat_prorate = 200
 
+    def test_restriction_vat_prorate_in_accounts(self):
+        """Test that the restriction of the VAT prorate in the accounts works"""
+        invoice = self.init_invoice("in_invoice", products=[self.product_a])
+        line = invoice.line_ids.filtered("vat_prorate")
+        account = line.tax_line_id.invoice_repartition_line_ids.filtered(
+            lambda x: x.account_id
+        ).account_id
+        with self.assertRaises(exceptions.UserError):
+            line.account_id = account
+
     def test_company_special_vat_prorate_out_of_range(self):
         # A error should be displayed if special prorates are 100%
         prorate_id = self.env.company.vat_prorate_ids[0]

@@ -231,6 +231,13 @@ msgstr "Con prorrata de IVA"
 
 #. module: l10n_es_vat_prorate
 #. odoo-python
+#: code:addons/l10n_es_vat_prorate/models/account_move.py:0
+#, python-format
+msgid "You cannot use this account (%s) to the VAT prorate."
+msgstr "No puede usar esta cuenta (%s) para la prorrata del IVA."
+
+#. module: l10n_es_vat_prorate
+#. odoo-python
 #: code:addons/l10n_es_vat_prorate/models/res_company.py:0
 #, python-format
 msgid "You can't have a special VAT prorrate of 100%"

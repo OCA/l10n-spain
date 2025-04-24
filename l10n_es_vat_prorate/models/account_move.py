@@ -2,7 +2,8 @@
 # Copyright 2023 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 from odoo.tools import float_round, frozendict
 
 
@@ -115,3 +116,28 @@ class AccountMoveLine(models.Model):
             if prorate_tax_list:
                 line.compute_all_tax.update(prorate_tax_list)
         return res
+
+    @api.constrains("account_id", "vat_prorate")
+    def _check_vat_prorate_account(self):
+        """Prevent set tax accounts in a line with vat prorate"""
+        if not self.filtered("vat_prorate"):
+            return
+        map_tax_accounts = {
+            tax.id: (tax.invoice_repartition_line_ids | tax.refund_repartition_line_ids)
+            .filtered(lambda r: r.repartition_type == "tax")
+            .mapped("account_id")
+            for tax in self.filtered("vat_prorate").mapped(
+                "tax_repartition_line_id.tax_id"
+            )
+        }
+        for line in self.filtered("vat_prorate"):
+            if (
+                line.account_id
+                in map_tax_accounts[line.tax_repartition_line_id.tax_id.id]
+            ):
+                raise UserError(
+                    _(
+                        "You cannot use this account (%s) to the VAT prorate.",
+                        line.account_id.display_name,
+                    )
+                )
