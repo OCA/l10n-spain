@@ -54,8 +54,7 @@ class ReportFacturae(models.AbstractModel):
 
     def _get_facturae_schema_file(self, move):
         return tools.file_open(
-            "addons/l10n_es_facturae/data/Facturaev%s.xsd"
-            % move.get_facturae_version(),
+            f"addons/l10n_es_facturae/data/Facturaev{move.get_facturae_version()}.xsd",
         )
 
     def _validate_facturae(self, move, xml_string):
@@ -116,7 +115,7 @@ class ReportFacturae(models.AbstractModel):
                 )
         except FileNotFoundError as e:
             raise ValidationError(
-                _("The provided certificate is not found in the system.")
+                self.env._("The provided certificate is not found in the system.")
             ) from e
         xmlsig.template.add_reference(
             sign,

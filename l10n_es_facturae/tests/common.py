@@ -395,11 +395,11 @@ class CommonTest(CommonTestBase):
         except Exception as e:
             verification_error = True
             error_message = str(e)
+        error_text = "Error found during verification of the signature of the move"
         self.assertEqual(
             verification_error,
             False,
-            "Error found during verification of the signature of "
-            + "the move: %s" % error_message,
+            f"{error_text}: {error_message}",
         )
 
     def test_refund(self):

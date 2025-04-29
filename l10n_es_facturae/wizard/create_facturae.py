@@ -9,7 +9,7 @@
 
 import base64
 
-from odoo import _, fields, models
+from odoo import fields, models
 from odoo.exceptions import UserError
 
 
@@ -52,7 +52,7 @@ class CreateFacturae(models.TransientModel):
         log = Log()
         move_ids = self.env.context.get("active_ids", [])
         if not move_ids or len(move_ids) > 1:
-            raise UserError(_("You can only select one move to export"))
+            raise UserError(self.env._("You can only select one move to export"))
         active_model = self.env.context.get("active_model", False)
         assert active_model == "account.move", "Bad context propagation"
         move = self.env["account.move"].browse(move_ids[0]).ensure_one()
@@ -76,7 +76,9 @@ class CreateFacturae(models.TransientModel):
                 "mimetype": "application/xml",
             }
         )
-        log.add(_("Export successful\n\nSummary:\nMove number: %s\n") % move.name)
+        log.add(
+            self.env._("Export successful\n\nSummary:\nMove number: %s\n") % move.name
+        )
         self.write(
             {
                 "note": log(),
