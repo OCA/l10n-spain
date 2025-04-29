@@ -26,22 +26,22 @@
     <template id="facturae_header">
         <t t-if="version == '3_2'">
             &lt;fe:Facturae xmlns:fe="http://www.facturae.es/Facturae/2009/v3.2/Facturae" <t
-                t-out="headers"
-            /> &gt;
+            t-out="headers"
+        /> &gt;
             <t t-out="0" />
             &lt;/fe:Facturae&gt;
         </t>
         <t t-elif="version == '3_2_1'">
             &lt;fe:Facturae xmlns:fe="http://www.facturae.es/Facturae/2014/v3.2.1/Facturae" <t
-                t-out="headers"
-            /> &gt;
+            t-out="headers"
+        /> &gt;
             <t t-out="0" />
             &lt;/fe:Facturae&gt;
         </t>
         <t t-elif="version == '3_2_2'">
             &lt;fe:Facturae xmlns:fe="http://www.facturae.gob.es/formato/Versiones/Facturaev3_2_2.xml" <t
-                t-out="headers"
-            /> &gt;
+            t-out="headers"
+        /> &gt;
             <t t-out="0" />
             &lt;/fe:Facturae&gt;
         </t>
@@ -124,8 +124,7 @@
             <CorporateName t-length="80" t-out="partner.name" />
             <TradeName t-length="40" t-out="partner.name" />
             <RegistrationData t-if="False" />
-            <t t-call="l10n_es_facturae.address_contact">
-            </t>
+            <t t-call="l10n_es_facturae.address_contact" />
         </LegalEntity>
         <Individual t-if="buyer_type == 'F'">
             <Name
@@ -137,8 +136,7 @@
                 t-out="partner.lastname if partner._fields.get('lastname') else ''"
             />
             <SecondSurname t-length="40" t-out="''" t-if="False" />
-            <t t-call="l10n_es_facturae.address_contact">
-            </t>
+            <t t-call="l10n_es_facturae.address_contact" />
         </Individual>
     </template>
     <template id="address_contact">

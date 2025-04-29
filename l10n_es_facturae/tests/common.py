@@ -369,8 +369,9 @@ class CommonTest(CommonTestBase):
         self.company.partner_id.country_id = False
         self.move.action_post()
         self.move.name = "2999/99999"
-        with self.assertRaises(exceptions.UserError), mute_logger(
-            "odoo.addons.l10n_es_facturae.reports.report_facturae"
+        with (
+            self.assertRaises(exceptions.UserError),
+            mute_logger("odoo.addons.l10n_es_facturae.reports.report_facturae"),
         ):
             self._create_facturae_file(self.move)
 
