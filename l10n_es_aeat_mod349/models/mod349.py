@@ -10,7 +10,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import math
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 from odoo.fields import first
 from odoo.tools import float_is_zero, float_round
 
@@ -246,7 +246,7 @@ class Mod349(models.Model):
                     [
                         ("report_id.date_start", ">", report.date_end),
                         ("report_id.date_end", "<", self.date_start),
-                        ("move_id", "in", origin_invoice.reversal_move_id.ids),
+                        ("move_id", "in", origin_invoice.reversal_move_ids.ids),
                     ],
                     order="date desc",
                     limit=1,
@@ -279,7 +279,7 @@ class Mod349(models.Model):
                 if self.period_type == "0A":
                     period_type = "0A"
                 elif self.period_type in ("1T", "2T", "3T", "4T"):
-                    period_type = "%sT" % int(math.ceil(int(month) / 3.0))
+                    period_type = f"{int(math.ceil(int(month) / 3.0))}T"
                 else:
                     period_type = month
             key = (partner, op_key, period_type, year)
@@ -322,7 +322,7 @@ class Mod349(models.Model):
         map_lines = self.env["aeat.349.map.line"].search([])
         tax_templates = map_lines.mapped("tax_xmlid_ids")
         if not tax_templates:
-            raise exceptions.UserError(_("No Tax Mapping was found"))
+            raise exceptions.UserError(self.env._("No Tax Mapping was found"))
         taxes_ids = self.env["aeat.349.map.line"]._get_tax_ids_from_xmlids(
             tax_templates, self.company_id
         )
@@ -383,7 +383,7 @@ class Mod349(models.Model):
             for partner_record in item.partner_record_ids:
                 if not partner_record.partner_record_ok:
                     raise exceptions.UserError(
-                        _(
+                        self.env._(
                             "All partner records fields (country, VAT number) "
                             "must be filled."
                         )
@@ -391,7 +391,7 @@ class Mod349(models.Model):
             for partner_record in item.partner_refund_ids:
                 if not partner_record.partner_refund_ok:
                     raise exceptions.UserError(
-                        _(
+                        self.env._(
                             "All partner refunds fields (country, VAT number) "
                             "must be filled."
                         )
@@ -403,7 +403,7 @@ class Mod349(models.Model):
             # Check Full name (contact_name)
             if not item.contact_name or len(item.contact_name.split(" ")) < 2:
                 raise exceptions.UserError(
-                    _("Contact name (Full name) must have name and surname")
+                    self.env._("Contact name (Full name) must have name and surname")
                 )
 
     def button_confirm(self):
@@ -447,7 +447,7 @@ class Mod349PartnerRecord(models.Model):
     def _process_vat(self, record, errors):
         country_code = self._get_and_assign_country_code(record)
         if not country_code:
-            errors.append(_("VAT without country code"))
+            errors.append(self.env._("VAT without country code"))
         elif country_code not in record.partner_id._get_aeat_europe_codes():
             europe = self.env.ref("base.europe", raise_if_not_found=False)
             map_european_codes = [
@@ -455,7 +455,7 @@ class Mod349PartnerRecord(models.Model):
                 for c in europe.country_ids
             ]
             if country_code not in map_european_codes:
-                errors.append(_("Country code not found in Europe"))
+                errors.append(self.env._("Country code not found in Europe"))
         return errors
 
     @api.depends("partner_vat", "country_id", "total_operation_amount")
@@ -464,13 +464,13 @@ class Mod349PartnerRecord(models.Model):
         for record in self:
             errors = []
             if not record.partner_vat:
-                errors.append(_("Without VAT"))
+                errors.append(self.env._("Without VAT"))
             if not record.country_id:
-                errors.append(_("Without Country"))
+                errors.append(self.env._("Without Country"))
             if not record.total_operation_amount:
-                errors.append(_("Without Total Operation Amount"))
+                errors.append(self.env._("Without Total Operation Amount"))
             if record.total_operation_amount and record.total_operation_amount < 0.0:
-                errors.append(_("Negative amount"))
+                errors.append(self.env._("Negative amount"))
             if record.partner_vat:
                 errors = self._process_vat(record, errors)
             record.partner_record_ok = bool(not errors)
