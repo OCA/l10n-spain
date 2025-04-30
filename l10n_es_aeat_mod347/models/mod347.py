@@ -36,17 +36,28 @@ class L10nEsAeatMod347Report(models.Model):
         "partner_record_ids.amount",
         "partner_record_ids.cash_amount",
         "partner_record_ids.real_estate_transmissions_amount",
+        "partner_record_ids.state",
     )
     def _compute_totals(self):
         """Calculates the total_* fields from the line values."""
         for record in self:
-            record.total_partner_records = len(record.partner_record_ids)
-            record.total_amount = sum(record.mapped("partner_record_ids.amount"))
+            record.total_partner_records = len(
+                record.partner_record_ids.filtered(lambda x: x.state != "exception")
+            )
+            record.total_amount = sum(
+                record.partner_record_ids.filtered(
+                    lambda x: x.state != "exception"
+                ).mapped("amount")
+            )
             record.total_cash_amount = sum(
-                record.mapped("partner_record_ids.cash_amount")
+                record.partner_record_ids.filtered(
+                    lambda x: x.state != "exception"
+                ).mapped("cash_amount")
             )
             record.total_real_estate_transmissions_amount = sum(
-                record.mapped("partner_record_ids.real_estate_transmissions_amount")
+                record.partner_record_ids.filtered(
+                    lambda x: x.state != "exception"
+                ).mapped("real_estate_transmissions_amount")
             )
 
     @api.depends("real_estate_record_ids", "real_estate_record_ids.amount")

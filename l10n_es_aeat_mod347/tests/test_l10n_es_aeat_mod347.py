@@ -206,3 +206,23 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
         first_partner.email = "test1@email.com"
         self.model347.button_send_mails()
         self.assertTrue(first_partner_mod347_record.state, "sent")
+
+    def test_aeat_mod347_partner_records_ids_with_exception(self):
+        """Test computes with partner records with state exception"""
+        self.model347.button_calculate()
+        self.model347.partner_record_ids[0].action_exception()
+        self.model347.partner_record_ids[-1].action_exception()
+        partner_record_vals = [
+            # amount, cash_amount
+            (-4400, 0),
+            (4400, 0),
+            (6600, 6600),
+            (-5500, 0),
+        ]
+        self.assertEqual(self.model347.total_partner_records, len(partner_record_vals))
+        self.assertAlmostEqual(
+            self.model347.total_amount, sum(x[0] for x in partner_record_vals)
+        )
+        self.assertAlmostEqual(
+            self.model347.total_cash_amount, sum(x[1] for x in partner_record_vals)
+        )

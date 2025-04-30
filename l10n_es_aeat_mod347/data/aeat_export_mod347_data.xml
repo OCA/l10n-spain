@@ -222,7 +222,9 @@
         <field name="name">Tipo de Registro 2 – Registro de declarado</field>
         <field name="subconfig_id" ref="aeat_mod347_partner_export_config" />
         <field name="export_type">subconfig</field>
-        <field name="repeat_expression">object.partner_record_ids</field>
+        <field
+            name="repeat_expression"
+        >object.partner_record_ids.filtered(lambda x: x.state != "exception")</field>
     </record>
     <!-- Tipo registro 2 – Registro de inmueble: -->
     <record id="aeat_mod347_main_export_line_21" model="aeat.model.export.config.line">
