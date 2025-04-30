@@ -3,18 +3,18 @@
     <!-- #######################################
         ### AEAT MODEL 349 PARTNER RECORD DETAIL ###
         ######################################## -->
-    <!-- Tree view -->
+    <!-- list view -->
     <record id="view_l10n_ES_aeat_mod349_partner_record_detail_tree" model="ir.ui.view">
-        <field name="name">AEAT 349 Partner record detail (tree)</field>
+        <field name="name">AEAT 349 Partner record detail (list)</field>
         <field name="model">l10n.es.aeat.mod349.partner_record_detail</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="move_line_id" optional="show" />
                 <field name="move_id" optional="show" />
                 <field name="partner_id" optional="show" />
                 <field name="amount_untaxed" optional="show" />
                 <field name="date" optional="show" />
-            </tree>
+            </list>
         </field>
     </record>
     <!-- Form view -->
@@ -37,12 +37,12 @@
     <!-- #################################
         ### AEAT MODEL 349 PARTNER RECORDS ###
         ################################## -->
-    <!-- Tree view -->
+    <!-- list view -->
     <record id="view_l10n_ES_aeat_mod349_partner_record_tree" model="ir.ui.view">
-        <field name="name">AEAT 349 Partner record (tree)</field>
+        <field name="name">AEAT 349 Partner record (list)</field>
         <field name="model">l10n.es.aeat.mod349.partner_record</field>
         <field name="arch" type="xml">
-            <tree decoration-danger="not partner_record_ok">
+            <list decoration-danger="not partner_record_ok">
                 <field name="partner_record_ok" />
                 <field name="country_id" optional="show" />
                 <field name="partner_vat" optional="show" />
@@ -54,7 +54,7 @@
                     invisible="partner_record_ok"
                     optional="show"
                 />
-            </tree>
+            </list>
         </field>
     </record>
     <!-- Form view -->
@@ -71,7 +71,6 @@
                                 invisible="partner_record_ok"
                                 class="text-danger"
                             />
-                            <field name="partner_record_ok" invisible="1" />
                             <field name="operation_key" />
                             <field name="partner_id" />
                             <field name="country_id" />
@@ -89,18 +88,18 @@
     <!-- #######################################
         ### AEAT MODEL 349 PARTNER REFUND DETAIL ###
         ######################################## -->
-    <!-- Tree view -->
+    <!-- list view -->
     <record id="view_l10n_ES_aeat_mod349_partner_refund_detail_tree" model="ir.ui.view">
-        <field name="name">AEAT 349 Partner refund detail (tree)</field>
+        <field name="name">AEAT 349 Partner refund detail (list)</field>
         <field name="model">l10n.es.aeat.mod349.partner_refund_detail</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="refund_line_id" optional="show" />
                 <field name="move_id" optional="show" />
                 <field name="partner_id" optional="show" />
                 <field name="amount_untaxed" optional="show" />
                 <field name="date" optional="show" />
-            </tree>
+            </list>
         </field>
     </record>
     <!-- Form view -->
@@ -123,13 +122,13 @@
     <!-- #################################
         ### AEAT MODEL 349 PARTNER REFUNDS ###
         ################################## -->
-    <!-- Tree view -->
+    <!-- list view -->
     <record id="view_l10n_ES_aeat_mod349_partner_refund_tree" model="ir.ui.view">
-        <field name="name">AEAT 349 Partner refund (tree)</field>
+        <field name="name">AEAT 349 Partner refund (list)</field>
         <field name="model">l10n.es.aeat.mod349.partner_refund</field>
         <field name="arch" type="xml">
-            <tree decoration-danger="not partner_refund_ok">
-                <field name="partner_refund_ok" invisible="1" />
+            <list decoration-danger="not partner_refund_ok">
+                <field name="partner_refund_ok" column_invisible="1" />
                 <field name="country_id" optional="show" />
                 <field name="partner_vat" optional="show" />
                 <field name="partner_id" optional="show" />
@@ -138,7 +137,7 @@
                 <field name="period_type" optional="show" />
                 <field name="total_operation_amount" optional="show" />
                 <field name="total_origin_amount" optional="show" />
-            </tree>
+            </list>
         </field>
     </record>
     <!-- Form view -->
@@ -150,7 +149,6 @@
                 <notebook>
                     <page string="Info">
                         <group colspan="4">
-                            <field name="partner_refund_ok" invisible="1" />
                             <field name="country_id" />
                             <field name="partner_vat" />
                             <field name="partner_id" />
@@ -171,15 +169,15 @@
     <!-- #################
         ### AEAT MODEL 349 ###
         ################## -->
-    <!-- Tree view -->
+    <!-- list view -->
     <record id="view_l10n_es_aeat_mod349_report_tree" model="ir.ui.view">
-        <field name="name">l10n_es.aeat.mod349.report.tree</field>
+        <field name="name">l10n_es.aeat.mod349.report.list</field>
         <field name="model">l10n.es.aeat.mod349.report</field>
         <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree" />
         <field name="arch" type="xml">
-            <tree position="attributes">
+            <list position="attributes">
                     <attribute name="string">AEAT 349 reports</attribute>=
-                </tree>
+                </list>
             <field name="period_type" position="after">
                 <field name="total_partner_records" />
                 <field name="total_partner_records_amount" />
@@ -235,15 +233,7 @@
                 </notebook>
             </group>
             <form position="inside">
-                <div class="oe_chatter">
-                    <field
-                        name="message_follower_ids"
-                        widget="mail_followers"
-                        groups="base.group_user"
-                    />
-                    <field name="activity_ids" widget="mail_activity" />
-                    <field name="message_ids" widget="mail_thread" />
-                </div>
+                <chatter reload_on_post="True" />
             </form>
         </field>
     </record>
@@ -251,7 +241,7 @@
     <record id="action_l10n_es_aeat_mod349_report" model="ir.actions.act_window">
         <field name="name">AEAT Model 349</field>
         <field name="res_model">l10n.es.aeat.mod349.report</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help">Create and query AEAT Model 349 reports</field>
     </record>
     <record
@@ -259,7 +249,7 @@
         id="action_l10n_es_aeat_mod303_report_tree"
     >
         <field name="sequence" eval="2" />
-        <field name="view_mode">tree</field>
+        <field name="view_mode">list</field>
         <field name="view_id" ref="view_l10n_es_aeat_mod349_report_tree" />
         <field name="act_window_id" ref="action_l10n_es_aeat_mod349_report" />
     </record>

@@ -4,7 +4,6 @@
 
 import logging
 
-from odoo import _
 from odoo.tests.common import tagged
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
@@ -38,7 +37,8 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
     @classmethod
     def _invoice_refund(cls, invoice, dt, price_unit=None):
         _logger.debug(
-            f"Refund {invoice.move_type} invoice: date = {dt}: price_unit = {price_unit or 150.0}"
+            f"Refund {invoice.move_type} "
+            f"invoice: date = {dt}: price_unit = {price_unit or 150.0}"
         )
         default_values_list = [
             {"date": dt, "invoice_date": dt, "invoice_payment_term_id": None}
@@ -377,7 +377,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
             lambda x: x.partner_vat == self.customer.vat
         )
         self.assertFalse(partner_record.partner_record_ok)
-        expected_note = _("Without VAT")
+        expected_note = self.env._("Without VAT")
         self.assertIn(expected_note, partner_record.error_text)
 
         # No country code in vat and no country
@@ -388,8 +388,8 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         )
         self.assertFalse(partner_record.partner_record_ok)
         expected_notes = [
-            _("Without Country"),
-            _("VAT without country code"),
+            self.env._("Without Country"),
+            self.env._("VAT without country code"),
         ]
         for expected_note in expected_notes:
             self.assertIn(expected_note, partner_record.error_text)

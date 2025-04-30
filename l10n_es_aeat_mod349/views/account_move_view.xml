@@ -12,12 +12,12 @@
                 />
             </field>
             <xpath
-                expr="//field[@name='invoice_line_ids']/tree/field[@name='tax_ids']"
+                expr="//field[@name='invoice_line_ids']/list/field[@name='tax_ids']"
                 position="after"
             >
                 <field
                     name="l10n_es_aeat_349_operation_key"
-                    invisible="1"
+                    column_invisible="1"
                     groups="account.group_account_invoice"
                 />
             </xpath>
