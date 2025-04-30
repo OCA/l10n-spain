@@ -14,6 +14,7 @@ class ResPartner(models.Model):
         "any AEAT 347 model report, independently from the total "
         "amount of its operations.",
         default=False,
+        company_dependent=True,
     )
 
     @api.model
