@@ -11,10 +11,7 @@
                     string="Contrast with AEAT"
                     name="contrast_aeat"
                     colspan="2"
-                    attrs="{'invisible': ['|','|',
-                            ('state', 'not in', 'posted'),
-                            ('sii_enabled', '=', False),
-                            ('sii_csv', '=', False)]}"
+                    invisible="state not in ['posted'] or not sii_enabled or not sii_csv"
                     groups="l10n_es_aeat.group_account_aeat"
                 />
             </field>
@@ -30,7 +27,7 @@
             </field>
             <page name="page_sii_result_general" position="inside">
                 <group
-                    attrs="{'invisible': [('sii_match_difference_ids', '=', [])]}"
+                    invisible="sii_match_difference_ids == []"
                     groups="l10n_es_aeat.group_account_aeat"
                 >
                     <field name="sii_match_difference_ids">
