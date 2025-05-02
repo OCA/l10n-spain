@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,7 +18,7 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_aeat_sii_match.field_account_move__sii_match_state
 #: model:ir.model.fields,help:l10n_es_aeat_sii_match.field_account_payment__sii_match_state
 msgid ""
-"- No testable: The counterpart is not suscribed to SII the record will not be contrasted.\n"
+"- No testable: The counterpart is not subscribed to SII the record will not be contrasted.\n"
 "- In process of contrast: AEAT is processing the data soon will be a result.\n"
 "- Not contrasted: The counterpart has not sent the invoice to SII, AEAT gives up to 4 months in order to contrast the information.\n"
 "- Partially contrasted: A invoice has been found but some data is different.\n"
@@ -159,11 +159,6 @@ msgid "Confirm"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_match
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__sii_match_jobs_ids
-msgid "Connector Jobs"
-msgstr ""
-
-#. module: l10n_es_aeat_sii_match
 #: model:ir.actions.server,name:l10n_es_aeat_sii_match.action_contrast_aeat
 msgid "Contrast Invoices with AEAT"
 msgstr ""
@@ -234,6 +229,13 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__state__error
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_filter
 msgid "Error"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_match
+#. odoo-python
+#: code:addons/l10n_es_aeat_sii_match/models/aeat_sii_match_report.py:0
+#, python-format
+msgid "Error with AEAT certificates: %(error)s"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_match
@@ -315,29 +317,8 @@ msgid "Invoices: SII against Customers/Suppliers"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_match
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_form
-msgid "Jobs"
-msgstr ""
-
-#. module: l10n_es_aeat_sii_match
 #: model:ir.model,name:l10n_es_aeat_sii_match.model_account_move
 msgid "Journal Entry"
-msgstr ""
-
-#. module: l10n_es_aeat_sii_match
-#. odoo-python
-#: code:addons/l10n_es_aeat_sii_match/models/account_move.py:0
-#, python-format
-msgid ""
-"Las facturas tienen que estar enviadas y con CSV para poder ser "
-"contrastadas."
-msgstr ""
-
-#. module: l10n_es_aeat_sii_match
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_difference____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_match
@@ -569,6 +550,15 @@ msgid "Summary"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_match
+#. odoo-python
+#: code:addons/l10n_es_aeat_sii_match/models/account_move.py:0
+#, python-format
+msgid ""
+"The invoices must be posted and have a CSV in order to be matched.\n"
+"Non-matchable invoices: %(invoice_names)s"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__number_records
 msgid "Total records"
 msgstr ""
@@ -576,23 +566,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_match
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_form
 msgid "View full tree"
-msgstr ""
-
-#. module: l10n_es_aeat_sii_match
-#. odoo-python
-#: code:addons/l10n_es_aeat_sii_match/models/aeat_sii_match_report.py:0
-#, python-format
-msgid "You can not calculate at this moment because there is a job running"
-msgstr ""
-
-#. module: l10n_es_aeat_sii_match
-#. odoo-python
-#: code:addons/l10n_es_aeat_sii_match/models/account_move.py:0
-#: code:addons/l10n_es_aeat_sii_match/models/account_move.py:0
-#, python-format
-msgid ""
-"You can not contrast this invoice at this moment because there is a job "
-"running"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_match

@@ -32,7 +32,7 @@ class AccountMove(models.Model):
             ("4", "Partially contrasted"),
             ("5", "Contrasted"),
         ],
-        help="- No testable: The counterpart is not suscribed to SII "
+        help="- No testable: The counterpart is not subscribed to SII "
         "the record will not be contrasted.\n"
         "- In process of contrast: AEAT is processing the data "
         "soon will be a result.\n"
@@ -116,63 +116,22 @@ class AccountMove(models.Model):
                 )
         return list((0, 0, r) for r in res)
 
-    def _invoice_started_jobs(self):
-        for queue in self.mapped("invoice_jobs_ids"):
-            if queue.state == "started":
-                return False
-        return True
-
-    def _process_invoice_for_contrast_aeat(self):
-        """Process invoices for contrast to the AEAT. Adds general checks from
-        configuration parameters and invoice availability for SII"""
-        queue_obj = self.env["queue.job"].sudo()
-        for invoice in self:
-            invoice = invoice.sudo().with_company(invoice.company_id)
-            new_delay = invoice.with_delay(eta=False).contrast_one_invoice()
-            jb = queue_obj.search([("uuid", "=", new_delay.uuid)], limit=1)
-            invoice.invoice_jobs_ids |= jb
-
     def contrast_aeat(self):
-        invoices = self.filtered(
-            lambda i: (
-                i.aeat_state == "sent"
-                and i.state == "posted"
-                and i.sii_csv
-                and i.sii_enabled
-            )
+        invalid_invoices = self.filtered(
+            lambda invoice: not invoice.sii_csv
+            or not invoice.sii_enabled
+            or invoice.aeat_state != "sent"
+            or invoice.state != "posted"
         )
-        if not invoices._invoice_started_jobs():
+        if invalid_invoices:
             raise exceptions.UserError(
                 _(
-                    "You can not contrast this invoice at this moment "
-                    "because there is a job running"
+                    "The invoices must be posted and have a CSV in order to be matched."
+                    "\nNon-matchable invoices: %(invoice_names)s",
+                    invoice_names=", ".join(i.name for i in invalid_invoices),
                 )
             )
-        invoices._process_invoice_for_contrast_aeat()
-
-    def direct_contrast_aeat(self):
-        self.ensure_one()
-        if not self._invoice_started_jobs():
-            raise exceptions.UserError(
-                _(
-                    "You can not contrast this invoice at this moment "
-                    "because there is a job running"
-                )
-            )
-        if (
-            self.sii_csv
-            and self.sii_enabled
-            and self.aeat_state == "sent"
-            and self.state == "posted"
-        ):
-            self._contrast_invoice_to_aeat()
-        else:
-            raise exceptions.UserError(
-                _(
-                    "Las facturas tienen que estar enviadas y con CSV para poder "
-                    "ser contrastadas."
-                )
-            )
+        self._contrast_invoice_to_aeat()
 
     def _get_contrast_invoice_dict_out(self):
         """Build dict with data to send to AEAT WS for invoice types:
@@ -296,6 +255,3 @@ class AccountMove(models.Model):
                 new_cr.commit()
                 new_cr.close()
                 raise
-
-    def contrast_one_invoice(self):
-        self._contrast_invoice_to_aeat()
