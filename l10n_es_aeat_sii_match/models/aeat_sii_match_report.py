@@ -366,7 +366,6 @@ class SiiMatchReport(models.Model):
         for sii_match_report in self.filtered(
             lambda r: r.state in ["draft", "error", "calculated"]
         ):
-
             mapping_key = "out_invoice"
             if sii_match_report.invoice_type == "in":
                 mapping_key = "in_invoice"
