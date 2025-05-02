@@ -9,6 +9,7 @@ from dateutil.relativedelta import relativedelta
 from zeep.helpers import serialize_object
 
 from odoo import _, api, exceptions, fields, models
+from odoo.exceptions import UserError
 from odoo.modules.registry import Registry
 
 SII_VERSION = "1.1"
@@ -49,28 +50,20 @@ class SiiMatchReport(models.Model):
         ],
         string="Period type",
         required=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     fiscalyear = fields.Integer(
         string="Fiscal year",
         required=True,
         default=fields.Date.today().year,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
         default=lambda self: self.env.company.id,
         string="Company",
         required=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     calculate_date = fields.Datetime(
         string="Calculate date",
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     sii_match_result = fields.One2many(
         comodel_name="l10n.es.aeat.sii.match.result",
@@ -82,8 +75,6 @@ class SiiMatchReport(models.Model):
         selection=[("out", "Out invoice/refund"), ("in", "In invoice/refund")],
         string="Invoice type",
         required=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     number_records = fields.Integer(string="Total records", readonly=True)
     number_records_both = fields.Integer(
@@ -130,21 +121,6 @@ class SiiMatchReport(models.Model):
         string="Records contrasted",
         readonly=True,
     )
-    sii_match_jobs_ids = fields.Many2many(
-        comodel_name="queue.job",
-        column1="sii_match_id",
-        column2="job_id",
-        string="Connector Jobs",
-        copy=False,
-    )
-
-    def _process_invoices_from_sii(self):
-        queue_obj = self.env["queue.job"].sudo()
-        for item in self:
-            item = item.sudo().with_company(item.company_id)
-            new_delay = item.with_delay(eta=False).get_invoice_aeat()
-            jb = queue_obj.search([("uuid", "=", new_delay.uuid)], limit=1)
-            item.sii_match_jobs_ids |= jb
 
     def _get_invoice_dict(self):
         self.ensure_one()
@@ -257,9 +233,7 @@ class SiiMatchReport(models.Model):
 
     def _get_not_in_sii_invoices(self, invoices):
         self.ensure_one()
-        start_date = fields.Date.from_string(
-            "%s-%s-01" % (str(self.fiscalyear), self.period_type)
-        )
+        start_date = fields.Date.from_string(f"{self.fiscalyear}-{self.period_type}-01")
         date_from = start_date
         date_to = start_date + relativedelta(months=1)
         res = []
@@ -369,11 +343,18 @@ class SiiMatchReport(models.Model):
             mapping_key = "out_invoice"
             if sii_match_report.invoice_type == "in":
                 mapping_key = "in_invoice"
-            serv = (
-                self.env["account.move"]
-                .search([("company_id", "in", [self.company_id.id, False])], limit=1)
-                ._connect_aeat(mapping_key)
-            )
+            try:
+                serv = (
+                    self.env["account.move"]
+                    .search(
+                        [("company_id", "in", [self.company_id.id, False])], limit=1
+                    )
+                    ._connect_aeat(mapping_key)
+                )
+            except OSError as e:
+                raise UserError(
+                    _("Error with AEAT certificates: %(error)s", error=e)
+                ) from e
             header = sii_match_report._get_aeat_header()
             match_vals = {}
             summary = {}
@@ -448,18 +429,7 @@ class SiiMatchReport(models.Model):
         return header
 
     def button_calculate(self):
-        for match in self:
-            for queue in match.mapped("sii_match_jobs_ids"):
-                if queue.state in ("pending", "enqueued", "failed"):
-                    queue.sudo().unlink()
-                elif queue.state == "started":
-                    raise exceptions.UserError(
-                        _(
-                            "You can not calculate at this moment "
-                            "because there is a job running"
-                        )
-                    )
-        self._process_invoices_from_sii()
+        self._get_invoices_from_sii()
         return []
 
     def button_cancel(self):
@@ -488,9 +458,6 @@ class SiiMatchReport(models.Model):
             "domain": [("id", "in", self.sii_match_result.ids)],
             "context": {},
         }
-
-    def get_invoice_aeat(self):
-        self._get_invoices_from_sii()
 
 
 class SiiMatchResult(models.Model):

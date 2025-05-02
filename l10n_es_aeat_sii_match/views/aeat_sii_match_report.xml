@@ -10,35 +10,35 @@
                         name="button_calculate"
                         type="object"
                         string="Calculate"
-                        states="draft"
+                        invisible="state not in ['draft']"
                         icon="fa-cogs"
                     />
                     <button
                         name="button_calculate"
                         type="object"
                         string="Re-Calculate"
-                        states="calculated,error"
+                        invisible="state  not in ['calculated','error']"
                         icon="fa-cogs"
                     />
                     <button
                         name="button_confirm"
                         string="Confirm"
                         type="object"
-                        states="calculated"
+                        invisible="state not in ['calculated']"
                         icon="fa-check"
                     />
                     <button
                         name="button_recover"
                         string="Draft"
                         type="object"
-                        states="cancelled"
+                        invisible="state not in ['cancelled']"
                         icon="fa-undo"
                     />
                     <button
                         name="button_cancel"
                         string="Cancel"
                         type="object"
-                        states="calculated,done,error"
+                        invisible="state not in ['calculated','done','error']"
                         icon="fa-times"
                     />
                     <field
@@ -56,26 +56,28 @@
                             </h1>
                         </group>
                         <group>
-                            <field name="period_type" />
-                            <field name="fiscalyear" />
-                            <field name="invoice_type" />
+                            <field name="period_type" readonly="state != 'draft'" />
+                            <field name="fiscalyear" readonly="state != 'draft'" />
+                            <field name="invoice_type" readonly="state != 'draft'" />
                         </group>
                         <group>
                             <field
                                 name="calculate_date"
-                                attrs="{'invisible': ['|',('calculate_date', '=', False),('state','=','draft')]}"
+                                invisible="not calculate_date or state=='draft'"
+                                readonly="state != 'draft'"
                             />
                             <field
                                 name="company_id"
                                 required="1"
                                 groups="base.group_multi_company"
+                                readonly="state != 'draft'"
                             />
                         </group>
                         <notebook colspan="2">
                             <page
                                 string="Summary"
                                 name="summary"
-                                attrs="{'invisible': [('state','not in',['calculated','done'])]}"
+                                invisible="state not in ['calculated','done']"
                             >
                                 <group string="Invoices: Odoo against SII">
                                     <group>
@@ -115,7 +117,7 @@
                             <page
                                 string="Result"
                                 name="result"
-                                attrs="{'invisible': ['|',('sii_match_result', '=', []),('state','not in',['calculated','done'])]}"
+                                invisible="sii_match_result == [] or state not in ['calculated', 'done']"
                             >
                                 <group col="1" colspan="2">
                                     <button
@@ -133,16 +135,6 @@
                                             <field name="invoice_location" />
                                         </tree>
                                     </field>
-                                </group>
-                            </page>
-                            <page string="Jobs" name="jobs">
-                                <group string="Jobs" col="1" colspan="2">
-                                    <field
-                                        name="sii_match_jobs_ids"
-                                        nolabel="1"
-                                        readonly="1"
-                                        context="{'tree_view_ref': 'l10n_es_aeat_sii_oca.view_queue_job_sii'}"
-                                    />
                                 </group>
                             </page>
                         </notebook>
@@ -252,7 +244,7 @@
                     <group
                         col="1"
                         colspan="2"
-                        attrs="{'invisible': [('sii_match_difference_ids', '=', [])]}"
+                        invisible="sii_match_difference_ids == []"
                     >
                         <label for="sii_match_difference_ids" colspan="2" />
                         <field name="sii_match_difference_ids" nolabel="1">
