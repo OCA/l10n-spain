@@ -13,7 +13,7 @@ class TestL10nEsAeatMod390OSS(TestL10nEsAeatMod390Base):
         super().setUpClass()
         cls.oss_country = cls.env.ref("base.fr")
         general_tax = cls.env.ref(
-            "account.%s_account_tax_template_s_iva21b" % cls.company.id
+            f"account.{cls.company.id}_account_tax_template_s_iva21b"
         )
         wizard = cls.env["l10n.eu.oss.wizard"].create(
             {
