@@ -1,1 +1,1 @@
-from . import mod390
+from . import l10n_es_aeat_map_tax_line
