@@ -4,7 +4,7 @@
 {
     "name": "SIGAUS - Facturación",
     "summary": "Sistema de gestión de aceites industriales usados en España - Facturación",
-    "version": "16.0.1.0.2",
+    "version": "16.0.1.0.3",
     "license": "AGPL-3",
     "author": "Sygel, Odoo Community Association (OCA)",
     "category": "Accounting",
