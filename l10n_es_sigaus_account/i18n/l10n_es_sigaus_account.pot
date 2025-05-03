@@ -60,6 +60,11 @@ msgid "Companies"
 msgstr ""
 
 #. module: l10n_es_sigaus_account
+#: model:ir.model,name:l10n_es_sigaus_account.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_l10n_es_sigaus_amount__create_uid
 msgid "Created by"
 msgstr ""
@@ -269,6 +274,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_account_fiscal_position__sigaus_subject
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_product_product__sigaus_subject
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_product_template__sigaus_subject
+#: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_res_partner__sigaus_subject
+#: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_res_users__sigaus_subject
 msgid "Subject To SIGAUS"
 msgstr ""
 
