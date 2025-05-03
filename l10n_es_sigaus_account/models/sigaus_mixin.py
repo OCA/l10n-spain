@@ -34,8 +34,12 @@ class SigausMixin(models.AbstractModel):
 
     def _compute_is_sigaus(self):
         for rec in self:
-            rec.is_sigaus = rec.company_id.sigaus_enable and (
-                not rec.fiscal_position_id or rec.fiscal_position_id.sigaus_subject
+            rec.is_sigaus = (
+                rec.company_id.sigaus_enable
+                and rec.partner_id.sigaus_subject
+                and (
+                    not rec.fiscal_position_id or rec.fiscal_position_id.sigaus_subject
+                )
             )
 
     def _compute_sigaus_is_date(self):

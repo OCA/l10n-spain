@@ -21,6 +21,7 @@ class AccountMove(models.Model):
         "company_id",
         "fiscal_position_id",
         "move_type",
+        "partner_id",
     )
     def _compute_is_sigaus(self):
         for rec in self:

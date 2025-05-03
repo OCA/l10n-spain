@@ -1,0 +1,16 @@
+<odoo>
+<!-- Copyright 2025 Alberto Martínez <alberto.martínez@sygel.es>
+ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+    <record id="view_partner_form_sigaus_subject" model="ir.ui.view">
+        <field name="name">res.partner.form.sigaus.subject</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <group name="banks" position="after">
+                <group>
+                    <field name="sigaus_subject" />
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>
