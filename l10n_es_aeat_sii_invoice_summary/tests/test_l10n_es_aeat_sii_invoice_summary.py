@@ -196,13 +196,6 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiSummaryCommon):
             )
             sii_invoice_summary_start = invoice_line_ids.name.split("-")[0]
             sii_invoice_summary_end = invoice_line_ids.name.split("-")[-1]
-            fields = ["id", "amount_total"]
-            pos_order_1 = self.PosOrder.search_read(
-                [("name", "=", sii_invoice_summary_start)], fields
-            )
-            pos_order_2 = self.PosOrder.search_read(
-                [("name", "=", sii_invoice_summary_end)], fields
-            )
 
             self.assertEqual(
                 self.invoice_summary.sii_invoice_summary_start,
@@ -218,8 +211,15 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiSummaryCommon):
                 invoice_line_ids.name,
                 f"{sii_invoice_summary_start}-{sii_invoice_summary_end}",
             )
+            sii_tickets_list = self.invoice_summary.sii_tickets.split(",")
+
+            pos_orders = self.PosOrder.search_read(
+                [("name", "in", sii_tickets_list)],
+                ["amount_total"],
+            )
+            amount_total = sum([pos_order["amount_total"] for pos_order in pos_orders])
             self.assertEqual(
                 invoice_line_ids.price_unit,
-                pos_order_1[0]["amount_total"] + pos_order_2[0]["amount_total"],
+                amount_total,
             )
             self.assertTrue(invoice_line_ids.is_sii_line)
