@@ -89,7 +89,7 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiBase):
             ),
             (
                 "out_invoice",
-                [(100, ["s_iva0_sp_i"]), (200, ["s_iva0_ic"])],
+                [(100, ["s_iva0_sp_i"]), (200, ["s_iva0_g_i"])],
                 {
                     "is_invoice_summary": True,
                     "sii_invoice_summary_start": 1,
@@ -98,7 +98,7 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiBase):
             ),
             (
                 "out_refund",
-                [(100, ["s_iva0_sp_i"]), (200, ["s_iva0_ic"])],
+                [(100, ["s_iva0_sp_i"]), (200, ["s_iva0_g_i"])],
                 {
                     "is_invoice_summary": True,
                     "sii_invoice_summary_start": 1,
@@ -107,7 +107,7 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiBase):
             ),
             (
                 "out_invoice",
-                [(100, ["s_iva_e"]), (200, ["s_iva0_e"])],
+                [(100, ["s_iva_e"]), (200, ["s_iva0_g_e"])],
                 {
                     "is_invoice_summary": True,
                     "sii_invoice_summary_start": 1,
@@ -116,7 +116,7 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiBase):
             ),
             (
                 "out_refund",
-                [(100, ["s_iva_e"]), (200, ["s_iva0_e"])],
+                [(100, ["s_iva_e"]), (200, ["s_iva0_g_e"])],
                 {
                     "is_invoice_summary": True,
                     "sii_invoice_summary_start": 1,
@@ -192,7 +192,7 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiBase):
             ),
             (
                 "out_invoice",
-                [(100, ["s_iva0_sp_i"]), (200, ["s_iva0_ic"])],
+                [(100, ["s_iva0_sp_i"]), (200, ["s_iva0_g_i"])],
                 {
                     "is_invoice_summary": True,
                     "sii_invoice_summary_start": 1,
@@ -201,7 +201,7 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiBase):
             ),
             (
                 "out_refund",
-                [(100, ["s_iva0_sp_i"]), (200, ["s_iva0_ic"])],
+                [(100, ["s_iva0_sp_i"]), (200, ["s_iva0_g_i"])],
                 {
                     "is_invoice_summary": True,
                     "sii_invoice_summary_start": 1,
@@ -210,7 +210,7 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiBase):
             ),
             (
                 "out_invoice",
-                [(100, ["s_iva_e"]), (200, ["s_iva0_e"])],
+                [(100, ["s_iva_e"]), (200, ["s_iva0_g_e"])],
                 {
                     "is_invoice_summary": True,
                     "sii_invoice_summary_start": 1,
@@ -219,7 +219,7 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiBase):
             ),
             (
                 "out_refund",
-                [(100, ["s_iva_e"]), (200, ["s_iva0_e"])],
+                [(100, ["s_iva_e"]), (200, ["s_iva0_g_e"])],
                 {
                     "is_invoice_summary": True,
                     "sii_invoice_summary_start": 1,
