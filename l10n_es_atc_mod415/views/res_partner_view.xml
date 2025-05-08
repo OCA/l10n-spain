@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- PARTNERS -->
+    <record id="view_partner_form_mod415" model="ir.ui.view">
+        <field name="name">Partners - Add 'exclude from 415'</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_partner_form" />
+        <field name="arch" type="xml">
+            <page id="aeat" position="inside">
+                <group string="Modelo 415" name="mod415">
+                    <group name="exclude_415">
+                        <field name="not_in_mod415" />
+                    </group>
+                </group>
+            </page>
+        </field>
+    </record>
+</odoo>
