@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ========
 ATC Menú
 ========
@@ -17,7 +13,7 @@ ATC Menú
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
@@ -38,6 +34,16 @@ Módulo base para modelos de la Agencia Tributaria Canaria.
 
 .. contents::
    :local:
+
+Configuration
+=============
+
+Configuración de Java
+---------------------
+
+En caso de problemas de memoria durante el uso de ``Java``, se pueden
+modificar los parámetros por defecto creando o ajustando el parámetro
+del sistema ``l10n_es_atc.java_parameters``
 
 Bug Tracker
 ===========

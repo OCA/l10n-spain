@@ -11,8 +11,10 @@
     "depends": ["l10n_es_aeat"],
     "data": [
         "security/atc_security.xml",
+        "data/config_parameter_data.xml",
         "views/atc_menuitem.xml",
         "data/atc_partner.xml",
+        "views/res_company_views.xml",
     ],
     "installable": True,
     "auto_install": False,
