@@ -42,6 +42,7 @@ addon | version | maintainers | summary
 [l10n_es_aeat_mod390](l10n_es_aeat_mod390/) | 17.0.1.8.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | AEAT modelo 390
 [l10n_es_aeat_mod592](l10n_es_aeat_mod592/) | 17.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | AEAT modelo 592
 [l10n_es_aeat_partner_check](l10n_es_aeat_partner_check/) | 17.0.1.0.0 |  | AEAT - Comprobación de Calidad de datos identificativos
+[l10n_es_aeat_sii_invoice_summary](l10n_es_aeat_sii_invoice_summary/) | 17.0.1.0.0 |  | Envio de factura simplificada resumen TPV a SII
 [l10n_es_aeat_sii_oca](l10n_es_aeat_sii_oca/) | 17.0.1.1.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Suministro Inmediato de Información en el IVA
 [l10n_es_aeat_sii_oss](l10n_es_aeat_sii_oss/) | 17.0.1.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Suministro Inmediato de Información en el IVA: OSS
 [l10n_es_atc](l10n_es_atc/) | 17.0.1.0.1 |  | Modulo 'glue' de la AEAT para el menú de la ATC
