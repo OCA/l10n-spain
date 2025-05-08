@@ -135,14 +135,16 @@ class L10nEsAtcMod420Report(models.Model):
     )
     allow_posting = fields.Boolean(string="Allow posting", default=True)
 
-    @api.depends("tax_line_ids", "tax_line_ids.amount")
+    @api.depends("tax_line_ids", "tax_line_ids.amount", "casilla_23", "casilla_24")
     def _compute_total_devengado(self):
-        casillas_devengado = (3, 6, 9, 12, 15, 18, 20, 22, 24)
+        casillas_devengado = (3, 6, 9, 12, 15, 18, 20, 22)
         for report in self:
             tax_lines = report.tax_line_ids.filtered(
                 lambda x: x.field_number in casillas_devengado
             )
             report.total_devengado = sum(tax_lines.mapped("amount"))
+            if not report.currency_id.is_zero(report.casilla_23):
+                report.total_devengado -= report.casilla_24
 
     @api.depends("tax_line_ids", "tax_line_ids.amount")
     def _compute_total_deducir(self):
