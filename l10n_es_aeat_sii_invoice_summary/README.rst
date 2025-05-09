@@ -28,10 +28,10 @@ Envio de factura simplificada resumen TPV a SII
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Permite enviar al SII una factura resumen de facturas simplificadas.
+Allows you to send a summary invoice for simplified invoices to the SII.
 
-Se trata de una alternativa al módulo *l10n_es_pos_sii* del mismo
-repositorio.
+This is an alternative to the *l10n_es_pos_sii* module in the same
+repository.
 
 **Table of contents**
 
@@ -41,22 +41,35 @@ repositorio.
 Usage
 =====
 
-Para usar este modulo:
+To use this module:
+-------------------
 
-1. Debes seleccionar el campo Resumen facturas simplificadas SII
-2. Rellenar el campo Resumen facturas simplificadas SII: Primera factura
-   con la primera factura del resumen.
-3. Rellenar el campo Resumen facturas simplificadas SII: Última factura
-   con la ultima factura del resumen.
+1. Select the Simplified SII Invoice Summary field.
+2. Fill in the Simplified SII Invoice Summary: First Invoice field with
+   the first invoice in the summary.
+3. Fill in the Simplified SII Invoice Summary: Last Invoice field with
+   the last invoice in the summary.
+
+Automatically fill in the fields of the Simplified SII Invoice Summary.
+-----------------------------------------------------------------------
+
+1. Select the Simplified SII Invoice Summary field.
+2. Select the start and end date.
+3. Then press the button **Summary by dates**.
+4. Once the action is executed, the *First invoice* and *Last invoice*
+   fields are filled in (This is if data exists).
+5. Additionally, an invoice line is created where the name is composed
+   of the fields *First invoice* and *Last invoice* and with the total
+   amount of the range of tickets obtained.
 
 Known issues / Roadmap
 ======================
 
-- Si usamos el TPV de Odoo: Al definir una factura como resumen de
-  facturas simplificadas estamos contabilizando doblemente el ingreso e
-  impuestos, por lo que tras enviar esta factura al SII habría que
-  regularizar la contabilidad, ya sea cancelando la factura o
-  revirtiendo su asiento contable.
+- If we use the Odoo POS: By defining an invoice as a summary of
+  simplified invoices, we are double-counting the income and taxes.
+  Therefore, after sending this invoice to the SII, the accounting would
+  have to be regularized, either by canceling the invoice or reversing
+  its accounting entry.
 
 Bug Tracker
 ===========
@@ -88,6 +101,10 @@ Contributors
 - `Tecnativa <https://www.tecnativa.com>`__:
 
   - Víctor Martínez
+
+- [Binhex Cloud] (https://www.binhex.cloud):
+
+  - Edilio Escalona Almira e.escalona@binhex.cloud
 
 Maintainers
 -----------

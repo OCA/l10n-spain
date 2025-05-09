@@ -1,5 +1,5 @@
-- Si usamos el TPV de Odoo: Al definir una factura como resumen de
-  facturas simplificadas estamos contabilizando doblemente el ingreso e
-  impuestos, por lo que tras enviar esta factura al SII habría que
-  regularizar la contabilidad, ya sea cancelando la factura o
-  revirtiendo su asiento contable.
+- If we use the Odoo POS: By defining an invoice as a summary
+  of simplified invoices, we are double-counting the income and
+  taxes. Therefore, after sending this invoice to the SII,
+  the accounting would have to be regularized,
+  either by canceling the invoice or reversing its accounting entry.

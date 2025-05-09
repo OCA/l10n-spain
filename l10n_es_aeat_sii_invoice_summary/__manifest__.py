@@ -4,7 +4,10 @@
 {
     "name": "Envio de factura simplificada resumen TPV a SII",
     "version": "17.0.1.0.0",
-    "depends": ["l10n_es_aeat_sii_oca"],
+    "depends": [
+        "l10n_es_aeat_sii_oca",
+        "point_of_sale",
+    ],
     "category": "Accounting & Finance",
     "author": "FactorLibre, Odoo Community Association (OCA)",
     "license": "AGPL-3",

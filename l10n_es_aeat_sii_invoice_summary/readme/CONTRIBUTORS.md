@@ -7,3 +7,5 @@
   (<https://processcontrol.es>)
 - [Tecnativa](https://www.tecnativa.com):
   - Víctor Martínez
+- [Binhex Cloud] (https://www.binhex.cloud):
+  - Edilio Escalona Almira <e.escalona@binhex.cloud>

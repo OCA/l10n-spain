@@ -1,4 +1,5 @@
-Permite enviar al SII una factura resumen de facturas simplificadas.
+Allows you to send a summary invoice for simplified invoices
+to the SII.
 
-Se trata de una alternativa al módulo *l10n_es_pos_sii* del mismo
-repositorio.
+This is an alternative to the *l10n_es_pos_sii* module in the
+same repository.
