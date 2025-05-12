@@ -8,7 +8,6 @@ from odoo import api, fields, models
 
 
 class L10nEsAeatMod296Report(models.Model):
-
     _description = "AEAT 296 report"
     _inherit = "l10n.es.aeat.report.tax.mapping"
     _name = "l10n.es.aeat.mod296.report"
