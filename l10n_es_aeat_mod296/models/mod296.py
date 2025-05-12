@@ -15,29 +15,25 @@ class L10nEsAeatMod296Report(models.Model):
 
     casilla_01 = fields.Integer(
         string="[01] # Recipients",
-        readonly=True,
-        states={"calculated": [("readonly", False)]},
+        readonly=False,
         help="[01] Summary of the data included in the statement - "
         "Total number of perceivers",
     )
     casilla_02 = fields.Float(
         string="[02] Base retentions",
-        readonly=True,
-        states={"calculated": [("readonly", False)]},
+        readonly=False,
         help="[02] Summary of the data included in the statement - "
         "Base retention and income on account",
     )
     casilla_03 = fields.Float(
         string="[03] Retentions",
-        readonly=True,
-        states={"calculated": [("readonly", False)]},
+        readonly=False,
         help="[03] Summary of the data included in the statement - "
         "Retention and income on account",
     )
     casilla_04 = fields.Float(
         string="[04] Retentions entered",
-        readonly=True,
-        states={"calculated": [("readonly", False)]},
+        readonly=False,
         help="[04] Summary of the data included in the statement - "
         "Retentions and income on account entered",
     )
@@ -86,10 +82,10 @@ class L10nEsAeatMod296Report(models.Model):
             )
             for partner_id in partner_groups:
                 move_lines_base_partner = move_lines_base.filtered(
-                    lambda x: x.partner_id.id == partner_id
+                    lambda x, partner_id=partner_id: x.partner_id.id == partner_id
                 )
                 move_lines_cuota_partner = move_lines_cuota.filtered(
-                    lambda x: x.partner_id.id == partner_id
+                    lambda x, partner_id=partner_id: x.partner_id.id == partner_id
                 )
                 data = self._prepare_mod296_line(
                     partner_id,

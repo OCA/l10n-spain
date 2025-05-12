@@ -26,22 +26,25 @@
                 <group
                     string="Result"
                     name="group_result"
-                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    invisible="state == 'draft'"
                     colspan="4"
                 >
-                    <field name="casilla_01" />
+                    <field name="casilla_01" readonly="state != 'calculated'" />
                     <field
                         name="casilla_02"
+                        readonly="state != 'calculated'"
                         widget="monetary"
                         options="{'currency_field': 'currency_id'}"
                     />
                     <field
                         name="casilla_03"
+                        readonly="state != 'calculated'"
                         widget="monetary"
                         options="{'currency_field': 'currency_id'}"
                     />
                     <field
                         name="casilla_04"
+                        readonly="state != 'calculated'"
                         widget="monetary"
                         options="{'currency_field': 'currency_id'}"
                     />
@@ -49,7 +52,7 @@
                 <group
                     string="Detail by company"
                     colspan="4"
-                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    invisible="state == 'draft'"
                 >
                     <field name="lines296" nolabel="1" colspan="2" />
                 </group>
@@ -99,7 +102,7 @@
                     </group>
                 </group>
                 <group
-                    attrs="{'invisible':[('clave', 'not in', ('1', '2'))]}"
+                    invisible=" clave not in ('1', '2')"
                     string="Specific data according to the letter consigned in the 'key' field"
                 >
                     <field name="mediador" />
