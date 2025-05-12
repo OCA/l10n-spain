@@ -26,20 +26,17 @@ class L10nEsAeatMod216Report(models.Model):
     )
     casilla_04 = fields.Integer(
         string="[04] # Recipients",
-        readonly=True,
-        states={"calculated": [("readonly", False)]},
+        readonly=False,
         help="Income not subject to retention - Number of recipients",
     )
     casilla_05 = fields.Monetary(
         string="[05] Base amount",
-        readonly=True,
-        states={"calculated": [("readonly", False)]},
+        readonly=False,
         help="Income not subject to retention - Base amount",
     )
     casilla_06 = fields.Monetary(
         string="[06] Fees to compensate",
-        readonly=True,
-        states={"calculated": [("readonly", False)]},
+        readonly=False,
         help="Fee to compensate for prior results with same subject, "
         "fiscal year and period (in which his statement was to return "
         "and compensation back option was chosen).",
@@ -58,9 +55,8 @@ class L10nEsAeatMod216Report(models.Model):
             ("N", "To return"),
         ],
         string="Result type",
-        readonly=True,
+        readonly=False,
         default="I",
-        states={"draft": [("readonly", False)]},
         required=True,
     )
 
