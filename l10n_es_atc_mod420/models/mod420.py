@@ -2,12 +2,17 @@
 # Copyright 2024 Binhex - Christian Ramos
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl
 
-
 from odoo import _, api, fields, models
+
+from odoo.addons.l10n_es_atc.models.l10n_es_atc_report import ATC_JAR_URL
+
+ATC_JAR_URL[
+    "420"
+] = "https://www3.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/modelos/ref_y_propios/igic/mod420/bin/M420V920E25.zip"
 
 
 class L10nEsAtcMod420Report(models.Model):
-    _inherit = "l10n.es.aeat.report.tax.mapping"
+    _inherit = "l10n.es.atc.report"
     _name = "l10n.es.atc.mod420.report"
     _description = "ATC 420 Report"
     _aeat_number = "420"
@@ -219,3 +224,48 @@ class L10nEsAtcMod420Report(models.Model):
             "target": "self",
             "tag": "reload",
         }
+
+    def action_generar_mod420(self):
+        self.ensure_one()
+        self._atc_validate_fields()
+        report_name = "l10n_es_atc_mod420.mod420_report_xml"
+        # the jar filename to be used from .zip
+        # downloaded from the url in ATC_JAR_URL
+        jar_filename = "pa-mod420.jar"
+        # the main class to be used from the jar file
+        main_class = "org.grecasa.ext.pa.mod420.MIModelo420"
+        # The filename of the report that the user will download
+        filename = f"modelo{self._aeat_number}"
+        # run the command and get the attachment
+        attachment = self._atc_run_cmd(report_name, filename, jar_filename, main_class)
+        return {
+            "type": "ir.actions.act_url",
+            "url": f"/web/content/{attachment.id}?download=true",
+        }
+
+    def _atc_get_messages(self):
+        messages = super()._atc_get_messages()
+        if not self.payment_type and self.resultado_autoliquidacion > 0:
+            messages.append(_("- Select a payment type"))
+        if self.output_type == "T" and self.payment_type and self.payment_type != "5":
+            messages.append(
+                _(
+                    "- The selected payment type "
+                    "is not compatible with the output type. "
+                    "Please select a different payment type."
+                )
+            )
+        if not self.company_id.city_id.code:
+            messages.append(
+                _(
+                    "- Please set the code in the city: %s",
+                    self.company_id.city_id.display_name,
+                )
+            )
+        if not self.company_id.atc_public_way:
+            messages.append(
+                _(
+                    "- Please set the Public Way in the company",
+                )
+            )
+        return messages
