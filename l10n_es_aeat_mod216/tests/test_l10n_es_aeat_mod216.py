@@ -66,7 +66,7 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
         for box, result in self.taxes_result.items():
             _logger.debug("Checking tax line: %s" % box)
             lines = self.model216.tax_line_ids.filtered(
-                lambda x: x.field_number == int(box)
+                lambda x, box=box: x.field_number == int(box)
             )
             self.assertEqual(round(sum(lines.mapped("amount")), 2), round(result, 2))
         # Check result
