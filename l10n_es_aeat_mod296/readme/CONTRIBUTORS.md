@@ -3,4 +3,5 @@
   - Pedro M. Baeza
   - Antonio Espinosa
   - Victor M.M. Torres
+  - David Bañón Gil
 - Valentin Vinagre \<valentin.vinagre@qubiq.es\>
