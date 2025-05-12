@@ -329,7 +329,7 @@ class L10nEsAeatReport(models.AbstractModel):
 
     @api.model
     def _report_identifier_get(self, vals):
-        seq_name = f"aeat{self._aeat_number}-sequence"
+        seq_name = self._get_sequence_code()
         company_id = vals.get("company_id", self.env.user.company_id.id)
         seq = self.env["ir.sequence"].search(
             [("name", "=", seq_name), ("company_id", "=", company_id)], limit=1
@@ -451,6 +451,10 @@ class L10nEsAeatReport(models.AbstractModel):
     def _filter_phone(self, phone):
         return (phone or "").replace(" ", "")[-9:]
 
+    @api.model
+    def _get_sequence_code(self):
+        return f"aeat{self._aeat_number}-sequence"
+
     def _register_hook(self, companies=None):
         res = None
         if not companies:
@@ -466,7 +470,7 @@ class L10nEsAeatReport(models.AbstractModel):
                 % self._name
             )
         seq_obj = self.env["ir.sequence"]
-        sequence = f"aeat{aeat_num}-sequence"
+        sequence = self._get_sequence_code()
         if not companies:
             companies = self.env["res.company"].search([])
         for company in companies:
