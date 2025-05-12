@@ -4,8 +4,13 @@
 
 
 import logging
+from datetime import datetime
 
-from odoo.tests import tagged
+import requests
+from lxml import etree
+
+from odoo.exceptions import UserError
+from odoo.tests import Form, tagged
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
@@ -421,11 +426,26 @@ class TestL10nEsAtcMod420Base(TestL10nEsAeatModBase):
                 "journal_id": cls.journal_misc.id,
             }
         )
+        cls.palmas_city = cls.env["res.city"].create(
+            {
+                "name": "Las Palmas de Gran Canaria",
+                "code": "35016",
+                "state_id": cls.env.ref("base.state_es_gc").id,
+                "country_id": cls.env.ref("base.es").id,
+            }
+        )
+        cls.palmas_zip = cls.env["res.city.zip"].create(
+            {
+                "name": "35001",
+                "city_id": cls.palmas_city.id,
+            }
+        )
 
 
 class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
     @classmethod
     def setUpClass(cls):
+        cls._super_send = requests.Session.send
         super().setUpClass()
         # Purchase invoices
         cls._invoice_purchase_create("2017-01-01")
@@ -437,6 +457,11 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
         cls._invoice_sale_create("2017-01-12")
         sale = cls._invoice_sale_create("2017-01-13")
         cls._invoice_refund(sale, "2017-01-14")
+
+    @classmethod
+    def _request_handler(cls, s, r, /, **kw):
+        """Don't block external requests."""
+        return cls._super_send(s, r, **kw)
 
     def _check_tax_lines(self):
         for field, result in iter(self.taxes_result.items()):
@@ -472,6 +497,14 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
                 [("company_id", "=", cls.company.id), ("code", "=", code)]
             )
         return True
+
+    def _set_f420_fields(self):
+        self.model420.company_id.street = "Test street"
+        self.model420.company_vat = "A58818501"
+        self.model420.company_id.atc_public_way = "CL"
+        with Form(self.model420.company_id) as company_form:
+            company_form.zip_id = self.palmas_zip
+        self.model420.year = datetime.now().year
 
     def test_model_420(self):
         _logger.debug("Calculate ATC 420 1T 2017")
@@ -533,3 +566,119 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
         self.assertEqual(self.model420.calculation_date, False)
         self.model420.button_cancel()
         self.assertEqual(self.model420.state, "cancelled")
+
+    def test_model_420_declaration_xml(self):
+        """
+        Test the generation of the .xml file
+        Devengado (DEV) = 275960
+        Deducible (DED) = 233930
+        Resultado (TIP) = I
+        Resultado (IMP) = 42030
+        Resultado (FPA) = 5
+        """
+        self.model420.button_calculate()
+        self._check_tax_lines()
+        self.assertEqual(self.model420.result_type, "I")
+        self._set_f420_fields()
+        report_name = "l10n_es_atc_mod420.mod420_report_xml"
+        xml_data = self.env["ir.actions.report"]._render_qweb_xml(
+            report_name, self.model420.ids
+        )[0]
+        # Parse the XML data and check the values
+        doc = etree.XML(xml_data)
+        dec_node = doc.xpath("//DEC")
+        self.assertEqual(len(dec_node), 1)
+        dec_node = dec_node[0]
+        self.assertEqual(dec_node.attrib["MOD"], "420")
+        self.assertEqual(dec_node.attrib["ANY"], "2025")
+        self.assertEqual(dec_node.attrib["PER"], "1T")
+        otp_node = dec_node.xpath("//IDE/OTP")
+        self.assertEqual(len(otp_node), 1)
+        otp_node = otp_node[0]
+        self.assertEqual(otp_node.attrib["NIF"], "A58818501")
+        self.assertEqual(otp_node.attrib["PAI"], "ES")
+        igi_dev_node = dec_node.xpath("//IGI_DEV")
+        self.assertEqual(len(igi_dev_node), 1)
+        self.assertEqual(igi_dev_node[0].attrib["TOT"], "275960")
+        igi_ded_node = dec_node.xpath("//IGI_DED")
+        self.assertEqual(len(igi_ded_node), 1)
+        self.assertEqual(igi_ded_node[0].attrib["TOT"], "233930")
+        liq_node = dec_node.xpath("//LIQ")
+        self.assertEqual(len(liq_node), 1)
+        self.assertEqual(liq_node[0].attrib["DIF"], "42030")
+        self.assertEqual(liq_node[0].attrib["RLI"], "42030")
+        res_node = dec_node.xpath("//RES")
+        self.assertEqual(len(res_node), 1)
+        self.assertEqual(res_node[0].attrib["TIP"], "I")
+        self.assertEqual(res_node[0].attrib["IMP"], "42030")
+        self.assertEqual(res_node[0].attrib["FPA"], "5")
+
+    def test_model_420_declaration_pdf(self):
+        """
+        Test the generation of the .pdf file
+        set the output_type to B (Borrador)
+        set the payment_type to 1 - Efectivo
+        """
+        self.model420.button_calculate()
+        self._check_tax_lines()
+        self.assertEqual(self.model420.result_type, "I")
+        # check configuration
+        with self.assertRaisesRegex(UserError, r".*The company .* has no street.*"):
+            self.model420.action_generar_mod420()
+        with self.assertRaisesRegex(UserError, r".*Please set the code in the city.*"):
+            self.model420.action_generar_mod420()
+        with self.assertRaisesRegex(
+            UserError, r".*Please set the Public Way in the company.*"
+        ):
+            self.model420.action_generar_mod420()
+        self._set_f420_fields()
+        self.model420.output_type = "B"
+        self.model420.payment_type = "1"  # Efectivo
+        # In oca-ci, we have an issue: https://github.com/OCA/oca-ci/issues/94
+        # Read the ROADMAP for more information.
+        # Therefore, we always expect an error.
+        # TODO: Remove the next line once the issue is fixed.
+        with self.assertRaisesRegex(
+            UserError, r".*Declaracion no generada. Revisa si el XML es válido.*"
+        ):
+            self.model420.with_context(
+                test_l10n_es_atc_report=True
+            ).action_generar_mod420()
+
+    def test_model_420_declaration_dec(self):
+        """
+        Test the generation of the .dec file
+        set the output_type to T (Telematic)
+        set the payment_type to 5 - Pago telemático
+        """
+        self.model420.button_calculate()
+        self._check_tax_lines()
+        self.assertEqual(self.model420.result_type, "I")
+        # check configuration
+        with self.assertRaisesRegex(UserError, r".*The company .* has no street.*"):
+            self.model420.action_generar_mod420()
+        with self.assertRaisesRegex(UserError, r".*Please set the code in the city.*"):
+            self.model420.action_generar_mod420()
+        with self.assertRaisesRegex(
+            UserError, r".*Please set the Public Way in the company.*"
+        ):
+            self.model420.action_generar_mod420()
+        self._set_f420_fields()
+        self.model420.output_type = "T"
+        # Set a payment_type different from 5 (Pago telemático); an error is expected.
+        self.model420.payment_type = "1"  # Efectivo
+        with self.assertRaisesRegex(
+            UserError, r".*payment type is not compatible with the output type.*"
+        ):
+            self.model420.action_generar_mod420()
+        self.model420.payment_type = "5"  # Pago telemático
+        # In oca-ci, we have an issue: https://github.com/OCA/oca-ci/issues/94
+        # Read the ROADMAP for more information.
+        # Therefore, we always expect an error.
+        # TODO: Remove the next line once the issue is fixed.
+        with self.assertRaisesRegex(
+            UserError, r".*Declaracion no generada. Revisa si el XML es válido.*"
+        ):
+            self.model420.with_context(
+                test_l10n_es_atc_report=True
+            ).action_generar_mod420()

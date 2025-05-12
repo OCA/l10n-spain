@@ -39,43 +39,86 @@ https://www3.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyen
 .. contents::
    :local:
 
+Installation
+============
+
+Para instalar este modulo y usar el .jar se necesitan las siguientes
+librerias: ``openjdk-8-jdk``, ``ttf-mscorefonts-installer``, y
+``fontconfig``.
+
+Ejemplo en Debian/Ubuntu
+
+.. code:: bash
+
+   echo "deb http://deb.debian.org/debian unstable main non-free contrib" > /etc/apt/sources.list
+   echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | debconf-set-selections
+   apt-get update
+   apt-get install -y --no-install-recommends openjdk-8-jdk ttf-mscorefonts-installer fontconfig
+   fc-cache -f -v
+
 Usage
 =====
 
 Para crear un modelo, por ejemplo de un trimestre del año:
 
-1. Ir a Contabilidad > Declaraciones ATC > Modelo 420
+1.  Ir a Contabilidad > Declaraciones ATC > Modelo 420
 
-2. Pulsar en el botón "Crear"
+2.  Pulsar en el botón "Crear"
 
-3. Seleccionar el ejercicio fiscal y el tipo de período, los periodos
-   incluidos se calculan automáticamente
+3.  Seleccionar el ejercicio fiscal y el tipo de período, los periodos
+    incluidos se calculan automáticamente
 
-4. Guardar y pulsar en el botón "Calcular"
+4.  Guardar y pulsar en el botón "Calcular"
 
-5. Rellenar (si es necesario) aquellos campos que Odoo no calcula
-   automáticamente:
+5.  Rellenar (si es necesario) aquellos campos que Odoo no calcula
+    automáticamente:
 
-   - Viajeros Base: Casilla [23]
-   - Viajeros Cuota: Casilla [24]
-   - Cuotas ganaderas y pesqueras: Casilla [36]
-   - Cuotas de bienes de inversión: Casilla [37]
-   - Cuota Antes del inicio de la actividad: Casilla [38]
-   - Cuota prorrata: Casilla [39]
-   - Regularización de cuotas: Casilla [42]
-   - Cuotas a compensar: Casilla [43]
-   - A deducir: Casilla [44]
+    - Viajeros Base: Casilla [23]
+    - Viajeros Cuota: Casilla [24]
+    - Cuotas ganaderas y pesqueras: Casilla [36]
+    - Cuotas de bienes de inversión: Casilla [37]
+    - Cuota Antes del inicio de la actividad: Casilla [38]
+    - Cuota prorrata: Casilla [39]
+    - Regularización de cuotas: Casilla [42]
+    - Cuotas a compensar: Casilla [43]
+    - A deducir: Casilla [44]
 
-6. Cuando los valores sean los correctos, pulsar en el botón "Confirmar"
+6.  Cuando los valores sean los correctos, pulsar en el botón
+    "Confirmar"
 
-7. Para crear el movimiento correspondiente, pulsar en el botón "Crear
-   asiento"
+7.  Para crear el movimiento correspondiente, pulsar en el botón "Crear
+    asiento"
 
-8. Teniendo en cuenta los valores, rellenar el PDF modelo 420 de la AEAT
+8.  Teniendo en cuenta los valores, rellenar el PDF modelo 420 de la
+    AEAT
 
-9. | La opción "Carátula sobre" permite imprimir la carátula del modelo
-     420 para su
-   | presentación presencial
+9.  | La opción "Carátula sobre" permite imprimir la carátula del modelo
+      420 para su
+    | presentación presencial
+
+10. El boton ``Generar declaración`` permite generar el archivo .xml y
+    usando el ``.jar`` provisto por la ATC se puede obtener la
+    declaracion. Este puede ser en formato ``.dec`` cuando en el campo
+    ``Tipo de salida`` se elija ``telemático``; en caso contrario, se
+    generará en formato ``.pdf``.
+
+Known issues / Roadmap
+======================
+
+Limitación en entorno Runboat
+-----------------------------
+
+Este módulo no podrá generar archivos ``.dec`` o ``.pdf`` en entornos
+ejecutados desde Runboat, debido a que la instalación de la librería
+``ttf-mscorefonts-installer`` requiere la aceptación de una licencia, lo
+cual no es posible automatizar en dicho entorno.
+
+Se puede consultar el informe del problema en el siguiente enlace:
+https://github.com/OCA/oca-ci/issues/94
+
+Para verificar la funcionalidad completa del módulo, hay que realizar
+las pruebas localmente siguiendo las instrucciones indicadas en el
+apartado de instalación.
 
 Bug Tracker
 ===========
@@ -100,6 +143,11 @@ Contributors
 
 - Nicolás Ramos <n.ramos@binhex.cloud>
 - Christian Ramos <c.ramos@binhex.cloud>
+- `Tecnativa <https://www.tecnativa.com>`__:
+
+  - Pedro M. Baeza
+  - Sergio Teruel
+  - Carlos Lopez
 
 Maintainers
 -----------

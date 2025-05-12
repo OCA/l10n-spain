@@ -16,6 +16,8 @@ from odoo.exceptions import UserError
 from odoo.tools import ustr
 from odoo.tools.float_utils import float_is_zero, float_round
 
+from odoo.addons.l10n_es_aeat.models.spanish_states_mapping import SPANISH_STATES
+
 # The URL to download the file
 # this should be inherited in the module that uses this model
 # the key is the ATC model number
@@ -104,6 +106,14 @@ class L10nEsAtcReport(models.AbstractModel):
             raise UserError(
                 _("Please fix the following errors:\n%s") % "\n".join(messages)
             )
+
+    def _atc_get_country_state_code(self, country_state):
+        codigo_provincia = SPANISH_STATES.get(country_state.code)
+        if not codigo_provincia:
+            raise UserError(
+                _("The state code is not mapped for state: %s", country_state.code)
+            )
+        return codigo_provincia
 
     def _atc_run_cmd(self, report_name, filename, jar_filename, main_class):
         """
@@ -281,7 +291,9 @@ class L10nEsAtcReport(models.AbstractModel):
         """
         resultado_path = dir_paths["resultado_path"]
         file_path = os.path.join(resultado_path, file_name)
-        if not os.path.exists(file_path):
+        if self.env.context.get("test_l10n_es_atc_report") or not os.path.exists(
+            file_path
+        ):
             raise UserError(
                 _(
                     "Declaracion no generada. Revisa si el XML es válido y "

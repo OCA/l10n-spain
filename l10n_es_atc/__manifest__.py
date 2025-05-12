@@ -14,6 +14,7 @@
         "data/config_parameter_data.xml",
         "views/atc_menuitem.xml",
         "data/atc_partner.xml",
+        "views/res_company_views.xml",
     ],
     "installable": True,
     "auto_install": False,
