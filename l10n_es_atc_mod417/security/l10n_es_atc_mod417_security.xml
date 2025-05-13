@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="l10n_es_atc_mod417_multicompany_rule" model="ir.rule">
+        <field name="name">ATC Mod 417 multicompany</field>
+        <field ref="model_l10n_es_atc_mod417_report" name="model_id" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>
