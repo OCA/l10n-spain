@@ -518,7 +518,7 @@ class L10nEsAeatMod390Report(models.Model):
                         27,  # IVA otras operaciones sujeto pasivo
                         29,  # Modificación bases y cuotas
                         649,  # Modif. bases y cuotas intragrupo - no incluido aún
-                        31,  # Modif. bases y cuotas concurso ac. - no incluido aún
+                        31,  # Modif. bases y cuotas concurso ac.
                     )
                 ).mapped("amount")
             )
@@ -576,7 +576,7 @@ class L10nEsAeatMod390Report(models.Model):
                         28,  # IVA otras operaciones sujeto pasivo
                         30,  # Modificación bases y cuotas
                         650,  # Modif. bases y cuotas intragrupo - no incluido aún
-                        32,  # Modif. bases y cuotas concurso ac. - no incluido aún
+                        32,  # Modif. bases y cuotas concurso ac.
                     )
                 ).mapped("amount")
             )
@@ -597,7 +597,7 @@ class L10nEsAeatMod390Report(models.Model):
                         602,
                         42,  # Recargo de equivalencia
                         44,  # Modificación recargo de equivalencia
-                        46,  # Mod. recargo equiv. concurso - no incluido aún
+                        46,  # Mod. recargo equiv. concurso ac.
                     )
                 ).mapped("amount")
             )
@@ -916,10 +916,43 @@ class L10nEsAeatMod390Report(models.Model):
         return super().button_confirm()
 
     def _get_move_line_domain(self, date_start, date_end, map_line):
-        """Consider Bankrupcy proceedings or uncollectible debt."""
+        """Consider bankruptcy proceedings or uncollectible debt."""
         res = super()._get_move_line_domain(date_start, date_end, map_line)
-        if map_line.field_number in {31, 32}:
+        if map_line.field_number in {31, 32, 45, 46}:
             res += [("move_id.is_bankrupcy_uncollectible_debt", "=", True)]
-        elif map_line.field_number in {29, 30, 99}:
+        elif map_line.field_number in {29, 30, 43, 44, 99}:
             res += [("move_id.is_bankrupcy_uncollectible_debt", "=", False)]
         return res
+
+    @api.model
+    def _get_redirect_map_lines(self):
+        """Get map lines that are redirected to others.
+        Return redirect map lines for bankruptcy and uncollectible debt."""
+        bankruptcy_map_lines = {
+            "aeat_mod390_map_line_31_sale": "aeat_mod390_map_line_29_sale",
+            "aeat_mod390_2024_map_line_031_sale": "aeat_mod390_2024_map_line_029_sale",
+            "aeat_mod390_map_line_31_purchase": "aeat_mod390_map_line_29_purchase",
+            "aeat_mod390_2024_map_line_031_purchase": "aeat_mod390_2024_map_line_029_purchase",  # noqa: B950
+            "aeat_mod390_map_line_32_sale": "aeat_mod390_map_line_30_sale",
+            "aeat_mod390_2024_map_line_032_sale": "aeat_mod390_2024_map_line_030_sale",
+            "aeat_mod390_map_line_32_purchase": "aeat_mod390_map_line_30_purchase",
+            "aeat_mod390_2024_map_line_032_purchase": "aeat_mod390_2024_map_line_030_purchase",  # noqa: B950
+            "aeat_mod390_map_line_45": "aeat_mod390_map_line_43",
+            "aeat_mod390_2024_map_line_045": "aeat_mod390_2024_map_line_043",
+            "aeat_mod390_map_line_46": "aeat_mod390_map_line_44",
+            "aeat_mod390_2024_map_line_046": "aeat_mod390_2024_map_line_044",
+        }
+        return bankruptcy_map_lines
+
+    def get_taxes_from_map(self, map_line):
+        """Get taxes from map line, considering redirected map lines (since
+        they use exactly the same taxes)."""
+        xml_id = map_line.get_external_id().get(map_line.id)
+        record_name = xml_id.split(".")[-1] if xml_id else None
+        redirect_name = self._get_redirect_map_lines().get(record_name, False)
+        if redirect_name:
+            redirect_xml_id = f"l10n_es_aeat_mod390.{redirect_name}"
+            redirect_map_line = self.env.ref(redirect_xml_id, raise_if_not_found=False)
+            if redirect_map_line:
+                return super().get_taxes_from_map(redirect_map_line)
+        return super().get_taxes_from_map(map_line)
