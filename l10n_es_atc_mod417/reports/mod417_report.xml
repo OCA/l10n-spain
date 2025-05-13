@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="mod417_report_xml_doc">
+        <DEC
+            MOD="417"
+            t-att-ANY="doc.year"
+            t-att-PER="doc.period_type"
+            t-att-COM="doc.statement_type == 'C' and 'X' or None"
+            t-att-NJA="doc.statement_type == 'C' and doc.previous_number or None"
+        >
+            <!-- TODO: IDE attributes? -->
+            <IDE>
+                <!-- TODO: SVP, CMU, TIP, NPK, CAL, BLO, ESC, PIS, PUE, POR -->
+                <OTP
+                    t-att-NIF="doc.company_vat"
+                    t-att-NRS="doc.company_id.name.upper()"
+                    t-att-TEL="doc.company_id.phone"
+                    t-att-EMA="doc.company_id.email"
+                    t-att-PAI="doc.company_id.country_id.code"
+                    t-att-POP="doc._atc_get_country_state_code(doc.company_id.state_id)"
+                    t-att-CP="doc.company_id.zip"
+                    t-att-SVP="doc.company_id.atc_public_way"
+                    t-att-NVP="(doc.company_id.street or '').upper()"
+                    t-att-CMU="doc.company_id.city_id.code"
+                />
+            </IDE>
+            <t
+                t-set="devengado_fields"
+                t-value="[(1, 3), (4, 6), (7, 9), (10, 12), (13, 15), (16, 18)]"
+            />
+            <t
+                t-set="devengado_data"
+                t-value="doc._get_amount_by_fields(devengado_fields)"
+            />
+            <t t-if="devengado_data or doc.total_devengado">
+                <IGI_DEV t-att-TOT="doc._format_amount(doc.total_devengado)">
+                    <t t-foreach="devengado_data" t-as="devengado_line">
+                        <t
+                            t-foreach="devengado_line['amount_by_tax'].values()"
+                            t-as="devengado"
+                        >
+                            <DEV
+                                t-att-BAS="devengado['base']"
+                                t-att-CUO="devengado['amount'] or '00'"
+                                t-att-TIP="devengado['percentage'] or '000'"
+                            />
+                        </t>
+                    </t>
+                    <!-- TODO: DEG, GBC, CAT -->
+                    <t t-set="OIN" t-value="doc._get_amount_by_field(19, 20)" />
+                    <OIN
+                        t-if="OIN['base']"
+                        t-att-BAS="OIN['base']"
+                        t-att-CUO="OIN['amount']"
+                    />
+                    <t t-set="MBC" t-value="doc._get_amount_by_field(21, 22)" />
+                    <MBC
+                        t-if="MBC['base']"
+                        t-att-BAS="MBC['base']"
+                        t-att-CUO="MBC['amount']"
+                    />
+                    <CRV
+                        t-if="doc.casilla_23"
+                        t-att-BAS="doc._format_amount(doc.casilla_23)"
+                        t-att-CUO="doc._format_amount(doc.casilla_24)"
+                    />
+                </IGI_DEV>
+            </t>
+            <t t-set="deducible_fields" t-value="[('RED', 34, 35)]" />
+            <t t-if="doc.total_deducir">
+                <IGI_DED t-att-TOT="doc._format_amount(doc.total_deducir)">
+                    <!-- TODO: OGC, OGI, REG -->
+                    <t t-set="OIC" t-value="doc._get_amount_by_field(26, 27)" />
+                    <OIC
+                        t-if="OIC['base']"
+                        t-att-BAS="OIC['base']"
+                        t-att-CUO="OIC['amount']"
+                    />
+                    <t t-set="OII" t-value="doc._get_amount_by_field(28, 29)" />
+                    <OII
+                        t-if="OII['base']"
+                        t-att-BAS="OII['base']"
+                        t-att-CUO="OII['amount']"
+                    />
+                    <t t-set="IMC" t-value="doc._get_amount_by_field(30, 31)" />
+                    <IMC
+                        t-if="IMC['base']"
+                        t-att-BAS="IMC['base']"
+                        t-att-CUO="IMC['amount']"
+                    />
+                    <t t-set="IMI" t-value="doc._get_amount_by_field(32, 33)" />
+                    <IMI
+                        t-if="IMI['base']"
+                        t-att-BAS="IMI['base']"
+                        t-att-CUO="IMI['amount']"
+                    />
+                    <t t-set="RED" t-value="doc._get_amount_by_field(34, 35)" />
+                    <RED
+                        t-if="RED['base']"
+                        t-att-BAS="RED['base']"
+                        t-att-CUO="RED['amount']"
+                    />
+                    <CRA
+                        t-if="doc.casilla_36"
+                        t-att-CUO="doc._format_amount(doc.casilla_36)"
+                    />
+                    <RBI
+                        t-if="doc.casilla_37"
+                        t-att-CUO="doc._format_amount(doc.casilla_37)"
+                    />
+                    <RIA
+                        t-if="doc.casilla_38"
+                        t-att-CUO="doc._format_amount(doc.casilla_38)"
+                    />
+                    <RPP
+                        t-if="doc.casilla_39"
+                        t-att-CUO="doc._format_amount(doc.casilla_39)"
+                    />
+                </IGI_DED>
+            </t>
+            <LIQ
+                t-att-DIF="doc._format_amount(doc.diferencia)"
+                t-att-RCU="doc._format_amount(doc.regularizacion_cuotas)"
+                t-att-CPA="doc._format_amount(doc.cuotas_compensar)"
+                t-att-DAC="doc._format_amount(doc.a_deducir)"
+                t-att-RLI="doc._format_amount(doc.resultado_autoliquidacion)"
+            />
+            <RES
+                t-att-TIP="'S' if doc.result_type == 'N' else doc.result_type"
+                t-att-IMP="doc._format_amount(abs(doc.resultado_autoliquidacion))"
+                t-att-FPA="doc.payment_type"
+            />
+            <!-- TODO: support for SAF, ACT_EST, OPE, ACT_PRO, ACT_DED? -->
+        </DEC>
+    </template>
+    <template id="mod417_report_xml">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="l10n_es_atc_mod417.mod417_report_xml_doc">
+            </t>
+        </t>
+    </template>
+    <record id="mod417_xml_report" model="ir.actions.report">
+        <field name="name">Mod 417 xml report</field>
+        <field name="model">l10n.es.atc.mod417.report</field>
+        <field name="report_type">qweb-xml</field>
+        <field name="report_name">l10n_es_atc_mod417.mod417_report_xml</field>
+        <field
+            name="binding_model_id"
+            ref="l10n_es_atc_mod417.model_l10n_es_atc_mod417_report"
+        />
+        <field name="binding_type">report</field>
+        <field
+            name="xsd_schema"
+            type="base64"
+            file="l10n_es_atc_mod417/reports/Presentacion-417-XMLSchema.xsd"
+        />
+    </record>
+</odoo>

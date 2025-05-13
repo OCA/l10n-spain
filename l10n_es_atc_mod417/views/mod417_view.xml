@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_l10n_es_atc_mod417_report_tree" model="ir.ui.view">
+        <field name="name">l10n_es_igic.atc.mod417.report.tree</field>
+        <field name="model">l10n.es.atc.mod417.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree" />
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="string">Modelo ATC 417</attribute>= </tree>
+            <field name="period_type" position="after">
+                <field name="total_devengado" />
+                <field name="total_deducir" />
+                <field name="diferencia" />
+                <field name="resultado_autoliquidacion" />
+            </field>
+        </field>
+    </record>
+    <record id="view_l10n_es_atc_mod417_report_form" model="ir.ui.view">
+        <field name="name">l10n_es_igic.ATC.mod417.report.form</field>
+        <field name="model">l10n.es.atc.mod417.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//button[@name='%(l10n_es_aeat.action_wizard_aeat_export)d']"
+                position="attributes"
+            >
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <header position="inside">
+                <button
+                    name="action_generar_mod417"
+                    string="Generar declaración"
+                    invisible="state in ['draft', 'cancelled']"
+                    type="object"
+                    icon="fa-share"
+                />
+            </header>
+            <field name="export_config_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="statement_type" position="after">
+                <field
+                    name="output_type"
+                    readonly="state in ['done', 'posted', 'cancelled']"
+                    required="1"
+                />
+                <field
+                    name="payment_type"
+                    readonly="state in ['done', 'posted', 'cancelled']"
+                />
+            </field>
+            <group name="group_declaration" position="after">
+                <group
+                    string="Resultado"
+                    name="group_result"
+                    invisible="state == 'draft'"
+                    col="3"
+                >
+                    <group>
+                        <field name="casilla_23" readonly="state == 'done'" />
+                        <field name="casilla_24" readonly="state == 'done'" />
+                        <field name="total_devengado" />
+                    </group>
+                    <group col="3">
+                        <field name="casilla_36" readonly="state == 'done'" />
+                        <field name="casilla_37" readonly="state == 'done'" />
+                        <field name="casilla_38" readonly="state == 'done'" />
+                        <field name="casilla_39" readonly="state == 'done'" />
+                        <field name="total_deducir" />
+                    </group>
+                    <group col="3">
+                        <field name="diferencia" />
+                        <field
+                            name="regularizacion_cuotas"
+                            readonly="state == 'done'"
+                        />
+                        <field name="cuotas_compensar" readonly="state == 'done'" />
+                        <field name="a_deducir" readonly="state == 'done'" />
+                    </group>
+                </group>
+
+                <group
+                    class="oe_subtotal_footer oe_right"
+                    invisible="state == 'draft'"
+                    colspan="2"
+                >
+                    <field
+                        name="resultado_autoliquidacion"
+                        class="oe_subtotal_footer_separator"
+                    />
+                    <field name="result_type" />
+                    <field name="company_partner_id" invisible="1" />
+                    <field
+                        name="bank_account_id"
+                        domain="[('partner_id', '=', company_partner_id)]"
+                        invisible="result_type not in ('D', 'B', 'I')"
+                        required="result_type == 'D'"
+                        readonly="state == 'done'"
+                    />
+                </group>
+                <field
+                    name="tax_line_ids"
+                    nolabel="1"
+                    readonly="1"
+                    invisible="state == 'draft'"
+                />
+            </group>
+            <form position="inside">
+                <div class="oe_chatter">
+                    <field
+                        name="message_follower_ids"
+                        widget="mail_followers"
+                        groups="base.group_user"
+                    />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="action_l10n_es_atc_mod417_report" model="ir.actions.act_window">
+        <field name="name">Modelo ATC 417</field>
+        <field name="res_model">l10n.es.atc.mod417.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help">Crear y consultar declaraciones del modelo ATC 417</field>
+    </record>
+
+    <record
+        model="ir.actions.act_window.view"
+        id="action_l10n_es_atc_mod417_report_tree"
+    >
+        <field name="sequence" eval="2" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_l10n_es_atc_mod417_report_tree" />
+        <field name="act_window_id" ref="action_l10n_es_atc_mod417_report" />
+    </record>
+
+    <record
+        model="ir.actions.act_window.view"
+        id="action_l10n_es_atc_mod417_report_form"
+    >
+        <field name="sequence" eval="3" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_l10n_es_atc_mod417_report_form" />
+        <field name="act_window_id" ref="action_l10n_es_atc_mod417_report" />
+    </record>
+    <menuitem
+        id="menu_atc_mod417_report"
+        parent="l10n_es_atc.menu_root_atc"
+        sequence="417"
+        name="Modelo 417"
+        action="action_l10n_es_atc_mod417_report"
+    />
+
+</odoo>
