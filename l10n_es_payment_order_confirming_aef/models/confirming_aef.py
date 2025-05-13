@@ -2,7 +2,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 
-from odoo import _, fields
+from odoo import fields
 from odoo.exceptions import UserError
 
 
@@ -10,37 +10,39 @@ class ConfirmingAEF:
     def __init__(self, record):
         self.record = record
         self.partner_bank = record.company_partner_bank_id.partner_id
+        self._ = self.record.env._  # Use self.env._ for translations
 
     def _aef_errors(self):
         validation_errors = []
         # Nombre ordenante
         if not self.partner_bank:
             validation_errors.append(
-                _("- Propietario de la cuenta no establecido para la cuenta %s.")
+                self._("- Propietario de la cuenta no establecido para la cuenta %s.")
                 % self.record.company_partner_bank_id.acc_number
             )
         if not self.partner_bank.country_id:
             validation_errors.append(
-                _("- País del propietario no establecido %s.") % self.partner_bank.name
+                self._("- País del propietario no establecido %s.")
+                % self.partner_bank.name
             )
         # Errores lineas
         for line in self.record.payment_line_ids:
             # Documento identificativo
             if not line.partner_id.vat:
                 validation_errors.append(
-                    _("- El proveedor %s no tiene establecido el NIF.")
+                    self._("- El proveedor %s no tiene establecido el NIF.")
                     % line.partner_id.name
                 )
             # Domicilio
             if not line.partner_id.street:
                 validation_errors.append(
-                    _("- El proveedor %s no tiene establecido el domicilio.")
+                    self._("- El proveedor %s no tiene establecido el domicilio.")
                     % line.partner_id.name
                 )
             # Num Factura
             if len(line.move_line_id.move_id.ref or "") > 15:
                 validation_errors.append(
-                    _(
+                    self._(
                         "- La referencia de factura %s de proveedor no puede ocupar "
                         "más de 15 caracteres."
                     )
@@ -49,28 +51,28 @@ class ConfirmingAEF:
             # Ciudad
             if not line.partner_id.city:
                 validation_errors.append(
-                    _("- El proveedor %s no tiene establecida la ciudad.")
+                    self._("- El proveedor %s no tiene establecida la ciudad.")
                     % line.partner_id.name
                 )
             # Codigo pais
             if not line.partner_id.country_id.code:
                 validation_errors.append(
-                    _("- El proveedor %s no tiene establecido el país.")
+                    self._("- El proveedor %s no tiene establecido el país.")
                     % line.partner_id.name
                 )
             # SWIFT
             if not line.partner_bank_id.bank_bic:
                 validation_errors.append(
-                    _(
+                    self._(
                         "- La cuenta bancaria del Proveedor %s no tiene establecido "
                         "el SWIFT."
                     )
                     % line.partner_id.name
                 )
-            error = _("Se han encontrado los siguientes errores:\n")
-            if validation_errors:
-                error += "\n".join(validation_errors)
-                raise UserError(error)
+        if validation_errors:
+            error = self._("Se han encontrado los siguientes errores:\n")
+            error += "\n".join(validation_errors)
+            raise UserError(error)
 
     def _aef_convert_text(self, text, size, justified="right"):
         text = text if text else ""
@@ -96,7 +98,7 @@ class ConfirmingAEF:
             txt_file += self._aef_registro_05(line)
             txt_file += self._aef_registro_06(line)
         txt_file += self._aef_registro_07()
-        return txt_file.encode("Windows-1252"), "%s.txt" % self.record.name
+        return txt_file.encode("Windows-1252"), f"{self.record.name}.txt"
 
     def _aef_registro_01(self):
         # 1 Valor fijo - ok

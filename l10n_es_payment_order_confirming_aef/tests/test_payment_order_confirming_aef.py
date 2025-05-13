@@ -14,7 +14,7 @@ from odoo.addons.account_payment_order.tests.test_payment_order_outbound import 
 class TestPaymentOrderOutboundBaseAEF(TestPaymentOrderOutboundBase):
     @classmethod
     def setUpClass(cls):
-        super().setUpClass(chart_template_ref="es_pymes")
+        super().setUpClass()
 
     def order_creation(self, date_prefered):
         # Open invoice
