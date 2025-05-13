@@ -5,7 +5,7 @@
 
 import re
 
-from odoo import _, fields
+from odoo import fields
 from odoo.exceptions import UserError
 
 
@@ -17,12 +17,16 @@ class ConfirmingSabadell:
         # 4 - 43 Nombre ordenante
         if not self.record.company_partner_bank_id.partner_id:
             raise UserError(
-                _("Propietario de la cuenta no establecido para la cuenta %s.")
+                self.record.env._(
+                    "Propietario de la cuenta no establecido para la cuenta %s."
+                )
                 % self.record.company_partner_bank_id.acc_number
             )
         if not self.record.company_partner_bank_id.partner_id.vat:
             raise UserError(
-                _("Propietario de la cuenta %s no tiene un NIF establecido.")
+                self.record.env._(
+                    "Propietario de la cuenta %s no tiene un NIF establecido."
+                )
                 % (self.record.company_partner_bank_id.display_name)
             )
         # Errores lineas
@@ -30,19 +34,21 @@ class ConfirmingSabadell:
             # 19 - 30 Documento identificativo
             if not line.partner_id.vat:
                 raise UserError(
-                    _("El Proveedor %s no tiene establecido el NIF.")
+                    self.record.env._("El Proveedor %s no tiene establecido el NIF.")
                     % line.partner_id.name
                 )
             # 44 - 110 Domicilio
             if not line.partner_id.street:
                 raise UserError(
-                    _("El Proveedor %s no tiene establecido el Domicilio.")
+                    self.record.env._(
+                        "El Proveedor %s no tiene establecido el Domicilio."
+                    )
                     % line.partner_id.name
                 )
             # 52 - 66 Num Factura
             if line.move_line_id.ref and len(line.move_line_id.ref) > 15:
                 raise UserError(
-                    _(
+                    self.record.env._(
                         "La referencia de factura %s de proveedor no puede ocupar "
                         "más de 15 caracteres."
                     )
@@ -51,25 +57,25 @@ class ConfirmingSabadell:
             # 111 - 150 Ciudad
             if not line.partner_id.city:
                 raise UserError(
-                    _("El Proveedor %s no tiene establecida la Ciudad.")
+                    self.record.env._("El Proveedor %s no tiene establecida la Ciudad.")
                     % line.partner_id.name
                 )
             # 151- 155 CP
             if not line.partner_id.zip:
                 raise UserError(
-                    _("El Proveedor %s no tiene establecido el C.P.")
+                    self.record.env._("El Proveedor %s no tiene establecido el C.P.")
                     % line.partner_id.name
                 )
             # 253 - 254 Codigo pais
             if not line.partner_id.country_id.code:
                 raise UserError(
-                    _("El Proveedor %s no tiene establecido el País.")
+                    self.record.env._("El Proveedor %s no tiene establecido el País.")
                     % line.partner_id.name
                 )
             # 19 - 29 SWIFT
             if not line.partner_bank_id.bank_bic:
                 raise UserError(
-                    _(
+                    self.record.env._(
                         "La cuenta bancaria del Proveedor %s \
                         no tiene establecido el SWIFT."
                     )
@@ -81,7 +87,9 @@ class ConfirmingSabadell:
                 and line.partner_bank_id.acc_type != "iban"
             ):
                 raise UserError(
-                    _("La Cuenta del Proveedor: %s tiene que estar en formato IBAN.")
+                    self.record.env._(
+                        "La Cuenta del Proveedor: %s tiene que estar en formato IBAN."
+                    )
                     % line.partner_id.name
                 )
 
@@ -136,7 +144,7 @@ class ConfirmingSabadell:
             if self.record.payment_mode_id.conf_sabadell_type == "58":
                 txt_file += self._sab_registro_04(line)
         txt_file += self._sab_registro_05()
-        return txt_file.encode("utf-8"), "%s.txt" % self.record.name
+        return txt_file.encode("utf-8"), f"{self.record.name}.txt"
 
     def _sab_registro_01(self):
         # Caracteres 1 y 2-3
