@@ -16,6 +16,7 @@
                     class="oe_stat_button"
                     icon="fa-bars"
                     type="object"
+                    invisible="not is_invoice_summary"
                 >
                     <div class="o_form_field o_stat_info">
                         <span class="o_stat_text">Order Summary SII</span>

@@ -26,6 +26,7 @@ class TestL10nEsAeatSiiSummaryCommon(TestL10nEsAeatSiiBase):
             "is_invoice_summary": True,
             "sii_invoice_summary_start": 1,
             "sii_invoice_summary_end": 10,
+            "company_id": cls.env.ref("l10n_es.demo_company_es").id,
         }
         cls.invoice_supplier_summary = cls.env["account.move"].create(invoice_values)
         invoice_values.update(

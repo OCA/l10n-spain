@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="l10n_es.partner_simplified" model="res.partner">
+        <field name="aeat_simplified_invoice" eval="True" />
+    </record>
+</odoo>

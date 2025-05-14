@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 import ast
 import itertools
+from collections import defaultdict
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
@@ -17,9 +18,13 @@ class AccountMove(models.Model):
     @api.constrains("state")
     def _check_sii_summary(self):
         for invoice in self:
-            if invoice.is_invoice_summary and (
-                not invoice.sii_invoice_summary_start
-                or not invoice.sii_invoice_summary_end
+            if (
+                invoice.is_invoice_summary
+                and invoice.state != "draft"
+                and (
+                    not invoice.sii_invoice_summary_start
+                    or not invoice.sii_invoice_summary_end
+                )
             ):
                 raise ValidationError(
                     _("The First invoice and Last invoice fields cannot be empty.")
@@ -39,9 +44,7 @@ class AccountMove(models.Model):
                 ("invoice_summary_id.id", "=", self.id),
             ],
         )
-        for set_pos_order in set_pos_order_ids:
-            if set_pos_order not in pos_order_ids:
-                set_pos_order_ids.invoice_summary_id = False
+        (set_pos_order_ids - pos_order_ids).write({"invoice_summary_id": False})
 
     def _populate_invoice_summary_by_dates(self):
         PosOrder = self.env["pos.order"]
@@ -56,24 +59,31 @@ class AccountMove(models.Model):
 
         if pos_order_ids:
             self.set_order_summary(pos_order_ids)
-            for pos_order in pos_order_ids:
-                pos_order.invoice_summary_id = self.id
+            pos_order_ids.write({"invoice_summary_id": self.id})
 
             self.sii_invoice_summary_start = pos_order_ids[0].name
             self.sii_invoice_summary_end = pos_order_ids[-1].name
-            amount_total = sum([pos_order.amount_total for pos_order in pos_order_ids])
-            self.invoice_line_ids = [
-                Command.clear(),
-                Command.create(
-                    {
-                        "name": "{}-{}".format(
-                            self.sii_invoice_summary_start,
-                            self.sii_invoice_summary_end,
-                        ),
-                        "price_unit": amount_total,
-                    }
-                ),
-            ]
+
+            grouped_taxs = defaultdict(lambda: self.env["pos.order.line"])
+            for record in pos_order_ids.mapped("lines"):
+                grouped_taxs[record.tax_ids] += record
+
+            line_values = [Command.clear()]
+            for tax, pos_order_lines in grouped_taxs.items():
+                amount_total = sum(line.price_subtotal for line in pos_order_lines)
+                line_values.append(
+                    Command.create(
+                        {
+                            "name": "{}-{}".format(
+                                self.sii_invoice_summary_start,
+                                self.sii_invoice_summary_end,
+                            ),
+                            "price_unit": amount_total,
+                            "tax_ids": [Command.set(tax.ids)],
+                        }
+                    )
+                )
+            self.invoice_line_ids = line_values
 
     def _get_summary_domain(self):
         return [("invoice_summary_id", "=", self.id)]

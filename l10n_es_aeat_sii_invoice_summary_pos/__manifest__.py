@@ -15,7 +15,7 @@
     "author": "Binhex, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/l10n-spain",
-    "data": ["views/account_move_view.xml"],
+    "data": ["data/res_partner_data.xml", "views/account_move_view.xml"],
     "installable": True,
     "application": False,
 }

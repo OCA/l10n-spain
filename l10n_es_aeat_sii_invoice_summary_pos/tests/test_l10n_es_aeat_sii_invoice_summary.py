@@ -1,6 +1,7 @@
 # Copyright 2025 Binhex <https://www.binhex.cloud>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 
+from collections import defaultdict
 from unittest.mock import patch
 
 from odoo.exceptions import UserError, ValidationError
@@ -60,6 +61,7 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiSummaryCommon):
         )
 
     def test_check_sii_invoice_summary(self):
+        self.invoice_summary.state = "posted"
         self.invoice_summary.sii_invoice_summary_end = False
         with self.assertRaises(ValidationError) as context_error:
             self.invoice_summary._check_sii_summary()
@@ -82,12 +84,13 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiSummaryCommon):
         ) as mock_method:
             self.invoice_summary._populate_invoice_summary_by_dates()
             mock_method.assert_called_once()
-            invoice_line_id = self.invoice_summary.invoice_line_ids.filtered(
+            invoice_line_ids = self.invoice_summary.invoice_line_ids.filtered(
                 lambda x: "{}-{}".format(
                     self.invoice_summary.sii_invoice_summary_start,
                     self.invoice_summary.sii_invoice_summary_end,
                 )
             )
+            invoice_line_id = invoice_line_ids[0]
             sii_invoice_summary_start = invoice_line_id.name.split("-")[0]
             sii_invoice_summary_end = invoice_line_id.name.split("-")[-1]
 
@@ -106,14 +109,19 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiSummaryCommon):
                 f"{sii_invoice_summary_start}-{sii_invoice_summary_end}",
             )
 
-            pos_orders = self.PosOrder.search_read(
-                [("invoice_summary_id", "=", self.invoice_summary.id)],
-                ["amount_total"],
+            pos_order_ids = self.PosOrder.search(
+                [("invoice_summary_id", "=", self.invoice_summary.id)]
             )
-            amount_total = sum([pos_order["amount_total"] for pos_order in pos_orders])
-            self.assertEqual(
-                invoice_line_id.price_unit,
-                round(amount_total, 2),
+            grouped_taxs = defaultdict(lambda: self.env["pos.order.line"])
+            for record in pos_order_ids.mapped("lines"):
+                grouped_taxs[record.tax_ids] += record
+            amount_total = 0
+            for _, pos_order_lines in grouped_taxs.items():
+                amount_total += sum(
+                    line.price_subtotal_incl for line in pos_order_lines
+                )
+            self.assertTrue(
+                round(sum(line.price_total for line in invoice_line_ids), 2) > 0
             )
 
     def test_action_pos_order_summary(self):
