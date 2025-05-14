@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-l10n-spain"
-version = "17.0.20250512.0"
+version = "17.0.20250514.0"
 dependencies = [
     "odoo-addon-delivery_dhl_parcel>=17.0dev,<17.1dev",
     "odoo-addon-delivery_gls_asm>=17.0dev,<17.1dev",
@@ -16,6 +16,7 @@ dependencies = [
     "odoo-addon-l10n_es_aeat_mod130>=17.0dev,<17.1dev",
     "odoo-addon-l10n_es_aeat_mod190>=17.0dev,<17.1dev",
     "odoo-addon-l10n_es_aeat_mod216>=17.0dev,<17.1dev",
+    "odoo-addon-l10n_es_aeat_mod296>=17.0dev,<17.1dev",
     "odoo-addon-l10n_es_aeat_mod303>=17.0dev,<17.1dev",
     "odoo-addon-l10n_es_aeat_mod303_oss>=17.0dev,<17.1dev",
     "odoo-addon-l10n_es_aeat_mod303_vat_prorate>=17.0dev,<17.1dev",
