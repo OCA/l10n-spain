@@ -1,0 +1,103 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_aeat_sii_invoice_summary_pos
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-09 15:43+0000\n"
+"PO-Revision-Date: 2025-05-09 15:43+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_aeat_sii_invoice_summary_pos
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary_pos.field_account_bank_statement_line__sii_end_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary_pos.field_account_move__sii_end_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary_pos.field_account_payment__sii_end_date
+msgid "End Date"
+msgstr "Fecha fin"
+
+#. module: l10n_es_aeat_sii_invoice_summary_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_invoice_summary_pos.invoice_sii_move_summary_form_view_inherit
+msgid "First Invoice"
+msgstr "Primera factura"
+
+#. module: l10n_es_aeat_sii_invoice_summary_pos
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary_pos.field_pos_order__is_presented
+msgid "Is Presented"
+msgstr "Esta presente"
+
+#. module: l10n_es_aeat_sii_invoice_summary_pos
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary_pos.field_account_move_line__is_sii_line
+msgid "Is Sii Line"
+msgstr "SII Linea"
+
+#. module: l10n_es_aeat_sii_invoice_summary_pos
+#: model:ir.model,name:l10n_es_aeat_sii_invoice_summary_pos.model_account_move
+msgid "Journal Entry"
+msgstr "Asiento contable"
+
+#. module: l10n_es_aeat_sii_invoice_summary_pos
+#: model:ir.model,name:l10n_es_aeat_sii_invoice_summary_pos.model_account_move_line
+msgid "Journal Item"
+msgstr "Apunte contable"
+
+#. module: l10n_es_aeat_sii_invoice_summary_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_invoice_summary_pos.invoice_sii_move_summary_form_view_inherit
+msgid "Last Invoice"
+msgstr "Última factura"
+
+#. module: l10n_es_aeat_sii_invoice_summary_pos
+#: model:ir.model,name:l10n_es_aeat_sii_invoice_summary_pos.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "Pedidos de TPV"
+
+#. module: l10n_es_aeat_sii_invoice_summary_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_invoice_summary_pos.invoice_sii_move_summary_form_view_inherit
+msgid "SII Information"
+msgstr "SII Información"
+
+#. module: l10n_es_aeat_sii_invoice_summary_pos
+#. odoo-python
+#: code:addons/l10n_es_aeat_sii_invoice_summary_pos/models/account_move.py:0
+#, python-format
+msgid "Select the start date and end date."
+msgstr "Seleccione la fecha de inicio y fin."
+
+#. module: l10n_es_aeat_sii_invoice_summary_pos
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary_pos.field_account_bank_statement_line__sii_tickets
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary_pos.field_account_move__sii_tickets
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary_pos.field_account_payment__sii_tickets
+msgid "Sii Tickets"
+msgstr "SII Tickets"
+
+#. module: l10n_es_aeat_sii_invoice_summary_pos
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary_pos.field_account_bank_statement_line__sii_start_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary_pos.field_account_move__sii_start_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary_pos.field_account_payment__sii_start_date
+msgid "Start Date"
+msgstr "Fecha inicio"
+
+#. module: l10n_es_aeat_sii_invoice_summary_pos
+#. odoo-python
+#: code:addons/l10n_es_aeat_sii_invoice_summary_pos/models/account_move.py:0
+#, python-format
+msgid "Start date must be before end date."
+msgstr "Fecha inicio debe ser menor que la fecha fin."
+
+#. module: l10n_es_aeat_sii_invoice_summary_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_invoice_summary_pos.invoice_sii_move_summary_form_view_inherit
+msgid "Summary by dates"
+msgstr "Resumen por fechas"
+
+#. module: l10n_es_aeat_sii_invoice_summary_pos
+#. odoo-python
+#: code:addons/l10n_es_aeat_sii_invoice_summary_pos/models/account_move.py:0
+#, python-format
+msgid "The First invoice and Last invoice fields cannot be empty."
+msgstr "La Primera factura y Última factura no pueden ser vacios."
