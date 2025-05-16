@@ -5,7 +5,7 @@
 
 {
     "name": "AEAT modelo 216",
-    "version": "16.0.1.2.0",
+    "version": "16.0.1.3.0",
     "category": "Localisation/Accounting",
     "author": "AvanzOSC, Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
@@ -14,8 +14,12 @@
     "data": [
         "security/ir.model.access.csv",
         "security/ir_rule.xml",
-        "data/tax_code_map_mod216_data.xml",
-        "data/aeat_export_mod216_data.xml",
+        "data/2016/tax_code_map_mod216_data.xml",
+        "data/2016/aeat_export_mod216_data.xml",
+        "data/2024/l10n.es.aeat.map.tax.csv",
+        "data/2024/l10n.es.aeat.map.tax.line.csv",
+        "data/2024/aeat.model.export.config.csv",
+        "data/2024/aeat.model.export.config.line.csv",
         "views/mod216_view.xml",
     ],
     "maintainers": ["pedrobaeza"],
