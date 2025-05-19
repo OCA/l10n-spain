@@ -51,6 +51,7 @@ class AeatSiiMap(models.Model):
     map_lines = fields.One2many(
         comodel_name="aeat.sii.map.lines", inverse_name="sii_map_id", string="Lines"
     )
+    tax_agency_id = fields.Many2one(comodel_name="aeat.tax.agency", string="Tax Agency")
 
 
 class AeatSiiMapLines(models.Model):

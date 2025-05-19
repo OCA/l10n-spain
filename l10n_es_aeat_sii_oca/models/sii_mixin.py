@@ -190,8 +190,11 @@ class SiiMixin(models.AbstractModel):
         :return: Recordset with the corresponding codes
         """
         map_obj = self.env["aeat.sii.map"].sudo().with_context(active_test=False)
+        tax_agency = self._get_sii_tax_agency()
         sii_map = map_obj.search(
             [
+                "&",
+                ("tax_agency_id", "in", [tax_agency.id, False]),
                 "|",
                 ("date_from", "<=", date),
                 ("date_from", "=", False),
@@ -298,9 +301,12 @@ class SiiMixin(models.AbstractModel):
         address = address or port.binding_options["address"]
         return client.create_service(port.binding.name, address)
 
+    def _get_sii_tax_agency(self):
+        return self.company_id.tax_agency_id
+
     def _connect_params_aeat(self, mapping_key):
         self.ensure_one()
-        agency = self.company_id.tax_agency_id
+        agency = self._get_sii_tax_agency()
         if not agency:
             # We use spanish agency by default to keep old behavior with
             # ir.config parameters. In the future it might be good to reinforce
