@@ -130,6 +130,56 @@ msgid "Currency"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_07
+msgid ""
+"Deberá consignarse el número total de rentas sobre las que el declarante "
+"haya venido obligado a retener o a efectuar ingreso a cuenta declaradas en "
+"las casillas 05 y 06."
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_05
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_06
+msgid ""
+"Deberá consignarse el número total de rentas sobre las que el declarante "
+"haya venido obligado a retener o a efectuar ingreso a cuenta en el mes o "
+"trimestre objeto de declaración."
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_16
+msgid ""
+"Deberá consignarse el número total de rentas sujetas al impuesto exceptuadas "
+"de retención o de ingreso a cuenta declaradas en las casillas 14 y 15."
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_14
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_15
+msgid ""
+"Deberá consignarse el número total de rentas sujetas al impuesto exceptuadas "
+"de retención o de ingreso a cuenta, conforme a lo previsto en los puntos 2 y "
+"3 del artículo 2 de la Orden que aprueba este modelo (estos puntos se "
+"recogen en el apartado 'Obligados' de estas instrucciones como apartados Dos "
+"y Tres)."
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_20
+msgid ""
+"Deberá consignarse en esta casilla el importe correspondiente a "
+"declaraciones anteriores, por el mismo concepto, ejercicio y período, "
+"exclusivamente en caso de declaración complementaria."
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_21
+msgid ""
+"Deberá consignarse en esta casilla el importe correspondiente a la resta de "
+"las casillas 13 y 20"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod216.selection__l10n_es_aeat_mod216_report__tipo_declaracion__u
 msgid "Direct debit"
 msgstr ""
@@ -137,6 +187,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
+msgid ""
+"Dividendos y otras rentas de participación en fondos propios de entidades"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
@@ -155,7 +211,7 @@ msgid "Export config"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
-#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_06
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_06_pre_2024
 msgid ""
 "Fee to compensate for prior results with same subject, fiscal year and "
 "period (in which his statement was to return and compensation back option "
@@ -188,9 +244,19 @@ msgid "Has Message"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
+msgid "I. Rentas sometidas a retención/ingreso a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__id
 msgid "ID"
 msgstr "ID"
+
+#. module: l10n_es_aeat_mod216
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
+msgid "II. Rentas no sometidas a retención/ingreso a cuenta"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__activity_exception_icon
@@ -218,12 +284,12 @@ msgid "Income not subject to retention"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
-#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_05
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_05_pre_2024
 msgid "Income not subject to retention - Base amount"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
-#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_04
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_04_pre_2024
 msgid "Income not subject to retention - Number of recipients"
 msgstr ""
 
@@ -233,12 +299,12 @@ msgid "Income subject to retention"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
-#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_03
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_03_pre_2024
 msgid "Income subject to retention - Amount of retentions"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
-#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_01
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_01_pre_2024
 msgid "Income subject to retention - Number of recipients"
 msgstr ""
 
@@ -379,6 +445,11 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
+msgid "Resto de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
 msgid "Result"
 msgstr ""
 
@@ -388,8 +459,76 @@ msgid "Result type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
-#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_07
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_07_pre_2024
 msgid "Result: ([03] - [06])"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
+msgid "Resultados"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_13
+msgid ""
+"Se consignará el importe total de las retenciones e ingresos a cuenta "
+"declaradas en las casillas 11 y 12."
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_11
+msgid ""
+"Se consignará el importe total de las retenciones e ingresos a cuenta que "
+"correspondan a las rentas declaradas en la casilla 05."
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_12
+msgid ""
+"Se consignará el importe total de las retenciones e ingresos a cuenta que "
+"correspondan a las rentas declaradas en la casilla 06."
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_08
+msgid ""
+"Se consignará la suma total de las bases de retención o de ingreso a cuenta "
+"correspondientes a las rentas declaradas en la casilla 05."
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_09
+msgid ""
+"Se consignará la suma total de las bases de retención o de ingreso a cuenta "
+"correspondientes a las rentas declaradas en la casilla 06."
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_17
+msgid ""
+"Se consignará la suma total de las bases de retención o de ingreso a cuenta "
+"correspondientes a las rentas declaradas en la casilla 14."
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_18
+msgid ""
+"Se consignará la suma total de las bases de retención o de ingreso a cuenta "
+"correspondientes a las rentas declaradas en la casilla 15."
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_19
+msgid ""
+"Se consignará la suma total de las bases de retención o de ingreso a cuenta "
+"correspondientes a las rentas declaradas en las casillas 17 y 18."
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_10
+msgid ""
+"Se consignará la suma total de las bases de retención o de ingreso a cuenta "
+"declaradas en las casillas 08 y 09."
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
@@ -456,6 +595,11 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
+msgid "Total"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
 msgid "Totals"
 msgstr ""
 
@@ -490,31 +634,118 @@ msgid "Year"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_01
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_01_pre_2024
 msgid "[01] # Recipients"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_03
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_03_pre_2024
 msgid "[03] Amount of retentions"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_04
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_04_pre_2024
 msgid "[04] # Recipients"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_05
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_05_pre_2024
 msgid "[05] Base amount"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_06
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_05
+msgid "[05] Número de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_06_pre_2024
 msgid "[06] Fees to compensate"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_06
+msgid "[06] Número de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_07
+msgid "[07] Número de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_07_pre_2024
 msgid "[07] Result"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_08
+msgid "[08] Base de retenciones e ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_09
+msgid "[09] Base de retenciones e ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_10
+msgid "[10] Base de retenciones e ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_11
+msgid "[11] Retenciones e ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_12
+msgid "[12] Retenciones e ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_13
+msgid "[13] Retenciones e ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_14
+msgid "[14] Número de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_15
+msgid "[15] Número de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_16
+msgid "[16] Número de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_17
+msgid "[17] Base de retenciones e ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_18
+msgid "[18] Base de retenciones e ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_19
+msgid "[19] Base de retenciones e ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_20
+msgid ""
+"[20] Resultados a ingresar de anteriores declaraciones por el mismo "
+"concepto, ejercicio y período"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_21
+msgid "[21] Resultado a ingresar"
 msgstr ""
