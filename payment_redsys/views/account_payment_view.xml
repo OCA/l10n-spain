@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Acysos S.L. - Ignacio Ibeas <ignacio@acysos.com>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3). -->
+<odoo>
+    <record id="view_account_payment_form_inherit_redsys" model="ir.ui.view">
+        <field name="name">account.payment.form.inherit.redsys</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form" />
+        <field name="arch" type="xml">
+            <button name="action_post" position="after">
+                <field name="is_redsys_auth" invisible="1" />
+                <button
+                    name="redsys_authorize_amount"
+                    type="object"
+                    string="Authorize Amount"
+                    invisible="not is_redsys_auth"
+                />
+            </button>
+            <xpath expr="//sheet" position="inside">
+                <group string="Redsys Information" invisible="not is_redsys_auth">
+                    <field name="redsys_auth_amount" readonly="redsys_auth_done" />
+                    <field name="redsys_auth_done" invisible="1" />
+                    <field name="redsys_auth_txnid" readonly="1" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

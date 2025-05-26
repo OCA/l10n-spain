@@ -31,6 +31,11 @@ msgid "Alemán"
 msgstr "Alemán"
 
 #. module: payment_redsys
+#: model_terms:ir.ui.view,arch_db:payment_redsys.view_account_payment_form_inherit_redsys
+msgid "Authorize Amount"
+msgstr "Importe autorizado"
+
+#. module: payment_redsys
 #. odoo-python
 #: code:addons/payment_redsys/models/payment_transaction.py:0
 #, python-format
@@ -66,6 +71,13 @@ msgstr "Moneda"
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_pay_method__d
 msgid "Domiciliacion"
 msgstr "Domiciliación"
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/account_payment.py:0
+#, python-format
+msgid "Error Redsys Auth: %s"
+msgstr ""
 
 #. module: payment_redsys
 #. odoo-python
@@ -152,11 +164,6 @@ msgid "Payment Method"
 msgstr "Método de pago"
 
 #. module: payment_redsys
-#: model:ir.model,name:payment_redsys.model_account_payment_method
-msgid "Payment Methods"
-msgstr "Métodos de Pago"
-
-#. module: payment_redsys
 #: model:ir.model,name:payment_redsys.model_payment_provider
 msgid "Payment Provider"
 msgstr "Proveedor del pago"
@@ -189,9 +196,59 @@ msgid "Redsys"
 msgstr "Redsys"
 
 #. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_account_payment__redsys_auth_amount
+msgid "Redsys Auth Amount"
+msgstr "Importe a cobrar autorizado"
+
+#. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_account_payment__redsys_auth_done
+msgid "Redsys Auth Done"
+msgstr "Cobro autorizado realizado"
+
+#. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_account_payment__redsys_auth_txnid
+msgid "Redsys Auth Transaction ID"
+msgstr "ID cobro autorizado"
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/account_payment.py:0
+#, python-format
+msgid "Redsys Auth done: %s"
+msgstr "Cobro autorizado realizado: %s"
+
+#. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_signature_version
 msgid "Redsys Signature Version"
 msgstr "Versión de Redsys de la firma"
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/account_payment.py:0
+#, python-format
+msgid "Redsys: Authorization already done for this transaction."
+msgstr ""
+"Redsys: el cobro autorizado ya ha sido realizado para esta transacción."
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/account_payment.py:0
+#, python-format
+msgid "Redsys: Authorization amount must be set before authorizing."
+msgstr ""
+"Redsys: el importe a cobrar autorizado debe ser establecido antes de la "
+"ejecución."
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/account_payment.py:0
+#, python-format
+msgid ""
+"Redsys: Transaction type must be '1' for preauthorization, current value is "
+"'%s'."
+msgstr ""
+"Redsys: el tipo de transacción debe ser '1' para preautorización, el valor "
+"actual es '%s'."
 
 #. module: payment_redsys
 #. odoo-python
@@ -231,6 +288,11 @@ msgid "Transtaction Type"
 msgstr "Tipo de transacción"
 
 #. module: payment_redsys
+#: model:ir.model.fields,help:payment_redsys.field_payment_provider__redsys_transaction_type
+msgid "Use '0' for normal transaction or Use '1' for a preauthorization"
+msgstr "Use '0' para transacción normal o Use '1' para una preautorización"
+
+#. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_merchant_lang__010
 msgid "Valenciano"
 msgstr "Valenciano"
@@ -262,8 +324,14 @@ msgstr "Su pago ha sido procesado con éxito pero está esperando su aprobación
 
 #. module: payment_redsys
 #: model_terms:payment.provider,done_msg:payment_redsys.payment_provider_redsys
-msgid "Your payment has been successfully processed. Thank you!"
-msgstr "Su pago ha sido realizado correctamente. Gracias!"
+msgid "Your payment has been successfully processed."
+msgstr ""
+
+#~ msgid "Payment Methods"
+#~ msgstr "Métodos de Pago"
+
+#~ msgid "Your payment has been successfully processed. Thank you!"
+#~ msgstr "Su pago ha sido realizado correctamente. Gracias!"
 
 #, python-format
 #~ msgid "Bank Error: %s (%s)"

@@ -63,7 +63,9 @@ Parámetros
 - **Tipo de firma**: Seleccionaremos el tipo de firma del comercio.
 - **Tipo de moneda**: Seleccionaremos la moneda de nuestro terminal TPV
   (Normalmente EUR - Euros).
-- **Tipo de transacción**: Indicaremos el tipo de transacción, 0.
+- **Tipo de transacción**: Indicaremos el tipo de transacción, 0 por
+  defecto. Se indica 1 para trasacciones con autorización para pagar
+  despues un importe variable en un +- 10%.
 - **Idioma TPV**: Indicaremos el idioma en el TPV.
 - **Método de pago**: Indicaremos qué tipo de pago se debe aceptar, pago
   con tarjeta, Bizum u otro de los disponibles.

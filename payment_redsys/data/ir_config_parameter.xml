@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="payment_redsys_url_authorize_prod" model="ir.config_parameter">
+        <field name="key">payment_redsys.url_authorize_prod</field>
+        <field name="value">https://sis.redsys.es/sis/rest/trataPeticionREST</field>
+    </record>
+    <record id="payment_redsys_url_authorize_test" model="ir.config_parameter">
+        <field name="key">payment_redsys.url_authorize_test</field>
+        <field
+            name="value"
+        >https://sis-t.redsys.es:25443/sis/rest/trataPeticionREST</field>
+    </record>
+</odoo>
