@@ -119,7 +119,7 @@
     </record>
     <menuitem
         id="menu_vat_book_report"
-        parent="l10n_es_aeat.menu_root_aeat"
+        parent="l10n_es_aeat.menu_l10n_es_aeat_submenu"
         action="l10n_es_vat_book_action"
         name="Libro de IVA"
     />
