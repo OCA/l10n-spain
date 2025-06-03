@@ -15,6 +15,7 @@
                     />
                     <group name="verifactu_enabled">
                         <field name="verifactu_enabled" />
+                        <field name="verifactu_start_date" />
                     </group>
                     <group attrs="{'invisible': [('verifactu_enabled', '=', False)]}">
                         <group name="verifactu_config">

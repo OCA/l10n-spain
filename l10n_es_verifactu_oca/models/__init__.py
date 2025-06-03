@@ -4,6 +4,7 @@ from . import verifactu_mixin
 from . import account_move
 from . import aeat_tax_agency
 from . import account_fiscal_position
+from . import account_fiscal_position_template
 from . import res_partner
 from . import verifactu_map
 from . import verifactu_map_lines
