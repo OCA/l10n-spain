@@ -260,7 +260,7 @@ class VerifactuMixin(models.AbstractModel):
         spanish_companies = (
             self.env["res.company"]
             .sudo()
-            .search_count([("country_id", "=", self.env.ref("base.es").id)], limit=2)
+            .search_count([("partner_id.country_id", "=", self.env.ref("base.es").id)], limit=2)
         )
         return {
             "NombreRazon": developer.name,
@@ -430,6 +430,7 @@ class VerifactuMixin(models.AbstractModel):
                 doc_vals["aeat_send_error"] = send_error
                 document.write(doc_vals)
             except Exception as fault:
+                self.env.cr.rollback()
                 new_cr = Registry(self.env.cr.dbname).cursor()
                 env = api.Environment(new_cr, self.env.uid, self.env.context)
                 document = env[document._name].browse(document.id)
