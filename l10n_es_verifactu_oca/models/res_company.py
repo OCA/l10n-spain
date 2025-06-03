@@ -24,6 +24,10 @@ class ResCompany(models.Model):
         string="Verifactu Developer",
         ondelete="set null",
     )
+    verifactu_start_date = fields.Date(
+        help="If this field is set, the verifactu won't be enabled on invoices with lower "
+        "invoice date. If not set, the verifactu can be enabled on all invoice dates"
+    )
 
     @api.model
     def _selection_verifactu_reference_models(self):
