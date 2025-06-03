@@ -28,3 +28,18 @@ class ResCompany(models.Model):
     @api.model
     def _selection_verifactu_reference_models(self):
         return self.env["verifactu.mixin"]._selection_verifactu_reference_models()
+
+    def write(self, vals):
+        res = super().write(vals)
+        if "verifactu_enabled" in vals:
+            for company in self:
+                if vals.get("verifactu_enabled", False):
+                    journals = self.env["account.journal"].search(
+                        [
+                            ("company_id", "=", company.id),
+                            ("type", "=", "sale"),
+                        ]
+                    )
+                    if journals:
+                        journals.write({"verifactu_enabled": True})
+        return res
