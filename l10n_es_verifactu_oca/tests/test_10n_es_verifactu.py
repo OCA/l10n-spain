@@ -226,6 +226,16 @@ class TestL10nEsAeatVerifactu(TestL10nEsAeatVerifactuBase):
             )
         return
 
+    def test_verifactu_start_date(self):
+        self.company.verifactu_start_date = "2018-01-01"
+        invoice1 = self.invoice.copy({"invoice_date": "2019-01-01"})
+        self.assertTrue(invoice1.verifactu_enabled)
+        invoice2 = self.invoice.copy({"invoice_date": "2017-01-01"})
+        invoice2.invoice_date = "2017-01-01"
+        self.assertFalse(invoice2.verifactu_enabled)
+        self.company.verifactu_start_date = False
+        self.assertTrue(invoice2.verifactu_enabled)
+
 
 class TestL10nEsAeatVerifactuQR(TestL10nEsAeatVerifactuBase):
     @classmethod
