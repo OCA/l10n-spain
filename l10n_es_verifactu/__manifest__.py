@@ -21,6 +21,7 @@
     "data": [
         "data/verifactu_tax_agency_data.xml",
         "data/verifactu_registration_keys.xml",
+        "data/account_fiscal_position_template_data.xml",
         "data/verifactu_map_data.xml",
         "data/ir_config_parameter.xml",
         "data/ir_cron.xml",
