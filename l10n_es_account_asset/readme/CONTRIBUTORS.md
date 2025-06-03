@@ -5,3 +5,6 @@
 - [Sygel](https://www.sygel.es):
   - Valentin Vinagre
   - Manuel Regidor
+- [Ingeos](https://ingeos.es/):
+  - Sisco Casasempere
+
