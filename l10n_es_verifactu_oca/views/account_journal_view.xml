@@ -16,6 +16,13 @@
                     name="attrs"
                 >{'readonly': [('restrict_mode_hash_table_readonly', '=', True)]}</attribute>
             </xpath>
+            <xpath expr="//field[@name='restrict_mode_hash_table']" position="after">
+                <field name="company_verifactu_enabled" invisible="1" />
+                <field
+                    name="verifactu_enabled"
+                    attrs="{'invisible': ['|', ('company_verifactu_enabled', '=', False), ('type', '!=', 'sale')]}"
+                />
+            </xpath>
         </field>
     </record>
 </odoo>

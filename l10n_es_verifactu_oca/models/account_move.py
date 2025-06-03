@@ -69,11 +69,17 @@ class AccountMove(models.Model):
         "move_type",
         "fiscal_position_id",
         "fiscal_position_id.aeat_active",
+        "journal_id",
+        "journal_id.verifactu_enabled",
     )
     def _compute_verifactu_enabled(self):
         """Compute if the invoice is enabled for the veri*FACTU"""
         for invoice in self:
-            if invoice.company_id.verifactu_enabled and invoice.is_invoice():
+            if (
+                invoice.company_id.verifactu_enabled
+                and invoice.journal_id.verifactu_enabled
+                and invoice.is_invoice()
+            ):
                 invoice.verifactu_enabled = (
                     invoice.fiscal_position_id
                     and invoice.fiscal_position_id.aeat_active
