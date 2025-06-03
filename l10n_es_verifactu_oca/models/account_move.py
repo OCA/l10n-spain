@@ -66,6 +66,8 @@ class AccountMove(models.Model):
     @api.depends(
         "company_id",
         "company_id.verifactu_enabled",
+        "company_id.verifactu_start_date",
+        "invoice_date",
         "move_type",
         "fiscal_position_id",
         "fiscal_position_id.aeat_active",
@@ -79,6 +81,9 @@ class AccountMove(models.Model):
                 invoice.company_id.verifactu_enabled
                 and invoice.journal_id.verifactu_enabled
                 and invoice.is_invoice()
+            ) and (
+                not invoice.company_id.verifactu_start_date
+                or invoice.invoice_date >= invoice.company_id.verifactu_start_date
             ):
                 invoice.verifactu_enabled = (
                     invoice.fiscal_position_id
