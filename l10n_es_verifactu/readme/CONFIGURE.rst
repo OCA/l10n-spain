@@ -1,0 +1,16 @@
+Para configurar este módulo es necesario:
+
+#. En la compañia se almacenan las URLs del servicio SOAP de hacienda.
+   Estas URLs pueden cambiar según comunidades
+#. Los certificados deben alojarse en una carpeta accesible por la instalación
+   de Odoo.
+#. Preparar el certificado. El certificado enviado por la FMNT es en formato
+   p12, este certificado no se puede usar directamente con Zeep. Se tiene que
+   extraer la clave pública y la clave privada.
+
+En Linux se pueden usar los siguientes comandos:
+
+- Clave pública: "openssl pkcs12 -in Certificado.p12 -nokeys -out publicCert.crt -nodes"
+- Clave privada: "openssl pkcs12 -in Certificado.p12 -nocerts -out privateKey.pem -nodes"
+
+#. Establecer en las posiciones fiscales la clave de impuestos y la clave de registro verifactu.
