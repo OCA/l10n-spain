@@ -9,8 +9,7 @@ class VerifactuDeveloper(models.Model):
 
     name = fields.Char(string="Developer Name", required=True)
     vat = fields.Char(string="Developer VAT", required=True)
-    sif_name = fields.Char("SIF Name", default="Odoo", required=True)
-    sif_id = fields.Char(string="SIF ID", default="11", required=True)
+    sif_name = fields.Char("SIF Name", required=True)
+    sif_id = fields.Char(string="SIF ID", required=True)
     version = fields.Char(default="1.0", required=True)
     installation_number = fields.Integer(default=1, required=True)
-    responsible_declaration = fields.Binary(required=True)

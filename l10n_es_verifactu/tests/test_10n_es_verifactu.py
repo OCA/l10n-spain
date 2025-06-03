@@ -38,6 +38,16 @@ class TestL10nEsAeatVerifactuBase(TestL10nEsAeatModBase, TestL10nEsAeatCertifica
         cls.account_expense = cls.env.ref(
             "l10n_es.%s_account_common_600" % cls.company.id
         )
+        cls.verifactu_developer = cls.env["verifactu.developer"].create(
+            {
+                "name": "Odoo Developer",
+                "vat": "A12345674",
+                "sif_name": "odoo",
+                "sif_id": "11",
+                "version": "1.0",
+                "installation_number": 1,
+            }
+        )
         cls.invoice = cls.env["account.move"].create(
             {
                 "company_id": cls.company.id,
@@ -66,6 +76,7 @@ class TestL10nEsAeatVerifactuBase(TestL10nEsAeatModBase, TestL10nEsAeatCertifica
                 "verifactu_test": True,
                 "vat": "G87846952",
                 "tax_agency_id": cls.env.ref("l10n_es_aeat.aeat_tax_agency_spain"),
+                "verifactu_developer_id": cls.verifactu_developer.id,
             }
         )
 
