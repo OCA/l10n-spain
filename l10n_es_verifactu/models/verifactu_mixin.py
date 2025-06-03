@@ -257,8 +257,10 @@ class VerifactuMixin(models.AbstractModel):
                 _("Please, configure the verifactu developer in your company")
             )
         developer = self.company_id.verifactu_developer_id
-        spanish_companies = self.env["res.company"].search_count(
-            [("country_id.code", "=", "ES")], limit=2
+        spanish_companies = (
+            self.env["res.company"]
+            .sudo()
+            .search_count([("country_id", "=", self.env.ref("base.es").id)], limit=2)
         )
         return {
             "NombreRazon": developer.name,
@@ -451,6 +453,10 @@ class VerifactuMixin(models.AbstractModel):
         public_crt, private_key = self.env["l10n.es.aeat.certificate"].get_certificates(
             company=self.company_id
         )
+        if not public_crt or not private_key:
+            raise UserError(
+                _("Please, configure the Veri*FACTU certificates for your company")
+            )
         params = self._connect_verifactu_params_aeat(mapping_key)
         session = Session()
         session.cert = (public_crt, private_key)
