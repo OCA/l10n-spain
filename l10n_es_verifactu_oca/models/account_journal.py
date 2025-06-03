@@ -26,6 +26,11 @@ class AccountJournal(models.Model):
         compute="_compute_restrict_mode_hash_table",
     )
 
+    company_verifactu_enabled = fields.Boolean(
+        related="company_id.verifactu_enabled", string="Company veri*FACTU"
+    )
+    verifactu_enabled = fields.Boolean(string="Enable veri*FACTU", default=True)
+
     @api.depends(
         "company_id", "company_id.verifactu_enabled", "company_id.country_code", "type"
     )
