@@ -801,11 +801,13 @@ class AccountMove(models.Model):
     @api.depends(
         "company_id",
         "company_id.sii_enabled",
+        "company_id.sii_start_date",
         "journal_id",
         "journal_id.sii_enabled",
         "move_type",
         "fiscal_position_id",
         "fiscal_position_id.aeat_active",
+        "invoice_date",
         "invoice_line_ids",
     )
     def _compute_sii_enabled(self):
@@ -819,16 +821,24 @@ class AccountMove(models.Model):
             ):
                 invoice.sii_enabled = (
                     (
-                        invoice.fiscal_position_id
-                        and invoice.fiscal_position_id.aeat_active
-                    )
-                    or not invoice.fiscal_position_id
-                ) and (
-                    not dua_sii_exempt_taxes
-                    or not invoice.invoice_line_ids.filtered(
-                        lambda x, dua_taxes=dua_sii_exempt_taxes: any(
-                            [tax.id in dua_taxes for tax in x.tax_ids]
+                        (
+                            invoice.fiscal_position_id
+                            and invoice.fiscal_position_id.aeat_active
                         )
+                        or not invoice.fiscal_position_id
+                    )
+                    and (
+                        not dua_sii_exempt_taxes
+                        or not invoice.invoice_line_ids.filtered(
+                            lambda x, dua_taxes=dua_sii_exempt_taxes: any(
+                                [tax.id in dua_taxes for tax in x.tax_ids]
+                            )
+                        )
+                    )
+                    and (
+                        not invoice.company_id.sii_start_date
+                        or not invoice.invoice_date
+                        or invoice.invoice_date >= invoice.company_id.sii_start_date
                     )
                 )
             else:
