@@ -531,3 +531,14 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self.assertEqual(reversal.sii_refund_type, "I")
         self.assertTrue(reversal.sii_refund_type_required)
         self.assertFalse(reversal.supplier_invoice_number_refund_required)
+
+    def test_start_date(self):
+        self.company.sii_start_date = "2018-01-01"
+        invoice1 = self._create_invoice_for_sii("out_invoice")
+        invoice1.invoice_date = "2019-01-01"
+        self.assertTrue(invoice1.sii_enabled)
+        invoice2 = self._create_invoice_for_sii("out_invoice")
+        invoice2.invoice_date = "2017-01-01"
+        self.assertFalse(invoice2.sii_enabled)
+        self.company.sii_start_date = False
+        self.assertTrue(invoice2.sii_enabled)
