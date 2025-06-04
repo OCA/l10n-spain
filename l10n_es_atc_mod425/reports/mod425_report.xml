@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="mod425_report_xml_doc">
+        <DEC
+            MOD="425"
+            t-att-ANY="doc.year"
+            t-att-PER="doc.period_type"
+            t-att-COM="doc.statement_type == 'C' and 'X' or None"
+            t-att-NJA="doc.statement_type == 'C' and doc.previous_number or None"
+            t-att-FIM="datetime.datetime.now().strftime('%Y%m%d')"
+        >
+            <!-- TODO: IDE attributes? -->
+            <IDE>
+                <!-- TODO: TIP, NPK, CAL, BLO, ESC, PIS, PUE, POR, FAX -->
+                <OTP
+                    t-att-NIF="doc.company_vat"
+                    t-att-NRS="doc.company_id.name.upper()"
+                    t-att-SVP="doc.company_id.atc_public_way"
+                    t-att-NVP="(doc.company_id.street or '').upper()"
+                    t-att-TEL="doc.company_id.phone"
+                    t-att-EMA="doc.company_id.email"
+                    t-att-POP="doc._atc_get_country_state_code(doc.company_id.state_id)"
+                    t-att-CMU="doc.company_id.city_id.code"
+                    t-att-CP="doc.company_id.zip"
+                    t-att-PAI="doc.company_id.country_id.code"
+                />
+            </IDE>
+            <EST
+                t-att-DTP="doc.has_415 and 'S' or 'N'"
+                t-att-RECC="doc.is_cash_basis and 'S' or 'N'"
+            >
+                <ACT
+                    t-att-CLA="doc.main_activity_code"
+                    t-att-EPI="doc.main_activity_iae"
+                    t-att-REG="doc.main_regime_code"
+                    t-att-PRO="doc._format_amount(doc.main_activity_pro_prorrata)"
+                    t-att-DEF="doc._format_amount(doc.main_activity_def_prorrata)"
+                    t-att-ESP="doc.main_activity_esp_prorrata and 'X' or None"
+                />
+            </EST>
+            <REP
+                t-if="doc.first_representative_vat"
+                t-att-TIP="'PJ'"
+                t-att-NOT="doc.first_representative_notary.upper()"
+                t-att-FPO="doc.first_representative_date.strftime('%d/%m/%Y')"
+            >
+                <OTP TPE="RP" SEC="1">
+                    <PER
+                        t-att-NIF="doc.first_representative_vat"
+                        t-att-NRS="doc.first_representative_name.upper()"
+                    />
+                </OTP>
+            </REP>
+            <REP
+                t-if="doc.second_representative_vat"
+                t-att-TIP="'PJ'"
+                t-att-NOT="doc.second_representative_notary.upper()"
+                t-att-FPO="doc.second_representative_date.strftime('%d/%m/%Y')"
+            >
+                <OTP TPE="RP" SEC="2">
+                    <PER
+                        t-att-NIF="doc.second_representative_vat"
+                        t-att-NRS="doc.second_representative_name.upper()"
+                    />
+                </OTP>
+            </REP>
+            <REP
+                t-if="doc.third_representative_vat"
+                t-att-TIP="'PJ'"
+                t-att-NOT="doc.third_representative_notary.upper()"
+                t-att-FPO="doc.third_representative_date.strftime('%d/%m/%Y')"
+            >
+                <OTP TPE="RP" SEC="3">
+                    <PER
+                        t-att-NIF="doc.third_representative_vat"
+                        t-att-NRS="doc.third_representative_name.upper()"
+                    />
+                </OTP>
+            </REP>
+            <t
+                t-set="devengado_fields"
+                t-value="[(1, 3), (4, 6), (7, 9), (10, 12), (13, 15), (16, 18)]"
+            />
+            <t
+                t-set="devengado_data"
+                t-value="doc._get_amount_by_fields(devengado_fields)"
+            />
+            <REG t-att-RES="doc._format_amount(doc.casilla_95)">
+                <t t-if="devengado_data">
+                    <DEV
+                        t-att-TBA="doc._format_amount(doc.casilla_74)"
+                        t-att-TCU="doc._format_amount(doc.casilla_79)"
+                    >
+                        <t t-foreach="devengado_data" t-as="devengado_line">
+                            <t
+                                t-foreach="devengado_line['amount_by_tax'].values()"
+                                t-as="devengado"
+                            >
+                                <RGO
+                                    t-att-BAS="devengado['base']"
+                                    t-att-CUO="devengado['amount'] or '00'"
+                                    t-att-TIP="devengado['percentage'] or '000'"
+                                />
+                            </t>
+                        </t>
+                        <t t-set="MBC" t-value="doc._get_amount_by_field(70, 71)" />
+                        <MBC
+                            t-if="MBC['base']"
+                            t-att-BAS="MBC['base']"
+                            t-att-CUO="MBC['amount']"
+                        />
+                        <MCA
+                            t-if="doc.casilla_72"
+                            t-att-BAS="doc._format_amount(doc.casilla_72)"
+                            t-att-CUO="doc._format_amount(doc.casilla_73)"
+                        />
+                        <OIN
+                            t-if="doc.casilla_75"
+                            t-att-BAS="doc._format_amount(doc.casilla_75)"
+                            t-att-CUO="doc._format_amount(doc.casilla_76)"
+                        />
+                        <CRV
+                            t-if="doc.casilla_77"
+                            t-att-BAS="doc._format_amount(doc.casilla_77)"
+                            t-att-CUO="doc._format_amount(doc.casilla_78)"
+                        />
+                    </DEV>
+                </t>
+                <t t-if="doc.casilla_94">
+                    <DED t-att-TOT="doc._format_amount(doc.casilla_94)">
+                        <!-- TODO: OGC, OGI, REG -->
+                        <t t-set="OIC" t-value="doc._get_amount_by_field(80, 81)" />
+                        <OIC
+                            t-if="OIC"
+                            t-att-BAS="OIC['base']"
+                            t-att-CUO="OIC['amount']"
+                        />
+                        <t t-set="OII" t-value="doc._get_amount_by_field(82, 83)" />
+                        <OII
+                            t-if="OII['base']"
+                            t-att-BAS="OII['base']"
+                            t-att-CUO="OII['amount']"
+                        />
+                        <t t-set="IMC" t-value="doc._get_amount_by_field(84, 85)" />
+                        <IMC
+                            t-if="IMC['base']"
+                            t-att-BAS="IMC['base']"
+                            t-att-CUO="IMC['amount']"
+                        />
+                        <t t-set="IMI" t-value="doc._get_amount_by_field(86, 87)" />
+                        <IMI
+                            t-if="IMI['base']"
+                            t-att-BAS="IMI['base']"
+                            t-att-CUO="IMI['amount']"
+                        />
+                        <t t-set="RED" t-value="doc._get_amount_by_field(88, 89)" />
+                        <RED
+                            t-if="RED['base']"
+                            t-att-BAS="RED['base']"
+                            t-att-CUO="RED['amount']"
+                        />
+                        <CRA
+                            t-if="doc.casilla_90"
+                            t-att-CUO="doc._format_amount(doc.casilla_90)"
+                        />
+                        <RBI
+                            t-if="doc.casilla_91"
+                            t-att-CUO="doc._format_amount(doc.casilla_91)"
+                        />
+                        <RIA
+                            t-if="doc.casilla_92"
+                            t-att-CUO="doc._format_amount(doc.casilla_92)"
+                        />
+                        <RPP
+                            t-if="doc.casilla_93"
+                            t-att-CUO="doc._format_amount(doc.casilla_93)"
+                        />
+                    </DED>
+                </t>
+            </REG>
+            <LIQ
+                t-att-SUT="doc._format_amount(doc.casilla_113)"
+                t-att-CPA="doc._format_amount(doc.casilla_114)"
+                t-att-RLI="doc._format_amount(doc.casilla_115)"
+            />
+            <AUT
+                t-if="doc.casilla_116 or doc.casilla_117 or doc.casilla_118 or doc.casilla_119"
+                t-att-TOA="doc._format_amount(doc.casilla_116)"
+                t-att-TOM="doc._format_amount(doc.casilla_117)"
+                t-att-IMC="doc._format_amount(doc.casilla_118)"
+                t-att-IMD="doc._format_amount(doc.casilla_119)"
+            />
+            <OPE
+                t-att-REG="doc._format_amount(doc.casilla_120)"
+                t-att-TOT="doc._format_amount(doc.casilla_120)"
+            />
+            <!-- TODO: support for RES, RCC, RPE? -->
+        </DEC>
+    </template>
+    <template id="mod425_report_xml">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="l10n_es_atc_mod425.mod425_report_xml_doc">
+            </t>
+        </t>
+    </template>
+    <record id="mod425_xml_report" model="ir.actions.report">
+        <field name="name">Mod 425 xml report</field>
+        <field name="model">l10n.es.atc.mod425.report</field>
+        <field name="report_type">qweb-xml</field>
+        <field name="report_name">l10n_es_atc_mod425.mod425_report_xml</field>
+        <field
+            name="binding_model_id"
+            ref="l10n_es_atc_mod425.model_l10n_es_atc_mod425_report"
+        />
+        <field name="binding_type">report</field>
+        <field
+            name="xsd_schema"
+            type="base64"
+            file="l10n_es_atc_mod425/reports/Presentacion-425-XMLSchema.xsd"
+        />
+    </record>
+</odoo>
