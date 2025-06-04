@@ -7,3 +7,5 @@
   - Aritz Olea
 - [Sygel](https://www.sygel.es/):
   - Ángel García de la Chica Herrera
+- [Ingeos](https://www.ingeos.es/):
+  - Sisco Casasempere
