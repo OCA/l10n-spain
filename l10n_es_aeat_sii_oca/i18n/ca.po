@@ -380,6 +380,13 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_company__sii_start_date
+msgid ""
+"If this field is set, the sii won't be enabled on invoices with lower "
+"invoice date. If not set, the sii can be enabled on all invoice dates"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__aeat_send_failed
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_sii_mixin__aeat_send_failed
 msgid ""
@@ -858,6 +865,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_refund_specific_invoice_type
 msgid "Sii Refund Specific Invoice Type"
 msgstr "Tipus de factura específica d'abonament de SII"
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_start_date
+msgid "Sii Start Date"
+msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_tax_agency_form_view
