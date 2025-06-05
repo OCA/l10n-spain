@@ -40,6 +40,7 @@ msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.ui.menu,name:l10n_es_aeat.menu_l10n_es_aeat_config
+#: model:ir.ui.menu,name:l10n_es_aeat.menu_l10n_es_aeat_submenu
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_company_aeat_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_partner_form
@@ -150,11 +151,6 @@ msgstr "Módulo base modelos AEAT"
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_vat_book_name_uniq
 msgid "AEAT report identifier must be unique"
 msgstr "O identificador da declaración AEAT debe ser único"
-
-#. module: l10n_es_aeat
-#: model:ir.ui.menu,name:l10n_es_aeat.menu_root_aeat
-msgid "AEAT reports"
-msgstr "Declaracións AEAT"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_mixin__aeat_state
@@ -1555,6 +1551,11 @@ msgid "Report identifier"
 msgstr "Identificador do informe"
 
 #. module: l10n_es_aeat
+#: model:ir.ui.menu,name:l10n_es_aeat.menu_root_aeat
+msgid "Reports"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__res_partner__aeat_identification_type__05
 msgid "Residential certificate"
 msgstr ""
@@ -1982,6 +1983,9 @@ msgstr "abierto"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_password_wizard_view
 msgid "or"
 msgstr "o"
+
+#~ msgid "AEAT reports"
+#~ msgstr "Declaracións AEAT"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Modificado por última vez o"

@@ -39,6 +39,7 @@ msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.ui.menu,name:l10n_es_aeat.menu_l10n_es_aeat_config
+#: model:ir.ui.menu,name:l10n_es_aeat.menu_l10n_es_aeat_submenu
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_company_aeat_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_partner_form
@@ -148,11 +149,6 @@ msgstr "Módulo base para declaraciones AEAT"
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_vat_book_name_uniq
 msgid "AEAT report identifier must be unique"
 msgstr ""
-
-#. module: l10n_es_aeat
-#: model:ir.ui.menu,name:l10n_es_aeat.menu_root_aeat
-msgid "Reports"
-msgstr "Declaraciones"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_mixin__aeat_state
@@ -1550,6 +1546,11 @@ msgstr "Declaración"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__name
 msgid "Report identifier"
 msgstr "Identificador del informe"
+
+#. module: l10n_es_aeat
+#: model:ir.ui.menu,name:l10n_es_aeat.menu_root_aeat
+msgid "Reports"
+msgstr "Declaraciones"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__res_partner__aeat_identification_type__05
