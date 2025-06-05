@@ -96,16 +96,16 @@ Authors
 Contributors
 ------------
 
--  `Tecnativa <https://www.tecnativa.com>`__:
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-   -  Pedro M. Baeza
+  - Pedro M. Baeza
 
--  `Sygel Technology <https://www.sygel.es>`__:
+- `Sygel Technology <https://www.sygel.es>`__:
 
-   -  Valentin Vinagre
-   -  Manuel Regidor
+  - Valentin Vinagre
+  - Manuel Regidor
 
--  Emilio Pascual (`Moduon <https://www.moduon.team/>`__)
+- Emilio Pascual (`Moduon <https://www.moduon.team/>`__)
 
 Maintainers
 -----------
