@@ -1162,6 +1162,11 @@ msgid "Load Certificate"
 msgstr "Carrega certificat"
 
 #. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_account_journal_form
+msgid "Localization Settings"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__map_parent_id
 msgid "Map Parent"
 msgstr "Mapeig pare"
@@ -1681,6 +1686,7 @@ msgstr "Impost"
 
 #. module: l10n_es_aeat
 #: model:ir.actions.act_window,name:l10n_es_aeat.aeat_tax_agency_action
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_account_journal__tax_agency_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__tax_agency_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__tax_agency_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_res_company__tax_agency_id
@@ -1911,6 +1917,13 @@ msgstr "Opció d'alineament errònia. Hauria de ser <o>"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__year
 msgid "Year"
 msgstr "Any"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_account_journal__tax_agency_id
+msgid ""
+"You can select a tax agency other than the one defined in the company,so you "
+"can pay taxes at different agencies."
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
