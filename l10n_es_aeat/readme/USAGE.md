@@ -13,6 +13,12 @@ Para poder visualizar un archivo BOE, hay que:
 Para importar el certificado, hay que:
 
 1.  Entrar en *Facturación \> Configuración \> AEAT \> Certificados*
-2.  Crear uno nuevo. Rellenas los datos del formulurio y subir el
+2.  Crear uno nuevo. Rellenas los datos del formulario y subir el
     archivo p12
 3.  Pulsar obtener claves e introducir la contraseña del certificado
+
+Para gestionar inmuebles, hay que:
+
+1.  Entrar en *Facturación \> Configuración \> AEAT \> Inmuebles*
+2.  Crear uno nuevo. Rellenar los datos del formulario.
+3.  Añadir un inmueble en el campo Inmueble de las lineas de factura.

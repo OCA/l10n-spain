@@ -33,3 +33,5 @@ heredarán la función \_compute_error_count para indicar cuantas líneas
 con errores hay en el informe. Si el valor es 0, no se mostrará ningún
 aviso; si el valor es mayor a 0, se mostrará un aviso en la parte
 superior de la vista formulario del informe.
+
+Se ha añadido el modelo l10n.es.aeat.real_state para gestionar los inmuebles.

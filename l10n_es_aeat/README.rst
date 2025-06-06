@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =========
 AEAT Base
 =========
@@ -17,7 +13,7 @@ AEAT Base
 .. |badge1| image:: https://img.shields.io/badge/maturity-Mature-brightgreen.png
     :target: https://odoo-community.org/page/development-status
     :alt: Mature
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
@@ -50,6 +46,7 @@ Módulo base para declaraciones de la AEAT, que incluye:
   "Agencia Estatal de Administración Tributaria" creado al efecto.
 - Certificado para las declaraciones de la AEAT
 - Webservice AEAT SOAP
+- Inmuebles.
 
 **Table of contents**
 
@@ -101,6 +98,9 @@ con errores hay en el informe. Si el valor es 0, no se mostrará ningún
 aviso; si el valor es mayor a 0, se mostrará un aviso en la parte
 superior de la vista formulario del informe.
 
+Se ha añadido el modelo l10n.es.aeat.real_state para gestionar los
+inmuebles.
+
 Usage
 =====
 
@@ -119,9 +119,15 @@ Para poder visualizar un archivo BOE, hay que:
 Para importar el certificado, hay que:
 
 1. Entrar en *Facturación > Configuración > AEAT > Certificados*
-2. Crear uno nuevo. Rellenas los datos del formulurio y subir el archivo
+2. Crear uno nuevo. Rellenas los datos del formulario y subir el archivo
    p12
 3. Pulsar obtener claves e introducir la contraseña del certificado
+
+Para gestionar inmuebles, hay que:
+
+1. Entrar en *Facturación > Configuración > AEAT > Inmuebles*
+2. Crear uno nuevo. Rellenar los datos del formulario.
+3. Añadir un inmueble en el campo Inmueble de las lineas de factura.
 
 Known issues / Roadmap
 ======================
@@ -173,6 +179,7 @@ Contributors
 - Manuel Regidor <manuel.regidor@sygel.es>
 - Jairo Llopis (https://www.moduon.team)
 - Loida Vilaplana (https://www.moduon.team)
+- Carlos Sainz-Pardo (https://www.netkia.es)
 
 Maintainers
 -----------

@@ -14,6 +14,45 @@
                     readonly="state != 'draft'"
                 />
             </xpath>
+            <xpath
+                expr="//field[@name='invoice_line_ids']//tree/field[@name='name']"
+                position="after"
+            >
+                <field
+                    name='l10n_es_aeat_real_estate_id'
+                    optional='hide'
+                    context="{'default_partner_id': partner_id}"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='invoice_line_ids']//form/sheet//field[@name='name']"
+                position="after"
+            >
+                <label for="l10n_es_aeat_real_estate_id" string="Real Estate" />
+                <field
+                    name='l10n_es_aeat_real_estate_id'
+                    context="{'default_partner_id': partner_id}"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='line_ids']//tree//field[@name='name']"
+                position="after"
+            >
+                <field
+                    name='l10n_es_aeat_real_estate_id'
+                    optional='hide'
+                    context="{'default_partner_id': partner_id}"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='line_ids']//form/group/field[@name='name']"
+                position="after"
+            >
+                <field
+                    name='l10n_es_aeat_real_estate_id'
+                    context="{'default_partner_id': partner_id}"
+                />
+            </xpath>
         </field>
     </record>
 </odoo>
