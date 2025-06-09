@@ -24,6 +24,11 @@
                 ref('l10n_es.account_tax_template_s_iva4s'),
                 ref('l10n_es.account_tax_template_s_iva5s'),
                 ref('l10n_es.account_tax_template_s_iva7-5s'),
+                ref('l10n_es.account_tax_template_s_iva0_ic'),
+                ref('l10n_es.account_tax_template_s_iva0_sp_i'),
+                ref('l10n_es.account_tax_template_s_iva0_e'),
+                ref('l10n_es.account_tax_template_s_iva_e'),
+                ref('l10n_es.account_tax_template_s_iva0'),
             ])]"
         />
         <field name="verifactu_map_id" ref="verifactu_map" />
@@ -53,7 +58,13 @@
 
     <record id="verifactu_map_line_N2" model="verifactu.map.lines">
         <field name="code">N2</field>
-        <field name="taxes" eval="[(6, 0, [])]" />
+        <field
+            name="taxes"
+            eval="[(6, 0, [
+                ref('l10n_es.account_tax_template_s_iva_ns_b'),
+                ref('l10n_es.account_tax_template_s_iva_ns'),
+            ])]"
+        />
         <field name="verifactu_map_id" ref="verifactu_map" />
         <field name="name">Operación No Sujeta por Reglas de localización.</field>
     </record>
@@ -76,4 +87,42 @@
         <field name="name">Recargo Equivalencia</field>
     </record>
 
+    <record id="verifactu_map_line_tax_not_included" model="verifactu.map.lines">
+        <field name="code">TaxNotIncludedInTotal</field>
+        <field
+            name="taxes"
+            eval="[(6, 0, [
+              ref('l10n_es.account_tax_template_s_irpf1'),
+              ref('l10n_es.account_tax_template_s_irpf2'),
+              ref('l10n_es.account_tax_template_s_irpf7'),
+              ref('l10n_es.account_tax_template_s_irpf9'),
+              ref('l10n_es.account_tax_template_s_irpf15'),
+              ref('l10n_es.account_tax_template_s_irpf18'),
+              ref('l10n_es.account_tax_template_s_irpf19'),
+              ref('l10n_es.account_tax_template_s_irpf19a'),
+              ref('l10n_es.account_tax_template_s_irpf195a'),
+              ref('l10n_es.account_tax_template_s_irpf20'),
+              ref('l10n_es.account_tax_template_s_irpf20a'),
+              ref('l10n_es.account_tax_template_s_irpf21'),
+              ref('l10n_es.account_tax_template_s_irpf21a'),
+              ref('l10n_es.account_tax_template_s_irpf24'),
+              ref('l10n_es.account_tax_template_s_irpfnrnue24'),
+              ref('l10n_es.account_tax_template_s_irpfnrue19'),
+            ])]"
+        />
+        <field name="verifactu_map_id" ref="verifactu_map" />
+        <field name="name">Impuestos no incluidos en ImporteTotal</field>
+    </record>
+
+    <record id="verifactu_map_line_base_not_included" model="verifactu.map.lines">
+        <field name="code">BaseNotIncludedInTotal</field>
+        <field
+            name="taxes"
+            eval="[(6, 0, [
+          ref('l10n_es.account_tax_template_s_iva0_ns'),
+        ])]"
+        />
+        <field name="verifactu_map_id" ref="verifactu_map" />
+        <field name="name">Bases no incluidas en ImporteTotal</field>
+    </record>
 </odoo>
