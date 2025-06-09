@@ -80,10 +80,11 @@ class AccountMove(models.Model):
             if (
                 invoice.company_id.verifactu_enabled
                 and invoice.journal_id.verifactu_enabled
-                and invoice.is_invoice()
+                and invoice.move_type in ["out_invoice", "out_refund"]
             ) and (
                 not invoice.company_id.verifactu_start_date
-                or invoice.invoice_date >= invoice.company_id.verifactu_start_date
+                or invoice.invoice_date
+                and invoice.invoice_date >= invoice.company_id.verifactu_start_date
             ):
                 invoice.verifactu_enabled = (
                     invoice.fiscal_position_id
@@ -161,7 +162,7 @@ class AccountMove(models.Model):
         TODO: this method is the same in l10n_es_aeat_sii_oca, so I think that
         it should be directly in l10n_es_aeat
         """
-        return self.date
+        return self.invoice_date
 
     def _get_mapping_key(self):
         """
@@ -185,12 +186,6 @@ class AccountMove(models.Model):
 
     def _get_verifactu_issuer(self):
         return self.company_id.partner_id._parse_aeat_vat_info()[2]
-
-    def _get_verifactu_amount_tax(self):
-        return self.amount_tax_signed
-
-    def _get_verifactu_amount_total(self):
-        return self.amount_total_signed
 
     def _get_verifactu_previous_hash(self):
         if self.verifactu_previous_document_id:
@@ -217,8 +212,9 @@ class AccountMove(models.Model):
         serialNumber = self._get_document_serial_number()
         expeditionDate = self._change_date_format(self._get_document_date())
         documentType = self._get_verifactu_document_type()
-        amountTax = round(self._get_verifactu_amount_tax(), 2)
-        amountTotal = round(self._get_verifactu_amount_total(), 2)
+        _taxes_dict, amount_tax, amount_total = self._get_verifactu_taxes_and_total()
+        amountTax = round(amount_tax, 2)
+        amountTotal = round(amount_total, 2)
         previousHash = self._get_verifactu_previous_hash()
         registrationDate = self._get_verifactu_registration_date()
         verifactu_hash_string = (
@@ -234,10 +230,12 @@ class AccountMove(models.Model):
         return verifactu_hash_string
 
     @api.model
-    def _get_subsanation_verifactu_hash(self):
+    def _set_subsanation_verifactu_hash(self):
         verifactu_hash_values = self._get_verifactu_hash_string()
         hash_string = sha256(verifactu_hash_values.encode("utf-8"))
-        return hash_string.hexdigest().upper()
+        self.verifactu_hash_string = hash_string
+        self.verifactu_hash = hash_string.hexdigest().upper()
+        return self.verifactu_hash
 
     def _get_verifactu_invoice_dict_out(self, cancel=False):
         """Build dict with data to send to AEAT WS for document types:
@@ -315,11 +313,11 @@ class AccountMove(models.Model):
             }
         )
         if self.aeat_state == "sent_w_errors":
+            # en caso de subsanación, debe generar un nuevo hash en la factura
             inv_dict.update(
                 {
                     "Subsanacion": "S",
-                    # "RechazoPrevio": "X",
-                    "Huella": self._get_subsanation_verifactu_hash(),
+                    "Huella": self._set_subsanation_verifactu_hash(),
                 }
             )
         registroAlta.setdefault("RegistroAlta", inv_dict)
@@ -368,6 +366,19 @@ class AccountMove(models.Model):
             tax_dict["CuotaRecargoEquivalencia"] = tax_lines[req_tax]["amount"]
         return tax_dict
 
+    def _get_verifactu_tax_dict_ns(self, tax_line):
+        """Get the Verifactu tax dictionary for the passed tax line.
+
+        :param self: Single invoice record.
+        :param tax_line: Tax line that is being analyzed.
+        :return: A dictionary with the corresponding Verifactu tax values.
+        """
+        tax_base_amount = tax_line["base"]
+        tax_dict = {
+            "BaseImponibleOimporteNoSujeto": tax_base_amount,
+        }
+        return tax_dict
+
     def _get_verifactu_tax_req(self, tax):
         """Get the associated req tax for the specified tax.
 
@@ -396,9 +407,23 @@ class AccountMove(models.Model):
         taxes_S2 = self._get_verifactu_taxes_map(["S2"], document_date)
         taxes_N1 = self._get_verifactu_taxes_map(["N1"], document_date)
         taxes_N2 = self._get_verifactu_taxes_map(["N2"], document_date)
+        taxes_RE = self._get_verifactu_taxes_map(["RE"], document_date)
+        taxes_not_in_total = self._get_verifactu_taxes_map(
+            ["TaxNotIncludedInTotal"], document_date
+        )
+        base_not_in_total = self._get_verifactu_taxes_map(
+            ["BaseNotIncludedInTotal"], document_date
+        )
+        excluded_taxes = taxes_not_in_total + base_not_in_total
         breakdown_taxes = taxes_S1 + taxes_S2 + taxes_N1 + taxes_N2
+        not_in_amount_total = 0.0
+        not_in_taxes = 0.0
         for tax_line in tax_lines.values():
             tax = tax_line["tax"]
+            if tax in taxes_not_in_total:
+                not_in_amount_total += tax_line["amount"]
+            elif tax in base_not_in_total:
+                not_in_amount_total += tax_line["base"]
             if tax in breakdown_taxes:
                 operation_type = self._get_verifactu_operation_type(
                     tax_line, taxes_S1, taxes_S2, taxes_N1, taxes_N2
@@ -410,12 +435,21 @@ class AccountMove(models.Model):
                 }
                 # si es exenta:
                 # "OperacionExenta": "", # TODO
-                tax_dict.update(self._get_verifactu_tax_dict(tax_line, tax_lines))
+                if operation_type not in ("N1", "N2"):
+                    tax_dict.update(self._get_verifactu_tax_dict(tax_line, tax_lines))
+                else:
+                    tax_dict.update(self._get_verifactu_tax_dict_ns(tax_line))
                 taxes_dict["DetalleDesglose"].append(tax_dict)
+            elif tax in excluded_taxes:
+                not_in_taxes += tax_line["amount"]
+            elif tax not in taxes_RE:
+                raise UserError(_("%s tax is not mapped to Verifactu." % tax.name))
+        amount_tax = self.amount_tax_signed - not_in_taxes
+        amount_total = self.amount_total_signed - not_in_amount_total
         return (
             taxes_dict,
-            self._get_verifactu_amount_tax(),
-            self._get_verifactu_amount_total(),
+            amount_tax,
+            amount_total,
         )
 
     def _get_verifactu_operation_type(
@@ -473,12 +507,13 @@ class AccountMove(models.Model):
         """Get the QR values for the verifactu"""
         self.ensure_one()
         company_vat = self.company_id.partner_id._parse_aeat_vat_info()[2]
+        _taxes_dict, _amount_tax, amount_total = self._get_verifactu_taxes_and_total()
         return OrderedDict(
             [
                 ("nif", company_vat),
                 ("numserie", self.name),
                 ("fecha", self.invoice_date.strftime("%d-%m-%Y")),
-                ("importe", self.amount_total),
+                ("importe", amount_total),
             ]
         )
 
@@ -517,7 +552,36 @@ class AccountMove(models.Model):
                 )
                 % self.name
             )
+
+        if not self._check_all_taxes_mapped():
+            raise UserError(
+                _(
+                    "The invoice %s cannot be sent to Verifactu because it "
+                    "does not have all taxes mapped."
+                )
+                % self.name
+            )
         return super()._check_verifactu_configuration()
+
+    def _check_all_taxes_mapped(self):
+        tax_lines = self._get_aeat_tax_info()
+        if not tax_lines:
+            raise UserError(
+                _(
+                    "The invoice %s cannot be sent to Verifactu because"
+                    "it does not have any taxes."
+                )
+                % self.name
+            )
+        document_date = self._get_document_fiscal_date()
+        verifactu_map = verifactu_map = self._get_verifactu_map(document_date)
+        tax_templates = verifactu_map.map_lines.mapped("taxes")
+        mapped_taxes = self.company_id.get_taxes_from_templates(tax_templates)
+        tax_lines = self._get_aeat_tax_info()
+        for tax_line in tax_lines.values():
+            if tax_line["tax"] not in mapped_taxes:
+                return False
+        return True
 
     def _generate_verifactu_chaining(self):
         self.ensure_one()
@@ -603,3 +667,19 @@ class AccountMove(models.Model):
             self.env["ir.cron.trigger"].sudo().create(
                 {"cron_id": verifactu_send_cron.id, "call_at": fields.Datetime.now()}
             )
+
+    def button_cancel(self):
+        invoices_sent = self.filtered(
+            lambda inv: inv.verifactu_enabled and inv.aeat_state != "not_sent"
+        )
+        if invoices_sent:
+            raise UserError(_("You can not cancel invoices sent to verifactu"))
+        return super().button_cancel()
+
+    def button_draft(self):
+        invoices_sent = self.filtered(
+            lambda inv: inv.verifactu_enabled and inv.aeat_state != "not_sent"
+        )
+        if invoices_sent:
+            raise UserError(_("You can not set to draft invoices sent to verifactu"))
+        return super().button_draft()
