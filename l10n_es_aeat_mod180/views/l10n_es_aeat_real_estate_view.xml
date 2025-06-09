@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="l10n_es_aeat_real_estate_form_180" model="ir.ui.view">
+        <field name="name">l10n.es.aeat.real.estate.form.inherit.180</field>
+        <field name="model">l10n.es.aeat.real_estate</field>
+        <field name="inherit_id" ref="l10n_es_aeat.l10n_es_aeat_real_estate_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='zip']" position="after">
+                <field name="real_estate_situation" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
