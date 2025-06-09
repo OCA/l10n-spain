@@ -80,10 +80,11 @@ class AccountMove(models.Model):
             if (
                 invoice.company_id.verifactu_enabled
                 and invoice.journal_id.verifactu_enabled
-                and invoice.is_invoice()
+                and invoice.is_sale_document()
             ) and (
                 not invoice.company_id.verifactu_start_date
-                or invoice.invoice_date >= invoice.company_id.verifactu_start_date
+                or invoice.invoice_date
+                and invoice.invoice_date >= invoice.company_id.verifactu_start_date
             ):
                 invoice.verifactu_enabled = (
                     invoice.fiscal_position_id
@@ -161,7 +162,7 @@ class AccountMove(models.Model):
         TODO: this method is the same in l10n_es_aeat_sii_oca, so I think that
         it should be directly in l10n_es_aeat
         """
-        return self.date
+        return self.invoice_date
 
     def _get_mapping_key(self):
         """
@@ -368,6 +369,19 @@ class AccountMove(models.Model):
             tax_dict["CuotaRecargoEquivalencia"] = tax_lines[req_tax]["amount"]
         return tax_dict
 
+    def _get_verifactu_tax_dict_ns(self, tax_line):
+        """Get the Verifactu tax dictionary for the passed tax line.
+
+        :param self: Single invoice record.
+        :param tax_line: Tax line that is being analyzed.
+        :return: A dictionary with the corresponding Verifactu tax values.
+        """
+        tax_base_amount = tax_line["base"]
+        tax_dict = {
+            "BaseImponibleOimporteNoSujeto": tax_base_amount,
+        }
+        return tax_dict
+
     def _get_verifactu_tax_req(self, tax):
         """Get the associated req tax for the specified tax.
 
@@ -410,8 +424,13 @@ class AccountMove(models.Model):
                 }
                 # si es exenta:
                 # "OperacionExenta": "", # TODO
-                tax_dict.update(self._get_verifactu_tax_dict(tax_line, tax_lines))
+                if operation_type not in ("N1", "N2"):
+                    tax_dict.update(self._get_verifactu_tax_dict(tax_line, tax_lines))
+                else:
+                    tax_dict.update(self._get_verifactu_tax_dict_ns(tax_line))
                 taxes_dict["DetalleDesglose"].append(tax_dict)
+            else:
+                raise UserError(_("%s tax is not mapped to Verifactu." % tax.name))
         return (
             taxes_dict,
             self._get_verifactu_amount_tax(),
@@ -517,7 +536,36 @@ class AccountMove(models.Model):
                 )
                 % self.name
             )
+
+        if not self._check_all_taxes_mapped():
+            raise UserError(
+                _(
+                    "The invoice %s cannot be sent to Verifactu because it "
+                    "does not have all taxes mapped."
+                )
+                % self.name
+            )
         return super()._check_verifactu_configuration()
+
+    def _check_all_taxes_mapped(self):
+        tax_lines = self._get_aeat_tax_info()
+        if not tax_lines:
+            raise UserError(
+                _(
+                    "The invoice %s cannot be sent to Verifactu because"
+                    "it does not have any taxes."
+                )
+                % self.name
+            )
+        document_date = self._get_document_fiscal_date()
+        verifactu_map = verifactu_map = self._get_verifactu_map(document_date)
+        tax_templates = verifactu_map.map_lines.mapped("taxes")
+        mapped_taxes = self.company_id.get_taxes_from_templates(tax_templates)
+        tax_lines = self._get_aeat_tax_info()
+        for tax_line in tax_lines.values():
+            if tax_line["tax"] not in mapped_taxes:
+                return False
+        return True
 
     def _generate_verifactu_chaining(self):
         self.ensure_one()
@@ -603,3 +651,19 @@ class AccountMove(models.Model):
             self.env["ir.cron.trigger"].sudo().create(
                 {"cron_id": verifactu_send_cron.id, "call_at": fields.Datetime.now()}
             )
+
+    def button_cancel(self):
+        invoices_sent = self.filtered(
+            lambda inv: inv.verifactu_enabled and inv.aeat_state != "not_sent"
+        )
+        if invoices_sent:
+            raise UserError(_("You can not cancel invoices sent to verifactu"))
+        return super().button_cancel()
+
+    def button_draft(self):
+        invoices_sent = self.filtered(
+            lambda inv: inv.verifactu_enabled and inv.aeat_state != "not_sent"
+        )
+        if invoices_sent:
+            raise UserError(_("You can not set to draft invoices sent to verifactu"))
+        return super().button_draft()

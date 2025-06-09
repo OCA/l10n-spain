@@ -260,7 +260,9 @@ class VerifactuMixin(models.AbstractModel):
         spanish_companies = (
             self.env["res.company"]
             .sudo()
-            .search_count([("partner_id.country_id", "=", self.env.ref("base.es").id)], limit=2)
+            .search_count(
+                [("partner_id.country_id", "=", self.env.ref("base.es").id)], limit=2
+            )
         )
         return {
             "NombreRazon": developer.name,
@@ -368,6 +370,14 @@ class VerifactuMixin(models.AbstractModel):
                 _(
                     "The document %s cannot be sent to Verifactu because your "
                     "company does not have a verifactu developer configured."
+                )
+                % self.name
+            )
+        if not self.company_id.country_code or self.company_id.country_code != "ES":
+            raise UserError(
+                _(
+                    "The document %s cannot be sent to Verifactu because your "
+                    "company is not registered in Spain."
                 )
                 % self.name
             )
@@ -482,6 +492,25 @@ class VerifactuMixin(models.AbstractModel):
         return client.create_service(port.binding.name, address)
 
     @api.model
+    def _get_verifactu_map(self, date):
+        return (
+            self.env["verifactu.map"]
+            .sudo()
+            .with_context(active_test=False)
+            .search(
+                [
+                    "|",
+                    ("date_from", "<=", date),
+                    ("date_from", "=", False),
+                    "|",
+                    ("date_to", ">=", date),
+                    ("date_to", "=", False),
+                ],
+                limit=1,
+            )
+        )
+
+    @api.model
     def _get_verifactu_taxes_map(self, codes, date):
         """Return the codes that correspond to verifactu map line codes.
 
@@ -489,18 +518,7 @@ class VerifactuMixin(models.AbstractModel):
         :param date: Date to map
         :return: Recordset with the corresponding codes
         """
-        map_obj = self.env["verifactu.map"].sudo().with_context(active_test=False)
-        verifactu_map = map_obj.search(
-            [
-                "|",
-                ("date_from", "<=", date),
-                ("date_from", "=", False),
-                "|",
-                ("date_to", ">=", date),
-                ("date_to", "=", False),
-            ],
-            limit=1,
-        )
+        verifactu_map = self._get_verifactu_map(date)
         tax_templates = verifactu_map.map_lines.filtered(
             lambda x: x.code in codes
         ).taxes
