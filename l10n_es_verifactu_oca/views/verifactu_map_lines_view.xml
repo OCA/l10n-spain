@@ -9,7 +9,11 @@
             <tree editable="bottom">
                 <field name="code" />
                 <field name="name" />
-                <field name="taxes" widget="many2many_tags" />
+                <field
+                    name="taxes"
+                    widget="many2many_tags"
+                    domain="[('type_tax_use', '=', 'sale')]"
+                />
             </tree>
         </field>
     </record>

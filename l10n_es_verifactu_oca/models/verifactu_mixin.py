@@ -56,8 +56,8 @@ class VerifactuMixin(models.AbstractModel):
         compute="_compute_verifactu_enabled",
         search="_search_verifactu_enabled",
     )
-    verifactu_hash_string = fields.Char(copy=False)
-    verifactu_hash = fields.Char(copy=False)
+    verifactu_hash_string = fields.Char(copy=False, tracking=True)
+    verifactu_hash = fields.Char(copy=False, tracking=True)
     verifactu_refund_type = fields.Selection(
         selection=[
             # ('S', 'By substitution'), - en sii no está soportado, aquí igual?
@@ -218,9 +218,14 @@ class VerifactuMixin(models.AbstractModel):
             },
         }
         registration_date = self.verifactu_registration_date
+        # Si han pasado más de 120 segundos de la fecha y hora de emisión de la factura
+        # devuelve error 2004: El valor del campo FechaHoraHusoGenRegistro debe ser
+        # la fecha actual del sistema de la AEAT.
+        # Debe enviarse como incidencia
         if (
             self.aeat_state == "sent_w_errors"
             and registration_date < fields.Datetime.now()
+            and self.aeat_send_error[:4] == "2004"
         ):
             header.update({"RemisionVoluntaria": {"Incidencia": "S"}})
         return header
@@ -260,7 +265,9 @@ class VerifactuMixin(models.AbstractModel):
         spanish_companies = (
             self.env["res.company"]
             .sudo()
-            .search_count([("partner_id.country_id", "=", self.env.ref("base.es").id)], limit=2)
+            .search_count(
+                [("partner_id.country_id", "=", self.env.ref("base.es").id)], limit=2
+            )
         )
         return {
             "NombreRazon": developer.name,
@@ -363,11 +370,29 @@ class VerifactuMixin(models.AbstractModel):
                 )
                 % self.name
             )
+        if self.company_id.tax_agency_id != self.env.ref(
+            "l10n_es_aeat.aeat_tax_agency_spain"
+        ):
+            raise UserError(
+                _(
+                    "The document %s cannot be sent to Verifactu because your "
+                    "company's tax agency is not the Spanish Tax Agency(AEAT)."
+                )
+                % self.name
+            )
         if not self.company_id.verifactu_developer_id:
             raise UserError(
                 _(
                     "The document %s cannot be sent to Verifactu because your "
                     "company does not have a verifactu developer configured."
+                )
+                % self.name
+            )
+        if not self.company_id.country_code or self.company_id.country_code != "ES":
+            raise UserError(
+                _(
+                    "The document %s cannot be sent to Verifactu because your "
+                    "company is not registered in Spain."
                 )
                 % self.name
             )
@@ -482,6 +507,25 @@ class VerifactuMixin(models.AbstractModel):
         return client.create_service(port.binding.name, address)
 
     @api.model
+    def _get_verifactu_map(self, date):
+        return (
+            self.env["verifactu.map"]
+            .sudo()
+            .with_context(active_test=False)
+            .search(
+                [
+                    "|",
+                    ("date_from", "<=", date),
+                    ("date_from", "=", False),
+                    "|",
+                    ("date_to", ">=", date),
+                    ("date_to", "=", False),
+                ],
+                limit=1,
+            )
+        )
+
+    @api.model
     def _get_verifactu_taxes_map(self, codes, date):
         """Return the codes that correspond to verifactu map line codes.
 
@@ -489,18 +533,7 @@ class VerifactuMixin(models.AbstractModel):
         :param date: Date to map
         :return: Recordset with the corresponding codes
         """
-        map_obj = self.env["verifactu.map"].sudo().with_context(active_test=False)
-        verifactu_map = map_obj.search(
-            [
-                "|",
-                ("date_from", "<=", date),
-                ("date_from", "=", False),
-                "|",
-                ("date_to", ">=", date),
-                ("date_to", "=", False),
-            ],
-            limit=1,
-        )
+        verifactu_map = self._get_verifactu_map(date)
         tax_templates = verifactu_map.map_lines.filtered(
             lambda x: x.code in codes
         ).taxes

@@ -5,6 +5,7 @@ import json
 from hashlib import sha256
 from urllib.parse import parse_qs, urlparse
 
+from odoo.exceptions import UserError
 from odoo.modules.module import get_resource_path
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
@@ -306,36 +307,33 @@ class TestL10nEsAeatVerifactuQR(TestL10nEsAeatVerifactuBase):
         self._activate_certificate(self.certificate_password)
         self.invoice.action_post()
         original_qr_code = self.invoice.verifactu_qr
+        with self.assertRaises(UserError):
+            self.invoice.button_cancel()
+            self.invoice.button_draft()
+            self.invoice.write(
+                {
+                    "invoice_line_ids": [
+                        (
+                            0,
+                            0,
+                            {
+                                "product_id": self.product.id,
+                                "account_id": self.account_expense.id,
+                                "name": "Updated line",
+                                "price_unit": 200,
+                                "quantity": 1,
+                            },
+                        )
+                    ]
+                }
+            )
+            self.invoice.action_post()
+            self.invoice.invalidate_model(["verifactu_qr_url", "verifactu_qr"])
 
-        self.invoice.button_cancel()
+            updated_qr_code = self.invoice.verifactu_qr
 
-        self.invoice.button_draft()
-
-        self.invoice.write(
-            {
-                "invoice_line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "product_id": self.product.id,
-                            "account_id": self.account_expense.id,
-                            "name": "Updated line",
-                            "price_unit": 200,
-                            "quantity": 1,
-                        },
-                    )
-                ]
-            }
-        )
-        self.invoice.action_post()
-
-        self.invoice.invalidate_model(["verifactu_qr_url", "verifactu_qr"])
-
-        updated_qr_code = self.invoice.verifactu_qr
-
-        self.assertNotEqual(
-            original_qr_code,
-            updated_qr_code,
-            "QR code should be regenerated after invoice update.",
-        )
+            self.assertNotEqual(
+                original_qr_code,
+                updated_qr_code,
+                "QR code should be regenerated after invoice update.",
+            )

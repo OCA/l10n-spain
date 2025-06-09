@@ -35,6 +35,7 @@
                         name="group_aeat_information"
                     >
                         <field name="verifactu_enabled" invisible="0" readonly="1" />
+                        <field name="aeat_state" invisible="1" />
                         <field name="verifactu_description" />
                         <field
                             name="verifactu_refund_type"
@@ -47,11 +48,11 @@
                         />
                         <field
                             name="verifactu_tax_key"
-                            attrs="{'required': [('verifactu_enabled', '=', True)], 'readonly': [('state', '!=', 'draft')]}"
+                            attrs="{'required': [('verifactu_enabled', '=', True)], 'readonly': [('aeat_state', '=', 'sent')]}"
                         />
                         <field
                             name="verifactu_registration_key"
-                            attrs="{'required': [('verifactu_enabled', '=', True)], 'readonly': [('state', '!=', 'draft')]}"
+                            attrs="{'required': [('verifactu_enabled', '=', True)], 'readonly': [('aeat_state', '=', 'sent')]}"
                         />
                         <field
                             name="verifactu_hash_string"

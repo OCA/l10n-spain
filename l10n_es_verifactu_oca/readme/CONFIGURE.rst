@@ -14,3 +14,4 @@ En caso de que la obtención de claves no funcione y uses Linux, cuentas con los
 - Clave privada: "openssl pkcs12 -in Certificado.p12 -nocerts -out privateKey.pem -nodes"
 
 #. Establecer en las posiciones fiscales la clave de impuestos y la clave de registro verifactu.
+#. Para aplicar las claves ejecute el asistente de actualización del módulo account_chart_update.
