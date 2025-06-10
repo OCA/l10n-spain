@@ -31,7 +31,7 @@ class L10nEsAeatMod369LineGrouped(models.Model):
             report = group.report_id
             for line in group.mod369_line_ids:
                 ref_move_lines = line.tax_line_id.move_line_ids.filtered(
-                    lambda ml: ml.move_type == "out_refund"
+                    lambda ml, report=report: ml.move_type == "out_refund"
                     and ml.move_id.reversed_entry_id
                     and ml.move_id.reversed_entry_id.invoice_date < report.date_start
                 )
@@ -170,9 +170,11 @@ class L10nEsAeatMod369LineGrouped(models.Model):
             )
 
     def get_calculated_move_lines(self):
-        res = self.env.ref("account.action_account_moves_all_a").sudo().read()[0]
+        res = self.env["ir.actions.act_window"]._for_xml_id(
+            "account.action_account_moves_all_a"
+        )
         view = self.env.ref("l10n_es_aeat.view_move_line_tree")
-        res["views"] = [(view.id, "tree")]
+        res["views"] = [(view.id, "list")]
         move_lines = self.mapped("mod369_line_ids.tax_line_id.move_line_ids")
         ref_move_lines = move_lines.filtered(
             lambda ml: ml.move_type == "out_refund"
@@ -183,8 +185,10 @@ class L10nEsAeatMod369LineGrouped(models.Model):
         return res
 
     def get_calculated_refund_move_lines(self):
-        res = self.env.ref("account.action_account_moves_all_a").sudo().read()[0]
+        res = self.env["ir.actions.act_window"]._for_xml_id(
+            "account.action_account_moves_all_a"
+        )
         view = self.env.ref("l10n_es_aeat.view_move_line_tree")
-        res["views"] = [(view.id, "tree")]
+        res["views"] = [(view.id, "list")]
         res["domain"] = [("id", "in", self.mapped("refund_line_ids").ids)]
         return res
