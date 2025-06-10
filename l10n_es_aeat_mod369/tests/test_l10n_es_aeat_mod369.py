@@ -22,21 +22,43 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
         super().setUpClass()
         cls.company.country_id = cls.env.ref("base.es").id
         cls.company.account_fiscal_country_id = cls.env.ref("base.es").id
+        tax_templates = [
+            ("IVA 21% Bienes", 21, f"{cls.company.id}_account_tax_template_s_iva21b"),
+            ("IVA 10% Bienes", 10, f"{cls.company.id}_account_tax_template_s_iva10b"),
+            ("IVA 4% Bienes", 4, f"{cls.company.id}_account_tax_template_s_iva4b"),
+        ]
+        for name, amount, xmlid in tax_templates:
+            tax_template = cls.env["account.tax"].create(
+                {
+                    "name": name,
+                    "amount": amount,
+                    "type_tax_use": "sale",
+                    "company_id": cls.company.id,
+                }
+            )
+            cls.env["ir.model.data"].create(
+                {
+                    "name": xmlid,
+                    "model": "account.tax",
+                    "res_id": tax_template.id,
+                    "module": "l10n_es",
+                }
+            )
         general_tax = cls.env.ref(
-            "l10n_es.%s_account_tax_template_s_iva21b" % cls.company.id
+            f"l10n_es.{cls.company.id}_account_tax_template_s_iva21b"
         )
         reduced_tax = cls.env.ref(
-            "l10n_es.%s_account_tax_template_s_iva10b" % cls.company.id
+            f"l10n_es.{cls.company.id}_account_tax_template_s_iva10b"
         )
         superreduced_tax = cls.env.ref(
-            "l10n_es.%s_account_tax_template_s_iva4b" % cls.company.id
+            f"l10n_es.{cls.company.id}_account_tax_template_s_iva4b"
         )
         cls.oss_taxes = {}
         cls.oss_countries = {}
         cls.sale_invoices = {}
         invoice_date = "2017-01-01"
         for country_key in ["FR", "DE"]:
-            country = cls.env.ref("base.%s" % country_key.lower())
+            country = cls.env.ref(f"base.{country_key.lower()}")
             wizard = cls.env["l10n.eu.oss.wizard"].create(
                 {
                     "company_id": cls.company.id,
@@ -146,6 +168,30 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
                 "date_end": "2017-03-31",
             }
         )
+        account_477 = cls.env["account.account"].search(
+            [
+                ("code", "=", "477000"),
+                ("company_ids", "in", [cls.company.id]),
+            ],
+            limit=1,
+        )
+        if not account_477:
+            account_477 = cls.env["account.account"].create(
+                {
+                    "name": "Cuenta 477",
+                    "code": "477000",
+                    "company_ids": [(6, 0, [cls.company.id])],
+                    "account_type": "liability_payable",
+                }
+            )
+        cls.env["ir.model.data"].create(
+            {
+                "name": "account_common_477",
+                "model": "account.account",
+                "res_id": account_477.id,
+                "module": "l10n_es",
+            }
+        )
 
     def test_model_369_amounts(self):
         self.model369.button_calculate()
@@ -153,7 +199,8 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
         for country_code in self.sale_invoices.keys():
             sale_invoice_by_key = self.sale_invoices[country_code]
             spain_goods_line_filter = self.model369.spain_goods_line_ids.filtered(
-                lambda x: x.country_code == country_code and not x.is_page_8_line
+                lambda x, country_code=country_code: x.country_code == country_code
+                and not x.is_page_8_line
             )
             # checking type of tax
             country_amount_tax = sum(tax.amount for tax in self.oss_taxes[country_code])
@@ -175,9 +222,12 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
 
     def create_account_move(self):
         self.model369.journal_id = self.journal_misc.id
-        account_template = self.env.ref("l10n_es.account_common_477")
-        account_477 = self.model369.company_id.get_account_from_template(
-            account_template
+        account_477 = self.env["account.account"].search(
+            [
+                ("code", "=", "477000"),
+                ("company_ids", "in", [self.model369.company_id.id]),
+            ],
+            limit=1,
         )
         self.model369.counterpart_account_id = account_477.id
         self.model369.button_confirm()
@@ -190,7 +240,7 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
         self.assertEqual(self.model369.move_id.journal_id, self.model369.journal_id)
         account_4750 = self.env["account.account"].search(
             [
-                ("company_id", "=", self.model369.company_id.id),
+                ("company_ids", "in", [self.model369.company_id.id]),
                 ("code", "=ilike", "4750%"),
             ]
         )
@@ -211,7 +261,7 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
         self.assertEqual(self.model369.move_id.journal_id, self.model369.journal_id)
         account_4700 = self.env["account.account"].search(
             [
-                ("company_id", "=", self.model369.company_id.id),
+                ("company_ids", "in", [self.model369.company_id.id]),
                 ("code", "=ilike", "4700%"),
             ]
         )
