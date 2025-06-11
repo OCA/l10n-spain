@@ -73,7 +73,11 @@ class AccountMove(models.Model):
     def _compute_verifactu_enabled(self):
         """Compute if the invoice is enabled for the veri*FACTU"""
         for invoice in self:
-            if invoice.company_id.verifactu_enabled and invoice.is_invoice():
+            mapping_key = invoice._get_mapping_key()
+            if invoice.company_id.verifactu_enabled and mapping_key in [
+                "out_invoice",
+                "out_refund",
+            ]:
                 invoice.verifactu_enabled = (
                     invoice.fiscal_position_id
                     and invoice.fiscal_position_id.aeat_active
