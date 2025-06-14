@@ -47,6 +47,7 @@ setuptools.setup(
         'odoo-addon-l10n_es_intrastat_report>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_irnr>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_irnr_sii>=15.0dev,<15.1dev',
+        'odoo-addon-l10n_es_location_nuts>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_mis_report>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_partner>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_partner_mercantil>=15.0dev,<15.1dev',
