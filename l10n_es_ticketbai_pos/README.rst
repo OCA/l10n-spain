@@ -28,7 +28,7 @@ Installation
 
 Para instalar éste módulo necesita:
 
-#. Los módulos l10n_es_pos, pos_order_mgmt y l10n_es_ticketbai.
+#. Los módulos l10n_es_pos y l10n_es_ticketbai.
 
 
 Usage
