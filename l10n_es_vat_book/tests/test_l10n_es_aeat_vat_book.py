@@ -97,3 +97,15 @@ class TestL10nEsAeatVatBook(TestL10nEsAeatModBase):
         report_xlsx = self.env.ref(report_name)._render(vat_book.ids)
         self.assertGreaterEqual(len(report_xlsx[0]), 1)
         self.assertEqual(report_xlsx[1], "xlsx")
+        # Check empty Vat Book
+        vat_book.write(
+            {
+                "tax_agency_ids": [
+                    (4, self.env.ref("l10n_es_aeat.aeat_tax_agency_araba").id)
+                ],
+            }
+        )
+        vat_book.button_calculate()
+        self.assertEqual(len(vat_book.issued_line_ids), 0)
+        self.assertEqual(len(vat_book.rectification_issued_line_ids), 0)
+        self.assertEqual(len(vat_book.issued_tax_summary_ids), 0)
