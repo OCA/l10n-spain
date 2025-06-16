@@ -603,6 +603,11 @@ msgid "Support Type"
 msgstr "Tipo de soporte"
 
 #. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__tax_agency_ids
+msgid "Tax Agency"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__counterpart_account_id
 msgid ""
 "This account will be the counterpart for all the journal items that are "
