@@ -64,7 +64,7 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
         )
         # Check tax lines
         for box, result in self.taxes_result.items():
-            _logger.debug("Checking tax line: %s" % box)
+            _logger.debug("Checking tax line: %s", box)
             lines = self.model216.tax_line_ids.filtered(
                 lambda x, box=box: x.field_number == int(box)
             )
@@ -145,7 +145,7 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
         )
         # Check tax lines
         for box, result in self.taxes_result.items():
-            _logger.debug("Checking tax line: %s" % box)
+            _logger.debug("Checking tax line: %s", box)
             lines = self.model216.tax_line_ids.filtered(
                 lambda x, box=box: x.field_number == int(box)
             )
