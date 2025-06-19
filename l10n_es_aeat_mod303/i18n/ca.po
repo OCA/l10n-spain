@@ -309,7 +309,6 @@ msgstr "Compte bancari de l'empresa utilitzat per a la presentació"
 #. module: l10n_es_aeat_mod303
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod303/models/mod303.py:0
-#, python-format
 msgid "Compensation from previous periods"
 msgstr ""
 
@@ -533,7 +532,6 @@ msgstr "Si està marcat, alguns missatges tenen un error d'entrega."
 #. module: l10n_es_aeat_mod303
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod303/models/mod303.py:0
-#, python-format
 msgid ""
 "In previous declarations this year you reported a Result Type 'To "
 "Compensate'. You might need to fill field '[67] Fees to compensate' in this "
@@ -791,7 +789,6 @@ msgstr "Resultat"
 #. module: l10n_es_aeat_mod303
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod303/models/mod303.py:0
-#, python-format
 msgid "Select an account for receiving the money"
 msgstr "Seleccioni un compte bancari per rebre els diners"
 
@@ -864,7 +861,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod303/models/mod303.py:0
-#, python-format
 msgid "The fee to compensate must be indicated as a positive number."
 msgstr "La quota a compensar s'ha d'indicar com un número positiu."
 
