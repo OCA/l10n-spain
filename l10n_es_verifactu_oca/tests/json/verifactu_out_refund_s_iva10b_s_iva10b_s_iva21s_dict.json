@@ -4,7 +4,7 @@
     "IDFactura": {
       "IDEmisorFactura": "G87846952",
       "NumSerieFactura": "TEST002",
-      "FechaExpedicionFactura": "01-01-2024"
+      "FechaExpedicionFactura": "01-01-2026"
     },
     "NombreRazonEmisor": "Spanish test company",
     "TipoFactura": "R1",
@@ -39,7 +39,12 @@
     "CuotaTotal": -62.0,
     "ImporteTotal": -462.0,
     "Encadenamiento": {
-      "PrimerRegistro": "S"
+      "RegistroAnterior": {
+        "FechaExpedicionFactura": "01-01-2026",
+        "Huella": "27656D2A18B1F7E6823B7C134F0AFA3B979D0DCDB37846593F9E4E089F9383B0",
+        "IDEmisorFactura": "G87846952",
+        "NumSerieFactura": "TEST001"
+      }
     },
     "FacturasRectificadas": [],
     "SistemaInformatico": {
@@ -51,7 +56,7 @@
       "NumeroInstalacion": 1,
       "TipoUsoPosibleSoloVerifactu": "S",
       "TipoUsoPosibleMultiOT": "S",
-      "IndicadorMultiplesOT": "N",
+      "IndicadorMultiplesOT": "S",
       "IDOtro": {
         "IDType": "",
         "ID": ""
