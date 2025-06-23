@@ -11,3 +11,6 @@ from . import verifactu_map
 from . import verifactu_map_lines
 from . import verifactu_registration_keys
 from . import verifactu_developer
+from . import verifactu_send_queue
+from . import verifactu_send_response
+from . import verifactu_send_response_line
