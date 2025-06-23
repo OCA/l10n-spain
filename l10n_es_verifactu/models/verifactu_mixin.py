@@ -365,6 +365,16 @@ class VerifactuMixin(models.AbstractModel):
                 )
                 % self.name
             )
+        if self.company_id.tax_agency_id != self.env.ref(
+            "l10n_es_aeat.aeat_tax_agency_spain"
+        ):
+            raise UserError(
+                _(
+                    "The document %s cannot be sent to Verifactu because your "
+                    "company's tax agency is not the Spanish Tax Agency(AEAT)."
+                )
+                % self.name
+            )
         if not self.company_id.verifactu_developer_id:
             raise UserError(
                 _(

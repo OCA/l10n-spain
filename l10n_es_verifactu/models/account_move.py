@@ -80,7 +80,7 @@ class AccountMove(models.Model):
             if (
                 invoice.company_id.verifactu_enabled
                 and invoice.journal_id.verifactu_enabled
-                and invoice.is_sale_document()
+                and invoice.move_type in ["out_invoice", "out_refund"]
             ) and (
                 not invoice.company_id.verifactu_start_date
                 or invoice.invoice_date
@@ -187,12 +187,6 @@ class AccountMove(models.Model):
     def _get_verifactu_issuer(self):
         return self.company_id.partner_id._parse_aeat_vat_info()[2]
 
-    def _get_verifactu_amount_tax(self):
-        return self.amount_tax_signed
-
-    def _get_verifactu_amount_total(self):
-        return self.amount_total_signed
-
     def _get_verifactu_previous_hash(self):
         if self.verifactu_previous_document_id:
             return self.verifactu_previous_document_id.verifactu_hash
@@ -218,8 +212,9 @@ class AccountMove(models.Model):
         serialNumber = self._get_document_serial_number()
         expeditionDate = self._change_date_format(self._get_document_date())
         documentType = self._get_verifactu_document_type()
-        amountTax = round(self._get_verifactu_amount_tax(), 2)
-        amountTotal = round(self._get_verifactu_amount_total(), 2)
+        _taxes_dict, amount_tax, amount_total = self._get_verifactu_taxes_and_total()
+        amountTax = round(amount_tax, 2)
+        amountTotal = round(amount_total, 2)
         previousHash = self._get_verifactu_previous_hash()
         registrationDate = self._get_verifactu_registration_date()
         verifactu_hash_string = (
@@ -410,9 +405,22 @@ class AccountMove(models.Model):
         taxes_S2 = self._get_verifactu_taxes_map(["S2"], document_date)
         taxes_N1 = self._get_verifactu_taxes_map(["N1"], document_date)
         taxes_N2 = self._get_verifactu_taxes_map(["N2"], document_date)
+        taxes_not_in_total = self._get_verifactu_taxes_map(
+            ["TaxNotIncludedInTotal"], document_date
+        )
+        base_not_in_total = self._get_verifactu_taxes_map(
+            ["BaseNotIncludedInTotal"], document_date
+        )
+        excluded_taxes = taxes_not_in_total + base_not_in_total
         breakdown_taxes = taxes_S1 + taxes_S2 + taxes_N1 + taxes_N2
+        not_in_amount_total = 0.0
+        not_in_taxes = 0.0
         for tax_line in tax_lines.values():
             tax = tax_line["tax"]
+            if tax in taxes_not_in_total:
+                not_in_amount_total += tax_line["amount"]
+            elif tax in base_not_in_total:
+                not_in_amount_total += tax_line["base"]
             if tax in breakdown_taxes:
                 operation_type = self._get_verifactu_operation_type(
                     tax_line, taxes_S1, taxes_S2, taxes_N1, taxes_N2
@@ -429,12 +437,16 @@ class AccountMove(models.Model):
                 else:
                     tax_dict.update(self._get_verifactu_tax_dict_ns(tax_line))
                 taxes_dict["DetalleDesglose"].append(tax_dict)
+            elif tax in excluded_taxes:
+                not_in_taxes += tax_line["amount"]
             else:
                 raise UserError(_("%s tax is not mapped to Verifactu." % tax.name))
+        amount_tax = self.amount_tax_signed - not_in_taxes
+        amount_total = self.amount_total_signed - not_in_amount_total
         return (
             taxes_dict,
-            self._get_verifactu_amount_tax(),
-            self._get_verifactu_amount_total(),
+            amount_tax,
+            amount_total,
         )
 
     def _get_verifactu_operation_type(
@@ -492,12 +504,13 @@ class AccountMove(models.Model):
         """Get the QR values for the verifactu"""
         self.ensure_one()
         company_vat = self.company_id.partner_id._parse_aeat_vat_info()[2]
+        _taxes_dict, _amount_tax, amount_total = self._get_verifactu_taxes_and_total()
         return OrderedDict(
             [
                 ("nif", company_vat),
                 ("numserie", self.name),
                 ("fecha", self.invoice_date.strftime("%d-%m-%Y")),
-                ("importe", self.amount_total),
+                ("importe", amount_total),
             ]
         )
 
