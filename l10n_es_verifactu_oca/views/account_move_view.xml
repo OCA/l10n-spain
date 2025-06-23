@@ -11,17 +11,10 @@
             <button name="button_draft" position="after">
                 <button
                     type="object"
-                    string="Send to Verifactu"
-                    name="send_verifactu"
+                    string="Re-send to Verifactu"
+                    name="resend_verifactu"
                     groups="l10n_es_aeat.group_account_aeat"
-                    attrs="{'invisible': ['|','|',('verifactu_enabled', '=', False), ('state', 'not in', ['posted']), ('aeat_state','in',['sent','cancelled'])]}"
-                />
-                <button
-                    type="object"
-                    string="Send cancellation to Verifactu"
-                    name="cancel_verifactu"
-                    groups="l10n_es_aeat.group_account_aeat"
-                    attrs="{'invisible': ['|','|',('verifactu_enabled', '=', False), ('state', 'not in', ['cancel']), ('aeat_state', 'not in', ['sent','sent_w_errors','sent_modified'])]}"
+                    attrs="{'invisible': ['|','|',('verifactu_enabled', '=', False), ('state', 'not in', ['posted']), ('verifactu_send_state','not in',['incorrect','accepted_with_errors'])]}"
                 />
             </button>
             <notebook position="inside">
@@ -35,7 +28,7 @@
                         name="group_aeat_information"
                     >
                         <field name="verifactu_enabled" invisible="0" readonly="1" />
-                        <field name="aeat_state" invisible="1" />
+                        <field name="verifactu_send_state" invisible="1" />
                         <field name="verifactu_description" />
                         <field
                             name="verifactu_refund_type"
@@ -48,11 +41,11 @@
                         />
                         <field
                             name="verifactu_tax_key"
-                            attrs="{'required': [('verifactu_enabled', '=', True)], 'readonly': [('aeat_state', '=', 'sent')]}"
+                            attrs="{'required': [('verifactu_enabled', '=', True)], 'readonly': [('verifactu_send_state', 'in', ['correct', 'accepted_with_errors'])]}"
                         />
                         <field
                             name="verifactu_registration_key"
-                            attrs="{'required': [('verifactu_enabled', '=', True)], 'readonly': [('aeat_state', '=', 'sent')]}"
+                            attrs="{'required': [('verifactu_enabled', '=', True)], 'readonly': [('verifactu_send_state', '=', ['correct', 'accepted_with_errors'])]}"
                         />
                         <field
                             name="verifactu_hash_string"
@@ -82,16 +75,8 @@
                         <notebook colspan="2">
                             <page name="page_aeat_result_general" string="General">
                                 <group>
-                                    <field name="aeat_state" />
+                                    <field name="verifactu_send_state" />
                                     <field name="verifactu_csv" />
-                                    <field
-                                        name="aeat_send_failed"
-                                        attrs="{'invisible': [('aeat_send_failed', '=', False)]}"
-                                    />
-                                    <field
-                                        name="aeat_send_error"
-                                        attrs="{'invisible': [('aeat_send_failed', '=', False)]}"
-                                    />
                                 </group>
                             </page>
                             <page
@@ -100,13 +85,15 @@
                                 groups="base.group_no_one"
                             >
                                 <group>
-                                    <label for="aeat_header_sent" />
+                                    <label for="verifactu_send_response_ids" />
                                 </group>
-                                <field name="aeat_header_sent" />
-                                <group>
-                                    <label for="aeat_content_sent" />
-                                </group>
-                                <field name="aeat_content_sent" />
+                                <field name="verifactu_send_response_ids" nolabel="1">
+                                    <tree>
+                                        <field name="create_date" />
+                                        <field name="response" />
+                                        <field name="send_state" />
+                                    </tree>
+                                </field>
                             </page>
                         </notebook>
                     </group>
@@ -126,46 +113,30 @@
                     <filter
                         name="verifactu_not_sent"
                         string="Verifactu not sent"
-                        domain="[('aeat_state', '=', 'not_sent'), ('verifactu_enabled', '=', True)]"
+                        domain="[('verifactu_send_state', '=', 'not_sent'), ('verifactu_enabled', '=', True)]"
                         help="Never sent to Verifactu"
                     />
                     <filter
-                        name="verifactu_pending"
-                        string="With modifications not sent to Verifactu"
-                        domain="[('aeat_state', 'in', ['sent_modified','cancelled_modified'])]"
-                        help="Already sent but with local changes not sent yet"
+                        name="verifactu_accepted"
+                        string="Verifactu accepted"
+                        domain="[('verifactu_send_state', '=', 'correct')]"
+                        help="Already sent to Verifactu and accepted"
                     />
                     <filter
-                        name="verifactu_sent"
-                        string="Verifactu sent"
-                        domain="[('aeat_state', 'not in', ['not_sent'])]"
-                        help="Already sent to Verifactu. It includes cancelled invoices"
+                        name="aeat_send_incorrect"
+                        string="Verifactu Incorrect"
+                        domain="[('verifactu_send_state', '=', 'incorrect')]"
+                        help="The document was sent to Verifactu but it has been rejected"
                     />
                     <filter
-                        name="aeat_send_failed"
-                        string="Verifactu failed"
-                        domain="[('aeat_send_failed', '=', True)]"
-                        help="The last attemp to sent to Verifactu has failed"
-                    />
-                    <separator />
-                    <filter
-                        name="verifactu_cancelled"
-                        string="Verifactu cancelled"
-                        domain="[('aeat_state', 'in', ['cancelled','cancelled_modified'])]"
-                        help="Cancelled invoices at Verifactu"
+                        name="aeat_send_accepted_with_errors"
+                        string="Verifactu Accepted with errors"
+                        domain="[('verifactu_send_state', '=', 'accepted_with_errors')]"
+                        help="The document was sent to Verifactu, it has been accepted but it has some errors"
                     />
                     <separator />
                 </group>
             </filter>
-            <xpath expr="//group" position="inside">
-                <separator />
-                <filter
-                    string="Verifactu error"
-                    name="verifactu_error"
-                    domain="[('aeat_send_failed', '=', True)]"
-                    context="{'group_by':'aeat_send_error'}"
-                />
-            </xpath>
         </field>
     </record>
 </odoo>
