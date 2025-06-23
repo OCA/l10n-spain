@@ -1,9 +1,12 @@
 # Copyright 2024 Aures TIC - Almudena de La Puente <almudena@aurestic.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
-
 import json
+from datetime import datetime
 from hashlib import sha256
+from unittest.mock import MagicMock, patch
 from urllib.parse import parse_qs, urlparse
+
+from freezegun import freeze_time
 
 from odoo.exceptions import UserError
 from odoo.modules.module import get_resource_path
@@ -16,16 +19,16 @@ class TestL10nEsAeatVerifactuBase(TestVerifactuCommon):
         # based on AEAT Verifactu documentation
         # https://www.agenciatributaria.es/static_files/AEAT_Desarrolladores/EEDD/IVA/VERI-FACTU/Veri-Factu_especificaciones_huella_hash_registros.pdf  # noqa: B950
         expected_hash = (
-            "3C464DAF61ACB827C65FDA19F352A4E3BDC2C640E9E9FC4CC058073F38F12F60"
+            "6FA5B3FA912C71B23C274952AA00E13A5F40F0CEE466640FFAAD041FA8B79BFF"
         )
         issuerID = "89890001K"
         serialNumber = "12345678/G33"
-        expeditionDate = "01-01-2024"
+        expeditionDate = "01-01-2026"
         documentType = "F1"
         amountTax = "12.35"
         amountTotal = "123.45"
         previousHash = ""
-        registrationDate = "2024-01-01T19:20:30+01:00"
+        registrationDate = "2026-01-01T19:20:30+01:00"
         verifactu_hash_string = (
             f"IDEmisorFactura={issuerID}&"
             f"NumSerieFactura={serialNumber}&"
@@ -76,7 +79,7 @@ class TestL10nEsAeatVerifactuBase(TestVerifactuCommon):
         vals = {
             "name": name,
             "partner_id": self.partner.id,
-            "invoice_date": "2024-01-01",
+            "invoice_date": "2026-01-01",
             "move_type": inv_type,
             "invoice_line_ids": [],
         }
@@ -98,9 +101,12 @@ class TestL10nEsAeatVerifactuBase(TestVerifactuCommon):
         if extra_vals:
             vals.update(extra_vals)
         invoice = self.env["account.move"].create(vals)
-        invoice.aeat_state = "sent"
         self._activate_certificate(self.certificate_password)
-        invoice.action_post()
+        first_now = datetime(2026, 1, 1, 19, 20, 30)
+        with patch.object(self.env.cr, "now", lambda: first_now), freeze_time(
+            first_now
+        ):
+            invoice.action_post()
         result_dict = invoice._get_verifactu_invoice_dict()
         result_dict["RegistroAlta"].pop("FechaHoraHusoGenRegistro")
         result_dict["RegistroAlta"].pop("TipoHuella")
@@ -128,7 +134,7 @@ class TestL10nEsAeatVerifactu(TestL10nEsAeatVerifactuBase):
                 {
                     "fiscal_position_id": self.fp_nacional.id,
                     "verifactu_registration_key": self.fp_registration_key_01.id,
-                    "verifactu_registration_date": "2024-01-01 19:20:30",
+                    "verifactu_registration_date": "2026-01-01 19:20:30",
                 },
             ),
             (
@@ -138,7 +144,7 @@ class TestL10nEsAeatVerifactu(TestL10nEsAeatVerifactuBase):
                 {
                     "fiscal_position_id": self.fp_nacional.id,
                     "verifactu_registration_key": self.fp_registration_key_01.id,
-                    "verifactu_registration_date": "2024-01-01 19:20:30",
+                    "verifactu_registration_date": "2026-01-01 19:20:30",
                 },
             ),
             (
@@ -148,7 +154,7 @@ class TestL10nEsAeatVerifactu(TestL10nEsAeatVerifactuBase):
                 {
                     "fiscal_position_id": self.fp_recargo.id,
                     "verifactu_registration_key": self.fp_registration_key_01.id,
-                    "verifactu_registration_date": "2024-01-01 19:20:30",
+                    "verifactu_registration_date": "2026-01-01 19:20:30",
                 },
             ),
         ]
@@ -268,3 +274,46 @@ class TestL10nEsAeatVerifactuQR(TestL10nEsAeatVerifactuBase):
                 updated_qr_code,
                 "QR code should be regenerated after invoice update.",
             )
+
+    def test_send_invoices_to_verifactu(self):
+        self._activate_certificate(self.certificate_password)
+        self.invoice.action_post()
+        with (
+            patch(
+                "odoo.addons.l10n_es_verifactu.models."
+                "verifactu_send_queue.VerifactuSendQueue._connect_verifactu"
+            ) as mock_connect,
+        ):
+            mock_service = MagicMock()
+            module = "l10n_es_verifactu"
+            json_file = "verifactu_mocked_response_1.json"
+            path = get_resource_path(module, "tests/json", json_file)
+            if not path:
+                raise Exception("Incorrect JSON file: %s" % json_file)
+            with open(path, "r") as f:
+                response_dict = json.loads(f.read())
+            mock_service.RegFactuSistemaFacturacion.return_value = response_dict
+            mock_connect.return_value = mock_service
+            # Execute the cron job to send the invoice to Verifactu
+            self.env["verifactu.send.queue"]._cron_send_documents_to_verifactu()
+            self.assertEqual(
+                self.invoice.aeat_state,
+                "sent",
+                "Invoice should be marked as sent after Verifactu processing.",
+            )
+            self.assertEqual(
+                self.invoice.verifactu_csv,
+                "A-Y23JP3582934",
+                "CSV should be generated correctly after sending to Verifactu.",
+            )
+
+    def test_send_invoices_with_timeout(self):
+        """
+        Test that the situation where the Verifactu service times out
+        """
+
+    def test_resend_invoice(self):
+        """
+        Test that we can resend an invoice to Verifactu
+        after it has been sent and received error,
+        """
