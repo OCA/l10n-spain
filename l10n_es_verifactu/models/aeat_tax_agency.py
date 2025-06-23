@@ -4,15 +4,6 @@
 
 from odoo import fields, models
 
-VERIFACTU_WDSL_MAPPING = {
-    "out_invoice": "verifactu_wsdl_out",
-    "out_refund": "verifactu_wsdl_out",
-}
-VERIFACTU_PORT_NAME_MAPPING = {
-    "out_invoice": "SistemaVerifactu",
-    "out_refund": "SistemaVerifactu",
-}
-
 
 class AeatTaxAgency(models.Model):
     _inherit = "aeat.tax.agency"
@@ -24,11 +15,11 @@ class AeatTaxAgency(models.Model):
     verifactu_qr_base_url = fields.Char(string="QR Base URL")
     verifactu_qr_base_url_test_address = fields.Char(string="QR Base URL Test")
 
-    def _connect_params_verifactu(self, mapping_key, company):
+    def _connect_params_verifactu(self, company):
         self.ensure_one()
-        wsdl_field = VERIFACTU_WDSL_MAPPING[mapping_key]
+        wsdl_field = "verifactu_wsdl_out"
         wsdl_test_field = wsdl_field + "_test_address"
-        port_name = VERIFACTU_PORT_NAME_MAPPING[mapping_key]
+        port_name = "SistemaVerifactu"
         address = getattr(self, wsdl_test_field) if company.verifactu_test else False
         if not address and company.verifactu_test:
             port_name += "Pruebas"

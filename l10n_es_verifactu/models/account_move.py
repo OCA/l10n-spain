@@ -50,6 +50,14 @@ class AccountMove(models.Model):
         compute="_compute_verifactu_registration_key_code",
         readonly=True,
     )
+    verifactu_send_queue_ids = fields.One2many(
+        "verifactu.send.queue", "move_id", string="Verifactu Send Queue"
+    )
+    verifactu_send_response_ids = fields.One2many(
+        "verifactu.send.response.line",
+        "move_id",
+        string="Verifactu Send Response Lines",
+    )
 
     @api.depends("move_type")
     def _compute_verifactu_refund_type(self):
@@ -312,8 +320,7 @@ class AccountMove(models.Model):
                 "Huella": self.verifactu_hash,
             }
         )
-        if self.aeat_state == "sent_w_errors":
-            # en caso de subsanación, debe generar un nuevo hash en la factura
+        if self.verifactu_send_state in ["incorrect", "accepted_with_errors"]:
             inv_dict.update(
                 {
                     "Subsanacion": "S",
@@ -520,11 +527,16 @@ class AccountMove(models.Model):
     def _post(self, soft=True):
         res = super()._post(soft=soft)
         for record in self:
-            if record.verifactu_enabled and record.aeat_state == "not_sent":
+            if record.verifactu_enabled and record.verifactu_send_state == "not_sent":
                 record._check_verifactu_configuration()
                 record.verifactu_registration_date = datetime.now()
                 record._generate_verifactu_chaining()
-                record._process_verifactu_send()
+                self.env["verifactu.send.queue"].sudo().create(
+                    {
+                        "move_id": record.id,
+                        "company_id": record.company_id.id,
+                    }
+                )
         return res
 
     def _check_verifactu_configuration(self):
@@ -625,7 +637,7 @@ class AccountMove(models.Model):
 
     def write(self, vals):
         for invoice in self.filtered(
-            lambda x: x.is_invoice() and x.aeat_state != "not_sent"
+            lambda x: x.is_invoice() and x.verifactu_send_state != "not_sent"
         ):
             if invoice.move_type in ["out_invoice", "out_refund"]:
                 if "invoice_date" in vals:
@@ -636,37 +648,17 @@ class AccountMove(models.Model):
                     self._raise_exception_verifactu(_("invoice number"))
         return super().write(vals)
 
-    @api.model
-    def _send_to_verifactu_valid(self):
-        remaining_documents = self.env["account.move"]
-        documents = all_documents = self.search(
-            [
-                ("state", "in", self._get_verifactu_valid_document_states()),
-                (
-                    "aeat_state",
-                    "not in",
-                    ["sent", "cancelled"],
-                ),
-                ("verifactu_send_date", "<=", fields.Datetime.now()),
-            ]
-        )
-        if documents:
-            batch = self._get_verifactu_batch()
-            documents = all_documents[:batch]
-            remaining_documents = all_documents - documents
-            documents._process_verifactu_send()
-        return remaining_documents
-
-    @api.model
-    def _send_to_verifactu(self):
-        remaining_documents = self._send_to_verifactu_valid()
-        if remaining_documents:
-            verifactu_send_cron = self.env.ref(
-                "l10n_es_verifactu.invoice_send_to_verifactu"
+    def _compute_verifactu_send_state(self):
+        for rec in self:
+            rec.verifactu_send_state = "not_sent"
+            # Check the state from the last
+            send_queue = (
+                rec.verifactu_send_queue_ids
+                and rec.verifactu_send_queue_ids[0]
+                or False
             )
-            self.env["ir.cron.trigger"].sudo().create(
-                {"cron_id": verifactu_send_cron.id, "call_at": fields.Datetime.now()}
-            )
+            if send_queue:
+                rec.verifactu_send_state = send_queue.send_state
 
     def button_cancel(self):
         invoices_sent = self.filtered(
@@ -683,3 +675,33 @@ class AccountMove(models.Model):
         if invoices_sent:
             raise UserError(_("You can not set to draft invoices sent to verifactu"))
         return super().button_draft()
+
+    def _compute_verifactu_csv(self):
+        for rec in self:
+            rec.verifactu_csv = ""
+            # Check the state from the last
+            send_queue = (
+                rec.verifactu_send_queue_ids
+                and rec.verifactu_send_queue_ids[0]
+                or False
+            )
+            if send_queue:
+                last_response = send_queue.response_ids and send_queue.response_ids[0]
+                rec.verifactu_csv = last_response.verifactu_csv
+
+    def _search_verifactu_send_state(self, operator, value):
+        queue_recs = self.env["verifactu.send.queue"].search(
+            [
+                ("send_state", operator, value),
+                ("move_id", "!=", False),
+            ]
+        )
+        if (operator == "=" and value) or (operator == "!=" and not value):
+            new_operator = "in"
+        else:
+            new_operator = "not in"
+        return [("id", new_operator, queue_recs.mapped("move_id").ids)]
+
+    def resend_verifactu(self):
+        for rec in self:
+            rec.verifactu_send_queue_ids.write({"correction": True})
