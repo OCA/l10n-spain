@@ -4,10 +4,10 @@
 <odoo noupdate="1">
     <record forcecreate="True" id="invoice_send_to_verifactu" model="ir.cron">
         <field name="name">Send Invoices to Verifactu</field>
-        <field name="model_id" ref="model_account_move" />
+        <field name="model_id" ref="model_verifactu_send_queue" />
         <field name="state">code</field>
-        <field name="code">model._send_to_verifactu()</field>
-        <field name='interval_number'>5</field>
+        <field name="code">model._cron_send_documents_to_verifactu()</field>
+        <field name='interval_number'>1</field>
         <field name='interval_type'>minutes</field>
         <field name="numbercall">-1</field>
     </record>
