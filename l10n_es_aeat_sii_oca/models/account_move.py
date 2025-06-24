@@ -956,3 +956,8 @@ class AccountMove(models.Model):
             self.env["ir.cron.trigger"].sudo().create(
                 {"cron_id": sii_send_cron.id, "call_at": fields.Datetime.now()}
             )
+
+    def _get_sii_tax_agency(self):
+        if not self.journal_id.tax_agency_id:
+            return super()._get_sii_tax_agency()
+        return self.journal_id.tax_agency_id
