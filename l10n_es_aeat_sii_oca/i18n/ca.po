@@ -982,6 +982,11 @@ msgid "Supplier Invoice Number"
 msgstr "Número de factura de proveïdor"
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__tax_agency_id
+msgid "Tax Agency"
+msgstr "Agència Tributària"
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__tax_xmlid_ids
 msgid "Taxes templates"
 msgstr ""
@@ -1476,9 +1481,6 @@ msgstr ""
 
 #~ msgid "Sent time"
 #~ msgstr "Temps enviat"
-
-#~ msgid "Tax Agency"
-#~ msgstr "Agència Tributària"
 
 #~ msgid "Use connector"
 #~ msgstr "Fer servir connector"
