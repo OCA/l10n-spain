@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-l10n-spain"
-version = "18.0.20250624.0"
+version = "18.0.20250624.1"
 dependencies = [
     "odoo-addon-account_promissory_note_caixabank==18.0.*",
     "odoo-addon-delivery_gls_asm==18.0.*",
@@ -19,6 +19,7 @@ dependencies = [
     "odoo-addon-l10n_es_partner_mercantil==18.0.*",
     "odoo-addon-l10n_es_payment_order_confirming_aef==18.0.*",
     "odoo-addon-l10n_es_toponyms==18.0.*",
+    "odoo-addon-l10n_es_vat_book==18.0.*",
 ]
 classifiers=[
     "Programming Language :: Python",
