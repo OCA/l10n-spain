@@ -56,8 +56,8 @@ class VerifactuMixin(models.AbstractModel):
         compute="_compute_verifactu_enabled",
         search="_search_verifactu_enabled",
     )
-    verifactu_hash_string = fields.Char(copy=False)
-    verifactu_hash = fields.Char(copy=False)
+    verifactu_hash_string = fields.Char(copy=False, tracking=True)
+    verifactu_hash = fields.Char(copy=False, tracking=True)
     verifactu_refund_type = fields.Selection(
         selection=[
             # ('S', 'By substitution'), - en sii no está soportado, aquí igual?
@@ -218,9 +218,14 @@ class VerifactuMixin(models.AbstractModel):
             },
         }
         registration_date = self.verifactu_registration_date
+        # Si han pasado más de 120 segundos de la fecha y hora de emisión de la factura
+        # devuelve error 2004: El valor del campo FechaHoraHusoGenRegistro debe ser
+        # la fecha actual del sistema de la AEAT.
+        # Debe enviarse como incidencia
         if (
             self.aeat_state == "sent_w_errors"
             and registration_date < fields.Datetime.now()
+            and self.aeat_send_error[:4] == "2004"
         ):
             header.update({"RemisionVoluntaria": {"Incidencia": "S"}})
         return header

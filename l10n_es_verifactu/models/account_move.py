@@ -230,10 +230,12 @@ class AccountMove(models.Model):
         return verifactu_hash_string
 
     @api.model
-    def _get_subsanation_verifactu_hash(self):
+    def _set_subsanation_verifactu_hash(self):
         verifactu_hash_values = self._get_verifactu_hash_string()
         hash_string = sha256(verifactu_hash_values.encode("utf-8"))
-        return hash_string.hexdigest().upper()
+        self.verifactu_hash_string = hash_string
+        self.verifactu_hash = hash_string.hexdigest().upper()
+        return self.verifactu_hash
 
     def _get_verifactu_invoice_dict_out(self, cancel=False):
         """Build dict with data to send to AEAT WS for document types:
@@ -311,11 +313,11 @@ class AccountMove(models.Model):
             }
         )
         if self.aeat_state == "sent_w_errors":
+            # en caso de subsanación, debe generar un nuevo hash en la factura
             inv_dict.update(
                 {
                     "Subsanacion": "S",
-                    # "RechazoPrevio": "X",
-                    "Huella": self._get_subsanation_verifactu_hash(),
+                    "Huella": self._set_subsanation_verifactu_hash(),
                 }
             )
         registroAlta.setdefault("RegistroAlta", inv_dict)
@@ -405,6 +407,7 @@ class AccountMove(models.Model):
         taxes_S2 = self._get_verifactu_taxes_map(["S2"], document_date)
         taxes_N1 = self._get_verifactu_taxes_map(["N1"], document_date)
         taxes_N2 = self._get_verifactu_taxes_map(["N2"], document_date)
+        taxes_RE = self._get_verifactu_taxes_map(["RE"], document_date)
         taxes_not_in_total = self._get_verifactu_taxes_map(
             ["TaxNotIncludedInTotal"], document_date
         )
@@ -439,7 +442,7 @@ class AccountMove(models.Model):
                 taxes_dict["DetalleDesglose"].append(tax_dict)
             elif tax in excluded_taxes:
                 not_in_taxes += tax_line["amount"]
-            else:
+            elif tax not in taxes_RE:
                 raise UserError(_("%s tax is not mapped to Verifactu." % tax.name))
         amount_tax = self.amount_tax_signed - not_in_taxes
         amount_total = self.amount_total_signed - not_in_amount_total

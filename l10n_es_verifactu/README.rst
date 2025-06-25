@@ -68,11 +68,19 @@ Known issues / Roadmap
 ======================
 
  * Refactorización SII-Verifactu en l10n_es_aeat cuando estén todos los procesos claros
- * Envío de Facturas simplificadas, exentas, a terceros..
- * Encadenamiento en un modelo a parte, obtener factura anterior y almacenamiento del hash inalterable.
- * Datos del desarrollador del sistema informático y declaración responsable.
- * Modificación de facturas enviadas (no lo cubrimos, AEAT recomienda generar rectificativa)
- * Anulación de facturas enviadas (no lo cubrimos, AEAT recomienda generar rectificativa).
+ * Encadenamiento en un modelo a parte.
+ * Envío separado de la confirmación de la factura (cron.trigger/queque.job)
+ * Envío en batch (AEAT permite hasta 1000 en un mismo envío).
+ * Control de errores del sistema, generar avisos. (caída de aeat, errores de conexión, etc.)
+ * Declaración responsable. https://sede.agenciatributaria.gob.es/Sede/iva/sistemas-informaticos-facturacion-verifactu/preguntas-frecuentes/certificacion-sistemas-informaticos-declaracion-responsable.html?faqId=a15d77fe52572910VgnVCM100000dc381e0aRCRD
+ * Posibilidad de consultar el estado de las facturas enviadas.
+ 
+CASOS NO CUBIERTOS:
+1 - Modificación de facturas enviadas (AEAT recomienda generar rectificativa).
+Según AEAT: Si los errores detectados tras la emisión NO están contemplados en el ROF, pero afectan a campos del registro de facturación (RF) generado al emitir la factura (que, digamos, “no se ven” en la factura impresa, es decir, son campos “internos”, como ciertas codificaciones tributarias), se debe corregir la factura original (esos datos “internos” de la misma) y se debe generar un RF de alta de
+subsanación de esa factura donde conste ya la nueva información que proceda. Estos casos deberían ser MUY POCO FRECUENTES. 
+2 - Anulación de facturas enviadas (AEAT recomienda generar rectificativa).
+Según AEAT: "Si se considera que "toda la factura" en sí misma está mal o no debería haberse emitido, siempre que para solucionarlo no deba emplearse algún procedimiento (de rectificativa u otro) previsto en el ROF, se podrá "anular" generando para ello un RF de anulación. Estos casos deberían ser MUY POCO FRECUENTES."
 
 Bug Tracker
 ===========
