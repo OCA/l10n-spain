@@ -1,10 +1,11 @@
 # Copyright 2024 Manuel Regidor <manuel.regidor@sygel.es>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3).
-
+import csv
+import io
 import logging
 
 from odoo import models
-from odoo.tools import file_open, pycompat
+from odoo.tools import file_open
 
 _logger = logging.getLogger(__name__)
 
@@ -25,7 +26,8 @@ class ResPartnerIndustryEUNaceWizard(models.TransientModel):
                     nace.get("full_name").split(" - ")[0]: nace.get("id")
                     for nace in all_naces
                 }
-                reader = pycompat.csv_reader(csvfile, delimiter=",", quotechar='"')
+                text_stream = io.TextIOWrapper(csvfile, encoding="utf-8")
+                reader = csv.reader(text_stream, delimiter=",", quotechar='"')
                 for row in reader:
                     nace_code = row[0]
                     nace_id = nace_map.get(nace_code, False)

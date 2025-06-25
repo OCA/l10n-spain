@@ -1,6 +1,5 @@
-Necesita tener disponible el módulo `l10n_eu_nace
-<https://github.com/OCA/community-data-files/tree/17.0/l10n_eu_nace>`_ para que
-este funcione.
+To install this module, you need to:
 
-Para añadir las categorías CNAE 2009 (españolas) al listado de industrias, se tiene
-que ir a Contactos > Configuración > Importar Industrias NACE y lanzar el asistente.
+1. Make sure the **Catalan language (ca_ES)** is installed.
+2. Install the base module l10n_eu_nace.
+3. Install this module l10n_ca_es_cnae.
