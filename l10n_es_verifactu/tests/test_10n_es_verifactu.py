@@ -68,7 +68,6 @@ class TestL10nEsAeatVerifactuBase(TestL10nEsAeatModBase, TestL10nEsAeatCertifica
                         },
                     )
                 ],
-                "aeat_state": "sent",
             }
         )
         cls.company.write(
@@ -76,6 +75,7 @@ class TestL10nEsAeatVerifactuBase(TestL10nEsAeatModBase, TestL10nEsAeatCertifica
                 "verifactu_enabled": True,
                 "verifactu_test": True,
                 "vat": "G87846952",
+                "country_id": cls.env.ref("base.es").id,
                 "tax_agency_id": cls.env.ref("l10n_es_aeat.aeat_tax_agency_spain"),
                 "verifactu_developer_id": cls.verifactu_developer.id,
             }
@@ -167,7 +167,6 @@ class TestL10nEsAeatVerifactuBase(TestL10nEsAeatModBase, TestL10nEsAeatCertifica
         if extra_vals:
             vals.update(extra_vals)
         invoice = self.env["account.move"].create(vals)
-        invoice.aeat_state = "sent"
         self._activate_certificate(self.certificate_password)
         invoice.action_post()
         result_dict = invoice._get_verifactu_invoice_dict()

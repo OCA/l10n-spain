@@ -662,7 +662,7 @@ class AccountMove(models.Model):
 
     def button_cancel(self):
         invoices_sent = self.filtered(
-            lambda inv: inv.verifactu_enabled and inv.aeat_state != "not_sent"
+            lambda inv: inv.verifactu_enabled and inv.verifactu_send_state != "not_sent"
         )
         if invoices_sent:
             raise UserError(_("You can not cancel invoices sent to verifactu"))
@@ -670,7 +670,7 @@ class AccountMove(models.Model):
 
     def button_draft(self):
         invoices_sent = self.filtered(
-            lambda inv: inv.verifactu_enabled and inv.aeat_state != "not_sent"
+            lambda inv: inv.verifactu_enabled and inv.verifactu_send_state != "not_sent"
         )
         if invoices_sent:
             raise UserError(_("You can not set to draft invoices sent to verifactu"))
