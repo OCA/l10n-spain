@@ -39,7 +39,12 @@
     "CuotaTotal": -62.0,
     "ImporteTotal": -462.0,
     "Encadenamiento": {
-      "PrimerRegistro": "S"
+      "RegistroAnterior": {
+        "FechaExpedicionFactura": "01-01-2024",
+        "Huella": "2824DE2FB73301DD0ED6D62F1B10D987328567B1D4C5CE69CCAAA40F6D7C2C4A",
+        "IDEmisorFactura": "G87846952",
+        "NumSerieFactura": "TEST001"
+      }
     },
     "FacturasRectificadas": [],
     "SistemaInformatico": {

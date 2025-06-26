@@ -1,9 +1,12 @@
 # Copyright 2024 Aures TIC - Almudena de La Puente <almudena@aurestic.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
-
 import json
+from datetime import datetime
 from hashlib import sha256
+from unittest.mock import patch
 from urllib.parse import parse_qs, urlparse
+
+from freezegun import freeze_time
 
 from odoo.exceptions import UserError
 from odoo.modules.module import get_resource_path
@@ -168,7 +171,11 @@ class TestL10nEsAeatVerifactuBase(TestL10nEsAeatModBase, TestL10nEsAeatCertifica
             vals.update(extra_vals)
         invoice = self.env["account.move"].create(vals)
         self._activate_certificate(self.certificate_password)
-        invoice.action_post()
+        first_now = datetime(2024, 1, 1, 8, 0, 0)
+        with patch.object(self.env.cr, "now", lambda: first_now), freeze_time(
+            first_now
+        ):
+            invoice.action_post()
         result_dict = invoice._get_verifactu_invoice_dict()
         result_dict["RegistroAlta"].pop("FechaHoraHusoGenRegistro")
         result_dict["RegistroAlta"].pop("TipoHuella")
