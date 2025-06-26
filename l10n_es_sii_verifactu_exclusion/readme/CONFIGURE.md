@@ -1,0 +1,1 @@
+Al instalar los módulos SII y Verifactu, este módulo se instala automáticamente y no requiere ninguna configuración adicional.

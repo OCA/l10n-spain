@@ -1,0 +1,1 @@
+Este módulo impone una restricción lógica en la configuración de la compañía para evitar que los sistemas SII (Suministro Inmediato de Información) y Verifactu estén activos al mismo tiempo en Odoo.
