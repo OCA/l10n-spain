@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_picking_form" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='carrier_id']" position="after">
+                <field name="is_allowed_intraday" invisible="1" />
+                <field name="is_viaxpress_delivery" invisible="1" />
+                <field
+                    name="is_intraday"
+                    invisible="not is_allowed_intraday or not is_viaxpress_delivery"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

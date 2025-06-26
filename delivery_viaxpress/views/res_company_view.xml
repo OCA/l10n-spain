@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="viaxpress_view_company_form" model="ir.ui.view">
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Viaxpress">
+                    <group name="viaxpress_config" string="ViaXpress Configuration">
+                        <group name="client_config">
+                            <field name="viaxpress_client_id" />
+                            <field name="viaxpress_user" />
+                            <field name="viaxpress_password" />
+                        </group>
+                        <group name="technical_config">
+                            <field name="viaxpress_host" />
+                            <field name="viaxpress_port" />
+                        </group>
+                    </group>
+                    <group name="viaxpress_data" string="ViaXpress Data">
+                        <group name="viaxpress_data_1">
+                            <field name="viaxpress_intraday" />
+                        </group>
+                        <group name="viaxpress_sync">
+                            <button
+                                name="sync_with_viaxpress"
+                                string="Sync With ViaXpress"
+                                type="object"
+                                class="oe_highlight"
+                                colspan="2"
+                            />
+                            <field name="viaxpress_last_sync" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
