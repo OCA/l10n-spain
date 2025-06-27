@@ -21,13 +21,6 @@ except (ImportError, IOError) as err:
     qrcode = None
     _logger.error(err)
 
-VERIFACTU_SEND_STATES = [
-    ("not_sent", "Not sent"),
-    ("correct", "Sent and Correct"),
-    ("incorrect", "Sent and Incorrect"),
-    ("accepted_with_errors", "Sent and accepted with errors"),
-]
-
 ###########################################
 # revisar los imports que no hagan falta
 # cuando funcione bien el _connect_aeat sin tener que poner
@@ -44,6 +37,7 @@ VERIFACTU_MACRODATA_LIMIT = 100000000.0
 
 class VerifactuMixin(models.AbstractModel):
     _name = "verifactu.mixin"
+    _inherit = "aeat.mixin"
     _description = "Verifactu Mixin"
 
     verifactu_enabled = fields.Boolean(
@@ -71,6 +65,7 @@ class VerifactuMixin(models.AbstractModel):
         "greater o equal to 100 000 000,00 euros.",
         compute="_compute_verifactu_macrodata",
     )
+    verifactu_csv = fields.Char(copy=False, readonly=True)
     verifactu_return = fields.Text(copy=False, readonly=True)
     verifactu_registration_date = fields.Datetime(copy=False)
     verifactu_registration_key = fields.Many2one(
@@ -98,32 +93,6 @@ class VerifactuMixin(models.AbstractModel):
         copy=False,
     )
     verifactu_send_date = fields.Datetime(index=True, copy=False)
-    verifactu_send_state = fields.Selection(
-        selection=VERIFACTU_SEND_STATES,
-        string="Verifactu send state",
-        compute="_compute_verifactu_send_state",
-        search="_search_verifactu_send_state",
-        readonly=True,
-        copy=False,
-        help="Indicates the state of this document in relation with the "
-        "presentation to Verifactu.",
-    )
-    verifactu_csv = fields.Char(
-        string="Verifactu CSV",
-        compute="_compute_verifactu_csv",
-        readonly=True,
-        copy=False,
-        help="Indicates the CSV of the latest verifactu response.",
-    )
-
-    def _compute_verifactu_send_state(self):
-        raise NotImplementedError
-
-    def _search_verifactu_send_state(self, operator, value):
-        raise NotImplementedError
-
-    def _compute_verifactu_csv(self):
-        raise NotImplementedError
 
     @api.model
     def _selection_verifactu_reference_models(self):
@@ -218,38 +187,6 @@ class VerifactuMixin(models.AbstractModel):
             # here.
             agency = self.env.ref("l10n_es_aeat.aeat_tax_agency_spain")
         return agency._connect_params_verifactu(self.company_id)
-
-    def _get_verifactu_aeat_header(self, tipo_comunicacion=False, cancellation=False):
-        """Builds VERIFACTU send header
-
-        :param tipo_comunicacion String 'A0': new reg, 'A1': modification
-        :param cancellation Bool True when the communitacion es for document
-            cancellation
-        :return Dict with header data depending on cancellation
-        """
-        self.ensure_one()
-        if not self.company_id.vat:
-            raise UserError(
-                _("No VAT configured for the company '{}'").format(self.company_id.name)
-            )
-        header = {
-            "ObligadoEmision": {
-                "NombreRazon": self.company_id.name[0:120],
-                "NIF": self.company_id.partner_id._parse_aeat_vat_info()[2],
-            },
-        }
-        registration_date = self.verifactu_registration_date
-        # Si han pasado más de 120 segundos de la fecha y hora de emisión de la factura
-        # devuelve error 2004: El valor del campo FechaHoraHusoGenRegistro debe ser
-        # la fecha actual del sistema de la AEAT.
-        # Debe enviarse como incidencia
-        if (
-            self.verifactu_send_state == "incorrect"
-            and registration_date < fields.Datetime.now()
-            and self.aeat_send_error[:4] == "2004"
-        ):
-            header.update({"RemisionVoluntaria": {"Incidencia": "S"}})
-        return header
 
     def _get_verifactu_invoice_dict(self):
         self.ensure_one()
