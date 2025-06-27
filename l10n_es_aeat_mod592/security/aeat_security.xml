@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="group_mod592_acquirer" model="res.groups">
+        <field name="name">Mod 592 (Acquirer)</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+        <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+    </record>
+    <record id="group_mod592_manufacturer" model="res.groups">
+        <field name="name">Mod 592 (Manufacturer)</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+        <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+    </record>
+    <record id="l10n_es_aeat_mod592_report_rule" model="ir.rule">
+        <field name="name">AEAT Mod 592</field>
+        <field ref="model_l10n_es_aeat_mod592_report" name="model_id" />
+        <field eval="True" name="global" />
+        <field name="domain_force">[('company_id', 'in', [False] + company_ids)]</field>
+    </record>
+</odoo>

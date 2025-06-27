@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- ###### VISTA DETALLES DE LOS REGISTROS FABRICANTE ###### -->
+    <!-- Tree view -->
+    <record id="l10n_es_aeat_mod_592_manufacturer_entries_view_tree" model="ir.ui.view">
+        <field name="name">l10n_es_aeat_mod_592_manufacturer_eentries.view.tree</field>
+        <field name="model">l10n.es.aeat.mod592.report.line.manufacturer</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="entries_ok==False">
+                <field name="sequence" invisible="1" />
+                <field name="entry_number" optional="show" />
+                <field name="stock_move_id" optional="show" />
+                <field name="date_done" optional="show" />
+                <field name="concept" optional="show" />
+                <field name="product_key" optional="show" />
+                <field name="proof" optional="hide" />
+                <field name="supplier_document_type" optional="show" />
+                <field name="supplier_document_number" optional="show" />
+                <field name="supplier_social_reason" optional="show" />
+                <field name="kgs" optional="show" />
+                <field name="no_recycling_kgs" optional="show" />
+                <field name="entry_note" optional="show" />
+                <field name="entries_ok" invisible="1" />
+                <field name="error_text" optional="hide" />
+            </tree>
+        </field>
+    </record>
+    <!-- Form view -->
+    <record id="l10n_es_aeat_mod_592_manufacturer_entries_view_form" model="ir.ui.view">
+        <field name="name">l10n_es_aeat_mod_592_manufacturer_entries.view.form</field>
+        <field name="model">l10n.es.aeat.mod592.report.line.manufacturer</field>
+        <field name="arch" type="xml">
+            <form string="AEAT 592 Manufacturer Entries record detail">
+                <group>
+                    <field
+                        name="error_text"
+                        attrs="{'invisible': [('entries_ok', '=', True)]}"
+                        class="text-danger"
+                    />
+                    <field name="entry_number" />
+                    <field name="date_done" />
+                    <field name="concept" />
+                    <field name="product_key" />
+                    <field name="proof" />
+                    <field name="supplier_document_type" />
+                    <field name="supplier_document_number" />
+                    <field name="supplier_social_reason" />
+                    <field name="kgs" />
+                    <field name="no_recycling_kgs" />
+                    <field name="entry_note" />
+                    <field name="sequence" invisible="1" />
+                    <field name="entries_ok" invisible="1" />
+                    <field name="error_text" optional="show" />
+                    <field
+                        name="error_text"
+                        attrs="{'invisible': [('entries_ok', '=', True)]}"
+                        optional="hide"
+                    />
+                    <field name="report_id" invisible="1" />
+                </group>
+            </form>
+        </field>
+    </record>
+    <record
+        id="action_l10n_es_aeat_mod592_report_line_manufacturer"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Mod 592 Report Lines</field>
+        <field name="res_model">l10n.es.aeat.mod592.report.line.manufacturer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
