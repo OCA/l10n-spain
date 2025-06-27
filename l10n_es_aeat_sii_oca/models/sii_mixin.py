@@ -574,11 +574,12 @@ class SiiMixin(models.AbstractModel):
                     ]["DetalleIVA"]
                     sub.append(self._get_sii_tax_dict(tax_line, tax_lines))
                 if tax in taxes_sfesns:
+                    default_no_taxable_cause = self._get_no_taxable_cause()
                     nsub_dict = service_dict.setdefault(
                         "NoSujeta",
-                        {"ImporteTAIReglasLocalizacion": 0},
+                        {default_no_taxable_cause: 0},
                     )
-                    nsub_dict["ImporteTAIReglasLocalizacion"] += tax_line["base"]
+                    nsub_dict[default_no_taxable_cause] += tax_line["base"]
         # Ajustes finales breakdown
         # - DesgloseFactura y DesgloseTipoOperacion son excluyentes
         # - Ciertos condicionantes obligan DesgloseTipoOperacion
