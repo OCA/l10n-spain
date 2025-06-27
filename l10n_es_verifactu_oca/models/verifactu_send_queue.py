@@ -225,16 +225,46 @@ class VerifactuSendQueue(models.Model):
                 [("move_id", "=", invoice.id)], limit=1
             )
             send_queue.correction = False
-            estadoregistro = linea["EstadoRegistro"]
+            estado_registro = linea["EstadoRegistro"]
             self.env["verifactu.send.response.line"].sudo().create(
                 {
                     "send_queue_id": send_queue.id,
                     "response": linea,
                     "send_response_id": response.id,
-                    "send_state": VERIFACTU_STATE_MAPPING[estadoregistro],
+                    "send_state": VERIFACTU_STATE_MAPPING[estado_registro],
                     "error_code": "CodigoErrorRegistro" in linea
                     and str(linea["CodigoErrorRegistro"])
                     or "",
                 }
             )
+            doc_vals = {
+                "aeat_header_sent": json.dumps(header, indent=4),
+            }
+            if estado_registro == "Correcto":
+                doc_vals.update(
+                    {
+                        "aeat_state": "sent",
+                        "verifactu_csv": res["CSV"],
+                        "aeat_send_failed": False,
+                    }
+                )
+            elif estado_registro == "AceptadoConErrores":
+                doc_vals.update(
+                    {
+                        "aeat_state": "sent_w_errors",
+                        "verifactu_csv": res["CSV"],
+                        "aeat_send_failed": True,
+                    }
+                )
+            else:
+                doc_vals["aeat_send_failed"] = True
+            doc_vals["verifactu_return"] = linea
+            send_error = False
+            if linea["CodigoErrorRegistro"]:
+                send_error = "{} | {}".format(
+                    str(linea["CodigoErrorRegistro"]),
+                    str(linea["DescripcionErrorRegistro"]),
+                )
+            doc_vals["aeat_send_error"] = send_error
+            send_queue.move_id.write(doc_vals)
         return True
