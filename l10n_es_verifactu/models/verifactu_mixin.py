@@ -72,6 +72,7 @@ class VerifactuMixin(models.AbstractModel):
         compute="_compute_verifactu_macrodata",
     )
     verifactu_return = fields.Text(copy=False, readonly=True)
+    verifactu_registration_date = fields.Datetime(copy=False)
     verifactu_registration_key = fields.Many2one(
         comodel_name="verifactu.registration.keys",
     )
@@ -349,11 +350,6 @@ class VerifactuMixin(models.AbstractModel):
         invoice are simplified or normal"""
         partner = self._aeat_get_partner()
         return partner.aeat_simplified_invoice
-
-    def _process_verifactu_send(self):
-        for record in self:
-            record._check_verifactu_configuration()
-            record.verifactu_send_date = fields.Datetime.now()
 
     def _check_verifactu_configuration(self):
         if not self.company_id.tax_agency_id:

@@ -34,7 +34,6 @@ class AccountMove(models.Model):
         " of article 80 of LIVA for notifying to Vertifactu with the proper"
         " invoice type.",
     )
-    verifactu_registration_date = fields.Datetime(copy=False)
     verifactu_registration_key = fields.Many2one(
         comodel_name="verifactu.registration.keys",
         compute="_compute_verifactu_registration_key",

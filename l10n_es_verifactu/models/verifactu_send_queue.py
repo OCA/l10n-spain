@@ -1,5 +1,6 @@
 # Copyright 2025 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+import datetime
 import json
 import logging
 
@@ -66,21 +67,31 @@ class VerifactuSendQueue(models.Model):
     @api.model
     def _cron_send_documents_to_verifactu(self):
         for company in self.env["res.company"].search([]):
+
             # Look for documents where we have to send as an incident
             self.env.cr.execute(
                 """
-                SELECT id FROM verifactu_send_queue
-                WHERE (send_state = 'not_sent' OR
-                  (send_state IN ('incorrect', 'accepted_with_errors')
-                  AND correction = TRUE))
-                  AND company_id = %s
+                SELECT id FROM verifactu_send_queue AS vsq
+                WHERE (vsq.send_state = 'not_sent' OR
+                  (vsq.send_state IN ('incorrect', 'accepted_with_errors')
+                  AND vsq.correction = TRUE))
+                  AND vsq.company_id = %s
                 ORDER BY id
                 FOR UPDATE NOWAIT
                 """,
                 [company.id],  # Always use a list or tuple here
             )
             records_to_send = self.browse(r[0] for r in self.env.cr.fetchall())
-            records_to_send._send_documents_to_verifactu()
+            send_date = fields.Datetime.now()
+            threshold_time = send_date - datetime.timedelta(seconds=240)
+            outdated_records = records_to_send.filtered(
+                lambda r: r.move_id.verifactu_registration_date < threshold_time
+            )
+            current_records = records_to_send - outdated_records
+            outdated_records.with_context(
+                verifactu_incident=True
+            )._send_documents_to_verifactu()
+            current_records._send_documents_to_verifactu()
         return True
 
     def _get_verifactu_aeat_header(self):
@@ -103,6 +114,9 @@ class VerifactuSendQueue(models.Model):
                 "NIF": self.company_id.partner_id._parse_aeat_vat_info()[2],
             },
         }
+        incicent = self.env.context.get("verifactu_incident", False)
+        if incicent:
+            header.update({"RemisionVoluntaria": {"Incidencia": "S"}})
         return header
 
     def _bind_verifactu_service(self, client, port_name, address=None):
