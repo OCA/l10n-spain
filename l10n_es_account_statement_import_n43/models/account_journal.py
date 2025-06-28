@@ -11,6 +11,18 @@ class AccountJournal(models.Model):
         selection=[("fecha_valor", "Value Date"), ("fecha_oper", "Operation Date")],
         default="fecha_valor",
     )
+    n43_partner_search = fields.Selection(
+        string="Partner search for N43 import",
+        selection=[
+            ("none", "None"),
+            ("caixabank", "CaixaBank"),
+            ("santander", "Santander"),
+            ("sabadell", "Sabadell"),
+            ("all", "All"),
+        ],
+        default="all",
+        required=True,
+    )
 
     def _get_bank_statements_available_import_formats(self):
         res = super()._get_bank_statements_available_import_formats()
