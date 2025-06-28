@@ -57,12 +57,30 @@ class VerifactuSendQueue(models.Model):
         help="True if a correction has been made to the document, and it must be resent."
     )
     company_id = fields.Many2one("res.company", required=True)
-    response_ids = fields.One2many(
+    response_line_ids = fields.One2many(
         "verifactu.send.response.line",
         "send_queue_id",
         string="Responses",
         help="Responses from Verifactu after sending the documents.",
     )
+    last_error_code = fields.Char(compute="_compute_last_error_code", store=True)
+
+    @api.depends("response_line_ids", "response_line_ids.send_state")
+    def _compute_send_state(self):
+        for rec in self:
+            rec.send_state = "not_sent"
+            last_response = rec.response_line_ids and rec.response_line_ids[0]
+            if last_response:
+                rec.send_state = last_response.send_state
+
+    @api.depends("response_line_ids", "response_line_ids.error_code")
+    def _compute_last_error_code(self):
+        """Compute the last error code from the response lines."""
+        for rec in self:
+            if rec.response_line_ids:
+                rec.last_error_code = rec.response_line_ids[0].error_code
+            else:
+                rec.last_error_code = ""
 
     @api.model
     def _cron_send_documents_to_verifactu(self):
@@ -72,10 +90,16 @@ class VerifactuSendQueue(models.Model):
             self.env.cr.execute(
                 """
                 SELECT id FROM verifactu_send_queue AS vsq
-                WHERE (vsq.send_state = 'not_sent' OR
-                  (vsq.send_state IN ('incorrect', 'accepted_with_errors')
-                  AND vsq.correction = TRUE))
-                  AND vsq.company_id = %s
+                WHERE (
+                    vsq.send_state = 'not_sent'
+                    OR
+                    (vsq.send_state IN ('incorrect', 'accepted_with_errors')
+                     AND vsq.correction = TRUE)
+                    OR
+                    (vsq.send_state = 'accepted_with_errors'
+                      AND vsq.last_error_code = '2004')
+                )
+                AND vsq.company_id = %s
                 ORDER BY id
                 FOR UPDATE NOWAIT
                 """,
@@ -244,11 +268,3 @@ class VerifactuSendQueue(models.Model):
             doc_vals["aeat_send_error"] = send_error
             send_queue.move_id.write(doc_vals)
         return True
-
-    @api.depends("response_ids", "response_ids.send_state")
-    def _compute_send_state(self):
-        for rec in self:
-            rec.send_state = "not_sent"
-            last_response = rec.response_ids and rec.response_ids[0]
-            if last_response:
-                rec.send_state = last_response.send_state
