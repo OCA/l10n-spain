@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -136,14 +136,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
-#, python-format
 msgid "All partner records fields (country, VAT number) must be filled."
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
-#, python-format
 msgid "All partner refunds fields (country, VAT number) must be filled."
 msgstr ""
 
@@ -217,7 +215,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
-#, python-format
 msgid "Contact name (Full name) must have name and surname"
 msgstr ""
 
@@ -240,7 +237,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
-#, python-format
 msgid "Country code not found in Europe"
 msgstr ""
 
@@ -313,7 +309,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_bank_statement_line__eu_triangular_deal
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move__eu_triangular_deal
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_payment__eu_triangular_deal
 msgid "EU Triangular deal"
 msgstr ""
 
@@ -531,7 +526,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
-#, python-format
 msgid "Negative amount"
 msgstr ""
 
@@ -558,7 +552,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
-#, python-format
 msgid "No Tax Mapping was found"
 msgstr ""
 
@@ -848,7 +841,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_account_bank_statement_line__eu_triangular_deal
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_account_move__eu_triangular_deal
-#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_account_payment__eu_triangular_deal
 msgid ""
 "This invoice constitutes a triangular operation for the purposes of intra-"
 "community operations."
@@ -906,7 +898,6 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #: code:addons/l10n_es_aeat_mod349/tests/test_l10n_es_aeat_mod349.py:0
-#, python-format
 msgid "VAT without country code"
 msgstr ""
 
@@ -929,14 +920,12 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #: code:addons/l10n_es_aeat_mod349/tests/test_l10n_es_aeat_mod349.py:0
-#, python-format
 msgid "Without Country"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
-#, python-format
 msgid "Without Total Operation Amount"
 msgstr ""
 
@@ -944,7 +933,6 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #: code:addons/l10n_es_aeat_mod349/tests/test_l10n_es_aeat_mod349.py:0
-#, python-format
 msgid "Without VAT"
 msgstr ""
 
