@@ -25,6 +25,8 @@
         "data/verifactu_map_data.xml",
         "data/ir_config_parameter.xml",
         "data/ir_cron.xml",
+        "data/mail_activity_data.xml",
+        "security/verifactu_security.xml",
         "security/ir.model.access.csv",
         "views/aeat_tax_agency_view.xml",
         "views/account_move_view.xml",
@@ -36,5 +38,6 @@
         "views/verifactu_map_lines_view.xml",
         "views/verifactu_registration_keys_view.xml",
         "views/report_invoice.xml",
+        "views/verifactu_send_response_view.xml",
     ],
 }

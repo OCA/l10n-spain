@@ -347,12 +347,10 @@ class TestL10nEsAeatVerifactuQR(TestL10nEsAeatVerifactuBase):
     def test_send_invoices_to_verifactu(self):
         self._activate_certificate(self.certificate_password)
         self.invoice.action_post()
-        with (
-            patch(
-                "odoo.addons.l10n_es_verifactu.models."
-                "verifactu_send_queue.VerifactuSendQueue._connect_verifactu"
-            ) as mock_connect,
-        ):
+        with patch(
+            "odoo.addons.l10n_es_verifactu.models."
+            "verifactu_send_queue.VerifactuSendQueue._connect_verifactu"
+        ) as mock_connect:
             mock_service = MagicMock()
             module = "l10n_es_verifactu"
             json_file = "verifactu_mocked_response_1.json"
@@ -386,3 +384,115 @@ class TestL10nEsAeatVerifactuQR(TestL10nEsAeatVerifactuBase):
         Test that we can resend an invoice to Verifactu
         after it has been sent and received error,
         """
+
+
+class TestVerifactuSendResponse(TestL10nEsAeatVerifactuBase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+
+    def test_create_activity_on_exception(self):
+        """
+        Creates an activity whenever the connection with Verifactu
+        is not possible.
+        """
+        MailActivity = self.env["mail.activity"]
+        ActivityType = self.env.ref("l10n_es_verifactu.mail_activity_data_exception")
+
+        # Send an invoice without a certificate
+        self.invoice.action_post()
+        self.env["verifactu.send.queue"]._cron_send_documents_to_verifactu()
+        self.assertEqual(self.invoice.aeat_state, "not_sent")
+        activity_1 = MailActivity.search(
+            [
+                ("activity_type_id", "=", ActivityType.id),
+                ("res_model", "=", "verifactu.send.response"),
+            ]
+        )
+        self.assertTrue(activity_1, "An exception activity should have been created")
+        self.env["verifactu.send.queue"]._cron_send_documents_to_verifactu()
+        activity_2 = MailActivity.search(
+            [
+                ("activity_type_id", "=", ActivityType.id),
+                ("res_model", "=", "verifactu.send.response"),
+            ]
+        )
+        self.assertEqual(
+            len(activity_1),
+            len(activity_2),
+            "There should be only one exception activity created",
+        )
+
+        # Activate certificate and re-run the cron
+        self._activate_certificate(self.certificate_password)
+        self.env["verifactu.send.queue"]._cron_send_documents_to_verifactu()
+        activity_done = (
+            self.env["mail.activity"]
+            .with_context(active_test=False)
+            .search(
+                [
+                    ("activity_type_id", "=", ActivityType.id),
+                    ("res_model", "=", "verifactu.send.response"),
+                ]
+            )
+        )
+        # todo: fix this, it's not activity_done.has_recommended_activites,
+        #  should check if it's not visible anymore to the user
+        self.assertFalse(
+            activity_done.has_recommended_activities,
+            "The exception activity should not appear.",
+        )
+
+    def mock_verifactu_response(self, error_code, description):
+        """Recreates a verifactu response"""
+        return {
+            "CSV": "dummy-csv",
+            "RespuestaLinea": [
+                {
+                    "IDFactura": {
+                        "NumSerieFactura": self.invoice.name,
+                    },
+                    "EstadoRegistro": "AceptadoConErrores",
+                    "CodigoErrorRegistro": error_code,
+                    "DescripcionErrorRegistro": description,
+                }
+            ],
+        }
+
+    @patch(
+        "odoo.addons.l10n_es_verifactu.models.verifactu_send_queue."
+        "VerifactuSendQueue._connect_verifactu"
+    )
+    def test_create_send_activity(self, mock_connect):
+        """
+        Create an activity whenever the response from Verifactu indicates
+        that incorrect invoices have been sent
+        """
+        MailActivity = self.env["mail.activity"]
+        ActivityType = self.env.ref("mail.mail_activity_data_warning")
+
+        mock_service = MagicMock()
+        module = "l10n_es_verifactu"
+        json_file = "verifactu_mocked_response_2.json"
+        path = get_resource_path(module, "tests/json", json_file)
+        if not path:
+            raise Exception("Incorrect JSON file: %s" % json_file)
+        with open(path, "r") as f:
+            response_dict = json.loads(f.read())
+        mock_service.RegFactuSistemaFacturacion.return_value = response_dict
+        mock_connect.return_value = mock_service
+
+        self.invoice.action_post()
+        self.env["verifactu.send.queue"]._cron_send_documents_to_verifactu()
+
+        activity = MailActivity.search(
+            [
+                ("activity_type_id", "=", ActivityType.id),
+                ("res_model", "=", "verifactu.send.response"),
+                ("summary", "=", "Check incorrect invoices from Verifactu"),
+            ]
+        )
+        self.assertTrue(
+            activity,
+            "A warning activity should be created for 'AceptadoConErrores' response",
+        )
