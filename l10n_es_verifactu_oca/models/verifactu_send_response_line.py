@@ -16,8 +16,8 @@ class VerifactuSendResponseLine(models.Model):
     _description = "Verifactu Send Log"
     _order = "id desc"
 
-    send_queue_id = fields.Many2one("verifactu.send.queue", required=True)
-    send_response_id = fields.Many2one("verifactu.send.response", required=True)
+    send_queue_id = fields.Many2one("verifactu.send.queue")
+    send_response_id = fields.Many2one("verifactu.send.response")
     move_id = fields.Many2one(related="send_queue_id.move_id")
     response = fields.Text()
     send_state = fields.Selection(
