@@ -24,9 +24,18 @@ msgid "AEB norm 43 (.n43)"
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields.selection,name:l10n_es_account_statement_import_n43.selection__account_journal__n43_partner_search__all
+msgid "All"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields.selection,name:l10n_es_account_statement_import_n43.selection__account_journal__n43_partner_search__caixabank
+msgid "CaixaBank"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
 #. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
-#, python-format
 msgid ""
 "Credit amount doesn't match with the defined in the last record of account."
 msgstr ""
@@ -39,7 +48,6 @@ msgstr ""
 #. module: l10n_es_account_statement_import_n43
 #. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
-#, python-format
 msgid ""
 "Debit amount doesn't match with the defined in the last record of account."
 msgstr ""
@@ -47,7 +55,6 @@ msgstr ""
 #. module: l10n_es_account_statement_import_n43
 #. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
-#, python-format
 msgid ""
 "Final balance amount = (initial balance + credit - debit) doesn't match with "
 "the defined in the last record of account."
@@ -64,6 +71,11 @@ msgid "Journal"
 msgstr "Diario"
 
 #. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields.selection,name:l10n_es_account_statement_import_n43.selection__account_journal__n43_partner_search__none
+msgid "None"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
 #: model_terms:ir.ui.view,arch_db:l10n_es_account_statement_import_n43.view_account_journal_form_n43
 msgid "Norm 43 options"
 msgstr ""
@@ -71,7 +83,6 @@ msgstr ""
 #. module: l10n_es_account_statement_import_n43
 #. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
-#, python-format
 msgid ""
 "Number of credit records doesn't match with the defined in the last record "
 "of account."
@@ -80,7 +91,6 @@ msgstr ""
 #. module: l10n_es_account_statement_import_n43
 #. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
-#, python-format
 msgid ""
 "Number of debit records doesn't match with the defined in the last record of "
 "account."
@@ -89,7 +99,6 @@ msgstr ""
 #. module: l10n_es_account_statement_import_n43
 #. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
-#, python-format
 msgid "Number of records doesn't match with the defined in the last record."
 msgstr ""
 
@@ -99,10 +108,24 @@ msgid "Operation Date"
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_journal__n43_partner_search
+msgid "Partner search for N43 import"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
 #. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
-#, python-format
 msgid "Record type %s is not valid."
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields.selection,name:l10n_es_account_statement_import_n43.selection__account_journal__n43_partner_search__sabadell
+msgid "Sabadell"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields.selection,name:l10n_es_account_statement_import_n43.selection__account_journal__n43_partner_search__santander
+msgid "Santander"
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
