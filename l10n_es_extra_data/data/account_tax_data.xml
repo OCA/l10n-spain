@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <record id="account_tax_template_p_irpf15_cursos" model="account.tax.template">
+        <field name="description" /> <!-- for resetting the value on existing DBs -->
+        <field name="type_tax_use">purchase</field>
+        <field name="name">Retenciones IRPF 15% (Cursos, conferencias...)</field>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="amount" eval="-15" />
+        <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="l10n_es.tax_group_retenciones_15" />
+        <field
+            name="invoice_repartition_line_ids"
+            eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                    'tag_ids': [ref('l10n_es.mod_111_02')],
+                }),
+
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                    'account_id': ref('l10n_es.account_common_4751'),
+                    'tag_ids': [ref('l10n_es.mod_111_03')],
+                }),
+
+            ]"
+        />
+        <field
+            name="refund_repartition_line_ids"
+            eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                    'tag_ids': [ref('l10n_es.mod_111_02')],
+                }),
+
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                    'account_id': ref('l10n_es.account_common_4751'),
+                    'tag_ids': [ref('l10n_es.mod_111_03')],
+                }),
+            ]"
+        />
+    </record>
+
+</odoo>
