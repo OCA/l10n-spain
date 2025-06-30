@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2025 Ignacio Ibeas - Acysos S.L. (https://acysos.com)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="l10n_es_aeat_mod111.aeat_mod111_map_line_02" model="l10n.es.aeat.map.tax.line">
+        <field
+            name="tax_ids"
+            eval="[(4,ref('l10n_es_extra_data.account_tax_template_p_irpf15_cursos'))]"
+        />
+    </record>
+    <record id="l10n_es_aeat_mod111.aeat_mod111_map_line_03" model="l10n.es.aeat.map.tax.line">
+        <field
+                name="tax_ids"
+                eval="[(4,ref('l10n_es_extra_data.account_tax_template_p_irpf15_cursos'))]"
+        />
+    </record>
+</odoo>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Acysos S.L. (https://acysos.com)
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+
+    <record id="fp_irpf15_cursos" model="account.fiscal.position.template">
+        <field name="name">Retención IRPF 15% (Cursos, conferencias...)</field>
+        <field
+            name="note"
+        >Posición fiscal para retenciones de IRPF con Rendimientos del trabajo. Cursos, conferencias, coloquios, seminarios
+            y similares (art. 80.1.4º RIRPF y 101.3 LIRPF).</field>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+    </record>
+
+    <!-- Retenciones IRPF 15% (Cursos, conferencias...) -->
+    <!-- Solo aplicable a servicios e IVA 21% -->
+    <record
+        id="fptt_irpf15_cursossale_21s_1"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_irpf15_cursos" />
+        <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva21s" />
+        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva21s" />
+    </record>
+    <record
+        id="fptt_irpf15_cursossale_21s_2"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_irpf15_cursos" />
+        <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva21s" />
+        <field
+            name="tax_dest_id"
+            ref="l10n_es_extra_data.account_tax_template_p_irpf15_cursos"
+        />
+    </record>
+    <record id="fptt_irpf15_cursos_21s_1" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_irpf15_cursos" />
+        <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva21_sc" />
+        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_iva21_sc" />
+    </record>
+    <record id="fptt_irpf15_cursos_21s_2" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_irpf15_cursos" />
+        <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva21_sc" />
+        <field
+            name="tax_dest_id"
+            ref="l10n_es_extra_data.account_tax_template_p_irpf15_cursos"
+        />
+    </record>
+
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Acysos S.L. (https://acysos.com)
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record
+        id="l10n_es_extra_data.fp_irpf15_cursos"
+        model="account.fiscal.position.template"
+    >
+        <field name="aeat_perception_key_id" ref="l10n_es_aeat_mod190.aeat_m190_perception_key_06" />
+        <field
+            name="aeat_perception_subkey_id"
+            ref="l10n_es_aeat_mod190.aeat_m190_perception_subkey_06_02"
+        />
+    </record>
+
+</odoo>
