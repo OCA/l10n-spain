@@ -84,7 +84,9 @@ class VerifactuSendQueue(models.Model):
 
     @api.model
     def _cron_send_documents_to_verifactu(self):
-        for company in self.env["res.company"].search([]):
+        for company in self.env["res.company"].search(
+            [("verifactu_enabled", "=", True)]
+        ):
 
             # Look for documents where we have to send as an incident
             self.env.cr.execute(
@@ -138,8 +140,8 @@ class VerifactuSendQueue(models.Model):
                 "NIF": self.company_id.partner_id._parse_aeat_vat_info()[2],
             },
         }
-        incicent = self.env.context.get("verifactu_incident", False)
-        if incicent:
+        incident = self.env.context.get("verifactu_incident", False)
+        if incident:
             header.update({"RemisionVoluntaria": {"Incidencia": "S"}})
         return header
 
@@ -192,6 +194,7 @@ class VerifactuSendQueue(models.Model):
         rec = self[0]
         header = rec._get_verifactu_aeat_header()
         registro_factura_list = []
+        create_exception = False
         for rec in self:
             rec.send_attempt += 1
             if rec.move_id:
@@ -202,18 +205,30 @@ class VerifactuSendQueue(models.Model):
             res = serv.RegFactuSistemaFacturacion(header, registro_factura_list)
         except Exception as e:
             res = _("Error when trying to connect to Veri*FACTU: {}").format(e)
+            create_exception = True
+        response_name = ""
         response = (
             self.env["verifactu.send.response"]
             .sudo()
             .create(
                 {
                     "header": json.dumps(header),
+                    "name": response_name,
                     "invoice_data": json.dumps(registro_factura_list),
                     "response": res,
-                    "verifactu_csv": "CSV" in res and res["CSV"] or "",
+                    "verifactu_csv": "CSV" in res and res["CSV"] or _("-"),
                 }
             )
         )
+        response.complete_open_activity_on_exception()
+        if create_exception:
+            if not response.datetime:
+                response.datetime = fields.Datetime.now()
+            response.create_activity_on_exception()
+        else:
+            response.complete_open_activity_on_exception()
+
+        create_response_activity = False
         respuestaLineas = "RespuestaLinea" in res and res["RespuestaLinea"] or []
         for linea in respuestaLineas:
             invoice_num = linea["IDFactura"]["NumSerieFactura"]
@@ -260,11 +275,22 @@ class VerifactuSendQueue(models.Model):
                 doc_vals["aeat_send_failed"] = True
             doc_vals["verifactu_return"] = linea
             send_error = False
-            if linea["CodigoErrorRegistro"]:
+            if linea.get("CodigoErrorRegistro"):
                 send_error = "{} | {}".format(
                     str(linea["CodigoErrorRegistro"]),
                     str(linea["DescripcionErrorRegistro"]),
                 )
             doc_vals["aeat_send_error"] = send_error
             send_queue.move_id.write(doc_vals)
+            send_state = VERIFACTU_STATE_MAPPING.get(linea["EstadoRegistro"], "")
+            if send_state != "correct":
+                create_response_activity = True
+        updated_response_name = _("Verifactu sending")
+        if create_exception:
+            updated_response_name = _("Connection error with Verifactu")
+        elif create_response_activity:
+            updated_response_name = _("Incorrect invoices sent to Verifactu")
+        response.name = updated_response_name
+        if create_response_activity:
+            response.create_send_response_activity()
         return True
