@@ -3,7 +3,7 @@
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 
 
-from odoo import exceptions
+from odoo import Command, exceptions
 
 from odoo.addons.l10n_es_aeat_mod303.tests.test_l10n_es_aeat_mod303 import (
     TestL10nEsAeatMod303Base,
@@ -35,7 +35,7 @@ class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
             {
                 "with_vat_prorate": True,
                 "vat_prorate_ids": [
-                    (0, 0, {"date": "2024-01-01", "vat_prorate": 90}),
+                    Command.create({"date": "2024-01-01", "vat_prorate": 90}),
                 ],
             }
         )
@@ -78,9 +78,7 @@ class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
             {
                 "with_vat_prorate": True,
                 "vat_prorate_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "date": "2024-01-01",
                             "vat_prorate": 90,
@@ -116,9 +114,7 @@ class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
             {
                 "with_vat_prorate": True,
                 "vat_prorate_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "date": "2024-01-01",
                             "vat_prorate": 90,
@@ -131,31 +127,27 @@ class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
         )
         p_inv_extra_data = {
             "invoice_line_ids": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "name": "Test for tax(es) without prorate",
                         "account_id": self.accounts["600000"].id,
                         "price_unit": 300,
                         "quantity": 1,
                         "tax_ids": [
-                            (4, t.id)
+                            Command.link(t.id)
                             for t in self._get_taxes("P_IVA21_BC".split("//")[0])
                         ],
                         "with_vat_prorate": False,
                     },
                 ),
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "name": "Test for tax(es) with prorate",
                         "account_id": self.accounts["600000"].id,
                         "price_unit": 200,
                         "quantity": 1,
                         "tax_ids": [
-                            (4, t.id)
+                            Command.link(t.id)
                             for t in self._get_taxes("P_IVA21_BC".split("//")[0])
                         ],
                         "with_vat_prorate": True,
@@ -183,3 +175,65 @@ class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
         self.assertEqual(self.model303_4t.total_deducir, 96.6)
         self.assertEqual(self.model303_4t.resultado_liquidacion, 113.40)
         self.assertEqual(self.model303_4t.casilla_44, -4.2)
+
+    def test_button_compute(self):
+        self.company.write(
+            {
+                "with_vat_prorate": True,
+                "vat_prorate_ids": [
+                    Command.create({"date": "2024-01-01", "vat_prorate": 10})
+                ],
+            }
+        )
+        self._invoice_purchase_create(
+            "2024-01-01",
+            {
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "name": "Compra 100€ + IVA 21%",
+                            "account_id": self.accounts["600000"].id,
+                            "price_unit": 100,
+                            "quantity": 1,
+                            "with_vat_prorate": True,
+                            "tax_ids": [
+                                Command.link(t.id)
+                                for t in self._get_taxes("P_IVA21_BC")
+                            ],
+                        }
+                    ),
+                ]
+            },
+        )
+        self._invoice_sale_create(
+            "2024-01-01",
+            {
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "name": "Venta 200€ + IVA 21%",
+                            "account_id": self.accounts["700000"].id,
+                            "price_unit": 200,
+                            "quantity": 1,
+                            "tax_ids": [
+                                Command.link(t.id) for t in self._get_taxes("S_IVA21B")
+                            ],
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "name": "Venta 100€ exento",
+                            "account_id": self.accounts["700000"].id,
+                            "price_unit": 100,
+                            "quantity": 1,
+                            "tax_ids": [
+                                Command.link(t.id) for t in self._get_taxes("S_IVA0")
+                            ],
+                        }
+                    ),
+                ]
+            },
+        )
+        self.model303.button_compute()
+        self.assertEqual(self.model303.vat_prorate_percent, 67)
+        self.assertEqual(self.model303.casilla_44, 0)

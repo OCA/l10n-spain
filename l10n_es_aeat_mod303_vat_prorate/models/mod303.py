@@ -4,6 +4,8 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
 import datetime
+import math
+import re
 
 from odoo import _, api, exceptions, fields, models
 
@@ -125,7 +127,7 @@ class L10nEsAeatMod303Report(models.Model):
             report.prorate_account_id = self.env["account.account"].search(
                 [
                     ("code", "like", account_number),
-                    ("company_id", "=", report.company_id.id),
+                    ("company_ids", "=", report.company_id.id),
                 ],
                 limit=1,
             )
@@ -158,3 +160,42 @@ class L10nEsAeatMod303Report(models.Model):
                 }
             lines.append(line_vals)
         return lines
+
+    def button_compute(self):
+        self.ensure_one()
+        date_from = f"{self.year}-01-01"
+        date_to = f"{self.year}-12-31"
+        # Get base amount for taxed operations
+        model_data = self.env["ir.model.data"].search(
+            [
+                ("module", "=", "l10n_es_aeat_mod303"),
+                ("name", "like", "s_iva%"),
+            ]
+        )
+        regex = re.compile(r"^s_iva[1-9]\d*(b|s|isp)$")
+        affected_taxes = [
+            f"{rec.module}.{rec.name}" for rec in model_data if regex.match(rec.name)
+        ]
+        MapLine = self.env["l10n.es.aeat.map.tax.line"]
+        mapline_vals = {
+            "move_type": "all",
+            "field_type": "base",
+            "sum_type": "both",
+            "exigible_type": "yes",
+            "tax_xmlid_ids": [(4, self.env.ref(x).id) for x in affected_taxes],
+        }
+        map_line = MapLine.new(mapline_vals)
+        move_lines = self._get_tax_lines(date_from, date_to, map_line)
+        taxed = -sum(move_lines.mapped("balance"))
+        # Get base amount of exempt operations
+        mapline_vals["tax_xmlid_ids"] = [
+            (4, self.env.ref("l10n_es_aeat_mod303.s_iva0").id)
+        ]
+        map_line = MapLine.new(mapline_vals)
+        move_lines = self._get_tax_lines(date_from, date_to, map_line)
+        exempt = -sum(move_lines.mapped("balance"))
+        total_base = taxed + exempt
+        self.vat_prorate_percent = (
+            math.ceil(taxed / total_base * 100) if total_base > 0 else 100
+        )
+        return True

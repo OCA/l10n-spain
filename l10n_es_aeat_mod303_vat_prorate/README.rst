@@ -35,9 +35,6 @@ l10n_es_vat_prorate.
 Esto es necesario si se cuenta con el SII y se debe enviar la
 información ya seccionada.
 
-Para el caso de que se quiera hacer la repartición con el asiento de
-liquidación del IVA, utilizar l10n_es_aeat_vat_prorrate.
-
 **Table of contents**
 
 .. contents::
@@ -46,8 +43,8 @@ liquidación del IVA, utilizar l10n_es_aeat_vat_prorrate.
 Configuration
 =============
 
-   Para entender el funcionamiento de la prorrata, remitirse a la
-   configuración de l10n_es_aeat_vat_prorate.
+Para entender el funcionamiento de la prorrata, remitirse a la
+configuración de l10n_es_vat_prorate.
 
 Usage
 =====
@@ -56,6 +53,12 @@ Usage
 2. El IVA deducible ya vendrá minorado por el porcentaje de la prorrata.
 3. En la casilla 44, se mostrará el importe de la prorrata que se
    minoró.
+
+- Nota: En la versión 18, el cálculo definitivo de la prorrata se
+  realiza directamente desde el formulario del mod303.report. El botón
+  “Calcular prorrata definitiva” solo se mostrará si with_vat_prorate
+  está activado y period_type es '4T' o '12'. En versiones anteriores
+  (v14), este cálculo se realizaba a través de un wizard independiente.
 
 Known issues / Roadmap
 ======================
@@ -97,6 +100,11 @@ Contributors
   - Manuel Regidor
   - Valentín Vinagre
   - Alberto Martínez
+  - Ángel Rivas
+
+- `Moduon <https://www.moduon.team/>`__:
+
+  - Andrii Kompaniiets
 
 Maintainers
 -----------
