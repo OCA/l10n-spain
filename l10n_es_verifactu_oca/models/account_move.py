@@ -6,7 +6,6 @@ from collections import OrderedDict
 from datetime import datetime
 from hashlib import sha256
 
-import psycopg2
 import pytz
 
 from odoo import _, api, fields, models
@@ -583,42 +582,9 @@ class AccountMove(models.Model):
                 return False
         return True
 
-    def _generate_verifactu_chaining(self):
-        self.ensure_one()
-        self.company_id.flush_recordset(["verifactu_last_document_id"])
-        try:
-            with self.env.cr.savepoint():
-                self.env.cr.execute(
-                    "SELECT verifactu_last_document_id FROM"
-                    " res_company WHERE id = %s FOR UPDATE NOWAIT",
-                    [self.company_id.id],
-                )
-                result = self.env.cr.fetchone()[0]
-                prev_doc = False
-                if result:
-                    document_data = result.split(",")
-                    prev_doc = self.env[document_data[0]].browse(int(document_data[1]))
-                self.verifactu_previous_document_id = prev_doc
-                verifactu_hash_values = self._get_verifactu_hash_string()
-                self.verifactu_hash_string = verifactu_hash_values
-                hash_string = sha256(verifactu_hash_values.encode("utf-8"))
-                self.verifactu_hash = hash_string.hexdigest().upper()
-                if prev_doc:
-                    prev_doc.verifactu_next_document_id = self
-                doc_reference = "{model},{id}".format(model=self._name, id=self.id)
-                self.env.cr.execute(
-                    "UPDATE res_company SET "
-                    "verifactu_last_document_id = %s"
-                    "WHERE id = %s",
-                    [doc_reference, self.company_id.id],
-                )
-                self.company_id.invalidate_recordset(["verifactu_last_document_id"])
-        except psycopg2.OperationalError as err:
-            if err.pgcode == "55P03":  # could not obtain the lock
-                raise UserError(
-                    _("Could not obtain last document sent to verifactu.")
-                ) from err
-            raise
+    def _get_verifactu_chain_context(self):
+        """Use a unique chain for each company for standard invoicing."""
+        return ("res.company", self.company_id)
 
     def cancel_verifactu(self):
         raise NotImplementedError
