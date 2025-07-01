@@ -8,79 +8,10 @@ from urllib.parse import parse_qs, urlparse
 from odoo.exceptions import UserError
 from odoo.modules.module import get_resource_path
 
-from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
-    TestL10nEsAeatCertificateBase,
-)
-from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
-    TestL10nEsAeatModBase,
-)
+from .common import TestVerifactuCommon
 
 
-class TestL10nEsAeatVerifactuBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.maxDiff = None
-        cls.fp_nacional = cls.env.ref(f"l10n_es.{cls.company.id}_fp_nacional")
-        cls.fp_registration_key_01 = cls.env.ref(
-            "l10n_es_verifactu.verifactu_registration_keys_01"
-        )
-        cls.fp_nacional.verifactu_registration_key = cls.fp_registration_key_01
-        cls.fp_recargo = cls.env.ref(f"l10n_es.{cls.company.id}_fp_recargo")
-        cls.fp_recargo.verifactu_registration_key = cls.fp_registration_key_01
-        cls.partner = cls.env["res.partner"].create(
-            {
-                "name": "Test partner",
-                "vat": "89890001K",
-                "country_id": cls.env.ref("base.es").id,
-            }
-        )
-        cls.product = cls.env["product.product"].create({"name": "Test product"})
-        cls.account_expense = cls.env.ref(
-            "l10n_es.%s_account_common_600" % cls.company.id
-        )
-        cls.verifactu_developer = cls.env["verifactu.developer"].create(
-            {
-                "name": "Odoo Developer",
-                "vat": "A12345674",
-                "sif_name": "odoo",
-                "sif_id": "11",
-                "version": "1.0",
-                "installation_number": 1,
-            }
-        )
-        cls.invoice = cls.env["account.move"].create(
-            {
-                "company_id": cls.company.id,
-                "partner_id": cls.partner.id,
-                "invoice_date": "2024-01-01",
-                "move_type": "out_invoice",
-                "invoice_line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "product_id": cls.product.id,
-                            "account_id": cls.account_expense.id,
-                            "name": "Test line",
-                            "price_unit": 100,
-                            "quantity": 1,
-                        },
-                    )
-                ],
-                "aeat_state": "sent",
-            }
-        )
-        cls.company.write(
-            {
-                "verifactu_enabled": True,
-                "verifactu_test": True,
-                "vat": "G87846952",
-                "tax_agency_id": cls.env.ref("l10n_es_aeat.aeat_tax_agency_spain"),
-                "verifactu_developer_id": cls.verifactu_developer.id,
-            }
-        )
-
+class TestL10nEsAeatVerifactuBase(TestVerifactuCommon):
     def test_verifactu_hash_code(self):
         # based on AEAT Verifactu documentation
         # https://www.agenciatributaria.es/static_files/AEAT_Desarrolladores/EEDD/IVA/VERI-FACTU/Veri-Factu_especificaciones_huella_hash_registros.pdf  # noqa: B950

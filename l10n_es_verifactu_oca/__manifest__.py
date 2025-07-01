@@ -34,6 +34,7 @@
         "views/verifactu_map_view.xml",
         "views/verifactu_map_lines_view.xml",
         "views/verifactu_registration_keys_view.xml",
+        "views/verifactu_invoice_view.xml",
         "views/report_invoice.xml",
     ],
 }

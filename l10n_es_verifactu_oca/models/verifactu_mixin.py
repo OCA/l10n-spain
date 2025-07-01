@@ -6,8 +6,10 @@ import base64
 import io
 import json
 import logging
+from hashlib import sha256
 from urllib.parse import urlencode
 
+import psycopg2
 from requests import Session
 
 from odoo import _, api, fields, models
@@ -90,11 +92,19 @@ class VerifactuMixin(models.AbstractModel):
     )
     verifactu_qr_url = fields.Char("URL", compute="_compute_verifactu_qr_url")
     verifactu_qr = fields.Binary(string="QR", compute="_compute_verifactu_qr")
+    verifactu_invoice_entry_id = fields.Many2one(
+        "verifactu.invoice",
+        string="VeriFactu Invoice Entry",
+        readonly=True,
+        copy=False,
+    )
     verifactu_previous_document_id = fields.Reference(
         string="Previous Verifactu Document",
         selection="_selection_verifactu_reference_models",
         readonly=True,
         copy=False,
+        compute="_compute_verifactu_previous_document_id",
+        store=True,
     )
     verifactu_next_document_id = fields.Reference(
         string="Next Verifactu Document",
@@ -108,7 +118,6 @@ class VerifactuMixin(models.AbstractModel):
     def _selection_verifactu_reference_models(self):
         # this method is used to define the models that can be used as
         # previous documents in the verifactu mixin
-        # it can be inherited to add others models if needed like pos.order
         return [("account.move", "Invoice")]
 
     def _compute_verifactu_enabled(self):
@@ -285,6 +294,20 @@ class VerifactuMixin(models.AbstractModel):
             },
         }
 
+    @api.depends("verifactu_invoice_entry_id")
+    def _compute_verifactu_previous_document_id(self):
+        """Compute the previous document based on the invoice entry."""
+        for record in self:
+            if (
+                record.verifactu_invoice_entry_id
+                and record.verifactu_invoice_entry_id.previous_invoice_entry_id
+            ):
+                record.verifactu_previous_document_id = (
+                    record.verifactu_invoice_entry_id.previous_invoice_entry_id.document_id
+                )
+            else:
+                record.verifactu_previous_document_id = False
+
     def _get_verifactu_chaining_invoice_dict(self):
         raise NotImplementedError
 
@@ -304,7 +327,79 @@ class VerifactuMixin(models.AbstractModel):
         raise NotImplementedError
 
     def _generate_verifactu_chaining(self):
-        raise NotImplementedError
+        """Generate verifactu invoice entry for company-wide chaining."""
+        self.ensure_one()
+
+        # Always use company for invoice chaining
+        company = self.company_id
+
+        company.flush_recordset(["last_verifactu_invoice_entry_id"])
+
+        try:
+            with self.env.cr.savepoint():
+                self.env.cr.execute(
+                    f"SELECT last_verifactu_invoice_entry_id FROM {company._table}"
+                    " WHERE id = %s FOR UPDATE NOWAIT",
+                    [company.id],
+                )
+                result = self.env.cr.fetchone()
+                previous_invoice_entry_id = result[0] if result and result[0] else False
+
+                prev_doc = False
+                if previous_invoice_entry_id:
+                    previous_invoice_entry = self.env["verifactu.invoice"].browse(
+                        previous_invoice_entry_id
+                    )
+                    if previous_invoice_entry.document_id:
+                        prev_doc = previous_invoice_entry.document_id
+
+                self.verifactu_previous_document_id = prev_doc
+
+                verifactu_hash_values = self._get_verifactu_hash_string()
+                self.verifactu_hash_string = verifactu_hash_values
+                hash_string = sha256(verifactu_hash_values.encode("utf-8"))
+                self.verifactu_hash = hash_string.hexdigest().upper()
+
+                if prev_doc:
+                    prev_doc.verifactu_next_document_id = self
+
+                # Generate JSON data for AEAT
+                aeat_json_data = ""
+                try:
+                    inv_dict = self._get_verifactu_invoice_dict()
+                    aeat_json_data = json.dumps(inv_dict, indent=4)
+                except Exception:
+                    # If JSON generation fails, store empty string
+                    aeat_json_data = ""
+
+                invoice_vals = {
+                    "document_id": f"{self._name},{self.id}",
+                    "previous_invoice_entry_id": previous_invoice_entry_id,
+                    "company_id": self.company_id.id,
+                    "document_hash": self.verifactu_hash,
+                    "aeat_json_data": aeat_json_data,
+                }
+
+                invoice_entry = self.env["verifactu.invoice"].create(invoice_vals)
+                self.verifactu_invoice_entry_id = invoice_entry
+
+                self.env.cr.execute(
+                    f"UPDATE {company._table} "
+                    "SET last_verifactu_invoice_entry_id = %s WHERE id = %s",
+                    [invoice_entry.id, company.id],
+                )
+
+                company.invalidate_recordset(["last_verifactu_invoice_entry_id"])
+
+        except psycopg2.OperationalError as err:
+            if err.pgcode == "55P03":  # could not obtain the lock
+                raise UserError(
+                    _(
+                        "Could not obtain last document sent to verifactu for company %s."
+                    )
+                    % company.name
+                ) from err
+            raise
 
     def _get_verifactu_document_type(self):
         raise NotImplementedError()
