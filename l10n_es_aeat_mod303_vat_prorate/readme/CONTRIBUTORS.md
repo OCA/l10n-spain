@@ -7,3 +7,6 @@
   - Manuel Regidor
   - Valentín Vinagre
   - Alberto Martínez
+  - Ángel Rivas
+- [Moduon](https://www.moduon.team/):
+  - Andrii Kompaniiets
