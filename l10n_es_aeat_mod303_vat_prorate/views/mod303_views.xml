@@ -26,6 +26,13 @@
                     required="with_vat_prorate and period_type in ['4T', '12']"
                     readonly="state != 'draft'"
                 />
+                <button
+                    name="button_compute"
+                    type="object"
+                    string="Calcular prorrata definitiva"
+                    class="btn-secondary"
+                    invisible="not with_vat_prorate or period_type not in ['4T','12']"
+                />
                 <field
                     name="prorate_account_id"
                     invisible="not with_vat_prorate or period_type not in ['4T', '12']"
