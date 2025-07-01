@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-06 09:06+0000\n"
-"PO-Revision-Date: 2023-07-05 19:08+0000\n"
-"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"PO-Revision-Date: 2025-07-01 16:25+0000\n"
+"Last-Translator: isretamales <ivana.retamales@factorlibre.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__account_move__l10n_es_facturae_status__face-2400
@@ -241,7 +241,7 @@ msgstr "Aceptar"
 #: code:addons/l10n_es_facturae_face/models/account_move.py:0
 #, python-format
 msgid "Oficina Contable not provided"
-msgstr ""
+msgstr "Oficina Contable no especificada"
 
 #. module: l10n_es_facturae_face
 #. odoo-python
@@ -290,7 +290,7 @@ msgstr ""
 #: code:addons/l10n_es_facturae_face/models/account_move.py:0
 #, python-format
 msgid "Unidad Tramitadora not provided"
-msgstr ""
+msgstr "Unidad Tramitadora no especificada"
 
 #. module: l10n_es_facturae_face
 #. odoo-python
