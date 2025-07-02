@@ -478,8 +478,8 @@ class AccountMove(models.Model):
                     raise exceptions.ValidationError(error_refund_msg)
 
         res = super()._post(soft)
-        tbai_invoices = self.sudo().env["account.move"]
-        tbai_invoices |= self.sudo().filtered(
+        pending_tbai_moves = self.sudo().env["account.move"]
+        pending_tbai_moves |= self.sudo().filtered(
             lambda x: x.tbai_enabled
             and "out_invoice" == x.move_type
             and x.tbai_send_invoice
@@ -495,8 +495,8 @@ class AccountMove(models.Model):
         )
 
         validate_refund_invoices()
-        tbai_invoices |= refund_invoices
-        tbai_invoices._tbai_build_invoice()
+        pending_tbai_moves |= refund_invoices
+        pending_tbai_moves._tbai_build_invoice()
         return res
 
     def _get_refund_common_fields(self):
