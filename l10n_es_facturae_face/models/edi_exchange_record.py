@@ -3,6 +3,7 @@
 
 import json
 import logging
+from datetime import timedelta
 
 from zeep import helpers
 
@@ -36,7 +37,7 @@ class EdiExchangeRecord(models.Model):
         readonly=True, string="Facturae Cancellation motive"
     )
 
-    def _cron_face_update_method(self, company_domain=False):
+    def _cron_face_update_method(self, company_domain=False, limit=None, days_limit=0):
         if not company_domain:
             company_domain = []
         face = self.env.ref("l10n_es_facturae_face.face_backend")
@@ -56,7 +57,10 @@ class EdiExchangeRecord(models.Model):
                     "in",
                     ["face-1200", "face-1300", "face-2400"],
                 ),
-            ]
+                ("write_date", "<", fields.Datetime.now() - timedelta(days=days_limit)),
+            ],
+            limit=limit,
+            order="write_date asc",
         )
         if not integrations:
             return
@@ -98,6 +102,9 @@ class EdiExchangeRecord(models.Model):
                     and exchange_record.l10n_es_facturae_cancellation_status
                     == revocation_code
                 ):
+                    # Already processed, but we want to update the write date
+                    # to load the proper ones on the cron
+                    exchange_record.write({})
                     continue
                 update_record = face.create_record(
                     "l10n_es_facturae_face_update",
