@@ -2,7 +2,7 @@
 # Copyright 2014-2024 Tecnativa - Pedro M. Baeza
 {
     "name": "AEAT modelo 130",
-    "version": "16.0.1.0.1",
+    "version": "16.0.1.0.2",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/l10n-spain",
