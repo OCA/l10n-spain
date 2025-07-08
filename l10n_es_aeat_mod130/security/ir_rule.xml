@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- © 2017-2019 Hugo Santos <hugo.santos@factorlibre.com>
+<!-- Copyright 2017-2019 Hugo Santos <hugo.santos@factorlibre.com>
+     Copyright 2025 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
 <odoo>
     <record id="ir_rule_aeat_mod130_company" model="ir.rule">
@@ -8,8 +9,6 @@
         <field name="perm_write" eval="True" />
         <field name="perm_create" eval="True" />
         <field name="perm_unlink" eval="True" />
-        <field
-            name="domain_force"
-        >[('company_id','child_of',[user.company_id.id])]</field>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
     </record>
 </odoo>
