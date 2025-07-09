@@ -1,3 +1,3 @@
-This module adds Catalan translations for all CNAE 2009 business industries provided by the l10n_eu_nace module.
+Este módulo añade traducciones al catalán para todos los sectores de actividad de CNAE 2009 proporcionadas por el módulo l10n_eu_nace.
 
-Translations will be applied automatically if the Catalan language (ca_ES) is installed in the system when running the import wizard.
+Las traducciones se aplicarán automáticamente si el idioma catalán (ca_ES) está instalado en el sistema al ejecutar el asistente de importación.

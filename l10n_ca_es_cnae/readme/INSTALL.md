@@ -1,5 +1,5 @@
-To install this module, you need to:
+Para instalar este módulo, es necesario
 
-1. Make sure the **Catalan language (ca_ES)** is installed.
-2. Install the base module l10n_eu_nace.
-3. Install this module l10n_ca_es_cnae.
+1. Asegúrese de que el **idioma catalán (ca_ES)** está instalado.
+2. Instale el módulo base l10n_eu_nace.
+3. Instale este módulo l10n_ca_es_cnae.
