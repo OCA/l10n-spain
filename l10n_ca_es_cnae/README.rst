@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =========================================
 Categorías de empresa CNAE 2009 (catalán)
 =========================================
@@ -17,7 +13,7 @@ Categorías de empresa CNAE 2009 (catalán)
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
@@ -32,11 +28,12 @@ Categorías de empresa CNAE 2009 (catalán)
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds Catalan translations for all CNAE 2009 business
-industries provided by the l10n_eu_nace module.
+Este módulo añade traducciones al catalán para todos los sectores de
+actividad de CNAE 2009 proporcionadas por el módulo l10n_eu_nace.
 
-Translations will be applied automatically if the Catalan language
-(ca_ES) is installed in the system when running the import wizard.
+Las traducciones se aplicarán automáticamente si el idioma catalán
+(ca_ES) está instalado en el sistema al ejecutar el asistente de
+importación.
 
 **Table of contents**
 
@@ -46,27 +43,27 @@ Translations will be applied automatically if the Catalan language
 Installation
 ============
 
-To install this module, you need to:
+Para instalar este módulo, es necesario
 
-1. Make sure the **Catalan language (ca_ES)** is installed.
-2. Install the base module l10n_eu_nace.
-3. Install this module l10n_ca_es_cnae.
+1. Asegúrese de que el **idioma catalán (ca_ES)** está instalado.
+2. Instale el módulo base l10n_eu_nace.
+3. Instale este módulo l10n_ca_es_cnae.
 
 Usage
 =====
 
-To use this module, you need to:
+Para utilizar este módulo, es necesario:
 
-1. Go to **Contacts > Configuration > Import NACE Industries**.
-2. Run the wizard. If ca_ES is available, industry names will be updated
-   with their Catalan translations.
-3. To verify, go to **Contacts > Configuration > Industries** with a
-   user whose language is set to Catalan.
+1. Vaya a **Contactos > Configuración > Importar Industrias NACE**.
+2. Ejecute el asistente. Si ca_ES está disponible, los nombres de los
+   sectores se actualizarán con sus traducciones al catalán.
+3. Para comprobarlo, vaya a **Contactos > Configuración > Industrias**
+   con un usuario cuyo idioma esté configurado en catalán.
 
-You can safely run the wizard multiple times. Translations will update
-existing records — no duplicates. Industries are assigned using specific
-fields on the **company** partner form, like Main industry or Secondary
-industries.
+Puede ejecutar el asistente varias veces sin problemas. Las traducciones
+actualizarán los registros existentes, sin duplicados. Las industrias se
+asignan utilizando campos específicos en el formulario de socio de
+**empresa**, como Industria principal o Industrias secundarias.
 
 Bug Tracker
 ===========

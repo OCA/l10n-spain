@@ -1,7 +1,7 @@
-To use this module, you need to:
+Para utilizar este módulo, es necesario:
 
-1. Go to **Contacts \> Configuration \> Import NACE Industries**.
-2. Run the wizard. If ca_ES is available, industry names will be updated with their Catalan translations.
-3. To verify, go to **Contacts \> Configuration \> Industries** with a user whose language is set to Catalan.
+1. Vaya a **Contactos \> Configuración \> Importar Industrias NACE**.
+2. Ejecute el asistente. Si ca_ES está disponible, los nombres de los sectores se actualizarán con sus traducciones al catalán.
+3. Para comprobarlo, vaya a **Contactos \> Configuración \> Industrias** con un usuario cuyo idioma esté configurado en catalán.
 
-You can safely run the wizard multiple times. Translations will update existing records — no duplicates. Industries are assigned using specific fields on the **company** partner form, like Main industry or Secondary industries.
+Puede ejecutar el asistente varias veces sin problemas. Las traducciones actualizarán los registros existentes, sin duplicados. Las industrias se asignan utilizando campos específicos en el formulario de socio de **empresa**, como Industria principal o Industrias secundarias.
