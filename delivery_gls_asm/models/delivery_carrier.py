@@ -57,8 +57,7 @@ class DeliveryCarrier(models.Model):
     def gls_asm_get_tracking_link(self, picking):
         """Provide tracking link for the customer"""
         tracking_url = (
-            "http://www.asmred.com/extranet/public/"
-            "ExpedicionASM.aspx?codigo={}&cpDst={}"
+            "https://mygls.gls-spain.es/e/{}/{}/es"
         )
         return tracking_url.format(picking.carrier_tracking_ref, picking.partner_id.zip)
 
