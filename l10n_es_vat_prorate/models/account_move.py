@@ -52,6 +52,7 @@ class AccountMoveLine(models.Model):
                         or tax_key.get("account_id") in tax.prorate_account_ids.ids
                     )
                 ):
+                    tax_vals["vat_prorate"] = False  # assure value for regular tax line
                     prec = line.move_id.currency_id.rounding
                     prorate = line.company_id.get_prorate(vat_prorate_date)
                     new_vals = tax_vals.copy()
