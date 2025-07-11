@@ -1,9 +1,13 @@
 # Copyright 2023 Tecnativa - Ernesto García Medina
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-
 from odoo import _, fields
 from odoo.exceptions import UserError
+
+try:
+    from unidecode import unidecode
+except ImportError:
+    unidecode = str
 
 
 class ConfirmingAEF(object):
@@ -89,6 +93,7 @@ class ConfirmingAEF(object):
         elif isinstance(text, int):
             text = str(text).zfill(size)
         else:
+            text = unidecode(text)
             if justified == "left":
                 text = text[:size].ljust(size)
             else:
@@ -140,7 +145,7 @@ class ConfirmingAEF(object):
         text += self._aef_convert_text(contract_cxb, 20, "left")
         # 103 - 136 Cuenta de cargo
         cuenta = self.record.company_partner_bank_id.acc_number.replace(" ", "")
-        text += self._aef_convert_text(cuenta, 34)
+        text += self._aef_convert_text(cuenta, 34, "left")
         # 137 - 139 Código divisa
         text += self._aef_convert_text(self.record.journal_id.currency_id.name, 3)
         # 140 - 140 Estandar / Pronto Pago/ Otros
