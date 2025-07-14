@@ -40,7 +40,7 @@ class TestResPartner(common.SingleTransactionCase):
         return cls._super_send(s, r, **kw)
 
     @mock.patch(
-        "%s.send_soap" % soap_model,
+        f"{soap_model}.send_soap",
         return_value=[
             {
                 "Nombre": "Mr. Odoo & Co.",
@@ -50,14 +50,14 @@ class TestResPartner(common.SingleTransactionCase):
         ],
     )
     @mock.patch(  # we ignore the aeat_check_re in this test to test it individually
-        "%s.aeat_check_re" % partner_model, return_value=True
+        f"{partner_model}.aeat_check_re", return_value=True
     )
     def test_01_check_partner(self, redirect_mock, *args):
         self.assertFalse(self.partner.aeat_partner_check_result)
         self.partner.aeat_check_partner()
         self.assertEqual(self.partner.aeat_partner_check_result, "IDENTIFICADO")
 
-    @mock.patch("%s.get_certificates" % cert_model, return_value=("123123", "456456"))
+    @mock.patch(f"{cert_model}.get_certificates", return_value=("123123", "456456"))
     @mock.patch("requests.post")
     def test_02_aeat_check_re(self, redirect_mock, *args):
         self.assertFalse(self.partner.aeat_partner_type)
@@ -69,7 +69,7 @@ class TestResPartner(common.SingleTransactionCase):
         self.assertEqual(self.partner.aeat_partner_type, "sales_equalization")
 
     @mock.patch(
-        "%s.send_soap" % soap_model,
+        f"{soap_model}.send_soap",
         return_value=[
             {
                 "Nombre": "Block no. 401",
@@ -79,7 +79,7 @@ class TestResPartner(common.SingleTransactionCase):
         ],
     )
     @mock.patch(  # we ignore the aeat_check_re in this test to test it individually
-        "%s.aeat_check_re" % partner_model, return_value=True
+        f"{partner_model}.aeat_check_re", return_value=True
     )
     def test_03_check_partner_no_spanish(self, redirect_mock, *args):
         self.assertFalse(self.partner_in.aeat_partner_check_result)
