@@ -11,6 +11,9 @@ class StockPicking(models.Model):
     gls_asm_public_tracking_ref = fields.Char(
         string="GLS Barcode", readonly=True, copy=False,
     )
+    gls_asm_picking_ref = fields.Char(
+        string="GLS Picking Reference", readonly=True, copy=False
+    )
 
     def gls_asm_get_label(self):
         """Get GLS Label for this picking expedition"""

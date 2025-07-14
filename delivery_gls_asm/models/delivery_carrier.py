@@ -10,6 +10,7 @@ from .gls_asm_master_data import (
     GLS_DELIVERY_STATES_STATIC,
     GLS_POSTAGE_TYPE,
     GLS_SHIPPING_TIMES,
+    GLS_TRACKING_LINKS,
 )
 from .gls_asm_request import GlsAsmRequest
 
@@ -56,10 +57,18 @@ class DeliveryCarrier(models.Model):
 
     def gls_asm_get_tracking_link(self, picking):
         """Provide tracking link for the customer"""
-        tracking_url = (
-            "https://mygls.gls-spain.es/e/{}/{}/es"
-        )
-        return tracking_url.format(picking.carrier_tracking_ref, picking.partner_id.zip)
+        # International
+        if picking.gls_asm_picking_ref:
+            if picking.partner_id.country_id.code == "PT":
+                base_link = GLS_TRACKING_LINKS.get("INT_PT")
+            else:
+                base_link = GLS_TRACKING_LINKS.get("INT")
+            tracking_url = base_link.format(picking.gls_asm_picking_ref)
+        else:
+            tracking_url = GLS_TRACKING_LINKS.get("ASM").format(
+                picking.carrier_tracking_ref, picking.partner_id.zip
+            )
+        return tracking_url
 
     def _prepare_gls_asm_shipping(self, picking):
         """Convert picking values for asm api
@@ -176,7 +185,21 @@ class DeliveryCarrier(models.Model):
             # For compatibility we provide this number although we get
             # two more codes: codbarras and uid
             vals["tracking_number"] = response.get("_codexp")
-            picking.gls_asm_public_tracking_ref = response.get("_codbarras")
+            gls_asm_picking_ref = ""
+            try:
+                references = response.get("Referencias", {}).get("Referencia", [])
+                for ref in references:
+                    if ref.get("_tipo", "") == "N":
+                        gls_asm_picking_ref = ref.get("value", "")
+                        break
+            except Exception:
+                pass
+            picking.write(
+                {
+                    "gls_asm_public_tracking_ref": response.get("_codbarras"),
+                    "gls_asm_picking_ref": gls_asm_picking_ref,
+                }
+            )
             # We post an extra message in the chatter with the barcode and the
             # label because there's clean way to override the one sent by core.
             body = _("GLS Shipping extra info:\n" "barcode: %s") % response.get(
@@ -231,7 +254,12 @@ class DeliveryCarrier(models.Model):
                 )
                 picking.message_post(body=msg)
                 continue
-            picking.gls_asm_public_tracking_ref = False
+            picking.write(
+                {
+                    "gls_asm_public_tracking_ref": False,
+                    "gls_asm_picking_ref": False
+                }
+            )
             picking.message_post(
                 body=_("GLS Expedition with reference %s cancelled")
                 % picking.carrier_tracking_ref

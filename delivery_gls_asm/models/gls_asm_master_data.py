@@ -230,3 +230,16 @@ Error, Various reasons:
     "-36": "Error, Consignee Zipcode, wrong format.",
     "-6565": "Error, Volume is incorrect, remember that the unit is m3.",
 }
+
+GLS_TRACKING_LINKS = {
+    "ASM": (
+        "https://mygls.gls-spain.es/e/{}/{}/es"
+    ),
+    "INT": (
+        "https://www.gls-spain.es/en/receiving-parcels/shipping-tracking/"
+        "?match={}&international=1"
+    ),
+    "INT_PT": (
+        "https://www.gls-portugal.pt/pt/seguimiento-envio/?match={}&international=1"
+    )
+}
