@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="view_verifactu_chain_tree" model="ir.ui.view">
-        <field name="name">verifactu.chain.tree</field>
-        <field name="model">verifactu.chain</field>
+    <record id="view_verifactu_invoice_tree" model="ir.ui.view">
+        <field name="name">verifactu.invoice.tree</field>
+        <field name="model">verifactu.invoice</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="document_id" />
@@ -13,11 +13,11 @@
         </field>
     </record>
 
-    <record id="view_verifactu_chain_form" model="ir.ui.view">
-        <field name="name">verifactu.chain.form</field>
-        <field name="model">verifactu.chain</field>
+    <record id="view_verifactu_invoice_form" model="ir.ui.view">
+        <field name="name">verifactu.invoice.form</field>
+        <field name="model">verifactu.invoice</field>
         <field name="arch" type="xml">
-            <form string="VeriFactu Chain Entry" create="false" edit="false">
+            <form string="VeriFactu Invoice Entry" create="false" edit="false">
                 <sheet>
                     <group>
                         <group>
@@ -25,21 +25,24 @@
                             <field name="company_id" />
                         </group>
                         <group>
-                            <field name="previous_chain_entry_id" />
+                            <field name="previous_invoice_entry_id" />
                             <field name="document_hash" />
                             <field name="create_date" />
                         </group>
+                    </group>
+                    <group string="AEAT Data">
+                        <field name="aeat_json_data" widget="text" />
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <record id="view_verifactu_chain_search" model="ir.ui.view">
-        <field name="name">verifactu.chain.search</field>
-        <field name="model">verifactu.chain</field>
+    <record id="view_verifactu_invoice_search" model="ir.ui.view">
+        <field name="name">verifactu.invoice.search</field>
+        <field name="model">verifactu.invoice</field>
         <field name="arch" type="xml">
-            <search string="Search VeriFactu Chain">
+            <search string="Search VeriFactu Invoice">
                 <field name="document_id" />
                 <field name="company_id" />
                 <field name="document_hash" />
@@ -59,26 +62,26 @@
         </field>
     </record>
 
-    <record id="action_verifactu_chain" model="ir.actions.act_window">
-        <field name="name">VeriFactu Chain</field>
-        <field name="res_model">verifactu.chain</field>
+    <record id="action_verifactu_invoice" model="ir.actions.act_window">
+        <field name="name">VeriFactu Invoice</field>
+        <field name="res_model">verifactu.invoice</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                No VeriFactu chain entries found!
+                No VeriFactu invoice entries found!
             </p>
             <p>
-                Chain entries are automatically created when invoices are validated
+                Invoice entries are automatically created when invoices are validated
                 with VeriFactu enabled.
             </p>
         </field>
     </record>
 
     <menuitem
-        id="menu_verifactu_chain"
-        name="Aeat Verifactu Chain"
+        id="menu_verifactu_invoice"
+        name="Aeat Verifactu Invoice"
         parent="l10n_es_aeat.menu_l10n_es_aeat_config"
-        action="action_verifactu_chain"
+        action="action_verifactu_invoice"
         sequence="50"
     />
 </odoo>

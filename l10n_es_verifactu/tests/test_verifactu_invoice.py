@@ -6,28 +6,28 @@ from datetime import date, timedelta
 from .common import TestVerifactuCommon
 
 
-class TestVerifactuChain(TestVerifactuCommon):
-    """Test class for VeriFactu Chain functionality."""
+class TestVerifactuInvoice(TestVerifactuCommon):
+    """Test class for VeriFactu Invoice functionality."""
 
-    def _generate_invoice_chain(self, invoice):
+    def _generate_invoice_entry(self, invoice):
         """
-        Helper method to generate verifactu chain for an invoice.
+        Helper method to generate verifactu invoice entry for an invoice.
         This assumes the invoice is already prepared for verifactu.
 
         Args:
             invoice: Prepared invoice
 
         Returns:
-            verifactu.chain: Created chain entry
+            verifactu.invoice: Created invoice entry
         """
         invoice._generate_verifactu_chaining()
-        return invoice.verifactu_chain_entry_id
+        return invoice.verifactu_invoice_entry_id
 
     def _create_invoice_sequence(
         self, count=3, start_date="2024-01-01", company=None, amounts=None
     ):
         """
-        Helper method to create a sequence of invoices for chain testing.
+        Helper method to create a sequence of invoices for invoice entry testing.
 
         Args:
             count: Number of invoices to create
@@ -90,7 +90,7 @@ class TestVerifactuChain(TestVerifactuCommon):
         if company is None:
             company = self.company
 
-        self.env["verifactu.chain"].search([("company_id", "=", company.id)]).unlink()
+        self.env["verifactu.invoice"].search([("company_id", "=", company.id)]).unlink()
 
     def _assert_chain_entry_properties(
         self,
@@ -205,9 +205,9 @@ class TestVerifactuChain(TestVerifactuCommon):
         """Test the _get_previous_chain_entry method."""
         self._activate_certificate(self.certificate_password)
 
-        chain_model = self.env["verifactu.chain"]
+        invoice_model = self.env["verifactu.invoice"]
 
-        previous_entry = chain_model._get_previous_chain_entry(
+        previous_entry = invoice_model._get_previous_chain_entry(
             "account.move", self.company.id
         )
         self.assertFalse(
@@ -217,13 +217,13 @@ class TestVerifactuChain(TestVerifactuCommon):
         invoices = self._create_invoice_sequence(count=2)
         first_entry = self._generate_invoice_chain(invoices[0])
 
-        previous_entry = chain_model._get_previous_chain_entry(
+        previous_entry = invoice_model._get_previous_chain_entry(
             "account.move", self.company.id
         )
         self.assertEqual(previous_entry, first_entry, "Should return the first entry")
 
         second_entry = self._generate_invoice_chain(invoices[1])
-        latest_entry = chain_model._get_previous_chain_entry(
+        latest_entry = invoice_model._get_previous_chain_entry(
             "account.move", self.company.id
         )
         self.assertEqual(latest_entry, second_entry, "Should return the latest entry")
@@ -248,8 +248,8 @@ class TestVerifactuChain(TestVerifactuCommon):
 
     def test_verifactu_chain_entry_selection_models(self):
         """Test the reference model selection."""
-        chain_model = self.env["verifactu.chain"]
-        selection = chain_model._selection_verifactu_reference_models()
+        invoice_model = self.env["verifactu.invoice"]
+        selection = invoice_model._selection_verifactu_reference_models()
 
         self.assertIn(
             ("account.move", "Invoice"), selection, "Should include account.move model"
@@ -266,7 +266,7 @@ class TestVerifactuChain(TestVerifactuCommon):
         self.assertEqual(chain_entry.document_id, invoice)
 
         fake_invoice_ref = f"account.move,{999999}"
-        empty_entry = self.env["verifactu.chain"].create(
+        empty_entry = self.env["verifactu.invoice"].create(
             {
                 "document_id": fake_invoice_ref,
                 "company_id": self.company.id,
@@ -318,40 +318,31 @@ class TestVerifactuChain(TestVerifactuCommon):
             "chain_context_id should store the company ID correctly",
         )
 
-    def test_verifactu_get_chain_context(self):
-        """Test the _get_verifactu_chain_context method."""
+    def test_verifactu_company_chaining(self):
+        """Test that verifactu always uses company for chaining."""
         self._activate_certificate(self.certificate_password)
 
         invoice = self._create_and_prepare_invoice()
 
-        context_model, context_record = invoice._get_verifactu_chain_context()
-
-        self.assertEqual(
-            context_model,
-            "res.company",
-            "Context model should be res.company for invoices",
-        )
-        self.assertEqual(
-            context_record,
-            self.company,
-            "Context record should be the invoice's company",
-        )
-        self.assertEqual(
-            context_record._name,
-            "res.company",
-            "Context record should be a company record",
-        )
+        # Verify company has the required field for chaining
         self.assertTrue(
-            hasattr(context_record, "last_verifactu_chain_entry_id"),
-            "Context record should have last_verifactu_chain_entry_id field",
+            hasattr(self.company, "last_verifactu_invoice_entry_id"),
+            "Company should have last_verifactu_invoice_entry_id field",
+        )
+
+        # Verify invoice uses company for chaining
+        self.assertEqual(
+            invoice.company_id,
+            self.company,
+            "Invoice should use the correct company for chaining",
         )
 
     def test_company_last_chain_entry_updated(self):
-        """Test that company's last_verifactu_chain_entry_id is updated."""
+        """Test that company's last_verifactu_invoice_entry_id is updated."""
         self._activate_certificate(self.certificate_password)
 
         self.assertFalse(
-            self.company.last_verifactu_chain_entry_id,
+            self.company.last_verifactu_invoice_entry_id,
             "Company should initially have no last chain entry",
         )
 
@@ -359,7 +350,7 @@ class TestVerifactuChain(TestVerifactuCommon):
         chain_entry1 = self._generate_invoice_chain(invoice1)
 
         self.assertEqual(
-            self.company.last_verifactu_chain_entry_id,
+            self.company.last_verifactu_invoice_entry_id,
             chain_entry1,
             "Company's last chain entry should be updated to first entry",
         )
@@ -368,7 +359,7 @@ class TestVerifactuChain(TestVerifactuCommon):
         chain_entry2 = self._generate_invoice_chain(invoice2)
 
         self.assertEqual(
-            self.company.last_verifactu_chain_entry_id,
+            self.company.last_verifactu_invoice_entry_id,
             chain_entry2,
             "Company's last chain entry should be updated to second entry",
         )
@@ -379,34 +370,17 @@ class TestVerifactuChain(TestVerifactuCommon):
             "Second entry should reference first entry as previous",
         )
 
-    def test_chain_context_selection(self):
-        """Test the chain context model selection."""
-        chain_model = self.env["verifactu.chain"]
+    def test_invoice_entry_creation(self):
+        """Test the verifactu invoice entry creation."""
+        invoice_model = self.env["verifactu.invoice"]
 
-        context_selection = chain_model._selection_chain_context_models()
-
-        self.assertIn(
-            ("res.company", "Company"),
-            context_selection,
-            "Should include res.company in context selection",
-        )
-        self.assertIsInstance(context_selection, list, "Should return a list")
-
-        field = chain_model._fields["chain_context_id"]
-        field_selection = field.selection
-
-        self.assertEqual(
-            field_selection,
-            "_selection_chain_context_models",
-            "Field should use the dynamic selection method",
-        )
-
-        test_entry = chain_model.create(
+        # Test creating a simple invoice entry
+        test_entry = invoice_model.create(
             {
                 "document_id": "account.move,999999",  # Use a high ID that likely doesn't exist
                 "company_id": self.company.id,
-                "document_hash": "test_hash_context",
-                "chain_context_id": self.company,
+                "document_hash": "test_hash_simple",
+                "aeat_json_data": '{"test": "data"}',
             }
         )
 
