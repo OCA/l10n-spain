@@ -33,7 +33,6 @@ class AccountMove(models.Model):
         " of article 80 of LIVA for notifying to Vertifactu with the proper"
         " invoice type.",
     )
-    verifactu_registration_date = fields.Datetime(copy=False)
     verifactu_registration_key = fields.Many2one(
         comodel_name="verifactu.registration.keys",
         compute="_compute_verifactu_registration_key",
@@ -48,6 +47,14 @@ class AccountMove(models.Model):
     verifactu_registration_key_code = fields.Char(
         compute="_compute_verifactu_registration_key_code",
         readonly=True,
+    )
+    verifactu_send_queue_ids = fields.One2many(
+        "verifactu.send.queue", "move_id", string="Verifactu Send Queue"
+    )
+    verifactu_send_response_ids = fields.One2many(
+        "verifactu.send.response.line",
+        "move_id",
+        string="Verifactu Send Response Lines",
     )
 
     @api.depends("move_type")
@@ -523,7 +530,12 @@ class AccountMove(models.Model):
                 record._check_verifactu_configuration()
                 record.verifactu_registration_date = datetime.now()
                 record._generate_verifactu_chaining()
-                record._process_verifactu_send()
+                self.env["verifactu.send.queue"].sudo().create(
+                    {
+                        "move_id": record.id,
+                        "company_id": record.company_id.id,
+                    }
+                )
         return res
 
     def _check_verifactu_configuration(self):
@@ -602,38 +614,6 @@ class AccountMove(models.Model):
                     self._raise_exception_verifactu(_("invoice number"))
         return super().write(vals)
 
-    @api.model
-    def _send_to_verifactu_valid(self):
-        remaining_documents = self.env["account.move"]
-        documents = all_documents = self.search(
-            [
-                ("state", "in", self._get_verifactu_valid_document_states()),
-                (
-                    "aeat_state",
-                    "not in",
-                    ["sent", "cancelled"],
-                ),
-                ("verifactu_send_date", "<=", fields.Datetime.now()),
-            ]
-        )
-        if documents:
-            batch = self._get_verifactu_batch()
-            documents = all_documents[:batch]
-            remaining_documents = all_documents - documents
-            documents._process_verifactu_send()
-        return remaining_documents
-
-    @api.model
-    def _send_to_verifactu(self):
-        remaining_documents = self._send_to_verifactu_valid()
-        if remaining_documents:
-            verifactu_send_cron = self.env.ref(
-                "l10n_es_verifactu.invoice_send_to_verifactu"
-            )
-            self.env["ir.cron.trigger"].sudo().create(
-                {"cron_id": verifactu_send_cron.id, "call_at": fields.Datetime.now()}
-            )
-
     def button_cancel(self):
         invoices_sent = self.filtered(
             lambda inv: inv.verifactu_enabled and inv.aeat_state != "not_sent"
@@ -649,3 +629,7 @@ class AccountMove(models.Model):
         if invoices_sent:
             raise UserError(_("You can not set to draft invoices sent to verifactu"))
         return super().button_draft()
+
+    def resend_verifactu(self):
+        for rec in self:
+            rec.verifactu_send_queue_ids.write({"correction": True})

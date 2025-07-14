@@ -11,17 +11,10 @@
             <button name="button_draft" position="after">
                 <button
                     type="object"
-                    string="Send to Verifactu"
-                    name="send_verifactu"
+                    string="Re-send to Verifactu"
+                    name="resend_verifactu"
                     groups="l10n_es_aeat.group_account_aeat"
-                    attrs="{'invisible': ['|','|',('verifactu_enabled', '=', False), ('state', 'not in', ['posted']), ('aeat_state','in',['sent','cancelled'])]}"
-                />
-                <button
-                    type="object"
-                    string="Send cancellation to Verifactu"
-                    name="cancel_verifactu"
-                    groups="l10n_es_aeat.group_account_aeat"
-                    attrs="{'invisible': ['|','|',('verifactu_enabled', '=', False), ('state', 'not in', ['cancel']), ('aeat_state', 'not in', ['sent','sent_w_errors','sent_modified'])]}"
+                    attrs="{'invisible': ['|','|',('verifactu_enabled', '=', False), ('state', 'not in', ['posted']), ('aeat_state','not in',['sent','sent_w_errors'])]}"
                 />
             </button>
             <notebook position="inside">
@@ -107,6 +100,16 @@
                                     <label for="aeat_content_sent" />
                                 </group>
                                 <field name="aeat_content_sent" />
+                                <group>
+                                    <label for="verifactu_send_response_ids" />
+                                </group>
+                                <field name="verifactu_send_response_ids" nolabel="1">
+                                    <tree>
+                                        <field name="create_date" />
+                                        <field name="response" />
+                                        <field name="send_state" />
+                                    </tree>
+                                </field>
                             </page>
                         </notebook>
                     </group>
