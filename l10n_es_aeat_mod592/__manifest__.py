@@ -5,7 +5,7 @@
 
 {
     "name": "AEAT modelo 592",
-    "version": "15.0.2.0.0",
+    "version": "15.0.2.0.1",
     "category": "Accounting",
     "author": "Tecnativa, Binhex System Solutions, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",

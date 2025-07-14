@@ -46,7 +46,7 @@ addon | version | maintainers | summary
 [l10n_es_aeat_mod369](l10n_es_aeat_mod369/) | 15.0.1.0.0 |  | AEAT modelo 369
 [l10n_es_aeat_mod390](l10n_es_aeat_mod390/) | 15.0.2.9.0 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | AEAT modelo 390
 [l10n_es_aeat_mod390_oss](l10n_es_aeat_mod390_oss/) | 15.0.1.0.2 |  | AEAT modelo 390 - OSS
-[l10n_es_aeat_mod592](l10n_es_aeat_mod592/) | 15.0.2.0.0 |  | AEAT modelo 592
+[l10n_es_aeat_mod592](l10n_es_aeat_mod592/) | 15.0.2.0.1 |  | AEAT modelo 592
 [l10n_es_aeat_partner_check](l10n_es_aeat_partner_check/) | 15.0.1.2.0 |  | AEAT - Comprobación de Calidad de datos identificativos
 [l10n_es_aeat_sii_match](l10n_es_aeat_sii_match/) | 15.0.1.0.1 |  | Sistema de comprobación y contraste de facturas enviadas al SII
 [l10n_es_aeat_sii_oca](l10n_es_aeat_sii_oca/) | 15.0.2.22.2 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Suministro Inmediato de Información en el IVA
