@@ -4,20 +4,20 @@
 
 import requests
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 RESULTS = [
-    ("NO IDENTIFICADO", _("No identificado")),
-    ("IDENTIFICADO", _("Identificado")),
-    ("NO PROCESADO", _("No procesado")),
-    ("NO IDENTIFICABLE", _("No identificable")),
-    ("IDENTIFICADO-BAJA", _("Identificado, baja")),
-    ("IDENTIFICADO-REVOCADO", _("Identificado, revocado")),
+    ("NO IDENTIFICADO", "No identificado"),
+    ("IDENTIFICADO", "Identificado"),
+    ("NO PROCESADO", "No procesado"),
+    ("NO IDENTIFICABLE", "No identificable"),
+    ("IDENTIFICADO-BAJA", "Identificado, baja"),
+    ("IDENTIFICADO-REVOCADO", "Identificado, revocado"),
 ]
 TYPES = [
-    ("sales_equalization", _("Régimen de recargo de equivalencia")),
-    ("standard", _("Régimen estándar")),
+    ("sales_equalization", "Régimen de recargo de equivalencia"),
+    ("standard", "Régimen estándar"),
 ]
 
 
