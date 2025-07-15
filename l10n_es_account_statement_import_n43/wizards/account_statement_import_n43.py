@@ -310,16 +310,6 @@ class AccountStatementImport(models.TransientModel):
                     partner = partner_obj.search([("name", "ilike", name)], limit=1)
         return partner
 
-    def _get_n43_partner_from_bankia(self, conceptos):
-        partner_obj = self.env["res.partner"]
-        partner = partner_obj.browse()
-        # Try to match from partner name
-        if conceptos.get("01"):
-            vat = conceptos["01"][0][:2] + conceptos["01"][0][7:]
-            if vat:
-                partner = partner_obj.search([("vat", "=", vat)], limit=1)
-        return partner
-
     def _get_n43_partner_from_sabadell(self, conceptos):
         partner_obj = self.env["res.partner"]
         partner = partner_obj.browse()
@@ -330,17 +320,22 @@ class AccountStatementImport(models.TransientModel):
                 partner = partner_obj.search([("name", "ilike", name)], limit=1)
         return partner
 
-    def _get_n43_partner(self, line):
-        if not line.get("conceptos"):  # pragma: no cover
+    def _get_n43_partner(self, line, journal):
+        if not line.get("conceptos") or journal.n43_partner_search == "none":
             return self.env["res.partner"]
-        partner = self._get_n43_partner_from_caixabank(line["conceptos"])
-        if not partner:
-            partner = self._get_n43_partner_from_santander(line["conceptos"])
-        if not partner:
-            partner = self._get_n43_partner_from_bankia(line["conceptos"])
-        if not partner:
-            partner = self._get_n43_partner_from_sabadell(line["conceptos"])
-        return partner
+        if journal.n43_partner_search == "all":
+            field = "n43_partner_search"
+            search_methods = {x[0] for x in journal._fields[field].selection}
+            search_methods -= {"all", "none"}
+        else:
+            search_methods = [journal.n43_partner_search]
+        for search_method in search_methods:
+            partner = getattr(self, f"_get_n43_partner_from_{search_method}")(
+                line["conceptos"]
+            )
+            if partner:
+                return partner
+        return self.env["res.partner"]
 
     def _get_n43_account(self, line, journal):  # pragma: no cover
         account_obj = self.env["account.account"]
@@ -422,7 +417,7 @@ class AccountStatementImport(models.TransientModel):
                     n43_line = line_vals.pop("n43_line")
                     if not line_vals.get("partner_id"):
                         line_vals["partner_id"] = self._get_n43_partner(
-                            n43_line,
+                            n43_line, journal
                         ).id
                     line_vals["date"] = fields.Date.to_string(
                         n43_line.get(journal.n43_date_type or "fecha_valor")
