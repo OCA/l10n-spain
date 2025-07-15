@@ -37,6 +37,17 @@ class VerifactuInvoice(models.Model):
         readonly=True,
     )
 
+    send_queue_ids = fields.One2many(
+        "verifactu.send.queue",
+        "verifactu_invoice_id",
+        string="Send Queue Records",
+    )
+    send_response_ids = fields.One2many(
+        "verifactu.send.response.line",
+        "verifactu_invoice_id",
+        string="Send Response Lines",
+    )
+
     @api.model
     def _selection_verifactu_reference_models(self):
         """Define the models that can be used as documents in the verifactu invoice."""

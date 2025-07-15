@@ -105,6 +105,11 @@ class VerifactuMixin(models.AbstractModel):
         copy=False,
     )
     verifactu_send_date = fields.Datetime(index=True, copy=False)
+    verifactu_send_response_ids = fields.One2many(
+        "verifactu.send.response.line",
+        compute="_compute_verifactu_send_response_ids",
+        string="Verifactu Send Response Lines",
+    )
 
     @api.model
     def _selection_verifactu_reference_models(self):
@@ -114,6 +119,18 @@ class VerifactuMixin(models.AbstractModel):
 
     def _compute_verifactu_enabled(self):
         raise NotImplementedError
+
+    def _compute_verifactu_send_response_ids(self):
+        """Compute response lines through verifactu invoice entry."""
+        for record in self:
+            if record.verifactu_invoice_entry_id:
+                record.verifactu_send_response_ids = (
+                    record.verifactu_invoice_entry_id.send_response_ids
+                )
+            else:
+                record.verifactu_send_response_ids = self.env[
+                    "verifactu.send.response.line"
+                ]
 
     def _compute_verifactu_macrodata(self):
         for document in self:

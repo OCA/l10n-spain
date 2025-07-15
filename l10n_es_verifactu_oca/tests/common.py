@@ -228,3 +228,80 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
         """
         invoice = self._create_test_invoice(**kwargs)
         return self._prepare_invoice_for_verifactu(invoice)
+
+    def _verify_queue_creation(self, invoice):
+        """
+        Helper method to verify that a queue record was created for an invoice.
+
+        Args:
+            invoice: Invoice to verify queue creation for
+
+        Returns:
+            verifactu.send.queue: The created queue record
+        """
+        self.assertTrue(
+            invoice.verifactu_invoice_entry_id,
+            "Invoice should have a verifactu invoice entry after posting",
+        )
+
+        queue_records = invoice.verifactu_invoice_entry_id.send_queue_ids
+        self.assertEqual(len(queue_records), 1, "Should have exactly one queue record")
+
+        queue_record = queue_records[0]
+        self.assertEqual(
+            queue_record.verifactu_invoice_id,
+            invoice.verifactu_invoice_entry_id,
+            "Queue record should link to the verifactu invoice entry",
+        )
+
+        self.assertEqual(
+            queue_record.company_id,
+            invoice.company_id,
+            "Queue record should belong to the same company",
+        )
+
+        return queue_record
+
+    def _verify_response_integration(self, invoice, response_line):
+        """
+        Helper method to verify response line integration with verifactu.invoice.
+
+        Args:
+            invoice: Original invoice
+            response_line: Response line to verify
+
+        Returns:
+            bool: True if integration is correct
+        """
+        self.assertTrue(
+            response_line.verifactu_invoice_id,
+            "Response line should have verifactu invoice reference",
+        )
+
+        self.assertEqual(
+            response_line.verifactu_invoice_id,
+            invoice.verifactu_invoice_entry_id,
+            "Response line should link to the correct verifactu invoice entry",
+        )
+
+        self.assertEqual(
+            response_line.verifactu_invoice_id.document_id,
+            invoice,
+            "Response line should reference the original invoice through verifactu entry",
+        )
+
+        return True
+
+    def _generate_invoice_entry(self, invoice):
+        """
+        Helper method to generate verifactu invoice entry for an invoice.
+        This assumes the invoice is already prepared for verifactu.
+
+        Args:
+            invoice: Prepared invoice
+
+        Returns:
+            verifactu.invoice: Created invoice entry
+        """
+        invoice._generate_verifactu_chaining()
+        return invoice.verifactu_invoice_entry_id
