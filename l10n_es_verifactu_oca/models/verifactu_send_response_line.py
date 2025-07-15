@@ -18,7 +18,11 @@ class VerifactuSendResponseLine(models.Model):
 
     send_queue_id = fields.Many2one("verifactu.send.queue")
     send_response_id = fields.Many2one("verifactu.send.response")
-    move_id = fields.Many2one(related="send_queue_id.move_id")
+    verifactu_invoice_id = fields.Many2one(
+        related="send_queue_id.verifactu_invoice_id",
+        string="VeriFactu Invoice Entry",
+        store=True,
+    )
     response = fields.Text()
     send_state = fields.Selection(
         selection=VERIFACTU_SEND_STATES,
