@@ -48,14 +48,6 @@ class AccountMove(models.Model):
         compute="_compute_verifactu_registration_key_code",
         readonly=True,
     )
-    verifactu_send_queue_ids = fields.One2many(
-        "verifactu.send.queue", "move_id", string="Verifactu Send Queue"
-    )
-    verifactu_send_response_ids = fields.One2many(
-        "verifactu.send.response.line",
-        "move_id",
-        string="Verifactu Send Response Lines",
-    )
 
     @api.depends("move_type")
     def _compute_verifactu_refund_type(self):
@@ -532,7 +524,7 @@ class AccountMove(models.Model):
                 record._generate_verifactu_chaining()
                 self.env["verifactu.send.queue"].sudo().create(
                     {
-                        "move_id": record.id,
+                        "verifactu_invoice_id": record.verifactu_invoice_entry_id.id,
                         "company_id": record.company_id.id,
                     }
                 )
