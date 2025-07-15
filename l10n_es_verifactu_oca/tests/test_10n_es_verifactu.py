@@ -117,6 +117,19 @@ class TestL10nEsAeatVerifactuBase(TestVerifactuCommon):
         with open(path, "r") as f:
             expected_dict = json.loads(f.read())
         self.assertEqual(expected_dict, result_dict)
+
+        # Verify integration workflow
+        self.assertTrue(
+            invoice.verifactu_invoice_entry_id, "Invoice should have verifactu entry"
+        )
+        self.assertTrue(
+            invoice.verifactu_invoice_entry_id.aeat_json_data, "Should have JSON data"
+        )
+        self.assertTrue(
+            invoice.verifactu_invoice_entry_id.send_queue_ids,
+            "Should have queue record",
+        )
+
         return invoice
 
 

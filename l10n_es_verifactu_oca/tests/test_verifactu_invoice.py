@@ -70,11 +70,12 @@ class TestVerifactuInvoice(TestVerifactuCommon):
         for i, entry in enumerate(chain_entries):
             if i == 0:
                 self.assertFalse(
-                    entry.previous_chain_entry_id, "First entry should have no previous"
+                    entry.previous_invoice_entry_id,
+                    "First entry should have no previous",
                 )
             else:
                 self.assertEqual(
-                    entry.previous_chain_entry_id,
+                    entry.previous_invoice_entry_id,
                     chain_entries[i - 1],
                     f"Entry {i} should link to entry {i-1}",
                 )
@@ -113,12 +114,12 @@ class TestVerifactuInvoice(TestVerifactuCommon):
 
         if expected_previous is None:
             self.assertFalse(
-                chain_entry.previous_chain_entry_id,
+                chain_entry.previous_invoice_entry_id,
                 "Chain entry should have no previous entry",
             )
         else:
             self.assertEqual(
-                chain_entry.previous_chain_entry_id,
+                chain_entry.previous_invoice_entry_id,
                 expected_previous,
                 "Chain entry should link to expected previous entry",
             )
@@ -143,7 +144,7 @@ class TestVerifactuInvoice(TestVerifactuCommon):
         self._clean_chain_entries()
 
         invoice = self._create_and_prepare_invoice()
-        chain_entry = self._generate_invoice_chain(invoice)
+        chain_entry = self._generate_invoice_entry(invoice)
 
         self.assertTrue(chain_entry, "Chain entry should be created")
 
@@ -163,8 +164,8 @@ class TestVerifactuInvoice(TestVerifactuCommon):
 
         invoices = self._create_invoice_sequence(count=2, amounts=[100, 150])
 
-        first_chain_entry = self._generate_invoice_chain(invoices[0])
-        second_chain_entry = self._generate_invoice_chain(invoices[1])
+        first_chain_entry = self._generate_invoice_entry(invoices[0])
+        second_chain_entry = self._generate_invoice_entry(invoices[1])
 
         self._assert_chain_entry_properties(
             second_chain_entry,
@@ -187,12 +188,12 @@ class TestVerifactuInvoice(TestVerifactuCommon):
         )
 
         first_company_invoice = self._create_and_prepare_invoice()
-        first_company_entry = self._generate_invoice_chain(first_company_invoice)
+        first_company_entry = self._generate_invoice_entry(first_company_invoice)
 
         second_company_invoice = self._create_and_prepare_invoice(
             company=second_company, amount=200
         )
-        second_company_entry = self._generate_invoice_chain(second_company_invoice)
+        second_company_entry = self._generate_invoice_entry(second_company_invoice)
 
         self._assert_chain_entry_properties(first_company_entry, expected_previous=None)
         self._assert_chain_entry_properties(
@@ -202,12 +203,12 @@ class TestVerifactuInvoice(TestVerifactuCommon):
         )
 
     def test_verifactu_chain_get_previous_entry(self):
-        """Test the _get_previous_chain_entry method."""
+        """Test the _get_previous_invoice_entry method."""
         self._activate_certificate(self.certificate_password)
 
         invoice_model = self.env["verifactu.invoice"]
 
-        previous_entry = invoice_model._get_previous_chain_entry(
+        previous_entry = invoice_model._get_previous_invoice_entry(
             "account.move", self.company.id
         )
         self.assertFalse(
@@ -215,15 +216,15 @@ class TestVerifactuInvoice(TestVerifactuCommon):
         )
 
         invoices = self._create_invoice_sequence(count=2)
-        first_entry = self._generate_invoice_chain(invoices[0])
+        first_entry = self._generate_invoice_entry(invoices[0])
 
-        previous_entry = invoice_model._get_previous_chain_entry(
+        previous_entry = invoice_model._get_previous_invoice_entry(
             "account.move", self.company.id
         )
         self.assertEqual(previous_entry, first_entry, "Should return the first entry")
 
-        second_entry = self._generate_invoice_chain(invoices[1])
-        latest_entry = invoice_model._get_previous_chain_entry(
+        second_entry = self._generate_invoice_entry(invoices[1])
+        latest_entry = invoice_model._get_previous_invoice_entry(
             "account.move", self.company.id
         )
         self.assertEqual(latest_entry, second_entry, "Should return the latest entry")
@@ -234,10 +235,10 @@ class TestVerifactuInvoice(TestVerifactuCommon):
 
         invoices = self._create_invoice_sequence(count=2)
 
-        self._generate_invoice_chain(invoices[0])
+        self._generate_invoice_entry(invoices[0])
         first_hash = invoices[0].verifactu_hash
 
-        self._generate_invoice_chain(invoices[1])
+        self._generate_invoice_entry(invoices[1])
 
         second_hash_string = invoices[1].verifactu_hash_string
         self.assertIn(
@@ -261,7 +262,7 @@ class TestVerifactuInvoice(TestVerifactuCommon):
         self._activate_certificate(self.certificate_password)
 
         invoice = self._create_and_prepare_invoice()
-        chain_entry = self._generate_invoice_chain(invoice)
+        chain_entry = self._generate_invoice_entry(invoice)
 
         self.assertEqual(chain_entry.document_id, invoice)
 
@@ -284,8 +285,8 @@ class TestVerifactuInvoice(TestVerifactuCommon):
 
         invoices = self._create_invoice_sequence(count=2, amounts=[100, 150])
 
-        self._generate_invoice_chain(invoices[0])
-        self._generate_invoice_chain(invoices[1])
+        self._generate_invoice_entry(invoices[0])
+        self._generate_invoice_entry(invoices[1])
 
         self.assertEqual(
             invoices[0].verifactu_next_document_id,
@@ -298,25 +299,12 @@ class TestVerifactuInvoice(TestVerifactuCommon):
         self._activate_certificate(self.certificate_password)
 
         invoice = self._create_and_prepare_invoice()
-        chain_entry = self._generate_invoice_chain(invoice)
-
-        self.assertTrue(chain_entry.chain_context_id, "chain_context_id should be set")
-        self.assertEqual(
-            chain_entry.chain_context_id._name,
-            "res.company",
-            "chain_context_id should reference res.company",
-        )
-        self.assertEqual(
-            chain_entry.chain_context_id,
-            self.company,
-            "chain_context_id should reference the correct company",
-        )
+        chain_entry = self._generate_invoice_entry(invoice)
 
         self.assertEqual(
-            chain_entry.chain_context_id.id,
-            self.company.id,
-            "chain_context_id should store the company ID correctly",
+            chain_entry.company_id, self.company, "Should be linked to company"
         )
+        # Company relationship is already verified above
 
     def test_verifactu_company_chaining(self):
         """Test that verifactu always uses company for chaining."""
@@ -347,7 +335,7 @@ class TestVerifactuInvoice(TestVerifactuCommon):
         )
 
         invoice1 = self._create_and_prepare_invoice(amount=100)
-        chain_entry1 = self._generate_invoice_chain(invoice1)
+        chain_entry1 = self._generate_invoice_entry(invoice1)
 
         self.assertEqual(
             self.company.last_verifactu_invoice_entry_id,
@@ -356,7 +344,7 @@ class TestVerifactuInvoice(TestVerifactuCommon):
         )
 
         invoice2 = self._create_and_prepare_invoice(amount=200)
-        chain_entry2 = self._generate_invoice_chain(invoice2)
+        chain_entry2 = self._generate_invoice_entry(invoice2)
 
         self.assertEqual(
             self.company.last_verifactu_invoice_entry_id,
@@ -365,7 +353,7 @@ class TestVerifactuInvoice(TestVerifactuCommon):
         )
 
         self.assertEqual(
-            chain_entry2.previous_chain_entry_id,
+            chain_entry2.previous_invoice_entry_id,
             chain_entry1,
             "Second entry should reference first entry as previous",
         )
@@ -385,12 +373,7 @@ class TestVerifactuInvoice(TestVerifactuCommon):
         )
 
         self.assertEqual(
-            test_entry.chain_context_id,
+            test_entry.company_id,
             self.company,
             "Should be able to create chain entry with company context",
-        )
-        self.assertEqual(
-            test_entry.chain_context_id._name,
-            "res.company",
-            "Context should be a company record",
         )
