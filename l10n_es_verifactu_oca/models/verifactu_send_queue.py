@@ -38,7 +38,12 @@ class VerifactuSendQueue(models.Model):
     _description = "Verifactu Send Queue"
     _order = "id desc"
 
-    move_id = fields.Many2one("account.move", index=True)
+    verifactu_invoice_id = fields.Many2one(
+        "verifactu.invoice",
+        string="VeriFactu Invoice Entry",
+        index=True,
+        required=True,
+    )
     send_state = fields.Selection(
         selection=VERIFACTU_SEND_STATES,
         string="Verifactu send state",
@@ -87,7 +92,6 @@ class VerifactuSendQueue(models.Model):
         for company in self.env["res.company"].search(
             [("verifactu_enabled", "=", True)]
         ):
-
             # Look for documents where we have to send as an incident
             self.env.cr.execute(
                 """
@@ -111,7 +115,8 @@ class VerifactuSendQueue(models.Model):
             send_date = fields.Datetime.now()
             threshold_time = send_date - datetime.timedelta(seconds=240)
             outdated_records = records_to_send.filtered(
-                lambda r: r.move_id.verifactu_registration_date < threshold_time
+                lambda r: r.verifactu_invoice_id.document_id.verifactu_registration_date
+                < threshold_time
             )
             current_records = records_to_send - outdated_records
             outdated_records.with_context(
@@ -188,6 +193,39 @@ class VerifactuSendQueue(models.Model):
             client, params["port_name"], params["address"]
         )
 
+    def _process_response_line_doc_vals(self, res, linea, header):
+        estado_registro = linea["EstadoRegistro"]
+        doc_vals = {
+            "aeat_header_sent": json.dumps(header, indent=4),
+        }
+        if estado_registro == "Correcto":
+            doc_vals.update(
+                {
+                    "aeat_state": "sent",
+                    "verifactu_csv": res["CSV"],
+                    "aeat_send_failed": False,
+                }
+            )
+        elif estado_registro == "AceptadoConErrores":
+            doc_vals.update(
+                {
+                    "aeat_state": "sent_w_errors",
+                    "verifactu_csv": res["CSV"],
+                    "aeat_send_failed": True,
+                }
+            )
+        else:
+            doc_vals["aeat_send_failed"] = True
+        doc_vals["verifactu_return"] = linea
+        send_error = False
+        if linea.get("CodigoErrorRegistro"):
+            send_error = "{} | {}".format(
+                str(linea["CodigoErrorRegistro"]),
+                str(linea["DescripcionErrorRegistro"]),
+            )
+        doc_vals["aeat_send_error"] = send_error
+        return doc_vals
+
     def _send_documents_to_verifactu(self):
         if not self:
             return False
@@ -197,8 +235,10 @@ class VerifactuSendQueue(models.Model):
         create_exception = False
         for rec in self:
             rec.send_attempt += 1
-            if rec.move_id:
-                inv_dict = rec.move_id._get_verifactu_invoice_dict()
+            if rec.verifactu_invoice_id and rec.verifactu_invoice_id.document_id:
+                inv_dict = (
+                    rec.verifactu_invoice_id.document_id._get_verifactu_invoice_dict()
+                )
                 registro_factura_list.append(inv_dict)
         try:
             serv = rec._connect_verifactu()
@@ -236,8 +276,13 @@ class VerifactuSendQueue(models.Model):
                 [("name", "=", invoice_num), ("company_id", "=", rec.company_id.id)],
                 limit=1,
             )
+            # Find the verifactu.invoice entry for this document
+            verifactu_invoice = self.env["verifactu.invoice"].search(
+                [("document_id", "=", f"account.move,{invoice.id}")],
+                limit=1,
+            )
             send_queue = self.env["verifactu.send.queue"].search(
-                [("move_id", "=", invoice.id)], limit=1
+                [("verifactu_invoice_id", "=", verifactu_invoice.id)], limit=1
             )
             send_queue.correction = False
             estado_registro = linea["EstadoRegistro"]
@@ -252,36 +297,12 @@ class VerifactuSendQueue(models.Model):
                     or "",
                 }
             )
-            doc_vals = {
-                "aeat_header_sent": json.dumps(header, indent=4),
-            }
-            if estado_registro == "Correcto":
-                doc_vals.update(
-                    {
-                        "aeat_state": "sent",
-                        "verifactu_csv": res["CSV"],
-                        "aeat_send_failed": False,
-                    }
-                )
-            elif estado_registro == "AceptadoConErrores":
-                doc_vals.update(
-                    {
-                        "aeat_state": "sent_w_errors",
-                        "verifactu_csv": res["CSV"],
-                        "aeat_send_failed": True,
-                    }
-                )
-            else:
-                doc_vals["aeat_send_failed"] = True
-            doc_vals["verifactu_return"] = linea
-            send_error = False
-            if linea.get("CodigoErrorRegistro"):
-                send_error = "{} | {}".format(
-                    str(linea["CodigoErrorRegistro"]),
-                    str(linea["DescripcionErrorRegistro"]),
-                )
-            doc_vals["aeat_send_error"] = send_error
-            send_queue.move_id.write(doc_vals)
+            doc_vals = self._process_response_line_doc_vals(res, linea, header)
+            if (
+                send_queue.verifactu_invoice_id
+                and send_queue.verifactu_invoice_id.document_id
+            ):
+                send_queue.verifactu_invoice_id.document_id.write(doc_vals)
             send_state = VERIFACTU_STATE_MAPPING.get(linea["EstadoRegistro"], "")
             if send_state != "correct":
                 create_response_activity = True
