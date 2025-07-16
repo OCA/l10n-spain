@@ -23,6 +23,15 @@
                         </group>
                     </group>
                     <group attrs="{'invisible': [('verifactu_enabled', '=', False)]}">
+                        <group name="verifactu_verifactu_chaining">
+                            <field
+                                name="verifactu_chaining_id"
+                                placeholder="Write a Chaining name for this company"
+                                attrs="{'required': [('verifactu_enabled', '=', True)]}"
+                            />
+                        </group>
+                    </group>
+                    <group attrs="{'invisible': [('verifactu_enabled', '=', False)]}">
                         <group name="verifactu_description">
                             <field name="verifactu_description" />
                         </group>

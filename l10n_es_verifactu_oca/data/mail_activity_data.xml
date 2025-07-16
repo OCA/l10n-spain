@@ -5,7 +5,7 @@
         <field name="icon">fa-exclamation-triangle</field>
         <field name="sequence">5</field>
         <field name="summary">Connection error with Verifactu</field>
-        <field name="res_model">verifactu.send.response</field>
+        <field name="res_model">verifactu.invoice.entry.response</field>
         <field name="default_user_id" ref="base.group_system" />
     </record>
 </odoo>

@@ -11,11 +11,6 @@ class AccountFiscalPositionTemplate(models.Model):
         "verifactu.registration.keys",
         ondelete="restrict",
     )
-    verifactu_active = fields.Boolean(
-        copy=False,
-        default=True,
-        help="Enable Verifactu for this fiscal position?",
-    )
 
     @api.model
     def _get_verifactu_tax_keys(self):
