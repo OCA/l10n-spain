@@ -29,10 +29,8 @@ msgstr "Porcentaje definitivo de prorrata"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,help:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__with_vat_prorate
-msgid "If this option is enabled, all invoice lineswith VAT will be prorated"
+msgid "If this option is enabled, all invoice lines with VAT will be prorated"
 msgstr ""
-"Si esta opción está establecida, todas las líneas de facturas con IVA serán "
-"prorrateadas"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__prorate_id
@@ -100,6 +98,12 @@ msgstr "Con prorrata de IVA"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__casilla_44
 msgid "[44] Prorate regularization"
 msgstr "[44] Regularización de prorrata"
+
+#~ msgid ""
+#~ "If this option is enabled, all invoice lineswith VAT will be prorated"
+#~ msgstr ""
+#~ "Si esta opción está establecida, todas las líneas de facturas con IVA "
+#~ "serán prorrateadas"
 
 #, python-format
 #~ msgid "VAT prorate percent must be between 0.01 and 100"
