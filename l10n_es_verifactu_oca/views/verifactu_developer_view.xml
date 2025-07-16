@@ -12,11 +12,14 @@
                         <field name="name" />
                         <field name="vat" />
                         <field name="sif_name" />
-                        <field name="sif_id" />
                         <field name="version" />
-                        <field name="installation_number" />
+                        <field name="responsibility_declaration" />
                     </group>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user" />
+                    <field name="message_ids" />
+                </div>
             </form>
         </field>
     </record>
@@ -28,9 +31,7 @@
                 <field name="name" />
                 <field name="vat" />
                 <field name="sif_name" />
-                <field name="sif_id" />
                 <field name="version" />
-                <field name="installation_number" />
             </tree>
         </field>
     </record>
