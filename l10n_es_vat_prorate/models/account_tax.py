@@ -10,7 +10,10 @@ class AccountTax(models.Model):
     _inherit = "account.tax"
 
     with_vat_prorate = fields.Boolean(
-        compute="_compute_with_vat_prorate", store=True, readonly=False
+        compute="_compute_with_vat_prorate",
+        store=True,
+        readonly=False,
+        string="With VAT Prorate",
     )
     prorate_account_ids = fields.Many2many(
         "account.account",

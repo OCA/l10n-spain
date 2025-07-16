@@ -122,6 +122,11 @@ msgid "VAT Prorate"
 msgstr "Prorrata del IVA"
 
 #. module: l10n_es_vat_prorate
+#: model_terms:ir.ui.view,arch_db:l10n_es_vat_prorate.account_move_form_view
+msgid "VAT prorate?"
+msgstr "¿Prorrata IVA?"
+
+#. module: l10n_es_vat_prorate
 #: model:ir.model,name:l10n_es_vat_prorate.model_res_company_vat_prorate
 msgid "VAT Prorate table"
 msgstr "Tabla de prorrateo del IVA"
@@ -139,9 +144,10 @@ msgid "Vat Prorate"
 msgstr "Prorrata del IVA"
 
 #. module: l10n_es_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move_line__with_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_tax__with_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company__with_vat_prorate
-msgid "With Vat Prorate"
+msgid "With VAT Prorate"
 msgstr "Con prorrata de IVA"
 
 #. module: l10n_es_vat_prorate

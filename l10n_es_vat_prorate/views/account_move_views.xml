@@ -13,6 +13,19 @@
             >
                 <field name="vat_prorate" invisible="1" />
             </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']" position="before">
+                <field name="with_special_vat_prorate" invisible="1" />
+            </xpath>
+            <xpath
+                expr="//field[@name='invoice_line_ids']/tree/field[@name='tax_ids']"
+                position="after"
+            >
+                <field
+                    name="with_vat_prorate"
+                    string="VAT prorate?"
+                    attrs="{'column_invisible': ['|', ('parent.with_special_vat_prorate','=', False), ('parent.move_type', 'not in', ['in_invoice', 'in_refund'])]}"
+                />
+            </xpath>
         </field>
     </record>
 </odoo>

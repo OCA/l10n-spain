@@ -13,6 +13,11 @@
                         <field name="company_id" />
                         <field name="date" />
                         <field name="vat_prorate" />
+                        <field name="type" />
+                        <field
+                            name="special_vat_prorate_default"
+                            attrs="{'invisible': [('type', '=', 'general')]}"
+                        />
                     </group>
                 </sheet>
             </form>
@@ -24,7 +29,12 @@
         <field name="arch" type="xml">
             <tree editable="bottom">
                 <field name="date" />
+                <field name="type" />
                 <field name="vat_prorate" />
+                <field
+                    name="special_vat_prorate_default"
+                    attrs="{'invisible': [('type', '=', 'general')]}"
+                />
             </tree>
         </field>
     </record>
