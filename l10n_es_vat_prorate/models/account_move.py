@@ -18,12 +18,7 @@ class AccountMove(models.Model):
     )
     with_special_vat_prorate = fields.Boolean(compute="_compute_prorate_id", store=True)
 
-    @api.depends(
-        "company_id.vat_prorate_ids",
-        "company_id.with_vat_prorate",
-        "date",
-        "invoice_date",
-    )
+    @api.depends("company_id", "date", "invoice_date")
     def _compute_prorate_id(self):
         for rec in self:
             if rec.company_id.with_vat_prorate:
@@ -42,7 +37,7 @@ class AccountMoveLine(models.Model):
     )
 
     with_vat_prorate = fields.Boolean(
-        string="With Vat prorate",
+        string="With VAT Prorate",
         help="The line will create a vat prorate",
         compute="_compute_with_vat_prorate",
         store=True,
@@ -89,7 +84,6 @@ class AccountMoveLine(models.Model):
                         or tax_key.get("account_id") in tax.prorate_account_ids.ids
                     )
                 ):
-                    tax_vals["vat_prorate"] = False  # assure value for regular tax line
                     prec = line.move_id.currency_id.rounding
                     prorate = line.move_id.prorate_id.vat_prorate
                     new_vals = tax_vals.copy()

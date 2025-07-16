@@ -14,7 +14,7 @@ class ResCompany(models.Model):
 
     with_vat_prorate = fields.Boolean(
         string="With VAT Prorate",
-        help="If this option is enabled, all invoice lines" "with VAT will be prorated",
+        help="If this option is enabled, all invoice lines with VAT will be prorated",
     )
     vat_prorate_ids = fields.One2many(
         "res.company.vat.prorate", inverse_name="company_id"
