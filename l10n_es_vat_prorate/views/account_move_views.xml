@@ -22,7 +22,7 @@
             >
                 <field
                     name="with_vat_prorate"
-                    string="Vat Prorate"
+                    string="VAT prorate?"
                     column_invisible="not parent.with_special_vat_prorate or parent.move_type not in ['in_invoice', 'in_refund']"
                 />
             </xpath>
