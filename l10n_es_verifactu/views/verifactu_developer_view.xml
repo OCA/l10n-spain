@@ -12,9 +12,7 @@
                         <field name="name" />
                         <field name="vat" />
                         <field name="sif_name" />
-                        <field name="sif_id" />
                         <field name="version" />
-                        <field name="installation_number" />
                     </group>
                 </sheet>
             </form>
@@ -28,9 +26,7 @@
                 <field name="name" />
                 <field name="vat" />
                 <field name="sif_name" />
-                <field name="sif_id" />
                 <field name="version" />
-                <field name="installation_number" />
             </tree>
         </field>
     </record>

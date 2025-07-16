@@ -47,8 +47,13 @@ class TestL10nEsAeatVerifactuBase(TestL10nEsAeatModBase, TestL10nEsAeatCertifica
                 "name": "Odoo Developer",
                 "vat": "A12345674",
                 "sif_name": "odoo",
-                "sif_id": "11",
                 "version": "1.0",
+            }
+        )
+        cls.verifactu_chaining = cls.env["verifactu.chaining"].create(
+            {
+                "name": "Verifactu Chaining",
+                "sif_id": "11",
                 "installation_number": 1,
             }
         )
@@ -81,6 +86,7 @@ class TestL10nEsAeatVerifactuBase(TestL10nEsAeatModBase, TestL10nEsAeatCertifica
                 "country_id": cls.env.ref("base.es").id,
                 "tax_agency_id": cls.env.ref("l10n_es_aeat.aeat_tax_agency_spain"),
                 "verifactu_developer_id": cls.verifactu_developer.id,
+                "verifactu_chaining_id": cls.verifactu_chaining.id,
             }
         )
 
@@ -186,18 +192,10 @@ class TestL10nEsAeatVerifactuBase(TestL10nEsAeatModBase, TestL10nEsAeatCertifica
         with open(path, "r") as f:
             expected_dict = json.loads(f.read())
         self.assertEqual(expected_dict, result_dict)
-
+        entry = invoice.last_verifactu_invoice_entry_id
         # Verify integration workflow
-        self.assertTrue(
-            invoice.verifactu_invoice_entry_id, "Invoice should have verifactu entry"
-        )
-        self.assertTrue(
-            invoice.verifactu_invoice_entry_id.aeat_json_data, "Should have JSON data"
-        )
-        self.assertTrue(
-            invoice.verifactu_invoice_entry_id.send_queue_ids,
-            "Should have queue record",
-        )
+        self.assertTrue(entry, "Invoice should have verifactu entry")
+        self.assertTrue(entry.aeat_json_data, "Should have JSON data")
 
         return invoice
 
@@ -362,7 +360,7 @@ class TestL10nEsAeatVerifactuQR(TestL10nEsAeatVerifactuBase):
         self.invoice.action_post()
         with patch(
             "odoo.addons.l10n_es_verifactu.models."
-            "verifactu_send_queue.VerifactuSendQueue._connect_verifactu"
+            "verifactu_invoice_entry.VerifactuInvoiceEntry._connect_verifactu"
         ) as mock_connect:
             mock_service = MagicMock()
             module = "l10n_es_verifactu"
@@ -375,7 +373,7 @@ class TestL10nEsAeatVerifactuQR(TestL10nEsAeatVerifactuBase):
             mock_service.RegFactuSistemaFacturacion.return_value = response_dict
             mock_connect.return_value = mock_service
             # Execute the cron job to send the invoice to Verifactu
-            self.env["verifactu.send.queue"]._cron_send_documents_to_verifactu()
+            self.env["verifactu.invoice.entry"]._cron_send_documents_to_verifactu()
             self.assertEqual(
                 self.invoice.aeat_state,
                 "sent",
@@ -414,20 +412,21 @@ class TestVerifactuSendResponse(TestL10nEsAeatVerifactuBase):
 
         # Send an invoice without a certificate
         self.invoice.action_post()
-        self.env["verifactu.send.queue"]._cron_send_documents_to_verifactu()
+        self.env["verifactu.invoice.entry"]._cron_send_documents_to_verifactu()
         self.assertEqual(self.invoice.aeat_state, "not_sent")
         activity_1 = MailActivity.search(
             [
                 ("activity_type_id", "=", ActivityType.id),
-                ("res_model", "=", "verifactu.send.response"),
+                ("res_model", "=", "verifactu.invoice.entry.response"),
             ]
         )
         self.assertTrue(activity_1, "An exception activity should have been created")
-        self.env["verifactu.send.queue"]._cron_send_documents_to_verifactu()
+        self.invoice.resend_verifactu()
+        self.env["verifactu.invoice.entry"]._cron_send_documents_to_verifactu()
         activity_2 = MailActivity.search(
             [
                 ("activity_type_id", "=", ActivityType.id),
-                ("res_model", "=", "verifactu.send.response"),
+                ("res_model", "=", "verifactu.invoice.entry.response"),
             ]
         )
         self.assertEqual(
@@ -438,14 +437,14 @@ class TestVerifactuSendResponse(TestL10nEsAeatVerifactuBase):
 
         # Activate certificate and re-run the cron
         self._activate_certificate(self.certificate_password)
-        self.env["verifactu.send.queue"]._cron_send_documents_to_verifactu()
+        self.env["verifactu.invoice.entry"]._cron_send_documents_to_verifactu()
         activity_done = (
             self.env["mail.activity"]
             .with_context(active_test=False)
             .search(
                 [
                     ("activity_type_id", "=", ActivityType.id),
-                    ("res_model", "=", "verifactu.send.response"),
+                    ("res_model", "=", "verifactu.invoice.entry.response"),
                 ]
             )
         )
@@ -473,8 +472,8 @@ class TestVerifactuSendResponse(TestL10nEsAeatVerifactuBase):
         }
 
     @patch(
-        "odoo.addons.l10n_es_verifactu.models.verifactu_send_queue."
-        "VerifactuSendQueue._connect_verifactu"
+        "odoo.addons.l10n_es_verifactu.models.verifactu_invoice_entry."
+        "VerifactuInvoiceEntry._connect_verifactu"
     )
     def test_create_send_activity(self, mock_connect):
         """
@@ -496,12 +495,12 @@ class TestVerifactuSendResponse(TestL10nEsAeatVerifactuBase):
         mock_connect.return_value = mock_service
 
         self.invoice.action_post()
-        self.env["verifactu.send.queue"]._cron_send_documents_to_verifactu()
+        self.env["verifactu.invoice.entry"]._cron_send_documents_to_verifactu()
 
         activity = MailActivity.search(
             [
                 ("activity_type_id", "=", ActivityType.id),
-                ("res_model", "=", "verifactu.send.response"),
+                ("res_model", "=", "verifactu.invoice.entry.response"),
                 ("summary", "=", "Check incorrect invoices from Verifactu"),
             ]
         )
