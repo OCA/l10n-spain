@@ -4,7 +4,6 @@
 
 from collections import OrderedDict
 from datetime import datetime
-from hashlib import sha256
 
 import pytz
 
@@ -48,6 +47,34 @@ class AccountMove(models.Model):
         compute="_compute_verifactu_registration_key_code",
         readonly=True,
     )
+    verifactu_invoice_entry_ids = fields.One2many(
+        "verifactu.invoice.entry",
+        inverse_name="document_id",
+        domain=lambda doc: [("model", "=", doc._name)],
+        string="VeriFactu Invoice Entry",
+        readonly=True,
+        copy=False,
+    )
+    verifactu_response_line_ids = fields.One2many(
+        "verifactu.invoice.entry.response.line",
+        inverse_name="document_id",
+        domain=lambda doc: [("model", "=", doc._name)],
+        string="Verifactu Response Lines",
+        readonly=True,
+        copy=False,
+    )
+    last_verifactu_invoice_entry_id = fields.Many2one(
+        "verifactu.invoice.entry",
+        string="VeriFactu Invoice Entry",
+        readonly=True,
+        copy=False,
+    )
+    last_verifactu_response_line_id = fields.Many2one(
+        "verifactu.invoice.entry.response.line",
+        string="Verifactu Response Line",
+        readonly=True,
+        copy=False,
+    )
 
     @api.depends("move_type")
     def _compute_verifactu_refund_type(self):
@@ -87,7 +114,7 @@ class AccountMove(models.Model):
                 invoice.verifactu_enabled = (
                     invoice.fiscal_position_id
                     and invoice.fiscal_position_id.aeat_active
-                ) or not invoice.fiscal_position_id
+                )
             else:
                 invoice.verifactu_enabled = False
 
@@ -155,13 +182,6 @@ class AccountMove(models.Model):
         """
         return self.commercial_partner_id
 
-    def _get_document_fiscal_date(self):
-        """
-        TODO: this method is the same in l10n_es_aeat_sii_oca, so I think that
-        it should be directly in l10n_es_aeat
-        """
-        return self.invoice_date
-
     def _get_mapping_key(self):
         """
         TODO: this method is the same in l10n_es_aeat_sii_oca, so I think that
@@ -186,8 +206,8 @@ class AccountMove(models.Model):
         return self.company_id.partner_id._parse_aeat_vat_info()[2]
 
     def _get_verifactu_previous_hash(self):
-        if self.verifactu_previous_document_id:
-            return self.verifactu_previous_document_id.verifactu_hash
+        if self.last_verifactu_invoice_entry_id:
+            return self.last_verifactu_invoice_entry_id.previous_hash or ""
         return ""
 
     def _get_verifactu_registration_date(self):
@@ -206,34 +226,29 @@ class AccountMove(models.Model):
             or self.move_type not in ("out_invoice", "out_refund")
         ):
             return ""
-        issuerID = self._get_verifactu_issuer()
-        serialNumber = self._get_document_serial_number()
-        expeditionDate = self._change_date_format(self._get_document_date())
-        documentType = self._get_verifactu_document_type()
+        issuer = self._get_verifactu_issuer()
+        serial_number = self._get_document_serial_number()
+        expedition_date = self._change_date_format(self._get_document_date())
+        document_type = self._get_verifactu_document_type()
         _taxes_dict, amount_tax, amount_total = self._get_verifactu_taxes_and_total()
-        amountTax = round(amount_tax, 2)
-        amountTotal = round(amount_total, 2)
-        previousHash = self._get_verifactu_previous_hash()
-        registrationDate = self._get_verifactu_registration_date()
+        amount_tax = round(amount_tax, 2)
+        amount_total = round(amount_total, 2)
+        previous_hash = self._get_verifactu_previous_hash()
+        registration_date = self._get_verifactu_registration_date()
         verifactu_hash_string = (
-            f"IDEmisorFactura={issuerID}&"
-            f"NumSerieFactura={serialNumber}&"
-            f"FechaExpedicionFactura={expeditionDate}&"
-            f"TipoFactura={documentType}&"
-            f"CuotaTotal={amountTax}&"
-            f"ImporteTotal={amountTotal}&"
-            f"Huella={previousHash}&"
-            f"FechaHoraHusoGenRegistro={registrationDate}"
+            f"IDEmisorFactura={issuer}&"
+            f"NumSerieFactura={serial_number}&"
+            f"FechaExpedicionFactura={expedition_date}&"
+            f"TipoFactura={document_type}&"
+            f"CuotaTotal={amount_tax}&"
+            f"ImporteTotal={amount_total}&"
+            f"Huella={previous_hash}&"
+            f"FechaHoraHusoGenRegistro={registration_date}"
         )
         return verifactu_hash_string
 
-    @api.model
-    def _set_subsanation_verifactu_hash(self):
-        verifactu_hash_values = self._get_verifactu_hash_string()
-        hash_string = sha256(verifactu_hash_values.encode("utf-8"))
-        self.verifactu_hash_string = hash_string
-        self.verifactu_hash = hash_string.hexdigest().upper()
-        return self.verifactu_hash
+    def _get_chaining(self):
+        return self.company_id.verifactu_chaining_id
 
     def _get_verifactu_invoice_dict_out(self, cancel=False):
         """Build dict with data to send to AEAT WS for document types:
@@ -315,25 +330,32 @@ class AccountMove(models.Model):
             inv_dict.update(
                 {
                     "Subsanacion": "S",
-                    "Huella": self._set_subsanation_verifactu_hash(),
                 }
             )
+            if self.last_verifactu_response_line_id.send_state == "incorrect":
+                inv_dict.update(
+                    {
+                        "RechazoPrevio": "S",
+                    }
+                )
+
         registroAlta.setdefault("RegistroAlta", inv_dict)
         return registroAlta
 
     def _get_verifactu_chaining_invoice_dict(self):
-        prev_document = self.verifactu_previous_document_id
-        if prev_document:
-            return {
-                "RegistroAnterior": {
-                    "IDEmisorFactura": prev_document._get_verifactu_issuer(),
-                    "NumSerieFactura": prev_document._get_document_serial_number(),
-                    "FechaExpedicionFactura": prev_document._change_date_format(
-                        prev_document._get_document_date()
-                    ),
-                    "Huella": prev_document.verifactu_hash,
+        if self.last_verifactu_invoice_entry_id:
+            prev_entry = self.last_verifactu_invoice_entry_id.previous_invoice_entry_id
+            if prev_entry:
+                return {
+                    "RegistroAnterior": {
+                        "IDEmisorFactura": prev_entry.document._get_verifactu_issuer(),
+                        "NumSerieFactura": prev_entry.document._get_document_serial_number(),
+                        "FechaExpedicionFactura": prev_entry.document._change_date_format(
+                            prev_entry.document._get_document_date()
+                        ),
+                        "Huella": prev_entry.document_hash,
+                    }
                 }
-            }
         return {"PrimerRegistro": "S"}
 
     def _get_verifactu_tax_dict(self, tax_line, tax_lines):
@@ -385,7 +407,7 @@ class AccountMove(models.Model):
         :return: REQ tax (or empty recordset) linked to the provided tax.
         """
         self.ensure_one()
-        document_date = self._get_document_fiscal_date()
+        document_date = self._get_document_date()
         taxes_req = self._get_verifactu_taxes_map(["RE"], document_date)
         re_lines = self.line_ids.filtered(
             lambda x: tax in x.tax_ids and x.tax_ids & taxes_req
@@ -400,7 +422,7 @@ class AccountMove(models.Model):
         taxes_dict = {}
         taxes_dict.setdefault("DetalleDesglose", [])
         tax_lines = self._get_aeat_tax_info()
-        document_date = self._get_document_fiscal_date()
+        document_date = self._get_document_date()
         taxes_S1 = self._get_verifactu_taxes_map(["S1"], document_date)
         taxes_S2 = self._get_verifactu_taxes_map(["S2"], document_date)
         taxes_N1 = self._get_verifactu_taxes_map(["N1"], document_date)
@@ -431,10 +453,9 @@ class AccountMove(models.Model):
                     "ClaveRegimen": self.verifactu_registration_key_code,
                     "CalificacionOperacion": operation_type,
                 }
-                # si es exenta:
-                # "OperacionExenta": "", # TODO
                 if operation_type not in ("N1", "N2"):
-                    tax_dict.update(self._get_verifactu_tax_dict(tax_line, tax_lines))
+                    new_tax_dict = self._get_verifactu_tax_dict(tax_line, tax_lines)
+                    tax_dict.update(new_tax_dict)
                 else:
                     tax_dict.update(self._get_verifactu_tax_dict_ns(tax_line))
                 taxes_dict["DetalleDesglose"].append(tax_dict)
@@ -517,17 +538,11 @@ class AccountMove(models.Model):
 
     def _post(self, soft=True):
         res = super()._post(soft=soft)
-        for record in self:
+        for record in self.sorted(lambda inv: inv.name):
             if record.verifactu_enabled and record.aeat_state == "not_sent":
                 record._check_verifactu_configuration()
                 record.verifactu_registration_date = datetime.now()
                 record._generate_verifactu_chaining()
-                self.env["verifactu.send.queue"].sudo().create(
-                    {
-                        "verifactu_invoice_id": record.verifactu_invoice_entry_id.id,
-                        "company_id": record.company_id.id,
-                    }
-                )
         return res
 
     def _check_verifactu_configuration(self):
@@ -556,6 +571,15 @@ class AccountMove(models.Model):
                 % self.name
             )
 
+        if not self._check_inconsistent_taxes():
+            raise UserError(
+                _(
+                    "The invoice %s cannot be sent to Verifactu because "
+                    "there are some inconsistent taxes on lines."
+                )
+                % self.name
+            )
+
         if not self._check_all_taxes_mapped():
             raise UserError(
                 _(
@@ -565,6 +589,23 @@ class AccountMove(models.Model):
                 % self.name
             )
         return super()._check_verifactu_configuration()
+
+    def _check_inconsistent_taxes(self):
+        document_date = self._get_document_date()
+        taxes_S1 = self._get_verifactu_taxes_map(["S1"], document_date)
+        taxes_S2 = self._get_verifactu_taxes_map(["S2"], document_date)
+        taxes_RE = self._get_verifactu_taxes_map(["RE"], document_date)
+        for line in self.invoice_line_ids:
+            taxes_in_s1 = line.tax_ids.filtered(lambda x: x in taxes_S1)
+            if len(taxes_in_s1) > 1:
+                return False
+            taxes_in_s2 = line.tax_ids.filtered(lambda x: x in taxes_S2)
+            if len(taxes_in_s2) > 1:
+                return False
+            taxes_in_RE = line.tax_ids.filtered(lambda x: x in taxes_RE)
+            if len(taxes_in_RE) > 1:
+                return False
+        return True
 
     def _check_all_taxes_mapped(self):
         tax_lines = self._get_aeat_tax_info()
@@ -576,7 +617,7 @@ class AccountMove(models.Model):
                 )
                 % self.name
             )
-        document_date = self._get_document_fiscal_date()
+        document_date = self._get_document_date()
         verifactu_map = verifactu_map = self._get_verifactu_map(document_date)
         tax_templates = verifactu_map.map_lines.mapped("taxes")
         mapped_taxes = self.company_id.get_taxes_from_templates(tax_templates)
@@ -585,10 +626,6 @@ class AccountMove(models.Model):
             if tax_line["tax"] not in mapped_taxes:
                 return False
         return True
-
-    def _get_verifactu_chain_context(self):
-        """Use a unique chain for each company for standard invoicing."""
-        return ("res.company", self.company_id)
 
     def cancel_verifactu(self):
         raise NotImplementedError
@@ -624,4 +661,10 @@ class AccountMove(models.Model):
 
     def resend_verifactu(self):
         for rec in self:
-            rec.verifactu_send_queue_ids.write({"correction": True})
+            if (
+                rec.aeat_state == "sent_w_errors"
+                and rec.last_verifactu_invoice_entry_id
+                and not rec.last_verifactu_invoice_entry_id.send_state == "not_sent"
+            ):
+                rec.verifactu_registration_date = datetime.now()
+                rec._generate_verifactu_chaining(entry_type="modify")
