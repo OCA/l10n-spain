@@ -6,7 +6,7 @@ Para configurar este módulo es necesario:
    Accede a Facturación/Contabilidad -> Configuración -> AEAT -> Certificados AEAT, y allí podrás:
    Subir el certificado p12 y extraer las claves públicas y privadas con el botón "Obtener claves"
 #. Debes tener en cuenta que los certificados se alojan en una carpeta accesible por la instalación de Odoo.
-#. Completar los datos de desarrollador a nivel de compañía
+#. Completar los datos de desarrollador y del encadenamiento a nivel de compañía en la pestaña de Verifactu.
 
 En caso de que la obtención de claves no funcione y uses Linux, cuentas con los siguientes comandos para tratar de solucionarlo:
 
@@ -15,3 +15,4 @@ En caso de que la obtención de claves no funcione y uses Linux, cuentas con los
 
 #. Establecer en las posiciones fiscales la clave de impuestos y la clave de registro verifactu.
 #. Para aplicar las claves ejecute el asistente de actualización del módulo account_chart_update.
+

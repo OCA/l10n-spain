@@ -4,6 +4,6 @@
 <odoo noupdate="1">
     <record id="verifactu_batch" model="ir.config_parameter">
         <field name="key">l10n_es_verifactu.verifactu_batch</field>
-        <field name="value">50</field>
+        <field name="value">1000</field>
     </record>
 </odoo>

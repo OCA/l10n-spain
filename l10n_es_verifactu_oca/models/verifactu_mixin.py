@@ -25,13 +25,6 @@ except (ImportError, IOError) as err:
     qrcode = None
     _logger.error(err)
 
-###########################################
-# revisar los imports que no hagan falta
-# cuando funcione bien el _connect_aeat sin tener que poner
-# el forbid_entities, y se pueda borrar la función _connect_verifactu
-# de este fichero para usar la del aeat_mixin
-
-
 _logger = logging.getLogger(__name__)
 
 VERIFACTU_VERSION = 1.0
@@ -84,32 +77,7 @@ class VerifactuMixin(models.AbstractModel):
     )
     verifactu_qr_url = fields.Char("URL", compute="_compute_verifactu_qr_url")
     verifactu_qr = fields.Binary(string="QR", compute="_compute_verifactu_qr")
-    verifactu_invoice_entry_id = fields.Many2one(
-        "verifactu.invoice",
-        string="VeriFactu Invoice Entry",
-        readonly=True,
-        copy=False,
-    )
-    verifactu_previous_document_id = fields.Reference(
-        string="Previous Verifactu Document",
-        selection="_selection_verifactu_reference_models",
-        readonly=True,
-        copy=False,
-        compute="_compute_verifactu_previous_document_id",
-        store=True,
-    )
-    verifactu_next_document_id = fields.Reference(
-        string="Next Verifactu Document",
-        selection="_selection_verifactu_reference_models",
-        readonly=True,
-        copy=False,
-    )
     verifactu_send_date = fields.Datetime(index=True, copy=False)
-    verifactu_send_response_ids = fields.One2many(
-        "verifactu.send.response.line",
-        compute="_compute_verifactu_send_response_ids",
-        string="Verifactu Send Response Lines",
-    )
 
     @api.model
     def _selection_verifactu_reference_models(self):
@@ -119,18 +87,6 @@ class VerifactuMixin(models.AbstractModel):
 
     def _compute_verifactu_enabled(self):
         raise NotImplementedError
-
-    def _compute_verifactu_send_response_ids(self):
-        """Compute response lines through verifactu invoice entry."""
-        for record in self:
-            if record.verifactu_invoice_entry_id:
-                record.verifactu_send_response_ids = (
-                    record.verifactu_invoice_entry_id.send_response_ids
-                )
-            else:
-                record.verifactu_send_response_ids = self.env[
-                    "verifactu.send.response.line"
-                ]
 
     def _compute_verifactu_macrodata(self):
         for document in self:
@@ -248,20 +204,19 @@ class VerifactuMixin(models.AbstractModel):
                 _("Please, configure the verifactu developer in your company")
             )
         developer = self.company_id.verifactu_developer_id
+        chaining = self._get_chaining()
         spanish_companies = (
             self.env["res.company"]
             .sudo()
-            .search_count(
-                [("partner_id.country_id", "=", self.env.ref("base.es").id)], limit=2
-            )
+            .search_count([("partner_id.country_id", "=", self.env.ref("base.es").id)])
         )
         return {
             "NombreRazon": developer.name,
             "NIF": developer.vat,
             "NombreSistemaInformatico": developer.sif_name,
-            "IdSistemaInformatico": developer.sif_id,
+            "IdSistemaInformatico": chaining.sif_id,
             "Version": developer.version,
-            "NumeroInstalacion": developer.installation_number,
+            "NumeroInstalacion": chaining.installation_number,
             "TipoUsoPosibleSoloVerifactu": "S",
             "TipoUsoPosibleMultiOT": "S",
             "IndicadorMultiplesOT": "S" if spanish_companies > 1 else "N",
@@ -270,20 +225,6 @@ class VerifactuMixin(models.AbstractModel):
                 "ID": "",
             },
         }
-
-    @api.depends("verifactu_invoice_entry_id")
-    def _compute_verifactu_previous_document_id(self):
-        """Compute the previous document based on the invoice entry."""
-        for record in self:
-            if (
-                record.verifactu_invoice_entry_id
-                and record.verifactu_invoice_entry_id.previous_invoice_entry_id
-            ):
-                record.verifactu_previous_document_id = (
-                    record.verifactu_invoice_entry_id.previous_invoice_entry_id.document_id
-                )
-            else:
-                record.verifactu_previous_document_id = False
 
     def _get_verifactu_chaining_invoice_dict(self):
         raise NotImplementedError
@@ -303,42 +244,46 @@ class VerifactuMixin(models.AbstractModel):
     def _get_verifactu_hash_string(self):
         raise NotImplementedError
 
-    def _generate_verifactu_chaining(self):
+    def _get_chaining(self):
+        return NotImplementedError
+
+    def _generate_verifactu_chaining(self, entry_type=False):
         """Generate verifactu invoice entry for company-wide chaining."""
         self.ensure_one()
 
-        # Always use company for invoice chaining
-        company = self.company_id
+        chaining = self._get_chaining()
 
-        company.flush_recordset(["last_verifactu_invoice_entry_id"])
+        chaining.flush_recordset(["last_verifactu_invoice_entry_id"])
 
         try:
             with self.env.cr.savepoint():
                 self.env.cr.execute(
-                    f"SELECT last_verifactu_invoice_entry_id FROM {company._table}"
+                    f"SELECT last_verifactu_invoice_entry_id FROM {chaining._table}"
                     " WHERE id = %s FOR UPDATE NOWAIT",
-                    [company.id],
+                    [chaining.id],
                 )
                 result = self.env.cr.fetchone()
                 previous_invoice_entry_id = result[0] if result and result[0] else False
 
-                prev_doc = False
-                if previous_invoice_entry_id:
-                    previous_invoice_entry = self.env["verifactu.invoice"].browse(
-                        previous_invoice_entry_id
-                    )
-                    if previous_invoice_entry.document_id:
-                        prev_doc = previous_invoice_entry.document_id
+                invoice_vals = {
+                    "verifactu_chaining_id": chaining.id,
+                    "model": self._name,
+                    "document_id": self.id,
+                    "document_name": self.name,
+                    "previous_invoice_entry_id": previous_invoice_entry_id,
+                    "company_id": self.company_id.id,
+                    "document_hash": "",
+                }
+                if entry_type:
+                    invoice_vals["entry_type"] = entry_type
 
-                self.verifactu_previous_document_id = prev_doc
+                invoice_entry = self.env["verifactu.invoice.entry"].create(invoice_vals)
+                self.last_verifactu_invoice_entry_id = invoice_entry
 
                 verifactu_hash_values = self._get_verifactu_hash_string()
                 self.verifactu_hash_string = verifactu_hash_values
                 hash_string = sha256(verifactu_hash_values.encode("utf-8"))
                 self.verifactu_hash = hash_string.hexdigest().upper()
-
-                if prev_doc:
-                    prev_doc.verifactu_next_document_id = self
 
                 # Generate JSON data for AEAT
                 aeat_json_data = ""
@@ -348,33 +293,24 @@ class VerifactuMixin(models.AbstractModel):
                 except Exception:
                     # If JSON generation fails, store empty string
                     aeat_json_data = ""
-
-                invoice_vals = {
-                    "document_id": f"{self._name},{self.id}",
-                    "previous_invoice_entry_id": previous_invoice_entry_id,
-                    "company_id": self.company_id.id,
-                    "document_hash": self.verifactu_hash,
-                    "aeat_json_data": aeat_json_data,
-                }
-
-                invoice_entry = self.env["verifactu.invoice"].create(invoice_vals)
-                self.verifactu_invoice_entry_id = invoice_entry
+                invoice_entry.document_hash = hash_string.hexdigest().upper()
+                invoice_entry.aeat_json_data = aeat_json_data
 
                 self.env.cr.execute(
-                    f"UPDATE {company._table} "
+                    f"UPDATE {chaining._table} "
                     "SET last_verifactu_invoice_entry_id = %s WHERE id = %s",
-                    [invoice_entry.id, company.id],
+                    [invoice_entry.id, chaining.id],
                 )
 
-                company.invalidate_recordset(["last_verifactu_invoice_entry_id"])
+                chaining.invalidate_recordset(["last_verifactu_invoice_entry_id"])
 
         except psycopg2.OperationalError as err:
             if err.pgcode == "55P03":  # could not obtain the lock
                 raise UserError(
                     _(
-                        "Could not obtain last document sent to verifactu for company %s."
+                        "Could not obtain last document sent to verifactu for chaining %s."
                     )
-                    % company.name
+                    % chaining.name
                 ) from err
             raise
 
@@ -403,6 +339,14 @@ class VerifactuMixin(models.AbstractModel):
         return partner.aeat_simplified_invoice
 
     def _check_verifactu_configuration(self):
+        if not self._get_chaining():
+            raise UserError(
+                _(
+                    "The document %s cannot be sent to Verifactu because your "
+                    "company does not have a verifactu chaining configured."
+                )
+                % self.name
+            )
         if not self.company_id.tax_agency_id:
             raise UserError(
                 _(
@@ -488,7 +432,7 @@ class VerifactuMixin(models.AbstractModel):
             return int(
                 self.env["ir.config_parameter"]
                 .sudo()
-                .get_param("l10n_es_verifactu.verifactu_batch", "50")
+                .get_param("l10n_es_verifactu.verifactu_batch", "1000")
             )
         except ValueError as e:
             raise UserError(

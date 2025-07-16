@@ -42,8 +42,13 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
                 "name": "Odoo Developer",
                 "vat": "A12345674",
                 "sif_name": "odoo",
-                "sif_id": "11",
                 "version": "1.0",
+            }
+        )
+        cls.verifactu_chaining = cls.env["verifactu.chaining"].create(
+            {
+                "name": "Verifactu Chaining",
+                "sif_id": "11",
                 "installation_number": 1,
             }
         )
@@ -55,6 +60,7 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
                 "vat": "G87846952",
                 "tax_agency_id": cls.env.ref("l10n_es_aeat.aeat_tax_agency_spain"),
                 "verifactu_developer_id": cls.verifactu_developer.id,
+                "verifactu_chaining_id": cls.verifactu_chaining.id,
             }
         )
 
@@ -237,30 +243,31 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
             invoice: Invoice to verify queue creation for
 
         Returns:
-            verifactu.send.queue: The created queue record
+            verifactu.invoice.entry: The created queue record
         """
+        entry = invoice.last_verifactu_invoice_entry_id
         self.assertTrue(
-            invoice.verifactu_invoice_entry_id,
+            entry,
             "Invoice should have a verifactu invoice entry after posting",
         )
 
-        queue_records = invoice.verifactu_invoice_entry_id.send_queue_ids
-        self.assertEqual(len(queue_records), 1, "Should have exactly one queue record")
+        response_lines = entry.response_line_ids
+        self.assertEqual(len(response_lines), 1, "Should have exactly one queue record")
 
-        queue_record = queue_records[0]
+        response_line = response_lines[-1]
         self.assertEqual(
-            queue_record.verifactu_invoice_id,
-            invoice.verifactu_invoice_entry_id,
+            response_line.entry_id,
+            entry,
             "Queue record should link to the verifactu invoice entry",
         )
 
         self.assertEqual(
-            queue_record.company_id,
+            response_line.company_id,
             invoice.company_id,
             "Queue record should belong to the same company",
         )
 
-        return queue_record
+        return response_line
 
     def _verify_response_integration(self, invoice, response_line):
         """
@@ -274,18 +281,18 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
             bool: True if integration is correct
         """
         self.assertTrue(
-            response_line.verifactu_invoice_id,
+            response_line.document_id,
             "Response line should have verifactu invoice reference",
         )
 
         self.assertEqual(
-            response_line.verifactu_invoice_id,
-            invoice.verifactu_invoice_entry_id,
+            response_line.entry_id,
+            invoice.last_verifactu_invoice_entry_id,
             "Response line should link to the correct verifactu invoice entry",
         )
 
         self.assertEqual(
-            response_line.verifactu_invoice_id.document_id,
+            response_line.entry_id.document_id,
             invoice,
             "Response line should reference the original invoice through verifactu entry",
         )
@@ -304,4 +311,4 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
             verifactu.invoice: Created invoice entry
         """
         invoice._generate_verifactu_chaining()
-        return invoice.verifactu_invoice_entry_id
+        return invoice.last_verifactu_invoice_entry_id
