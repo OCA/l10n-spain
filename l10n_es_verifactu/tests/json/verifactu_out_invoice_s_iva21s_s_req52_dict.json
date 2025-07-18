@@ -4,7 +4,7 @@
     "IDFactura": {
       "IDEmisorFactura": "G87846952",
       "NumSerieFactura": "TEST003",
-      "FechaExpedicionFactura": "01-01-2024"
+      "FechaExpedicionFactura": "01-01-2026"
     },
     "NombreRazonEmisor": "Spanish test company",
     "TipoFactura": "F1",
@@ -32,7 +32,12 @@
     "CuotaTotal": 52.4,
     "ImporteTotal": 252.4,
     "Encadenamiento": {
-      "PrimerRegistro": "S"
+      "RegistroAnterior": {
+        "FechaExpedicionFactura": "01-01-2026",
+        "Huella": "97303DAE5BDF62521F9462A1F431A4F88F1B68C4A8E1A72B067000668FACB023",
+        "IDEmisorFactura": "G87846952",
+        "NumSerieFactura": "TEST002"
+      }
     },
     "SistemaInformatico": {
       "NombreRazon": "Odoo Developer",
@@ -43,7 +48,7 @@
       "NumeroInstalacion": 1,
       "TipoUsoPosibleSoloVerifactu": "S",
       "TipoUsoPosibleMultiOT": "S",
-      "IndicadorMultiplesOT": "N",
+      "IndicadorMultiplesOT": "S",
       "IDOtro": {
         "IDType": "",
         "ID": ""

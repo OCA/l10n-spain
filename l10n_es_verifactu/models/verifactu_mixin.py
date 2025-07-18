@@ -6,13 +6,13 @@ import base64
 import io
 import json
 import logging
+from hashlib import sha256
 from urllib.parse import urlencode
 
-from requests import Session
+import psycopg2
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError, ValidationError
-from odoo.modules.registry import Registry
+from odoo.exceptions import UserError
 from odoo.tools.float_utils import float_compare
 
 from odoo.addons.l10n_es_aeat.models.aeat_mixin import round_by_keys
@@ -33,13 +33,6 @@ except (ImportError, IOError) as err:
 
 
 _logger = logging.getLogger(__name__)
-
-try:
-    from zeep import Client, Settings
-    from zeep.plugins import HistoryPlugin
-    from zeep.transports import Transport
-except (ImportError, IOError) as err:
-    _logger.debug(err)
 
 VERIFACTU_VERSION = 1.0
 VERIFACTU_DATE_FORMAT = "%d-%m-%Y"
@@ -78,6 +71,7 @@ class VerifactuMixin(models.AbstractModel):
     )
     verifactu_csv = fields.Char(copy=False, readonly=True)
     verifactu_return = fields.Text(copy=False, readonly=True)
+    verifactu_registration_date = fields.Datetime(copy=False)
     verifactu_registration_key = fields.Many2one(
         comodel_name="verifactu.registration.keys",
     )
@@ -90,25 +84,12 @@ class VerifactuMixin(models.AbstractModel):
     )
     verifactu_qr_url = fields.Char("URL", compute="_compute_verifactu_qr_url")
     verifactu_qr = fields.Binary(string="QR", compute="_compute_verifactu_qr")
-    verifactu_previous_document_id = fields.Reference(
-        string="Previous Verifactu Document",
-        selection="_selection_verifactu_reference_models",
-        readonly=True,
-        copy=False,
-    )
-    verifactu_next_document_id = fields.Reference(
-        string="Next Verifactu Document",
-        selection="_selection_verifactu_reference_models",
-        readonly=True,
-        copy=False,
-    )
     verifactu_send_date = fields.Datetime(index=True, copy=False)
 
     @api.model
     def _selection_verifactu_reference_models(self):
         # this method is used to define the models that can be used as
         # previous documents in the verifactu mixin
-        # it can be inherited to add others models if needed like pos.order
         return [("account.move", "Invoice")]
 
     def _compute_verifactu_enabled(self):
@@ -196,39 +177,7 @@ class VerifactuMixin(models.AbstractModel):
             # to explicitly set a tax agency in the company by raising an error
             # here.
             agency = self.env.ref("l10n_es_aeat.aeat_tax_agency_spain")
-        return agency._connect_params_verifactu(mapping_key, self.company_id)
-
-    def _get_verifactu_aeat_header(self, tipo_comunicacion=False, cancellation=False):
-        """Builds VERIFACTU send header
-
-        :param tipo_comunicacion String 'A0': new reg, 'A1': modification
-        :param cancellation Bool True when the communitacion es for document
-            cancellation
-        :return Dict with header data depending on cancellation
-        """
-        self.ensure_one()
-        if not self.company_id.vat:
-            raise UserError(
-                _("No VAT configured for the company '{}'").format(self.company_id.name)
-            )
-        header = {
-            "ObligadoEmision": {
-                "NombreRazon": self.company_id.name[0:120],
-                "NIF": self.company_id.partner_id._parse_aeat_vat_info()[2],
-            },
-        }
-        registration_date = self.verifactu_registration_date
-        # Si han pasado más de 120 segundos de la fecha y hora de emisión de la factura
-        # devuelve error 2004: El valor del campo FechaHoraHusoGenRegistro debe ser
-        # la fecha actual del sistema de la AEAT.
-        # Debe enviarse como incidencia
-        if (
-            self.aeat_state == "sent_w_errors"
-            and registration_date < fields.Datetime.now()
-            and self.aeat_send_error[:4] == "2004"
-        ):
-            header.update({"RemisionVoluntaria": {"Incidencia": "S"}})
-        return header
+        return agency._connect_params_verifactu(self.company_id)
 
     def _get_verifactu_invoice_dict(self):
         self.ensure_one()
@@ -262,6 +211,7 @@ class VerifactuMixin(models.AbstractModel):
                 _("Please, configure the verifactu developer in your company")
             )
         developer = self.company_id.verifactu_developer_id
+        chaining = self.company_id.verifactu_chaining_id
         spanish_companies = (
             self.env["res.company"]
             .sudo()
@@ -273,9 +223,9 @@ class VerifactuMixin(models.AbstractModel):
             "NombreRazon": developer.name,
             "NIF": developer.vat,
             "NombreSistemaInformatico": developer.sif_name,
-            "IdSistemaInformatico": developer.sif_id,
+            "IdSistemaInformatico": chaining.sif_id,
             "Version": developer.version,
-            "NumeroInstalacion": developer.installation_number,
+            "NumeroInstalacion": chaining.installation_number,
             "TipoUsoPosibleSoloVerifactu": "S",
             "TipoUsoPosibleMultiOT": "S",
             "IndicadorMultiplesOT": "S" if spanish_companies > 1 else "N",
@@ -303,8 +253,73 @@ class VerifactuMixin(models.AbstractModel):
     def _get_verifactu_hash_string(self):
         raise NotImplementedError
 
-    def _generate_verifactu_chaining(self):
-        raise NotImplementedError
+    def _generate_verifactu_chaining(self, entry_type=False):
+        """Generate verifactu invoice entry for company-wide chaining."""
+        self.ensure_one()
+
+        # Always use company for invoice chaining
+        chaining = self.company_id.verifactu_chaining_id
+
+        chaining.flush_recordset(["last_verifactu_invoice_entry_id"])
+
+        try:
+            with self.env.cr.savepoint():
+                self.env.cr.execute(
+                    f"SELECT last_verifactu_invoice_entry_id FROM {chaining._table}"
+                    " WHERE id = %s FOR UPDATE NOWAIT",
+                    [chaining.id],
+                )
+                result = self.env.cr.fetchone()
+                previous_invoice_entry_id = result[0] if result and result[0] else False
+
+                invoice_vals = {
+                    "verifactu_chaining_id": chaining.id,
+                    "model": self._name,
+                    "document_id": self.id,
+                    "document_name": self.name,
+                    "previous_invoice_entry_id": previous_invoice_entry_id,
+                    "company_id": self.company_id.id,
+                    "document_hash": "",
+                }
+                if entry_type:
+                    invoice_vals["entry_type"] = entry_type
+
+                invoice_entry = self.env["verifactu.invoice.entry"].create(invoice_vals)
+                self.last_verifactu_invoice_entry_id = invoice_entry
+
+                verifactu_hash_values = self._get_verifactu_hash_string()
+                self.verifactu_hash_string = verifactu_hash_values
+                hash_string = sha256(verifactu_hash_values.encode("utf-8"))
+                self.verifactu_hash = hash_string.hexdigest().upper()
+
+                # Generate JSON data for AEAT
+                aeat_json_data = ""
+                try:
+                    inv_dict = self._get_verifactu_invoice_dict()
+                    aeat_json_data = json.dumps(inv_dict, indent=4)
+                except Exception:
+                    # If JSON generation fails, store empty string
+                    aeat_json_data = ""
+                invoice_entry.document_hash = hash_string.hexdigest().upper()
+                invoice_entry.aeat_json_data = aeat_json_data
+
+                self.env.cr.execute(
+                    f"UPDATE {chaining._table} "
+                    "SET last_verifactu_invoice_entry_id = %s WHERE id = %s",
+                    [invoice_entry.id, chaining.id],
+                )
+
+                chaining.invalidate_recordset(["last_verifactu_invoice_entry_id"])
+
+        except psycopg2.OperationalError as err:
+            if err.pgcode == "55P03":  # could not obtain the lock
+                raise UserError(
+                    _(
+                        "Could not obtain last document sent to verifactu for chaining %s."
+                    )
+                    % chaining.name
+                ) from err
+            raise
 
     def _get_verifactu_document_type(self):
         raise NotImplementedError()
@@ -330,38 +345,15 @@ class VerifactuMixin(models.AbstractModel):
         partner = self._aeat_get_partner()
         return partner.aeat_simplified_invoice
 
-    def send_verifactu(self):
-        """General public method for filtering out of the starting recordset the records
-        that shouldn't be sent to Verifactu:
-
-        - Documents of companies with Verifactu not enabled (through verifactu_enabled).
-        - Documents not applicable to be sent to Verifactu (through verifactu_enabled).
-        - Documents in non applicable states (for example, cancelled invoices).
-        - Documents already sent to Verifactu.
-        - Documents with sending jobs pending to be executed.
-        """
-        valid_states = self._get_verifactu_valid_document_states()
-        documents = self.filtered(
-            lambda doc: doc.state in valid_states
-            and doc.aeat_state in ["not_sent", "sent_w_errors"]
-            and doc.verifactu_enabled
-        )
-        if documents:
-            documents._process_verifactu_send()
-            verifactu_send_cron = self.env.ref(
-                "l10n_es_verifactu.invoice_send_to_verifactu"
-            )
-            self.env["ir.cron.trigger"].sudo().create(
-                {"cron_id": verifactu_send_cron.id, "call_at": fields.Datetime.now()}
-            )
-
-    def _process_verifactu_send(self):
-        for record in self:
-            record._check_verifactu_configuration()
-            record.verifactu_send_date = fields.Datetime.now()
-            record.confirm_verifactu_one_document()
-
     def _check_verifactu_configuration(self):
+        if not self.company_id.verifactu_chaining_id:
+            raise UserError(
+                _(
+                    "The document %s cannot be sent to Verifactu because your "
+                    "company does not have a verifactu chaining configured."
+                )
+                % self.name
+            )
         if not self.company_id.tax_agency_id:
             raise UserError(
                 _(
@@ -397,114 +389,6 @@ class VerifactuMixin(models.AbstractModel):
                 % self.name
             )
         return
-
-    def confirm_verifactu_one_document(self):
-        self.sudo()._send_document_to_verifactu()
-
-    def _send_document_to_verifactu(self):
-        for document in self.filtered(
-            lambda i: i.state in self._get_verifactu_valid_document_states()
-        ):
-            if document.aeat_state == "not_sent":
-                tipo_comunicacion = "A0"
-            else:
-                tipo_comunicacion = "A1"
-            header = document._get_verifactu_aeat_header(tipo_comunicacion)
-            doc_vals = {
-                "aeat_header_sent": json.dumps(header, indent=4),
-            }
-            try:
-                inv_dict = document._get_verifactu_invoice_dict()
-            except Exception as fault:
-                raise ValidationError(fault) from fault
-            try:
-                mapping_key = document._get_mapping_key()
-                serv = document._connect_verifactu(mapping_key)
-                doc_vals["aeat_content_sent"] = json.dumps(inv_dict, indent=4)
-                if mapping_key in ["out_invoice", "out_refund"]:
-                    res = serv.RegFactuSistemaFacturacion(header, inv_dict)
-                res_line = res["RespuestaLinea"][0]
-                if res["EstadoEnvio"] == "Correcto":
-                    doc_vals.update(
-                        {
-                            "aeat_state": "sent",
-                            "verifactu_csv": res["CSV"],
-                            "aeat_send_failed": False,
-                        }
-                    )
-                elif (
-                    res["EstadoEnvio"] == "ParcialmenteCorrecto"
-                    and res_line["EstadoRegistro"] == "AceptadoConErrores"
-                ):
-                    doc_vals.update(
-                        {
-                            "aeat_state": "sent_w_errors",
-                            "verifactu_csv": res["CSV"],
-                            "aeat_send_failed": True,
-                        }
-                    )
-                else:
-                    doc_vals["aeat_send_failed"] = True
-                doc_vals["verifactu_return"] = res
-                send_error = False
-                if res_line["CodigoErrorRegistro"]:
-                    send_error = "{} | {}".format(
-                        str(res_line["CodigoErrorRegistro"]),
-                        str(res_line["DescripcionErrorRegistro"]),
-                    )
-                doc_vals["aeat_send_error"] = send_error
-                document.write(doc_vals)
-            except Exception as fault:
-                self.env.cr.rollback()
-                new_cr = Registry(self.env.cr.dbname).cursor()
-                env = api.Environment(new_cr, self.env.uid, self.env.context)
-                document = env[document._name].browse(document.id)
-                doc_vals.update(
-                    {
-                        "aeat_send_failed": True,
-                        "aeat_send_error": repr(fault)[:200],
-                        "verifactu_return": repr(fault),
-                        "aeat_content_sent": json.dumps(inv_dict, indent=4),
-                    }
-                )
-                document.write(doc_vals)
-                new_cr.commit()
-                new_cr.close()
-                raise ValidationError(fault) from fault
-
-    def _connect_verifactu(self, mapping_key):
-        # de momento no puedo el _connect_aeat del aeat_mixin porque si no pongo
-        # forbid_entities en settings del Client da error de entities forbiden
-        self.ensure_one()
-        public_crt, private_key = self.env["l10n.es.aeat.certificate"].get_certificates(
-            company=self.company_id
-        )
-        if not public_crt or not private_key:
-            raise UserError(
-                _("Please, configure the Veri*FACTU certificates for your company")
-            )
-        params = self._connect_verifactu_params_aeat(mapping_key)
-        session = Session()
-        session.cert = (public_crt, private_key)
-        transport = Transport(session=session)
-        history = HistoryPlugin()
-        settings = Settings(forbid_entities=False)
-        client = Client(
-            wsdl=params["wsdl"],
-            transport=transport,
-            plugins=[history],
-            settings=settings,
-        )
-        return self._bind_verifactu_service(
-            client, params["port_name"], params["address"]
-        )
-
-    def _bind_verifactu_service(self, client, port_name, address=None):
-        self.ensure_one()
-        service = client._get_service("sfVerifactu")
-        port = client._get_port(service, port_name)
-        address = address or port.binding_options["address"]
-        return client.create_service(port.binding.name, address)
 
     @api.model
     def _get_verifactu_map(self, date):
