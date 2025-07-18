@@ -2,10 +2,7 @@
     <template id="communication_success" name="347 communication success">
         <t t-call="portal.frontend_layout">
             <div id="wrap">
-                <div
-                    id="communication_success_oe_structure"
-                    class="oe_structure oe_empty"
-                >
+                <div class="oe_structure oe_empty" id="oe_structure_mod347_success">
                     <div class="container">
                         <div class="row mb32">
                             <div class="col-12 text-center">
@@ -35,10 +32,7 @@
     <template id="communication_failed" name="347 communication failed">
         <t t-call="portal.frontend_layout">
             <div id="wrap">
-                <div
-                    id="communication_failed_oe_structure"
-                    class="oe_structure oe_empty"
-                >
+                <div class="oe_structure oe_empty" id="oe_structure_mod347_failed">
                     <div class="container">
                         <div class="row mb32">
                             <div class="col-12 text-center">
@@ -57,7 +51,7 @@
                                         Ha habido un error registrando la comunicación.
                                     </h4>
                                     <p
-                                    >Revíselo y vuelva a intentarlo, o pongase en contacto por correo con nosotros.</p>
+                                    >Revíselo y vuelva a intentarlo, o póngase en contacto por correo con nosotros.</p>
                                 </div>
                             </div>
                         </div>

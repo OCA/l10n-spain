@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,40 +14,10 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_aeat_mod347
-#. odoo-python
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
-msgid "- %(name)s %(id)s"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__situation__1
-msgid "1 - Spain but Basque Country and Navarra"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__situation__2
-msgid "2 - Basque Country and Navarra"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__situation__3
-msgid "3 - Spain, without catastral reference"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
-#: model:ir.actions.report,name:l10n_es_aeat_mod347.347_partner
-msgid "347 Partner Detail"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__situation__4
-msgid "4 - Foreign"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
 #: model:mail.template,body_html:l10n_es_aeat_mod347.email_template_347
 msgid ""
-"<p>Estimado/a <t t-out=\"object.partner_id.name\"/>\n"
+"\n"
+"<p>Estimado/a <t t-out=\"object.partner_id.name\" />\n"
 "</p>\n"
 "<p>Le comunicamos que a efectos de comprobación del modelo 347:</p>\n"
 "<p>Nuestros datos en dicha declaración son:</p>\n"
@@ -92,21 +62,25 @@ msgid ""
 "</t>\n"
 "  <p>En el documento adjunto se incluyen las facturas en base a las cuales se obtienen los importes anteriores.</p>\n"
 "  <p>Si los datos son correctos puede indicar su conformidad en el siguiente botón:</p>\n"
-"  <br/><br/>\n"
+"  <br><br>\n"
 "  <center>\n"
-"      <a style=\"background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\" class=\"o_default_snippet_text\" t-att-href=\"object.get_confirm_url()\">\n"
+"      <a style=\"background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\"\n"
+"              class=\"o_default_snippet_text\"\n"
+"              t-att-href=\"object.get_confirm_url()\">\n"
 "          Aceptar datos del 347\n"
 "      </a>\n"
 "  </center>\n"
-"  <br/><br/>\n"
+"  <br><br>\n"
 "  <p>Si los importes no son correctos, puede pulsar en este botón para que nos pongamos en contacto posteriormente, o responder a este correo indicando el problema:</p>\n"
-"  <br/><br/>\n"
+"  <br><br>\n"
 "  <center>\n"
-"      <a style=\"background-color: #d55937; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\" class=\"o_default_snippet_text\" t-att-href=\"object.get_reject_url()\">\n"
+"      <a style=\"background-color: #d55937; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\"\n"
+"              class=\"o_default_snippet_text\"\n"
+"              t-att-href=\"object.get_reject_url()\">\n"
 "          Rechazar datos del 347\n"
 "      </a>\n"
 "  </center>\n"
-"  <br/><br/>\n"
+"  <br><br>\n"
 "  <p>Para cualquier otra pregunta, no dude en contactar con nosotros respondiendo a este correo.</p>\n"
 "<p style=\"color:#888888\">\n"
 "    <t t-if=\"user and user.signature\">\n"
@@ -115,6 +89,43 @@ msgid ""
 "</p>\n"
 "\n"
 "        "
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
+msgid "- %(name)s %(id)s"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__situation__1
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_real_estate_record__situation__1
+msgid "1 - Spain but Basque Country and Navarra"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__situation__2
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_real_estate_record__situation__2
+msgid "2 - Basque Country and Navarra"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__situation__3
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_real_estate_record__situation__3
+msgid "3 - Spain, without catastral reference"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.actions.report,name:l10n_es_aeat_mod347.347_partner
+msgid "347 Partner Detail"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__situation__4
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_real_estate_record__situation__4
+msgid "4 - Foreign"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -163,6 +174,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__operation_key__a
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_partner_record__operation_key__a
 msgid "A - Adquisiciones de bienes y servicios superiores al límite (1)"
 msgstr ""
 
@@ -248,6 +260,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_calification__ant
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_real_estate_record__number_calification__ant
 msgid "Ant"
 msgstr ""
 
@@ -259,6 +272,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__operation_key__b
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_partner_record__operation_key__b
 msgid "B - Entregas de bienes y servicios superiores al límite (1)"
 msgstr ""
 
@@ -276,6 +290,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_calification__bis
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_real_estate_record__number_calification__bis
 msgid "Bis"
 msgstr ""
 
@@ -291,6 +306,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__operation_key__c
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_partner_record__operation_key__c
 msgid "C - Cobros por cuenta de terceros superiores al límite (3)"
 msgstr ""
 
@@ -373,6 +389,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid "Compose Email"
 msgstr ""
 
@@ -396,6 +413,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__state__confirmed
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_partner_record__state__confirmed
 msgid "Confirmed"
 msgstr ""
 
@@ -447,6 +465,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__operation_key__d
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_partner_record__operation_key__d
 msgid ""
 "D - Adquisiciones efectuadas por Entidades Públicas (...) superiores al "
 "límite (1)"
@@ -478,11 +497,13 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_calification__dup
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_real_estate_record__number_calification__dup
 msgid "Dup"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__operation_key__e
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_partner_record__operation_key__e
 msgid ""
 "E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas superiores "
 "al límite (1)"
@@ -515,6 +536,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__state__exception
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_partner_record__state__exception
 msgid "Exception"
 msgstr ""
 
@@ -525,6 +547,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__operation_key__f
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_partner_record__operation_key__f
 msgid "F - Ventas agencia viaje"
 msgstr ""
 
@@ -564,6 +587,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_bank_statement_line__not_in_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_move__not_in_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_payment__not_in_mod347
 msgid "Force not included in 347 report"
 msgstr ""
 
@@ -584,6 +608,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__operation_key__g
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_partner_record__operation_key__g
 msgid "G - Compras agencia viaje"
 msgstr ""
 
@@ -643,6 +668,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_account_bank_statement_line__not_in_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_account_move__not_in_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_account_payment__not_in_mod347
 msgid ""
 "If you mark this field, this invoice will not be included in any AEAT 347 "
 "model report."
@@ -709,6 +735,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_type__km_
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_real_estate_record__number_type__km_
 msgid "Kilometer"
 msgstr ""
 
@@ -765,6 +792,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_calification__mod
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_real_estate_record__number_calification__mod
 msgid "Mod"
 msgstr ""
 
@@ -832,6 +860,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__number
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_type__num
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_real_estate_record__number_type__num
 msgid "Number"
 msgstr ""
 
@@ -956,6 +985,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid "Partner record errors:\n"
 msgstr ""
 
@@ -963,6 +993,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
+#, python-format
 msgid "Partner records"
 msgstr ""
 
@@ -973,6 +1004,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__state__pending
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_partner_record__state__pending
 msgid "Pending"
 msgstr ""
 
@@ -994,6 +1026,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid ""
 "Please review partner and real estate records, some of them are in red color:\n"
 "\n"
@@ -1078,6 +1111,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid "Real estate record errors:\n"
 msgstr ""
 
@@ -1182,6 +1216,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__state__sent
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_partner_record__state__sent
 msgid "Sent"
 msgstr ""
 
@@ -1229,6 +1264,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid "State code can only contain digits"
 msgstr ""
 
@@ -1389,6 +1425,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid "VAT must be defined for Spanish Contacts"
 msgstr ""
 
@@ -1421,17 +1458,21 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid "Without country code"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_type__s/n
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_atc_mod415_real_estate_record__number_type__s/n
 msgid "Without number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid "Without state code"
 msgstr ""
 
