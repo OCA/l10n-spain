@@ -37,8 +37,11 @@
         "views/verifactu_map_view.xml",
         "views/verifactu_map_lines_view.xml",
         "views/verifactu_registration_keys_view.xml",
-        "views/verifactu_invoice_view.xml",
+        "views/verifactu_invoice_entry_view.xml",
+        "views/verifactu_chaining_view.xml",
+        "views/verifactu_developer_view.xml",
+        "views/account_move_view.xml",
         "views/report_invoice.xml",
-        "views/verifactu_send_response_view.xml",
+        "views/verifactu_invoice_entry_response_view.xml",
     ],
 }

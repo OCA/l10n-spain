@@ -11,17 +11,19 @@ VERIFACTU_SEND_STATES = [
 ]
 
 
-class VerifactuSendResponseLine(models.Model):
-    _name = "verifactu.send.response.line"
+class VerifactuInvoiceEntryResponseLine(models.Model):
+    _name = "verifactu.invoice.entry.response.line"
     _description = "Verifactu Send Log"
     _order = "id desc"
 
-    send_queue_id = fields.Many2one("verifactu.send.queue")
-    send_response_id = fields.Many2one("verifactu.send.response")
-    verifactu_invoice_id = fields.Many2one(
-        related="send_queue_id.verifactu_invoice_id",
-        string="VeriFactu Invoice Entry",
-        store=True,
+    entry_id = fields.Many2one("verifactu.invoice.entry")
+    entry_response_id = fields.Many2one("verifactu.invoice.entry.response")
+    model = fields.Char(readonly=True)
+    document_id = fields.Many2oneReference(
+        string="Document",
+        model_field="model",
+        readonly=True,
+        index=True,
     )
     response = fields.Text()
     send_state = fields.Selection(
@@ -33,5 +35,5 @@ class VerifactuSendResponseLine(models.Model):
         help="Indicates the state of this document in relation with the "
         "presentation to Verifactu.",
     )
-    verifactu_csv = fields.Text(related="send_response_id.verifactu_csv")
+    verifactu_csv = fields.Text(related="entry_response_id.verifactu_csv")
     error_code = fields.Char()

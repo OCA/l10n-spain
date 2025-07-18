@@ -23,12 +23,10 @@ class ResCompany(models.Model):
         help="If this field is set, the verifactu won't be enabled on invoices with lower "
         "invoice date. If not set, the verifactu can be enabled on all invoice dates"
     )
-    last_verifactu_invoice_entry_id = fields.Many2one(
-        comodel_name="verifactu.invoice",
-        string="Last Verifactu Invoice Entry",
-        help="Reference to the last verifactu invoice entry for this company. "
-        "Used for atomic chaining.",
-        copy=False,
+    verifactu_chaining_id = fields.Many2one(
+        "verifactu.chaining",
+        string="Chaining",
+        ondelete="restrict",
     )
 
     def write(self, vals):
