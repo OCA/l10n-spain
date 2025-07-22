@@ -80,7 +80,7 @@ msgstr ""
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,help:l10n_es_vat_prorate.field_account_tax__company_with_vat_prorate
 #: model:ir.model.fields,help:l10n_es_vat_prorate.field_res_company__with_vat_prorate
-msgid "If this option is enabled, all invoice lines with VAT will be prorated"
+msgid "If this option is enabled, all invoice lineswith VAT will be prorated"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
@@ -166,13 +166,9 @@ msgid "VAT prorate must be between 0.01 and 100!"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
-#: model_terms:ir.ui.view,arch_db:l10n_es_vat_prorate.account_move_form_view
-msgid "VAT prorate?"
-msgstr ""
-
-#. module: l10n_es_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company__vat_prorate_ids
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate__vat_prorate
+#: model_terms:ir.ui.view,arch_db:l10n_es_vat_prorate.account_move_form_view
 msgid "Vat Prorate"
 msgstr ""
 
@@ -184,10 +180,18 @@ msgid "With Special Vat Prorate"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
-#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move_line__with_vat_prorate
-#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_tax__with_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company__with_vat_prorate
 msgid "With VAT Prorate"
+msgstr ""
+
+#. module: l10n_es_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_tax__with_vat_prorate
+msgid "With Vat Prorate"
+msgstr ""
+
+#. module: l10n_es_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move_line__with_vat_prorate
+msgid "With Vat prorate"
 msgstr ""
 
 #. module: l10n_es_vat_prorate

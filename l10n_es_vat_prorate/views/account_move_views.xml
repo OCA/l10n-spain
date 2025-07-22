@@ -8,24 +8,42 @@
         <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='line_ids']/tree/field[@name='tax_line_id']"
+                expr="//field[@name='line_ids']/list/field[@name='tax_line_id']"
                 position="after"
             >
                 <field name="vat_prorate" column_invisible="1" />
+                <field name="is_zero_line" column_invisible="1" />
             </xpath>
+            <xpath expr="//field[@name='line_ids']/list" position="attributes">
+                <attribute name="decoration-danger">is_zero_line</attribute>
+            </xpath>
+
+            <xpath expr="//form" position="inside">
+                <style>
+                    .o_list_view tbody tr.text-danger.o_data_row {
+                        display: none !important;
+                    }
+                </style>
+            </xpath>
+
             <xpath expr="//field[@name='invoice_line_ids']" position="before">
                 <field name="with_special_vat_prorate" invisible="1" />
             </xpath>
             <xpath
-                expr="//field[@name='invoice_line_ids']/tree/field[@name='tax_ids']"
+                expr="//field[@name='invoice_line_ids']/list/field[@name='tax_ids']"
                 position="after"
             >
                 <field
                     name="with_vat_prorate"
-                    string="VAT prorate?"
+                    string="Vat Prorate"
                     column_invisible="not parent.with_special_vat_prorate or parent.move_type not in ['in_invoice', 'in_refund']"
                 />
             </xpath>
         </field>
+    </record>
+    <record model="ir.actions.act_window" id="account.action_account_moves_all">
+        <field
+            name="domain"
+        >[('display_type', 'not in', ('line_section', 'line_note')), ('parent_state', '!=', 'cancel'), ('is_zero_line', '=', False)]</field>
     </record>
 </odoo>
