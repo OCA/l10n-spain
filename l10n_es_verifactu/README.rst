@@ -54,7 +54,7 @@ Para configurar este módulo es necesario:
    Accede a Facturación/Contabilidad -> Configuración -> AEAT -> Certificados AEAT, y allí podrás:
    Subir el certificado p12 y extraer las claves públicas y privadas con el botón "Obtener claves"
 #. Debes tener en cuenta que los certificados se alojan en una carpeta accesible por la instalación de Odoo.
-#. Completar los datos de desarrollador a nivel de compañía
+#. Completar los datos de desarrollador y del encadenamiento a nivel de compañía en la pestaña de Verifactu.
 
 En caso de que la obtención de claves no funcione y uses Linux, cuentas con los siguientes comandos para tratar de solucionarlo:
 
@@ -64,15 +64,23 @@ En caso de que la obtención de claves no funcione y uses Linux, cuentas con los
 #. Establecer en las posiciones fiscales la clave de impuestos y la clave de registro verifactu.
 #. Para aplicar las claves ejecute el asistente de actualización del módulo account_chart_update.
 
+
+Usage
+=====
+
+Cuando se valida una factura, automáticamente genera el registro de envío para verifactu. Cada minuto se enviarán todos aquellos registros pendientes de enviar mediante un cron.
+
 Known issues / Roadmap
 ======================
 
- * Refactorización SII-Verifactu en l10n_es_aeat cuando estén todos los procesos claros
+ * Refactorización SII-Verifactu en l10n_es_aeat de los métodos que sean comunes.
  * Envío separado de la confirmación de la factura (cron.trigger/queque.job)
- * Envío en batch (AEAT permite hasta 1000 en un mismo envío).
  * Control de errores del sistema, generar avisos. (caída de aeat, errores de conexión, etc.)
  * Declaración responsable. https://sede.agenciatributaria.gob.es/Sede/iva/sistemas-informaticos-facturacion-verifactu/preguntas-frecuentes/certificacion-sistemas-informaticos-declaracion-responsable.html?faqId=a15d77fe52572910VgnVCM100000dc381e0aRCRD
  * Posibilidad de consultar el estado de las facturas enviadas.
+ * Operaciones exentas y causas de exención.
+ * Crear un selection con todos los valores posibles de codigos de error, para poder guardarlo y agrupar las facturas por ese código.
+ * Contemplar el tiempo de espera entre envíos de registros cuando AEAT devuelve un tiempo superior a 60 segundos.
 
 CASOS NO CUBIERTOS:
 1 - Modificación de facturas enviadas (AEAT recomienda generar rectificativa).

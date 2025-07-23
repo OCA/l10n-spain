@@ -114,7 +114,7 @@ class AccountMove(models.Model):
                 invoice.verifactu_enabled = (
                     invoice.fiscal_position_id
                     and invoice.fiscal_position_id.aeat_active
-                ) or not invoice.fiscal_position_id
+                )
             else:
                 invoice.verifactu_enabled = False
 
@@ -233,26 +233,29 @@ class AccountMove(models.Model):
             or self.move_type not in ("out_invoice", "out_refund")
         ):
             return ""
-        issuerID = self._get_verifactu_issuer()
-        serialNumber = self._get_document_serial_number()
-        expeditionDate = self._change_date_format(self._get_document_date())
-        documentType = self._get_verifactu_document_type()
+        issuer = self._get_verifactu_issuer()
+        serial_number = self._get_document_serial_number()
+        expedition_date = self._change_date_format(self._get_document_date())
+        document_type = self._get_verifactu_document_type()
         _taxes_dict, amount_tax, amount_total = self._get_verifactu_taxes_and_total()
-        amountTax = round(amount_tax, 2)
-        amountTotal = round(amount_total, 2)
-        previousHash = self._get_verifactu_previous_hash()
-        registrationDate = self._get_verifactu_registration_date()
+        amount_tax = round(amount_tax, 2)
+        amount_total = round(amount_total, 2)
+        previous_hash = self._get_verifactu_previous_hash()
+        registration_date = self._get_verifactu_registration_date()
         verifactu_hash_string = (
-            f"IDEmisorFactura={issuerID}&"
-            f"NumSerieFactura={serialNumber}&"
-            f"FechaExpedicionFactura={expeditionDate}&"
-            f"TipoFactura={documentType}&"
-            f"CuotaTotal={amountTax}&"
-            f"ImporteTotal={amountTotal}&"
-            f"Huella={previousHash}&"
-            f"FechaHoraHusoGenRegistro={registrationDate}"
+            f"IDEmisorFactura={issuer}&"
+            f"NumSerieFactura={serial_number}&"
+            f"FechaExpedicionFactura={expedition_date}&"
+            f"TipoFactura={document_type}&"
+            f"CuotaTotal={amount_tax}&"
+            f"ImporteTotal={amount_total}&"
+            f"Huella={previous_hash}&"
+            f"FechaHoraHusoGenRegistro={registration_date}"
         )
         return verifactu_hash_string
+
+    def _get_chaining(self):
+        return self.company_id.verifactu_chaining_id
 
     def _get_verifactu_invoice_dict_out(self, cancel=False):
         """Build dict with data to send to AEAT WS for document types:
@@ -457,8 +460,6 @@ class AccountMove(models.Model):
                     "ClaveRegimen": self.verifactu_registration_key_code,
                     "CalificacionOperacion": operation_type,
                 }
-                # si es exenta:
-                # "OperacionExenta": "", # TODO
                 if operation_type not in ("N1", "N2"):
                     new_tax_dict = self._get_verifactu_tax_dict(tax_line, tax_lines)
                     tax_dict.update(new_tax_dict)
@@ -633,10 +634,6 @@ class AccountMove(models.Model):
                 return False
         return True
 
-    def _get_verifactu_chain_context(self):
-        """Use a unique chain for each company for standard invoicing."""
-        return ("res.company", self.company_id)
-
     def cancel_verifactu(self):
         raise NotImplementedError
 
@@ -672,7 +669,8 @@ class AccountMove(models.Model):
     def resend_verifactu(self):
         for rec in self:
             if (
-                rec.last_verifactu_invoice_entry_id
+                rec.aeat_state == "sent_w_errors"
+                and rec.last_verifactu_invoice_entry_id
                 and not rec.last_verifactu_invoice_entry_id.send_state == "not_sent"
             ):
                 rec.verifactu_registration_date = datetime.now()

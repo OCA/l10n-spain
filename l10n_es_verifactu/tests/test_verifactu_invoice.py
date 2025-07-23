@@ -243,6 +243,7 @@ class TestVerifactuInvoice(TestVerifactuCommon):
                 "document_id": invoice.id,
                 "model": invoice._name,
                 "company_id": self.company.id,
+                "verifactu_chaining_id": self.company.verifactu_chaining_id.id,
                 "document_hash": "test_hash",
             }
         )
@@ -343,6 +344,7 @@ class TestVerifactuInvoice(TestVerifactuCommon):
                 "model": "account.move",  # Use a high ID that likely doesn't exist
                 "document_name": "Test Invoice Entry",
                 "company_id": self.company.id,
+                "verifactu_chaining_id": self.company.verifactu_chaining_id.id,
                 "document_hash": "test_hash_simple",
                 "aeat_json_data": '{"test": "data"}',
             }

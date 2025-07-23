@@ -6,7 +6,7 @@
         <field name="name">verifactu.invoice.entry.response.view.tree</field>
         <field name="model">verifactu.invoice.entry.response</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree create="false" delete="false" duplicate="0">
                 <field name="id" />
                 <field name="name" />
                 <field name="datetime" />
@@ -20,7 +20,12 @@
         <field name="name">verifactu.invoice.entry.response.view.form</field>
         <field name="model">verifactu.invoice.entry.response</field>
         <field name="arch" type="xml">
-            <form string="Verifactu Response">
+            <form
+                string="Verifactu Response"
+                create="false"
+                delete="false"
+                duplicate="0"
+            >
                 <sheet>
                     <h1 style="font-size: 1.9rem;">
                         <div class="row">

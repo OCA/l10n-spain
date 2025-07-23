@@ -376,12 +376,13 @@ ul.auto-toc {
 <ul class="simple">
 <li><a class="reference internal" href="#installation" id="toc-entry-1">Installation</a></li>
 <li><a class="reference internal" href="#configuration" id="toc-entry-2">Configuration</a></li>
-<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-3">Known issues / Roadmap</a></li>
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-4">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-5">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-6">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-7">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-8">Maintainers</a></li>
+<li><a class="reference internal" href="#usage" id="toc-entry-3">Usage</a></li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-4">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-5">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-6">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-7">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-8">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-9">Maintainers</a></li>
 </ul>
 </li>
 </ul>
@@ -404,7 +405,7 @@ Estas URLs pueden cambiar según comunidades</li>
 Accede a Facturación/Contabilidad -&gt; Configuración -&gt; AEAT -&gt; Certificados AEAT, y allí podrás:
 Subir el certificado p12 y extraer las claves públicas y privadas con el botón “Obtener claves”</li>
 <li>Debes tener en cuenta que los certificados se alojan en una carpeta accesible por la instalación de Odoo.</li>
-<li>Completar los datos de desarrollador a nivel de compañía</li>
+<li>Completar los datos de desarrollador y del encadenamiento a nivel de compañía en la pestaña de Verifactu.</li>
 </ol>
 <p>En caso de que la obtención de claves no funcione y uses Linux, cuentas con los siguientes comandos para tratar de solucionarlo:</p>
 <ul class="simple">
@@ -416,16 +417,22 @@ Subir el certificado p12 y extraer las claves públicas y privadas con el botón
 <li>Para aplicar las claves ejecute el asistente de actualización del módulo account_chart_update.</li>
 </ol>
 </div>
+<div class="section" id="usage">
+<h1><a class="toc-backref" href="#toc-entry-3">Usage</a></h1>
+<p>Cuando se valida una factura, automáticamente genera el registro de envío para verifactu. Cada minuto se enviarán todos aquellos registros pendientes de enviar mediante un cron.</p>
+</div>
 <div class="section" id="known-issues-roadmap">
-<h1><a class="toc-backref" href="#toc-entry-3">Known issues / Roadmap</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-4">Known issues / Roadmap</a></h1>
 <blockquote>
 <ul class="simple">
-<li>Refactorización SII-Verifactu en l10n_es_aeat cuando estén todos los procesos claros</li>
+<li>Refactorización SII-Verifactu en l10n_es_aeat de los métodos que sean comunes.</li>
 <li>Envío separado de la confirmación de la factura (cron.trigger/queque.job)</li>
-<li>Envío en batch (AEAT permite hasta 1000 en un mismo envío).</li>
 <li>Control de errores del sistema, generar avisos. (caída de aeat, errores de conexión, etc.)</li>
 <li>Declaración responsable. <a class="reference external" href="https://sede.agenciatributaria.gob.es/Sede/iva/sistemas-informaticos-facturacion-verifactu/preguntas-frecuentes/certificacion-sistemas-informaticos-declaracion-responsable.html?faqId=a15d77fe52572910VgnVCM100000dc381e0aRCRD">https://sede.agenciatributaria.gob.es/Sede/iva/sistemas-informaticos-facturacion-verifactu/preguntas-frecuentes/certificacion-sistemas-informaticos-declaracion-responsable.html?faqId=a15d77fe52572910VgnVCM100000dc381e0aRCRD</a></li>
 <li>Posibilidad de consultar el estado de las facturas enviadas.</li>
+<li>Operaciones exentas y causas de exención.</li>
+<li>Crear un selection con todos los valores posibles de codigos de error, para poder guardarlo y agrupar las facturas por ese código.</li>
+<li>Contemplar el tiempo de espera entre envíos de registros cuando AEAT devuelve un tiempo superior a 60 segundos.</li>
 </ul>
 </blockquote>
 <p>CASOS NO CUBIERTOS:
@@ -436,7 +443,7 @@ subsanación de esa factura donde conste ya la nueva información que proceda. E
 Según AEAT: “Si se considera que “toda la factura” en sí misma está mal o no debería haberse emitido, siempre que para solucionarlo no deba emplearse algún procedimiento (de rectificativa u otro) previsto en el ROF, se podrá “anular” generando para ello un RF de anulación. Estos casos deberían ser MUY POCO FRECUENTES.”</p>
 </div>
 <div class="section" id="bug-tracker">
-<h1><a class="toc-backref" href="#toc-entry-4">Bug Tracker</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-5">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-spain/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
@@ -444,16 +451,16 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h1><a class="toc-backref" href="#toc-entry-5">Credits</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-6">Credits</a></h1>
 <div class="section" id="authors">
-<h2><a class="toc-backref" href="#toc-entry-6">Authors</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-7">Authors</a></h2>
 <ul class="simple">
 <li>Aures Tic</li>
 <li>ForgeFlow</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h2><a class="toc-backref" href="#toc-entry-7">Contributors</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-8">Contributors</a></h2>
 <ul class="simple">
 <li>Jose Zambudio &lt;<a class="reference external" href="mailto:jose&#64;aurestic.es">jose&#64;aurestic.es</a>&gt;</li>
 <li>Almudena de La Puente &lt;<a class="reference external" href="mailto:almudena&#64;aurestic.es">almudena&#64;aurestic.es</a>&gt;</li>
@@ -463,7 +470,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#toc-entry-8">Maintainers</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-9">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />

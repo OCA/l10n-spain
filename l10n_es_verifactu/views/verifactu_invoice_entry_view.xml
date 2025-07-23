@@ -4,7 +4,7 @@
         <field name="name">verifactu.invoice.entry.tree</field>
         <field name="model">verifactu.invoice.entry</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree create="false" edit="false" delete="false" duplicate="0">
                 <field name="create_date" />
                 <field name="verifactu_chaining_id" />
                 <field name="document_id" optional="hide" />
@@ -29,12 +29,20 @@
         <field name="name">verifactu.invoice.entry.form</field>
         <field name="model">verifactu.invoice.entry</field>
         <field name="arch" type="xml">
-            <form string="VeriFactu Invoice Entry" create="false" edit="false">
+            <form
+                string="VeriFactu Invoice Entry"
+                create="false"
+                edit="false"
+                delete="false"
+                duplicate="0"
+            >
                 <sheet>
                     <group>
                         <group>
                             <field name="verifactu_chaining_id" />
                             <field name="document_id" />
+                            <field name="model" />
+                            <field name="document_name" />
                             <field
                                 name="company_id"
                                 groups="base.group_multi_company"
@@ -59,6 +67,7 @@
                                 <field name="response_line_ids">
                                     <tree>
                                         <field name="entry_id" column_invisible="1" />
+                                        <field name="entry_response_id" />
                                         <field name="create_date" />
                                         <field
                                             name="send_state"
@@ -90,6 +99,12 @@
                     name="group_by_company"
                     domain="[]"
                     context="{'group_by': 'company_id'}"
+                />
+                <filter
+                    string="Chaining"
+                    name="group_by_chaining"
+                    domain="[]"
+                    context="{'group_by': 'verifactu_chaining_id'}"
                 />
                 <filter
                     string="Date"

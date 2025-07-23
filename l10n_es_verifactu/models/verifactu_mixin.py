@@ -25,13 +25,6 @@ except (ImportError, IOError) as err:
     qrcode = None
     _logger.error(err)
 
-###########################################
-# revisar los imports que no hagan falta
-# cuando funcione bien el _connect_aeat sin tener que poner
-# el forbid_entities, y se pueda borrar la función _connect_verifactu
-# de este fichero para usar la del aeat_mixin
-
-
 _logger = logging.getLogger(__name__)
 
 VERIFACTU_VERSION = 1.0
@@ -211,13 +204,11 @@ class VerifactuMixin(models.AbstractModel):
                 _("Please, configure the verifactu developer in your company")
             )
         developer = self.company_id.verifactu_developer_id
-        chaining = self.company_id.verifactu_chaining_id
+        chaining = self._get_chaining()
         spanish_companies = (
             self.env["res.company"]
             .sudo()
-            .search_count(
-                [("partner_id.country_id", "=", self.env.ref("base.es").id)], limit=2
-            )
+            .search_count([("partner_id.country_id", "=", self.env.ref("base.es").id)])
         )
         return {
             "NombreRazon": developer.name,
@@ -253,12 +244,14 @@ class VerifactuMixin(models.AbstractModel):
     def _get_verifactu_hash_string(self):
         raise NotImplementedError
 
+    def _get_chaining(self):
+        return NotImplementedError
+
     def _generate_verifactu_chaining(self, entry_type=False):
         """Generate verifactu invoice entry for company-wide chaining."""
         self.ensure_one()
 
-        # Always use company for invoice chaining
-        chaining = self.company_id.verifactu_chaining_id
+        chaining = self._get_chaining()
 
         chaining.flush_recordset(["last_verifactu_invoice_entry_id"])
 
@@ -346,7 +339,7 @@ class VerifactuMixin(models.AbstractModel):
         return partner.aeat_simplified_invoice
 
     def _check_verifactu_configuration(self):
-        if not self.company_id.verifactu_chaining_id:
+        if not self._get_chaining():
             raise UserError(
                 _(
                     "The document %s cannot be sent to Verifactu because your "
@@ -439,7 +432,7 @@ class VerifactuMixin(models.AbstractModel):
             return int(
                 self.env["ir.config_parameter"]
                 .sudo()
-                .get_param("l10n_es_verifactu.verifactu_batch", "50")
+                .get_param("l10n_es_verifactu.verifactu_batch", "1000")
             )
         except ValueError as e:
             raise UserError(

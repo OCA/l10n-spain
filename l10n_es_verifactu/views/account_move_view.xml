@@ -172,4 +172,22 @@
             </xpath>
         </field>
     </record>
+
+    <record id="invoice_verifactu_tree" model="ir.ui.view">
+        <field name="name">account.invoice.tree</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree" />
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field
+                    name="aeat_state"
+                    decoration-success="aeat_state == 'sent'"
+                    decoration-danger="aeat_state == 'not_sent'"
+                    decoration-warning="aeat_state == 'sent_w_errors'"
+                    widget="badge"
+                    optional="hide"
+                />
+            </field>
+        </field>
+    </record>
 </odoo>
