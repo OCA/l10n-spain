@@ -61,6 +61,10 @@ Contributors
 
   - Miquel Pascual <mpascual@apsl.net>
 
+- `Tecnativa <https://www.tecnativa.com>`__:
+
+  - Sergio Teruel
+
 Maintainers
 -----------
 
