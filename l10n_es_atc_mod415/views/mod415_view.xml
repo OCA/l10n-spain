@@ -129,7 +129,7 @@
     <!-- ### MENU ACCESS ### -->
     <menuitem
         id="menu_atc_mod415_report"
-        parent="l10n_es_atc.menu_root_atc"
+        parent="l10n_es_atc.menu_l10n_es_atc_submenu"
         action="action_l10n_es_atc_mod415_report"
         sequence="415"
         name="Modelo 415"
