@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <!--  SUB-130  -->
     <record id="aeat_mod130_sub_export_config" model="aeat.model.export.config">
         <field name="name">Mod. 130 2015-actualidad - Página</field>
@@ -381,7 +380,7 @@
         <field name="export_type">boolean</field>
         <field name="size">1</field>
         <field name="bool_yes">X</field>
-        <field name="bool_no"> </field>
+        <field name="bool_no" />
         <field name="alignment">left</field>
     </record>
 
@@ -607,5 +606,4 @@
         <field name="size">18</field>
         <field name="alignment">left</field>
     </record>
-
 </odoo>
