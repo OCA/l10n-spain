@@ -213,7 +213,7 @@ class L10nEsAeatMod130Report(models.Model):
     def _calc_ingresos_gastos_retenciones(self):
         self.ensure_one()
         aml_obj = self.env["account.move.line"]
-        date_start = "%s-01-01" % self.year
+        date_start = f"{self.year}-01-01"
         extra_domain = [
             ("company_id", "=", self.company_id.id),
             ("date", ">=", date_start),
