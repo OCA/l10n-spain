@@ -7,9 +7,9 @@
         <field name="model">l10n.es.aeat.mod390.report</field>
         <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree" />
         <field name="arch" type="xml">
-            <tree position="attributes">
+            <list position="attributes">
                 <attribute name="string">AEAT 390 reports</attribute>
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_l10n_es_aeat_mod390_report_form" model="ir.ui.view">
@@ -21,7 +21,7 @@
                 <div class="alert alert-warning" role="alert" invisible="not use_303">
                     <p
                     >This is using the 303 reports for automatic calculations in the <b
-                        >fields 85, 95, 97, 98 and 662</b>. The calculations
+                    >fields 85, 95, 97, 98 and 662</b>. The calculations
                         may not be correct if there are duplicated or out-of-date 303 reports.</p>
                     <p
                     >If you do not want to use the 303 reports for the automatic calculation,
@@ -372,7 +372,7 @@
     <record id="action_l10n_es_aeat_mod390_report" model="ir.actions.act_window">
         <field name="name">AEAT model 390</field>
         <field name="res_model">l10n.es.aeat.mod390.report</field>
-        <field name="view_mode">form,tree</field>
+        <field name="view_mode">form,list</field>
         <field name="help">Create and query AEAT Model 390 reports.</field>
     </record>
     <record
@@ -380,7 +380,7 @@
         id="action_l10n_es_aeat_mod390_report_tree"
     >
         <field name="sequence" eval="2" />
-        <field name="view_mode">tree</field>
+        <field name="view_mode">list</field>
         <field name="view_id" ref="view_l10n_es_aeat_mod390_report_tree" />
         <field name="act_window_id" ref="action_l10n_es_aeat_mod390_report" />
     </record>
