@@ -124,6 +124,29 @@ class TestPaymentOrderOutboundBaseAEF(TestPaymentOrderOutboundBase):
         self.assertEqual(lines[4][36:47], "PSSTFRPPXXX")
         self.assertEqual(lines[4][47:81].strip(), "")
 
+    def test_account_payment_order_aef_ascii(self):
+        """Names and addresses are exported in ASCII, so a letter that
+        Windows-1252 does not have doesn't break the file"""
+        self.set_payment_mode_aef()
+        self._set_company_bank()
+        self._set_supplier(
+            self.env.ref("base.es"),
+            "40538337D",
+            {
+                "account_number": "FR20 1242 1242 1242 1242 1242 124",
+                "bank_name": "La Banque Postale",
+                "bank_bic": "PSSTFRPPXXX",
+            },
+        )
+        self.partner.write(
+            {"name": "Antonín Dvořák, S.L.", "street": "Plaza de España, 1"}
+        )
+        order = self.order_creation(False)
+        lines = self._payment_file_lines(order)
+        self.assertEqual(lines[2][1:71].strip(), "Antonin Dvorak, S.L.")
+        self.assertEqual(lines[2][91:156].strip(), "Plaza de Espana, 1")
+        self.assertEqual(len(lines[2]), len(lines[0]))
+
     def test_account_payment_order_aef_international(self):
         self.set_payment_mode_aef()
         self._set_company_bank()

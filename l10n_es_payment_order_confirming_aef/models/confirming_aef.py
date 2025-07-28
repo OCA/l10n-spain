@@ -2,6 +2,8 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 
+from unidecode import unidecode
+
 from odoo import fields
 from odoo.exceptions import UserError
 
@@ -108,6 +110,7 @@ class ConfirmingAEF:
         elif isinstance(text, int):
             text = str(text).zfill(size)
         else:
+            text = unidecode(text)
             if justified == "left":
                 text = text[:size].ljust(size)
             else:

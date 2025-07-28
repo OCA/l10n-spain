@@ -43,6 +43,11 @@ https://docs.bankinter.com/stf/plataformas/empresas/gestion/ficheros/formatos_fi
 .. contents::
    :local:
 
+Installation
+============
+
+Este módulo depende de *unidecode* para exportar el fichero en ASCII.
+
 Configuration
 =============
 

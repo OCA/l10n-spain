@@ -9,6 +9,7 @@
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "depends": ["account_payment_order", "l10n_es"],
+    "external_dependencies": {"python": ["unidecode"]},
     "data": [
         "data/account_payment_method.xml",
         "views/account_payment_mode_view.xml",
