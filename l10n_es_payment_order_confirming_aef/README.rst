@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 =======================================================
 Exportación de fichero bancario Confirming estándar AEF
 =======================================================
@@ -13,7 +17,7 @@ Exportación de fichero bancario Confirming estándar AEF
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
@@ -37,6 +41,11 @@ Para consultar el diseño de registros, puede ir a https://docs.bankinter.com/st
 
 .. contents::
    :local:
+
+Installation
+============
+
+Este módulo depende de *unidecode* para exportar fichero en ASCII
 
 Configuration
 =============
