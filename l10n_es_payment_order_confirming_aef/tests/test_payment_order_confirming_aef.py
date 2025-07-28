@@ -130,7 +130,7 @@ class TestPaymentOrderOutboundBaseAEF(TestPaymentOrderOutboundBase):
         self._set_supplier(
             self.env.ref("base.us"),
             "123456789",
-            {"account_number": "0123 4567 89", "bank_bic": "CHASUS33XXX"},
+            {"account_number": "0123-4567 89", "bank_bic": "CHASUS33XXX"},
         )
         order = self.order_creation(False)
         lines = self._payment_file_lines(order)

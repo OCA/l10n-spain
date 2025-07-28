@@ -153,7 +153,7 @@ class ConfirmingAEF:
         contract_cxb = self.record.payment_mode_id.aef_confirming_contract
         text += self._aef_convert_text(contract_cxb, 20, "left")
         # 103 - 136 Cuenta de cargo
-        cuenta = self.record.company_partner_bank_id.account_number.replace(" ", "")
+        cuenta = self.record.company_partner_bank_id.sanitized_account_number
         text += self._aef_convert_text(cuenta, 34, "left")
         # 137 - 139 Código divisa
         currency = self.record.journal_id.currency_id or self.record.company_currency_id
@@ -231,7 +231,7 @@ class ConfirmingAEF:
         text += self.record.payment_mode_id.aef_confirming_type
         # 3 - 36 IBAN
         iban = (
-            line.partner_bank_id.account_number.replace(" ", "")
+            line.partner_bank_id.sanitized_account_number
             if (
                 self.record.payment_mode_id.aef_confirming_type == "T"
                 and line.partner_bank_id.account_type == "iban"
@@ -243,7 +243,7 @@ class ConfirmingAEF:
         text += self._aef_convert_text(line.partner_bank_id.bank_bic, 11, "left")
         # 48 - 81 Cuenta pagos internacionales (sin IBAN)
         acc_number = (
-            line.partner_bank_id.account_number.replace(" ", "")
+            line.partner_bank_id.sanitized_account_number
             if (
                 self.record.payment_mode_id.aef_confirming_type == "T"
                 and line.partner_bank_id.account_type == "bank"
