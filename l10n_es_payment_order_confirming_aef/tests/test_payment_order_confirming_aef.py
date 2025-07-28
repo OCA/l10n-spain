@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from datetime import timedelta
 
-from odoo import fields
+from odoo import Command, fields
 from odoo.exceptions import UserError
 from odoo.tests import Form, tagged
 
@@ -70,9 +70,8 @@ class TestPaymentOrderOutboundBaseAEF(TestPaymentOrderOutboundBase):
         with self.assertRaises(UserError):
             self.order_creation(False)
 
-    def test_account_payment_order_aef_success(self):
-        self.set_payment_mode_aef()
-        bank_journal = self.env["res.partner.bank"].create(
+    def _set_company_bank(self):
+        company_bank = self.env["res.partner.bank"].create(
             {
                 "account_number": "FR76 4242 4242 4242 4242 4242 424",
                 "bank_name": "La Banque Postale",
@@ -87,29 +86,33 @@ class TestPaymentOrderOutboundBaseAEF(TestPaymentOrderOutboundBase):
                 "state_id": self.env.ref("base.state_es_m").id,
             }
         )
-        self.bank_journal.write({"bank_account_id": bank_journal.id})
+        self.bank_journal.write({"bank_account_id": company_bank.id})
+
+    def _set_supplier(self, country, vat, bank_vals):
         self.partner.write(
             {
-                "vat": "40538337D",
+                "vat": vat,
                 "street": " Calle Leonardo da Vinci, 7",
                 "city": "Madrid",
                 "zip": "41092",
-                "country_id": self.env.ref("base.es").id,
-                "state_id": self.env.ref("base.state_es_m").id,
-                "bank_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "account_number": "FR20 1242 1242 1242 1242 1242 124",
-                            "bank_name": "La Banque Postale",
-                            "bank_bic": "PSSTFRPPXXX",
-                        },
-                    )
-                ],
+                "country_id": country.id,
+                "bank_ids": [Command.create(bank_vals)],
             }
         )
         self.invoice.partner_bank_id = self.partner.bank_ids[-1].id
+
+    def test_account_payment_order_aef_success(self):
+        self.set_payment_mode_aef()
+        self._set_company_bank()
+        self._set_supplier(
+            self.env.ref("base.es"),
+            "40538337D",
+            {
+                "account_number": "FR20 1242 1242 1242 1242 1242 124",
+                "bank_name": "La Banque Postale",
+                "bank_bic": "PSSTFRPPXXX",
+            },
+        )
         order = self.order_creation(False)
         lines = self._payment_file_lines(order)
         self.assertEqual([line[:1] for line in lines], list("1234567") + [""])
@@ -120,6 +123,33 @@ class TestPaymentOrderOutboundBaseAEF(TestPaymentOrderOutboundBase):
         self.assertEqual(lines[4][2:36].strip(), "FR2012421242124212421242124")
         self.assertEqual(lines[4][36:47], "PSSTFRPPXXX")
         self.assertEqual(lines[4][47:81].strip(), "")
+
+    def test_account_payment_order_aef_international(self):
+        self.set_payment_mode_aef()
+        self._set_company_bank()
+        self._set_supplier(
+            self.env.ref("base.us"),
+            "123456789",
+            {"account_number": "0123 4567 89", "bank_bic": "CHASUS33XXX"},
+        )
+        order = self.order_creation(False)
+        lines = self._payment_file_lines(order)
+        # Account without IBAN in the field of international payments
+        self.assertEqual(lines[4][2:36].strip(), "")
+        self.assertEqual(lines[4][36:47], "CHASUS33XXX")
+        self.assertEqual(lines[4][47:81].strip(), "0123456789")
+        self.assertEqual(lines[4][81:83], "US")
+
+    def test_account_payment_order_aef_sepa_without_iban(self):
+        self.set_payment_mode_aef()
+        self._set_company_bank()
+        self._set_supplier(
+            self.env.ref("base.es"),
+            "40538337D",
+            {"account_number": "0123 4567 89", "bank_bic": "CAIXESBBXXX"},
+        )
+        with self.assertRaisesRegex(UserError, "no es un IBAN"):
+            self.order_creation(False)
 
     def test_payment_method_only_in_bank_journals(self):
         method = self.env.ref(
