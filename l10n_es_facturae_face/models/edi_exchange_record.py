@@ -91,6 +91,8 @@ class EdiExchangeRecord(models.Model):
                 _logger.info(_("Company %s cannot be processed") % company.display_name)
                 continue
             for invoice in response.facturas.consultarListadoFactura:
+                if not exchange_dict.get(invoice.factura.numeroRegistro, False):
+                    continue
                 exchange_record = exchange_dict[invoice.factura.numeroRegistro]
                 if invoice.codigo != "0":
                     # Probably processed from another system
