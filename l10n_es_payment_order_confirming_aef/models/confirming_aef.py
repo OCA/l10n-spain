@@ -5,6 +5,11 @@
 from odoo import _, fields
 from odoo.exceptions import UserError
 
+try:
+    from unidecode import unidecode
+except ImportError:
+    unidecode = str
+
 
 class ConfirmingAEF(object):
     def __init__(self, record):
@@ -89,6 +94,7 @@ class ConfirmingAEF(object):
         elif isinstance(text, int):
             text = str(text).zfill(size)
         else:
+            text = unidecode(text)
             if justified == "left":
                 text = text[:size].ljust(size)
             else:
