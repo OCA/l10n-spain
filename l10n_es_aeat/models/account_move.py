@@ -81,4 +81,6 @@ class AccountMoveLine(models.Model):
             )
             amount = self.balance * sign
             res[tax]["amount"] += amount
-            res[tax]["deductible_amount"] += amount
+            # Don't add it here if non deductible
+            if tax.tax_group_id.get_external_id() != "l10n_es.tax_group_iva_nd":
+                res[tax]["deductible_amount"] += amount
