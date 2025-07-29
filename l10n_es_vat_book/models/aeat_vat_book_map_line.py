@@ -27,9 +27,10 @@ class AeatVatBookMapLines(models.Model):
     tax_xmlid_ids = fields.Many2many(
         comodel_name="l10n.es.aeat.map.tax.line.tax", string="Taxes"
     )
-    account_xmlid_id = fields.Many2one(
+    excluded_account_xmlid_id = fields.Many2one(
         comodel_name="l10n.es.aeat.map.tax.line.account",
         string="Tax Account Restriction",
+        help="Journal items with this account will be excluded",
     )
     tax_agency_ids = fields.Many2many("aeat.tax.agency", string="Tax Agency")
 
@@ -46,8 +47,7 @@ class AeatVatBookMapLines(models.Model):
     def get_accounts_for_company(self, company):
         """Obtain the accounts corresponding to the line according the given company."""
         self.ensure_one()
-        account_ids = set()
-        account_id = company._get_account_id_from_xmlid(self.account_xmlid_id.name)
-        if account_id:
-            account_ids.add(account_id)
-        return self.env["account.account"].browse(list(account_ids))
+        account_id = company._get_account_id_from_xmlid(
+            self.excluded_account_xmlid_id.name
+        )
+        return self.env["account.account"].browse(account_id or [])

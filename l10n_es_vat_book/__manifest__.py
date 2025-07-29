@@ -5,12 +5,12 @@
 # Copyright 2020 Creu Blanca - Enric Tobella
 # Copyright 2020 Tecnativa - Carlos Daudén
 # Copyright 2022 Comunitea - Omar Castiñeira
-# Copyright 2018-2023 Tecnativa - Pedro M. Baeza
+# Copyright 2018,2023,2025 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     "name": "Libro de IVA",
-    "version": "17.0.1.3.5",
+    "version": "17.0.2.0.0",
     "author": "PRAXYA, ForgeFlow, Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
