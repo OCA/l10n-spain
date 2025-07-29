@@ -327,7 +327,7 @@ class VatNumberXlsx(models.AbstractModel):
         sheet.write("O" + str(row), tax_line.tax_id.amount)
         sheet.write("P" + str(row), tax_line.tax_amount)
         if tax_line.tax_id not in self._get_undeductible_taxes(line.vat_book_id):
-            sheet.write("Q" + str(row), tax_line.tax_amount)
+            sheet.write("Q" + str(row), tax_line.deductible_amount)
         if tax_line.special_tax_id:
             map_vals = line.vat_book_id.get_special_taxes_dic()[
                 tax_line.special_tax_id.id

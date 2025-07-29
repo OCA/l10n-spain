@@ -4,6 +4,7 @@
 # Copyright 2018 Luis M. Ontalba <luismaront@gmail.com>
 # Copyright 2019 Tecnativa - Carlos Dauden
 # Copyright 2022 Moduon Team - Eduardo de Miguel <edu@moduon.team>
+# Copyright 2025 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 import datetime
 import re
@@ -251,53 +252,41 @@ class L10nEsVatBook(models.Model):
             "special_tax_group": False,
         }
 
-    def _prepare_book_line_tax_vals(self, move_line, vat_book_line):
-        balance = move_line.credit - move_line.debit
-        if vat_book_line["line_type"] in ["received", "rectification_received"]:
-            balance = -balance
-        base_amount_untaxed = (
-            balance if move_line.tax_ids and not move_line.tax_line_id else 0.0
-        )
-        fee_amount_untaxed = balance if move_line.tax_line_id else 0.0
-        vals = {
-            "tax_id": move_line.tax_line_id.id,
-            "base_amount": base_amount_untaxed,
-            "tax_amount": fee_amount_untaxed,
+    def upsert_book_line_tax(self, move_line, vat_book_line, implied_taxes):
+        tax_lines = vat_book_line["tax_lines"]
+        default_dict = {
+            "base_amount": 0,
+            "tax_amount": 0,
+            "deductible_amount": 0,
             "base_move_line_ids": [],
             "move_line_ids": [],
             "special_tax_group": False,
         }
-        if move_line.tax_ids:
-            vals["base_move_line_ids"].append((4, move_line.id))
-        elif move_line.tax_line_id:
-            vals["move_line_ids"].append((4, move_line.id))
-        return vals
-
-    def upsert_book_line_tax(self, move_line, vat_book_line, implied_taxes):
-        vals = self._prepare_book_line_tax_vals(move_line, vat_book_line)
-        tax_lines = vat_book_line["tax_lines"]
+        sign = -1
+        if vat_book_line["line_type"] in ["received", "rectification_received"]:
+            sign = 1
         if move_line.tax_line_id:
-            key = self.get_book_line_tax_key(move_line, move_line.tax_line_id)
-            if key not in tax_lines:
-                tax_lines[key] = vals
-            else:
-                tax_lines[key]["tax_id"] = move_line.tax_line_id.id
-                tax_lines[key]["tax_amount"] += vals["tax_amount"]
-                tax_lines[key]["move_line_ids"] += vals["move_line_ids"]
+            res = {}
+            tax = move_line.tax_line_id
+            move_line._process_aeat_tax_fee_info(res, tax, sign)
+            key = self.get_book_line_tax_key(move_line, tax)
+            value = tax_lines.setdefault(key, default_dict | {"tax_id": tax.id})
+            value["tax_amount"] += res[tax]["amount"]
+            value["deductible_amount"] += res[tax]["deductible_amount"]
+            value["move_line_ids"].append((4, move_line.id))
         for i, tax in enumerate(move_line.tax_ids):
+            res = {}
+            move_line._process_aeat_tax_base_info(res, tax, sign)
             if i == 0:
-                vat_book_line["base_amount"] += vals["base_amount"]
+                vat_book_line["base_amount"] += res[tax]["base"]
             if tax not in implied_taxes:
                 continue
             key = self.get_book_line_tax_key(move_line, tax)
-            if key not in tax_lines:
-                tax_lines[key] = vals.copy()
-                tax_lines[key]["tax_id"] = tax.id
-            else:
-                tax_lines[key]["base_amount"] += vals["base_amount"]
-                tax_lines[key]["base_move_line_ids"] += vals["base_move_line_ids"]
+            value = tax_lines.setdefault(key, default_dict | {"tax_id": tax.id})
+            value["base_amount"] += res[tax]["base"]
+            value["base_move_line_ids"].append((4, move_line.id))
             # For later matching special taxes
-            tax_lines[key]["other_tax_ids"] = (move_line.tax_ids - tax).ids
+            value["other_tax_ids"] = (move_line.tax_ids - tax).ids
 
     def _clear_old_data(self):
         """
@@ -465,8 +454,8 @@ class L10nEsVatBook(models.Model):
                 for map_line in map_lines:
                     line_taxes = map_line.get_taxes_for_company(rec.company_id)
                     taxes |= line_taxes
-                    if map_line.account_xmlid_id:
-                        account = map_line.get_accounts_for_company(rec.company_id)
+                    account = map_line.get_accounts_for_company(rec.company_id)
+                    if account:
                         accounts.update({tax: account for tax in line_taxes})
                 # Filter in all possible data using sets for improving performance
                 if accounts:
@@ -475,7 +464,7 @@ class L10nEsVatBook(models.Model):
                         or (
                             line.tax_line_id in taxes
                             and accounts.get(line.tax_line_id, line.account_id)
-                            == line.account_id
+                            != line.account_id
                         )
                     )
                 else:
