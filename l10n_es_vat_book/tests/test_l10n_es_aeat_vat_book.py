@@ -13,7 +13,7 @@ from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
 _logger = logging.getLogger("aeat.vat.book")
 
 
-class TestL10nEsAeatVatBook(TestL10nEsAeatModBase):
+class TestL10nEsAeatVatBookBase(TestL10nEsAeatModBase):
     debug = False
     taxes_sale = {
         # tax code: (base, tax_amount)
@@ -26,6 +26,8 @@ class TestL10nEsAeatVatBook(TestL10nEsAeatModBase):
         "P_IVA21_IC_BC": (200, 42),
     }
 
+
+class TestL10nEsAeatVatBook(TestL10nEsAeatVatBookBase):
     def test_model_vat_book(self):
         # Purchase invoices
         self._invoice_purchase_create("2017-01-01")
@@ -85,6 +87,11 @@ class TestL10nEsAeatVatBook(TestL10nEsAeatModBase):
         line = vat_book.received_tax_summary_ids[2]
         self.assertAlmostEqual(line.base_amount, 100)
         self.assertAlmostEqual(line.tax_amount, 21)
+        # Let's dig into this tax detail for checking the deductible amount
+        tax_line = vat_book.received_line_ids.tax_line_ids.filtered(
+            lambda x: "account_tax_template_p_iva0_nd" in x.tax_id.get_external_id()
+        )
+        self.assertAlmostEqual(tax_line.deductible_amount, 0)
         # Print to PDF
         report_pdf = self.env["ir.actions.report"]._render(
             "l10n_es_vat_book.act_report_vat_book_invoices_issued_pdf", vat_book.ids

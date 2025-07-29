@@ -48,7 +48,7 @@
             name="tax_agency_ids"
             eval="[ Command.link(ref('l10n_es_aeat.aeat_tax_agency_spain')) ]"
         />
-        <field name="tax_account_id" ref="l10n_es.account_common_472" />
+        <field name="tax_excluded_account_id" ref="l10n_es.account_common_477" />
         <field
             name="tax_tmpl_ids"
             eval="[
@@ -124,6 +124,7 @@
             name="tax_agency_ids"
             eval="[ Command.link(ref('l10n_es_aeat.aeat_tax_agency_spain')) ]"
         />
+        <field name="tax_excluded_account_id" ref="l10n_es.account_common_472" />
         <field
             name="tax_tmpl_ids"
             eval="[
