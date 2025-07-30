@@ -213,6 +213,7 @@ class Mod349(models.Model):
             # Fetch the latest presentation made for this move
             original_details = detail_obj.search(
                 [
+                    ("report_id.state", "!=", "cancelled"),
                     ("move_line_id.move_id", "=", origin_invoice.id),
                     ("partner_record_id.operation_key", "=", op_key),
                     ("id", "not in", visited_details.ids),
