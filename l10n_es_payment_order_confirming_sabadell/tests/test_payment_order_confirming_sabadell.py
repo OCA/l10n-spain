@@ -98,7 +98,7 @@ class TestPaymentOrderConfirmingSabadell(common.TransactionCase):
                 active_model="account.payment.order",
                 active_id=payment_order.id,
             )
-            .create({"date_type": "move", "move_date": fields.Date.today()})
+            .create({"date_type": "move", "filter_date": fields.Date.today()})
         )
         line_create.journal_ids = self.purchase_journal.ids
         line_create.populate()
