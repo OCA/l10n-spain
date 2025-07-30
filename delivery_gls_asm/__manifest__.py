@@ -3,7 +3,7 @@
 {
     "name": "Delivery GLS-ASM",
     "summary": "Delivery Carrier implementation for GLS with ASMRed API",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.0.1",
     "category": "Stock",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Tecnativa, Odoo Community Association (OCA)",
@@ -20,5 +20,5 @@
         "views/stock_picking_views.xml",
         "wizard/gls_asm_manifest_wizard_views.xml",
     ],
-    "maintainers": ["chienandalu", "hildickethan-S73"],
+    "maintainers": ["hildickethan"],
 }
