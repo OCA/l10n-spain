@@ -132,8 +132,8 @@
             />
             <FirstSurname
                 t-length="40"
-                t-out="partner.lastname if partner._fields.get('lastname') else ''"
-            />
+                t-out="partner.lastname if partner._fields.get('lastname') else '.'"
+            /> <!-- Default value for FirstSurname is '.' as it cannot be empty-->
             <SecondSurname t-length="40" t-out="''" t-if="False" />
             <t t-call="l10n_es_facturae.address_contact">
             </t>
