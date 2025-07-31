@@ -460,7 +460,11 @@ class L10nEsVatBook(models.Model):
                     domain += [
                         ("tax_agency_ids", "in", [False] + rec.tax_agency_ids.ids),
                     ]
-                map_lines = self.env["aeat.vat.book.map.line"].search(domain)
+                map_lines = (
+                    self.env["aeat.vat.book.map.line"]
+                    .with_context(active_test=False)
+                    .search(domain)
+                )
                 taxes = self.env["account.tax"]
                 accounts = {}
                 for map_line in map_lines:
