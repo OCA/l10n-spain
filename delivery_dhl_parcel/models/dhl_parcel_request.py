@@ -50,8 +50,8 @@ class DhlParcelRequest:
                     _("Unsupported request type, please only use 'GET' or 'POST'")
                 )
             res.raise_for_status()
-            dhl_parcel_last_request = ("Request type: {}\nURL: {}\nData: {}").format(
-                request_type, url, data
+            dhl_parcel_last_request = (
+                f"Request type: {request_type}\nURL: {url}\nData: {data}"
             )
             self.carrier_id.log_xml(dhl_parcel_last_request, "dhl_parcel_last_request")
             self.carrier_id.log_xml(res.text or "", "dhl_parcel_last_response")

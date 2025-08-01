@@ -35,8 +35,6 @@ class DhlParcelEndDayWizard(models.TransientModel):
         self.carrier_id.write(
             {
                 "dhl_parcel_last_end_day_report": (res.get("Report", False)),
-                "dhl_parcel_last_end_day_report_name": "dhl_endday_{}.pdf".format(
-                    fields.Datetime.today()
-                ),
+                "dhl_parcel_last_end_day_report_name": f"dhl_endday_{fields.Datetime.today()}.pdf",
             }
         )
