@@ -1,4 +1,5 @@
 # Copyright 2020 ACSONE SA/NV
+# Copyright 2025 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
@@ -10,9 +11,13 @@ def post_init_hook(env):
         [
             ("model", "=", "account.fiscal.position"),
             ("name", "like", "%_fp_intra%"),
-            ("module", "=", "l10n_es"),
+            ("module", "=", "account"),
         ]
     )
-    env["account.fiscal.position"].browse(items.mapped("res_id")).write(
-        {"intrastat": "b2b", "vat_required": True}
-    )
+    # Avoid modifying fiscal positions created with accounting plans other than l10n_es
+    env["account.fiscal.position"].search(
+        [
+            ("id", "in", items.mapped("res_id")),
+            ("company_id.chart_template", "like", "es_%"),
+        ]
+    ).write({"intrastat": "b2b", "vat_required": True})

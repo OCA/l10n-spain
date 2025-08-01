@@ -140,23 +140,51 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
                 cls.invoices[declaration_type][partner.country_id] += 1
 
     def test_post_init_hook(self):
-        fp = self.env["account.fiscal.position"].create(
+        """Simulate intra community fiscal positions and other positions from l10n_es
+        and other fiscal positions created with other chart templates."""
+        fp_es_ok = self.fiscal_position_b2b
+        fp_es_ok.intrastat = False
+        fp_es_ko = self.fiscal_position_b2c
+        fp_es_ko.intrastat = False
+        fp_not_es_ok = (
+            self.env["account.fiscal.position"]
+            .sudo()
+            .create(
+                {
+                    "name": "Test FP",
+                    "company_id": self.env.ref("base.main_company").id,
+                }
+            )
+        )
+        self.env["ir.model.data"].create(
             {
-                "name": "Test FP",
-                "intrastat": False,
+                "name": "es_fp_intra_private",
+                "model": fp_es_ok._name,
+                "module": "account",
+                "res_id": fp_es_ok.id,
             }
         )
-        item = self.env["ir.model.data"].create(
+        self.env["ir.model.data"].create(
             {
-                "name": "l10n_es_intrastat_report_fp_intra_private",
-                "model": "account.fiscal.position",
-                "module": "l10n_es",
-                "res_id": fp.id,
+                "name": "es_fp_custom_private",
+                "model": fp_es_ko._name,
+                "module": "account",
+                "res_id": fp_es_ko.id,
+            }
+        )
+        self.env["ir.model.data"].create(
+            {
+                "name": "not_eses_fp_custom_private",
+                "model": fp_not_es_ok._name,
+                "module": "account",
+                "res_id": fp_not_es_ok.id,
             }
         )
         post_init_hook(self.env)
-        fp = self.env["account.fiscal.position"].browse(item.res_id)
-        self.assertTrue(fp.intrastat)
+        self.assertTrue(fp_es_ok.intrastat)
+        self.assertFalse(fp_es_ko.intrastat)
+        self.assertFalse(fp_not_es_ok.intrastat)
+        self.assertTrue(fp_es_ok.vat_required)
 
     def _check_move_lines_present(self, original, target):
         for move in original:
