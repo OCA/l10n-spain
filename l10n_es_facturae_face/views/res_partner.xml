@@ -22,6 +22,16 @@
                     attrs="{'invisible': [('facturae', '=', False)]}"
                 />
             </xpath>
+            <xpath
+                expr="//group[@name='group_facturae_wo_accounting']/field[@name='facturae_version']"
+                position="before"
+            >
+                <field
+                    name="l10n_es_facturae_sending_code"
+                    attrs="{'invisible': [('facturae', '=', False)]}"
+                />
+            </xpath>
+
         </field>
     </record>
 </odoo>
