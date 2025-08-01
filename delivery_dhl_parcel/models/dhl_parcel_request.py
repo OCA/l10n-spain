@@ -153,14 +153,14 @@ class DhlParcelRequest:
     def cancel_shipment(self, reference=False):
         """Delete shipment
         :param str reference -- public shipping reference
-        :returns: str -- message text
+        :returns: res -- response from API
         """
         res = self._send_api_request(
             request_type="GET",
             url=DHL_PATH + "shipment?"
             f"Year={self.year}&Tracking={reference}&Action=DELETE",
         )
-        return True if res.status_code == 200 else False
+        return res
 
     def hold_shipment(self, reference=False):
         """Hold shipment, shipping will not be documented until it's released
