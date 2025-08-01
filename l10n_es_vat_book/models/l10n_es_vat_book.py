@@ -437,8 +437,10 @@ class L10nEsVatBook(models.Model):
             # Searches for all possible usable lines to report
             moves = rec._get_account_move_lines()
             for book_type in ["issued", "received"]:
-                map_lines = self.env["aeat.vat.book.map.line"].search(
-                    [("book_type", "=", book_type)]
+                map_lines = (
+                    self.env["aeat.vat.book.map.line"]
+                    .with_context(active_test=False)
+                    .search([("book_type", "=", book_type)])
                 )
                 taxes = self.env["account.tax"]
                 accounts = {}
