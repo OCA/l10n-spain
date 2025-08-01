@@ -32,9 +32,10 @@ class DhlParcelEndDayWizard(models.TransientModel):
             "ALL" if self.all_customer_accounts else self.customer_accounts
         )
         res = dhl_parcel_request.end_day(customer_accounts, "PDF")
+        report_name = f"dhl_endday_{fields.Datetime.today()}.pdf"
         self.carrier_id.write(
             {
                 "dhl_parcel_last_end_day_report": (res.get("Report", False)),
-                "dhl_parcel_last_end_day_report_name": f"dhl_endday_{fields.Datetime.today()}.pdf",
+                "dhl_parcel_last_end_day_report_name": report_name,
             }
         )
