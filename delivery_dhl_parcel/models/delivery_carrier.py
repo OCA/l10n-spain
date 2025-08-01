@@ -48,7 +48,7 @@ class DeliveryCarrier(models.Model):
         string="Label format",
     )
     dhl_parcel_cash_on_delivery = fields.Boolean(
-        string="Cash on delivery",
+        string="Cash on delivery DHL",
         help=(
             "If checked, it means that the carrier is paid with cash. It assumes "
             "there is a sale order linked and it will use that "
@@ -242,7 +242,7 @@ class DeliveryCarrier(models.Model):
         dhl_parcel_request = DhlParcelRequest(self)
         for picking in pickings.filtered("carrier_tracking_ref"):
             response = dhl_parcel_request.cancel_shipment(picking.carrier_tracking_ref)
-            if not response:
+            if not response.status_code == 200:
                 msg = _(
                     "DHL Parcel Cancellation failed with reason: %s"
                 ) % response.get("Message", "Connection Error")
