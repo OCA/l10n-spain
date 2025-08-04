@@ -519,7 +519,7 @@ class L10nEsAeatMod303Report(models.Model):
                         - fields.Date.to_date(mod303.date_start)
                     ),
                 )
-                if prev_report.remaining_cuota_compensar > 0:
+                if prev_report.remaining_cuota_compensar >= 0:
                     amount = prev_report.remaining_cuota_compensar
                     if prev_report.result_type == "C":
                         amount -= prev_report.resultado_liquidacion
