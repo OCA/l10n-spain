@@ -13,7 +13,7 @@
             </xpath>
             <xpath expr="//field[@name='thirdparty_number']" position="attributes">
                 <attribute name="required"> thirdparty_invoice</attribute>
-            <attribute name="invisible">
+                <attribute name="invisible">
                 not thirdparty_invoice
             </attribute>
             </xpath>
