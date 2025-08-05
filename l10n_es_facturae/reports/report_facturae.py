@@ -15,7 +15,7 @@ from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.serialization import Encoding
 from lxml import etree
 
-from odoo import _, api, models, tools
+from odoo import api, models, tools
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools import cleanup_xml_node
 
@@ -54,9 +54,9 @@ class ReportFacturae(models.AbstractModel):
         return move_file, content_type
 
     def _get_facturae_schema_file(self, move):
+        version = move.get_facturae_version()
         return tools.file_open(
-            "addons/l10n_es_facturae/data/Facturaev%s.xsd"
-            % move.get_facturae_version(),
+            f"addons/l10n_es_facturae/data/Facturaev{version}.xsd",
         )
 
     def _validate_facturae(self, move, xml_string):
@@ -70,7 +70,7 @@ class ReportFacturae(models.AbstractModel):
             _logger.warning(xml_string.decode("utf-8"))
             _logger.warning(e)
             raise UserError(
-                _(
+                self.env._(
                     "The generated XML file is not valid against the official "
                     "XML Schema Definition. The generated XML file and the "
                     "full error have been written in the server logs. Here "
@@ -117,7 +117,7 @@ class ReportFacturae(models.AbstractModel):
                 )
         except FileNotFoundError as e:
             raise ValidationError(
-                _("The provided certificate is not found in the system.")
+                self.env._("The provided certificate is not found in the system.")
             ) from e
         xmlsig.template.add_reference(
             sign,

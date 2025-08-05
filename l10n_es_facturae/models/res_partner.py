@@ -3,7 +3,7 @@
 # Copyright 2023 QubiQ - Jan Tugores (jan.tugores@qubiq.es)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -40,7 +40,9 @@ class ResPartner(models.Model):
             if record.facturae:
                 if not record.vat:
                     raise ValidationError(
-                        _("Vat must be defined for factura-e enabled partners.")
+                        self.env._(
+                            "Vat must be defined for factura-e enabled partners."
+                        )
                     )
                 if record.type == "contact" and self.env.context.get(
                     "sync_values_from_company", False
@@ -51,23 +53,30 @@ class ResPartner(models.Model):
                     continue
                 if not record.street:
                     raise ValidationError(
-                        _("Street must be defined for factura-e enabled partners.")
+                        self.env._(
+                            "Street must be defined for factura-e enabled partners."
+                        )
                     )
                 if not record.city and record.country_id == self.env.ref("base.es"):
                     raise ValidationError(
-                        _(
+                        self.env._(
                             "City must be defined for Spanish "
                             "factura-e enabled partners."
                         )
                     )
                 if not record.country_id:
                     raise ValidationError(
-                        _("Country must be defined for factura-e enabled partners.")
+                        self.env._(
+                            "Country must be defined for factura-e " "enabled partners."
+                        )
                     )
                 if record.country_id.code_alpha3 == "ESP":
                     if not record.state_id:
                         raise ValidationError(
-                            _("State must be defined for factura-e enabled partners.")
+                            self.env._(
+                                "State must be defined for factura-e "
+                                "enabled partners."
+                            )
                         )
 
     @api.model

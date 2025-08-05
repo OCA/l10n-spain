@@ -21,7 +21,7 @@
                 <field name="facturae" invisible="1" />
             </field>
             <xpath
-                expr="//field[@name='invoice_line_ids']/tree//field[@name='price_subtotal']"
+                expr="//field[@name='invoice_line_ids']/list//field[@name='price_subtotal']"
                 position="after"
             >
                 <button
@@ -54,11 +54,11 @@
                         </group>
                         <group name="facturae_attachment" string="Facturae Attachment">
                             <field name="l10n_es_facturae_attachment_ids">
-                                <tree>
+                                <list>
                                     <field name="move_id" invisible="1" />
                                     <field name="filename" />
                                     <field name="file" filename="filename" />
-                                </tree>
+                                </list>
                                 <form>
                                     <sheet>
                                         <group>

@@ -6,6 +6,8 @@ from . import common
 
 
 class TestL10nEsFacturae321(common.CommonTest):
+    allow_inherited_tests_method = True
+
     def setUp(self):
         super().setUp()
         self.partner.facturae_version = "3_2_1"

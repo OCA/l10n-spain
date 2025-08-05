@@ -20,7 +20,7 @@ from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
 )
 
 
-class CommonTestBase(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
+class CommonTest(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -140,12 +140,11 @@ class CommonTestBase(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
                 "refund_payment_mode_id": self.refund_payment_mode.id,
             }
         )
-        self.account = self.env["account.account"].create(
+        self.product = self.env["product.product"].create(
             {
-                "company_id": self.company.id,
-                "name": "Facturae Product account",
-                "code": "facturae.product",
-                "account_type": "income_other",
+                "name": "Producto de prueba",
+                "type": "service",
+                "default_code": "TEST_PRODUCT",
             }
         )
         self.move = self.env["account.move"].create(
@@ -160,10 +159,7 @@ class CommonTestBase(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
                         0,
                         0,
                         {
-                            "product_id": self.env.ref(
-                                "product.product_delivery_02"
-                            ).id,
-                            "account_id": self.account.id,
+                            "product_id": self.product.id,
                             "name": "Producto de prueba",
                             "quantity": 1.0,
                             "price_unit": 100.0,
@@ -186,10 +182,7 @@ class CommonTestBase(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
                         0,
                         0,
                         {
-                            "product_id": self.env.ref(
-                                "product.product_delivery_02"
-                            ).id,
-                            "account_id": self.account.id,
+                            "product_id": self.product.id,
                             "name": "Producto de prueba",
                             "quantity": 1.0,
                             "price_unit": 100.0,
@@ -227,10 +220,7 @@ class CommonTestBase(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
                         0,
                         0,
                         {
-                            "product_id": self.env.ref(
-                                "product.product_delivery_02"
-                            ).id,
-                            "account_id": self.account.id,
+                            "product_id": self.product.id,
                             "name": "Producto de prueba",
                             "quantity": 1.0,
                             "price_unit": 100.0,
@@ -249,8 +239,6 @@ class CommonTestBase(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
             "27.98",
         ]
 
-
-class CommonTest(CommonTestBase):
     def _create_facturae_file(self, move_id, force=False):
         wizard = (
             self.env["create.facturae"]
@@ -388,19 +376,7 @@ class CommonTest(CommonTestBase):
 
         node = generated_facturae.find(".//ds:Signature", {"ds": ns})
         ctx = xmlsig.SignatureContext()
-        verification_error = False
-        error_message = ""
-        try:
-            ctx.verify(node)
-        except Exception as e:
-            verification_error = True
-            error_message = str(e)
-        self.assertEqual(
-            verification_error,
-            False,
-            "Error found during verification of the signature of "
-            + "the move: %s" % error_message,
-        )
+        ctx.verify(node)
 
     def test_refund(self):
         self._activate_certificate(self.certificate_password)
@@ -456,8 +432,7 @@ class CommonTest(CommonTestBase):
         )
         line = self.env["account.move.line"].create(
             {
-                "product_id": self.env.ref("product.product_delivery_02").id,
-                "account_id": self.account.id,
+                "product_id": self.product.id,
                 "move_id": move.id,
                 "name": "Producto de prueba",
                 "quantity": 1.0,
@@ -479,8 +454,7 @@ class CommonTest(CommonTestBase):
         )
         line = self.env["account.move.line"].create(
             {
-                "product_id": self.env.ref("product.product_delivery_02").id,
-                "account_id": self.account.id,
+                "product_id": self.product.id,
                 "move_id": move.id,
                 "name": "Producto de prueba",
                 "quantity": 1.0,
@@ -502,8 +476,7 @@ class CommonTest(CommonTestBase):
         )
         line = self.env["account.move.line"].create(
             {
-                "product_id": self.env.ref("product.product_delivery_02").id,
-                "account_id": self.account.id,
+                "product_id": self.product.id,
                 "move_id": move.id,
                 "name": "Producto de prueba",
                 "quantity": 1.0,
@@ -664,10 +637,7 @@ class CommonTest(CommonTestBase):
                         0,
                         0,
                         {
-                            "product_id": self.env.ref(
-                                "product.product_delivery_02"
-                            ).id,
-                            "account_id": self.account.id,
+                            "product_id": self.product.id,
                             "name": "Producto de prueba",
                             "quantity": 1.0,
                             "price_unit": 190.314,
@@ -699,10 +669,7 @@ class CommonTest(CommonTestBase):
                         0,
                         0,
                         {
-                            "product_id": self.env.ref(
-                                "product.product_delivery_02"
-                            ).id,
-                            "account_id": self.account.id,
+                            "product_id": self.product.id,
                             "name": "Producto de prueba",
                             "quantity": 1.0,
                             "price_unit": 190.314,
@@ -734,10 +701,7 @@ class CommonTest(CommonTestBase):
                         0,
                         0,
                         {
-                            "product_id": self.env.ref(
-                                "product.product_delivery_02"
-                            ).id,
-                            "account_id": self.account.id,
+                            "product_id": self.product.id,
                             "name": "Producto de prueba",
                             "quantity": 1.0,
                             "price_unit": 190.314,
