@@ -17,6 +17,7 @@ from lxml import etree
 
 from odoo import _, api, models, tools
 from odoo.exceptions import UserError, ValidationError
+from odoo.tools import cleanup_xml_node
 
 _logger = logging.getLogger(__name__)
 
@@ -41,7 +42,7 @@ class ReportFacturae(models.AbstractModel):
         )
         # Quitamos espacios en blanco, para asegurar que el XML final quede
         # totalmente libre de ellos.
-        tree = etree.fromstring(xml_facturae, etree.XMLParser(remove_blank_text=True))
+        tree = cleanup_xml_node(xml_facturae)
         xml_facturae = etree.tostring(tree, xml_declaration=True, encoding="UTF-8")
         self._validate_facturae(move, xml_facturae)
         public_crt, private_key = (
@@ -67,7 +68,7 @@ class ReportFacturae(models.AbstractModel):
             facturae_schema.assertValid(etree.fromstring(xml_string))
         except Exception as e:
             _logger.warning("The XML file is invalid against the XML Schema Definition")
-            _logger.warning(xml_string)
+            _logger.warning(xml_string.decode("utf-8"))
             _logger.warning(e)
             raise UserError(
                 _(
