@@ -60,10 +60,10 @@
                 t-out="administrative_partner.lastname if administrative_partner._fields.get('lastname') else ''"
                 t-if="not partner.is_company and administrative_partner.lastname if administrative_partner._fields.get('lastname') else ''"
             />
-            <SecondSurname t-if="False" />
+            <SecondSurname />
             <t t-call="l10n_es_facturae.address_contact" />
-            <PhysicalGLN t-if="False" />
-            <LogicalOperationalPoint t-if="False" />
+            <PhysicalGLN />
+            <LogicalOperationalPoint />
             <CentreDescription
                 t-length="2500"
                 t-out="administrative_partner.name or partner.name"
@@ -84,7 +84,7 @@
                 t-out="partner.vat"
             />
         </TaxIdentification>
-        <PartyIdentification t-if="False" />
+        <PartyIdentification />
         <AdministrativeCentres
             t-if="partner.facturae and (partner.oficina_contable or partner.organo_gestor or partner.unidad_tramitadora or partner.organo_proponente)"
         >
@@ -123,7 +123,7 @@
         <LegalEntity t-if="buyer_type == 'J'">
             <CorporateName t-length="80" t-out="partner.name" />
             <TradeName t-length="40" t-out="partner.name" />
-            <RegistrationData t-if="False" />
+            <RegistrationData />
             <t t-call="l10n_es_facturae.address_contact" />
         </LegalEntity>
         <Individual t-if="buyer_type == 'F'">
@@ -136,7 +136,7 @@
                 t-out="partner.lastname if partner._fields.get('lastname') else '.'"
             />
             <!-- Default value for FirstSurname is '.' as it cannot be empty-->
-            <SecondSurname t-length="40" t-out="''" t-if="False" />
+            <SecondSurname t-length="40" t-out="''" />
             <t t-call="l10n_es_facturae.address_contact" />
         </Individual>
     </template>
@@ -169,7 +169,7 @@
                 t-out="administrative_partner.phone"
                 t-if="administrative_partner.phone"
             />
-            <TeleFax t-esc="''" t-length="15" t-if="False" />
+            <TeleFax t-esc="''" t-length="15" />
             <WebAddress
                 t-length="60"
                 t-out="administrative_partner.website"
@@ -184,9 +184,9 @@
                 t-length="40"
                 t-out="administrative_partner.name or partner.name"
             />
-            <CnoCnae t-if="False" />
-            <INETownCode t-if="False" />
-            <AdditionalContactDetails t-esc="''" t-length="60" t-if="False" />
+            <CnoCnae />
+            <INETownCode />
+            <AdditionalContactDetails t-esc="''" t-length="60" />
         </ContactDetails>
     </template>
     <template id="template_facturae">
@@ -357,8 +357,8 @@
                     </InvoiceHeader>
                     <InvoiceIssueData>
                         <IssueDate t-out="move.invoice_date" />
-                        <OperationDate t-if="False" />
-                        <PlaceOfIssue t-if="False" />
+                        <OperationDate />
+                        <PlaceOfIssue />
                         <InvoicingPeriod
                             t-if="move.facturae_start_date and move.facturae_end_date"
                         >
@@ -424,10 +424,10 @@
                                         t-out="'%.2f' % (( tax_line['amount']) * euro_rate / currency_rate)"
                                     />
                                 </TaxAmount>
-                                <SpecialTaxableBase t-if="False" />
-                                <SpecialTaxAmount t-if="False" />
-                                <EquivalenceSurcharge t-if="False" />
-                                <EquivalenceSurchargeAmount t-if="False" />
+                                <SpecialTaxableBase />
+                                <SpecialTaxAmount />
+                                <EquivalenceSurcharge />
+                                <EquivalenceSurchargeAmount />
                             </Tax>
                         </t>
                     </TaxesOutputs>
@@ -462,10 +462,10 @@
                         <TotalGrossAmount
                             t-out="('%.2f' if version == '3_2' else '%.8f') % (sign * move.amount_untaxed)"
                         />
-                        <GeneralDiscounts t-if="False" />
-                        <GeneralSurcharges t-if="False" />
-                        <TotalGeneralDiscounts t-if="False" />
-                        <TotalGeneralSurcharges t-if="False" />
+                        <GeneralDiscounts />
+                        <GeneralSurcharges />
+                        <TotalGeneralDiscounts />
+                        <TotalGeneralSurcharges />
                         <TotalGrossAmountBeforeTaxes
                             t-out="('%.2f' if version == '3_2' else '%.8f') % (sign * move.amount_untaxed)"
                         />
@@ -478,14 +478,14 @@
                         <InvoiceTotal
                             t-out="('%.2f' if version == '3_2' else '%.8f') % (sign * move.amount_total)"
                         />
-                        <Subsidies t-if="False" />
-                        <PaymentsOnAccount t-if="False" />
-                        <ReimbursableExpenses t-if="False" />
-                        <TotalFinancialExpenses t-if="False" />
+                        <Subsidies />
+                        <PaymentsOnAccount />
+                        <ReimbursableExpenses />
+                        <TotalFinancialExpenses />
                         <TotalOutstandingAmount
                             t-out="('%.2f' if version == '3_2' else '%.8f') % (sign * move.amount_total)"
                         />
-                        <TotalPaymentsOnAccount t-if="False" />
+                        <TotalPaymentsOnAccount />
                         <AmountsWithheld t-if="move.facturae_withheld_percent > 0.0">
                             <WithholdingReason
                                 t-out="move.facturae_withheld_reason or ''"
@@ -500,9 +500,9 @@
                         <TotalExecutableAmount
                             t-out="('%.2f' if version == '3_2' else '%.8f') % (sign * move.amount_total - (sign * move.facturae_withheld_amount))"
                         />
-                        <TotalReimbursableExpenses t-if="False" />
+                        <TotalReimbursableExpenses />
                         <t t-if="version not in ('3_2', '3_2_1')">
-                            <PaymentInKind t-if="False">
+                            <PaymentInKind>
                                 <PaymentInKindReason t-out="''" t-length="2500" />
                                 <PaymentInKindAmount />
                             </PaymentInKind>
@@ -564,11 +564,11 @@
                                 t-if="line.facturae_file_date"
                                 t-out="line.facturae_file_date"
                             />
-                            <SequenceNumber t-if="False" />
-                            <DeliveryNotesReferences t-if="False" />
+                            <SequenceNumber />
+                            <DeliveryNotesReferences />
                             <ItemDescription t-length="2500" t-esc="line.name" />
                             <Quantity t-esc="sign * line.quantity" />
-                            <UnitOfMeasure t-if="False" />
+                            <UnitOfMeasure />
                             <t
                                 t-set="discount_factor"
                                 t-value="1 - line.discount/100 if move.get_facturae_hide_discount() else 1"
@@ -596,7 +596,7 @@
                                     />
                                 </Discount>
                             </DiscountsAndRebates>
-                            <Charges t-if="False" />
+                            <Charges />
                             <GrossAmount
                                 t-esc="('%.6f' if version == '3_2' else '%.8f') % (sign * line.price_subtotal)"
                             />
@@ -662,18 +662,14 @@
                                 t-if="line.facturae_transaction_date"
                                 t-esc="line.facturae_transaction_date"
                             />
-                            <AdditionalLineItemInformation
-                                t-out="''"
-                                t-length="2500"
-                                t-if="False"
-                            />
-                            <SpecialTaxableEvent t-if="False" />
+                            <AdditionalLineItemInformation t-out="''" t-length="2500" />
+                            <SpecialTaxableEvent />
                             <ArticleCode
                                 t-length="20"
                                 t-esc="line.product_id.default_code"
                                 t-if="line.product_id.default_code"
                             />
-                            <Extensions t-if="False" />
+                            <Extensions />
                         </InvoiceLine>
                     </Items>
                     <PaymentDetails t-if="move.payment_mode_id">
@@ -705,7 +701,7 @@
                                     t-esc="bank.code"
                                     t-if="bank.code"
                                 />
-                                <BranchCode t-esc="''" t-length="60" t-if="False" />
+                                <BranchCode t-esc="''" t-length="60" />
                                 <BIC
                                     t-minlength="11"
                                     t-length="11"
@@ -715,7 +711,6 @@
                                 <PaymentReconciliationReference
                                     t-esc="''"
                                     t-length="60"
-                                    t-if="False"
                                 />
                             </AccountToBeDebited>
                             <AccountToBeCredited t-if="payment_means == '04'">
@@ -729,7 +724,7 @@
                                     t-esc="bank.code"
                                     t-if="bank.code"
                                 />
-                                <BranchCode t-esc="''" t-length="60" t-if="False" />
+                                <BranchCode t-esc="''" t-length="60" />
                                 <BIC
                                     t-minlength="11"
                                     t-length="11"
@@ -737,12 +732,12 @@
                                     t-if="bank.bic"
                                 />
                             </AccountToBeCredited>
-                            <CollectionAdditionalInformation t-if="False" />
-                            <RegulatoryReportingData t-if="False" />
-                            <DebitReconciliationReference t-if="False" />
+                            <CollectionAdditionalInformation />
+                            <RegulatoryReportingData />
+                            <DebitReconciliationReference />
                         </Installment>
                     </PaymentDetails>
-                    <LegalLiterals t-if="False" />
+                    <LegalLiterals />
                     <t
                         t-set="attachments"
                         t-value="move._get_facturae_move_attachments()"
@@ -750,7 +745,7 @@
                     <AdditionalData
                         t-if="move.narration or attachments or move._facturae_has_extensions()"
                     >
-                        <RelatedInvoice t-if="False" />
+                        <RelatedInvoice />
                         <RelatedDocuments t-if="attachments">
                             <Attachment t-foreach="attachments" t-as="attachment">
                                 <AttachmentCompressionAlgorithm
@@ -778,7 +773,7 @@
                     </AdditionalData>
                 </Invoice>
             </Invoices>
-            <Extensions t-if="False" />
+            <Extensions />
         </t>
     </template>
 

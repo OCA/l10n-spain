@@ -5,7 +5,9 @@
 from . import common
 
 
-class TestL10nEsFacturae(common.CommonTest):
+class TestL10nEsFacturae32(common.CommonTest):
+    allow_inherited_tests_method = True
+
     def setUp(self):
         super().setUp()
         self.fe = "http://www.facturae.es/Facturae/2009/v3.2/Facturae"
