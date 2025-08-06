@@ -46,6 +46,8 @@ _rename_fields = [
 @openupgrade.migrate()
 def migrate(env, version):
     for model, table, oldfield, newfield in _rename_fields:
-        if not openupgrade.column_exists(env.cr, table, oldfield):
+        if not openupgrade.column_exists(
+            env.cr, table, oldfield
+        ) or openupgrade.column_exists(env.cr, table, newfield):
             continue
         openupgrade.rename_fields(env, [(model, table, oldfield, newfield)])
