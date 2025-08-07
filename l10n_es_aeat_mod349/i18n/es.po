@@ -10,14 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-01 14:51+0000\n"
-"PO-Revision-Date: 2018-03-01 14:51+0000\n"
-"Last-Translator: enjolras <yo@miguelrevilla.com>, 2018\n"
+"PO-Revision-Date: 2025-08-07 11:25+0000\n"
+"Last-Translator: Miquel Romera <mromera@pmsastro.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: l10n_es_aeat_mod349
 #: selection:account.move.line,l10n_es_aeat_349_operation_key:0
@@ -117,12 +118,12 @@ msgstr "Declaración modelo AEAT 349"
 #: model:ir.ui.menu,name:l10n_es_aeat_mod349.menu_aeat_349_map
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.l10n_es_aeat_349_map_lines_view_tree
 msgid "Aeat 349 Map"
-msgstr "Mapeo Aeat 349"
+msgstr "Mapeo AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_aeat_349_map_line
 msgid "Aeat 349 Map Line"
-msgstr "Mapeo de Línea Aeat 349"
+msgstr "Mapeo de Línea AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:331
@@ -647,4 +648,4 @@ msgstr "Año"
 #. module: l10n_es_aeat_mod349
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod349.action_aeat_349_mapping
 msgid "aeat 349 Map"
-msgstr "Mapeo aeat 349"
+msgstr "Mapeo AEAT 349"
