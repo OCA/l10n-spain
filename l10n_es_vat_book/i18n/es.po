@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-28 23:52+0100\n"
-"PO-Revision-Date: 2023-11-07 19:37+0000\n"
-"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"PO-Revision-Date: 2025-08-07 12:25+0000\n"
+"Last-Translator: Miquel Romera <mromera@pmsastro.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: l10n_es_vat_book
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_summary
@@ -25,13 +25,13 @@ msgstr "<strong>Total</strong>"
 #. module: l10n_es_vat_book
 #: model:ir.model,name:l10n_es_vat_book.model_aeat_vat_book_map_line
 msgid "AEAT Vat Book Map Line"
-msgstr "Linea Mapeo libro de IVA AEAT"
+msgstr "Linea Mapeo libro de IVA"
 
 #. module: l10n_es_vat_book
 #: model:ir.actions.act_window,name:l10n_es_vat_book.action_aeat_vat_book_mapping
 #: model:ir.ui.menu,name:l10n_es_vat_book.menu_aeat_vat_book_map
 msgid "AEAT vat book map"
-msgstr "Mapeo AEAT libro de IVA"
+msgstr "Mapeo libro de IVA"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary__tax_id
