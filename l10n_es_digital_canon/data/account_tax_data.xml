@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- For new canon taxes, use the XML-ID this way:
+    tax_template_canon + sale/purchase + <selection key> -->
+    <record id="tax_group_digital_canon_template" model="account.tax.group">
+        <field name="name">Canon digital</field>
+        <field name="sequence">5</field>
+    </record>
+    <record id="tax_template_canon_purchase_0" model="account.tax.template">
+        <field name="name">Canon 0€</field>
+        <field name="amount">0</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_sale_0" model="account.tax.template">
+        <field name="name">Canon 0€</field>
+        <field name="amount">0</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">sale</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_purchase_0_08" model="account.tax.template">
+        <field name="name">Canon 0.08€</field>
+        <field name="amount">0.08</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_sale_0_08" model="account.tax.template">
+        <field name="name">Canon 0.08€</field>
+        <field name="amount">0.08</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">sale</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_purchase_0_21" model="account.tax.template">
+        <field name="name">Canon 0.21€</field>
+        <field name="amount">0.21</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_sale_0_21" model="account.tax.template">
+        <field name="name">Canon 0.21€</field>
+        <field name="amount">0.21</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">sale</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_purchase_0_24" model="account.tax.template">
+        <field name="name">Canon 0.24€</field>
+        <field name="amount">0.24</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_sale_0_24" model="account.tax.template">
+        <field name="name">Canon 0.24€</field>
+        <field name="amount">0.24</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">sale</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_purchase_0_9" model="account.tax.template">
+        <field name="name">Canon 0.9€</field>
+        <field name="amount">0.9</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_sale_0_9" model="account.tax.template">
+        <field name="name">Canon 0.9€</field>
+        <field name="amount">0.9</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">sale</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_sale_1" model="account.tax.template">
+        <field name="name">Canon 1.0€</field>
+        <field name="amount">1.0</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">sale</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_purchase_1" model="account.tax.template">
+        <field name="name">Canon 1.0€</field>
+        <field name="amount">1.0</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_sale_1_1" model="account.tax.template">
+        <field name="name">Canon 1.1€</field>
+        <field name="amount">1.1</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">sale</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_purchase_1_1" model="account.tax.template">
+        <field name="name">Canon 1.1€</field>
+        <field name="amount">1.1</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_purchase_1_5" model="account.tax.template">
+        <field name="name">Canon 1.5€</field>
+        <field name="amount">1.5</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_sale_1_5" model="account.tax.template">
+        <field name="name">Canon 1.5€</field>
+        <field name="amount">1.5</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">sale</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_purchase_2" model="account.tax.template">
+        <field name="name">Canon 2€</field>
+        <field name="amount">2</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_sale_2" model="account.tax.template">
+        <field name="name">Canon 2€</field>
+        <field name="amount">2</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">sale</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_purchase_2_5" model="account.tax.template">
+        <field name="name">Canon 2.5€</field>
+        <field name="amount">2.5</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_sale_2_5" model="account.tax.template">
+        <field name="name">Canon 2.5€</field>
+        <field name="amount">2.5</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">sale</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_purchase_3" model="account.tax.template">
+        <field name="name">Canon 3€</field>
+        <field name="amount">3</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_sale_3" model="account.tax.template">
+        <field name="name">Canon 3€</field>
+        <field name="amount">3</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">sale</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_purchase_3_15" model="account.tax.template">
+        <field name="name">Canon 3.15€</field>
+        <field name="amount">3.15</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_sale_3_15" model="account.tax.template">
+        <field name="name">Canon 3.15€</field>
+        <field name="amount">3.15</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">sale</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_purchase_3_25" model="account.tax.template">
+        <field name="name">Canon 3.25€</field>
+        <field name="amount">3.25</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_sale_3_25" model="account.tax.template">
+        <field name="name">Canon 3.25€</field>
+        <field name="amount">3.25</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">sale</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_purchase_3_75" model="account.tax.template">
+        <field name="name">Canon 3.75€</field>
+        <field name="amount">3.75</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_sale_3_75" model="account.tax.template">
+        <field name="name">Canon 3.75€</field>
+        <field name="amount">3.75</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">sale</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_purchase_4" model="account.tax.template">
+        <field name="name">Canon 4€</field>
+        <field name="amount">4</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_sale_4" model="account.tax.template">
+        <field name="name">Canon 4€</field>
+        <field name="amount">4</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">sale</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_purchase_5" model="account.tax.template">
+        <field name="name">Canon 5€</field>
+        <field name="amount">5</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_sale_5" model="account.tax.template">
+        <field name="name">Canon 5€</field>
+        <field name="amount">5</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">sale</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_purchase_5_25" model="account.tax.template">
+        <field name="name">Canon 5.25€</field>
+        <field name="amount">5.25</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_sale_5_25" model="account.tax.template">
+        <field name="name">Canon 5.25€</field>
+        <field name="amount">5.25</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">sale</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_purchase_5_33" model="account.tax.template">
+        <field name="name">Canon 5.33€</field>
+        <field name="amount">5.33</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_sale_5_33" model="account.tax.template">
+        <field name="name">Canon 5.33€</field>
+        <field name="amount">5.33</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">sale</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_purchase_6_45" model="account.tax.template">
+        <field name="name">Canon 6.45€</field>
+        <field name="amount">6.45</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+    <record id="tax_template_canon_sale_6_45" model="account.tax.template">
+        <field name="name">Canon 6.45€</field>
+        <field name="amount">6.45</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">sale</field>
+        <field name="include_base_amount">True</field>
+        <field name="tax_group_id" ref="tax_group_digital_canon_template" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="description">Canon digital</field>
+    </record>
+</odoo>
