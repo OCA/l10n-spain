@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-23 09:20+0000\n"
-"PO-Revision-Date: 2024-12-23 10:35+0100\n"
-"Last-Translator: Emilio Pascual <emilio@moduon.team>\n"
+"PO-Revision-Date: 2025-08-07 12:25+0000\n"
+"Last-Translator: Miquel Romera <mromera@pmsastro.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: l10n_es_aeat_mod390
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390.view_l10n_es_aeat_mod390_report_form
@@ -164,7 +164,7 @@ msgstr "Modelo 390"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model,name:l10n_es_aeat_mod390.model_l10n_es_aeat_map_tax_line
 msgid "AEAT tax mapping line"
-msgstr ""
+msgstr "Línea de mapeo de impuestos AEAT"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__move_id
@@ -492,7 +492,7 @@ msgstr "Diario"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model,name:l10n_es_aeat_mod390.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Asiento Contable"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__journal_id
@@ -875,6 +875,8 @@ msgid ""
 "When this is set, the tax base and rate will be reflected in fields 31, 32, "
 "45 and 46 of the AEAT 390 model"
 msgstr ""
+"Cuando se configure esta opción, la base imponible y el tipo impositivo se "
+"reflejarán en los campos 31, 32, 45 y 46 del modelo 390."
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__year
