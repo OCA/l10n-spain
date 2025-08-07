@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <field name="property_account_position_id" position="after">
+                <field name="is_digital_canon_exempt" />
+                <field
+                    name="digital_canon_exempt_type"
+                    attrs="{'invisible': [('is_digital_canon_exempt', '=', False)],
+                               'required': [('is_digital_canon_exempt', '=', True)]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

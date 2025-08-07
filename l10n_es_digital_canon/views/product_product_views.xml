@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_product_template_form_inherit_canon_category" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.canon.category</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <field name="categ_id" position="after">
+                <field
+                    name="l10n_es_digital_canon"
+                    attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
