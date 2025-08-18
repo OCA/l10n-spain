@@ -532,7 +532,7 @@ class AccountMove(models.Model):
                 ("nif", company_vat),
                 ("numserie", self.name),
                 ("fecha", self.invoice_date.strftime("%d-%m-%Y")),
-                ("importe", amount_total),
+                ("importe", f"{amount_total:.2f}"),
             ]
         )
 
