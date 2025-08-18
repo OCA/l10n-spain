@@ -191,7 +191,7 @@ class TestL10nEsAeatVerifactuQR(TestL10nEsAeatVerifactuBase):
             "nif": self.invoice.company_id.partner_id._parse_aeat_vat_info()[2],
             "numserie": self.invoice.name,
             "fecha": self.invoice._change_date_format(self.invoice.invoice_date),
-            "importe": self.invoice.amount_total,
+            "importe": f"{self.invoice.amount_total:.2f}",
         }
 
     def test_verifactu_qr_generation(self):
