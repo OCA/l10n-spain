@@ -182,13 +182,6 @@ class AccountMove(models.Model):
         """
         return self.commercial_partner_id
 
-    def _get_document_fiscal_date(self):
-        """
-        TODO: this method is the same in l10n_es_aeat_sii_oca, so I think that
-        it should be directly in l10n_es_aeat
-        """
-        return self.invoice_date
-
     def _get_mapping_key(self):
         """
         TODO: this method is the same in l10n_es_aeat_sii_oca, so I think that
@@ -414,7 +407,7 @@ class AccountMove(models.Model):
         :return: REQ tax (or empty recordset) linked to the provided tax.
         """
         self.ensure_one()
-        document_date = self._get_document_fiscal_date()
+        document_date = self._get_document_date()
         taxes_req = self._get_verifactu_taxes_map(["RE"], document_date)
         re_lines = self.line_ids.filtered(
             lambda x: tax in x.tax_ids and x.tax_ids & taxes_req
@@ -429,7 +422,7 @@ class AccountMove(models.Model):
         taxes_dict = {}
         taxes_dict.setdefault("DetalleDesglose", [])
         tax_lines = self._get_aeat_tax_info()
-        document_date = self._get_document_fiscal_date()
+        document_date = self._get_document_date()
         taxes_S1 = self._get_verifactu_taxes_map(["S1"], document_date)
         taxes_S2 = self._get_verifactu_taxes_map(["S2"], document_date)
         taxes_N1 = self._get_verifactu_taxes_map(["N1"], document_date)
@@ -598,7 +591,7 @@ class AccountMove(models.Model):
         return super()._check_verifactu_configuration()
 
     def _check_inconsistent_taxes(self):
-        document_date = self._get_document_fiscal_date()
+        document_date = self._get_document_date()
         taxes_S1 = self._get_verifactu_taxes_map(["S1"], document_date)
         taxes_S2 = self._get_verifactu_taxes_map(["S2"], document_date)
         taxes_RE = self._get_verifactu_taxes_map(["RE"], document_date)
@@ -624,7 +617,7 @@ class AccountMove(models.Model):
                 )
                 % self.name
             )
-        document_date = self._get_document_fiscal_date()
+        document_date = self._get_document_date()
         verifactu_map = verifactu_map = self._get_verifactu_map(document_date)
         tax_templates = verifactu_map.map_lines.mapped("taxes")
         mapped_taxes = self.company_id.get_taxes_from_templates(tax_templates)
