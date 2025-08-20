@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -46,7 +46,6 @@ msgstr ""
 #. module: l10n_es_intrastat_report
 #. odoo-python
 #: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:0
-#, python-format
 msgid "Current company is not Spanish, so it can't be configured."
 msgstr ""
 
@@ -173,21 +172,18 @@ msgstr ""
 #. module: l10n_es_intrastat_report
 #. odoo-python
 #: code:addons/l10n_es_intrastat_report/tests/test_l10n_es_intrastat_report.py:0
-#, python-format
 msgid "Missing <em>Country of Origin</em> <small>"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
 #. odoo-python
 #: code:addons/l10n_es_intrastat_report/tests/test_l10n_es_intrastat_report.py:0
-#, python-format
 msgid "Missing <em>VAT Number</em> <small>"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
 #. odoo-python
 #: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
-#, python-format
 msgid "Missing partner <em>VAT Number</em>"
 msgstr ""
 
@@ -252,6 +248,11 @@ msgid "Search Spanish Intrastat Product Declaration"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.view_l10n_es_intrastat_code_import
+msgid "Skip"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
 #: model:ir.actions.act_window,name:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_action
 #: model:ir.ui.menu,name:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_menu
 #: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_form
@@ -263,7 +264,6 @@ msgstr ""
 #. module: l10n_es_intrastat_report
 #. odoo-python
 #: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
-#, python-format
 msgid ""
 "The Spanish Intrastat Declaration requires the Company's Country to be equal"
 " to 'Spain'."
@@ -310,14 +310,12 @@ msgstr ""
 #. module: l10n_es_intrastat_report
 #. odoo-python
 #: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:0
-#, python-format
 msgid "Unit not found: '%s'"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
 #. odoo-python
 #: code:addons/l10n_es_intrastat_report/report/intrastat_product_report_xls.py:0
-#, python-format
 msgid "VAT"
 msgstr ""
 
