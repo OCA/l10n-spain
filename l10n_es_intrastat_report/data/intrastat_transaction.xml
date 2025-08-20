@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="intrastat_transaction_13" model="intrastat.transaction">
+        <field name="code">13</field>
+        <field
+            name="description"
+        >Transacciones que supongan un traspaso de propiedad real o previsto de residentes a no residentes a cambio de una compensación financiera o de otro tipo: Trueque (compensación en especie).</field>
+        <field name="company_id" eval="False" />
+        <field name="active" eval="False" />
+    </record>
+    <record id="intrastat_transaction_14" model="intrastat.transaction">
+        <field name="code">14</field>
+        <field
+            name="description"
+        >Transacciones que supongan un traspaso de propiedad real o previsto de residentes a no residentes a cambio de una compensación financiera o de otro tipo: Arrendamiento financiero (alquiler - compra).</field>
+        <field name="company_id" eval="False" />
+        <field name="active" eval="False" />
+    </record>
+    <record id="intrastat_transaction_19" model="intrastat.transaction">
+        <field name="code">19</field>
+        <field
+            name="description"
+        >Transacciones que supongan un traspaso de propiedad real o previsto de residentes a no residentes a cambio de una compensación financiera o de otro tipo: Otras.</field>
+        <field name="company_id" eval="False" />
+        <field name="active" eval="False" />
+    </record>
+    <record id="intrastat_transaction_29" model="intrastat.transaction">
+        <field name="code">29</field>
+        <field
+            name="description"
+        >Devolución y sustitución gratuita de mercancías después del registro de la transacción original: Otras.</field>
+        <field name="company_id" eval="False" />
+        <field name="active" eval="False" />
+    </record>
+    <record id="intrastat_transaction_44" model="intrastat.transaction">
+        <field name="code">44</field>
+        <field
+            name="description"
+        >Operaciones con vistas a un perfeccionamiento bajo contrato (no se traspasa la propiedad al contratista): Reparación o mantenimiento a título gratuito.</field>
+        <field name="company_id" eval="False" />
+        <field name="active" eval="False" />
+    </record>
+    <record id="intrastat_transaction_45" model="intrastat.transaction">
+        <field name="code">45</field>
+        <field
+            name="description"
+        >Operaciones con vistas a un perfeccionamiento bajo contrato (no se traspasa la propiedad al contratista): Reparación o mantenimiento a título oneroso.</field>
+        <field name="company_id" eval="False" />
+        <field name="active" eval="False" />
+    </record>
+    <record id="intrastat_transaction_54" model="intrastat.transaction">
+        <field name="code">54</field>
+        <field
+            name="description"
+        >Operaciones posteriores al perfeccionamiento bajo contrato (no se traspasa la propiedad al contratista): Reparación o mantenimiento a título gratuito.</field>
+        <field name="company_id" eval="False" />
+        <field name="active" eval="False" />
+    </record>
+    <record id="intrastat_transaction_55" model="intrastat.transaction">
+        <field name="code">55</field>
+        <field
+            name="description"
+        >Operaciones posteriores al perfeccionamiento bajo contrato (no se traspasa la propiedad al contratista): Reparación o mantenimiento a título oneroso.</field>
+        <field name="company_id" eval="False" />
+        <field name="active" eval="False" />
+    </record>
+    <record id="intrastat_transaction_60" model="intrastat.transaction">
+        <field name="code">60</field>
+        <field
+            name="description"
+        >Transacciones particulares registradas para fines nacionales, como reparaciones.</field>
+        <field name="company_id" eval="False" />
+    </record>
+    <record id="intrastat_transaction_70" model="intrastat.transaction">
+        <field name="code">70</field>
+        <field
+            name="description"
+        >Operaciones en el marco de programas comunes de defensa u otros programas intergubernamentales de producción conjunta.</field>
+        <field name="company_id" eval="False" />
+        <field name="active" eval="False" />
+    </record>
+</odoo>
