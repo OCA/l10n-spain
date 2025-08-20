@@ -142,49 +142,64 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
     def test_post_init_hook(self):
         """Simulate intra community fiscal positions and other positions from l10n_es
         and other fiscal positions created with other chart templates."""
-        fp_es_ok = self.fiscal_position_b2b
-        fp_es_ok.intrastat = False
-        fp_es_ko = self.fiscal_position_b2c
-        fp_es_ko.intrastat = False
-        fp_not_es_ok = (
-            self.env["account.fiscal.position"]
-            .sudo()
-            .create(
-                {
-                    "name": "Test FP",
-                    "company_id": self.env.ref("base.main_company").id,
-                }
-            )
-        )
-        self.env["ir.model.data"].create(
+        fp_es_b2b = self.fiscal_position_b2b
+        fp_es_b2b.intrastat = False
+        fp_es_b2c = self.fiscal_position_b2c
+        fp_es_b2c.intrastat = False
+        fp_model = self.env["account.fiscal.position"].sudo()
+        fp_not_es_ok = fp_model.create(
             {
-                "name": "es_fp_intra_private",
-                "model": fp_es_ok._name,
-                "module": "account",
-                "res_id": fp_es_ok.id,
+                "name": "Test FP (not es)",
+                "company_id": self.env.ref("base.main_company").id,
+            }
+        )
+        fp_es_ok = fp_model.create(
+            {
+                "name": "Test FP (es)",
+                "company_id": self.env.company.id,
             }
         )
         self.env["ir.model.data"].create(
             {
-                "name": "es_fp_custom_private",
-                "model": fp_es_ko._name,
+                "name": f"{self.env.company}_fp_intra_private",
+                "model": fp_es_b2c._name,
                 "module": "account",
-                "res_id": fp_es_ko.id,
+                "res_id": fp_es_b2c.id,
             }
         )
         self.env["ir.model.data"].create(
             {
-                "name": "not_eses_fp_custom_private",
+                "name": f"{self.env.company}_fp_intra",
+                "model": fp_es_b2b._name,
+                "module": "account",
+                "res_id": fp_es_b2b.id,
+            }
+        )
+        self.env["ir.model.data"].create(
+            {
+                "name": f"{fp_not_es_ok.company_id.id}_fp_custom",
                 "model": fp_not_es_ok._name,
                 "module": "account",
                 "res_id": fp_not_es_ok.id,
             }
         )
+        self.env["ir.model.data"].create(
+            {
+                "name": f"{self.env.company}_fp_custom",
+                "model": fp_es_ok._name,
+                "module": "account",
+                "res_id": fp_es_ok.id,
+            }
+        )
         post_init_hook(self.env)
-        self.assertTrue(fp_es_ok.intrastat)
-        self.assertFalse(fp_es_ko.intrastat)
+        self.assertEqual(fp_es_b2b.intrastat, "b2b")
+        self.assertTrue(fp_es_b2b.vat_required)
+        self.assertEqual(fp_es_b2c.intrastat, "b2c")
+        self.assertFalse(fp_es_b2c.vat_required)
+        self.assertFalse(fp_es_ok.intrastat)
+        self.assertFalse(fp_es_ok.vat_required)
         self.assertFalse(fp_not_es_ok.intrastat)
-        self.assertTrue(fp_es_ok.vat_required)
+        self.assertFalse(fp_not_es_ok.vat_required)
 
     def _check_move_lines_present(self, original, target):
         for move in original:
