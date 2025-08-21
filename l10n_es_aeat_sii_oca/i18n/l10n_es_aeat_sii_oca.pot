@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -39,7 +39,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__aeat_state
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__aeat_state
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__aeat_state
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_sii_mixin__aeat_state
 msgid "AEAT send state"
 msgstr ""
@@ -52,14 +51,12 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_registration_key_additional2
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_registration_key_additional2
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_registration_key_additional2
 msgid "Additional 2 SII registration key"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_registration_key_additional1
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_registration_key_additional1
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_registration_key_additional1
 msgid "Additional SII registration key"
 msgstr ""
 
@@ -177,7 +174,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_lc_operation
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__sii_lc_operation
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_payment__sii_lc_operation
 msgid ""
 "Check this mark if this invoice represents a complementary settlement for customs.\n"
 "The invoice number should start with LC, QZC, QRC, A01 or A02."
@@ -186,7 +182,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_macrodata
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__sii_macrodata
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_payment__sii_macrodata
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_sii_mixin__sii_macrodata
 msgid ""
 "Check to confirm that the document has an absolute amount greater o equal to"
@@ -207,7 +202,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__company_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__company_id
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__company_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_sii_mixin__company_id
 msgid "Company"
 msgstr ""
@@ -246,14 +240,12 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/sii_mixin.py:0
-#, python-format
 msgid "Currently there's no support for multiple exempt causes."
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_lc_operation
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_lc_operation
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_lc_operation
 msgid "Customs - Complementary settlement"
 msgstr ""
 
@@ -300,7 +292,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_fiscal_position__sii_enabled
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_journal__sii_enabled
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_enabled
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_enabled
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_enabled
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_sii_mixin__sii_enabled
 msgid "Enable SII"
@@ -314,7 +305,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/aeat_sii_map.py:0
-#, python-format
 msgid "Error! The dates of the record overlap with an existing record."
 msgstr ""
 
@@ -326,7 +316,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_refund_specific_invoice_type
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__sii_refund_specific_invoice_type
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_payment__sii_refund_specific_invoice_type
 msgid ""
 "Fill this field when the refund are one of the specific cases of article 80 "
 "of LIVA for notifying to SII with the proper invoice type."
@@ -371,7 +360,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_account_registration_date
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__sii_account_registration_date
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_payment__sii_account_registration_date
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_sii_mixin__sii_account_registration_date
 msgid ""
 "Indicates the account registration date set at the SII, which must be the "
@@ -382,7 +370,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_bank_statement_line__aeat_state
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__aeat_state
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_payment__aeat_state
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_sii_mixin__aeat_state
 msgid ""
 "Indicates the state of this document in relation with the presentation at "
@@ -448,7 +435,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_macrodata
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_macrodata
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_macrodata
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_sii_mixin__sii_macrodata
 msgid "MacroData"
 msgstr ""
@@ -514,7 +500,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/sii_mixin.py:0
-#, python-format
 msgid "No VAT configured for the company '{}'"
 msgstr ""
 
@@ -561,14 +546,12 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_property_cadastrial_code
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_property_cadastrial_code
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_property_cadastrial_code
 msgid "Real property cadastrial code"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_property_location
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_property_location
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_property_location
 msgid "Real property location"
 msgstr ""
 
@@ -595,7 +578,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_csv
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_csv
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_csv
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_sii_mixin__sii_csv
 msgid "SII CSV"
 msgstr ""
@@ -603,7 +585,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_registration_key_code
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_registration_key_code
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_registration_key_code
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_sii_mixin__sii_registration_key_code
 msgid "SII Code"
 msgstr ""
@@ -649,7 +630,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_refund_type
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_refund_type
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move_reversal__sii_refund_type
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_refund_type
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_sii_mixin__sii_refund_type
 msgid "SII Refund Type"
 msgstr ""
@@ -662,7 +642,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_return
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_return
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_return
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_sii_mixin__sii_return
 msgid "SII Return"
 msgstr ""
@@ -670,7 +649,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_send_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_send_date
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_send_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_sii_mixin__sii_send_date
 msgid "SII Send Date"
 msgstr ""
@@ -683,7 +661,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_account_registration_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_account_registration_date
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_account_registration_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_sii_mixin__sii_account_registration_date
 msgid "SII account registration date"
 msgstr ""
@@ -696,7 +673,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_description
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_description
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_description
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_sii_mixin__sii_description
 msgid "SII computed description"
 msgstr ""
@@ -729,7 +705,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_registration_key
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_registration_key
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_registration_key
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_sii_mixin__sii_registration_key
 msgid "SII registration key"
 msgstr ""
@@ -737,7 +712,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_registration_key_domain
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_registration_key_domain
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_registration_key_domain
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_sii_mixin__sii_registration_key_domain
 msgid "SII registration key domain"
 msgstr ""
@@ -798,7 +772,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_dua_invoice
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_dua_invoice
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_dua_invoice
 msgid "Sii Dua Invoice"
 msgstr ""
 
@@ -811,7 +784,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_needs_cancel
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_needs_cancel
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_needs_cancel
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_sii_mixin__sii_needs_cancel
 msgid "Sii Needs Cancel"
 msgstr ""
@@ -824,7 +796,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_refund_specific_invoice_type
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_refund_specific_invoice_type
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_refund_specific_invoice_type
 msgid "Sii Refund Specific Invoice Type"
 msgstr ""
 
@@ -939,6 +910,11 @@ msgid "Supplier Invoice Number"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__tax_agency_id
+msgid "Tax Agency"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__tax_xmlid_ids
 msgid "Taxes templates"
 msgstr ""
@@ -968,21 +944,18 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/sii_mixin.py:0
-#, python-format
 msgid "The partner has not a VAT configured."
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
-#, python-format
 msgid "The supplier number invoice is required"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
-#, python-format
 msgid ""
 "The value in l10n_es_aeat_sii_oca.sii_batch system parameter must be an "
 "integer. Please, check the value of the parameter."
@@ -991,14 +964,12 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
-#, python-format
 msgid "There's a mismatch in taxes for RE. Check them."
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/sii_mixin.py:0
-#, python-format
 msgid "This invoice is not SII enabled."
 msgstr ""
 
@@ -1011,7 +982,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/sii_mixin.py:0
-#, python-format
 msgid "Unsupported search operator"
 msgstr ""
 
@@ -1038,7 +1008,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
-#, python-format
 msgid ""
 "You can not communicate the cancellation of this invoice at this moment. "
 "Please, try again later."
@@ -1047,7 +1016,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/sii_mixin.py:0
-#, python-format
 msgid ""
 "You can not communicate this document at this moment. Please, try again "
 "later."
@@ -1056,7 +1024,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
-#, python-format
 msgid ""
 "You can not set to draft this invoice because the SII trigger could not be "
 "cancelled."
@@ -1065,21 +1032,18 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
-#, python-format
 msgid "You can't make a supplier simplified invoice."
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
-#, python-format
 msgid "You cannot cancel this invoice. Please, try again later."
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
-#, python-format
 msgid ""
 "You cannot change the %s of an invoice already registered at the SII. You "
 "must cancel the invoice and create a new one with the correct value"
@@ -1088,7 +1052,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/sii_mixin.py:0
-#, python-format
 msgid "You cannot delete an invoice already registered at the SII."
 msgstr ""
 
@@ -1153,14 +1116,12 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
-#, python-format
 msgid "invoice date"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
-#, python-format
 msgid "invoice number"
 msgstr ""
 
@@ -1195,20 +1156,17 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
-#, python-format
 msgid "supplier"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
-#, python-format
 msgid "supplier invoice number"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
-#, python-format
 msgid "third-party number"
 msgstr ""
