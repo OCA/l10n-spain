@@ -178,7 +178,9 @@ msgid "AEAT tax mapping line - Tax"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__account_move__aeat_state__sent_w_errors
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_mixin__aeat_state__sent_w_errors
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__sii_mixin__aeat_state__sent_w_errors
 msgid "Accepted with errors"
 msgstr ""
 
@@ -1263,7 +1265,9 @@ msgid "Normal"
 msgstr "Normal"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__account_move__aeat_state__not_sent
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_mixin__aeat_state__not_sent
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__sii_mixin__aeat_state__not_sent
 msgid "Not sent"
 msgstr ""
 
@@ -1534,7 +1538,9 @@ msgid "SII send failed"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__account_move__aeat_state__sent
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_mixin__aeat_state__sent
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__sii_mixin__aeat_state__sent
 msgid "Sent"
 msgstr ""
 
