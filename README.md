@@ -35,7 +35,7 @@ addon | version | maintainers | summary
 [l10n_es_aeat_mod130](l10n_es_aeat_mod130/) | 18.0.1.0.0 |  | AEAT modelo 130
 [l10n_es_aeat_mod216](l10n_es_aeat_mod216/) | 18.0.1.1.0 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | AEAT modelo 216
 [l10n_es_aeat_mod296](l10n_es_aeat_mod296/) | 18.0.1.0.0 |  | AEAT modelo 296
-[l10n_es_aeat_mod303](l10n_es_aeat_mod303/) | 18.0.1.0.1 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | AEAT modelo 303
+[l10n_es_aeat_mod303](l10n_es_aeat_mod303/) | 18.0.1.0.2 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | AEAT modelo 303
 [l10n_es_aeat_mod347](l10n_es_aeat_mod347/) | 18.0.1.1.0 |  | AEAT modelo 347
 [l10n_es_aeat_mod349](l10n_es_aeat_mod349/) | 18.0.1.0.1 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | AEAT modelo 349
 [l10n_es_aeat_mod390](l10n_es_aeat_mod390/) | 18.0.1.0.1 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | AEAT modelo 390
@@ -43,7 +43,7 @@ addon | version | maintainers | summary
 [l10n_es_aeat_sii_oca](l10n_es_aeat_sii_oca/) | 18.0.1.0.0 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Suministro Inmediato de Información en el IVA
 [l10n_es_atc](l10n_es_atc/) | 18.0.1.0.0 |  | Modulo 'glue' de la AEAT para el menú de la ATC
 [l10n_es_cnae](l10n_es_cnae/) | 18.0.1.0.0 |  | Extiende los códigos NACE europeos con los CNAE españoles
-[l10n_es_facturae](l10n_es_facturae/) | 18.0.1.0.0 | <a href='https://github.com/etobella'><img src='https://github.com/etobella.png' width='32' height='32' style='border-radius:50%;' alt='etobella'/></a> | Creación de Facturae
+[l10n_es_facturae](l10n_es_facturae/) | 18.0.1.0.1 | <a href='https://github.com/etobella'><img src='https://github.com/etobella.png' width='32' height='32' style='border-radius:50%;' alt='etobella'/></a> | Creación de Facturae
 [l10n_es_intrastat_report](l10n_es_intrastat_report/) | 18.0.1.0.0 |  | Spanish Intrastat Product Declaration
 [l10n_es_mis_report](l10n_es_mis_report/) | 18.0.1.0.0 |  | Plantillas MIS Builder para informes contables españoles
 [l10n_es_partner](l10n_es_partner/) | 18.0.1.0.1 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Adaptación de los clientes, proveedores y bancos para España
