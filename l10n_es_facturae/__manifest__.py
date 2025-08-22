@@ -12,7 +12,7 @@
 
 {
     "name": "Creación de Facturae",
-    "version": "17.0.1.3.4",
+    "version": "17.0.1.3.5",
     "author": "ASR-OSS, "
     "FactorLibre, "
     "Tecon, "
