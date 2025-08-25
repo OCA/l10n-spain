@@ -1,24 +1,17 @@
 # Copyright 2025 ForgeFlow S.L.
+# Copyright 2025 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import datetime
 import json
-import logging
 
 from requests import Session
+from zeep import Client, Settings
+from zeep.plugins import HistoryPlugin
+from zeep.transports import Transport
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import split_every
-
-_logger = logging.getLogger(__name__)
-
-try:
-    from zeep import Client, Settings
-    from zeep.plugins import HistoryPlugin
-    from zeep.transports import Transport
-except (ImportError, IOError) as err:
-    _logger.debug(err)
-
 
 VERIFACTU_SEND_STATES = [
     ("not_sent", "Not sent"),
@@ -36,40 +29,25 @@ VERIFACTU_STATE_MAPPING = {
 
 class VerifactuInvoiceEntry(models.Model):
     _name = "verifactu.invoice.entry"
-    _description = "VeriFactu Invoice Entry"
+    _description = "VERI*FACTU invoice entry"
     _order = "id desc"
     _rec_name = "document_hash"
 
     verifactu_chaining_id = fields.Many2one(
-        "verifactu.chaining",
-        string="Chaining",
-        ondelete="restrict",
-        required=True,
+        "verifactu.chaining", string="Chaining", ondelete="restrict", required=True
     )
     model = fields.Char(readonly=True, required=True)
     document_id = fields.Many2oneReference(
-        string="Document",
-        model_field="model",
-        readonly=True,
-        index=True,
-        required=True,
+        string="Document", model_field="model", readonly=True, index=True, required=True
     )
     document_name = fields.Char(readonly=True)
     previous_invoice_entry_id = fields.Many2one(
-        "verifactu.invoice.entry",
-        string="Previous Invoice Entry",
-        readonly=True,
+        "verifactu.invoice.entry", string="Previous Invoice Entry", readonly=True
     )
     company_id = fields.Many2one(
-        "res.company",
-        string="Company",
-        required=True,
-        readonly=True,
+        "res.company", string="Company", required=True, readonly=True
     )
-    document_hash = fields.Char(
-        required=True,
-        readonly=True,
-    )
+    document_hash = fields.Char(required=True, readonly=True)
     aeat_json_data = fields.Text(
         string="AEAT JSON Data",
         help="Generated JSON data to send to AEAT",
@@ -77,14 +55,13 @@ class VerifactuInvoiceEntry(models.Model):
     )
     send_state = fields.Selection(
         selection=VERIFACTU_SEND_STATES,
-        string="Verifactu send state",
         compute="_compute_send_state",
         default="not_sent",
         readonly=True,
         store=True,
         copy=False,
         help="Indicates the state of this document in relation with the "
-        "presentation to Verifactu.",
+        "presentation to VERI*FACTU.",
     )
     send_attempt = fields.Integer(
         default=0, help="Number of attempts to send this document."
@@ -93,7 +70,7 @@ class VerifactuInvoiceEntry(models.Model):
         "verifactu.invoice.entry.response.line",
         "entry_id",
         string="Responses",
-        help="Responses from Verifactu after sending the documents.",
+        help="Responses from VERI*FACTU after sending the documents.",
     )
     last_error_code = fields.Char(compute="_compute_last_error_code", store=True)
     previous_hash = fields.Char(
@@ -168,7 +145,7 @@ class VerifactuInvoiceEntry(models.Model):
         return True
 
     def _get_verifactu_aeat_header(self):
-        """Builds VERIFACTU send header
+        """Builds VERI*FACTU send header
 
         :param tipo_comunicacion String 'A0': new reg, 'A1': modification
         :param cancellation Bool True when the communitacion es for document
@@ -216,7 +193,7 @@ class VerifactuInvoiceEntry(models.Model):
         )
         if not public_crt or not private_key:
             raise UserError(
-                _("Please, configure the Veri*FACTU certificates for your company")
+                _("Please, configure the VERI*FACTU certificates for your company")
             )
         params = self._connect_verifactu_params_aeat()
         session = Session()
@@ -316,8 +293,8 @@ class VerifactuInvoiceEntry(models.Model):
         try:
             serv = rec._connect_verifactu()
             res = serv.RegFactuSistemaFacturacion(header, registro_factura_list)
-        except Exception as e:
-            res = _("Error when trying to connect to Veri*FACTU: {}").format(e)
+        except Exception:
+            res = {}
             create_exception = True
         response_name = ""
         response = (
@@ -335,20 +312,17 @@ class VerifactuInvoiceEntry(models.Model):
         )
         response.complete_open_activity_on_exception()
         if create_exception:
-            if not response.datetime:
-                response.datetime = fields.Datetime.now()
+            if not response.date_response:
+                response.date_response = fields.Datetime.now()
             response.create_activity_on_exception()
-        else:
-            response.complete_open_activity_on_exception()
-
         create_response_activity = self._create_response_lines(
             response=response, header=header, verifactu_response=res
         )
-        updated_response_name = _("Verifactu sending")
+        updated_response_name = _("VERI*FACTU sending")
         if create_exception:
-            updated_response_name = _("Connection error with Verifactu")
+            updated_response_name = _("Connection error with VERI*FACTU")
         elif create_response_activity:
-            updated_response_name = _("Incorrect invoices sent to Verifactu")
+            updated_response_name = _("Incorrect invoices sent to VERI*FACTU")
         response.name = updated_response_name
         if create_response_activity:
             response.create_send_response_activity()
@@ -358,37 +332,37 @@ class VerifactuInvoiceEntry(models.Model):
         self, response=False, header=False, verifactu_response=False
     ):
         create_response_activity = False
-        respuestaLineas = (
+        # the returned object doesn't have `get` method, so use this form
+        verifactu_response_lines = (
             "RespuestaLinea" in verifactu_response
             and verifactu_response["RespuestaLinea"]
             or []
         )
-        document_models = self.env[
-            "verifactu.mixin"
-        ]._selection_verifactu_reference_models()
-        for verifactu_response_line in respuestaLineas:
+        models = self.env["verifactu.mixin"]._get_verifactu_reference_models()
+        for verifactu_response_line in verifactu_response_lines:
             invoice_num = verifactu_response_line["IDFactura"]["NumSerieFactura"]
-            for model in document_models:
-                document = self.env[model[0]].search(
+            for model in models:
+                if document := self.env[model].search(
                     [
                         ("name", "=", invoice_num),
                         ("id", "in", self.mapped("document_id")),
                     ],
                     limit=1,
-                )
-                if document:
+                ):
                     break
             # Find the verifactu.invoice entry for this document
             verifactu_invoice_entry = document.last_verifactu_invoice_entry_id
             previous_response_line = document.last_verifactu_response_line_id
-            estado_registro = verifactu_response_line["EstadoRegistro"]
+            send_state = VERIFACTU_STATE_MAPPING[
+                verifactu_response_line["EstadoRegistro"]
+            ]
             vals = {
                 "entry_id": verifactu_invoice_entry.id,
                 "model": verifactu_invoice_entry.model,
                 "document_id": verifactu_invoice_entry.document_id,
                 "response": verifactu_response_line,
                 "entry_response_id": response.id,
-                "send_state": VERIFACTU_STATE_MAPPING[estado_registro],
+                "send_state": send_state,
                 "error_code": "CodigoErrorRegistro" in verifactu_response_line
                 and str(verifactu_response_line["CodigoErrorRegistro"])
                 or "",
@@ -404,9 +378,6 @@ class VerifactuInvoiceEntry(models.Model):
                 response_line=response_line,
                 previous_response_line=previous_response_line,
                 header_sent=header,
-            )
-            send_state = VERIFACTU_STATE_MAPPING.get(
-                verifactu_response_line["EstadoRegistro"], ""
             )
             if send_state != "correct":
                 create_response_activity = True

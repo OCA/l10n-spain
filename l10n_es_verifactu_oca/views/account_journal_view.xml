@@ -16,7 +16,7 @@
                     name="attrs"
                 >{'readonly': [('restrict_mode_hash_table_readonly', '=', True)]}</attribute>
             </xpath>
-            <xpath expr="//field[@name='restrict_mode_hash_table']" position="after">
+            <xpath expr="//field[@name='restrict_mode_hash_table']" position="before">
                 <field name="company_verifactu_enabled" invisible="1" />
                 <field
                     name="verifactu_enabled"

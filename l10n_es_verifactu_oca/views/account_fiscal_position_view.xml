@@ -7,20 +7,23 @@
         <field name="model">account.fiscal.position</field>
         <field name="inherit_id" ref="account.view_account_position_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='country_group_id']/.." position="after">
-                <field name="verifactu_enabled" invisible="1" />
-                <group
-                    string="veri*FACTU"
-                    name="group_verifactu"
+            <xpath expr="//page[@name='account_mapping']" position="after">
+                <page
+                    name="verifactu"
+                    string="VERI*FACTU"
                     attrs="{'invisible': [('verifactu_enabled', '=', False)]}"
                 >
-                    <field name="aeat_active" />
-                    <field name="verifactu_tax_key" />
-                    <field
-                        name="verifactu_registration_key"
-                        domain="[('verifactu_tax_key', '=', verifactu_tax_key)]"
-                    />
-                </group>
+                    <field name="verifactu_enabled" invisible="1" />
+                    <group>
+                        <field name="aeat_active" string="Active?" />
+                        <field name="verifactu_tax_key" string="Tax key" />
+                        <field
+                            name="verifactu_registration_key"
+                            string="Registration key"
+                            domain="[('verifactu_tax_key', '=', verifactu_tax_key)]"
+                        />
+                    </group>
+                </page>
             </xpath>
         </field>
     </record>

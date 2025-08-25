@@ -24,18 +24,11 @@
             </tree>
         </field>
     </record>
-
     <record id="view_verifactu_invoice_entry_form" model="ir.ui.view">
         <field name="name">verifactu.invoice.entry.form</field>
         <field name="model">verifactu.invoice.entry</field>
         <field name="arch" type="xml">
-            <form
-                string="VeriFactu Invoice Entry"
-                create="false"
-                edit="false"
-                delete="false"
-                duplicate="0"
-            >
+            <form create="false" edit="false" delete="false" duplicate="0">
                 <sheet>
                     <group>
                         <group>
@@ -85,12 +78,11 @@
             </form>
         </field>
     </record>
-
     <record id="view_verifactu_invoice_entry_search" model="ir.ui.view">
         <field name="name">verifactu.invoice.entry.search</field>
         <field name="model">verifactu.invoice.entry</field>
         <field name="arch" type="xml">
-            <search string="Search VeriFactu Invoice">
+            <search>
                 <field name="document_id" />
                 <field name="company_id" />
                 <field name="document_hash" />
@@ -115,27 +107,18 @@
             </search>
         </field>
     </record>
-
     <record id="action_verifactu_invoice_entry" model="ir.actions.act_window">
-        <field name="name">VeriFactu Invoice</field>
+        <field name="name">VERI*FACTU invoices</field>
         <field name="res_model">verifactu.invoice.entry</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                No VeriFactu invoice entries found!
+                No VERI*FACTU invoice entries found!
             </p>
             <p>
                 Invoice entries are automatically created when invoices are validated
-                with VeriFactu enabled.
+                with VERI*FACTU enabled.
             </p>
         </field>
     </record>
-
-    <menuitem
-        id="menu_verifactu_invoice_entry"
-        name="Aeat Verifactu Invoice"
-        parent="l10n_es_aeat.menu_l10n_es_aeat_config"
-        action="action_verifactu_invoice_entry"
-        sequence="50"
-    />
 </odoo>
