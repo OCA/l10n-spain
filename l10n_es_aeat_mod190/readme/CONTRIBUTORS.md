@@ -1,8 +1,12 @@
-- Juan Vicente Pascual (<http://www.puntsistemes.com>)
-- Pedro Ortega (<http://www.puntsistemes.com>)
-- Enric Tobella \<<etobella@creublanca.es>\>
-- Nestor Torres (<https://www.vunkers.com>)
-- Marc Sánchez Fauste (<https://www.vunkers.com>)
-- Manuel Regidor González (<https://www.sygel.es>)
+- [Punt Sistemes](http://www.puntsistemes.com)
+  - Juan Vicente Pascual
+  - Pedro Ortega
+- [Dixmit](https://www.dixmit.com)
+  - Enric Tobella
+- [Vunkers](<https://www.vunkers.com>)
+  - Nestor Torres 
+  - Marc Sánchez Fauste
+- [Sygel](https://www.sygel.es)
+  - Manuel Regidor González
 - [Tecnativa](https://www.tecnativa.com):
   - Víctor Martínez

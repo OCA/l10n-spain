@@ -4,9 +4,9 @@
         <field name="name">l10n_es.aeat.mod190.report.line.tree</field>
         <field name="model">l10n.es.aeat.mod190.report.line</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="partner_id" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_l10n_es_aeat_mod190_report_line_form" model="ir.ui.view">
