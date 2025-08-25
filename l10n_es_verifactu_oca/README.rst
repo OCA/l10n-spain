@@ -3,7 +3,7 @@
    :alt: Odoo Community Association
 
 =======================
-Comunicación Veri*FACTU
+Comunicación VERI*FACTU
 =======================
 
 .. 
@@ -58,14 +58,14 @@ Para configurar este módulo es necesario:
    Accede a Facturación/Contabilidad -> Configuración -> AEAT -> Certificados AEAT, y allí podrás:
    Subir el certificado p12 y extraer las claves públicas y privadas con el botón "Obtener claves"
 #. Debes tener en cuenta que los certificados se alojan en una carpeta accesible por la instalación de Odoo.
-#. Completar los datos de desarrollador y del encadenamiento a nivel de compañía en la pestaña de Verifactu.
+#. Completar los datos de desarrollador y del encadenamiento a nivel de compañía en la pestaña de VERI*FACTU.
 
 En caso de que la obtención de claves no funcione y uses Linux, cuentas con los siguientes comandos para tratar de solucionarlo:
 
 - Clave pública: "openssl pkcs12 -in Certificado.p12 -nokeys -out publicCert.crt -nodes"
 - Clave privada: "openssl pkcs12 -in Certificado.p12 -nocerts -out privateKey.pem -nodes"
 
-#. Establecer en las posiciones fiscales la clave de impuestos y la clave de registro verifactu.
+#. Establecer en las posiciones fiscales la clave de impuestos y la clave de registro VERI*FACTU.
 #. Para aplicar las claves ejecute el asistente de actualización del módulo account_chart_update.
 
 
@@ -77,7 +77,7 @@ Cuando se valida una factura, automáticamente genera el registro de envío para
 Known issues / Roadmap
 ======================
 
- * Refactorización SII-Verifactu en l10n_es_aeat de los métodos que sean comunes.
+ * Refactorización SII-VERI*FACTU en l10n_es_aeat de los métodos que sean comunes.
  * Envío separado de la confirmación de la factura (cron.trigger/queque.job)
  * Control de errores del sistema, generar avisos. (caída de aeat, errores de conexión, etc.)
  * Declaración responsable. https://sede.agenciatributaria.gob.es/Sede/iva/sistemas-informaticos-facturacion-verifactu/preguntas-frecuentes/certificacion-sistemas-informaticos-declaracion-responsable.html?faqId=a15d77fe52572910VgnVCM100000dc381e0aRCRD
@@ -111,15 +111,27 @@ Authors
 
 * Aures Tic
 * ForgeFlow
+* Tecnativa
 
 Contributors
 ~~~~~~~~~~~~
 
-* Jose Zambudio <jose@aurestic.es>
-* Almudena de La Puente <almudena@aurestic.es>
-* Laura Cazorla <laura.cazorla@forgeflow.com>
-* Andreu Orensanz <andreu.orensanz@forgeflow.com>
-* Iván Antón <ozono@ozonomultimedia.com>
+* Aures TIC:
+  * Jose Zambudio
+  * Almudena de La Puente
+  * Anna Martínez
+* ForgeFlow S.L.:
+  * Laura Cazorla
+  * Andreu Orensanz
+  * Jordi Ballester
+* Ozono multimedia:
+  * Iván Antón
+* SDi:
+  * Fernando La Chica
+* Process control:
+  * Jorge Luis López
+* Tecnativa:
+  * Pedro M. Baeza
 
 Maintainers
 ~~~~~~~~~~~

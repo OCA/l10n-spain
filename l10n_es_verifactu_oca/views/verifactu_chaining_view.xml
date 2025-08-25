@@ -35,16 +35,13 @@
         </field>
     </record>
     <record id="verifactu_chaining_action" model="ir.actions.act_window">
-        <field name="name">Verifactu Chaining</field>
+        <field name="name">VERI*FACTU chainings</field>
         <field name="res_model">verifactu.chaining</field>
         <field name="view_mode">tree,form</field>
     </record>
-
     <menuitem
         id="verifactu_chaining_menu"
-        name="Verifactu Chaining"
         action="verifactu_chaining_action"
         parent="l10n_es_aeat.menu_l10n_es_aeat_config"
     />
-
 </odoo>

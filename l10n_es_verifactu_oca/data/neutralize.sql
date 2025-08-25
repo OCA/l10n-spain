@@ -1,2 +1,2 @@
--- DISABLE VERIFACTU ON COMPANIES
+-- DISABLE VERI*FACTU ON COMPANIES
 UPDATE res_company SET verifactu_test = true;

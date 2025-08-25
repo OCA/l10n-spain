@@ -1,5 +1,16 @@
-* Jose Zambudio <jose@aurestic.es>
-* Almudena de La Puente <almudena@aurestic.es>
-* Laura Cazorla <laura.cazorla@forgeflow.com>
-* Andreu Orensanz <andreu.orensanz@forgeflow.com>
-* Iván Antón <ozono@ozonomultimedia.com>
+* Aures TIC:
+  * Jose Zambudio
+  * Almudena de La Puente
+  * Anna Martínez
+* ForgeFlow S.L.:
+  * Laura Cazorla
+  * Andreu Orensanz
+  * Jordi Ballester
+* Ozono multimedia:
+  * Iván Antón
+* SDi:
+  * Fernando La Chica
+* Process control:
+  * Jorge Luis López
+* Tecnativa:
+  * Pedro M. Baeza
