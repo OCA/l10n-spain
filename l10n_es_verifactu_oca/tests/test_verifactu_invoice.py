@@ -11,8 +11,8 @@ class TestVerifactuInvoice(TestVerifactuCommon):
 
     def _generate_invoice_entry(self, invoice):
         """
-        Helper method to generate verifactu invoice entry for an invoice.
-        This assumes the invoice is already prepared for verifactu.
+        Helper method to generate VERI*FACTU invoice entry for an invoice.
+        This assumes the invoice is already prepared for VERI*FACTU.
 
         Args:
             invoice: Prepared invoice
@@ -40,21 +40,18 @@ class TestVerifactuInvoice(TestVerifactuCommon):
         """
         if amounts is None:
             amounts = [100 + i * 10 for i in range(count)]
-
         invoices = []
         for i in range(count):
             # Calculate date by adding days to start_date
             year, month, day = map(int, start_date.split("-"))
-
             invoice_date = (date(year, month, day) + timedelta(days=i)).strftime(
                 "%Y-%m-%d"
             )
-
             invoice = self._create_and_prepare_invoice(
                 company=company,
                 date=invoice_date,
                 amount=amounts[i] if i < len(amounts) else amounts[-1],
-                name=f"Chain test line {i+1}",
+                name=f"Chain test line {i + 1}",
             )
             invoices.append(invoice)
 
@@ -77,7 +74,7 @@ class TestVerifactuInvoice(TestVerifactuCommon):
                 self.assertEqual(
                     entry.previous_invoice_entry_id,
                     chain_entries[i - 1],
-                    f"Entry {i} should link to entry {i-1}",
+                    f"Entry {i} should link to entry {i - 1}",
                 )
 
     def _clean_chain_entries(self, company=None):
@@ -113,7 +110,6 @@ class TestVerifactuInvoice(TestVerifactuCommon):
         """
         if expected_company is None:
             expected_company = self.company
-
         if expected_previous is None:
             self.assertFalse(
                 chain_entry.previous_invoice_entry_id,
@@ -125,14 +121,12 @@ class TestVerifactuInvoice(TestVerifactuCommon):
                 expected_previous,
                 "Chain entry should link to expected previous entry",
             )
-
         if expected_document:
             self.assertEqual(
                 chain_entry.document,
                 expected_document,
                 "Chain entry should reference expected document",
             )
-
         self.assertEqual(
             chain_entry.company_id,
             expected_company,
@@ -190,20 +184,17 @@ class TestVerifactuInvoice(TestVerifactuCommon):
         )
         second_company.verifactu_chaining_id = self.env["verifactu.chaining"].create(
             {
-                "name": "Verifactu Chaining 2",
+                "name": "VERI*FACTU Chaining 2",
                 "sif_id": "12",
                 "installation_number": 2,
             }
         )
-
         first_company_invoice = self._create_and_prepare_invoice()
         first_company_entry = self._generate_invoice_entry(first_company_invoice)
-
         second_company_invoice = self._create_and_prepare_invoice(
             company=second_company, amount=200
         )
         second_company_entry = self._generate_invoice_entry(second_company_invoice)
-
         self._assert_chain_entry_properties(first_company_entry, expected_previous=None)
         self._assert_chain_entry_properties(
             second_company_entry,
@@ -290,7 +281,7 @@ class TestVerifactuInvoice(TestVerifactuCommon):
             hasattr(
                 self.company.verifactu_chaining_id, "last_verifactu_invoice_entry_id"
             ),
-            "Verifactu chaining should have last_verifactu_invoice_entry_id field",
+            "VERI*FACTU chaining should have last_verifactu_invoice_entry_id field",
         )
 
         # Verify invoice uses company for chaining
@@ -334,7 +325,7 @@ class TestVerifactuInvoice(TestVerifactuCommon):
         )
 
     def test_invoice_entry_creation(self):
-        """Test the verifactu invoice entry creation."""
+        """Test the VERI*FACTU invoice entry creation."""
         invoice_model = self.env["verifactu.invoice.entry"]
 
         # Test creating a simple invoice entry

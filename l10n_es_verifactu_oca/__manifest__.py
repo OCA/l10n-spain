@@ -1,25 +1,22 @@
-# Copyright 2024 Aures Tic - Jose Zambudio <jose@aurestic.es>
-# Copyright 2024 Aures TIC - Almudena de La Puente <almudena@aurestic.es>
+# Copyright 2024 Aures Tic - Jose Zambudio
+# Copyright 2024,2025 Aures TIC - Almudena de La Puente
+# Copyright 2024 FactorLibre - Aritz Olea
+# Copyright 2024,2025 ForgeFlow S.L.
+# Copyright 2025 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    "name": "Comunicación Veri*FACTU",
+    "name": "Comunicación VERI*FACTU",
     "version": "16.0.1.0.0",
-    "category": "Accounting & Finance",
+    "category": "Accounting/Localizations/EDI",
     "website": "https://github.com/OCA/l10n-spain",
-    "author": "Aures Tic, ForgeFlow, Odoo Community Association (OCA)",
+    "author": "Aures Tic,ForgeFlow,Tecnativa,Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "application": False,
     "installable": True,
-    "depends": [
-        "l10n_es",
-        "l10n_es_aeat",
-        "account_invoice_refund_link",
-        "account",
-    ],
+    "depends": ["account_invoice_refund_link", "l10n_es_aeat"],
     "data": [
         "data/verifactu_tax_agency_data.xml",
-        "data/verifactu_registration_keys.xml",
+        "data/verifactu_registration_key_data.xml",
         "data/account_fiscal_position_template_data.xml",
         "data/verifactu_map_data.xml",
         "data/ir_config_parameter.xml",
@@ -39,8 +36,9 @@
         "views/verifactu_invoice_entry_view.xml",
         "views/verifactu_chaining_view.xml",
         "views/verifactu_developer_view.xml",
-        "views/account_move_view.xml",
         "views/report_invoice.xml",
         "views/verifactu_invoice_entry_response_view.xml",
     ],
+    "pre_init_hook": "pre_init_hook",
+    "post_init_hook": "post_init_hook",
 }
