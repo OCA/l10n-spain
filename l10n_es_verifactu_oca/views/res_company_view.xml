@@ -8,37 +8,39 @@
         <field name="inherit_id" ref="base.view_company_form" />
         <field name="arch" type="xml">
             <notebook position="inside">
-                <page name="verifactu" string="veri*FACTU">
-                    <separator
-                        name="verifactu_config"
-                        string="AEAT veri*FACTU Configuration"
-                    />
+                <page name="verifactu" string="VERI*FACTU">
                     <group name="verifactu_enabled">
-                        <field name="verifactu_enabled" />
-                        <field name="verifactu_start_date" />
+                        <field name="verifactu_enabled" string="Enabled?" />
                     </group>
                     <group attrs="{'invisible': [('verifactu_enabled', '=', False)]}">
                         <group name="verifactu_config">
-                            <field name="verifactu_test" />
+                            <field name="verifactu_test" string="Test environment?" />
+                            <field name="verifactu_start_date" string="Start date" />
                         </group>
                     </group>
                     <group attrs="{'invisible': [('verifactu_enabled', '=', False)]}">
                         <group name="verifactu_verifactu_chaining">
                             <field
                                 name="verifactu_chaining_id"
-                                placeholder="Write a Chaining name for this company"
+                                string="Chaining reference"
                                 attrs="{'required': [('verifactu_enabled', '=', True)]}"
                             />
                         </group>
                     </group>
                     <group attrs="{'invisible': [('verifactu_enabled', '=', False)]}">
                         <group name="verifactu_description">
-                            <field name="verifactu_description" />
+                            <field
+                                name="verifactu_description"
+                                string="Default description"
+                            />
                         </group>
                     </group>
                     <group attrs="{'invisible': [('verifactu_enabled', '=', False)]}">
                         <group name="verifactu_developer_id">
-                            <field name="verifactu_developer_id" />
+                            <field
+                                name="verifactu_developer_id"
+                                string="Developer reference"
+                            />
                         </group>
                     </group>
                 </page>

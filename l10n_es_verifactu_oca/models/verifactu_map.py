@@ -5,13 +5,13 @@ from odoo import _, api, exceptions, fields, models
 
 class AeatVerifactuMap(models.Model):
     _name = "verifactu.map"
-    _description = "Aeat Verifactu Map"
+    _description = "VERI*FACTU mapping"
 
     name = fields.Char(string="Model", required=True)
     date_from = fields.Date()
     date_to = fields.Date()
     map_lines = fields.One2many(
-        comodel_name="verifactu.map.lines",
+        comodel_name="verifactu.map.line",
         inverse_name="verifactu_map_id",
         string="Lines",
     )
@@ -52,3 +52,15 @@ class AeatVerifactuMap(models.Model):
             raise exceptions.UserError(
                 _("Error! The dates of the record overlap with an existing " "record.")
             )
+
+
+class AeatVerifactuMapLines(models.Model):
+    _name = "verifactu.map.line"
+    _description = "VERI*FACTU mapping line"
+
+    code = fields.Char(required=True)
+    name = fields.Char()
+    taxes = fields.Many2many(comodel_name="account.tax.template")
+    verifactu_map_id = fields.Many2one(
+        comodel_name="verifactu.map", string="Parent mapping", ondelete="cascade"
+    )
