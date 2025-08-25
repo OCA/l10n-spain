@@ -118,7 +118,7 @@
         <field name="export_type">boolean</field>
         <field name="size">1</field>
         <field name="bool_yes">C</field>
-        <field name="bool_no"> </field>
+        <field name="bool_no" />
         <field name="alignment">left</field>
     </record>
     <record id="aeat_mod190_main_export_line_11" model="aeat.model.export.config.line">
@@ -129,7 +129,7 @@
         <field name="export_type">boolean</field>
         <field name="size">1</field>
         <field name="bool_yes">S</field>
-        <field name="bool_no"> </field>
+        <field name="bool_no" />
         <field name="alignment">left</field>
     </record>
     <!-- NUMERO IDENTIFICATIVO DE LA DECLARACION ANTERIOR (13) -->
@@ -166,7 +166,7 @@
         <field name="expression">${object.casilla_02}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True" />
-        <field name="positive_sign"> </field>
+        <field name="positive_sign" />
         <field name="negative_sign">N</field>
         <field name="size">16</field>
         <field name="decimal_size">2</field>
