@@ -5,7 +5,7 @@
 import logging
 
 from odoo.exceptions import UserError
-from odoo.tests.common import Form
+from odoo.tests import Form
 
 from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
@@ -134,8 +134,11 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         )
         second_invoice = self._invoice_purchase_create("2017-01-02")
         # Definimos la posición fiscal (se hará con _onchange_partner_id por UX)
+        second_invoice.button_draft()
+        # Debemos devolverla a draft para editarla
         second_invoice.fiscal_position_id = self.fiscal_position
         self.assertTrue(second_invoice.aeat_perception_key_id)
+        second_invoice._post()
         model190 = self.env["l10n.es.aeat.mod190.report"].create(
             {
                 "company_id": self.company.id,
