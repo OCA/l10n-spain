@@ -1,4 +1,6 @@
-from odoo import fields
+# Copyright 2024 FactorLibre - Luis J. Salvatierra
+# Copyright 2025 Tecnativa - Pedro M. Baeza
+from odoo import Command, fields
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
     TestL10nEsAeatCertificateBase,
@@ -15,15 +17,13 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
     def setUpClass(cls):
         super().setUpClass()
         cls.maxDiff = None
-
         cls.fp_nacional = cls.env.ref(f"l10n_es.{cls.company.id}_fp_nacional")
         cls.fp_registration_key_01 = cls.env.ref(
-            "l10n_es_verifactu.verifactu_registration_keys_01"
+            "l10n_es_verifactu_oca.verifactu_registration_keys_01"
         )
         cls.fp_nacional.verifactu_registration_key = cls.fp_registration_key_01
         cls.fp_recargo = cls.env.ref(f"l10n_es.{cls.company.id}_fp_recargo")
         cls.fp_recargo.verifactu_registration_key = cls.fp_registration_key_01
-
         cls.partner = cls.env["res.partner"].create(
             {
                 "name": "Test partner",
@@ -31,12 +31,10 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
                 "country_id": cls.env.ref("base.es").id,
             }
         )
-
         cls.product = cls.env["product.product"].create({"name": "Test product"})
         cls.account_expense = cls.env.ref(
             "l10n_es.%s_account_common_600" % cls.company.id
         )
-
         cls.verifactu_developer = cls.env["verifactu.developer"].create(
             {
                 "name": "Odoo Developer",
@@ -46,34 +44,27 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
             }
         )
         cls.verifactu_chaining = cls.env["verifactu.chaining"].create(
-            {
-                "name": "Verifactu Chaining",
-                "sif_id": "11",
-                "installation_number": 1,
-            }
+            {"name": "VERI*FACTU Chaining", "sif_id": "11", "installation_number": 1}
         )
-
         cls.company.write(
             {
                 "verifactu_enabled": True,
                 "verifactu_test": True,
                 "vat": "G87846952",
+                "country_id": cls.env.ref("base.es").id,
                 "tax_agency_id": cls.env.ref("l10n_es_aeat.aeat_tax_agency_spain"),
                 "verifactu_developer_id": cls.verifactu_developer.id,
                 "verifactu_chaining_id": cls.verifactu_chaining.id,
             }
         )
-
         cls.invoice = cls.env["account.move"].create(
             {
                 "company_id": cls.company.id,
                 "partner_id": cls.partner.id,
-                "invoice_date": "2024-01-01",
+                "invoice_date": "2026-01-01",
                 "move_type": "out_invoice",
                 "invoice_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": cls.product.id,
                             "account_id": cls.account_expense.id,
@@ -83,7 +74,6 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
                         },
                     )
                 ],
-                "aeat_state": "sent",
             }
         )
 
@@ -114,12 +104,9 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
         Returns:
             account.move: Created invoice record
         """
-        if company is None:
-            company = self.company
-        if partner is None:
-            partner = self.partner
-        if product is None:
-            product = self.product
+        company = company or self.company
+        partner = partner or self.partner
+        product = product or self.product
         if account is None:
             if company == self.company:
                 account = self.account_expense
@@ -134,7 +121,6 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
                     )
         if name is None:
             name = f"Test line - {amount}"
-
         return self.env["account.move"].create(
             {
                 "company_id": company.id,
@@ -142,9 +128,7 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
                 "invoice_date": date,
                 "move_type": move_type,
                 "invoice_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": product.id,
                             "account_id": account.id,
@@ -177,25 +161,11 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
             res.company: Created company record
         """
         company = self.env["res.company"].create(
-            {
-                "name": name,
-                "vat": vat,
-                "country_id": self.env.ref("base.es").id,
-            }
+            {"name": name, "vat": vat, "country_id": self.env.ref("base.es").id}
         )
-
         if not company.chart_template_id:
             coa = self.env.ref("l10n_es.account_chart_template_pymes", False)
-            if not coa:
-                coa = self.env.ref(
-                    "l10n_generic_coa.configurable_chart_template", False
-                )
-            if not coa:
-                coa = self.env["account.chart.template"].search(
-                    [("visible", "=", True)], limit=1
-                )
             coa.try_loading(company=company, install_demo=False)
-
         company.write(
             {
                 "verifactu_enabled": verifactu_enabled,
@@ -204,7 +174,6 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
                 "verifactu_developer_id": self.verifactu_developer.id,
             }
         )
-
         return company
 
     def _prepare_invoice_for_verifactu(self, invoice):
@@ -248,25 +217,21 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
         entry = invoice.last_verifactu_invoice_entry_id
         self.assertTrue(
             entry,
-            "Invoice should have a verifactu invoice entry after posting",
+            "Invoice should have a VERI*FACTU invoice entry after posting",
         )
-
         response_lines = entry.response_line_ids
         self.assertEqual(len(response_lines), 1, "Should have exactly one queue record")
-
         response_line = response_lines[-1]
         self.assertEqual(
             response_line.entry_id,
             entry,
-            "Queue record should link to the verifactu invoice entry",
+            "Queue record should link to the VERI*FACTU invoice entry",
         )
-
         self.assertEqual(
             response_line.company_id,
             invoice.company_id,
             "Queue record should belong to the same company",
         )
-
         return response_line
 
     def _verify_response_integration(self, invoice, response_line):
@@ -284,24 +249,21 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
             response_line.document_id,
             "Response line should have verifactu invoice reference",
         )
-
         self.assertEqual(
             response_line.entry_id,
             invoice.last_verifactu_invoice_entry_id,
-            "Response line should link to the correct verifactu invoice entry",
+            "Response line should link to the correct VERI*FACTU invoice entry",
         )
-
         self.assertEqual(
             response_line.entry_id.document_id,
             invoice,
             "Response line should reference the original invoice through verifactu entry",
         )
-
         return True
 
     def _generate_invoice_entry(self, invoice):
         """
-        Helper method to generate verifactu invoice entry for an invoice.
+        Helper method to generate VERI*FACTU invoice entry for an invoice.
         This assumes the invoice is already prepared for verifactu.
 
         Args:

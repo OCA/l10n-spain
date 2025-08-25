@@ -8,8 +8,7 @@ from . import account_fiscal_position
 from . import account_fiscal_position_template
 from . import res_partner
 from . import verifactu_map
-from . import verifactu_map_lines
-from . import verifactu_registration_keys
+from . import verifactu_registration_key
 from . import verifactu_developer
 from . import verifactu_invoice_entry_response
 from . import verifactu_invoice_entry_response_line

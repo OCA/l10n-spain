@@ -1,4 +1,8 @@
-# Copyright 2024 Aures TIC - Almudena de La Puente <almudena@aurestic.es>
+# Copyright 2024 Aures TIC - Almudena de La Puente
+# Copyright 2024 FactorLibre - Luis J. Salvatierra
+# Copyright 2025 ForgeFlow S.L.
+# Copyright 2025 Process Control - Jorge Luis López
+# Copyright 2025 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 import json
 from datetime import datetime
@@ -8,36 +12,29 @@ from urllib.parse import parse_qs, urlparse
 
 from freezegun import freeze_time
 
+from odoo import Command
 from odoo.exceptions import UserError
 from odoo.modules.module import get_resource_path
 
 from .common import TestVerifactuCommon
 
 
-class TestL10nEsAeatVerifactuBase(TestVerifactuCommon):
+class TestL10nEsAeatVerifactu(TestVerifactuCommon):
     def test_verifactu_hash_code(self):
-        # based on AEAT Verifactu documentation
+        # based on AEAT VERI*FACTU documentation
         # https://www.agenciatributaria.es/static_files/AEAT_Desarrolladores/EEDD/IVA/VERI-FACTU/Veri-Factu_especificaciones_huella_hash_registros.pdf  # noqa: B950
         expected_hash = (
             "6FA5B3FA912C71B23C274952AA00E13A5F40F0CEE466640FFAAD041FA8B79BFF"
         )
-        issuerID = "89890001K"
-        serialNumber = "12345678/G33"
-        expeditionDate = "01-01-2026"
-        documentType = "F1"
-        amountTax = "12.35"
-        amountTotal = "123.45"
-        previousHash = ""
-        registrationDate = "2026-01-01T19:20:30+01:00"
         verifactu_hash_string = (
-            f"IDEmisorFactura={issuerID}&"
-            f"NumSerieFactura={serialNumber}&"
-            f"FechaExpedicionFactura={expeditionDate}&"
-            f"TipoFactura={documentType}&"
-            f"CuotaTotal={amountTax}&"
-            f"ImporteTotal={amountTotal}&"
-            f"Huella={previousHash}&"
-            f"FechaHoraHusoGenRegistro={registrationDate}"
+            "IDEmisorFactura=89890001K&"
+            "NumSerieFactura=12345678/G33&"
+            "FechaExpedicionFactura=01-01-2026&"
+            "TipoFactura=F1&"
+            "CuotaTotal=12.35&"
+            "ImporteTotal=123.45&"
+            "Huella=&"
+            "FechaHoraHusoGenRegistro=2026-01-01T19:20:30+01:00"
         )
         sha_hash_code = sha256(verifactu_hash_string.encode("utf-8"))
         hash_code = sha_hash_code.hexdigest().upper()
@@ -75,7 +72,7 @@ class TestL10nEsAeatVerifactuBase(TestVerifactuCommon):
         """Helper method for creating an invoice according arguments, and
         comparing the expected verifactu dict with .
         """
-        module = module or "l10n_es_verifactu"
+        module = module or "l10n_es_verifactu_oca"
         vals = {
             "name": name,
             "partner_id": self.partner.id,
@@ -85,9 +82,7 @@ class TestL10nEsAeatVerifactuBase(TestVerifactuCommon):
         }
         for line in lines:
             vals["invoice_line_ids"].append(
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "product_id": self.product.id,
                         "account_id": self.account_expense.id,
@@ -121,14 +116,7 @@ class TestL10nEsAeatVerifactuBase(TestVerifactuCommon):
         # Verify integration workflow
         self.assertTrue(entry, "Invoice should have verifactu entry")
         self.assertTrue(entry.aeat_json_data, "Should have JSON data")
-
         return invoice
-
-
-class TestL10nEsAeatVerifactu(TestL10nEsAeatVerifactuBase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
 
     def test_get_verifactu_invoice_data(self):
         mapping = [
@@ -180,18 +168,14 @@ class TestL10nEsAeatVerifactu(TestL10nEsAeatVerifactuBase):
         self.assertTrue(invoice2.verifactu_enabled)
 
 
-class TestL10nEsAeatVerifactuQR(TestL10nEsAeatVerifactuBase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-
+class TestL10nEsAeatVerifactuQR(TestVerifactuCommon):
     def _get_required_qr_params(self):
         """Helper to generate the required QR code parameters."""
         return {
             "nif": self.invoice.company_id.partner_id._parse_aeat_vat_info()[2],
             "numserie": self.invoice.name,
-            "fecha": self.invoice._change_date_format(self.invoice.invoice_date),
-            "importe": f"{self.invoice.amount_total:.2f}",
+            "fecha": self.invoice._get_verifactu_date(self.invoice.invoice_date),
+            "importe": f"{self.invoice.amount_total:.2f}",  # noqa
         }
 
     def test_verifactu_qr_generation(self):
@@ -201,7 +185,6 @@ class TestL10nEsAeatVerifactuQR(TestL10nEsAeatVerifactuBase):
         self._activate_certificate(self.certificate_password)
         self.invoice.action_post()
         qr_code = self.invoice.verifactu_qr
-
         self.assertTrue(qr_code, "QR code should be generated for the invoice.")
         self.assertIsInstance(qr_code, bytes, "QR code should be in bytes format.")
 
@@ -212,17 +195,13 @@ class TestL10nEsAeatVerifactuQR(TestL10nEsAeatVerifactuBase):
         self._activate_certificate(self.certificate_password)
         self.invoice.action_post()
         qr_url = self.invoice.verifactu_qr_url
-
         self.assertTrue(qr_url, "QR URL should be generated for the invoice.")
-
         test_url = self.env.ref(
             "l10n_es_aeat.aeat_tax_agency_spain"
         ).verifactu_qr_base_url_test_address
         self.assertTrue(test_url, "Test URL should not be empty.")
-
         parsed_url = urlparse(qr_url)
         actual_params = parse_qs(parsed_url.query)
-
         expected_params = self._get_required_qr_params()
         for key, expected_value in expected_params.items():
             self.assertIn(
@@ -255,9 +234,7 @@ class TestL10nEsAeatVerifactuQR(TestL10nEsAeatVerifactuBase):
             self.invoice.write(
                 {
                     "invoice_line_ids": [
-                        (
-                            0,
-                            0,
+                        Command.create(
                             {
                                 "product_id": self.product.id,
                                 "account_id": self.account_expense.id,
@@ -271,9 +248,7 @@ class TestL10nEsAeatVerifactuQR(TestL10nEsAeatVerifactuBase):
             )
             self.invoice.action_post()
             self.invoice.invalidate_model(["verifactu_qr_url", "verifactu_qr"])
-
             updated_qr_code = self.invoice.verifactu_qr
-
             self.assertNotEqual(
                 original_qr_code,
                 updated_qr_code,
@@ -284,11 +259,11 @@ class TestL10nEsAeatVerifactuQR(TestL10nEsAeatVerifactuBase):
         self._activate_certificate(self.certificate_password)
         self.invoice.action_post()
         with patch(
-            "odoo.addons.l10n_es_verifactu.models."
+            "odoo.addons.l10n_es_verifactu_oca.models."
             "verifactu_invoice_entry.VerifactuInvoiceEntry._connect_verifactu"
         ) as mock_connect:
             mock_service = MagicMock()
-            module = "l10n_es_verifactu"
+            module = "l10n_es_verifactu_oca"
             json_file = "verifactu_mocked_response_1.json"
             path = get_resource_path(module, "tests/json", json_file)
             if not path:
@@ -297,44 +272,30 @@ class TestL10nEsAeatVerifactuQR(TestL10nEsAeatVerifactuBase):
                 response_dict = json.loads(f.read())
             mock_service.RegFactuSistemaFacturacion.return_value = response_dict
             mock_connect.return_value = mock_service
-            # Execute the cron job to send the invoice to Verifactu
+            # Execute the cron job to send the invoice to VERI*FACTU
             self.env["verifactu.invoice.entry"]._cron_send_documents_to_verifactu()
             self.assertEqual(
                 self.invoice.aeat_state,
                 "sent",
-                "Invoice should be marked as sent after Verifactu processing.",
+                "Invoice should be marked as sent after VERI*FACTU processing.",
             )
             self.assertEqual(
                 self.invoice.verifactu_csv,
                 "A-Y23JP3582934",
-                "CSV should be generated correctly after sending to Verifactu.",
+                "CSV should be generated correctly after sending to VERI*FACTU.",
             )
 
-    def test_send_invoices_with_timeout(self):
-        """
-        Test that the situation where the Verifactu service times out
-        """
 
-    def test_resend_invoice(self):
-        """
-        Test that we can resend an invoice to Verifactu
-        after it has been sent and received error,
-        """
-
-
-class TestVerifactuSendResponse(TestL10nEsAeatVerifactuBase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-
+class TestVerifactuSendResponse(TestVerifactuCommon):
     def test_create_activity_on_exception(self):
         """
-        Creates an activity whenever the connection with Verifactu
+        Creates an activity whenever the connection with VERI*FACTU
         is not possible.
         """
         MailActivity = self.env["mail.activity"]
-        ActivityType = self.env.ref("l10n_es_verifactu.mail_activity_data_exception")
-
+        ActivityType = self.env.ref(
+            "l10n_es_verifactu_oca.mail_activity_data_exception"
+        )
         # Send an invoice without a certificate
         self.invoice.action_post()
         self.env["verifactu.invoice.entry"]._cron_send_documents_to_verifactu()
@@ -359,7 +320,6 @@ class TestVerifactuSendResponse(TestL10nEsAeatVerifactuBase):
             len(activity_2),
             "There should be only one exception activity created",
         )
-
         # Activate certificate and re-run the cron
         self._activate_certificate(self.certificate_password)
         self.env["verifactu.invoice.entry"]._cron_send_documents_to_verifactu()
@@ -397,19 +357,18 @@ class TestVerifactuSendResponse(TestL10nEsAeatVerifactuBase):
         }
 
     @patch(
-        "odoo.addons.l10n_es_verifactu.models.verifactu_invoice_entry."
+        "odoo.addons.l10n_es_verifactu_oca.models.verifactu_invoice_entry."
         "VerifactuInvoiceEntry._connect_verifactu"
     )
     def test_create_send_activity(self, mock_connect):
         """
-        Create an activity whenever the response from Verifactu indicates
+        Create an activity whenever the response from VERI*FACTU indicates
         that incorrect invoices have been sent
         """
         MailActivity = self.env["mail.activity"]
         ActivityType = self.env.ref("mail.mail_activity_data_warning")
-
         mock_service = MagicMock()
-        module = "l10n_es_verifactu"
+        module = "l10n_es_verifactu_oca"
         json_file = "verifactu_mocked_response_2.json"
         path = get_resource_path(module, "tests/json", json_file)
         if not path:
@@ -418,15 +377,13 @@ class TestVerifactuSendResponse(TestL10nEsAeatVerifactuBase):
             response_dict = json.loads(f.read())
         mock_service.RegFactuSistemaFacturacion.return_value = response_dict
         mock_connect.return_value = mock_service
-
         self.invoice.action_post()
         self.env["verifactu.invoice.entry"]._cron_send_documents_to_verifactu()
-
         activity = MailActivity.search(
             [
                 ("activity_type_id", "=", ActivityType.id),
                 ("res_model", "=", "verifactu.invoice.entry.response"),
-                ("summary", "=", "Check incorrect invoices from Verifactu"),
+                ("summary", "=", "Check incorrect invoices from VERI*FACTU"),
             ]
         )
         self.assertTrue(

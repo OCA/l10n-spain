@@ -9,19 +9,18 @@
             <tree create="false" delete="false" duplicate="0">
                 <field name="id" />
                 <field name="name" />
-                <field name="datetime" />
+                <field name="date_response" />
                 <field name="verifactu_csv" />
                 <field name="header" />
             </tree>
         </field>
     </record>
-
     <record id="verifactu_invoice_entry_response_view_form" model="ir.ui.view">
         <field name="name">verifactu.invoice.entry.response.view.form</field>
         <field name="model">verifactu.invoice.entry.response</field>
         <field name="arch" type="xml">
             <form
-                string="Verifactu Response"
+                string="VERI*FACTU Response"
                 create="false"
                 delete="false"
                 duplicate="0"
@@ -38,9 +37,9 @@
                         </div>
                     </h1>
                     <h2 style="font-size: 1.5rem;">
-                        <label for="datetime" string="Date" />
+                        <label for="date_response" string="Date" />
                         <div>
-                            <field name="datetime" style="width:80% !important;" />
+                            <field name="date_response" style="width:80% !important;" />
                         </div>
                     </h2>
                     <notebook>
@@ -75,14 +74,13 @@
             </form>
         </field>
     </record>
-
     <record id="verifactu_invoice_entry_response_view_kanban" model="ir.ui.view">
         <field name="name">verifactu.invoice.entry.response.view.kanban</field>
         <field name="model">verifactu.invoice.entry.response</field>
         <field name="arch" type="xml">
             <kanban class="o_kanban_activity">
                     <field name="name" />
-                    <field name="datetime" />
+                    <field name="date_response" />
                     <templates>
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_global_click">
@@ -100,7 +98,9 @@
                                             aria-label="Date"
                                             role="img"
                                             title="Date"
-                                        /> <t t-esc="record.datetime.value" /></strong>
+                                        /> <t
+                                            t-esc="record.date_response.value"
+                                        /></strong>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -114,7 +114,6 @@
                 </kanban>
         </field>
     </record>
-
     <record id="verifactu_invoice_entry_response_view_search" model="ir.ui.view">
         <field name="name">verifactu.invoice.entry.response.view.search</field>
         <field name="model">verifactu.invoice.entry.response</field>
@@ -131,22 +130,18 @@
             </search>
         </field>
     </record>
-
-
     <record id="action_verifactu_invoice_entry_response" model="ir.actions.act_window">
-        <field name="name">VeriFactu Invoice Entry Response</field>
+        <field name="name">VERI*FACTU responses</field>
         <field name="res_model">verifactu.invoice.entry.response</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                No VeriFactu invoice entries responses found!
+                No VERI*FACTU responses found!
             </p>
         </field>
     </record>
-
     <menuitem
         id="menu_verifactu_invoice_entry_response"
-        name="Aeat Verifactu Invoice Entry Response"
         parent="l10n_es_aeat.menu_l10n_es_aeat_config"
         action="action_verifactu_invoice_entry_response"
         sequence="51"

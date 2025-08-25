@@ -41,7 +41,7 @@
         </field>
     </record>
     <record id="action_verifactu_mapping" model="ir.actions.act_window">
-        <field name="name">Aeat Verifactu Map</field>
+        <field name="name">VERI*FACTU mappings</field>
         <field name="res_model">verifactu.map</field>
         <field name="view_mode">tree,form</field>
     </record>
@@ -49,7 +49,5 @@
         id="menu_verifactu_map"
         parent="l10n_es_aeat.menu_l10n_es_aeat_config"
         action="action_verifactu_mapping"
-        name="Aeat Verifactu Map"
     />
-
 </odoo>
