@@ -1,5 +1,4 @@
-# Copyright 2020 Creu Blanca
-# @author: Enric Tobella
+# Copyright 2025 Dixmit
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import base64
@@ -9,12 +8,10 @@ from cryptography import x509
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
 
+from odoo import models
 from odoo.exceptions import UserError, ValidationError
-from odoo.models import _
 
-from odoo.addons.component.core import Component
-
-from ..models.wsse_signature import MemorySignature
+from .wsse_signature import MemorySignature
 
 _logger = logging.getLogger(__name__)
 try:
@@ -23,11 +20,9 @@ except (OSError, ImportError) as err:
     _logger.info(err)
 
 
-class WebServiceFace(Component):
-    _name = "base.webservice.face"
-    _usage = "face.protocol"
-    _backend_type = "l10n_es_facturae"
-    _inherit = "edi.component.mixin"
+class L10nEsFacturaeFaceBaseHandler(models.AbstractModel):
+    _name = "l10n_es.facturae.face.base.handler"
+    _description = "Base handler for FACe webservice"
 
     def _get_client(self, public_crt, private_key):
         with open(public_crt, "rb") as f:
@@ -82,7 +77,9 @@ class WebServiceFace(Component):
         response = client.service.anularFactura(identifier, motive)
         if response.resultado.codigo != "0":
             raise UserError(
-                _("Connection with FACe returned error %(code)s - %(description)s")
+                self.env._(
+                    "Connection with FACe returned error %(code)s - %(description)s"
+                )
                 % {
                     "code": response.resultado.codigo,
                     "description": response.resultado.descripcion,

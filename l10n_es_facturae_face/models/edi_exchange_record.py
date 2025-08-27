@@ -74,11 +74,7 @@ class EdiExchangeRecord(models.Model):
             public_crt, private_key = self.env[
                 "l10n.es.aeat.certificate"
             ].get_certificates(company)
-            response = face._find_component(
-                face._name,
-                ["face.protocol"],
-                work_ctx={"exchange_record": self.env["edi.exchange.record"]},
-            ).consult_invoices(
+            response = self.env["l10n_es.facturae.face.base.handler"].consult_invoices(
                 public_crt,
                 private_key,
                 exchanges,
@@ -99,7 +95,9 @@ class EdiExchangeRecord(models.Model):
                     == revocation_code
                 ):
                     continue
-                update_record = face.create_record(
+                update_record = face.with_context(
+                    edi__skip_quick_exec=True
+                ).create_record(
                     "l10n_es_facturae_face_update",
                     {
                         "edi_exchange_state": "input_received",
