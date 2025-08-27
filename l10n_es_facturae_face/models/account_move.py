@@ -3,7 +3,7 @@
 
 
 from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 
 
 class AccountMove(models.Model):
@@ -49,6 +49,22 @@ class AccountMove(models.Model):
             self.env.ref("l10n_es_facturae_face.facturae_exchange_type"),
             self.env.ref("l10n_es_facturae_face.backend_facturae"),
         )
+
+    def _edi_create_exchange_record_vals(self, exchange_type):
+        result = super()._edi_create_exchange_record_vals(exchange_type)
+        if exchange_type == self.env.ref(
+            "l10n_es_facturae_face.facturae_face_update_exchange_type"
+        ):
+            related_record = self._get_exchange_record(
+                self.env.ref("l10n_es_facturae_face.facturae_exchange_type"),
+                self.env.ref("l10n_es_facturae_face.face_backend"),
+            )
+            if not related_record:
+                raise UserError(_("Exchange record cannot be found for FACe"))
+            result.update(
+                {"edi_exchange_state": "input_pending", "parent_id": related_record.id}
+            )
+        return result
 
     @api.model
     def _edi_missing_records_fields(self):
@@ -103,3 +119,39 @@ class AccountMove(models.Model):
         ):
             raise ValidationError(_("Oficina Contable not provided"))
         return
+
+    def _get_l10n_es_facturae_face_backend(self):
+        return self.env.ref("l10n_es_facturae_face.face_backend")
+
+    def _get_l10n_es_facturae_face_exchange_record_vals(self):
+        return {
+            "model": self._name,
+            "res_id": self.id,
+        }
+
+    def _post(self, soft=True):
+        result = super()._post(soft=soft)
+        for record in self:
+            if record.edi_disable_auto:
+                continue
+            partner = record.partner_id
+            if record.move_type not in ["out_invoice", "out_refund"]:
+                continue
+            if not partner.facturae or not partner.l10n_es_facturae_sending_code:
+                continue
+            backend = record._get_l10n_es_facturae_face_backend()
+            if not backend:
+                continue
+            exchange_type = self.env.ref("l10n_es_facturae_face.facturae_exchange_type")
+            # We check fields now to raise an error to the user, otherwise the
+            # error will be raising silently in the queue job.
+            record.validate_facturae_fields()
+            if record._has_exchange_record(exchange_type, backend):
+                continue
+            exchange_record = backend.create_record(
+                exchange_type.code,
+                record._get_l10n_es_facturae_face_exchange_record_vals(),
+            )
+            if exchange_record.edi_exchange_state == "new":
+                exchange_record.action_exchange_generate()
+        return result

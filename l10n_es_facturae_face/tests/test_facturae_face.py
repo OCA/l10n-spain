@@ -8,7 +8,7 @@ import requests
 
 from odoo import exceptions
 
-from odoo.addons.edi_oca.tests.common import EDIBackendCommonComponentRegistryTestCase
+from odoo.addons.edi_core_oca.tests.common import EDIBackendCommonTestCase
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
     TestL10nEsAeatCertificateBase,
 )
@@ -20,23 +20,13 @@ except (OSError, ImportError) as err:
     _logger.info(err)
 
 
-class EDIBackendTestCase(
-    EDIBackendCommonComponentRegistryTestCase, TestL10nEsAeatCertificateBase
-):
+class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificateBase):
     @classmethod
     def setUpClass(cls):
         cls._super_send = requests.Session.send
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
-
-        self = cls
-
-        self._load_module_components(self, "component_event")
-        self._load_module_components(self, "edi_oca")
-        self._load_module_components(self, "edi_account_oca")
-        self._load_module_components(self, "l10n_es_facturae")
-        self._load_module_components(self, "l10n_es_facturae_face")
-        self.tax = self.env["account.tax"].create(
+        cls.tax = cls.env["account.tax"].create(
             {
                 "name": "Test tax",
                 "amount_type": "percent",
@@ -46,21 +36,21 @@ class EDIBackendTestCase(
             }
         )
 
-        self.state = self.env["res.country.state"].create(
+        cls.state = cls.env["res.country.state"].create(
             {
                 "name": "Ciudad Real",
                 "code": "13",
-                "country_id": self.env.ref("base.es").id,
+                "country_id": cls.env.ref("base.es").id,
             }
         )
-        self.partner = self.env["res.partner"].create(
+        cls.partner = cls.env["res.partner"].create(
             {
                 "name": "Cliente de prueba",
                 "street": "C/ Ejemplo, 13",
                 "zip": "13700",
                 "city": "Tomelloso",
-                "state_id": self.state.id,
-                "country_id": self.env.ref("base.es").id,
+                "state_id": cls.state.id,
+                "country_id": cls.env.ref("base.es").id,
                 "vat": "ES05680675C",
                 "facturae": True,
                 "attach_invoice_as_annex": False,
@@ -70,44 +60,44 @@ class EDIBackendTestCase(
                 "l10n_es_facturae_sending_code": "face",
             }
         )
-        main_company = self.env.ref("base.main_company")
+        main_company = cls.env.ref("base.main_company")
         main_company.vat = "ESA12345674"
-        main_company.partner_id.country_id = self.env.ref("base.uk")
-        self.env["res.currency.rate"].search(
+        main_company.partner_id.country_id = cls.env.ref("base.uk")
+        cls.env["res.currency.rate"].search(
             [("currency_id", "=", main_company.currency_id.id)]
         ).write({"company_id": False})
-        bank_obj = self.env["res.partner.bank"]
-        self.bank = bank_obj.search(
+        bank_obj = cls.env["res.partner.bank"]
+        cls.bank = bank_obj.search(
             [("acc_number", "=", "FR20 1242 1242 1242 1242 1242 124")], limit=1
         )
-        if not self.bank:
-            self.bank = bank_obj.create(
+        if not cls.bank:
+            cls.bank = bank_obj.create(
                 {
                     "acc_number": "FR20 1242 1242 1242 1242 1242 124",
                     "partner_id": main_company.partner.id,
-                    "bank_id": self.env["res.bank"]
+                    "bank_id": cls.env["res.bank"]
                     .search([("bic", "=", "PSSTFRPPXXX")], limit=1)
                     .id,
                 }
             )
-        self.payment_method = self.env.ref("account.account_payment_method_manual_in")
-        payment_methods = self.env["account.payment.method"].search(
+        cls.payment_method = cls.env.ref("account.account_payment_method_manual_in")
+        payment_methods = cls.env["account.payment.method"].search(
             [("payment_type", "=", "inbound")]
         )
-        self.journal = self.env["account.journal"].create(
+        cls.journal = cls.env["account.journal"].create(
             {
                 "name": "Test journal",
                 "code": "TEST",
                 "type": "bank",
                 "company_id": main_company.id,
-                "bank_account_id": self.bank.id,
+                "bank_account_id": cls.bank.id,
                 "inbound_payment_method_line_ids": [
                     (0, 0, {"payment_method_id": x.id}) for x in payment_methods
                 ],
             }
         )
 
-        self.sale_journal = self.env["account.journal"].create(
+        cls.sale_journal = cls.env["account.journal"].create(
             {
                 "name": "Sale journal",
                 "code": "SALE_TEST",
@@ -115,64 +105,62 @@ class EDIBackendTestCase(
                 "company_id": main_company.id,
             }
         )
-        self.payment_mode = self.env["account.payment.mode"].create(
+        cls.payment_mode = cls.env["account.payment.mode"].create(
             {
                 "name": "Test payment mode",
                 "bank_account_link": "fixed",
-                "fixed_journal_id": self.journal.id,
-                "payment_method_id": self.payment_method.id,
+                "fixed_journal_id": cls.journal.id,
+                "payment_method_id": cls.payment_method.id,
                 "show_bank_account_from_journal": True,
                 "facturae_code": "01",
             }
         )
 
-        self.payment_mode_02 = self.env["account.payment.mode"].create(
+        cls.payment_mode_02 = cls.env["account.payment.mode"].create(
             {
                 "name": "Test payment mode 02",
                 "bank_account_link": "fixed",
-                "fixed_journal_id": self.journal.id,
-                "payment_method_id": self.payment_method.id,
+                "fixed_journal_id": cls.journal.id,
+                "payment_method_id": cls.payment_method.id,
                 "show_bank_account_from_journal": True,
                 "facturae_code": "02",
             }
         )
 
-        self.account = self.env["account.account"].create(
+        cls.account = cls.env["account.account"].create(
             {
-                "company_id": main_company.id,
+                "company_ids": [(4, main_company.id)],
                 "name": "Facturae Product account",
                 "code": "facturaeproduct",
                 "account_type": "income",
             }
         )
-        self.move = self.env["account.move"].create(
+        cls.move = cls.env["account.move"].create(
             {
-                "partner_id": self.partner.id,
-                "journal_id": self.sale_journal.id,
+                "partner_id": cls.partner.id,
+                "journal_id": cls.sale_journal.id,
                 "invoice_date": "2016-03-12",
-                "payment_mode_id": self.payment_mode.id,
+                "payment_mode_id": cls.payment_mode.id,
                 "move_type": "out_invoice",
                 "invoice_line_ids": [
                     (
                         0,
                         0,
                         {
-                            "product_id": self.env.ref(
-                                "product.product_delivery_02"
-                            ).id,
-                            "account_id": self.account.id,
+                            "product_id": cls.env.ref("product.product_delivery_02").id,
+                            "account_id": cls.account.id,
                             "name": "Producto de prueba",
                             "quantity": 1.0,
                             "price_unit": 100.0,
-                            "tax_ids": [(6, 0, self.tax.ids)],
+                            "tax_ids": [(6, 0, cls.tax.ids)],
                         },
                     )
                 ],
             }
         )
-        self.main_company = self.env.ref("base.main_company")
-        self.main_company.face_email = "test@test.com"
-        self.face_update_type = self.env.ref(
+        cls.main_company = cls.env.ref("base.main_company")
+        cls.main_company.face_email = "test@test.com"
+        cls.face_update_type = cls.env.ref(
             "l10n_es_facturae_face.facturae_face_update_exchange_type"
         )
 
@@ -300,11 +288,14 @@ class EDIBackendTestCase(
         self.move.invalidate_recordset()
         self.assertTrue(self.move.exchange_record_ids)
         self.assertIn(
-            str(self.face_update_type.id),
-            self.move.edi_config,
+            self.face_update_type.id,
+            [c["type"]["id"] for c in self.move.edi_config.values()],
         )
-        with self.assertRaises(exceptions.UserError):
-            self.move.edi_create_exchange_record(self.face_update_type.id)
+        result = self.move.with_context().edi_create_exchange_record(
+            self.face_update_type.id
+        )
+        record = self.env[result["res_model"]].browse(result["res_id"])
+        self.assertEqual("input_receive_error", record.edi_exchange_state)
 
     def test_facturae_face(self):
         class DemoService:
@@ -363,8 +354,8 @@ class EDIBackendTestCase(
         )
         self.move.invalidate_recordset()
         self.assertIn(
-            str(self.face_update_type.id),
-            self.move.edi_config,
+            self.face_update_type.id,
+            [c["type"]["id"] for c in self.move.edi_config.values()],
         )
         try:
             self.move.edi_create_exchange_record(self.face_update_type.id)
