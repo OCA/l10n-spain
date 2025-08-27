@@ -12,6 +12,18 @@
         <field name="exchange_filename_pattern">{record_name}--{dt}</field>
         <field name="exchange_file_ext">xsig</field>
         <field name="exchange_file_auto_generate" eval="True" />
+        <field
+            name="generate_model_id"
+            ref="l10n_es_facturae_face.model_l10n_es_facturae_face_output_handler"
+        />
+        <field
+            name="send_model_id"
+            ref="l10n_es_facturae_face.model_l10n_es_facturae_face_output_handler"
+        />
+        <field
+            name="output_validate_model_id"
+            ref="l10n_es_facturae_face.model_l10n_es_facturae_face_output_handler"
+        />
     </record>
     <record id="facturae_face_exchange_type_rule" model="edi.exchange.type.rule">
         <field name="name">Default</field>
@@ -37,6 +49,19 @@
         <field name="direction">input</field>
         <field name="exchange_filename_pattern">{record_name}--{dt}</field>
         <field name="exchange_file_ext">json</field>
+        <field name="quick_exec" eval="True" />
+        <field
+            name="receive_model_id"
+            ref="l10n_es_facturae_face.model_l10n_es_facturae_face_update_handler"
+        />
+        <field
+            name="process_model_id"
+            ref="l10n_es_facturae_face.model_l10n_es_facturae_face_update_handler"
+        />
+        <field
+            name="input_validate_model_id"
+            ref="l10n_es_facturae_face.model_l10n_es_facturae_face_update_handler"
+        />
     </record>
     <record id="facturae_face_update_exchange_type_rule" model="edi.exchange.type.rule">
         <field name="name">Default</field>
@@ -58,15 +83,13 @@
         <field name="direction">output</field>
         <field name="exchange_filename_pattern">{record_name}--{dt}</field>
         <field name="exchange_file_ext">txt</field>
-    </record>
-    <record id="facturae_output_template" model="edi.exchange.template.output">
-        <field name="name">Facturae output</field>
-        <field name="backend_type_id" ref="facturae_backend_type" />
-        <field name="type_id" ref="facturae_exchange_type" />
-        <field name="code">l10n_es_facturae.facturae_file</field>
-        <field name="output_type">xsig</field>
-        <field name="generator">report</field>
-        <field name="report_id" ref="l10n_es_facturae.report_facturae_signed" />
-        <field name="code_snippet">result = {"res_ids": record.ids}</field>
+        <field
+            name="send_model_id"
+            ref="l10n_es_facturae_face.model_l10n_es_facturae_face_cancel_handler"
+        />
+        <field
+            name="output_validate_model_id"
+            ref="l10n_es_facturae_face.model_l10n_es_facturae_face_cancel_handler"
+        />
     </record>
 </odoo>
