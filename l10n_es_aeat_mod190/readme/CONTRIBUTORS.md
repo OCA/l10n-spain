@@ -1,0 +1,12 @@
+- [Punt Sistemes](http://www.puntsistemes.com)
+  - Juan Vicente Pascual
+  - Pedro Ortega
+- [Dixmit](https://www.dixmit.com)
+  - Enric Tobella
+- [Vunkers](<https://www.vunkers.com>)
+  - Nestor Torres 
+  - Marc Sánchez Fauste
+- [Sygel](https://www.sygel.es)
+  - Manuel Regidor González
+- [Tecnativa](https://www.tecnativa.com):
+  - Víctor Martínez

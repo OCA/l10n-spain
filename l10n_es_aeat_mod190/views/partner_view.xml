@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_partner_form_inherit_l10n_es_aeat_mod190" model="ir.ui.view">
+        <field name="name">view.partner.form.inherit.l10n.es.aeat.mod190</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_partner_form" />
+        <field name="arch" type="xml">
+            <page id="aeat" position="inside">
+                <group string="Modelo 190" name="mod190">
+                    <group name="include_190">
+                        <field name="incluir_190" />
+                    </group>
+                </group>
+                <group>
+                    <group
+                        groups="account.group_account_invoice,l10n_es_aeat.group_account_aeat"
+                        string="Performance key"
+                        name="acc_sale"
+                        invisible="not incluir_190"
+                    >
+                        <field name="aeat_perception_key_id" widget="selection" />
+                        <field
+                            name="aeat_perception_subkey_id"
+                            widget="selection"
+                            domain="[('aeat_perception_key_id', '=', aeat_perception_key_id)]"
+                            invisible="not is_aeat_perception_subkey_visible"
+                        />
+                        <field name="ad_required" invisible="1" />
+                        <field name="is_aeat_perception_subkey_visible" invisible="1" />
+                        <field
+                            name="is_first_child_computation_visible"
+                            invisible="1"
+                        />
+                    </group>
+                    <group string="Perception data" invisible="not incluir_190">
+                        <group>
+                            <field name="a_nacimiento" />
+                            <field name="discapacidad" />
+                            <field name="ceuta_melilla" />
+                            <field name="movilidad_geografica" />
+                        </group>
+                        <group>
+                            <field name="representante_legal_vat" />
+                            <field name="situacion_familiar" />
+                            <field name="nif_conyuge" />
+                            <field name="contrato_o_relacion" />
+                        </group>
+                    </group>
+                </group>
+                <group
+                    string="Sons and other decendents"
+                    col="3"
+                    invisible="not incluir_190"
+                >
+                    <group string="Lower than 3 years">
+                        <field name="hijos_y_descendientes_m" />
+                        <field name="hijos_y_descendientes_m_entero" />
+                    </group>
+                    <group string="Rest">
+                        <field name="hijos_y_descendientes" />
+                        <field name="hijos_y_descendientes_entero" />
+                    </group>
+                    <group
+                        groups="account.group_account_invoice,l10n_es_aeat.group_account_aeat"
+                        string="First 3 compute"
+                        invisible="not is_first_child_computation_visible"
+                    >
+                        <field name="computo_primeros_hijos_1" string="1" />
+                        <field name="computo_primeros_hijos_2" string="2" />
+                        <field name="computo_primeros_hijos_3" string="3" />
+                    </group>
+                </group>
+                <group
+                    string="Sons and other decendents with discapacity"
+                    col="3"
+                    invisible="not incluir_190"
+                >
+                    <group string="Between 33% and 65%">
+                        <field name="hijos_y_desc_discapacidad_33" />
+                        <field name="hijos_y_desc_discapacidad_entero_33" />
+                    </group>
+                    <group string="Reduced mobility">
+                        <field name="hijos_y_desc_discapacidad_mr" />
+                        <field name="hijos_y_desc_discapacidad_entero_mr" />
+                    </group>
+                    <group string="Bigger than 65%">
+                        <field name="hijos_y_desc_discapacidad_66" />
+                        <field name="hijos_y_desc_discapacidad_entero_66" />
+                    </group>
+                </group>
+                <group string="Ascendents" col="2" invisible="not incluir_190">
+                    <group string="Lower than 75 years">
+                        <field name="ascendientes" />
+                        <field name="ascendientes_entero" />
+                    </group>
+                    <group string="Bigger than 75 years">
+                        <field name="ascendientes_m75" />
+                        <field name="ascendientes_entero_m75" />
+                    </group>
+                </group>
+                <group
+                    string="Ascendents with discapacity"
+                    col="3"
+                    invisible="not incluir_190"
+                >
+                    <group string="Between 33% and 65%">
+                        <field name="ascendientes_discapacidad_33" />
+                        <field name="ascendientes_discapacidad_entero_33" />
+                    </group>
+                    <group string="Reduced mobility">
+                        <field name="ascendientes_discapacidad_mr" />
+                        <field name="ascendientes_discapacidad_entero_mr" />
+                    </group>
+                    <group string="Bigger than 65%">
+                        <field name="ascendientes_discapacidad_66" />
+                        <field name="ascendientes_discapacidad_entero_66" />
+                    </group>
+                </group>
+            </page>
+        </field>
+    </record>
+</odoo>
