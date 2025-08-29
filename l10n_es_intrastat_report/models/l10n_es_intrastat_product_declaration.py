@@ -174,7 +174,7 @@ class L10nEsIntrastatProductDeclaration(models.Model):
             # Código mercancías CN8
             line.hs_code_id.local_code,
             # País origen
-            line.product_origin_country_id.code,
+            line.product_origin_country_code,
             # Régimen estadístico
             False,
             # Masa neta
