@@ -17,12 +17,7 @@ odoo.define("l10n_es_verifactu_pos.models", function (require) {
 
             _build_verifactu_qr_url() {
                 const baseUrl = this.pos.config.verifactu_base_url;
-                const company_partner = this.pos.db.get_partner_by_id(
-                    this.pos.company.partner_id[0]
-                );
-                const vatNumber = company_partner.aeat_identification_type
-                    ? company_partner.aeat_identification
-                    : (this.pos.company.vat || "").replace(/^ES/i, "");
+                const vatNumber = (this.pos.company.vat || "").replace(/^ES/i, "");
                 const date = this.validation_date || this.creation_date;
                 const formattedDate = moment(date).format("DD-MM-YYYY");
                 const params = new URLSearchParams({
