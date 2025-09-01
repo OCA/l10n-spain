@@ -117,7 +117,7 @@ class TestSIIVatProrate(TestL10nEsAeatSiiBase):
             ),
         ]
         for inv_type, lines, extra_vals in mapping:
-            self._create_and_test_invoice_sii_dict(
+            self._adjust_expected_for_prorate(
                 inv_type, lines, extra_vals, module="l10n_es_vat_prorate"
             )
         return

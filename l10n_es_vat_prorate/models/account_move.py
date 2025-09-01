@@ -19,22 +19,15 @@ class AccountMove(models.Model):
         store=True,
     )
 
-    @api.depends(
-        "company_id.with_vat_prorate",
-        "company_id.vat_prorate_ids",
-        "date",
-        "invoice_date",
-    )
+    @api.depends("company_id", "date", "invoice_date")
     def _compute_prorate_id(self):
-        for move in self:
-            if move.company_id.with_vat_prorate:
-                date = move.invoice_date or move.date or fields.Date.today()
-                prorate = move.company_id.get_prorate(date)
-                move.prorate_id = prorate
-                move.with_special_vat_prorate = prorate.type == "special"
+        for rec in self:
+            if rec.company_id.with_vat_prorate:
+                prorate_date = rec.date or rec.invoice_date or fields.Date.today()
+                rec.prorate_id = rec.company_id.get_prorate(prorate_date)
+                rec.with_special_vat_prorate = rec.prorate_id.type == "special"
             else:
-                move.prorate_id = False
-                move.with_special_vat_prorate = False
+                rec.prorate_id = rec.with_special_vat_prorate = False
 
     def button_draft(self):
         res = super().button_draft()
@@ -50,6 +43,8 @@ class AccountMove(models.Model):
             prorate_line_index = 0
 
             if not move.is_invoice(include_receipts=True):
+                continue
+            if not move.is_purchase_document():
                 continue
 
             if not move.prorate_id:
@@ -136,6 +131,44 @@ class AccountMove(models.Model):
                     }
                 )
 
+    @api.depends(
+        "invoice_line_ids.currency_rate",
+        "invoice_line_ids.tax_base_amount",
+        "invoice_line_ids.tax_line_id",
+        "invoice_line_ids.price_total",
+        "invoice_line_ids.price_subtotal",
+        "invoice_payment_term_id",
+        "partner_id",
+        "currency_id",
+    )
+    def _compute_tax_totals(self):
+        for move in self:
+            super()._compute_tax_totals()
+            if move.prorate_id and move.tax_totals:
+                non_deductible_total = sum(
+                    line.balance for line in move.line_ids.filtered("vat_prorate")
+                )
+                non_deductible_total_currency = sum(
+                    line.amount_currency
+                    for line in move.line_ids.filtered("vat_prorate")
+                )
+                move.tax_totals["total_amount"] += non_deductible_total
+                move.tax_totals["total_amount_currency"] += (
+                    non_deductible_total_currency
+                )
+
+                for subtotal in move.tax_totals.get("subtotals", []):
+                    for tax_group in subtotal.get("tax_groups", []):
+                        tax_group["tax_amount"] += non_deductible_total
+                        tax_group["tax_amount_currency"] += (
+                            non_deductible_total_currency
+                        )
+                        tax_group["display_base_amount"] += non_deductible_total
+                        tax_group["display_base_amount_currency"] += (
+                            non_deductible_total_currency
+                        )
+        return None
+
     @api.model_create_multi
     def create(self, vals_list):
         moves = super().create(vals_list)
@@ -163,7 +196,11 @@ class AccountMove(models.Model):
     def _get_prorate_expense_account(self):
         for line in self.line_ids:
             if line.debit > 0 and not line.tax_line_id:
-                return line.account_id
+                if line.account_id.account_type not in (
+                    "asset_receivable",
+                    "liability_payable",
+                ):
+                    return line.account_id
         return self.company_id.expense_currency_exchange_account_id
 
 
@@ -204,3 +241,22 @@ class AccountMoveLine(models.Model):
                 line.with_vat_prorate = prorate.special_vat_prorate_default
             else:
                 line.with_vat_prorate = False
+
+    def _process_aeat_tax_fee_info(self, res, tax, sign):
+        """Corrects SII submission: amount = full VAT, deductible_amount = prorated"""
+        taxes = tax.amount_type == "group" and tax.children_tax_ids or tax
+        prorate = 1.0
+        if self.move_id.prorate_id and self.move_id.company_id.with_vat_prorate:
+            prorate = self.move_id.prorate_id.vat_prorate / 100.0
+
+        for t in taxes:
+            res.setdefault(
+                t, {"tax": t, "base": 0.0, "amount": 0.0, "deductible_amount": 0.0}
+            )
+            full_amount = abs(self.tax_base_amount * t.amount / 100.0 * sign)
+            res[t]["amount"] += full_amount
+            res[t]["deductible_amount"] += float_round(
+                full_amount * prorate,
+                precision_rounding=self.move_id.currency_id.rounding,
+            )
+        return res

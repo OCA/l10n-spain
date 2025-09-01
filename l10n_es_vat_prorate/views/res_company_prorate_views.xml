@@ -26,7 +26,7 @@
         <field name="name">res.company.vat.prorate.list (in l10n_es_vat_prorate)</field>
         <field name="model">res.company.vat.prorate</field>
         <field name="arch" type="xml">
-            <list>
+            <list editable="bottom">
                 <field name="date" />
                 <field name="type" />
                 <field name="vat_prorate" />
