@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_digital_canon_report_wizard_user,access_digital_canon_report_wizard_user,model_digital_canon_report_wizard,base.group_user,1,0,0,0
+access_digital_canon_report_wizard_manager,access_digital_canon_report_wizard_manager,model_digital_canon_report_wizard,base.group_system,1,1,1,1
