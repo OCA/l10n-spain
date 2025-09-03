@@ -168,7 +168,7 @@ class DeliveryCarrier(models.Model):
             "destinatario_direccion": escape(consignee.street or ""),
             "destinatario_poblacion": escape(consignee.city or ""),
             "destinatario_provincia": escape(consignee.state_id.name or ""),
-            "destinatario_pais": consignee.country_id.phone_code or "",
+            "destinatario_pais": consignee.country_id.code or "",
             "destinatario_cp": consignee.zip,
             # For certain destinations the consignee mobile and email are required to
             # make the expedition. Try to fallback to the commercial entity one
@@ -246,7 +246,7 @@ class DeliveryCarrier(models.Model):
             "destinatario_direccion": escape(receiving_partner.street) or "",
             "destinatario_poblacion": receiving_partner.city or "",
             "destinatario_provincia": receiving_partner.state_id.name or "",
-            "destinatario_pais": (receiving_partner.country_id.phone_code or ""),
+            "destinatario_pais": (receiving_partner.country_id.code or ""),
             "destinatario_cp": receiving_partner.zip or "",
             "destinatario_telefono": (
                 receiving_partner.phone or receiving_partner.parent_id.phone or ""
