@@ -3,7 +3,7 @@
 {
     "name": "Delivery GLS-ASM",
     "summary": "Delivery Carrier implementation for GLS with ASMRed API",
-    "version": "16.0.1.1.4",
+    "version": "16.0.1.1.5",
     "category": "Stock",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Tecnativa, Odoo Community Association (OCA)",
