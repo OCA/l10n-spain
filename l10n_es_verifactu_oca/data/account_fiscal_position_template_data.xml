@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="l10n_es.fp_nacional" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
+    </record>
+
+    <record id="l10n_es.fp_intra_private" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key" eval="False" />
+        <field name="verifactu_registration_key" eval="False" />
+    </record>
+
+    <record id="l10n_es.fp_intra" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
+    </record>
+
+    <record id="l10n_es.fp_extra" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_02" />
+    </record>
+
+    <record id="l10n_es.fp_not_subject_tai" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_08" />
+    </record>
+
+    <record id="l10n_es.fp_recargo" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_18" />
+    </record>
+
+    <record id="l10n_es.fp_recargo_isp" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_18" />
+    </record>
+
+    <record id="l10n_es.fp_irpf1" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
+    </record>
+
+    <record id="l10n_es.fp_irpf2" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
+    </record>
+
+    <record id="l10n_es.fp_irpf7" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
+    </record>
+
+    <record id="l10n_es.fp_irpf9" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
+    </record>
+
+    <record id="l10n_es.fp_irpf15" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
+    </record>
+
+    <record id="l10n_es.fp_irpf18" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
+    </record>
+
+    <record id="l10n_es.fp_irpf19" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
+    </record>
+
+    <record id="l10n_es.fp_irpf19a" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
+    </record>
+
+    <record id="l10n_es.fp_irpf195a" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
+    </record>
+
+    <record id="l10n_es.fp_irpf20" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
+    </record>
+
+    <record id="l10n_es.fp_irpf24" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
+    </record>
+
+    <record id="l10n_es.fp_irpf20a" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
+    </record>
+
+    <record id="l10n_es.fp_irpf21" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
+    </record>
+
+    <record id="l10n_es.fp_irpf21a" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
+    </record>
+
+    <record id="l10n_es.fp_irpfnrnue24" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
+    </record>
+
+    <record id="l10n_es.fp_irpfnrue19" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
+    </record>
+
+    <record id="l10n_es.fp_irpfnrue0" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key" eval="False" />
+        <field name="verifactu_registration_key" eval="False" />
+    </record>
+
+    <record id="l10n_es.fp_irpfnrnue0" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">05</field>
+        <field name="verifactu_registration_key" eval="False" />
+    </record>
+
+    <record id="l10n_es.fp_ispn" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
+    </record>
+
+    <record id="l10n_es.fp_rnrisp" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
+    </record>
+
+    <record id="l10n_es.fp_reagyp_a" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_19" />
+    </record>
+
+   <record id="l10n_es.fp_reagyp_gp" model="account.fiscal.position.template">
+       <field name="verifactu_tax_key">01</field>
+        <field name="verifactu_registration_key" ref="verifactu_registration_keys_19" />
+   </record>
+
+</odoo>
