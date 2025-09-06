@@ -66,8 +66,9 @@ class AccountMove(models.Model):
                 and invoice.invoice_date >= invoice.company_id.verifactu_start_date
             ):
                 invoice.verifactu_enabled = (
-                    invoice.fiscal_position_id
-                    and invoice.fiscal_position_id.aeat_active
+                    invoice.fiscal_position_id.aeat_active
+                    if invoice.fiscal_position_id
+                    else True
                 )
             else:
                 invoice.verifactu_enabled = False
