@@ -36,12 +36,12 @@
                             <field
                                 name="verifactu_refund_type"
                                 string="Refund type"
-                                attrs="{'required': [('verifactu_enabled', '=', True),('move_type', 'in', ('out_refund','in_refund'))], 'invisible': [('move_type', 'not in', ('out_refund','in_refund'))]}"
+                                attrs="{'required': [('verifactu_enabled', '=', True),('move_type', '=', 'out_refund')], 'invisible': ['|', ('verifactu_enabled', '=', False), ('move_type', '!=', 'out_refund')]}"
                             />
                             <field
                                 name="verifactu_refund_specific_type"
                                 string="Refund specific type"
-                                attrs="{'invisible': [('move_type', '!=', 'out_refund')]}"
+                                attrs="{'invisible': ['|', ('verifactu_enabled', '=', False), ('move_type', '!=', 'out_refund')]}"
                             />
                             <field
                                 name="verifactu_tax_key"
