@@ -75,6 +75,7 @@ setuptools.setup(
         'odoo-addon-l10n_es_vat_book_invoice_summary>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_vat_book_oss>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_vat_prorate>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_es_verifactu_oca>=16.0dev,<16.1dev',
         'odoo-addon-payment_redsys>=16.0dev,<16.1dev',
     ],
     classifiers=[
