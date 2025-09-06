@@ -40,4 +40,6 @@
         "views/report_invoice.xml",
         "views/verifactu_invoice_entry_response_view.xml",
     ],
+    "pre_init_hook": "pre_init_hook",
+    "post_init_hook": "post_init_hook",
 }
