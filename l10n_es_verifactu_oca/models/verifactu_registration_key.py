@@ -16,8 +16,10 @@ class AeatVerifactuMappingRegistrationKeys(models.Model):
         required=True,
     )
 
-    def name_get(self):
-        return [(x.id, f"[{x.code}]-{x.name}") for x in self]
+    @api.depends("name", "code")
+    def _compute_display_name(self):
+        for record in self:
+            record.display_name = f"[{record.code}]-{record.name}"
 
     @api.model
     def _get_verifactu_tax_keys(self):

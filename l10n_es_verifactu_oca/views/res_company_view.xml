@@ -12,22 +12,22 @@
                     <group name="verifactu_enabled">
                         <field name="verifactu_enabled" string="Enabled?" />
                     </group>
-                    <group attrs="{'invisible': [('verifactu_enabled', '=', False)]}">
+                    <group invisible="not verifactu_enabled">
                         <group name="verifactu_config">
                             <field name="verifactu_test" string="Test environment?" />
                             <field name="verifactu_start_date" string="Start date" />
                         </group>
                     </group>
-                    <group attrs="{'invisible': [('verifactu_enabled', '=', False)]}">
+                    <group invisible="not verifactu_enabled">
                         <group name="verifactu_verifactu_chaining">
                             <field
                                 name="verifactu_chaining_id"
                                 string="Chaining reference"
-                                attrs="{'required': [('verifactu_enabled', '=', True)]}"
+                                required="verifactu_enabled"
                             />
                         </group>
                     </group>
-                    <group attrs="{'invisible': [('verifactu_enabled', '=', False)]}">
+                    <group invisible="not verifactu_enabled">
                         <group name="verifactu_description">
                             <field
                                 name="verifactu_description"
@@ -35,7 +35,7 @@
                             />
                         </group>
                     </group>
-                    <group attrs="{'invisible': [('verifactu_enabled', '=', False)]}">
+                    <group invisible="not verifactu_enabled">
                         <group name="verifactu_developer_id">
                             <field
                                 name="verifactu_developer_id"
