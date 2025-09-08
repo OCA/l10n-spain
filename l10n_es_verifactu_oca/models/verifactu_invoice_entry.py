@@ -332,10 +332,16 @@ class VerifactuInvoiceEntry(models.Model):
         self, response=False, header=False, verifactu_response=False
     ):
         create_response_activity = False
-        respuestaLineas = verifactu_response.get("RespuestaLinea", [])
-        for verifactu_response_line in respuestaLineas:
+        # the returned object doesn't have `get` method, so use this form
+        verifactu_response_lines = (
+            "RespuestaLinea" in verifactu_response
+            and verifactu_response["RespuestaLinea"]
+            or []
+        )
+        models = self.env["verifactu.mixin"]._get_verifactu_reference_models()
+        for verifactu_response_line in verifactu_response_lines:
             invoice_num = verifactu_response_line["IDFactura"]["NumSerieFactura"]
-            for model in self.env["verifactu.mixin"]._get_verifactu_reference_models():
+            for model in models:
                 if document := self.env[model].search(
                     [
                         ("name", "=", invoice_num),
