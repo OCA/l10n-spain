@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2024 Aures TIC - Jose Zambudio
-    Copyright 2024 Aures TIC - Almudena de La Puente
-    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+     Copyright 2024 Aures TIC - Almudena de La Puente
+     Copyright 2025 Tecnativa - Pedro M. Baeza
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
 <odoo>
     <record id="invoice_verifactu_form" model="ir.ui.view">
         <field name="name">account.invoice.verifactu.form</field>
@@ -14,7 +15,7 @@
                     string="Re-send to VERI*FACTU"
                     name="resend_verifactu"
                     groups="l10n_es_aeat.group_account_aeat"
-                    attrs="{'invisible': ['|','|',('verifactu_enabled', '=', False), ('state', 'not in', ['posted']), ('aeat_state','!=','sent_w_errors')]}"
+                    invisible="not verifactu_enabled or state != 'posted' or aeat_state != 'sent_w_errors'"
                 />
             </button>
             <notebook position="inside">
@@ -25,7 +26,7 @@
                 <page
                     string="VERI*FACTU"
                     name="page_aeat"
-                    attrs="{'invisible': [('verifactu_enabled', '=', False)]}"
+                    invisible="not verifactu_enabled"
                 >
                     <group>
                         <group
@@ -36,22 +37,25 @@
                             <field
                                 name="verifactu_refund_type"
                                 string="Refund type"
-                                attrs="{'required': [('verifactu_enabled', '=', True),('move_type', '=', 'out_refund')], 'invisible': ['|', ('verifactu_enabled', '=', False), ('move_type', '!=', 'out_refund')]}"
+                                required="verifactu_enabled and move_type == 'out_refund'"
+                                invisible="not verifactu_enabled or move_type != 'out_refund'"
                             />
                             <field
                                 name="verifactu_refund_specific_type"
                                 string="Refund specific type"
-                                attrs="{'invisible': ['|', ('verifactu_enabled', '=', False), ('move_type', '!=', 'out_refund')]}"
+                                invisible="not verifactu_enabled or move_type != 'out_refund'"
                             />
                             <field
                                 name="verifactu_tax_key"
                                 string="Tax key"
-                                attrs="{'required': [('verifactu_enabled', '=', True)], 'readonly': [('aeat_state', '=', 'sent')]}"
+                                required="verifactu_enabled"
+                                readonly="aeat_state == 'sent'"
                             />
                             <field
                                 name="verifactu_registration_key"
                                 string="Registration key"
-                                attrs="{'required': [('verifactu_enabled', '=', True)], 'readonly': [('aeat_state', '=', 'sent')]}"
+                                required="verifactu_enabled"
+                                readonly="aeat_state == 'sent'"
                             />
                             <field name="verifactu_description" string="Description" />
                         </group>
@@ -88,12 +92,12 @@
                                     <field
                                         name="aeat_send_failed"
                                         string="Failed?"
-                                        attrs="{'invisible': [('aeat_send_failed', '=', False)]}"
+                                        invisible="not aeat_send_failed"
                                     />
                                     <field
                                         name="aeat_send_error"
                                         string="Send error"
-                                        attrs="{'invisible': [('aeat_send_failed', '=', False)]}"
+                                        invisible="not aeat_send_failed"
                                     />
                                 </group>
                             </page>

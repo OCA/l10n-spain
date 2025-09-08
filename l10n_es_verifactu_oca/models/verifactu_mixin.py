@@ -140,7 +140,7 @@ class VerifactuMixin(models.AbstractModel):
     def _compute_verifactu_qr_url(self):
         """Returns the URL to be used in the QR code. A sample URL would be (urlencoded):
         https://prewww2.aeat.es/wlpl/TIKECONT/ValidarQR?nif=89890001K&numserie=12345678%26G33&fecha=01-01-2024&importe=241.4
-        """  # noqa: B950
+        """  # noqa: E501
         for record in self:
             # FIXME: Not be hard-coded
             agency = self.env.ref("l10n_es_aeat.aeat_tax_agency_spain")
@@ -269,7 +269,7 @@ class VerifactuMixin(models.AbstractModel):
         raise NotImplementedError
 
     def _aeat_check_exceptions(self):
-        """Inheritable method for exceptions control when sending VERI*FACTU invoices."""
+        """Inheritable method for exception control when sending VERI*FACTU invoices."""
         res = super()._aeat_check_exceptions()
         if self.company_id.verifactu_enabled and not self.verifactu_enabled:
             raise UserError(_("This invoice is not VERI*FACTU enabled."))
@@ -418,8 +418,12 @@ class VerifactuMixin(models.AbstractModel):
         verifactu_map = self._get_verifactu_map(date)
         tax_templates = verifactu_map.map_lines.filtered(
             lambda x: x.code in codes
-        ).taxes
-        return self.company_id.get_taxes_from_templates(tax_templates)
+        ).tax_xmlid_ids
+        mapped_taxes = self.env["account.tax"]
+        for template in tax_templates:
+            tax_id = self.company_id._get_tax_id_from_xmlid(template.name)
+            mapped_taxes |= self.env["account.tax"].browse(tax_id)
+        return mapped_taxes
 
     def _raise_exception_verifactu(self, field_name):
         raise UserError(

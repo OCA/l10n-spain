@@ -273,12 +273,13 @@ class AccountMove(models.Model):
         if self.last_verifactu_invoice_entry_id:
             prev_entry = self.last_verifactu_invoice_entry_id.previous_invoice_entry_id
             if prev_entry:
+                doc = prev_entry.document
                 return {
                     "RegistroAnterior": {
-                        "IDEmisorFactura": prev_entry.document._get_verifactu_issuer(),
-                        "NumSerieFactura": prev_entry.document._get_document_serial_number(),
-                        "FechaExpedicionFactura": prev_entry.document._get_verifactu_date(
-                            prev_entry.document._get_document_date()
+                        "IDEmisorFactura": doc._get_verifactu_issuer(),
+                        "NumSerieFactura": doc._get_document_serial_number(),
+                        "FechaExpedicionFactura": doc._get_verifactu_date(
+                            doc._get_document_date()
                         ),
                         "Huella": prev_entry.document_hash,
                     }
@@ -505,8 +506,11 @@ class AccountMove(models.Model):
         if not (tax_lines := self._get_aeat_tax_info()):
             return False
         verifactu_map = self._get_verifactu_map(self._get_document_date())
-        tax_templates = verifactu_map.map_lines.taxes
-        mapped_taxes = self.company_id.get_taxes_from_templates(tax_templates)
+        tax_templates = verifactu_map.map_lines.tax_xmlid_ids
+        mapped_taxes = self.env["account.tax"]
+        for template in tax_templates:
+            tax_id = self.company_id._get_tax_id_from_xmlid(template.name)
+            mapped_taxes |= self.env["account.tax"].browse(tax_id)
         for tax_line in tax_lines.values():
             if tax_line["tax"] not in mapped_taxes:
                 return False
