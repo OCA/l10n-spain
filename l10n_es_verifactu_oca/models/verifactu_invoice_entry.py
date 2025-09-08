@@ -135,7 +135,8 @@ class VerifactuInvoiceEntry(models.Model):
                 threshold_time = send_date - datetime.timedelta(seconds=240)
                 # Look for documents where we have to send as an incident
                 outdated_records = records_to_send.filtered(
-                    lambda r: r.document.verifactu_registration_date < threshold_time
+                    lambda r, t=threshold_time: r.document.verifactu_registration_date
+                    < t
                 )
                 current_records = records_to_send - outdated_records
                 outdated_records.with_context(
@@ -247,7 +248,8 @@ class VerifactuInvoiceEntry(models.Model):
                     estado_registro = "Correcto"
                     response_line.send_state = "correct"
                 elif registroDuplicado["CodigoErrorRegistro"]:
-                    # en duplicados devuelve AceptadaConErrores en vez de AceptadoConErrores...
+                    # en duplicados devuelve AceptadaConErrores en vez de
+                    # AceptadoConErrores...
                     if estado_registro == "AceptadaConErrores":
                         estado_registro = "AceptadoConErrores"
                         response_line.send_state = "accepted_with_errors"
