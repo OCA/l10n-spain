@@ -14,7 +14,7 @@ from freezegun import freeze_time
 
 from odoo import Command
 from odoo.exceptions import UserError
-from odoo.modules.module import get_resource_path
+from odoo.tools.misc import file_path
 
 from .common import TestVerifactuCommon
 
@@ -22,7 +22,7 @@ from .common import TestVerifactuCommon
 class TestL10nEsAeatVerifactu(TestVerifactuCommon):
     def test_verifactu_hash_code(self):
         # based on AEAT VERI*FACTU documentation
-        # https://www.agenciatributaria.es/static_files/AEAT_Desarrolladores/EEDD/IVA/VERI-FACTU/Veri-Factu_especificaciones_huella_hash_registros.pdf  # noqa: B950
+        # https://www.agenciatributaria.es/static_files/AEAT_Desarrolladores/EEDD/IVA/VERI-FACTU/Veri-Factu_especificaciones_huella_hash_registros.pdf  # noqa: E501
         expected_hash = (
             "6FA5B3FA912C71B23C274952AA00E13A5F40F0CEE466640FFAAD041FA8B79BFF"
         )
@@ -51,7 +51,7 @@ class TestL10nEsAeatVerifactu(TestVerifactuCommon):
                 if "." in tax:
                     xml_id = tax
                 else:
-                    xml_id = f"l10n_es.{self.company.id}_account_tax_template_{tax}"
+                    xml_id = f"account.{self.company.id}_account_tax_template_{tax}"
                 taxes += self.env.ref(xml_id)
                 tax_names.append(tax)
             vals.append({"price_unit": line[0], "taxes": taxes})
@@ -104,7 +104,7 @@ class TestL10nEsAeatVerifactu(TestVerifactuCommon):
         result_dict["RegistroAlta"].pop("FechaHoraHusoGenRegistro")
         result_dict["RegistroAlta"].pop("TipoHuella")
         result_dict["RegistroAlta"].pop("Huella")
-        path = get_resource_path(module, "tests/json", json_file)
+        path = file_path(f"{module}/tests/json/{json_file}")
         if not path:
             raise Exception("Incorrect JSON file: %s" % json_file)
         with open(path) as f:
@@ -263,7 +263,7 @@ class TestL10nEsAeatVerifactuQR(TestVerifactuCommon):
             mock_service = MagicMock()
             module = "l10n_es_verifactu_oca"
             json_file = "verifactu_mocked_response_1.json"
-            path = get_resource_path(module, "tests/json", json_file)
+            path = file_path(f"{module}/tests/json/{json_file}")
             if not path:
                 raise Exception("Incorrect JSON file: %s" % json_file)
             with open(path) as f:
@@ -368,7 +368,7 @@ class TestVerifactuSendResponse(TestVerifactuCommon):
         mock_service = MagicMock()
         module = "l10n_es_verifactu_oca"
         json_file = "verifactu_mocked_response_2.json"
-        path = get_resource_path(module, "tests/json", json_file)
+        path = file_path(f"{module}/tests/json/{json_file}")
         if not path:
             raise Exception("Incorrect JSON file: %s" % json_file)
         with open(path) as f:

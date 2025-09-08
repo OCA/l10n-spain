@@ -11,7 +11,7 @@
                 <page
                     name="verifactu"
                     string="VERI*FACTU"
-                    attrs="{'invisible': [('verifactu_enabled', '=', False)]}"
+                    invisible="not verifactu_enabled"
                 >
                     <field name="verifactu_enabled" invisible="1" />
                     <group>

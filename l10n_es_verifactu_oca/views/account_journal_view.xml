@@ -12,15 +12,13 @@
                 expr="//field[@name='restrict_mode_hash_table']"
                 position="attributes"
             >
-                <attribute
-                    name="attrs"
-                >{'readonly': [('restrict_mode_hash_table_readonly', '=', True)]}</attribute>
+                <attribute name="readonly">restrict_mode_hash_table_readonly</attribute>
             </xpath>
             <xpath expr="//field[@name='restrict_mode_hash_table']" position="before">
                 <field name="company_verifactu_enabled" invisible="1" />
                 <field
                     name="verifactu_enabled"
-                    attrs="{'invisible': ['|', ('company_verifactu_enabled', '=', False), ('type', '!=', 'sale')]}"
+                    invisible="not company_verifactu_enabled or type != 'sale'"
                 />
             </xpath>
         </field>

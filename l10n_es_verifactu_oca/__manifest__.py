@@ -7,7 +7,7 @@
 
 {
     "name": "Comunicación VERI*FACTU",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Accounting/Localizations/EDI",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Aures Tic,ForgeFlow,Tecnativa,Odoo Community Association (OCA)",
@@ -17,8 +17,9 @@
     "data": [
         "data/verifactu_tax_agency_data.xml",
         "data/verifactu_registration_key_data.xml",
-        "data/account_fiscal_position_template_data.xml",
-        "data/verifactu_map_data.xml",
+        "data/l10n.es.aeat.map.tax.line.tax.csv",  # should be before verifactu.map*
+        "data/verifactu.map.csv",
+        "data/verifactu.map.line.csv",
         "data/ir_config_parameter.xml",
         "data/ir_cron.xml",
         "data/mail_activity_data.xml",
