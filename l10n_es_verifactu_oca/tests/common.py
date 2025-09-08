@@ -17,12 +17,12 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
     def setUpClass(cls):
         super().setUpClass()
         cls.maxDiff = None
-        cls.fp_nacional = cls.env.ref(f"l10n_es.{cls.company.id}_fp_nacional")
+        cls.fp_nacional = cls.env.ref(f"account.{cls.company.id}_fp_nacional")
         cls.fp_registration_key_01 = cls.env.ref(
             "l10n_es_verifactu_oca.verifactu_registration_keys_01"
         )
         cls.fp_nacional.verifactu_registration_key = cls.fp_registration_key_01
-        cls.fp_recargo = cls.env.ref(f"l10n_es.{cls.company.id}_fp_recargo")
+        cls.fp_recargo = cls.env.ref(f"account.{cls.company.id}_fp_recargo")
         cls.fp_recargo.verifactu_registration_key = cls.fp_registration_key_01
         cls.partner = cls.env["res.partner"].create(
             {
@@ -33,7 +33,7 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
         )
         cls.product = cls.env["product.product"].create({"name": "Test product"})
         cls.account_expense = cls.env.ref(
-            "l10n_es.%s_account_common_600" % cls.company.id
+            "account.%s_account_common_600" % cls.company.id
         )
         cls.verifactu_developer = cls.env["verifactu.developer"].create(
             {
@@ -153,7 +153,8 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
 
         Args:
             name: Company name
-            vat: Company VAT number (must be in valid Spanish format without country code)
+            vat: Company VAT number (must be in valid Spanish format without country
+                code)
             verifactu_enabled: Enable verifactu for the company
             verifactu_test: Set verifactu test mode
 
@@ -163,9 +164,8 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
         company = self.env["res.company"].create(
             {"name": name, "vat": vat, "country_id": self.env.ref("base.es").id}
         )
-        if not company.chart_template_id:
-            coa = self.env.ref("l10n_es.account_chart_template_pymes", False)
-            coa.try_loading(company=company, install_demo=False)
+        if not company.chart_template:
+            self.env["account.chart.template"].try_loading("es_pymes", company=company)
         company.write(
             {
                 "verifactu_enabled": verifactu_enabled,
@@ -257,7 +257,8 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
         self.assertEqual(
             response_line.entry_id.document_id,
             invoice,
-            "Response line should reference the original invoice through verifactu entry",
+            "Response line should reference the original invoice through verifactu "
+            "entry",
         )
         return True
 

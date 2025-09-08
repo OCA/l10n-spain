@@ -13,10 +13,10 @@
         </xpath>
     </template>
     <template id="address_layout" inherit_id="web.address_layout" priority="1000">
-        <div class="address row" position="attributes">
+        <div class="address row " position="attributes">
             <attribute name="t-if">not verifactu_invoice</attribute>
         </div>
-        <div class="address row" position="after">
+        <div class="address row " position="after">
             <div t-if="verifactu_invoice" class="row" id="verifactu_row">
                 <div
                     id="verifactu"
