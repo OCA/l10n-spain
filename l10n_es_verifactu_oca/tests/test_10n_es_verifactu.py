@@ -51,9 +51,7 @@ class TestL10nEsAeatVerifactu(TestVerifactuCommon):
                 if "." in tax:
                     xml_id = tax
                 else:
-                    xml_id = "l10n_es.{}_account_tax_template_{}".format(
-                        self.company.id, tax
-                    )
+                    xml_id = f"l10n_es.{self.company.id}_account_tax_template_{tax}"
                 taxes += self.env.ref(xml_id)
                 tax_names.append(tax)
             vals.append({"price_unit": line[0], "taxes": taxes})
@@ -109,7 +107,7 @@ class TestL10nEsAeatVerifactu(TestVerifactuCommon):
         path = get_resource_path(module, "tests/json", json_file)
         if not path:
             raise Exception("Incorrect JSON file: %s" % json_file)
-        with open(path, "r") as f:
+        with open(path) as f:
             expected_dict = json.loads(f.read())
         self.assertEqual(expected_dict, result_dict)
         entry = invoice.last_verifactu_invoice_entry_id
@@ -268,7 +266,7 @@ class TestL10nEsAeatVerifactuQR(TestVerifactuCommon):
             path = get_resource_path(module, "tests/json", json_file)
             if not path:
                 raise Exception("Incorrect JSON file: %s" % json_file)
-            with open(path, "r") as f:
+            with open(path) as f:
                 response_dict = json.loads(f.read())
             mock_service.RegFactuSistemaFacturacion.return_value = response_dict
             mock_connect.return_value = mock_service
@@ -373,7 +371,7 @@ class TestVerifactuSendResponse(TestVerifactuCommon):
         path = get_resource_path(module, "tests/json", json_file)
         if not path:
             raise Exception("Incorrect JSON file: %s" % json_file)
-        with open(path, "r") as f:
+        with open(path) as f:
             response_dict = json.loads(f.read())
         mock_service.RegFactuSistemaFacturacion.return_value = response_dict
         mock_connect.return_value = mock_service
