@@ -54,21 +54,21 @@ Configuration
 Parámetros
 ----------
 
-- **Nombre del comercio**: Indicaremos el nombre del comercio.
-- **Número de comercio (FUC)**: Indicaremos el número de comercio que
-  nuestra entidad nos ha comunicado.
-- **Clave secreta de encriptación**: Indicaremos la clave de
-  encriptación que tiene el comercio.
-- **Número de terminal**: Indicaremos el terminal del TPV.
-- **Tipo de firma**: Seleccionaremos el tipo de firma del comercio.
-- **Tipo de moneda**: Seleccionaremos la moneda de nuestro terminal TPV
-  (Normalmente EUR - Euros).
-- **Tipo de transacción**: Indicaremos el tipo de transacción, 0.
-- **Idioma TPV**: Indicaremos el idioma en el TPV.
-- **Método de pago**: Indicaremos qué tipo de pago se debe aceptar, pago
-  con tarjeta, Bizum u otro de los disponibles.
-- **Porcentaje de pago**: Indicar el porcentaje de pago que se permite,
-  si se deja a 0.0 se entiende 100%.
+-  **Nombre del comercio**: Indicaremos el nombre del comercio.
+-  **Número de comercio (FUC)**: Indicaremos el número de comercio que
+   nuestra entidad nos ha comunicado.
+-  **Clave secreta de encriptación**: Indicaremos la clave de
+   encriptación que tiene el comercio.
+-  **Número de terminal**: Indicaremos el terminal del TPV.
+-  **Tipo de firma**: Seleccionaremos el tipo de firma del comercio.
+-  **Tipo de moneda**: Seleccionaremos la moneda de nuestro terminal TPV
+   (Normalmente EUR - Euros).
+-  **Tipo de transacción**: Indicaremos el tipo de transacción, 0.
+-  **Idioma TPV**: Indicaremos el idioma en el TPV.
+-  **Método de pago**: Indicaremos qué tipo de pago se debe aceptar,
+   pago con tarjeta, Bizum u otro de los disponibles.
+-  **Porcentaje de pago**: Indicar el porcentaje de pago que se permite,
+   si se deja a 0.0 se entiende 100%.
 
 Nota
 ----
@@ -125,34 +125,34 @@ Authors
 Contributors
 ------------
 
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Sergio Teruel
-  - Carlos Dauden
-  - Carlos Roca
-  - João Marques
+   -  Sergio Teruel
+   -  Carlos Dauden
+   -  Carlos Roca
+   -  João Marques
 
-- Isaac Gallart <igallart@puntsistemes.es>
-- `Acysos S.L. <https://www.acysos.com>`__:
+-  Isaac Gallart <igallart@puntsistemes.es>
+-  `Acysos S.L. <https://www.acysos.com>`__:
 
-  - Ignacio Ibeas <ignacio@acysos.com>
+   -  Ignacio Ibeas <ignacio@acysos.com>
 
-- `Planes Asesoria y Soluciones Informaticas
-  S.L. <https://www.planesnet.com>`__:
+-  `Planes Asesoria y Soluciones Informaticas
+   S.L. <https://www.planesnet.com>`__:
 
-  - Luis Planes <luis@planesnet.com>
+   -  Luis Planes <luis@planesnet.com>
 
-- `Studio73 <https://www.studio73.es/>`__:
+-  `Studio73 <https://www.studio73.es/>`__:
 
-  - Rafa Ferri <rafa.ferri@studio73.es>
+   -  Rafa Ferri <rafa.ferri@studio73.es>
 
-- `Factor Libre <https://factorlibre.com/>`__:
+-  `Factor Libre <https://factorlibre.com/>`__:
 
-  - Pablo De Andrés <pablo.deandres@factorlibre.com>
+   -  Pablo De Andrés <pablo.deandres@factorlibre.com>
 
-- `APSL-Nagarro <https://apsl.tech>`__:
+-  `APSL-Nagarro <https://apsl.tech>`__:
 
-  - Antoni Marroig <amarroig@apsl.net>
+   -  Antoni Marroig <amarroig@apsl.net>
 
 Maintainers
 -----------
