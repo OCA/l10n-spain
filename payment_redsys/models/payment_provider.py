@@ -147,8 +147,7 @@ class PaymentProvider(models.Model):
             )[:250],
             "Ds_Merchant_MerchantData": self.redsys_merchant_data or "",
             "Ds_Merchant_ProductDescription": (
-                self._product_description(tx_values["reference"])
-                or self.redsys_merchant_description
+                self.redsys_merchant_description
                 and self.redsys_merchant_description[:125]
             ),
             "Ds_Merchant_ConsumerLanguage": (self.redsys_merchant_lang or "001"),
