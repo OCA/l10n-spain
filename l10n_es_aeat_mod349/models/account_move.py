@@ -40,7 +40,7 @@ class AccountMoveLine(models.Model):
 
     def _search_l10n_es_aeat_349_operation_key(self, operator, value):
         if value == "T":
-            return ["move_id.eu_triangular_deal", "=", True]
+            return [("move_id.eu_triangular_deal", "=", True)]
         else:
             return [("tax_ids.l10n_es_aeat_349_operation_key", operator, value)]
 
