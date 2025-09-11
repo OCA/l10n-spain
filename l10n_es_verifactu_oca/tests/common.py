@@ -1,6 +1,6 @@
 # Copyright 2024 FactorLibre - Luis J. Salvatierra
 # Copyright 2025 Tecnativa - Pedro M. Baeza
-from odoo import Command, fields
+from odoo import fields
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
     TestL10nEsAeatCertificateBase,
@@ -57,20 +57,28 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
                 "verifactu_chaining_id": cls.verifactu_chaining.id,
             }
         )
+        # Configure taxes for test invoice
+        cls.tax_21 = cls.env.ref(
+            "l10n_es.{}_account_tax_template_s_iva21s".format(cls.company.id)
+        )
         cls.invoice = cls.env["account.move"].create(
             {
                 "company_id": cls.company.id,
                 "partner_id": cls.partner.id,
                 "invoice_date": "2026-01-01",
                 "move_type": "out_invoice",
+                "fiscal_position_id": cls.fp_nacional.id,
                 "invoice_line_ids": [
-                    Command.create(
+                    (
+                        0,
+                        0,
                         {
                             "product_id": cls.product.id,
                             "account_id": cls.account_expense.id,
                             "name": "Test line",
                             "price_unit": 100,
                             "quantity": 1,
+                            "tax_ids": [(6, 0, cls.tax_21.ids)],
                         },
                     )
                 ],
@@ -111,35 +119,55 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
             if company == self.company:
                 account = self.account_expense
             else:
+                # First try to find an expense account
                 account = self.env["account.account"].search(
-                    [("company_id", "=", company.id), ("account_type", "=", "expense")],
+                    [
+                        ("company_id", "=", company.id),
+                        ("user_type_id.name", "ilike", "expense"),
+                    ],
                     limit=1,
                 )
+                # If no expense account found, try other suitable account types
+                if not account:
+                    account = self.env["account.account"].search(
+                        [
+                            ("company_id", "=", company.id),
+                            ("user_type_id.type", "=", "other"),
+                        ],
+                        limit=1,
+                    )
+                # Fallback to any account in the company
                 if not account:
                     account = self.env["account.account"].search(
                         [("company_id", "=", company.id)], limit=1
                     )
         if name is None:
             name = f"Test line - {amount}"
-        return self.env["account.move"].create(
-            {
-                "company_id": company.id,
-                "partner_id": partner.id,
-                "invoice_date": date,
-                "move_type": move_type,
-                "invoice_line_ids": [
-                    Command.create(
-                        {
-                            "product_id": product.id,
-                            "account_id": account.id,
-                            "name": name,
-                            "price_unit": amount,
-                            "quantity": 1,
-                        },
-                    )
-                ],
-                "aeat_state": "sent",
-            }
+        return (
+            self.env["account.move"]
+            .with_company(company)
+            .create(
+                {
+                    "company_id": company.id,
+                    "partner_id": partner.id,
+                    "invoice_date": date,
+                    "move_type": move_type,
+                    "invoice_line_ids": [
+                        (
+                            0,
+                            0,
+                            {
+                                "product_id": product.id,
+                                "account_id": account.id,
+                                "name": name,
+                                "price_unit": amount,
+                                "quantity": 1,
+                            },
+                        )
+                    ],
+                    "aeat_state": "sent",
+                }
+            )
         )
 
     def _create_test_company(
@@ -165,7 +193,7 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
         )
         if not company.chart_template_id:
             coa = self.env.ref("l10n_es.account_chart_template_pymes", False)
-            coa.try_loading(company=company, install_demo=False)
+            coa.try_loading(company=company)
         company.write(
             {
                 "verifactu_enabled": verifactu_enabled,

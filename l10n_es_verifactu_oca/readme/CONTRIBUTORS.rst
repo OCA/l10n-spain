@@ -10,6 +10,7 @@
   * Iván Antón
 * SDi:
   * Fernando La Chica
+  * Luis Jiménez
 * Process control:
   * Jorge Luis López
 * Tecnativa:

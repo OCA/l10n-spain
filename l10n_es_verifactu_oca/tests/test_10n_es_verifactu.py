@@ -12,7 +12,6 @@ from urllib.parse import parse_qs, urlparse
 
 from freezegun import freeze_time
 
-from odoo import Command
 from odoo.exceptions import UserError
 from odoo.modules.module import get_resource_path
 
@@ -82,7 +81,9 @@ class TestL10nEsAeatVerifactu(TestVerifactuCommon):
         }
         for line in lines:
             vals["invoice_line_ids"].append(
-                Command.create(
+                (
+                    0,
+                    0,
                     {
                         "product_id": self.product.id,
                         "account_id": self.account_expense.id,
@@ -98,10 +99,12 @@ class TestL10nEsAeatVerifactu(TestVerifactuCommon):
         invoice = self.env["account.move"].create(vals)
         self._activate_certificate(self.certificate_password)
         first_now = datetime(2026, 1, 1, 19, 20, 30)
-        with patch.object(self.env.cr, "now", lambda: first_now), freeze_time(
-            first_now
-        ):
-            invoice.action_post()
+        with patch(
+            "odoo.addons.l10n_es_verifactu_oca.models.account_move.datetime"
+        ) as mock_datetime:
+            mock_datetime.now.return_value = first_now
+            with freeze_time(first_now):
+                invoice.action_post()
         result_dict = invoice._get_verifactu_invoice_dict()
         result_dict["RegistroAlta"].pop("FechaHoraHusoGenRegistro")
         result_dict["RegistroAlta"].pop("TipoHuella")
@@ -234,7 +237,9 @@ class TestL10nEsAeatVerifactuQR(TestVerifactuCommon):
             self.invoice.write(
                 {
                     "invoice_line_ids": [
-                        Command.create(
+                        (
+                            0,
+                            0,
                             {
                                 "product_id": self.product.id,
                                 "account_id": self.account_expense.id,
@@ -270,6 +275,10 @@ class TestL10nEsAeatVerifactuQR(TestVerifactuCommon):
                 raise Exception("Incorrect JSON file: %s" % json_file)
             with open(path, "r") as f:
                 response_dict = json.loads(f.read())
+            # Update the response to match the actual invoice name
+            response_dict["RespuestaLinea"][0]["IDFactura"][
+                "NumSerieFactura"
+            ] = self.invoice.name
             mock_service.RegFactuSistemaFacturacion.return_value = response_dict
             mock_connect.return_value = mock_service
             # Execute the cron job to send the invoice to VERI*FACTU
@@ -375,6 +384,10 @@ class TestVerifactuSendResponse(TestVerifactuCommon):
             raise Exception("Incorrect JSON file: %s" % json_file)
         with open(path, "r") as f:
             response_dict = json.loads(f.read())
+        # Update the response to match the actual invoice name
+        response_dict["RespuestaLinea"][0]["IDFactura"][
+            "NumSerieFactura"
+        ] = self.invoice.name
         mock_service.RegFactuSistemaFacturacion.return_value = response_dict
         mock_connect.return_value = mock_service
         self.invoice.action_post()
@@ -390,3 +403,49 @@ class TestVerifactuSendResponse(TestVerifactuCommon):
             activity,
             "A warning activity should be created for 'AceptadoConErrores' response",
         )
+
+    def test_aeat_mixin_helper_methods(self):
+        """Test helper methods in aeat_mixin that need coverage"""
+        # Test _change_date_format
+        formatted_date = self.invoice._change_date_format("2024-03-15")
+        self.assertEqual(formatted_date, "15-03-2024")
+
+    def test_verifactu_configuration_checks(self):
+        """Test VERI*FACTU configuration validation methods"""
+        # Test without tax agency
+        self.company.tax_agency_id = False
+        with self.assertRaises(UserError) as cm:
+            self.invoice._check_verifactu_configuration()
+        self.assertIn("tax agency configured", str(cm.exception))
+
+        # Restore tax agency for next test
+        self.company.tax_agency_id = self.env.ref("l10n_es_aeat.aeat_tax_agency_spain")
+
+        # Test without developer
+        self.company.verifactu_developer_id = False
+        with self.assertRaises(UserError) as cm:
+            self.invoice._check_verifactu_configuration()
+        self.assertIn("VERI*FACTU developer configured", str(cm.exception))
+
+        # Restore developer for next test
+        self.company.verifactu_developer_id = self.verifactu_developer
+
+        # Test with non-Spanish country
+        self.company.country_id = self.env.ref("base.us")
+        with self.assertRaises(UserError) as cm:
+            self.invoice._check_verifactu_configuration()
+        self.assertIn("not registered in Spain", str(cm.exception))
+
+    def test_verifactu_mixin_methods(self):
+        """Test verifactu_mixin methods for better coverage"""
+        # Test _get_verifactu_version
+        version = self.invoice._get_verifactu_version()
+        self.assertEqual(version, 1.0)
+
+        # Test _compute_verifactu_refund_type
+        self.invoice._compute_verifactu_refund_type()
+        self.assertFalse(self.invoice.verifactu_refund_type)
+
+        # Test _get_verifactu_accepted_tax_agencies
+        agencies = self.invoice._get_verifactu_accepted_tax_agencies()
+        self.assertIn("l10n_es_aeat.aeat_tax_agency_spain", agencies)

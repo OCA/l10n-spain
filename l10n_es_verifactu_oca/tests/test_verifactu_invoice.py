@@ -201,6 +201,8 @@ class TestVerifactuInvoice(TestVerifactuCommon):
             expected_previous=None,
             expected_company=second_company,
         )
+        # Clean up: disable VERI*FACTU on second company to avoid affecting other tests
+        second_company.verifactu_enabled = False
 
     def test_verifactu_chain_hash_includes_previous(self):
         """Test that hash calculation includes previous document hash."""

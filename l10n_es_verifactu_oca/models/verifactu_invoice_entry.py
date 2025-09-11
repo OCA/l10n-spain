@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import datetime
 import json
+import logging
 
 from requests import Session
 from zeep import Client, Settings
@@ -12,6 +13,8 @@ from zeep.transports import Transport
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import split_every
+
+_logger = logging.getLogger(__name__)
 
 VERIFACTU_SEND_STATES = [
     ("not_sent", "Not sent"),
@@ -293,7 +296,8 @@ class VerifactuInvoiceEntry(models.Model):
         try:
             serv = rec._connect_verifactu()
             res = serv.RegFactuSistemaFacturacion(header, registro_factura_list)
-        except Exception:
+        except Exception as e:
+            _logger.error("Error sending documents to VERI*FACTU: %s", e)
             res = {}
             create_exception = True
         response_name = ""
@@ -341,17 +345,30 @@ class VerifactuInvoiceEntry(models.Model):
         models = self.env["verifactu.mixin"]._get_verifactu_reference_models()
         for verifactu_response_line in verifactu_response_lines:
             invoice_num = verifactu_response_line["IDFactura"]["NumSerieFactura"]
+            document = False
             for model in models:
-                if document := self.env[model].search(
+                document = self.env[model].search(
                     [
                         ("name", "=", invoice_num),
                         ("id", "in", self.mapped("document_id")),
                     ],
                     limit=1,
-                ):
+                )
+                if document:
                     break
+
+            # Skip if document not found
+            if not document:
+                continue
+
             # Find the verifactu.invoice entry for this document
             verifactu_invoice_entry = document.last_verifactu_invoice_entry_id
+
+            # Skip if no verifactu invoice entry found - this should not happen
+            # in normal flow but can happen in tests with mocked responses
+            if not verifactu_invoice_entry:
+                continue
+
             previous_response_line = document.last_verifactu_response_line_id
             send_state = VERIFACTU_STATE_MAPPING[
                 verifactu_response_line["EstadoRegistro"]

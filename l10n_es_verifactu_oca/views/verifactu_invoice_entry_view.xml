@@ -59,7 +59,7 @@
                             <group>
                                 <field name="response_line_ids">
                                     <tree>
-                                        <field name="entry_id" column_invisible="1" />
+                                        <field name="entry_id" invisible="1" />
                                         <field name="entry_response_id" />
                                         <field name="create_date" />
                                         <field

@@ -59,8 +59,7 @@ class VerifactuInvoiceEntryResponse(models.Model):
                 [
                     ("activity_type_id", "=", exception_activity_type.id),
                     ("res_model", "=", "verifactu.invoice.entry.response"),
-                ],
-                limit=1,
+                ]
             )
             if not existing:
                 user = users[:1] or self.env.user
