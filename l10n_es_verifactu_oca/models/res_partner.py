@@ -10,12 +10,20 @@ class ResPartner(models.Model):
     verifactu_enabled = fields.Boolean(
         compute="_compute_aeat_sending_enabled", string="VERI*FACTU enabled"
     )
+    aeat_simplified_invoice = fields.Boolean(
+        string="Simplified invoices in AEAT?",
+        help="Checking this mark, invoices done to this partner will be "
+        "sent to AEAT as simplified invoices.",
+    )
+    aeat_sending_enabled = fields.Boolean(
+        compute="_compute_aeat_sending_enabled",
+    )
 
     @api.depends("company_id")
     def _compute_aeat_sending_enabled(self):
-        res = super()._compute_aeat_sending_enabled()
         verifactu_enabled = any(self.env.companies.mapped("verifactu_enabled"))
         for partner in self:
+            partner.aeat_sending_enabled = False
             partner.verifactu_enabled = (
                 partner.company_id.verifactu_enabled
                 if partner.company_id
@@ -23,4 +31,3 @@ class ResPartner(models.Model):
             )
             if partner.verifactu_enabled:
                 partner.aeat_sending_enabled = True
-        return res

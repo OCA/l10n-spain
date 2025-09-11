@@ -16,7 +16,7 @@ from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.float_utils import float_compare
 
-from odoo.addons.l10n_es_aeat.models.aeat_mixin import round_by_keys
+from .aeat_mixin import round_by_keys
 
 VERIFACTU_VERSION = 1.0
 VERIFACTU_DATE_FORMAT = "%d-%m-%Y"
@@ -289,7 +289,7 @@ class VerifactuMixin(models.AbstractModel):
         """Generate VERI*FACTU invoice entry for company-wide chaining."""
         self.ensure_one()
         chaining = self._get_verifactu_chaining()
-        chaining.flush_recordset(["last_verifactu_invoice_entry_id"])
+        chaining.flush(["last_verifactu_invoice_entry_id"])
         try:
             with self.env.cr.savepoint():
                 self.env.cr.execute(
@@ -331,7 +331,7 @@ class VerifactuMixin(models.AbstractModel):
                     "SET last_verifactu_invoice_entry_id = %s WHERE id = %s",
                     [invoice_entry.id, chaining.id],
                 )
-                chaining.invalidate_recordset(["last_verifactu_invoice_entry_id"])
+                chaining.invalidate_cache(["last_verifactu_invoice_entry_id"])
         except psycopg2.OperationalError as err:
             if err.pgcode == "55P03":  # could not obtain the lock
                 raise UserError(

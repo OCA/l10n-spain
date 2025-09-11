@@ -502,7 +502,8 @@ class AccountMove(models.Model):
         return True
 
     def _check_all_taxes_mapped(self):
-        if not (tax_lines := self._get_aeat_tax_info()):
+        tax_lines = self._get_aeat_tax_info()
+        if not tax_lines:
             return False
         verifactu_map = self._get_verifactu_map(self._get_document_date())
         tax_templates = verifactu_map.map_lines.taxes

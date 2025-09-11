@@ -12,18 +12,14 @@
             eval="[(6, 0, [
                 ref('l10n_es.account_tax_template_s_iva21b'),
                 ref('l10n_es.account_tax_template_s_iva0b'),
-                ref('l10n_es.account_tax_template_s_iva2b'),
                 ref('l10n_es.account_tax_template_s_iva4b'),
                 ref('l10n_es.account_tax_template_s_iva5b'),
-                ref('l10n_es.account_tax_template_s_iva7-5b'),
                 ref('l10n_es.account_tax_template_s_iva10b'),
                 ref('l10n_es.account_tax_template_s_iva21s'),
                 ref('l10n_es.account_tax_template_s_iva10s'),
                 ref('l10n_es.account_tax_template_s_iva0s'),
-                ref('l10n_es.account_tax_template_s_iva2s'),
                 ref('l10n_es.account_tax_template_s_iva4s'),
                 ref('l10n_es.account_tax_template_s_iva5s'),
-                ref('l10n_es.account_tax_template_s_iva7-5s'),
                 ref('l10n_es.account_tax_template_s_iva0_ic'),
                 ref('l10n_es.account_tax_template_s_iva0_sp_i'),
                 ref('l10n_es.account_tax_template_s_iva0_e'),
@@ -77,9 +73,7 @@
                 ref('l10n_es.account_tax_template_s_req52'),
                 ref('l10n_es.account_tax_template_s_req014'),
                 ref('l10n_es.account_tax_template_s_req062'),
-                ref('l10n_es.account_tax_template_s_req1'),
                 ref('l10n_es.account_tax_template_s_req05'),
-                ref('l10n_es.account_tax_template_s_req026'),
                 ref('l10n_es.account_tax_template_s_req0'),
             ])]"
         />
@@ -106,8 +100,6 @@
               ref('l10n_es.account_tax_template_s_irpf21'),
               ref('l10n_es.account_tax_template_s_irpf21a'),
               ref('l10n_es.account_tax_template_s_irpf24'),
-              ref('l10n_es.account_tax_template_s_irpfnrnue24'),
-              ref('l10n_es.account_tax_template_s_irpfnrue19'),
             ])]"
         />
         <field name="verifactu_map_id" ref="verifactu_map" />

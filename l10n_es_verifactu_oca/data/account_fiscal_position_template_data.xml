@@ -106,26 +106,6 @@
         <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
     </record>
 
-    <record id="l10n_es.fp_irpfnrnue24" model="account.fiscal.position.template">
-        <field name="verifactu_tax_key">01</field>
-        <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
-    </record>
-
-    <record id="l10n_es.fp_irpfnrue19" model="account.fiscal.position.template">
-        <field name="verifactu_tax_key">01</field>
-        <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
-    </record>
-
-    <record id="l10n_es.fp_irpfnrue0" model="account.fiscal.position.template">
-        <field name="verifactu_tax_key" eval="False" />
-        <field name="verifactu_registration_key" eval="False" />
-    </record>
-
-    <record id="l10n_es.fp_irpfnrnue0" model="account.fiscal.position.template">
-        <field name="verifactu_tax_key">05</field>
-        <field name="verifactu_registration_key" eval="False" />
-    </record>
-
     <record id="l10n_es.fp_ispn" model="account.fiscal.position.template">
         <field name="verifactu_tax_key">01</field>
         <field name="verifactu_registration_key" ref="verifactu_registration_keys_01" />
