@@ -19,6 +19,12 @@ class AccountFiscalPosition(models.Model):
         ondelete="restrict",
         string="VERI*FACTU registration key",
     )
+    aeat_active = fields.Boolean(
+        string="AEAT Active",
+        copy=False,
+        default=True,
+        help="Enable AEAT communication for this fiscal position?",
+    )
 
     @api.model
     def _get_verifactu_tax_keys(self):

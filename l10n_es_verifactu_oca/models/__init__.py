@@ -4,6 +4,7 @@ from . import verifactu_mixin
 from . import verifactu_invoice_entry
 from . import account_move
 from . import aeat_tax_agency
+from . import aeat_mixin
 from . import account_fiscal_position
 from . import account_fiscal_position_template
 from . import res_partner

@@ -11,4 +11,17 @@
             </xpath>
         </field>
     </record>
+    <record id="view_partner_form_verifactu" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="aeat_sending_enabled" invisible="1" />
+                <field
+                    name="aeat_simplified_invoice"
+                    attrs="{'invisible': [('aeat_sending_enabled', '=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
 </odoo>

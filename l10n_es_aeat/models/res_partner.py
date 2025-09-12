@@ -36,17 +36,6 @@ class ResPartner(models.Model):
     # 02 - NIF - VAT
     # 04 - Official document from the original country
     # 07 - Not registered on census
-    aeat_simplified_invoice = fields.Boolean(
-        string="Simplified invoices in AEAT?",
-        help="Checking this mark, invoices done to this partner will be "
-        "sent to AEAT as simplified invoices.",
-    )
-    aeat_sending_enabled = fields.Boolean(
-        compute="_compute_aeat_sending_enabled",
-    )
-
-    def _compute_aeat_sending_enabled(self):
-        self.aeat_sending_enabled = False
 
     def _map_aeat_country_code(self, country_code, extended=False):
         """Map country codes according the fiscal conditions.

@@ -16,7 +16,7 @@ from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.float_utils import float_compare
 
-from odoo.addons.l10n_es_aeat.models.aeat_mixin import round_by_keys
+from .aeat_mixin import round_by_keys
 
 VERIFACTU_VERSION = 1.0
 VERIFACTU_DATE_FORMAT = "%d-%m-%Y"
