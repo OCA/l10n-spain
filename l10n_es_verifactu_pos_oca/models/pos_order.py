@@ -228,20 +228,13 @@ class PosOrder(models.Model):
     def _get_verifactu_amount_total(self):
         return abs(self.amount_total)  # VeriFactu uses absolute values
 
-    def _aeat_get_partner(self):
+    def _verifactu_get_partner(self):
         """Get the partner for AEAT purposes"""
         return (
             self.partner_id.commercial_partner_id
             if self.partner_id
             else self.env["res.partner"]
         )
-
-    def _is_aeat_simplified_invoice(self):
-        """Check if this is a simplified invoice for AEAT purposes"""
-        partner = self._aeat_get_partner()
-        return (
-            partner.aeat_simplified_invoice if partner else True
-        )  # POS is typically simplified
 
     @api.depends("amount_total")
     def _compute_verifactu_refund_type(self):
@@ -372,7 +365,7 @@ class PosOrder(models.Model):
     def _get_verifactu_receiver_dict(self):
         """Get receiver dict for POS orders."""
         self.ensure_one()
-        partner = self._aeat_get_partner()
+        partner = self._verifactu_get_partner()
         if not partner:
             return {}
         return {
@@ -662,13 +655,33 @@ class PosOrder(models.Model):
 
     def write(self, vals):
         """Override write to protect fields once sent to verifactu"""
-        for _order in self.filtered(
-            lambda x: x.verifactu_enabled and x.aeat_state != "not_sent"
-        ):
-            if "date_order" in vals:
-                self._raise_exception_verifactu(_("order date"))
-            elif "pos_reference" in vals:
-                self._raise_exception_verifactu(_("POS reference"))
-            elif "l10n_es_unique_id" in vals:
-                self._raise_exception_verifactu(_("simplified invoice number"))
+        PROTECTED_FIELDS = {
+            "date_order": _("order date"),
+            "pos_reference": _("POS reference"),
+            "l10n_es_unique_id": _("simplified invoice number"),
+        }
+
+        modified_protected = set(vals.keys()) & set(PROTECTED_FIELDS.keys())
+        if modified_protected:
+            for order in self.filtered(
+                lambda x: x.verifactu_enabled and x.aeat_state != "not_sent"
+            ):
+                protected_field_names = [
+                    PROTECTED_FIELDS[field] for field in modified_protected
+                ]
+                raise UserError(
+                    _(
+                        "[ID: %(id)d, REF: %(ref)s, INV: %(inv)s] "
+                        "You cannot change the %(fields)s "
+                        "of document already registered at VERI*FACTU. You must cancel the "
+                        "document and create a new one with the correct value."
+                    )
+                    % {
+                        "id": order.id,
+                        "ref": order.pos_reference,
+                        "inv": order.l10n_es_unique_id,
+                        "fields": ", ".join(protected_field_names),
+                    }
+                )
+
         return super().write(vals)

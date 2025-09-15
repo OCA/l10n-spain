@@ -8,7 +8,6 @@
     "application": False,
     "installable": True,
     "depends": [
-        "point_of_sale",
         "l10n_es_pos",
         "l10n_es_verifactu_oca",
         "pos_default_partner",
