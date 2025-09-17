@@ -28,14 +28,14 @@ Suministro Inmediato de Información en el IGIC
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
--  `FAQ de la ATC para el
-   SII <https://www3.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/pdf/Preguntas_frecuentes_SII.pdf>`__
--  `Parte
-   técnica <https://www3.gobiernodecanarias.org/tributos/atc/jsf/publico/asistenciaContribuyente/sii/tecnica.jsp>`__
--  `Parte de
-   ayuda <https://www3.gobiernodecanarias.org/tributos/atc/jsf/publico/asistenciaContribuyente/sii/ayuda.jsp>`__
--  `Parte de
-   normativa <https://www3.gobiernodecanarias.org/tributos/atc/jsf/publico/asistenciaContribuyente/sii/normativa.jsp>`__
+- `FAQ de la ATC para el
+  SII <https://www3.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/pdf/Preguntas_frecuentes_SII.pdf>`__
+- `Parte
+  técnica <https://www3.gobiernodecanarias.org/tributos/atc/jsf/publico/asistenciaContribuyente/sii/tecnica.jsp>`__
+- `Parte de
+  ayuda <https://www3.gobiernodecanarias.org/tributos/atc/jsf/publico/asistenciaContribuyente/sii/ayuda.jsp>`__
+- `Parte de
+  normativa <https://www3.gobiernodecanarias.org/tributos/atc/jsf/publico/asistenciaContribuyente/sii/normativa.jsp>`__
 
 **Table of contents**
 
@@ -75,15 +75,15 @@ Authors
 Contributors
 ------------
 
--  Sistemas de Datos S.L
--  `Comunitea <https://comunitea.com/>`__:
+- Sistemas de Datos S.L
+- `Comunitea <https://comunitea.com/>`__:
 
-   -  Omar Castiñeira <omar@comunitea.com>
-   -  Mario Montes <mario@comunitea.com>
+  - Omar Castiñeira <omar@comunitea.com>
+  - Mario Montes <mario@comunitea.com>
 
--  `Tecnativa <https://www.tecnativa.com>`__:
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-   -  Sergio Teruel
+  - Sergio Teruel
 
 Maintainers
 -----------
