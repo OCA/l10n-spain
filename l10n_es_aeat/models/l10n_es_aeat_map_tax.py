@@ -34,10 +34,10 @@ class L10nEsAeatMapTax(models.Model):
     @api.constrains("date_from", "date_to", "model")
     def _unique_date_range(self):
         for map_tax in self:
-            domain = ["&", ("model", "=", map_tax.model), ("id", "!=", map_tax.id)]
-            if self.date_from:
+            domain = [("model", "=", map_tax.model), ("id", "!=", map_tax.id)]
+            if map_tax.date_from:
                 domain.append(("date_to_search", ">=", map_tax.date_from))
-            if self.date_to:
+            if map_tax.date_to:
                 domain.append(("date_from_search", "<=", map_tax.date_to))
             if map_tax.search(domain):
                 raise exceptions.Warning(
