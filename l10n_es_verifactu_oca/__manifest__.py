@@ -13,7 +13,13 @@
     "author": "Aures Tic,ForgeFlow,Tecnativa,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
-    "depends": ["account_invoice_refund_link", "l10n_es_aeat"],
+    "depends": [
+        "account_invoice_refund_link",
+        "l10n_es_aeat",
+        "l10n_es_irnr",
+        "l10n_es_extra_data",
+        "report_qweb_element_page_visibility",
+    ],
     "data": [
         "data/verifactu_tax_agency_data.xml",
         "data/verifactu_registration_key_data.xml",
