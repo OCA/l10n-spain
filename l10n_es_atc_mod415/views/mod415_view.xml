@@ -12,8 +12,7 @@
         />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
-            <xpath expr="." position="inside">
-            </xpath>
+            <xpath expr="." position="inside" />
         </field>
     </record>
     <!-- Form view -->
@@ -25,8 +24,7 @@
         />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
-            <xpath expr="." position="inside">
-            </xpath>
+            <xpath expr="." position="inside" />
         </field>
     </record>
     <!-- Search view -->
@@ -35,8 +33,7 @@
         <field name="inherit_id" ref="l10n_es_aeat_mod347.partner_record_search_view" />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
-            <xpath expr="." position="inside">
-            </xpath>
+            <xpath expr="." position="inside" />
         </field>
     </record>
     <!-- #############################################
@@ -51,8 +48,7 @@
         />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
-            <xpath expr="." position="inside">
-            </xpath>
+            <xpath expr="." position="inside" />
         </field>
     </record>
     <!-- Form view -->
@@ -64,8 +60,7 @@
         />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
-            <xpath expr="." position="inside">
-            </xpath>
+            <xpath expr="." position="inside" />
         </field>
     </record>
     <!-- #################
