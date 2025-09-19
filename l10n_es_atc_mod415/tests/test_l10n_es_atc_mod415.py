@@ -9,8 +9,7 @@
 
 import logging
 
-from odoo.tests import tagged
-from odoo.tests.common import Form
+from odoo.tests import Form, tagged
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
@@ -27,12 +26,12 @@ class TestL10nEsAtcMod415(TestL10nEsAeatModBase):
         cls.company = cls.env["res.company"].create(
             {"name": "Canary test company", "currency_id": cls.env.ref("base.EUR").id}
         )
-        cls.env["account.chart.template"].try_loading(
-            "es_pymes_canary", company=cls.company, install_demo=False
-        )
         cls.env.ref("base.group_multi_company").write({"users": [(4, cls.env.uid)]})
         cls.env.user.write(
             {"company_ids": [(4, cls.company.id)], "company_id": cls.company.id}
+        )
+        cls.env["account.chart.template"].try_loading(
+            "es_canary_pymes", company=cls.company, install_demo=False
         )
         cls.with_context(company_id=cls.company.id)
         return True
