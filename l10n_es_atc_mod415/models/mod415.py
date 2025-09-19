@@ -35,7 +35,7 @@ class L10nEsAtcMod415Report(models.Model):
         return {
             "domain": "[('report_id','in'," + str(self.ids) + ")]",
             "name": _("Partner records"),
-            "view_mode": "tree,form",
+            "view_mode": "list,form",
             "res_model": "l10n.es.atc.mod415.partner_record",
             "type": "ir.actions.act_window",
         }
