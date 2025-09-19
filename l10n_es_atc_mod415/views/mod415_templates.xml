@@ -2,7 +2,7 @@
     <template id="communication_success" name="415 communication success">
         <t t-call="portal.frontend_layout">
             <div id="wrap">
-                <div class="oe_structure oe_empty">
+                <div class="oe_empty">
                     <div class="container">
                         <div class="row mb32">
                             <div class="col-12 text-center">
@@ -32,7 +32,7 @@
     <template id="communication_failed" name="415 communication failed">
         <t t-call="portal.frontend_layout">
             <div id="wrap">
-                <div class="oe_structure oe_empty">
+                <div class="oe_empty">
                     <div class="container">
                         <div class="row mb32">
                             <div class="col-12 text-center">
