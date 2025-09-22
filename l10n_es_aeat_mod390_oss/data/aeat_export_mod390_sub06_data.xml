@@ -1,0 +1,13 @@
+<!-- Copyright 2025 ForgeFlow S.L. (https://www.forgeflow.com)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record
+        id="l10n_es_aeat_mod390.aeat_mod390_2021_sub06_export_line_37"
+        model="aeat.model.export.config.line"
+    >
+        <field
+            name="expression"
+        >${object.tax_line_ids.filtered(lambda r: r.field_number == 126).amount}</field>
+        <field name="fixed_value" />
+    </record>
+</odoo>
