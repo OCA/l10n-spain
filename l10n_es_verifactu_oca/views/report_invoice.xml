@@ -1,52 +1,51 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <template
-        id="external_layout_striped_verifactu_qr"
-        inherit_id="web.external_layout_striped"
-        priority="1000"
-    >
-        <xpath expr="//div[contains(@class,'o_background_header')]" position="replace">
-            <div class="o_background_header">
+
+    <template id="address_layout" inherit_id="web.address_layout" priority="1000">
+        <div class="address row" position="attributes">
+            <attribute
+                name="t-if"
+            >address and not o or (o and 'verifactu_qr' not in o._fields) or (o and not o.verifactu_enabled) or (o and o.verifactu_enabled and not o.verifactu_qr)
+            </attribute>
+        </div>
+        <div class="address row" position="after">
+            <div
+                t-if="address and o and 'verifactu_qr' in o._fields and o.verifactu_enabled and o.verifactu_qr"
+                class="row"
+                id="verifactu_row"
+            >
                 <div
                     id="verifactu"
                     style="page-break-inside:avoid;"
-                    class="float-start align-items-center first-page"
-                    t-if="o.verifactu_enabled and o.verifactu_qr"
+                    class="text-center col-3"
+                    t-if="o and o.verifactu_enabled and o.verifactu_qr"
                 >
-                    <ul class="list-inline mt-6 mb-1">QR Tributario</ul>
-                    <ul id="verifactu_qr" class="list-inline m-0 p-0">
+                    <ul class="list-inline mb4">QR Tributario</ul>
+                    <ul id="verifactu_qr" class="list-inline mb4">
                         <img
                             t-attf-src="data:image/png;base64,{{o.verifactu_qr}}"
-                            style="min-width: 30mm; max-width: 40mm"
+                            style="min-width: 40mm; max-width: 40mm"
                         />
                     </ul>
-                    <ul class="list-inline mb-4 mt-1">VERI*FACTU</ul>
+                    <ul class="list-inline mb4">VERI*FACTU</ul>
                 </div>
-                <div class="float-end">
-                    <div class="mt0 text-end h3" t-field="company.report_header" />
-                </div>
-
-                <div class="float-end company_address">
-                    <ul class="list-unstyled">
-                        <li t-if="company.is_company_details_empty"><t
-                                t-esc="company.partner_id"
-                                t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"
-                            /></li>
-                        <li t-else=""><t t-esc="company.company_details" /></li>
-                        <li t-if="forced_vat">
-                            <t t-esc="company.country_id.vat_label or 'Tax ID'" />:
-                            <span t-esc="forced_vat" />
-                        </li>
-                    </ul>
-                </div>
-                <img
-                    t-if="company.logo"
-                    t-att-src="image_data_uri(company.logo)"
-                    class="float-end"
-                    alt="Logo"
-                />
-                <div class="clearfix" />
+                <t t-if="information_block">
+                    <t t-set="colclass" t-value="'col-5'" />
+                    <div name="information_block" class="col-4">
+                        <t t-out="information_block" />
+                    </div>
+                    <div name="address" t-att-class="colclass">
+                    <t t-esc="address" />
+                    </div>
+                </t>
+                <t t-if="not information_block">
+                    <t t-set="colclass" t-value="'col-5 offset-4'" />
+                    <div name="address" t-att-class="colclass">
+                    <t t-esc="address" />
+                    </div>
+                </t>
             </div>
-        </xpath>
+        </div>
     </template>
+
 </odoo>
