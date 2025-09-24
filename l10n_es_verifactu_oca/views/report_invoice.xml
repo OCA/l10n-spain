@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
+    <template
+        id="report_invoice_document"
+        inherit_id="account.report_invoice_document"
+        priority="1000"
+    >
+        <xpath expr="//t[@t-set='forced_vat']" position="after">
+            <t
+                t-set="verifactu_invoice"
+                t-value="o.verifactu_enabled and o.verifactu_qr"
+            />
+        </xpath>
+    </template>
+
     <template id="address_layout" inherit_id="web.address_layout" priority="1000">
         <div class="address row" position="attributes">
-            <attribute
-                name="t-if"
-            >address and not o or (o and 'verifactu_qr' not in o._fields) or (o and not o.verifactu_enabled) or (o and o.verifactu_enabled and not o.verifactu_qr)
-            </attribute>
+            <attribute name="t-if">not verifactu_invoice</attribute>
         </div>
         <div class="address row" position="after">
-            <div
-                t-if="address and o and 'verifactu_qr' in o._fields and o.verifactu_enabled and o.verifactu_qr"
-                class="row"
-                id="verifactu_row"
-            >
+            <div t-if="verifactu_invoice" class="row" id="verifactu_row">
                 <div
                     id="verifactu"
                     style="page-break-inside:avoid;"
                     class="text-center col-3"
-                    t-if="o and o.verifactu_enabled and o.verifactu_qr"
                 >
                     <ul class="list-inline mb4">QR Tributario</ul>
                     <ul id="verifactu_qr" class="list-inline mb4">
