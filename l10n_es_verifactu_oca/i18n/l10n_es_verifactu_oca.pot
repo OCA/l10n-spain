@@ -868,7 +868,7 @@ msgid "Previous Invoice Entry"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.report_invoice_document
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.address_layout
 msgid "QR Tributario"
 msgstr ""
 
@@ -1158,8 +1158,8 @@ msgid "Unsupported search operator"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.address_layout
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.report_invoice_document
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.verifactu_tax_agency_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.view_account_position_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.view_company_verifactu_form
