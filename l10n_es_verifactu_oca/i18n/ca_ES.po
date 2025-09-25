@@ -79,7 +79,8 @@ msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.verifactu_invoice_entry_response_view_kanban
-msgid "<i class=\"fa fa-clock-o\" aria-label=\"Date\" role=\"img\" title=\"Date\"/>"
+msgid ""
+"<i class=\"fa fa-clock-o\" aria-label=\"Date\" role=\"img\" title=\"Date\"/>"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
@@ -263,8 +264,8 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_payment__verifactu_macrodata
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_macrodata
 msgid ""
-"Check to confirm that the document has an absolute amount greater o equal to"
-" 100 000 000,00 euros."
+"Check to confirm that the document has an absolute amount greater o equal to "
+"100 000 000,00 euros."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
@@ -569,8 +570,8 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_res_company__verifactu_start_date
 msgid ""
-"If this field is set, the VERI*FACTU won't be enabled on invoices with lower"
-" invoice date. If not set, it can be enabled on all invoice dates"
+"If this field is set, the VERI*FACTU won't be enabled on invoices with lower "
+"invoice date. If not set, it can be enabled on all invoice dates"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
@@ -869,7 +870,7 @@ msgid "Previous Invoice Entry"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.report_invoice_document
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.address_layout
 msgid "QR Tributario"
 msgstr ""
 
@@ -1159,8 +1160,8 @@ msgid "Unsupported search operator"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.address_layout
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.report_invoice_document
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.verifactu_tax_agency_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.view_account_position_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.view_company_verifactu_form

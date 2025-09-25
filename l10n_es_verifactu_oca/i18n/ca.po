@@ -81,7 +81,8 @@ msgstr "- L'agència tributària de la teva companyia no és compatible."
 
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.verifactu_invoice_entry_response_view_kanban
-msgid "<i class=\"fa fa-clock-o\" aria-label=\"Date\" role=\"img\" title=\"Date\"/>"
+msgid ""
+"<i class=\"fa fa-clock-o\" aria-label=\"Date\" role=\"img\" title=\"Date\"/>"
 msgstr ""
 "<i class=\"fa fa-clock-o\" aria-label=\"Data\" role=\"img\" title=\"Data\"/>"
 
@@ -266,8 +267,8 @@ msgstr "Comprova factures incorrectes de VERI*FACTU"
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_payment__verifactu_macrodata
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_macrodata
 msgid ""
-"Check to confirm that the document has an absolute amount greater o equal to"
-" 100 000 000,00 euros."
+"Check to confirm that the document has an absolute amount greater o equal to "
+"100 000 000,00 euros."
 msgstr ""
 "Comprova que el document tingui un import absolut superior o igual a "
 "100.000.000,00 euros."
@@ -578,8 +579,8 @@ msgstr "Si està marcat, alguns missatges tenen un error de lliurament."
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_res_company__verifactu_start_date
 msgid ""
-"If this field is set, the VERI*FACTU won't be enabled on invoices with lower"
-" invoice date. If not set, it can be enabled on all invoice dates"
+"If this field is set, the VERI*FACTU won't be enabled on invoices with lower "
+"invoice date. If not set, it can be enabled on all invoice dates"
 msgstr ""
 "Si aquest camp està definit, el VERI*FACTU no s'activarà en factures amb una "
 "data de factura inferior. Si no, estarà activat per a totes les factures"
@@ -616,7 +617,8 @@ msgstr ""
 msgid ""
 "Indicates the state of this document in relation with the presentation at "
 "the AEAT"
-msgstr "Indica l'estat d'aquest document en relació amb la presentació a l'AEAT"
+msgstr ""
+"Indica l'estat d'aquest document en relació amb la presentació a l'AEAT"
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_invoice_entry__send_state
@@ -888,7 +890,7 @@ msgid "Previous Invoice Entry"
 msgstr "Entrada de factura anterior"
 
 #. module: l10n_es_verifactu_oca
-#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.report_invoice_document
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.address_layout
 msgid "QR Tributario"
 msgstr "QR Tributari"
 
@@ -1186,8 +1188,8 @@ msgid "Unsupported search operator"
 msgstr "Operador de cerca no compatible"
 
 #. module: l10n_es_verifactu_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.address_layout
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.report_invoice_document
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.verifactu_tax_agency_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.view_account_position_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.view_company_verifactu_form
