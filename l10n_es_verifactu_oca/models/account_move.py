@@ -421,30 +421,26 @@ class AccountMove(models.Model):
     def _get_verifactu_receiver_dict(self):
         self.ensure_one()
         receiver = self._aeat_get_partner()
-        (
-            country_code,
-            identifier_type,
-            identifier,
-        ) = receiver._parse_aeat_vat_info()
+        country_code, identifier_type, identifier = receiver._parse_aeat_vat_info()
         if identifier:
             identifier = "".join(e for e in identifier if e.isalnum()).upper()
         else:
             identifier = "NO_DISPONIBLE"
             identifier_type = "06"
         if identifier_type == "":
-            return {
-                "IDDestinatario": {
-                    "NombreRazon": receiver.name,
-                    "NIF": identifier,
-                }
-            }
+            return {"IDDestinatario": {"NombreRazon": receiver.name, "NIF": identifier}}
+        if (
+            receiver._map_aeat_country_code(country_code)
+            in receiver._get_aeat_europe_codes()
+        ):
+            identifier = country_code + identifier
         return {
             "IDDestinatario": {
                 "NombreRazon": receiver.name,
                 "IDOtro": {
                     "CodigoPais": receiver.country_id.code,
                     "IDType": identifier_type,
-                    "ID": country_code,
+                    "ID": identifier,
                 },
             }
         }
