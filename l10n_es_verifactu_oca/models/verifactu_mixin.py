@@ -142,13 +142,6 @@ class VerifactuMixin(models.AbstractModel):
                     document.last_verifactu_response_line_id.send_state
                 )
 
-    @api.model
-    def _get_verifactu_reference_models(self):
-        """This method is used to define the models that can be used as
-        previous documents in the VERI*FACTU mixin.
-        """
-        return ["account.move"]
-
     def _compute_verifactu_enabled(self):
         raise NotImplementedError
 
@@ -333,7 +326,7 @@ class VerifactuMixin(models.AbstractModel):
                     "verifactu_chaining_id": chaining.id,
                     "model": self._name,
                     "document_id": self.id,
-                    "document_name": self.name,
+                    "document_name": self._get_document_serial_number(),
                     "previous_invoice_entry_id": previous_invoice_entry_id,
                     "company_id": self.company_id.id,
                     "document_hash": "",
