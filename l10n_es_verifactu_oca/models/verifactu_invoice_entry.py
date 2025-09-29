@@ -352,20 +352,15 @@ class VerifactuInvoiceEntry(models.Model):
             and verifactu_response["RespuestaLinea"]
             or []
         )
-        models = self.env["verifactu.mixin"]._get_verifactu_reference_models()
         for verifactu_response_line in verifactu_response_lines:
             invoice_num = verifactu_response_line["IDFactura"]["NumSerieFactura"]
-            for model in models:
-                if document := self.env[model].search(
-                    [
-                        ("name", "=", invoice_num),
-                        ("id", "in", self.mapped("document_id")),
-                    ],
-                    limit=1,
-                ):
-                    break
-            # Find the verifactu.invoice entry for this document
-            verifactu_invoice_entry = document.last_verifactu_invoice_entry_id
+            matching_entries = self.filtered(
+                lambda r, invoice_num=invoice_num: r.document_name == invoice_num
+            ).sorted(lambda x: x.create_date, reverse=True)
+            if not matching_entries:
+                continue
+            verifactu_invoice_entry = matching_entries[0]  # Get first one
+            document = verifactu_invoice_entry.document
             previous_response_line = document.last_verifactu_response_line_id
             send_state = VERIFACTU_STATE_MAPPING[
                 verifactu_response_line["EstadoRegistro"]
