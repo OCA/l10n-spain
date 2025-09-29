@@ -239,6 +239,7 @@ msgid "Done"
 msgstr "Completado"
 
 #. module: l10n_es_aeat_sii_match
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_match/models/aeat_sii_match_report.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__state__draft
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_filter
@@ -342,6 +343,7 @@ msgid "Journal Entry"
 msgstr "Asiento contable"
 
 #. module: l10n_es_aeat_sii_match
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_match/models/account_move.py:0
 #, python-format
 msgid ""
@@ -380,6 +382,7 @@ msgid "Match state"
 msgstr "Estado cuadre"
 
 #. module: l10n_es_aeat_sii_match
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_match/models/aeat_sii_match_report.py:0
 #, python-format
 msgid "No VAT configured for the company '{}'"
@@ -506,6 +509,7 @@ msgid "Result"
 msgstr "Resultado"
 
 #. module: l10n_es_aeat_sii_match
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_match/models/aeat_sii_match_report.py:0
 #, python-format
 msgid "Results"
@@ -597,12 +601,14 @@ msgid "View full tree"
 msgstr "Ver vista completa"
 
 #. module: l10n_es_aeat_sii_match
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_match/models/aeat_sii_match_report.py:0
 #, python-format
 msgid "You can not calculate at this moment because there is a job running"
 msgstr "No se puede calcular porque hay un trabajo en ejecución"
 
 #. module: l10n_es_aeat_sii_match
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_match/models/account_move.py:0
 #, python-format
 msgid ""
@@ -613,6 +619,7 @@ msgstr ""
 "ejecutándose"
 
 #. module: l10n_es_aeat_sii_match
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_match/models/account_move.py:0
 #, python-format
 msgid ""
