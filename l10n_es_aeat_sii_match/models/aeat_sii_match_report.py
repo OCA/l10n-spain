@@ -98,7 +98,7 @@ class SiiMatchReport(models.Model):
         readonly=True,
     )
     number_records_partially = fields.Integer(
-        string="Records partially contrasted",
+        string="Records partially correct",
         readonly=True,
     )
     number_records_no_test = fields.Integer(

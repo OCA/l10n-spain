@@ -453,10 +453,14 @@ msgid "Records only in SII"
 msgstr "Registros solo en el SII"
 
 #. module: l10n_es_aeat_sii_match
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__number_records_partially
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__number_records_partially_contrasted
 msgid "Records partially contrasted"
 msgstr "Registros parcialmente contrastados"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__number_records_partially
+msgid "Records partially correct"
+msgstr "Registros parcialmente correctos"
 
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__number_records_no_exist
