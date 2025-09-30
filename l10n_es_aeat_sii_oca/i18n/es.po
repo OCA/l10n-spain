@@ -831,6 +831,11 @@ msgstr "Enviar anulación al SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
+msgid "Send now to SII"
+msgstr "Enviar ahora al SII"
+
+#. module: l10n_es_aeat_sii_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_wizard_send_sii
 msgid "Send to SII"
 msgstr "Enviar al SII"
