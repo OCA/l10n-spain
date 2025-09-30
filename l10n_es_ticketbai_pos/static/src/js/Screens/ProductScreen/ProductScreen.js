@@ -9,6 +9,7 @@ odoo.define("l10n_es_ticketbai_pos.ProductScreen", function (require) {
 
     const ProductScreen = require("point_of_sale.ProductScreen");
     const Registries = require("point_of_sale.Registries");
+    const {Gui} = require("point_of_sale.Gui");
 
     const L10nEsTicketBaiProductScreen = (OriginProductScreen) =>
         class extends OriginProductScreen {
@@ -18,7 +19,7 @@ odoo.define("l10n_es_ticketbai_pos.ProductScreen", function (require) {
                 if (this.env.pos.company.tbai_enabled) {
                     if (selectedProduct.taxes_id.length !== 1) {
                         isValid = false;
-                        this.showPopup("ErrorPopup", {
+                        Gui.showPopup("ErrorPopup", {
                             title: this.env._t("TicketBAI"),
                             body: `${this.env._t("Please set a tax for product")} ${
                                 selectedProduct.display_name

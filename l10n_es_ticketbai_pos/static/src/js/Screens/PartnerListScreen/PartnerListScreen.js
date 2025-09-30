@@ -9,6 +9,7 @@ odoo.define("l10n_es_ticketbai_pos.PartnerListScreen", function (require) {
 
     const PartnerListScreen = require("point_of_sale.PartnerListScreen");
     const Registries = require("point_of_sale.Registries");
+    const {Gui} = require("point_of_sale.Gui");
 
     const L10nEsTicketBaiPartnerListScreen = (OriginalPartnerListScreen) =>
         class extends OriginalPartnerListScreen {
@@ -20,7 +21,7 @@ odoo.define("l10n_es_ticketbai_pos.PartnerListScreen", function (require) {
 
                     if (!order.check_partner_country_code(currentPartner)) {
                         isSuccessful = false;
-                        this.showPopup("ErrorPopup", {
+                        Gui.showPopup("ErrorPopup", {
                             title: this.env._t("TicketBAI"),
                             body: _.str.sprintf(
                                 this.env._t("Please set Country for customer %s."),
@@ -31,7 +32,7 @@ odoo.define("l10n_es_ticketbai_pos.PartnerListScreen", function (require) {
                         !order.check_simplified_invoice_spanish_partner(currentPartner)
                     ) {
                         isSuccessful = false;
-                        this.showPopup("ErrorPopup", {
+                        Gui.showPopup("ErrorPopup", {
                             title: this.env._t("TicketBAI"),
                             body: this.env._t(
                                 "Non spanish customers are not supported for Simplified Invoice."
@@ -39,7 +40,7 @@ odoo.define("l10n_es_ticketbai_pos.PartnerListScreen", function (require) {
                         });
                     } else if (!order.check_partner_vat(currentPartner)) {
                         isSuccessful = false;
-                        this.showPopup("ErrorPopup", {
+                        Gui.showPopup("ErrorPopup", {
                             title: this.env._t("TicketBAI"),
                             body: _.str.sprintf(
                                 this.env._t(
