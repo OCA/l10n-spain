@@ -50,6 +50,7 @@ Módulo base para declaraciones de la AEAT, que incluye:
   "Agencia Estatal de Administración Tributaria" creado al efecto.
 - Certificado para las declaraciones de la AEAT
 - Webservice AEAT SOAP
+- Gestión de Inmuebles.
 
 **Table of contents**
 
@@ -123,6 +124,13 @@ Para importar el certificado, hay que:
    p12
 3. Pulsar obtener claves e introducir la contraseña del certificado
 
+Para gestionar inmuebles, hay que:
+
+1. Entrar en *Facturación > Configuración > AEAT > Inmuebles*
+2. Crear uno nuevo, rellenando los datos del formulario.
+3. Ya se podrá añadir un inmueble en el campo Inmueble de las lineas de
+   factura.
+
 Known issues / Roadmap
 ======================
 
@@ -174,6 +182,8 @@ Contributors
 - ``Studio73 <https://www.studio73.es>``\ \_\_:
 
   - Pablo Cortés
+
+- Carlos Sainz-Pardo (https://www.netkia.es)
 
 Maintainers
 -----------
