@@ -451,9 +451,9 @@ class SiiMatchReport(models.Model):
         )
         return {
             "name": _("Results"),
-            "view_mode": "tree, form",
+            "view_mode": "list, form",
             "res_model": "l10n.es.aeat.sii.match.result",
-            "views": [(tree_view and tree_view.id or False, "tree"), (False, "form")],
+            "views": [(tree_view and tree_view.id or False, "list"), (False, "form")],
             "type": "ir.actions.act_window",
             "domain": [("id", "in", self.sii_match_result.ids)],
             "context": {},
