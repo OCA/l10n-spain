@@ -127,13 +127,13 @@
                                         icon="fa-check"
                                     />
                                     <field name="sii_match_result" nolabel="1">
-                                        <tree>
+                                        <list>
                                             <field name="invoice" />
                                             <field name="invoice_id" />
                                             <field name="sii_match_state" />
                                             <field name="sii_contrast_state" />
                                             <field name="invoice_location" />
-                                        </tree>
+                                        </list>
                                     </field>
                                 </group>
                             </page>
@@ -145,10 +145,10 @@
     </record>
 
     <record id="view_l10n_es_aeat_sii_match_report_tree" model="ir.ui.view">
-        <field name="name">l10n_es.aeat.sii.match.report.tree</field>
+        <field name="name">l10n_es.aeat.sii.match.report.list</field>
         <field name="model">l10n.es.aeat.sii.match.report</field>
         <field name="arch" type="xml">
-            <tree
+            <list
                 decoration-info="state == 'draft'"
                 decoration-muted="state in ('cancelled', 'done')"
                 decoration-danger="state == 'error'"
@@ -160,7 +160,7 @@
                 <field name="calculate_date" />
                 <field name="state" />
                 <field name="company_id" groups="base.group_multi_company" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -206,14 +206,14 @@
                     />
                 </group>
             </search>
-         </field>
-     </record>
+        </field>
+    </record>
 
     <!-- Window action -->
     <record id="action_l10n_es_aeat_sii_match_report" model="ir.actions.act_window">
         <field name="name">AEAT SII Match</field>
         <field name="res_model">l10n.es.aeat.sii.match.report</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- ### MENU ACCESS ### -->
@@ -244,11 +244,11 @@
                     <group colspan="4" invisible="sii_match_difference_ids == []">
                         <label for="sii_match_difference_ids" />
                         <field name="sii_match_difference_ids" nolabel="1">
-                            <tree>
+                            <list>
                                 <field name="sii_field" />
                                 <field name="sii_return_field_value" />
                                 <field name="sii_sent_field_value" />
-                            </tree>
+                            </list>
                             <form>
                                 <group>
                                     <field name="sii_field" />
@@ -264,16 +264,16 @@
     </record>
 
     <record id="view_l10n_es_aeat_sii_match_result_tree" model="ir.ui.view">
-        <field name="name">l10n_es.aeat.sii.match.result.tree</field>
+        <field name="name">l10n_es.aeat.sii.match.result.list</field>
         <field name="model">l10n.es.aeat.sii.match.result</field>
         <field name="arch" type="xml">
-            <tree create="0" delete="0">
+            <list create="0" delete="0">
                 <field name="invoice" />
                 <field name="invoice_id" />
                 <field name="sii_match_state" />
                 <field name="sii_contrast_state" />
                 <field name="invoice_location" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -369,6 +369,6 @@
                     />
                 </group>
             </search>
-         </field>
-     </record>
+        </field>
+    </record>
 </odoo>
