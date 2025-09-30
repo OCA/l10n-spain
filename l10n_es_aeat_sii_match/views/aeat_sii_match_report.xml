@@ -241,12 +241,8 @@
                         <field name="sii_match_state" />
                         <field name="sii_contrast_state" />
                     </group>
-                    <group
-                        col="1"
-                        colspan="2"
-                        invisible="sii_match_difference_ids == []"
-                    >
-                        <label for="sii_match_difference_ids" colspan="2" />
+                    <group colspan="4" invisible="sii_match_difference_ids == []">
+                        <label for="sii_match_difference_ids" />
                         <field name="sii_match_difference_ids" nolabel="1">
                             <tree>
                                 <field name="sii_field" />
@@ -254,13 +250,10 @@
                                 <field name="sii_sent_field_value" />
                             </tree>
                             <form>
-                                <group col="3">
-                                    <label for="sii_field" />
-                                    <label for="sii_return_field_value" />
-                                    <label for="sii_sent_field_value" />
-                                    <field name="sii_field" nolabel="1" />
-                                    <field name="sii_return_field_value" nolabel="1" />
-                                    <field name="sii_sent_field_value" nolabel="1" />
+                                <group>
+                                    <field name="sii_field" />
+                                    <field name="sii_return_field_value" />
+                                    <field name="sii_sent_field_value" />
                                 </group>
                             </form>
                         </field>
