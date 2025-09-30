@@ -291,6 +291,8 @@
               ref('l10n_es.account_tax_template_s_irpf195a'),
               ref('l10n_es.account_tax_template_p_irpf19'),
               ref('l10n_es.account_tax_template_p_irpf19a'),
+              ref('l10n_es.account_tax_template_p_irpf19ca'),
+              ref('l10n_es.account_tax_template_p_irpf19cs'),
               ref('l10n_es.account_tax_template_p_irpf195a'),
               ref('l10n_es.account_tax_template_s_irpf20'),
               ref('l10n_es.account_tax_template_s_irpf20a'),
@@ -304,11 +306,19 @@
               ref('l10n_es.account_tax_template_p_irpf21td'),
               ref('l10n_es.account_tax_template_p_irpf21te'),
               ref('l10n_es.account_tax_template_s_irpf24'),
+              ref('l10n_es.account_tax_template_s_irpf24_rdc'),
               ref('l10n_es.account_tax_template_p_irpf24'),
+              ref('l10n_es.account_tax_template_p_irpf24_rdc'),
+              ref('l10n_es.account_tax_template_p_irpf35cya'),
+              ref('l10n_es.account_tax_template_s_irpfnrue0'),
+              ref('l10n_es.account_tax_template_s_irpfnrnue0'),
+              ref('l10n_es.account_tax_template_p_irpfnrue0p'),
               ref('l10n_es.account_tax_template_s_irpfnrnue24'),
               ref('l10n_es.account_tax_template_p_irpfnrnue24p'),
               ref('l10n_es.account_tax_template_s_irpfnrue19'),
               ref('l10n_es.account_tax_template_p_irpfnrue19p'),
+              ref('l10n_es.account_tax_template_p_rp19'),
+              ref('l10n_es.account_tax_template_p_rrD19'),
             ])]"
         />
         <field name="sii_map_id" ref="aeat_sii_map" />
