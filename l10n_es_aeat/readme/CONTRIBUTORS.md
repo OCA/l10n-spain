@@ -9,11 +9,11 @@
 - Juan Vicente Pascual \<<jvpascual@puntsistemes.es>\>
 - Abraham Anes \<<abraham@studio73.es>\>
 - Diagram Software S.L.
+- Consultoría Informática Studio 73 S.L.
 - Miquel Raïch \<<miquel.raich@forgeflow.com>\>
 - Iván Antón \<<ozono@ozonomultimedia.com>\>
 - Digital5 S.L.
 - Valentin Vinagre \<<valentin.vinagre@sygel.es>\>
 - Manuel Regidor \<<manuel.regidor@sygel.es>\>
 - Jairo Llopis (<https://www.moduon.team>)
-- `Studio73 <https://www.studio73.es>`__:
-  - Pablo Cortés
+- Carlos Sainz-Pardo (https://www.netkia.es)
