@@ -45,6 +45,7 @@ class ResPartner(models.Model):
     aeat_sending_enabled = fields.Boolean(
         compute="_compute_aeat_sending_enabled",
     )
+    real_estate_ids = fields.One2many("l10n.es.aeat.real_estate", "partner_id")
 
     def _compute_aeat_sending_enabled(self):
         self.aeat_sending_enabled = False
