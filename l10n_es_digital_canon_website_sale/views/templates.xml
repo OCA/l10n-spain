@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="cart_totals_inherit"
+        inherit_id="website_sale.total"
+        name="Cart Totals with Canon Breakdown"
+    >
+        <xpath expr="//tr[@id='order_total_taxes']" position="before">
+            <t
+                t-set="canon"
+                t-value="sum(tax.amount * line.product_uom_qty
+                            for line in website_sale_order.website_order_line
+                            for tax in line.tax_id
+                            if tax.tax_group_id.name == 'Canon digital')"
+            />
+            <t
+                t-set="tax_without_canon"
+                t-value="website_sale_order.amount_tax - canon"
+            />
+        </xpath>
+        <xpath
+            expr="//tr[@id='order_total_taxes']//span[@t-field='website_sale_order.amount_tax']"
+            position="attributes"
+        >
+            <attribute name="t-esc">website_sale_order.amount_tax - canon</attribute>
+            <attribute name="t-field" />
+        </xpath>
+        <xpath expr="//tr[@id='order_total_taxes']" position="after">
+            <tr id="order_total_canon">
+                <td class="text-right border-0">Digital Canon:</td>
+                <td class="text-xl-right border-0">
+                    <span
+                        t-esc="canon"
+                        class="monetary_field"
+                        t-options="{'widget': 'monetary', 'display_currency': website_sale_order.currency_id}"
+                    />
+                </td>
+            </tr>
+        </xpath>
+    </template>
+</odoo>
