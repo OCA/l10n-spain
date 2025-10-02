@@ -148,7 +148,7 @@ def gen_bank_data_xml(src_path, dest_path):
     for row in reader:
         if row["FCHBAJA"]:
             continue
-        name = f'res_bank_es_{row["COD_BE"]}'
+        name = f"res_bank_es_{row['COD_BE']}"
         numero = (
             int(row["NUMEROVIA"])
             if isinstance(row["NUMEROVIA"], float)
@@ -185,7 +185,7 @@ def gen_bank_data_xml(src_path, dest_path):
         if row["DIRINTERNET"]:
             output.write(
                 indent * 2 + f'<field name="website">'
-                f'{escape(row["DIRINTERNET"].lower())}</field>\n'
+                f"{escape(row['DIRINTERNET'].lower())}</field>\n"
             )
         if row["CODIGOCIF"]:
             output.write(
