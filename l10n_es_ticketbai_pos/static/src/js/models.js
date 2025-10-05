@@ -219,6 +219,9 @@ odoo.define("l10n_es_ticketbai_pos.models", function (require) {
                 }
                 return Boolean(partner.tbai_partner_identification_number);
             }
+            _check_partner_zip(partner) {
+                return partner.zip && /^\d{5}$/.test(partner.zip);
+            }
             check_fiscal_position_vat_regime_key() {
                 return !(
                     this.fiscal_position && !this.fiscal_position.tbai_vat_regime_key

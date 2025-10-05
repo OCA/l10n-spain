@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-30 13:23+0000\n"
+"PO-Revision-Date: 2025-09-30 13:23+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -156,6 +158,13 @@ msgid "Please set a tax for product ${product.display_names}."
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
+#. odoo-javascript
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PartnerListScreen/PartnerListScreen.js:0
+#, python-format
+msgid "Please set a valid ZIP code (5 digits) for customer %s."
+msgstr ""
+
+#. module: l10n_es_ticketbai_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.res_config_settings_view_form
 msgid "PoS TicketBAI Configuration"
 msgstr ""
@@ -214,6 +223,7 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #. odoo-javascript
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PartnerListScreen/PartnerListScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PartnerListScreen/PartnerListScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PartnerListScreen/PartnerListScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PartnerListScreen/PartnerListScreen.js:0

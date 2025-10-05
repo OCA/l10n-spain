@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-13 07:00+0000\n"
+"POT-Creation-Date: 2025-09-30 13:23+0000\n"
 "PO-Revision-Date: 2023-10-12 12:38+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
@@ -18,29 +18,51 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_ticketbai_pos
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.res_config_settings_view_form
+#, fuzzy
 msgid ""
-"<span class=\"fa fa-lg fa-desktop\" title=\"Values set here are company-"
-"specific\" groups=\"base.group_multi_company\"/>"
+"<i class=\"fa fa-info-circle me-1 oe_inline\" title=\"PoS Device Serial "
+"Number. As of TicketBAI v1.1, is not required.\" pos-data-toggle=\"tooltip\"/"
+">"
 msgstr ""
-"<span class=\"fa fa-lg fa-desktop\" title=\"Values set here are company-"
-"specific\" groups=\"base.group_multi_company\"/>"
+"Número de serie del dispositivo TPV. En TicketBAI v1.1 no es requerido."
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.res_config_settings_view_form
+#, fuzzy
+msgid ""
+"<i class=\"fa fa-info-circle me-1 oe_inline\" title=\"TicketBAI Certificate "
+"(optional). If not set, the certificate from the company is used instead.\" "
+"pos-data-toggle=\"tooltip\"/>"
+msgstr ""
+"Certificado TicketBAI (opcional). Si no se establece se utiliza el "
+"certificado de la compañía."
+
+#. module: l10n_es_ticketbai_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.res_config_settings_view_form
+msgid "<span class=\"o_form_label\">TicketBAI</span>"
+msgstr ""
+
+#. module: l10n_es_ticketbai_pos
+#. odoo-javascript
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "At least one product does not have a tax."
 msgstr "Al menos un producto no tiene establecido el impuesto."
 
 #. module: l10n_es_ticketbai_pos
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.res_config_settings_view_form
 msgid "Certificate"
 msgstr "Certificado"
 
 #. module: l10n_es_ticketbai_pos
+#: model:ir.model,name:l10n_es_ticketbai_pos.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: l10n_es_ticketbai_pos
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__tbai_device_serial_number
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.res_config_settings_view_form
 msgid "Device Serial Number"
 msgstr "Número de serie de dispositivo"
 
@@ -78,8 +100,8 @@ msgid "Messages"
 msgstr "Mensajes"
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
+#. odoo-javascript
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PartnerListScreen/PartnerListScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "Non spanish customers are not supported for Simplified Invoice."
@@ -92,38 +114,39 @@ msgid "Orders"
 msgstr "Pedidos"
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
+#. odoo-javascript
 #: code:addons/l10n_es_ticketbai_pos/static/src/xml/pos.xml:0
 #, python-format
 msgid "PRO FORMA"
 msgstr "FORMA PRO"
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
+#. odoo-javascript
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "Please set Company VAT."
 msgstr "Por favor, establezca el NIF de la compañía."
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
+#. odoo-javascript
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PartnerListScreen/PartnerListScreen.js:0
 #, python-format
 msgid "Please set Country for customer %s."
 msgstr "Por favor, establezca el país para el cliente %s."
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
+#. odoo-javascript
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
-#, python-format
-msgid "Please set VAT Regime Key for fiscal position %s."
+#, fuzzy, python-format
+msgid ""
+"Please set VAT Regime Key for fiscal position ${order.fiscal_position.name}."
 msgstr ""
 "Por favor, establezca la clave de regímenes de IVA para la posición fiscal "
 "%s."
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
+#. odoo-javascript
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PartnerListScreen/PartnerListScreen.js:0
 #, python-format
 msgid ""
 "Please set VAT or TicketBAI Partner Identification Number for customer %s."
@@ -132,7 +155,7 @@ msgstr ""
 "cliente %s."
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
+#. odoo-javascript
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "Please set VAT or TicketBAI Partner Identification Number for customer."
@@ -141,18 +164,30 @@ msgstr ""
 "cliente."
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ProductScreen/ProductScreen.js:0
+#. odoo-javascript
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/models.js:0
-#, python-format
-msgid "Please set a tax for product %s."
+#, fuzzy, python-format
+msgid "Please set a tax for product ${product.display_names}."
 msgstr "Por favor, establezca un impuesto para el producto %s."
 
 #. module: l10n_es_ticketbai_pos
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
-msgid "PoS Device Serial Number. As of TicketBAI v1.1, is not required."
-msgstr ""
-"Número de serie del dispositivo TPV. En TicketBAI v1.1 no es requerido."
+#. odoo-javascript
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PartnerListScreen/PartnerListScreen.js:0
+#, fuzzy, python-format
+msgid "Please set a valid ZIP code (5 digits) for customer %s."
+msgstr "Por favor, establezca un Código Postal válido (5 dígitos) para el cliente %s."
+
+#. module: l10n_es_ticketbai_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.res_config_settings_view_form
+#, fuzzy
+msgid "PoS TicketBAI Configuration"
+msgstr "Configuración del TPV"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_res_config_settings__pos_tbai_device_serial_number
+#, fuzzy
+msgid "PoS TicketBAI Device Serial Number"
+msgstr "Número de serie de dispositivo"
 
 #. module: l10n_es_ticketbai_pos
 #: model:ir.model,name:l10n_es_ticketbai_pos.model_pos_config
@@ -162,6 +197,12 @@ msgstr "Configuración del TPV"
 #. module: l10n_es_ticketbai_pos
 #: model:ir.model,name:l10n_es_ticketbai_pos.model_pos_order
 msgid "Point of Sale Orders"
+msgstr "Pedidos del TPV"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model,name:l10n_es_ticketbai_pos.model_pos_session
+#, fuzzy
+msgid "Point of Sale Session"
 msgstr "Pedidos del TPV"
 
 #. module: l10n_es_ticketbai_pos
@@ -176,12 +217,14 @@ msgid "Responses"
 msgstr "Respuestas"
 
 #. module: l10n_es_ticketbai_pos
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_pos/models/pos_config.py:0
 #, python-format
 msgid "Simplified Invoice IDs Sequence is required"
 msgstr "Secuencia de factura simplificada requerida"
 
 #. module: l10n_es_ticketbai_pos
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_pos/models/pos_order.py:0
 #, python-format
 msgid "Simplified Invoice Number Prefix %s is not part of Number %%!"
@@ -196,13 +239,12 @@ msgid "Tbai Substitution Pos Order"
 msgstr "Pedido TPV de sustitución Tbai"
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
+#. odoo-javascript
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PartnerListScreen/PartnerListScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ProductScreen/ProductScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/models.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/tbai_models.js:0
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
 #, python-format
 msgid "TicketBAI"
@@ -210,17 +252,9 @@ msgstr "TiquetBAI"
 
 #. module: l10n_es_ticketbai_pos
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__tbai_certificate_id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_res_config_settings__pos_tbai_certificate_id
 msgid "TicketBAI Certificate"
 msgstr "Certificado TicketBAI"
-
-#. module: l10n_es_ticketbai_pos
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
-msgid ""
-"TicketBAI Certificate (optional). If not set, the certificate from the "
-"company is used instead."
-msgstr ""
-"Certificado TicketBAI (opcional). Si no se establece se utiliza el "
-"certificado de la compañía."
 
 #. module: l10n_es_ticketbai_pos
 #: model:ir.ui.menu,name:l10n_es_ticketbai_pos.menu_pos_tbai_certificates
@@ -228,7 +262,7 @@ msgid "TicketBAI Certificates"
 msgstr "TicketBAI Certificados"
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
+#. odoo-javascript
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "TicketBAI Invoice not built yet. Please try again."
@@ -246,7 +280,7 @@ msgid "TicketBAI PoS Order"
 msgstr "Pedido de TPV TicketBAI"
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
+#. odoo-javascript
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "TicketBAI certificate not loaded!"
@@ -266,6 +300,13 @@ msgstr "Clave de regímenes de IVA"
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
 msgid "VAT Regimes"
 msgstr "Claves de regímenes de IVA"
+
+#~ msgid ""
+#~ "<span class=\"fa fa-lg fa-desktop\" title=\"Values set here are company-"
+#~ "specific\" groups=\"base.group_multi_company\"/>"
+#~ msgstr ""
+#~ "<span class=\"fa fa-lg fa-desktop\" title=\"Values set here are company-"
+#~ "specific\" groups=\"base.group_multi_company\"/>"
 
 #~ msgid "Journal Entries"
 #~ msgstr "Asientos contables"

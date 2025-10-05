@@ -9,6 +9,7 @@ odoo.define("l10n_es_ticketbai_pos.PaymentScreen", function (require) {
 
     const PaymentScreen = require("point_of_sale.PaymentScreen");
     const Registries = require("point_of_sale.Registries");
+    const {Gui} = require("point_of_sale.Gui");
 
     const L10nEsTicketBaiPaymentScreen = (OriginalPaymentScreen) =>
         class extends OriginalPaymentScreen {
@@ -58,7 +59,7 @@ odoo.define("l10n_es_ticketbai_pos.PaymentScreen", function (require) {
                         );
                     }
                     if (error_msgs.length) {
-                        this.showPopup("ErrorPopup", {
+                        Gui.showPopup("ErrorPopup", {
                             title: _t("TicketBAI"),
                             body: error_msgs.join("\n"),
                         });
