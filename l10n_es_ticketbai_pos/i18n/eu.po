@@ -17,29 +17,46 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_ticketbai_pos
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.res_config_settings_view_form
 msgid ""
-"<span class=\"fa fa-lg fa-desktop\" title=\"Values set here are company-"
-"specific\" groups=\"base.group_multi_company\"/>"
+"<i class=\"fa fa-info-circle me-1 oe_inline\" title=\"PoS Device Serial "
+"Number. As of TicketBAI v1.1, is not required.\" pos-data-toggle=\"tooltip\"/"
+">"
 msgstr ""
-"<span class=\"fa fa-lg fa-desktop\" title=\"Hemen ezarritako balioak "
-"enpresaren espezifikoak dira\" groups=\"base.group_multi_company\"/>"
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.res_config_settings_view_form
+msgid ""
+"<i class=\"fa fa-info-circle me-1 oe_inline\" title=\"TicketBAI Certificate "
+"(optional). If not set, the certificate from the company is used instead.\" "
+"pos-data-toggle=\"tooltip\"/>"
+msgstr ""
+
+#. module: l10n_es_ticketbai_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.res_config_settings_view_form
+msgid "<span class=\"o_form_label\">TicketBAI</span>"
+msgstr ""
+
+#. module: l10n_es_ticketbai_pos
+#. odoo-javascript
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "At least one product does not have a tax."
 msgstr "Gutxienez produktu batek ez du zergarik."
 
 #. module: l10n_es_ticketbai_pos
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.res_config_settings_view_form
 msgid "Certificate"
 msgstr "Ziurtagiria"
 
 #. module: l10n_es_ticketbai_pos
+#: model:ir.model,name:l10n_es_ticketbai_pos.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: l10n_es_ticketbai_pos
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__tbai_device_serial_number
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.res_config_settings_view_form
 msgid "Device Serial Number"
 msgstr "Gailuaren serie zenbakia"
 
@@ -78,8 +95,8 @@ msgid "Messages"
 msgstr "Mezuak"
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
+#. odoo-javascript
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PartnerListScreen/PartnerListScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "Non spanish customers are not supported for Simplified Invoice."
@@ -92,36 +109,37 @@ msgid "Orders"
 msgstr "Aginduak"
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
+#. odoo-javascript
 #: code:addons/l10n_es_ticketbai_pos/static/src/xml/pos.xml:0
 #, python-format
 msgid "PRO FORMA"
 msgstr "PRO FORMA"
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
+#. odoo-javascript
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "Please set Company VAT."
 msgstr "Mesedez, ezarri Enpresaren IFZa."
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
+#. odoo-javascript
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PartnerListScreen/PartnerListScreen.js:0
 #, python-format
 msgid "Please set Country for customer %s."
 msgstr "Mesedez, ezarri Herrialdea %s bezeroarentzat."
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
+#. odoo-javascript
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
-msgid "Please set VAT Regime Key for fiscal position %s."
-msgstr "Ezarri BEZaren erregimen gakoa %s posizio fiskalarentzat."
+msgid ""
+"Please set VAT Regime Key for fiscal position ${order.fiscal_position.name}."
+msgstr ""
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
+#. odoo-javascript
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PartnerListScreen/PartnerListScreen.js:0
 #, python-format
 msgid ""
 "Please set VAT or TicketBAI Partner Identification Number for customer %s."
@@ -130,7 +148,7 @@ msgstr ""
 "bezeroarentzat."
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
+#. odoo-javascript
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "Please set VAT or TicketBAI Partner Identification Number for customer."
@@ -138,18 +156,28 @@ msgstr ""
 "Ezarri IFZa edo TicketBAI Bazkidearen Identifikazio Zenbakia bezeroarentzat."
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ProductScreen/ProductScreen.js:0
+#. odoo-javascript
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/models.js:0
 #, python-format
-msgid "Please set a tax for product %s."
-msgstr "Ezarri zerga bat %s produktuari."
+msgid "Please set a tax for product ${product.display_names}."
+msgstr ""
 
 #. module: l10n_es_ticketbai_pos
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
-msgid "PoS Device Serial Number. As of TicketBAI v1.1, is not required."
+#. odoo-javascript
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PartnerListScreen/PartnerListScreen.js:0
+#, python-format
+msgid "Please set a valid ZIP code (5 digits) for customer %s."
 msgstr ""
-"PoS gailuaren serie zenbakia. TicketBAI v1.1etik aurrera, ez da beharrezkoa."
+
+#. module: l10n_es_ticketbai_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.res_config_settings_view_form
+msgid "PoS TicketBAI Configuration"
+msgstr ""
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_res_config_settings__pos_tbai_device_serial_number
+msgid "PoS TicketBAI Device Serial Number"
+msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #: model:ir.model,name:l10n_es_ticketbai_pos.model_pos_config
@@ -160,6 +188,11 @@ msgstr "Salmenta puntuaren konfigurazioa"
 #: model:ir.model,name:l10n_es_ticketbai_pos.model_pos_order
 msgid "Point of Sale Orders"
 msgstr "Salmenta puntuko eskaerak"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model,name:l10n_es_ticketbai_pos.model_pos_session
+msgid "Point of Sale Session"
+msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_tbai_invoice__pos_order_id
@@ -173,12 +206,14 @@ msgid "Responses"
 msgstr "Erantzunak"
 
 #. module: l10n_es_ticketbai_pos
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_pos/models/pos_config.py:0
 #, python-format
 msgid "Simplified Invoice IDs Sequence is required"
 msgstr "Faktura sinplifikatuaren IDaren sekuentzia beharrezkoa da"
 
 #. module: l10n_es_ticketbai_pos
+#. odoo-python
 #: code:addons/l10n_es_ticketbai_pos/models/pos_order.py:0
 #, python-format
 msgid "Simplified Invoice Number Prefix %s is not part of Number %%!"
@@ -192,13 +227,12 @@ msgid "Tbai Substitution Pos Order"
 msgstr "Tbai Ordezkapen Pos Agindua"
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
+#. odoo-javascript
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PartnerListScreen/PartnerListScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ProductScreen/ProductScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/models.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/tbai_models.js:0
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
 #, python-format
 msgid "TicketBAI"
@@ -206,17 +240,9 @@ msgstr "TicketBAI"
 
 #. module: l10n_es_ticketbai_pos
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__tbai_certificate_id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_res_config_settings__pos_tbai_certificate_id
 msgid "TicketBAI Certificate"
 msgstr "TicketBAI Ziurtagiria"
-
-#. module: l10n_es_ticketbai_pos
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
-msgid ""
-"TicketBAI Certificate (optional). If not set, the certificate from the "
-"company is used instead."
-msgstr ""
-"TicketBAI Ziurtagiria (aukerakoa). Ezarri ez bada, enpresaren ziurtagiria "
-"erabiltzen da."
 
 #. module: l10n_es_ticketbai_pos
 #: model:ir.ui.menu,name:l10n_es_ticketbai_pos.menu_pos_tbai_certificates
@@ -224,7 +250,7 @@ msgid "TicketBAI Certificates"
 msgstr "TicketBAI Ziurtagiriak"
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
+#. odoo-javascript
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "TicketBAI Invoice not built yet. Please try again."
@@ -242,7 +268,7 @@ msgid "TicketBAI PoS Order"
 msgstr "TicketBAI PoS Agindua"
 
 #. module: l10n_es_ticketbai_pos
-#. openerp-web
+#. odoo-javascript
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #, python-format
 msgid "TicketBAI certificate not loaded!"
@@ -262,6 +288,33 @@ msgstr "IFZaren erregimenaren gakoa"
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
 msgid "VAT Regimes"
 msgstr "IFZaren erregimenak"
+
+#~ msgid ""
+#~ "<span class=\"fa fa-lg fa-desktop\" title=\"Values set here are company-"
+#~ "specific\" groups=\"base.group_multi_company\"/>"
+#~ msgstr ""
+#~ "<span class=\"fa fa-lg fa-desktop\" title=\"Hemen ezarritako balioak "
+#~ "enpresaren espezifikoak dira\" groups=\"base.group_multi_company\"/>"
+
+#, python-format
+#~ msgid "Please set VAT Regime Key for fiscal position %s."
+#~ msgstr "Ezarri BEZaren erregimen gakoa %s posizio fiskalarentzat."
+
+#, python-format
+#~ msgid "Please set a tax for product %s."
+#~ msgstr "Ezarri zerga bat %s produktuari."
+
+#~ msgid "PoS Device Serial Number. As of TicketBAI v1.1, is not required."
+#~ msgstr ""
+#~ "PoS gailuaren serie zenbakia. TicketBAI v1.1etik aurrera, ez da "
+#~ "beharrezkoa."
+
+#~ msgid ""
+#~ "TicketBAI Certificate (optional). If not set, the certificate from the "
+#~ "company is used instead."
+#~ msgstr ""
+#~ "TicketBAI Ziurtagiria (aukerakoa). Ezarri ez bada, enpresaren ziurtagiria "
+#~ "erabiltzen da."
 
 #~ msgid "Display Name"
 #~ msgstr "Bistaratutako izena"
