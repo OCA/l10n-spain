@@ -31,7 +31,7 @@ class L10nEsAeatMod369LineGrouped(models.Model):
             report = group.report_id
             for line in group.mod369_line_ids:
                 ref_move_lines = line.tax_line_id.move_line_ids.filtered(
-                    lambda ml: ml.move_type == "out_refund"
+                    lambda ml, report=report: ml.move_type == "out_refund"
                     and ml.move_id.reversed_entry_id
                     and ml.move_id.reversed_entry_id.invoice_date < report.date_start
                 )
@@ -140,29 +140,27 @@ class L10nEsAeatMod369LineGrouped(models.Model):
     def _compute_vat_type_str(self):
         for line in self:
             vat_type_split = str(line.vat_type).split(".")
-            line.vat_type_str = vat_type_split[0].zfill(3) + vat_type_split[1].ljust(
-                2, "0"
-            )
+            line.vat_type_str = vat_type_split[0].zfill(3) + vat_type_split[1].zfill(2)
 
     @api.depends("base")
     def _compute_base_str(self):
         for line in self:
             base_split = str(line.base).split(".")
-            line.base_str = base_split[0].zfill(15) + base_split[1].ljust(2, "0")
+            line.base_str = base_split[0].zfill(15) + base_split[1].zfill(2)
 
     @api.depends("amount")
     def _compute_amount_str(self):
         for line in self:
             amount_split = str(line.amount).split(".")
-            line.amount_str = amount_split[0].zfill(15) + amount_split[1].ljust(2, "0")
+            line.amount_str = amount_split[0].zfill(15) + amount_split[1].zfill(2)
 
     @api.depends("tax_correction")
     def _compute_tax_correction_str(self):
         for line in self:
             tax_correction_split = str(line.tax_correction).split(".")
-            integer_part = tax_correction_split[0].zfill(15)
-            decimal_part = tax_correction_split[1].ljust(2, "0")
-            line.tax_correction_str = integer_part + decimal_part
+            line.tax_correction_str = tax_correction_split[0].zfill(
+                15
+            ) + tax_correction_split[1].zfill(2)
 
     @api.depends("oss_country_id", "oss_country_id.code")
     def _compute_country_code(self):
