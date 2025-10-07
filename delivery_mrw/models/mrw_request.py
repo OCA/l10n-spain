@@ -54,14 +54,13 @@ class MRWRequest:
             CodigoDepartamento=self.department_code,
             CodigoFranquicia=self.franquicia_code,
         )
-
         self.client.set_default_soapheaders([credentials])
 
     def _process_reply(self, service, request=None):
         try:
             response = service(request=request)
         except Fault as e:
-            raise UserError(e)
+            raise UserError(str(e)) from e
         return response
 
     def _cancel_shipment(self, reference=False):
@@ -117,12 +116,11 @@ class MRWRequest:
                         hour = int(time_str[:2])
                         minute = int(time_str[2:4])
                         input_date = input_date.replace(hour=hour, minute=minute)
-            except Exception:
-                pass
+            except Exception as err:
+                _logger.error(err)
             return input_date
 
         json_res = ZeepHelpers.serialize_object(response, dict)
-
         subscribers = json_res.get("Seguimiento", {}).get("Abonado", [])
         if not subscribers:
             return False
@@ -142,5 +140,4 @@ class MRWRequest:
                 "delivery_date": delivery_date,
             }
             states.append(track_dict)
-
         return states
