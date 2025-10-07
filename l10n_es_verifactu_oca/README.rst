@@ -80,7 +80,6 @@ Known issues / Roadmap
  * Refactorización SII-VERI*FACTU en l10n_es_aeat de los métodos que sean comunes.
  * Envío separado de la confirmación de la factura (cron.trigger/queque.job)
  * Control de errores del sistema, generar avisos. (caída de aeat, errores de conexión, etc.)
- * Declaración responsable. https://sede.agenciatributaria.gob.es/Sede/iva/sistemas-informaticos-facturacion-verifactu/preguntas-frecuentes/certificacion-sistemas-informaticos-declaracion-responsable.html?faqId=a15d77fe52572910VgnVCM100000dc381e0aRCRD
  * Posibilidad de consultar el estado de las facturas enviadas.
  * Operaciones exentas y causas de exención.
  * Crear un selection con todos los valores posibles de codigos de error, para poder guardarlo y agrupar las facturas por ese código.
@@ -112,6 +111,7 @@ Authors
 * Aures Tic
 * ForgeFlow
 * Tecnativa
+* Factor Libre
 
 Contributors
 ~~~~~~~~~~~~
@@ -132,6 +132,8 @@ Contributors
   * Jorge Luis López
 * Tecnativa:
   * Pedro M. Baeza
+* Factor Libre S.L.:
+  * Luis J. Salvatierra
 
 Maintainers
 ~~~~~~~~~~~

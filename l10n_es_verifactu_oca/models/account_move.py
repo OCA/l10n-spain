@@ -261,11 +261,11 @@ class AccountMove(models.Model):
                 "Huella": self.verifactu_hash,
             }
         )
-        if self.aeat_state == "sent_w_errors":
+        if self.aeat_state in ("sent_w_errors", "incorrect"):
             # en caso de subsanación, debe generar un nuevo hash en la factura
             inv_dict["Subsanacion"] = "S"
-            if self.last_verifactu_response_line_id.send_state == "incorrect":
-                inv_dict["RechazoPrevio"] = "S"
+        if self.aeat_state == "incorrect":
+            inv_dict["RechazoPrevio"] = "X"
         registroAlta.setdefault("RegistroAlta", inv_dict)
         return registroAlta
 
@@ -548,9 +548,12 @@ class AccountMove(models.Model):
     def resend_verifactu(self):
         for rec in self:
             if (
-                rec.aeat_state == "sent_w_errors"
+                rec.aeat_state in ("sent_w_errors", "incorrect")
                 and rec.last_verifactu_invoice_entry_id
                 and not rec.last_verifactu_invoice_entry_id.send_state == "not_sent"
             ):
+                entry_type = (
+                    "modify" if rec.aeat_state == "sent_w_errors" else "register"
+                )
                 rec.verifactu_registration_date = datetime.now()
-                rec._generate_verifactu_chaining(entry_type="modify")
+                rec._generate_verifactu_chaining(entry_type=entry_type)

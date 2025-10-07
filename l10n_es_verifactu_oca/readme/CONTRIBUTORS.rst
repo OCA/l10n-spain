@@ -14,3 +14,5 @@
   * Jorge Luis López
 * Tecnativa:
   * Pedro M. Baeza
+* Factor Libre S.L.:
+  * Luis J. Salvatierra
