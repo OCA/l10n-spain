@@ -2,12 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import _, fields, models
 
-VERIFACTU_STATE_MAPPING = {
-    "Correcto": "correct",
-    "Incorrecto": "incorrect",
-    "AceptadoConErrores": "accepted_with_errors",
-}
-
 
 class VerifactuInvoiceEntryResponse(models.Model):
     _name = "verifactu.invoice.entry.response"
