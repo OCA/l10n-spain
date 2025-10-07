@@ -7,7 +7,7 @@
 
 {
     "name": "Adaptación de los clientes, proveedores y bancos para España",
-    "version": "18.0.1.0.2",
+    "version": "19.0.1.0.0",
     "author": "ZikZak,Acysos,Tecnativa,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Localisation/Europe",
@@ -22,5 +22,6 @@
         "wizard/l10n_es_partner_wizard.xml",
         "security/ir.model.access.csv",
     ],
+    "oca_data_manual": ["wizard/data_banks.csv"],
     "installable": True,
 }
