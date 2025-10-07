@@ -17,9 +17,9 @@
                 <field
                     name="send_state"
                     widget="badge"
-                    decoration-warning="send_state == 'accepted_with_errors'"
-                    decoration-success="send_state == 'correct'"
-                    decoration-danger="send_state not in ('correct', 'accepted_with_errors')"
+                    decoration-warning="send_state == 'sent_w_errors'"
+                    decoration-success="send_state == 'sent'"
+                    decoration-danger="send_state not in ('sent', 'sent_w_errors')"
                 />
             </tree>
         </field>
@@ -65,9 +65,9 @@
                                         <field
                                             name="send_state"
                                             widget="badge"
-                                            decoration-warning="send_state == 'accepted_with_errors'"
-                                            decoration-success="send_state == 'correct'"
-                                            decoration-danger="send_state not in ('correct', 'accepted_with_errors')"
+                                            decoration-warning="send_state == 'sent_w_errors'"
+                                            decoration-success="send_state == 'sent'"
+                                            decoration-danger="send_state not in ('sent', 'sent_w_errors')"
                                         />
                                     </tree>
                                 </field>
