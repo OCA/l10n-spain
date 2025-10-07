@@ -1,0 +1,6 @@
+<odoo>
+    <record id="group_verifactu_responsible" model="res.groups">
+        <field name="name">VERI*FACTU Responsible</field>
+        <field name="category_id" ref="base.module_category_accounting" />
+    </record>
+</odoo>
