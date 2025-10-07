@@ -3,7 +3,7 @@ import datetime
 from odoo.tests import Form, common
 
 
-class TestDeliveryMRW(common.SavepointCase):
+class TestDeliveryMRW(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -25,6 +25,15 @@ class TestDeliveryMRW(common.SavepointCase):
         cls.product = cls.env["product.product"].create(
             {"type": "product", "name": "Test product"}
         )
+        stock_location = cls.env.ref("stock.stock_location_stock")
+        inventory = cls.env["stock.quant"].create(
+            {
+                "product_id": cls.product.id,
+                "location_id": stock_location.id,
+                "inventory_quantity": 100,
+            }
+        )
+        inventory.action_apply_inventory()
         cls.partner = cls.env["res.partner"].create(
             {
                 "name": "Mr. Odoo & Co.",
@@ -38,25 +47,38 @@ class TestDeliveryMRW(common.SavepointCase):
         )
         order_form = Form(cls.env["sale.order"].with_context(tracking_disable=True))
         order_form.partner_id = cls.partner
-        order_form.date_order = datetime.datetime.today()
         with order_form.order_line.new() as line:
             line.product_id = cls.product
             line.product_uom_qty = 20.0
         cls.sale_order = order_form.save()
+        cls.sale_order.date_order = datetime.datetime.today()
         cls.sale_order.carrier_id = cls.carrier_mrw.id
         cls.sale_order.action_confirm()
         cls.picking = cls.sale_order.picking_ids
-        cls.picking.move_lines.quantity_done = 20
-        cls.picking.name = "picking1"
-        cls.picking.number_of_packages = 1
-        cls.picking.button_validate()
+        assert cls.product.qty_available == 100
 
     def test_01_mrw_picking_confirm_simple(self):
         """The picking is confirmed and the shipping is recorded to MRW"""
+        self.picking.name = "picking1"
+        self.picking.number_of_packages = 1
+        self.picking.action_confirm()
+        self.picking.action_assign()
+        self.picking.move_ids.quantity_done = self.picking.move_ids.product_uom_qty
+        self.picking.button_validate()
+        self.assertEqual(self.picking.state, "done")
+        self.assertEqual(self.product.qty_available, 80)
         self.assertTrue(self.picking.carrier_tracking_ref)
 
     def test_02_mrw_manifest(self):
         """Manifest is created"""
+        self.picking.name = "picking1"
+        self.picking.number_of_packages = 1
+        self.picking.action_confirm()
+        self.picking.action_assign()
+        self.picking.move_ids.quantity_done = self.picking.move_ids.product_uom_qty
+        self.picking.button_validate()
+        self.assertEqual(self.picking.state, "done")
+        self.assertTrue(self.picking.carrier_tracking_ref)
         wizard = self.env["mrw.manifest.wizard"].create(
             {"carrier_id": self.carrier_mrw.id, "date_from": datetime.date.today()}
         )
