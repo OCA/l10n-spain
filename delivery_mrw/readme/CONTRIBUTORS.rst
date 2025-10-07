@@ -5,3 +5,7 @@
 * `NuoBiT Solutions S.L. <https://www.nuobit.com>`_:
 
   * Eric Antones <eantones@nuobit.com>
+
+* `Trey Kilobytes de Soluciones S.L. <https://www.trey.es>`_:
+
+  * Miguel Poyatos <miguel@trey.es>

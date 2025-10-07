@@ -83,13 +83,13 @@ class DeliveryCarrier(models.Model):
         selection=MRW_INTERNATIONAL_SERVICES,
         string="MRW Service",
         help="Set the MRW Service",
-        default="PAC",  # Courier
+        default="PAC",
     )
     mrw_national_service = fields.Selection(
         selection=MRW_NATIONAL_SERVICES,
         string="MRW Service",
         help="Set the MRW Service",
-        default="0300",  # Courier
+        default="0300",
     )
 
     mrw_horario_from = fields.Float()
@@ -234,36 +234,31 @@ class DeliveryCarrier(models.Model):
                 "Estado": partner.state_id.name,
                 "CodigoPais": partner.country_id.code,
             }
-        # we find s/n or any number that is not d-d, dºor dª in street
-        numero = re.search(
+        number = re.search(
             r"(?!(\d+[ºª]?-))(?!(\d+[ºª]))(?<![-\d])\d+", street
         ) or re.search(r"S\/N|s\/n", street)
-        if not numero:
+        if not number:
             if re.search(r"\d+-\d+", street):
-                # there are street numbers in an interval like 1-3 that indicate
-                # the same building/house. But MRW API doesn't accept them.
                 raise UserError(
                     _(
                         "Solamente se permiten caracteres numéricos en el campo número"
                         " de la dirección. Número: %s"
                     )
-                    % re.search(r"\d+-\d+", street)[0]
+                    % (re.search(r"\d+-\d+", street)[0])
                 )
-            # we search in street 2
-            numero2 = re.search(
+            number2 = re.search(
                 r"(?!(\d+[ºª]?-))(?!(\d+[ºª]))(?<![-\d])\d+", street2
             ) or re.search(r"S\/N|s\/n", street2)
-            if numero2:
-                numero2, street2 = self.remove_found_regex_from_string(numero2, street2)
-        if numero:
-            numero, street = self.remove_found_regex_from_string(numero, street)
-            piso_puerta = re.search(r"(\d+[ºª]?[- ]?)(\d+[ºª]?)", street)
-            if piso_puerta:
-                piso_puerta, street = self.remove_found_regex_from_string(
-                    piso_puerta, street
+            if number2:
+                number2, street2 = self.remove_found_regex_from_string(number2, street2)
+        if number:
+            number, street = self.remove_found_regex_from_string(number, street)
+            floor_door = re.search(r"(\d+[ºª]?[- ]?)(\d+[ºª]?)", street)
+            if floor_door:
+                floor_door, street = self.remove_found_regex_from_string(
+                    floor_door, street
                 )
-                street2 = piso_puerta + " " + street2
-        # check if in the beggining of the street we have something like cl/ cl. ...
+                street2 = floor_door + " " + street2
         street_type = re.search(r"^[a-zA-Z]{1,4}[\/|\.]", street)
         if street_type:
             limit = street_type.span()[1]
@@ -273,26 +268,25 @@ class DeliveryCarrier(models.Model):
         return {
             "CodigoTipoVia": street_type or "",
             "Via": street,
-            "Numero": numero or numero2 or "",
+            "Numero": number or number2 or "",
             "Resto": street2 or "",
             "CodigoPostal": partner.zip or "",
             "Poblacion": partner.city or "",
         }
 
-    def get_notificaciones(self, partner):
-        notificaciones = {}
+    def get_notifications(self, partner):
+        notifications = {}
         channel = self.mrw_notification_channel
         if channel:
-            notificaciones["NotificacionRequest"] = {}
-            notificaciones["NotificacionRequest"]["CanalNotificacion"] = channel
-            notificaciones["NotificacionRequest"][
+            notifications["NotificacionRequest"] = {}
+            notifications["NotificacionRequest"]["CanalNotificacion"] = channel
+            notifications["NotificacionRequest"][
                 "TipoNotificacion"
             ] = self.mrw_notification_type
-            notificaciones["NotificacionRequest"]["MailSMS"] = (
+            notifications["NotificacionRequest"]["MailSMS"] = (
                 partner.email if channel == "1" else partner.mobile
             )
-
-        return notificaciones
+        return notifications
 
     def _prepare_mrw_shipping(self, picking):
         """Convert picking values for mrw api
@@ -325,11 +319,9 @@ class DeliveryCarrier(models.Model):
                 "Referencia": picking.name,
                 "CodigoServicio": self.mrw_service,
                 "Bultos": "",
-                # Será obligatorio informar en caso que no haya desglose de bultos.
-                "NumeroBultos": picking.number_of_packages,
-                # El separador decimal debe de ser la coma (,).
+                "NumeroBultos": picking.number_of_packages or 1,
                 "Peso": str(picking.shipping_weight).replace(".", ","),
-                "Notificaciones": self.get_notificaciones(receiving_partner)
+                "Notificaciones": self.get_notifications(receiving_partner)
                 # Hay más campos no obligatorios no puestos aqui
             },
         }
