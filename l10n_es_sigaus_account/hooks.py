@@ -5,7 +5,8 @@
 from odoo.tools import sql
 
 
-def pre_init_hook(cr):
+def pre_init_hook(env):
+    cr = env.cr
     if not sql.column_exists(cr, "account_move", "is_sigaus"):
         sql.create_column(cr, "account_move", "is_sigaus", "boolean")
     if not sql.column_exists(cr, "account_move", "sigaus_is_date"):

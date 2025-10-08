@@ -1,11 +1,11 @@
 <odoo>
-<!-- Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
+    <!-- Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
     <data noupdate="1">
-        <record id="aportacion_sigaus_product_template" model="product.product">
+        <record id="aportacion_sigaus_product_template" model="product.template">
             <field name="name">Aportación SIGAUS (R.D. 679/2006)</field>
             <field name="company_id" eval="False" />
-            <field name="detailed_type">service</field>
+            <field name="type">service</field>
             <field name="list_price">0.0</field>
             <field name="sigaus_subject">no</field>
             <field name="taxes_id" eval="False" />

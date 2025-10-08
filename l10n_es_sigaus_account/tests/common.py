@@ -1,9 +1,10 @@
 # Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.tests import common
+from odoo.tests import common, tagged
 
 
+@tagged("post_install", "-at_install")
 class TestL10nEsSigausCommon(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
@@ -11,7 +12,24 @@ class TestL10nEsSigausCommon(common.TransactionCase):
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.company = cls.env.ref("base.main_company")
         cls.company.write({"sigaus_enable": True, "sigaus_date_from": "2022-01-01"})
+
+        # Check if company has a chart of accounts installed
+        # In Odoo 18, check if there are any accounts in the system
+        if not cls.env["account.account"].search([], limit=1):
+            # Load a CoA if there's none in the company
+            coa = cls.env.ref("l10n_generic_coa.configurable_chart_template", False)
+            if not coa:
+                # Load the first available CoA
+                coa = cls.env["account.chart.template"].search(
+                    [("visible", "=", True)], limit=1
+                )
+            if coa:
+                coa.try_loading(company=cls.company, install_demo=False)
+
         cls.partner = cls.env["res.partner"].create({"name": "Test"})
+        cls.partner_no_sigaus = cls.env["res.partner"].create(
+            {"name": "Test", "sigaus_subject": False}
+        )
         cls.fiscal_position_sigaus = cls.env["account.fiscal.position"].create(
             {"name": "Test Fiscal Sigaus", "active": True, "sigaus_subject": True}
         )
