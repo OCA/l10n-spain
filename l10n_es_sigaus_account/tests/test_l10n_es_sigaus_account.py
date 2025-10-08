@@ -1,6 +1,7 @@
 # Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from odoo import Command
 from odoo.exceptions import ValidationError
 
 from .common import TestL10nEsSigausCommon
@@ -11,9 +12,7 @@ class TestL10nEsSigausInvoice(TestL10nEsSigausCommon):
         invoice_lines = []
         for line in lines:
             invoice_lines.append(
-                (
-                    0,
-                    False,
+                Command.create(
                     {
                         "product_id": line["product"].id,
                         "quantity": line["quantity"],
@@ -53,18 +52,32 @@ class TestL10nEsSigausInvoice(TestL10nEsSigausCommon):
         ]
         invoice = self.create_invoice("2023-01-01", lines)
         invoice.action_post()
+        vals = {
+            "date": "2023-01-01",
+            "journal_id": invoice.journal_id.id,
+        }
+        # refund_method existed in <18.0; keep for backward compat
+        if "refund_method" in self.env["account.move.reversal"]._fields:
+            vals["refund_method"] = reversal_type
         move_reversal = (
             self.env["account.move.reversal"]
             .with_context(active_model="account.move", active_ids=[invoice.id])
-            .create(
-                {
-                    "date": "2023-01-01",
-                    "refund_method": reversal_type,
-                    "journal_id": invoice.journal_id.id,
-                }
-            )
+            .create(vals)
         )
-        return invoice, move_reversal.reverse_moves()
+        # 18.0 API: refund_moves / modify_moves / reverse_moves(is_modify)
+        if reversal_type == "modify" and hasattr(move_reversal, "modify_moves"):
+            result = move_reversal.modify_moves()
+        elif reversal_type == "refund" and hasattr(move_reversal, "refund_moves"):
+            result = move_reversal.refund_moves()
+        else:
+            try:
+                result = move_reversal.reverse_moves(
+                    is_modify=(reversal_type == "modify")
+                )
+            except TypeError:
+                # old API without is_modify
+                result = move_reversal.reverse_moves()
+        return invoice, result
 
     def test_invoice_without_sigaus_products(self):
         lines = [{"product": self.product_sigaus_no, "quantity": 2.0, "price_unit": 1}]
@@ -118,30 +131,36 @@ class TestL10nEsSigausInvoice(TestL10nEsSigausCommon):
         )
         self.assertEqual(product_sigaus_in_category_excluded_line.sigaus_amount, 0.00)
 
-        invoice.write({"is_sigaus": True})
+        invoice.is_sigaus = True
         self.assertEqual(invoice.sigaus_has_line, True)
         self.assertEqual(invoice.amount_untaxed, 20.3)
+        invoice.invoice_line_ids = [
+            Command.create(
+                {
+                    "product_id": self.product_sigaus_in_product.id,
+                    "quantity": 1.0,
+                    "price_unit": 2,
+                },
+            )
+        ]
+        self.assertEqual(invoice.amount_untaxed, 22.36)
+        invoice.fiscal_position_id = self.fiscal_position_no_sigaus
+        self.assertEqual(invoice.amount_untaxed, 22.00)
         invoice.write(
             {
-                "invoice_line_ids": [
-                    (
-                        0,
-                        False,
-                        {
-                            "product_id": self.product_sigaus_in_product.id,
-                            "quantity": 1.0,
-                            "price_unit": 2,
-                        },
-                    )
-                ]
+                "fiscal_position_id": self.fiscal_position_sigaus.id,
+                "partner_id": self.partner_no_sigaus.id,
+            }
+        )
+        self.assertEqual(invoice.amount_untaxed, 22.00)
+        invoice.write(
+            {
+                "fiscal_position_id": False,
+                "partner_id": self.partner.id,
             }
         )
         self.assertEqual(invoice.amount_untaxed, 22.36)
-        invoice.write({"fiscal_position_id": self.fiscal_position_no_sigaus.id})
-        self.assertEqual(invoice.amount_untaxed, 22.00)
-        invoice.write({"fiscal_position_id": False})
-        self.assertEqual(invoice.amount_untaxed, 22.36)
-        invoice.write({"is_sigaus": False})
+        invoice.is_sigaus = False
         self.assertEqual(invoice.amount_untaxed, 22.00)
 
     def test_invoice_with_sigaus_general_reverse(self):
@@ -166,7 +185,7 @@ class TestL10nEsSigausInvoice(TestL10nEsSigausCommon):
         invoice_sigaus_line = invoice.invoice_line_ids.filtered("is_sigaus")
         invoice.action_post()
         credit_note = invoice._reverse_moves()
-        credit_note.write({"invoice_date": invoice.invoice_date})
+        credit_note.invoice_date = invoice.invoice_date
         self.assertEqual(credit_note.move_type, "out_refund")
         self.assertEqual(invoice.amount_untaxed, credit_note.amount_untaxed)
         self.assertTrue(credit_note.is_sigaus)
@@ -196,7 +215,9 @@ class TestL10nEsSigausInvoice(TestL10nEsSigausCommon):
     def test_invoice_with_sigaus_reverse_cancel(self):
         invoice, reversal = self.create_reversal("cancel")
         invoice_sigaus_line = invoice.invoice_line_ids.filtered("is_sigaus")
-        self.assertEqual(invoice.payment_state, "reversed")
+        # In 18.0 refund_method removed; cancel is same as refund (not auto-reversed)
+        if "refund_method" in self.env["account.move.reversal"]._fields:
+            self.assertEqual(invoice.payment_state, "reversed")
         credit_note = self.env["account.move"].browse(reversal["res_id"])
         self.assertEqual(credit_note.move_type, "out_refund")
         self.assertEqual(invoice.amount_untaxed, credit_note.amount_untaxed)
@@ -216,7 +237,7 @@ class TestL10nEsSigausInvoice(TestL10nEsSigausCommon):
         invoice_sigaus_line = invoice.invoice_line_ids.filtered("is_sigaus")
         self.assertEqual(invoice.payment_state, "reversed")
         new_invoice = self.env["account.move"].browse(reversal["res_id"])
-        new_invoice.write({"invoice_date": invoice.invoice_date})
+        new_invoice.invoice_date = invoice.invoice_date
         self.assertEqual(new_invoice.move_type, "out_invoice")
         self.assertEqual(invoice.amount_untaxed, new_invoice.amount_untaxed)
         self.assertTrue(new_invoice.is_sigaus)
@@ -230,7 +251,7 @@ class TestL10nEsSigausInvoice(TestL10nEsSigausCommon):
         )
 
     def test_invoice_with_sigaus_different_dates(self):
-        self.company.write({"sigaus_date_from": "3000-01-01"})
+        self.company.sigaus_date_from = "3000-01-01"
         lines = [
             {
                 "product": self.product_sigaus_in_product,
@@ -251,10 +272,10 @@ class TestL10nEsSigausInvoice(TestL10nEsSigausCommon):
         invoice = self.create_invoice(False, lines)
         self.assertFalse(invoice.sigaus_is_date)
         self.assertFalse(invoice.sigaus_has_line)
-        invoice.write({"invoice_date": "3000-01-01"})
+        invoice.invoice_date = "3000-01-01"
         self.assertTrue(invoice.sigaus_is_date)
         self.assertTrue(invoice.sigaus_has_line)
-        self.company.write({"sigaus_date_from": "2023-01-01"})
+        self.company.sigaus_date_from = "2023-01-01"
         lines = [
             {
                 "product": self.product_sigaus_in_product,
@@ -303,21 +324,15 @@ class TestL10nEsSigausInvoice(TestL10nEsSigausCommon):
         self.assertEqual(
             invoice_copy.invoice_line_ids.filtered("is_sigaus").price_subtotal, 0.3
         )
-        invoice.write(
-            {
-                "invoice_line_ids": [
-                    (
-                        0,
-                        False,
-                        {
-                            "product_id": self.product_sigaus_in_category.id,
-                            "quantity": 2.0,
-                            "price_unit": 3,
-                        },
-                    ),
-                ]
-            }
-        )
+        invoice.invoice_line_ids = [
+            Command.create(
+                {
+                    "product_id": self.product_sigaus_in_category.id,
+                    "quantity": 2.0,
+                    "price_unit": 3,
+                },
+            )
+        ]
         self.assertEqual(len(invoice_copy.invoice_line_ids.filtered("is_sigaus")), 1)
         self.assertEqual(
             invoice_copy.invoice_line_ids.filtered("is_sigaus").price_subtotal, 0.3

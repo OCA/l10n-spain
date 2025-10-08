@@ -3,7 +3,7 @@
 
 from datetime import date
 
-from odoo import SUPERUSER_ID, fields, models
+from odoo import fields, models
 
 
 class SigausMixin(models.AbstractModel):
@@ -34,8 +34,12 @@ class SigausMixin(models.AbstractModel):
 
     def _compute_is_sigaus(self):
         for rec in self:
-            rec.is_sigaus = rec.company_id.sigaus_enable and (
-                not rec.fiscal_position_id or rec.fiscal_position_id.sigaus_subject
+            rec.is_sigaus = (
+                rec.company_id.sigaus_enable
+                and rec.partner_id.sigaus_subject
+                and (
+                    not rec.fiscal_position_id or rec.fiscal_position_id.sigaus_subject
+                )
             )
 
     def _compute_sigaus_is_date(self):
@@ -69,16 +73,25 @@ class SigausMixin(models.AbstractModel):
     def _get_sigaus_line_vals(self, lines=False, **kwargs):
         self.ensure_one()
         sigaus_vals = dict()
-        sigaus_product_id = self.env.ref(
+        sigaus_product_template = self.env.ref(
             "l10n_es_sigaus_account.aportacion_sigaus_product_template"
         )
+        # Get the product.product variant from the template
+        sigaus_product_id = sigaus_product_template.product_variant_id
         sigaus_vals["product_id"] = sigaus_product_id.id
         kg_uom_id = self.env.ref("uom.product_uom_kgm")
-        sigaus_vals[
-            self[
-                self._sigaus_secondary_unit_fields["line_ids"]
-            ]._sigaus_secondary_unit_fields["uom_field"]
-        ] = kg_uom_id.id
+
+        # Set the UoM field directly for account.move.line
+        if self._name == "account.move":
+            sigaus_vals["product_uom_id"] = kg_uom_id.id
+        else:
+            # For other models, use the dynamic field mapping
+            sigaus_vals[
+                self[
+                    self._sigaus_secondary_unit_fields["line_ids"]
+                ]._sigaus_secondary_unit_fields["uom_field"]
+            ] = kg_uom_id.id
+
         date = False
         sigaus_lines = (
             lines
@@ -150,38 +163,29 @@ class SigausMixin(models.AbstractModel):
         return sigaus_vals
 
     def automatic_sigaus_exception(self):
-        self.ensure_one()
-        products_without_weight = (
-            self[self._sigaus_secondary_unit_fields["line_ids"]]
-            .mapped("product_id")
-            .filtered(lambda a: a.sigaus_has_amount and a.weight <= 0.0)
-        )
-        if products_without_weight:
-            values = {
-                "model": self._name,
-                "origin": self.id,
-                "products": products_without_weight,
-            }
-            note = self.env["ir.qweb"]._render(
-                "l10n_es_sigaus_account.exception_sigaus", values
+        for rec in self:
+            products_without_weight = (
+                rec[rec._sigaus_secondary_unit_fields["line_ids"]]
+                .mapped("product_id")
+                .filtered(lambda a: a.sigaus_has_amount and a.weight <= 0.0)
             )
-            if not self.sigaus_automated_exception_id:
-                odoobot_id = self.env.ref("base.partner_root").id
-                activity = self.activity_schedule(
-                    "mail.mail_activity_data_warning",
-                    date.today(),
-                    note=note,
-                    user_id=self.user_id.id or SUPERUSER_ID,
+            if products_without_weight:
+                values = {
+                    "model": rec._name,
+                    "origin": rec.id,
+                    "products": products_without_weight,
+                }
+                note = rec.env["ir.qweb"]._render(
+                    "l10n_es_sigaus_account.exception_sigaus", values
                 )
-                activity.write(
-                    {
-                        "create_uid": odoobot_id,
-                    }
-                )
-                self.write(
-                    {
-                        "sigaus_automated_exception_id": activity.id,
-                    }
-                )
-            else:
-                self.sigaus_automated_exception_id.write({"note": note})
+                if not rec.sigaus_automated_exception_id:
+                    odoobot_user = rec.env.ref("base.user_root")
+                    activity = rec.with_user(odoobot_user).activity_schedule(
+                        "mail.mail_activity_data_warning",
+                        date.today(),
+                        note=note,
+                        user_id=rec.user_id.id or rec.env.ref("base.user_admin").id,
+                    )
+                    rec.sigaus_automated_exception_id = activity.id
+                else:
+                    rec.sigaus_automated_exception_id.note = note

@@ -1,5 +1,5 @@
 <odoo>
-<!-- Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
+    <!-- Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
     <record id="l10n_es_sigaus_account_view_company_form" model="ir.ui.view">
         <field name="name">l10n.es.sigaus.account.view.company.form</field>
@@ -12,11 +12,12 @@
                         <field name="sigaus_enable" />
                         <field
                             name="sigaus_date_from"
-                            attrs="{'invisible': [('sigaus_enable', '=', False)], 'required': [('sigaus_date_from', '=', True)]}"
+                            invisible="not sigaus_enable"
+                            required="sigaus_enable"
                         />
                         <field
                             name="sigaus_show_in_reports"
-                            attrs="{'invisible': [('sigaus_enable', '=', False)]}"
+                            invisible="not sigaus_enable"
                         />
                     </group>
                 </page>

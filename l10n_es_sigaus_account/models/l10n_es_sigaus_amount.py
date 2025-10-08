@@ -1,13 +1,20 @@
 # Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
 class L10nEsSigausAmount(models.Model):
     _name = "l10n.es.sigaus.amount"
     _description = "Sigaus Amount"
+    _sql_constraints = [
+        (
+            "_check_date_to_after_date_from",
+            "CHECK(date_to IS NULL OR date_to >= date_from)",
+            "The ending date must not be prior to the starting date.",
+        ),
+    ]
 
     name = fields.Char(required=True)
     date_from = fields.Date(required=True)
@@ -17,39 +24,17 @@ class L10nEsSigausAmount(models.Model):
     @api.constrains("date_from", "date_to")
     def _check_dates(self):
         for rec in self:
-            date_from = rec.date_from
-            date_to = rec.date_to
-            if date_to and date_to < date_from:
-                raise ValidationError(
-                    _("The ending date must not be prior to the starting date.")
-                )
             domain = [
                 ("id", "!=", rec.id),
+                ("date_from", "<=", rec.date_to or "9999-12-31"),
                 "|",
-                "|",
-                "|",
-                "|",
-                "&",
-                ("date_from", "<=", date_from),
-                "|",
-                ("date_to", ">=", date_from),
+                ("date_to", ">=", rec.date_from),
                 ("date_to", "=", False),
-                "&",
-                ("date_from", "<=", date_to),
-                ("date_to", ">=", date_to),
-                "&",
-                ("date_from", "<=", date_from),
-                ("date_to", ">=", date_to),
-                "&",
-                ("date_from", ">=", date_from),
-                ("date_to", "<=", date_to),
-                "&",
-                ("date_from", ">=", date_from),
-                ("date_from", "<=", date_to),
             ]
-
-            if self.search_count(domain) > 0:
-                raise ValidationError(_("You can not have overlapping date ranges."))
+            if self.search_count(domain):
+                raise ValidationError(
+                    rec.env._("You can not have overlapping date ranges.")
+                )
 
     @api.model
     def get_sigaus_amount(self, date):
@@ -64,7 +49,7 @@ class L10nEsSigausAmount(models.Model):
         )
         if not l10n_es_sigaus_amount:
             raise ValidationError(
-                _(
+                self.env._(
                     "There is not a SIGAUS price set for the date: {}. Please, go to "
                     "Invoicing > Configuration > L10n Es Sigaus Amount and make sure "
                     "that the date is include in one of the configured date ranges."

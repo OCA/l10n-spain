@@ -1,14 +1,21 @@
 # Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from psycopg2 import IntegrityError
+
 from odoo.exceptions import ValidationError
+from odoo.tools import mute_logger
 
 from .common import TestL10nEsSigausCommon
 
 
 class TestL10nEsSigausPriceRange(TestL10nEsSigausCommon):
     def test_wrong_date(self):
-        with self.assertRaises(ValidationError):
+        with (
+            self.assertRaises(IntegrityError),
+            mute_logger("odoo.sql_db"),
+            self.cr.savepoint(),
+        ):
             self.env["l10n.es.sigaus.amount"].create(
                 {
                     "name": "Test",
@@ -39,4 +46,4 @@ class TestL10nEsSigausPriceRange(TestL10nEsSigausCommon):
 
     def test_sigaus_date_from_required(self):
         with self.assertRaises(ValidationError):
-            self.company.write({"sigaus_date_from": False})
+            self.company.sigaus_date_from = False

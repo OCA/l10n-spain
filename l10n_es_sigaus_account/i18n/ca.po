@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-07-09 15:58+0000\n"
+"PO-Revision-Date: 2025-05-05 12:23+0000\n"
 "Last-Translator: Jaime Ruiz Maccione <jaime.ruiz@sygel.es>\n"
 "Language-Team: none\n"
 "Language: ca\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: l10n_es_sigaus_account
 #. odoo-python
@@ -40,8 +40,8 @@ msgid ""
 "<i class=\"fa fa-long-arrow-right mx-1\" aria-label=\"Arrow icon\" "
 "title=\"Arrow\"/>"
 msgstr ""
-"<i class=\"fa fa-long-arrow-right mx-1\" aria-label=\"Arrow icon\" title="
-"\"Arrow\"/>"
+"<i class=\"fa fa-long-arrow-right mx-1\" aria-label=\"Arrow icon\" "
+"title=\"Arrow\"/>"
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model,name:l10n_es_sigaus_account.model_account_move_reversal
@@ -67,6 +67,11 @@ msgstr "Categoria"
 #: model:ir.model,name:l10n_es_sigaus_account.model_res_company
 msgid "Companies"
 msgstr "Empreses"
+
+#. module: l10n_es_sigaus_account
+#: model:ir.model,name:l10n_es_sigaus_account.model_res_partner
+msgid "Contact"
+msgstr "Contacte"
 
 #. module: l10n_es_sigaus_account
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_l10n_es_sigaus_amount__create_uid
@@ -278,6 +283,8 @@ msgstr "Barreja SIGAUS"
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_account_fiscal_position__sigaus_subject
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_product_product__sigaus_subject
 #: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_product_template__sigaus_subject
+#: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_res_partner__sigaus_subject
+#: model:ir.model.fields,field_description:l10n_es_sigaus_account.field_res_users__sigaus_subject
 msgid "Subject To SIGAUS"
 msgstr "Sotmès a SIGAUS"
 
@@ -317,8 +324,8 @@ msgstr "La data de finalització no pot ser anterior a la data d'inici."
 #, python-format
 msgid ""
 "There is not a SIGAUS price set for the date: {}. Please, go to Invoicing > "
-"Configuration > L10n Es Sigaus Amount and make sure that the date is include"
-" in one of the configured date ranges."
+"Configuration > L10n Es Sigaus Amount and make sure that the date is include "
+"in one of the configured date ranges."
 msgstr ""
 "No hi ha un preu de SIGAUS establert per a la data: {}. Si us plau, aneu a "
 "Facturació > Configuració > Import L10n Es SIGAUS i assegureu-vos que la "

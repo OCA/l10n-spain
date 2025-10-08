@@ -1,7 +1,7 @@
 # Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -19,5 +19,7 @@ class ResCompany(models.Model):
     def _check_sigaus_date(self):
         if self.filtered(lambda a: a.sigaus_enable and not a.sigaus_date_from):
             raise ValidationError(
-                _("'Sigaus Date From' is mandatory for companies with SIGAUS enabled.")
+                self.env._(
+                    "'Sigaus Date From' is mandatory for companies with SIGAUS enabled."
+                )
             )

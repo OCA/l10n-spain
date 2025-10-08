@@ -1,17 +1,25 @@
 # Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.tests import common
+from odoo.tests import tagged
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestL10nEsSigausCommon(common.TransactionCase):
+@tagged("post_install", "-at_install")
+class TestL10nEsSigausCommon(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
-        cls.company = cls.env.ref("base.main_company")
         cls.company.write({"sigaus_enable": True, "sigaus_date_from": "2022-01-01"})
+        if not cls.company.chart_template:
+            cls.env["account.chart.template"]._load(
+                template_code="es_pymes", company=cls.company, install_demo=False
+            )
         cls.partner = cls.env["res.partner"].create({"name": "Test"})
+        cls.partner_no_sigaus = cls.env["res.partner"].create(
+            {"name": "Test", "sigaus_subject": False}
+        )
         cls.fiscal_position_sigaus = cls.env["account.fiscal.position"].create(
             {"name": "Test Fiscal Sigaus", "active": True, "sigaus_subject": True}
         )
