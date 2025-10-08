@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Aures TIC - Jose Zambudio
+     Copyright 2024 Aures TIC - Almudena de La Puente
+     Copyright 2025 Tecnativa - Pedro M. Baeza
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="invoice_verifactu_form" model="ir.ui.view">
+        <field name="name">account.invoice.verifactu.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_move_form" />
+        <field name="arch" type="xml">
+            <button name="button_draft" position="after">
+                <button
+                    type="object"
+                    string="Re-send to VERI*FACTU"
+                    name="resend_verifactu"
+                    groups="l10n_es_aeat.group_account_aeat"
+                    invisible="not verifactu_enabled or state != 'posted' or aeat_state != 'sent_w_errors'"
+                />
+            </button>
+            <notebook position="inside">
+                <field
+                    name="verifactu_enabled"
+                    invisible="1"
+                /> <!-- To be removed in v18 as not needed -->
+                <page
+                    string="VERI*FACTU"
+                    name="page_aeat"
+                    invisible="not verifactu_enabled"
+                >
+                    <group>
+                        <group
+                            string="Configuration"
+                            name="group_verifactu_configuration"
+                        >
+                            <field name="aeat_state" invisible="1" />
+                            <field
+                                name="verifactu_refund_type"
+                                string="Refund type"
+                                required="verifactu_enabled and move_type == 'out_refund'"
+                                invisible="not verifactu_enabled or move_type != 'out_refund'"
+                            />
+                            <field
+                                name="verifactu_refund_specific_type"
+                                string="Refund specific type"
+                                invisible="not verifactu_enabled or move_type != 'out_refund'"
+                            />
+                            <field
+                                name="verifactu_tax_key"
+                                string="Tax key"
+                                required="verifactu_enabled"
+                                readonly="aeat_state == 'sent'"
+                            />
+                            <field
+                                name="verifactu_registration_key"
+                                string="Registration key"
+                                required="verifactu_enabled"
+                                readonly="aeat_state == 'sent'"
+                            />
+                            <field name="verifactu_description" string="Description" />
+                        </group>
+                        <group string="Information" name="group_verifactu_information">
+                            <field
+                                name="verifactu_hash_string"
+                                string="Hash string"
+                                readonly="1"
+                                groups="base.group_no_one"
+                            />
+                            <field
+                                name="verifactu_hash"
+                                string="Hash"
+                                readonly="1"
+                                groups="base.group_no_one"
+                            />
+                            <field
+                                name="verifactu_registration_date"
+                                string="Registration date"
+                                readonly="1"
+                            />
+                        </group>
+                    </group>
+                    <group
+                        string="Result"
+                        name="group_verifactu_result"
+                        groups="l10n_es_aeat.group_account_aeat"
+                    >
+                        <notebook colspan="2">
+                            <page name="page_aeat_result_general" string="General">
+                                <group>
+                                    <field name="aeat_state" string="Send State" />
+                                    <field name="verifactu_csv" string="CSV" />
+                                    <field
+                                        name="aeat_send_failed"
+                                        string="Failed?"
+                                        invisible="not aeat_send_failed"
+                                    />
+                                    <field
+                                        name="aeat_send_error"
+                                        string="Send error"
+                                        invisible="not aeat_send_failed"
+                                    />
+                                </group>
+                            </page>
+                            <page
+                                name="page_aeat_result_technical"
+                                string="Technical"
+                                groups="base.group_no_one"
+                            >
+                                <group>
+                                    <field
+                                        name="aeat_header_sent"
+                                        string="Sent header"
+                                    />
+                                    <field
+                                        name="aeat_content_sent"
+                                        string="Sent content"
+                                    />
+                                </group>
+                                <group string="Invoice entries">
+                                    <field
+                                        name="verifactu_invoice_entry_ids"
+                                        nolabel="1"
+                                        colspan="2"
+                                    />
+                                </group>
+                                <group string="Responses">
+                                    <field
+                                        name="verifactu_response_line_ids"
+                                        nolabel="1"
+                                        colspan="2"
+                                    >
+                                        <tree>
+                                            <field name="create_date" />
+                                            <field name="entry_id" />
+                                            <field
+                                                name="send_state"
+                                                widget="badge"
+                                                decoration-warning="send_state == 'accepted_with_errors'"
+                                                decoration-success="send_state == 'correct'"
+                                                decoration-danger="send_state not in ('correct', 'accepted_with_errors')"
+                                            />
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record id="invoice_verifactu_search" model="ir.ui.view">
+        <field name="name">account.invoice.verifactu.search</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter" />
+        <field name="arch" type="xml">
+            <filter name="late" position="after">
+                <group string="VERI*FACTU filters">
+                    <separator />
+                    <filter
+                        name="verifactu_not_sent"
+                        string="VERI*FACTU not sent"
+                        domain="[('aeat_state', '=', 'not_sent'), ('verifactu_enabled', '=', True)]"
+                        help="Never sent to VERI*FACTU"
+                    />
+                    <filter
+                        name="verifactu_pending"
+                        string="With modifications not sent to VERI*FACTU"
+                        domain="[('aeat_state', 'in', ['sent_modified','cancelled_modified'])]"
+                        help="Already sent but with local changes not sent yet"
+                    />
+                    <filter
+                        name="verifactu_sent"
+                        string="VERI*FACTU sent"
+                        domain="[('aeat_state', 'not in', ['not_sent'])]"
+                        help="Already sent to VERI*FACTU. It includes cancelled invoices"
+                    />
+                    <filter
+                        name="aeat_send_failed"
+                        string="VERI*FACTU failed"
+                        domain="[('aeat_send_failed', '=', True)]"
+                        help="The last attemp to sent to VERI*FACTU has failed"
+                    />
+                    <filter
+                        name="verifactu_cancelled"
+                        string="VERI*FACTU cancelled"
+                        domain="[('aeat_state', 'in', ['cancelled','cancelled_modified'])]"
+                        help="Cancelled invoices at VERI*FACTU"
+                    />
+                    <separator />
+                </group>
+            </filter>
+            <xpath expr="//group" position="inside">
+                <separator />
+                <filter
+                    string="VERI*FACTU error"
+                    name="verifactu_error"
+                    domain="[('aeat_send_failed', '=', True)]"
+                    context="{'group_by':'aeat_send_error'}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="invoice_verifactu_tree" model="ir.ui.view">
+        <field name="name">account.invoice.tree</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree" />
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field
+                    name="aeat_state"
+                    decoration-success="aeat_state == 'sent'"
+                    decoration-danger="aeat_state == 'not_sent'"
+                    decoration-warning="aeat_state == 'sent_w_errors'"
+                    widget="badge"
+                    optional="hide"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

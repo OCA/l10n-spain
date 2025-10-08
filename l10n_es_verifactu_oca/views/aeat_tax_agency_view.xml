@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="verifactu_tax_agency_form_view" model="ir.ui.view">
+        <field name="name">aeat.tax.agency.form - l10n_es_verifactu</field>
+        <field name="model">aeat.tax.agency</field>
+        <field name="inherit_id" ref="l10n_es_aeat.aeat_tax_agency_form_view" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page name="verifactu" string="VERI*FACTU">
+                    <group>
+                        <group string="Suministro Facturas Emitidas">
+                            <field name="verifactu_wsdl_out" string="WSDL" />
+                            <field
+                                name="verifactu_wsdl_out_test_address"
+                                string="Test Address"
+                            />
+                        </group>
+                    </group>
+                    <group string="Validar QR">
+                        <field name="verifactu_qr_base_url" string="Base URL" />
+                        <field
+                            name="verifactu_qr_base_url_test_address"
+                            string="Test Base URL"
+                        />
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
