@@ -7,7 +7,7 @@ from odoo.addons.account.models.chart_template import template
 class AccountChartTemplate(models.AbstractModel):
     _inherit = "account.chart.template"
 
-    @template("es_common", model="account.fiscal.position")
+    @template("es_common_mainland", model="account.fiscal.position")
     def _get_fiscal_position(self):
         return {
             "fp_intra_private": {"intrastat": "b2c"},
