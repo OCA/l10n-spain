@@ -22,11 +22,11 @@
             </form>
         </field>
     </record>
-    <record model="ir.ui.view" id="res_company_vat_prorate_tree_view">
-        <field name="name">res.company.vat.prorate.tree (in l10n_es_vat_prorate)</field>
+    <record model="ir.ui.view" id="res_company_vat_prorate_list_view">
+        <field name="name">res.company.vat.prorate.list (in l10n_es_vat_prorate)</field>
         <field name="model">res.company.vat.prorate</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <list editable="bottom">
                 <field name="date" />
                 <field name="type" />
                 <field name="vat_prorate" />
@@ -34,7 +34,7 @@
                     name="special_vat_prorate_default"
                     invisible="type == 'general'"
                 />
-            </tree>
+            </list>
         </field>
     </record>
 </odoo>
