@@ -11,33 +11,11 @@ class TestL10nEsAeatVerifactuIgic(TestVerifactuIgicCommon):
     def test_verifactu_hash_code(self):
         TestL10nEsAeatVerifactu.test_verifactu_hash_code(self)
 
-    # This function override is needed because the company id is dynamic
-    # so if we introduce the hole tax xmlid it will fail in finding the
-    # JSON file like l10n_es_igic.3_account_tax_template_igic_r_3
     def _create_and_test_invoice_verifactu_dict(
         self, name, inv_type, lines, extra_vals, module=None
     ):
-        vals = []
-        tax_names = []
-        for line in lines:
-            taxes = self.env["account.tax"]
-            for tax in line[1]:
-                if "." in tax:
-                    xml_id = tax
-                else:
-                    xml_id = "l10n_es_igic.{}_account_tax_template_{}".format(
-                        self.company.id, tax
-                    )
-                taxes += self.env.ref(xml_id)
-                tax_names.append(tax)
-            vals.append({"price_unit": line[0], "taxes": taxes})
-        return self._compare_verifactu_dict(
-            "verifactu_{}_{}_dict.json".format(inv_type, "_".join(tax_names)),
-            name,
-            inv_type,
-            vals,
-            extra_vals=extra_vals,
-            module=module,
+        return TestL10nEsAeatVerifactu._create_and_test_invoice_verifactu_dict(
+            self, name, inv_type, lines, extra_vals, module
         )
 
     def test_get_verifactu_invoice_data(self):
