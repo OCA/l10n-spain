@@ -96,8 +96,8 @@ class SiiMixin(models.AbstractModel):
         "greater o equal to 100 000 000,00 euros.",
         compute="_compute_macrodata",
     )
-    sii_send_date = fields.Datetime(string="SII Send Date", index=True)
-    sii_needs_cancel = fields.Boolean(readonly=True)
+    sii_send_date = fields.Datetime(string="SII Send Date", index=True, copy=False)
+    sii_needs_cancel = fields.Boolean(readonly=True, copy=False)
 
     def _compute_sii_refund_type(self):
         self.sii_refund_type = False
