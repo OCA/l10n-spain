@@ -5,7 +5,7 @@
 {
     "name": "Comunicación Veri*FACTU IGIC",
     "summary": "Comunicación Veri*FACTU para IGIC",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Binhex," "Odoo Community Association (OCA)",
@@ -17,9 +17,9 @@
         "l10n_es_verifactu_oca",
     ],
     "data": [
-        "data/atc_verifactu_map_data.xml",
-        "data/atc_verifactu_tax_agency_data.xml",
-        "data/account_fiscal_position_template_canary_data.xml",
+        "data/verifactu_tax_agency_data.xml",
+        "data/l10n.es.aeat.map.tax.line.tax.csv",
+        "data/verifactu.map.line.csv",
     ],
     "post_init_hook": "post_init_hook",
 }
