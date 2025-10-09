@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -67,13 +67,15 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_vat_prorate.field_res_company_vat_prorate__special_vat_prorate_default
 msgid ""
 "If the Special VAT Prorate is enabled, this value indicates whether all the "
-"invoice lines will be prorated by default"
+"invoice lines will be prorated by default. On the other hand, all the "
+"invoice lines will be not prorated by default."
 msgstr ""
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,help:l10n_es_vat_prorate.field_res_company_vat_prorate__type
 msgid ""
-"If the special prorate is enabled, you will be able to select which invoice "
+"If the general prorate is enabled, all invoice lines will be prorated. If "
+"the special prorate is enabled, you will be able to select which invoice "
 "lines will be prorated."
 msgstr ""
 
@@ -111,13 +113,17 @@ msgstr ""
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_bank_statement_line__prorate_id
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move__prorate_id
-#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_payment__prorate_id
 msgid "Prorate"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_tax__prorate_account_ids
 msgid "Prorate Account"
+msgstr ""
+
+#. module: l10n_es_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move_line__prorate_line_ids
+msgid "Prorate Line"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
@@ -141,11 +147,6 @@ msgid "The line is a vat prorate"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
-#: model:ir.model.fields,help:l10n_es_vat_prorate.field_account_move_line__with_vat_prorate
-msgid "The line will create a vat prorate"
-msgstr ""
-
-#. module: l10n_es_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate__type
 msgid "Type"
 msgstr ""
@@ -162,44 +163,35 @@ msgstr ""
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model.constraint,message:l10n_es_vat_prorate.constraint_res_company_vat_prorate_vat_prorate_percent_amount
-msgid "VAT prorate must be between 0.01 and 100!"
-msgstr ""
-
-#. module: l10n_es_vat_prorate
-#: model_terms:ir.ui.view,arch_db:l10n_es_vat_prorate.account_move_form_view
-msgid "VAT prorate?"
+msgid "VAT prorate must be between 0.01 and 99.9!"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company__vat_prorate_ids
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate__vat_prorate
+#: model_terms:ir.ui.view,arch_db:l10n_es_vat_prorate.account_move_form_view
 msgid "Vat Prorate"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_bank_statement_line__with_special_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move__with_special_vat_prorate
-#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_payment__with_special_vat_prorate
 msgid "With Special Vat Prorate"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
-#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move_line__with_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_tax__with_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company__with_vat_prorate
 msgid "With VAT Prorate"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
-#. odoo-python
-#: code:addons/l10n_es_vat_prorate/models/res_company.py:0
-#, python-format
-msgid "You can't have a special VAT prorrate of 100%"
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move_line__with_vat_prorate
+msgid "With Vat Prorate"
 msgstr ""
 
 #. module: l10n_es_vat_prorate
 #. odoo-python
 #: code:addons/l10n_es_vat_prorate/models/res_company.py:0
-#, python-format
 msgid "You must complete VAT prorate information"
 msgstr ""

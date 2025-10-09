@@ -5,7 +5,7 @@
 
 from datetime import date
 
-from psycopg2 import IntegrityError
+from psycopg2 import IntegrityError, errors
 
 from odoo import exceptions
 from odoo.tests.common import tagged
@@ -17,8 +17,9 @@ from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 @tagged("post_install", "-at_install")
 class TestVatProrate(AccountTestInvoicingCommon):
     @classmethod
+    @AccountTestInvoicingCommon.setup_chart_template("es_pymes")
     def setUpClass(cls):
-        super().setUpClass(chart_template_ref="es_pymes")
+        super().setUpClass()
         cls.env = cls.env(
             context=dict(
                 cls.env.context,
@@ -60,10 +61,11 @@ class TestVatProrate(AccountTestInvoicingCommon):
         with self.assertRaises(IntegrityError):
             vat_prorate_line.vat_prorate = 200
 
+    @mute_logger("odoo.sql_db")
     def test_company_special_vat_prorate_out_of_range(self):
         # A error should be displayed if special prorates are 100%
         prorate_id = self.env.company.vat_prorate_ids[0]
-        with self.assertRaises(exceptions.ValidationError):
+        with self.assertRaises(errors.CheckViolation):
             prorate_id.write({"type": "special", "vat_prorate": 100})
 
     def test_no_company_vat_prorate_information(self):
@@ -89,14 +91,10 @@ class TestVatProrate(AccountTestInvoicingCommon):
         self.assertEqual(3, len(invoice.line_ids.filtered(lambda r: r.tax_line_id)))
         # Deal with analytics
         invoice.line_ids[0].analytic_distribution = {self.analytic_account.id: 100}
-        self.assertEqual(6, len(invoice.line_ids))
+        self.assertEqual(4, len(invoice.line_ids))
         self.assertEqual(
             1,
-            len(
-                invoice.line_ids.filtered(
-                    lambda r: r.tax_line_id and r.analytic_distribution
-                )
-            ),
+            len(invoice.line_ids.filtered(lambda r: r.analytic_distribution)),
         )
 
     def test_prorate_tax_with_prorate_account(self):
@@ -237,9 +235,16 @@ class TestVatProrate(AccountTestInvoicingCommon):
         invoice = self.init_invoice(
             "in_invoice", products=[self.product_a, self.product_b]
         )
-        invoice.invoice_line_ids.filtered(
-            lambda r: r.product_id == self.product_a
-        ).with_vat_prorate = False
+        invoice.write(
+            {
+                "invoice_line_ids": [
+                    (1, line.id, {"with_vat_prorate": False})
+                    for line in invoice.invoice_line_ids.filtered(
+                        lambda r: r.product_id == self.product_a
+                    )
+                ]
+            }
+        )
         self.assertEqual(5, len(invoice.line_ids))
         self.assertEqual(1, len(invoice.line_ids.filtered("vat_prorate")))
         inv_line_b = invoice.line_ids.filtered(lambda r: r.product_id == self.product_b)
