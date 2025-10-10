@@ -133,6 +133,11 @@ msgid "AEAT send state"
 msgstr "Estado de envío AEAT"
 
 #. module: l10n_es_verifactu_oca
+#: model:ir.model,name:l10n_es_verifactu_oca.model_account_chart_template
+msgid "Account Chart Template"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
 #: model:ir.model,name:l10n_es_verifactu_oca.model_account_move_reversal
 msgid "Account Move Reversal"
 msgstr "Reversión de asiento"
@@ -566,6 +571,13 @@ msgid "Icon to indicate an exception activity."
 msgstr "Icono para indicar una actividad de excepción."
 
 #. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_chaining__sif_id
+msgid ""
+"Identifier of the billing software (SIF). Must be exactly 2 alphanumeric "
+"characters (A,Z, 0,9)."
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_chaining__message_needaction
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_developer__message_needaction
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response__message_needaction
@@ -687,18 +699,6 @@ msgid "Last Error Code"
 msgstr "Último código de error"
 
 #. module: l10n_es_verifactu_oca
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_chaining____last_update
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_developer____last_update
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry____last_update
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response____last_update
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response_line____last_update
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_map____last_update
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_map_line____last_update
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_registration_key____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
-
-#. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry__last_response_line_id
 msgid "Last Response Line"
 msgstr "Última línea de respuesta"
@@ -741,13 +741,6 @@ msgstr "Líneas"
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_journal__restrict_mode_hash_table
 msgid "Lock Posted Entries with Hash"
 msgstr "Bloquear los asientos publicados con una huella digital"
-
-#. module: l10n_es_verifactu_oca
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_chaining__message_main_attachment_id
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_developer__message_main_attachment_id
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "Adjunto principal"
 
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.verifactu_map_view_form
@@ -895,7 +888,7 @@ msgid "Previous Invoice Entry"
 msgstr "Entrada de factura previa"
 
 #. module: l10n_es_verifactu_oca
-#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.report_invoice_document
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.address_layout
 msgid "QR Tributario"
 msgstr "QR Tributario"
 
@@ -1028,7 +1021,6 @@ msgstr "Error de envío"
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.actions.server,name:l10n_es_verifactu_oca.invoice_entry_send_to_verifactu_ir_actions_server
-#: model:ir.cron,cron_name:l10n_es_verifactu_oca.invoice_entry_send_to_verifactu
 msgid "Send invoices to VERI*FACTU"
 msgstr "Enviar facturas a VERI*FACTU"
 
@@ -1095,19 +1087,14 @@ msgid "Tax key"
 msgstr "Clave de impuesto"
 
 #. module: l10n_es_verifactu_oca
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_map_line__taxes
-msgid "Taxes"
-msgstr "Impuestos"
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_map_line__tax_xmlid_ids
+msgid "Taxes templates"
+msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_form
 msgid "Technical"
 msgstr "Técnico"
-
-#. module: l10n_es_verifactu_oca
-#: model:ir.model,name:l10n_es_verifactu_oca.model_account_fiscal_position_template
-msgid "Template for Fiscal Position"
-msgstr "Plantilla para posición fiscal"
 
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.verifactu_tax_agency_form_view
@@ -1193,8 +1180,8 @@ msgid "Unsupported search operator"
 msgstr "Operador de búsqueda no soportado"
 
 #. module: l10n_es_verifactu_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.address_layout
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.report_invoice_document
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.verifactu_tax_agency_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.view_account_position_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.view_company_verifactu_form
@@ -1444,7 +1431,6 @@ msgstr "VERI*FACTU fecha de registro"
 #: model:ir.model,name:l10n_es_verifactu_oca.model_verifactu_registration_key
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_registration_key
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_fiscal_position__verifactu_registration_key
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_fiscal_position_template__verifactu_registration_key
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_registration_key
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_registration_key
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_registration_key
@@ -1525,7 +1511,6 @@ msgstr "VERI*FACTU fecha de inicio"
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_tax_key
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_fiscal_position__verifactu_tax_key
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_fiscal_position_template__verifactu_tax_key
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_tax_key
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_tax_key
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_tax_key
@@ -1635,6 +1620,18 @@ msgstr "número de factura"
 #, python-format
 msgid "third-party number"
 msgstr "número de terceros"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
+
+#~ msgid "Main Attachment"
+#~ msgstr "Adjunto principal"
+
+#~ msgid "Taxes"
+#~ msgstr "Impuestos"
+
+#~ msgid "Template for Fiscal Position"
+#~ msgstr "Plantilla para posición fiscal"
 
 #~ msgid "Next Activity Calendar Event"
 #~ msgstr "Evento de calendario de la próxima actividad"
