@@ -1,0 +1,3 @@
+- [Aures Tic](https://aurestic.es):
+  - Almudena de la Puente \<<almudena@aurestic.es>\>
+  - Jose Zambudio \<<jose@aurestic.es>\>

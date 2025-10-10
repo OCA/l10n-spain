@@ -49,7 +49,7 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
         )
 
     def setUp(self):
-        super(TestSpainPosSii, self).setUp()
+        super().setUp()
         self.PosSession = self.env["pos.session"]
         self.config = self.basic_config
         self.config.write(
@@ -174,7 +174,9 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
                             {
                                 "line_ids": [
                                     {
-                                        "account_id": cash.journal_id.default_account_id.id,
+                                        "account_id": (
+                                            cash.journal_id.default_account_id.id
+                                        ),
                                         "partner_id": False,
                                         "debit": 462,
                                         "credit": 0,
@@ -203,7 +205,7 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
         path = get_resource_path(module, "tests/json", json_file)
         if not path:
             raise Exception("Incorrect JSON file: %s" % json_file)
-        with open(path, "r") as f:
+        with open(path) as f:
             expected_dict = json.loads(f.read())
         self.assertEqual(expected_dict, result_dict)
         return order
