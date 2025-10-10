@@ -552,6 +552,13 @@ msgid "Icon to indicate an exception activity."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_chaining__sif_id
+msgid ""
+"Identifier of the billing software (SIF). Must be exactly 2 alphanumeric "
+"characters (A,Z, 0,9)."
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_chaining__message_needaction
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_developer__message_needaction
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response__message_needaction
