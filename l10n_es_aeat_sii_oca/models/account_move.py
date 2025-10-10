@@ -807,7 +807,7 @@ class AccountMove(models.Model):
         "move_type",
         "fiscal_position_id",
         "fiscal_position_id.aeat_active",
-        "invoice_date",
+        "date",
         "invoice_line_ids",
     )
     def _compute_sii_enabled(self):
@@ -837,8 +837,8 @@ class AccountMove(models.Model):
                     )
                     and (
                         not invoice.company_id.sii_start_date
-                        or not invoice.invoice_date
-                        or invoice.invoice_date >= invoice.company_id.sii_start_date
+                        or not invoice.date
+                        or invoice.date >= invoice.company_id.sii_start_date
                     )
                 )
             else:
