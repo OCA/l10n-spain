@@ -18,7 +18,14 @@ class VerifactuChaining(models.Model):
         copy=False,
         readonly=True,
     )
-    sif_id = fields.Char(string="SIF ID", required=True, tracking=True)
+    sif_id = fields.Char(
+        string="SIF ID",
+        required=True,
+        tracking=True,
+        size=2,
+        help="Identifier of the billing software (SIF). "
+        "Must be exactly 2 alphanumeric characters (A,Z, 0,9).",
+    )
     installation_number = fields.Integer(default=1, required=True, tracking=True)
 
     _sql_constraints = [
