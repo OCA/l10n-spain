@@ -19,10 +19,8 @@
                 />
             </button>
             <notebook position="inside">
-                <field
-                    name="verifactu_enabled"
-                    invisible="1"
-                /> <!-- To be removed in v18 as not needed -->
+                <field name="verifactu_enabled" invisible="1" />
+                <!-- To be removed in v18 as not needed -->
                 <page
                     string="VERI*FACTU"
                     name="page_aeat"

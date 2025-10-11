@@ -106,7 +106,6 @@
         <field name="verifactu_tax_key">01</field>
     </record>
 
-
     <record id="verifactu_registration_keys_igic_01" model="verifactu.registration.key">
         <field name="code">01</field>
         <field name="name">Operación de régimen general</field>
@@ -203,5 +202,4 @@
         >Operaciones interiores exentas por aplicación artículo 25 Ley 19/1994</field>
         <field name="verifactu_tax_key">03</field>
     </record>
-
 </odoo>
