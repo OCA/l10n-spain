@@ -33,7 +33,7 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
         )
         cls.product = cls.env["product.product"].create({"name": "Test product"})
         cls.account_expense = cls.env.ref(
-            "account.%s_account_common_600" % cls.company.id
+            f"account.{cls.company.id}_account_common_600"
         )
         cls.verifactu_developer = cls.env["verifactu.developer"].create(
             {
@@ -112,12 +112,15 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
                 account = self.account_expense
             else:
                 account = self.env["account.account"].search(
-                    [("company_id", "=", company.id), ("account_type", "=", "expense")],
+                    [
+                        ("company_ids", "=", company.id),
+                        ("account_type", "=", "expense"),
+                    ],
                     limit=1,
                 )
                 if not account:
                     account = self.env["account.account"].search(
-                        [("company_id", "=", company.id)], limit=1
+                        [("company_ids", "=", company.id)], limit=1
                     )
         if name is None:
             name = f"Test line - {amount}"
@@ -165,7 +168,8 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
             {"name": name, "vat": vat, "country_id": self.env.ref("base.es").id}
         )
         if not company.chart_template:
-            self.env["account.chart.template"].try_loading("es_pymes", company=company)
+            chart = self.env["account.chart.template"]
+            chart._load(template_code="es_pymes", company=company, install_demo=False)
         company.write(
             {
                 "verifactu_enabled": verifactu_enabled,
