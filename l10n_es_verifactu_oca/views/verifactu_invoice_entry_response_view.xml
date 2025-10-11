@@ -3,16 +3,16 @@
     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
 <odoo>
     <record id="verifactu_invoice_entry_response_view_tree" model="ir.ui.view">
-        <field name="name">verifactu.invoice.entry.response.view.tree</field>
+        <field name="name">verifactu.invoice.entry.response.view.list</field>
         <field name="model">verifactu.invoice.entry.response</field>
         <field name="arch" type="xml">
-            <tree create="false" delete="false" duplicate="0">
+            <list create="false" delete="false" duplicate="0">
                 <field name="id" />
                 <field name="name" />
                 <field name="date_response" />
                 <field name="verifactu_csv" />
                 <field name="header" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="verifactu_invoice_entry_response_view_form" model="ir.ui.view">
@@ -62,15 +62,7 @@
                         </page>
                     </notebook>
                 </sheet>
-                <div class="oe_chatter">
-                    <field
-                        name="name"
-                        groups="base.group_user"
-                        options="{'post_refresh': 'recipients'}"
-                    />
-                    <field name="activity_ids" />
-                    <field name="message_ids" />
-                </div>
+                <chatter />
             </form>
         </field>
     </record>
@@ -82,36 +74,10 @@
                 <field name="name" />
                 <field name="date_response" />
                 <templates>
-                    <t t-name="kanban-box">
-                        <div t-attf-class="oe_kanban_global_click">
-                            <div class="row">
-                                <div class="col-6 o_kanban_record_headings">
-                                    <strong>
-                                        <span>
-                                            <field name="name" />
-                                        </span>
-                                    </strong>
-                                </div>
-                                <div class="col-6 text-end">
-                                    <strong>
-                                        <i
-                                            class="fa fa-clock-o"
-                                            aria-label="Date"
-                                            role="img"
-                                            title="Date"
-                                        />
-                                        <t t-esc="record.date_response.value" />
-                                    </strong>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <span>
-                                        <field name="activity_type_id" />
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+                    <t t-name="card">
+                        <field name="name" />
+                        <field name="date_response" />
+                        <field name="activity_type_id" />
                     </t>
                 </templates>
             </kanban>
@@ -136,7 +102,8 @@
     <record id="action_verifactu_invoice_entry_response" model="ir.actions.act_window">
         <field name="name">VERI*FACTU responses</field>
         <field name="res_model">verifactu.invoice.entry.response</field>
-        <field name="view_mode">tree,form</field>
+        <field name="path">verifactu-invoice-entry-responses</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 No VERI*FACTU responses found!

@@ -107,7 +107,7 @@ class TestL10nEsAeatVerifactu(TestVerifactuCommon):
         result_dict["RegistroAlta"].pop("Huella")
         path = file_path(f"{module}/tests/json/{json_file}")
         if not path:
-            raise Exception("Incorrect JSON file: %s" % json_file)
+            raise Exception(f"Incorrect JSON file: {json_file}")
         with open(path) as f:
             expected_dict = json.loads(f.read())
         self.assertEqual(expected_dict, result_dict)
@@ -266,7 +266,7 @@ class TestL10nEsAeatVerifactuQR(TestVerifactuCommon):
             json_file = "verifactu_mocked_response_1.json"
             path = file_path(f"{module}/tests/json/{json_file}")
             if not path:
-                raise Exception("Incorrect JSON file: %s" % json_file)
+                raise Exception(f"Incorrect JSON file: {json_file}")
             with open(path) as f:
                 response_dict = json.loads(f.read())
             mock_service.RegFactuSistemaFacturacion.return_value = response_dict
@@ -371,7 +371,7 @@ class TestVerifactuSendResponse(TestVerifactuCommon):
         json_file = "verifactu_mocked_response_2.json"
         path = file_path(f"{module}/tests/json/{json_file}")
         if not path:
-            raise Exception("Incorrect JSON file: %s" % json_file)
+            raise Exception(f"Incorrect JSON file: {json_file}")
         with open(path) as f:
             response_dict = json.loads(f.read())
         mock_service.RegFactuSistemaFacturacion.return_value = response_dict
