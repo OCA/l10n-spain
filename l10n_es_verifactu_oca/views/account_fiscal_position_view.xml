@@ -13,7 +13,6 @@
                     string="VERI*FACTU"
                     invisible="not verifactu_enabled"
                 >
-                    <field name="verifactu_enabled" invisible="1" />
                     <group>
                         <field name="aeat_active" string="Active?" />
                         <field name="verifactu_tax_key" string="Tax key" />

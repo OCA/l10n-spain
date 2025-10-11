@@ -5,9 +5,6 @@
         <field name="model">account.journal</field>
         <field name="inherit_id" ref="account.view_account_journal_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='restrict_mode_hash_table']" position="before">
-                <field name="restrict_mode_hash_table_readonly" invisible="1" />
-            </xpath>
             <xpath
                 expr="//field[@name='restrict_mode_hash_table']"
                 position="attributes"
@@ -15,7 +12,6 @@
                 <attribute name="readonly">restrict_mode_hash_table_readonly</attribute>
             </xpath>
             <xpath expr="//field[@name='restrict_mode_hash_table']" position="before">
-                <field name="company_verifactu_enabled" invisible="1" />
                 <field
                     name="verifactu_enabled"
                     invisible="not company_verifactu_enabled or type != 'sale'"
