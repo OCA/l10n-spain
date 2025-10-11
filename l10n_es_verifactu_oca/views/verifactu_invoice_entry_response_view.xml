@@ -79,39 +79,42 @@
         <field name="model">verifactu.invoice.entry.response</field>
         <field name="arch" type="xml">
             <kanban class="o_kanban_activity">
-                    <field name="name" />
-                    <field name="date_response" />
-                    <templates>
-                        <t t-name="kanban-box">
-                            <div t-attf-class="oe_kanban_global_click">
-                                <div class="row">
-                                    <div class="col-6 o_kanban_record_headings">
-                                        <strong>
-                                            <span>
-                                                <field name="name" />
-                                            </span>
-                                        </strong>
-                                    </div>
-                                    <div class="col-6 text-end">
-                                        <strong><i
+                <field name="name" />
+                <field name="date_response" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="row">
+                                <div class="col-6 o_kanban_record_headings">
+                                    <strong>
+                                        <span>
+                                            <field name="name" />
+                                        </span>
+                                    </strong>
+                                </div>
+                                <div class="col-6 text-end">
+                                    <strong>
+                                        <i
                                             class="fa fa-clock-o"
                                             aria-label="Date"
                                             role="img"
                                             title="Date"
-                                        /> <t
-                                            t-esc="record.date_response.value"
-                                        /></strong>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <span><field name="activity_type_id" /></span>
-                                    </div>
+                                        />
+                                        <t t-esc="record.date_response.value" />
+                                    </strong>
                                 </div>
                             </div>
-                        </t>
-                    </templates>
-                </kanban>
+                            <div class="row">
+                                <div class="col-12">
+                                    <span>
+                                        <field name="activity_type_id" />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
         </field>
     </record>
     <record id="verifactu_invoice_entry_response_view_search" model="ir.ui.view">

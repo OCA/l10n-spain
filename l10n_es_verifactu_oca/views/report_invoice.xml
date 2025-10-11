@@ -38,13 +38,13 @@
                         <t t-out="information_block" />
                     </div>
                     <div name="address" t-att-class="colclass">
-                    <t t-esc="address" />
+                        <t t-esc="address" />
                     </div>
                 </t>
                 <t t-if="not information_block">
                     <t t-set="colclass" t-value="'col-5 offset-4'" />
                     <div name="address" t-att-class="colclass">
-                    <t t-esc="address" />
+                        <t t-esc="address" />
                     </div>
                 </t>
             </div>

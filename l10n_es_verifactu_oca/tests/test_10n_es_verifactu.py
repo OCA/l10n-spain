@@ -96,8 +96,9 @@ class TestL10nEsAeatVerifactu(TestVerifactuCommon):
         invoice = self.env["account.move"].create(vals)
         self._activate_certificate(self.certificate_password)
         first_now = datetime(2026, 1, 1, 19, 20, 30)
-        with patch.object(self.env.cr, "now", lambda: first_now), freeze_time(
-            first_now
+        with (
+            patch.object(self.env.cr, "now", lambda: first_now),
+            freeze_time(first_now),
         ):
             invoice.action_post()
         result_dict = invoice._get_verifactu_invoice_dict()
