@@ -12,15 +12,6 @@ class PosOrder(models.Model):
     _name = "pos.order"
     _inherit = ["pos.order", "sii.mixin"]
 
-    order_jobs_ids = fields.Many2many(
-        comodel_name="queue.job",
-        column1="pos_order_id",
-        column2="job_id",
-        relation="pos_order_queue_job_rel",
-        string="Connector Jobs",
-        copy=False,
-    )
-
     @api.depends("company_id", "state")
     def _compute_sii_description(self):
         for order in self:
@@ -75,19 +66,14 @@ class PosOrder(models.Model):
         """
         return False
 
-    def _get_sii_jobs_field_name(self):
-        return "order_jobs_ids"
-
     def _get_valid_document_states(self):
         return SII_VALID_POS_ORDER_STATES
 
     def _aeat_get_partner(self):
-        partner = self.session_id.config_id.default_partner_id
+        partner = self.env.ref("l10n_es.partner_simplified", raise_if_not_found=False)
         if not partner:
             raise UserError(
-                _("You must define a default partner for POS {}").format(
-                    self.session_id.config_id.display_name,
-                )
+                _("Simplified Invoice Partner not found. Please update l10n_es module.")
             )
         return partner
 
@@ -171,3 +157,20 @@ class PosOrder(models.Model):
         if self.amount_total < 0.0:
             inv_dict["FacturaExpedida"]["TipoRectificativa"] = "I"
         return inv_dict
+
+    @api.model
+    def _send_to_sii_valid(self):
+        documents = self.search(
+            [
+                ("state", "in", self._get_valid_document_states()),
+                ("aeat_state", "not in", ["sent", "cancelled"]),
+                ("sii_enabled", "=", True),
+                ("sii_send_date", "<=", fields.Datetime.now()),
+            ]
+        )
+        if documents:
+            documents.confirm_one_document()
+
+    @api.model
+    def _send_to_sii(self):
+        self._send_to_sii_valid()
