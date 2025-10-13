@@ -4,8 +4,8 @@
 
 import json
 
-from odoo.modules.module import get_resource_path
 from odoo.tests import tagged
+from odoo.tools.misc import file_path
 
 from odoo.addons.l10n_es_aeat_sii_oca.tests.test_l10n_es_aeat_sii import (
     TestL10nEsAeatSiiBase,
@@ -17,17 +17,13 @@ from odoo.addons.point_of_sale.tests.common import TestPoSCommon
 class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
     @classmethod
     def setUpClass(cls, chart_template_ref=None):
-        chart_template_ref = (
-            "l10n_es.account_chart_template_common" or chart_template_ref
-        )
+        chart_template_ref = chart_template_ref or "es_pymes"
         super().setUpClass(chart_template_ref=chart_template_ref)
-        # !: AccountTestInvoicingCommon overwrite user.company_id with sii disabled
-        cls.company = cls.env.user.company_id
+
         cls.company.write(
             {
                 "sii_enabled": True,
                 "sii_test": True,
-                "use_connector": True,
                 "sii_method": "manual",
                 "vat": "ESU2687761C",
                 "sii_description_method": "manual",
@@ -47,51 +43,43 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
                 "vat": "FR82542065479",
             }
         )
+        cls.PosSession = cls.env["pos.session"]
+        cls.config = cls.basic_config
+        cls.config.write(
+            {
+                "iface_l10n_es_simplified_invoice": True,
+                "company_id": cls.company.id,
+            }
+        )
+        cls.env.user.write(
+            {"groups_id": [(3, cls.env.ref("account.group_account_manager").id)]}
+        )
+        cls.tax_21b = cls.env.ref(
+            f"account.{cls.env.user.company_id.id}_account_tax_template_s_iva21b"
+        )
+        cls.tax_account = cls.env.ref(
+            f"account.{cls.env.user.company_id.id}_account_common_477"
+        )
+        cls.tax_10b = cls.env.ref(
+            f"account.{cls.env.user.company_id.id}_account_tax_template_s_iva10b"
+        )
+        cls.product21 = cls.create_product(
+            "Product 21b",
+            cls.categ_basic,
+            100.0,
+            100.0,
+            tax_ids=cls.tax_21b.ids,
+        )
+        cls.product10 = cls.create_product(
+            "Product 10b",
+            cls.categ_basic,
+            100.0,
+            100.0,
+            tax_ids=cls.tax_10b.ids,
+        )
 
     def setUp(self):
         super().setUp()
-        self.PosSession = self.env["pos.session"]
-        self.config = self.basic_config
-        self.config.write(
-            {
-                "iface_l10n_es_simplified_invoice": True,
-                "company_id": self.company.id,
-                "default_partner_id": self.env["res.partner"]
-                .create(
-                    {
-                        "name": "Test simplified default customer",
-                        "aeat_simplified_invoice": True,
-                    }
-                )
-                .id,
-            }
-        )
-        self.env.user.write(
-            {"groups_id": [(3, self.env.ref("account.group_account_manager").id)]}
-        )
-        self.tax_21b = self.env.ref(
-            f"l10n_es.{self.env.user.company_id.id}_account_tax_template_s_iva21b"
-        )
-        self.tax_account = self.env.ref(
-            f"l10n_es.{self.env.user.company_id.id}_account_common_477"
-        )
-        self.tax_10b = self.env.ref(
-            f"l10n_es.{self.env.user.company_id.id}_account_tax_template_s_iva10b"
-        )
-        self.product21 = self.create_product(
-            "Product 21b",
-            self.categ_basic,
-            100.0,
-            100.0,
-            tax_ids=self.tax_21b.ids,
-        )
-        self.product10 = self.create_product(
-            "Product 10b",
-            self.categ_basic,
-            100.0,
-            100.0,
-            tax_ids=self.tax_10b.ids,
-        )
         self._create_session_closed()
         self.session = self.PosSession.search([], limit=1, order="id desc")
         self.order = self.session.order_ids[:1]
@@ -202,7 +190,7 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
         """Helper method for comparing the expected SII dict with ."""
         module = "l10n_es_pos_sii"
         result_dict = order._get_aeat_invoice_dict()
-        path = get_resource_path(module, "tests/json", json_file)
+        path = file_path(f"{module}/tests/json/{json_file}")
         if not path:
             raise Exception("Incorrect JSON file: %s" % json_file)
         with open(path) as f:
@@ -245,23 +233,18 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
             order.send_sii()
             self._compare_sii_dict(json_by_taxes.get(taxes, {}).get("json"), order)
 
-    def test_03_job_creation(self):
-        for order in self.session.order_ids:
-            order.send_sii()
-            self.assertTrue(order.order_jobs_ids)
-
-    def test_04_is_aeat_simplified_invoice(self):
+    def test_03_is_aeat_simplified_invoice(self):
         for order in self.session.order_ids:
             self.assertTrue(order._is_aeat_simplified_invoice())
 
-    def test_05_sii_description(self):
+    def test_04_sii_description(self):
         self.order.company_id.write(
             {
                 "sii_pos_description": "Test POS description",
             }
         )
         session = self.order.session_id
-        default_partner = session.config_id.default_partner_id
+        default_partner = self.env.ref("l10n_es.partner_simplified")
         order = self.env["pos.order"].create(
             {
                 "company_id": self.order.company_id.id,
@@ -293,7 +276,7 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
         order.action_pos_order_paid()
         self.assertEqual(order.sii_description, "Test POS description")
 
-    def test_06_refund_sii_refund_type(self):
+    def test_05_refund_sii_refund_type(self):
         cash = self.cash_pm1
         self._start_pos_session(cash, 462.0)
         refund_order = self._create_orders(
@@ -316,10 +299,12 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
         self._compare_sii_dict("sii_pos_order_refund_iva21b.json", refund_order)
         self.assertEqual(refund_order.sii_refund_type, "I")
 
-    def test_07_automatic_send(self):
-        self.company.sii_description_method = "auto"
+    def test_06_automatic_send(self):
+        self.company.send_mode = "auto"
+
         cash = self.cash_pm1
         pos_session = self._start_pos_session(cash, 462.0)
+
         self._create_orders(
             [
                 {
@@ -331,12 +316,24 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
                 },
             ]
         )
-        pos_session.post_closing_cash_details(583.0)
-        pos_session.close_session_from_ui()
-        for order in pos_session.order_ids:
-            self.assertTrue(order.order_jobs_ids)
 
-    def test_08_export_for_ui_session_is_closed(self):
+        pos_session.post_closing_cash_details(583.0)
+        sii_send_cron = self.env.ref("l10n_es_aeat_sii_oca.invoice_send_to_sii")
+        Trigger = self.env["ir.cron.trigger"].sudo()
+        before = Trigger.search_count([("cron_id", "=", sii_send_cron.id)])
+
+        pos_session.close_session_from_ui()
+
+        after = Trigger.search_count([("cron_id", "=", sii_send_cron.id)])
+        self.assertEqual(after, before + 1)
+
+        trigger = Trigger.search(
+            [("cron_id", "=", sii_send_cron.id)], order="id desc", limit=1
+        )
+        self.assertTrue(trigger)
+        self.assertTrue(trigger.call_at)
+
+    def test_07_export_for_ui_session_is_closed(self):
         cash = self.cash_pm1
         pos_session = self._start_pos_session(cash, 462.0)
         self._create_orders(

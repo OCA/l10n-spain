@@ -39,7 +39,7 @@ Configuration
 =============
 
 No se requieren pasos adicionales de configuración, ver configuración de
-los módulos l10n_es_pos, l10n_es_aeat_sii_oca y pos_default_partner.
+los módulos l10n_es_pos_oca, l10n_es_aeat_sii_oca.
 
 Known issues / Roadmap
 ======================
@@ -81,6 +81,10 @@ Contributors
 
    -  Almudena de la Puente <almudena@aurestic.es>
    -  Jose Zambudio <jose@aurestic.es>
+
+-  `APSL-Nagarro <https://apsl.tech>`__:
+
+   -  Bernat Obrador <bobrador@apsl.net>
 
 Maintainers
 -----------
