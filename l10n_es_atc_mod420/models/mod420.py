@@ -23,14 +23,14 @@ class L10nEsAtcMod420Report(models.Model):
     def _default_counterpart_420(self):
         return self.env["account.account"].search(
             [
-                ("company_id", "=", self.env.company.id),
+                ("company_ids", "in", [self.env.company.id]),
                 ("code", "like", "4757%"),
             ]
         )[:1]
 
     company_partner_id = fields.Many2one(
         comodel_name="res.partner",
-        string="Partner",
+        string="Company Partner",
         related="company_id.partner_id",
         store=True,
     )
@@ -121,17 +121,16 @@ class L10nEsAtcMod420Report(models.Model):
     )
     result_type = fields.Selection(
         selection=[
-            ("I", _("To enter")),
-            ("D", _("To return")),
-            ("C", _("To compensate")),
-            ("N", _("No activity/Zero result")),
+            ("I", "To enter"),
+            ("D", "To return"),
+            ("C", "To compensate"),
+            ("N", "No activity/Zero result"),
         ],
         string="Result type",
         compute="_compute_result_type",
     )
     bank_account_id = fields.Many2one(
         comodel_name="res.partner.bank",
-        string="Bank account",
     )
     counterpart_account_id = fields.Many2one(
         comodel_name="account.account",
@@ -255,7 +254,7 @@ class L10nEsAtcMod420Report(models.Model):
                     "Please select a different payment type."
                 )
             )
-        if not self.company_id.city_id.code:
+        if not self.company_id.city_id.zipcode:
             messages.append(
                 _(
                     "- Please set the code in the city: %s",
