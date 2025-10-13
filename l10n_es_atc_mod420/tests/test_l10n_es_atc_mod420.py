@@ -465,7 +465,7 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
 
     def _check_tax_lines(self):
         for field, result in iter(self.taxes_result.items()):
-            _logger.debug("Checking tax line: %s" % field)
+            _logger.debug(f"Checking tax line: {field}")
             lines = self.model420.tax_line_ids.filtered(
                 lambda x, field=field: x.field_number == int(field)
             )
@@ -473,7 +473,7 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
                 sum(lines.mapped("amount")),
                 result,
                 2,
-                "Incorrect result in field %s" % field,
+                f"Incorrect result in field {field}",
             )
 
     @classmethod
