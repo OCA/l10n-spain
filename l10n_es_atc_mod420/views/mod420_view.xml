@@ -5,8 +5,8 @@
         <field name="model">l10n.es.atc.mod420.report</field>
         <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree" />
         <field name="arch" type="xml">
-            <tree position="attributes">
-                <attribute name="string">Modelo ATC 420</attribute>= </tree>
+            <list position="attributes">
+                <attribute name="string">Modelo ATC 420</attribute>= </list>
             <field name="period_type" position="after">
                 <field name="total_devengado" />
                 <field name="total_deducir" />
@@ -127,7 +127,7 @@
     <record id="action_l10n_es_atc_mod420_report" model="ir.actions.act_window">
         <field name="name">Modelo ATC 420</field>
         <field name="res_model">l10n.es.atc.mod420.report</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help">Crear y consultar declaraciones del modelo ATC 420</field>
     </record>
 
@@ -136,7 +136,7 @@
         id="action_l10n_es_atc_mod420_report_tree"
     >
         <field name="sequence" eval="2" />
-        <field name="view_mode">tree</field>
+        <field name="view_mode">list</field>
         <field name="view_id" ref="view_l10n_es_atc_mod420_report_tree" />
         <field name="act_window_id" ref="action_l10n_es_atc_mod420_report" />
     </record>

@@ -397,7 +397,7 @@ class TestL10nEsAtcMod420Base(TestL10nEsAeatModBase):
             {"name": "Canary test company", "currency_id": cls.env.ref("base.EUR").id}
         )
         cls.env["account.chart.template"].try_loading(
-            "es_pymes_canary", company=cls.company, install_demo=False
+            "es_canary_pymes", company=cls.company, install_demo=False
         )
         cls.env.ref("base.group_multi_company").write({"users": [(4, cls.env.uid)]})
         cls.env.user.write(
@@ -424,12 +424,17 @@ class TestL10nEsAtcMod420Base(TestL10nEsAeatModBase):
                 "date_start": "2017-01-01",
                 "date_end": "2017-03-31",
                 "journal_id": cls.journal_misc.id,
+                "counterpart_account_id": cls.env["account.account"]
+                .search(
+                    [("company_ids", "in", [cls.company.id]), ("code", "=", "475800")]
+                )
+                .id,
             }
         )
         cls.palmas_city = cls.env["res.city"].create(
             {
                 "name": "Las Palmas de Gran Canaria",
-                "code": "35016",
+                "zipcode": "35016",
                 "state_id": cls.env.ref("base.state_es_gc").id,
                 "country_id": cls.env.ref("base.es").id,
             }
@@ -489,12 +494,12 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
             "700000",
             "430000",
             "410000",
-            "475700",
+            "475800",
             "477700",
         }
         for code in codes:
             cls.accounts[code] = cls.env["account.account"].search(
-                [("company_id", "=", cls.company.id), ("code", "=", code)]
+                [("company_ids", "in", [cls.company.id]), ("code", "=", code)]
             )
         return True
 
@@ -511,7 +516,7 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
         self.model420.button_calculate()
         # Test default counterpart.
         self.assertEqual(
-            self.model420.counterpart_account_id.id, self.accounts["475700"].id
+            self.model420.counterpart_account_id.id, self.accounts["475800"].id
         )
         self.assertEqual(self.model420.state, "calculated")
         # Fill manual fields
@@ -555,7 +560,7 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
             self.env.ref("l10n_es_atc.res_partner_atc"),
         )
         codes = self.model420.move_id.mapped("line_ids.account_id.code")
-        self.assertIn("475700", codes)
+        self.assertIn("475800", codes)
         self.assertIn("477700", codes)
         self.assertIn("472700", codes)
         self.model420.button_unpost()
