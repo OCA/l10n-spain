@@ -39,7 +39,11 @@ class PosOrder(models.Model):
     def _compute_sii_enabled(self):
         """Compute if the order is enabled for the SII"""
         for order in self:
-            if order.company_id.sii_enabled:
+            if order.company_id.sii_enabled and (
+                not order.company_id.sii_start_date
+                or not order.date_order
+                or order.date_order.date() >= order.company_id.sii_start_date
+            ):
                 order.sii_enabled = (
                     order.fiscal_position_id and order.fiscal_position_id.aeat_active
                 ) or not order.fiscal_position_id
