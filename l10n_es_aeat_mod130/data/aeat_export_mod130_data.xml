@@ -380,7 +380,7 @@
         <field name="export_type">boolean</field>
         <field name="size">1</field>
         <field name="bool_yes">X</field>
-        <field name="bool_no" />
+        <field name="bool_no" eval="' '" />
         <field name="alignment">left</field>
     </record>
 
