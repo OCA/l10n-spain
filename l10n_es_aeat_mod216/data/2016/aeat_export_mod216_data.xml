@@ -209,7 +209,7 @@
         <field name="export_type">boolean</field>
         <field name="size">1</field>
         <field name="bool_yes">X</field>
-        <field name="bool_no" />
+        <field name="bool_no" eval="' '" />
         <field name="alignment">left</field>
     </record>
     <record id="aeat_mod216_sub01_export_line_21" model="aeat.model.export.config.line">
@@ -375,7 +375,7 @@
         <field
             name="name"
         >Fin de Registro. Constante CRLF (Hexadecimal 0D0A, Decimal 1310)</field>
-        <field name="expression">${"\r\n".encode("ascii")}</field>
+        <field name="expression">${"\r\n"}</field>
         <field name="export_type">string</field>
         <field name="size">2</field>
         <field name="alignment">left</field>
