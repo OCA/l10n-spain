@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,69 +16,55 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
-#, python-format
 msgid "%s tax is not mapped to VERI*FACTU."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
-#, python-format
 msgid "- It does not have a registration key."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
-#, python-format
 msgid "- It does not have a tax key."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
-#, python-format
 msgid "- It does not have all taxes mapped."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
-#, python-format
 msgid "- There are some inconsistent taxes on lines."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
-#, python-format
 msgid "- Your company does not have a VERI*FACTU chaining configured."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
-#, python-format
 msgid "- Your company does not have a VERI*FACTU developer configured."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
-#, python-format
 msgid "- Your company does not have a tax agency configured."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
-#, python-format
 msgid "- Your company's tax agency is not supported."
-msgstr ""
-
-#. module: l10n_es_verifactu_oca
-#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.verifactu_invoice_entry_response_view_kanban
-msgid "<i class=\"fa fa-clock-o\" aria-label=\"Date\" role=\"img\" title=\"Date\"/>"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
@@ -250,21 +236,18 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_invoice_entry_response.py:0
-#, python-format
 msgid "Check connection error with VERI*FACTU"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_invoice_entry_response.py:0
-#, python-format
 msgid "Check incorrect invoices from VERI*FACTU"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_macrodata
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_move__verifactu_macrodata
-#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_payment__verifactu_macrodata
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_macrodata
 msgid ""
 "Check to confirm that the document has an absolute amount greater o equal to"
@@ -297,7 +280,6 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_invoice_entry.py:0
 #: model:mail.activity.type,summary:l10n_es_verifactu_oca.mail_activity_data_exception
-#, python-format
 msgid "Connection error with VERI*FACTU"
 msgstr ""
 
@@ -309,7 +291,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
-#, python-format
 msgid "Could not obtain last document sent to VERI*FACTU for chaining %s."
 msgstr ""
 
@@ -449,7 +430,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_map.py:0
-#, python-format
 msgid "Error! The dates of the record overlap with an existing record."
 msgstr ""
 
@@ -466,7 +446,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_refund_specific_type
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_move__verifactu_refund_specific_type
-#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_payment__verifactu_refund_specific_type
 msgid ""
 "Fill this field when the refund are one of the specific cases of article 80 "
 "of LIVA for notifying to VERI*FACTU with the proper invoice type."
@@ -587,14 +566,14 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_journal__restrict_mode_hash_table
 msgid ""
-"If ticked, the accounting entry or invoice receives a hash as soon as it is "
-"posted and cannot be modified anymore."
+"If ticked, when an entry is posted, we retroactively hash all moves in the "
+"sequence from the entry back to the last hashed entry. The hash can also be "
+"performed on demand by the Secure Entries wizard."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_invoice_entry.py:0
-#, python-format
 msgid "Incorrect invoices sent to VERI*FACTU"
 msgstr ""
 
@@ -711,11 +690,6 @@ msgid "Lines"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_journal__restrict_mode_hash_table
-msgid "Lock Posted Entries with Hash"
-msgstr ""
-
-#. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.verifactu_map_view_form
 msgid "Mapping Lines"
 msgstr ""
@@ -778,7 +752,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_invoice_entry.py:0
-#, python-format
 msgid "No VAT configured for the company '{}'"
 msgstr ""
 
@@ -839,14 +812,12 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_invoice_entry.py:0
-#, python-format
 msgid "Please, configure the VERI*FACTU certificates for your company"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
-#, python-format
 msgid "Please, configure the VERI*FACTU developer in your company"
 msgstr ""
 
@@ -868,7 +839,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
-#, python-format
 msgid "QR URL value '{}' is not ASCII"
 msgstr ""
 
@@ -972,6 +942,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__aeat_send_failed
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__aeat_send_failed
 msgid "SII send failed"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_journal__restrict_mode_hash_table
+msgid "Secure Posted Entries with Hash"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
@@ -1086,7 +1061,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
-#, python-format
 msgid "The invoice %s cannot be sent to VERI*FACTU because:"
 msgstr ""
 
@@ -1098,7 +1072,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
-#, python-format
 msgid ""
 "The value in l10n_es_verifactu_oca.verifactu_batch system parameter must be "
 "an integer. Please, check the value of the parameter."
@@ -1107,28 +1080,24 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_invoice_entry_response.py:0
-#, python-format
 msgid "There has been an error when trying to connect to VERI*FACTU"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_invoice_entry_response.py:0
-#, python-format
 msgid "There is an error with one or more invoices"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
-#, python-format
 msgid "There's a mismatch in taxes for RE. Check them."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
-#, python-format
 msgid "This invoice is not VERI*FACTU enabled."
 msgstr ""
 
@@ -1140,7 +1109,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
-#, python-format
 msgid "Unsupported search operator"
 msgstr ""
 
@@ -1156,7 +1124,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_csv
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_csv
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_csv
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response__verifactu_csv
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response_line__verifactu_csv
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_csv
@@ -1166,7 +1133,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_qr
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_qr
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_qr
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_qr
 msgid "VERI*FACTU QR"
 msgstr ""
@@ -1204,7 +1170,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_qr_url
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_qr_url
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_qr_url
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_qr_url
 msgid "VERI*FACTU URL"
 msgstr ""
@@ -1239,7 +1204,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_description
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_description
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_description
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_res_company__verifactu_description
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_description
 msgid "VERI*FACTU description"
@@ -1262,7 +1226,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_fiscal_position__verifactu_enabled
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_journal__verifactu_enabled
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_enabled
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_enabled
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_res_company__verifactu_enabled
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_res_partner__verifactu_enabled
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_res_users__verifactu_enabled
@@ -1288,7 +1251,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_hash
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_hash
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_hash
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_hash
 msgid "VERI*FACTU hash"
 msgstr ""
@@ -1296,7 +1258,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_hash_string
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_hash_string
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_hash_string
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_hash_string
 msgid "VERI*FACTU hash string"
 msgstr ""
@@ -1304,7 +1265,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_invoice_entry_ids
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_invoice_entry_ids
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_invoice_entry_ids
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_invoice_entry_ids
 msgid "VERI*FACTU invoice entries"
 msgstr ""
@@ -1322,7 +1282,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_registration_key_code
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_registration_key_code
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_registration_key_code
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_registration_key_code
 msgid "VERI*FACTU key code"
 msgstr ""
@@ -1330,7 +1289,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__last_verifactu_invoice_entry_id
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__last_verifactu_invoice_entry_id
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__last_verifactu_invoice_entry_id
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__last_verifactu_invoice_entry_id
 msgid "VERI*FACTU last invoice entry"
 msgstr ""
@@ -1338,7 +1296,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_macrodata
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_macrodata
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_macrodata
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_macrodata
 msgid "VERI*FACTU macrodata?"
 msgstr ""
@@ -1372,14 +1329,12 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_refund_specific_type
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_refund_specific_type
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_refund_specific_type
 msgid "VERI*FACTU refund specific type"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_refund_type
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_refund_type
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_refund_type
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_refund_type
 msgid "VERI*FACTU refund type"
 msgstr ""
@@ -1387,7 +1342,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_registration_date
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_registration_date
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_registration_date
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_registration_date
 msgid "VERI*FACTU registration date"
 msgstr ""
@@ -1397,7 +1351,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_registration_key
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_fiscal_position__verifactu_registration_key
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_registration_key
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_registration_key
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_registration_key
 msgid "VERI*FACTU registration key"
 msgstr ""
@@ -1411,7 +1364,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__last_verifactu_response_line_id
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__last_verifactu_response_line_id
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__last_verifactu_response_line_id
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__last_verifactu_response_line_id
 msgid "VERI*FACTU response line"
 msgstr ""
@@ -1419,7 +1371,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_response_line_ids
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_response_line_ids
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_response_line_ids
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_response_line_ids
 msgid "VERI*FACTU response lines"
 msgstr ""
@@ -1433,7 +1384,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_return
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_return
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_return
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_return
 msgid "VERI*FACTU return"
 msgstr ""
@@ -1441,7 +1391,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_send_date
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_send_date
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_send_date
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_send_date
 msgid "VERI*FACTU send date"
 msgstr ""
@@ -1459,7 +1408,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_invoice_entry.py:0
-#, python-format
 msgid "VERI*FACTU sending"
 msgstr ""
 
@@ -1477,7 +1425,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_tax_key
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_fiscal_position__verifactu_tax_key
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_tax_key
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_tax_key
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_tax_key
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_registration_key__verifactu_tax_key
 msgid "VERI*FACTU tax key"
@@ -1525,21 +1472,18 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
-#, python-format
 msgid "You can not cancel invoices sent to VERI*FACTU."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
-#, python-format
 msgid "You can not set to draft invoices sent to VERI*FACTU."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_journal.py:0
-#, python-format
 msgid ""
 "You can't have a sale journal with VERI*FACTU enabled and not restricted "
 "hash modification."
@@ -1548,7 +1492,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
-#, python-format
 msgid ""
 "You cannot change the %s of document already registered at VERI*FACTU. You "
 "must cancel the document and create a new one with the correct value."
@@ -1557,27 +1500,23 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
-#, python-format
 msgid "Your company is not registered in Spain."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
-#, python-format
 msgid "invoice date"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
-#, python-format
 msgid "invoice number"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
-#, python-format
 msgid "third-party number"
 msgstr ""
