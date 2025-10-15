@@ -73,6 +73,25 @@ class L10nEsAeatMapTaxLine(models.Model):
                 account_ids.add(account_id)
         return self.env["account.account"].browse(list(account_ids))
 
+    def _get_amount_from_moves(self, move_lines):
+        """
+        Get the amount from the given move lines according to the
+        configuration of the mapping line.
+        :param move_lines: browse_record(account.move.line)
+        :return: The amount calculated from the move lines.
+        :rtype: float
+        """
+        self.ensure_one()
+        if self.sum_type == "credit":
+            amount = sum(move_lines.mapped("credit"))
+        elif self.sum_type == "debit":
+            amount = sum(move_lines.mapped("debit"))
+        else:  # self.sum_type == 'both'
+            amount = sum(move_lines.mapped("credit")) - sum(move_lines.mapped("debit"))
+        if self.inverse:
+            amount = (-1.0) * amount
+        return amount
+
 
 class L10nEsAeatMapTaxLineTax(models.Model):
     _name = "l10n.es.aeat.map.tax.line.tax"

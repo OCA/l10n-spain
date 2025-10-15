@@ -66,14 +66,7 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
     def _prepare_tax_line_vals(self, map_line):
         self.ensure_one()
         move_lines = self._get_tax_lines(self.date_start, self.date_end, map_line)
-        if map_line.sum_type == "credit":
-            amount = sum(move_lines.mapped("credit"))
-        elif map_line.sum_type == "debit":
-            amount = sum(move_lines.mapped("debit"))
-        else:  # map_line.sum_type == 'both'
-            amount = sum(move_lines.mapped("credit")) - sum(move_lines.mapped("debit"))
-        if map_line.inverse:
-            amount = (-1.0) * amount
+        amount = map_line._get_amount_from_moves(move_lines)
         return {
             "model": self._name,
             "res_id": self.id,
