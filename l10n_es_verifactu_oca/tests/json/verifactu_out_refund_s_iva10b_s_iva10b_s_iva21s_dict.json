@@ -1,0 +1,66 @@
+{
+  "RegistroAlta": {
+    "IDVersion": 1.0,
+    "IDFactura": {
+      "IDEmisorFactura": "G87846952",
+      "NumSerieFactura": "TEST002",
+      "FechaExpedicionFactura": "01-01-2026"
+    },
+    "NombreRazonEmisor": "Spanish test company",
+    "TipoFactura": "R1",
+    "TipoRectificativa": "I",
+    "DescripcionOperacion": "/",
+    "Destinatarios": {
+      "IDDestinatario": {
+        "NombreRazon": "Test partner",
+        "NIF": "89890001K"
+      }
+    },
+    "Desglose": {
+      "DetalleDesglose": [
+        {
+          "Impuesto": "01",
+          "ClaveRegimen": "01",
+          "CalificacionOperacion": "S1",
+          "TipoImpositivo": "10.0",
+          "BaseImponibleOimporteNoSujeto": -200.0,
+          "CuotaRepercutida": -20.0
+        },
+        {
+          "Impuesto": "01",
+          "ClaveRegimen": "01",
+          "CalificacionOperacion": "S1",
+          "TipoImpositivo": "21.0",
+          "BaseImponibleOimporteNoSujeto": -200.0,
+          "CuotaRepercutida": -42.0
+        }
+      ]
+    },
+    "CuotaTotal": -62.0,
+    "ImporteTotal": -462.0,
+    "Encadenamiento": {
+      "RegistroAnterior": {
+        "FechaExpedicionFactura": "01-01-2026",
+        "Huella": "27656D2A18B1F7E6823B7C134F0AFA3B979D0DCDB37846593F9E4E089F9383B0",
+        "IDEmisorFactura": "G87846952",
+        "NumSerieFactura": "TEST001"
+      }
+    },
+    "FacturasRectificadas": [],
+    "SistemaInformatico": {
+      "NombreRazon": "Odoo Developer",
+      "NIF": "A12345674",
+      "NombreSistemaInformatico": "odoo",
+      "IdSistemaInformatico": "11",
+      "Version": "1.0",
+      "NumeroInstalacion": 1,
+      "TipoUsoPosibleSoloVerifactu": "S",
+      "TipoUsoPosibleMultiOT": "S",
+      "IndicadorMultiplesOT": "N",
+      "IDOtro": {
+        "IDType": "",
+        "ID": ""
+      }
+    }
+  }
+}

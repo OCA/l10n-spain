@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--  Copyright 2024 Aures TIC - Almudena de La Puente
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="verifactu_registration_keys_view_tree" model="ir.ui.view">
+        <field name="model">verifactu.registration.key</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="code" />
+                <field name="name" />
+                <field name="verifactu_tax_key" />
+            </list>
+        </field>
+    </record>
+    <record id="verifactu_registration_keys_view_search" model="ir.ui.view">
+        <field name="model">verifactu.registration.key</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="code" />
+                <field name="verifactu_tax_key" />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Tax Type"
+                        name="tax_type"
+                        context="{'group_by':'verifactu_tax_key'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_verifactu_registration_keys" model="ir.actions.act_window">
+        <field name="name">VERI*FACTU registration keys</field>
+        <field name="res_model">verifactu.registration.key</field>
+        <field name="path">verifactu-registration-keys</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <menuitem
+        id="menu_verifactu_registration_keys"
+        parent="l10n_es_aeat.menu_l10n_es_aeat_config"
+        action="action_verifactu_registration_keys"
+    />
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Aures TIC - Jose Zambudio <jose@aurestic.es>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="view_account_position_form" model="ir.ui.view">
+        <field name="name">account.fiscal.position.form</field>
+        <field name="model">account.fiscal.position</field>
+        <field name="inherit_id" ref="account.view_account_position_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='account_mapping']" position="after">
+                <page
+                    name="verifactu"
+                    string="VERI*FACTU"
+                    invisible="not verifactu_enabled"
+                >
+                    <group>
+                        <field name="aeat_active" string="Active?" />
+                        <field name="verifactu_tax_key" string="Tax key" />
+                        <field
+                            name="verifactu_registration_key"
+                            string="Registration key"
+                            domain="[('verifactu_tax_key', '=', verifactu_tax_key)]"
+                        />
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

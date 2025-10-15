@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_invoice_document"
+        inherit_id="account.report_invoice_document"
+        priority="1000"
+    >
+        <xpath expr="//t[@t-set='forced_vat']" position="after">
+            <t
+                t-set="verifactu_invoice"
+                t-value="o.verifactu_enabled and o.verifactu_qr"
+            />
+        </xpath>
+    </template>
+    <template id="address_layout" inherit_id="web.address_layout" priority="1000">
+        <div t-attf-class="address row mb-4" position="attributes">
+            <attribute name="t-if">not verifactu_invoice</attribute>
+        </div>
+        <div t-attf-class="address row mb-4" position="after">
+            <div t-if="verifactu_invoice" class="row" id="verifactu_row">
+                <div
+                    id="verifactu"
+                    style="page-break-inside:avoid;"
+                    class="text-center col-3"
+                >
+                    <ul class="list-inline mb4">QR Tributario</ul>
+                    <ul id="verifactu_qr" class="list-inline mb4">
+                        <img
+                            t-attf-src="data:image/png;base64,{{o.verifactu_qr}}"
+                            style="min-width: 40mm; max-width: 40mm"
+                        />
+                    </ul>
+                    <ul class="list-inline mb4">VERI*FACTU</ul>
+                </div>
+                <t t-if="information_block">
+                    <t t-set="colclass" t-value="'col-5'" />
+                    <div name="information_block" class="col-4">
+                        <t t-out="information_block" />
+                    </div>
+                    <div name="address" t-att-class="colclass">
+                        <t t-esc="address" />
+                    </div>
+                </t>
+                <t t-if="not information_block">
+                    <t t-set="colclass" t-value="'col-5 offset-4'" />
+                    <div name="address" t-att-class="colclass">
+                        <t t-esc="address" />
+                    </div>
+                </t>
+            </div>
+        </div>
+    </template>
+</odoo>

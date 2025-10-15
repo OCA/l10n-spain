@@ -1,0 +1,8 @@
+id,code,name,tax_xmlid_ids:id,verifactu_map_id:id
+"verifactu_map_line_S1","S1","Operación Sujeta y No exenta - Sin inversión del sujeto pasivo.","s_iva21b,s_iva0b,s_iva2b,s_iva4b,s_iva5b,s_iva7-5b,s_iva10b,s_iva21s,s_iva10s,s_iva0s,s_iva2s,s_iva4s,s_iva5s,s_iva7-5s,s_iva0_g_i,s_iva0_sp_i,s_iva0_g_e,s_iva_e,s_iva0_e","verifactu_map"
+"verifactu_map_line_S2","S2","Operación Sujeta y No exenta - Con Inversión del sujeto pasivo","s_iva0_isp","verifactu_map"
+"verifactu_map_line_N1","N1","Operación No Sujeta artículo 7, 14, otros.",,"verifactu_map"
+"verifactu_map_line_N2","N2","Operación No Sujeta por Reglas de localización.","s_iva_ns_b,s_iva_ns","verifactu_map"
+"verifactu_map_line_RE","RE","Recargo Equivalencia","s_req52,s_req014,s_req062,s_req1,s_req05,s_req026,s_req0","verifactu_map"
+"verifactu_map_line_tax_not_included","TaxNotIncludedInTotal","Impuestos no incluidos en ImporteTotal","s_irpf1,s_irpf2,s_irpf7,s_irpf9,s_irpf15,s_irpf18,s_irpf19,s_irpf19a,s_irpf195a,s_irpf20,s_irpf20a,s_irpf21,s_irpf21a,s_irpf24,s_irpfnrnue24,s_irpfnrue19","verifactu_map"
+"verifactu_map_line_base_not_included","BaseNotIncludedInTotal","Bases no incluidas en ImporteTotal","s_iva0_art22,s_iva0_art23,s_iva0_g_e,s_iva0_g_i,s_iva0_nsd,s_iva0_ns","verifactu_map"

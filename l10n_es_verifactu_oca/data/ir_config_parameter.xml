@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Almudena de La Puente <almudena@aurestic.es>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record id="verifactu_batch" model="ir.config_parameter">
+        <field name="key">l10n_es_verifactu_oca.verifactu_batch</field>
+        <field name="value">1000</field>
+    </record>
+</odoo>
