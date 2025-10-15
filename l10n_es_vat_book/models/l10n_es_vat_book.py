@@ -230,14 +230,16 @@ class L10nEsVatBook(models.Model):
         ext_ref = ""
         invoice = move_line.move_id
         partner = move_line.partner_id
+        invoice_date = move_line.date
         if invoice:
             if invoice.is_invoice():
                 partner = invoice.commercial_partner_id
+                invoice_date = invoice.invoice_date
             ref = invoice.name
             ext_ref = invoice.ref
         return {
             "line_type": line_type,
-            "invoice_date": move_line.date,
+            "invoice_date": invoice_date,
             "partner_id": partner.id,
             "vat_number": partner.vat,
             "move_id": invoice.id,
