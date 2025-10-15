@@ -177,6 +177,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__account_move__aeat_state__sent_w_errors
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_mixin__aeat_state__sent_w_errors
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__sii_mixin__aeat_state__sent_w_errors
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__verifactu_mixin__aeat_state__sent_w_errors
 msgid "Accepted with errors"
 msgstr ""
 
@@ -1258,6 +1259,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__account_move__aeat_state__not_sent
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_mixin__aeat_state__not_sent
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__sii_mixin__aeat_state__not_sent
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__verifactu_mixin__aeat_state__not_sent
 msgid "Not sent"
 msgstr ""
 
@@ -1526,6 +1528,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__account_move__aeat_state__sent
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_mixin__aeat_state__sent
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__sii_mixin__aeat_state__sent
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__verifactu_mixin__aeat_state__sent
 msgid "Sent"
 msgstr ""
 
