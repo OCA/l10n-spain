@@ -116,5 +116,7 @@ class L10nEsAeatmod592LineAcquirer(models.Model):
         self.ensure_one()
         data = super()._get_csv_report_info()
         data["product_description"] = ""  # Campo ignorado para adquirientes
-        data["fiscal_acquirer"] = self.fiscal_acquirer
+        data["fiscal_acquirer"] = (
+            self.fiscal_acquirer if self.concept not in ("2", "3") else ""
+        )  # En algunos casos no se debe indicar
         return self._get_csv_report_info_mapped(data)
