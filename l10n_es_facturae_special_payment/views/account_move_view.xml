@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<!--# Copyright 2025 (APSL - Nagarro) Bernat Obrador
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).-->
+    <record id="view_move_form_inherit_facturae_special_payment" model="ir.ui.view">
+        <field name="name">account.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="l10n_es_facturae.view_move_form" />
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+
+            <xpath
+                expr="//field[@name='facturae_receiver_contract_reference']"
+                position="after"
+            >
+                <field name="facturae_payment_reconciliation_reference" />
+                <field name="facturae_debit_reconciliation_reference" />
+                <field name="facturae_factoring_bank_account_id" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
