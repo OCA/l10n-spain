@@ -55,6 +55,13 @@ msgstr "- La cuenta bancaria del Proveedor %s no tiene establecido el SWIFT."
 #. odoo-python
 #: code:addons/l10n_es_payment_order_confirming_aef/models/confirming_aef.py:0
 #, python-format
+msgid "- La cuenta bancaria del proveedor %s no es un IBAN."
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_aef
+#. odoo-python
+#: code:addons/l10n_es_payment_order_confirming_aef/models/confirming_aef.py:0
+#, python-format
 msgid ""
 "- La referencia de factura %s de proveedor no puede ocupar más de 15 "
 "caracteres."
