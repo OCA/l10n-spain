@@ -131,43 +131,52 @@ class AccountMove(models.Model):
                     }
                 )
 
-    @api.depends(
-        "invoice_line_ids.currency_rate",
-        "invoice_line_ids.tax_base_amount",
-        "invoice_line_ids.tax_line_id",
-        "invoice_line_ids.price_total",
-        "invoice_line_ids.price_subtotal",
-        "invoice_payment_term_id",
-        "partner_id",
-        "currency_id",
-    )
     def _compute_tax_totals(self):
+        """Compute tax totals applying VAT prorate adjustments."""
         for move in self:
-            super()._compute_tax_totals()
+            res = super()._compute_tax_totals()
             if move.prorate_id and move.tax_totals:
-                non_deductible_total = sum(
-                    line.balance for line in move.line_ids.filtered("vat_prorate")
-                )
-                non_deductible_total_currency = sum(
-                    line.amount_currency
-                    for line in move.line_ids.filtered("vat_prorate")
-                )
-                move.tax_totals["total_amount"] += non_deductible_total
-                move.tax_totals["total_amount_currency"] += (
-                    non_deductible_total_currency
-                )
+                prorate = move.prorate_id.vat_prorate / 100.0
+                currency = move.currency_id
+
+                total_non_deductible_invoice = 0.0
 
                 for subtotal in move.tax_totals.get("subtotals", []):
                     for tax_group in subtotal.get("tax_groups", []):
-                        tax_group["tax_amount"] += non_deductible_total
-                        tax_group["tax_amount_currency"] += (
-                            non_deductible_total_currency
+                        base_amount = tax_group["base_amount"]
+                        vat_percent = 0.0
+
+                        if tax_group.get("involved_tax_ids"):
+                            taxes = self.env["account.tax"].browse(
+                                tax_group["involved_tax_ids"]
+                            )
+                            vat_percent = sum(t.amount for t in taxes)
+
+                        vat_total = float_round(
+                            base_amount * vat_percent / 100.0,
+                            precision_rounding=currency.rounding,
                         )
-                        tax_group["display_base_amount"] += non_deductible_total
-                        tax_group["display_base_amount_currency"] += (
-                            non_deductible_total_currency
+                        vat_deductible = float_round(
+                            vat_total * prorate, precision_rounding=currency.rounding
                         )
-        return None
+                        vat_non_deductible = vat_total - vat_deductible
+
+                        tax_group["tax_amount"] = vat_total
+                        tax_group["tax_amount_currency"] = vat_total
+                        tax_group["display_base_amount"] = base_amount
+                        tax_group["display_base_amount_currency"] = base_amount
+
+                        total_non_deductible_invoice += vat_non_deductible
+
+                move.tax_totals["total_amount"] = move.tax_totals["base_amount"] + sum(
+                    t["tax_amount"]
+                    for s in move.tax_totals.get("subtotals", [])
+                    for t in s.get("tax_groups", [])
+                )
+                move.tax_totals["total_amount_currency"] = move.tax_totals[
+                    "total_amount"
+                ]
+        return res
 
     @api.model_create_multi
     def create(self, vals_list):
