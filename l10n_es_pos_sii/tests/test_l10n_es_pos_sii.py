@@ -366,3 +366,45 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
             ),
             "The session is closed",
         )
+
+    def test_start_date(self):
+        session = self.order.session_id
+        default_partner = session.config_id.default_partner_id
+        pos_order_vals = {
+            "company_id": self.order.company_id.id,
+            "session_id": session.id,
+            "date_order": "2019-01-01 12:00:00",
+            "pricelist_id": default_partner.property_product_pricelist.id,
+            "partner_id": default_partner.id,
+            "lines": [
+                (
+                    0,
+                    0,
+                    {
+                        "name": "TPV/0001",
+                        "product_id": self.product21.id,
+                        "price_unit": 100,
+                        "discount": 0.0,
+                        "qty": 1.0,
+                        "tax_ids": [(6, 0, self.product21.taxes_id.ids)],
+                        "price_subtotal": 100,
+                        "price_subtotal_incl": 100 + 21,
+                    },
+                )
+            ],
+            "amount_tax": 21,
+            "amount_total": 100 + 21,
+            "amount_paid": 121,
+            "amount_return": 0,
+        }
+        # enabled because company has not sii_start_date
+        pos_order_enabled = self.env["pos.order"].create(pos_order_vals)
+        self.assertTrue(pos_order_enabled.sii_enabled)
+        # enabled because company has a sii_start_date before date_order
+        self.order.company_id.sii_start_date = "2018-01-01"
+        pos_order_enabled2 = self.env["pos.order"].create(pos_order_vals)
+        self.assertTrue(pos_order_enabled2.sii_enabled)
+        # disabled because company has a sii_start_date after date_order
+        self.order.company_id.sii_start_date = "2020-01-01"
+        pos_order_not_enabled = self.env["pos.order"].create(pos_order_vals)
+        self.assertFalse(pos_order_not_enabled.sii_enabled)

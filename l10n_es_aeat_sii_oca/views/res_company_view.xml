@@ -15,6 +15,7 @@
                     </group>
                     <group attrs="{'invisible': [('sii_enabled', '=', False)]}">
                         <group name="sii_config">
+                            <field name="sii_start_date" />
                             <field name="sii_test" />
                             <field name="sii_method" />
                             <field name="sii_period" />
