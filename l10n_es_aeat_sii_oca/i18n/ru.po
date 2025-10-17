@@ -392,6 +392,13 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_company__sii_start_date
+msgid ""
+"If this field is set, the sii won't be enabled on invoices with lower "
+"invoice date. If not set, the sii can be enabled on all invoice dates"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_company__delay_time
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_company__sent_time
 msgid "In hours"
@@ -861,6 +868,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_refund_specific_invoice_type
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_refund_specific_invoice_type
 msgid "Sii Refund Specific Invoice Type"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_start_date
+msgid "Sii Start Date"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
