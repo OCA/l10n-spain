@@ -8,8 +8,10 @@ from odoo.addons.account.models.chart_template import template
 class AccountChartTemplate(models.AbstractModel):
     _inherit = "account.chart.template"
 
-    @template("es_common", "account.fiscal.position")
+    @template("es_common_mainland", "account.fiscal.position")
     def _get_es_facturae_account_tax(self):
         return self._parse_csv(
-            "es_common", "account.fiscal.position", module="l10n_es_verifactu_oca"
+            "es_common_mainland",
+            "account.fiscal.position",
+            module="l10n_es_verifactu_oca",
         )
