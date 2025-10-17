@@ -36,35 +36,46 @@ class AccountMove(models.Model):
         return res
 
     def _apply_vat_prorate(self):
+        if self.env.context.get("skip_vat_prorate"):
+            return
         for move in self:
+            if (
+                move.reversed_entry_id
+                or not move.is_invoice(include_receipts=True)
+                or not move.is_purchase_document()
+            ):
+                continue
+
+            ctx = dict(self.env.context, skip_vat_prorate=True)
             existing_prorate_lines = move.line_ids.filtered(
                 lambda line: line.vat_prorate
             )
-            prorate_line_index = 0
-
-            if not move.is_invoice(include_receipts=True):
-                continue
-            if not move.is_purchase_document():
-                continue
 
             if not move.prorate_id:
                 for line in existing_prorate_lines:
-                    line.write(
-                        {
-                            "balance": 0.0,
-                            "amount_currency": 0.0,
-                        }
-                    )
+                    if line.balance != 0.0:
+                        line.write({"balance": 0.0, "amount_currency": 0.0})
                 continue
 
             prorate = move.prorate_id.vat_prorate / 100.0
             currency = move.currency_id
+            expense_account = move._get_prorate_expense_account()
 
-            for line in move.line_ids.filtered(
-                lambda line: line.tax_line_id and not line.vat_prorate
+            for tax_line in move.line_ids.filtered(
+                lambda aml: aml.tax_line_id and not aml.vat_prorate
             ):
-                base_balance = line.balance
-                base_currency = line.amount_currency
+                if tax_line.original_balance:
+                    base_balance = tax_line.original_balance
+                    base_currency = tax_line.original_amount_currency
+                else:
+                    base_balance = tax_line.balance
+                    base_currency = tax_line.amount_currency
+                    tax_line.write(
+                        {
+                            "original_balance": base_balance,
+                            "original_amount_currency": base_currency,
+                        }
+                    )
 
                 deductible_balance = float_round(
                     base_balance * prorate, precision_rounding=currency.rounding
@@ -72,134 +83,82 @@ class AccountMove(models.Model):
                 deductible_currency = float_round(
                     base_currency * prorate, precision_rounding=currency.rounding
                 )
-
                 non_deductible_balance = base_balance - deductible_balance
                 non_deductible_currency = base_currency - deductible_currency
 
-                line.balance = deductible_balance
-                line.amount_currency = deductible_currency
+                tax_line.write(
+                    {
+                        "balance": deductible_balance,
+                        "amount_currency": deductible_currency,
+                    }
+                )
 
                 if not currency.is_zero(non_deductible_balance):
-                    expense_account = move._get_prorate_expense_account()
-
-                    if prorate_line_index < len(existing_prorate_lines):
-                        prorate_line = existing_prorate_lines[prorate_line_index]
+                    prorate_line = existing_prorate_lines.filtered(
+                        lambda pl, tax_line=tax_line: pl.tax_line_id
+                        == tax_line.tax_line_id
+                    )
+                    if prorate_line:
+                        prorate_line = prorate_line[0].with_context(**ctx)
                         prorate_line.write(
                             {
-                                "account_id": expense_account.id,
                                 "balance": non_deductible_balance,
                                 "amount_currency": non_deductible_currency,
-                                "currency_id": line.currency_id.id
-                                if line.currency_id
-                                else None,
+                                "account_id": expense_account.id,
                                 "partner_id": move.partner_id.id,
                             }
                         )
-                        prorate_line_index += 1
                     else:
-                        new_line = move.env["account.move.line"].create(
-                            {
+                        tax_line.with_context(**ctx).copy(
+                            default={
                                 "move_id": move.id,
-                                "account_id": expense_account.id,
                                 "balance": non_deductible_balance,
                                 "amount_currency": non_deductible_currency,
-                                "currency_id": line.currency_id.id
-                                if line.currency_id
-                                else None,
+                                "account_id": expense_account.id,
                                 "partner_id": move.partner_id.id,
                                 "vat_prorate": True,
                                 "display_type": "tax",
                             }
                         )
-                        existing_prorate_lines |= new_line
-                        prorate_line_index += 1
-                elif prorate_line_index < len(existing_prorate_lines):
-                    prorate_line = existing_prorate_lines[prorate_line_index]
-                    prorate_line.write(
-                        {
-                            "balance": 0.0,
-                            "amount_currency": 0.0,
-                        }
-                    )
-                    prorate_line_index += 1
-
-            for line in existing_prorate_lines[prorate_line_index:]:
-                line.write(
-                    {
-                        "balance": 0.0,
-                        "amount_currency": 0.0,
-                    }
-                )
-
-    def _compute_tax_totals(self):
-        """Compute tax totals applying VAT prorate adjustments."""
-        for move in self:
-            res = super()._compute_tax_totals()
-            if move.prorate_id and move.tax_totals:
-                prorate = move.prorate_id.vat_prorate / 100.0
-                currency = move.currency_id
-
-                total_non_deductible_invoice = 0.0
-
-                for subtotal in move.tax_totals.get("subtotals", []):
-                    for tax_group in subtotal.get("tax_groups", []):
-                        base_amount = tax_group["base_amount"]
-                        vat_percent = 0.0
-
-                        if tax_group.get("involved_tax_ids"):
-                            taxes = self.env["account.tax"].browse(
-                                tax_group["involved_tax_ids"]
-                            )
-                            vat_percent = sum(t.amount for t in taxes)
-
-                        vat_total = float_round(
-                            base_amount * vat_percent / 100.0,
-                            precision_rounding=currency.rounding,
-                        )
-                        vat_deductible = float_round(
-                            vat_total * prorate, precision_rounding=currency.rounding
-                        )
-                        vat_non_deductible = vat_total - vat_deductible
-
-                        tax_group["tax_amount"] = vat_total
-                        tax_group["tax_amount_currency"] = vat_total
-                        tax_group["display_base_amount"] = base_amount
-                        tax_group["display_base_amount_currency"] = base_amount
-
-                        total_non_deductible_invoice += vat_non_deductible
-
-                move.tax_totals["total_amount"] = move.tax_totals["base_amount"] + sum(
-                    t["tax_amount"]
-                    for s in move.tax_totals.get("subtotals", [])
-                    for t in s.get("tax_groups", [])
-                )
-                move.tax_totals["total_amount_currency"] = move.tax_totals[
-                    "total_amount"
-                ]
-        return res
 
     @api.model_create_multi
     def create(self, vals_list):
         moves = super().create(vals_list)
-        moves._apply_vat_prorate()
+        for move in moves:
+            if (
+                not move.reversed_entry_id
+                and move.is_invoice(include_receipts=True)
+                and move.is_purchase_document()
+                and not self.env.context.get("skip_vat_prorate")
+            ):
+                move._apply_vat_prorate()
         return moves
 
     def write(self, vals):
-        if (
-            any(key in vals for key in ["line_ids", "invoice_line_ids"])
-            and self.state == "draft"
-            and "state" not in vals
-        ):
-            res = super().write(vals)
-            self._apply_vat_prorate()
-        else:
-            res = super().write(vals)
-            if (
-                any(key in vals for key in ["prorate_id", "date", "invoice_date"])
-                and self.state == "draft"
-                and "state" not in vals
-            ):
-                self._apply_vat_prorate()
+        res = super().write(vals)
+
+        if self.env.context.get("skip_vat_prorate"):
+            return res
+
+        draft_moves = self.filtered(lambda m: m.state == "draft")
+        if not draft_moves:
+            return res
+
+        relevant_fields = {
+            "line_ids",
+            "invoice_line_ids",
+            "prorate_id",
+            "date",
+            "invoice_date",
+        }
+        if relevant_fields.intersection(vals.keys()):
+            for move in draft_moves:
+                if (
+                    move.is_invoice(include_receipts=True)
+                    and move.is_purchase_document()
+                ):
+                    move._apply_vat_prorate()
+
         return res
 
     def _get_prorate_expense_account(self):
@@ -233,6 +192,21 @@ class AccountMoveLine(models.Model):
         help="True when both debit and credit are zero",
     )
 
+    original_balance = fields.Monetary(
+        copy=False,
+        help=(
+            "Original balance before applying VAT prorate,"
+            " used to prevent cumulative recalculations."
+        ),
+    )
+
+    original_amount_currency = fields.Monetary(
+        copy=False,
+        help=(
+            "Original amount in transaction currency before VAT prorate recalculation."
+        ),
+    )
+
     @api.depends("debit", "credit")
     def _compute_is_zero_line(self):
         for line in self:
@@ -252,20 +226,7 @@ class AccountMoveLine(models.Model):
                 line.with_vat_prorate = False
 
     def _process_aeat_tax_fee_info(self, res, tax, sign):
-        """Corrects SII submission: amount = full VAT, deductible_amount = prorated"""
-        taxes = tax.amount_type == "group" and tax.children_tax_ids or tax
-        prorate = 1.0
-        if self.move_id.prorate_id and self.move_id.company_id.with_vat_prorate:
-            prorate = self.move_id.prorate_id.vat_prorate / 100.0
-
-        for t in taxes:
-            res.setdefault(
-                t, {"tax": t, "base": 0.0, "amount": 0.0, "deductible_amount": 0.0}
-            )
-            full_amount = abs(self.tax_base_amount * t.amount / 100.0 * sign)
-            res[t]["amount"] += full_amount
-            res[t]["deductible_amount"] += float_round(
-                full_amount * prorate,
-                precision_rounding=self.move_id.currency_id.rounding,
-            )
-        return res
+        result = super()._process_aeat_tax_fee_info(res, tax, sign)
+        if self.vat_prorate:
+            res[tax]["deductible_amount"] -= self.balance * sign
+        return result
