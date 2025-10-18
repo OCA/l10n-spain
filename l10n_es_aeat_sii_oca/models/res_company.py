@@ -55,6 +55,11 @@ class ResCompany(models.Model):
         help="By default, the invoice is sent/queued in validation process. "
         "With manual method, there's a button to send the invoice.",
     )
+    sii_start_date = fields.Date(
+        help="If this field is set, the sii won't be enabled on invoices with lower "
+        "invoice date. If not set, the sii can be enabled on all invoice dates"
+    )
+
     send_mode = fields.Selection(
         selection=[
             ("auto", "On validate"),
