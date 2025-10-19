@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2020 Binovo IT Human Project SL
+     Copyright 2021 Landoo Sistemas de Informacion SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="tbai_account_fiscal_position_template_view_form" model="ir.ui.view">
+        <field name="name">account.fiscal.position.template.view.form</field>
+        <field name="model">account.fiscal.position.template</field>
+        <field name="priority" eval="1000" />
+        <field name="arch" type="xml">
+            <form string="Fiscal Position Template">
+                <group>
+                    <field name="name" />
+                </group>
+                <group name="tbai_vat_regimes" string="VAT Regimes">
+                    <field
+                        name="tbai_vat_regime_key"
+                        options="{'no_open':True,'no_create':True}"
+                    />
+                    <field
+                        name="tbai_vat_regime_key2"
+                        options="{'no_open':True,'no_create':True}"
+                    />
+                    <field
+                        name="tbai_vat_regime_key3"
+                        options="{'no_open':True,'no_create':True}"
+                    />
+                </group>
+                <group name="tbai_vat_exemptions" string="VAT Exemptions">
+                    <field name="tbai_vat_exemption_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field
+                                name="tax_id"
+                                options="{'no_open':True,'no_create':True}"
+                            />
+                            <field
+                                name="tbai_vat_exemption_key"
+                                options="{'no_open':True,'no_create':True}"
+                            />
+                        </tree>
+                    </field>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="tbai_account_fiscal_position_template_view_tree" model="ir.ui.view">
+        <field name="name">account.fiscal.position.template.view.tree</field>
+        <field name="model">account.fiscal.position.template</field>
+        <field name="priority" eval="1000" />
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="tbai_vat_regime_key" />
+                <field name="tbai_vat_regime_key2" />
+                <field name="tbai_vat_regime_key3" />
+                <field name="tbai_vat_exemption_ids" widget="many2many_tags" />
+            </tree>
+        </field>
+    </record>
+    <record id="tbai_account_fiscal_position_template_view_search" model="ir.ui.view">
+        <field name="name">account.fiscal.position.template.view.search</field>
+        <field name="model">account.fiscal.position.template</field>
+        <field name="priority" eval="1000" />
+        <field name="arch" type="xml">
+            <search string="Fiscal Position Template">
+                <field name="name" string="Fiscal Position Template" />
+                <field name="tbai_vat_regime_key" string="TicketBAI Exemption Key" />
+                <field
+                    name="tbai_vat_regime_key2"
+                    string="TicketBAI Exemption 2nd Key"
+                />
+                <field
+                    name="tbai_vat_regime_key3"
+                    string="TicketBAI Exemption 3rd Key"
+                />
+            </search>
+        </field>
+    </record>
+    <record
+        id="action_tbai_account_fiscal_position_template"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Fiscal Position Template</field>
+        <field name="res_model">account.fiscal.position.template</field>
+        <field name="view_mode">tree,form</field>
+        <field
+            name="search_view_id"
+            ref="tbai_account_fiscal_position_template_view_search"
+        />
+    </record>
+    <record
+        model="ir.actions.act_window.view"
+        id="action_tbai_account_fiscal_position_template_form"
+    >
+        <field name="sequence" eval="2" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="tbai_account_fiscal_position_template_view_form" />
+        <field
+            name="act_window_id"
+            ref="action_tbai_account_fiscal_position_template"
+        />
+    </record>
+    <record
+        model="ir.actions.act_window.view"
+        id="action_tbai_account_fiscal_position_template_tree"
+    >
+        <field name="sequence" eval="1" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="tbai_account_fiscal_position_template_view_tree" />
+        <field
+            name="act_window_id"
+            ref="action_tbai_account_fiscal_position_template"
+        />
+    </record>
+    <menuitem
+        id="menu_tbai_account_fiscal_position_template"
+        parent="l10n_es_ticketbai.menu_l10n_es_tbai_config"
+        action="action_tbai_account_fiscal_position_template"
+        name="Fiscal Position Template"
+    />
+</odoo>

@@ -138,11 +138,13 @@ msgid "Business income"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_09
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_12
 msgid "Business income - In kind - Amount retained"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_08
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_11
 msgid "Business income - In kind - Base taxable value"
 msgstr ""
@@ -296,6 +298,11 @@ msgid "Ending date"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__error_count
+msgid "Error Count"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__export_config_id
 msgid "Export config"
 msgstr ""
@@ -356,7 +363,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -418,11 +424,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_ids
 msgid "Messages"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__model_id
-msgid "Model"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
@@ -531,11 +532,6 @@ msgid "Result: ([28] - [29])"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__date_start
 msgid "Starting date"
 msgstr ""
@@ -562,6 +558,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__support_type
 msgid "Support Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__tax_agency_ids
+msgid "Tax Agency"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
@@ -618,6 +619,11 @@ msgid "VAT number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__valued_tax_line_ids
+msgid "Valued tax lines"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__website_message_ids
 msgid "Website Messages"
 msgstr ""
@@ -630,6 +636,18 @@ msgstr ""
 #. module: l10n_es_aeat_mod111
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
 msgid "Work income"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_03
+#: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_06
+msgid "Work income - In kind - Amount retained"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_02
+#: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_05
+msgid "Work income - In kind - Base taxable value"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
@@ -653,13 +671,43 @@ msgid "[01] # Recipients"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_02
+msgid "[02] Taxable"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_03
+msgid "[03] Amount retained"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_04
 msgid "[04] # Recipients"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_05
+msgid "[05] Taxable"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_06
+msgid "[06] Amount retained"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_07
 msgid "[07] # Recipients"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_08
+msgid "[08] Taxable"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_09
+msgid "[09] Amount retained"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111

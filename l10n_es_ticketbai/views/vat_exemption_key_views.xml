@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2020 Binovo IT Human Project SL
+     Copyright 2021 Landoo Sistemas de Informacion SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="tbai_vat_exemption_key_view_tree" model="ir.ui.view">
+        <field name="name">tbai.vat.exemption.key.view.tree</field>
+        <field name="model">tbai.vat.exemption.key</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="code" />
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+    <record id="tbai_vat_exemption_key_view_search" model="ir.ui.view">
+        <field name="name">tbai.vat.exemption.key.view.search</field>
+        <field name="model">tbai.vat.exemption.key</field>
+        <field name="arch" type="xml">
+            <search string="TicketBAI Exemption Keys">
+                <field name="code" />
+                <field name="name" />
+            </search>
+        </field>
+    </record>
+    <record id="action_tbai_vat_exemption_key" model="ir.actions.act_window">
+        <field name="name">TicketBAI Exemption Keys</field>
+        <field name="res_model">tbai.vat.exemption.key</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        id="menu_tbai_vat_exemption_key"
+        parent="l10n_es_ticketbai.menu_l10n_es_tbai_config"
+        action="action_tbai_vat_exemption_key"
+        name="TicketBAI VAT Exemption mapping keys"
+    />
+</odoo>

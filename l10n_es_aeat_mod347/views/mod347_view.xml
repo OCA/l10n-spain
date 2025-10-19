@@ -15,6 +15,12 @@
                 <field name="operation_key" />
                 <field name="partner_vat" />
                 <field name="partner_id" />
+                <field name="partner_state_code" optional="hide" />
+                <field name="partner_country_code" optional="hide" />
+                <field name="first_quarter" optional="hide" />
+                <field name="second_quarter" optional="hide" />
+                <field name="third_quarter" optional="hide" />
+                <field name="fourth_quarter" optional="hide" />
                 <field name="amount" />
                 <field name="cash_amount" />
                 <field name="real_estate_transmissions_amount" />
@@ -47,6 +53,11 @@
                     string="Set to invalid"
                 />
                 <field name="check_ok" />
+                <field
+                    name="error_text"
+                    optional="show"
+                    attrs="{'invisible': [('check_ok', '=', True)]}"
+                />
             </tree>
         </field>
     </record>
@@ -98,6 +109,12 @@
                             <group>
                                 <group>
                                     <field name="partner_id" />
+                                    <field name="check_ok" invisible="1" />
+                                    <field
+                                        name="error_text"
+                                        attrs="{'invisible': [('check_ok', '=', True)]}"
+                                        class="text-danger"
+                                    />
                                     <field name="partner_vat" select="1" />
                                     <field name="representative_vat" select="2" />
                                     <field name="community_vat" />
@@ -154,7 +171,13 @@
                             </group>
                         </page>
                         <page string="Details">
-                            <div><strong>Color codes: </strong> <span
+                            <div attrs="{'invisible': [('operation_key', '!=', 'B')]}">
+                                <strong>Color codes: </strong> <span
+                                    class="text-info"
+                                >Normal invoices</span> - Refund invoices
+                            </div>
+                            <div attrs="{'invisible': [('operation_key', '=', 'B')]}">
+                                <strong>Color codes: </strong> <span
                                     class="text-info"
                                 >Refund invoices</span> - Normal invoices</div>
                             <field
@@ -263,6 +286,11 @@
                 <field name="number" />
                 <field name="city" />
                 <field name="township" />
+                <field
+                    name="error_text"
+                    optional="show"
+                    attrs="{'invisible': ['|', ('check_ok', '=', True), ('partner_id', '=', False)]}"
+                />
             </tree>
         </field>
     </record>
@@ -274,6 +302,12 @@
                 <group string="Partner info">
                     <group>
                         <field name="partner_id" />
+                        <field name="check_ok" invisible="1" />
+                        <field
+                            name="error_text"
+                            attrs="{'invisible': [('check_ok', '=', True)]}"
+                            class="text-danger"
+                        />
                     </group>
                     <group>
                         <field name="partner_vat" />

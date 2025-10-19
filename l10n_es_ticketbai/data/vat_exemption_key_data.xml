@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2020 Binovo IT Human Project SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="tbai_vat_exemption_E1" model="tbai.vat.exemption.key">
+        <field name="code">E1</field>
+        <field name="name">Artículo 20.- Exenciones en operaciones interiores</field>
+    </record>
+    <record id="tbai_vat_exemption_E2" model="tbai.vat.exemption.key">
+        <field name="code">E2</field>
+        <field
+            name="name"
+        >Artículo 21.- Exenciones en las exportaciones de bienes</field>
+    </record>
+    <record id="tbai_vat_exemption_E3" model="tbai.vat.exemption.key">
+        <field name="code">E3</field>
+        <field
+            name="name"
+        >Artículo 22.- Exenciones en las operaciones asimiladas a las exportaciones</field>
+    </record>
+    <record id="tbai_vat_exemption_E4" model="tbai.vat.exemption.key">
+        <field name="code">E4</field>
+        <field
+            name="name"
+        >Artículo 23.- Exenciones relativas a las zonas francas, depósitos francos y otros depósitos. Artículo 24.- Exenciones relativas a regímenes aduaneros y fiscales</field>
+    </record>
+    <record id="tbai_vat_exemption_E5" model="tbai.vat.exemption.key">
+        <field name="code">E5</field>
+        <field
+            name="name"
+        >Artículo 25.- Exenciones en las entregas de bienes destinados a otro Estado miembro</field>
+    </record>
+    <record id="tbai_vat_exemption_E6" model="tbai.vat.exemption.key">
+        <field name="code">E6</field>
+        <field name="name">Otros</field>
+    </record>
+</odoo>

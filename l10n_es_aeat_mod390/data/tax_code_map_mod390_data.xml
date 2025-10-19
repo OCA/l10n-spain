@@ -4,6 +4,7 @@
 <odoo>
     <record id="aeat_mod390_map" model="l10n.es.aeat.map.tax">
         <field name="model">390</field>
+        <field name="date_to">2023-12-31</field>
     </record>
     <record id="aeat_mod390_map_line_01" model="l10n.es.aeat.map.tax.line">
         <field name="map_parent_id" ref="aeat_mod390_map" />
@@ -269,7 +270,7 @@
         <field name="inverse" eval="True" />
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva4_sp_ex'), ref('l10n_es.account_tax_template_p_iva10_sp_ex'), ref('l10n_es.account_tax_template_p_iva21_sp_ex'), ref('l10n_es.account_tax_template_p_iva4_isp'), ref('l10n_es.account_tax_template_p_iva10_isp'), ref('l10n_es.account_tax_template_p_iva21_isp')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva4_sp_ex'), ref('l10n_es.account_tax_template_p_iva10_sp_ex'), ref('l10n_es.account_tax_template_p_iva21_sp_ex'), ref('l10n_es.account_tax_template_p_iva4_isp'), ref('l10n_es.account_tax_template_p_iva10_isp'), ref('l10n_es.account_tax_template_p_iva21_isp'), ref('l10n_es.account_tax_template_p_iva4_isp_bi'), ref('l10n_es.account_tax_template_p_iva10_isp_bi'), ref('l10n_es.account_tax_template_p_iva21_isp_bi')])]"
         />
     </record>
     <record id="aeat_mod390_map_line_28" model="l10n.es.aeat.map.tax.line">
@@ -285,7 +286,7 @@
         <field name="inverse" eval="True" />
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva4_sp_ex'), ref('l10n_es.account_tax_template_p_iva10_sp_ex'), ref('l10n_es.account_tax_template_p_iva21_sp_ex'), ref('l10n_es.account_tax_template_p_iva4_isp'), ref('l10n_es.account_tax_template_p_iva10_isp'), ref('l10n_es.account_tax_template_p_iva21_isp')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva4_sp_ex'), ref('l10n_es.account_tax_template_p_iva10_sp_ex'), ref('l10n_es.account_tax_template_p_iva21_sp_ex'), ref('l10n_es.account_tax_template_p_iva4_isp'), ref('l10n_es.account_tax_template_p_iva10_isp'), ref('l10n_es.account_tax_template_p_iva21_isp'), ref('l10n_es.account_tax_template_p_iva4_isp_bi'), ref('l10n_es.account_tax_template_p_iva10_isp_bi'), ref('l10n_es.account_tax_template_p_iva21_isp_bi')])]"
         />
     </record>
     <record id="aeat_mod390_map_line_29_sale" model="l10n.es.aeat.map.tax.line">
@@ -298,7 +299,7 @@
         <field name="inverse" eval="False" />
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva4b'), ref('l10n_es.account_tax_template_s_iva4s'), ref('l10n_es.account_tax_template_s_iva10b'), ref('l10n_es.account_tax_template_s_iva10s'), ref('l10n_es.account_tax_template_s_iva21b'), ref('l10n_es.account_tax_template_s_iva21s')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva0b'), ref('l10n_es.account_tax_template_s_iva0s'), ref('l10n_es.account_tax_template_s_iva4b'), ref('l10n_es.account_tax_template_s_iva4s'), ref('l10n_es.account_tax_template_s_iva5b'), ref('l10n_es.account_tax_template_s_iva5s'), ref('l10n_es.account_tax_template_s_iva10b'), ref('l10n_es.account_tax_template_s_iva10s'), ref('l10n_es.account_tax_template_s_iva21b'), ref('l10n_es.account_tax_template_s_iva21s')])]"
         />
     </record>
     <record id="aeat_mod390_map_line_29_purchase" model="l10n.es.aeat.map.tax.line">
@@ -311,7 +312,7 @@
         <field name="inverse" eval="True" />
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva4_ic_bc'), ref('l10n_es.account_tax_template_p_iva4_sp_in'), ref('l10n_es.account_tax_template_p_iva4_ic_bi'), ref('l10n_es.account_tax_template_p_iva10_ic_bc'), ref('l10n_es.account_tax_template_p_iva10_sp_in'), ref('l10n_es.account_tax_template_p_iva10_ic_bi'), ref('l10n_es.account_tax_template_p_iva21_ic_bc'), ref('l10n_es.account_tax_template_p_iva21_sp_in'), ref('l10n_es.account_tax_template_p_iva21_ic_bi'), ref('l10n_es.account_tax_template_p_iva4_sp_ex'), ref('l10n_es.account_tax_template_p_iva10_sp_ex'), ref('l10n_es.account_tax_template_p_iva21_sp_ex'), ref('l10n_es.account_tax_template_p_iva4_isp'), ref('l10n_es.account_tax_template_p_iva10_isp'), ref('l10n_es.account_tax_template_p_iva21_isp')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva0_ic_bc'), ref('l10n_es.account_tax_template_p_iva4_ic_bc'), ref('l10n_es.account_tax_template_p_iva5_ic_bc'), ref('l10n_es.account_tax_template_p_iva4_sp_in'), ref('l10n_es.account_tax_template_p_iva4_ic_bi'), ref('l10n_es.account_tax_template_p_iva10_ic_bc'), ref('l10n_es.account_tax_template_p_iva10_sp_in'), ref('l10n_es.account_tax_template_p_iva10_ic_bi'), ref('l10n_es.account_tax_template_p_iva21_ic_bc'), ref('l10n_es.account_tax_template_p_iva21_sp_in'), ref('l10n_es.account_tax_template_p_iva21_ic_bi'), ref('l10n_es.account_tax_template_p_iva4_sp_ex'), ref('l10n_es.account_tax_template_p_iva10_sp_ex'), ref('l10n_es.account_tax_template_p_iva21_sp_ex'), ref('l10n_es.account_tax_template_p_iva4_isp'), ref('l10n_es.account_tax_template_p_iva10_isp'), ref('l10n_es.account_tax_template_p_iva21_isp'), ref('l10n_es.account_tax_template_p_iva4_isp_bi'), ref('l10n_es.account_tax_template_p_iva10_isp_bi'), ref('l10n_es.account_tax_template_p_iva21_isp_bi')])]"
         />
     </record>
     <record id="aeat_mod390_map_line_30_sale" model="l10n.es.aeat.map.tax.line">
@@ -323,11 +324,9 @@
         <field name="sum_type">both</field>
         <field name="inverse" eval="False" />
         <field name="account_id" ref="l10n_es.account_common_477" />
-        <!-- Cuotas de facturas rectificativas de venta (debe):
-         S_IVA4B, S_IVA4S, S_IVA10B, S_IVA10S, S_IVA21B, S_IVA21S -->
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva4b'), ref('l10n_es.account_tax_template_s_iva4s'), ref('l10n_es.account_tax_template_s_iva10b'), ref('l10n_es.account_tax_template_s_iva10s'), ref('l10n_es.account_tax_template_s_iva21b'), ref('l10n_es.account_tax_template_s_iva21s')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva4b'), ref('l10n_es.account_tax_template_s_iva4s'), ref('l10n_es.account_tax_template_s_iva5b'), ref('l10n_es.account_tax_template_s_iva5s'), ref('l10n_es.account_tax_template_s_iva10b'), ref('l10n_es.account_tax_template_s_iva10s'), ref('l10n_es.account_tax_template_s_iva21b'), ref('l10n_es.account_tax_template_s_iva21s')])]"
         />
     </record>
     <record id="aeat_mod390_map_line_30_purchase" model="l10n.es.aeat.map.tax.line">
@@ -339,13 +338,89 @@
         <field name="sum_type">both</field>
         <field name="inverse" eval="False" />
         <field name="account_id" ref="l10n_es.account_common_477" />
-        <!-- Cuota facturas rectificativas de compra (debe):
-            P_IVA4_IC_BC,  P_IVA4_SP_IN,  P_IVA4_IC_BI, P_IVA4_SP_EX, P_IVA4_ISP
-            P_IVA10_IC_BC, P_IVA10_SP_IN, P_IVA10_IC_BI, P_IVA10_SP_EX, P_IVA10_ISP
-            P_IVA21_IC_BC, P_IVA21_SP_IN, P_IVA21_IC_BI, P_IVA21_SP_EX1, P_IVA21_ISP -->
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva4_ic_bc'), ref('l10n_es.account_tax_template_p_iva4_sp_in'), ref('l10n_es.account_tax_template_p_iva4_ic_bi'), ref('l10n_es.account_tax_template_p_iva10_ic_bc'), ref('l10n_es.account_tax_template_p_iva10_sp_in'), ref('l10n_es.account_tax_template_p_iva10_ic_bi'), ref('l10n_es.account_tax_template_p_iva21_ic_bc'), ref('l10n_es.account_tax_template_p_iva21_sp_in'), ref('l10n_es.account_tax_template_p_iva21_ic_bi'), ref('l10n_es.account_tax_template_p_iva4_sp_ex'), ref('l10n_es.account_tax_template_p_iva10_sp_ex'), ref('l10n_es.account_tax_template_p_iva21_sp_ex'), ref('l10n_es.account_tax_template_p_iva4_isp'), ref('l10n_es.account_tax_template_p_iva10_isp'), ref('l10n_es.account_tax_template_p_iva21_isp')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva0_ic_bc'), ref('l10n_es.account_tax_template_p_iva4_ic_bc'), ref('l10n_es.account_tax_template_p_iva5_ic_bc'), ref('l10n_es.account_tax_template_p_iva4_sp_in'), ref('l10n_es.account_tax_template_p_iva4_ic_bi'), ref('l10n_es.account_tax_template_p_iva10_ic_bc'), ref('l10n_es.account_tax_template_p_iva10_sp_in'), ref('l10n_es.account_tax_template_p_iva10_ic_bi'), ref('l10n_es.account_tax_template_p_iva21_ic_bc'), ref('l10n_es.account_tax_template_p_iva21_sp_in'), ref('l10n_es.account_tax_template_p_iva21_ic_bi'), ref('l10n_es.account_tax_template_p_iva4_sp_ex'), ref('l10n_es.account_tax_template_p_iva10_sp_ex'), ref('l10n_es.account_tax_template_p_iva21_sp_ex'), ref('l10n_es.account_tax_template_p_iva4_isp'), ref('l10n_es.account_tax_template_p_iva10_isp'), ref('l10n_es.account_tax_template_p_iva21_isp'), ref('l10n_es.account_tax_template_p_iva4_isp_bi'), ref('l10n_es.account_tax_template_p_iva10_isp_bi'), ref('l10n_es.account_tax_template_p_iva21_isp_bi')])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_31_sale" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">31</field>
+        <field
+            name="name"
+        >Modificación de bases por auto de declaración de concurso de acreedores (ventas)</field>
+        <field name="move_type">refund</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <!-- Taxes will be populated by code -->
+        <field name="tax_ids" eval="False" />
+    </record>
+    <record id="aeat_mod390_map_line_31_purchase" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">31</field>
+        <field
+            name="name"
+        >Modificación de bases por auto de declaración de concurso de acreedores (compras)</field>
+        <field name="move_type">refund</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True" />
+        <!-- Taxes will be populated by code -->
+        <field name="tax_ids" eval="False" />
+    </record>
+    <record id="aeat_mod390_map_line_32_sale" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">32</field>
+        <field
+            name="name"
+        >Modificación de cuotas por auto de declaración de concurso de acreedores (ventas)</field>
+        <field name="move_type">refund</field>
+        <field name="field_type">amount</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <field name="account_id" ref="l10n_es.account_common_477" />
+        <!-- Taxes will be populated by code -->
+        <field name="tax_ids" eval="False" />
+    </record>
+    <record id="aeat_mod390_map_line_32_purchase" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">32</field>
+        <field
+            name="name"
+        >Modificación de cuotas por auto de declaración de concurso de acreedores  (compras)</field>
+        <field name="move_type">refund</field>
+        <field name="field_type">amount</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <field name="account_id" ref="l10n_es.account_common_477" />
+        <!-- Taxes will be populated by code -->
+        <field name="tax_ids" eval="False" />
+    </record>
+    <record id="aeat_mod390_map_line_663" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">663</field>
+        <field name="name">Recargo de equivalencia - Base 0%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_s_req0')])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_664" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">664</field>
+        <field name="name">Recargo de equivalencia - Cuota 0%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">amount</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_s_req0')])]"
         />
     </record>
     <record id="aeat_mod390_map_line_35" model="l10n.es.aeat.map.tax.line">
@@ -372,6 +447,32 @@
         <field
             name="tax_ids"
             eval="[(6, False, [ref('l10n_es.account_tax_template_s_req05')])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_665" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">665</field>
+        <field name="name">Recargo de equivalencia - Base 0,62%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_s_req062')])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_666" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">666</field>
+        <field name="name">Recargo de equivalencia - Cuota 0,62%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">amount</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_s_req062')])]"
         />
     </record>
     <record id="aeat_mod390_map_line_599" model="l10n.es.aeat.map.tax.line">
@@ -436,7 +537,7 @@
         <field name="inverse" eval="False" />
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_s_req05'), ref('l10n_es.account_tax_template_s_req014'), ref('l10n_es.account_tax_template_s_req52')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_s_req0'), ref('l10n_es.account_tax_template_s_req05'), ref('l10n_es.account_tax_template_s_req062'), ref('l10n_es.account_tax_template_s_req014'), ref('l10n_es.account_tax_template_s_req52')])]"
         />
     </record>
     <record id="aeat_mod390_map_line_44" model="l10n.es.aeat.map.tax.line">
@@ -449,8 +550,34 @@
         <field name="inverse" eval="False" />
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_s_req05'), ref('l10n_es.account_tax_template_s_req014'), ref('l10n_es.account_tax_template_s_req52')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_s_req0'), ref('l10n_es.account_tax_template_s_req05'), ref('l10n_es.account_tax_template_s_req062'), ref('l10n_es.account_tax_template_s_req014'), ref('l10n_es.account_tax_template_s_req52')])]"
         />
+    </record>
+    <record id="aeat_mod390_map_line_45" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">45</field>
+        <field
+            name="name"
+        >Modificación recargo equivalencia por auto de declaración de concurso de acreedores - Base</field>
+        <field name="move_type">refund</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <!-- Taxes will be populated by code -->
+        <field name="tax_ids" eval="False" />
+    </record>
+    <record id="aeat_mod390_map_line_46" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">46</field>
+        <field
+            name="name"
+        >Modificación recargo equivalencia por auto de declaración de concurso de acreedores - Cuota</field>
+        <field name="move_type">refund</field>
+        <field name="field_type">amount</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <!-- Taxes will be populated by code -->
+        <field name="tax_ids" eval="False" />
     </record>
     <record id="aeat_mod390_map_line_190" model="l10n.es.aeat.map.tax.line">
         <field name="map_parent_id" ref="aeat_mod390_map" />
@@ -557,7 +684,7 @@
         <field name="inverse" eval="True" />
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva4_bi')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva4_bi'), ref('l10n_es.account_tax_template_p_iva4_isp_bi')])]"
         />
     </record>
     <record id="aeat_mod390_map_line_197" model="l10n.es.aeat.map.tax.line">
@@ -572,7 +699,7 @@
         <field name="inverse" eval="True" />
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva4_bi')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva4_bi'), ref('l10n_es.account_tax_template_p_iva4_isp_bi')])]"
         />
     </record>
     <record id="aeat_mod390_map_line_611" model="l10n.es.aeat.map.tax.line">
@@ -587,7 +714,7 @@
         <field name="inverse" eval="True" />
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva10_bi')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva10_bi'), ref('l10n_es.account_tax_template_p_iva10_isp_bi')])]"
         />
     </record>
     <record id="aeat_mod390_map_line_612" model="l10n.es.aeat.map.tax.line">
@@ -602,7 +729,7 @@
         <field name="inverse" eval="True" />
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva10_bi')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva10_bi'), ref('l10n_es.account_tax_template_p_iva10_isp_bi')])]"
         />
     </record>
     <record id="aeat_mod390_map_line_613" model="l10n.es.aeat.map.tax.line">
@@ -617,7 +744,7 @@
         <field name="inverse" eval="True" />
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva21_bi')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva21_bi'), ref('l10n_es.account_tax_template_p_iva21_isp_bi')])]"
         />
     </record>
     <record id="aeat_mod390_map_line_614" model="l10n.es.aeat.map.tax.line">
@@ -632,7 +759,7 @@
         <field name="inverse" eval="True" />
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva21_bi')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva21_bi'), ref('l10n_es.account_tax_template_p_iva21_isp_bi')])]"
         />
     </record>
     <record id="aeat_mod390_map_line_202" model="l10n.es.aeat.map.tax.line">
@@ -1104,7 +1231,7 @@
         <field name="inverse" eval="True" />
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_p_req05'), ref('l10n_es.account_tax_template_p_req014'), ref('l10n_es.account_tax_template_p_req52'), ref('l10n_es.account_tax_template_p_iva4_bc'), ref('l10n_es.account_tax_template_p_iva4_sc'), ref('l10n_es.account_tax_template_p_iva4_bi'), ref('l10n_es.account_tax_template_p_iva4_ibc'), ref('l10n_es.account_tax_template_p_iva4_ibi'), ref('l10n_es.account_tax_template_p_iva4_ic_bc'), ref('l10n_es.account_tax_template_p_iva4_ic_bi'), ref('l10n_es.account_tax_template_p_iva4_sp_in'), ref('l10n_es.account_tax_template_p_iva4_sp_ex'), ref('l10n_es.account_tax_template_p_iva4_isp'), ref('l10n_es.account_tax_template_p_iva10_bc'), ref('l10n_es.account_tax_template_p_iva10_sc'), ref('l10n_es.account_tax_template_p_iva10_bi'), ref('l10n_es.account_tax_template_p_iva10_ibc'), ref('l10n_es.account_tax_template_p_iva10_ibi'), ref('l10n_es.account_tax_template_p_iva10_ic_bc'), ref('l10n_es.account_tax_template_p_iva10_ic_bi'), ref('l10n_es.account_tax_template_p_iva10_sp_in'), ref('l10n_es.account_tax_template_p_iva10_sp_ex'), ref('l10n_es.account_tax_template_p_iva10_isp'), ref('l10n_es.account_tax_template_p_iva21_bc'), ref('l10n_es.account_tax_template_p_iva21_sc'), ref('l10n_es.account_tax_template_p_iva21_bi'), ref('l10n_es.account_tax_template_p_iva21_ibc'), ref('l10n_es.account_tax_template_p_iva21_ibi'), ref('l10n_es.account_tax_template_p_iva21_ic_bc'), ref('l10n_es.account_tax_template_p_iva21_ic_bi'), ref('l10n_es.account_tax_template_p_iva21_sp_in'), ref('l10n_es.account_tax_template_p_iva21_sp_ex'), ref('l10n_es.account_tax_template_p_iva21_isp'), ref('l10n_es.account_tax_template_p_iva4_isp'), ref('l10n_es.account_tax_template_p_iva10_isp'), ref('l10n_es.account_tax_template_p_iva21_isp')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_req05'), ref('l10n_es.account_tax_template_p_req062'), ref('l10n_es.account_tax_template_p_req014'), ref('l10n_es.account_tax_template_p_req52'), ref('l10n_es.account_tax_template_p_iva4_bc'), ref('l10n_es.account_tax_template_p_iva4_sc'), ref('l10n_es.account_tax_template_p_iva5_bc'), ref('l10n_es.account_tax_template_p_iva5_sc'), ref('l10n_es.account_tax_template_p_iva4_bi'), ref('l10n_es.account_tax_template_p_iva4_ibc'), ref('l10n_es.account_tax_template_p_iva4_ibi'), ref('l10n_es.account_tax_template_p_iva0_ic_bc'), ref('l10n_es.account_tax_template_p_iva4_ic_bc'), ref('l10n_es.account_tax_template_p_iva5_ic_bc'), ref('l10n_es.account_tax_template_p_iva4_ic_bi'), ref('l10n_es.account_tax_template_p_iva4_sp_in'), ref('l10n_es.account_tax_template_p_iva4_sp_ex'), ref('l10n_es.account_tax_template_p_iva4_isp'), ref('l10n_es.account_tax_template_p_iva10_bc'), ref('l10n_es.account_tax_template_p_iva10_sc'), ref('l10n_es.account_tax_template_p_iva10_bi'), ref('l10n_es.account_tax_template_p_iva10_ibc'), ref('l10n_es.account_tax_template_p_iva10_ibi'), ref('l10n_es.account_tax_template_p_iva10_ic_bc'), ref('l10n_es.account_tax_template_p_iva10_ic_bi'), ref('l10n_es.account_tax_template_p_iva10_sp_in'), ref('l10n_es.account_tax_template_p_iva10_sp_ex'), ref('l10n_es.account_tax_template_p_iva10_isp'), ref('l10n_es.account_tax_template_p_iva21_bc'), ref('l10n_es.account_tax_template_p_iva21_sc'), ref('l10n_es.account_tax_template_p_iva21_bi'), ref('l10n_es.account_tax_template_p_iva21_ibc'), ref('l10n_es.account_tax_template_p_iva21_ibi'), ref('l10n_es.account_tax_template_p_iva21_ic_bc'), ref('l10n_es.account_tax_template_p_iva21_ic_bi'), ref('l10n_es.account_tax_template_p_iva21_sp_in'), ref('l10n_es.account_tax_template_p_iva21_sp_ex'), ref('l10n_es.account_tax_template_p_iva21_isp'), ref('l10n_es.account_tax_template_p_iva4_isp'), ref('l10n_es.account_tax_template_p_iva10_isp'), ref('l10n_es.account_tax_template_p_iva21_isp'), ref('l10n_es.account_tax_template_p_iva4_isp_bi'), ref('l10n_es.account_tax_template_p_iva10_isp_bi'), ref('l10n_es.account_tax_template_p_iva21_isp_bi')])]"
         />
     </record>
     <record id="aeat_mod390_map_line_62" model="l10n.es.aeat.map.tax.line">
@@ -1118,7 +1245,7 @@
         <field name="account_id" ref="l10n_es.account_common_472" />
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_p_req05'), ref('l10n_es.account_tax_template_p_req014'), ref('l10n_es.account_tax_template_p_req52'), ref('l10n_es.account_tax_template_p_iva4_bc'), ref('l10n_es.account_tax_template_p_iva4_sc'), ref('l10n_es.account_tax_template_p_iva4_bi'), ref('l10n_es.account_tax_template_p_iva4_ibc'), ref('l10n_es.account_tax_template_p_iva4_ibi'), ref('l10n_es.account_tax_template_p_iva4_ic_bc'), ref('l10n_es.account_tax_template_p_iva4_ic_bi'), ref('l10n_es.account_tax_template_p_iva4_sp_in'), ref('l10n_es.account_tax_template_p_iva4_sp_ex'), ref('l10n_es.account_tax_template_p_iva4_isp'), ref('l10n_es.account_tax_template_p_iva10_bc'), ref('l10n_es.account_tax_template_p_iva10_sc'), ref('l10n_es.account_tax_template_p_iva10_bi'), ref('l10n_es.account_tax_template_p_iva10_ibc'), ref('l10n_es.account_tax_template_p_iva10_ibi'), ref('l10n_es.account_tax_template_p_iva10_ic_bc'), ref('l10n_es.account_tax_template_p_iva10_ic_bi'), ref('l10n_es.account_tax_template_p_iva10_sp_in'), ref('l10n_es.account_tax_template_p_iva10_sp_ex'), ref('l10n_es.account_tax_template_p_iva10_isp'), ref('l10n_es.account_tax_template_p_iva21_bc'), ref('l10n_es.account_tax_template_p_iva21_sc'), ref('l10n_es.account_tax_template_p_iva21_bi'), ref('l10n_es.account_tax_template_p_iva21_ibc'), ref('l10n_es.account_tax_template_p_iva21_ibi'), ref('l10n_es.account_tax_template_p_iva21_ic_bc'), ref('l10n_es.account_tax_template_p_iva21_ic_bi'), ref('l10n_es.account_tax_template_p_iva21_sp_in'), ref('l10n_es.account_tax_template_p_iva21_sp_ex'), ref('l10n_es.account_tax_template_p_iva21_isp'), ref('l10n_es.account_tax_template_p_iva4_isp'), ref('l10n_es.account_tax_template_p_iva10_isp'), ref('l10n_es.account_tax_template_p_iva21_isp')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_req05'), ref('l10n_es.account_tax_template_p_req062'), ref('l10n_es.account_tax_template_p_req014'), ref('l10n_es.account_tax_template_p_req52'), ref('l10n_es.account_tax_template_p_iva4_bc'), ref('l10n_es.account_tax_template_p_iva4_sc'), ref('l10n_es.account_tax_template_p_iva5_bc'), ref('l10n_es.account_tax_template_p_iva5_sc'), ref('l10n_es.account_tax_template_p_iva4_bi'), ref('l10n_es.account_tax_template_p_iva4_ibc'), ref('l10n_es.account_tax_template_p_iva4_ibi'), ref('l10n_es.account_tax_template_p_iva0_ic_bc'), ref('l10n_es.account_tax_template_p_iva4_ic_bc'), ref('l10n_es.account_tax_template_p_iva5_ic_bc'), ref('l10n_es.account_tax_template_p_iva4_ic_bi'), ref('l10n_es.account_tax_template_p_iva4_sp_in'), ref('l10n_es.account_tax_template_p_iva4_sp_ex'), ref('l10n_es.account_tax_template_p_iva4_isp'), ref('l10n_es.account_tax_template_p_iva10_bc'), ref('l10n_es.account_tax_template_p_iva10_sc'), ref('l10n_es.account_tax_template_p_iva10_bi'), ref('l10n_es.account_tax_template_p_iva10_ibc'), ref('l10n_es.account_tax_template_p_iva10_ibi'), ref('l10n_es.account_tax_template_p_iva10_ic_bc'), ref('l10n_es.account_tax_template_p_iva10_ic_bi'), ref('l10n_es.account_tax_template_p_iva10_sp_in'), ref('l10n_es.account_tax_template_p_iva10_sp_ex'), ref('l10n_es.account_tax_template_p_iva10_isp'), ref('l10n_es.account_tax_template_p_iva21_bc'), ref('l10n_es.account_tax_template_p_iva21_sc'), ref('l10n_es.account_tax_template_p_iva21_bi'), ref('l10n_es.account_tax_template_p_iva21_ibc'), ref('l10n_es.account_tax_template_p_iva21_ibi'), ref('l10n_es.account_tax_template_p_iva21_ic_bc'), ref('l10n_es.account_tax_template_p_iva21_ic_bi'), ref('l10n_es.account_tax_template_p_iva21_sp_in'), ref('l10n_es.account_tax_template_p_iva21_sp_ex'), ref('l10n_es.account_tax_template_p_iva21_isp'), ref('l10n_es.account_tax_template_p_iva4_isp'), ref('l10n_es.account_tax_template_p_iva10_isp'), ref('l10n_es.account_tax_template_p_iva21_isp'), ref('l10n_es.account_tax_template_p_iva4_isp_bi'), ref('l10n_es.account_tax_template_p_iva10_isp_bi'), ref('l10n_es.account_tax_template_p_iva21_isp_bi')])]"
         />
     </record>
     <record id="aeat_mod390_map_line_99" model="l10n.es.aeat.map.tax.line">
@@ -1131,7 +1258,7 @@
         <field name="inverse" eval="False" />
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva21b'), ref('l10n_es.account_tax_template_s_iva21s'), ref('l10n_es.account_tax_template_s_iva10b'), ref('l10n_es.account_tax_template_s_iva10s'), ref('l10n_es.account_tax_template_s_iva4b'), ref('l10n_es.account_tax_template_s_iva4s')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva21b'), ref('l10n_es.account_tax_template_s_iva21s'), ref('l10n_es.account_tax_template_s_iva10b'), ref('l10n_es.account_tax_template_s_iva10s'), ref('l10n_es.account_tax_template_s_iva5b'), ref('l10n_es.account_tax_template_s_iva5s'), ref('l10n_es.account_tax_template_s_iva4b'), ref('l10n_es.account_tax_template_s_iva4s')])]"
         />
     </record>
     <record id="aeat_mod390_map_line_103" model="l10n.es.aeat.map.tax.line">
@@ -1187,7 +1314,7 @@
         <field name="inverse" eval="False" />
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva_e')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva_e'), ref('l10n_es.account_tax_template_s_iva_ns'), ref('l10n_es.account_tax_template_s_iva_ns_b')])]"
         />
     </record>
     <record id="aeat_mod390_map_line_102" model="l10n.es.aeat.map.tax.line">
@@ -1246,6 +1373,235 @@
         <field
             name="tax_ids"
             eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva0_nd'), ref('l10n_es.account_tax_template_p_iva10_nd'), ref('l10n_es.account_tax_template_p_iva4_nd')])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_700" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">700</field>
+        <field name="name">Régimen ordinario - Base imponible 0%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva0b'), ref('l10n_es.account_tax_template_s_iva0s')])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_701" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">701</field>
+        <field name="name">Régimen ordinario - Cuota 0%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">amount</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva0b'), ref('l10n_es.account_tax_template_s_iva0s')])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_702" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">702</field>
+        <field name="name">Régimen ordinario - Base imponible 5%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva5b'), ref('l10n_es.account_tax_template_s_iva5s')])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_703" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">703</field>
+        <field name="name">Régimen ordinario - Cuota 5%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">amount</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva5b'), ref('l10n_es.account_tax_template_s_iva5s')])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_716" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">716</field>
+        <field name="name">Adquisiciones intracomunitarias de bienes - Base 0%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva0_ic_bc'), ])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_717" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">717</field>
+        <field name="name">Adquisiciones intracomunitarias de bienes - Cuota 0%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">amount</field>
+        <field name="sum_type">both</field>
+        <field name="account_id" ref="l10n_es.account_common_477" />
+        <field name="inverse" eval="False" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva0_ic_bc'), ])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_718" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">718</field>
+        <field name="name">Adquisiciones intracomunitarias de bienes - Base 5%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva5_ic_bc'), ])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_719" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">719</field>
+        <field name="name">Adquisiciones intracomunitarias de bienes - Cuota 5%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">amount</field>
+        <field name="sum_type">both</field>
+        <field name="account_id" ref="l10n_es.account_common_477" />
+        <field name="inverse" eval="False" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva5_ic_bc'), ])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_720" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">720</field>
+        <field
+            name="name"
+        >Adquisiciones intracomunitarias de servicios - Base 0%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva0_ic_sc'), ])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_721" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">721</field>
+        <field
+            name="name"
+        >Adquisiciones intracomunitarias de servicios - Cuota 0%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">amount</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True" />
+        <field name="account_id" ref="l10n_es.account_common_472" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva0_ic_sc'), ])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_722" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">722</field>
+        <field
+            name="name"
+        >Adquisiciones intracomunitarias de servicios - Base 5%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva5_ic_sc'), ])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_723" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">723</field>
+        <field
+            name="name"
+        >Adquisiciones intracomunitarias de servicios - Cuota 5%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">amount</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True" />
+        <field name="account_id" ref="l10n_es.account_common_472" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva5_ic_sc'), ])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_724" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">724</field>
+        <field
+            name="name"
+        >IVA deducible en operaciones corrientes de bienes y servicios - Base 5%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva5_sc'), ref('l10n_es.account_tax_template_p_iva5_bc')])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_725" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">725</field>
+        <field
+            name="name"
+        >IVA deducible en operaciones corrientes de bienes y servicios - Cuota 5%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">amount</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva5_sc'), ref('l10n_es.account_tax_template_p_iva5_bc')])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_736" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">736</field>
+        <field
+            name="name"
+        >IVA deducible en adquisiciones intracomunitarias de bienes corrientes - Base 5%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva5_ic_bc'), ])]"
+        />
+    </record>
+    <record id="aeat_mod390_map_line_737" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod390_map" />
+        <field name="field_number">737</field>
+        <field
+            name="name"
+        >IVA deducible en adquisiciones intracomunitarias de bienes corrientes - Cuota 5%</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">amount</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True" />
+        <field name="account_id" ref="l10n_es.account_common_472" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva5_ic_bc'), ])]"
         />
     </record>
 </odoo>

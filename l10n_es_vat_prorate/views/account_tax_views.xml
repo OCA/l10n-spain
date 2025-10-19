@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="account_tax_form_view">
+        <field name="name">account.tax.form (in l10n_es_vat_prorate)</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form" />
+        <field name="arch" type="xml">
+            <field name="tax_group_id" position="after">
+                <field
+                    name="with_vat_prorate"
+                    attrs="{'invisible': [('company_with_vat_prorate', '=', False)]}"
+                />
+                <field name="company_with_vat_prorate" invisible="1" />
+                <field
+                    name="prorate_account_ids"
+                    widget="many2many_tags"
+                    attrs="{'invisible': [('company_with_vat_prorate', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

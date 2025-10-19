@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<odoo noupdate="1">
+    <record id="update_face_job" model="ir.cron" forcecreate="1">
+        <field name="name">FACe update Job</field>
+        <field name="active">True</field>
+        <field name="user_id" ref="base.user_root" />
+        <field name="priority">8</field>
+        <field name="interval_type">days</field>
+        <field name="state">code</field>
+        <field name="numbercall">-1</field>
+        <field name="model_id" ref="l10n_es_facturae_face.model_edi_exchange_record" />
+        <field name="code">model._cron_face_update_method()</field>
+    </record>
+</odoo>

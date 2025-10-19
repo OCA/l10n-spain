@@ -41,23 +41,11 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
-#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_journal__display_name
-#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: l10n_es_account_statement_import_n43
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
 #, python-format
 msgid ""
 "Final balance amount = (initial balance + credit - debit) doesn't match with "
 "the defined in the last record of account."
-msgstr ""
-
-#. module: l10n_es_account_statement_import_n43
-#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_journal__id
-#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import__id
-msgid "ID"
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
@@ -69,12 +57,6 @@ msgstr ""
 #: model:ir.model,name:l10n_es_account_statement_import_n43.model_account_journal
 msgid "Journal"
 msgstr "Dnevnik"
-
-#. module: l10n_es_account_statement_import_n43
-#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_journal____last_update
-#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import____last_update
-msgid "Last Modified on"
-msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
 #: model_terms:ir.ui.view,arch_db:l10n_es_account_statement_import_n43.view_account_journal_form_n43
@@ -112,14 +94,6 @@ msgstr ""
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
 #, python-format
 msgid "Record type %s is not valid."
-msgstr ""
-
-#. module: l10n_es_account_statement_import_n43
-#: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
-#, python-format
-msgid ""
-"The bank account number of the file does not match with the one in the "
-"journal."
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43

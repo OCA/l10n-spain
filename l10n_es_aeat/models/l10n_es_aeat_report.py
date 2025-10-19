@@ -18,6 +18,7 @@ class L10nEsAeatReport(models.AbstractModel):
     _name = "l10n.es.aeat.report"
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "AEAT report base module"
+    _order = "date_start desc,id desc"
     _rec_name = "name"
     _aeat_number = False
     _period_quarterly = True
@@ -26,7 +27,9 @@ class L10nEsAeatReport(models.AbstractModel):
     SPANISH_STATES = ss
 
     def _default_journal(self):
-        return self.env["account.journal"].search([("type", "=", "general")])[:1]
+        return self.env["account.journal"].search(
+            [("type", "=", "general"), ("company_id", "=", self.env.company.id)]
+        )[:1]
 
     def get_period_type_selection(self):
         period_types = []
@@ -67,7 +70,7 @@ class L10nEsAeatReport(models.AbstractModel):
         return self._aeat_number
 
     def _get_export_config(self, date):
-        model = self.env["ir.model"].search([("model", "=", self._name)])
+        model = self.env["ir.model"].sudo().search([("model", "=", self._name)])
         return self.env["aeat.model.export.config"].search(
             [
                 ("model_id", "=", model.id),
@@ -167,9 +170,6 @@ class L10nEsAeatReport(models.AbstractModel):
         tracking=True,
     )
     name = fields.Char(string="Report identifier", size=13, copy=False)
-    model_id = fields.Many2one(
-        comodel_name="ir.model", string="Model", compute="_compute_report_model"
-    )
     export_config_id = fields.Many2one(
         comodel_name="aeat.model.export.config",
         string="Export config",
@@ -177,7 +177,7 @@ class L10nEsAeatReport(models.AbstractModel):
             (
                 "model_id",
                 "=",
-                self.env["ir.model"].search([("model", "=", self._name)]).id,
+                self.env["ir.model"].sudo().search([("model", "=", self._name)]).id,
             )
         ],
         compute="_compute_export_config_id",
@@ -223,7 +223,7 @@ class L10nEsAeatReport(models.AbstractModel):
     journal_id = fields.Many2one(
         comodel_name="account.journal",
         string="Journal",
-        domain=[("type", "=", "general")],
+        domain="[('type', '=', 'general'), ('company_id', '=', company_id)]",
         default=_default_journal,
         help="Journal in which post the move.",
         states={"done": [("readonly", True)]},
@@ -246,6 +246,10 @@ class L10nEsAeatReport(models.AbstractModel):
         help="Company bank account used for the presentation",
         domain="[('acc_type', '=', 'iban'), ('partner_id', '=', partner_id)]",
     )
+    error_count = fields.Integer(
+        compute="_compute_error_count",
+    )
+    tax_agency_ids = fields.Many2many("aeat.tax.agency", string="Tax Agency")
     _sql_constraints = [
         (
             "name_uniq",
@@ -254,15 +258,13 @@ class L10nEsAeatReport(models.AbstractModel):
         )
     ]
 
-    def _compute_report_model(self):
-        for report in self:
-            report.model_id = (
-                self.env["ir.model"].search([("model", "=", report._name)]).id
-            )
-
     def _compute_allow_posting(self):
         for report in self:
             report.allow_posting = False
+
+    def _compute_error_count(self):
+        """To be overridden by each report."""
+        self.error_count = 0
 
     @api.constrains("statement_type", "previous_number")
     def _check_previous_number(self):
@@ -299,6 +301,8 @@ class L10nEsAeatReport(models.AbstractModel):
             or self.env.user.partner_id.mobile
             or self.env.user.company_id.phone
         )
+        if self.journal_id.company_id != self.company_id:
+            self.journal_id = self.with_company(self.company_id.id)._default_journal()
 
     @api.depends("year", "period_type")
     def _compute_dates(self):
@@ -530,3 +534,12 @@ class L10nEsAeatReport(models.AbstractModel):
                 rcontext
             )
         return result
+
+    @api.model
+    def _view_move_lines(self, amls):
+        res = self.env.ref("account.action_account_moves_all_a").sudo().read()[0]
+        view = self.env.ref("l10n_es_aeat.view_move_line_tree")
+        res["context"] = {"create": 0}
+        res["views"] = [(view.id, "tree")]
+        res["domain"] = [("id", "in", amls.ids)]
+        return res

@@ -1,0 +1,346 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/batuz_TiposAnulacion.xsd"
+	xmlns:tiposanulacion="https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/batuz_TiposAnulacion.xsd"
+	xmlns:tiposcomplejos="https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/batuz_TiposComplejos.xsd">
+
+	<import namespace="https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/batuz_TiposComplejos.xsd" schemaLocation="batuz_TiposComplejos.xsd"/>
+
+	<complexType name="AnulacionesIngresosConSGType">
+		<sequence>
+			<element name="Ingreso" type="tiposanulacion:AnulacionFacturaConSGType" minOccurs="1" maxOccurs="1000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesFacturasEmitidasConSGType">
+		<sequence>
+			<element name="FacturaEmitida" type="tiposanulacion:AnulacionFacturaConSGType" minOccurs="1" maxOccurs="1000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionFacturaConSGType">
+		<sequence>
+			<element name="AnulacionTicketBai" type="base64Binary"/>
+		</sequence>
+	</complexType>
+	<complexType name="AnulacionesIngresosSinSGType">
+		<sequence>
+			<element name="Ingreso" type="tiposanulacion:AnulacionIngresoSinSGType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionIngresoSinSGType">
+		<sequence>
+			<element name="IDIngreso" type="tiposcomplejos:IDFacturaType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesIngresosSinFacturaType">
+		<sequence>
+			<element name="Ingreso" type="tiposanulacion:AnulacionIngresoSinFacturaType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionIngresoSinFacturaType">
+		<sequence>
+			<element name="IDIngreso" type="tiposcomplejos:IDIngresoSinFacturaType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesGastosConFacturaType">
+		<sequence>
+			<element name="Gasto" type="tiposanulacion:AnulacionGastoConFacturaType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionGastoConFacturaType">
+		<sequence>
+			<element name="IDGasto" type="tiposcomplejos:IDFacturaConEmisorType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesGastosSinFacturaType">
+		<sequence>
+			<element name="Gasto" type="tiposanulacion:AnulacionGastoSinFacturaType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionGastoSinFacturaType">
+		<sequence>
+			<element name="IDGasto" type="tiposcomplejos:IDGastoSinFacturaType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesBienesType">
+		<sequence>
+			<element name="Bien" type="tiposanulacion:AnulacionBienType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionBienType">
+		<sequence>
+			<element name="IDBien" type="tiposcomplejos:IDBienInversionModelo140Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesTransferenciasPericialesOtrosPFType">
+		<sequence>
+			<element name="TransferenciaPericialOtro" type="tiposanulacion:AnulacionTransferenciaPericialOtroType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionTransferenciaPericialOtroType">
+		<sequence>
+			<element name="IDTransferenciaPericialOtro" type="tiposcomplejos:IDTransferenciaPericialOtroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesVentasBienesEnConsignaPFType">
+		<sequence>
+			<element name="VentaEnConsigna" type="tiposanulacion:AnulacionVentaEnConsignaType" minOccurs="1" maxOccurs="1000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionVentaEnConsignaType">
+		<sequence>
+			<element name="IDVentaEnConsigna" type="tiposcomplejos:IDVentaEnConsignaType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesCriterioCajaCobrosPFType">
+		<sequence>
+			<element name="Cobro" type="tiposanulacion:AnulacionCriterioCajaCobroPFType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionCriterioCajaCobroPFType">
+		<sequence>
+			<element name="IDCobro" type="tiposcomplejos:IDCriterioCajaCobroPFType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesCriterioCajaPagosPFType">
+		<sequence>
+			<element name="Pago" type="tiposanulacion:AnulacionCriterioCajaPagoPFType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionCriterioCajaPagoPFType">
+		<sequence>
+			<element name="IDPago" type="tiposcomplejos:IDCriterioCajaPagoPFType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesVariacionesExistenciasType">
+		<sequence>
+			<element name="VariacionExistencias" type="tiposanulacion:AnulacionVariacionExistenciasType" minOccurs="1" maxOccurs="10"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionVariacionExistenciasType">
+		<sequence>
+			<element name="IDVariacionExistencias" type="tiposcomplejos:IDVariacionExistenciasType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesArrendamientosLocalesNegociosType">
+		<sequence>
+			<element name="ArrendamientoLocalNegocio" type="tiposanulacion:AnulacionArrendamientoLocalNegocioType" minOccurs="1" maxOccurs="100"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionArrendamientoLocalNegocioType">
+		<sequence>
+			<element name="IDArrendamientoLocalNegocio" type="tiposcomplejos:IDArrendamientoLocalNegocioType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesTransmisionesInmueblesType">
+		<sequence>
+			<element name="TransmisionInmueble" type="tiposanulacion:AnulacionTransmisionInmuebleType" minOccurs="1" maxOccurs="100"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionTransmisionInmuebleType">
+		<sequence>
+			<element name="IDTransmisionInmueble" type="tiposcomplejos:IDTransmisionInmuebleType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesImportesPercibidosMetalicoPFType">
+		<sequence>
+			<element name="ImportePercibidoMetalico" type="tiposanulacion:AnulacionImportePercibidoMetalicoPFType" minOccurs="1" maxOccurs="100"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionImportePercibidoMetalicoPFType">
+		<sequence>
+			<element name="IDImportePercibidoMetalico" type="tiposcomplejos:IDImportePercibidoMetalicoPFType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesAgrupacionesAltaType">
+		<sequence>
+			<element name="AgrupacionAlta" type="tiposanulacion:AnulacionAgrupacionAltaType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionAgrupacionAltaType">
+		<sequence>
+			<element name="IDAgrupacionAlta" type="tiposcomplejos:IDAgrupacionType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesAgrupacionesBajaType">
+		<sequence>
+			<element name="AgrupacionBaja" type="tiposanulacion:AnulacionAgrupacionBajaType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionAgrupacionBajaType">
+		<sequence>
+			<element name="IDAgrupacionBaja" type="tiposcomplejos:IDAgrupacionType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesFacturasEmitidasSinSGType">
+		<sequence>
+			<element name="FacturaEmitida" type="tiposanulacion:AnulacionFacturaEmitidaSinSGType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionFacturaEmitidaSinSGType">
+		<sequence>
+			<element name="IDFactura" type="tiposcomplejos:IDFacturaType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesFacturasRecibidasType">
+		<sequence>
+			<element name="FacturaRecibida" type="tiposanulacion:AnulacionFacturaRecibidaType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionFacturaRecibidaType">
+		<sequence>
+			<element name="IDRecibida" type="tiposcomplejos:IDFacturaConEmisorType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesBienesInversionType">
+		<sequence>
+			<element name="Bien" type="tiposanulacion:AnulacionBienInversionType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionBienInversionType">
+		<sequence>
+			<element name="IDBien" type="tiposcomplejos:IDBienInversionModelo240Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesTransferenciasPericialesOtrosPJType">
+		<sequence>
+			<element name="TransferenciaPericialOtro" type="tiposanulacion:AnulacionTransferenciaPericialOtroType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesVentasBienesEnConsignaPJType">
+		<sequence>
+			<element name="VentaEnConsigna" type="tiposanulacion:AnulacionVentaEnConsignaType" minOccurs="1" maxOccurs="1000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesCriterioCajaCobrosPJType">
+		<sequence>
+			<element name="Cobro" type="tiposanulacion:AnulacionCriterioCajaCobroPJType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionCriterioCajaCobroPJType">
+		<sequence>
+			<element name="IDCobro" type="tiposcomplejos:IDCriterioCajaCobroPJType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesCriterioCajaPagosPJType">
+		<sequence>
+			<element name="Pago" type="tiposanulacion:AnulacionCriterioCajaPagoPJType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionCriterioCajaPagoPJType">
+		<sequence>
+			<element name="IDPago" type="tiposcomplejos:IDCriterioCajaPagoPJType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesImportesPercibidosMetalicoPJType">
+		<sequence>
+			<element name="ImportePercibidoMetalico" type="tiposanulacion:AnulacionImportePercibidoMetalicoPJType" minOccurs="1" maxOccurs="100"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionImportePercibidoMetalicoPJType">
+		<sequence>
+			<element name="IDImportePercibidoMetalico" type="tiposcomplejos:IDImportePercibidoMetalicoPJType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesOperacionesSegurosType">
+		<sequence>
+			<element name="OperacionSeguro" type="tiposanulacion:AnulacionOperacionSeguroType" minOccurs="1" maxOccurs="100"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionOperacionSeguroType">
+		<sequence>
+			<element name="IDOperacionSeguro" type="tiposcomplejos:IDOperacionSeguroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesAgenciasViajesType">
+		<sequence>
+			<element name="AgenciaViaje" type="tiposanulacion:AnulacionAgenciaViajeType" minOccurs="1" maxOccurs="100"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionAgenciaViajeType">
+		<sequence>
+			<element name="IDAgenciaViaje" type="tiposcomplejos:IDAgenciaViajeType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionesProvisionesFondosSuplidosType">
+		<sequence>
+			<element name="FondoSuplido" type="tiposanulacion:AnulacionProvisionFondoSuplidoType" minOccurs="1" maxOccurs="10000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionProvisionFondoSuplidoType">
+		<sequence>
+			<element name="IDFondoSuplido" type="tiposcomplejos:IDFondoSuplidoType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistrosAnulacionFacturaConSGType">
+		<sequence>
+			<element name="Registro" type="tiposanulacion:RegistroAnulacionFacturaConSGType" minOccurs="1" maxOccurs="1000"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="RegistroAnulacionFacturaConSGType">
+		<sequence>
+			<element name="Identificador" type="tiposanulacion:AnulacionIdentificadorFacturaConSGType"/>
+			<element name="SituacionRegistro" type="tiposcomplejos:SituacionRegistroType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AnulacionIdentificadorFacturaConSGType">
+		<sequence>
+			<choice>
+				<element name="IDFactura" type="tiposcomplejos:IDFacturaType"/>
+				<element name="AnulacionTicketBai" type="base64Binary"/>
+			</choice>
+		</sequence>
+	</complexType>
+</schema>

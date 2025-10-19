@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="account_payment_mode_form_aef" model="ir.ui.view">
+        <field name="name">Payment mode form (Confirming AEF)</field>
+        <field name="model">account.payment.mode</field>
+        <field name="inherit_id" ref="account_payment_mode.account_payment_mode_form" />
+        <field name="arch" type="xml">
+            <field name="payment_method_id" position="after">
+                <field name="payment_method_code" />
+            </field>
+            <xpath expr="//group[@name='main']" position="after">
+                <group
+                    string="AEF Confirming Configuration"
+                    name="config_confirming_aef"
+                    attrs="{'invisible': [('payment_method_code', '!=', 'confirming_aef')]}"
+                >
+                    <field name="aef_confirming_type" />
+                    <field name="aef_confirming_modality" />
+                    <field
+                        name="aef_confirming_contract"
+                        attrs="{'required': [('payment_method_code', '=', 'confirming_aef')]}"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

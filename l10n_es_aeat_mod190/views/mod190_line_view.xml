@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_l10n_es_aeat_mod190_report_line_tree" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod190.report.line.tree</field>
+        <field name="model">l10n.es.aeat.mod190.report.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="partner_id" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_l10n_es_aeat_mod190_report_line_form" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod190.report.line.form</field>
+        <field name="model">l10n.es.aeat.mod190.report.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field
+                            name="partner_id"
+                            string="Razón social"
+                            options="{'no_create_edit': True}"
+                        />
+                    </group>
+                    <group>
+                        <group>
+                            <field name="partner_vat" string="NIF perceptor" />
+                            <field
+                                name="representante_legal_vat"
+                                string="NIF representante legal"
+                            />
+                        </group>
+                        <group>
+                            <field name="codigo_provincia" string="Provincia" />
+                        </group>
+                    </group>
+                    <group string="Datos de la percepción">
+                        <group>
+                            <field
+                                name="aeat_perception_key_id"
+                                string="Clave"
+                                widget="selection"
+                            />
+                            <field
+                                name="aeat_perception_subkey_id"
+                                domain="[('aeat_perception_key_id', '=', aeat_perception_key_id)]"
+                                attrs="{'invisible': [('aeat_perception_key_id', '=', False)]}"
+                                string="Subclave"
+                                options="{'no_create_edit': True, 'no_open': True}"
+                            />
+                        </group>
+                        <group>
+                            <field name="ceuta_melilla" string="Ceuta o Melilla" />
+                            <field
+                                name="ejercicio_devengo"
+                                string="Ejercicio de devengo"
+                            />
+                        </group>
+                    </group>
+                    <group>
+                        <group
+                            string="Percepciones dinerarias NO derivadas de incapacidad laboral"
+                        >
+                            <field
+                                name="percepciones_dinerarias"
+                                string="Percepción integra"
+                            />
+                            <field
+                                name="retenciones_dinerarias"
+                                string="Retenciones practicadas"
+                            />
+                        </group>
+                        <group
+                            string="Percepciones en especie NO derivadas de incapacidad laboral"
+                        >
+                            <field
+                                name="percepciones_en_especie"
+                                string="Percepción integra"
+                            />
+                            <field
+                                name="ingresos_a_cuenta_efectuados"
+                                string="Ingresos a cuenta efectuados"
+                            />
+                            <field
+                                name="ingresos_a_cuenta_repercutidos"
+                                string="Ingresos a cuenta repercutidos"
+                            />
+                        </group>
+                        <group
+                            string="Percepciones dinerarias derivadas de incapacidad laboral"
+                        >
+                            <field
+                                name="percepciones_dinerarias_incap"
+                                string="Percepción integra"
+                            />
+                            <field
+                                name="retenciones_dinerarias_incap"
+                                string="Retenciones practicadas"
+                            />
+                        </group>
+                        <group
+                            string="Percepciones en especie derivadas de incapacidad laboral"
+                        >
+                            <field
+                                name="percepciones_en_especie_incap"
+                                string="Percepción integra"
+                            />
+                            <field
+                                name="ingresos_a_cuenta_efectuados_incap"
+                                string="Retenciones practicadas"
+                            />
+                            <field
+                                name="ingresos_a_cuenta_repercutidos_incap"
+                                string="Ingresos a cuenta en especie"
+                            />
+                        </group>
+                    </group>
+                    <field name="ad_required" invisible="1" />
+                    <notebook attrs="{'invisible': [('ad_required', '&lt;', 2)]}">
+                        <page string="Datos adicionales">
+                            <group>
+                                <group>
+                                    <field
+                                        name="a_nacimiento"
+                                        string="Año de nacimiento"
+                                    />
+                                    <field name="discapacidad" string="Discapacidad" />
+                                    <field
+                                        name="movilidad_geografica"
+                                        string="Movilidad geográfica"
+                                    />
+                                </group>
+                                <!-- TODO: Limitar a las claves A, B.01, B.03 y C-->
+                                <group>
+                                    <field
+                                        name="situacion_familiar"
+                                        string="Situación familiar"
+                                    />
+                                    <field
+                                        name="nif_conyuge"
+                                        string="NIF del conyuge"
+                                    />
+                                    <field
+                                        name="contrato_o_relacion"
+                                        string="Contrato o relación"
+                                    />
+                                </group>
+                                <group>
+                                    <field
+                                        name="reduccion_aplicable"
+                                        string="Reducciones aplicables"
+                                    />
+                                    <field
+                                        name="gastos_deducibles"
+                                        string="Gastos deducibles"
+                                    />
+                                </group>
+                                <group>
+                                    <field
+                                        name="pensiones_compensatorias"
+                                        string="Pensiones compensatorias"
+                                    />
+                                    <field
+                                        name="anualidades_por_alimentos"
+                                        string="Anualidades por alimentos"
+                                    />
+                                </group>
+                                <group>
+                                    <field
+                                        name="prestamos_vh"
+                                        string="Comunicación por el perceptor que ha destinado cantidades
+                                                    para la adquisición o rehabilitación de su vivienda habitual
+                                                    utilizando financiación ajena."
+                                    />
+                                </group>
+                            </group>
+                        </page>
+                        <!-- TODO: Limitar a las claves A, B.01, B.03 y C-->
+                        <page string="Decendents">
+                            <group col="3">
+                                <group string="Lower than 3 years">
+                                    <field name="hijos_y_descendientes_m" />
+                                    <field name="hijos_y_descendientes_m_entero" />
+                                </group>
+                                <group string="Rest">
+                                    <field name="hijos_y_descendientes" />
+                                    <field name="hijos_y_descendientes_entero" />
+                                </group>
+                                <group string="First 3 compute">
+                                    <field name="computo_primeros_hijos_1" string="1" />
+                                    <field name="computo_primeros_hijos_2" string="2" />
+                                    <field name="computo_primeros_hijos_3" string="3" />
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Decendents with discapacity">
+                            <group col="3">
+                                <group string="Between 33% and 65%">
+                                    <field name="hijos_y_desc_discapacidad_33" />
+                                    <field name="hijos_y_desc_discapacidad_entero_33" />
+                                </group>
+                                <group string="Reduced mobility">
+                                    <field name="hijos_y_desc_discapacidad_mr" />
+                                    <field name="hijos_y_desc_discapacidad_entero_mr" />
+                                </group>
+                                <group string="Bigger than 65%">
+                                    <field name="hijos_y_desc_discapacidad_66" />
+                                    <field name="hijos_y_desc_discapacidad_entero_66" />
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Ascendents">
+                            <group>
+                                <group string="Lower than 75 years">
+                                    <field name="ascendientes" />
+                                    <field name="ascendientes_entero" />
+                                </group>
+                                <group string="Bigger than 75 years">
+                                    <field name="ascendientes_m75" />
+                                    <field name="ascendientes_entero_m75" />
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Ascendents with discapacity">
+                            <group col="3">
+                                <group string="Between 33% and 65%">
+                                    <field name="ascendientes_discapacidad_33" />
+                                    <field name="ascendientes_discapacidad_entero_33" />
+                                </group>
+                                <group string="Reduced mobility">
+                                    <field name="ascendientes_discapacidad_mr" />
+                                    <field name="ascendientes_discapacidad_entero_mr" />
+                                </group>
+                                <group string="Bigger than 65%">
+                                    <field name="ascendientes_discapacidad_66" />
+                                    <field name="ascendientes_discapacidad_entero_66" />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

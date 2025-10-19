@@ -69,7 +69,13 @@ class ResCompany(models.Model):
     )
     sent_time = fields.Float()
     delay_time = fields.Float()
-    sii_tax_agency_id = fields.Many2one("aeat.sii.tax.agency", string="SII Tax Agency")
+    sii_period = fields.Selection(
+        selection=[
+            ("monthly", "Monthly"),
+            ("quarterly", "Quarterly"),
+        ],
+        default="monthly",
+    )
 
     def _get_sii_eta(self):
         if self.send_mode == "fixed":

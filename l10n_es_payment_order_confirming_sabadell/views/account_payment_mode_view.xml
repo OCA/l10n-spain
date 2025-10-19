@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="account_payment_mode_form" model="ir.ui.view">
+        <field name="name">Payment mode form (Confirming Sabadell)</field>
+        <field name="model">account.payment.mode</field>
+        <field name="inherit_id" ref="account_payment_mode.account_payment_mode_form" />
+        <field name="arch" type="xml">
+            <field name="payment_method_id" position="after">
+                <field name="payment_method_code" />
+            </field>
+            <xpath expr="//group[@name='main']" position="after">
+                <group
+                    string="Sabadell Confirming Configuration"
+                    name="config_confirming_sabadell"
+                    attrs="{'invisible': [('payment_method_code', '!=', 'conf_sabadell')]}"
+                >
+                    <field name="conf_sabadell_type" />
+                    <field
+                        name="contrato_bsconfirming"
+                        attrs="{'required': [('payment_method_code', '=', 'conf_sabadell')]}"
+                    />
+                    <field
+                        name="tipo_envio_info"
+                        attrs="{'required': [('payment_method_code', '=', 'conf_sabadell')]}"
+                    />
+                    <field
+                        name="codigo_estadistico"
+                        attrs="{'required': [('conf_sabadell_type', '=', '58')],'invisible': [('conf_sabadell_type', '!=', '58')]}"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

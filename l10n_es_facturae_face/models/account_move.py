@@ -2,7 +2,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class AccountMove(models.Model):
@@ -13,7 +14,7 @@ class AccountMove(models.Model):
             ("face-1200", "Registered on REC"),
             ("face-1300", "Registered on RCF"),
             ("face-2400", "Accepted"),
-            ("face-2500", "Payed"),
+            ("face-2500", "Paid"),
             ("face-2600", "Rejected"),
             ("face-3100", "Cancellation approved"),
         ],
@@ -45,7 +46,8 @@ class AccountMove(models.Model):
         if not partner.facturae or not partner.l10n_es_facturae_sending_code:
             return False
         return not self._has_exchange_record(
-            "l10n_es_facturae", self.env.ref("l10n_es_facturae_face.backend_facturae")
+            self.env.ref("l10n_es_facturae_face.facturae_exchange_type"),
+            self.env.ref("l10n_es_facturae_face.backend_facturae"),
         )
 
     @api.model
@@ -62,7 +64,9 @@ class AccountMove(models.Model):
         domain = super()._has_exchange_record_domain(
             exchange_type, backend=backend, extra_domain=extra_domain
         )
-        if exchange_type == "l10n_es_facturae":
+        if exchange_type == self.env.ref(
+            "l10n_es_facturae_face.facturae_exchange_type"
+        ):
             domain += [
                 "|",
                 ("l10n_es_facturae_status", "=", False),
@@ -80,3 +84,16 @@ class AccountMove(models.Model):
             "face-2600",
             "face-3100",
         ]
+
+    def validate_facturae_fields(self):
+        super().validate_facturae_fields()
+        if (
+            self.partner_id.l10n_es_facturae_sending_code == "face"
+            and not self.partner_id.organo_gestor
+        ):
+            raise ValidationError(_("Organo Gestor not provided"))
+        if not self.partner_id.unidad_tramitadora:
+            raise ValidationError(_("Unidad Tramitadora not provided"))
+        if not self.partner_id.oficina_contable:
+            raise ValidationError(_("Oficina Contable not provided"))
+        return

@@ -10,6 +10,7 @@
             <form string="TicketBAI Installations">
                 <group>
                     <field name="name" />
+                    <field name="version" />
                     <field
                         name="developer_id"
                         options="{'no_open':True,'no_create':True}"

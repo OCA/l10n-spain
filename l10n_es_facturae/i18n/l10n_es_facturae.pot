@@ -15,28 +15,33 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
+msgid "&gt;"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
 msgid "&lt;/fe:Facturae&gt;"
 msgstr ""
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
 msgid ""
-"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae\"\n"
-"            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+"&lt;fe:Facturae "
+"xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae\""
 msgstr ""
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
 msgid ""
-"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2014/v3.2.1/Facturae\"\n"
-"            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+"&lt;fe:Facturae "
+"xmlns:fe=\"http://www.facturae.es/Facturae/2014/v3.2.1/Facturae\""
 msgstr ""
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
 msgid ""
-"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.gob.es/formato/Versiones/Facturaev3_2_2.xml\"\n"
-"            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+"&lt;fe:Facturae "
+"xmlns:fe=\"http://www.facturae.gob.es/formato/Versiones/Facturaev3_2_2.xml\""
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -131,6 +136,30 @@ msgstr ""
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
+msgid "Company city not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Company country not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Company state not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Company street not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
 msgid "Company vat is too small"
 msgstr ""
 
@@ -138,6 +167,12 @@ msgstr ""
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Company vat not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Company zip not provided"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -156,22 +191,22 @@ msgstr ""
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
-msgid "Country must be defined"
+msgid "Country must be defined for factura-e enabled partners."
 msgstr ""
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.wizard_create_facturae
-msgid "Create Factura-E"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: model:ir.actions.act_window,name:l10n_es_facturae.wizard_create_facturae_act_window
-msgid "Create Factura-E file"
+msgid "Create Facturae"
 msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_create_facturae
 msgid "Create Facturae Wizard"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.actions.act_window,name:l10n_es_facturae.wizard_create_facturae_act_window
+msgid "Create Facturae file"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -255,42 +290,17 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__parent_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__parent_facturae
 msgid "Factura electrónica"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
-msgid "Factura-E"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__facturae
-msgid "Factura-E file"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: model:ir.actions.report,name:l10n_es_facturae.report_facturae_signed
-msgid "Factura-E for,adp"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: model:ir.actions.report,name:l10n_es_facturae.report_facturae
-msgid "Factura-E sin firmar"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_move.py:0
-#: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
-msgid ""
-"FacturaE start and end dates are both required if one of them is filled"
 msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_partner_form
 msgid "Facturae"
@@ -329,7 +339,10 @@ msgid "Facturae File Date"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae_file_reference
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae_file_reference
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move_line__facturae_file_reference
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae_file_reference
 msgid "Facturae File Reference"
 msgstr ""
 
@@ -359,7 +372,10 @@ msgid "Facturae Receiver Contract Date"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae_receiver_contract_reference
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae_receiver_contract_reference
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move_line__facturae_receiver_contract_reference
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae_receiver_contract_reference
 msgid "Facturae Receiver Contract Reference"
 msgstr ""
 
@@ -369,7 +385,10 @@ msgid "Facturae Receiver Transaction Date"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae_receiver_transaction_reference
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae_receiver_transaction_reference
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move_line__facturae_receiver_transaction_reference
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae_receiver_transaction_reference
 msgid "Facturae Receiver Transaction Reference"
 msgstr ""
 
@@ -398,6 +417,29 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__facturae_version
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__facturae_version
 msgid "Facturae Version"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__facturae
+msgid "Facturae file"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.actions.report,name:l10n_es_facturae.report_facturae_signed
+msgid "Facturae for,adp"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.actions.report,name:l10n_es_facturae.report_facturae
+msgid "Facturae sin firmar"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid ""
+"Facturae start and end dates are both required if one of them is filled"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -430,6 +472,13 @@ msgstr ""
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__create_facturae__state__first
 msgid "First"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_hide_discount
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__facturae_hide_discount
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__facturae_hide_discount
+msgid "Hide Facturae discount"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -549,11 +598,6 @@ msgid "Invoice %s"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: model:ir.model,name:l10n_es_facturae.model_account_journal
-msgid "Journal"
-msgstr ""
-
-#. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_move
 msgid "Journal Entry"
 msgstr ""
@@ -600,6 +644,7 @@ msgid "Log"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__move_id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment__move_id
 msgid "Move"
 msgstr ""
@@ -623,13 +668,6 @@ msgid "Número de la factura"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: model:ir.model.fields,help:l10n_es_facturae.field_account_bank_statement_line__thirdparty_number
-#: model:ir.model.fields,help:l10n_es_facturae.field_account_move__thirdparty_number
-#: model:ir.model.fields,help:l10n_es_facturae.field_account_payment__thirdparty_number
-msgid "Número de la factura emitida por un tercero."
-msgstr ""
-
-#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__oficina_contable
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__oficina_contable
 msgid "Oficina Contable"
@@ -650,13 +688,13 @@ msgstr ""
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
-msgid "Partner bank is missing"
+msgid "Partner state not provided"
 msgstr ""
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
-msgid "Partner state not provided"
+msgid "Partner street address is not provided"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -779,18 +817,18 @@ msgstr ""
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
-msgid "State must be defined"
+msgid "State must be defined for factura-e enabled partners."
+msgstr ""
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/res_partner.py:0
+#, python-format
+msgid "Street must be defined for factura-e enabled partners."
 msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_tax
 msgid "Tax"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
-msgid "Taxes not provided in move line %s"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -809,18 +847,16 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_journal__thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__thirdparty_invoice
-msgid "Third-party invoice"
+#: code:addons/l10n_es_facturae/reports/report_facturae.py:0
+#, python-format
+msgid "The provided certificate is not found in the system."
 msgstr ""
 
 #. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__thirdparty_number
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__thirdparty_number
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__thirdparty_number
-msgid "Third-party number"
+#: model:ir.model.fields,help:l10n_es_facturae.field_res_company__facturae_hide_discount
+#: model:ir.model.fields,help:l10n_es_facturae.field_res_partner__facturae_hide_discount
+#: model:ir.model.fields,help:l10n_es_facturae.field_res_users__facturae_hide_discount
+msgid "The unit price will be recalculated applying the discount"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -837,20 +873,19 @@ msgstr ""
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
-msgid "Vat must be defined"
+msgid "Vat must be defined for factura-e enabled partners."
 msgstr ""
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
-msgid ""
-"You can only create Factura-E files for moves that have been validated."
+msgid "You can only create Facturae files for moves that have been validated."
 msgstr ""
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/wizard/create_facturae.py:0
 #, python-format
-msgid "You can only select one move to export"
+msgid "You must select a move to export"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -946,13 +981,6 @@ msgstr ""
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_payment_mode__facturae_code__19
 msgid "[19] Pago mediante tarjeta"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/wizard/create_facturae.py:0
-#: code:addons/l10n_es_facturae/wizard/create_facturae.py:0
-#, python-format
-msgid "facturae"
 msgstr ""
 
 #. module: l10n_es_facturae

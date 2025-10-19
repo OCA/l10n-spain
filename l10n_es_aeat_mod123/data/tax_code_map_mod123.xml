@@ -14,7 +14,7 @@
         <field name="inverse" eval="True" />
         <field
             name="tax_ids"
-            eval="[(4, ref('l10n_es.account_tax_template_p_rp19')), (4, ref('l10n_es.account_tax_template_p_rrD19'))]"
+            eval="[(4, ref('l10n_es.account_tax_template_p_rp19')), (4, ref('l10n_es.account_tax_template_p_rrD19')), (4, ref('l10n_es.account_tax_template_p_irpf24_rdc'))]"
         />
     </record>
     <record id="aeat_mod123_map_line_03" model="l10n.es.aeat.map.tax.line">
@@ -28,7 +28,7 @@
         <field name="inverse" eval="False" />
         <field
             name="tax_ids"
-            eval="[(4, ref('l10n_es.account_tax_template_p_rp19')), (4, ref('l10n_es.account_tax_template_p_rrD19'))]"
+            eval="[(4, ref('l10n_es.account_tax_template_p_rp19')), (4, ref('l10n_es.account_tax_template_p_rrD19')), (4, ref('l10n_es.account_tax_template_p_irpf24_rdc'))]"
         />
     </record>
 </odoo>

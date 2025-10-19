@@ -74,8 +74,11 @@ class EdiExchangeRecord(models.Model):
             public_crt, private_key = self.env[
                 "l10n.es.aeat.certificate"
             ].get_certificates(company)
-            response = face.webservice_backend_id.call(
-                "consult_invoices",
+            response = face._find_component(
+                face._name,
+                ["face.protocol"],
+                work_ctx={"exchange_record": self.env["edi.exchange.record"]},
+            ).consult_invoices(
                 public_crt,
                 private_key,
                 exchanges,
@@ -87,6 +90,14 @@ class EdiExchangeRecord(models.Model):
                 exchange_record = exchange_dict[invoice.factura.numeroRegistro]
                 if invoice.codigo != "0":
                     # Probably processed from another system
+                    continue
+                process_code = "face-" + invoice.factura.tramitacion.codigo
+                revocation_code = "face-" + invoice.factura.anulacion.codigo
+                if (
+                    exchange_record.l10n_es_facturae_status == process_code
+                    and exchange_record.l10n_es_facturae_cancellation_status
+                    == revocation_code
+                ):
                     continue
                 update_record = face.create_record(
                     "l10n_es_facturae_face_update",

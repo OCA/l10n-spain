@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from collections import OrderedDict
 
-from odoo import _, api, exceptions, fields, models, release
+from odoo import _, api, exceptions, fields, models
 
 
 class ResCompany(models.Model):
@@ -34,6 +34,12 @@ class ResCompany(models.Model):
         related="tbai_installation_id.name",
         readonly=True,
         help="Registered name at the Tax Agency.",
+    )
+    tbai_software_version = fields.Char(
+        string="Software Version",
+        related="tbai_installation_id.version",
+        copy=False,
+        help="Version of the software.",
     )
     tbai_device_serial_number = fields.Char(
         "Device Serial Number", default="", copy=False
@@ -166,6 +172,6 @@ class ResCompany(models.Model):
                 ("LicenciaTBAI", self.tbai_license_key),
                 ("EntidadDesarrolladora", self._tbai_build_entidad_desarrolladora()),
                 ("Nombre", self.tbai_software_name),
-                ("Version", release.version),
+                ("Version", self.tbai_software_version),
             ]
         )

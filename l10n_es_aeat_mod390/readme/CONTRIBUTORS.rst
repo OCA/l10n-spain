@@ -12,3 +12,11 @@
 
   * Harald Panten <harald.panten@sygel.es>
   * Valentin Vinagre <valentin.vinagre@sygel.es>
+
+* `Dixmit <https://www.dixmit.com>`_:
+
+  * Enric Tobella
+
+* `Moduon <https://www.moduon.team>`_:
+
+  * Emilio Pascual

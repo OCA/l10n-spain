@@ -9,6 +9,7 @@ from odoo import fields, models
 _logger = logging.getLogger(__name__)
 
 try:
+    from cryptography.hazmat.backends import default_backend
     from cryptography.hazmat.primitives.serialization import pkcs12
 except (ImportError, IOError) as err:
     _logger.error(err)
@@ -41,5 +42,5 @@ class TicketBaiCertificate(models.Model):
         """
         self.ensure_one()
         return pkcs12.load_key_and_certificates(
-            self.get_p12_buffer(), self.password.encode()
+            self.get_p12_buffer(), self.password.encode(), backend=default_backend()
         )

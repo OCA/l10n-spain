@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tbai_lroe_operation,tbai.lroe.operation,model_lroe_operation,base.group_user,1,0,0,0
+access_tbai_lroe_chapter,tbai.lroe.chapter,model_lroe_chapter,base.group_user,1,0,0,0
+access_tbai_lroe_operation_response,tbai.lroe.operation.response,model_lroe_operation_response,base.group_user,1,0,0,0
+access_tbai_lroe_operation_response_line,tbai.lroe.operation.response_line,model_lroe_operation_response_line,base.group_user,1,0,0,0

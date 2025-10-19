@@ -20,3 +20,17 @@ class L10nEsVatBookIssuedTaxSummary(models.Model):
         required=True,
         ondelete="cascade",
     )
+    base_move_line_ids = fields.Many2many(
+        comodel_name="account.move.line",
+        string="Journal items (Base)",
+        relation="account_move_line_l10n_es_vat_book_tax_summary_base_rel",
+    )
+    move_line_ids = fields.Many2many(
+        comodel_name="account.move.line", string="Journal items"
+    )
+
+    def view_move_lines_base(self):
+        return self.env["l10n.es.aeat.report"]._view_move_lines(self.base_move_line_ids)
+
+    def view_move_lines_tax(self):
+        return self.env["l10n.es.aeat.report"]._view_move_lines(self.move_line_ids)

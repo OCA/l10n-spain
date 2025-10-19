@@ -202,6 +202,13 @@ msgid "Bank account"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_account_bank_statement_line__is_bankrupcy_uncollectible_debt
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_account_move__is_bankrupcy_uncollectible_debt
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_account_payment__is_bankrupcy_uncollectible_debt
+msgid "Bankrupcy/uncollectible debt"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__calculation_date
 msgid "Calculation Date"
 msgstr ""
@@ -247,33 +254,63 @@ msgid "Currency"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_first_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_first_activity_code_id
 msgid "Código 1ª actividad"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_second_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_first_activity_code
+msgid "Código 1ª actividad (antiguo)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_second_activity_code_id
 msgid "Código 2ª actividad"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_third_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_second_activity_code
+msgid "Código 2ª actividad (antiguo)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_third_activity_code_id
 msgid "Código 3ª actividad"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fourth_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_third_activity_code
+msgid "Código 3ª actividad (antiguo)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fourth_activity_code_id
 msgid "Código 4ª actividad"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fifth_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fourth_activity_code
+msgid "Código 4ª actividad (antiguo)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fifth_activity_code_id
 msgid "Código 5ª actividad"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__main_activity_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fifth_activity_code
+msgid "Código 5ª actividad (antiguo)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__main_activity_code_id
 msgid "Código actividad principal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__main_activity_code
+msgid "Código actividad principal (antiguo)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
@@ -325,6 +362,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__main_activity_iae
 msgid "Epígrafe I.A.E. actividad principal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__error_count
+msgid "Error Count"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
@@ -395,8 +437,22 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__use_303
+msgid ""
+"If it's checked, this report uses 303 reports for calculate fields 85, 95, "
+"97, 98 and 662. When it's unchecked, you should fill them in. If you "
+"calculated first and then checked this option, you must calculate it again."
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390.view_l10n_es_aeat_mod390_report_form
+msgid ""
+"If you do not want to use the 303 reports for the automatic calculation,\n"
+"                        uncheck \"<b>Use 303 reports</b>\" option."
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
@@ -407,6 +463,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__journal_id
 msgid "Journal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model,name:l10n_es_aeat_mod390.model_account_move
+msgid "Journal Entry"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
@@ -460,11 +521,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_ids
 msgid "Messages"
-msgstr ""
-
-#. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__model_id
-msgid "Model"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
@@ -637,8 +693,12 @@ msgid "Responsible User"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_has_sms_error
-msgid "SMS Delivery error"
+#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_85
+msgid ""
+"Se consignará el importe de las cuotas pendientes de compensación generadas "
+"en ejercicios anteriores y aplicadas en el ejercicio (es decir, que se "
+"hubiesen consignado en la casilla 78 de alguna de las autoliquidaciones del "
+"periodo)."
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
@@ -671,15 +731,6 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_85
-msgid ""
-"Si en la autoliquidación del último período del ejercicio anterior resultó "
-"un saldo a su favor y usted optó por la compensación, consigne en esta "
-"casilla la cantidad a compensar, salvo que la misma haya sido modificada por"
-" la Administración, en cuyo caso se consignará esta última."
-msgstr ""
-
-#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__date_start
 msgid "Starting date"
 msgstr ""
@@ -709,6 +760,11 @@ msgid "Support Type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__tax_agency_ids
+msgid "Tax Agency"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__tax_line_ids
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390.view_l10n_es_aeat_mod390_report_form
 msgid "Tax lines"
@@ -723,9 +779,9 @@ msgstr ""
 #: code:addons/l10n_es_aeat_mod390/models/mod390.py:0
 #, python-format
 msgid ""
-"The result of the manual 303 summary (fields [95], [97] and [98] in the page"
-" '9. Resultado liquidaciones') doesn't match the field [86]. Please check if"
-" you have filled such fields."
+"The result of the manual 303 summary (fields [95], [97], [98] and [662] in "
+"the page '9. Resultado liquidaciones') doesn't match the field [86]. Please "
+"check if you have filled such fields."
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
@@ -733,6 +789,13 @@ msgstr ""
 msgid ""
 "This account will be the counterpart for all the journal items that are "
 "regularized when posting the report."
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390.view_l10n_es_aeat_mod390_report_form
+msgid ""
+"This is using the 303 reports for automatic calculations in the <b>fields 85, 95, 97, 98 and 662</b>. The calculations\n"
+"                        may not be correct if there are duplicated or out-of-date 303 reports."
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
@@ -751,8 +814,19 @@ msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__use_303
+msgid "Use 303 reports"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__company_vat
 msgid "VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__valued_tax_line_ids
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390.view_l10n_es_aeat_mod390_report_form
+msgid "Valued tax lines"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
@@ -763,6 +837,15 @@ msgstr ""
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__website_message_ids
 msgid "Website communication history"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_account_bank_statement_line__is_bankrupcy_uncollectible_debt
+#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_account_move__is_bankrupcy_uncollectible_debt
+#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_account_payment__is_bankrupcy_uncollectible_debt
+msgid ""
+"When this is set, the tax base and rate will be reflected in fields 31, 32, "
+"45 and 46 of the AEAT 390 model"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
@@ -878,6 +961,18 @@ msgstr ""
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_65
 msgid "[65] Result. rég. gral."
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_662
+msgid "[662] Cuotas pendientes de compensación al término del ejercicio"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_662
+msgid ""
+"[662] Cuotas pendientes de compensación generadas en el ejercicio y "
+"distintas de las incluidas en la casilla 97"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390

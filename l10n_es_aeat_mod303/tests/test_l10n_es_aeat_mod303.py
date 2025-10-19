@@ -383,7 +383,7 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         # Entregas intra. de bienes y servicios - Base ventas
         "59": (2 * 2400) + (2 * 2500),  # S_IVA0_IC, S_IVA0_SP_I
         # Exportaciones y operaciones asimiladas - Base ventas
-        "60": (2 * 2000) + (2 * 2200) + (2 * 2600),  # S_IVA0_E + S_IVA_NS + S_IVA0
+        "60": (2 * 2000) + (2 * 2600),  # S_IVA0_E + S_IVA0
         # Op. no sujetas o con inv. del sujeto pasivo - Base ventas
         "61": ((2 * 2100) + (2 * 2300)),  # S_IVA_SP_E # S_IVA0_ISP
         # Importes de las entregas de bienes y prestaciones de servicios
@@ -539,6 +539,8 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             "l10n_es_aeat_mod303.aeat_mod303_2021_main_export_config",
             "l10n_es_aeat_mod303.aeat_mod303_202107_main_export_config",
             "l10n_es_aeat_mod303.aeat_mod303_2022_main_export_config",
+            "l10n_es_aeat_mod303.aeat_mod303_2023_main_export_config",
+            "l10n_es_aeat_mod303.aeat_mod303_2024_10_main_export_config",
         ]
         for xml_id in export_config_xml_ids:
             export_config = self.env.ref(xml_id)

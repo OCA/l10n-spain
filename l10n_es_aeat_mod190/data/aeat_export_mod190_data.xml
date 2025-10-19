@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--  MAIN-190
+        A. TIPO DE REGISTRO 1: REGISTRO DE DECLARANTE -->
+    <record id="aeat_mod190_main_export_config" model="aeat.model.export.config">
+        <field
+            name="name"
+        >Exportación modelo 190 - Tipo de Registro 1 – Registro de declarante</field>
+        <field name="date_start">2017-01-01</field>
+        <field name="model_number">190</field>
+        <field
+            name="model_id"
+            ref="l10n_es_aeat_mod190.model_l10n_es_aeat_mod190_report"
+        />
+    </record>
+    <!-- TIPO DE REGISTRO (1) -->
+    <record id="aeat_mod190_main_export_line_01" model="aeat.model.export.config.line">
+        <field name="sequence">1</field>
+        <field name="export_config_id" ref="aeat_mod190_main_export_config" />
+        <field name="name">Constante: Tipo de Registro</field>
+        <field name="fixed_value">1</field>
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- MODELO DECLARACION (3) -->
+    <record id="aeat_mod190_main_export_line_02" model="aeat.model.export.config.line">
+        <field name="sequence">2</field>
+        <field name="export_config_id" ref="aeat_mod190_main_export_config" />
+        <field name="name">Contante: Modelo de la declaración</field>
+        <field name="fixed_value">190</field>
+        <field name="export_type">string</field>
+        <field name="size">3</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- EJERCICIO (3) -->
+    <record id="aeat_mod190_main_export_line_03" model="aeat.model.export.config.line">
+        <field name="sequence">3</field>
+        <field name="export_config_id" ref="aeat_mod190_main_export_config" />
+        <field name="name">Constante: Ejercicio</field>
+        <field name="expression">${object.year}</field>
+        <field name="export_type">string</field>
+        <field name="size">4</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- NIF DECLARANTE (9) -->
+    <record id="aeat_mod190_main_export_line_04" model="aeat.model.export.config.line">
+        <field name="sequence">4</field>
+        <field name="export_config_id" ref="aeat_mod190_main_export_config" />
+        <field name="name">Constante: NIF&gt;</field>
+        <field name="expression">${object.company_vat}</field>
+        <field name="export_type">string</field>
+        <field name="size">9</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- RAZON SOCIAL DECLARANTE (40) -->
+    <record id="aeat_mod190_main_export_line_05" model="aeat.model.export.config.line">
+        <field name="sequence">5</field>
+        <field name="export_config_id" ref="aeat_mod190_main_export_config" />
+        <field name="name">Identificación: Denominación o Apellidos</field>
+        <field name="expression">${object.company_id.name}</field>
+        <field name="export_type">string</field>
+        <field name="size">40</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- TIPO DE SOPORTE (1) -->
+    <record id="aeat_mod190_main_export_line_06" model="aeat.model.export.config.line">
+        <field name="sequence">6</field>
+        <field name="export_config_id" ref="aeat_mod190_main_export_config" />
+        <field name="name">Contante: Tipo de soporte</field>
+        <field name="expression">${object.support_type}</field>
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- PERSONA CON QUIEN RELACIONARSE, TELEFONO (9) -->
+    <record id="aeat_mod190_main_export_line_07" model="aeat.model.export.config.line">
+        <field name="sequence">7</field>
+        <field name="export_config_id" ref="aeat_mod190_main_export_config" />
+        <field
+            name="name"
+        >Identificación: Persona con quien relacionarse, Teléfono</field>
+        <field name="expression">${object.contact_phone}</field>
+        <field name="export_type">string</field>
+        <field name="size">9</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- PERSONA CON QUIEN RELACIONARSE, NOMBRE (40) -->
+    <record id="aeat_mod190_main_export_line_8" model="aeat.model.export.config.line">
+        <field name="sequence">8</field>
+        <field name="export_config_id" ref="aeat_mod190_main_export_config" />
+        <field
+            name="name"
+        >Identificación: Persona con quien relacionarse, Nombre</field>
+        <field name="expression">${object.contact_name}</field>
+        <field name="export_type">string</field>
+        <field name="size">40</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- NUMERO IDENTIFICATIVO DE LA DECLARACION (13) -->
+    <record id="aeat_mod190_main_export_line_9" model="aeat.model.export.config.line">
+        <field name="sequence">9</field>
+        <field name="export_config_id" ref="aeat_mod190_main_export_config" />
+        <field
+            name="name"
+        >Complementaria - Número identificativo de la declaración</field>
+        <field name="expression">${object.name}</field>
+        <field name="export_type">string</field>
+        <field name="size">13</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- DECLARACION COMPLEMENTARIA O SUSTITUTIVA (13) -->
+    <record id="aeat_mod190_main_export_line_10" model="aeat.model.export.config.line">
+        <field name="sequence">10</field>
+        <field name="export_config_id" ref="aeat_mod190_main_export_config" />
+        <field name="name">Complementaria - Declaración complementaria</field>
+        <field name="expression">${object.statement_type == 'C'}</field>
+        <field name="export_type">boolean</field>
+        <field name="size">1</field>
+        <field name="bool_yes">C</field>
+        <field name="bool_no"> </field>
+        <field name="alignment">left</field>
+    </record>
+    <record id="aeat_mod190_main_export_line_11" model="aeat.model.export.config.line">
+        <field name="sequence">11</field>
+        <field name="export_config_id" ref="aeat_mod190_main_export_config" />
+        <field name="name">Sustitutiva - Declaración sustitutiva</field>
+        <field name="expression">${object.statement_type == 'S'}</field>
+        <field name="export_type">boolean</field>
+        <field name="size">1</field>
+        <field name="bool_yes">S</field>
+        <field name="bool_no"> </field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- NUMERO IDENTIFICATIVO DE LA DECLARACION ANTERIOR (13) -->
+    <record id="aeat_mod190_main_export_line_12" model="aeat.model.export.config.line">
+        <field name="sequence">12</field>
+        <field name="export_config_id" ref="aeat_mod190_main_export_config" />
+        <field name="name">Numero identificativo de la declaración anterior</field>
+        <field
+            name="expression"
+        >${object.previous_number if object.statement_type in ('C', 'S') else ''}</field>
+        <field name="export_type">integer</field>
+        <field name="size">13</field>
+        <field name="alignment">right</field>
+    </record>
+    <!-- NUMERO TOTAL DE PERCEPCIONES (9) -->
+    <record id="aeat_mod190_main_export_line_13" model="aeat.model.export.config.line">
+        <field name="sequence">13</field>
+        <field name="export_config_id" ref="aeat_mod190_main_export_config" />
+        <field
+            name="name"
+        >Rendimientos del trabajo y en especie - Número de perceptores [01]</field>
+        <field name="expression">${object.casilla_01}</field>
+        <field name="export_type">integer</field>
+        <field name="size">9</field>
+        <field name="alignment">right</field>
+    </record>
+    <!-- IMPORTE TOTAL DE LAS PERCEPCIONES (16) -->
+    <record id="aeat_mod190_main_export_line_14" model="aeat.model.export.config.line">
+        <field name="sequence">14</field>
+        <field name="export_config_id" ref="aeat_mod190_main_export_config" />
+        <field
+            name="name"
+        >Rendimientos del trabajo y en especie - Importe de las percepciones [02]</field>
+        <field name="expression">${object.casilla_02}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="positive_sign"> </field>
+        <field name="negative_sign">N</field>
+        <field name="size">16</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!-- IMPORTE TOTAL DE LAS RETENCIONES E INGRESOS A CUENTA (15) -->
+    <record id="aeat_mod190_main_export_line_15" model="aeat.model.export.config.line">
+        <field name="sequence">15</field>
+        <field name="export_config_id" ref="aeat_mod190_main_export_config" />
+        <field
+            name="name"
+        >Rendimientos del trabajo y en especie - Importe de las retenciones [03]</field>
+        <field name="expression">${object.casilla_03}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">15</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!-- CORREO ELECTRONICO DE LA PERSONA CON QUIEN RELACIONARSE (55) -->
+    <record id="aeat_mod190_main_export_line_16" model="aeat.model.export.config.line">
+        <field name="sequence">16</field>
+        <field name="export_config_id" ref="aeat_mod190_main_export_config" />
+        <field name="name">Correo electrónico</field>
+        <field name="expression">${object.contact_email}</field>
+        <field name="export_type">string</field>
+        <field name="size">50</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- BLANCOS (260) -->
+    <record id="aeat_mod190_main_export_line_17" model="aeat.model.export.config.line">
+        <field name="sequence">17</field>
+        <field name="export_config_id" ref="aeat_mod190_main_export_config" />
+        <field
+            name="name"
+        >Reservado para la Administración. Rellenar con blancos</field>
+        <field name="fixed_value" />
+        <field name="export_type">string</field>
+        <field name="size">262</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- SELLO ELECTRONICO (13) -->
+    <record id="aeat_mod190_main_export_line_18" model="aeat.model.export.config.line">
+        <field name="sequence">18</field>
+        <field name="export_config_id" ref="aeat_mod190_main_export_config" />
+        <field name="name">Reservado para el sello electrónico de la AEAT (13)</field>
+        <field name="fixed_value" />
+        <field name="export_type">string</field>
+        <field name="size">13</field>
+        <field name="alignment">left</field>
+    </record>
+    <record id="aeat_mod190_main_export_line_19" model="aeat.model.export.config.line">
+        <field name="sequence">19</field>
+        <field name="export_config_id" ref="aeat_mod190_main_export_config" />
+        <field name="name">Constante CRLF (Hexadecimal 0D0A, Decimal 1310)</field>
+        <field name="expression">${"\r\n".encode("ascii")}</field>
+        <field name="export_type">string</field>
+        <field name="size">2</field>
+        <field name="alignment">left</field>
+    </record>
+    <!--  B. TIPO DE REGISTRO 2: REGISTRO DE PERCEPTOR -->
+    <record id="aeat_mod190_main_export_line_20" model="aeat.model.export.config.line">
+        <field name="sequence">20</field>
+        <field name="export_config_id" ref="aeat_mod190_main_export_config" />
+        <field
+            name="name"
+        >Exportación modelo 190 - Tipo de Registro 2 – Registro de cliente</field>
+        <field name="subconfig_id" ref="aeat_mod190_partner_export_config" />
+        <field name="export_type">subconfig</field>
+        <field name="repeat_expression">object.partner_record_ids</field>
+    </record>
+</odoo>

@@ -97,7 +97,6 @@
                         <field name="size" />
                         <field name="alignment" />
                     </group>
-                    <field name="export_config_id" invisible="1" />
                     <group
                         name="group_field_specification"
                         string='Field especification'
@@ -106,7 +105,7 @@
                         <field name="export_type" />
                         <field
                             name="subconfig_id"
-                            domain="[('id', '!=', export_config_id)]"
+                            domain="[('id', '!=', parent.id)]"
                             attrs="{'invisible': [('export_type', '!=', 'subconfig')], 'required': [('export_type', '=', 'subconfig')]}"
                             context="{'active_test': False}"
                         />

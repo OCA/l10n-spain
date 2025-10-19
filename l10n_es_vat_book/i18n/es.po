@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-28 23:52+0100\n"
-"PO-Revision-Date: 2021-12-09 14:39+0000\n"
-"Last-Translator: pere-aquarian <pere@aquarian.tech>\n"
+"PO-Revision-Date: 2023-09-20 18:13+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_vat_book
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_summary
@@ -56,7 +56,7 @@ msgstr "Actividades"
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr "Actividad Excepción Decoración"
+msgstr "Decorador de actividad de excepción"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__activity_state
@@ -110,7 +110,7 @@ msgstr "Base"
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary__base_amount
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary__base_amount
 msgid "Base Amount"
-msgstr ""
+msgstr "Base imponible"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__fee_amount_xlsx_column
@@ -122,7 +122,7 @@ msgstr "Columna xlsx base"
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary__book_type
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary__book_type
 msgid "Book Type"
-msgstr ""
+msgstr "Tipo de libro"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__calculation_date
@@ -137,27 +137,22 @@ msgstr "Pulse para crear un nuevo libro de IVA."
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__company_id
 msgid "Company"
-msgstr "Empresa"
-
-#. module: l10n_es_vat_book
-#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
-msgid "Company Name"
-msgstr "Nombre Empresa"
+msgstr "Compañía"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__partner_bank_id
 msgid "Company bank account used for the presentation"
-msgstr "Cuenta bancaria de la empresa que se usará para presentar"
+msgstr "Cuenta bancaria de la compañía que se usará para la presentación"
 
 #. module: l10n_es_vat_book
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_dates
 msgid "Company:"
-msgstr "Empresa:"
+msgstr "Compañía:"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__contact_email
 msgid "Contact Email"
-msgstr ""
+msgstr "Correo electrónico de contacto"
 
 #. module: l10n_es_vat_book
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_contact
@@ -222,17 +217,17 @@ msgstr "Fecha fin"
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line__entry_number
 msgid "Entry Number"
-msgstr ""
+msgstr "Nº asiento"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__error_count
 msgid "Error Count"
-msgstr ""
+msgstr "Conteo de errores"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line__exception_text
 msgid "Exception Text"
-msgstr ""
+msgstr "Texto de la excepción"
 
 #. module: l10n_es_vat_book
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
@@ -273,7 +268,7 @@ msgstr "Seguidores"
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Seguidores (Empresas)"
+msgstr "Seguidores (Socios)"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__activity_type_icon
@@ -288,7 +283,7 @@ msgstr "Nombre completo"
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "Tiene algún mensaje"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__id
@@ -323,7 +318,6 @@ msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__message_has_error
-#: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcado, hay mensajes que tienen error de entrega."
 
@@ -401,6 +395,16 @@ msgid "Journal in which post the move."
 msgstr "Diario donde publicar el movimiento."
 
 #. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary__move_line_ids
+msgid "Journal items"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary__base_move_line_ids
+msgid "Journal items (Base)"
+msgstr ""
+
+#. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__representative_vat
 msgid "L.R. VAT number"
 msgstr "NIF repr. legal"
@@ -448,7 +452,7 @@ msgstr "Libro de IVA"
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line__line_type
 msgid "Line Type"
-msgstr ""
+msgstr "Tipo de línea"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__message_main_attachment_id
@@ -466,11 +470,6 @@ msgid "Messages"
 msgstr "Mensajes"
 
 #. module: l10n_es_vat_book
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__model_id
-msgid "Model"
-msgstr "Modelo"
-
-#. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__number
 msgid "Model number"
 msgstr "Nº modelo"
@@ -480,6 +479,11 @@ msgstr "Nº modelo"
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_line_form
 msgid "Move Lines"
 msgstr "Apuntes Contables"
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax__base_move_line_ids
+msgid "Move Lines (Base)"
+msgstr ""
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__contact_name
@@ -552,9 +556,14 @@ msgid "Partner"
 msgstr "Empresa"
 
 #. module: l10n_es_vat_book
+#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
+msgid "Partner Name"
+msgstr "Nombre Empresa"
+
+#. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__period_type
 msgid "Period Type"
-msgstr ""
+msgstr "Tipo de periodo"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__contact_phone
@@ -634,9 +643,9 @@ msgid "Responsible User"
 msgstr "Usuario responsable"
 
 #. module: l10n_es_vat_book
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "SMS Error de entrega"
+#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_tax_summary_tree
+msgid "Show journal items"
+msgstr ""
 
 #. module: l10n_es_vat_book
 #: model:ir.model,name:l10n_es_vat_book.model_l10n_es_vat_book_line
@@ -751,10 +760,16 @@ msgid "Tax Account Restriction"
 msgstr "Restricción de la cuenta de impuestos"
 
 #. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__tax_agency_ids
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__tax_agency_ids
+msgid "Tax Agency"
+msgstr ""
+
+#. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary__tax_amount
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary__tax_amount
 msgid "Tax Amount"
-msgstr ""
+msgstr "Importe del impuesto"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line__tax_line_ids
@@ -801,7 +816,7 @@ msgstr "Este libro contiene advertencias. Arréglelas antes de confirmar"
 #. module: l10n_es_vat_book
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
 #, python-format
-msgid "This company doesn't have VAT"
+msgid "This partner doesn't have VAT"
 msgstr "Esta empresa no tiene NIF"
 
 #. module: l10n_es_vat_book
@@ -817,7 +832,7 @@ msgstr "Total"
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary__total_amount
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary__total_amount
 msgid "Total Amount"
-msgstr ""
+msgstr "Importe total"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax__total_amount_special_include
@@ -922,7 +937,7 @@ msgstr "Historial de comunicación del sitio web"
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
 #, python-format
 msgid "Without Partner"
-msgstr ""
+msgstr "Sin empresa"
 
 #. module: l10n_es_vat_book
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
@@ -936,27 +951,30 @@ msgid "Year"
 msgstr "Año"
 
 #. module: l10n_es_vat_book
-#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
-msgid "You have"
-msgstr ""
-
-#. module: l10n_es_vat_book
-#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
-msgid "errors"
-msgstr ""
-
-#. module: l10n_es_vat_book
-#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
-msgid ""
-"in this report.\n"
-"                        You will not be able to <strong>confirm and submit</"
-"strong> it until they are resolved."
-msgstr ""
-
-#. module: l10n_es_vat_book
 #: model:ir.actions.report,print_report_name:l10n_es_vat_book.l10n_es_vat_book_xlsx
 msgid "object.get_report_file_name()"
 msgstr "object.get_report_file_name()"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "SMS Error de entrega"
+
+#~ msgid "Model"
+#~ msgstr "Modelo"
+
+#~ msgid "You have"
+#~ msgstr "Usted tiene"
+
+#~ msgid "errors"
+#~ msgstr "Errores"
+
+#~ msgid ""
+#~ "in this report.\n"
+#~ "                        You will not be able to <strong>confirm and "
+#~ "submit</strong> it until they are resolved."
+#~ msgstr ""
+#~ "en este informe.\n"
+#~ "                        No podrá <strong>confirmar ni enviarlo</strong> "
+#~ "hasta que esté resuelto."
 
 #~ msgid "Base amount"
 #~ msgstr "Importe base"

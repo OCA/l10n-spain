@@ -37,7 +37,7 @@ class ResPartner(models.Model):
     aeat_partner_check_result = fields.Selection(
         selection=RESULTS, string="Check Result", readonly=True
     )
-    aeat_partner_vat = fields.Char(string="VAT", readonly=True)
+    aeat_partner_vat = fields.Char(string="AEAT VAT", readonly=True)
     aeat_partner_name = fields.Char(string="AEAT Name", readonly=True)
     aeat_data_diff = fields.Boolean(
         string="Data different", compute="_compute_data_diff", store=True
@@ -64,7 +64,7 @@ class ResPartner(models.Model):
             if country_code != "ES":
                 continue
             request = {"Nif": vat_number, "Nombre": partner.name}
-            res = soap_obj.send_soap(
+            res = soap_obj.sudo().send_soap(
                 service, wsdl, port_name, partner, operation, request
             )
             vals = {
@@ -84,7 +84,7 @@ class ResPartner(models.Model):
                 )
                 if partner_name != partner.name:
                     vals.update({"aeat_data_diff": True})
-            partner.write(vals)
+            partner.sudo().write(vals)
         self.aeat_check_re()
 
     def write(self, vals):
@@ -124,13 +124,15 @@ class ResPartner(models.Model):
             if country_code != "ES":
                 continue
             if "company_id" in partner._fields:
-                public_crt, private_key = self.env[
-                    "l10n.es.aeat.certificate"
-                ].get_certificates(partner.company_id)
+                public_crt, private_key = (
+                    self.env["l10n.es.aeat.certificate"]
+                    .sudo()
+                    .get_certificates(partner.company_id)
+                )
             else:
-                public_crt, private_key = self.env[
-                    "l10n.es.aeat.certificate"
-                ].get_certificates()
+                public_crt, private_key = (
+                    self.env["l10n.es.aeat.certificate"].sudo().get_certificates()
+                )
             request = {"nif": vat_number, "apellido": partner.name}
             res = requests.post(url, params=request, cert=(public_crt, private_key))
             vals = {"aeat_last_checked": fields.Datetime.now()}
@@ -138,4 +140,4 @@ class ResPartner(models.Model):
                 vals.update({"aeat_partner_type": "sales_equalization"})
             else:
                 vals.update({"aeat_partner_type": "standard"})
-            partner.write(vals)
+            partner.sudo().write(vals)

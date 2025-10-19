@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/LROE_PF_140_1_1_Ingresos_ConfacturaConSG_AltaPeticion_V1_0_2.xsd"
+	xmlns:lrpficfcsgap="https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/LROE_PF_140_1_1_Ingresos_ConfacturaConSG_AltaPeticion_V1_0_2.xsd"
+	xmlns:tiposcomplejos="https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/batuz_TiposComplejos.xsd">
+
+	<import namespace="https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/batuz_TiposComplejos.xsd" schemaLocation="../batuz_TiposComplejos.xsd"/>
+
+	<element name="LROEPF140IngresosConFacturaConSGAltaPeticion">
+		<complexType>
+			<sequence>
+				<element name="Cabecera" type="tiposcomplejos:Cabecera140Type"/>
+				<element name="Ingresos" type="tiposcomplejos:IngresosConSGCodificadoType"/>
+			</sequence>
+		</complexType>
+	</element>
+</schema>

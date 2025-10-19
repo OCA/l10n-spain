@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2021 Digital5, S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- Fiscal Position Templates -->
+    <record id="l10n_es.fp_nacional" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_01" />
+    </record>
+    <record id="l10n_es.fp_intra" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_09" />
+    </record>
+    <record id="l10n_es.fp_extra" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_01" />
+    </record>
+    <record id="l10n_es.fp_not_subject_tai" model="account.fiscal.position.template">
+        <!-- TODO: revisar -->
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_08" />
+    </record>
+    <record id="l10n_es.fp_recargo" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_01" />
+    </record>
+    <record id="l10n_es.fp_recargo_isp" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_01" />
+    </record>
+    <record id="l10n_es.fp_irpf1" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_01" />
+    </record>
+    <record id="l10n_es.fp_irpf2" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_01" />
+    </record>
+    <record id="l10n_es.fp_irpf7" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_01" />
+    </record>
+    <record id="l10n_es.fp_irpf9" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_01" />
+    </record>
+    <record id="l10n_es.fp_irpf15" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_01" />
+    </record>
+    <record id="l10n_es.fp_irpf18" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_01" />
+    </record>
+    <record id="l10n_es.fp_irpf19" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_01" />
+    </record>
+    <record id="l10n_es.fp_irpf19a" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_12" />
+    </record>
+    <record id="l10n_es.fp_irpf195a" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_12" />
+    </record>
+    <record id="l10n_es.fp_irpf20" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_01" />
+    </record>
+    <record id="l10n_es.fp_irpf20a" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_12" />
+    </record>
+    <record id="l10n_es.fp_irpf21" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_01" />
+    </record>
+    <record id="l10n_es.fp_irpf21a" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_12" />
+    </record>
+    <record id="l10n_es.fp_ispn" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_01" />
+    </record>
+    <record id="l10n_es.fp_rnrisp" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_01" />
+    </record>
+    <record id="l10n_es.fp_reagyp_a" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_02" />
+    </record>
+    <record id="l10n_es.fp_reagyp_gp" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_02" />
+    </record>
+
+</odoo>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="aeat_mod190_map" model="l10n.es.aeat.map.tax">
+        <field name="model">190</field>
+    </record>
+    <record id="aeat_mod190_map_line_11" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod190_map" />
+        <field name="field_number">11</field>
+        <field
+            name="name"
+        >Rendimientos del trabajo (dinerarios) - Importe de las percepciones</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True" />
+        <!-- Base facturas de compra (debe) - Base facturas rectificativas de compra (haber):
+             P_IRPFT, P_IRPFTD -->
+        <field
+            name="tax_ids"
+            eval="[(6, False, [
+             ref('l10n_es.account_tax_template_p_irpf21t'),
+             ref('l10n_es.account_tax_template_p_irpf21td'),
+             ref('l10n_es.account_tax_template_p_irpf19ca'),
+             ref('l10n_es.account_tax_template_p_irpf35cya'),
+        ])]"
+        />
+    </record>
+    <record id="aeat_mod190_map_line_12" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod190_map" />
+        <field name="field_number">12</field>
+        <field
+            name="name"
+        >Rendimientos del trabajo (dinerarios) - Importe de las retenciones</field>
+        <field name="field_type">amount</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <!-- Couta facturas de compra (haber) - Couta facturas rectificativas de compra (debe):
+             P_IRPFT, P_IRPFTD -->
+        <field
+            name="tax_ids"
+            eval="[(6, False, [
+             ref('l10n_es.account_tax_template_p_irpf21t'),
+             ref('l10n_es.account_tax_template_p_irpf21td'),
+             ref('l10n_es.account_tax_template_p_irpf19ca'),
+             ref('l10n_es.account_tax_template_p_irpf35cya'),
+        ])]"
+        />
+    </record>
+    <record id="aeat_mod190_map_line_13" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod190_map" />
+        <field name="field_number">13</field>
+        <field
+            name="name"
+        >Rendimientos del trabajo (en especie) - Valor percepciones en especie</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True" />
+        <!-- Base facturas de compra (debe) - Base facturas rectificativas de compra (haber):
+             P_IRPFTE -->
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_irpf21te')])]"
+        />
+    </record>
+    <record id="aeat_mod190_map_line_14" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod190_map" />
+        <field name="field_number">14</field>
+        <field
+            name="name"
+        >Rendimientos del trabajo (en especie) - Importe de los ingresos a cuenta</field>
+        <field name="field_type">amount</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <!-- Couta facturas de compra (haber) - Couta facturas rectificativas de compra (debe):
+             P_IRPFTE -->
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_irpf21te')])]"
+        />
+    </record>
+    <record id="aeat_mod190_map_line_15" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod190_map" />
+        <field name="field_number">15</field>
+        <field
+            name="name"
+        >Rendimientos de actividades económicas (dinerarios) - Importe de las percepciones</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True" />
+        <!-- Base facturas de compra (debe) - Base facturas rectificativas de compra (haber):
+             P_IRPF1, P_IRPF2, P_IRPF7, P_IRPF9, P_IRPF15, P_IRPF18, P_IRPF19,
+             P_IRPF20, P_IRPF21P -->
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_irpf1'), ref('l10n_es.account_tax_template_p_irpf2'), ref('l10n_es.account_tax_template_p_irpf7'), ref('l10n_es.account_tax_template_p_irpf9'), ref('l10n_es.account_tax_template_p_irpf15'), ref('l10n_es.account_tax_template_p_irpf18'), ref('l10n_es.account_tax_template_p_irpf19'), ref('l10n_es.account_tax_template_p_irpf20'), ref('l10n_es.account_tax_template_p_irpf21p')])]"
+        />
+    </record>
+    <record id="aeat_mod190_map_line_16" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod190_map" />
+        <field name="field_number">16</field>
+        <field
+            name="name"
+        >Rendimientos de actividades económicas (dinerarios) - Importe de las retenciones</field>
+        <field name="field_type">amount</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <!-- Couta facturas de compra (haber) - Couta facturas rectificativas de compra (debe):
+             P_IRPF1, P_IRPF2, P_IRPF7, P_IRPF9, P_IRPF15, P_IRPF18, P_IRPF19,
+             P_IRPF20, P_IRPF21P -->
+        <field
+            name="tax_ids"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_p_irpf1'), ref('l10n_es.account_tax_template_p_irpf2'), ref('l10n_es.account_tax_template_p_irpf7'), ref('l10n_es.account_tax_template_p_irpf9'), ref('l10n_es.account_tax_template_p_irpf15'), ref('l10n_es.account_tax_template_p_irpf18'), ref('l10n_es.account_tax_template_p_irpf19'), ref('l10n_es.account_tax_template_p_irpf20'), ref('l10n_es.account_tax_template_p_irpf21p')])]"
+        />
+    </record>
+</odoo>

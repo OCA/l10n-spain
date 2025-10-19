@@ -18,8 +18,10 @@ class ResCompany(models.Model):
     def create(self, vals_list):
         """Create immediately all the AEAT sequences when creating company."""
         companies = super().create(vals_list)
-        models = self.env["ir.model"].search(
-            [("model", "=like", "l10n.es.aeat.%.report")]
+        models = (
+            self.env["ir.model"]
+            .sudo()
+            .search([("model", "=like", "l10n.es.aeat.%.report")])
         )
         for model in models:
             try:

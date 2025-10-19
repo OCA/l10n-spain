@@ -11,7 +11,7 @@ from .ticketbai_invoice_customer import TicketBaiCustomerIdType
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    tbai_enabled = fields.Boolean(related="company_id.tbai_enabled", readonly=True)
+    tbai_enabled = fields.Boolean(compute="_compute_tbai_enabled")
     tbai_partner_idtype = fields.Selection(
         selection=[
             (TicketBaiCustomerIdType.T02.value, "VAT identification number"),
@@ -116,3 +116,11 @@ class ResPartner(models.Model):
             "%s" % (self.country_id.name or ""),
         ]
         return ", ".join([x for x in address_fields if x])
+
+    @api.depends("company_id")
+    def _compute_tbai_enabled(self):
+        tbai_enabled = any(self.env.companies.mapped("tbai_enabled"))
+        for partner in self:
+            partner.tbai_enabled = (
+                partner.company_id.tbai_enabled if partner.company_id else tbai_enabled
+            )

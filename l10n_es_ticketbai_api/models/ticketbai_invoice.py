@@ -16,6 +16,7 @@ from ..ticketbai.api import TicketBaiApi
 from ..ticketbai.crc8 import crc8
 from ..ticketbai.xml_schema import TicketBaiSchema, XMLSchema, XMLSchemaModeNotSupported
 from ..utils import utils as tbai_utils
+from .ticketbai_invoice_customer import TicketBaiCustomerIdType
 from .ticketbai_invoice_tax import TicketBaiTaxType, VATRegimeKey
 from .ticketbai_response import (
     TicketBaiCancellationResponseCode as CancellationResponseCode,
@@ -187,6 +188,7 @@ class TicketBAIInvoice(models.Model):
             (RefundCode.R2.value, "Art. 80.3"),
             (RefundCode.R3.value, "Art. 80.4"),
             (RefundCode.R4.value, "Art. 80 - other"),
+            (RefundCode.R5.value, "Simplified Invoice"),
         ],
         string="Invoice Refund Reason Code",
         help="BOE-A-1992-28740. Ley 37/1992, de 28 de diciembre, del Impuesto sobre el "
@@ -746,8 +748,7 @@ class TicketBAIInvoice(models.Model):
         res = OrderedDict(
             [(TicketBaiQRParams.tbai_identifier.value, self.tbai_identifier)]
         )
-        if self.number_prefix:
-            res[TicketBaiQRParams.invoice_number_prefix.value] = self.number_prefix
+        res[TicketBaiQRParams.invoice_number_prefix.value] = self.number_prefix or ""
         res[TicketBaiQRParams.invoice_number.value] = self.number
         res[TicketBaiQRParams.invoice_total_amount.value] = self.amount_total
         return res
@@ -909,7 +910,10 @@ class TicketBAIInvoice(models.Model):
                 customer_res["NIF"] = customer.nif
             elif customer.idtype and customer.identification_number:
                 customer_res["IDOtro"] = OrderedDict()
-                if customer.country_code:
+                if (
+                    customer.country_code
+                    and customer.idtype != TicketBaiCustomerIdType.T02.value
+                ):
                     customer_res["IDOtro"]["CodigoPais"] = customer.country_code
                 customer_res["IDOtro"]["IDType"] = customer.idtype
                 customer_res["IDOtro"]["ID"] = customer.identification_number
@@ -1010,7 +1014,19 @@ class TicketBAIInvoice(models.Model):
         res = []
         not_exempted_taxes_isp = OrderedDict()
         not_exempted_taxes_not_isp = OrderedDict()
+        grouped_taxes = {}
         for tax in not_exempted_taxes:
+            if not grouped_taxes.get(tax, False):
+                grouped_taxes[tax] = {
+                    "base": 0,
+                    "amount": 0,
+                    "amount_total": 0,
+                    "re_amount": 0,
+                    "re_amount_total": 0,
+                    "surcharge_or_simplified_regime": 0,
+                    "not_exempted_type": 0,
+                }
+        for tax in grouped_taxes:
             tax_details = OrderedDict(
                 [
                     ("BaseImponible", tax.base),

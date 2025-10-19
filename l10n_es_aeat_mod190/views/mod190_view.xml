@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_l10n_es_aeat_mod190_report_tree" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod190.report.tree</field>
+        <field name="model">l10n.es.aeat.mod190.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree" />
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="string">AEAT 190 reports</attribute>
+            </tree>
+            <field name="period_type" position="after">
+                <field name="casilla_01" />
+                <field name="casilla_02" />
+                <field name="casilla_03" />
+            </field>
+        </field>
+    </record>
+    <record id="view_l10n_es_aeat_mod190_report_form" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod190.report.form</field>
+        <field name="model">l10n.es.aeat.mod190.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
+        <field name="arch" type="xml">
+            <field name="statement_type" position="after">
+                <field
+                    name="registro_manual"
+                    attrs="{'readonly': [('state', '=', 'done')]}"
+                />
+            </field>
+            <group name="group_declaration" position="after">
+                <notebook>
+                    <page name="result" string="Result">
+                        <group
+                            name="group_result"
+                            attrs="{'invisible': [('state', '=', 'draft')]}"
+                            colspan="4"
+                        >
+                            <group string="Totals">
+                                <group>
+                                    <field
+                                        name="casilla_01"
+                                        attrs="{'readonly': [('state', '=', 'done')]}"
+                                        string="Number of perceptions:"
+                                    />
+                                </group>
+                                <group>
+                                    <field
+                                        name="casilla_02"
+                                        attrs="{'readonly': [('state', '=', 'done')]}"
+                                        widget="monetary"
+                                        options="{'currency_field': 'currency_id'}"
+                                    />
+                                    <field
+                                        name="casilla_03"
+                                        attrs="{'readonly': [('state', '=', 'done')]}"
+                                        widget="monetary"
+                                        options="{'currency_field': 'currency_id'}"
+                                    />
+                                </group>
+                            </group>
+                        </group>
+                    </page>
+                    <page name="recipients" string="Recipients">
+                        <field
+                            name="partner_record_ids"
+                            attrs="{'readonly': [('state', '=', 'done')]}"
+                            string="Recipients"
+                            editable="bottom"
+                            nolabel="1"
+                        />
+                    </page>
+                </notebook>
+            </group>
+            <form position="inside">
+                <div class="oe_chatter">
+                    <field
+                        name="message_follower_ids"
+                        widget="mail_followers"
+                        groups="base.group_user"
+                    />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="action_l10n_es_aeat_mod190_report" model="ir.actions.act_window">
+        <field name="name">AEAT model 190</field>
+        <field name="res_model">l10n.es.aeat.mod190.report</field>
+        <field name="view_mode">form,tree</field>
+        <field name="help">Create and query AEAT Model 190 reports.</field>
+    </record>
+    <record
+        model="ir.actions.act_window.view"
+        id="action_l10n_es_aeat_mod190_report_tree"
+    >
+        <field name="sequence" eval="2" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod190_report_tree" />
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod190_report" />
+    </record>
+    <record
+        model="ir.actions.act_window.view"
+        id="action_l10n_es_aeat_mod190_report_form"
+    >
+        <field name="sequence" eval="3" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod190_report_form" />
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod190_report" />
+    </record>
+    <menuitem
+        id="menu_aeat_mod190_report"
+        parent="l10n_es_aeat.menu_root_aeat"
+        action="action_l10n_es_aeat_mod190_report"
+        sequence="190"
+        name="AEAT 190 model"
+    />
+</odoo>

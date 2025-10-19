@@ -33,13 +33,11 @@ msgid "Created on"
 msgstr "Creado el"
 
 #. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_city_zip_geonames_import__display_name
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_city_zip_geonames_import__id
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__id
 msgid "ID"
 msgstr "ID"
@@ -55,7 +53,6 @@ msgid "Import data from GeoNames"
 msgstr "Importar datos desde GeoNames"
 
 #. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_city_zip_geonames_import____last_update
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms____last_update
 msgid "Last Modified on"
 msgstr "Modificado por última vez el"

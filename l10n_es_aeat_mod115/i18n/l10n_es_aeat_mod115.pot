@@ -150,6 +150,11 @@ msgid "Ending date"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__error_count
+msgid "Error Count"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__export_config_id
 msgid "Export config"
 msgstr ""
@@ -210,7 +215,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -267,11 +271,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_ids
 msgid "Messages"
-msgstr ""
-
-#. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__model_id
-msgid "Model"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
@@ -391,11 +390,6 @@ msgid "Result: ([03] - [04])"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr ""
-
-#. module: l10n_es_aeat_mod115
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
 #, python-format
 msgid "Select an account for making the charge"
@@ -434,6 +428,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__support_type
 msgid "Support Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__tax_agency_ids
+msgid "Tax Agency"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
@@ -506,6 +505,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__company_vat
 msgid "VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__valued_tax_line_ids
+msgid "Valued tax lines"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115

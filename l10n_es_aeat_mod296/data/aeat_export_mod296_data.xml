@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2018 Valentin Vinagre <valentin.vinagre@qubiq.es>
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <!--  MAIN-296  -->
+    <record id="aeat_mod296_main_export_config" model="aeat.model.export.config">
+        <field name="name">Mod.296</field>
+        <field name="model_number">296</field>
+        <field
+            name="model_id"
+            ref="l10n_es_aeat_mod296.model_l10n_es_aeat_mod296_report"
+        />
+    </record>
+    <record id="aeat_mod296_main_export_line_01" model="aeat.model.export.config.line">
+        <field name="sequence">1</field>
+        <field name="export_config_id" ref="aeat_mod296_main_export_config" />
+        <field name="name">Constante: tipo de registro</field>
+        <field name="fixed_value">1</field>
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+        <field name="alignment">left</field>
+    </record>
+    <record id="aeat_mod296_main_export_line_02" model="aeat.model.export.config.line">
+        <field name="sequence">2</field>
+        <field name="export_config_id" ref="aeat_mod296_main_export_config" />
+        <field name="name">Identificación: modelo</field>
+        <field name="fixed_value">296</field>
+        <field name="export_type">string</field>
+        <field name="size">3</field>
+        <field name="alignment">left</field>
+    </record>
+    <record id="aeat_mod296_main_export_line_03" model="aeat.model.export.config.line">
+        <field name="sequence">3</field>
+        <field name="export_config_id" ref="aeat_mod296_main_export_config" />
+        <field name="name">Identificación: ejercicio</field>
+        <field name="expression">${object.year}</field>
+        <field name="export_type">string</field>
+        <field name="size">4</field>
+        <field name="alignment">left</field>
+    </record>
+    <record id="aeat_mod296_main_export_line_04" model="aeat.model.export.config.line">
+        <field name="sequence">4</field>
+        <field name="export_config_id" ref="aeat_mod296_main_export_config" />
+        <field name="name">Identificación: nif declarante</field>
+        <field name="expression">${object.company_vat}</field>
+        <field name="export_type">string</field>
+        <field name="size">9</field>
+        <field name="alignment">left</field>
+    </record>
+    <record id="aeat_mod296_main_export_line_05" model="aeat.model.export.config.line">
+        <field name="sequence">5</field>
+        <field name="export_config_id" ref="aeat_mod296_main_export_config" />
+        <field name="name">Identificación: Apellidos o razón social</field>
+        <field name="expression">${object.company_id.name}</field>
+        <field name="export_type">string</field>
+        <field name="size">40</field>
+        <field name="alignment">left</field>
+    </record>
+    <record id="aeat_mod296_main_export_line_06" model="aeat.model.export.config.line">
+        <field name="sequence">6</field>
+        <field name="export_config_id" ref="aeat_mod296_main_export_config" />
+        <field name="name">Identificación: Tipo de soporte</field>
+        <field name="expression">${object.support_type}</field>
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+        <field name="alignment">left</field>
+    </record>
+    <record id="aeat_mod296_main_export_line_07" model="aeat.model.export.config.line">
+        <field name="sequence">7</field>
+        <field name="export_config_id" ref="aeat_mod296_main_export_config" />
+        <field name="name">Persona con quien relacionarse: teléfono</field>
+        <field name="expression">${object.contact_phone}</field>
+        <field name="export_type">string</field>
+        <field name="size">9</field>
+        <field name="alignment">left</field>
+    </record>
+    <record id="aeat_mod296_main_export_line_08" model="aeat.model.export.config.line">
+        <field name="sequence">8</field>
+        <field name="export_config_id" ref="aeat_mod296_main_export_config" />
+        <field name="name">Persona con quien relacionarse: apellidos y nombre</field>
+        <field name="expression">${object.contact_name}</field>
+        <field name="export_type">string</field>
+        <field name="size">40</field>
+        <field name="alignment">left</field>
+    </record>
+    <record id="aeat_mod296_main_export_line_09" model="aeat.model.export.config.line">
+        <field name="sequence">9</field>
+        <field name="export_config_id" ref="aeat_mod296_main_export_config" />
+        <field name="name">Número identificativo de la declaración</field>
+        <field name="expression">${object.name}</field>
+        <field name="export_type">string</field>
+        <field name="size">13</field>
+        <field name="alignment">left</field>
+    </record>
+    <record id="aeat_mod296_main_export_line_10" model="aeat.model.export.config.line">
+        <field name="sequence">10</field>
+        <field name="export_config_id" ref="aeat_mod296_main_export_config" />
+        <field name="name">Complementaria - Declaración complementaria</field>
+        <field name="expression">${object.statement_type == 'C'}</field>
+        <field name="export_type">boolean</field>
+        <field name="size">1</field>
+        <field name="bool_yes">X</field>
+        <field name="bool_no"> </field>
+        <field name="alignment">left</field>
+    </record>
+    <record id="aeat_mod296_main_export_line_11" model="aeat.model.export.config.line">
+        <field name="sequence">11</field>
+        <field name="export_config_id" ref="aeat_mod296_main_export_config" />
+        <field name="name">Complementaria - Declaración sustitutiva</field>
+        <field name="expression">${object.statement_type == 'S'}</field>
+        <field name="export_type">boolean</field>
+        <field name="size">1</field>
+        <field name="bool_yes">X</field>
+        <field name="bool_no"> </field>
+        <field name="alignment">left</field>
+    </record>
+    <record id="aeat_mod296_main_export_line_12" model="aeat.model.export.config.line">
+        <field name="sequence">12</field>
+        <field name="export_config_id" ref="aeat_mod296_main_export_config" />
+        <field
+            name="name"
+        >Complementaria - Número justificante declaración anterior</field>
+        <field
+            name="expression"
+        >${object.previous_number if object.statement_type in ('C','S') else ''}</field>
+        <field name="export_type">string</field>
+        <field name="size">13</field>
+        <field name="alignment">left</field>
+    </record>
+    <record id="aeat_mod296_main_export_line_13" model="aeat.model.export.config.line">
+        <field name="sequence">13</field>
+        <field name="export_config_id" ref="aeat_mod296_main_export_config" />
+        <field name="name">Número total de perceptores[01]</field>
+        <field name="expression">${object.casilla_01}</field>
+        <field name="export_type">integer</field>
+        <field name="size">9</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod296_main_export_line_14" model="aeat.model.export.config.line">
+        <field name="sequence">14</field>
+        <field name="export_config_id" ref="aeat_mod296_main_export_config" />
+        <field name="name">Base retenciones e ingresos a cuenta[02]</field>
+        <field name="expression">${object.casilla_02}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">15</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod296_main_export_line_15" model="aeat.model.export.config.line">
+        <field name="sequence">15</field>
+        <field name="export_config_id" ref="aeat_mod296_main_export_config" />
+        <field name="name">Base retenciones e ingresos a cuenta[03]</field>
+        <field name="expression">${object.casilla_03}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False" />
+        <field name="size">14</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod296_main_export_line_16" model="aeat.model.export.config.line">
+        <field name="sequence">16</field>
+        <field name="export_config_id" ref="aeat_mod296_main_export_config" />
+        <field name="name">Base retenciones e ingresos a cuenta[04]</field>
+        <field name="expression">${object.casilla_04}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False" />
+        <field name="size">14</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod296_main_export_line_17" model="aeat.model.export.config.line">
+        <field name="sequence">17</field>
+        <field name="export_config_id" ref="aeat_mod296_main_export_config" />
+        <field name="name">Espacios en blanco</field>
+        <field name="fixed_value" />
+        <field name="export_type">string</field>
+        <field name="size">201</field>
+        <field name="alignment">left</field>
+    </record>
+    <record id="aeat_mod296_main_export_line_18" model="aeat.model.export.config.line">
+        <field name="sequence">18</field>
+        <field name="export_config_id" ref="aeat_mod296_main_export_config" />
+        <field name="name">Identificación: nif representante legal</field>
+        <field name="expression">${object.representative_vat}</field>
+        <field name="export_type">string</field>
+        <field name="size">9</field>
+        <field name="alignment">left</field>
+    </record>
+    <record id="aeat_mod296_main_export_line_19" model="aeat.model.export.config.line">
+        <field name="sequence">19</field>
+        <field name="export_config_id" ref="aeat_mod296_main_export_config" />
+        <field name="name">Espacios en blanco</field>
+        <field name="fixed_value" />
+        <field name="export_type">string</field>
+        <field name="size">88</field>
+        <field name="alignment">left</field>
+    </record>
+    <record id="aeat_mod296_main_export_line_20" model="aeat.model.export.config.line">
+        <field name="sequence">20</field>
+        <field name="export_config_id" ref="aeat_mod296_main_export_config" />
+        <field name="name">Reservado para la administración: Sello electrónico</field>
+        <field name="fixed_value" />
+        <field name="export_type">string</field>
+        <field name="size">13</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- Tipo de Registro 2 – Registro de perceptor -->
+    <record id="aeat_mod296_main_export_line_21" model="aeat.model.export.config.line">
+        <field name="sequence">21</field>
+        <field name="export_config_id" ref="aeat_mod296_main_export_config" />
+        <field name="name">Tipo de Registro 2 – Registro de perceptor</field>
+        <field name="subconfig_id" ref="aeat_mod296_sub01_export_config" />
+        <field name="export_type">subconfig</field>
+        <field name="repeat_expression">object.lines296</field>
+    </record>
+</odoo>

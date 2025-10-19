@@ -1,0 +1,279 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_ticketbai_pos
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2022-08-30 11:07+0000\n"
+"Last-Translator: olatzavanzosc <olatzaranguren@avanzosc.es>\n"
+"Language-Team: none\n"
+"Language: eu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: l10n_es_ticketbai_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+msgid ""
+"<span class=\"fa fa-lg fa-desktop\" title=\"Values set here are company-"
+"specific\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+"<span class=\"fa fa-lg fa-desktop\" title=\"Hemen ezarritako balioak "
+"enpresaren espezifikoak dira\" groups=\"base.group_multi_company\"/>"
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
+#, python-format
+msgid "At least one product does not have a tax."
+msgstr "Gutxienez produktu batek ez du zergarik."
+
+#. module: l10n_es_ticketbai_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+msgid "Certificate"
+msgstr "Ziurtagiria"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__tbai_device_serial_number
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+msgid "Device Serial Number"
+msgstr "Gailuaren serie zenbakia"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__tbai_enabled
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order__tbai_enabled
+msgid "Enable TicketBAI"
+msgstr "Gaitu TicketBAI"
+
+#. module: l10n_es_ticketbai_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
+msgid "Files Sent"
+msgstr "Bidalitako fitxategiak"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model,name:l10n_es_ticketbai_pos.model_account_move
+msgid "Journal Entry"
+msgstr "Egunkari Sarrera"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__tbai_last_invoice_id
+msgid "Last TicketBAI Invoice sent"
+msgstr "Bidalitako azken TicketBAI faktura"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,help:l10n_es_ticketbai_pos.field_account_bank_statement_line__tbai_substitution_pos_order_id
+#: model:ir.model.fields,help:l10n_es_ticketbai_pos.field_account_move__tbai_substitution_pos_order_id
+#: model:ir.model.fields,help:l10n_es_ticketbai_pos.field_account_payment__tbai_substitution_pos_order_id
+msgid "Link between a validated Customer Invoice and its substitute."
+msgstr ""
+"Balidatutako Bezeroaren faktura baten eta haren ordezkoaren arteko lotura."
+
+#. module: l10n_es_ticketbai_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
+msgid "Messages"
+msgstr "Mezuak"
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
+#, python-format
+msgid "Non spanish customers are not supported for Simplified Invoice."
+msgstr ""
+"Espainiakoak ez diren bezeroak ez dira onartzen Faktura Sinplifikatuan."
+
+#. module: l10n_es_ticketbai_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
+msgid "Orders"
+msgstr "Aginduak"
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/xml/pos.xml:0
+#, python-format
+msgid "PRO FORMA"
+msgstr "PRO FORMA"
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
+#, python-format
+msgid "Please set Company VAT."
+msgstr "Mesedez, ezarri Enpresaren IFZa."
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
+#, python-format
+msgid "Please set Country for customer %s."
+msgstr "Mesedez, ezarri Herrialdea %s bezeroarentzat."
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
+#, python-format
+msgid "Please set VAT Regime Key for fiscal position %s."
+msgstr "Ezarri BEZaren erregimen gakoa %s posizio fiskalarentzat."
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
+#, python-format
+msgid ""
+"Please set VAT or TicketBAI Partner Identification Number for customer %s."
+msgstr ""
+"Ezarri BEZa edo TicketBAI Bazkidearen Identifikazio Zenbakia %s "
+"bezeroarentzat."
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
+#, python-format
+msgid "Please set VAT or TicketBAI Partner Identification Number for customer."
+msgstr ""
+"Ezarri IFZa edo TicketBAI Bazkidearen Identifikazio Zenbakia bezeroarentzat."
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ProductScreen/ProductScreen.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/models.js:0
+#, python-format
+msgid "Please set a tax for product %s."
+msgstr "Ezarri zerga bat %s produktuari."
+
+#. module: l10n_es_ticketbai_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+msgid "PoS Device Serial Number. As of TicketBAI v1.1, is not required."
+msgstr ""
+"PoS gailuaren serie zenbakia. TicketBAI v1.1etik aurrera, ez da beharrezkoa."
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model,name:l10n_es_ticketbai_pos.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr "Salmenta puntuaren konfigurazioa"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model,name:l10n_es_ticketbai_pos.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "Salmenta puntuko eskaerak"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_tbai_invoice__pos_order_id
+msgid "Pos Order"
+msgstr "Pos Agindua"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order__tbai_response_ids
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
+msgid "Responses"
+msgstr "Erantzunak"
+
+#. module: l10n_es_ticketbai_pos
+#: code:addons/l10n_es_ticketbai_pos/models/pos_config.py:0
+#, python-format
+msgid "Simplified Invoice IDs Sequence is required"
+msgstr "Faktura sinplifikatuaren IDaren sekuentzia beharrezkoa da"
+
+#. module: l10n_es_ticketbai_pos
+#: code:addons/l10n_es_ticketbai_pos/models/pos_order.py:0
+#, python-format
+msgid "Simplified Invoice Number Prefix %s is not part of Number %%!"
+msgstr ""
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_bank_statement_line__tbai_substitution_pos_order_id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_move__tbai_substitution_pos_order_id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_payment__tbai_substitution_pos_order_id
+msgid "Tbai Substitution Pos Order"
+msgstr "Tbai Ordezkapen Pos Agindua"
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ClientListScreen/ClientListScreen.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ProductScreen/ProductScreen.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/models.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/tbai_models.js:0
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
+#, python-format
+msgid "TicketBAI"
+msgstr "TicketBAI"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__tbai_certificate_id
+msgid "TicketBAI Certificate"
+msgstr "TicketBAI Ziurtagiria"
+
+#. module: l10n_es_ticketbai_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+msgid ""
+"TicketBAI Certificate (optional). If not set, the certificate from the "
+"company is used instead."
+msgstr ""
+"TicketBAI Ziurtagiria (aukerakoa). Ezarri ez bada, enpresaren ziurtagiria "
+"erabiltzen da."
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.ui.menu,name:l10n_es_ticketbai_pos.menu_pos_tbai_certificates
+msgid "TicketBAI Certificates"
+msgstr "TicketBAI Ziurtagiriak"
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
+#, python-format
+msgid "TicketBAI Invoice not built yet. Please try again."
+msgstr "TicketBAI faktura ez da eraiki oraindik. Saiatu berriro mesedez."
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model,name:l10n_es_ticketbai_pos.model_tbai_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order__tbai_invoice_ids
+msgid "TicketBAI Invoices"
+msgstr "TicketBAI Fakturak"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order__tbai_invoice_id
+msgid "TicketBAI PoS Order"
+msgstr "TicketBAI PoS Agindua"
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
+#, python-format
+msgid "TicketBAI certificate not loaded!"
+msgstr "TicketBAI ziurtagiria ez da kargatu!"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__iface_l10n_es_simplified_invoice
+msgid "Use simplified invoices for this POS"
+msgstr "Erabili faktura sinplifikatuak POS honetarako"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order__tbai_vat_regime_key
+msgid "VAT Regime Key"
+msgstr "IFZaren erregimenaren gakoa"
+
+#. module: l10n_es_ticketbai_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
+msgid "VAT Regimes"
+msgstr "IFZaren erregimenak"
+
+#~ msgid "Display Name"
+#~ msgstr "Bistaratutako izena"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Azken aldaketa eguna"
+
+#, python-format
+#~ msgid "Simplified Invoice Number Prefix %s is not part of Number %s!"
+#~ msgstr ""
+#~ "Sinplifikatutako faktura-zenbakiaren %s aurrizkia ez da %s zenbakiaren "
+#~ "parte!"

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<data>
+    <!-- Import wizard -->
+    <record model="ir.ui.view" id="view_l10n_es_intrastat_code_import">
+        <field name="model">l10n.es.intrastat.code.import</field>
+        <field name="inherit_id" ref="base.res_config_installer" />
+        <field name="arch" type="xml">
+            <data>
+                <form position="attributes">
+                    <attribute name="string">Import Spanish Product HS Codes</attribute>
+                </form>
+                <separator position="replace">
+                    <group>
+                        <p
+                            colspan="4"
+                        >This wizard will import Spanish Product HS Codes from the local copy and set company Instrastat type defaults at company level.</p>
+                    </group>
+                </separator>
+                <button name="action_next" position="attributes">
+                    <attribute name="string">Import</attribute>
+                </button>
+            </data>
+        </field>
+    </record>
+    <record id="action_l10n_es_intrastat_code_import" model="ir.actions.act_window">
+        <field name="name">Import Spanish Product HS Codes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">l10n.es.intrastat.code.import</field>
+        <field name="view_id" ref="view_l10n_es_intrastat_code_import" />
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <!-- register on configuration -->
+    <record id="todo_l10n_es_intrastat_code_import" model="ir.actions.todo">
+        <field name="name">Import Spanish Product HS Codes</field>
+        <field name="action_id" ref="action_l10n_es_intrastat_code_import" />
+        <field name="sequence">20</field>
+    </record>
+</data>

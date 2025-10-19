@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Binovo IT Human Project SL
+     Copyright 2021 Landoo Sistemas de Informacion SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_ticketbai_info_form" model="ir.ui.view">
+        <field name="name">tbai.info.form</field>
+        <field name="model">tbai.info</field>
+        <field name="arch" type="xml">
+            <form string="TicketBAI Info" create="0" edit="0" delete="0">
+                <group
+                    name="ticketbai"
+                    attrs="{'invisible': [('tbai_enabled', '=', False)]}"
+                >
+                    <field name="tbai_enabled" invisible="1" />
+                    <field name="company_id" invisible="1" />
+                    <field name="developer_id" invisible="1" />
+                    <field name="name" />
+                    <field name="software" />
+                    <field
+                        name="device_serial_number"
+                        attrs="{'invisible': [('device_serial_number', '=', False)]}"
+                    />
+                </group>
+                <group
+                    name="ticketbai_disabled"
+                    attrs="{'invisible': [('tbai_enabled', '=', True)]}"
+                >
+                    <div>
+                        <p>TicketBAI is disabled.</p>
+                    </div>
+                </group>
+                <footer />
+            </form>
+        </field>
+    </record>
+    <record id="action_ticketbai_general_info" model="ir.actions.act_window">
+        <field name="name">TicketBAI - General Info</field>
+        <field name="res_model">tbai.info</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem
+        id="menu_finance_ticketbai_general_info"
+        name="General Info"
+        action="action_ticketbai_general_info"
+        parent="l10n_es_ticketbai.menu_finance_ticketbai"
+        sequence="10"
+    />
+</odoo>

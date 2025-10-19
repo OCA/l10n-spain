@@ -13,6 +13,7 @@ import datetime
 from calendar import monthrange
 
 from odoo import _, api, exceptions, fields, models
+from odoo.tools import float_compare
 
 KEY_TAX_MAPPING = {
     "A": "l10n_es_aeat_mod347.aeat_mod347_map_a",
@@ -112,6 +113,27 @@ class L10nEsAeatMod347Report(models.Model):
         string="Real Estate Records",
     )
 
+    def _error_count(self, model):
+        records_error_group = self.env["l10n.es.aeat.mod347.%s" % model].read_group(
+            domain=[("check_ok", "=", False), ("report_id", "in", self.ids)],
+            fields=["report_id"],
+            groupby=["report_id"],
+        )
+        return {
+            rec["report_id"][0]: rec["report_id_count"] for rec in records_error_group
+        }
+
+    def _compute_error_count(self):
+        ret_val = super()._compute_error_count()
+        partner_records_error_dict = self._error_count("partner_record")
+        real_estate_record_error_dict = self._error_count("real_estate_record")
+
+        for report in self:
+            report.error_count += partner_records_error_dict.get(
+                report.id, 0
+            ) + real_estate_record_error_dict.get(report.id, 0)
+        return ret_val
+
     def button_confirm(self):
         """Different check out in report"""
         for item in self:
@@ -186,9 +208,9 @@ class L10nEsAeatMod347Report(models.Model):
     def _get_taxes(self, map_rec):
         """Obtain all the taxes to be considered for 347."""
         self.ensure_one()
-        tax_templates = map_rec.mapped("tax_ids")
+        tax_templates = map_rec.with_context(active_test=False).tax_ids
         if not tax_templates:
-            raise exceptions.Warning(_("No Tax Mapping was found"))
+            raise exceptions.UserError(_("No Tax Mapping was found"))
         return self.get_taxes_from_templates(tax_templates)
 
     @api.model
@@ -213,6 +235,7 @@ class L10nEsAeatMod347Report(models.Model):
             }
 
     def _create_partner_records(self, key, map_ref, partner_record=None):
+        sign = -1 if key == "B" else 1
         partner_record_obj = self.env["l10n.es.aeat.mod347.partner_record"]
         partner_obj = self.env["res.partner"]
         map_line = self.env.ref(map_ref)
@@ -235,7 +258,7 @@ class L10nEsAeatMod347Report(models.Model):
                 "partner_id": partner.id,
                 "representative_vat": "",
                 "operation_key": key,
-                "amount": (-1 if key == "B" else 1) * group["balance"],
+                "amount": sign * group["balance"],
             }
             vals.update(self._get_partner_347_identification(partner))
             move_groups = self.env["account.move.line"].read_group(
@@ -249,7 +272,7 @@ class L10nEsAeatMod347Report(models.Model):
                     0,
                     {
                         "move_id": move_group["move_id"][0],
-                        "amount": move_group["balance"],
+                        "amount": sign * move_group["balance"],
                     },
                 )
                 for move_group in move_groups
@@ -331,6 +354,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin", "portal.mixin"]
     _description = "Partner Record"
     _rec_name = "partner_vat"
+    _order = "check_ok asc,id"
 
     @api.model
     def _default_record_id(self):
@@ -357,6 +381,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
             ("exception", "Exception"),
         ],
         default="pending",
+        tracking=True,
     )
     operation_key = fields.Selection(
         selection=[
@@ -500,18 +525,24 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         store=True,
         help="Checked if this record is OK",
     )
+    error_text = fields.Char(compute="_compute_check_ok", store=True)
 
     @api.depends(
         "partner_country_code", "partner_state_code", "partner_vat", "community_vat"
     )
     def _compute_check_ok(self):
         for record in self:
-            record.check_ok = (
-                record.partner_country_code
-                and record.partner_state_code
-                and record.partner_state_code.isdigit()
-                and (record.partner_vat or record.partner_country_code != "ES")
-            )
+            errors = []
+            if not record.partner_country_code:
+                errors.append(_("Without country code"))
+            if not record.partner_state_code:
+                errors.append(_("Without state code"))
+            if record.partner_state_code and not record.partner_state_code.isdigit():
+                errors.append(_("State code can only contain digits"))
+            if not (record.partner_vat or record.partner_country_code != "ES"):
+                errors.append(_("VAT must be defined for Spanish Contacts"))
+            record.check_ok = not bool(errors)
+            record.error_text = ", ".join(errors)
 
     @api.onchange("partner_id")
     def _onchange_partner_id(self):
@@ -521,28 +552,29 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
 
     @api.depends("move_record_ids.move_id.date", "report_id.year")
     def calculate_quarter_totals(self):
-        def calc_amount_by_quarter(records, sign, year, month_start):
+        def calc_amount_by_quarter(records, year, month_start):
             day_start = 1
             month_end = month_start + 2
             day_end = monthrange(year, month_end)[1]
             date_start = datetime.date(year, month_start, day_start)
             date_end = datetime.date(year, month_end, day_end)
-            return (
-                sum(
-                    records.filtered(
-                        lambda x: date_start <= x.move_id.date <= date_end
-                    ).mapped("amount")
-                )
-            ) * sign
+            return sum(
+                records.filtered(
+                    lambda x: date_start <= x.move_id.date <= date_end
+                ).mapped("amount")
+            )
 
         for record in self:
-            sign = -1 if record.operation_key == "B" else 1
             year = record.report_id.year
             moves = record.move_record_ids
-            record.first_quarter = calc_amount_by_quarter(moves, sign, year, 1)
-            record.second_quarter = calc_amount_by_quarter(moves, sign, year, 4)
-            record.third_quarter = calc_amount_by_quarter(moves, sign, year, 7)
-            record.fourth_quarter = calc_amount_by_quarter(moves, sign, year, 10)
+            # Done this way for avoiding fake tracking changes messages when the amount
+            # is the same due to a ORM glitch with floats rounding
+            quarter_mapping = {1: "first", 4: "second", 7: "third", 10: "fourth"}
+            for i in range(1, 12, 3):
+                amount = calc_amount_by_quarter(moves, year, i)
+                field = f"{quarter_mapping[i]}_quarter"
+                if float_compare(record[field], amount, 2) != 0:
+                    record[field] = amount
 
     def action_exception(self):
         self.write({"state": "exception"})
@@ -589,13 +621,15 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         self.ensure_one()
         if self.operation_key not in ("A", "B"):
             return
+        prev_amount = self.amount
         self.report_id._create_partner_records(
             self.operation_key,
             KEY_TAX_MAPPING[self.operation_key],
             partner_record=self,
         )
         self.calculate_quarter_totals()
-        self.action_pending()
+        if float_compare(self.amount, prev_amount, 2) != 0:
+            self.action_pending()
 
     def send_email_direct(self):
         template = self.env.ref("l10n_es_aeat_mod347.email_template_347")
@@ -627,6 +661,7 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
     _name = "l10n.es.aeat.mod347.real_estate_record"
     _description = "Real Estate Record"
     _rec_name = "reference"
+    _order = "check_ok asc,id"
 
     @api.model
     def _default_record_id(self):
@@ -699,11 +734,16 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
         store=True,
         help="Checked if this record is OK",
     )
+    error_text = fields.Char(string="Errors", compute="_compute_check_ok", store=True)
 
     @api.depends("state_code")
     def _compute_check_ok(self):
         for record in self:
-            record.check_ok = bool(record.state_code)
+            errors = []
+            if not record.state_code:
+                errors.append(_("Without state code"))
+            record.check_ok = not bool(errors)
+            record.error_text = ", ".join(errors)
 
     @api.onchange("partner_id")
     def _onchange_partner_id(self):

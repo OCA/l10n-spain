@@ -708,6 +708,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
         installation = self.env["tbai.installation"].create(
             {
                 "name": vals.pop("tbai_software_name"),
+                "version": vals.pop("tbai_software_version"),
                 "developer_id": self.env.ref(
                     "l10n_es_ticketbai_api.res_partner_binovo"
                 ).id,

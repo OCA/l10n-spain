@@ -1,7 +1,7 @@
 # Copyright 2016-2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.exceptions import ValidationError
+from odoo import exceptions
 from odoo.tests.common import TransactionCase
 
 
@@ -9,6 +9,16 @@ class TestL10nEsAeat(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(
+            context=dict(
+                cls.env.context,
+                mail_create_nolog=True,
+                mail_create_nosubscribe=True,
+                mail_notrack=True,
+                no_reset_password=True,
+                tracking_disable=True,
+            )
+        )
         cls.export_model = cls.env["l10n.es.aeat.report.export_to_boe"]
         cls.partner = cls.env["res.partner"].create({"name": "test partner"})
 
@@ -36,7 +46,7 @@ class TestL10nEsAeat(TransactionCase):
         self.assertEqual(vat_number, "12345678Z")
 
     def test_parse_vat_info_es_passport_exception(self):
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(exceptions.ValidationError):
             self.partner.write(
                 {"vat": "ZZ_MY_PASSPORT", "country_id": self.env.ref("base.es").id}
             )
@@ -74,15 +84,16 @@ class TestL10nEsAeat(TransactionCase):
             {"vat": "61954506077", "country_id": self.env.ref("base.gf").id}
         )
         country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
-        self.assertEqual(country_code, "GF")
+        self.assertEqual(country_code, "FR")
+        self.assertEqual(identifier_type, "04")
         self.assertEqual(vat_number, "61954506077")
 
     def test_parse_vat_info_gf_w_prefix(self):
         self.partner.vat = "GF61954506077"
         country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
-        self.assertEqual(country_code, "GF")
-        self.assertEqual(identifier_type, "02")
-        self.assertEqual(vat_number, "61954506077")
+        self.assertEqual(country_code, "FR")
+        self.assertEqual(identifier_type, "04")
+        self.assertEqual(vat_number, "GF61954506077")
 
     def test_parse_vat_info_cu_wo_prefix(self):
         self.partner.write(
@@ -96,6 +107,15 @@ class TestL10nEsAeat(TransactionCase):
     def test_parse_vat_info_cu_w_prefix(self):
         self.partner.vat = "CU12345678Z"
         country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
-        self.assertEqual(country_code, "")
+        self.assertEqual(country_code, "CU")
         self.assertEqual(identifier_type, "04")
         self.assertEqual(vat_number, "CU12345678Z")
+
+    def test_unique_date_range(self):
+        self.env["l10n.es.aeat.map.tax"].create(
+            {"date_from": "2020-01-01", "model": 303}
+        )
+        with self.assertRaises(exceptions.UserError):
+            self.env["l10n.es.aeat.map.tax"].create(
+                {"date_to": "2021-01-01", "model": 303}
+            )

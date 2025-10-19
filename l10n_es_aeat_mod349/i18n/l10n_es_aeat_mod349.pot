@@ -314,6 +314,16 @@ msgid "Ending date"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__error_count
+msgid "Error Count"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record__error_text
+msgid "Error Text"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__export_config_id
 msgid "Export config"
 msgstr ""
@@ -398,7 +408,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -509,11 +518,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_ids
 msgid "Messages"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__model_id
-msgid "Model"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -768,11 +772,6 @@ msgid "S - Intra-Community services"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__date_start
 msgid "Starting date"
 msgstr ""
@@ -826,6 +825,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_account_tax
 msgid "Tax"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__tax_agency_ids
+msgid "Tax Agency"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -936,6 +940,24 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__website_message_ids
 msgid "Website communication history"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
+#, python-format
+msgid "Without Country"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
+#, python-format
+msgid "Without Total Operation Amount"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
+#, python-format
+msgid "Without VAT"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
