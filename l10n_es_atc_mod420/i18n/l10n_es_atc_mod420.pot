@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,28 +16,24 @@ msgstr ""
 #. module: l10n_es_atc_mod420
 #. odoo-python
 #: code:addons/l10n_es_atc_mod420/models/mod420.py:0
-#, python-format
 msgid "- Please set the Public Way in the company"
 msgstr ""
 
 #. module: l10n_es_atc_mod420
 #. odoo-python
 #: code:addons/l10n_es_atc_mod420/models/mod420.py:0
-#, python-format
 msgid "- Please set the code in the city: %s"
 msgstr ""
 
 #. module: l10n_es_atc_mod420
 #. odoo-python
 #: code:addons/l10n_es_atc_mod420/models/mod420.py:0
-#, python-format
 msgid "- Select a payment type"
 msgstr ""
 
 #. module: l10n_es_atc_mod420
 #. odoo-python
 #: code:addons/l10n_es_atc_mod420/models/mod420.py:0
-#, python-format
 msgid ""
 "- The selected payment type is not compatible with the output type. Please "
 "select a different payment type."
@@ -97,6 +93,10 @@ msgstr ""
 
 #. module: l10n_es_atc_mod420
 #: model:ir.model.fields,field_description:l10n_es_atc_mod420.field_l10n_es_atc_mod420_report__bank_account_id
+msgid "Bank Account"
+msgstr ""
+
+#. module: l10n_es_atc_mod420
 #: model:ir.model.fields,field_description:l10n_es_atc_mod420.field_l10n_es_atc_mod420_report__partner_bank_id
 msgid "Bank account"
 msgstr ""
@@ -119,6 +119,11 @@ msgstr ""
 #. module: l10n_es_atc_mod420
 #: model:ir.model.fields,field_description:l10n_es_atc_mod420.field_l10n_es_atc_mod420_report__company_id
 msgid "Company"
+msgstr ""
+
+#. module: l10n_es_atc_mod420
+#: model:ir.model.fields,field_description:l10n_es_atc_mod420.field_l10n_es_atc_mod420_report__company_partner_id
+msgid "Company Partner"
 msgstr ""
 
 #. module: l10n_es_atc_mod420
@@ -340,10 +345,7 @@ msgid "Next Activity Type"
 msgstr ""
 
 #. module: l10n_es_atc_mod420
-#. odoo-python
-#: code:addons/l10n_es_atc_mod420/models/mod420.py:0
 #: model:ir.model.fields.selection,name:l10n_es_atc_mod420.selection__l10n_es_atc_mod420_report__result_type__n
-#, python-format
 msgid "No activity/Zero result"
 msgstr ""
 
@@ -368,7 +370,6 @@ msgid "Number of messages with delivery error"
 msgstr ""
 
 #. module: l10n_es_atc_mod420
-#: model:ir.model.fields,field_description:l10n_es_atc_mod420.field_l10n_es_atc_mod420_report__company_partner_id
 #: model:ir.model.fields,field_description:l10n_es_atc_mod420.field_l10n_es_atc_mod420_report__partner_id
 msgid "Partner"
 msgstr ""
@@ -437,14 +438,12 @@ msgstr ""
 #. module: l10n_es_atc_mod420
 #. odoo-python
 #: code:addons/l10n_es_atc_mod420/models/mod420.py:0
-#, python-format
 msgid "Select an account for making the charge"
 msgstr ""
 
 #. module: l10n_es_atc_mod420
 #. odoo-python
 #: code:addons/l10n_es_atc_mod420/models/mod420.py:0
-#, python-format
 msgid "Select an account for receiving the money"
 msgstr ""
 
@@ -514,26 +513,17 @@ msgid "Tipo de salida"
 msgstr ""
 
 #. module: l10n_es_atc_mod420
-#. odoo-python
-#: code:addons/l10n_es_atc_mod420/models/mod420.py:0
 #: model:ir.model.fields.selection,name:l10n_es_atc_mod420.selection__l10n_es_atc_mod420_report__result_type__c
-#, python-format
 msgid "To compensate"
 msgstr ""
 
 #. module: l10n_es_atc_mod420
-#. odoo-python
-#: code:addons/l10n_es_atc_mod420/models/mod420.py:0
 #: model:ir.model.fields.selection,name:l10n_es_atc_mod420.selection__l10n_es_atc_mod420_report__result_type__i
-#, python-format
 msgid "To enter"
 msgstr ""
 
 #. module: l10n_es_atc_mod420
-#. odoo-python
-#: code:addons/l10n_es_atc_mod420/models/mod420.py:0
 #: model:ir.model.fields.selection,name:l10n_es_atc_mod420.selection__l10n_es_atc_mod420_report__result_type__d
-#, python-format
 msgid "To return"
 msgstr ""
 
