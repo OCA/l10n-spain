@@ -141,6 +141,7 @@ Authors
 -------
 
 * Binhex
+* Tecnativa
 
 Contributors
 ------------
