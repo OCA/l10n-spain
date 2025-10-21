@@ -68,8 +68,8 @@ class TxRedsys(models.Model):
             )
             if shasign_check != shasign:
                 error_msg = (
-                    "Redsys: invalid shasign, received {}, computed {}, "
-                    "for data {}".format(shasign, shasign_check, data)
+                    f"Redsys: invalid shasign, received {shasign}, computed {shasign_check}, "
+                    f"for data {data}"
                 )
                 _logger.info(error_msg)
                 raise ValidationError(error_msg)
