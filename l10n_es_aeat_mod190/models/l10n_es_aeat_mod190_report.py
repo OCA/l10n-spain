@@ -501,6 +501,11 @@ class L10nEsAeatMod190ReportLine(models.Model):
             item.partner_vat = item.partner_id._parse_aeat_vat_info()[2]
 
     @api.depends("partner_id")
+    def _compute_representante_legal_vat(self):
+        for item in self.filtered(lambda x: x.partner_id):
+            item.representante_legal_vat = item.partner_id.representante_legal_vat
+
+    @api.depends("partner_id")
     def _compute_codigo_provincia(self):
         for item in self:
             code = SPANISH_STATES.get(item.partner_id.state_id.code)
