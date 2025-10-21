@@ -11,15 +11,11 @@
                     string="Re-send to Verifactu"
                     name="resend_verifactu"
                     groups="l10n_es_aeat.group_account_aeat"
-                    attrs="{'invisible': ['|','|',('verifactu_enabled', '=', False), ('state', 'not in', ['paid', 'done']), ('aeat_state','!=','sent_w_errors')]}"
+                    invisible="not verifactu_enabled or state not in ['paid', 'done'] or aeat_state != 'sent_w_errors'"
                 />
             </button>
             <notebook position="inside">
-                <page
-                    string="Veri*FACTU"
-                    name="page_aeat"
-                    attrs="{'invisible': [('verifactu_enabled', '=', False)]}"
-                >
+                <page string="Veri*FACTU" name="page_aeat" invisible="True">
                     <group
                         string="Veri*FACTU Information"
                         name="group_aeat_information"
@@ -35,7 +31,7 @@
                         <field name="verifactu_tax_key" />
                         <field
                             name="verifactu_registration_key"
-                            attrs="{'required': [('verifactu_enabled', '=', True)]}"
+                            required="verifactu_enabled"
                         />
                         <field name="verifactu_hash_string" readonly="1" />
                         <field name="verifactu_hash" readonly="1" />

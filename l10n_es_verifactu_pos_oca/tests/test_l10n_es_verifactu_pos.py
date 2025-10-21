@@ -1,4 +1,7 @@
 import uuid
+from unittest.mock import patch
+
+import pytz
 
 from odoo import fields
 from odoo.exceptions import UserError
@@ -13,7 +16,7 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
     def copy_account(cls, account, default=None):
         suffix_nb = 1
         while True:
-            new_code = "%s.%s" % (account.code, suffix_nb)
+            new_code = f"{account.code}.{suffix_nb}"
             if account.search_count(
                 [("company_id", "=", account.company_id.id), ("code", "=", new_code)]
             ):
@@ -57,14 +60,6 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
                 "journal_id": sale_journal.id,
                 "invoice_journal_id": invoice_sale_journal.id,
                 "iface_l10n_es_simplified_invoice": True,
-                "default_partner_id": cls.env["res.partner"]
-                .create(
-                    {
-                        "name": "Test simplified default customer",
-                        "aeat_simplified_invoice": True,
-                    }
-                )
-                .id,
             }
         )
         cls.company.account_default_pos_receivable_account_id = cls.env[
@@ -115,17 +110,23 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
                 "company_id": cls.env.company.id,
             }
         )
+        (cls.default_journal_cash.pos_payment_method_ids[0].unlink(),)
+        (cls.default_journal_bank.pos_payment_method_ids[0].unlink(),)
         cls.pos_config.write(
-            {"payment_method_ids": [(6, 0, (cls.cash_pm1 + cls.bank_pm1).ids)]}
+            {
+                "payment_method_ids": [
+                    fields.Command.set([cls.cash_pm1[0].id, cls.bank_pm1[0].id])
+                ]
+            }
         )
         cls.pos_config.open_ui()
         cls.pos_session = cls.pos_config.current_session_id
 
         cls.tax_21 = cls.env.ref(
-            f"l10n_es.{cls.company.id}_account_tax_template_s_iva21b"
+            f"account.{cls.company.id}_account_tax_template_s_iva21b"
         )
         cls.tax_10 = cls.env.ref(
-            f"l10n_es.{cls.company.id}_account_tax_template_s_iva10b"
+            f"account.{cls.company.id}_account_tax_template_s_iva10b"
         )
 
     def _create_ui_order_data(self, amount=100, simplified=True):
@@ -137,22 +138,20 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
                 "amount_total": amount * 1.21,
                 "amount_tax": amount * 0.21,
                 "amount_return": 0,
-                "creation_date": fields.Datetime.to_string(fields.Datetime.now()),
+                "date_order": fields.Datetime.to_string(fields.Datetime.now()),
                 "fiscal_position_id": False,
-                "pricelist_id": self.pos_config.available_pricelist_ids[0].id,
+                "pricelist_id": self.pos_config.available_pricelist_ids[:1].id,
                 "lines": [
-                    [
-                        0,
-                        0,
+                    fields.Command.create(
                         {
                             "product_id": self.product.id,
                             "price_unit": amount,
                             "qty": 1,
-                            "tax_ids": [[6, False, self.tax_21.ids]],
+                            "tax_ids": [fields.Command.set(self.tax_21.ids)],
                             "price_subtotal": amount,
                             "price_subtotal_incl": amount * 1.21,
-                        },
-                    ]
+                        }
+                    ),
                 ],
                 "name": "Order 0001",
                 "pos_session_id": self.pos_session.id,
@@ -336,6 +335,95 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
             "Second order hash string should include first order's hash",
         )
 
+    def test_pos_verifactu_previous_hash(self):
+        """Test previous hash retrieval from the last invoice entry."""
+        orders_data = [self._create_ui_order_data()]
+        order_ids = self.env["pos.order"].create_from_ui(orders_data)
+        order = self.env["pos.order"].browse(order_ids[0]["id"])
+        entry = order.last_verifactu_invoice_entry_id
+
+        order.last_verifactu_invoice_entry_id = False
+        self.assertEqual(order._get_verifactu_previous_hash(), "")
+
+        order.last_verifactu_invoice_entry_id = entry
+        entry.previous_hash = "previous-hash"
+        self.assertEqual(order._get_verifactu_previous_hash(), "previous-hash")
+
+        entry.previous_hash = False
+        self.assertEqual(order._get_verifactu_previous_hash(), "")
+
+    def test_pos_verifactu_operation_type(self):
+        """Test operation type resolution from tax mappings."""
+        orders_data = [self._create_ui_order_data()]
+        order_ids = self.env["pos.order"].create_from_ui(orders_data)
+        order = self.env["pos.order"].browse(order_ids[0]["id"])
+        empty_taxes = self.env["account.tax"]
+        tax_line = {"tax": self.tax_21}
+
+        operation_types = (
+            ("S1", self.tax_21, empty_taxes, empty_taxes, empty_taxes),
+            ("S2", empty_taxes, self.tax_21, empty_taxes, empty_taxes),
+            ("N1", empty_taxes, empty_taxes, self.tax_21, empty_taxes),
+            ("N2", empty_taxes, empty_taxes, empty_taxes, self.tax_21),
+        )
+        for expected, taxes_s1, taxes_s2, taxes_n1, taxes_n2 in operation_types:
+            self.assertEqual(
+                order._get_verifactu_operation_type(
+                    tax_line, taxes_s1, taxes_s2, taxes_n1, taxes_n2
+                ),
+                expected,
+            )
+
+        self.assertEqual(
+            order._get_verifactu_operation_type(
+                tax_line, empty_taxes, empty_taxes, empty_taxes, empty_taxes
+            ),
+            "S1",
+        )
+
+    def test_pos_verifactu_inconsistent_taxes(self):
+        """Test detection of multiple taxes in the same Verifactu group."""
+        orders_data = [self._create_ui_order_data()]
+        order_ids = self.env["pos.order"].create_from_ui(orders_data)
+        order = self.env["pos.order"].browse(order_ids[0]["id"])
+        taxes = self.tax_21 | self.tax_10
+        order.lines[0].tax_ids = [fields.Command.set(taxes.ids)]
+
+        tax_groups = {
+            ("S1",): self.tax_21,
+            ("S2",): self.tax_10,
+            ("RE",): self.env["account.tax"],
+        }
+
+        def get_taxes(_order, codes, _date):
+            return tax_groups.get(tuple(codes), self.env["account.tax"])
+
+        with patch.object(
+            type(order),
+            "_get_verifactu_taxes_map",
+            autospec=True,
+            side_effect=get_taxes,
+        ):
+            self.assertTrue(order._check_inconsistent_taxes())
+
+    def test_pos_verifactu_registration_date(self):
+        """Test registration date formatting for Verifactu."""
+        orders_data = [self._create_ui_order_data()]
+        order_ids = self.env["pos.order"].create_from_ui(orders_data)
+        order = self.env["pos.order"].browse(order_ids[0]["id"])
+
+        order.verifactu_registration_date = False
+        self.assertEqual(order._get_verifactu_registration_date(), "")
+
+        registration_date = fields.Datetime.from_string("2024-01-15 12:34:56")
+        order.verifactu_registration_date = registration_date
+        expected_date = (
+            pytz.utc.localize(registration_date)
+            .astimezone()
+            .isoformat(timespec="seconds")
+        )
+        self.assertEqual(order._get_verifactu_registration_date(), expected_date)
+
     def test_pos_verifactu_disabled_company(self):
         """Test POS order when VeriFactu is disabled for company"""
         # Disable VeriFactu for company
@@ -405,31 +493,6 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
             rectified_invoice["NumSerieFactura"], order_1._get_document_serial_number()
         )
 
-    def test_pos_verifactu_absolute_amounts(self):
-        """Test that VeriFactu uses absolute amounts for refunds"""
-        # Create a refund order
-        orders_data = [self._create_ui_order_data(amount=-100)]
-        order_ids = self.env["pos.order"].create_from_ui(orders_data)
-        order = self.env["pos.order"].browse(order_ids[0]["id"])
-
-        # Check that amounts are absolute
-        self.assertEqual(
-            order._get_verifactu_amount_total(), 121.0, "Should use absolute amount"
-        )
-        self.assertEqual(
-            order._get_verifactu_amount_tax(), 21.0, "Should use absolute tax"
-        )
-
-        # Check invoice dict uses absolute values
-        result = order._get_verifactu_invoice_dict_out()
-        alta = result["RegistroAlta"]
-        self.assertEqual(
-            float(alta["ImporteTotal"]), 121.0, "Invoice dict should use absolute total"
-        )
-        self.assertEqual(
-            float(alta["CuotaTotal"]), 21.0, "Invoice dict should use absolute tax"
-        )
-
     def test_pos_verifactu_l10n_es_pos_integration(self):
         """Test integration with l10n_es_pos simplified invoices"""
         # Test that simplified invoice numbers are used correctly
@@ -465,9 +528,9 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
         )
 
         # Should use absolute amounts
-        self.assertIn("CuotaTotal=21", hash_string, "Should use absolute tax amount")
+        self.assertIn("CuotaTotal=-21", hash_string, "Should use absolute tax amount")
         self.assertIn(
-            "ImporteTotal=121", hash_string, "Should use absolute total amount"
+            "ImporteTotal=-121", hash_string, "Should use absolute total amount"
         )
 
     def test_pos_verifactu_mixed_order_types(self):
@@ -499,10 +562,10 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
         )
 
         # Verify amount handling
-        self.assertEqual(order_sale._get_verifactu_amount_total(), 121.0)
-        self.assertEqual(
-            order_refund._get_verifactu_amount_total(), 60.5
-        )  # Absolute value
+        _tx_dict, _am_tax, amount_total = order_sale._get_verifactu_taxes_and_total()
+        self.assertEqual(amount_total, 121.0)
+        _tx_dict, _am_tax, amount_total = order_refund._get_verifactu_taxes_and_total()
+        self.assertEqual(amount_total, -60.5)
 
     def test_pos_verifactu_start_date(self):
         """Test POS order verifactu enablement with start date"""

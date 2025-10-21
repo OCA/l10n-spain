@@ -13,8 +13,8 @@ class PosConfig(models.Model):
 
     @api.depends("company_id.verifactu_test")
     def _compute_verifactu_base_url(self):
+        agency = self.env.ref("l10n_es_aeat.aeat_tax_agency_spain")
         for record in self:
-            agency = self.env.ref("l10n_es_aeat.aeat_tax_agency_spain")
             record.verifactu_base_url = (
                 agency.verifactu_qr_base_url_test_address
                 if record.company_id.verifactu_test

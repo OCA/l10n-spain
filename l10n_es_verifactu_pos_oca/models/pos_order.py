@@ -16,50 +16,6 @@ class PosOrder(models.Model):
     _name = "pos.order"
     _inherit = ["pos.order", "verifactu.mixin"]
 
-    last_verifactu_invoice_entry_id = fields.Many2one(
-        comodel_name="verifactu.invoice.entry",
-        string="Last Verifactu Invoice Entry",
-        help="Last verifactu invoice entry for this POS order.",
-        copy=False,
-        readonly=True,
-    )
-    last_verifactu_response_line_id = fields.Many2one(
-        "verifactu.invoice.entry.response.line",
-        string="Last Verifactu Response Line",
-        readonly=True,
-    )
-    verifactu_registration_key = fields.Many2one(
-        comodel_name="verifactu.registration.key",
-        compute="_compute_verifactu_registration_key",
-        store=True,
-        readonly=False,
-    )
-    verifactu_tax_key = fields.Selection(
-        compute="_compute_verifactu_tax_key",
-        store=True,
-        readonly=False,
-    )
-    verifactu_registration_key_code = fields.Char(
-        compute="_compute_verifactu_registration_key_code",
-        readonly=True,
-    )
-    verifactu_invoice_entry_ids = fields.One2many(
-        "verifactu.invoice.entry",
-        inverse_name="document_id",
-        domain=lambda doc: [("model", "=", doc._name)],
-        string="VeriFactu Invoice Entry",
-        readonly=True,
-        copy=False,
-    )
-    verifactu_response_line_ids = fields.One2many(
-        "verifactu.invoice.entry.response.line",
-        inverse_name="document_id",
-        domain=lambda doc: [("model", "=", doc._name)],
-        string="Verifactu Response Lines",
-        readonly=True,
-        copy=False,
-    )
-
     @api.depends(
         "company_id",
         "company_id.verifactu_enabled",
@@ -105,6 +61,7 @@ class PosOrder(models.Model):
 
     @api.depends("fiscal_position_id")
     def _compute_verifactu_registration_key(self):
+        verifactu_key_obj = self.env["verifactu.registration.key"]
         for order in self:
             if order.fiscal_position_id:
                 key = order.fiscal_position_id.verifactu_registration_key
@@ -119,17 +76,9 @@ class PosOrder(models.Model):
                         "01",
                     ),
                 ]
-                verifactu_key_obj = self.env["verifactu.registration.key"]
                 order.verifactu_registration_key = verifactu_key_obj.search(
                     domain, limit=1
                 )
-
-    @api.depends("verifactu_registration_key")
-    def _compute_verifactu_registration_key_code(self):
-        for order in self:
-            order.verifactu_registration_key_code = (
-                order.verifactu_registration_key.code
-            )
 
     @api.model
     def _process_order(self, order, draft, existing_order):
@@ -156,14 +105,13 @@ class PosOrder(models.Model):
         return pos_order_id
 
     def _is_verifactu_order(self):
-        self.ensure_one()
         return self.exists() and not self.to_invoice and self.verifactu_enabled
 
     def _is_refund_order(self):
         """Check if this POS order is a refund"""
-        self.ensure_one()
         return self.amount_total < 0
 
+    @api.model
     def _should_send_to_verifactu(self, pos_order):
         return (
             pos_order._is_verifactu_order()
@@ -185,6 +133,7 @@ class PosOrder(models.Model):
         For POS orders, we use the company-wide chaining like invoices.
         TODO: Allow the user to setup a new chaining for each PoS Config.
         """
+
         return self.company_id.verifactu_chaining_id
 
     def _get_verifactu_previous_hash(self):
@@ -222,12 +171,6 @@ class PosOrder(models.Model):
     def _get_verifactu_issuer(self):
         return self.company_id.partner_id._parse_aeat_vat_info()[2]
 
-    def _get_verifactu_amount_tax(self):
-        return abs(self.amount_tax)  # VeriFactu uses absolute values
-
-    def _get_verifactu_amount_total(self):
-        return abs(self.amount_total)  # VeriFactu uses absolute values
-
     def _verifactu_get_partner(self):
         """Get the partner for AEAT purposes"""
         return (
@@ -248,7 +191,7 @@ class PosOrder(models.Model):
     def _get_verifactu_qr_values(self):
         """Get the QR values for the verifactu"""
         self.ensure_one()
-        amount_total = self._get_verifactu_amount_total()
+        _taxes_dict, _amount_tax, amount_total = self._get_verifactu_taxes_and_total()
         return OrderedDict(
             [
                 ("nif", self._get_verifactu_issuer()),
@@ -261,7 +204,7 @@ class PosOrder(models.Model):
             ]
         )
 
-    def _get_verifactu_hash_string(self):
+    def _get_verifactu_hash_string(self, cancel=False):
         """Gets the verifactu hash string"""
         if (
             not self.verifactu_enabled
@@ -324,18 +267,24 @@ class PosOrder(models.Model):
             inv_dict["TipoRectificativa"] = self.verifactu_refund_type
             # Add reference to original order if available
             if self.refunded_order_ids:
-                original_order = self.refunded_order_ids[0]
+                origin = self.refunded_order_ids[0]
                 inv_dict["FacturasRectificadas"] = [
                     {
                         "IDFacturaRectificada": {
-                            "IDEmisorFactura": original_order._get_verifactu_issuer(),
-                            "NumSerieFactura": original_order._get_document_serial_number(),
-                            "FechaExpedicionFactura": original_order._change_date_format(
-                                original_order._get_document_date()
+                            "IDEmisorFactura": origin._get_verifactu_issuer(),
+                            "NumSerieFactura": origin._get_document_serial_number(),
+                            "FechaExpedicionFactura": origin._change_date_format(
+                                origin._get_document_date()
                             ),
                         }
                     }
                 ]
+
+        if self.aeat_state in ("sent_w_errors", "incorrect"):
+            # en caso de subsanación, debe generar un nuevo hash
+            inv_dict["Subsanacion"] = "S"
+            if self.aeat_state == "incorrect":
+                inv_dict["RechazoPrevio"] = "X"
 
         registroAlta = {}
         registroAlta.setdefault("RegistroAlta", inv_dict)
@@ -416,11 +365,25 @@ class PosOrder(models.Model):
         taxes_S2 = self._get_verifactu_taxes_map(["S2"], document_date)
         taxes_N1 = self._get_verifactu_taxes_map(["N1"], document_date)
         taxes_N2 = self._get_verifactu_taxes_map(["N2"], document_date)
+        taxes_RE = self._get_verifactu_taxes_map(["RE"], document_date)
+        taxes_not_in_total = self._get_verifactu_taxes_map(
+            ["TaxNotIncludedInTotal"], document_date
+        )
+        base_not_in_total = self._get_verifactu_taxes_map(
+            ["BaseNotIncludedInTotal"], document_date
+        )
+        excluded_taxes = taxes_not_in_total + base_not_in_total
         breakdown_taxes = taxes_S1 + taxes_S2 + taxes_N1 + taxes_N2
+        not_in_amount_total = 0.0
+        not_in_taxes = 0.0
 
         # Build tax breakdown
         for tax_line in tax_lines.values():
             tax = tax_line["tax"]
+            if tax in taxes_not_in_total:
+                not_in_amount_total += tax_line["amount"]
+            elif tax in base_not_in_total:
+                not_in_amount_total += tax_line["base"]
             if tax in breakdown_taxes:
                 operation_type = self._get_verifactu_operation_type(
                     tax_line, taxes_S1, taxes_S2, taxes_N1, taxes_N2
@@ -430,13 +393,23 @@ class PosOrder(models.Model):
                     "ClaveRegimen": self.verifactu_registration_key_code,
                     "CalificacionOperacion": operation_type,
                 }
-                tax_dict.update(self._get_verifactu_tax_dict(tax_line, tax_lines))
+                if operation_type not in ("N1", "N2"):
+                    new_tax_dict = self._get_verifactu_tax_dict(tax_line, tax_lines)
+                    tax_dict.update(new_tax_dict)
+                else:
+                    tax_dict.update({"BaseImponibleOimporteNoSujeto": tax_line["base"]})
                 taxes_dict["DetalleDesglose"].append(tax_dict)
-
+            elif tax in excluded_taxes:
+                not_in_taxes += tax_line["amount"]
+            elif tax not in taxes_RE:
+                raise UserError(_("%s tax is not mapped to VERI*FACTU.", tax.name))
+        sign = -1 if self._is_refund_order() else 1
+        amount_tax = self.amount_tax - not_in_taxes * sign
+        amount_total = self.amount_total - not_in_amount_total
         return (
             taxes_dict,
-            self._get_verifactu_amount_tax(),
-            self._get_verifactu_amount_total(),
+            amount_tax,
+            amount_total,
         )
 
     def _get_verifactu_tax_dict(self, tax_line, tax_lines):
@@ -449,6 +422,7 @@ class PosOrder(models.Model):
         Returns:
             dict: Verifactu tax values
         """
+
         tax = tax_line["tax"]
         tax_base_amount = tax_line["base"]
         if tax.amount_type == "group":
@@ -482,7 +456,6 @@ class PosOrder(models.Model):
         Raises:
             UserError: If there's a mismatch in RE taxes
         """
-        self.ensure_one()
         document_date = self._get_document_fiscal_date()
         taxes_req = self._get_verifactu_taxes_map(["RE"], document_date)
 
@@ -525,20 +498,24 @@ class PosOrder(models.Model):
         """Resend POS orders to verifactu after errors"""
         for order in self:
             if (
-                order.aeat_state == "sent_w_errors"
+                order.aeat_state in ("sent_w_errors", "incorrect")
                 and order.last_verifactu_invoice_entry_id
                 and not order.last_verifactu_invoice_entry_id.send_state == "not_sent"
             ):
+                entry_type = (
+                    "modify" if order.aeat_state == "sent_w_errors" else "register"
+                )
                 order.verifactu_registration_date = fields.Datetime.now()
-                order._generate_verifactu_chaining(entry_type="modify")
+                order._generate_verifactu_chaining(entry_type=entry_type)
 
     def _check_verifactu_configuration(self):
         """Check POS order configuration for verifactu"""
         if not self.fiscal_position_id:
             raise UserError(
                 _(
-                    "[ID: %(id)d, REF: %(ref)s, INV: %(inv)s] The POS order cannot be sent to "
-                    "Verifactu because it does not have a fiscal position."
+                    "[ID: %(id)d, REF: %(ref)s, INV: %(inv)s] The POS order "
+                    "cannot be sent to Verifactu because "
+                    "it does not have a fiscal position."
                 )
                 % {
                     "id": self.id,
@@ -549,8 +526,9 @@ class PosOrder(models.Model):
         if not self.verifactu_tax_key:
             raise UserError(
                 _(
-                    "[ID: %(id)d, REF: %(ref)s, INV: %(inv)s] The POS order cannot be sent to "
-                    "Verifactu because it does not have a tax key."
+                    "[ID: %(id)d, REF: %(ref)s, INV: %(inv)s] The POS order "
+                    "cannot be sent to Verifactu because "
+                    "it does not have a tax key."
                 )
                 % {
                     "id": self.id,
@@ -561,8 +539,9 @@ class PosOrder(models.Model):
         if not self.verifactu_registration_key:
             raise UserError(
                 _(
-                    "[ID: %(id)d, REF: %(ref)s, INV: %(inv)s] The POS order cannot be sent to "
-                    "Verifactu because it does not have a registration key."
+                    "[ID: %(id)d, REF: %(ref)s, INV: %(inv)s] The POS "
+                    "order cannot be sent to Verifactu because "
+                    "it does not have a registration key."
                 )
                 % {
                     "id": self.id,
@@ -574,8 +553,9 @@ class PosOrder(models.Model):
         if not self._check_inconsistent_taxes():
             raise UserError(
                 _(
-                    "[ID: %(id)d, REF: %(ref)s, INV: %(inv)s] The POS order cannot be sent to "
-                    "Verifactu because there are some inconsistent taxes on lines."
+                    "[ID: %(id)d, REF: %(ref)s, INV: %(inv)s] The POS order "
+                    "cannot be sent to Verifactu because there are "
+                    "inconsistent taxes on the order lines."
                 )
                 % {
                     "id": self.id,
@@ -587,8 +567,9 @@ class PosOrder(models.Model):
         if not self._check_all_taxes_mapped():
             raise UserError(
                 _(
-                    "[ID: %(id)d, REF: %(ref)s, INV: %(inv)s] The POS order cannot be sent to "
-                    "Verifactu because it does not have all taxes mapped."
+                    "[ID: %(id)d, REF: %(ref)s, INV: %(inv)s] The POS order "
+                    "cannot be sent to Verifactu because it does not "
+                    "have all taxes mapped."
                 )
                 % {
                     "id": self.id,
@@ -660,7 +641,6 @@ class PosOrder(models.Model):
             "pos_reference": _("POS reference"),
             "l10n_es_unique_id": _("simplified invoice number"),
         }
-
         modified_protected = set(vals.keys()) & set(PROTECTED_FIELDS.keys())
         if modified_protected:
             for order in self.filtered(
@@ -673,8 +653,9 @@ class PosOrder(models.Model):
                     _(
                         "[ID: %(id)d, REF: %(ref)s, INV: %(inv)s] "
                         "You cannot change the %(fields)s "
-                        "of document already registered at VERI*FACTU. You must cancel the "
-                        "document and create a new one with the correct value."
+                        "of document already registered at VERI*FACTU. "
+                        "You must cancel the document and create a new one "
+                        "with the correct value."
                     )
                     % {
                         "id": order.id,
