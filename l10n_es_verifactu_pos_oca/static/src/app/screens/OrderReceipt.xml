@@ -7,16 +7,15 @@
         owl="1"
     >
         <xpath expr="//div[hasclass('pos-receipt')]/t[1]" position="before">
-            <t t-if="receipt.verifactu_qr">
+            <t t-if="props.data.verifactu_qr">
                 <div class="pos-receipt-center-align">
                     <span>QR Tributario:</span>
                     <img
-                        t-att-src="receipt.verifactu_qr"
+                        t-att-src="props.data.verifactu_qr"
                         class="pos-receipt-qrcode verifactu-qr"
                     />
                     <span>VERI*FACTU</span>
                 </div>
-                <br />
             </t>
         </xpath>
     </t>
