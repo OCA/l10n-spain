@@ -131,6 +131,7 @@ Contributors
   - Carlos Dauden
   - Carlos Roca
   - João Marques
+  - Carlos Lopez
 
 - Isaac Gallart <igallart@puntsistemes.es>
 - `Acysos S.L. <https://www.acysos.com>`__:

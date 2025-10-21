@@ -45,20 +45,25 @@ class TxRedsys(models.Model):
         shasign = data.get("Ds_Signature", "").replace("_", "/").replace("-", "+")
         test_env = config["test_enable"]
         if not reference or not pay_id or not shasign:
-            error_msg = (
-                "Redsys: received data with missing reference"
-                f" ({reference}) or pay_id ({pay_id}) or shashign ({shasign})"
+            error_msg = self.env._(
+                "Redsys: received data with missing "
+                "reference %(reference)s or pay_id %(pay_id)s or shashign %(shasign)s",
+                reference=reference,
+                pay_id=pay_id,
+                shasign=shasign,
             )
             if not test_env:
                 _logger.info(error_msg)
                 raise ValidationError(error_msg)
         tx = self.search([("reference", "=", reference)])
         if not tx or len(tx) > 1:
-            error_msg = f"Redsys: received data for reference {reference}"
+            error_msg = self.env._(
+                "Redsys: received data for reference %(reference)s", reference=reference
+            )
             if not tx:
-                error_msg += "; no order found"
+                error_msg += self.env._("; no order found")
             else:
-                error_msg += "; multiple order found"
+                error_msg += self.env._("; multiple order found")
             _logger.info(error_msg)
             raise ValidationError(error_msg)
         if tx and not test_env:
@@ -67,9 +72,11 @@ class TxRedsys(models.Model):
                 tx.provider_id.redsys_secret_key, parameters
             )
             if shasign_check != shasign:
-                error_msg = (
-                    f"Redsys: invalid shasign, received {shasign}, computed "
-                    f" {shasign_check},\nfor data {data}"
+                error_msg = self.env._(
+                    "Redsys: invalid shasign, received %(shasign)s, computed,"
+                    "\nfor data %(data)s",
+                    shasign=shasign,
+                    data=data,
                 )
                 _logger.info(error_msg)
                 raise ValidationError(error_msg)
