@@ -1,6 +1,9 @@
 # Copyright 2021 FactorLibre - Rodrigo Bonilla <rodrigo.bonilla@factorlibre.com>
 # Copyright 2021 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from odoo import Command
+
 from odoo.addons.l10n_es_aeat_sii_oca.tests.test_l10n_es_aeat_sii import (
     TestL10nEsAeatSiiBase,
 )
@@ -11,7 +14,7 @@ class TestL10nEsAeatSiiBaseOss(TestL10nEsAeatSiiBase):
     def setUpClass(cls):
         super().setUpClass()
         account_fiscal_position_env = cls.env["account.fiscal.position"]
-        xml_id = "%s_account_tax_template_s_oss20" % cls.company.id
+        xml_id = f"{cls.company.id}_account_tax_template_s_oss20"
         cls.tax_fr_20 = cls._get_or_create_tax(xml_id, "Test tax 20%", "sale", 20)
         cls.tax_fr_20.write({"oss_country_id": cls.env.ref("base.fr").id})
         cls.fpos_fr_id = account_fiscal_position_env.create(
@@ -38,14 +41,12 @@ class TestL10nEsAeatSiiBaseOss(TestL10nEsAeatSiiBase):
             "invoice_date": "2021-07-01",
             "fiscal_position_id": self.fpos_fr_id.id,
             "invoice_line_ids": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "product_id": self.product.id,
                         "price_unit": 100,
                         "quantity": 1,
-                        "tax_ids": [(6, 0, [self.tax_fr_20.id])],
+                        "tax_ids": [(Command.set(self.tax_fr_20.ids))],
                     },
                 )
             ],
