@@ -98,7 +98,10 @@ class RedsysTest(RedsysCommon):
             "Ds_AuthorisationCode": "999999",
         }
         post_data = self._prepare_post_data(values)
-        with self.assertRaises(ValidationError):
+        with self.assertRaisesRegex(
+            ValidationError,
+            r"Redsys: received data for reference unknown transaction.*",
+        ):
             self.env["payment.transaction"]._handle_notification_data(
                 "redsys", post_data
             )
@@ -112,7 +115,9 @@ class RedsysTest(RedsysCommon):
             "Ds_AuthorisationCode": "",
         }
         post_data = self._prepare_post_data(values)
-        with self.assertRaises(ValidationError):
+        with self.assertRaisesRegex(
+            ValidationError, r"Redsys: received data for reference Valid transaction.*"
+        ):
             self.env["payment.transaction"]._handle_notification_data(
                 "redsys", post_data
             )

@@ -125,7 +125,7 @@ class PaymentProvider(models.Model):
         base_url = self._get_website_url()
         callback_url = self._get_website_callback_url()
         values = {
-            "Ds_Sermepa_Url": self.redsys_get_form_action_url(),
+            "Ds_Sermepa_Url": self._redsys_get_api_url(),
             "Ds_Merchant_Amount": str(int(round(tx_values["amount"] * 100))),
             "Ds_Merchant_Currency": self.redsys_currency,
             "Ds_Merchant_Order": (
@@ -180,13 +180,3 @@ class PaymentProvider(models.Model):
             params64 = params64.encode()
         dig = hmac.new(key=key, msg=params64, digestmod=hashlib.sha256).digest()
         return base64.b64encode(dig).decode()
-
-    def redsys_get_form_action_url(self):
-        self.ensure_one()
-        return self._redsys_get_api_url()
-
-    def _get_default_payment_method_id(self, code):
-        self.ensure_one()
-        if self.code != "redsys":
-            return super()._get_default_payment_method_id(code)
-        return self.env.ref("payment_redsys.payment_method_redsys").id
