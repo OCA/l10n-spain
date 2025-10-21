@@ -1,6 +1,8 @@
 # Copyright 2024 Manuel Regidor <manuel.regidor@sygel.es>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from odoo import Command
+
 from odoo.addons.l10n_es_vat_book.tests.test_l10n_es_aeat_vat_book import (
     TestL10nEsAeatVatBook,
 )
@@ -58,9 +60,7 @@ class TestL10nEsAeatVatBookOss(TestL10nEsAeatVatBook):
             "fiscal_position_id": sp_fiscal_position.id,
             "invoice_date": "2024-01-01",
             "invoice_line_ids": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "name": "Test SP Tax",
                         "account_id": self.accounts["700000"].id,
@@ -81,9 +81,7 @@ class TestL10nEsAeatVatBookOss(TestL10nEsAeatVatBook):
             "journal_id": self.journal_sale.id,
             "invoice_date": "2024-01-01",
             "invoice_line_ids": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "name": "Test BE Tax",
                         "account_id": self.accounts["700000"].id,
@@ -104,9 +102,7 @@ class TestL10nEsAeatVatBookOss(TestL10nEsAeatVatBook):
             "journal_id": self.journal_sale.id,
             "invoice_date": "2024-01-01",
             "invoice_line_ids": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "name": "Test PT Tax",
                         "account_id": self.accounts["700000"].id,
