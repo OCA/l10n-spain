@@ -21,9 +21,14 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
         cls.fp_registration_key_01 = cls.env.ref(
             "l10n_es_verifactu_oca.verifactu_registration_keys_01"
         )
+        cls.fp_registration_key_02 = cls.env.ref(
+            "l10n_es_verifactu_oca.verifactu_registration_keys_02"
+        )
         cls.fp_nacional.verifactu_registration_key = cls.fp_registration_key_01
         cls.fp_recargo = cls.env.ref(f"l10n_es.{cls.company.id}_fp_recargo")
         cls.fp_recargo.verifactu_registration_key = cls.fp_registration_key_01
+        cls.fp_extra = cls.env.ref(f"l10n_es.{cls.company.id}_fp_extra")
+        cls.fp_extra.verifactu_registration_key = cls.fp_registration_key_02
         cls.partner = cls.env["res.partner"].create(
             {
                 "name": "Test partner",
