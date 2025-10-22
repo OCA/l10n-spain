@@ -301,8 +301,8 @@ class VerifactuInvoiceEntry(models.Model):
         try:
             serv = rec._connect_verifactu()
             res = serv.RegFactuSistemaFacturacion(header, registro_factura_list)
-        except Exception:
-            res = {}
+        except Exception as AEATError:
+            res = {AEATError}
             create_exception = True
         response_name = ""
         response = (

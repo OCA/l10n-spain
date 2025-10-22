@@ -167,6 +167,63 @@ class TestL10nEsAeatVerifactu(TestVerifactuCommon):
         self.company.verifactu_start_date = False
         self.assertTrue(invoice2.verifactu_enabled)
 
+    def test_verifactu_export_invoice_data(self):
+        mapping = [
+            (
+                "TEST_EXPORT",
+                "out_invoice",
+                [(200, ["s_iva_ns"])],
+                {
+                    "fiscal_position_id": self.fp_extra.id,
+                    "verifactu_registration_key": self.fp_registration_key_02.id,
+                    "verifactu_registration_date": "2026-01-01 19:20:30",
+                },
+            )
+        ]
+        for name, inv_type, lines, extra_vals in mapping:
+            self._create_and_test_invoice_verifactu_dict(
+                name, inv_type, lines, extra_vals
+            )
+
+    def test_verifactu_with_exemption_cause_e5_invoice_data(self):
+        # test exemption cause E5
+        mapping = [
+            (
+                "TEST_EXEMPT_001",
+                "out_invoice",
+                [(200, ["s_iva0_ic"])],
+                {
+                    "fiscal_position_id": self.fp_extra.id,
+                    "verifactu_registration_key": self.fp_registration_key_02.id,
+                    "verifactu_registration_date": "2026-01-01 19:20:30",
+                },
+            )
+        ]
+        for name, inv_type, lines, extra_vals in mapping:
+            self._create_and_test_invoice_verifactu_dict(
+                name, inv_type, lines, extra_vals
+            )
+
+    def test_verifactu_with_exemption_cause_e2_invoice_data(self):
+        # test exemption cause E2
+        mapping_2 = [
+            (
+                "TEST_EXEMPT_002",
+                "out_invoice",
+                [(200, ["s_iva0_e"])],
+                {
+                    "fiscal_position_id": self.fp_nacional.id,
+                    "verifactu_registration_key": self.fp_registration_key_01.id,
+                    "verifactu_registration_date": "2026-01-01 19:20:30",
+                },
+            )
+        ]
+        for name, inv_type, lines, extra_vals in mapping_2:
+            self._create_and_test_invoice_verifactu_dict(
+                name, inv_type, lines, extra_vals
+            )
+        return
+
 
 class TestL10nEsAeatVerifactuQR(TestVerifactuCommon):
     def _get_required_qr_params(self):
