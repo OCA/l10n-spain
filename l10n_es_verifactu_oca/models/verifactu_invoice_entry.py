@@ -296,9 +296,8 @@ class VerifactuInvoiceEntry(models.Model):
         try:
             serv = rec._connect_verifactu()
             res = serv.RegFactuSistemaFacturacion(header, registro_factura_list)
-        except Exception as e:
-            _logger.error("Error sending documents to VERI*FACTU: %s", e)
-            res = {}
+        except Exception as AEATError:
+            res = {AEATError}
             create_exception = True
         response_name = ""
         response = (
