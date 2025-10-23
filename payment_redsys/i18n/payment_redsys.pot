@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,6 +14,18 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/payment_transaction.py:0
+msgid "; multiple order found"
+msgstr ""
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/payment_transaction.py:0
+msgid "; no order found"
+msgstr ""
+
+#. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_merchant_lang__005
 msgid "Alemán"
 msgstr ""
@@ -21,12 +33,12 @@ msgstr ""
 #. module: payment_redsys
 #. odoo-python
 #: code:addons/payment_redsys/models/payment_transaction.py:0
-#, python-format
 msgid "Bank Error: %(status_code)s (%(error_code)s)"
 msgstr ""
 
 #. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_pay_method__z
+#: model:payment.method,name:payment_redsys.payment_method_cc_bizum
 msgid "Bizum"
 msgstr ""
 
@@ -46,11 +58,6 @@ msgid "Code"
 msgstr ""
 
 #. module: payment_redsys
-#: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_currency
-msgid "Currency"
-msgstr ""
-
-#. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_pay_method__d
 msgid "Domiciliacion"
 msgstr ""
@@ -58,7 +65,6 @@ msgstr ""
 #. module: payment_redsys
 #. odoo-python
 #: code:addons/payment_redsys/models/payment_transaction.py:0
-#, python-format
 msgid "Error: %(status_code)s (%(error_code)s)"
 msgstr ""
 
@@ -120,7 +126,6 @@ msgstr ""
 #. module: payment_redsys
 #. odoo-python
 #: code:addons/payment_redsys/models/payment_transaction.py:0
-#, python-format
 msgid "Ok: %s"
 msgstr ""
 
@@ -165,10 +170,14 @@ msgid "Product Description"
 msgstr ""
 
 #. module: payment_redsys
-#: model:account.payment.method,name:payment_redsys.payment_method_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__code__redsys
 #: model:payment.provider,name:payment_redsys.payment_provider_redsys
 msgid "Redsys"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_currency
+msgid "Redsys Currency"
 msgstr ""
 
 #. module: payment_redsys
@@ -179,8 +188,29 @@ msgstr ""
 #. module: payment_redsys
 #. odoo-python
 #: code:addons/payment_redsys/models/payment_transaction.py:0
-#, python-format
 msgid "Redsys: feedback error: %(status_code)s (%(error_code)s)"
+msgstr ""
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/payment_transaction.py:0
+msgid ""
+"Redsys: invalid shasign, received %(shasign)s, computed,\n"
+"for data %(data)s"
+msgstr ""
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/payment_transaction.py:0
+msgid "Redsys: received data for reference %(reference)s"
+msgstr ""
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/payment_transaction.py:0
+msgid ""
+"Redsys: received data with missing reference %(reference)s or pay_id "
+"%(pay_id)s or shashign %(shasign)s"
 msgstr ""
 
 #. module: payment_redsys
