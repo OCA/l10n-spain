@@ -434,7 +434,7 @@ class TestL10nEsAtcMod420Base(TestL10nEsAeatModBase):
         cls.palmas_city = cls.env["res.city"].create(
             {
                 "name": "Las Palmas de Gran Canaria",
-                "zipcode": "35016",
+                "code": "35016",
                 "state_id": cls.env.ref("base.state_es_gc").id,
                 "country_id": cls.env.ref("base.es").id,
             }

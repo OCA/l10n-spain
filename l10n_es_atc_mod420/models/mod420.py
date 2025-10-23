@@ -254,7 +254,7 @@ class L10nEsAtcMod420Report(models.Model):
                     "Please select a different payment type."
                 )
             )
-        if not self.company_id.city_id.zipcode:
+        if not self.company_id.city_id.code:
             messages.append(
                 _(
                     "- Please set the code in the city: %s",
