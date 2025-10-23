@@ -79,6 +79,7 @@ addon | version | maintainers | summary
 [l10n_es_vat_book_invoice_summary](l10n_es_vat_book_invoice_summary/) | 14.0.1.0.0 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Facturas resumen en libro de IVA
 [l10n_es_vat_book_oss](l10n_es_vat_book_oss/) | 14.0.1.0.0 |  | Libro de IVA OSS
 [l10n_es_vat_prorate](l10n_es_vat_prorate/) | 14.0.2.1.0 |  | Prorrata de IVA para la localización española
+[l10n_es_verifactu_oca](l10n_es_verifactu_oca/) | 14.0.1.0.2 |  | Comunicación VERI*FACTU
 [payment_redsys](payment_redsys/) | 14.0.2.0.4 |  | Payment Acquirer: Redsys Implementation
 
 [//]: # (end addons)

@@ -66,6 +66,7 @@ setuptools.setup(
         'odoo14-addon-l10n_es_vat_book_invoice_summary',
         'odoo14-addon-l10n_es_vat_book_oss',
         'odoo14-addon-l10n_es_vat_prorate',
+        'odoo14-addon-l10n_es_verifactu_oca',
         'odoo14-addon-payment_redsys',
     ],
     classifiers=[
