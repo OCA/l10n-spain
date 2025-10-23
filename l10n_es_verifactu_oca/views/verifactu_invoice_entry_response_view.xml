@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--  Copyright 2024 Aures TIC - Almudena de La Puente
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="verifactu_invoice_entry_response_view_tree" model="ir.ui.view">
+        <field name="name">verifactu.invoice.entry.response.view.tree</field>
+        <field name="model">verifactu.invoice.entry.response</field>
+        <field name="arch" type="xml">
+            <tree create="false" delete="false" duplicate="0">
+                <field name="id" />
+                <field name="name" />
+                <field name="date_response" />
+                <field name="verifactu_csv" />
+                <field name="header" />
+            </tree>
+        </field>
+    </record>
+    <record id="verifactu_invoice_entry_response_view_form" model="ir.ui.view">
+        <field name="name">verifactu.invoice.entry.response.view.form</field>
+        <field name="model">verifactu.invoice.entry.response</field>
+        <field name="arch" type="xml">
+            <form
+                string="VERI*FACTU Response"
+                create="false"
+                delete="false"
+                duplicate="0"
+            >
+                <sheet>
+                    <h1 style="font-size: 1.9rem;">
+                        <div class="row">
+                            <div class="col col-md-8">
+                                <label for="name" string="Name" />
+                                <div>
+                                    <field name="name" style="width:80% !important;" />
+                                </div>
+                            </div>
+                        </div>
+                    </h1>
+                    <h2 style="font-size: 1.5rem;">
+                        <label for="date_response" string="Date" />
+                        <div>
+                            <field name="date_response" style="width:80% !important;" />
+                        </div>
+                    </h2>
+                    <notebook>
+                        <page string="Details">
+                            <group>
+                                <group name="verifactu1">
+                                    <field name="response" readonly="1" />
+                                    <field name="header" readonly="1" />
+                                    <field name="invoice_data" readonly="1" />
+                                </group>
+                                <group name="verifactu2">
+                                    <div class="o_row" name="recruitment_target">
+                                        <span>Other details</span>
+                                    </div>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Details">
+                            <field name="response_line_ids" readonly="1" />
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field
+                        name="name"
+                        groups="base.group_user"
+                        options="{'post_refresh': 'recipients'}"
+                    />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="verifactu_invoice_entry_response_view_kanban" model="ir.ui.view">
+        <field name="name">verifactu.invoice.entry.response.view.kanban</field>
+        <field name="model">verifactu.invoice.entry.response</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_activity">
+                    <field name="name" />
+                    <field name="date_response" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="row">
+                                    <div class="col-6 o_kanban_record_headings">
+                                        <strong>
+                                            <span>
+                                                <field name="name" />
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <strong><i
+                                            class="fa fa-clock-o"
+                                            aria-label="Date"
+                                            role="img"
+                                            title="Date"
+                                        /> <t
+                                            t-esc="record.date_response.value"
+                                        /></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span><field name="activity_type_id" /></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+        </field>
+    </record>
+    <record id="verifactu_invoice_entry_response_view_search" model="ir.ui.view">
+        <field name="name">verifactu.invoice.entry.response.view.search</field>
+        <field name="model">verifactu.invoice.entry.response</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Activity Type"
+                        name="name"
+                        context="{'group_by':'activity_type_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_verifactu_invoice_entry_response" model="ir.actions.act_window">
+        <field name="name">VERI*FACTU responses</field>
+        <field name="res_model">verifactu.invoice.entry.response</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No VERI*FACTU responses found!
+            </p>
+        </field>
+    </record>
+    <menuitem
+        id="menu_verifactu_invoice_entry_response"
+        parent="l10n_es_aeat.menu_l10n_es_aeat_config"
+        action="action_verifactu_invoice_entry_response"
+        sequence="51"
+    />
+</odoo>

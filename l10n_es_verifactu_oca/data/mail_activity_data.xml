@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mail_activity_data_exception" model="mail.activity.type">
+        <field name="name">Exception</field>
+        <field name="icon">fa-exclamation-triangle</field>
+        <field name="sequence">5</field>
+        <field name="summary">Connection error with VERI*FACTU</field>
+        <field
+            name="res_model_id"
+            ref="l10n_es_verifactu_oca.model_verifactu_invoice_entry_response"
+        />
+        <field name="default_user_id" ref="base.user_admin" />
+    </record>
+</odoo>
