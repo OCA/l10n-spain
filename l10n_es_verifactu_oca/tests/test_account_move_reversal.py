@@ -14,7 +14,7 @@ class TestAccountMoveReversal(TestVerifactuCommon):
         reversal_wizard = (
             self.env["account.move.reversal"]
             .with_context(
-                {
+                **{
                     "active_model": "account.move",
                     "active_ids": self.invoice.ids,
                 }
@@ -23,6 +23,7 @@ class TestAccountMoveReversal(TestVerifactuCommon):
                 {
                     "reason": "Test reversal",
                     "refund_method": "refund",
+                    "journal_id": self.invoice.journal_id.id,
                 }
             )
         )
@@ -67,7 +68,7 @@ class TestAccountMoveReversal(TestVerifactuCommon):
         reversal_wizard = (
             self.env["account.move.reversal"]
             .with_context(
-                {
+                **{
                     "active_model": "account.move",
                     "active_ids": vendor_bill.ids,
                 }
@@ -76,6 +77,7 @@ class TestAccountMoveReversal(TestVerifactuCommon):
                 {
                     "reason": "Test vendor bill reversal",
                     "refund_method": "refund",
+                    "journal_id": vendor_bill.journal_id.id,
                 }
             )
         )

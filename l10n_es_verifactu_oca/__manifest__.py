@@ -7,7 +7,7 @@
 
 {
     "name": "Comunicación VERI*FACTU",
-    "version": "14.0.1.0.2",
+    "version": "15.0.1.0.0",
     "category": "Accounting/Localizations/EDI",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Aures Tic,ForgeFlow,Tecnativa,Odoo Community Association (OCA)",
