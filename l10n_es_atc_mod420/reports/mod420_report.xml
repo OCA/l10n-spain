@@ -21,7 +21,7 @@
                     t-att-CP="doc.company_id.zip"
                     t-att-SVP="doc.company_id.atc_public_way"
                     t-att-NVP="(doc.company_id.street or '').upper()"
-                    t-att-CMU="doc.company_id.city_id.zipcode"
+                    t-att-CMU="doc.company_id.city_id.code"
                 />
             </IDE>
             <t
