@@ -2,7 +2,7 @@
 # © 2018 FactorLibre - Victor Rodrigo <victor.rodrigo@factorlibre.com>
 # © 2022 ProcessControl - David Ramia <david.ramia@processcontrol.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import _, exceptions, fields, models
+from odoo import exceptions, fields, models
 
 
 class AccountMove(models.Model):
@@ -46,7 +46,7 @@ class AccountMove(models.Model):
             res = super()._aeat_check_exceptions()
         except exceptions.UserError as e:
             if (
-                e.args[0] == _("The partner has not a VAT configured.")
+                e.args[0] == self.env._("The partner has not a VAT configured.")
                 and self.is_invoice_summary
             ):
                 pass
@@ -54,7 +54,9 @@ class AccountMove(models.Model):
                 raise
 
         if self.is_invoice_summary and self.is_purchase_document():
-            raise exceptions.UserError(_("You can't make a supplier summary invoice."))
+            raise exceptions.UserError(
+                self.env._("You can't make a supplier summary invoice.")
+            )
         return res
 
     def write(self, vals):
@@ -64,7 +66,11 @@ class AccountMove(models.Model):
             lambda x: x.is_invoice_summary and x.aeat_state != "not_sent"
         ):
             if "sii_invoice_summary_start" in vals:
-                invoice._raise_exception_sii(_("SII Invoice Summary: First Invoice"))
+                invoice._raise_exception_sii(
+                    self.env._("SII Invoice Summary: First Invoice")
+                )
             if "sii_invoice_summary_end" in vals:
-                invoice._raise_exception_sii(_("SII Invoice Summary: Last Invoice"))
+                invoice._raise_exception_sii(
+                    self.env._("SII Invoice Summary: Last Invoice")
+                )
         return super().write(vals)
