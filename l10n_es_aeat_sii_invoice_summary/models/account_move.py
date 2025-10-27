@@ -20,12 +20,12 @@ class AccountMove(models.Model):
                 if self.sii_invoice_summary_start == self.sii_invoice_summary_end:
                     tipo_factura = "F2" if self.move_type == "out_invoice" else "R5"
                 else:
-                    inv_dict["IDFactura"][
-                        "NumSerieFacturaEmisor"
-                    ] = self.sii_invoice_summary_start
-                    inv_dict["IDFactura"][
-                        "NumSerieFacturaEmisorResumenFin"
-                    ] = self.sii_invoice_summary_end
+                    inv_dict["IDFactura"]["NumSerieFacturaEmisor"] = (
+                        self.sii_invoice_summary_start
+                    )
+                    inv_dict["IDFactura"]["NumSerieFacturaEmisorResumenFin"] = (
+                        self.sii_invoice_summary_end
+                    )
             if "FacturaExpedida" in inv_dict:
                 if "TipoFactura" in inv_dict["FacturaExpedida"]:
                     inv_dict["FacturaExpedida"]["TipoFactura"] = tipo_factura
