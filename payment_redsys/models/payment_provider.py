@@ -125,7 +125,7 @@ class PaymentProvider(models.Model):
         base_url = self._get_website_url()
         callback_url = self._get_website_callback_url()
         values = {
-            "Ds_Sermepa_Url": self.redsys_get_form_action_url(),
+            "Ds_Sermepa_Url": self._redsys_get_api_url(),
             "Ds_Merchant_Amount": str(int(round(tx_values["amount"] * 100))),
             "Ds_Merchant_Currency": self.redsys_currency or "978",
             "Ds_Merchant_Order": (
@@ -147,8 +147,7 @@ class PaymentProvider(models.Model):
             )[:250],
             "Ds_Merchant_MerchantData": self.redsys_merchant_data or "",
             "Ds_Merchant_ProductDescription": (
-                self._product_description(tx_values["reference"])
-                or self.redsys_merchant_description
+                self.redsys_merchant_description
                 and self.redsys_merchant_description[:125]
             ),
             "Ds_Merchant_ConsumerLanguage": (self.redsys_merchant_lang or "001"),
@@ -181,18 +180,6 @@ class PaymentProvider(models.Model):
             params64 = params64.encode()
         dig = hmac.new(key=key, msg=params64, digestmod=hashlib.sha256).digest()
         return base64.b64encode(dig).decode()
-
-    def redsys_get_form_action_url(self):
-        self.ensure_one()
-        return self._redsys_get_api_url()
-
-    def _product_description(self, order_ref):
-        sale_order = self.env["sale.order"].search([("name", "=", order_ref)])
-        res = ""
-        if sale_order:
-            description = "|".join(x.name for x in sale_order.order_line)
-            res = description[:125]
-        return res
 
     def _get_default_payment_method_id(self, code):
         self.ensure_one()
