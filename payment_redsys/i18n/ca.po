@@ -154,11 +154,6 @@ msgid "Payment Method"
 msgstr "Mètode de pagament"
 
 #. module: payment_redsys
-#: model:ir.model,name:payment_redsys.model_account_payment_method
-msgid "Payment Methods"
-msgstr "Mètodes de Pagament"
-
-#. module: payment_redsys
 #: model:ir.model,name:payment_redsys.model_payment_provider
 msgid "Payment Provider"
 msgstr "Proveïdor del pagament"
@@ -267,6 +262,9 @@ msgstr ""
 #: model_terms:payment.provider,done_msg:payment_redsys.payment_provider_redsys
 msgid "Your payment has been successfully processed. Thank you!"
 msgstr "El vostre pagament s'ha processat correctament. Gràcies!"
+
+#~ msgid "Payment Methods"
+#~ msgstr "Mètodes de Pagament"
 
 #, python-format
 #~ msgid "Bank Error: %s (%s)"

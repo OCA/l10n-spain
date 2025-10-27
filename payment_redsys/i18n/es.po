@@ -157,11 +157,6 @@ msgid "Payment Method"
 msgstr "Método de pago"
 
 #. module: payment_redsys
-#: model:ir.model,name:payment_redsys.model_account_payment_method
-msgid "Payment Methods"
-msgstr "Métodos de Pago"
-
-#. module: payment_redsys
 #: model:ir.model,name:payment_redsys.model_payment_provider
 msgid "Payment Provider"
 msgstr "Proveedor del pago"
@@ -269,6 +264,9 @@ msgstr "Su pago ha sido procesado con éxito pero está esperando su aprobación
 #: model_terms:payment.provider,done_msg:payment_redsys.payment_provider_redsys
 msgid "Your payment has been successfully processed. Thank you!"
 msgstr "Su pago ha sido realizado correctamente. Gracias!"
+
+#~ msgid "Payment Methods"
+#~ msgstr "Métodos de Pago"
 
 #, python-format
 #~ msgid "Bank Error: %s (%s)"
