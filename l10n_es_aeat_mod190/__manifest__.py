@@ -11,6 +11,8 @@
     "license": "AGPL-3",
     "depends": ["l10n_es", "l10n_es_aeat"],
     "data": [
+        "security/l10n_es_aeat_mod190_security.xml",
+        "security/ir.model.access.csv",
         "data/perception_key_data.xml",
         "data/perception_subkey_data.xml",
         "data/aeat.model.export.config.csv",
@@ -24,8 +26,6 @@
         "views/mod190_view.xml",
         "views/partner_view.xml",
         "views/account_move_view.xml",
-        "security/ir.model.access.csv",
-        "security/l10n_es_aeat_mod190_security.xml",
     ],
     "installable": True,
 }

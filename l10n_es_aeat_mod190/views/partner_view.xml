@@ -6,12 +6,16 @@
         <field name="inherit_id" ref="l10n_es_aeat.view_partner_form" />
         <field name="arch" type="xml">
             <page id="aeat" position="inside">
-                <group string="Modelo 190" name="mod190">
+                <group
+                    string="Modelo 190"
+                    name="mod190"
+                    groups="l10n_es_aeat_mod190.group_aeat_mod190"
+                >
                     <group name="include_190">
                         <field name="incluir_190" />
                     </group>
                 </group>
-                <group>
+                <group groups="l10n_es_aeat_mod190.group_aeat_mod190">
                     <group
                         groups="account.group_account_invoice,l10n_es_aeat.group_account_aeat"
                         string="Performance key"
@@ -50,6 +54,7 @@
                 <group
                     string="Sons and other decendents"
                     col="3"
+                    groups="l10n_es_aeat_mod190.group_aeat_mod190"
                     invisible="not incluir_190"
                 >
                     <group string="Lower than 3 years">
@@ -73,6 +78,7 @@
                 <group
                     string="Sons and other decendents with discapacity"
                     col="3"
+                    groups="l10n_es_aeat_mod190.group_aeat_mod190"
                     invisible="not incluir_190"
                 >
                     <group string="Between 33% and 65%">
@@ -88,7 +94,12 @@
                         <field name="hijos_y_desc_discapacidad_entero_66" />
                     </group>
                 </group>
-                <group string="Ascendents" col="2" invisible="not incluir_190">
+                <group
+                    string="Ascendents"
+                    col="2"
+                    groups="l10n_es_aeat_mod190.group_aeat_mod190"
+                    invisible="not incluir_190"
+                >
                     <group string="Lower than 75 years">
                         <field name="ascendientes" />
                         <field name="ascendientes_entero" />
@@ -101,6 +112,7 @@
                 <group
                     string="Ascendents with discapacity"
                     col="3"
+                    groups="l10n_es_aeat_mod190.group_aeat_mod190"
                     invisible="not incluir_190"
                 >
                     <group string="Between 33% and 65%">

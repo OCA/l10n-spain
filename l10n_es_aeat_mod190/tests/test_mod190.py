@@ -4,8 +4,9 @@
 
 import logging
 
+from odoo import SUPERUSER_ID
 from odoo.exceptions import UserError
-from odoo.tests import Form
+from odoo.tests import Form, new_test_user
 
 from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
@@ -27,7 +28,17 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
+        cls.account_manager.groups_id |= cls.env.ref(
+            "l10n_es_aeat_mod190.group_aeat_mod190"
+        ) | cls.env.ref("base.group_partner_manager")
+        cls.env = cls.env(
+            context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT),
+            user=cls.account_manager.id,
+        )
+        cls.supplier, cls.customer = (
+            cls.supplier.with_user(cls.env.user),
+            cls.customer.with_user(cls.env.user),
+        )
         cls.supplier.write(
             {
                 "incluir_190": True,
@@ -168,3 +179,63 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         self.assertFalse(record_without_ad.a_nacimiento)
         model190.button_confirm()
         self.assertEqual(model190.state, "done")
+
+    def test_aeat_fields_visibility(self):
+        """Ensure users without permissions cannot see AEAT fields."""
+        # Make sure I can read sensitive data
+        self.assertTrue(
+            self.env.user.has_group("l10n_es_aeat_mod190.group_aeat_mod190")
+        )
+
+        # Create a user without the AEAT group
+        user_without_group = new_test_user(
+            self.env(user=SUPERUSER_ID),
+            "no_190_user",
+            "base.group_partner_manager,base.group_user",
+        )
+
+        # Attempt to access AEAT fields
+        supplier_f = Form(self.supplier)
+        supplier_limited_f = Form(self.supplier.with_user(user_without_group))
+        fields_to_test = [
+            "a_nacimiento",
+            "aeat_perception_key_id",
+            "aeat_perception_subkey_id",
+            "ascendientes",
+            "ascendientes_discapacidad_33",
+            "ascendientes_discapacidad_66",
+            "ascendientes_discapacidad_entero_33",
+            "ascendientes_discapacidad_entero_66",
+            "ascendientes_discapacidad_entero_mr",
+            "ascendientes_discapacidad_mr",
+            "ascendientes_entero",
+            "ascendientes_entero_m75",
+            "ascendientes_m75",
+            "ceuta_melilla",
+            "computo_primeros_hijos_1",
+            "computo_primeros_hijos_2",
+            "computo_primeros_hijos_3",
+            "contrato_o_relacion",
+            "discapacidad",
+            "hijos_y_desc_discapacidad_33",
+            "hijos_y_desc_discapacidad_66",
+            "hijos_y_desc_discapacidad_entero_33",
+            "hijos_y_desc_discapacidad_entero_66",
+            "hijos_y_desc_discapacidad_entero_mr",
+            "hijos_y_desc_discapacidad_mr",
+            "hijos_y_descendientes",
+            "hijos_y_descendientes_entero",
+            "hijos_y_descendientes_m",
+            "hijos_y_descendientes_m_entero",
+            "movilidad_geografica",
+            "nif_conyuge",
+            "representante_legal_vat",
+            "situacion_familiar",
+        ]
+        for field in fields_to_test:
+            with self.subTest(field=field):
+                # User with permissions can read field
+                getattr(supplier_f, field)
+                with self.assertRaises(AssertionError):
+                    # User without permissions can't
+                    getattr(supplier_limited_f, field)

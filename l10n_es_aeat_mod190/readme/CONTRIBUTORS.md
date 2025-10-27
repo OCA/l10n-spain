@@ -10,3 +10,5 @@
   - Manuel Regidor González
 - [Tecnativa](https://www.tecnativa.com):
   - Víctor Martínez
+- [Moduon](https://www.moduon.team)
+  - Jairo Llopis

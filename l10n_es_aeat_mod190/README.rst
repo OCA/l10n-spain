@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===============
 AEAT modelo 190
 ===============
@@ -17,7 +13,7 @@ AEAT modelo 190
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
@@ -40,6 +36,20 @@ patrimoniales e imputaciones de Renta. Resumen anual.
 
 .. contents::
    :local:
+
+Configuration
+=============
+
+Para poder acceder a los campos sensibles que aparecerán en la
+declaración 190, necesita unos permisos especiales:
+
+1. Inicie sesión como administrador con privilegios.
+2. Vaya a **Configuración** > **Usuarios y Compañías** > **Usuarios**.
+3. Seleccione el usuario que necesita acceso.
+4. Haga clic en **Editar** y busque la sección **Grupos**.
+5. Añada el grupo **Datos Sensibles del Modelo 190 de la AEAT**.
+6. Guarde los cambios.
+7. Asegúrese de que el usuario cierre sesión y vuelva a iniciarla.
 
 Usage
 =====
@@ -131,6 +141,10 @@ Contributors
 - `Tecnativa <https://www.tecnativa.com>`__:
 
   - Víctor Martínez
+
+- `Moduon <https://www.moduon.team>`__
+
+  - Jairo Llopis
 
 Maintainers
 -----------
