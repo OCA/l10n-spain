@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,63 +14,54 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
 #, python-format
 msgid "%s tax is not mapped to VERI*FACTU."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
 #, python-format
 msgid "- It does not have a registration key."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
 #, python-format
 msgid "- It does not have a tax key."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
 #, python-format
 msgid "- It does not have all taxes mapped."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
 #, python-format
 msgid "- There are some inconsistent taxes on lines."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
 #, python-format
 msgid "- Your company does not have a VERI*FACTU chaining configured."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
 #, python-format
 msgid "- Your company does not have a VERI*FACTU developer configured."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
 #, python-format
 msgid "- Your company does not have a tax agency configured."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
 #, python-format
 msgid "- Your company's tax agency is not supported."
@@ -92,6 +83,11 @@ msgid "A chaining with the same name already exists!"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_fiscal_position__aeat_active
+msgid "AEAT Active"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.view_verifactu_invoice_entry_form
 msgid "AEAT DATA"
 msgstr ""
@@ -102,27 +98,46 @@ msgid "AEAT JSON Data"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__aeat_send_error
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__aeat_send_error
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__aeat_send_error
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_aeat_mixin__aeat_send_error
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__aeat_send_error
 msgid "AEAT Send Error"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__aeat_content_sent
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__aeat_content_sent
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__aeat_content_sent
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_aeat_mixin__aeat_content_sent
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__aeat_content_sent
 msgid "AEAT last content sent"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__aeat_header_sent
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__aeat_header_sent
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__aeat_header_sent
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_aeat_mixin__aeat_header_sent
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__aeat_header_sent
 msgid "AEAT last header sent"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__aeat_state
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__aeat_state
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__aeat_state
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_aeat_mixin__aeat_state
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__aeat_state
 msgid "AEAT send state"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__account_move__aeat_state__sent_w_errors
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__aeat_mixin__aeat_state__sent_w_errors
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_mixin__aeat_state__sent_w_errors
+msgid "Accepted with errors"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
@@ -166,6 +181,17 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response__activity_type_icon
 msgid "Activity Type Icon"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#: model:ir.model,name:l10n_es_verifactu_oca.model_aeat_mixin
+msgid "Aeat Mixin"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_res_partner__aeat_sending_enabled
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_res_users__aeat_sending_enabled
+msgid "Aeat Sending Enabled"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
@@ -243,14 +269,12 @@ msgid "Chaining reference"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_invoice_entry_response.py:0
 #, python-format
 msgid "Check connection error with VERI*FACTU"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_invoice_entry_response.py:0
 #, python-format
 msgid "Check incorrect invoices from VERI*FACTU"
@@ -264,6 +288,14 @@ msgstr ""
 msgid ""
 "Check to confirm that the document has an absolute amount greater o equal to"
 " 100 000 000,00 euros."
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_res_partner__aeat_simplified_invoice
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_res_users__aeat_simplified_invoice
+msgid ""
+"Checking this mark, invoices done to this partner will be sent to AEAT as "
+"simplified invoices."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
@@ -289,7 +321,6 @@ msgid "Configuration"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_invoice_entry.py:0
 #: model:mail.activity.type,summary:l10n_es_verifactu_oca.mail_activity_data_exception
 #, python-format
@@ -302,7 +333,6 @@ msgid "Contact"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
 #, python-format
 msgid "Could not obtain last document sent to VERI*FACTU for chaining %s."
@@ -417,6 +447,11 @@ msgid "Document Name"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_fiscal_position__aeat_active
+msgid "Enable AEAT communication for this fiscal position?"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.view_company_verifactu_form
 msgid "Enabled?"
 msgstr ""
@@ -442,7 +477,6 @@ msgid "Error Code"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_map.py:0
 #, python-format
 msgid "Error! The dates of the record overlap with an existing record."
@@ -553,8 +587,11 @@ msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_chaining__message_needaction
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_chaining__message_unread
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_developer__message_needaction
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_developer__message_unread
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response__message_needaction
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
@@ -580,14 +617,16 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_invoice_entry.py:0
 #, python-format
 msgid "Incorrect invoices sent to VERI*FACTU"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_bank_statement_line__aeat_send_failed
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_move__aeat_send_failed
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_payment__aeat_send_failed
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_aeat_mixin__aeat_send_failed
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_mixin__aeat_send_failed
 msgid ""
 "Indicates that the last attempt to communicate this document to the SII has "
@@ -595,7 +634,10 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_bank_statement_line__aeat_state
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_move__aeat_state
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_payment__aeat_state
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_aeat_mixin__aeat_state
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_mixin__aeat_state
 msgid ""
 "Indicates the state of this document in relation with the presentation at "
@@ -783,7 +825,6 @@ msgid "Next Activity Summary"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_invoice_entry.py:0
 #, python-format
 msgid "No VAT configured for the company '{}'"
@@ -800,8 +841,11 @@ msgid "No VERI*FACTU responses found!"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__account_move__aeat_state__not_sent
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__aeat_mixin__aeat_state__not_sent
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_invoice_entry__send_state__not_sent
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_invoice_entry_response_line__send_state__not_sent
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_mixin__aeat_state__not_sent
 msgid "Not sent"
 msgstr ""
 
@@ -828,7 +872,7 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_chaining__message_needaction_counter
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_developer__message_needaction_counter
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response__message_needaction_counter
-msgid "Number of messages requiring action"
+msgid "Number of messages which requires an action"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
@@ -839,19 +883,24 @@ msgid "Number of messages with delivery error"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_chaining__message_unread_counter
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_developer__message_unread_counter
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_map_line__verifactu_map_id
 msgid "Parent mapping"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_invoice_entry.py:0
 #, python-format
 msgid "Please, configure the VERI*FACTU certificates for your company"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
 #, python-format
 msgid "Please, configure the VERI*FACTU developer in your company"
@@ -868,12 +917,11 @@ msgid "Previous Invoice Entry"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.report_invoice_document
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.address_layout
 msgid "QR Tributario"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
 #, python-format
 msgid "QR URL value '{}' is not ASCII"
@@ -976,7 +1024,10 @@ msgid "SIF Name"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__aeat_send_failed
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__aeat_send_failed
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__aeat_send_failed
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_aeat_mixin__aeat_send_failed
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__aeat_send_failed
 msgid "SII send failed"
 msgstr ""
@@ -1000,7 +1051,15 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.actions.server,name:l10n_es_verifactu_oca.invoice_entry_send_to_verifactu_ir_actions_server
 #: model:ir.cron,cron_name:l10n_es_verifactu_oca.invoice_entry_send_to_verifactu
+#: model:ir.cron,name:l10n_es_verifactu_oca.invoice_entry_send_to_verifactu
 msgid "Send invoices to VERI*FACTU"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__account_move__aeat_state__sent
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__aeat_mixin__aeat_state__sent
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_mixin__aeat_state__sent
+msgid "Sent"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
@@ -1029,6 +1088,12 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_form
 msgid "Sent header"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_res_partner__aeat_simplified_invoice
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_res_users__aeat_simplified_invoice
+msgid "Simplified invoices in AEAT?"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
@@ -1097,7 +1162,6 @@ msgid "The description for VERI*FACTU invoices if not set"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
 #, python-format
 msgid "The invoice %s cannot be sent to VERI*FACTU because:"
@@ -1109,7 +1173,12 @@ msgid "The last attemp to sent to VERI*FACTU has failed"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
+#: code:addons/l10n_es_verifactu_oca/models/aeat_mixin.py:0
+#, python-format
+msgid "The partner has not a VAT configured."
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
 #, python-format
 msgid ""
@@ -1118,28 +1187,24 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_invoice_entry_response.py:0
 #, python-format
 msgid "There has been an error when trying to connect to VERI*FACTU"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_invoice_entry_response.py:0
 #, python-format
 msgid "There is an error with one or more invoices"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
 #, python-format
 msgid "There's a mismatch in taxes for RE. Check them."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
 #, python-format
 msgid "This invoice is not VERI*FACTU enabled."
@@ -1151,15 +1216,28 @@ msgid "Type of the exception activity on record."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_chaining__message_unread
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_developer__message_unread
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_chaining__message_unread_counter
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_developer__message_unread_counter
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
 #, python-format
 msgid "Unsupported search operator"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.address_layout
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.report_invoice_document
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.verifactu_tax_agency_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.view_account_position_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.view_company_verifactu_form
@@ -1471,7 +1549,6 @@ msgid "VERI*FACTU send state"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_invoice_entry.py:0
 #, python-format
 msgid "VERI*FACTU sending"
@@ -1538,21 +1615,18 @@ msgid "With modifications not sent to VERI*FACTU"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
 #, python-format
 msgid "You can not cancel invoices sent to VERI*FACTU."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
 #, python-format
 msgid "You can not set to draft invoices sent to VERI*FACTU."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_journal.py:0
 #, python-format
 msgid ""
@@ -1561,7 +1635,6 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
 #, python-format
 msgid ""
@@ -1570,28 +1643,30 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
+#: code:addons/l10n_es_verifactu_oca/models/aeat_mixin.py:0
+#, python-format
+msgid "You have to select what account chart template use this company."
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
 #, python-format
 msgid "Your company is not registered in Spain."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
 #, python-format
 msgid "invoice date"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
 #, python-format
 msgid "invoice number"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
 #, python-format
 msgid "third-party number"
