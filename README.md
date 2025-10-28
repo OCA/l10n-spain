@@ -80,6 +80,7 @@ addon | version | maintainers | summary
 [l10n_es_vat_book_igic](l10n_es_vat_book_igic/) | 15.0.1.0.0 | <a href='https://github.com/nicolasramos'><img src='https://github.com/nicolasramos.png' width='32' height='32' style='border-radius:50%;' alt='nicolasramos'/></a> | Libro de IGIC
 [l10n_es_vat_book_oss](l10n_es_vat_book_oss/) | 15.0.1.0.1 |  | Libro de IVA OSS
 [l10n_es_vat_prorate](l10n_es_vat_prorate/) | 15.0.1.1.0 |  | Prorrata de IVA para la localización española
+[l10n_es_verifactu_oca](l10n_es_verifactu_oca/) | 15.0.1.0.0 |  | Comunicación VERI*FACTU
 [payment_redsys](payment_redsys/) | 15.0.1.0.1 |  | Payment Acquirer: Redsys Implementation
 
 [//]: # (end addons)
