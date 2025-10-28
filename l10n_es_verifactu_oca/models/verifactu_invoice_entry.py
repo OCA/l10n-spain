@@ -342,33 +342,15 @@ class VerifactuInvoiceEntry(models.Model):
             and verifactu_response["RespuestaLinea"]
             or []
         )
-        models = self.env["verifactu.mixin"]._get_verifactu_reference_models()
         for verifactu_response_line in verifactu_response_lines:
             invoice_num = verifactu_response_line["IDFactura"]["NumSerieFactura"]
-            document = False
-            for model in models:
-                document = self.env[model].search(
-                    [
-                        ("name", "=", invoice_num),
-                        ("id", "in", self.mapped("document_id")),
-                    ],
-                    limit=1,
-                )
-                if document:
-                    break
-
-            # Skip if document not found
-            if not document:
+            matching_entries = self.filtered(
+                lambda r: r.document_name == invoice_num
+            ).sorted(lambda x: x.create_date, reverse=True)
+            if not matching_entries:
                 continue
-
-            # Find the verifactu.invoice entry for this document
-            verifactu_invoice_entry = document.last_verifactu_invoice_entry_id
-
-            # Skip if no verifactu invoice entry found - this should not happen
-            # in normal flow but can happen in tests with mocked responses
-            if not verifactu_invoice_entry:
-                continue
-
+            verifactu_invoice_entry = matching_entries[0]  # Assume one match
+            document = verifactu_invoice_entry.document
             previous_response_line = document.last_verifactu_response_line_id
             send_state = VERIFACTU_STATE_MAPPING[
                 verifactu_response_line["EstadoRegistro"]
