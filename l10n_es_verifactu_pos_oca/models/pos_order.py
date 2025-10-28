@@ -16,50 +16,6 @@ class PosOrder(models.Model):
     _name = "pos.order"
     _inherit = ["pos.order", "verifactu.mixin"]
 
-    last_verifactu_invoice_entry_id = fields.Many2one(
-        comodel_name="verifactu.invoice.entry",
-        string="Last Verifactu Invoice Entry",
-        help="Last verifactu invoice entry for this POS order.",
-        copy=False,
-        readonly=True,
-    )
-    last_verifactu_response_line_id = fields.Many2one(
-        "verifactu.invoice.entry.response.line",
-        string="Last Verifactu Response Line",
-        readonly=True,
-    )
-    verifactu_registration_key = fields.Many2one(
-        comodel_name="verifactu.registration.key",
-        compute="_compute_verifactu_registration_key",
-        store=True,
-        readonly=False,
-    )
-    verifactu_tax_key = fields.Selection(
-        compute="_compute_verifactu_tax_key",
-        store=True,
-        readonly=False,
-    )
-    verifactu_registration_key_code = fields.Char(
-        compute="_compute_verifactu_registration_key_code",
-        readonly=True,
-    )
-    verifactu_invoice_entry_ids = fields.One2many(
-        "verifactu.invoice.entry",
-        inverse_name="document_id",
-        domain=lambda doc: [("model", "=", doc._name)],
-        string="VeriFactu Invoice Entry",
-        readonly=True,
-        copy=False,
-    )
-    verifactu_response_line_ids = fields.One2many(
-        "verifactu.invoice.entry.response.line",
-        inverse_name="document_id",
-        domain=lambda doc: [("model", "=", doc._name)],
-        string="Verifactu Response Lines",
-        readonly=True,
-        copy=False,
-    )
-
     @api.depends(
         "company_id",
         "company_id.verifactu_enabled",
@@ -123,13 +79,6 @@ class PosOrder(models.Model):
                 order.verifactu_registration_key = verifactu_key_obj.search(
                     domain, limit=1
                 )
-
-    @api.depends("verifactu_registration_key")
-    def _compute_verifactu_registration_key_code(self):
-        for order in self:
-            order.verifactu_registration_key_code = (
-                order.verifactu_registration_key.code
-            )
 
     @api.model
     def _process_order(self, order, draft, existing_order):
@@ -222,12 +171,6 @@ class PosOrder(models.Model):
     def _get_verifactu_issuer(self):
         return self.company_id.partner_id._parse_aeat_vat_info()[2]
 
-    def _get_verifactu_amount_tax(self):
-        return abs(self.amount_tax)  # VeriFactu uses absolute values
-
-    def _get_verifactu_amount_total(self):
-        return abs(self.amount_total)  # VeriFactu uses absolute values
-
     def _verifactu_get_partner(self):
         """Get the partner for AEAT purposes"""
         return (
@@ -248,7 +191,7 @@ class PosOrder(models.Model):
     def _get_verifactu_qr_values(self):
         """Get the QR values for the verifactu"""
         self.ensure_one()
-        amount_total = self._get_verifactu_amount_total()
+        _taxes_dict, _amount_tax, amount_total = self._get_verifactu_taxes_and_total()
         return OrderedDict(
             [
                 ("nif", self._get_verifactu_issuer()),
@@ -416,11 +359,25 @@ class PosOrder(models.Model):
         taxes_S2 = self._get_verifactu_taxes_map(["S2"], document_date)
         taxes_N1 = self._get_verifactu_taxes_map(["N1"], document_date)
         taxes_N2 = self._get_verifactu_taxes_map(["N2"], document_date)
+        taxes_RE = self._get_verifactu_taxes_map(["RE"], document_date)
+        taxes_not_in_total = self._get_verifactu_taxes_map(
+            ["TaxNotIncludedInTotal"], document_date
+        )
+        base_not_in_total = self._get_verifactu_taxes_map(
+            ["BaseNotIncludedInTotal"], document_date
+        )
+        excluded_taxes = taxes_not_in_total + base_not_in_total
         breakdown_taxes = taxes_S1 + taxes_S2 + taxes_N1 + taxes_N2
+        not_in_amount_total = 0.0
+        not_in_taxes = 0.0
 
         # Build tax breakdown
         for tax_line in tax_lines.values():
             tax = tax_line["tax"]
+            if tax in taxes_not_in_total:
+                not_in_amount_total += tax_line["amount"]
+            elif tax in base_not_in_total:
+                not_in_amount_total += tax_line["base"]
             if tax in breakdown_taxes:
                 operation_type = self._get_verifactu_operation_type(
                     tax_line, taxes_S1, taxes_S2, taxes_N1, taxes_N2
@@ -430,13 +387,23 @@ class PosOrder(models.Model):
                     "ClaveRegimen": self.verifactu_registration_key_code,
                     "CalificacionOperacion": operation_type,
                 }
-                tax_dict.update(self._get_verifactu_tax_dict(tax_line, tax_lines))
+                if operation_type not in ("N1", "N2"):
+                    new_tax_dict = self._get_verifactu_tax_dict(tax_line, tax_lines)
+                    tax_dict.update(new_tax_dict)
+                else:
+                    tax_dict.update({"BaseImponibleOimporteNoSujeto": tax_line["base"]})
                 taxes_dict["DetalleDesglose"].append(tax_dict)
-
+            elif tax in excluded_taxes:
+                not_in_taxes += tax_line["amount"]
+            elif tax not in taxes_RE:
+                raise UserError(_("%s tax is not mapped to VERI*FACTU.", tax.name))
+        sign = -1 if self._is_refund_order() else 1
+        amount_tax = self.amount_tax - not_in_taxes * sign
+        amount_total = self.amount_total - not_in_amount_total
         return (
             taxes_dict,
-            self._get_verifactu_amount_tax(),
-            self._get_verifactu_amount_total(),
+            amount_tax,
+            amount_total,
         )
 
     def _get_verifactu_tax_dict(self, tax_line, tax_lines):

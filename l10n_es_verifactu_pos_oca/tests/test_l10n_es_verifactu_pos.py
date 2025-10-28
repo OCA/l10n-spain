@@ -405,31 +405,6 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
             rectified_invoice["NumSerieFactura"], order_1._get_document_serial_number()
         )
 
-    def test_pos_verifactu_absolute_amounts(self):
-        """Test that VeriFactu uses absolute amounts for refunds"""
-        # Create a refund order
-        orders_data = [self._create_ui_order_data(amount=-100)]
-        order_ids = self.env["pos.order"].create_from_ui(orders_data)
-        order = self.env["pos.order"].browse(order_ids[0]["id"])
-
-        # Check that amounts are absolute
-        self.assertEqual(
-            order._get_verifactu_amount_total(), 121.0, "Should use absolute amount"
-        )
-        self.assertEqual(
-            order._get_verifactu_amount_tax(), 21.0, "Should use absolute tax"
-        )
-
-        # Check invoice dict uses absolute values
-        result = order._get_verifactu_invoice_dict_out()
-        alta = result["RegistroAlta"]
-        self.assertEqual(
-            float(alta["ImporteTotal"]), 121.0, "Invoice dict should use absolute total"
-        )
-        self.assertEqual(
-            float(alta["CuotaTotal"]), 21.0, "Invoice dict should use absolute tax"
-        )
-
     def test_pos_verifactu_l10n_es_pos_integration(self):
         """Test integration with l10n_es_pos simplified invoices"""
         # Test that simplified invoice numbers are used correctly
@@ -464,10 +439,9 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
             "TipoFactura=R5", hash_string, "Should use R5 document type in hash"
         )
 
-        # Should use absolute amounts
-        self.assertIn("CuotaTotal=21", hash_string, "Should use absolute tax amount")
+        self.assertIn("CuotaTotal=-21", hash_string, "Should be negative tax amount")
         self.assertIn(
-            "ImporteTotal=121", hash_string, "Should use absolute total amount"
+            "ImporteTotal=-121", hash_string, "Should be negative total amount"
         )
 
     def test_pos_verifactu_mixed_order_types(self):
@@ -499,10 +473,10 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
         )
 
         # Verify amount handling
-        self.assertEqual(order_sale._get_verifactu_amount_total(), 121.0)
-        self.assertEqual(
-            order_refund._get_verifactu_amount_total(), 60.5
-        )  # Absolute value
+        _tx_dict, _am_tax, amount_total = order_sale._get_verifactu_taxes_and_total()
+        self.assertEqual(amount_total, 121.0)
+        _tx_dict, _am_tax, amount_total = order_refund._get_verifactu_taxes_and_total()
+        self.assertEqual(amount_total, -60.5)
 
     def test_pos_verifactu_start_date(self):
         """Test POS order verifactu enablement with start date"""
