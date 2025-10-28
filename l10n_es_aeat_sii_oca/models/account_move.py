@@ -918,11 +918,27 @@ class AccountMove(models.Model):
                 ("sii_send_date", "<=", fields.Datetime.now()),
             ]
         )
-        if documents:
-            batch = self._get_sii_batch()
-            documents = all_documents[:batch]
-            remaining_documents = all_documents - documents
-            documents.confirm_one_document()
+        if not documents:
+            return remaining_documents
+        batch = self._get_sii_batch()
+        documents = all_documents[:batch]
+        remaining_documents = all_documents - documents
+        for doc in documents:
+            try:
+                with self.env.cr.savepoint():
+                    doc.confirm_one_document()
+            except Exception as fault:
+                new_cr = Registry(self.env.cr.dbname).cursor()
+                env = api.Environment(new_cr, self.env.uid, self.env.context)
+                doc_vals = {
+                    "aeat_send_failed": True,
+                    "aeat_send_error": repr(fault)[:60],
+                    "sii_send_date": False,
+                }
+                invoice = env["account.move"].browse(doc.id)
+                invoice.write(doc_vals)
+                new_cr.commit()
+                new_cr.close()
         return remaining_documents
 
     @api.model
