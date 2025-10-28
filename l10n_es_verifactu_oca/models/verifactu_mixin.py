@@ -303,7 +303,7 @@ class VerifactuMixin(models.AbstractModel):
                     "verifactu_chaining_id": chaining.id,
                     "model": self._name,
                     "document_id": self.id,
-                    "document_name": self.name,
+                    "document_name": self._get_document_serial_number(),
                     "previous_invoice_entry_id": previous_invoice_entry_id,
                     "company_id": self.company_id.id,
                     "document_hash": "",
