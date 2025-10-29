@@ -553,3 +553,13 @@ class AccountMove(models.Model):
             ):
                 rec.verifactu_registration_date = datetime.now()
                 rec._generate_verifactu_chaining(entry_type="modify")
+
+    def _reverse_moves(self, default_values_list=None, cancel=False):
+        if not default_values_list:
+            default_values_list = [{} for m in self]
+        for move, default_values in zip(self, default_values_list):
+            if move.move_type == "out_invoice":
+                default_values["verifactu_refund_type"] = "I"
+        return super()._reverse_moves(
+            default_values_list=default_values_list, cancel=cancel
+        )
