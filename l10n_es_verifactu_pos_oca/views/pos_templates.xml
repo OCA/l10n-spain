@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="assets" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <script
+                type="text/javascript"
+                src="/l10n_es_verifactu_pos_oca/static/src/js/models.js"
+            />
+            <link
+                rel="stylesheet"
+                href="/l10n_es_verifactu_pos_oca/static/src/css/pos_receipts.css"
+            />
+        </xpath>
+    </template>
+</odoo>

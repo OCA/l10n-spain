@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates id="template" xml:space="preserve">
     <t
-        t-name="OrderReceipt"
+        t-name="l10n_es_verifactu_pos_oca.OrderReceipt"
         t-inherit="point_of_sale.OrderReceipt"
         t-inherit-mode="extension"
         owl="1"
@@ -11,7 +11,7 @@
                 <div class="pos-receipt-center-align">
                     <span>QR Tributario:</span>
                     <img
-                        t-att-src="receipt.verifactu_qr"
+                        t-att-src="'/report/barcode/QR/' + receipt.verifactu_qr + '?width=150&amp;height=150'"
                         class="pos-receipt-qrcode verifactu-qr"
                     />
                     <span>VERI*FACTU</span>

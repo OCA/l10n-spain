@@ -59,11 +59,13 @@ Authors
 ~~~~~~~
 
 * Factor Libre S.L.
+* Binhex
 
 Contributors
 ~~~~~~~~~~~~
 
 * Luis J. Salvatierra <luis.salvatierra@factorlibre.com>
+* Abraham J. Febres <a.febres@binhex.cloud>
 
 
 Maintainers
