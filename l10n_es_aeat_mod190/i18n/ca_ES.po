@@ -190,6 +190,11 @@ msgid "AEAT 190 reports"
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
+#: model:res.groups,name:l10n_es_aeat_mod190.group_aeat_mod190
+msgid "AEAT Model 190 (with access to sensitive data)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod190.action_l10n_es_aeat_mod190_report
 msgid "AEAT model 190"
 msgstr ""
@@ -248,7 +253,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod190
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
-#, python-format
 msgid "All partner records fields (country, VAT number) must be filled."
 msgstr ""
 
@@ -431,7 +435,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_fiscal_position__aeat_perception_key_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move__aeat_perception_key_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move_line__aeat_perception_key_id
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_payment__aeat_perception_key_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__aeat_perception_key_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__aeat_perception_key_id
 msgid "Clave percepción"
@@ -813,7 +816,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_fiscal_position__is_aeat_perception_subkey_visible
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move__is_aeat_perception_subkey_visible
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move_line__is_aeat_perception_subkey_visible
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_payment__is_aeat_perception_subkey_visible
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__is_aeat_perception_subkey_visible
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__is_aeat_perception_subkey_visible
 msgid "Is Aeat Perception Subkey Visible"
@@ -1156,7 +1158,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod190
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
-#, python-format
 msgid "Provincia no definida en el cliente"
 msgstr ""
 
@@ -1252,7 +1253,6 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_account_fiscal_position__aeat_perception_key_id
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_account_move__aeat_perception_key_id
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_account_move_line__aeat_perception_key_id
-#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_account_payment__aeat_perception_key_id
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__aeat_perception_key_id
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_users__aeat_perception_key_id
 msgid ""
@@ -1372,7 +1372,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_fiscal_position__aeat_perception_subkey_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move__aeat_perception_subkey_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move_line__aeat_perception_subkey_id
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_payment__aeat_perception_subkey_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__aeat_perception_subkey_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_users__aeat_perception_subkey_id
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
@@ -1402,14 +1401,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod190
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
-#, python-format
 msgid "The perception key of the partner, %(partner)s. Must be filled."
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
-#, python-format
 msgid "The state is not defined in the partner, %s"
 msgstr ""
 
@@ -1452,7 +1449,6 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_account_bank_statement_line__aeat_perception_subkey_id
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_account_fiscal_position__aeat_perception_subkey_id
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_account_move__aeat_perception_subkey_id
-#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_account_payment__aeat_perception_subkey_id
 msgid ""
 "Tratándose de percepciones correspondientes a las claves\n"
 "                B, E, F, G, H, I, K y L, deberá consignarse, además, la\n"
