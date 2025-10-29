@@ -290,3 +290,17 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
             items = line.split(";")
             self.assertTrue(items[0] in ("PT", "FR"))
             self.assertEqual(items[6], self.hs_code.local_code)
+
+    def test_intrastat_greece_declaration(self):
+        """Test that intrastat declaration for Greece works as expected."""
+        partner_greece = self.env["res.partner"].create(
+            {"name": "Test Partner Greece", "country_id": self.env.ref("base.gr").id}
+        )
+        invoice = self._create_invoice_for_intrastat(
+            "out_invoice", partner_greece, self.fiscal_position_b2b
+        )
+        report_dispatches = self._create_declaration("dispatches")
+        report_dispatches.action_gather()
+        computation_lines = report_dispatches.computation_line_ids
+        self.assertIn(invoice, computation_lines.mapped("invoice_id").ids)
+        self.assertIn("EL", computation_lines.mapped("src_dest_country_code"))

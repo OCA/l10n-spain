@@ -224,6 +224,30 @@ class IntrastatProductComputationLine(models.Model):
             res["partner_vat"] = self.partner_vat
         return res
 
+    @api.depends("src_dest_country_id")
+    def _compute_src_dest_country_code(self):
+        res = super()._compute_src_dest_country_code()
+        for record in self.filtered(lambda rec: rec.src_dest_country_id):
+            code = record.src_dest_country_code
+            iso_code = record.partner_id._map_aeat_country_iso_code(
+                record.src_dest_country_id
+            )
+            if iso_code and iso_code != code:
+                record.src_dest_country_code = iso_code
+        return res
+
+    @api.depends("product_origin_country_id")
+    def _compute_product_origin_country_code(self):
+        res = super()._compute_product_origin_country_code()
+        for record in self.filtered(lambda rec: rec.product_origin_country_id):
+            code = record.product_origin_country_code
+            iso_code = record.partner_id._map_aeat_country_iso_code(
+                record.product_origin_country_id
+            )
+            if iso_code and iso_code != code:
+                record.product_origin_country_code = iso_code
+        return res
+
 
 class IntrastatProductDeclarationLine(models.Model):
     _inherit = "intrastat.product.declaration.line"
