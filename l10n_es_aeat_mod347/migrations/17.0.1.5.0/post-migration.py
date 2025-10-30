@@ -6,10 +6,11 @@ from openupgradelib import openupgrade
 from odoo import SUPERUSER_ID, api
 
 
-def migrate(cr, version):
-    if not openupgrade.column_exists(cr, "res_partner", "old_not_in_mod347_17"):
+@openupgrade.migrate()
+def migrate(env, version):
+    if not openupgrade.column_exists(env.cr, "res_partner", "old_not_in_mod347_17"):
         return  # Already migrated in 16
-    env = api.Environment(cr, SUPERUSER_ID, {})
+    env = api.Environment(env.cr, SUPERUSER_ID, {})
     openupgrade.convert_to_company_dependent(
-        env, "res.partner", "old_not_in_mod347", "old_not_in_mod347_17"
+        env, "res.partner", "old_not_in_mod347_17", "not_in_mod347"
     )
