@@ -1,0 +1,38 @@
+{
+  "IDFactura": {
+    "IDEmisorFactura": {
+      "NIF": "U2687761C"
+    },
+    "NumSerieFacturaEmisor": "1",
+    "FechaExpedicionFacturaEmisor": "01-01-2020",
+    "NumSerieFacturaEmisorResumenFin": "10"
+  },
+  "PeriodoLiquidacion": {
+    "Ejercicio": 2020,
+    "Periodo": "01"
+  },
+  "FacturaExpedida": {
+    "TipoFactura": "F4",
+    "ClaveRegimenEspecialOTrascendencia": "01",
+    "DescripcionOperacion": "/",
+    "TipoDesglose": {
+      "DesgloseFactura": {
+        "Sujeta": {
+          "NoExenta": {
+            "TipoNoExenta": "S1",
+            "DesgloseIVA": {
+              "DetalleIVA": [
+                {
+                  "TipoImpositivo": "10.0",
+                  "BaseImponible": 83.33,
+                  "CuotaRepercutida": 8.33
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "ImporteTotal": 91.66
+  }
+}
