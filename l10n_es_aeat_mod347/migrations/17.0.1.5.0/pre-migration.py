@@ -8,5 +8,5 @@ def migrate(cr, version):
     if not openupgrade.column_exists(cr, "res_partner", "not_in_mod347"):
         return  # Already migrated in 16
     openupgrade.rename_columns(
-        cr, {"res_partner": [("not_in_mod347", "old_not_in_mod347")]}
+        cr, {"res_partner": [("not_in_mod347", "old_not_in_mod347_17")]}
     )
