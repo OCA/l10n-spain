@@ -88,6 +88,11 @@ msgid "Account Move Reversal"
 msgstr "Revocación de movimiento en cuenta"
 
 #. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Additional information"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
 msgid "Amount"
 msgstr "Importe"
@@ -139,6 +144,11 @@ msgid ""
 "Base imponible modificada por resolución firme, judicial o administrativa"
 msgstr ""
 "Base imponible modificada por resolución firme, judicial o administrativa"
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Book"
+msgstr ""
 
 #. module: l10n_es_facturae
 #. odoo-python
@@ -446,6 +456,41 @@ msgid "Facturae Refund Reason"
 msgstr "Motivo de Reembolso según Facturae"
 
 #. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_registration_additional
+msgid "Facturae Registration Additional"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_registration_book
+msgid "Facturae Registration Book"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_registration_folio
+msgid "Facturae Registration Folio"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_registration_location
+msgid "Facturae Registration Location"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_registration_section
+msgid "Facturae Registration Section"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_registration_sheet
+msgid "Facturae Registration Sheet"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_registration_volume
+msgid "Facturae Registration Volume"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae_start_date
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae_start_date
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move_line__facturae_start_date
@@ -520,6 +565,11 @@ msgstr "Nombre de archivo"
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__create_facturae__state__first
 msgid "First"
 msgstr "Primero"
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Folio"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_hide_discount
@@ -680,6 +730,11 @@ msgid "Literales legales"
 msgstr "Literales legales"
 
 #. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Location"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__note
 msgid "Log"
 msgstr "Registro (Log)"
@@ -831,6 +886,11 @@ msgid "Refund Reason"
 msgstr "Motivo de reembolso"
 
 #. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Registration data"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields,help:l10n_es_facturae.field_create_facturae__firmar_facturae
 msgid "Requires certificate in the company file"
 msgstr "Requiere certificado en la ficha de la compañía"
@@ -839,6 +899,11 @@ msgstr "Requiere certificado en la ficha de la compañía"
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__create_facturae__state__second
 msgid "Second"
 msgstr "Segundo"
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Section"
+msgstr ""
 
 #. module: l10n_es_facturae
 #. odoo-python
@@ -859,6 +924,11 @@ msgstr "La cuenta seleccionada es demasiado corta"
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move_reversal__refund_reason__02
 msgid "Serie de la factura"
 msgstr "Serie de la factura"
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Sheet"
+msgstr ""
 
 #. module: l10n_es_facturae
 #. odoo-python
@@ -943,6 +1013,11 @@ msgstr "Unidad Tramitadora"
 #, python-format
 msgid "Vat must be defined for factura-e enabled partners."
 msgstr "El iva debe definirse para los socios habilitados para factura-e."
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Volume"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae_withheld_amount

@@ -83,6 +83,11 @@ msgid "Account Move Reversal"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Additional information"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
 msgid "Amount"
 msgstr ""
@@ -130,6 +135,11 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move_reversal__refund_reason__84
 msgid ""
 "Base imponible modificada por resolución firme, judicial o administrativa"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Book"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -434,6 +444,41 @@ msgid "Facturae Refund Reason"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_registration_additional
+msgid "Facturae Registration Additional"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_registration_book
+msgid "Facturae Registration Book"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_registration_folio
+msgid "Facturae Registration Folio"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_registration_location
+msgid "Facturae Registration Location"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_registration_section
+msgid "Facturae Registration Section"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_registration_sheet
+msgid "Facturae Registration Sheet"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_registration_volume
+msgid "Facturae Registration Volume"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae_start_date
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae_start_date
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move_line__facturae_start_date
@@ -505,6 +550,11 @@ msgstr ""
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__create_facturae__state__first
 msgid "First"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Folio"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -658,6 +708,11 @@ msgid "Literales legales"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Location"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__note
 msgid "Log"
 msgstr ""
@@ -808,6 +863,11 @@ msgid "Refund Reason"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Registration data"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields,help:l10n_es_facturae.field_create_facturae__firmar_facturae
 msgid "Requires certificate in the company file"
 msgstr ""
@@ -815,6 +875,11 @@ msgstr ""
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__create_facturae__state__second
 msgid "Second"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Section"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -835,6 +900,11 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move__facturae_refund_reason__02
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move_reversal__refund_reason__02
 msgid "Serie de la factura"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Sheet"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -916,6 +986,11 @@ msgstr ""
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
 #, python-format
 msgid "Vat must be defined for factura-e enabled partners."
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Volume"
 msgstr ""
 
 #. module: l10n_es_facturae
