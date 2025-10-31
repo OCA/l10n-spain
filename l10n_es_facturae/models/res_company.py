@@ -15,3 +15,10 @@ class ResCompany(models.Model):
         string="Hide Facturae discount",
         help="The unit price will be recalculated applying the discount",
     )
+    facturae_registration_book = fields.Char(size=20)
+    facturae_registration_location = fields.Char(size=20)
+    facturae_registration_sheet = fields.Char(size=20)
+    facturae_registration_folio = fields.Char(size=20)
+    facturae_registration_section = fields.Char(size=20)
+    facturae_registration_volume = fields.Char(size=20)
+    facturae_registration_additional = fields.Char(size=20)
