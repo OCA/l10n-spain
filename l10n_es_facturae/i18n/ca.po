@@ -88,6 +88,11 @@ msgid "Account Move Reversal"
 msgstr "Revocació de moviment de compte"
 
 #. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Additional information"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
 msgid "Amount"
 msgstr ""
@@ -141,9 +146,13 @@ msgstr ""
 "Base imposable modificada per resolució ferma, judicial o administrativa"
 
 #. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Book"
+msgstr ""
+
+#. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
-#, python-format
 msgid "City must be defined for Spanish factura-e enabled partners."
 msgstr ""
 
@@ -166,49 +175,42 @@ msgstr "Companyies"
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
 msgid "Company city not provided"
 msgstr "No s'ha informat ciutat de l'empresa"
 
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
 msgid "Company country not provided"
 msgstr "No s'ha informat país de l'empresa"
 
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
 msgid "Company state not provided"
 msgstr "No s'ha informat província de l'empresa"
 
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
 msgid "Company street not provided"
 msgstr "No s'ha informat adreça de l'empresa"
 
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
 msgid "Company vat is too small"
 msgstr "El NIF de la companyia es massa petit"
 
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
 msgid "Company vat not provided"
 msgstr "No s'ha facilitat el NIF de la companyia"
 
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
 msgid "Company zip not provided"
 msgstr "No s'ha informat codi postal de l'empresa"
 
@@ -221,14 +223,12 @@ msgstr "Contacte"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__correction_method
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__correction_method
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move_reversal__correction_method
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__correction_method
 msgid "Correction Method"
 msgstr "Mètode de correcció"
 
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
-#, python-format
 msgid "Country must be defined for factura-e enabled partners."
 msgstr "Cal definir país als contactes habilitats per factura-e."
 
@@ -324,17 +324,12 @@ msgstr "Exportar"
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/wizard/create_facturae.py:0
-#, python-format
 msgid ""
 "Export successful\n"
 "\n"
 "Summary:\n"
-"Move number: %s\n"
+"Move number: %(move_name)s\n"
 msgstr ""
-"Exportació correcta\n"
-"\n"
-"Resum:\n"
-"Mou el número: %s\n"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__facturae
@@ -345,7 +340,6 @@ msgstr "Factura electrònica"
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_partner_form
@@ -367,7 +361,6 @@ msgstr "Codi Facturae"
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
 msgid "Facturae Configuration"
 msgstr "Configuració Facturae"
 
@@ -375,7 +368,6 @@ msgstr "Configuració Facturae"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae_end_date
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae_end_date
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move_line__facturae_end_date
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae_end_date
 msgid "Facturae End Date"
 msgstr "Data final Facturae"
 
@@ -388,7 +380,6 @@ msgstr "Data del fitxer Facturae"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae_file_reference
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae_file_reference
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move_line__facturae_file_reference
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae_file_reference
 msgid "Facturae File Reference"
 msgstr "Referència del fitxer Facturae"
 
@@ -421,7 +412,6 @@ msgstr "Data de contracte de receptor Facturae"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae_receiver_contract_reference
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae_receiver_contract_reference
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move_line__facturae_receiver_contract_reference
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae_receiver_contract_reference
 msgid "Facturae Receiver Contract Reference"
 msgstr "Referència de contracte de receptor Facturae"
 
@@ -434,22 +424,54 @@ msgstr "Data de transacció de receptor Facturae"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae_receiver_transaction_reference
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae_receiver_transaction_reference
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move_line__facturae_receiver_transaction_reference
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae_receiver_transaction_reference
 msgid "Facturae Receiver Transaction Reference"
 msgstr "Referència de transacció de receptor Facturae"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae_refund_reason
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae_refund_reason
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae_refund_reason
 msgid "Facturae Refund Reason"
 msgstr "Motiu de reemborsament Facturae"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_registration_additional
+msgid "Facturae Registration Additional"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_registration_book
+msgid "Facturae Registration Book"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_registration_folio
+msgid "Facturae Registration Folio"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_registration_location
+msgid "Facturae Registration Location"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_registration_section
+msgid "Facturae Registration Section"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_registration_sheet
+msgid "Facturae Registration Sheet"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_registration_volume
+msgid "Facturae Registration Volume"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae_start_date
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae_start_date
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move_line__facturae_start_date
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae_start_date
 msgid "Facturae Start Date"
 msgstr "Data inicial Facturae"
 
@@ -483,7 +505,6 @@ msgstr "Facturae sense signar"
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
 msgid "Facturae start and end dates are both required if one of them is filled"
 msgstr "Si s'omple data inicial o final de Facturae, cal omplir ambdues"
 
@@ -518,6 +539,11 @@ msgstr "Nom de l'arxiu"
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__create_facturae__state__first
 msgid "First"
 msgstr "Primer"
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Folio"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_hide_discount
@@ -629,7 +655,6 @@ msgstr "Identificació fiscal Receptor"
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
 msgid "Invoice %s"
 msgstr "Factura %s"
 
@@ -651,7 +676,6 @@ msgstr "Anotació comptable"
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__l10n_es_facturae_attachment_ids
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__l10n_es_facturae_attachment_ids
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__l10n_es_facturae_attachment_ids
 msgid "L10N Es Facturae Attachment"
 msgstr "L10N Es Facturae Adjunt"
 
@@ -672,6 +696,11 @@ msgstr "Darrera actualització el"
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move_reversal__refund_reason__15
 msgid "Literales legales"
 msgstr "Literals legals"
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Location"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__note
@@ -726,28 +755,24 @@ msgstr "Altre"
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
 msgid "Partner state not provided"
 msgstr "No s'ha informat de l'estat del partner"
 
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
 msgid "Partner street address is not provided"
 msgstr "No s'ha informat adreça del contacte"
 
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
 msgid "Partner vat is too small"
 msgstr "El NIF del partner és massa petit"
 
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
 msgid "Partner vat not provided"
 msgstr "No s'ha facilitat el NIF del partner"
 
@@ -759,7 +784,6 @@ msgstr "Modes de pagament"
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
 msgid "Payment mode is required"
 msgstr "El mode de pagament és obligatori"
 
@@ -824,6 +848,11 @@ msgid "Refund Reason"
 msgstr "Motiu de reemborsament"
 
 #. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Registration data"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields,help:l10n_es_facturae.field_create_facturae__firmar_facturae
 msgid "Requires certificate in the company file"
 msgstr "Requereix certificat en la fitxa d'empresa"
@@ -834,16 +863,19 @@ msgid "Second"
 msgstr "Segon"
 
 #. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Section"
+msgstr ""
+
+#. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
 msgid "Selected account BIC must be 11"
 msgstr "El compte BIC seleccionat ha d'ésser 11"
 
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
 msgid "Selected account is too small"
 msgstr "El compte seleccionat és massa petit"
 
@@ -854,9 +886,13 @@ msgid "Serie de la factura"
 msgstr "Sèrie de la factura"
 
 #. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Sheet"
+msgstr ""
+
+#. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
 msgid "Start date cannot be later than end date"
 msgstr "La data inicial no pot ser posterior a la final"
 
@@ -868,14 +904,12 @@ msgstr "Estat"
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
-#, python-format
 msgid "State must be defined for factura-e enabled partners."
 msgstr "Cal definir la província per a contactes habilitats per factura-e."
 
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
-#, python-format
 msgid "Street must be defined for factura-e enabled partners."
 msgstr "Cal definir adreça per a contactes habilitats per factura-e."
 
@@ -887,14 +921,12 @@ msgstr "Impost"
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
 msgid "Taxes not provided in move line %s"
 msgstr "Impostos no proporcionats a la línia de moviment %s"
 
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/reports/report_facturae.py:0
-#, python-format
 msgid ""
 "The generated XML file is not valid against the official XML Schema "
 "Definition. The generated XML file and the full error have been written in "
@@ -909,7 +941,6 @@ msgstr ""
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/reports/report_facturae.py:0
-#, python-format
 msgid "The provided certificate is not found in the system."
 msgstr ""
 
@@ -934,28 +965,29 @@ msgstr "Unitat tramitadora"
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/res_partner.py:0
-#, python-format
 msgid "Vat must be defined for factura-e enabled partners."
 msgstr "Cal definir el NIF per a contactes habilitats per a factura-e."
 
 #. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Volume"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae_withheld_amount
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae_withheld_amount
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae_withheld_amount
 msgid "Withheld Amount"
 msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae_withheld_percent
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae_withheld_percent
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae_withheld_percent
 msgid "Withheld Percent"
 msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae_withheld_reason
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae_withheld_reason
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae_withheld_reason
 msgid "Withheld Reason"
 msgstr ""
 
@@ -967,7 +999,6 @@ msgstr ""
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
 msgid "You can only create Facturae files for moves that have been validated."
 msgstr ""
 "Només podeu crear fitxers Facturae per a moviments que hagin estat validats."
@@ -975,7 +1006,6 @@ msgstr ""
 #. module: l10n_es_facturae
 #. odoo-python
 #: code:addons/l10n_es_facturae/wizard/create_facturae.py:0
-#, python-format
 msgid "You can only select one move to export"
 msgstr "Només podeu seleccionar un moviment per exportar"
 
@@ -1079,6 +1109,18 @@ msgstr "[19] Pagament amb targeta"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_proponente
 msgid "Órgano proponente"
 msgstr "Ôrgan proponent"
+
+#, python-format
+#~ msgid ""
+#~ "Export successful\n"
+#~ "\n"
+#~ "Summary:\n"
+#~ "Move number: %s\n"
+#~ msgstr ""
+#~ "Exportació correcta\n"
+#~ "\n"
+#~ "Resum:\n"
+#~ "Mou el número: %s\n"
 
 #, python-format
 #~ msgid "Oficina Contable not provided"
