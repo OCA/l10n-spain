@@ -3,7 +3,7 @@
 
 {
     "name": "Comunicación VERI*FACTU: OSS",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Factor Libre, Odoo Community Association (OCA)",
