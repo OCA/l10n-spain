@@ -123,7 +123,19 @@
         <LegalEntity t-if="buyer_type == 'J'">
             <CorporateName t-length="80" t-out="partner.name" />
             <TradeName t-length="40" t-out="partner.name" />
-            <RegistrationData t-if="False" />
+            <RegistrationData>
+                <Book t-out="company.facturae_registration_book" />
+                <RegisterOfCompaniesLocation
+                    t-out="company.facturae_registration_location"
+                />
+                <Sheet t-out="company.facturae_registration_sheet" />
+                <Folio t-out="company.facturae_registration_folio" />
+                <Section t-out="company.facturae_registration_section" />
+                <Volume t-out="company.facturae_registration_volume" />
+                <AdditionalRegistrationData
+                    t-out="company.facturae_registration_additional"
+                />
+            </RegistrationData>
             <t t-call="l10n_es_facturae.address_contact">
             </t>
         </LegalEntity>
