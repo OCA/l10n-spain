@@ -339,7 +339,6 @@ class L10nEsVatBook(models.Model):
             self._account_move_line_domain(taxes=taxes, account=account)
         )
 
-    @ormcache("self.id")
     def get_pos_partner_ids(self):
         return (
             self.env["res.partner"]
