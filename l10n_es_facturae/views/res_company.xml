@@ -16,6 +16,21 @@
                         <field name="facturae_version" />
                         <field name="facturae_hide_discount" />
                     </group>
+                    <group string="Registration data">
+                        <field name="facturae_registration_book" string="Book" />
+                        <field
+                            name="facturae_registration_location"
+                            string="Location"
+                        />
+                        <field name="facturae_registration_sheet" string="Sheet" />
+                        <field name="facturae_registration_folio" string="Folio" />
+                        <field name="facturae_registration_section" string="Section" />
+                        <field name="facturae_registration_volume" string="Volume" />
+                        <field
+                            name="facturae_registration_additional"
+                            string="Additional information"
+                        />
+                    </group>
                 </page>
             </notebook>
         </field>

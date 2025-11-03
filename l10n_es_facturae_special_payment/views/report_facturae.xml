@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!--# Copyright 2025 (APSL - Nagarro) Bernat Obrador
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).-->
+
+  <template
+        id="template_facturae_inherit_special_payment"
+        inherit_id="l10n_es_facturae.template_facturae"
+    >
+
+    <xpath expr="//PaymentDetails/Installment/PaymentMeans" position="after">
+      <!--Used for special payments, like factoring-->
+      <t
+                t-set="credit_bank"
+                t-value="move.facturae_factoring_bank_account_id or (partner_bank if partner_bank else False)"
+            />
+
+      <AccountToBeCredited t-if="payment_means == '13' and credit_bank">
+        <t t-set="bank" t-value="credit_bank.bank_id" />
+
+        <IBAN
+                    t-minlength="5"
+                    t-length="34"
+                    t-esc="''.join((credit_bank.acc_number or '').split())"
+                />
+
+        <BankCode t-length="60" t-if="bank and bank.code" t-esc="bank.code" />
+        <BranchCode t-esc="''" t-length="60" t-if="False" />
+
+        <BranchInSpainAddress
+                    t-if="bank and bank.country and bank.country.code == 'ES'"
+                >
+          <Address t-length="80" t-out="(bank.street or '') + (bank.street2 or '')" />
+          <PostCode t-length="5" t-out="(bank.zip or '').zfill(5)" />
+          <Town t-length="50" t-out="bank.city or ''" />
+          <Province t-length="20" t-out="(bank.state and bank.state.name) or ''" />
+          <CountryCode t-out="(bank.country and bank.country.code_alpha3) or ''" />
+        </BranchInSpainAddress>
+
+        <OverseasBranchAddress
+                    t-if="bank and bank.country and bank.country.code != 'ES'"
+                >
+          <Address t-length="80" t-out="(bank.street or '') + (bank.street2 or '')" />
+          <PostCodeAndTown t-length="50" t-out="(bank.zip or '') + (bank.city or '')" />
+          <Province t-length="20" t-out="(bank.state and bank.state.name) or ''" />
+          <CountryCode t-out="(bank.country and bank.country.code_alpha3) or ''" />
+        </OverseasBranchAddress>
+
+        <BIC t-minlength="11" t-length="11" t-if="bank and bank.bic" t-esc="bank.bic" />
+      </AccountToBeCredited>
+    </xpath>
+
+    <xpath expr="//Installment/DebitReconciliationReference" position="before">
+        <PaymentReconciliationReference
+                t-if="move.facturae_payment_reconciliation_reference"
+                t-out="move.facturae_payment_reconciliation_reference"
+            />
+    </xpath>
+
+    <xpath
+            expr="//PaymentDetails/Installment/DebitReconciliationReference"
+            position="attributes"
+        >
+      <attribute name="t-if">move.facturae_debit_reconciliation_reference</attribute>
+      <attribute name="t-out">move.facturae_debit_reconciliation_reference</attribute>
+    </xpath>
+
+  </template>
+</odoo>
