@@ -826,12 +826,25 @@ class AccountMove(models.Model):
         condition_2 = [("fiscal_position_id.aeat_active", operator, value)]
         search_ko = (operator == "=" and not value) or (operator == "!=" and value)
         exp_condition = OR if search_ko else AND
+        condition_3 = []
         if not search_ko:
+            for company in self.env.companies.filtered("sii_enabled"):
+                if company.sii_start_date:
+                    condition_3.append(
+                        [
+                            ("company_id", "=", company.id),
+                            ("date", ">=", company.sii_start_date),
+                        ]
+                    )
+                else:
+                    condition_3.append([("company_id", "=", company.id)])
+            if condition_3:
+                condition_3 = OR(condition_3)
             condition_2 = OR([condition_2, [("fiscal_position_id", "=", False)]])
         return AND(
             [
                 [("move_type", "in", invoice_types)],
-                exp_condition([domain, exp_condition([condition_1, condition_2])]),
+                exp_condition([domain, condition_1, condition_2, condition_3]),
             ]
         )
 
