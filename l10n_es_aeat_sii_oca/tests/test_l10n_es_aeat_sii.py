@@ -587,8 +587,11 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         invoice1 = self._create_invoice("out_invoice")
         invoice1.invoice_date = "2019-01-01"
         self.assertTrue(invoice1.sii_enabled)
+        self.assertTrue(invoice1.filtered_domain([("sii_enabled", "=", True)]))
         invoice2 = self._create_invoice("out_invoice")
         invoice2.invoice_date = "2017-01-01"
         self.assertFalse(invoice2.sii_enabled)
+        self.assertTrue(invoice2.filtered_domain([("sii_enabled", "=", False)]))
         self.company.sii_start_date = False
         self.assertTrue(invoice2.sii_enabled)
+        self.assertTrue(invoice2.filtered_domain([("sii_enabled", "=", True)]))
