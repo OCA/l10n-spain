@@ -72,7 +72,7 @@ class L10nEsAeatMod190Report(models.Model):
                 )
             else:
                 tax_lines = item.tax_line_ids.filtered(
-                    lambda x: x.field_number in {11, 13, 15}
+                    lambda x: x.field_number in {11, 13, 15, 18}
                 )
                 for move_line in tax_lines.move_line_ids:
                     value += move_line.debit - move_line.credit
@@ -95,7 +95,7 @@ class L10nEsAeatMod190Report(models.Model):
                 )
             else:
                 tax_lines = item.tax_line_ids.filtered(
-                    lambda x: x.field_number in {12, 14, 16}
+                    lambda x: x.field_number in {12, 14, 16, 19}
                 )
                 for move_line in tax_lines.move_line_ids:
                     value += move_line.credit - move_line.debit
@@ -119,7 +119,8 @@ class L10nEsAeatMod190Report(models.Model):
         manual_records.partner_record_ids.unlink()
         for report in self - manual_records:
             tax_lines = report.tax_line_ids.filtered(
-                lambda x, report=report: x.field_number in (11, 12, 13, 14, 15, 16, 17)
+                lambda x, report=report: x.field_number
+                in (11, 12, 13, 14, 15, 16, 17, 18, 19)
                 and x.res_id == report.id
             )
             tax_line_vals = {}
@@ -585,6 +586,8 @@ class L10nEsAeatMod190ReportLine(models.Model):
                 "15": report._get_grouped_data(15, domain),
                 "16": report._get_grouped_data(16, domain),
                 "17": report._get_grouped_data(17, domain),
+                "18": report._get_grouped_data(18, domain),
+                "19": report._get_grouped_data(19, domain),
             }
         for item in self:
             keys = [
@@ -613,10 +616,17 @@ class L10nEsAeatMod190ReportLine(models.Model):
             ingresos_a_cuenta_efectuados = sum(
                 tax_data[item.report_id.id]["14"].get(key, 0) for key in keys
             )
+            percepciones_dinerarias_incap = (
+                incapacidad and percepciones_dinerarias
+            ) - sum(tax_data[item.report_id.id]["18"].get(key, 0) for key in keys)
+            retenciones_dinerarias_incap = (
+                incapacidad and retenciones_dinerarias
+            ) + sum(tax_data[item.report_id.id]["19"].get(key, 0) for key in keys)
+
             item.percepciones_dinerarias = not incapacidad and percepciones_dinerarias
-            item.percepciones_dinerarias_incap = incapacidad and percepciones_dinerarias
+            item.percepciones_dinerarias_incap = percepciones_dinerarias_incap
             item.retenciones_dinerarias = not incapacidad and retenciones_dinerarias
-            item.retenciones_dinerarias_incap = incapacidad and retenciones_dinerarias
+            item.retenciones_dinerarias_incap = retenciones_dinerarias_incap
             item.percepciones_en_especie = not incapacidad and percepciones_en_especie
             item.percepciones_en_especie_incap = incapacidad and percepciones_en_especie
             item.ingresos_a_cuenta_efectuados = (
