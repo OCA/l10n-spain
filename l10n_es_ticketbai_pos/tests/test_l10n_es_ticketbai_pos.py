@@ -72,6 +72,34 @@ class TestL10nEsTicketBAIPoSOrder(TestL10nEsTicketBAIPoSCommon):
         self.assertTrue(pos_order.account_move.tbai_substitute_simplified_invoice)
         self.assertEqual("pending", pos_order.account_move.tbai_invoice_id.state)
 
+    def test_chaining_and_rejected_by_the_tax_agency(self):
+        self.pos_config.open_ui()
+        pos_order = self.create_pos_order(self.account_billing.id)
+        pos_order.sudo()._tbai_build_invoice()
+        invoice = pos_order.tbai_invoice_id
+        self.assertEqual(self.pos_config.tbai_last_invoice_id, invoice)
+
+        pos_order2 = self.create_pos_order(self.account_billing.id)
+        pos_order2.sudo()._tbai_build_invoice()
+        invoice2 = pos_order2.sudo().tbai_invoice_id
+        self.assertEqual(invoice2.previous_tbai_invoice_id, invoice)
+        self.assertEqual(self.pos_config.tbai_last_invoice_id, invoice2)
+
+        pos_order3 = self.create_pos_order(self.account_billing.id)
+        pos_order3.sudo()._tbai_build_invoice()
+        invoice3 = pos_order3.tbai_invoice_id
+        self.assertEqual(invoice3.previous_tbai_invoice_id, invoice2)
+        self.assertEqual(self.pos_config.tbai_last_invoice_id, invoice3)
+
+        # Simulate 1st invoice sent successfully.
+        # 2nd rejected by the Tax Agency. Mark as an error.
+        # 3rd mark as an error.
+        invoice.sudo().mark_as_sent()
+        self.env["tbai.invoice"].sudo().mark_chain_as_error(invoice2)
+        self.assertEqual(invoice2.state, "error")
+        self.assertEqual(invoice3.state, "error")
+        self.assertEqual(self.pos_config.tbai_last_invoice_id, invoice)
+
     def test_create_refund_invoice_from_pos_order(self):
         self.pos_config.open_ui()
         pos_order = self.create_pos_order(self.account_billing.id)

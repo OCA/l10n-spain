@@ -4,7 +4,7 @@ import base64
 
 from lxml import etree
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 from odoo.addons.l10n_es_ticketbai_api.ticketbai.xml_schema import TicketBaiSchema
 
@@ -13,6 +13,22 @@ class TicketBAIInvoice(models.Model):
     _inherit = "tbai.invoice"
 
     pos_order_id = fields.Many2one(comodel_name="pos.order")
+
+    @api.model
+    def mark_chain_as_error(self, invoice_to_error):
+        if invoice_to_error.pos_order_id:
+            # Restore last invoice successfully sent
+            if invoice_to_error.schema == TicketBaiSchema.TicketBai.value:
+                invoice_to_error.pos_order_id.config_id.tbai_last_invoice_id = (
+                    invoice_to_error.previous_tbai_invoice_id
+                )
+            while invoice_to_error:
+                invoice_to_error.error()
+                invoice_to_error = self.search(
+                    [("previous_tbai_invoice_id", "=", invoice_to_error.id)]
+                )
+        else:
+            return super().mark_chain_as_error(invoice_to_error)
 
     def send(self, **kwargs):
         self.ensure_one()
