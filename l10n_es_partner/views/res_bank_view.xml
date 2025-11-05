@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_res_bank_form">
+        <field name="model">res.bank</field>
+        <field name="inherit_id" ref="base.view_res_bank_form" />
+        <field name="arch" type="xml">
+            <group name="bank_details" position="attributes">
+                <attribute name="col">2</attribute>
+            </group>
+            <field name="name" position="after">
+                <field name="lname" />
+            </field>
+            <field name="bic" position="after">
+                <field name="vat" />
+            </field>
+            <field name="email" position="after">
+                <field name="website" widget="url" />
+            </field>
+        </field>
+    </record>
+</odoo>

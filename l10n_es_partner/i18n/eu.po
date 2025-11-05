@@ -1,0 +1,144 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_partner
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-26 12:00+0000\n"
+"PO-Revision-Date: 2018-02-26 12:00+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Basque (https://www.transifex.com/oca/teams/23907/eu/)\n"
+"Language: eu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_res_bank
+msgid "Bank"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__create_uid
+msgid "Created by"
+msgstr "Nork sortua"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__create_date
+msgid "Created on"
+msgstr "Created on"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__display_name
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_partner__display_name
+msgid "Display Name"
+msgstr "Izena erakutsi"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__import_fail
+msgid "Import Fail"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+msgid "Import from Internet"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+msgid "Import from local file"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.actions.act_window,name:l10n_es_partner.action_l10n_es_partner_import
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+msgid "Import spanish bank data"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+msgid ""
+"Internet (from Bank of Spain). Maybe this source will be not available from "
+"certain moment in time. You will need xlrd Python library."
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard____last_update
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__write_date
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: l10n_es_partner
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+msgid "Local file mirror. This copy was updated last time on 26/10/2017."
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank__lname
+msgid "Long name"
+msgstr "Izen luzea"
+
+#. module: l10n_es_partner
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+msgid ""
+"Something has failed importing data from Internet. You will need to import "
+"local data instead."
+msgstr ""
+
+#. module: l10n_es_partner
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+msgid ""
+"This wizard will import spanish bank data. You can choose to import it from:"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_partner__comercial
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_users__comercial
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.view_partner_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.view_partner_simple_form
+msgid "Trade name"
+msgstr "Izen komertziala"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank__vat
+msgid "VAT code"
+msgstr "IFZ"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,help:l10n_es_partner.field_res_bank__vat
+msgid "Value Added Tax number"
+msgstr "Identifikazio fiskal Zenbakia"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank__website
+msgid "Website"
+msgstr "Webgunea"
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_l10n_es_partner_import_wizard
+msgid "l10n es partner import wizard"
+msgstr ""

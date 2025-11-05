@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Import wizard -->
+    <record model="ir.ui.view" id="l10n_es_partner_import_wizard">
+        <field name="name">l10n.es.partner.import.form</field>
+        <field name="model">l10n.es.partner.import.wizard</field>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <form string="Import Spanish Bank Data">
+                <group>
+                    <field name="import_fail" invisible="1" />
+                </group>
+                <group invisible="import_fail">
+                    <p
+                        colspan="2"
+                    >This wizard will import Spanish bank data. You can choose to import it from:</p>
+                    <ul colspan="2">
+                        <li
+                        >Internet (from Bank of Spain). Maybe this source will not be available at a certain moment in time. You will need the xlrd Python library.</li>
+                        <li
+                        >Local file mirror. This copy was updated last time on 26/10/2017.</li>
+                    </ul>
+                </group>
+                <group invisible="not import_fail">
+                    <div
+                        class="o_form_label"
+                    >Something has failed importing data from the Internet. You will need to import local data instead.</div>
+                </group>
+                <footer>
+                    <button
+                        name="execute"
+                        string="Import from Internet"
+                        type="object"
+                        class="btn-primary"
+                        invisible="import_fail"
+                    />
+                    <button
+                        name="import_local"
+                        string="Import from Local File"
+                        type="object"
+                    />
+                    <button
+                        name="action_skip"
+                        type="object"
+                        special="cancel"
+                        data-hotkey="x"
+                        string="Skip"
+                        class="btn-secondary"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_es_partner_import" model="ir.actions.act_window">
+        <field name="name">Import spanish bank data</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">l10n.es.partner.import.wizard</field>
+        <field name="view_id" ref="l10n_es_partner_import_wizard" />
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <record id="config_l10n_es_partner_import" model="ir.actions.todo">
+        <field name="name">Import spanish bank data</field>
+        <field name="action_id" ref="action_l10n_es_partner_import" />
+        <field name="sequence">20</field>
+    </record>
+</odoo>
