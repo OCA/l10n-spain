@@ -13,11 +13,11 @@ patch(PosOrder.prototype, {
      */
     getBaseByTax() {
         const base_by_tax = {};
-        this.get_orderlines().forEach(function(line) {
+        this.get_orderlines().forEach(function (line) {
             const tax_detail = line.get_tax_details();
             const base_price = line.get_price_without_tax();
             if (tax_detail) {
-                Object.keys(tax_detail).forEach(function(tax) {
+                Object.keys(tax_detail).forEach(function (tax) {
                     if (Object.prototype.hasOwnProperty.call(base_by_tax, tax)) {
                         base_by_tax[tax] += base_price;
                     } else {

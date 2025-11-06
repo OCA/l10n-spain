@@ -142,6 +142,10 @@ Contributors
 
    -  Antoni Marroig <amarroig@apsl.net>
 
+-  `Alia Technologies <https://alialabs.com>`__:
+
+   -  César Parguiñas <cesarportas@alialabs.com>
+
 Maintainers
 -----------
 

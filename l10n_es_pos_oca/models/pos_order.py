@@ -17,7 +17,10 @@ class PosOrder(models.Model):
         copy=False,
     )
 
-    l10n_es_simplified_number = fields.Integer("Sim.Inv Seq. number", copy=False)
+    l10n_es_simplified_number = fields.Integer(
+        "Simplified invoice sequence number",
+        copy=False,
+    )
 
     @api.model
     def _simplified_limit_check(self, amount_total, limit=3000):
@@ -33,6 +36,7 @@ class PosOrder(models.Model):
             res.update(
                 {
                     "l10n_es_unique_id": ui_order["l10n_es_unique_id"],
+                    "l10n_es_simplified_number": ui_order["l10n_es_simplified_number"],
                     "is_l10n_es_simplified_invoice": True,
                 }
             )
@@ -62,21 +66,3 @@ class PosOrder(models.Model):
             )
             self._update_sequence_number(pos)
         return super()._process_order(pos_order, existing_order)
-
-    def _get_fields_for_draft_order(self):
-        fields = super()._get_fields_for_draft_order()
-
-        fields += ["l10n_es_unique_id"]
-        return fields
-
-    def _export_for_ui(self, order):
-        res = super()._export_for_ui(order)
-
-        res.update({"l10n_es_unique_id": order.l10n_es_unique_id})
-        res.update(
-            {
-                "l10n_es_simplified_inv_seq_number": order.l10n_es_simplified_inv_seq_number
-            }
-        )
-
-        return res
