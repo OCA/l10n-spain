@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,7 +16,6 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
-#, python-format
 msgid ""
 "%(error)s\n"
 "%(message)s"
@@ -44,7 +43,7 @@ msgstr ""
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_cash_on_delivery
-msgid "Cash on delivery"
+msgid "Cash on delivery DHL"
 msgstr ""
 
 #. module: delivery_dhl_parcel
@@ -70,8 +69,6 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
-#: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
-#, python-format
 msgid ""
 "DHL Parcel API doesn't provide methods to compute delivery rates, so\n"
 "                you should rely on another price method instead or override this\n"
@@ -81,7 +78,6 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
-#, python-format
 msgid "DHL Parcel Cancellation failed with reason: %s"
 msgstr ""
 
@@ -93,7 +89,6 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
-#, python-format
 msgid "DHL Parcel End Day"
 msgstr ""
 
@@ -105,7 +100,6 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
-#, python-format
 msgid "DHL Parcel Expedition with reference %s cancelled"
 msgstr ""
 
@@ -127,7 +121,6 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
-#, python-format
 msgid ""
 "DHL Parcel Shipping extra info:\n"
 "Origin: %(origin)s, Customer: %(customer)s, AWB: %(awb)s, LP: %(lp)s"
@@ -151,7 +144,6 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/stock_picking.py:0
-#, python-format
 msgid "DHL Parcel label for %s"
 msgstr ""
 
@@ -194,7 +186,6 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/stock_picking.py:0
-#, python-format
 msgid "Held shipment for {}"
 msgstr ""
 
@@ -277,7 +268,6 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/stock_picking.py:0
-#, python-format
 msgid "Released shipment for {}"
 msgstr ""
 
@@ -289,7 +279,6 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
-#, python-format
 msgid "Server not reachable, please try again later"
 msgstr ""
 
@@ -301,7 +290,6 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
-#, python-format
 msgid "Timeout: the server did not reply within 60s"
 msgstr ""
 
@@ -313,7 +301,6 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
-#, python-format
 msgid "Unsupported request type, please only use 'GET' or 'POST'"
 msgstr ""
 
