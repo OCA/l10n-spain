@@ -17,6 +17,8 @@ class PosOrder(models.Model):
         copy=False,
     )
 
+    l10n_es_simplified_number = fields.Integer("Sim.Inv Seq. number", copy=False)
+
     @api.model
     def _simplified_limit_check(self, amount_total, limit=3000):
         precision_digits = self.env["decimal.precision"].precision_get("Account")
@@ -41,24 +43,25 @@ class PosOrder(models.Model):
         pos.l10n_es_simplified_invoice_sequence_id.next_by_id()
 
     @api.model
-    def _process_order(self, pos_order, draft, existing_order):
-        order_data = pos_order.get("data", {})
-        simplified_invoice_number = order_data.get("l10n_es_unique_id", False)
+    def _process_order(self, pos_order, existing_order):
+        simplified_invoice_number = pos_order.get("l10n_es_unique_id", False)
         if not simplified_invoice_number:
-            return super()._process_order(pos_order, draft, existing_order)
+            return super()._process_order(pos_order, existing_order)
+
         pos_order_obj = self.env["pos.order"]
-        pos = self.env["pos.session"].browse(order_data.get("pos_session_id")).config_id
+        pos = self.env["pos.session"].browse(pos_order.get("session_id")).config_id
+
         if pos_order_obj._simplified_limit_check(
-            order_data.get("amount_total", 0), pos.l10n_es_simplified_invoice_limit
+            pos_order.get("amount_total", 0), pos.l10n_es_simplified_invoice_limit
         ):
-            pos_order["data"].update(
+            pos_order.update(
                 {
                     "l10n_es_unique_id": simplified_invoice_number,
                     "is_l10n_es_simplified_invoice": True,
                 }
             )
             self._update_sequence_number(pos)
-        return super()._process_order(pos_order, draft, existing_order)
+        return super()._process_order(pos_order, existing_order)
 
     def _get_fields_for_draft_order(self):
         fields = super()._get_fields_for_draft_order()
@@ -70,5 +73,10 @@ class PosOrder(models.Model):
         res = super()._export_for_ui(order)
 
         res.update({"l10n_es_unique_id": order.l10n_es_unique_id})
+        res.update(
+            {
+                "l10n_es_simplified_inv_seq_number": order.l10n_es_simplified_inv_seq_number
+            }
+        )
 
         return res

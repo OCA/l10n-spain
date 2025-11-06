@@ -1,35 +1,23 @@
-/** @odoo-module */
-
 /* Copyright 2016 David Gómez Quilón <david.gomez@aselcis.com>
    Copyright 2018-19 Tecnativa - David Vidal
    Copyright 2024 (APSL-Nagarro) - Antoni Marroig
+   Copyright 2025 Alia Technologies - César Parguiñas
    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 */
 
-import {ConnectionLostError} from "@web/core/network/rpc_service";
 import {PosStore} from "@point_of_sale/app/store/pos_store";
 import {patch} from "@web/core/utils/patch";
+import {ConnectionLostError} from "@web/core/network/rpc";
 
 patch(PosStore.prototype, {
-    async setup() {
-        await super.setup(...arguments);
-        this.pushed_simple_invoices = [];
-        // Unique UUID
-        this.own_simplified_invoice_prefix = "";
-    },
-    get_simple_inv_next_number() {
-        // If we had pending orders to sync we want to avoid getting the next number
-        // from the DB as we'd be ovelaping the sequence.
-        if (this.db.get_orders().length) {
-            return Promise.reject(new ConnectionLostError());
-        }
-        return this.orm.searchRead(
-            "pos.config",
-            ["id", "=", this.config.id],
-            ["l10n_es_simplified_invoice_number"]
-        );
-    },
-    get_padding_simple_inv(number, padding) {
+    /**
+     * Gets the padded simplified invoice number.
+     * @param number
+     * @param padding
+     * @returns {*}
+     * @private
+     */
+    _getPaddingSimpleInv(number, padding) {
         var diff = padding - number.toString().length;
         let result = "";
         if (diff <= 0) {
@@ -42,38 +30,113 @@ patch(PosStore.prototype, {
         }
         return result;
     },
-    _update_sequence_number() {
-        ++this.config.l10n_es_simplified_invoice_number;
-    },
-    push_simple_invoice(order) {
-        if (this.pushed_simple_invoices.indexOf(order.data.l10n_es_unique_id) === -1) {
-            this.pushed_simple_invoices.push(order.data.l10n_es_unique_id);
-            this._update_sequence_number();
-        }
-    },
-    async _flush_orders(orders) {
-        var self = this;
-        // Save pushed orders numbers
-        orders.forEach((order) => {
-            if (!order.data.to_invoice) {
-                self.push_simple_invoice(order);
-            }
-        });
-        return await super._flush_orders(...arguments);
-    },
-    _set_simplified_invoice_number(config) {
+
+    /**
+     * Sets the simplified invoice number in the config.
+     * @param l10n_es_simplified_invoice_number
+     */
+    setSimplifiedInvoiceNumber(l10n_es_simplified_invoice_number) {
         this.config.l10n_es_simplified_invoice_number =
-            config.l10n_es_simplified_invoice_number;
+            l10n_es_simplified_invoice_number;
     },
-    _get_simplified_invoice_number() {
+
+    /**
+     * Gets the current simplified invoice number from the config.
+     * @returns {number|*}
+     */
+    getCurrentSimplifiedInvoiceNumber() {
+        return this.config.l10n_es_simplified_invoice_number;
+    },
+
+    /**
+     * Generates the simplified unique ID for the current invoice.
+     * @returns {String}
+     */
+    getSimplifiedUniqueId() {
         return (
             this.config.l10n_es_simplified_invoice_prefix +
-            this.get_padding_simple_inv(
+            this._getPaddingSimpleInv(
                 this.config.l10n_es_simplified_invoice_number,
-                this.config.l10n_es_simplified_invoice_padding
+                this.config.l10n_es_simplified_invoice_paddingº
             )
         );
     },
+
+    /**
+     * Increments the simplified invoice number in the config.
+     */
+    incrementSimplifiedInvoiceNumber() {
+        this.config.l10n_es_simplified_invoice_number += 1;
+    },
+
+    /**
+     * Checks if there are pending orders to be synced.
+     * @returns {Boolean}
+     */
+    hasPendingOrders() {
+        const {orderToCreate, orderToUpdate} = this.getPendingOrder();
+        return orderToCreate.length + orderToUpdate.length > 0;
+    },
+
+    /**
+     * Gets the next simplified invoice number, taking into account pending orders.
+     * @returns {Promise<number|*>}
+     */
+    async getSimpleInvNextNumber() {
+        // First, get the next number from the DB to be sure we have the latest
+        try {
+            const config = await this.data.searchRead(
+                "pos.config",
+                [["id", "=", this.config.id]],
+                ["l10n_es_simplified_invoice_number"]
+            );
+
+            this.config.l10n_es_simplified_invoice_number =
+                config[0]?.l10n_es_simplified_invoice_number || 1;
+            console.log(
+                "NEXT NUMBER FROM DB -> ",
+                this.config.l10n_es_simplified_invoice_number
+            );
+        } catch (error) {
+            // Offline -> First time connection lost no has pending orders, we can increment the number
+            if (!this.hasPendingOrders()) {
+                this.incrementSimplifiedInvoiceNumber();
+            }
+            console.error(error);
+        }
+
+        if (this.hasPendingOrders()) {
+            const {orderToCreate} = this.getPendingOrder();
+
+            // Prevent overlapping by calculating the max number in pending orders when lost connection
+            const simplifiedInvNumFromOrderPending =
+                Math.max(...orderToCreate.map((o) => o.l10n_es_simplified_number)) + 1;
+            console.log(
+                "HAS PENDING ORDERS simplifiedInvNumFromOrderPending",
+                simplifiedInvNumFromOrderPending
+            );
+
+            // Set the next number to be at least the max from pending orders
+            if (
+                this.config.l10n_es_simplified_invoice_number <
+                simplifiedInvNumFromOrderPending
+            ) {
+                this.config.l10n_es_simplified_invoice_number =
+                    simplifiedInvNumFromOrderPending;
+            }
+
+            return Promise.reject(new ConnectionLostError());
+        }
+
+        return this.config.l10n_es_simplified_invoice_number;
+    },
+
+    /**
+     * Extends receipt header data with simplified invoice info.
+     * @override
+     * @param order
+     * @returns {*}
+     */
     getReceiptHeaderData(order) {
         const result = super.getReceiptHeaderData(...arguments);
         if (order) {
@@ -83,15 +146,5 @@ patch(PosStore.prototype, {
             result.to_invoice = order.to_invoice;
         }
         return result;
-    },
-    _getCreateOrderContext(orders) {
-        let context = super._getCreateOrderContext(...arguments);
-        const noOrderPrinting = orders.every(
-            (order) => !order.to_invoice && order.data.is_simplified_config
-        );
-        if (noOrderPrinting) {
-            context = {...context, generate_pdf: false};
-        }
-        return context;
     },
 });
