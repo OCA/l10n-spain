@@ -3,15 +3,18 @@ from odoo import api, fields, models
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
+
     incluir_190 = fields.Boolean(
         string="Included in mod190",
         default=False,
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
     )
 
     aeat_perception_key_id = fields.Many2one(
         comodel_name="l10n.es.aeat.report.perception.key",
         string="Clave percepción",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
         help="Se consignará la clave alfabética que corresponda a las "
         "percepciones de que se trate.",
@@ -20,6 +23,7 @@ class ResPartner(models.Model):
     aeat_perception_subkey_id = fields.Many2one(
         comodel_name="l10n.es.aeat.report.perception.subkey",
         string="Subclave",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
         help="""Tratándose de percepciones correspondientes a las claves
             B, E, F, G, H, I, K y L, deberá consignarse, además, la
@@ -41,6 +45,7 @@ class ResPartner(models.Model):
 
     representante_legal_vat = fields.Char(
         string="NIF representante legal",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
         help="""Si el perceptor es menor de 14 años, se consignará en
             este campo el número de identificación fiscal de su
@@ -49,6 +54,7 @@ class ResPartner(models.Model):
 
     a_nacimiento = fields.Char(
         string="Año de nacimiento",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
         help="""Se consignarán las cuatro cifras del año de nacimiento del
             perceptor.""",
@@ -56,6 +62,7 @@ class ResPartner(models.Model):
 
     ceuta_melilla = fields.Char(
         string="Ceuta o Melilla",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
         help="""Se consignará el número 1 en los supuestos en que, por
             tratarse de rentas obtenidas en Ceuta o Melilla con
@@ -85,12 +92,14 @@ class ResPartner(models.Model):
             ("3", "3 - Distinta de las anteriores."),
         ],
         string="Situación familiar",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
         help="""Se hará constar el dígito numérico indicativo de la
             situación familiar del perceptor""",
     )
     nif_conyuge = fields.Char(
         string="NIF del conyuge",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
         help="""Solo para percepciones correspondientes a las claves A,
             B.01, B.03 y C.
@@ -116,6 +125,7 @@ class ResPartner(models.Model):
             ("3", "3 - Grado de minusvalía igual o superior al 65 por 100."),
         ],
         string="Disability",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
         help="""Solo para percepciones correspondientes a las claves A,
             B.01, B.03 y C.
@@ -136,6 +146,7 @@ class ResPartner(models.Model):
             ("4", "4 - Relación esporádica propia de los trabajadores manuales"),
         ],
         string="Contrato o relacion",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
         help="""Solo para percepciones correspondientes a la clave A.
             Tratándose de empleados por cuenta ajena en activo, se
@@ -146,6 +157,7 @@ class ResPartner(models.Model):
     movilidad_geografica = fields.Selection(
         [("0", "NO"), ("1", "SI")],
         string="Movilidad geográfica",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
     )
 
@@ -153,6 +165,7 @@ class ResPartner(models.Model):
 
     hijos_y_descendientes_m = fields.Integer(
         string="Menores de 3 años",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
         help="""
         Solo para percepciones correspondientes a las claves A,
@@ -165,10 +178,12 @@ class ResPartner(models.Model):
     )
     hijos_y_descendientes_m_entero = fields.Integer(
         string="Menores de 3 años, computados por entero",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
     )
     hijos_y_descendientes = fields.Integer(
         string="Resto:",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
         help="""
         Solo para percepciones correspondientes a las claves A,
@@ -181,74 +196,92 @@ class ResPartner(models.Model):
     )
     hijos_y_descendientes_entero = fields.Integer(
         string="Resto, computadors por entero",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
     )
     hijos_y_desc_discapacidad_mr = fields.Integer(
         string="Hijos y descendientes con discapacidad",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
     )
     hijos_y_desc_discapacidad_entero_mr = fields.Integer(
         string="Hijos y descendientes con discapacidad, computados por entero",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
     )
     hijos_y_desc_discapacidad_33 = fields.Integer(
         string="Hijos y descendientes con discapacidad del 33%",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
     )
     hijos_y_desc_discapacidad_entero_33 = fields.Integer(
         string="Hijos y descendientes con discapacidad del 33%, computados por entero",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
     )
     hijos_y_desc_discapacidad_66 = fields.Integer(
         string="Hijos y descendientes con discapacidad del 66%",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
     )
     hijos_y_desc_discapacidad_entero_66 = fields.Integer(
         string="Hijos y descendientes con discapacidad del 66%, computados por entero",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
     )
     ascendientes = fields.Integer(
         string="Ascendientes menores de 75 años",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
     )
     ascendientes_entero = fields.Integer(
         string="Ascendientes menores de 75 años, computados por entero",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
     )
     ascendientes_m75 = fields.Integer(
         string="Ascendientes mayores de 75 años",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
     )
     ascendientes_entero_m75 = fields.Integer(
         string="Ascendientes mayores de 75 años, computados por entero",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
     )
     ascendientes_discapacidad_33 = fields.Integer(
         string="Ascendientes con discapacidad",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
     )
     ascendientes_discapacidad_entero_33 = fields.Integer(
         string="Ascendientes con discapacidad, computados por entero",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
     )
     ascendientes_discapacidad_mr = fields.Integer(
         string="Ascendientes con discapacidad de más del 33%",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
     )
     ascendientes_discapacidad_entero_mr = fields.Integer(
         string="Ascendientes con discapacidad de más del 33%, computados por entero",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
     )
     ascendientes_discapacidad_66 = fields.Integer(
         string="Ascendientes con discapacidad de más del 66%",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
     )
     ascendientes_discapacidad_entero_66 = fields.Integer(
         string="Ascendientes con discapacidad de más del 66%, computados por entero",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
     )
     computo_primeros_hijos_1 = fields.Integer(
         string="Cómputo de los 3 primeros hijos",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
         help="""CÓMPUTO DE LOS 3 PRIMEROS HIJOS.
             Solo para percepciones correspondientes a las claves A,
@@ -265,10 +298,12 @@ class ResPartner(models.Model):
     )
     computo_primeros_hijos_2 = fields.Integer(
         string="Cómputo de los 3 primeros hijos (2º)",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
     )
     computo_primeros_hijos_3 = fields.Integer(
         string="Cómputo de los 3 primeros hijos (3º)",
+        copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
     )
 
