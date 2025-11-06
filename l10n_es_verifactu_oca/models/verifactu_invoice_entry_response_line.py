@@ -30,7 +30,18 @@ class VerifactuInvoiceEntryResponseLine(models.Model):
     verifactu_csv = fields.Text(related="entry_response_id.verifactu_csv")
     error_code = fields.Char()
     document_name = fields.Char(related="entry_id.document_name", readonly=True)
+    is_cancellation = fields.Boolean(
+        string="Is cancellation",
+        compute="_compute_is_cancellation",
+        readonly=True,
+        help="Indicates whether this response line is related to a "
+        "cancellation request.",
+    )
 
     @property
     def document(self):
         return self.env[self.model].browse(self.document_id).exists()
+
+    def _compute_is_cancellation(self):
+        for rec in self:
+            rec.is_cancellation = rec.entry_id.entry_type == "cancel"
