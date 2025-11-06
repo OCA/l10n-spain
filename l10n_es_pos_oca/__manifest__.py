@@ -6,10 +6,11 @@
     "author": "Tecnativa, "
     "Aselcis Consulting, "
     "Acysos S.L., "
+    "Alia Technologies, "
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
-    "version": "17.0.1.0.0",
+    "version": "18.0.1.0.0",
     "depends": ["point_of_sale", "l10n_es"],
     "data": ["views/pos_views.xml", "views/res_config_settings_views.xml"],
     "assets": {

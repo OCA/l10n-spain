@@ -20,8 +20,8 @@ def post_init_hook(env, vals=None):
             else "%s_%d" % (pos.name, pos_name_dupes[pos.name])
         )
         if not pos_vals.get("prefix"):
-            pos_vals["prefix"] = initial_prefix = "{}{}".format(
-                pos_name, pos._get_default_prefix()
+            pos_vals["prefix"] = initial_prefix = (
+                f"{pos_name}{pos._get_default_prefix()}"
             )
             ith = 0
             while IrSequence.search_count([("prefix", "=", pos_vals["prefix"])]):
