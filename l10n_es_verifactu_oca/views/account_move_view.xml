@@ -17,6 +17,13 @@
                     groups="l10n_es_aeat.group_account_aeat"
                     invisible="not verifactu_enabled or state != 'posted' or aeat_state not in ('sent_w_errors', 'incorrect')"
                 />
+                <button
+                    type="object"
+                    string="Cancel in VERI*FACTU"
+                    name="cancel_verifactu"
+                    groups="l10n_es_aeat.group_account_aeat"
+                    invisible="not verifactu_enabled or state not in ('posted', 'cancel') or aeat_state not in ('sent_w_errors', 'cancel_w_errors', 'incorrect')"
+                />
             </button>
             <notebook position="inside">
                 <field
@@ -49,15 +56,19 @@
                                 name="verifactu_tax_key"
                                 string="Tax key"
                                 required="verifactu_enabled"
-                                readonly="aeat_state == 'sent'"
+                                readonly="aeat_state in ('sent', 'cancel')"
                             />
                             <field
                                 name="verifactu_registration_key"
                                 string="Registration key"
                                 required="verifactu_enabled"
-                                readonly="aeat_state == 'sent'"
+                                readonly="aeat_state in ('sent', 'cancel')"
                             />
                             <field name="verifactu_description" string="Description" />
+                            <field
+                                name="verifactu_cancel_reason"
+                                invisible="state != 'cancel'"
+                            />
                         </group>
                         <group string="Information" name="group_verifactu_information">
                             <field
@@ -135,9 +146,10 @@
                                             <field
                                                 name="send_state"
                                                 widget="badge"
-                                                decoration-warning="send_state == 'sent_w_errors'"
                                                 decoration-success="send_state == 'sent'"
-                                                decoration-danger="send_state not in ('sent', 'sent_w_errors')"
+                                                decoration-danger="send_state == 'not_sent'"
+                                                decoration-warning="send_state in ('sent_w_errors', 'incorrect', 'cancel_incorrect', 'cancel_w_errors')"
+                                                decoration-muted="send_state == 'cancel'"
                                             />
                                         </tree>
                                     </field>
@@ -166,14 +178,14 @@
                     />
                     <filter
                         name="verifactu_pending"
-                        string="With modifications not sent to VERI*FACTU"
-                        domain="[('aeat_state', 'in', ['sent_modified','cancelled_modified'])]"
-                        help="Already sent but with local changes not sent yet"
+                        string="VERI*FACTU pending corrections"
+                        domain="[('aeat_state', 'in', ['sent_w_errors','cancel_w_errors'])]"
+                        help="Already sent but with corrections not sent yet"
                     />
                     <filter
                         name="verifactu_sent"
                         string="VERI*FACTU sent"
-                        domain="[('aeat_state', 'not in', ['not_sent'])]"
+                        domain="[('aeat_state', 'in', ('sent', 'cancel'))]"
                         help="Already sent to VERI*FACTU. It includes cancelled invoices"
                     />
                     <filter
@@ -185,8 +197,14 @@
                     <filter
                         name="verifactu_cancelled"
                         string="VERI*FACTU cancelled"
-                        domain="[('aeat_state', 'in', ['cancelled','cancelled_modified'])]"
+                        domain="[('aeat_state', '=', 'cancel')]"
                         help="Cancelled invoices at VERI*FACTU"
+                    />
+                    <filter
+                        name="verifactu_incorrect"
+                        string="Incorrect send to VERI*FACTU"
+                        domain="[('aeat_state', 'in', ['incorrect','cancel_incorrect'])]"
+                        help="Incorrect send to VERI*FACTU"
                     />
                     <separator />
                 </group>
@@ -213,7 +231,8 @@
                     name="aeat_state"
                     decoration-success="aeat_state == 'sent'"
                     decoration-danger="aeat_state == 'not_sent'"
-                    decoration-warning="aeat_state in ('sent_w_errors', 'incorrect')"
+                    decoration-warning="aeat_state in ('sent_w_errors', 'incorrect', 'cancel_incorrect', 'cancel_w_errors')"
+                    decoration-muted="aeat_state == 'cancel'"
                     widget="badge"
                     optional="hide"
                 />

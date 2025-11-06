@@ -162,7 +162,7 @@ class AccountMove(models.Model):
             .isoformat(timespec="seconds")
         )
 
-    def _get_verifactu_hash_string(self):
+    def _get_verifactu_hash_string(self, cancel=False):
         """Gets the VERI*FACTU hash string"""
         if (
             not self.verifactu_enabled
@@ -179,27 +179,33 @@ class AccountMove(models.Model):
         amount_total = round(amount_total, 2)
         previous_hash = self._get_verifactu_previous_hash()
         registration_date = self._get_verifactu_registration_date()
-        verifactu_hash_string = (
-            f"IDEmisorFactura={issuer}&"
-            f"NumSerieFactura={serial_number}&"
-            f"FechaExpedicionFactura={expedition_date}&"
-            f"TipoFactura={document_type}&"
-            f"CuotaTotal={amount_tax}&"
-            f"ImporteTotal={amount_total}&"
-            f"Huella={previous_hash}&"
-            f"FechaHoraHusoGenRegistro={registration_date}"
-        )
+        if not cancel:
+            verifactu_hash_string = (
+                f"IDEmisorFactura={issuer}&"
+                f"NumSerieFactura={serial_number}&"
+                f"FechaExpedicionFactura={expedition_date}&"
+                f"TipoFactura={document_type}&"
+                f"CuotaTotal={amount_tax}&"
+                f"ImporteTotal={amount_total}&"
+                f"Huella={previous_hash}&"
+                f"FechaHoraHusoGenRegistro={registration_date}"
+            )
+        else:
+            verifactu_hash_string = (
+                f"IDEmisorFacturaAnulada={issuer}&"
+                f"NumSerieFacturaAnulada={serial_number}&"
+                f"FechaExpedicionFacturaAnulada={expedition_date}&"
+                f"Huella={previous_hash}&"
+                f"FechaHoraHusoGenRegistro={registration_date}"
+            )
         return verifactu_hash_string
 
     def _get_verifactu_chaining(self):
         return self.company_id.verifactu_chaining_id
 
-    def _get_verifactu_invoice_dict_out(self, cancel=False):
+    def _get_verifactu_invoice_dict_out(self):
         """Build dict with data to send to AEAT WS for document types:
         out_invoice and out_refund.
-
-        :param cancel: It indicates if the dictionary is for sending a
-          cancellation of the document.
         :return: documents (dict) : Dict XML with data for this document.
         """
         self.ensure_one()
@@ -268,6 +274,39 @@ class AccountMove(models.Model):
             inv_dict["RechazoPrevio"] = "X"
         registroAlta.setdefault("RegistroAlta", inv_dict)
         return registroAlta
+
+    def _get_verifactu_cancel_invoice_dict_out(self):
+        """Build cancel dict with data to send to AEAT WS for document types:
+        out_invoice and out_refund.
+        :return: documents (dict) : Dict XML with data for this document.
+        """
+        self.ensure_one()
+        document_date = self._get_verifactu_date(self._get_document_date())
+        company = self.company_id
+        serial_number = self._get_document_serial_number()
+        company_vat = company.partner_id._parse_aeat_vat_info()[2]
+        registroAnulacion = {}
+        inv_dict = {
+            "IDVersion": self._get_verifactu_version(),
+            "IDFactura": {
+                "IDEmisorFacturaAnulada": company_vat,
+                "NumSerieFacturaAnulada": serial_number,
+                "FechaExpedicionFacturaAnulada": document_date,
+            },
+        }
+        if self.aeat_state == "cancel_incorrect":
+            inv_dict["RechazoPrevio"] = "S"
+        inv_dict.update(
+            {
+                "Encadenamiento": self._get_verifactu_chaining_invoice_dict(),
+                "SistemaInformatico": self._get_verifactu_developer_dict(),
+                "FechaHoraHusoGenRegistro": self._get_verifactu_registration_date(),
+                "TipoHuella": "01",  # SHA-256
+                "Huella": self.verifactu_hash,
+            }
+        )
+        registroAnulacion.setdefault("RegistroAnulacion", inv_dict)
+        return registroAnulacion
 
     def _get_verifactu_chaining_invoice_dict(self):
         if self.last_verifactu_invoice_entry_id:
@@ -517,7 +556,29 @@ class AccountMove(models.Model):
         return True
 
     def cancel_verifactu(self):
-        raise NotImplementedError
+        self.ensure_one()
+        if (
+            self.aeat_state
+            in (
+                "sent_w_errors",
+                "sent",
+                "cancel_incorrect",
+                "cancel_w_errors",
+            )
+            and self.last_verifactu_invoice_entry_id
+            and not self.last_verifactu_invoice_entry_id.send_state == "not_sent"
+        ):
+            if self.state != "cancel":
+                action = self.env["ir.actions.act_window"]._for_xml_id(
+                    "l10n_es_verifactu_oca.verifactu_cancel_invoice_wizard_action"
+                )
+                action["context"] = {
+                    "default_invoice_id": self.id,
+                }
+                return action
+            entry_type = "cancel"
+            self.verifactu_registration_date = datetime.now()
+            self._generate_verifactu_chaining(entry_type=entry_type)
 
     def write(self, vals):
         for invoice in self.filtered(
@@ -536,15 +597,21 @@ class AccountMove(models.Model):
         invoices_sent = self.filtered(
             lambda inv: inv.verifactu_enabled and inv.aeat_state != "not_sent"
         )
-        if invoices_sent:
+        if invoices_sent and not self.env.context.get("verifactu_cancel"):
             raise UserError(_("You can not cancel invoices sent to VERI*FACTU."))
         return super().button_cancel()
 
+    def _check_draftable(self):
+        # Don't block the intermediate pass to draft when cancelling VERI*FACTU invoice
+        if not self.env.context.get("verifactu_cancel"):
+            return super()._check_draftable()
+
     def button_draft(self):
+        # Don't allow go to draft, except when cancelling VERI*FACTU invoice via wizard
         invoices_sent = self.filtered(
             lambda inv: inv.verifactu_enabled and inv.aeat_state != "not_sent"
         )
-        if invoices_sent:
+        if invoices_sent and not self.env.context.get("verifactu_cancel"):
             raise UserError(_("You can not set to draft invoices sent to VERI*FACTU."))
         return super().button_draft()
 
