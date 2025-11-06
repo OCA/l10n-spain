@@ -49,7 +49,6 @@ msgstr "Creat el"
 #. module: l10n_es_intrastat_report
 #. odoo-python
 #: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:0
-#, python-format
 msgid "Current company is not Spanish, so it can't be configured."
 msgstr "La companyia actual no es d'Espanya. No es pot configurar."
 
@@ -176,21 +175,18 @@ msgstr "Missatges"
 #. module: l10n_es_intrastat_report
 #. odoo-python
 #: code:addons/l10n_es_intrastat_report/tests/test_l10n_es_intrastat_report.py:0
-#, python-format
 msgid "Missing <em>Country of Origin</em> <small>"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
 #. odoo-python
 #: code:addons/l10n_es_intrastat_report/tests/test_l10n_es_intrastat_report.py:0
-#, python-format
 msgid "Missing <em>VAT Number</em> <small>"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
 #. odoo-python
 #: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
-#, python-format
 msgid "Missing partner <em>VAT Number</em>"
 msgstr ""
 
@@ -250,23 +246,13 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_intrastat_report
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_search
-msgid "Search Spanish Intrastat Product Declaration"
-msgstr "Buscar declaració de producte Intrastat Espanyola"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.actions.act_window,name:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_action
-#: model:ir.ui.menu,name:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_menu
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_graph
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_tree
-msgid "Spanish Intrastat Product Declaration"
-msgstr "Declaració de producte Intrastat Espanyola"
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.view_l10n_es_intrastat_code_import
+msgid "Skip"
+msgstr ""
 
 #. module: l10n_es_intrastat_report
 #. odoo-python
 #: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
-#, python-format
 msgid ""
 "The Spanish Intrastat Declaration requires the Company's Country to be equal "
 "to 'Spain'."
@@ -318,14 +304,12 @@ msgstr ""
 #. module: l10n_es_intrastat_report
 #. odoo-python
 #: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:0
-#, python-format
 msgid "Unit not found: '%s'"
 msgstr "Unitat no trobada: '%s'"
 
 #. module: l10n_es_intrastat_report
 #. odoo-python
 #: code:addons/l10n_es_intrastat_report/report/intrastat_product_report_xls.py:0
-#, python-format
 msgid "VAT"
 msgstr ""
 
@@ -343,6 +327,12 @@ msgstr "Historial de comunicació del web"
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration_line__weight
 msgid "Weight"
 msgstr "Pes"
+
+#~ msgid "Search Spanish Intrastat Product Declaration"
+#~ msgstr "Buscar declaració de producte Intrastat Espanyola"
+
+#~ msgid "Spanish Intrastat Product Declaration"
+#~ msgstr "Declaració de producte Intrastat Espanyola"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Darrera modificació el"
