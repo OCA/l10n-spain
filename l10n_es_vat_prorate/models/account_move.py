@@ -14,10 +14,12 @@ class AccountMove(models.Model):
         "res.company.vat.prorate",
         compute="_compute_prorate_id",
         store=True,
+        copy=False,
     )
     with_special_vat_prorate = fields.Boolean(
         compute="_compute_prorate_id",
         store=True,
+        copy=False,
     )
 
     @api.depends("company_id", "date", "invoice_date")
@@ -267,6 +269,7 @@ class AccountMoveLine(models.Model):
         compute="_compute_with_vat_prorate",
         store=True,
         readonly=False,
+        copy=False,
     )
 
     prorate_line_ids = fields.Many2many(
@@ -274,6 +277,7 @@ class AccountMoveLine(models.Model):
         relation="account_move_line_prorate_move_line_rel",
         column1="account_move_line_id",
         column2="prorate_move_line_id",
+        copy=False,
     )
 
     @api.depends("move_id.prorate_id", "company_id")
