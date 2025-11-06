@@ -6,25 +6,28 @@
     >
         <field name="name">intrastat.product.computation.line.form</field>
         <field name="model">intrastat.product.computation.line</field>
-        <field name="mode">primary</field>
+        <field name="mode">extension</field>
         <field
             name="inherit_id"
             ref="intrastat_product.intrastat_product_computation_line_view_form"
         />
         <field name="arch" type="xml">
             <field name="region_id" position="after">
-                <field name="intrastat_state_id" />
+                <field
+                    name="intrastat_state_id"
+                    attrs="{'invisible': [('company_country_code', '!=', 'ES')]}"
+                />
             </field>
             <field name="incoterm_id" position="attributes">
                 <attribute name="invisible" />
                 <attribute
                     name="attrs"
-                >{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}</attribute>
+                >{'required': [('company_country_code', '=', 'ES'), ('reporting_level', '=', 'extended')], 'invisible': ['|', ('company_country_code', '!=', 'ES'), ('reporting_level', '!=', 'extended')]}</attribute>
             </field>
             <field name="invoice_id" position="after">
                 <field
                     name="partner_vat"
-                    attrs="{'invisible': [('declaration_type', '!=', 'dispatches')]}"
+                    attrs="{'invisible': ['|', ('company_country_code', '!=', 'ES'), ('declaration_type', '!=', 'dispatches')]}"
                 />
             </field>
         </field>
@@ -35,20 +38,28 @@
     >
         <field name="name">intrastat.product.computation.line.tree</field>
         <field name="model">intrastat.product.computation.line</field>
-        <field name="mode">primary</field>
+        <field name="mode">extension</field>
         <field
             name="inherit_id"
             ref="intrastat_product.intrastat_product_computation_line_view_tree"
         />
         <field name="arch" type="xml">
             <field name="region_id" position="after">
-                <field name="intrastat_state_id" />
+                <field
+                    name="intrastat_state_id"
+                    attrs="{'column_invisible': [('parent.company_country_code', '!=', 'ES')]}"
+                />
             </field>
             <field name="amount_accessory_cost_company_currency" position="attributes">
-                <attribute name="invisible">1</attribute>/>
+                <attribute
+                    name="attrs"
+                >{'column_invisible': [('parent.company_country_code', '=', 'ES')]}</attribute>
             </field>
             <field name="invoice_id" position="after">
-                <field name="partner_vat" />
+                <field
+                    name="partner_vat"
+                    attrs="{'column_invisible': [('parent.company_country_code', '!=', 'ES')]}"
+                />
             </field>
         </field>
     </record>
@@ -58,7 +69,7 @@
     >
         <field name="name">intrastat.product.declaration.line.form</field>
         <field name="model">intrastat.product.declaration.line</field>
-        <field name="mode">primary</field>
+        <field name="mode">extension</field>
         <field
             name="inherit_id"
             ref="intrastat_product.intrastat_product_declaration_line_view_form"
@@ -68,12 +79,12 @@
                 <attribute name="invisible" />
                 <attribute
                     name="attrs"
-                >{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}</attribute>
+                >{'required': [('company_country_code', '=', 'ES'), ('reporting_level', '=', 'extended')], 'invisible': ['|', ('company_country_code', '!=', 'ES'), ('reporting_level', '!=', 'extended')]}</attribute>
             </field>
             <field name="hs_code_id" position="after">
                 <field
                     name="partner_vat"
-                    attrs="{'invisible': [('declaration_type', '!=', 'dispatches')]}"
+                    attrs="{'invisible': ['|', ('company_country_code', '!=', 'ES'), ('declaration_type', '!=', 'dispatches')]}"
                 />
             </field>
         </field>
@@ -84,85 +95,24 @@
     >
         <field name="name">intrastat.product.declaration.line.tree</field>
         <field name="model">intrastat.product.declaration.line</field>
-        <field name="mode">primary</field>
+        <field name="mode">extension</field>
         <field
             name="inherit_id"
             ref="intrastat_product.intrastat_product_declaration_line_view_tree"
         />
         <field name="arch" type="xml">
             <field name="region_code" position="after">
-                <field name="intrastat_state_id" />
+                <field
+                    name="intrastat_state_id"
+                    attrs="{'column_invisible': [('parent.company_country_code', '!=', 'ES')]}"
+                />
             </field>
             <field name="hs_code_id" position="after">
-                <field name="partner_vat" />
+                <field
+                    name="partner_vat"
+                    attrs="{'column_invisible': [('parent.company_country_code', '!=', 'ES')]}"
+                />
             </field>
-        </field>
-    </record>
-    <record id="l10n_es_intrastat_product_declaration_view_form" model="ir.ui.view">
-        <field name="name">intrastat.product.declaration.form</field>
-        <field name="model">intrastat.product.declaration</field>
-        <field name="mode">primary</field>
-        <field
-            name="inherit_id"
-            ref="intrastat_product.intrastat_product_declaration_view_form"
-        />
-        <field name="arch" type="xml">
-            <form position="attributes">
-                <attribute
-                    name="string"
-                >Spanish Intrastat Product Declaration</attribute>
-            </form>
-            <field name="reporting_level" position="attributes">
-                <attribute name="invisible" />
-            </field>
-        </field>
-    </record>
-    <record id="l10n_es_intrastat_product_declaration_view_tree" model="ir.ui.view">
-        <field name="name">intrastat.product.declaration.tree</field>
-        <field name="model">intrastat.product.declaration</field>
-        <field name="mode">primary</field>
-        <field
-            name="inherit_id"
-            ref="intrastat_product.intrastat_product_declaration_view_tree"
-        />
-        <field name="arch" type="xml">
-            <tree position="attributes">
-                <attribute
-                    name="string"
-                >Spanish Intrastat Product Declaration</attribute>
-            </tree>
-        </field>
-    </record>
-    <record id="l10n_es_intrastat_product_declaration_view_search" model="ir.ui.view">
-        <field name="name">intrastat.product.declaration.search</field>
-        <field name="model">intrastat.product.declaration</field>
-        <field name="mode">primary</field>
-        <field
-            name="inherit_id"
-            ref="intrastat_product.intrastat_product_declaration_view_search"
-        />
-        <field name="arch" type="xml">
-            <search position="attributes">
-                <attribute
-                    name="string"
-                >Search Spanish Intrastat Product Declaration</attribute>
-            </search>
-        </field>
-    </record>
-    <record id="l10n_es_intrastat_product_declaration_view_graph" model="ir.ui.view">
-        <field name="name">intrastat.product.declaration.graph</field>
-        <field name="model">intrastat.product.declaration</field>
-        <field name="mode">primary</field>
-        <field
-            name="inherit_id"
-            ref="intrastat_product.intrastat_product_declaration_view_graph"
-        />
-        <field name="arch" type="xml">
-            <graph position="attributes">
-                <attribute
-                    name="string"
-                >Spanish Intrastat Product Declaration</attribute>
-            </graph>
         </field>
     </record>
 </odoo>
