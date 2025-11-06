@@ -19,7 +19,7 @@
             <div t-if="props.data.company.zip" t-esc="props.data.company.zip" />
             <div t-if="props.data.company.city" t-esc="props.data.company.city" />
             <div t-if="props.data.company.state_id">(<t
-                t-esc="props.data.company.state_id[1]"
+                t-esc="props.data.company.state_id.name"
             />)</div>
         </xpath>
         <xpath expr="//div[hasclass('pos-receipt-contact')]" position="inside">
@@ -28,7 +28,8 @@
                 <div>Customer: <t t-esc="partner.name" /></div>
                 <div t-if="partner.vat"><t
                     t-esc="props.data.company.country?.vat_label || 'Tax ID'"
-                />: <t t-esc="partner.vat" /></div>
+                />:
+                    <t t-esc="partner.vat" /></div>
                 <div t-if="partner.address" t-esc="partner.address" />
             </t>
         </xpath>

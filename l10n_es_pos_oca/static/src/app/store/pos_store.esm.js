@@ -5,9 +5,9 @@
    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 */
 
+import {ConnectionLostError} from "@web/core/network/rpc";
 import {PosStore} from "@point_of_sale/app/store/pos_store";
 import {patch} from "@web/core/utils/patch";
-import {ConnectionLostError} from "@web/core/network/rpc";
 
 patch(PosStore.prototype, {
     /**
@@ -57,7 +57,7 @@ patch(PosStore.prototype, {
             this.config.l10n_es_simplified_invoice_prefix +
             this._getPaddingSimpleInv(
                 this.config.l10n_es_simplified_invoice_number,
-                this.config.l10n_es_simplified_invoice_paddingº
+                this.config.l10n_es_simplified_invoice_padding
             )
         );
     },
@@ -93,10 +93,6 @@ patch(PosStore.prototype, {
 
             this.config.l10n_es_simplified_invoice_number =
                 config[0]?.l10n_es_simplified_invoice_number || 1;
-            console.log(
-                "NEXT NUMBER FROM DB -> ",
-                this.config.l10n_es_simplified_invoice_number
-            );
         } catch (error) {
             // Offline -> First time connection lost no has pending orders, we can increment the number
             if (!this.hasPendingOrders()) {
@@ -111,10 +107,6 @@ patch(PosStore.prototype, {
             // Prevent overlapping by calculating the max number in pending orders when lost connection
             const simplifiedInvNumFromOrderPending =
                 Math.max(...orderToCreate.map((o) => o.l10n_es_simplified_number)) + 1;
-            console.log(
-                "HAS PENDING ORDERS simplifiedInvNumFromOrderPending",
-                simplifiedInvNumFromOrderPending
-            );
 
             // Set the next number to be at least the max from pending orders
             if (

@@ -18,3 +18,5 @@
   - Daniel Duque \<<daniel.duque@factorlibre.com>\>
 - [APSL-Nagarro](https://www.apsl.tech):
   - Antoni Marroig \<<amarroig@apsl.net>\>
+- [Alia Technologies](https://alialabs.com):
+  - César Parguiñas \<<cesarportas@alialabs.com>\>
