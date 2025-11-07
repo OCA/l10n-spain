@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2025-11-03 21:57+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -350,14 +351,19 @@ msgstr "Mensajes"
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_res_company__tbai_description_method
 msgid ""
 "Method for the TicketBAI invoices description, can be one of these:\n"
-"- Automatic: the description will be the join of the invoice   lines description\n"
+"- Automatic: the description will be the join of the invoice   lines "
+"description\n"
 "- Fixed: the description write on the below field 'TBAI   Description'\n"
-"- Manual (by default): It will be necessary to manually enter   the description on each invoice"
+"- Manual (by default): It will be necessary to manually enter   the "
+"description on each invoice"
 msgstr ""
 "Método para la descripción de facturas TicketBAI, puede ser uno de éstos:\n"
-"- Automático: la descripción será la unión de las descripciones de las lineas de la factura\n"
-"- Predefinido: la descripción escrita en el campo de abajo 'Descripción TBAI'\n"
-"- Manual (por defecto): Es necesario insertar la descripción de la factura manualmente en cada factura"
+"- Automático: la descripción será la unión de las descripciones de las "
+"lineas de la factura\n"
+"- Predefinido: la descripción escrita en el campo de abajo 'Descripción "
+"TBAI'\n"
+"- Manual (por defecto): Es necesario insertar la descripción de la factura "
+"manualmente en cada factura"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_tax_map__name
@@ -446,8 +452,8 @@ msgid ""
 "Refunded Invoice %(name)s Number Prefix %(prefix)s longer than expected. "
 "Should be 20 characters max.!"
 msgstr ""
-"Factura rectificativa %(name)s. Prefijo %(prefix)s más largo de lo esperado."
-" Debería de contener 20 caracteres como máximo!"
+"Factura rectificativa %(name)s. Prefijo %(prefix)s más largo de lo esperado. "
+"Debería de contener 20 caracteres como máximo!"
 
 #. module: l10n_es_ticketbai
 #. odoo-python
@@ -603,11 +609,11 @@ msgstr "Plantilla de posición fiscal"
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_res_company__tbai_description
 msgid ""
-"The description for invoices. Only used when the field TicketBAI Description"
-" Method is 'Fixed'."
+"The description for invoices. Only used when the field TicketBAI Description "
+"Method is 'Fixed'."
 msgstr ""
-"Descripción de las facturas. Utilizado cuando el campo Método de descripción"
-" TicketBAI es 'Predefinido'."
+"Descripción de las facturas. Utilizado cuando el campo Método de descripción "
+"TicketBAI es 'Predefinido'."
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_tbai_invoice_refund_origin__number
@@ -726,8 +732,8 @@ msgid ""
 "TicketBAI Invoice %(name)s Error: the Invoice should have one tax line for "
 "Tax %(tax)s"
 msgstr ""
-"TicketBAI factura %(name)s error: la factura debería tener sólo una línea de"
-" impuesto de factura para el impuesto %(tax)s"
+"TicketBAI factura %(name)s error: la factura debería tener sólo una línea de "
+"impuesto de factura para el impuesto %(tax)s"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_tbai_invoice
