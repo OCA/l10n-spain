@@ -23,6 +23,20 @@
                         class="btn-primary"
                         groups="account.group_account_manager"
                     />
+                       <button
+                        name="mark_as_sent"
+                        string="Mark as Sent"
+                        type="object"
+                        states="error"
+                        groups="account.group_account_manager"
+                    />
+                    <button
+                        name="cancel"
+                        string="Mark as Cancel"
+                        type="object"
+                        states="error"
+                        groups="account.group_account_manager"
+                    />
                     <field name="state" widget="statusbar" readonly="1" />
                 </header>
                 <sheet>
@@ -74,6 +88,86 @@
                                 style="min-width: 30mm; max-width: 40mm"
                             />
                         </group>
+                    </group>
+                    <group
+                        name="tbai_response"
+                        string="Response"
+                        attrs="{'invisible': [('tbai_response_ids', '=', [])]}"
+                    >
+                        <field
+                            name="tbai_response_ids"
+                            nolabel="1"
+                            colspan="2"
+                            options="{'no_create_edit': True}"
+                        >
+                            <form>
+                                <header>
+                                    <field
+                                        name="state"
+                                        widget="statusbar"
+                                        readonly="1"
+                                    />
+                                </header>
+                                <sheet>
+                                    <group name="tbai_response_main_group">
+                                        <field
+                                            name="xml"
+                                            filename="xml_fname"
+                                            readonly="1"
+                                        />
+                                        <field
+                                            name="xml_fname"
+                                            invisible="1"
+                                            class="oe_inline oe_right"
+                                        />
+                                    </group>
+                                    <group
+                                        name="tbai_response_messages_group"
+                                        string="Messages"
+                                    >
+                                        <field
+                                            name="tbai_response_message_ids"
+                                            colspan="2"
+                                            nolabel="1"
+                                            readonly="1"
+                                        >
+                                            <form>
+                                                <group>
+                                                    <field
+                                                        name="tbai_response_id"
+                                                        invisible="1"
+                                                    />
+                                                    <field name="code" readonly="1" />
+                                                    <field
+                                                        name="description"
+                                                        readonly="1"
+                                                    />
+                                                </group>
+                                            </form>
+                                            <tree create="false" delete="false">
+                                                <field
+                                                    name="tbai_response_id"
+                                                    invisible="1"
+                                                />
+                                                <field name="code" readonly="1" />
+                                                <field
+                                                    name="description"
+                                                    readonly="1"
+                                                />
+                                            </tree>
+                                        </field>
+                                    </group>
+                                </sheet>
+                            </form>
+                            <tree create="false" delete="false">
+                                <field name="create_date" />
+                                <field
+                                    name="tbai_response_message_ids"
+                                    widget="many2many_tags"
+                                />
+                                <field name="state" />
+                            </tree>
+                        </field>
                     </group>
                 </sheet>
             </form>
