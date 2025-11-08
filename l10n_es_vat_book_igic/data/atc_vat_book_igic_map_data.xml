@@ -36,7 +36,10 @@
             name="tax_agency_ids"
             eval="[ Command.link(ref('l10n_es_aeat.aeat_tax_agency_canarias')) ]"
         />
-        <field name="tax_account_id" ref="l10n_es_igic.account_common_canary_4727" />
+        <field
+            name="tax_excluded_account_id"
+            ref="l10n_es_igic.account_common_canary_4777"
+        />
         <field
             name="tax_tmpl_ids"
             eval="[
