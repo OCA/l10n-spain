@@ -18,13 +18,10 @@ class L10nEsVatBookLineTax(models.Model):
         index=True,
     )
     base_amount = fields.Float(string="Base")
-
+    deductible_amount = fields.Float()
     tax_id = fields.Many2one(comodel_name="account.tax", string="Tax")
-
     tax_rate = fields.Float(string="Tax Rate (%)", compute="_compute_tax_rate")
-
     tax_amount = fields.Float(string="Tax fee")
-
     total_amount = fields.Float(
         string="Total",
         compute="_compute_total_amount",
