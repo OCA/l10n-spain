@@ -6,5 +6,5 @@ def migrate(cr, version):
     if version.startswith("18.0"):
         cr.execute(
             "UPDATE l10n_es_vat_book_line_tax SET deductible_amount = tax_amount "
-            "WHERE deductible_amount = 0"
+            "WHERE deductible_amount IS NULL"
         )
