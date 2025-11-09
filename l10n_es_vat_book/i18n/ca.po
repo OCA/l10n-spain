@@ -202,6 +202,11 @@ msgid "Date Range:"
 msgstr "Rang de dates:"
 
 #. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax__deductible_amount
+msgid "Deductible Amount"
+msgstr ""
+
+#. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__display_name
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__display_name
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line__display_name
@@ -409,6 +414,11 @@ msgstr ""
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary__base_move_line_ids
 msgid "Journal items (Base)"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,help:l10n_es_vat_book.field_aeat_vat_book_map_line__excluded_account_xmlid_id
+msgid "Journal items with this account will be excluded"
 msgstr ""
 
 #. module: l10n_es_vat_book
@@ -737,7 +747,7 @@ msgid "Tax"
 msgstr "Impost"
 
 #. module: l10n_es_vat_book
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__account_xmlid_id
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__excluded_account_xmlid_id
 msgid "Tax Account Restriction"
 msgstr "Restricció d'impost al compte"
 
@@ -792,14 +802,12 @@ msgstr ""
 #. module: l10n_es_vat_book
 #. odoo-python
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
-#, python-format
 msgid "This book has warnings. Fix it before confirm"
 msgstr "Aquest llibre té avisos. Corregiu-los abans de confirmar"
 
 #. module: l10n_es_vat_book
 #. odoo-python
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
-#, python-format
 msgid "This company doesn't have VAT"
 msgstr "Aquesta companyia no té NIF"
 
@@ -910,14 +918,12 @@ msgstr "Historial de comunicació del web"
 #. module: l10n_es_vat_book
 #. odoo-python
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
-#, python-format
 msgid "Without Partner"
 msgstr "Sense partner"
 
 #. module: l10n_es_vat_book
 #. odoo-python
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
-#, python-format
 msgid "Without VAT"
 msgstr "Sense NIF"
 
