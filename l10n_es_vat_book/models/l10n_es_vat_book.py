@@ -458,19 +458,13 @@ class L10nEsVatBook(models.Model):
                     if account:
                         accounts.update({tax: account for tax in line_taxes})
                 # Filter in all possible data using sets for improving performance
-                if accounts:
-                    lines = moves.filtered(
-                        lambda line: line.tax_ids & taxes
-                        or (
-                            line.tax_line_id in taxes
-                            and accounts.get(line.tax_line_id, line.account_id)
-                            != line.account_id
-                        )
+                lines = moves.filtered(
+                    lambda line: line.tax_ids & taxes
+                    or (
+                        line.tax_line_id in taxes
+                        and accounts.get(line.tax_line_id) != line.account_id
                     )
-                else:
-                    lines = moves.filtered(
-                        lambda line: (line.tax_ids | line.tax_line_id) & taxes
-                    )
+                )
                 if map_lines:
                     rec.create_vat_book_lines(lines, map_lines[:1].book_type, taxes)
             # Issued
