@@ -452,6 +452,23 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         cls._invoice_sale_create("2017-01-12")
         sale = cls._invoice_sale_create("2017-01-13")
         cls._invoice_refund(sale, "2017-01-14")
+        # Invoices for testing partial compensation
+        cls.taxes_sale = {"S_IVA21B": (2000, 420)}
+        cls.taxes_purchase = {"P_IVA21_BC": (500, 105)}
+        cls._invoice_sale_create("2015-01-01")
+        cls._invoice_purchase_create("2015-01-01")
+        cls.taxes_sale = {"S_IVA21B": (100, 21)}
+        cls.taxes_purchase = {"P_IVA21_BC": (4000, 840)}
+        cls._invoice_sale_create("2015-04-01")
+        cls._invoice_purchase_create("2015-04-01")
+        cls.taxes_sale = {"S_IVA21B": (3000, 630)}
+        cls.taxes_purchase = {"P_IVA21_BC": (100, 21)}
+        cls._invoice_sale_create("2015-07-01")
+        cls._invoice_purchase_create("2015-07-01")
+        cls.taxes_sale = {"S_IVA21B": (1350, 283.50)}
+        cls.taxes_purchase = {"P_IVA21_BC": (100, 21)}
+        cls._invoice_sale_create("2015-10-01")
+        cls._invoice_purchase_create("2015-10-01")
 
     def _check_tax_lines(self):
         for field, result in iter(self.taxes_result.items()):
@@ -617,3 +634,140 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         self.model303.date_end = "2020-03-31"
         self.model303.button_calculate()
         self._check_tax_lines()
+
+    def test_model_303_partial_compensation(self):
+        model303_1T = self.env["l10n.es.aeat.mod303.report"].create(
+            {
+                "name": "3030000020151",
+                "company_id": self.company.id,
+                "company_vat": "1234567890",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": 2015,
+                "period_type": "1T",
+                "date_start": "2015-01-01",
+                "date_end": "2015-03-31",
+                "journal_id": self.journal_misc.id,
+            }
+        )
+        model303_1T.button_calculate()
+        model303_1T.button_confirm()
+        model303_1T.button_post()
+        # Check move lines from 303 1T 2015
+        self.assertRecordValues(
+            model303_1T.move_id.line_ids.sorted("balance"),
+            [
+                {
+                    "account_id": self.accounts["475000"].id,
+                    "debit": 0.0,
+                    "credit": 315.0,
+                },
+                {
+                    "account_id": self.accounts["472000"].id,
+                    "debit": 0.0,
+                    "credit": 105.0,
+                },
+                {
+                    "account_id": self.accounts["477000"].id,
+                    "debit": 420.0,
+                    "credit": 0.0,
+                },
+            ],
+        )
+
+        model303_2T = model303_1T.copy(
+            {
+                "name": "3030000020152",
+                "period_type": "2T",
+                "date_start": "2015-04-01",
+                "date_end": "2015-06-30",
+            }
+        )
+        model303_2T.button_calculate()
+        model303_2T.button_confirm()
+        model303_2T.button_post()
+        account_470 = self.env["account.account"].search(
+            [("company_id", "=", self.company.id), ("code", "=", "470000")]
+        )
+        # Check move lines from 303 2T 2015
+        self.assertRecordValues(
+            model303_2T.move_id.line_ids.sorted("balance"),
+            [
+                {
+                    "account_id": self.accounts["472000"].id,
+                    "debit": 0.0,
+                    "credit": 840.0,
+                },
+                {
+                    "account_id": self.accounts["477000"].id,
+                    "debit": 21.0,
+                    "credit": 0.0,
+                },
+                {"account_id": account_470.id, "debit": 819.0, "credit": 0.0},
+            ],
+        )
+
+        model303_3T = model303_1T.copy(
+            {
+                "name": "3030000020153",
+                "period_type": "3T",
+                "date_start": "2015-07-01",
+                "date_end": "2015-09-30",
+            }
+        )
+        model303_3T.button_calculate()
+        model303_3T.button_confirm()
+        model303_3T.button_post()
+        # Check move lines from 303 3T 2015
+        self.assertRecordValues(
+            model303_3T.move_id.line_ids.sorted("balance"),
+            [
+                {"account_id": account_470.id, "debit": 0.0, "credit": 609.0},
+                {
+                    "account_id": self.accounts["472000"].id,
+                    "debit": 0.0,
+                    "credit": 21.0,
+                },
+                {
+                    "account_id": self.accounts["477000"].id,
+                    "debit": 630.0,
+                    "credit": 0.0,
+                },
+            ],
+        )
+
+        model303_4T = model303_1T.copy(
+            {
+                "name": "3030000020154",
+                "period_type": "4T",
+                "date_start": "2015-10-01",
+                "date_end": "2015-12-31",
+            }
+        )
+        model303_4T.button_calculate()
+        model303_4T.button_confirm()
+        model303_4T.button_post()
+        # Check move lines from 303 4T 2015
+        self.assertRecordValues(
+            model303_4T.move_id.line_ids.sorted("balance"),
+            [
+                {"account_id": account_470.id, "debit": 0.0, "credit": 210.0},
+                {
+                    "account_id": self.accounts["475000"].id,
+                    "debit": 0.0,
+                    "credit": 52.5,
+                },
+                {
+                    "account_id": self.accounts["472000"].id,
+                    "debit": 0.0,
+                    "credit": 21.0,
+                },
+                {
+                    "account_id": self.accounts["477000"].id,
+                    "debit": 283.50,
+                    "credit": 0.0,
+                },
+            ],
+        )

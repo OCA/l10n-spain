@@ -519,7 +519,7 @@ class L10nEsAeatMod303Report(models.Model):
                         - fields.Date.to_date(mod303.date_start)
                     ),
                 )
-                if prev_report.remaining_cuota_compensar > 0:
+                if prev_report.remaining_cuota_compensar >= 0:
                     amount = prev_report.remaining_cuota_compensar
                     if prev_report.result_type == "C":
                         amount -= prev_report.resultado_liquidacion
@@ -596,6 +596,27 @@ class L10nEsAeatMod303Report(models.Model):
             date_end,
             map_line,
         )
+
+    def _prepare_regularization_extra_move_lines(self):
+        """Include behavior for the regularization of the fees to compensate."""
+        lines = super()._prepare_regularization_extra_move_lines()
+        if not (self.result_type in {"I", "G", "U"} and self.cuota_compensar):
+            return lines
+        code = ("%s%%" % _ACCOUNT_PATTERN_MAP.get("C", "4700"),)
+        compensation_account_id = self.env["account.account"].search(
+            [("code", "=like", code[0]), ("company_id", "=", self.company_id.id)],
+            limit=1,
+        )
+        lines.append(
+            {
+                "name": _("Compensation from previous periods"),
+                "account_id": compensation_account_id.id,
+                "partner_id": self.env.ref("l10n_es_aeat.res_partner_aeat").id,
+                "debit": 0.0,
+                "credit": self.cuota_compensar,
+            }
+        )
+        return lines
 
 
 class L10nEsAeatMod303ReportActivityCode(models.Model):
