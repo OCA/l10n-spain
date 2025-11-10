@@ -1,3 +1,7 @@
+- Este módulo asigna las claves de registro más comunes a las posiciones
+  fiscales. Si se utilizan claves distintas a las predeterminadas, se debe
+  tener precaución al actualizar el plan contable, ya que el sistema volverá
+  a aplicar los valores por defecto.
 - Comunicación de cobros y pagos.
 - Determinadas facturas intracomunitarias (Articulo 66 RIVA).
 - Asistente para consultar los documentos comunicados.
