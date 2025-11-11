@@ -83,5 +83,5 @@ class AccountMoveLine(models.Model):
             res[tax]["amount"] += amount
             # Don't add it here if non deductible
             group = tax.tax_group_id
-            if group.get_external_id()[group.id] != "l10n_es.tax_group_iva_nd":
+            if not group.get_external_id()[group.id].endswith("_tax_group_iva_nd"):
                 res[tax]["deductible_amount"] += amount
