@@ -66,7 +66,7 @@ addon | version | maintainers | summary
 [l10n_es_mis_report](l10n_es_mis_report/) | 17.0.1.0.0 |  | Plantillas MIS Builder para informes contables españoles
 [l10n_es_partner](l10n_es_partner/) | 17.0.1.0.5 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Adaptación de los clientes, proveedores y bancos para España
 [l10n_es_partner_mercantil](l10n_es_partner_mercantil/) | 17.0.1.0.1 |  | Añade los datos del registro mercantil a la empresa
-[l10n_es_payment_order_confirming_aef](l10n_es_payment_order_confirming_aef/) | 17.0.1.1.0 |  | Exportación de fichero bancario Confirming estándar AEF
+[l10n_es_payment_order_confirming_aef](l10n_es_payment_order_confirming_aef/) | 17.0.1.1.1 |  | Exportación de fichero bancario Confirming estándar AEF
 [l10n_es_payment_order_confirming_sabadell](l10n_es_payment_order_confirming_sabadell/) | 17.0.1.1.0 |  | Exportación de fichero bancario Confirming para Banco Sabadell
 [l10n_es_pos_oca](l10n_es_pos_oca/) | 17.0.1.0.0 |  | Punto de venta adaptado a la legislación española
 [l10n_es_reav](l10n_es_reav/) | 17.0.1.0.0 | <a href='https://github.com/Bilbonet'><img src='https://github.com/Bilbonet.png' width='32' height='32' style='border-radius:50%;' alt='Bilbonet'/></a> | REAV - Régimen Especial Agencias de Viajes
