@@ -129,7 +129,8 @@ class ConfirmingAEF:
         cuenta = self.record.company_partner_bank_id.acc_number.replace(" ", "")
         text += self._aef_convert_text(cuenta, 34, "left")
         # 137 - 139 Código divisa
-        text += self._aef_convert_text(self.record.company_currency_id.name, 3)
+        currency = self.record.journal_id.currency_id or self.record.company_currency_id
+        text += self._aef_convert_text(currency.name, 3)
         # 140 - 140 Estandar / Pronto Pago/ Otros
         text += self._aef_convert_text(
             self.record.payment_mode_id.aef_confirming_modality or "", 1
