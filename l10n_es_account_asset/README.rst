@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 ====================================
 Gestión de activos fijos para España
 ====================================
@@ -13,7 +17,7 @@ Gestión de activos fijos para España
 .. |badge1| image:: https://img.shields.io/badge/maturity-Production%2FStable-green.png
     :target: https://odoo-community.org/page/development-status
     :alt: Production/Stable
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
@@ -36,6 +40,8 @@ regulaciones españolas:
 * Añade la opción de trasladar la depreciación al final del periodo.
 * Añade un campo de fecha de comienzo de amortizacion para definir una distinta
   a la de compra.
+* Gestiona los impuestos no deducibles y prorrata de IVA, incrementando el valor
+  amortizable en los activos generados desde la factura.
 
 **Table of contents**
 
