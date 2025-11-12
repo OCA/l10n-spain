@@ -73,23 +73,6 @@ class RedsysTest(RedsysCommon):
             ),
         }
 
-    def test_process_notification_data(self):
-        tx = self._create_transaction(flow="redirect", reference="Valid transaction")
-        values = {
-            "Ds_Order": tx.reference,
-            "Ds_AuthorisationCode": "999999",
-            "Ds_Response": "100",
-        }
-        post_data = self._prepare_post_data(values)
-
-        tx = self.env["payment.transaction"]._get_tx_from_notification_data(
-            "redsys", post_data
-        )
-        tx._process_notification_data(post_data)
-        self.assertEqual(
-            tx.state, "done", "Redsys: validation did not put tx into done state"
-        )
-
     def test_unknown_transaction(self):
         # typical data posted by Redsys after client has successfully paid
         # unknown transaction
@@ -102,7 +85,7 @@ class RedsysTest(RedsysCommon):
             ValidationError,
             r"Redsys: received data for reference unknown transaction.*",
         ):
-            self.env["payment.transaction"]._handle_notification_data(
+            self.env["payment.transaction"]._process(
                 "redsys", post_data
             )
 
@@ -118,7 +101,7 @@ class RedsysTest(RedsysCommon):
         with self.assertRaisesRegex(
             ValidationError, r"Redsys: received data for reference Valid transaction.*"
         ):
-            self.env["payment.transaction"]._handle_notification_data(
+            self.env["payment.transaction"]._process(
                 "redsys", post_data
             )
 
@@ -128,10 +111,11 @@ class RedsysTest(RedsysCommon):
             "Ds_Order": tx.reference,
             "Ds_AuthorisationCode": "999999",
             "Ds_Response": "100",
+            "Ds_Merchant_Amount": '111111',  # in cents
         }
         post_data = self._prepare_post_data(values)
 
-        tx._handle_notification_data("redsys", post_data)
+        tx._process("redsys", post_data)
         self.assertEqual(
             tx.state, "done", "Redsys: validation did not put tx into done state"
         )
@@ -144,7 +128,7 @@ class RedsysTest(RedsysCommon):
             "Ds_Response": "203",
         }
         post_data = self._prepare_post_data(values)
-        tx._handle_notification_data("redsys", post_data)
+        tx._process("redsys", post_data)
         self.assertEqual(tx.state, "pending", "Redsys: pending transaction status")
 
         # Cancel status
@@ -155,7 +139,7 @@ class RedsysTest(RedsysCommon):
             "Ds_Response": "913",
         }
         post_data = self._prepare_post_data(values)
-        tx._handle_notification_data("redsys", post_data)
+        tx._process("redsys", post_data)
         self.assertEqual(tx.state, "cancel", "Redsys: 913-9912 generic invalid card")
 
         # Error transction status
@@ -167,5 +151,5 @@ class RedsysTest(RedsysCommon):
         }
         with mute_logger("odoo.addons.payment_redsys.models.payment_transaction"):
             post_data = self._prepare_post_data(values)
-            tx._handle_notification_data("redsys", post_data)
+            tx._process("redsys", post_data)
         self.assertEqual(tx.state, "error", "Redsys: response error")
