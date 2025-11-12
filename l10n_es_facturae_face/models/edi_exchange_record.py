@@ -5,8 +5,6 @@ import json
 import logging
 from datetime import timedelta
 
-from zeep import helpers
-
 from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
@@ -70,33 +68,21 @@ class EdiExchangeRecord(models.Model):
             )
             if not company_integrations:
                 continue
-            exchange_dict = {}
-            exchanges = []
-            for integration in company_integrations:
-                exchanges.append(integration.external_identifier)
-                exchange_dict[integration.external_identifier] = integration
             public_crt, private_key = self.env[
                 "l10n.es.aeat.certificate"
             ].get_certificates(company)
-            response = self.env["l10n_es.facturae.face.base.handler"].consult_invoices(
-                public_crt,
-                private_key,
-                exchanges,
-            )
-            if response.resultado.codigo != "0":
-                _logger.info(
-                    self.env._("Company %s cannot be processed", company.display_name)
+            for exchange_record in company_integrations:
+                response = self.env[
+                    "l10n_es.facturae.face.base.handler"
+                ].consult_invoice(
+                    public_crt,
+                    private_key,
+                    exchange_record.external_identifier,
                 )
-                continue
-            for invoice in response.facturas.consultarListadoFactura:
-                if not exchange_dict.get(invoice.factura.numeroRegistro, False):
+                if not response:
                     continue
-                exchange_record = exchange_dict[invoice.factura.numeroRegistro]
-                if invoice.codigo != "0":
-                    # Probably processed from another system
-                    continue
-                process_code = "face-" + invoice.factura.tramitacion.codigo
-                revocation_code = "face-" + invoice.factura.anulacion.codigo
+                process_code = "face-" + response["statusHistory"][-1]["code"]
+                revocation_code = "face-" + response["cancellationRequestStatusCode"]
                 if (
                     exchange_record.l10n_es_facturae_status == process_code
                     and exchange_record.l10n_es_facturae_cancellation_status
@@ -117,9 +103,7 @@ class EdiExchangeRecord(models.Model):
                         "parent_id": exchange_record.id,
                     },
                 )
-                update_record._set_file_content(
-                    json.dumps(helpers.serialize_object(invoice.factura))
-                )
-                face.with_context(_edi_send_break_on_error=True).exchange_process(
+                update_record._set_file_content(json.dumps(response))
+                face.with_context(_edi_process_break_on_error=True).exchange_process(
                     update_record
                 )
