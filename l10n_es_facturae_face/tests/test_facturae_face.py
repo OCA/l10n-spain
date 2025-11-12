@@ -9,6 +9,7 @@ from freezegun import freeze_time
 
 from odoo import exceptions
 from odoo.tests import tagged
+from odoo.tools import mute_logger
 
 from odoo.addons.edi_oca.tests.common import EDIBackendCommonComponentRegistryTestCase
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
@@ -17,7 +18,7 @@ from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
 
 _logger = logging.getLogger(__name__)
 try:
-    from zeep import Client
+    pass
 except (ImportError, IOError) as err:
     _logger.info(err)
 
@@ -226,6 +227,7 @@ class EDIBackendTestCase(
         with self.assertRaises(exceptions.ValidationError):
             self.partner.state_id = False
 
+    @mute_logger("odoo.addons.queue_job.utils")
     def test_facturae_face_error(self):
         self._activate_certificate(self.certificate_password)
         self.assertFalse(self.move.exchange_record_ids)
@@ -278,36 +280,15 @@ class EDIBackendTestCase(
         with self.assertRaises(exceptions.ValidationError):
             wizard.create_facturae_file()
 
+    @mute_logger("odoo.addons.queue_job.utils")
     def test_facturae_face_0(self):
-        class DemoService(object):
-            def __init__(self, value):
-                self.value = value
-
-            def enviarFactura(self, *args):
-                return self.value
-
-            def anularFactura(self, *args):
-                return self.value
-
-            def consultarFactura(self, *args):
-                return self.value
-
-            def consultarListadoFacturas(self, *args):
-                return self.value
-
         self._activate_certificate(self.certificate_password)
-        client = Client(
-            wsdl=self.env["ir.config_parameter"].sudo().get_param("facturae.face.ws")
-        )
-        integration_code = "1234567890"
-        response_ok = client.get_type("ns0:EnviarFacturaResponse")(
-            client.get_type("ns0:Resultado")(codigo="0", descripcion="OK"),
-            client.get_type("ns0:EnviarFactura")(numeroRegistro=integration_code),
-        )
-        self.assertFalse(self.move.exchange_record_ids)
-        with mock.patch("zeep.client.ServiceProxy") as mock_client:
-            mock_client.return_value = DemoService(response_ok)
-
+        with mock.patch("requests.post") as mock_client:
+            mock_client.return_value = mock.Mock(
+                status_code=200,
+                json=lambda: {"registryCode": "REG1234567890"},
+                raise_for_status=lambda: None,
+            )
             self.move.with_context(
                 force_edi_send=True, queue_job__no_delay=True
             ).action_post()
@@ -331,20 +312,16 @@ class EDIBackendTestCase(
         with self.assertRaises(exceptions.UserError):
             self.move.edi_create_exchange_record(self.face_update_type.id)
 
+    @mute_logger("odoo.addons.queue_job.utils")
     def test_facturae_face(self):
         self._activate_certificate(self.certificate_password)
-        client = Client(
-            wsdl=self.env["ir.config_parameter"].sudo().get_param("facturae.face.ws")
-        )
         integration_code = "1234567890"
-        response_ok = client.get_type("ns0:EnviarFacturaResponse")(
-            client.get_type("ns0:Resultado")(codigo="0", descripcion="OK"),
-            client.get_type("ns0:EnviarFactura")(numeroRegistro=integration_code),
-        )
-        self.assertFalse(self.move.exchange_record_ids)
-        with mock.patch("zeep.client.ServiceProxy") as mock_client:
-            mock_client.return_value = DemoService(response_ok)
-
+        with mock.patch("requests.post") as mock_client:
+            mock_client.return_value = mock.Mock(
+                status_code=200,
+                json=lambda: {"registryCode": integration_code},
+                raise_for_status=lambda: None,
+            )
             self.move.with_context(
                 force_edi_send=True, queue_job__no_delay=True
             ).action_post()
@@ -362,14 +339,6 @@ class EDIBackendTestCase(
         self.move.invalidate_recordset()
         self.assertTrue(self.move.exchange_record_ids)
         exchange_record = self.move.exchange_record_ids
-        response_update = client.get_type("ns0:ConsultarFacturaResponse")(
-            client.get_type("ns0:Resultado")(codigo="0", descripcion="OK"),
-            client.get_type("ns0:ConsultarFactura")(
-                "1234567890",
-                client.get_type("ns0:EstadoFactura")("1200", "DESC", "MOTIVO"),
-                client.get_type("ns0:EstadoFactura")("4100", "DESC", "MOTIVO"),
-            ),
-        )
         self.move.invalidate_recordset()
         self.assertIn(
             self.face_update_type.id,
@@ -379,47 +348,51 @@ class EDIBackendTestCase(
             self.move.edi_create_exchange_record(self.face_update_type.id)
         except exceptions.UserError:  # pylint: disable=W8138
             pass
-        except Exception:
-            raise
-
-        with mock.patch("zeep.client.ServiceProxy") as mock_client:
-            mock_client.return_value = DemoService(response_update)
+        with mock.patch("requests.get") as mock_client:
+            mock_client.return_value = mock.Mock(
+                status_code=200,
+                json=lambda: {
+                    "registryCode": integration_code,
+                    "statusHistory": [{"code": "1200"}],
+                    "cancellationRequestStatusCode": "4100",
+                    "cancellationRequestComment": "MOTIVO",
+                    "statusComment": "MOTIVO",
+                },
+                raise_for_status=lambda: None,
+            )
             self.move.edi_create_exchange_record(self.face_update_type.id)
             mock_client.assert_called_once()
         self.assertEqual(exchange_record.l10n_es_facturae_status, "face-1200")
         self.assertEqual(self.move.l10n_es_facturae_status, "face-1200")
-        # On the second update, no new logs are generated
-        multi_response = client.get_type("ns0:ConsultarListadoFacturaResponse")(
-            client.get_type("ns0:Resultado")(codigo="0", descripcion="OK"),
-            client.get_type("ns0:ArrayOfConsultarListadoFactura")(
-                [
-                    client.get_type("ns0:ConsultarListadoFactura")(
-                        codigo="0",
-                        descripcion="OK",
-                        factura=client.get_type("ns0:ConsultarFactura")(
-                            "1234567890",
-                            client.get_type("ns0:EstadoFactura")(
-                                "1300", "DESC", "MOTIVO"
-                            ),
-                            client.get_type("ns0:EstadoFactura")(
-                                "4100", "DESC", "MOTIVO"
-                            ),
-                        ),
-                    )
-                ]
-            ),
-        )
-
-        with mock.patch("zeep.client.ServiceProxy") as mock_client:
-            mock_client.return_value = DemoService(multi_response)
+        with mock.patch("requests.get") as mock_client:
+            mock_client.return_value = mock.Mock(
+                status_code=200,
+                json=lambda: {
+                    "registryCode": integration_code,
+                    "statusHistory": [{"code": "1200"}, {"code": "1300"}],
+                    "cancellationRequestStatusCode": "4100",
+                    "cancellationRequestComment": "MOTIVO",
+                    "statusComment": "MOTIVO",
+                },
+                raise_for_status=lambda: None,
+            )
             self.env["edi.exchange.record"].with_context()._cron_face_update_method()
         exchange_record.flush_recordset()
         exchange_record.invalidate_recordset()
         self.assertEqual(exchange_record.l10n_es_facturae_status, "face-1300")
-
         self.assertEqual(len(exchange_record.related_exchange_ids), 3)
-        with mock.patch("zeep.client.ServiceProxy") as mock_client:
-            mock_client.return_value = DemoService(multi_response)
+        with mock.patch("requests.get") as mock_client:
+            mock_client.return_value = mock.Mock(
+                status_code=200,
+                json=lambda: {
+                    "registryCode": integration_code,
+                    "statusHistory": [{"code": "1200"}, {"code": "1300"}],
+                    "cancellationRequestStatusCode": "4100",
+                    "cancellationRequestComment": "MOTIVO",
+                    "statusComment": "MOTIVO",
+                },
+                raise_for_status=lambda: None,
+            )
             self.env["edi.exchange.record"].with_context()._cron_face_update_method()
         exchange_record.flush_recordset()
         exchange_record.invalidate_recordset()
@@ -430,12 +403,14 @@ class EDIBackendTestCase(
         )
         with self.assertRaises(exceptions.UserError):
             cancel.cancel_face()
-        response_cancel = client.get_type("ns0:ConsultarFacturaResponse")(
-            client.get_type("ns0:Resultado")("0", "OK"),
-            client.get_type("ns0:AnularFactura")("1234567890", "ANULADO"),
-        )
-        with mock.patch("zeep.client.ServiceProxy") as mock_client:
-            mock_client.return_value = DemoService(response_cancel)
+        with mock.patch("requests.post") as mock_client:
+            mock_client.return_value = mock.Mock(
+                status_code=200,
+                json=lambda: {
+                    "registryCode": integration_code,
+                },
+                raise_for_status=lambda: None,
+            )
             cancel.cancel_face()
         exchange_record.invalidate_recordset()
         self.assertEqual(
@@ -443,20 +418,18 @@ class EDIBackendTestCase(
         )
         self.assertEqual(self.move.l10n_es_facturae_cancellation_status, "face-4200")
 
+    @mute_logger("odoo.addons.queue_job.utils")
     def test_facturae_face_cron_delayed(self):
         now = datetime.now()
         self._activate_certificate(self.certificate_password)
-        client = Client(
-            wsdl=self.env["ir.config_parameter"].sudo().get_param("facturae.face.ws")
-        )
         integration_code = "1234567890"
-        response_ok = client.get_type("ns0:EnviarFacturaResponse")(
-            client.get_type("ns0:Resultado")(codigo="0", descripcion="OK"),
-            client.get_type("ns0:EnviarFactura")(numeroRegistro=integration_code),
-        )
         self.assertFalse(self.move.exchange_record_ids)
-        with mock.patch("zeep.client.ServiceProxy") as mock_client:
-            mock_client.return_value = DemoService(response_ok)
+        with mock.patch("requests.post") as mock_client:
+            mock_client.return_value = mock.Mock(
+                status_code=200,
+                json=lambda: {"registryCode": integration_code},
+                raise_for_status=lambda: None,
+            )
             self.move.with_context(
                 force_edi_send=True, queue_job__no_delay=True
             ).action_post()
@@ -472,28 +445,19 @@ class EDIBackendTestCase(
             )
             mock_client.assert_called_once()
         self.move.invalidate_recordset()
-        multi_response = client.get_type("ns0:ConsultarListadoFacturaResponse")(
-            client.get_type("ns0:Resultado")(codigo="0", descripcion="OK"),
-            client.get_type("ns0:ArrayOfConsultarListadoFactura")(
-                [
-                    client.get_type("ns0:ConsultarListadoFactura")(
-                        codigo="0",
-                        descripcion="OK",
-                        factura=client.get_type("ns0:ConsultarFactura")(
-                            "1234567890",
-                            client.get_type("ns0:EstadoFactura")(
-                                "1300", "DESC", "MOTIVO"
-                            ),
-                            client.get_type("ns0:EstadoFactura")(
-                                "4100", "DESC", "MOTIVO"
-                            ),
-                        ),
-                    )
-                ]
-            ),
-        )
-        with mock.patch("zeep.client.ServiceProxy") as mock_client:
-            mock_client.return_value = DemoService(multi_response)
+
+        with mock.patch("requests.get") as mock_client:
+            mock_client.return_value = mock.Mock(
+                status_code=200,
+                json=lambda: {
+                    "registryCode": integration_code,
+                    "statusHistory": [{"code": "1200"}, {"code": "1300"}],
+                    "cancellationRequestStatusCode": "4100",
+                    "cancellationRequestComment": "MOTIVO",
+                    "statusComment": "MOTIVO",
+                },
+                raise_for_status=lambda: None,
+            )
             self.env["edi.exchange.record"].with_context()._cron_face_update_method(
                 limit=1, days_limit=1
             )
@@ -508,8 +472,18 @@ class EDIBackendTestCase(
         self.assertEqual(exchange_record.l10n_es_facturae_status, "face-1300")
 
         self.assertEqual(len(exchange_record.related_exchange_ids), 1)
-        with mock.patch("zeep.client.ServiceProxy") as mock_client:
-            mock_client.return_value = DemoService(multi_response)
+        with mock.patch("requests.get") as mock_client:
+            mock_client.return_value = mock.Mock(
+                status_code=200,
+                json=lambda: {
+                    "registryCode": integration_code,
+                    "statusHistory": [{"code": "1200"}, {"code": "1300"}],
+                    "cancellationRequestStatusCode": "4100",
+                    "cancellationRequestComment": "MOTIVO",
+                    "statusComment": "MOTIVO",
+                },
+                raise_for_status=lambda: None,
+            )
             with freeze_time(now + timedelta(days=4)):
                 self.env["edi.exchange.record"].with_context()._cron_face_update_method(
                     limit=1, days_limit=1
