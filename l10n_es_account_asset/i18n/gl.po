@@ -48,6 +48,11 @@ msgid "Fixed percentage"
 msgstr "¡Porcentaxe incorrecta!"
 
 #. module: l10n_es_account_asset
+#: model:ir.model,name:l10n_es_account_asset.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_es_account_asset
 #: model:ir.model.constraint,message:l10n_es_account_asset.constraint_account_asset_annual_percentage
 #: model:ir.model.constraint,message:l10n_es_account_asset.constraint_account_asset_profile_annual_percentage
 msgid "Wrong percentage!"
