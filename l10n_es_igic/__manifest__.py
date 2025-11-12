@@ -12,7 +12,6 @@
     "Atlantux Consultores - Enrique Zanardi,"
     "Sistemas de Datos,"
     "Comunitea,"
-    "Binhex,"
     "Odoo Community Association (OCA)",
     "category": "Accounting/Localizations/Account Charts",
     "website": "https://github.com/OCA/l10n-spain",

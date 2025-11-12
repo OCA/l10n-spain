@@ -27,18 +27,15 @@
         />
     </record>
 
-    <!-- Operación exenta -->
-    <record id="aeat_verifactu_map_line_E1_igic" model="verifactu.map.line">
-        <field name="code">E1</field>
+    <!-- Operación No Sujeta artículo 7, 14, otros. -->
+    <record id="l10n_es_verifactu_oca.verifactu_map_line_N1" model="verifactu.map.line">
         <field
             name="taxes"
-            eval="[(6, 0, [
-                ref('l10n_es_igic.account_tax_template_igic_re_ex'),
-                ref('l10n_es_igic.account_tax_template_igic_ex_0'),
-            ])]"
+            eval="[
+                (4, ref('l10n_es_igic.account_tax_template_igic_re_ex')),
+                (4, ref('l10n_es_igic.account_tax_template_igic_ex_0')),
+            ]"
         />
-        <field name="verifactu_map_id" ref="l10n_es_verifactu_oca.verifactu_map" />
-        <field name="name">Operaciones Exentas</field>
     </record>
 
 </odoo>

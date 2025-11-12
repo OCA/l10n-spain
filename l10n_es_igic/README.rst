@@ -71,7 +71,6 @@ Authors
 * Atlantux Consultores - Enrique Zanardi
 * Sistemas de Datos
 * Comunitea
-* Binhex
 
 Contributors
 ~~~~~~~~~~~~
