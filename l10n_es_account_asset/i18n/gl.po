@@ -43,9 +43,14 @@ msgstr "Porcentaxe de amortización"
 #. module: l10n_es_account_asset
 #. odoo-python
 #: code:addons/l10n_es_account_asset/models/account_asset_profile.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid "Fixed percentage"
 msgstr "¡Porcentaxe incorrecta!"
+
+#. module: l10n_es_account_asset
+#: model:ir.model,name:l10n_es_account_asset.model_account_move
+msgid "Journal Entry"
+msgstr ""
 
 #. module: l10n_es_account_asset
 #: model:ir.model.constraint,message:l10n_es_account_asset.constraint_account_asset_annual_percentage
