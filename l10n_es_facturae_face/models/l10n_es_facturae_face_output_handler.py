@@ -40,4 +40,4 @@ class L10nEsFacturaeOutputHandler(models.AbstractModel):
             invoice.company_id.face_email,
             self._get_extra_attachment(exchange_record),
         )
-        exchange_record.write({"external_identifier": response.factura.numeroRegistro})
+        exchange_record.write({"external_identifier": response.get("registryCode")})
