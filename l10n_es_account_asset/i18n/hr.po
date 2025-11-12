@@ -43,8 +43,12 @@ msgstr ""
 #. module: l10n_es_account_asset
 #. odoo-python
 #: code:addons/l10n_es_account_asset/models/account_asset_profile.py:0
-#, python-format
 msgid "Fixed percentage"
+msgstr ""
+
+#. module: l10n_es_account_asset
+#: model:ir.model,name:l10n_es_account_asset.model_account_move
+msgid "Journal Entry"
 msgstr ""
 
 #. module: l10n_es_account_asset
