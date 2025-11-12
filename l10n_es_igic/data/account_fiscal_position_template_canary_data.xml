@@ -44,6 +44,12 @@
         <field name="chart_template_id" ref="account_chart_template_common_canary" />
         <field name="note">Comerciante Minorista</field>
     </record>
+
+    <record id="fp_lease_canary" model="account.fiscal.position.template">
+        <field name="name">Exención arrendamientos Islas Canarias</field>
+        <field name="chart_template_id" ref="account_chart_template_common_canary" />
+    </record>
+
     <!-- Extracomunitarios -->
     <record id="fptt_extra_canary_0_inv" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="fp_extra_canary" />
@@ -1271,5 +1277,50 @@
         <field name="position_id" ref="fp_retailer_canary" />
         <field name="tax_src_id" ref="account_tax_template_igic_sop_20" />
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_20_cmino" />
+    </record>
+    <!-- Exención arrendamientos Islas Canarias -->
+         <record
+        id="fpl_extra_ventas_canary_0"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_lease_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_r_0" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_re_ex" />
+    </record>
+    <record id="fpl_extra_ventas_canary_3" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_lease_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_r_3" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_re_ex" />
+    </record>
+    <record id="fpl_extra_ventas_canary_5" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_lease_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_r_5" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_re_ex" />
+    </record>
+    <record id="fpl_extra_ventas_canary_7" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_lease_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_r_7" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_re_ex" />
+    </record>
+    <record id="fpl_extra_ventas_canary95" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_lease_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_r_9_5" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_re_ex" />
+    </record>
+    <record
+        id="fpl_extra_ventas_canary_15"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_lease_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_r_15" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_re_ex" />
+    </record>
+    <record
+        id="fpl_extra_ventas_canary_20"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_lease_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_r_20" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_re_ex" />
     </record>
 </odoo>
