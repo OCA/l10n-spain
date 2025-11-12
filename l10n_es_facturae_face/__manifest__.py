@@ -25,4 +25,5 @@
     ],
     "installable": True,
     "maintainers": ["etobella"],
+    "external_dependencies": {"python": ["pyjwt"]},
 }
