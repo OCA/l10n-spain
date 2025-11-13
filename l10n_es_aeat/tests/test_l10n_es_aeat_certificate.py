@@ -12,6 +12,7 @@ from cryptography.hazmat.primitives.serialization import BestAvailableEncryption
 from cryptography.x509 import oid
 
 from odoo import exceptions
+from odoo.tests import Form
 
 from odoo.addons.base.tests.common import BaseCommon
 
@@ -101,6 +102,9 @@ class TestL10nEsAeatCertificateBase(BaseCommon):
             certificate,
             cls.certificate_password,
         )
+        cls.public_key = certificate.public_bytes(serialization.Encoding.PEM).decode(
+            "utf-8"
+        )
         cls.sii_cert = cls.env["l10n.es.aeat.certificate"].create(
             {
                 "folder": "Test folder",
@@ -132,3 +136,25 @@ class TestL10nEsAeatCertificate(TestL10nEsAeatCertificateBase):
         )
         self._activate_certificate(self.certificate_password)
         self.assertEqual(self.sii_cert.state, "active")
+
+    def test_show_public_key(self):
+        self._activate_certificate(self.certificate_password)
+        with Form(self.sii_cert) as f:
+            self.assertFalse(f.show_public_key)
+            self.assertFalse(f.public_key_data)
+            f.show_public_key = True
+            self.assertTrue(f.public_key_data)
+            self.assertEqual(f.public_key_data, self.public_key)
+            f.show_public_key = False
+            self.assertFalse(f.public_key_data)
+
+    def test_get_public_key_pem(self):
+        self.assertFalse(self.sii_cert.public_key_file)
+        self._activate_certificate(self.certificate_password)
+        action = self.sii_cert.get_public_key_pem()
+        self.assertEqual(action["type"], "ir.actions.act_url")
+        self.assertEqual(
+            f"/web/content/l10n.es.aeat.certificate/{self.sii_cert.id}/public_key_file/{self.sii_cert.public_key_filename}?download=true",
+            action["url"],
+        )
+        self.assertTrue(self.sii_cert.public_key_file)

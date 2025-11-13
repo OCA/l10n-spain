@@ -33,6 +33,20 @@
                 <group>
                     <field name="private_key" />
                     <field name="public_key" />
+                    <field
+                        name="show_public_key"
+                        widget="boolean_toggle"
+                        options="{'autosave': False}"
+                    />
+                    <field name="public_key_data" invisible="not show_public_key" />
+                    <button
+                        name="get_public_key_pem"
+                        type="object"
+                        string="Download Public Key"
+                        colspan="2"
+                        class="btn-primary"
+                        invisible="not show_public_key"
+                    />
                 </group>
             </form>
         </field>
