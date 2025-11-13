@@ -65,4 +65,11 @@
             ref="l10n_es_verifactu_oca.verifactu_registration_keys_igic_17"
         />
     </record>
+    <record id="l10n_es_igic.fp_lease_canary" model="account.fiscal.position.template">
+        <field name="verifactu_tax_key">03</field>
+        <field
+            name="verifactu_registration_key"
+            ref="l10n_es_verifactu_oca.verifactu_registration_keys_igic_01"
+        />
+    </record>
 </odoo>
