@@ -147,3 +147,15 @@ class TestL10nEsAeatCertificate(TestL10nEsAeatCertificateBase):
             self.assertEqual(f.public_key_data, self.public_key)
             f.show_public_key = False
             self.assertFalse(f.public_key_data)
+
+    def test_get_public_key_pem(self):
+        self.assertFalse(self.sii_cert.public_key_file)
+        self._activate_certificate(self.certificate_password)
+        action = self.sii_cert.get_public_key_pem()
+        self.assertEqual(action["type"], "ir.actions.act_url")
+        self.assertEqual(
+            "/web/content/l10n.es.aeat.certificate/%s/public_key_file/%s?download=true"
+            % (self.sii_cert.id, self.sii_cert.public_key_filename),
+            action["url"],
+        )
+        self.assertTrue(self.sii_cert.public_key_file)
