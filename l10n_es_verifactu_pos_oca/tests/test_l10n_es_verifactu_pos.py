@@ -74,7 +74,7 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
                 "code": "X1012.POS",
                 "name": "Debtors - (POS)",
                 "reconcile": True,
-                "account_type": "asset_receivable",
+                "user_type_id": cls.env.ref("account.data_account_type_receivable").id,
             }
         )
         cls.pos_receivable_account = (
@@ -118,7 +118,7 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
         cls.pos_config.write(
             {"payment_method_ids": [(6, 0, (cls.cash_pm1 + cls.bank_pm1).ids)]}
         )
-        cls.pos_config.open_ui()
+        cls.pos_config.open_session_cb()
         cls.pos_session = cls.pos_config.current_session_id
 
         cls.tax_21 = cls.env.ref(

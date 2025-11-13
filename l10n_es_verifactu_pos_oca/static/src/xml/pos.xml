@@ -11,7 +11,7 @@
                 <div class="pos-receipt-center-align">
                     <span>QR Tributario:</span>
                     <img
-                        t-att-src="receipt.verifactu_qr"
+                        t-att-src="'/report/barcode/QR/' + receipt.verifactu_qr + '?width=150&amp;height=150'"
                         class="pos-receipt-qrcode verifactu-qr"
                     />
                     <span>VERI*FACTU</span>
