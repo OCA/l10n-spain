@@ -120,7 +120,9 @@ msgid "AEAT last header sent"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__aeat_state
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__aeat_state
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__aeat_state
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__aeat_state
 msgid "AEAT send state"
 msgstr ""
@@ -413,6 +415,7 @@ msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry__document_name
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response_line__document_name
 msgid "Document Name"
 msgstr ""
 
@@ -587,6 +590,12 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__account_move__aeat_state__incorrect
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_mixin__aeat_state__incorrect
+msgid "Incorrect"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_invoice_entry.py:0
 #, python-format
@@ -602,7 +611,9 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_bank_statement_line__aeat_state
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_move__aeat_state
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_payment__aeat_state
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_mixin__aeat_state
 msgid ""
 "Indicates the state of this document in relation with the presentation at "
@@ -1011,8 +1022,8 @@ msgid "Send invoices to VERI*FACTU"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_invoice_entry__send_state__correct
-#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_invoice_entry_response_line__send_state__correct
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_invoice_entry__send_state__sent
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_invoice_entry_response_line__send_state__sent
 msgid "Sent and Correct"
 msgstr ""
 
@@ -1023,8 +1034,8 @@ msgid "Sent and Incorrect"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_invoice_entry__send_state__accepted_with_errors
-#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_invoice_entry_response_line__send_state__accepted_with_errors
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_invoice_entry__send_state__sent_w_errors
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_invoice_entry_response_line__send_state__sent_w_errors
 msgid "Sent and accepted with errors"
 msgstr ""
 
