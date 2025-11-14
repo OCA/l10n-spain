@@ -38,6 +38,14 @@
                         widget="boolean_toggle"
                         options="{'autosave': False}"
                     />
+                    <button
+                        name="get_public_key_pem"
+                        type="object"
+                        string="Download Public Key"
+                        colspan="2"
+                        class="btn-primary"
+                        attrs="{'invisible': [('public_key', '=', False)]}"
+                    />
                 </group>
                 <field name="public_key_data" />
             </form>

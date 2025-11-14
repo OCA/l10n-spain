@@ -26,6 +26,19 @@ class L10nEsAeatCertificate(models.Model):
     public_key = fields.Char(readonly=True)
     show_public_key = fields.Boolean(store=False)
     public_key_data = fields.Text(readonly=True, store=False)
+    public_key_file = fields.Binary(
+        readonly=True,
+        store=False,
+        attachment=False,
+        compute="_compute_public_key",
+        groups="l10n_es_aeat.group_account_aeat",
+    )
+    public_key_filename = fields.Char(
+        readonly=True,
+        store=False,
+        compute="_compute_public_key",
+        groups="l10n_es_aeat.group_account_aeat",
+    )
     private_key = fields.Char(readonly=True)
     company_id = fields.Many2one(
         comodel_name="res.company",
@@ -44,6 +57,30 @@ class L10nEsAeatCertificate(models.Model):
                 f.read(), backend=default_backend()
             )
         self.public_key_data = certificate.public_bytes(Encoding.PEM)
+
+    def get_public_key_pem(self):
+        self.ensure_one()
+        return {
+            "type": "ir.actions.act_url",
+            "target": "self",
+            "url": "/web/content/l10n.es.aeat.certificate/%s/public_key_file/%s?download=true"
+            % (self.id, self.public_key_filename),
+        }
+
+    @api.depends("public_key")
+    def _compute_public_key(self):
+        for record in self:
+            if not record.public_key:
+                record.public_key_file = False
+                record.public_key_filename = False
+                continue
+            with open(record.public_key, "rb") as f:
+                certificate = x509.load_pem_x509_certificate(
+                    f.read(), backend=default_backend()
+                )
+            public_key = certificate.public_bytes(Encoding.PEM)
+            record.public_key_filename = f"{record.name}.pem"
+            record.public_key_file = public_key
 
     def load_password_wizard(self):
         self.ensure_one()
