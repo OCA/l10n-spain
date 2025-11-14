@@ -29,6 +29,7 @@ class VerifactuInvoiceEntryResponseLine(models.Model):
     )
     verifactu_csv = fields.Text(related="entry_response_id.verifactu_csv")
     error_code = fields.Char()
+    document_name = fields.Char(related="entry_id.document_name", readonly=True)
 
     @property
     def document(self):

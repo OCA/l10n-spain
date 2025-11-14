@@ -22,6 +22,10 @@ VERIFACTU_VERSION = 1.0
 VERIFACTU_DATE_FORMAT = "%d-%m-%Y"
 VERIFACTU_MACRODATA_LIMIT = 100000000.0
 
+VERIFACTU_STATES = [
+    ("incorrect", "Incorrect"),
+]
+
 
 class VerifactuMixin(models.AbstractModel):
     _name = "verifactu.mixin"
@@ -115,6 +119,20 @@ class VerifactuMixin(models.AbstractModel):
         readonly=True,
         copy=False,
     )
+    aeat_state = fields.Selection(
+        selection_add=VERIFACTU_STATES,
+        compute="_compute_aeat_state",
+        store=True,
+        copy=False,
+    )
+
+    @api.depends("last_verifactu_response_line_id.send_state")
+    def _compute_aeat_state(self):
+        for document in self:
+            if document.verifactu_enabled and document.last_verifactu_response_line_id:
+                document.aeat_state = (
+                    document.last_verifactu_response_line_id.send_state
+                )
 
     @api.model
     def _get_verifactu_reference_models(self):

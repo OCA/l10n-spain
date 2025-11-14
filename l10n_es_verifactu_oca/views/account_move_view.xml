@@ -14,7 +14,7 @@
                     string="Re-send to VERI*FACTU"
                     name="resend_verifactu"
                     groups="l10n_es_aeat.group_account_aeat"
-                    attrs="{'invisible': ['|','|',('verifactu_enabled', '=', False), ('state', 'not in', ['posted']), ('aeat_state','!=','sent_w_errors')]}"
+                    attrs="{'invisible': ['|','|',('verifactu_enabled', '=', False), ('state', 'not in', ['posted']), ('aeat_state','not in', ('sent_w_errors', 'incorrect'))]}"
                 />
             </button>
             <notebook position="inside">
@@ -131,9 +131,9 @@
                                             <field
                                                 name="send_state"
                                                 widget="badge"
-                                                decoration-warning="send_state == 'accepted_with_errors'"
-                                                decoration-success="send_state == 'correct'"
-                                                decoration-danger="send_state not in ('correct', 'accepted_with_errors')"
+                                                decoration-warning="send_state == 'sent_w_errors'"
+                                                decoration-success="send_state == 'sent'"
+                                                decoration-danger="send_state not in ('sent', 'sent_w_errors')"
                                             />
                                         </tree>
                                     </field>
@@ -209,7 +209,7 @@
                     name="aeat_state"
                     decoration-success="aeat_state == 'sent'"
                     decoration-danger="aeat_state == 'not_sent'"
-                    decoration-warning="aeat_state == 'sent_w_errors'"
+                    decoration-warning="aeat_state in ('sent_w_errors', 'incorrect')"
                     widget="badge"
                     optional="hide"
                 />

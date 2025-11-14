@@ -264,7 +264,7 @@ class TestL10nEsAeatVerifactuQR(TestVerifactuCommon):
         ) as mock_connect:
             mock_service = MagicMock()
             module = "l10n_es_verifactu_oca"
-            json_file = "verifactu_mocked_response_1.json"
+            json_file = "verifactu_mocked_response_correct.json"
             path = get_resource_path(module, "tests/json", json_file)
             if not path:
                 raise Exception("Incorrect JSON file: %s" % json_file)
@@ -283,6 +283,79 @@ class TestL10nEsAeatVerifactuQR(TestVerifactuCommon):
                 self.invoice.verifactu_csv,
                 "A-Y23JP3582934",
                 "CSV should be generated correctly after sending to VERI*FACTU.",
+            )
+
+    def test_send_invoices_to_verifactu_with_incorrect_response(self):
+        self._activate_certificate(self.certificate_password)
+        self.invoice.action_post()
+        with patch(
+            "odoo.addons.l10n_es_verifactu_oca.models."
+            "verifactu_invoice_entry.VerifactuInvoiceEntry._connect_verifactu"
+        ) as mock_connect:
+            mock_service = MagicMock()
+            module = "l10n_es_verifactu_oca"
+            json_file = "verifactu_mocked_response_incorrect.json"
+            path = get_resource_path(module, "tests/json", json_file)
+            if not path:
+                raise Exception("Incorrect JSON file: %s" % json_file)
+            with open(path, "r") as f:
+                response_dict = json.loads(f.read())
+            mock_service.RegFactuSistemaFacturacion.return_value = response_dict
+            mock_connect.return_value = mock_service
+            # Execute the cron job to send the invoice to VERI*FACTU
+            self.env["verifactu.invoice.entry"]._cron_send_documents_to_verifactu()
+            self.assertEqual(
+                self.invoice.aeat_state,
+                "incorrect",
+                "Invoice should be marked as incorrect after VERI*FACTU processing.",
+            )
+            self.assertEqual(
+                self.invoice.aeat_send_failed,
+                True,
+                "Invoice send be marked as failed after VERI*FACTU processing.",
+            )
+
+    def test_send_invoices_to_verifactu_duplicated(self):
+        self._activate_certificate(self.certificate_password)
+        self.invoice.action_post()
+        with patch(
+            "odoo.addons.l10n_es_verifactu_oca.models."
+            "verifactu_invoice_entry.VerifactuInvoiceEntry._connect_verifactu"
+        ) as mock_connect:
+            mock_service = MagicMock()
+            module = "l10n_es_verifactu_oca"
+            json_file = "verifactu_mocked_response_correct.json"
+            path = get_resource_path(module, "tests/json", json_file)
+            if not path:
+                raise Exception("Incorrect JSON file: %s" % json_file)
+            with open(path, "r") as f:
+                response_dict = json.loads(f.read())
+            mock_service.RegFactuSistemaFacturacion.return_value = response_dict
+            mock_connect.return_value = mock_service
+            self.env["verifactu.invoice.entry"]._cron_send_documents_to_verifactu()
+            self.assertEqual(
+                self.invoice.aeat_state,
+                "sent",
+                "Invoice should be marked as sent after VERI*FACTU processing.",
+            )
+            # now we send the same invoice again
+            # we need to truncate the aeat_state as if the previous response was incorrect
+            # to force a new send a get the duplicated response
+            self.invoice.aeat_state = "incorrect"
+            self.invoice.resend_verifactu()
+            json_file = "verifactu_mocked_response_duplicated.json"
+            path = get_resource_path(module, "tests/json", json_file)
+            if not path:
+                raise Exception("Incorrect JSON file: %s" % json_file)
+            with open(path, "r") as f:
+                response_dict = json.loads(f.read())
+            mock_service.RegFactuSistemaFacturacion.return_value = response_dict
+            mock_connect.return_value = mock_service
+            self.env["verifactu.invoice.entry"]._cron_send_documents_to_verifactu()
+            self.assertEqual(
+                self.invoice.aeat_state,
+                "incorrect",
+                "Invoice should be marked as incorrect after VERI*FACTU processing.",
             )
 
 
@@ -369,7 +442,7 @@ class TestVerifactuSendResponse(TestVerifactuCommon):
         ActivityType = self.env.ref("mail.mail_activity_data_warning")
         mock_service = MagicMock()
         module = "l10n_es_verifactu_oca"
-        json_file = "verifactu_mocked_response_2.json"
+        json_file = "verifactu_mocked_response_accepted_with_errors.json"
         path = get_resource_path(module, "tests/json", json_file)
         if not path:
             raise Exception("Incorrect JSON file: %s" % json_file)
