@@ -58,7 +58,21 @@
                             </group>
                         </page>
                         <page string="Details">
-                            <field name="response_line_ids" readonly="1" />
+                            <field name="response_line_ids" readonly="1">
+                                    <tree>
+                                        <field name="entry_id" column_invisible="1" />
+                                        <field name="entry_response_id" />
+                                        <field name="document_name" />
+                                        <field name="create_date" />
+                                        <field
+                                        name="send_state"
+                                        widget="badge"
+                                        decoration-warning="send_state == 'sent_w_errors'"
+                                        decoration-success="send_state == 'sent'"
+                                        decoration-danger="send_state not in ('sent', 'sent_w_errors')"
+                                    />
+                                    </tree>
+                                </field>
                         </page>
                     </notebook>
                 </sheet>
