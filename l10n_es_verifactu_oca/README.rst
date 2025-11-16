@@ -96,8 +96,6 @@ Known issues / Roadmap
      (cron.trigger/queque.job)
    - Control de errores del sistema, generar avisos. (caída de aeat,
      errores de conexión, etc.)
-   - Declaración responsable.
-     https://sede.agenciatributaria.gob.es/Sede/iva/sistemas-informaticos-facturacion-verifactu/preguntas-frecuentes/certificacion-sistemas-informaticos-declaracion-responsable.html?faqId=a15d77fe52572910VgnVCM100000dc381e0aRCRD
    - Posibilidad de consultar el estado de las facturas enviadas.
    - Operaciones exentas y causas de exención.
    - Crear un selection con todos los valores posibles de codigos de
@@ -140,6 +138,7 @@ Authors
 * Aures Tic
 * ForgeFlow
 * Tecnativa
+* Factor Libre
 
 Contributors
 ------------
@@ -171,6 +170,10 @@ Contributors
 - Tecnativa:
 
   - Pedro M. Baeza
+
+- Factor Libre S.L.:
+
+  - Luis J. Salvatierra
 
 Maintainers
 -----------
