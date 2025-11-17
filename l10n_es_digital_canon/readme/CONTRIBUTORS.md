@@ -1,3 +1,4 @@
 - [Tecnativa](https://www.tecnativa.com)
   - Juan Carlos Oñate
   - Pedro M. Baeza
+  - Eduardo Ezrouali

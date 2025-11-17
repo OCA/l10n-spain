@@ -9,8 +9,8 @@
                 <field name="is_digital_canon_exempt" />
                 <field
                     name="digital_canon_exempt_type"
-                    attrs="{'invisible': [('is_digital_canon_exempt', '=', False)],
-                               'required': [('is_digital_canon_exempt', '=', True)]}"
+                    invisible="not is_digital_canon_exempt"
+                    required="is_digital_canon_exempt"
                 />
             </field>
         </field>

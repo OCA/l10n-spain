@@ -8,7 +8,7 @@
             <field name="categ_id" position="after">
                 <field
                     name="l10n_es_digital_canon"
-                    attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"
+                    invisible="product_variant_count > 1 and not is_product_variant"
                 />
             </field>
         </field>

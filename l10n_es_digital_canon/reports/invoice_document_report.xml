@@ -7,21 +7,23 @@
         <xpath expr="//th[@name='th_taxes']" position="after">
             <th
                 name="th_canon"
-                t-if="any(any(tax.tax_group_id.name == 'Canon digital' for tax in l.tax_ids) for l in o.invoice_line_ids)"
-                t-attf-class="text-left {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"
+                t-if="any(any(tax.tax_group_id.name.startswith('Canon digital') for tax in l.tax_ids) for l in o.invoice_line_ids)"
+                t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"
             >
                 <span>Canon</span>
             </th>
         </xpath>
-        <xpath expr="//span[@id='line_tax_ids']/.." position="after">
+        <xpath expr="//td[@name='td_taxes']" position="after">
             <td
-                t-if="any(tax.tax_group_id.name == 'Canon digital' for tax in line.tax_ids)"
-                t-attf-class="text-left {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"
+                name="td_canon"
+                t-if="any(tax.tax_group_id.name.startswith('Canon digital') for tax in line.tax_ids)"
+                t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"
             >
                 <span
+                    class="text-nowrap"
                     t-esc="sum(tax.amount * line.quantity
                                  for tax in line.tax_ids
-                                 if tax.tax_group_id.name == 'Canon digital')"
+                                 if tax.tax_group_id.name.startswith('Canon digital'))"
                     t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
                 />
             </td>
