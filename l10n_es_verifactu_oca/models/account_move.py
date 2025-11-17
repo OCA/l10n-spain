@@ -109,6 +109,21 @@ class AccountMove(models.Model):
                     invoice_type = "R5" if is_simplified else "R1"
         return invoice_type
 
+    def get_verifactu_document(self, invoice_num, ids):
+        """
+        Get the account move document based on the invoice number
+        and the provided IDs.
+        Used in verifactu.invoice.entry model to find the document
+        for the response lines.
+        """
+        return self.search(
+            [
+                ("name", "=", invoice_num),
+                ("id", "in", ids),
+            ],
+            limit=1,
+        )
+
     def _get_verifactu_description(self):
         return self.verifactu_description or self.company_id.verifactu_description
 

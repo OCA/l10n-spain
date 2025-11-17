@@ -344,12 +344,9 @@ class VerifactuInvoiceEntry(models.Model):
         for verifactu_response_line in verifactu_response_lines:
             invoice_num = verifactu_response_line["IDFactura"]["NumSerieFactura"]
             for model in models:
-                if document := self.env[model].search(
-                    [
-                        ("name", "=", invoice_num),
-                        ("id", "in", self.mapped("document_id")),
-                    ],
-                    limit=1,
+                if document := self.env[model].get_verifactu_document(
+                    invoice_num,
+                    self.mapped("document_id")
                 ):
                     break
             # Find the verifactu.invoice entry for this document

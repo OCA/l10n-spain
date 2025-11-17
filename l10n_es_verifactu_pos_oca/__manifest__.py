@@ -1,7 +1,7 @@
 {
     "name": "Comunicación Veri*FACTU: TPV",
     "version": "18.0.1.0.0",
-    "category": "Accounting & Finance",
+    "category": "Sales/Point Of Sale",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Factor Libre S.L., Alia Technologies, Odoo Community Association (OCA)",
     "license": "AGPL-3",

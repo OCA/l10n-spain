@@ -344,6 +344,16 @@ class VerifactuMixin(models.AbstractModel):
             raise
 
     def _get_verifactu_document_type(self):
+
+        raise NotImplementedError()
+
+    def get_verifactu_document(self, invoice_num, ids):
+        """
+        Models that inherit this mixin must implement this method to return
+        the document based on the invoice number
+        Used in verifactu.invoice.entry model to find the document
+        for the response lines.
+        """
         raise NotImplementedError()
 
     def _get_verifactu_description(self):
