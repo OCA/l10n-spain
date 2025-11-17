@@ -17,38 +17,41 @@ VERIFACTU_STATE_MAPPING = {
     "AceptadoConErrores": "accepted_with_errors",
 }
 
+
 class VerifactuInvoiceEntry(models.AbstractModel):
     name = "verifactu.invoice.entry"
     _inherit = ["verifactu.invoice.entry"]
 
-
     def _create_response_lines(
         self, response=False, header=False, verifactu_response=False
     ):
+        """
+        Override to handle pos.order specific response line creation.
+        Cant use super() for pos.order because of the different way to find the document
+        """
         if not self.model == 'pos.order':
             return super()._create_response_lines(response=response, header=header,
-                                                verifactu_response=verifactu_response)
+                                                  verifactu_response=verifactu_response)
 
-        # the returned object doesn't have `get` method, so use this form
+        create_response_activity = False
         verifactu_response_lines = (
             "RespuestaLinea" in verifactu_response
             and verifactu_response["RespuestaLinea"]
             or []
         )
 
-        models = self.env["verifactu.mixin"]._get_verifactu_reference_models()
         for verifactu_response_line in verifactu_response_lines:
             invoice_num = verifactu_response_line["IDFactura"]["NumSerieFactura"]
-            for model in models:
-                if document := self.env[model].search(
-                    [
-                        ('|', ('l10n_es_unique_id', '=', invoice_num),
-                         ('pos_reference', '=', invoice_num)),
-                        ("id", "in", self.mapped("document_id")),
-                    ],
-                    limit=1,
-                ):
-                    break
+            if document := self.env['pos.order'].search(
+                [
+                    '|',
+                    ('l10n_es_unique_id', '=', invoice_num),
+                    ('pos_reference', '=', invoice_num),
+                    ("id", "in", self.mapped("document_id")),
+                ],
+                limit=1,
+            ):
+                break
             # Find the verifactu.invoice entry for this document
             verifactu_invoice_entry = document.last_verifactu_invoice_entry_id
             previous_response_line = document.last_verifactu_response_line_id
@@ -81,22 +84,6 @@ class VerifactuInvoiceEntry(models.AbstractModel):
             if send_state != "correct":
                 create_response_activity = True
         return create_response_activity
-
-
-
-class VerifactuMixin(models.AbstractModel):
-    name = "verifactu.mixin"
-    _inherit = ["verifactu.mixin"]
-
-    @api.model
-    def _get_verifactu_reference_models(self):
-        """This method is used to define the models that can be used as
-        previous documents in the VERI*FACTU mixin.
-        """
-        # TODO: Detect is pos order
-        print('--------------------------------------------------------')
-        return ["pos.order"]
-
 
 
 class PosOrder(models.Model):
@@ -187,23 +174,18 @@ class PosOrder(models.Model):
         pos_order_id = super()._process_order(order, existing_order)
         pos_order = self.env["pos.order"].browse(pos_order_id)
 
-        print(
-            ' ------------------ Processing order for Verifactu - Placeholder Implementation',
-            pos_order)
         if not pos_order._is_verifactu_order():
             return pos_order_id
 
         pos_order.verifactu_registration_date = fields.Datetime.now()
 
-        print(
-            ' ------------------ Generating Verifactu Chaining - Placeholder Implementation',
-            pos_order.verifactu_registration_date)
         try:
             pos_order._generate_verifactu_chaining()
         except UserError as e:
             # Don't re-raise the error to avoid blocking POS operations
             _logger.error(
-                "[ID: %d, REF: %s, INV: %s] Failed to create verifactu chaining: %s",
+                "[ID: %d, REF: %s, INV: %s] "
+                "Failed to create verifactu chaining: %s",
                 pos_order.id,
                 pos_order.pos_reference,
                 pos_order.l10n_es_unique_id,
