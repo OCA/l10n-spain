@@ -344,7 +344,6 @@ class VerifactuMixin(models.AbstractModel):
             raise
 
     def _get_verifactu_document_type(self):
-
         raise NotImplementedError()
 
     def get_verifactu_document(self, invoice_num, ids):
