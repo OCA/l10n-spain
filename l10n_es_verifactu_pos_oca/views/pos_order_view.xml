@@ -5,11 +5,11 @@
         <field name="model">verifactu.invoice.entry</field>
         <field name="arch" type="xml">
             <list string="Veri*FACTU Entries">
-                <field name="document_name"/>
-                <field name="document_hash"/>
-                <field name="send_state"/>
-                <field name="entry_type"/>
-                <field name="create_date"/>
+                <field name="document_name" />
+                <field name="document_hash" />
+                <field name="send_state" />
+                <field name="entry_type" />
+                <field name="create_date" />
             </list>
         </field>
     </record>
@@ -19,19 +19,18 @@
         <field name="model">verifactu.invoice.entry.response.line</field>
         <field name="arch" type="xml">
             <list string="Veri*FACTU Responses">
-                <field name="document_id"/>
-                <field name="send_state"/>
-                <field name="error_code"/>
-                <field name="create_date"/>
+                <field name="document_id" />
+                <field name="send_state" />
+                <field name="error_code" />
+                <field name="create_date" />
             </list>
         </field>
     </record>
 
-
     <record id="view_pos_order_verifactu_form" model="ir.ui.view">
         <field name="name">pos.order.verifactu.form</field>
         <field name="model">pos.order</field>
-        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form" />
         <field name="arch" type="xml">
             <button name="refund" position="after">
                 <button
@@ -52,40 +51,47 @@
                         string="Veri*FACTU Information"
                         name="group_aeat_information"
                     >
-                        <field name="verifactu_enabled" invisible="0" readonly="1"/>
-                        <field name="aeat_state" invisible="1"/>
+                        <field name="verifactu_enabled" invisible="0" readonly="1" />
+                        <field name="aeat_state" invisible="1" />
                         <field
                             name="last_verifactu_invoice_entry_id"
                             invisible="0"
                             readonly="1"
                         />
-                        <field name="verifactu_description"/>
-                        <field name="verifactu_tax_key"/>
+                        <field name="verifactu_description" />
+                        <field name="verifactu_tax_key" />
                         <field
                             name="verifactu_registration_key"
                             required="verifactu_enabled"
                         />
-                        <field name="verifactu_hash_string" readonly="1"/>
-                        <field name="verifactu_hash" readonly="1"/>
-                        <field name="verifactu_registration_date" readonly="1"/>
+                        <field name="verifactu_hash_string" readonly="1" />
+                        <field name="verifactu_hash" readonly="1" />
+                        <field name="verifactu_registration_date" readonly="1" />
                     </group>
                     <group string="VeriFactu History" name="group_aeat_history">
-                        <field name="verifactu_invoice_entry_ids"
-                               readonly="1" nolabel="1" colspan="2"
-                               domain="[('model','=','pos.order')]"
-                               context="{
+                        <field
+                            name="verifactu_invoice_entry_ids"
+                            readonly="1"
+                            nolabel="1"
+                            colspan="2"
+                            domain="[('model','=','pos.order')]"
+                            context="{
                          'default_model': 'pos.order',
                          'list_view_ref': 'l10n_es_verifactu_pos_oca.view_verifactu_invoice_entry_list_pos'
-                       }"/>
+                       }"
+                        />
 
-                        <field name="verifactu_response_line_ids"
-                               readonly="1" nolabel="1" colspan="2"
-                               domain="[('model','=','pos.order')]"
-                               context="{
+                        <field
+                            name="verifactu_response_line_ids"
+                            readonly="1"
+                            nolabel="1"
+                            colspan="2"
+                            domain="[('model','=','pos.order')]"
+                            context="{
                          'default_model': 'pos.order',
                          'list_view_ref': 'l10n_es_verifactu_pos_oca.view_verifactu_response_line_list_pos'
-                       }"/>
-
+                       }"
+                        />
                     </group>
                     <group
                         string="Veri*FACTU Result"
@@ -97,7 +103,7 @@
                                 name="last_verifactu_response_line_id"
                                 readonly="1"
                             />
-                            <field name="verifactu_csv" readonly="1"/>
+                            <field name="verifactu_csv" readonly="1" />
                         </group>
                     </group>
                 </page>

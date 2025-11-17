@@ -18,72 +18,18 @@ VERIFACTU_STATE_MAPPING = {
 }
 
 
-class VerifactuInvoiceEntry(models.AbstractModel):
-    name = "verifactu.invoice.entry"
-    _inherit = ["verifactu.invoice.entry"]
+class VerifactuMixin(models.AbstractModel):
+    name = "verifactu.mixin"
+    _inherit = ["verifactu.mixin"]
 
-    def _create_response_lines(
-        self, response=False, header=False, verifactu_response=False
-    ):
+    @api.model
+    def _get_verifactu_reference_models(self):
+        """This method is used to define the models that can be used as
+        previous documents in the VERI*FACTU mixin.
         """
-        Override to handle pos.order specific response line creation.
-        Cant use super() for pos.order because of the different way to find the document
-        """
-        if not self.model == 'pos.order':
-            return super()._create_response_lines(response=response, header=header,
-                                                  verifactu_response=verifactu_response)
-
-        create_response_activity = False
-        verifactu_response_lines = (
-            "RespuestaLinea" in verifactu_response
-            and verifactu_response["RespuestaLinea"]
-            or []
-        )
-
-        for verifactu_response_line in verifactu_response_lines:
-            invoice_num = verifactu_response_line["IDFactura"]["NumSerieFactura"]
-            if document := self.env['pos.order'].search(
-                [
-                    '|',
-                    ('l10n_es_unique_id', '=', invoice_num),
-                    ('pos_reference', '=', invoice_num),
-                    ("id", "in", self.mapped("document_id")),
-                ],
-                limit=1,
-            ):
-                break
-            # Find the verifactu.invoice entry for this document
-            verifactu_invoice_entry = document.last_verifactu_invoice_entry_id
-            previous_response_line = document.last_verifactu_response_line_id
-            send_state = VERIFACTU_STATE_MAPPING[
-                verifactu_response_line["EstadoRegistro"]
-            ]
-            vals = {
-                "entry_id": verifactu_invoice_entry.id,
-                "model": verifactu_invoice_entry.model,
-                "document_id": verifactu_invoice_entry.document_id,
-                "response": verifactu_response_line,
-                "entry_response_id": response.id,
-                "send_state": send_state,
-                "error_code": "CodigoErrorRegistro" in verifactu_response_line
-                              and str(verifactu_response_line["CodigoErrorRegistro"])
-                              or "",
-            }
-            response_line = (
-                self.env["verifactu.invoice.entry.response.line"].sudo().create(vals)
-            )
-            document.last_verifactu_response_line_id = response_line
-            verifactu_invoice_entry.last_response_line_id = response_line
-            self._process_response_line_doc_vals(
-                verifactu_response=verifactu_response,
-                verifactu_response_line=verifactu_response_line,
-                response_line=response_line,
-                previous_response_line=previous_response_line,
-                header_sent=header,
-            )
-            if send_state != "correct":
-                create_response_activity = True
-        return create_response_activity
+        models = super()._get_verifactu_reference_models()
+        models.append("pos.order")
+        return models
 
 
 class PosOrder(models.Model):
@@ -102,21 +48,6 @@ class PosOrder(models.Model):
         "session_id.config_id.journal_id",
         "session_id.config_id.journal_id.verifactu_enabled",
     )
-    def _compute_verifactu_macrodata(self):
-        print('Verifactu Macrodata Computation - Placeholder Implementation')
-        for document in self:
-            # TODO: Check to confirm that the document has an absolute amount "
-            #         "greater o equal to 100 000 000,00 euros.
-            document.verifactu_macrodata = False
-            # document.verifactu_macrodata = (
-            # float_compare(
-            #     abs(document._get_verifactu_amount_total()),
-            #     VERIFACTU_MACRODATA_LIMIT,
-            #     precision_digits=2,
-            # )
-            # >= 0
-            # )
-
     def _compute_verifactu_enabled(self):
         """Compute if the POS order is enabled for the veri*FACTU"""
         for order in self:
@@ -132,14 +63,14 @@ class PosOrder(models.Model):
                 order.company_id.verifactu_enabled
                 and journal_enabled
                 and (
-                not order.company_id.verifactu_start_date
-                or order.date_order
-                and order.date_order.date() >= order.company_id.verifactu_start_date
-            )
+                    not order.company_id.verifactu_start_date
+                    or order.date_order
+                    and order.date_order.date() >= order.company_id.verifactu_start_date
+                )
             ):
                 order.verifactu_enabled = (
-                                              order.fiscal_position_id and order.fiscal_position_id.aeat_active
-                                          ) or not order.fiscal_position_id
+                    order.fiscal_position_id and order.fiscal_position_id.aeat_active
+                ) or not order.fiscal_position_id
             else:
                 order.verifactu_enabled = False
 
@@ -184,8 +115,7 @@ class PosOrder(models.Model):
         except UserError as e:
             # Don't re-raise the error to avoid blocking POS operations
             _logger.error(
-                "[ID: %d, REF: %s, INV: %s] "
-                "Failed to create verifactu chaining: %s",
+                "[ID: %d, REF: %s, INV: %s] " "Failed to create verifactu chaining: %s",
                 pos_order.id,
                 pos_order.pos_reference,
                 pos_order.l10n_es_unique_id,
@@ -214,6 +144,26 @@ class PosOrder(models.Model):
         if self._is_refund_order():
             return "R5"  # Refund for simplified invoices
         return "F2"  # Regular simplified invoice for POS orders
+
+    def _get_verifactu_amount_total(self):
+        return self.amount_total
+
+    def get_verifactu_document(self, invoice_num, ids):
+        """
+        Get the POS order document based on the invoice number
+        and the provided IDs.
+        Used in verifactu.invoice.entry model to find the document
+        for the response lines.
+        """
+        return self.search(
+            [
+                "|",
+                ("l10n_es_unique_id", "=", invoice_num),
+                ("pos_reference", "=", invoice_num),
+                ("id", "in", ids),
+            ],
+            limit=1,
+        )
 
     def _get_verifactu_description(self):
         return self.verifactu_description or self.company_id.verifactu_description
@@ -357,16 +307,19 @@ class PosOrder(models.Model):
         if self._is_refund_order():
             inv_dict["TipoRectificativa"] = self.verifactu_refund_type
             # Add reference to original order if available
-            if self.refunded_order_ids:
-                original_order = self.refunded_order_ids[0]
+            if self.refunded_order_id:
+                original_order = self.refunded_order_id[0]
+                issuer = original_order._get_verifactu_issuer()
+                serial_number = original_order._get_document_serial_number()
+                date_order = original_order._change_date_format(
+                    original_order._get_document_date()
+                )
                 inv_dict["FacturasRectificadas"] = [
                     {
                         "IDFacturaRectificada": {
-                            "IDEmisorFactura": original_order._get_verifactu_issuer(),
-                            "NumSerieFactura": original_order._get_document_serial_number(),
-                            "FechaExpedicionFactura": original_order._change_date_format(
-                                original_order._get_document_date()
-                            ),
+                            "IDEmisorFactura": issuer,
+                            "NumSerieFactura": serial_number,
+                            "FechaExpedicionFactura": date_order,
                         }
                     }
                 ]
@@ -595,7 +548,8 @@ class PosOrder(models.Model):
         if not self.fiscal_position_id:
             raise UserError(
                 _(
-                    "[ID: %(id)d, REF: %(ref)s, INV: %(inv)s] The POS order cannot be sent to "
+                    "[ID: %(id)d, REF: %(ref)s, INV: %(inv)s] "
+                    "The POS order cannot be sent to "
                     "Verifactu because it does not have a fiscal position."
                 )
                 % {
@@ -607,7 +561,8 @@ class PosOrder(models.Model):
         if not self.verifactu_tax_key:
             raise UserError(
                 _(
-                    "[ID: %(id)d, REF: %(ref)s, INV: %(inv)s] The POS order cannot be sent to "
+                    "[ID: %(id)d, REF: %(ref)s, INV: %(inv)s] "
+                    "The POS order cannot be sent to "
                     "Verifactu because it does not have a tax key."
                 )
                 % {
@@ -619,7 +574,8 @@ class PosOrder(models.Model):
         if not self.verifactu_registration_key:
             raise UserError(
                 _(
-                    "[ID: %(id)d, REF: %(ref)s, INV: %(inv)s] The POS order cannot be sent to "
+                    "[ID: %(id)d, REF: %(ref)s, INV: %(inv)s] "
+                    "The POS order cannot be sent to "
                     "Verifactu because it does not have a registration key."
                 )
                 % {
@@ -632,7 +588,8 @@ class PosOrder(models.Model):
         if not self._check_inconsistent_taxes():
             raise UserError(
                 _(
-                    "[ID: %(id)d, REF: %(ref)s, INV: %(inv)s] The POS order cannot be sent to "
+                    "[ID: %(id)d, REF: %(ref)s, INV: %(inv)s] "
+                    "The POS order cannot be sent to "
                     "Verifactu because there are some inconsistent taxes on lines."
                 )
                 % {
@@ -645,7 +602,8 @@ class PosOrder(models.Model):
         if not self._check_all_taxes_mapped():
             raise UserError(
                 _(
-                    "[ID: %(id)d, REF: %(ref)s, INV: %(inv)s] The POS order cannot be sent to "
+                    "[ID: %(id)d, REF: %(ref)s, INV: %(inv)s] "
+                    "The POS order cannot be sent to "
                     "Verifactu because it does not have all taxes mapped."
                 )
                 % {
@@ -731,8 +689,8 @@ class PosOrder(models.Model):
                     _(
                         "[ID: %(id)d, REF: %(ref)s, INV: %(inv)s] "
                         "You cannot change the %(fields)s "
-                        "of document already registered at VERI*FACTU. You must cancel the "
-                        "document and create a new one with the correct value."
+                        "of document already registered at VERI*FACTU. You must cancel"
+                        "the document and create a new one with the correct value."
                     )
                     % {
                         "id": order.id,

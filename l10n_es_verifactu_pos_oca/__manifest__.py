@@ -7,10 +7,7 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": [
-        "l10n_es_pos_oca",
-        "l10n_es_verifactu_oca"
-    ],
+    "depends": ["l10n_es_pos_oca", "l10n_es_verifactu_oca"],
     "assets": {
         "point_of_sale._assets_pos": [
             "l10n_es_verifactu_pos_oca/static/src/**/*",

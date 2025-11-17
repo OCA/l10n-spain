@@ -8,27 +8,25 @@ import {patch} from "@web/core/utils/patch";
 
 patch(PosOrder.prototype, {
     /**
-     * Override export_for_printing to include Verifactu QR code data
+     * Exports order data for printing, including Verifactu QR code if applicable.
+     * @override
+     * @returns {*}
      */
     export_for_printing() {
         const result = super.export_for_printing(...arguments);
-        console.log('EXPORT TO PRINTING PATCH - 1', result);
-        result.verifactu_qr =
-            this.finalized && this._get_verifactu_qr_code_data();
-        console.log('EXPORT TO PRINTING PATCH - 2', result);
+        result.verifactu_qr = this.finalized && this._get_verifactu_qr_code_data();
         return result;
     },
 
     /**
      * Build the Verifactu QR URL with required parameters
-     * @returns {string} The complete URL for the QR code
+     * @returns {String} The complete URL for the QR code
      */
     _build_verifactu_qr_url() {
-        console.log(this);
         const baseUrl = this.config.verifactu_base_url;
         const vatNumber = (this.company.vat || "").replace(/^ES/i, "");
         const date = this.date_order || this.create_date;
-        const isoDate =  date.replace(' ', 'T');
+        const isoDate = date.replace(" ", "T");
         const formattedDate = luxon.DateTime.fromISO(isoDate).toFormat("dd-MM-yyyy");
         const params = new URLSearchParams({
             nif: vatNumber,
@@ -36,7 +34,6 @@ patch(PosOrder.prototype, {
             fecha: formattedDate,
             importe: this.get_total_with_tax(),
         });
-        console.log('QR PARAMS', params.toString());
         return `${baseUrl}?${params.toString()}`;
     },
 
@@ -45,15 +42,11 @@ patch(PosOrder.prototype, {
      * @returns {string|boolean} Base64 encoded SVG QR code or false if disabled
      */
     _get_verifactu_qr_code_data() {
-        // TODO
-        // const isEnabled =
-        //     this.company.verifactu_enabled &&
-        //     this.is_simplified_invoice &&
-        //     (!this.fiscal_position ||
-        //         (this.fiscal_position && this.fiscal_position.aeat_active));
-
-        const isEnabled = true;
-        console.log("IS ENABLED", isEnabled);
+        const isEnabled =
+            this.verifactu_enabled &&
+            this.is_l10n_es_simplified_invoice &&
+            (!this.fiscal_position ||
+                (this.fiscal_position && this.fiscal_position.aeat_active));
 
         if (isEnabled) {
             const codeWriter = new window.ZXing.BrowserQRCodeSvgWriter();
