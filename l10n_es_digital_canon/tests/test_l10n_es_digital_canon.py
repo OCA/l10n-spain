@@ -1,11 +1,12 @@
 # Copyright 2025 Juan Carlos Oñate - Tecnativa <juancarlos.onate@tecnativa.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-from odoo.tests import tagged
-from odoo.tests.common import Form, SavepointCase
+from odoo.tests import Form, tagged
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
 @tagged("post_install", "-at_install")
-class TestL10nEsTaxDigitalCanon(SavepointCase):
+class TestL10nEsTaxDigitalCanon(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -20,8 +21,9 @@ class TestL10nEsTaxDigitalCanon(SavepointCase):
         cls.company = cls.env["res.company"].create(
             {"name": "Test Company", "currency_id": cls.currency.id}
         )
-        cls.chart = cls.env.ref("l10n_es.account_chart_template_pymes")
-        cls.chart.try_loading(company=cls.company)
+        cls.env["account.chart.template"]._load(
+            template_code="es_pymes", company=cls.company, install_demo=False
+        )
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Tablet 32GB",
@@ -29,21 +31,7 @@ class TestL10nEsTaxDigitalCanon(SavepointCase):
             }
         )
         cls.canon_tax = cls.env.ref(
-            f"l10n_es_digital_canon.{cls.company.id}_tax_template_canon_purchase_3_75"
-        )
-        cls.account = cls.env["account.account"].create(
-            {
-                "name": "Account",
-                "code": "account",
-                "user_type_id": cls.env.ref("account.data_account_type_revenue").id,
-                "company_id": cls.company.id,
-            }
-        )
-        cls.fiscal_position = cls.env["account.fiscal.position"].create(
-            {
-                "name": "Test Fiscal Position",
-                "company_id": cls.company.id,
-            }
+            f"account.{cls.company.id}_tax_template_canon_purchase_3_75"
         )
         cls.env.user.company_id = cls.company
 
@@ -54,7 +42,6 @@ class TestL10nEsTaxDigitalCanon(SavepointCase):
         move_form.partner_id = self.partner_es
         with move_form.invoice_line_ids.new() as line_form:
             line_form.product_id = self.product
-            line_form.account_id = self.account
         invoice = move_form.save()
         self.assertIn(self.canon_tax, invoice.invoice_line_ids.tax_ids)
 
@@ -65,36 +52,8 @@ class TestL10nEsTaxDigitalCanon(SavepointCase):
         move_form.partner_id = self.partner_fr
         with move_form.invoice_line_ids.new() as line_form:
             line_form.product_id = self.product
-            line_form.account_id = self.account
         invoice = move_form.save()
         self.assertNotIn(self.canon_tax, invoice.invoice_line_ids.tax_ids)
-
-    def test_map_tax(self):
-        taxes = self.fiscal_position.map_tax(
-            taxes=self.env["account.tax"], product=self.product, partner=self.partner_es
-        )
-        self.assertIn(self.canon_tax, taxes)
-        taxes = self.fiscal_position.map_tax(
-            taxes=self.env["account.tax"], product=self.product, partner=self.partner_fr
-        )
-        self.assertNotIn(self.canon_tax, taxes)
-        product_no_canon = self.env["product.product"].create(
-            {
-                "name": "Tablet 16GB",
-                "l10n_es_digital_canon": False,
-            }
-        )
-        taxes = self.fiscal_position.map_tax(
-            taxes=self.env["account.tax"],
-            product=product_no_canon,
-            partner=self.partner_es,
-        )
-        self.assertNotIn(self.canon_tax, taxes)
-        self.partner_es.is_digital_canon_exempt = True
-        taxes = self.fiscal_position.map_tax(
-            taxes=self.env["account.tax"], product=self.product, partner=self.partner_es
-        )
-        self.assertNotIn(self.canon_tax, taxes)
 
     def test_tax_selection(self):
         selection = (
@@ -104,5 +63,24 @@ class TestL10nEsTaxDigitalCanon(SavepointCase):
             for ttype in ["sale", "purchase"]:
                 # This shouldn"t fail
                 self.env.ref(
-                    f"l10n_es_digital_canon.tax_template_canon_{ttype}_{key.split('.')[0]}"
+                    f"account.{self.company.id}_tax_template_canon_{ttype}_{key.split('.')[0]}"
                 )
+
+    def test_sale_order_canon_applies(self):
+        sale_form = Form(self.env["sale.order"])
+        sale_form.partner_id = self.partner_es
+        with sale_form.order_line.new() as line_form:
+            line_form.product_id = self.product
+        sale_order = sale_form.save()
+        canon_sale_tax = self.env.ref(
+            f"account.{self.company.id}_tax_template_canon_sale_3_75"
+        )
+        self.assertIn(canon_sale_tax, sale_order.order_line.tax_id)
+
+    def test_purchase_order_canon_applies(self):
+        purchase_form = Form(self.env["purchase.order"])
+        purchase_form.partner_id = self.partner_es
+        with purchase_form.order_line.new() as line_form:
+            line_form.product_id = self.product
+        purchase_order = purchase_form.save()
+        self.assertIn(self.canon_tax, purchase_order.order_line.taxes_id)

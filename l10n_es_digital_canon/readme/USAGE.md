@@ -1,4 +1,3 @@
-
 En la ficha de producto, en la pestaña de información general, asignar la
 Categoría Canon digital. Ahora, al crear una factura, un pedido de venta o
 un pedido de compra, si el destino del mismo es España y no está exento, se

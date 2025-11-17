@@ -85,6 +85,7 @@ Contributors
 
   - Juan Carlos Oñate
   - Pedro M. Baeza
+  - Eduardo Ezrouali
 
 Maintainers
 -----------

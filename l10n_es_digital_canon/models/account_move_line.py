@@ -16,7 +16,7 @@ class AccountMoveLine(models.Model):
             ttype = "sale" if taxes.type_tax_use == "sale" else "purchase"
             if self.product_id.l10n_es_digital_canon:
                 tax = self.env.ref(
-                    f"l10n_es_digital_canon.{self.company_id.id}_tax_template_canon_{ttype}_"
+                    f"account.{self.company_id.id}_tax_template_canon_{ttype}_"
                     f"{self.product_id.l10n_es_digital_canon.split('.')[0]}",
                     raise_if_not_found=False,
                 )
