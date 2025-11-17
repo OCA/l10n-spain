@@ -16,7 +16,8 @@ patch(PosStore.prototype, {
     getReceiptHeaderData(order) {
         const result = super.getReceiptHeaderData(...arguments);
         if (order) {
-            result.verifactu_qr = order.finalized && order._get_verifactu_qr_code_data();
+            result.verifactu_qr =
+                order.finalized && order._get_verifactu_qr_code_data();
         }
         return result;
     },
