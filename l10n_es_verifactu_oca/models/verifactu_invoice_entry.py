@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import datetime
 import json
+import logging
 
 from requests import Session
 from zeep import Client, Settings
@@ -12,6 +13,8 @@ from zeep.transports import Transport
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import split_every
+
+_logger = logging.getLogger(__name__)
 
 VERIFACTU_SEND_STATES = [
     ("not_sent", "Not sent"),
@@ -289,7 +292,13 @@ class VerifactuInvoiceEntry(models.Model):
         try:
             serv = rec._connect_verifactu()
             res = serv.RegFactuSistemaFacturacion(header, registro_factura_list)
-        except Exception:
+        except Exception as error:
+            _logger.error(
+                "Verifactu API call failed for documents %s: %s",
+                self.mapped("document.name"),
+                error,
+                exc_info=True,
+            )
             res = {}
             create_exception = True
         response_name = ""
