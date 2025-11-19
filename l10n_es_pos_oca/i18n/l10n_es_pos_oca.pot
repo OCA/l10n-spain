@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -32,7 +32,6 @@ msgstr ""
 #. module: l10n_es_pos_oca
 #. odoo-javascript
 #: code:addons/l10n_es_pos_oca/static/src/app/screens/receipt_screen/receipt/receipt_header/receipt_header.xml:0
-#, python-format
 msgid "Customer:"
 msgstr ""
 
@@ -93,16 +92,12 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/l10n_es_pos_oca/static/src/app/screens/ticket_screen/ticket_screen.esm.js:0
 #: code:addons/l10n_es_pos_oca/static/src/app/screens/ticket_screen/ticket_screen.xml:0
-#: code:addons/l10n_es_pos_oca/static/src/app/screens/ticket_screen/ticket_screen.xml:0
-#, python-format
 msgid "Simplified Invoice"
 msgstr ""
 
 #. module: l10n_es_pos_oca
 #. odoo-python
 #: code:addons/l10n_es_pos_oca/models/pos_config.py:0
-#: code:addons/l10n_es_pos_oca/models/pos_config.py:0
-#, python-format
 msgid "Simplified Invoice %s"
 msgstr ""
 
@@ -138,7 +133,6 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/l10n_es_pos_oca/static/src/app/screens/receipt_screen/receipt/receipt_header/receipt_header.xml:0
 #: model:ir.model.fields,field_description:l10n_es_pos_oca.field_pos_order__is_l10n_es_simplified_invoice
-#, python-format
 msgid "Simplified invoice"
 msgstr ""
 
@@ -153,6 +147,11 @@ msgid "Simplified invoice partner"
 msgstr ""
 
 #. module: l10n_es_pos_oca
+#: model:ir.model.fields,field_description:l10n_es_pos_oca.field_pos_order__l10n_es_simplified_number
+msgid "Simplified invoice sequence number"
+msgstr ""
+
+#. module: l10n_es_pos_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_oca.view_pos_order_filter_simplified_invoice
 msgid "Simplified invoices"
 msgstr ""
@@ -160,7 +159,6 @@ msgstr ""
 #. module: l10n_es_pos_oca
 #. odoo-python
 #: code:addons/l10n_es_pos_oca/models/ir_sequence.py:0
-#, python-format
 msgid ""
 "There is already a simplified invoice sequence with that prefix and it "
 "should be unique."
