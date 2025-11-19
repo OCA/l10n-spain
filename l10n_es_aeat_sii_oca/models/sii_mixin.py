@@ -260,7 +260,12 @@ class SiiMixin(models.AbstractModel):
             lambda document: (
                 document.sii_enabled
                 and document.state in self._get_valid_document_states()
-                and document.aeat_state not in ["sent", "cancelled"]
+                and (
+                    (document.aeat_state != "sent" and not document.sii_needs_cancel)
+                    or (
+                        document.aeat_state != "cancelled" and document.sii_needs_cancel
+                    )
+                )
             )
         )
 
