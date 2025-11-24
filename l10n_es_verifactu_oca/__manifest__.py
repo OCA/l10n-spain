@@ -18,6 +18,7 @@
     "license": "AGPL-3",
     "installable": True,
     "depends": ["account_invoice_refund_link", "l10n_es_aeat"],
+    "excludes": ["account_journal_restrict_mode"],
     "data": [
         "data/verifactu_tax_agency_data.xml",
         "data/verifactu_registration_key_data.xml",
