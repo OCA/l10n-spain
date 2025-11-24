@@ -12,3 +12,4 @@ class AccountPaymentMethod(models.Model):
         res = super()._get_payment_method_information()
         res["redsys"] = {"mode": "multi", "domain": [("type", "=", "bank")]}
         return res
+        
