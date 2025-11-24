@@ -160,7 +160,6 @@ class AeatMixin(models.AbstractModel):
         if not self.company_id.chart_template:
             raise UserError(
                 self.env._(
-                    "You have to select what account chart template use this"
-                    " company."
+                    "You have to select what account chart template use this company."
                 )
             )
