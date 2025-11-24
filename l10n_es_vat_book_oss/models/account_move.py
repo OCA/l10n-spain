@@ -7,9 +7,9 @@ from odoo import models
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
-    def _process_aeat_tax_fee_info(self, res, tax, sign):
+    def _process_vat_book_tax_fee_info(self, res, tax, sign):
         # Nullify tax fee for OSS taxes
-        result = super()._process_aeat_tax_fee_info(res, tax, sign)
+        result = super()._process_vat_book_tax_fee_info(res, tax, sign)
         oss_taxes = self.env["account.tax"].search(
             [("oss_country_id", "!=", False), ("company_id", "=", self.company_id.id)]
         )
