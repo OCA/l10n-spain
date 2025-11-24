@@ -1,4 +1,4 @@
-# Copyright 2025 Factor Libre - Almudena de La Puente <almudena.delapuente@factorlibre.es>
+# Copyright 2025 Factor Libre - Almudena de La Puente <almudena.delapuente@factorlibre.es>  # noqa: E501
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, models
