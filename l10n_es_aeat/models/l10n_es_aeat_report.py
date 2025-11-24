@@ -465,7 +465,7 @@ class L10nEsAeatReport(models.AbstractModel):
         if not aeat_num:
             raise exceptions.UserError(
                 self.env._(
-                    "Modelo no válido: %s. Debe declarar una variable " "'_aeat_number'"
+                    "Modelo no válido: %s. Debe declarar una variable '_aeat_number'"
                 )
                 % self._name
             )
