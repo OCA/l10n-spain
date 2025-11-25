@@ -1,9 +1,12 @@
 import datetime
+from unittest import mock
 
-from odoo.tests import Form, common
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestDeliveryMRW(common.TransactionCase):
+class TestDeliveryMRW(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -57,25 +60,39 @@ class TestDeliveryMRW(common.TransactionCase):
         cls.picking = cls.sale_order.picking_ids
         assert cls.product.qty_available == 100
 
-    def test_01_mrw_picking_confirm_simple(self):
+    @mock.patch("odoo.addons.delivery_mrw.models.mrw_request.Client")
+    @mock.patch(
+        "odoo.addons.delivery_mrw.models.delivery_carrier.DeliveryCarrier.mrw_get_label",
+        return_value={
+            "EtiquetaFile": b"%PDF-1.4 fake PDF content",
+        },
+    )
+    def test_01_mrw_picking_confirm_simple(self, mock, *arg):
         """The picking is confirmed and the shipping is recorded to MRW"""
         self.picking.name = "picking1"
         self.picking.number_of_packages = 1
         self.picking.action_confirm()
         self.picking.action_assign()
-        self.picking.move_ids.quantity_done = self.picking.move_ids.product_uom_qty
+        self.picking.move_ids.quantity = self.picking.move_ids.product_uom_qty
         self.picking.button_validate()
         self.assertEqual(self.picking.state, "done")
         self.assertEqual(self.product.qty_available, 80)
         self.assertTrue(self.picking.carrier_tracking_ref)
 
-    def test_02_mrw_manifest(self):
-        """Manifest is created"""
+    @mock.patch("odoo.addons.delivery_mrw.models.mrw_request.Client")
+    @mock.patch(
+        "odoo.addons.delivery_mrw.models.delivery_carrier.DeliveryCarrier.mrw_get_label",
+        return_value={
+            "EtiquetaFile": b"%PDF-1.4 fake PDF content",
+        },
+    )
+    def test_02_mrw_manifest(self, mock, *arg):
+        """Manifest is created without calling real MRW API"""
         self.picking.name = "picking1"
         self.picking.number_of_packages = 1
         self.picking.action_confirm()
         self.picking.action_assign()
-        self.picking.move_ids.quantity_done = self.picking.move_ids.product_uom_qty
+        self.picking.move_ids.quantity = self.picking.move_ids.product_uom_qty
         self.picking.button_validate()
         self.assertEqual(self.picking.state, "done")
         self.assertTrue(self.picking.carrier_tracking_ref)
