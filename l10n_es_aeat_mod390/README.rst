@@ -127,6 +127,7 @@ Contributors
 - `Moduon <https://www.moduon.team>`__:
 
   - Emilio Pascual
+  - Arantxa Sudón
 
 Maintainers
 -----------
