@@ -174,6 +174,10 @@ Contributors
 
   - Miguel Poyatos <miguel@trey.es>
 
+- `Tecnativa <https://www.tecnativa.com>`__:
+
+  - Eduardo Ezerouali
+
 Maintainers
 -----------
 

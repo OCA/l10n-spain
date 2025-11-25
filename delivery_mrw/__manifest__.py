@@ -3,7 +3,7 @@
 {
     "name": "Delivery MRW",
     "summary": "Delivery Carrier implementation for MRW with SAGEC API",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Stock",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Tecnativa, Odoo Community Association (OCA)",
@@ -18,7 +18,6 @@
         "views/delivery_mrw_view.xml",
         "views/stock_picking_views.xml",
         "views/mrw_manifest_template.xml",
-        "wizard/stock_immediate_transfer_views.xml",
         "wizard/mrw_manifest_wizard_views.xml",
         "data/delivery_mrw.xml",
         "security/ir.model.access.csv",
