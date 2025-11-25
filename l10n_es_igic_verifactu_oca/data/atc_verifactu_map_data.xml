@@ -12,6 +12,7 @@
                 (4, ref('l10n_es_igic.account_tax_template_igic_r_9_5')),
                 (4, ref('l10n_es_igic.account_tax_template_igic_r_15')),
                 (4, ref('l10n_es_igic.account_tax_template_igic_r_20')),
+                (4, ref('l10n_es_igic.account_tax_template_igic_cmino')),
             ]"
         />
     </record>
@@ -26,13 +27,20 @@
         />
     </record>
 
-    <!-- Operación No Sujeta artículo 7, 14, otros. -->
-    <record id="l10n_es_verifactu_oca.verifactu_map_line_N1" model="verifactu.map.line">
+    <record id="l10n_es_verifactu_oca.verifactu_map_line_E2" model="verifactu.map.line">
+        <field
+            name="taxes"
+            eval="[
+                (4, ref('l10n_es_igic.account_tax_template_igic_ex_0')),
+            ]"
+        />
+    </record>
+
+    <record id="l10n_es_verifactu_oca.verifactu_map_line_E6" model="verifactu.map.line">
         <field
             name="taxes"
             eval="[
                 (4, ref('l10n_es_igic.account_tax_template_igic_re_ex')),
-                (4, ref('l10n_es_igic.account_tax_template_igic_ex_0')),
             ]"
         />
     </record>
