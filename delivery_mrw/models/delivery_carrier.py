@@ -524,7 +524,7 @@ class DeliveryCarrier(models.Model):
         for t in tracking_states:
             date_str = t.get("delivery_date").strftime(date_format)
             tracking_lines.append(
-                "%s - [%s] %s" % (date_str, t.get("state_code"), t.get("description"))
+                f"{date_str} - [{t.get('state_code')}] {t.get('description')}"
             )
         picking.tracking_state_history = "\n".join(tracking_lines)
         tracking = tracking_states.pop()
