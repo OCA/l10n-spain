@@ -3,6 +3,8 @@
 
 import logging
 
+from odoo.exceptions import ValidationError
+
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
 )
@@ -150,3 +152,29 @@ class TestL10nEsAeatMod111Base(TestL10nEsAeatModBase):
         self.assertEqual(self.model111.casilla_07, 1)
         self.assertEqual(round(self.model111.casilla_28, 2), round(retenciones, 2))
         self.assertEqual(round(self.model111.casilla_30, 2), round(result, 2))
+        # Check compute typo_declaracion
+        self.assertEqual(self.model111.tipo_declaracion, "I")
+        self.model111.use_aeat_account = True
+        self.assertEqual(self.model111.tipo_declaracion, "G")
+        self.model111.use_aeat_account = False
+        bank_account = (
+            self.env["res.partner.bank"]
+            .sudo()
+            .create(
+                {
+                    "acc_number": "ES70 2082 5971 6787 3766 2882",
+                    "bank_name": "Test Bank",
+                    "partner_id": self.company.partner_id.id,
+                }
+            )
+        )
+        self.model111.partner_bank_id = bank_account
+        self.assertEqual(self.model111.tipo_declaracion, "U")
+        self.model111.casilla_29 = self.model111.casilla_28
+        self.assertEqual(self.model111.tipo_declaracion, "N")
+        self.model111.casilla_29 = self.model111.casilla_28 + 1
+        with self.assertRaises(ValidationError):
+            # Casilla 30 less than 0,
+            self.model111.button_confirm()
+        self.model111.casilla_29 = 0
+        self.model111.button_confirm()
