@@ -505,12 +505,10 @@ class AccountMove(models.Model):
     def _check_all_taxes_mapped(self):
         if not (tax_lines := self._get_aeat_tax_info()):
             return False
-        verifactu_map = self._get_verifactu_map(self._get_document_date())
-        tax_templates = verifactu_map.map_lines.tax_xmlid_ids
-        mapped_taxes = self.env["account.tax"]
-        for template in tax_templates:
-            tax_id = self.company_id._get_tax_id_from_xmlid(template.name)
-            mapped_taxes |= self.env["account.tax"].browse(tax_id)
+        date = self._get_document_date()
+        verifactu_map = self._get_verifactu_map(date)
+        codes = verifactu_map.map_lines.mapped("code")
+        mapped_taxes = self._get_verifactu_taxes_map(codes, date)
         for tax_line in tax_lines.values():
             if tax_line["tax"] not in mapped_taxes:
                 return False
