@@ -4,7 +4,7 @@
 import base64
 import logging
 
-from odoo import api, exceptions, fields, models
+from odoo import Command, api, exceptions, fields, models
 from odoo.tools.safe_eval import safe_eval
 
 _logger = logging.getLogger(__name__)
@@ -39,15 +39,13 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
                 lines += sub_lines
             else:
                 lines.append(
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "wizard_id": self.id,
                             "export_line_id": line.id,
                             "content": data[offset : offset + line.size],
-                        },
-                    )
+                        }
+                    ),
                 )
                 offset += line.size
         return offset, lines

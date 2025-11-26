@@ -16,7 +16,7 @@ except (OSError, ImportError) as err:
     _logger.debug(err)
 
 
-class L10nEsAeatSoap(models.TransientModel):
+class L10nEsAeatSoap(models.AbstractModel):
     _name = "l10n.es.aeat.soap"
     _description = "AEAT SOAP"
 

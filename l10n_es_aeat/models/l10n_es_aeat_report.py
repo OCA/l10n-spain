@@ -9,6 +9,7 @@ from calendar import monthrange
 from datetime import datetime
 
 from odoo import api, exceptions, fields, models
+from odoo.fields import Domain
 from odoo.tools import config
 
 from .spanish_states_mapping import SPANISH_STATES as ss
@@ -28,7 +29,12 @@ class L10nEsAeatReport(models.AbstractModel):
 
     def _default_journal(self):
         return self.env["account.journal"].search(
-            [("type", "=", "general"), ("company_id", "=", self.env.company.id)]
+            Domain.AND(
+                [
+                    Domain("type", "=", "general"),
+                    Domain("company_id", "=", self.env.company.id),
+                ]
+            )
         )[:1]
 
     def get_period_type_selection(self):
@@ -70,15 +76,21 @@ class L10nEsAeatReport(models.AbstractModel):
         return self._aeat_number
 
     def _get_export_config(self, date):
-        model = self.env["ir.model"].sudo().search([("model", "=", self._name)])
-        return self.env["aeat.model.export.config"].search(
+        model = self.env["ir.model"].sudo().search([Domain("model", "=", self._name)])
+        domain_ms = Domain.AND(
             [
-                ("model_id", "=", model.id),
-                ("date_start", "<=", date),
-                "|",
-                ("date_end", "=", False),
-                ("date_end", ">=", date),
-            ],
+                Domain("model_id", "=", model.id),
+                Domain("date_start", "<=", date),
+            ]
+        )
+        domain_de = Domain.OR(
+            [
+                Domain("date_end", "=", False),
+                Domain("date_end", ">=", date),
+            ]
+        )
+        return self.env["aeat.model.export.config"].search(
+            [Domain.AND([domain_ms, domain_de])],
             limit=1,
         )
 
@@ -98,7 +110,7 @@ class L10nEsAeatReport(models.AbstractModel):
         size=3,
         required=True,
         readonly=True,
-        default=_default_number,
+        default=lambda self: self._default_number(),
     )
     previous_number = fields.Char(
         string="Previous declaration number",
@@ -128,7 +140,7 @@ class L10nEsAeatReport(models.AbstractModel):
         readonly=False,
     )
     year = fields.Integer(
-        default=_default_year,
+        default=lambda self: self._default_year(),
         required=True,
     )
     statement_type = fields.Selection(
@@ -178,7 +190,7 @@ class L10nEsAeatReport(models.AbstractModel):
     period_type = fields.Selection(
         selection="get_period_type_selection",
         required=True,
-        default=_default_period_type,
+        default=lambda self: self._default_period_type(),
     )
     date_start = fields.Date(
         string="Starting date",
@@ -203,7 +215,7 @@ class L10nEsAeatReport(models.AbstractModel):
         comodel_name="account.journal",
         string="Journal",
         domain="[('type', '=', 'general'), ('company_id', '=', company_id)]",
-        default=_default_journal,
+        default=lambda self: self._default_journal(),
         help="Journal in which post the move.",
     )
     move_id = fields.Many2one(
@@ -228,13 +240,11 @@ class L10nEsAeatReport(models.AbstractModel):
         compute="_compute_error_count",
     )
     tax_agency_ids = fields.Many2many("aeat.tax.agency", string="Tax Agency")
-    _sql_constraints = [
-        (
-            "name_uniq",
-            "unique(name, company_id)",
-            "AEAT report identifier must be unique",
-        )
-    ]
+
+    _name_uniq = models.Constraint(
+        "unique(name, company_id)",
+        "AEAT report identifier must be unique",
+    )
 
     def _compute_allow_posting(self):
         for report in self:
@@ -267,9 +277,7 @@ class L10nEsAeatReport(models.AbstractModel):
         self.contact_name = self.env.user.name
         self.contact_email = self.env.user.email
         self.contact_phone = self._filter_phone(
-            self.env.user.partner_id.phone
-            or self.env.user.partner_id.mobile
-            or self.env.user.company_id.phone
+            self.env.user.partner_id.phone or self.env.user.company_id.phone
         )
         if self.journal_id.company_id != self.company_id:
             self.journal_id = self.with_company(self.company_id.id)._default_journal()
@@ -332,7 +340,13 @@ class L10nEsAeatReport(models.AbstractModel):
         seq_name = self._get_sequence_code()
         company_id = vals.get("company_id", self.env.user.company_id.id)
         seq = self.env["ir.sequence"].search(
-            [("name", "=", seq_name), ("company_id", "=", company_id)], limit=1
+            Domain.AND(
+                [
+                    Domain("name", "=", seq_name),
+                    Domain("company_id", "=", company_id),
+                ]
+            ),
+            limit=1,
         )
         if not seq:
             raise exceptions.UserError(
@@ -367,7 +381,14 @@ class L10nEsAeatReport(models.AbstractModel):
                  previous reports.
         """
         self.ensure_one()
-        return self.search([("year", "=", self.year), ("date_start", "<", date)])
+        return self.search(
+            Domain.AND(
+                [
+                    Domain("year", "=", self.year),
+                    Domain("date_start", "<", date),
+                ]
+            )
+        )
 
     def calculate(self):
         """To be overrided by inherit models"""
@@ -425,13 +446,16 @@ class L10nEsAeatReport(models.AbstractModel):
         del action["views"]
         return action
 
-    def unlink(self):
+    @api.ondelete(at_uninstall=False)
+    def _check_can_delete(self):
         if any(item.state not in ["draft", "cancelled"] for item in self):
             raise exceptions.UserError(
                 self.env._(
                     "Only reports in 'draft' or 'cancelled' state can be removed"
                 )
             )
+
+    def unlink(self):
         return super().unlink()
 
     @api.model
@@ -465,17 +489,22 @@ class L10nEsAeatReport(models.AbstractModel):
         if not aeat_num:
             raise exceptions.UserError(
                 self.env._(
-                    "Modelo no válido: %s. Debe declarar una variable '_aeat_number'"
+                    "Modelo no válido: %s. Debe declarar una variable '_aeat_number'",
+                    self._name,
                 )
-                % self._name
             )
         seq_obj = self.env["ir.sequence"]
         sequence = self._get_sequence_code()
         if not companies:
-            companies = self.env["res.company"].search([])
+            companies = self.env.user.company_ids
         for company in companies:
             seq = seq_obj.search(
-                [("name", "=", sequence), ("company_id", "=", company.id)]
+                Domain.AND(
+                    [
+                        Domain("name", "=", sequence),
+                        Domain("company_id", "=", company.id),
+                    ]
+                )
             )
             if seq:
                 continue
