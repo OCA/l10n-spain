@@ -7,13 +7,10 @@
 odoo.define("l10n_es_ticketbai_pos.tbai_models", function (require) {
     "use strict";
 
-    const core = require("web.core");
-    const _t = core._t;
     const field_utils = require("web.field_utils");
 
     const tbai = window.tbai;
     const QRCode = window.QRCode;
-    const {Gui} = require("point_of_sale.Gui");
 
     /* A TicketBAI Simplified Invoice represents a customer's order
     to be exported to the Tax Agency.
@@ -130,12 +127,8 @@ odoo.define("l10n_es_ticketbai_pos.tbai_models", function (require) {
                     );
                     return Promise.resolve();
                 } catch (e) {
-                    console.error(e);
-                    Gui.showPopup("ErrorPopup", {
-                        title: _t("TicketBAI"),
-                        body: e.message,
-                    });
-                    return Promise.reject(e);
+                    console.error("TicketBAI signing/XML generation failed:", e);
+                    throw e;
                 }
             } else {
                 return Promise.reject(

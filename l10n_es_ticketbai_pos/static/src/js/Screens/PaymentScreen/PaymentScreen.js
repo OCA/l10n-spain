@@ -71,21 +71,49 @@ odoo.define("l10n_es_ticketbai_pos.PaymentScreen", function (require) {
 
             async validateOrder() {
                 const order = this.currentOrder;
+
                 if (this.env.pos.company.tbai_enabled && !order.is_to_invoice()) {
                     if (!order.tbai_simplified_invoice) {
                         try {
+                            // Start/continue building
                             await order.tbai_build_invoice();
-                            order.tbai_simplified_invoice =
-                                await order.tbai_current_invoice;
-                        } catch (error) {
-                            console.error(
-                                "Error while fetching tbai_current_invoice:",
-                                error
-                            );
-                            // Handle the error appropriately, e.g., show a popup or set a default value
+                            const tbai_inv = await order.tbai_current_invoice;
+
+                            if (!tbai_inv) {
+                                // Validation failed → BLOCK order and inform user
+                                this.showPopup("ErrorPopup", {
+                                    title: this.env._t("TicketBAI"),
+                                    body: this.env._t(
+                                        "Cannot generate TicketBAI simplified invoice.\n\n" +
+                                            "Check:\n" +
+                                            "• Company VAT is set\n" +
+                                            "• Customer has VAT (or foreign ID)\n" +
+                                            "• All products have exactly one tax\n" +
+                                            "• Fiscal position has VAT Regime Key"
+                                    ),
+                                });
+                                // ← BLOCK validation
+                                return;
+                            }
+
+                            order.tbai_simplified_invoice = tbai_inv;
+                        } catch (err) {
+                            console.error("TicketBAI invoice generation failed:", err);
+                            this.showPopup("ErrorPopup", {
+                                title: this.env._t("TicketBAI - Critical Error"),
+                                body: this.env._t(
+                                    "Failed to generate or sign the TicketBAI invoice.\n\n" +
+                                        "Error: %s\n\n" +
+                                        "The order cannot be validated without a valid signed ticket.",
+                                    err.message || err
+                                ),
+                            });
+                            // ← BLOCK validation (required by law)
+                            return;
                         }
                     }
                 }
+
                 await super.validateOrder(...arguments);
             }
         };
