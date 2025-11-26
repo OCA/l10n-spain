@@ -51,6 +51,14 @@ class ResCompany(models.Model):
                 raise ValidationError(
                     self.env._("You must complete VAT prorate information")
                 )
+            if (
+                rec.with_vat_prorate
+                and rec.chart_template
+                and not rec.chart_template.startswith("es_")
+            ):
+                raise ValidationError(
+                    self.env._("The chart of accounts must be from Spain")
+                )
 
 
 class ResCompanyVatProrate(models.Model):

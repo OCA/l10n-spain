@@ -1,3 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_res_company_vat_prorate,access res.company.vat.prorate,model_res_company_vat_prorate,base.group_user,1,0,0,0
 manage_res_company_vat_prorate,manage res.company.vat.prorate,model_res_company_vat_prorate,base.group_system,1,1,1,1
+aeat_manager_res_company_vat_prorate,aeat manager res.company.vat.prorate,model_res_company_vat_prorate,l10n_es_aeat.group_account_aeat,1,1,1,1
+aeat_manager_res_company_vat_prorate_wizard,aeat manager res.company.vat.prorate.wizard,model_res_company_vat_prorate_wizard,l10n_es_aeat.group_account_aeat,1,1,1,1
+access_account_update_vat_prorate,Full access on account.update.vat_prorate,model_account_update_vat_prorate,l10n_es_aeat.group_account_aeat,1,1,1,1

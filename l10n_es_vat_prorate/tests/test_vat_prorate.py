@@ -16,6 +16,19 @@ from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 @tagged("post_install", "-at_install")
 class TestVatProrate(AccountTestInvoicingCommon):
+    # Because we are using the AccountTestInvoicingCommon the final user is
+    # 'Because I am accountman!' so we need to add the account_aeat
+    # group to create account.update.vat_prorate records
+    @classmethod
+    def get_default_groups(cls):
+        groups = super().get_default_groups()
+        group_account_aeat = cls.env.ref(
+            "l10n_es_aeat.group_account_aeat", raise_if_not_found=True
+        )
+        if group_account_aeat:
+            return groups | group_account_aeat
+        return groups
+
     @classmethod
     @AccountTestInvoicingCommon.setup_chart_template("es_pymes")
     def setUpClass(cls):
@@ -256,3 +269,19 @@ class TestVatProrate(AccountTestInvoicingCommon):
             * (100 - prorate_id.vat_prorate)
             / 10000,
         )
+
+    def test_prorate_update_with_wizard(self):
+        wizard = (
+            self.env["account.update.vat_prorate"]
+            .with_company(self.env.company)
+            .create({})
+        )
+        self.assertEqual(wizard.company_id.id, self.env.company.id)
+        self.assertTrue(wizard.with_vat_prorate)
+        self.assertEqual(len(wizard.vat_prorate_ids), 2)
+        # Update company data through the wizard
+        wizard.with_vat_prorate = False
+        wizard.vat_prorate_ids = wizard.vat_prorate_ids[1:]
+        wizard.execute()
+        self.assertFalse(self.env.company.with_vat_prorate)
+        self.assertEqual(len(self.env.company.vat_prorate_ids), 1)
