@@ -5,6 +5,8 @@
 
 import logging
 
+from odoo.fields import Command
+
 from odoo.addons.base.tests.common import BaseCommon
 
 _logger = logging.getLogger("aeat")
@@ -43,9 +45,14 @@ class TestL10nEsAeatModBase(BaseCommon):
         cls.company = cls.env["res.company"].create(
             {"name": "Spanish test company", "currency_id": cls.env.ref("base.EUR").id}
         )
-        cls.env.ref("base.group_multi_company").write({"users": [(4, cls.env.uid)]})
+        cls.env.ref("base.group_multi_company").write(
+            {"user_ids": [Command.link(cls.env.uid)]}
+        )
         cls.env.user.write(
-            {"company_ids": [(4, cls.company.id)], "company_id": cls.company.id}
+            {
+                "company_ids": [Command.link(cls.company.id)],
+                "company_id": cls.company.id,
+            }
         )
         chart = cls.env["account.chart.template"]
         chart._load(template_code="es_pymes", company=cls.company, install_demo=False)
@@ -109,7 +116,7 @@ class TestL10nEsAeatModBase(BaseCommon):
             tax_id = cls.company._get_tax_id_from_xmlid(xml_id)
             taxes |= cls.env["account.tax"].browse(tax_id)
             if not tax_id:
-                _logger.error(f"Tax not found: {desc}")
+                _logger.error("Tax not found: %s", desc)
         return taxes
 
     @classmethod
@@ -122,12 +129,12 @@ class TestL10nEsAeatModBase(BaseCommon):
             "journal_id": cls.journal_sale.id,
             "invoice_line_ids": [],
         }
-        _logger.debug(f"Creating sale invoice: date = {dt}")
+        _logger.debug("Creating sale invoice: date = %s", dt)
         if cls.debug:
             _logger.debug("{:>14} {:>9}".format("SALE TAX", "PRICE"))
         for desc, values in cls.taxes_sale.items():
             if cls.debug:
-                _logger.debug(f"{desc:>14} {values[0]:>9}")
+                _logger.debug("%14s %9s", desc, values[0])
             # Allow to duplicate taxes skipping the unique key constraint
             line_data = {
                 "name": f"Test for tax(es) {desc}",
@@ -157,12 +164,12 @@ class TestL10nEsAeatModBase(BaseCommon):
             "journal_id": cls.journal_purchase.id,
             "invoice_line_ids": [],
         }
-        _logger.debug(f"Creating purchase invoice: date = {dt}")
+        _logger.debug("Creating purchase invoice: date = %s", dt)
         if cls.debug:
-            _logger.debug("{:>14} {:>9}".format("PURCHASE TAX", "PRICE"))
+            _logger.debug("%14s %9s", "PURCHASE TAX", "PRICE")
         for desc, values in cls.taxes_purchase.items():
             if cls.debug:
-                _logger.debug(f"{desc:>14} {values[0]:>9}")
+                _logger.debug("%14s %9s", desc, values[0])
             # Allow to duplicate taxes skipping the unique key constraint
             line_data = {
                 "name": f"Test for tax(es) {desc}",
@@ -184,7 +191,7 @@ class TestL10nEsAeatModBase(BaseCommon):
 
     @classmethod
     def _invoice_refund(cls, invoice, dt):
-        _logger.debug(f"Refund {invoice.move_type} invoice: date = {dt}")
+        _logger.debug("Refund %s invoice: date = %s", invoice.move_type, dt)
         default_values_list = [
             {"date": dt, "invoice_date": dt, "invoice_payment_term_id": None}
         ]
@@ -287,7 +294,7 @@ class TestL10nEsAeatModBase(BaseCommon):
                 "name": "Billing user",
                 "login": "billing_user",
                 "email": "billing.user@example.com",
-                "groups_id": [(6, 0, [invocing_grp.id])],
+                "group_ids": [Command.set([invocing_grp.id])],
             }
         )
         cls.account_user = Users.create(
@@ -295,7 +302,7 @@ class TestL10nEsAeatModBase(BaseCommon):
                 "name": "Account user",
                 "login": "account_user",
                 "email": "account.user@example.com",
-                "groups_id": [(6, 0, [account_user_grp.id])],
+                "group_ids": [Command.set([account_user_grp.id])],
             }
         )
         cls.account_manager = Users.create(
@@ -303,6 +310,6 @@ class TestL10nEsAeatModBase(BaseCommon):
                 "name": "Account manager",
                 "login": "account_manager",
                 "email": "account.manager@example.com",
-                "groups_id": [(6, 0, [account_manager_grp.id, aeat_grp.id])],
+                "group_ids": [Command.set([account_manager_grp.id, aeat_grp.id])],
             }
         )
