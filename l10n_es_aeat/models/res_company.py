@@ -4,6 +4,7 @@
 import logging
 
 from odoo import api, fields, models
+from odoo.fields import Domain
 from odoo.tools import ormcache
 
 _logger = logging.getLogger(__name__)
@@ -27,7 +28,7 @@ class ResCompany(models.Model):
         models = (
             self.env["ir.model"]
             .sudo()
-            .search([("model", "=like", "l10n.es.aeat.%.report")])
+            .search([Domain("model", "=like", "l10n.es.aeat.%.report")])
         )
         for model in models:
             try:
@@ -45,11 +46,15 @@ class ResCompany(models.Model):
             and self.sudo()
             .env["ir.model.data"]
             .search(
-                [
-                    ("model", "=", "account.tax"),
-                    ("module", "=", "account"),  # All is registered under this module
-                    ("name", "=", f"{self.id}_{xmlid}"),
-                ]
+                Domain.AND(
+                    [
+                        Domain("model", "=", "account.tax"),
+                        Domain(
+                            "module", "=", "account"
+                        ),  # All is registered under this module
+                        Domain("name", "=", f"{self.id}_{xmlid}"),
+                    ]
+                ),
             )
             .res_id
             or False
@@ -66,11 +71,15 @@ class ResCompany(models.Model):
             and self.sudo()
             .env["ir.model.data"]
             .search(
-                [
-                    ("model", "=", "account.account"),
-                    ("module", "=", "account"),  # All is registered under this module
-                    ("name", "=", f"{self.id}_{xmlid}"),
-                ]
+                Domain.AND(
+                    [
+                        Domain("model", "=", "account.account"),
+                        Domain(
+                            "module", "=", "account"
+                        ),  # All is registered under this module
+                        Domain("name", "=", f"{self.id}_{xmlid}"),
+                    ]
+                ),
             )
             .res_id
             or False

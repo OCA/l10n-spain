@@ -4,6 +4,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo import exceptions, fields, models
+from odoo.fields import Domain
 
 
 class L10nEsAeatCertificate(models.Model):
@@ -42,7 +43,12 @@ class L10nEsAeatCertificate(models.Model):
     def action_active(self):
         self.ensure_one()
         other_configs = self.search(
-            [("id", "!=", self.id), ("company_id", "=", self.company_id.id)]
+            Domain.AND(
+                [
+                    Domain("id", "!=", self.id),
+                    Domain("company_id", "=", self.company_id.id),
+                ]
+            )
         )
         for config_id in other_configs:
             config_id.state = "draft"
@@ -53,18 +59,30 @@ class L10nEsAeatCertificate(models.Model):
             company = self.env.user.company_id
         today = fields.Date.today()
         aeat_certificate = self.search(
-            [
-                ("company_id", "=", company.id),
-                ("public_key", "!=", False),
-                ("private_key", "!=", False),
-                "|",
-                ("date_start", "=", False),
-                ("date_start", "<=", today),
-                "|",
-                ("date_end", "=", False),
-                ("date_end", ">=", today),
-                ("state", "=", "active"),
-            ],
+            Domain.AND(
+                [
+                    Domain.AND(
+                        [
+                            Domain("company_id", "=", company.id),
+                            Domain("public_key", "!=", False),
+                            Domain("private_key", "!=", False),
+                            Domain("state", "=", "active"),
+                        ]
+                    ),
+                    Domain.OR(
+                        [
+                            Domain("date_start", "=", False),
+                            Domain("date_start", "<=", today),
+                        ]
+                    ),
+                    Domain.OR(
+                        [
+                            Domain("date_end", "=", False),
+                            Domain("date_end", ">=", today),
+                        ]
+                    ),
+                ]
+            ),
             limit=1,
         )
         if aeat_certificate:

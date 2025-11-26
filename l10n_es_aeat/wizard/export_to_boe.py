@@ -9,6 +9,7 @@ import base64
 import re
 
 from odoo import exceptions, fields, models
+from odoo.fields import Domain
 from odoo.tools.safe_eval import safe_eval
 
 EXPRESSION_PATTERN = re.compile(r"(\$\{.+?\})")
@@ -106,10 +107,11 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         if include_sign:
             ascii_string += sign
         if dec_length > 0:
-            ascii_string += "%0*.*f" % (int_length + dec_length + 1, dec_length, number)
+            width = int_length + dec_length + 1
+            ascii_string += f"{number:0{width}.{dec_length}f}"
             ascii_string = ascii_string.replace(".", "")
         elif int_length > 0:
-            ascii_string += "%.*d" % (int_length, int_part)
+            ascii_string += f"{int_part:0{int_length}d}"[-int_length:]
         # Sanity-check
         assert (
             len(ascii_string) == (include_sign and 1 or 0) + int_length + dec_length
@@ -143,15 +145,18 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
             raise exceptions.UserError(self.env._("No export configuration selected."))
         # Generate the file and save as attachment
         file = base64.encodebytes(contents)
-        file_name = self.env._("%(number)s_report_%(date)s.txt") % {
+        # We need to split name and format it to avoid warning W8301
+        file_name_tpl = self.env._("%(number)s_report_%(date)s.txt")
+        file_name = file_name_tpl % {
             "number": report.number,
             "date": fields.Date.today(),
         }
         # Delete old files
         attachment_obj = self.env["ir.attachment"]
-        attachment_ids = attachment_obj.search(
-            [("name", "=", file_name), ("res_model", "=", report._name)]
+        domain = Domain("name", "in", [file_name]) & Domain(
+            "res_model", "in", [report._name]
         )
+        attachment_ids = attachment_obj.search(domain)
         attachment_ids.unlink()
         attachment_obj.create(
             {
@@ -231,18 +236,17 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         if line.export_type == "string":
             align = ">" if line.alignment == "right" else "<"
             return self._format_string(val or "", line.size, align=align)
-        elif line.export_type == "boolean":
+        if line.export_type == "boolean":
             return self._format_boolean(val, line.bool_yes, line.bool_no)
-        elif line.export_type == "alphabetic":
+        if line.export_type == "alphabetic":
             align = ">" if line.alignment == "right" else "<"
             return self._format_alphabetic_string(val or "", line.size, align=align)
-        else:  # float or integer
-            decimal_size = 0 if line.export_type == "integer" else line.decimal_size
-            return self._format_number(
-                float(val or 0),
-                line.size - decimal_size - (line.apply_sign and 1 or 0),
-                decimal_size,
-                line.apply_sign,
-                positive_sign=line.positive_sign,
-                negative_sign=line.negative_sign,
-            )
+        decimal_size = 0 if line.export_type == "integer" else line.decimal_size
+        return self._format_number(
+            float(val or 0),
+            line.size - decimal_size - (line.apply_sign and 1 or 0),
+            decimal_size,
+            line.apply_sign,
+            positive_sign=line.positive_sign,
+            negative_sign=line.negative_sign,
+        )

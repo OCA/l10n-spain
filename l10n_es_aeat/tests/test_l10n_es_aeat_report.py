@@ -2,9 +2,8 @@
 # Copyright 2021 Valentin Vinagre <valentin.vinagre@sygel.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo_test_helper import FakeModelLoader
-
 from odoo import exceptions, fields
+from odoo.orm.model_classes import add_to_registry
 from odoo.tests import Form, tagged
 
 from odoo.addons.base.tests.common import BaseCommon
@@ -17,12 +16,16 @@ class TestL10nEsAeatReport(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        # Load a test model using odoo_test_helper
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
+        # Load a test model using odoo.orm.model_classes.add_to_registry
         from .models import L10nEsAeatTestReport
 
-        cls.loader.update_registry((L10nEsAeatTestReport,))
+        add_to_registry(cls.env.registry, L10nEsAeatTestReport)
+        cls.registry._setup_models__(cls.env.cr, [TEST_MODEL_NAME])
+        cls.registry.init_models(
+            cls.env.cr, [TEST_MODEL_NAME], {"models_to_check": True}
+        )
+        cls.addClassCleanup(cls.registry.__delitem__, TEST_MODEL_NAME)
+
         cls.AeatReport = cls.env[TEST_MODEL_NAME]
         cls.period_types = {
             "0A": ("2016-01-01", "2016-12-31"),
@@ -43,11 +46,6 @@ class TestL10nEsAeatReport(BaseCommon):
             "11": ("2016-11-01", "2016-11-30"),
             "12": ("2016-12-01", "2016-12-31"),
         }
-
-    @classmethod
-    def tearDownClass(cls):
-        cls.loader.restore_registry()
-        return super().tearDownClass()
 
     def test_compute_dates(self):
         report = self.AeatReport.new({"year": 2016})

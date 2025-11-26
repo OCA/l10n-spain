@@ -109,9 +109,8 @@ class AeatModelExportConfigLine(models.Model):
                 else:
                     line.value += f'"{line.expression}"'
             else:
-                line.value = self.env._("Fixed: {}").format(
-                    line.fixed_value or self.env._("<blank>")
-                )
+                blank = self.env._(" < blank > ")
+                line.value = self.env._("Fixed: %s") % (line.fixed_value or blank)
 
     @api.depends("export_type", "subconfig_id")
     def _compute_alignment(self):
@@ -129,13 +128,15 @@ class AeatModelExportConfigLine(models.Model):
     @api.depends("subconfig_id")
     def _compute_apply_sign(self):
         for line in self:
-            line.apply_sign = line.apply_sign or True
-            if self.subconfig_id:
-                self.apply_sign = False
+            if line.subconfig_id:
+                line.apply_sign = False
+            else:
+                line.apply_sign = line.apply_sign or True
 
     @api.depends("subconfig_id")
     def _compute_decimal_size(self):
         for line in self:
-            line.decimal_size = line.decimal_size or 0
-            if self.subconfig_id:
-                self.decimal_size = 0
+            decimal_size = line.decimal_size or 0
+            if line.subconfig_id:
+                decimal_size = 0
+            line.decimal_size = decimal_size

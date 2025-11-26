@@ -100,7 +100,7 @@ class AeatMixin(models.AbstractModel):
         return new_date
 
     def _get_document_period(self):
-        return "%02d" % fields.Date.to_date(self._get_document_fiscal_date()).month
+        return f"{fields.Date.to_date(self._get_document_fiscal_date()).month:02d}"
 
     def _is_aeat_simplified_invoice(self):
         """Inheritable method to allow control when an
