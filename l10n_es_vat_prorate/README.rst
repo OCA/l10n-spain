@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===============
 Prorrata de IVA
 ===============
@@ -17,7 +13,7 @@ Prorrata de IVA
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
@@ -44,7 +40,9 @@ Configuration
 
 Para configurar la prorrata general:
 
-- Acceda a la compañía y marque que aplica prorrata.
+- Acceda al menú Facturación > Configuración > AEAT > Actualizar
+  Prorrata de IVA. También puede acceder directamente desde la compañía
+- Marque que aplica prorrata.
 - Defina el porcentaje de prorrata (se aplica por fechas).
 
 Los impuestos de las facturas de proveedor se dividirán según la
@@ -52,7 +50,9 @@ prorrata activa.
 
 Para configurar la prorrata especial:
 
-- Acceda a la compañía y marque que aplica prorrata de IVA especial.
+- Acceda al menú Facturación > Configuración > AEAT > Actualizar
+  Prorrata de IVA. También puede acceder directamente desde la compañía
+- Marque que aplica prorrata de IVA especial.
 - Marque el valor por defecto de la prorrata especial.
 
 En las líneas de factura aparecerá un nuevo campo editable, con el valor
@@ -91,6 +91,7 @@ Contributors
 
   - Pedro M. Baeza
   - Carolina Fernandez
+  - Christian Ramos
 
 - `Sygel <https://www.sygel.es/>`__:
 

@@ -49,6 +49,12 @@ class ResCompany(models.Model):
         for rec in self.sudo():
             if rec.with_vat_prorate and not rec.vat_prorate_ids:
                 raise ValidationError(_("You must complete VAT prorate information"))
+            if (
+                rec.with_vat_prorate
+                and rec.chart_template
+                and not rec.chart_template.startswith("es_")
+            ):
+                raise ValidationError(_("The chart of accounts must be from Spain"))
 
 
 class ResCompanyVatProrate(models.Model):
