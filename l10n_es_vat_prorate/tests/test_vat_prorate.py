@@ -272,3 +272,19 @@ class TestVatProrate(AccountTestInvoicingCommon):
             * (100 - prorate_id.vat_prorate)
             / 10000,
         )
+
+    def test_prorate_update_with_wizard(self):
+        wizard = (
+            self.env["account.update.vat_prorate"]
+            .with_company(self.env.company)
+            .create({})
+        )
+        self.assertEqual(wizard.company_id.id, self.env.company.id)
+        self.assertTrue(wizard.with_vat_prorate)
+        self.assertEqual(len(wizard.vat_prorate_ids), 2)
+        # Update company data through the wizard
+        wizard.with_vat_prorate = False
+        wizard.vat_prorate_ids = wizard.vat_prorate_ids[1:]
+        wizard.execute()
+        self.assertFalse(self.env.company.with_vat_prorate)
+        self.assertEqual(len(self.env.company.vat_prorate_ids), 1)
