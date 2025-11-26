@@ -18,5 +18,6 @@
         "views/account_tax_views.xml",
         "views/res_company_prorate_views.xml",
         "views/res_company_views.xml",
+        "wizards/account_update_vat_prorate.xml",
     ],
 }

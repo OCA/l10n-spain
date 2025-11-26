@@ -6,7 +6,7 @@ from odoo.addons.l10n_es_vat_book.tests import test_l10n_es_aeat_vat_book
 
 
 @tagged("-at_install", "post_install")
-class TestSIIVatProrate(test_l10n_es_aeat_vat_book.TestL10nEsAeatVatBookBase):
+class TestProrateVatBook(test_l10n_es_aeat_vat_book.TestL10nEsAeatVatBookBase):
     taxes_purchase = {
         # tax code: (base, tax_amount)
         "P_IVA21_SC": (200, 42),
@@ -17,6 +17,9 @@ class TestSIIVatProrate(test_l10n_es_aeat_vat_book.TestL10nEsAeatVatBookBase):
         try:
             super().setUpClass()
         except Exception:
+            cls.skipTest(cls, "l10n_es_aeat_vat_book seems not installed")
+        # The module may exist but not be installed
+        if "l10n.es.vat.book" not in cls.env:
             cls.skipTest(cls, "l10n_es_aeat_vat_book seems not installed")
         cls.company.write(
             {
