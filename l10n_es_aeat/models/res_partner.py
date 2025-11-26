@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields, models
+from odoo.fields import Domain
 from odoo.tools import ormcache
 
 
@@ -85,7 +86,7 @@ class ResPartner(models.Model):
         europe = self.env.ref("base.europe", raise_if_not_found=False)
         if not europe:
             europe = self.env["res.country.group"].search(
-                [("name", "=", "Europe")], limit=1
+                [Domain("name", "=", "Europe")], limit=1
             )
         return europe.country_ids.mapped("code") + ["XI"]
 
@@ -104,7 +105,7 @@ class ResPartner(models.Model):
         else:
             if self.country_id.code:
                 country_code = self.country_id.code
-            elif self.env["res.country"].search([("code", "=", prefix)]):
+            elif self.env["res.country"].search([Domain("code", "=", prefix)]):
                 country_code = prefix
             else:
                 country_code = ""

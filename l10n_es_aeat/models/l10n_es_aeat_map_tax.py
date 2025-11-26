@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
 from odoo import api, exceptions, fields, models
+from odoo.fields import Domain
 
 
 class L10nEsAeatMapTax(models.Model):
@@ -34,11 +35,13 @@ class L10nEsAeatMapTax(models.Model):
     @api.constrains("date_from", "date_to", "model")
     def _unique_date_range(self):
         for map_tax in self:
-            domain = ["&", ("model", "=", map_tax.model), ("id", "!=", map_tax.id)]
-            if self.date_from:
-                domain.append(("date_to_search", ">=", map_tax.date_from))
-            if self.date_to:
-                domain.append(("date_from_search", "<=", map_tax.date_to))
+            domain = Domain.AND(
+                [Domain("model", "=", map_tax.model), Domain("id", "!=", map_tax.id)]
+            )
+            if map_tax.date_from:
+                domain &= Domain("date_to_search", ">=", map_tax.date_from)
+            if map_tax.date_to:
+                domain &= Domain("date_from_search", "<=", map_tax.date_to)
             if map_tax.search(domain):
                 raise exceptions.UserError(
                     self.env._(
@@ -47,14 +50,12 @@ class L10nEsAeatMapTax(models.Model):
                     )
                 )
 
-    def name_get(self):
-        vals = []
+    @api.depends("model", "date_from", "date_to")
+    def _compute_display_name(self):
         for record in self:
             name = f"{record.model}"
             if record.date_from or record.date_to:
-                name += " ({}-{})".format(
-                    record.date_from and fields.Date.to_date(record.date_from) or "",
-                    record.date_to and fields.Date.to_date(record.date_to) or "",
-                )
-            vals.append(tuple([record.id, name]))
-        return vals
+                start = record.date_from or ""
+                end = record.date_to or ""
+                name += f" ({start}-{end})"
+            record.display_name = name

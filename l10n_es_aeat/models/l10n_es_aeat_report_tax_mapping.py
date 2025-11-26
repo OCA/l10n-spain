@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, exceptions, fields, models
+from odoo.fields import Domain
 
 
 class L10nEsAeatReportTaxMapping(models.AbstractModel):
@@ -15,16 +16,21 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
     tax_line_ids = fields.One2many(
         comodel_name="l10n.es.aeat.tax.line",
         inverse_name="res_id",
-        domain=lambda self: [("model", "=", self._name)],
-        auto_join=True,
+        domain=lambda self: [Domain("model", "=", self._name)],
+        bypass_search_access=True,
         readonly=True,
         string="Tax lines",
     )
     valued_tax_line_ids = fields.One2many(
         comodel_name="l10n.es.aeat.tax.line",
         inverse_name="res_id",
-        domain=lambda self: [("model", "=", self._name), ("amount", "!=", 0)],
-        auto_join=True,
+        domain=lambda self: Domain.AND(
+            [
+                Domain("model", "=", self._name),
+                Domain("amount", "!=", 0),
+            ]
+        ),
+        bypass_search_access=True,
         readonly=True,
         string="Valued tax lines",
     )
@@ -35,20 +41,25 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
             report.tax_line_ids.unlink()
             report.env.invalidate_all()
             # Buscar configuración de mapeo de impuestos
+            domain_model = Domain("model", "=", report.number)
+            domain_dt_from = Domain.OR(
+                [
+                    Domain("date_from", "<=", report.date_start),
+                    Domain("date_from", "=", False),
+                ]
+            )
+            domain_dt_to = Domain.OR(
+                [
+                    Domain("date_to", ">=", report.date_end),
+                    Domain("date_to", "=", False),
+                ]
+            )
             tax_code_map = (
                 self.env["l10n.es.aeat.map.tax"]
                 .sudo()
                 .with_context(active_test=False)
                 .search(
-                    [
-                        ("model", "=", report.number),
-                        "|",
-                        ("date_from", "<=", report.date_start),
-                        ("date_from", "=", False),
-                        "|",
-                        ("date_to", ">=", report.date_end),
-                        ("date_to", "=", False),
-                    ],
+                    Domain.AND([domain_model, domain_dt_from, domain_dt_to]),
                     limit=1,
                 )
             )
@@ -76,67 +87,64 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         }
 
     def _get_partner_domain(self):
-        return []
+        return Domain([])
 
     def _get_move_line_domain(self, date_start, date_end, map_line):
         self.ensure_one()
         taxes = map_line.get_taxes_for_company(self.company_id)
-        move_line_domain = [
-            ("company_id", "child_of", self.company_id.id),
-            ("date", ">=", date_start),
-            ("date", "<=", date_end),
-            ("parent_state", "=", "posted"),
-        ]
+        move_line_domain = Domain.AND(
+            [
+                Domain("company_id", "child_of", self.company_id.id),
+                Domain("date", ">=", date_start),
+                Domain("date", "<=", date_end),
+                Domain("parent_state", "=", "posted"),
+            ]
+        )
         if map_line.move_type == "regular":
-            move_line_domain.append(
-                (
-                    "move_id.financial_type",
-                    "in",
-                    ("receivable", "payable", "liquidity", "other"),
-                )
+            move_line_domain &= Domain(
+                "move_id.financial_type",
+                "in",
+                ["receivable", "payable", "liquidity", "other"],
             )
         elif map_line.move_type == "refund":
-            move_line_domain.append(
-                (
-                    "move_id.financial_type",
-                    "in",
-                    ("receivable_refund", "payable_refund"),
-                )
+            move_line_domain &= Domain(
+                "move_id.financial_type",
+                "in",
+                ["receivable_refund", "payable_refund"],
             )
         if map_line.field_type == "base":
-            move_line_domain.append(("tax_ids", "in", taxes.ids))
+            move_line_domain &= Domain("tax_ids", "in", taxes.ids)
         elif map_line.field_type == "amount":
-            move_line_domain.append(("tax_line_id", "in", taxes.ids))
+            move_line_domain &= Domain("tax_line_id", "in", taxes.ids)
         else:  # map_line.field_type == 'both'
-            move_line_domain += [
-                "|",
-                ("tax_line_id", "in", taxes.ids),
-                ("tax_ids", "in", taxes.ids),
-            ]
+            move_line_domain &= Domain.OR(
+                [
+                    ("tax_line_id", "in", taxes.ids),
+                    ("tax_ids", "in", taxes.ids),
+                ]
+            )
         if map_line.account_xmlid_ids:
             accounts = map_line.get_accounts_for_company(self.company_id)
-            move_line_domain.append(("account_id", "in", accounts.ids))
+            move_line_domain &= Domain("account_id", "in", accounts.ids)
         if map_line.sum_type == "debit":
-            move_line_domain.append(("debit", ">", 0))
+            move_line_domain &= Domain("debit", ">", 0)
         elif map_line.sum_type == "credit":
-            move_line_domain.append(("credit", ">", 0))
+            move_line_domain &= Domain("credit", ">", 0)
         if map_line.exigible_type == "yes":
-            move_line_domain.extend(
-                (
-                    "|",
-                    ("move_id.tax_cash_basis_rec_id", "!=", False),
-                    "|",
-                    ("tax_line_id.tax_exigibility", "!=", "on_payment"),
-                    ("tax_ids.tax_exigibility", "!=", "on_payment"),
-                )
+            move_line_domain &= Domain.OR(
+                [
+                    Domain("move_id.tax_cash_basis_rec_id", "!=", False),
+                    Domain("tax_line_id.tax_exigibility", "!=", "on_payment"),
+                    Domain("tax_ids.tax_exigibility", "!=", "on_payment"),
+                ]
             )
         elif map_line.exigible_type == "no":
-            move_line_domain.extend(
-                (
-                    ("move_id.tax_cash_basis_rec_id", "=", False),
-                    ("tax_line_id.tax_exigibility", "=", "on_payment"),
-                    ("tax_ids.tax_exigibility", "=", "on_payment"),
-                )
+            move_line_domain &= Domain.AND(
+                [
+                    Domain("move_id.tax_cash_basis_rec_id", "=", False),
+                    Domain("tax_line_id.tax_exigibility", "=", "on_payment"),
+                    Domain("tax_ids.tax_exigibility", "=", "on_payment"),
+                ]
             )
         move_line_domain += self._get_partner_domain()
         return move_line_domain
@@ -153,31 +161,37 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         return self.env["account.move.line"].search(domain)
 
     @api.model
-    def _prepare_regularization_move_line(self, account_group):
+    def _prepare_regularization_move_line(self, **kwargs):
         return {
-            "name": account_group["account_id"][1],
-            "account_id": account_group["account_id"][0],
-            "debit": account_group["credit"],
-            "credit": account_group["debit"],
+            "name": kwargs["account"].name,
+            "account_id": kwargs["account"].id,
+            "debit": kwargs["credit"],
+            "credit": kwargs["debit"],
         }
 
     def _process_tax_line_regularization(self, tax_lines):
         self.ensure_one()
-        groups = self.env["account.move.line"].read_group(
-            [
-                ("id", "in", tax_lines.move_line_ids.ids),
-                ("parent_state", "=", "posted"),
-            ],
-            ["debit", "credit", "account_id"],
-            ["account_id"],
+        groups = self.env["account.move.line"]._read_group(
+            domain=Domain.AND(
+                [
+                    Domain("id", "in", tax_lines.move_line_ids.ids),
+                    Domain("parent_state", "=", "posted"),
+                ]
+            ),
+            groupby=["account_id"],
+            aggregates=["debit:sum", "credit:sum"],
         )
         lines = []
         for group in groups:
-            balance = group["debit"] - group["credit"]
+            balance = group[1] - group[2]
             if balance:
-                group["debit"] = balance if balance > 0 else 0
-                group["credit"] = -balance if balance < 0 else 0
-                lines.append(self._prepare_regularization_move_line(group))
+                debit = balance if balance > 0 else 0
+                credit = -balance if balance < 0 else 0
+                lines.append(
+                    self._prepare_regularization_move_line(
+                        account=group[0], debit=debit, credit=credit
+                    )
+                )
         return lines
 
     @api.model
