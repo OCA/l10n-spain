@@ -85,3 +85,25 @@ class TestResPartner(common.SingleTransactionCase):
         self.assertFalse(self.partner_in.aeat_partner_check_result)
         self.partner_in.aeat_check_partner()
         self.assertFalse(self.partner_in.aeat_partner_check_result)
+
+    def test_04_write_check_partner(self):
+        self.env.company.vat_check_aeat = False
+        self.partner_in.write({"company_id": self.env.company.id})
+
+    def test_05_compute_data_diff(self):
+        self.partner.aeat_partner_check_result = "IDENTIFICADO"
+        self.partner.name = "Mr. Odoo & Co."
+        self.partner.aeat_partner_name = "Mr. Odoo & Co."
+        self.assertFalse(
+            self.partner.aeat_data_diff, "A-1: Names should match without diff"
+        )
+        self.partner.aeat_partner_name = "Mr. Odoo &  Co."  # Double space in AEAT name
+        self.assertFalse(
+            self.partner.aeat_data_diff,
+            "A-2: Names should match despite AEAT double space",
+        )
+        self.partner.aeat_partner_name = "Mr. Odoo S.L."
+        self.assertTrue(
+            self.partner.aeat_data_diff,
+            "B: Names should differ, aeat_data_diff should be True",
+        )
