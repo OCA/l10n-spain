@@ -1,0 +1,32 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#875A7B;">L10n_es INE Codes</h2>
+        <h3 class="oe_slogan">National Statistics Institute codes for Spanish cities.</h3>
+        <div class="text-center">
+            <img src="Screenshot_00.png" style="max-width:70%;">
+        </div>
+    </div>
+    <p>
+        This module contains the codes of the National Statistics Institute (INE) for Spanish cities.
+        <br>
+        The name of the city is in Spanish, in another language (if applicable) and reordered (if applicable).
+        These three variants of the city name are simplified (in capital letters and without diacritical characters)
+        to facilitate comparison.
+        <br>
+        If the city name is found, the city, province and state codes can be obtained.
+    </p>
+    <p>
+        Example:
+<pre><code>    city_name = self.partner_id.city
+    city_name_simplified = unicodedata.normalize('NFKD', city_name).upper()
+    codes = self.env['res.ine.code'].search(
+        ['|', '|', '|',
+        ('city_name_simplified', '=', city_name_simplified),
+        ('city_name_aka_simplified', '=', city_name_simplified),
+        ('city_name_reordered_simplified', '=', city_name_simplified)])
+    if codes:
+        state_code = codes.ine_code_state
+        province_code = codes.ine_code_province
+        city_code = codes.ine_code_city</code></pre>
+    </p>
+</section>

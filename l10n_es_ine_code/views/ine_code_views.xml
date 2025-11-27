@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="ine_code_form">
+        <field name="name">res.ine.code.form</field>
+        <field name="model">res.ine.code</field>
+        <field name="arch" type="xml">
+            <form string="City INE Codes">
+                <group col="4">
+                    <field name="city_id" />
+                    <field name="state_id" />
+                    <field name="ine_code_state" />
+                    <field name="ine_code_province" />
+                    <field name="ine_code_city" />
+                    <field name="city_name" />
+                    <field name="city_name_simplified" />
+                    <field name="city_name_aka" />
+                    <field name="city_name_aka_simplified" />
+                    <field name="city_name_reordered" />
+                    <field name="city_name_reordered_simplified" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="ine_code_tree">
+        <field name="name">res.ine.code.tree</field>
+        <field name="model">res.ine.code</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="city_name" />
+                <field name="city_id" optional="show" />
+                <field name="state_id" optional="show" />
+                <field name="ine_code_state" />
+                <field name="ine_code_province" />
+                <field name="ine_code_city" />
+                <field name="city_name_simplified" optional="hide" />
+                <field name="city_name_aka" optional="hide" />
+                <field name="city_name_aka_simplified" optional="hide" />
+                <field name="city_name_reordered" optional="hide" />
+                <field name="city_name_reordered_simplified" optional="hide" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="ine_code_search">
+        <field name="name">res.ine.code.search</field>
+        <field name="model">res.ine.code</field>
+        <field name="arch" type="xml">
+            <search string="Cities INE Codes">
+                <field name="city_name" />
+                <field name="city_id" />
+                <field name="state_id" />
+                <field name="city_name_simplified" />
+                <field name="city_name_aka" />
+                <field name="city_name_aka_simplified" />
+                <field name="city_name_reordered" />
+                <field name="city_name_reordered_simplified" />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="City"
+                        name="city"
+                        context="{'group_by':'city_id'}"
+                    />
+                    <filter
+                        string="State"
+                        name="state"
+                        context="{'group_by':'ine_code_state'}"
+                    />
+                    <filter
+                        string="Province"
+                        name="province"
+                        context="{'group_by':'ine_code_province'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_ine_code_tree" model="ir.actions.act_window">
+        <field name="name">Cities INE Codes</field>
+        <field name="res_model">res.ine.code</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="ine_code_tree" />
+        <field name="search_view_id" ref="ine_code_search" />
+    </record>
+
+    <menuitem
+        id="ine_code_root_menu"
+        name="INE Codes Management"
+        parent="base.menu_custom"
+        sequence="10"
+    />
+
+    <menuitem id="ine_code_root_menu" name="INE Codes Management" sequence="10" />
+
+    <menuitem
+        name="INE codes"
+        id="ine_code_menu"
+        parent="ine_code_root_menu"
+        action="action_ine_code_tree"
+    />
+
+</odoo>

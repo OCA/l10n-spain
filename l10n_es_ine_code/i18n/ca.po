@@ -1,0 +1,138 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_ine_code
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-14 11:44+0000\n"
+"PO-Revision-Date: 2025-11-14 11:44+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_ine_code
+#: model:ir.actions.act_window,name:l10n_es_ine_code.action_ine_code_tree
+#: model_terms:ir.ui.view,arch_db:l10n_es_ine_code.ine_code_search
+msgid "Cities INE Codes"
+msgstr "Codis ciutats INE"
+
+#. module: l10n_es_ine_codes
+#: model:ir.model.fields,field_description:l10n_es_ine_codes.field_res_ine_code_city_name
+msgid "City"
+msgstr "Ciutat"
+
+#. module: l10n_es_ine_codes
+#: model:ir.ui.view,arch_db:l10n_es_ine_codes.ine_codes_form
+msgid "City INE Codes"
+msgstr "Codis ciutat INE"
+
+#. module: l10n_es_ine_codes
+#: model:ir.model.fields,field_description:l10n_es_ine_codes.field_res_ine_code_ine_code_city
+msgid "City INE code"
+msgstr "Codi ciutat"
+
+#. module: l10n_es_ine_codes
+#: model:ir.model.fields,field_description:l10n_es_ine_codes.field_res_ine_code_city_name_aka
+msgid "City alternative name"
+msgstr "Nom alternatiu ciutat"
+
+#. module: l10n_es_ine_codes
+#: model:ir.model.fields,field_description:l10n_es_ine_codes.field_res_ine_code_city_name_aka_simplified
+msgid "City alternative name simplified"
+msgstr "Nom alternatiu ciutat simplificat"
+
+#. module: l10n_es_ine_codes
+#: model:ir.model.fields,field_description:l10n_es_ine_codes.field_res_ine_code_city_name_reordered
+msgid "City reordered name"
+msgstr "Nom de ciutat reordenat"
+
+#. module: l10n_es_ine_codes
+#: model:ir.model.fields,field_description:l10n_es_ine_codes.field_res_ine_code_city_name_reordered_simplified
+msgid "City reordered name simplified"
+msgstr "Nom de ciutat reordenat simplificat"
+
+#. module: l10n_es_ine_codes
+#: model:ir.model.fields,field_description:l10n_es_ine_codes.field_res_ine_code_city_name_simplified
+msgid "City simplified"
+msgstr "Ciutat simplificat"
+
+#. module: l10n_es_ine_codes
+#: model:ir.model,name:l10n_es_ine_codes.model_res_ine_code
+msgid ""
+"Codes for cities in the INE         (Spanish Statistics National Institute)"
+msgstr "Codis per a ciutats de l'INE"
+
+#. module: l10n_es_ine_codes
+#: model:ir.model.fields,field_description:l10n_es_ine_codes.field_res_ine_code_create_uid
+msgid "Created by"
+msgstr "Creat per"
+
+#. module: l10n_es_ine_codes
+#: model:ir.model.fields,field_description:l10n_es_ine_codes.field_res_ine_code_create_date
+msgid "Created on"
+msgstr "Creat el"
+
+#. module: l10n_es_ine_codes
+#: model:ir.model.fields,field_description:l10n_es_ine_codes.field_res_ine_code_display_name
+msgid "Display Name"
+msgstr "Mostrar Nom"
+
+#. module: l10n_es_ine_codes
+#: model:ir.ui.view,arch_db:l10n_es_ine_codes.ine_codes_search
+msgid "Group By"
+msgstr "Agrupar per"
+
+#. module: l10n_es_ine_codes
+#: model:ir.model.fields,field_description:l10n_es_ine_codes.field_res_ine_code_id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_es_ine_codes
+#: model:ir.ui.menu,name:l10n_es_ine_codes.ine_codes_root_menu
+msgid "INE Codes Management"
+msgstr "Gestió codis INE"
+
+#. module: l10n_es_ine_codes
+#: model:ir.ui.menu,name:l10n_es_ine_codes.ine_codes_menu
+msgid "INE codes"
+msgstr "Codis INE"
+
+#. module: l10n_es_ine_codes
+#: model:ir.model.fields,field_description:l10n_es_ine_codes.field_res_ine_code___last_update
+msgid "Last Modified on"
+msgstr "Última modificació el "
+
+#. module: l10n_es_ine_codes
+#: model:ir.model.fields,field_description:l10n_es_ine_codes.field_res_ine_code_write_uid
+msgid "Last Updated by"
+msgstr "Última actualització per"
+
+#. module: l10n_es_ine_codes
+#: model:ir.model.fields,field_description:l10n_es_ine_codes.field_res_ine_code_write_date
+msgid "Last Updated on"
+msgstr "Última actualització el"
+
+#. module: l10n_es_ine_codes
+#: model:ir.ui.view,arch_db:l10n_es_ine_codes.ine_codes_search
+msgid "Province"
+msgstr "Província"
+
+#. module: l10n_es_ine_codes
+#: model:ir.model.fields,field_description:l10n_es_ine_codes.field_res_ine_code_ine_code_province
+msgid "Province INE code"
+msgstr "Codi província"
+
+#. module: l10n_es_ine_codes
+#: model:ir.ui.view,arch_db:l10n_es_ine_codes.ine_codes_search
+msgid "State"
+msgstr "Comunitat Autònoma"
+
+#. module: l10n_es_ine_codes
+#: model:ir.model.fields,field_description:l10n_es_ine_codes.field_res_ine_code_ine_code_state
+msgid "State INE code"
+msgstr "Codi Comunitat Autònoma"
