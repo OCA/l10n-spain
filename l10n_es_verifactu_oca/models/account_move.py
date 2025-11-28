@@ -142,8 +142,10 @@ class AccountMove(models.Model):
         it should be directly in l10n_es_aeat
         """
         serial_number = (self.name or "")[0:60]
-        if self.thirdparty_invoice:
-            serial_number = self.thirdparty_number[0:60]
+        # Don't use third party number for now, until
+        # the full third party invoice management is implemented.
+        # if self.thirdparty_invoice:
+        #     serial_number = self.thirdparty_number[0:60]
         return serial_number
 
     def _get_verifactu_issuer(self):
