@@ -685,6 +685,7 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
         order = self.env["pos.order"].browse(order_ids[0]["id"])
 
         # Test missing registration date
+        order.fiscal_position_id = self.fiscal_position
         order.verifactu_registration_date = False
         with self.assertRaises(UserError) as e:
             order._check_verifactu_configuration()
@@ -752,7 +753,7 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
         # Check required fields
         self.assertIn("nif", qr_values)
         self.assertIn("numserie", qr_values)
-        self.assertIn("imptotal", qr_values)
+        self.assertIn("importe", qr_values)
 
     def test_pos_verifactu_subsanacion_and_rechazo(self):
         """Test subsanacion and rechazo flags in invoice dict"""
@@ -796,7 +797,10 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
             if first_line_taxes:
                 req_tax = order._get_verifactu_tax_req(first_line_taxes[0])
                 # Should return False or a tax
-                self.assertTrue(req_tax is False or req_tax)
+                self.assertTrue(
+                    req_tax is False
+                    or isinstance(req_tax, type(order.lines[0].tax_ids))
+                )
 
     def test_pos_verifactu_operation_type_detection(self):
         """Test operation type detection for different tax types"""
