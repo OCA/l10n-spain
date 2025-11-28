@@ -7,13 +7,18 @@
 
 {
     "name": "Comunicación VERI*FACTU",
-    "version": "18.0.1.0.3",
+    "version": "18.0.1.1.2",
     "category": "Accounting/Localizations/EDI",
     "website": "https://github.com/OCA/l10n-spain",
-    "author": "Aures Tic,ForgeFlow,Tecnativa,Odoo Community Association (OCA)",
+    "author": "Aures Tic,"
+    "ForgeFlow,"
+    "Tecnativa,"
+    "Factor Libre,"
+    "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
     "depends": ["account_invoice_refund_link", "l10n_es_aeat"],
+    "excludes": ["account_journal_restrict_mode"],
     "data": [
         "data/verifactu_tax_agency_data.xml",
         "data/verifactu_registration_key_data.xml",
