@@ -24,6 +24,14 @@
                     attrs="{'invisible': ['|','|',('verifactu_enabled', '=', False), ('state', 'not in', ['posted','cancel']), ('aeat_state','not in', ('sent', 'sent_w_errors', 'cancel_w_errors', 'cancel_incorrect'))]}"
                 />
             </button>
+            <xpath expr="//field[@name='invoice_date']" position="after">
+                <field
+                    name="date"
+                    string="Operation date"
+                    attrs="{'invisible': ['|', ('verifactu_enabled', '=', False), ('move_type', 'not in', ('out_invoice', 'out_refund'))]}"
+                    help="Fill this field if the operation date is earlier than the invoice date."
+                />
+            </xpath>
             <notebook position="inside">
                 <field
                     name="verifactu_enabled"

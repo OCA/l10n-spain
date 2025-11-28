@@ -226,6 +226,8 @@ class AccountMove(models.Model):
             "NombreRazonEmisor": self.company_id.name[0:120],
             "TipoFactura": verifactu_doc_type,
         }
+        if self.date and self.date != self.invoice_date:
+            inv_dict["FechaOperacion"] = self._get_verifactu_date(self.date)
         if self.move_type == "out_refund":
             inv_dict["TipoRectificativa"] = self.verifactu_refund_type
             if self.verifactu_refund_type == "I":
@@ -521,6 +523,10 @@ class AccountMove(models.Model):
             suffixes.append(_("- There are some inconsistent taxes on lines."))
         if not self._check_all_taxes_mapped():
             suffixes.append(_("- It does not have all taxes mapped."))
+        if self.date and self.invoice_date and self.date > self.invoice_date:
+            suffixes.append(
+                _("- The operation date cannot be greater than the invoice date.")
+            )
         return super()._check_verifactu_configuration(suffixes=suffixes)
 
     def _check_inconsistent_taxes(self):

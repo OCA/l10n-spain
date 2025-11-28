@@ -5,7 +5,7 @@
 # Copyright 2025 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 from hashlib import sha256
 from unittest.mock import MagicMock, patch
 from urllib.parse import parse_qs, urlparse
@@ -508,3 +508,45 @@ class TestVerifactuSendResponse(TestVerifactuCommon):
             activity,
             "A warning activity should be created for 'AceptadoConErrores' response",
         )
+
+
+class TestVerifactuOperationDate(TestVerifactuCommon):
+    def test_operation_date_validation(self):
+        """Test that operation date cannot be greater than invoice date."""
+        self._activate_certificate(self.certificate_password)
+        invoice = self._create_test_invoice()
+        invoice.aeat_state = "not_sent"
+        invoice.date = invoice.invoice_date + timedelta(days=1)
+
+        with self.assertRaisesRegex(
+            UserError, "The operation date cannot be greater than the invoice date"
+        ):
+            invoice.action_post()
+
+    def test_operation_date_in_dict(self):
+        """Test that FechaOperacion is included when date < invoice_date."""
+        self._activate_certificate(self.certificate_password)
+        invoice = self._create_test_invoice()
+        operation_date = invoice.invoice_date - timedelta(days=1)
+        invoice.date = operation_date
+        self._prepare_invoice_for_verifactu(invoice)
+
+        res_dict = invoice._get_verifactu_invoice_dict_out()
+        inv_dict = res_dict["RegistroAlta"]
+
+        self.assertIn("FechaOperacion", inv_dict)
+        self.assertEqual(
+            inv_dict["FechaOperacion"], operation_date.strftime("%d-%m-%Y")
+        )
+
+    def test_operation_date_not_in_dict_when_equal(self):
+        """Test that FechaOperacion is NOT included when date == invoice_date."""
+        self._activate_certificate(self.certificate_password)
+        invoice = self._create_test_invoice()
+        invoice.date = invoice.invoice_date
+        self._prepare_invoice_for_verifactu(invoice)
+
+        res_dict = invoice._get_verifactu_invoice_dict_out()
+        inv_dict = res_dict["RegistroAlta"]
+
+        self.assertNotIn("FechaOperacion", inv_dict)

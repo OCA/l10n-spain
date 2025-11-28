@@ -1726,3 +1726,20 @@ msgstr ""
 #, python-format
 msgid "third-party number"
 msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
+#, python-format
+msgid "- The operation date cannot be greater than the invoice date."
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_form
+msgid "Operation date"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_form
+msgid "Fill this field if the operation date is earlier than the invoice date."
+msgstr ""

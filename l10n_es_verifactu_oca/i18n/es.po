@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-28 10:22+0000\n"
-"PO-Revision-Date: 2025-11-28 10:22+0000\n"
+"POT-Creation-Date: 2025-11-30 21:00+0000\n"
+"PO-Revision-Date: 2025-11-30 21:00+0000\n"
 "Last-Translator: Mario Montes <admin@syci.es>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -1769,6 +1769,23 @@ msgstr "número de factura"
 #, python-format
 msgid "third-party number"
 msgstr "número de terceros"
+
+#. module: l10n_es_verifactu_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
+#, python-format
+msgid "- The operation date cannot be greater than the invoice date."
+msgstr "- La fecha de operación no puede ser mayor que la fecha de factura."
+
+#. module: l10n_es_verifactu_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_form
+msgid "Operation date"
+msgstr "Fecha de operación"
+
+#. module: l10n_es_verifactu_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_form
+msgid "Fill this field if the operation date is earlier than the invoice date."
+msgstr "Rellene este campo si la fecha de operación es anterior a la fecha de factura."
 
 #~ msgid "Cancelled"
 #~ msgstr "Cancelada"
