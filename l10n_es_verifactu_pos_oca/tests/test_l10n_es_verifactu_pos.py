@@ -1,6 +1,6 @@
 import uuid
 
-from odoo import fields
+from odoo import _, fields
 from odoo.exceptions import UserError
 from odoo.tests.common import tagged
 
@@ -676,3 +676,188 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
         # Should raise NotImplementedError
         with self.assertRaises(NotImplementedError):
             order.cancel_verifactu()
+
+    def test_pos_verifactu_error_handling_in_process_order(self):
+        """Test error handling when verifactu chaining fails during _process_order"""
+        # Mock _generate_verifactu_chaining to raise an error
+        def mock_generate_error(self):
+            raise UserError(_("Test verifactu error"))
+
+        # Patch the method
+        original_method = self.env["pos.order"]._generate_verifactu_chaining
+        self.env["pos.order"]._generate_verifactu_chaining = mock_generate_error
+
+        try:
+            orders_data = [self._create_ui_order_data()]
+            # Should not raise error, just log it
+            order_ids = self.env["pos.order"].create_from_ui(orders_data)
+            order = self.env["pos.order"].browse(order_ids[0]["id"])
+            self.assertTrue(order.exists(), "Order should be created despite error")
+        finally:
+            # Restore original method
+            self.env["pos.order"]._generate_verifactu_chaining = original_method
+
+    def test_pos_verifactu_error_handling_in_paid_action(self):
+        """Test error handling for refunds in action_pos_order_paid"""
+        # Create a refund order
+        order_data = self._create_ui_order_data(amount=-50)
+        order_ids = self.env["pos.order"].create_from_ui([order_data])
+        order = self.env["pos.order"].browse(order_ids[0]["id"])
+
+        # Mock _generate_verifactu_chaining to raise an error
+        def mock_generate_error(self):
+            raise UserError(_("Test refund verifactu error"))
+
+        original_method = self.env["pos.order"]._generate_verifactu_chaining
+        self.env["pos.order"]._generate_verifactu_chaining = mock_generate_error
+
+        try:
+            # Should not raise error, just log it
+            order.action_pos_order_paid()
+            self.assertEqual(order.state, "paid", "Order should be marked as paid")
+        finally:
+            self.env["pos.order"]._generate_verifactu_chaining = original_method
+
+    def test_pos_verifactu_simplified_invoice_without_config(self):
+        """Test _assign_simplified_invoice_to_refund without proper config"""
+        # Create refund without proper configuration
+        order_data = self._create_ui_order_data(amount=-50, simplified=False)
+        order_ids = self.env["pos.order"].create_from_ui([order_data])
+        refund_order = self.env["pos.order"].browse(order_ids[0]["id"])
+
+        # Disable simplified invoice config
+        self.pos_config.iface_l10n_es_simplified_invoice = False
+
+        result = self.env["pos.order"]._assign_simplified_invoice_to_refund(
+            refund_order
+        )
+
+        # Should return False for sequence
+        self.assertFalse(result[0], "Should return False when config is not simplified")
+
+    def test_pos_verifactu_simplified_invoice_above_limit(self):
+        """Test simplified invoice assignment when amount exceeds limit"""
+        # Create refund above the simplified invoice limit
+        self.pos_config.l10n_es_simplified_invoice_limit = 100
+        order_data = self._create_ui_order_data(amount=-200, simplified=False)
+        order_ids = self.env["pos.order"].create_from_ui([order_data])
+        refund_order = self.env["pos.order"].browse(order_ids[0]["id"])
+
+        result = self.env["pos.order"]._assign_simplified_invoice_to_refund(
+            refund_order
+        )
+
+        # Should not assign simplified invoice for amounts above limit
+        self.assertFalse(result[0] or refund_order.is_l10n_es_simplified_invoice)
+
+    def test_pos_verifactu_response_lines_not_found(self):
+        """Test _create_response_lines when document is not found"""
+        # Create a mock response with non-existent invoice number
+        mock_response = self.env["verifactu.invoice.entry.response"].create(
+            {
+                "name": "Test Response",
+                "response": {"Estado": "Correcto"},
+            }
+        )
+
+        mock_verifactu_response = {
+            "RespuestaLinea": [
+                {
+                    "IDFactura": {"NumSerieFactura": "NONEXISTENT-123"},
+                    "EstadoRegistro": "Correcto",
+                }
+            ]
+        }
+
+        # Create entry
+        order_data = self._create_ui_order_data()
+        order_ids = self.env["pos.order"].create_from_ui([order_data])
+        order = self.env["pos.order"].browse(order_ids[0]["id"])
+
+        entry = self.env["verifactu.invoice.entry"].create(
+            {
+                "model": "pos.order",
+                "document_id": order.id,
+                "invoice_dict": "{}",
+            }
+        )
+
+        # Should not raise error, just skip non-existent documents
+        try:
+            entry._create_response_lines(
+                response=mock_response,
+                header=False,
+                verifactu_response=mock_verifactu_response,
+            )
+        except Exception as e:
+            self.fail(f"Should not raise error for non-existent documents: {e}")
+
+    def test_pos_verifactu_get_previous_hash_without_entry(self):
+        """Test _get_verifactu_previous_hash when no previous entry exists"""
+        order_data = self._create_ui_order_data()
+        order_ids = self.env["pos.order"].create_from_ui([order_data])
+        order = self.env["pos.order"].browse(order_ids[0]["id"])
+
+        # Clear any previous entry
+        order.last_verifactu_invoice_entry_id = False
+
+        previous_hash = order._get_verifactu_previous_hash()
+        self.assertEqual(previous_hash, "", "Should return empty string without entry")
+
+    def test_pos_verifactu_registration_date_format(self):
+        """Test _get_verifactu_registration_date format"""
+        order_data = self._create_ui_order_data()
+        order_ids = self.env["pos.order"].create_from_ui([order_data])
+        order = self.env["pos.order"].browse(order_ids[0]["id"])
+
+        # Set registration date
+        order.verifactu_registration_date = fields.Datetime.now()
+
+        registration_date = order._get_verifactu_registration_date()
+
+        # Should be ISO 8601 format with timezone
+        self.assertTrue(
+            "T" in registration_date
+            and ("+" in registration_date or "Z" in registration_date),
+            f"Registration date should be ISO 8601 format: {registration_date}",
+        )
+
+    def test_pos_verifactu_registration_date_empty(self):
+        """Test _get_verifactu_registration_date when not set"""
+        order_data = self._create_ui_order_data()
+        order_ids = self.env["pos.order"].create_from_ui([order_data])
+        order = self.env["pos.order"].browse(order_ids[0]["id"])
+
+        # Clear registration date
+        order.verifactu_registration_date = False
+
+        registration_date = order._get_verifactu_registration_date()
+        self.assertEqual(
+            registration_date, "", "Should return empty string when not set"
+        )
+
+    def test_pos_verifactu_partner_without_partner(self):
+        """Test _verifactu_get_partner when no partner is set"""
+        order_data = self._create_ui_order_data()
+        order_data["data"]["partner_id"] = False
+        order_ids = self.env["pos.order"].create_from_ui([order_data])
+        order = self.env["pos.order"].browse(order_ids[0]["id"])
+
+        partner = order._verifactu_get_partner()
+        self.assertFalse(partner, "Should return empty partner recordset")
+
+    def test_pos_verifactu_document_serial_number_fallback(self):
+        """Test _get_document_serial_number falls back to pos_reference"""
+        order_data = self._create_ui_order_data(simplified=False)
+        order_ids = self.env["pos.order"].create_from_ui([order_data])
+        order = self.env["pos.order"].browse(order_ids[0]["id"])
+
+        # Clear l10n_es_unique_id
+        order.l10n_es_unique_id = False
+
+        serial = order._get_document_serial_number()
+        self.assertEqual(
+            serial[:10],
+            order.pos_reference[:10],
+            "Should use pos_reference when l10n_es_unique_id is not set",
+        )
