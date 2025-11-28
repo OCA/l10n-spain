@@ -10,6 +10,8 @@
 >   error, para poder guardarlo y agrupar las facturas por ese código.
 > - Contemplar el tiempo de espera entre envíos de registros cuando AEAT
 >   devuelve un tiempo superior a 60 segundos.
+> - Facturación de terceros o de destinatarios (autofacturación), con los
+>   datos de los mismos.
 
 CASOS NO CUBIERTOS: 1 - Modificación de facturas enviadas (AEAT
 recomienda generar rectificativa). Según AEAT: Si los errores detectados
