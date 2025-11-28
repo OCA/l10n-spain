@@ -684,8 +684,16 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
         order_ids = self.env["pos.order"].create_from_ui([order_data])
         order = self.env["pos.order"].browse(order_ids[0]["id"])
 
+        fiscal_position = self.env["account.fiscal.position"].create(
+            {
+                "name": "Test Fiscal Position",
+                "company_id": self.company.id,
+                "aeat_active": True,
+            }
+        )
+
         # Test missing registration date
-        order.fiscal_position_id = self.fiscal_position
+        order.fiscal_position_id = fiscal_position
         order.verifactu_registration_date = False
         with self.assertRaises(UserError) as e:
             order._check_verifactu_configuration()
