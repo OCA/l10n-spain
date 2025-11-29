@@ -38,6 +38,7 @@
         "views/verifactu_developer_view.xml",
         "views/report_invoice.xml",
         "views/verifactu_invoice_entry_response_view.xml",
+        "wizards/views/verifactu_cancel_invoice_wizard_view.xml",
     ],
     "pre_init_hook": "pre_init_hook",
     "post_init_hook": "post_init_hook",

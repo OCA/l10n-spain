@@ -67,9 +67,10 @@
                                         <field
                                         name="send_state"
                                         widget="badge"
-                                        decoration-warning="send_state == 'sent_w_errors'"
                                         decoration-success="send_state == 'sent'"
-                                        decoration-danger="send_state not in ('sent', 'sent_w_errors')"
+                                        decoration-danger="send_state == 'not_sent'"
+                                        decoration-warning="send_state in ('sent_w_errors', 'incorrect', 'cancel_incorrect', 'cancel_w_errors')"
+                                        decoration-muted="send_state == 'cancel'"
                                     />
                                     </tree>
                                 </field>

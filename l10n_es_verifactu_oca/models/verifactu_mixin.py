@@ -22,8 +22,11 @@ VERIFACTU_VERSION = 1.0
 VERIFACTU_DATE_FORMAT = "%d-%m-%Y"
 VERIFACTU_MACRODATA_LIMIT = 100000000.0
 
-VERIFACTU_STATES = [
+VERIFACTU_EXTRA_AEAT_STATES = [
     ("incorrect", "Incorrect"),
+    ("cancel", "Cancelled in VERI*FACTU"),
+    ("cancel_w_errors", "Cancelled in VERI*FACTU with Errors"),
+    ("cancel_incorrect", "Incorrect cancellation in VERI*FACTU"),
 ]
 
 
@@ -120,10 +123,15 @@ class VerifactuMixin(models.AbstractModel):
         copy=False,
     )
     aeat_state = fields.Selection(
-        selection_add=VERIFACTU_STATES,
+        selection_add=VERIFACTU_EXTRA_AEAT_STATES,
         compute="_compute_aeat_state",
         store=True,
         copy=False,
+    )
+    verifactu_cancel_reason = fields.Char(
+        string="VERI*FACTU cancel reason",
+        help="Optional internal reason to cancel this invoice"
+        "in VERI*FACTU. This reason is not sent to VERI*FACTU",
     )
 
     @api.depends("last_verifactu_response_line_id.send_state")
@@ -231,12 +239,15 @@ class VerifactuMixin(models.AbstractModel):
             agency = self.env.ref("l10n_es_aeat.aeat_tax_agency_spain")
         return agency._connect_params_verifactu(self.company_id)
 
-    def _get_verifactu_invoice_dict(self):
+    def _get_verifactu_invoice_dict(self, cancel=False):
         self.ensure_one()
         inv_dict = {}
         mapping_key = self._get_mapping_key()
         if mapping_key in ["out_invoice", "out_refund"]:
-            inv_dict = self._get_verifactu_invoice_dict_out()
+            if cancel:
+                inv_dict = self._get_verifactu_cancel_invoice_dict_out()
+            else:
+                inv_dict = self._get_verifactu_invoice_dict_out()
         else:
             raise NotImplementedError
         round_by_keys(
@@ -297,7 +308,7 @@ class VerifactuMixin(models.AbstractModel):
         datetimeobject = fields.Date.to_date(date)
         return datetimeobject.strftime(VERIFACTU_DATE_FORMAT)
 
-    def _get_verifactu_hash_string(self):
+    def _get_verifactu_hash_string(self, cancel=False):
         raise NotImplementedError
 
     def _get_verifactu_chaining(self):
@@ -308,6 +319,7 @@ class VerifactuMixin(models.AbstractModel):
         self.ensure_one()
         chaining = self._get_verifactu_chaining()
         chaining.flush_recordset(["last_verifactu_invoice_entry_id"])
+        cancel = entry_type and entry_type == "cancel"
         try:
             with self.env.cr.savepoint():
                 self.env.cr.execute(
@@ -330,14 +342,14 @@ class VerifactuMixin(models.AbstractModel):
                     invoice_vals["entry_type"] = entry_type
                 invoice_entry = self.env["verifactu.invoice.entry"].create(invoice_vals)
                 self.last_verifactu_invoice_entry_id = invoice_entry
-                verifactu_hash_values = self._get_verifactu_hash_string()
+                verifactu_hash_values = self._get_verifactu_hash_string(cancel=cancel)
                 self.verifactu_hash_string = verifactu_hash_values
                 hash_string = sha256(verifactu_hash_values.encode("utf-8"))
                 self.verifactu_hash = hash_string.hexdigest().upper()
                 # Generate JSON data for AEAT
                 aeat_json_data = ""
                 try:
-                    inv_dict = self._get_verifactu_invoice_dict()
+                    inv_dict = self._get_verifactu_invoice_dict(cancel=cancel)
                     aeat_json_data = json.dumps(inv_dict, indent=4)
                 except Exception:
                     # If JSON generation fails, store empty string
@@ -465,3 +477,6 @@ class VerifactuMixin(models.AbstractModel):
                     "value of the parameter."
                 )
             ) from e
+
+    def cancel_verifactu(self):
+        raise NotImplementedError
