@@ -51,6 +51,20 @@ msgid "At least one product does not have a tax."
 msgstr "Al menos un producto no tiene establecido el impuesto."
 
 #. module: l10n_es_ticketbai_pos
+#. odoo-javascript
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
+#, python-format
+msgid ""
+"Cannot generate TicketBAI simplified invoice.\n"
+"\n"
+"Check:\n"
+"• Company VAT is set\n"
+"• Customer has VAT (or foreign ID)\n"
+"• All products have exactly one tax\n"
+"• Fiscal position has VAT Regime Key"
+msgstr ""
+
+#. module: l10n_es_ticketbai_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.res_config_settings_view_form
 msgid "Certificate"
 msgstr "Certificado"
@@ -71,6 +85,18 @@ msgstr "Número de serie de dispositivo"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order__tbai_enabled
 msgid "Enable TicketBAI"
 msgstr "Habilitar TicketBAI"
+
+#. module: l10n_es_ticketbai_pos
+#. odoo-javascript
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
+#, python-format
+msgid ""
+"Failed to generate or sign the TicketBAI invoice.\n"
+"\n"
+"Error: %s\n"
+"\n"
+"The order cannot be validated without a valid signed ticket."
+msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
@@ -245,11 +271,17 @@ msgstr "Pedido TPV de sustitución Tbai"
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ProductScreen/ProductScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/models.js:0
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/tbai_models.js:0
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
 #, python-format
 msgid "TicketBAI"
 msgstr "TiquetBAI"
+
+#. module: l10n_es_ticketbai_pos
+#. odoo-javascript
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
+#, python-format
+msgid "TicketBAI - Critical Error"
+msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__tbai_certificate_id
