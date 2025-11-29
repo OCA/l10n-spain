@@ -692,6 +692,11 @@ msgid "Done"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_form_view
+msgid "Download Public Key"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_certificate__state__draft
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__state__draft
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod115_report__state__draft
@@ -1493,6 +1498,16 @@ msgstr ""
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__public_key_data
 msgid "Public Key Data"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__public_key_file
+msgid "Public Key File"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__public_key_filename
+msgid "Public Key Filename"
 msgstr ""
 
 #. module: l10n_es_aeat
