@@ -133,6 +133,12 @@ class VerifactuMixin(models.AbstractModel):
         help="Optional internal reason to cancel this invoice"
         "in VERI*FACTU. This reason is not sent to VERI*FACTU",
     )
+    verifactu_pending_to_send = fields.Boolean(
+        string="VERI*FACTU pending to send",
+        compute="_compute_verifactu_pending_to_send",
+        store=True,
+        copy=False,
+    )
 
     @api.depends("last_verifactu_response_line_id.send_state")
     def _compute_aeat_state(self):
@@ -141,6 +147,15 @@ class VerifactuMixin(models.AbstractModel):
                 document.aeat_state = (
                     document.last_verifactu_response_line_id.send_state
                 )
+
+    @api.depends("last_verifactu_invoice_entry_id.send_state")
+    def _compute_verifactu_pending_to_send(self):
+        for document in self:
+            document.verifactu_pending_to_send = (
+                document.verifactu_enabled
+                and document.last_verifactu_invoice_entry_id
+                and document.last_verifactu_invoice_entry_id.send_state == "not_sent"
+            )
 
     @api.model
     def _get_verifactu_reference_models(self):

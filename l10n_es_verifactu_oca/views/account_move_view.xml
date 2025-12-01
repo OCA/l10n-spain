@@ -10,6 +10,12 @@
         <field name="arch" type="xml">
             <button name="button_draft" position="after">
                 <button
+                    name="button_cancel"
+                    string="Cancel Invoice"
+                    type="object"
+                    attrs="{'invisible': ['|', '|', ('verifactu_enabled', '=', False),('aeat_state', '!=', 'incorrect'), ('state', '!=', 'posted')]}"
+                />
+                <button
                     type="object"
                     string="Re-send to VERI*FACTU"
                     name="resend_verifactu"

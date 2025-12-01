@@ -509,6 +509,31 @@ class TestVerifactuSendResponse(TestVerifactuCommon):
             "A warning activity should be created for 'AceptadoConErrores' response",
         )
 
+    def test_button_cancel_exception(self):
+        """Test that cancelling a sent invoice raises UserError."""
+        invoice = self._create_and_prepare_invoice()
+        self._generate_invoice_entry(invoice)
+        invoice.last_verifactu_invoice_entry_id.send_state = "sent"
+        invoice._compute_aeat_state()
+
+        with self.assertRaises(UserError):
+            invoice.button_cancel()
+
+        invoice.with_context(verifactu_cancel=True).button_cancel()
+        self.assertEqual(invoice.state, "cancel")
+
+    def test_button_draft_exception(self):
+        """Test that resetting to draft a sent invoice raises UserError."""
+        invoice = self._create_and_prepare_invoice()
+        self._generate_invoice_entry(invoice)
+        invoice.last_verifactu_invoice_entry_id.send_state = "sent"
+        invoice._compute_aeat_state()
+
+        invoice.with_context(verifactu_cancel=True).button_cancel()
+
+        with self.assertRaises(UserError):
+            invoice.button_draft()
+
     def test_unlink_exception(self):
         """Test that deleting a verifactu enabled invoice raises UserError."""
         invoice = self._create_and_prepare_invoice()
