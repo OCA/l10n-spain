@@ -265,7 +265,7 @@ class PosOrder(models.Model):
             ]
         )
 
-    def _get_verifactu_hash_string(self):
+    def _get_verifactu_hash_string(self, cancel=False):
         """Gets the verifactu hash string"""
         if (
             not self.verifactu_enabled
