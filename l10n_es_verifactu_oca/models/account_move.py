@@ -618,3 +618,9 @@ class AccountMove(models.Model):
                 )
                 rec.verifactu_registration_date = datetime.now()
                 rec._generate_verifactu_chaining(entry_type=entry_type)
+
+    def unlink(self):
+        for rec in self:
+            if rec.verifactu_enabled:
+                raise UserError(_("You can not delete VERI*FACTU enabled invoices"))
+        return super().unlink()

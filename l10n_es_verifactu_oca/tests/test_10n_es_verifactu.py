@@ -508,3 +508,10 @@ class TestVerifactuSendResponse(TestVerifactuCommon):
             activity,
             "A warning activity should be created for 'AceptadoConErrores' response",
         )
+
+    def test_unlink_exception(self):
+        """Test that deleting a verifactu enabled invoice raises UserError."""
+        invoice = self._create_and_prepare_invoice()
+
+        with self.assertRaises(UserError):
+            invoice.unlink()
