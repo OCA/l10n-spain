@@ -346,6 +346,32 @@ class VerifactuInvoiceEntry(models.Model):
         self, response=False, header=False, verifactu_response=False
     ):
         create_response_activity = False
+        if not verifactu_response:
+            for rec in self:
+                if rec.document:
+                    vals = {
+                        "entry_id": rec.id,
+                        "model": rec.model,
+                        "document_id": rec.document_id,
+                        "response": _("Connection error - no response from VERI*FACTU"),
+                        "entry_response_id": response.id,
+                        "send_state": "not_sent",
+                        "error_code": "CONNECTION_ERROR",
+                    }
+                    response_line = (
+                        self.env["verifactu.invoice.entry.response.line"]
+                        .sudo()
+                        .create(vals)
+                    )
+                    rec.document.last_verifactu_response_line_id = response_line
+                    rec.last_response_line_id = response_line
+                    rec.document.write(
+                        {
+                            "aeat_send_failed": True,
+                            "aeat_send_error": _("Connection error with VERI*FACTU"),
+                        }
+                    )
+            return create_response_activity
         # the returned object doesn't have `get` method, so use this form
         verifactu_response_lines = (
             "RespuestaLinea" in verifactu_response
