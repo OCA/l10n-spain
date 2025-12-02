@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_caser_price_range_tree" model="ir.ui.view">
+        <field name="name">caser.price.range.tree</field>
+        <field name="model">caser.price.range</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="caser_asset_type" />
+                <field name="min_price" />
+                <field name="max_price" />
+                <field name="code" />
+                <field name="insurance_price_notax" />
+                <field name="insurance_price" />
+                <field name="product_id" />
+                <field name="last_tarification_date" optional="hide" />
+                <button
+                    name="action_get_tarification_prices"
+                    type="object"
+                    string="Get Prices from Caser"
+                    icon="fa-refresh"
+                    help="Fetch insurance prices from Caser API and create/update products"
+                />
+            </list>
+        </field>
+    </record>
+</odoo>

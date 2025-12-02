@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_form_caser" model="ir.ui.view">
+        <field name="name">sale.order.form.caser</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/list//field[@name='price_subtotal']"
+                position="after"
+            >
+                <field name="is_caser_insurance" optional="hide" />
+                <field name="caser_insure_quantity" optional="hide" />
+                <field name="caser_lot_id" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_order_line_view_form_caser" model="ir.ui.view">
+        <field name="name">sale.order.line.form.caser</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page string="Caser" invisible="not is_caser_insurance">
+                        <group>
+                            <group>
+                                <field name="is_caser_insurance" />
+                                <field name="caser_lot_id" />
+                                <field name="caser_policy_number" />
+                                <field name="caser_insurance_price" />
+                            </group>
+                            <group>
+                                <field name="caser_error_message" widget="text" />
+                            </group>
+                        </group>
+                        <div class="text-end mb-2">
+                            <button
+                                name="action_retry_caser_insurance"
+                                type="object"
+                                string="Reintentar envío a Caser"
+                                class="btn btn-primary"
+                                invisible="not caser_lot_id"
+                            />
+                        </div>
+                        <group>
+                            <group>
+                                <field
+                                    name="caser_request_xml"
+                                    widget="ace"
+                                    options="{'mode': 'xml'}"
+                                />
+                            </group>
+                            <group>
+                                <field
+                                    name="caser_response_xml"
+                                    widget="ace"
+                                    options="{'mode': 'xml'}"
+                                />
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+</odoo>
