@@ -9,9 +9,7 @@
     "license": "AGPL-3",
     "development_status": "Mature",
     "maintainers": ["pedrobaeza"],
-    "author": "Spanish Localization Team,"
-    "Tecnativa,"
-    "Odoo Community Association (OCA)",
+    "author": "Spanish Localization Team,Tecnativa,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "depends": ["account_statement_import_file"],
     "external_dependencies": {"python": ["chardet"]},
