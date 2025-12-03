@@ -19,8 +19,8 @@ patch(InvoiceButton.prototype, {
             cName = this.isAlreadyInvoiced
                 ? _t("Reprint Invoice")
                 : order.siiSessionClosed
-                ? _t("Cannot Invoice")
-                : _t("Invoice");
+                  ? _t("Cannot Invoice")
+                  : _t("Invoice");
         }
         return cName;
     },
