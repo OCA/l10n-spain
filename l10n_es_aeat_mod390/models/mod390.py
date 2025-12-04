@@ -375,10 +375,11 @@ class L10nEsAeatMod390Report(models.Model):
     )
     use_303 = fields.Boolean(
         "Use 303 reports",
-        help="If it's checked, this report uses 303 reports for calculate fields 85, "
-        "95, 97, 98 and 662. When it's unchecked, you should fill them in. If you "
-        "calculated first and then checked this option, you must calculate it again.",
-        default=False,
+        help="Si está marcado, este informe utiliza los informes 303 para calcular "
+        "los campos 85,  95, 97, 98 y 662. Si no está marcado, deberá "
+        "rellenarlos manualmente. Si calculó  primero y luego marcó esta opción, "
+        "debe volver a calcular.",
+        default=lambda self: self.env.company.l10n_es_aeat_mod390_use_303,
     )
 
     @api.depends("tax_line_ids", "tax_line_ids.amount")

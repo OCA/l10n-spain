@@ -515,3 +515,44 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         self.assertAlmostEqual(self.model390_2023.casilla_97, 0.0, 2)
         self.assertAlmostEqual(self.model390_2023.casilla_98, 560.85, 2)
         self.assertAlmostEqual(self.model390_2023.casilla_662, 0.0, 2)
+
+    def test_use_303_default_value(self):
+        """Test that use_303 takes default value from company settings."""
+        self.company.l10n_es_aeat_mod390_use_303 = True
+
+        new_model390 = self.env["l10n.es.aeat.mod390.report"].create(
+            {
+                "name": "9995000000390",
+                "company_id": self.company.id,
+                "company_vat": "1234567890",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": 2023,
+                "period_type": "0A",
+                "date_start": "2023-01-01",
+                "date_end": "2023-12-31",
+                "journal_id": self.journal_misc.id,
+            }
+        )
+        self.assertTrue(new_model390.use_303)
+
+        self.company.l10n_es_aeat_mod390_use_303 = False
+        new_model390_2 = self.env["l10n.es.aeat.mod390.report"].create(
+            {
+                "name": "9996000000390",
+                "company_id": self.company.id,
+                "company_vat": "1234567890",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": 2023,
+                "period_type": "0A",
+                "date_start": "2023-01-01",
+                "date_end": "2023-12-31",
+                "journal_id": self.journal_misc.id,
+            }
+        )
+        self.assertFalse(new_model390_2.use_303)

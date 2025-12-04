@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="res_config_settings_view_form">
+        <field
+            name="name"
+        >res.config.settings.view.form.inherit.l10n_es_aeat_mod390</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='account']" position="inside">
+                <field name="country_code" invisible="1" />
+                <block
+                    title="AEAT Mod 390"
+                    id="aeat_mod390_settings"
+                    invisible="country_code != 'ES'"
+                >
+                    <setting
+                        help="Default configuration for AEAT Mod 390 reports"
+                        company_dependent="1"
+                    >
+                        <field name="l10n_es_aeat_mod390_use_303" />
+                        <div class="text-muted">
+                                If it's checked, this report uses 303 reports for calculate fields 85,
+                                95, 97, 98 and 662. When it's unchecked, you should fill them in. If you
+                                calculated first and then checked this option, you must calculate it again
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

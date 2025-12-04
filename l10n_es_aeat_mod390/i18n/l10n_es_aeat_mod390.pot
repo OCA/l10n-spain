@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 18.0+e\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-04 08:03+0000\n"
+"PO-Revision-Date: 2025-12-04 08:03+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -146,6 +148,11 @@ msgid "AEAT 390 reports"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390.res_config_settings_view_form
+msgid "AEAT Mod 390"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod390.action_l10n_es_aeat_mod390_report
 msgid "AEAT model 390"
 msgstr ""
@@ -218,6 +225,11 @@ msgid "Calculation Date"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model,name:l10n_es_aeat_mod390.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__company_id
 msgid "Company"
 msgstr ""
@@ -225,6 +237,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__partner_bank_id
 msgid "Company bank account used for the presentation"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model,name:l10n_es_aeat_mod390.model_res_config_settings
+msgid "Config Settings"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
@@ -324,6 +341,11 @@ msgstr ""
 msgid ""
 "Código de la notaría en la que se concedió el poder de representación para "
 "esta persona."
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390.res_config_settings_view_form
+msgid "Default configuration for AEAT Mod 390 reports"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
@@ -438,15 +460,16 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_has_error
+#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__use_303
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390.res_config_settings_view_form
 msgid ""
-"If it's checked, this report uses 303 reports for calculate fields 85, 95, "
-"97, 98 and 662. When it's unchecked, you should fill them in. If you "
-"calculated first and then checked this option, you must calculate it again."
+"If it's checked, this report uses 303 reports for calculate fields 85,\n"
+"                                95, 97, 98 and 662. When it's unchecked, you should fill them in. If you\n"
+"                                calculated first and then checked this option, you must calculate it again"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
@@ -677,6 +700,11 @@ msgid "Responsible User"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_85
 msgid ""
 "Se consignará el importe de las cuotas pendientes de compensación generadas "
@@ -712,6 +740,15 @@ msgstr ""
 msgid ""
 "Si el resultado de la última autoliquidación fue a devolver, consignará en "
 "esta casilla el importe de la misma."
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__use_303
+msgid ""
+"Si está marcado, este informe utiliza los informes 303 para calcular los "
+"campos 85, 95, 97, 98 y 662. Si no está marcado, deberá rellenarlos "
+"manualmente. Si calculó primero y luego marcó esta opción, debe volver a "
+"calcular."
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
@@ -790,6 +827,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__use_303
 msgid "Use 303 reports"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_res_company__l10n_es_aeat_mod390_use_303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_res_config_settings__l10n_es_aeat_mod390_use_303
+msgid "Use 303 reports in Mod 390"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
