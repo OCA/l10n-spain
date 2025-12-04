@@ -545,3 +545,35 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self.company.sii_start_date = False
         self.assertTrue(invoice2.sii_enabled)
         self.assertTrue(invoice2.filtered_domain([("sii_enabled", "=", True)]))
+
+    def test_get_invoice_data_tax_price_included_corner_case(self):
+        xml_id = "l10n_es.{}_account_tax_template_{}".format(
+            self.company.id, "s_iva21s"
+        )
+        tax = self.env.ref(xml_id)
+        tax.price_include = True
+        mapping = [
+            (
+                "out_invoice",
+                [
+                    (-45, ["s_iva21s"]),
+                    (15, ["s_iva21s"]),
+                    (15, ["s_iva21s"]),
+                    (15, ["s_iva21s"]),
+                ],
+                {},
+            ),
+            (
+                "out_invoice",
+                [
+                    (45, ["s_iva21s"]),
+                    (-15, ["s_iva21s"]),
+                    (-15, ["s_iva21s"]),
+                    (-15, ["s_iva21s"]),
+                ],
+                {},
+            ),
+        ]
+        for inv_type, lines, extra_vals in mapping:
+            self._create_and_test_invoice_sii_dict(inv_type, lines, extra_vals)
+        return

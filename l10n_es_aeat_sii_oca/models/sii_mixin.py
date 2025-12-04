@@ -10,7 +10,7 @@ import logging
 from odoo import _, api, exceptions, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.modules.registry import Registry
-from odoo.tools.float_utils import float_compare
+from odoo.tools.float_utils import float_compare, float_is_zero
 
 from odoo.addons.l10n_es_aeat.models.aeat_mixin import round_by_keys
 
@@ -422,7 +422,8 @@ class SiiMixin(models.AbstractModel):
         else:
             tax_type = abs(tax.amount)
         tax_dict = {"TipoImpositivo": str(tax_type), "BaseImponible": tax_base_amount}
-        if self._get_mapping_key() in ["out_invoice", "out_refund"]:
+        mapping_key = self._get_mapping_key()
+        if mapping_key in ["out_invoice", "out_refund"]:
             key = "CuotaRepercutida"
         else:
             key = "CuotaSoportada"
@@ -432,6 +433,7 @@ class SiiMixin(models.AbstractModel):
         if req_tax:
             tax_dict["TipoRecargoEquivalencia"] = req_tax.amount
             tax_dict["CuotaRecargoEquivalencia"] = tax_lines[req_tax]["amount"]
+        tax_dict = self._clean_sii_tax_dict(tax, mapping_key, tax_dict)
         return tax_dict
 
     def _get_no_taxable_cause(self):
@@ -740,6 +742,40 @@ class SiiMixin(models.AbstractModel):
             ],
         )
         return inv_dict
+
+    def _clean_sii_tax_dict(self, tax, move_type, tax_dict):
+        """
+        Clean tax dict for corner cases that produces SII rejections.
+        :param tax: tax record
+        :param move_type: invoice move type
+        :param tax_dict: tax dict to clean
+        :return: cleaned tax dict
+
+        Corner case 1:
+            - document with amount_total 0.0
+            - amount_untaxed -0.1 and amount_tax 0.1 or
+              0.1 amount_untaxed and -0.1 amount_tax due to rounding issues.
+            (example in test_get_invoice_data_tax_price_included_corner_case)
+            It should be sent with 0.0 values to avoid SII rejection with error:
+            1231:'El campo CuotaRepercutida y BaseImponible deben tener el mismo signo.'
+        """
+        if tax.price_include:
+            base_amount = round(tax_dict.get("BaseImponible", 0.0), 2)
+            key = (
+                "CuotaRepercutida"
+                if move_type in ["out_invoice", "out_refund"]
+                else "CuotaSoportada"
+            )
+            tax_amount = round(tax_dict.get(key, 0.0), 2)
+
+            if (
+                float_compare(abs(base_amount), 0.01, precision_digits=2) == 0
+                and float_compare(abs(tax_amount), 0.01, precision_digits=2) == 0
+                and float_is_zero(base_amount + tax_amount, precision_digits=2)
+            ):
+                tax_dict[key] = 0.0
+                tax_dict["BaseImponible"] = 0.0
+        return tax_dict
 
     def _get_account_registration_date(self):
         """Hook method to allow the setting of the account registration date

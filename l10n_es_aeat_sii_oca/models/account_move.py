@@ -212,6 +212,7 @@ class AccountMove(models.Model):
         if req_tax:
             tax_dict["TipoRecargoEquivalencia"] = req_tax.amount
             tax_dict["CuotaRecargoEquivalencia"] = tax_lines[req_tax]["amount"]
+        tax_dict = self._clean_sii_tax_dict(tax, self.move_type, tax_dict)
         return tax_dict
 
     def _get_document_amount_total(self):
