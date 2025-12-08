@@ -23,6 +23,11 @@ class AccountJournal(models.Model):
         default="all",
         required=True,
     )
+    n43_exclude_pattern = fields.Char(
+        string="Exclude pattern for N43 import",
+        help="Fill this field if you want to exclude some lines of the N43 according "
+        "this regexp pattern.",
+    )
 
     def _get_bank_statements_available_import_formats(self):
         res = super()._get_bank_statements_available_import_formats()
