@@ -8,6 +8,7 @@
                 <group string="Norm 43 options" invisible="type != 'bank'">
                     <field name="n43_date_type" />
                     <field name="n43_partner_search" />
+                    <field name="n43_exclude_pattern" />
                 </group>
             </xpath>
         </field>

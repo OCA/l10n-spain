@@ -109,3 +109,11 @@ class L10nEsAccountStatementImportN43(common.TransactionCase):
             [("statement_id.journal_id", "=", self.journal.id)]
         )
         self.assertEqual(statements[0].date, fields.Date.to_date("2016-05-26"))
+
+    def test_import_n43_excluded_patern(self):
+        self.journal.n43_exclude_pattern = r".*TEST PARTNER 2.*"
+        self.import_wizard.import_file_button()
+        st_lines = self.env["account.bank.statement.line"].search(
+            [("statement_id.journal_id", "=", self.journal.id)]
+        )
+        self.assertEqual(len(st_lines), 2)
