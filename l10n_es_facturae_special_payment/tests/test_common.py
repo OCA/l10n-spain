@@ -2,11 +2,11 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo.tests import tagged
 
-from odoo.addons.l10n_es_facturae.tests.common import CommonTest
+from odoo.addons.l10n_es_facturae.tests.common import CommonTestBase
 
 
 @tagged("post_install", "-at_install")
-class CommonTestSpecialPayment(CommonTest):
+class CommonTestSpecialPayment(CommonTestBase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
