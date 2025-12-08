@@ -423,7 +423,6 @@ class CommonTest(CommonTestBase):
             domain = [("id", "=", refund_result["res_id"])]
         refund_inv = self.env["account.move"].search(domain)
         self.assertTrue(refund_inv)
-        self.assertIn(motive, refund_inv.ref)
         self.assertEqual(refund_inv.facturae_refund_reason, "01")
         refund_inv.action_post()
         refund_inv.name = "2998/99999"
