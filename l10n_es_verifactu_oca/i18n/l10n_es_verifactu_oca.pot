@@ -249,6 +249,12 @@ msgid "Cancellation reason"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_invoice_entry__send_state__cancel
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_invoice_entry_response_line__send_state__cancel
+msgid "Cancelled "
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__account_move__aeat_state__cancel
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_mixin__aeat_state__cancel
 msgid "Cancelled in VERI*FACTU"
@@ -261,20 +267,14 @@ msgid "Cancelled in VERI*FACTU with Errors"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_invoice_entry__send_state__cancel
-#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_invoice_entry_response_line__send_state__cancel
-msgid "Cancelled"
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_search
+msgid "Cancelled invoices at VERI*FACTU"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_invoice_entry__send_state__cancel_w_errors
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_invoice_entry_response_line__send_state__cancel_w_errors
 msgid "Cancelled with Errors"
-msgstr ""
-
-#. module: l10n_es_verifactu_oca
-#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_search
-msgid "Cancelled invoices at VERI*FACTU"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
@@ -649,15 +649,15 @@ msgid "Incorrect"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
-#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__account_move__aeat_state__cancel_incorrect
-#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_mixin__aeat_state__cancel_incorrect
-msgid "Incorrect cancellation in VERI*FACTU"
-msgstr ""
-
-#. module: l10n_es_verifactu_oca
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_invoice_entry__send_state__cancel_incorrect
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_invoice_entry_response_line__send_state__cancel_incorrect
 msgid "Incorrect cancellation"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__account_move__aeat_state__cancel_incorrect
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_mixin__aeat_state__cancel_incorrect
+msgid "Incorrect cancellation in VERI*FACTU"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
@@ -761,19 +761,6 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry__last_error_code
 msgid "Last Error Code"
-msgstr ""
-
-#. module: l10n_es_verifactu_oca
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_cancel_invoice_wizard____last_update
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_chaining____last_update
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_developer____last_update
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry____last_update
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response____last_update
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response_line____last_update
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_map____last_update
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_map_line____last_update
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_registration_key____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
@@ -1505,6 +1492,11 @@ msgid "VERI*FACTU not sent"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_search
+msgid "VERI*FACTU pending corrections"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_refund_specific_type
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_refund_specific_type
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_refund_specific_type
@@ -1650,11 +1642,6 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_developer__website_message_ids
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response__website_message_ids
 msgid "Website communication history"
-msgstr ""
-
-#. module: l10n_es_verifactu_oca
-#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_search
-msgid "VERI*FACTU pending corrections"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
