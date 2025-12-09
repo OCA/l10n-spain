@@ -12,6 +12,18 @@ class PosOrder(models.Model):
     _name = "pos.order"
     _inherit = ["pos.order", "sii.mixin"]
 
+    sii_session_closed = fields.Boolean(
+        compute="_compute_sii_session_closed",
+        string="SII Session Closed",
+    )
+
+    @api.depends("sii_enabled", "session_id.state")
+    def _compute_sii_session_closed(self):
+        for order in self:
+            order.sii_session_closed = (
+                order.sii_enabled and order.session_id.state == "closed"
+            )
+
     @api.depends("company_id", "state")
     def _compute_sii_description(self):
         for order in self:
@@ -44,17 +56,6 @@ class PosOrder(models.Model):
                 record.sii_refund_type = "I"
             else:
                 record.sii_refund_type = False
-
-    def _export_for_ui(self, order):
-        res = super()._export_for_ui(order)
-        res.update(
-            {
-                "sii_session_closed": (
-                    order.sii_enabled and order.session_id.state == "closed"
-                ),
-            }
-        )
-        return res
 
     def _is_sii_type_breakdown_required(self, taxes_dict):
         """As these are simplified invoices, we don't break taxes.

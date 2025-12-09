@@ -4,6 +4,7 @@
 
 import json
 
+from odoo import Command
 from odoo.tests import tagged
 from odoo.tools.misc import file_path
 
@@ -15,11 +16,23 @@ from odoo.addons.point_of_sale.tests.common import TestPoSCommon
 
 @tagged("post_install", "-at_install")
 class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
+    # Because we are using the TestPosCommon the final user is
+    # 'Because I am accountman!' so we need to add the account_payment
+    # group to create res.partner.bank records if account_payment_order
+    # is installed
     @classmethod
-    def setUpClass(cls, chart_template_ref=None):
-        chart_template_ref = chart_template_ref or "es_pymes"
-        super().setUpClass(chart_template_ref=chart_template_ref)
+    def get_default_groups(cls):
+        groups = super().get_default_groups()
+        group_account_payment = cls.env.ref(
+            "account_payment_order.group_account_payment", raise_if_not_found=False
+        )
+        if group_account_payment:
+            return groups | group_account_payment
+        return groups
 
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         cls.company.write(
             {
                 "sii_enabled": True,
@@ -84,6 +97,28 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
         self.session = self.PosSession.search([], limit=1, order="id desc")
         self.order = self.session.order_ids[:1]
 
+    @classmethod
+    def _create_invoice(cls, move_type):
+        return cls.env["account.move"].create(
+            {
+                "company_id": cls.company.id,
+                "partner_id": cls.partner.id,
+                "invoice_date": "2018-02-01",
+                "move_type": move_type,
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "product_id": cls.product.id,
+                            "account_id": cls.account_expense.id,
+                            "name": "Test line",
+                            "price_unit": 100,
+                            "quantity": 1,
+                        },
+                    )
+                ],
+            }
+        )
+
     def _create_session_closed(self):
         cash = self.cash_pm1
         self._run_test(
@@ -95,14 +130,14 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
                         "payments": [(cash, 121)],
                         "customer": False,
                         "is_invoiced": False,
-                        "uid": "00100-010-0001",
+                        "uuid": "00100-010-0001",
                     },
                     {
                         "pos_order_lines_ui_args": [(self.product10, 1)],
                         "payments": [(cash, 110)],
                         "customer": self.other_customer,
                         "is_invoiced": False,
-                        "uid": "00100-010-0002",
+                        "uuid": "00100-010-0002",
                     },
                     {
                         "pos_order_lines_ui_args": [
@@ -112,7 +147,7 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
                         "payments": [(cash, 231)],
                         "customer": self.customer,
                         "is_invoiced": False,
-                        "uid": "00100-010-0003",
+                        "uuid": "00100-010-0003",
                     },
                 ],
                 "journal_entries_before_closing": {},
@@ -192,7 +227,7 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
         result_dict = order._get_aeat_invoice_dict()
         path = file_path(f"{module}/tests/json/{json_file}")
         if not path:
-            raise Exception("Incorrect JSON file: %s" % json_file)
+            raise Exception(f"Incorrect JSON file: {json_file}")
         with open(path) as f:
             expected_dict = json.loads(f.read())
         self.assertEqual(expected_dict, result_dict)
@@ -252,9 +287,7 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
                 "pricelist_id": default_partner.property_product_pricelist.id,
                 "partner_id": default_partner.id,
                 "lines": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": "TPV/0001",
                             "product_id": self.product21.id,
@@ -286,7 +319,7 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
                     "payments": [(cash, -121)],
                     "customer": False,
                     "is_invoiced": False,
-                    "uid": "00100-010-0004",
+                    "uuid": "00100-010-0004",
                 },
             ]
         ).get("00100-010-0004")
@@ -312,7 +345,7 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
                     "payments": [(cash, 121)],
                     "customer": False,
                     "is_invoiced": False,
-                    "uid": "00100-010-0004",
+                    "uuid": "00100-010-0004",
                 },
             ]
         )
@@ -343,11 +376,11 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
                     "payments": [(cash, 121)],
                     "customer": False,
                     "is_invoiced": False,
-                    "uid": "00100-010-0004",
+                    "uuid": "00100-010-0004",
                 },
             ]
         )
-        res = pos_session.order_ids.export_for_ui()
+        res = pos_session.order_ids.read(["sii_session_closed"])
         self.assertTrue(
             all(
                 "sii_session_closed" in x and x["sii_session_closed"] is False
@@ -357,7 +390,7 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
         )
         pos_session.post_closing_cash_details(583.0)
         pos_session.close_session_from_ui()
-        res = pos_session.order_ids.export_for_ui()
+        res = pos_session.order_ids.read(["sii_session_closed"])
         self.assertTrue(
             all(
                 "sii_session_closed" in x and x["sii_session_closed"] is True
