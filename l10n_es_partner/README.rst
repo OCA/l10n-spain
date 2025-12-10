@@ -34,16 +34,16 @@ Adaptación de los clientes, proveedores y bancos para España
 
 Incluye la siguiente funcionalidad:
 
-- Añade el campo *Nombre comercial* a las empresas y permite buscar por
-  él.
-- Permite definir un patrón del nombre a mostrar a partir del nombre y
-  el nombre comercial de la empresa.
-- Añade los campos nombre largo, NIF y web a los bancos.
-- Añade los datos de los bancos españoles extraídos del registro oficial
-  del Banco de España (http://goo.gl/mtx6ic). El asistente realiza la
-  descarga automática de Internet, pero si por cualquier razón hay algún
-  problema, existe una copia local cuya última actualización fue el
-  26/10/2017.
+-  Añade el campo *Nombre comercial* a las empresas y permite buscar por
+   él.
+-  Permite definir un patrón del nombre a mostrar a partir del nombre y
+   el nombre comercial de la empresa.
+-  Añade los campos nombre largo, NIF y web a los bancos.
+-  Añade los datos de los bancos españoles extraídos del registro
+   oficial del Banco de España (http://goo.gl/mtx6ic). El asistente
+   realiza la descarga automática de Internet, pero si por cualquier
+   razón hay algún problema, existe una copia local cuya última
+   actualización fue el 26/10/2017.
 
 **Table of contents**
 
@@ -79,7 +79,7 @@ Para importar los datos de los bancos españoles hay que ir a Facturación
 Known issues / Roadmap
 ======================
 
-- Take BICs from https://github.com/PeterNotenboom/SwiftCodes.
+-  Take BICs from https://github.com/PeterNotenboom/SwiftCodes.
 
 Bug Tracker
 ===========
@@ -104,21 +104,21 @@ Authors
 Contributors
 ------------
 
-- Jordi Esteve <jesteve@zikzakmedia.com>
-- Ignacio Ibeas <ignacio@acysos.com>
-- Pedro M. Baeza <pedro.baeza@tecnativa.com>
-- Sergio Teruel <sergio@incaser.es>
-- Ismael Calvo <ismael.calvo@factorlibre.com>
-- Carlos Dauden <carlos.dauden@tecnativa.com>
-- Manuel Regidor <manuel.regidor@sygel.es>
-- `APSL - Nagarro <https://apsl.tech>`__:
+-  Jordi Esteve <jesteve@zikzakmedia.com>
+-  Ignacio Ibeas <ignacio@acysos.com>
+-  Pedro M. Baeza <pedro.baeza@tecnativa.com>
+-  Sergio Teruel <sergio@incaser.es>
+-  Ismael Calvo <ismael.calvo@factorlibre.com>
+-  Carlos Dauden <carlos.dauden@tecnativa.com>
+-  Manuel Regidor <manuel.regidor@sygel.es>
+-  `APSL - Nagarro <https://apsl.tech>`__:
 
-  - Javier Antó <janto@apsl.net>
-  - Miquel Pascual <mpascual@apsl.net>
+   -  Javier Antó <janto@apsl.net>
+   -  Miquel Pascual <mpascual@apsl.net>
 
-- `Dixmit <https://www.dixmit.com>`__:
+-  `Dixmit <https://www.dixmit.com>`__:
 
-  - Enric Tobella
+   -  Enric Tobella
 
 Maintainers
 -----------
