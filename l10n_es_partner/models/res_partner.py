@@ -43,6 +43,19 @@ class ResPartner(models.Model):
                 }
         return name
 
+    @api.depends("comercial")
+    def _compute_complete_name(self):
+        # We are enforcing the new context,
+        # because complete name field will remove the context
+        res = super()._compute_complete_name()
+        for partner in self:
+            partner.complete_name = partner.with_context(
+                display_commercial=not self.env.context.get(
+                    "no_display_commercial", False
+                )
+            )._get_complete_name()
+        return res
+
     @api.model
     def _commercial_fields(self):
         res = super()._commercial_fields()
