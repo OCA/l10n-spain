@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =======================
 Comunicación VERI*FACTU
 =======================
@@ -17,7 +13,7 @@ Comunicación VERI*FACTU
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
@@ -70,10 +66,10 @@ Para configurar este módulo es necesario:
 En caso de que la obtención de claves no funcione y uses Linux, cuentas
 con los siguientes comandos para tratar de solucionarlo:
 
-- Clave pública: "openssl pkcs12 -in Certificado.p12 -nokeys -out
-  publicCert.crt -nodes"
-- Clave privada: "openssl pkcs12 -in Certificado.p12 -nocerts -out
-  privateKey.pem -nodes"
+-  Clave pública: "openssl pkcs12 -in Certificado.p12 -nokeys -out
+   publicCert.crt -nodes"
+-  Clave privada: "openssl pkcs12 -in Certificado.p12 -nocerts -out
+   privateKey.pem -nodes"
 
 1. Establecer en las posiciones fiscales la clave de impuestos y la
    clave de registro VERI*FACTU.
@@ -90,18 +86,20 @@ pendientes de enviar mediante un cron.
 Known issues / Roadmap
 ======================
 
-   - Refactorización SII-VERI*FACTU en l10nes_aeat de los métodos que
-     sean comunes.
-   - Envío separado de la confirmación de la factura
-     (cron.trigger/queque.job)
-   - Control de errores del sistema, generar avisos. (caída de aeat,
-     errores de conexión, etc.)
-   - Posibilidad de consultar el estado de las facturas enviadas.
-   - Operaciones exentas y causas de exención.
-   - Crear un selection con todos los valores posibles de codigos de
-     error, para poder guardarlo y agrupar las facturas por ese código.
-   - Contemplar el tiempo de espera entre envíos de registros cuando
-     AEAT devuelve un tiempo superior a 60 segundos.
+   -  Refactorización SII-VERI*FACTU en l10nes_aeat de los métodos que
+      sean comunes.
+   -  Envío separado de la confirmación de la factura
+      (cron.trigger/queque.job)
+   -  Control de errores del sistema, generar avisos. (caída de aeat,
+      errores de conexión, etc.)
+   -  Posibilidad de consultar el estado de las facturas enviadas.
+   -  Operaciones exentas y causas de exención.
+   -  Crear un selection con todos los valores posibles de codigos de
+      error, para poder guardarlo y agrupar las facturas por ese código.
+   -  Contemplar el tiempo de espera entre envíos de registros cuando
+      AEAT devuelve un tiempo superior a 60 segundos.
+   -  Facturación de terceros o de destinatarios (autofacturación), con
+      los datos de los mismos.
 
 CASOS NO CUBIERTOS: 1 - Modificación de facturas enviadas (AEAT
 recomienda generar rectificativa). Según AEAT: Si los errores detectados
@@ -143,37 +141,37 @@ Authors
 Contributors
 ------------
 
-- Aures TIC:
+-  Aures TIC:
 
-  - Jose Zambudio
-  - Almudena de La Puente
-  - Anna Martínez
+   -  Jose Zambudio
+   -  Almudena de La Puente
+   -  Anna Martínez
 
-- ForgeFlow S.L.:
+-  ForgeFlow S.L.:
 
-  - Laura Cazorla
-  - Andreu Orensanz
-  - Jordi Ballester
+   -  Laura Cazorla
+   -  Andreu Orensanz
+   -  Jordi Ballester
 
-- Ozono multimedia:
+-  Ozono multimedia:
 
-  - Iván Antón
+   -  Iván Antón
 
-- SDi:
+-  SDi:
 
-  - Fernando La Chica
+   -  Fernando La Chica
 
-- Process control:
+-  Process control:
 
-  - Jorge Luis López
+   -  Jorge Luis López
 
-- Tecnativa:
+-  Tecnativa:
 
-  - Pedro M. Baeza
+   -  Pedro M. Baeza
 
-- Factor Libre S.L.:
+-  Factor Libre S.L.:
 
-  - Luis J. Salvatierra
+   -  Luis J. Salvatierra
 
 Maintainers
 -----------
