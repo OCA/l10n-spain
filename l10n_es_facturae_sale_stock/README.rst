@@ -59,15 +59,16 @@ Authors
 -------
 
 * Creu Blanca
-* NuoBiT Solutions
+* NuoBiT Solutions SL
 
 Contributors
 ------------
 
-- Enric Tobella <etobella@creublanca.es>
-- \`NuoBiT Solutions\`:
+- Enric Tobella etobella@creublanca.es
+- `NuoBiT <https://www.nuobit.com>`__:
 
-  - Eric Antones <eantones@nuobit.com>
+  - Eric Antones eantones@nuobit.com
+  - Deniz Gallo dgallo@nuobit.com
 
 Maintainers
 -----------
