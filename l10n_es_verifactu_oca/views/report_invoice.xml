@@ -14,7 +14,7 @@
     </template>
     <template id="address_layout" inherit_id="web.address_layout" priority="1000">
         <div t-attf-class="address row mb-4" position="attributes">
-            <attribute name="t-if">not verifactu_invoice</attribute>
+            <attribute name="t-if">address and not verifactu_invoice</attribute>
         </div>
         <div t-attf-class="address row mb-4" position="after">
             <div t-if="verifactu_invoice" class="row" id="verifactu_row">
