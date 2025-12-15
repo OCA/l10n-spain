@@ -4,7 +4,7 @@
 - [Dixmit](https://www.dixmit.com)
   - Enric Tobella
 - [Vunkers](<https://www.vunkers.com>)
-  - Nestor Torres 
+  - Nestor Torres
   - Marc Sánchez Fauste
 - [Sygel](https://www.sygel.es)
   - Manuel Regidor González
@@ -12,3 +12,4 @@
   - Víctor Martínez
 - [Moduon](https://www.moduon.team)
   - Jairo Llopis
+  - Emilio Pascual
