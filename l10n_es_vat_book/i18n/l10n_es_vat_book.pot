@@ -196,6 +196,11 @@ msgid "Date Range:"
 msgstr ""
 
 #. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax__deductible_amount
+msgid "Deductible Amount"
+msgstr ""
+
+#. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__display_name
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__display_name
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line__display_name
@@ -402,6 +407,11 @@ msgstr ""
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary__base_move_line_ids
 msgid "Journal items (Base)"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,help:l10n_es_vat_book.field_aeat_vat_book_map_line__excluded_account_xmlid_id
+msgid "Journal items with this account will be excluded"
 msgstr ""
 
 #. module: l10n_es_vat_book
@@ -726,7 +736,7 @@ msgid "Tax"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__account_xmlid_id
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__excluded_account_xmlid_id
 msgid "Tax Account Restriction"
 msgstr ""
 

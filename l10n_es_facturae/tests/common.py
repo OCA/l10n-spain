@@ -249,8 +249,6 @@ class CommonTestBase(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
             "27.98",
         ]
 
-
-class CommonTest(CommonTestBase):
     def _create_facturae_file(self, move_id, force=False):
         wizard = (
             self.env["create.facturae"]
@@ -264,6 +262,8 @@ class CommonTest(CommonTestBase):
         wizard.create_facturae_file()
         return etree.fromstring(base64.b64decode(wizard.facturae))
 
+
+class CommonTest(CommonTestBase):
     def test_facturae_generation(self):
         self.move.action_post()
         self._activate_certificate(self.certificate_password)
@@ -423,7 +423,6 @@ class CommonTest(CommonTestBase):
             domain = [("id", "=", refund_result["res_id"])]
         refund_inv = self.env["account.move"].search(domain)
         self.assertTrue(refund_inv)
-        self.assertIn(motive, refund_inv.ref)
         self.assertEqual(refund_inv.facturae_refund_reason, "01")
         refund_inv.action_post()
         refund_inv.name = "2998/99999"

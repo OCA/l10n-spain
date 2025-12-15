@@ -15,15 +15,24 @@ from odoo.tools import split_every
 
 VERIFACTU_SEND_STATES = [
     ("not_sent", "Not sent"),
-    ("correct", "Sent and Correct"),
+    ("sent", "Sent and Correct"),
     ("incorrect", "Sent and Incorrect"),
-    ("accepted_with_errors", "Sent and accepted with errors"),
+    ("sent_w_errors", "Sent and accepted with errors"),
+    ("cancel", "Cancelled "),
+    ("cancel_w_errors", "Cancelled with Errors"),
+    ("cancel_incorrect", "Incorrect cancellation"),
 ]
 
 VERIFACTU_STATE_MAPPING = {
-    "Correcto": "correct",
+    "Correcto": "sent",
     "Incorrecto": "incorrect",
-    "AceptadoConErrores": "accepted_with_errors",
+    "AceptadoConErrores": "sent_w_errors",
+}
+
+VERIFACTU_CANCEL_STATE_MAPPING = {
+    "Correcto": "cancel",
+    "Incorrecto": "cancel_incorrect",
+    "AceptadoConErrores": "cancel_w_errors",
 }
 
 
@@ -121,7 +130,7 @@ class VerifactuInvoiceEntry(models.Model):
             self.env.cr.execute(
                 """
                 SELECT id FROM verifactu_invoice_entry AS vsq
-                WHERE vsq.send_state in ('not_sent', 'incorrect')
+                WHERE vsq.send_state = 'not_sent'
                 AND vsq.verifactu_chaining_id = %s
                 ORDER BY id
                 FOR UPDATE NOWAIT
@@ -236,31 +245,29 @@ class VerifactuInvoiceEntry(models.Model):
             if (
                 verifactu_response_line["CodigoErrorRegistro"] == 3000
                 and previous_response_line
-                and (
-                    previous_response_line.error_code == "3000"
-                    and previous_response_line.send_state == "incorrect"
-                )
             ):
                 registroDuplicado = verifactu_response_line["RegistroDuplicado"]
                 estado_registro = registroDuplicado["EstadoRegistroDuplicado"]
                 # en duplicados devuelve Correcta en vez de Correcto...
                 if estado_registro == "Correcta":
                     estado_registro = "Correcto"
-                    response_line.send_state = "correct"
                 elif registroDuplicado["CodigoErrorRegistro"]:
                     # en duplicados devuelve AceptadaConErrores en vez de
                     # AceptadoConErrores...
                     if estado_registro == "AceptadaConErrores":
                         estado_registro = "AceptadoConErrores"
-                        response_line.send_state = "accepted_with_errors"
                     send_error = "{} | {}".format(
                         str(registroDuplicado["CodigoErrorRegistro"]),
                         str(registroDuplicado["DescripcionErrorRegistro"]),
                     )
+                response_line.send_state = VERIFACTU_STATE_MAPPING[estado_registro]
+                if response_line.is_cancellation:
+                    response_line.send_state = VERIFACTU_CANCEL_STATE_MAPPING[
+                        estado_registro
+                    ]
         if estado_registro == "Correcto":
             doc_vals.update(
                 {
-                    "aeat_state": "sent",
                     "verifactu_csv": verifactu_response["CSV"],
                     "aeat_send_failed": False,
                 }
@@ -268,7 +275,6 @@ class VerifactuInvoiceEntry(models.Model):
         elif estado_registro == "AceptadoConErrores":
             doc_vals.update(
                 {
-                    "aeat_state": "sent_w_errors",
                     "verifactu_csv": verifactu_response["CSV"],
                     "aeat_send_failed": True,
                 }
@@ -290,7 +296,9 @@ class VerifactuInvoiceEntry(models.Model):
         for rec in self:
             rec.send_attempt += 1
             if rec.document:
-                inv_dict = rec.document._get_verifactu_invoice_dict()
+                inv_dict = rec.document._get_verifactu_invoice_dict(
+                    cancel=rec.entry_type == "cancel"
+                )
                 registro_factura_list.append(inv_dict)
         try:
             serv = rec._connect_verifactu()
@@ -358,6 +366,10 @@ class VerifactuInvoiceEntry(models.Model):
             send_state = VERIFACTU_STATE_MAPPING[
                 verifactu_response_line["EstadoRegistro"]
             ]
+            if verifactu_invoice_entry.entry_type == "cancel":
+                send_state = VERIFACTU_CANCEL_STATE_MAPPING[
+                    verifactu_response_line["EstadoRegistro"]
+                ]
             vals = {
                 "entry_id": verifactu_invoice_entry.id,
                 "model": verifactu_invoice_entry.model,
@@ -381,6 +393,6 @@ class VerifactuInvoiceEntry(models.Model):
                 previous_response_line=previous_response_line,
                 header_sent=header,
             )
-            if send_state != "correct":
+            if send_state not in ("sent", "cancel"):
                 create_response_activity = True
         return create_response_activity

@@ -170,8 +170,8 @@ class SiiMixin(models.AbstractModel):
 
     def _filter_sii_unlink_not_possible(self):
         """Filter records that we do not allow to be deleted, all those
-        that are not in not_sent sii status."""
-        return self.filtered(lambda rec: rec.aeat_state != "not_sent")
+        that are not in not_sent sii status or False."""
+        return self.filtered(lambda rec: rec.aeat_state not in ["not_sent", False])
 
     @api.ondelete(at_uninstall=False)
     def _unlink_except_sii(self):
@@ -260,7 +260,12 @@ class SiiMixin(models.AbstractModel):
             lambda document: (
                 document.sii_enabled
                 and document.state in self._get_valid_document_states()
-                and document.aeat_state not in ["sent", "cancelled"]
+                and (
+                    (document.aeat_state != "sent" and not document.sii_needs_cancel)
+                    or (
+                        document.aeat_state != "cancelled" and document.sii_needs_cancel
+                    )
+                )
             )
         )
 
