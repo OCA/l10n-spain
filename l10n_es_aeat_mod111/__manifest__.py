@@ -4,7 +4,7 @@
 
 {
     "name": "AEAT modelo 111",
-    "version": "18.0.1.0.3",
+    "version": "19.0.1.0.0",
     "development_status": "Mature",
     "category": "Localization/Accounting",
     "author": "AvanzOSC, "
@@ -15,7 +15,8 @@
     "license": "AGPL-3",
     "depends": ["l10n_es_aeat"],
     "data": [
-        "data/aeat_export_mod111_data.xml",
+        "data/aeat.model.export.config.csv",
+        "data/aeat.model.export.config.line.csv",
         "data/l10n.es.aeat.map.tax.csv",
         "data/l10n.es.aeat.map.tax.line.tax.csv",  # This one should be before the next
         "data/l10n.es.aeat.map.tax.line.csv",

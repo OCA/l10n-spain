@@ -21,13 +21,13 @@ AEAT modelo 111
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_aeat_mod111
+    :target: https://github.com/OCA/l10n-spain/tree/19.0/l10n_es_aeat_mod111
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-18-0/l10n-spain-18-0-l10n_es_aeat_mod111
+    :target: https://translation.odoo-community.org/projects/l10n-spain-19-0/l10n-spain-19-0-l10n_es_aeat_mod111
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -57,16 +57,16 @@ Para crear un modelo, por ejemplo de un trimestre del año:
 7. Rellenar (si es necesario) aquellos campos que Odoo no calcula
    automáticamente:
 
-   - Rendimientos del trabajo: Dinerarios ([01], [02], [03]) y en
-     especie ([04], [05], [06])
-   - Premios por la participación en juegos, concursos, ...: Dinerarios
-     ([13], [14], [15]) y en especie ([16], [17], [18])
-   - Ganancias patrimoniales derivadas de los aprovechamientos
-     forestales ...: Dinerarias ([19], [20], [21]) y en especie ([22],
-     [23], [24])
-   - Contraprestaciones por la cesión de derechos de imagen ...:
-     Casillas [25], [26] y [27]
-   - Resultados a ingresar anteriores: Casilla [29]
+   -  Rendimientos del trabajo: Dinerarios ([01], [02], [03]) y en
+      especie ([04], [05], [06])
+   -  Premios por la participación en juegos, concursos, ...: Dinerarios
+      ([13], [14], [15]) y en especie ([16], [17], [18])
+   -  Ganancias patrimoniales derivadas de los aprovechamientos
+      forestales ...: Dinerarias ([19], [20], [21]) y en especie ([22],
+      [23], [24])
+   -  Contraprestaciones por la cesión de derechos de imagen ...:
+      Casillas [25], [26] y [27]
+   -  Resultados a ingresar anteriores: Casilla [29]
 
 8. Cuando los valores sean los correctos, pulsar en el botón "Confirmar"
 9. Podemos exportar en formato BOE para presentarlo telemáticamente en
@@ -91,7 +91,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_mod111%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_mod111%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -108,19 +108,22 @@ Authors
 Contributors
 ------------
 
-- MálagaTIC (http://www.malagatic.com)
-- Carlos Sánchez Cifuentes <csanchez@grupovermon.com>
-- Pedro M. Baeza
-- AvanzOSC (http://www.avanzosc.es)
-- Antonio Espinosa <antonio.espinosa@tecnativa.com>
-- RGB Consulting SL (http://www.rgbconsulting.com)
-- Vicent Cubells (http://obertix.net)
-- Jose Maria Alzaga (http://www.aselcis.com)
-- Ismael Calvo (http://factorlibre.com)
-- Iván Antón (https://www.ozonomultimedia.com)
-- Valentin Vinagre <valentin.vinagre@sygel.es>
-- Arantxa Sudón (`Moduon <https://www.moduon.team/>`__)
-- Rafael Blasco (`Moduon <https://www.moduon.team/>`__)
+-  MálagaTIC (http://www.malagatic.com)
+-  Carlos Sánchez Cifuentes <csanchez@grupovermon.com>
+-  Pedro M. Baeza
+-  AvanzOSC (http://www.avanzosc.es)
+-  Antonio Espinosa <antonio.espinosa@tecnativa.com>
+-  RGB Consulting SL (http://www.rgbconsulting.com)
+-  Vicent Cubells (http://obertix.net)
+-  Jose Maria Alzaga (http://www.aselcis.com)
+-  Ismael Calvo (http://factorlibre.com)
+-  Iván Antón (https://www.ozonomultimedia.com)
+-  Valentin Vinagre <valentin.vinagre@sygel.es>
+-  Arantxa Sudón (`Moduon <https://www.moduon.team/>`__)
+-  Rafael Blasco (`Moduon <https://www.moduon.team/>`__)
+-  ``Studio73 <https://www.studio73.es>``\ \_\_:
+
+   -  Pablo Cortés
 
 Maintainers
 -----------
@@ -135,6 +138,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_aeat_mod111>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/19.0/l10n_es_aeat_mod111>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
