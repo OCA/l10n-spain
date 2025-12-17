@@ -233,6 +233,7 @@ class L10nEsVatBook(models.Model):
         partner = move_line.partner_id
         invoice_date = move_line.date
         if invoice:
+            invoice = invoice.with_context(prefetch_fields=False)
             if invoice.is_invoice():
                 partner = invoice.commercial_partner_id
                 invoice_date = invoice.invoice_date
