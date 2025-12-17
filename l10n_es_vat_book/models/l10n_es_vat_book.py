@@ -237,6 +237,7 @@ class L10nEsVatBook(models.Model):
         partner = move_line.partner_id
         invoice_date = move_line.date
         if invoice:
+            invoice = invoice.with_context(prefetch_fields=False)
             if invoice.is_invoice():
                 partner = invoice.commercial_partner_id
                 invoice_date = invoice.invoice_date
@@ -382,6 +383,9 @@ class L10nEsVatBook(models.Model):
     def create_vat_book_lines(self, move_lines, line_type, taxes):
         VatBookLine = self.env["l10n.es.vat.book.line"]
         moves_dic = {}
+        move_lines.move_id.fetch(
+            ["move_type", "commercial_partner_id", "invoice_date", "name", "ref"]
+        )
         for move_line in move_lines:
             line_key = self.get_book_line_key(move_line)
             if line_key not in moves_dic:
