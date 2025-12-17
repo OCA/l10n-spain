@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -50,15 +50,13 @@ msgstr ""
 
 #. module: l10n_es_pos_sii
 #. odoo-javascript
-#: code:addons/l10n_es_pos_sii/static/src/js/Screens/TicketScreen/ControlButtons/InvoiceButton.js:0
-#, python-format
+#: code:addons/l10n_es_pos_sii/static/src/app/screens/ticket_screen/invoice_button.esm.js:0
 msgid "Cannot Invoice"
 msgstr ""
 
 #. module: l10n_es_pos_sii
 #. odoo-javascript
-#: code:addons/l10n_es_pos_sii/static/src/js/Screens/TicketScreen/ControlButtons/InvoiceButton.js:0
-#, python-format
+#: code:addons/l10n_es_pos_sii/static/src/app/screens/ticket_screen/invoice_button.esm.js:0
 msgid "Cannot invoice order from closed session."
 msgstr ""
 
@@ -77,12 +75,6 @@ msgstr ""
 #. module: l10n_es_pos_sii
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__company_id
 msgid "Company"
-msgstr ""
-
-#. module: l10n_es_pos_sii
-#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__order_jobs_ids
-#: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
-msgid "Connector Jobs"
 msgstr ""
 
 #. module: l10n_es_pos_sii
@@ -119,8 +111,7 @@ msgstr ""
 
 #. module: l10n_es_pos_sii
 #. odoo-javascript
-#: code:addons/l10n_es_pos_sii/static/src/js/Screens/TicketScreen/ControlButtons/InvoiceButton.js:0
-#, python-format
+#: code:addons/l10n_es_pos_sii/static/src/app/screens/ticket_screen/invoice_button.esm.js:0
 msgid "Invoice"
 msgstr ""
 
@@ -146,8 +137,7 @@ msgstr ""
 
 #. module: l10n_es_pos_sii
 #. odoo-javascript
-#: code:addons/l10n_es_pos_sii/static/src/js/Screens/TicketScreen/ControlButtons/InvoiceButton.js:0
-#, python-format
+#: code:addons/l10n_es_pos_sii/static/src/app/screens/ticket_screen/invoice_button.esm.js:0
 msgid "Reprint Invoice"
 msgstr ""
 
@@ -189,6 +179,16 @@ msgstr ""
 #. module: l10n_es_pos_sii
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_return
 msgid "SII Return"
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_send_date
+msgid "SII Send Date"
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_session_closed
+msgid "SII Session Closed"
 msgstr ""
 
 #. module: l10n_es_pos_sii
@@ -247,15 +247,30 @@ msgid "SII sent"
 msgstr ""
 
 #. module: l10n_es_pos_sii
+#: model:ir.actions.server,name:l10n_es_pos_sii.pos_order_send_to_sii_ir_actions_server
+msgid "Send Invoices to SII (POS)"
+msgstr ""
+
+#. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
 msgid "Send to SII"
 msgstr ""
 
 #. module: l10n_es_pos_sii
 #. odoo-javascript
-#: code:addons/l10n_es_pos_sii/static/src/js/Screens/TicketScreen/ControlButtons/InvoiceButton.js:0
-#, python-format
+#: code:addons/l10n_es_pos_sii/static/src/app/screens/ticket_screen/invoice_button.esm.js:0
 msgid "Session is closed"
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_needs_cancel
+msgid "Sii Needs Cancel"
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#. odoo-python
+#: code:addons/l10n_es_pos_sii/models/pos_order.py:0
+msgid "Simplified Invoice Partner not found. Please update l10n_es module."
 msgstr ""
 
 #. module: l10n_es_pos_sii
@@ -276,18 +291,10 @@ msgstr ""
 #. module: l10n_es_pos_sii
 #. odoo-python
 #: code:addons/l10n_es_pos_sii/models/pos_order.py:0
-#, python-format
 msgid "There's a mismatch in taxes for RE. Check them."
 msgstr ""
 
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_order_filter
 msgid "With modifications not sent to SII"
-msgstr ""
-
-#. module: l10n_es_pos_sii
-#. odoo-python
-#: code:addons/l10n_es_pos_sii/models/pos_order.py:0
-#, python-format
-msgid "You must define a default partner for POS {}"
 msgstr ""
