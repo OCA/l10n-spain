@@ -182,6 +182,7 @@ msgstr "Línia de mapeig d'impostos AEAT - Impost"
 #. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__account_move__aeat_state__sent_w_errors
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_mixin__aeat_state__sent_w_errors
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__pos_order__aeat_state__sent_w_errors
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__sii_mixin__aeat_state__sent_w_errors
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__verifactu_mixin__aeat_state__sent_w_errors
 msgid "Accepted with errors"
@@ -1031,7 +1032,8 @@ msgstr ""
 msgid ""
 "Indicates the state of this document in relation with the presentation at "
 "the AEAT"
-msgstr "Indica l'estat d'aquest document en relació amb la presentació a l'AEAT"
+msgstr ""
+"Indica l'estat d'aquest document en relació amb la presentació a l'AEAT"
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report_tax_mapping
@@ -1297,6 +1299,7 @@ msgstr "Normal"
 #. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__account_move__aeat_state__not_sent
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_mixin__aeat_state__not_sent
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__pos_order__aeat_state__not_sent
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__sii_mixin__aeat_state__not_sent
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__verifactu_mixin__aeat_state__not_sent
 msgid "Not sent"
@@ -1578,6 +1581,7 @@ msgstr "Enviament SII fallit"
 #. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__account_move__aeat_state__sent
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_mixin__aeat_state__sent
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__pos_order__aeat_state__sent
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__sii_mixin__aeat_state__sent
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__verifactu_mixin__aeat_state__sent
 msgid "Sent"
