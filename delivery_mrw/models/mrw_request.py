@@ -5,7 +5,8 @@
 import logging
 from datetime import datetime
 
-from zeep import Client, helpers as ZeepHelpers
+from zeep import Client
+from zeep import helpers as ZeepHelpers
 from zeep.exceptions import Fault
 from zeep.plugins import HistoryPlugin
 from zeep.transports import Transport as ZeepTransport
