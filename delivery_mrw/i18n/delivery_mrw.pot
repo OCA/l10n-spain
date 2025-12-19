@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -44,6 +44,7 @@ msgid "<br/>(Packages)"
 msgstr ""
 
 #. module: delivery_mrw
+#. odoo-python
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
 #, python-format
 msgid "<br> MRW Shipping Label:"
@@ -98,11 +99,6 @@ msgid "Address"
 msgstr ""
 
 #. module: delivery_mrw
-#: model:ir.model.fields,field_description:delivery_mrw.field_stock_immediate_transfer__mrw_to_address
-msgid "Address sent to MRW"
-msgstr ""
-
-#. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_notification_type__3
 msgid "Aviso de entrega en franquicia"
 msgstr ""
@@ -125,14 +121,6 @@ msgstr ""
 #. module: delivery_mrw
 #: model_terms:ir.ui.view,arch_db:delivery_mrw.delivery_mrw_manifest_wizard_form
 msgid "Cancelar"
-msgstr ""
-
-#. module: delivery_mrw
-#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_view_immediate_transfer
-msgid ""
-"Check that the address sent to MRW is correct, otherwise you should\n"
-"                    change it in the partner form. Try to put street and number in the\n"
-"                    first address line, and floor and door number in the second one."
 msgstr ""
 
 #. module: delivery_mrw
@@ -201,6 +189,7 @@ msgid "Connection"
 msgstr ""
 
 #. module: delivery_mrw
+#. odoo-python
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
 #, python-format
 msgid "Couldn't find partner %s street"
@@ -242,10 +231,7 @@ msgid "Department Code"
 msgstr ""
 
 #. module: delivery_mrw
-#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__display_name
 #: model:ir.model.fields,field_description:delivery_mrw.field_mrw_manifest_wizard__display_name
-#: model:ir.model.fields,field_description:delivery_mrw.field_stock_immediate_transfer__display_name
-#: model:ir.model.fields,field_description:delivery_mrw.field_stock_picking__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -320,6 +306,7 @@ msgid "Filter Type"
 msgstr ""
 
 #. module: delivery_mrw
+#. odoo-python
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
 #, python-format
 msgid ""
@@ -344,10 +331,7 @@ msgid "Get the MRW Manifest for the given date"
 msgstr ""
 
 #. module: delivery_mrw
-#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__id
 #: model:ir.model.fields,field_description:delivery_mrw.field_mrw_manifest_wizard__id
-#: model:ir.model.fields,field_description:delivery_mrw.field_stock_immediate_transfer__id
-#: model:ir.model.fields,field_description:delivery_mrw.field_stock_picking__id
 msgid "ID"
 msgstr ""
 
@@ -355,11 +339,6 @@ msgstr ""
 #: model:ir.model.fields,help:delivery_mrw.field_mrw_manifest_wizard__carrier_id
 msgid ""
 "If no service is selected, all MRW type shippment methods will be printed"
-msgstr ""
-
-#. module: delivery_mrw
-#: model:ir.model,name:delivery_mrw.model_stock_immediate_transfer
-msgid "Immediate Transfer"
 msgstr ""
 
 #. module: delivery_mrw
@@ -385,6 +364,7 @@ msgid "International Shipping"
 msgstr ""
 
 #. module: delivery_mrw
+#. odoo-python
 #: code:addons/delivery_mrw/wizard/mrw_manifest_wizard.py:0
 #, python-format
 msgid ""
@@ -395,14 +375,6 @@ msgstr ""
 #. module: delivery_mrw
 #: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_api_language
 msgid "Language Code"
-msgstr ""
-
-#. module: delivery_mrw
-#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier____last_update
-#: model:ir.model.fields,field_description:delivery_mrw.field_mrw_manifest_wizard____last_update
-#: model:ir.model.fields,field_description:delivery_mrw.field_stock_immediate_transfer____last_update
-#: model:ir.model.fields,field_description:delivery_mrw.field_stock_picking____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: delivery_mrw
@@ -421,6 +393,7 @@ msgid "MRW"
 msgstr ""
 
 #. module: delivery_mrw
+#. odoo-python
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
 #, python-format
@@ -440,6 +413,7 @@ msgid "MRW Deliveries Manifest"
 msgstr ""
 
 #. module: delivery_mrw
+#. odoo-python
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
 #, python-format
 msgid "MRW Error: %s)Mensaje"
@@ -451,6 +425,7 @@ msgid "MRW Label"
 msgstr ""
 
 #. module: delivery_mrw
+#. odoo-python
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
 #: model:ir.actions.act_window,name:delivery_mrw.action_delivery_mrw_manifest_wizard
 #: model:ir.actions.report,name:delivery_mrw.mrw_manifest_report
@@ -467,6 +442,7 @@ msgid "MRW Service"
 msgstr ""
 
 #. module: delivery_mrw
+#. odoo-python
 #: code:addons/delivery_mrw/models/stock_picking.py:0
 #, python-format
 msgid "MRW Shipping Label:"
@@ -498,6 +474,7 @@ msgid "Marítimo Interinsular"
 msgstr ""
 
 #. module: delivery_mrw
+#. odoo-python
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
 #, python-format
 msgid "MensajeSeguimiento"
@@ -671,6 +648,7 @@ msgid "Sin retorno"
 msgstr ""
 
 #. module: delivery_mrw
+#. odoo-python
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
 #, python-format
 msgid ""
