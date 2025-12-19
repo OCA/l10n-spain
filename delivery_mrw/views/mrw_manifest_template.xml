@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="paperformat_manifest" model="report.paperformat">
+        <field name="name">Manifest A4</field>
+        <field name="format">A4</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">2</field>
+        <field name="margin_left">1</field>
+        <field name="margin_right">1</field>
+        <field name="header_spacing">5</field>
+        <field name="header_line" eval="False" />
+        <field name="dpi">98</field>
+    </record>
+    <template id="mrw_manifest_report_view">
+        <t t-call="web.basic_layout">
+            <div
+                style="font-size:14px; margin-left:-5px; margin-right:0px; margin-bottom: 5px;"
+            >
+                <center>
+                    <h3>
+                        <strong>MRW MANIFEST</strong>
+                    </h3>
+                    <br />
+                    <div class="text-left">
+                        <table width="100%">
+                            <tr>
+                                <td width="50%">
+                                    <div class="text-left">
+                                        <table width="100%">
+                                            <tr>
+                                                <td colspan="2" />
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>Company:</strong>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="company_name" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" />
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>Manifest Date:</strong>
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        t-esc="date_from"
+                                                        t-options="{'widget': 'date'}"
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" />
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>Date of printing</strong>
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        t-esc="datetime.datetime.now().strftime('%d/%m/%Y %H:%M')"
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" />
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>Printed by</strong>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="user.name" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                                <td
+                                    width="50%"
+                                    style="text-align: right; border: 1px solid black; vertical-align: top; padding: 10px;"
+                                >
+                                    <span>
+                                        <strong>Carrier Signature / Stamp</strong>
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                        <br />
+                    </div>
+                    <br />
+                    <t t-set="packages" t-value="len(deliveries)" />
+                    <table class="table table-condensed" width="100%">
+                        <tr>
+                            <th width="1%" class="text-left">Shipping Num.</th>
+                            <th width="1%" class="text-left">Ref.</th>
+                            <th width="10%" class="text-left">Comments</th>
+                            <th width="15%" class="text-left">Date</th>
+                            <th width="20%" class="text-left">Customer</th>
+                            <th width="1%" class="text-left">ZIP Code</th>
+                            <th width="25%" class="text-left">Address</th>
+                            <th width="1%" class="text-left">City</th>
+                            <th width="1%" class="text-left">State</th>
+                            <th width="30%" class="text-left">Service</th>
+                            <th width="1%" class="text-center">Packages</th>
+                            <th width="1%" class="text-center">Weight</th>
+                            <th width="1%" class="text-center">Refund</th>
+                        </tr>
+                        <t t-foreach="deliveries" t-as="delivery">
+                            <tr>
+                                <td class="text-left">
+                                    <span
+                                        t-esc="delivery.get('carrier_tracking_ref')"
+                                    />
+                                </td>
+                                <td class="text-left">
+                                    <span t-esc="delivery.get('reference')" />
+                                </td>
+                                <td class="text-left">
+                                    <span t-esc="delivery.get('note')" />
+                                </td>
+                                <td class="text-left">
+                                    <span t-esc="delivery.get('date')" />
+                                </td>
+                                <td class="text-left">
+                                    <span t-esc="delivery.get('partner')" />
+                                </td>
+                                <td class="text-left">
+                                    <span t-esc="delivery.get('zip')" />
+                                </td>
+                                <td class="text-left">
+                                    <span t-esc="delivery.get('address')" />
+                                </td>
+                                <td class="text-left">
+                                    <span t-esc="delivery.get('city')" />
+                                </td>
+                                <td class="text-left">
+                                    <span t-esc="delivery.get('state')" />
+                                </td>
+                                <td class="text-left">
+                                    <span t-esc="delivery.get('service')" />
+                                </td>
+                                <td class="text-center">
+                                    <span t-esc="delivery.get('number_of_packages')" />
+                                </td>
+                                <td class="text-center">
+                                    <span t-esc="delivery.get('weight')" />
+                                </td>
+                                <td class="text-center">
+                                    <span t-esc="delivery.get('refund')" />
+                                </td>
+                            </tr>
+                        </t>
+                        <tr>
+                            <td colspan="9" />
+                            <td style="font-size: 16px; text-align: center;">
+                                <strong>TOTAL</strong>
+                            </td>
+                            <td style="font-size:16px;text-align:center;">
+                                <strong>
+                                    <span
+                                        t-esc="sum([int(x['number_of_packages']) for x in deliveries])"
+                                    />
+                                    <br />(Packages)
+                                </strong>
+                            </td>
+                            <td style="font-size: 16px; text-align: center;">
+                                <strong>
+                                    <span
+                                        t-esc="round(sum([float(x['weight']) for x in deliveries]), 2)"
+                                    />
+                                    <br />(Kg.)
+                                </strong>
+                            </td>
+                            <td colspan="1" />
+                        </tr>
+                        <tr>
+                            <td colspan="14" style="font-size:18px;text-align:center;">
+                                <strong>
+                                    <span>TOTAL EXPEDITIONS: </span>
+                                    <span t-esc="len(deliveries)" />
+                                </strong>
+                                <br />
+                            </td>
+                        </tr>
+                    </table>
+                </center>
+            </div>
+        </t>
+    </template>
+    <record id="mrw_manifest_report" model="ir.actions.report">
+        <field name="name">MRW Manifest</field>
+        <field name="model">mrw.manifest.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">delivery_mrw.mrw_manifest_report_view</field>
+        <field name="paperformat_id" ref="delivery_mrw.paperformat_manifest" />
+    </record>
+    <record id="action_delivery_mrw_manifest_wizard" model="ir.actions.act_window">
+        <field name="name">MRW Manifest</field>
+        <field name="res_model">mrw.manifest.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem
+        id="menu_mrw_manifest"
+        name="MRW Deliveries Manifest"
+        action="action_delivery_mrw_manifest_wizard"
+        parent="stock.menu_warehouse_report"
+        sequence="99"
+    />
+</odoo>
