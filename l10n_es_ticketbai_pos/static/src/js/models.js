@@ -75,6 +75,19 @@ odoo.define("l10n_es_ticketbai_pos.models", function (require) {
 
                 return order.tbai_current_invoice
                     .then((tbai_inv) => {
+                        // Check if export failed
+                        const exported = order.export_as_JSON();
+                        if (exported.tbai_export_failed) {
+                            Gui.showPopup("Error", {
+                                title: _t("TicketBAI"),
+                                body: _t(
+                                    "The TicketBAI invoice could not be signed. " +
+                                        "Please refresh and try again."
+                                ),
+                            });
+                            return Promise.reject(new Error("TicketBAI export failed"));
+                        }
+
                         if (tbai_inv) {
                             const tbai_last_invoice_data = {
                                 order: {
@@ -88,15 +101,15 @@ odoo.define("l10n_es_ticketbai_pos.models", function (require) {
                             };
                             this.set_tbai_last_invoice_data(tbai_last_invoice_data);
                         }
-                        // Even if null → still push the order (it's already validated)
                         return super.push_single_order(...arguments);
                     })
                     .catch((err) => {
-                        console.error(
-                            "push_single_order: TicketBAI processing failed",
-                            err
-                        );
-                        // Do NOT block order sync — but log it
+                        console.error("push_single_order: TicketBAI failed", err);
+                        // ← BLOCK the push on TicketBAI errors
+                        if (err.message === "TicketBAI export failed") {
+                            // Don't push
+                            return Promise.reject(err);
+                        }
                         return super.push_single_order(...arguments);
                     });
             }
@@ -179,6 +192,8 @@ odoo.define("l10n_es_ticketbai_pos.models", function (require) {
                 super(...arguments);
                 this.tbai_simplified_invoice = null;
                 this.tbai_current_invoice = $.when();
+                // NEW: Prevent concurrent builds
+                this._tbai_build_lock = false;
                 if (this.pos.company.tbai_enabled && "json" in arguments[1]) {
                     this.tbai_simplified_invoice =
                         new tbai_models.TicketBAISimplifiedInvoice(
@@ -265,6 +280,7 @@ odoo.define("l10n_es_ticketbai_pos.models", function (require) {
                     if (tbai_inv !== null) {
                         const datas = tbai_inv.datas;
                         const signature_value = tbai_inv.signature_value;
+
                         if (datas !== null && signature_value !== null) {
                             json.tbai_signature_value = signature_value;
                             json.tbai_datas = datas;
@@ -275,7 +291,18 @@ odoo.define("l10n_es_ticketbai_pos.models", function (require) {
                                 json.tbai_previous_order_pos_reference =
                                     tbai_inv.previous_tbai_invoice.order.simplified_invoice;
                             }
+                        } else {
+                            // ← MARK the order as invalid
+                            json.tbai_export_failed = true;
+                            json.tbai_datas = null;
+                            json.tbai_signature_value = null;
                         }
+                    } else if (!this.to_invoice) {
+                        // No invoice AND not creating full invoice = REQUIRED but MISSING
+                        // This is the error case: TicketBAI simplified invoice required but not built
+                        json.tbai_export_failed = true;
+                        json.tbai_datas = null;
+                        json.tbai_signature_value = null;
                     }
                 }
                 return json;
@@ -293,43 +320,75 @@ odoo.define("l10n_es_ticketbai_pos.models", function (require) {
             }
 
             async tbai_build_invoice() {
-                /*
-                 * Reset a previously rejected promise to a safe resolved state.
-                 * Works with both native Promises and jQuery Deferreds (still used in Odoo 16 POS).
-                 */
-                var current = this.tbai_current_invoice;
-                if (current && typeof current.catch === "function") {
-                    try {
-                        await current;
-                    } catch (e) {
-                        /* Absorb */
-                    }
-                    if (
-                        (current.state && current.state() === "rejected") ||
-                        (current.isRejected && current.isRejected())
-                    ) {
-                        this.tbai_current_invoice = Promise.resolve(null);
-                    }
+                if (this._tbai_build_lock) {
+                    console.warn("[TicketBAI] Build already in progress, waiting...");
+                    return this.tbai_current_invoice;
                 }
 
-                this.tbai_current_invoice = this.tbai_current_invoice.then(async () => {
-                    if (!this.check_tbai_conf() || this.to_invoice) {
-                        return null;
+                this._tbai_build_lock = true;
+
+                try {
+                    var current = this.tbai_current_invoice;
+                    if (current && typeof current.catch === "function") {
+                        try {
+                            await current;
+                        } catch (e) {
+                            /* Absorb */
+                            console.warn("[TicketBAI] Previous build failed:", e);
+                        }
+                        if (
+                            (current.state && current.state() === "rejected") ||
+                            (current.isRejected && current.isRejected())
+                        ) {
+                            this.tbai_current_invoice = Promise.resolve(null);
+                        }
                     }
 
-                    const tbai_inv = new tbai_models.TicketBAISimplifiedInvoice(
-                        {},
-                        {
-                            pos: this.pos,
-                            order: this,
+                    this.tbai_current_invoice = this.tbai_current_invoice.then(
+                        async () => {
+                            if (!this.check_tbai_conf() || this.to_invoice) {
+                                console.info(
+                                    "[TicketBAI] Skipping invoice build (conf check failed or to_invoice)"
+                                );
+                                return null;
+                            }
+
+                            console.info("[TicketBAI] Starting invoice build...");
+                            const tbai_inv = new tbai_models.TicketBAISimplifiedInvoice(
+                                {},
+                                {
+                                    pos: this.pos,
+                                    order: this,
+                                }
+                            );
+
+                            await tbai_inv.build_invoice();
+                            console.info(
+                                "[TicketBAI] Invoice build completed successfully"
+                            );
+                            return tbai_inv;
                         }
                     );
 
-                    await tbai_inv.build_invoice();
-                    return tbai_inv;
-                });
+                    return this.tbai_current_invoice;
+                } finally {
+                    this._tbai_build_lock = false;
+                }
+            }
 
-                return this.tbai_current_invoice;
+            // NEW: Validation method to check invoice state
+            is_tbai_invoice_ready() {
+                if (!this.pos.company.tbai_enabled || this.to_invoice) {
+                    // Not required
+                    return true;
+                }
+
+                const inv = this.tbai_simplified_invoice;
+                if (!inv) {
+                    return false;
+                }
+
+                return Boolean(inv.datas && inv.signature_value && inv.tbai_identifier);
             }
         };
     Registries.Model.extend(Order, L10nEsTicketBAIPosOrder);
