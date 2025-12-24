@@ -76,11 +76,11 @@ class TestL10nEsAtcmod417Base(TestL10nEsAeatModBase):
         "l10n_es_igic.account_tax_template_igic_sop_i_15_inv": (320, 48),
         "l10n_es_igic.account_tax_template_igic_sop_i_20_inv": (330, 66),
         "l10n_es_igic.account_tax_template_igic_ISP0": (340, 0),
-        "l10n_es_igic.account_tax_template_igic_ISP3": (350, 0),
-        "l10n_es_igic.account_tax_template_igic_ISP7": (360, 0),
-        "l10n_es_igic.account_tax_template_igic_ISP95": (370, 0),
-        "l10n_es_igic.account_tax_template_igic_ISP15": (380, 0),
-        "l10n_es_igic.account_tax_template_igic_ISP20": (390, 0),
+        "l10n_es_igic.account_tax_template_igic_ISP3": (350, 10.5),
+        "l10n_es_igic.account_tax_template_igic_ISP7": (360, 25.2),
+        "l10n_es_igic.account_tax_template_igic_ISP95": (370, 35.15),
+        "l10n_es_igic.account_tax_template_igic_ISP15": (380, 57),
+        "l10n_es_igic.account_tax_template_igic_ISP20": (390, 78),
         "l10n_es_igic.account_tax_template_igic_p_re0": (410, 0),
         "l10n_es_igic.account_tax_template_igic_p_re03": (420, 1.26),
         "l10n_es_igic.account_tax_template_igic_p_re07": (430, 3.01),
@@ -141,19 +141,13 @@ class TestL10nEsAtcmod417Base(TestL10nEsAeatModBase):
                 + (2400 - 240)  # account_tax_template_igic_r_9_5
                 + (2600 - 260)  # account_tax_template_igic_r_15
                 + (2800 - 280)  # account_tax_template_igic_r_20
-                + (200)  # account_tax_template_igic_sop_0
-                + (300 - 30)  # account_tax_template_igic_sop_3
-                + (400 - 40)  # account_tax_template_igic_sop_7
-                + (500 - 50)  # account_tax_template_igic_sop_9_5
-                + (600 - 60)  # account_tax_template_igic_sop_15
-                + (700 - 70)  # account_tax_template_igic_sop_20
-                + (110)  # account_tax_template_igic_sop_0_inv
-                + (120)  # account_tax_template_igic_sop_3_inv
-                + (130)  # account_tax_template_igic_sop_7_inv
-                + (140)  # account_tax_template_igic_sop_9_5_inv
-                + (150)  # account_tax_template_igic_sop_15_inv
-                + (160)
-            )  # account_tax_template_igic_sop_20_inv
+                + 340  # account_tax_template_igic_ISP0,
+                + 350  # account_tax_template_igic_ISP3,
+                + 360  # account_tax_template_igic_ISP7,
+                + 370  # account_tax_template_igic_ISP95,
+                + 380  # account_tax_template_igic_ISP15,
+                + 390  # account_tax_template_igic_ISP20,
+            )
         ),
         # Modificación bases y cuotas - Cuota (Ventas + Compras)
         "22": (
@@ -165,19 +159,13 @@ class TestL10nEsAtcmod417Base(TestL10nEsAeatModBase):
                 + (228 - 22.8)  # account_tax_template_igic_r_9_5
                 + (390 - 39)  # account_tax_template_igic_r_15
                 + (560 - 56)  # account_tax_template_igic_r_20
-                + (0)  # account_tax_template_igic_sop_0
-                + (9 - 0.9)  # account_tax_template_igic_sop_3
-                + (28 - 2.8)  # account_tax_template_igic_sop_7
-                + (47.5 - 4.75)  # account_tax_template_igic_sop_9_5
-                + (90 - 9)  # account_tax_template_igic_sop_15
-                + (140 - 14)  # account_tax_template_igic_sop_20
-                + (0)  # account_tax_template_igic_sop_0_inv
-                + (3.6)  # account_tax_template_igic_sop_3_inv
-                + (9.1)  # account_tax_template_igic_sop_7_inv
-                + (13.3)  # account_tax_template_igic_sop_9_5_inv
-                + (22.5)  # account_tax_template_igic_sop_15_inv
-                + (32)
-            )  # account_tax_template_igic_sop_20_inv
+                + 0  # account_tax_template_igic_ISP0,
+                + 10.5  # account_tax_template_igic_ISP3,
+                + 25.2  # account_tax_template_igic_ISP7,
+                + 35.15  # account_tax_template_igic_ISP95,
+                + 57  # account_tax_template_igic_ISP15,
+                + 78  # account_tax_template_igic_ISP20,
+            )
         ),
         # IGIC deducible en operaciones interiores bienes y servicios corrientes - Base
         "26": (
@@ -357,6 +345,12 @@ class TestL10nEsAtcmod417Base(TestL10nEsAeatModBase):
                 + (150)
                 # account_tax_template_igic_sop_20_inv
                 + (160)
+                + 340  # account_tax_template_igic_ISP0,
+                + 350  # account_tax_template_igic_ISP3,
+                + 360  # account_tax_template_igic_ISP7,
+                + 370  # account_tax_template_igic_ISP95,
+                + 380  # account_tax_template_igic_ISP15,
+                + 390  # account_tax_template_igic_ISP20,
             )
         ),
         # Rectificación de deducciones - Cuota
@@ -387,6 +381,12 @@ class TestL10nEsAtcmod417Base(TestL10nEsAeatModBase):
                 + (22.5)
                 # account_tax_template_igic_sop_20_inv
                 + (32)
+                + 0  # account_tax_template_igic_ISP0,
+                + 10.5  # account_tax_template_igic_ISP3,
+                + 25.2  # account_tax_template_igic_ISP7,
+                + 35.15  # account_tax_template_igic_ISP95,
+                + 57  # account_tax_template_igic_ISP15,
+                + 78  # account_tax_template_igic_ISP20,
             )
         ),
     }
@@ -600,18 +600,18 @@ class TestL10nEsAeatmod417(TestL10nEsAtcmod417Base):
         self.assertEqual(otp_node.attrib["PAI"], "ES")
         igi_dev_node = dec_node.xpath("//IGI_DEV")
         self.assertEqual(len(igi_dev_node), 1)
-        self.assertEqual(igi_dev_node[0].attrib["TOT"], "275960")
+        self.assertEqual(igi_dev_node[0].attrib["TOT"], "291730")
         igi_ded_node = dec_node.xpath("//IGI_DED")
         self.assertEqual(len(igi_ded_node), 1)
-        self.assertEqual(igi_ded_node[0].attrib["TOT"], "233930")
+        self.assertEqual(igi_ded_node[0].attrib["TOT"], "213345")
         liq_node = dec_node.xpath("//LIQ")
         self.assertEqual(len(liq_node), 1)
-        self.assertEqual(liq_node[0].attrib["DIF"], "42030")
-        self.assertEqual(liq_node[0].attrib["RLI"], "42030")
+        self.assertEqual(liq_node[0].attrib["DIF"], "78385")
+        self.assertEqual(liq_node[0].attrib["RLI"], "78385")
         res_node = dec_node.xpath("//RES")
         self.assertEqual(len(res_node), 1)
         self.assertEqual(res_node[0].attrib["TIP"], "I")
-        self.assertEqual(res_node[0].attrib["IMP"], "42030")
+        self.assertEqual(res_node[0].attrib["IMP"], "78385")
         self.assertEqual(res_node[0].attrib["FPA"], "5")
 
     def test_model_417_declaration_pdf(self):
