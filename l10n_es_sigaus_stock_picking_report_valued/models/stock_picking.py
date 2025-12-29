@@ -39,3 +39,9 @@ class StockPicking(models.Model):
             pick.picking_total_with_sigaus = (
                 pick.sigaus_amount_total + pick.amount_total
             )
+
+    def _get_report_valued_total_amount(self):
+        total = super()._get_report_valued_total_amount()
+        if self.sale_id and self.sale_id.is_sigaus:
+            total += self.sigaus_amount_total or 0.0
+        return total

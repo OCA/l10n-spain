@@ -82,3 +82,42 @@ class TestL10nEsSigausStockPickingReportValued(TestL10nEsSigausCommon):
         self.assertAlmostEqual(
             picking.picking_total_with_sigaus, sale.amount_total, places=2
         )
+
+    def test_get_report_valued_total_amount_with_sigaus(self):
+        sale = self.env["sale.order"].create(
+            {
+                "company_id": self.company.id,
+                "partner_id": self.partner.id,
+                "date_order": "2023-01-01",
+                "fiscal_position_id": self.fiscal_position_sigaus.id,
+                "is_sigaus": True,
+                "order_line": [
+                    (
+                        0,
+                        False,
+                        {
+                            "product_id": self.product_sigaus_in_product.id,
+                            "product_uom_qty": 10,
+                            "price_unit": 2,
+                            "tax_id": [self.tax.id],
+                        },
+                    )
+                ],
+            }
+        )
+        sale.action_confirm()
+        picking = sale.picking_ids
+        line = picking.move_line_ids
+        line.write({"qty_done": 10})
+        line._compute_sale_order_line_fields()
+        picking._compute_amount_all()
+        picking._compute_sigaus_amount()
+        total = picking._get_report_valued_total_amount()
+        base_total = picking.amount_total or 0.0
+        expected_total = base_total + picking.sigaus_amount_total
+        self.assertAlmostEqual(
+            total,
+            expected_total,
+            places=2,
+            msg="Valued picking total must include SIGAUS amount when sale is SIGAUS",
+        )
