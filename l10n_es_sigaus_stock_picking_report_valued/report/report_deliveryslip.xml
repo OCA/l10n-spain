@@ -7,7 +7,7 @@
     >
         <xpath expr="//span[@t-field='o.amount_untaxed']/../../../.." position="after">
             <t
-                t-if="o.valued and o.sale_id and o.sale_id.is_sigaus and o.move_line_ids and is_outgoing"
+                t-if="o.valued and o.sale_id and o.sale_id.is_sigaus and o.move_line_ids and is_outgoing and abs(o.sigaus_amount_total) >= o.currency_id.rounding"
             >
                 <table class="table table-sm mt32" name="sigaus_valued">
                     <thead>
@@ -32,22 +32,6 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="col-6 ms-auto">
-                    <table
-                        class="table table-sm"
-                        style="background-color: rgba(0, 0, 0, 0.2);"
-                        name="sigaus_total"
-                    >
-                        <tr>
-                            <td>
-                                <strong>Total Picking</strong>
-                            </td>
-                            <td class="text-end">
-                                <strong t-field="o.picking_total_with_sigaus" />
-                            </td>
-                        </tr>
-                    </table>
-                </div>
             </t>
         </xpath>
     </template>
