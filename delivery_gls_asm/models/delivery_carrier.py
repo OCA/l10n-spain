@@ -316,7 +316,7 @@ class DeliveryCarrier(models.Model):
             )
             # We post an extra message in the chatter with the barcode and the
             # label because there's clean way to override the one sent by core.
-            body = _("GLS Shipping extra info:\n" "barcode: %s") % response.get(
+            body = _("GLS Shipping extra info:\nbarcode: %s") % response.get(
                 "_codbarras"
             )
             attachment = []
