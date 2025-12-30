@@ -241,14 +241,12 @@ msgstr ""
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
-#, python-format
 msgid "Couldn't find the consignee street"
 msgstr ""
 
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
-#, python-format
 msgid "Couldn't find the sender street"
 msgstr ""
 
@@ -458,7 +456,6 @@ msgstr ""
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
-#, python-format
 msgid ""
 "GLS ASM API doesn't provide methods to compute delivery rates, so\n"
 "                you should relay on another price method instead or override "
@@ -474,7 +471,6 @@ msgstr ""
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
-#, python-format
 msgid "GLS Cancellation failed with reason: %s"
 msgstr ""
 
@@ -499,7 +495,6 @@ msgstr ""
 #: model:ir.actions.act_window,name:delivery_gls_asm.action_delivery_gls_asm_manifest_wizard
 #: model:ir.actions.report,name:delivery_gls_asm.gls_asm_manifest_report
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.delivery_manifest_wizard_form
-#, python-format
 msgid "GLS Manifest"
 msgstr ""
 
@@ -511,7 +506,6 @@ msgstr ""
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
-#, python-format
 msgid ""
 "GLS Pickup extra info:<br/> Tracking number: %(codigo)s<br/> Bultos: "
 "%(bultos)s"
@@ -526,7 +520,6 @@ msgstr ""
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
-#, python-format
 msgid ""
 "GLS Shipping extra info:\n"
 "barcode: %s"
@@ -540,14 +533,12 @@ msgstr ""
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/stock_picking.py:0
-#, python-format
 msgid "GLS label for %s"
 msgstr ""
 
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
-#, python-format
 msgid ""
 "GLS returned an error trying to record the shipping for %(ref)s.\n"
 "Error:\n"
@@ -557,7 +548,6 @@ msgstr ""
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
-#, python-format
 msgid ""
 "GLS-ASM API doesn't admit a reference number higher than 15 characters. In "
 "order to handle it, they trim thereference and as the reference is unique to "
@@ -574,7 +564,6 @@ msgstr ""
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
-#, python-format
 msgid ""
 "GLS: No response from server getting state from ref %(ref)s.\n"
 "Traceback:\n"
@@ -584,7 +573,6 @@ msgstr ""
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
-#, python-format
 msgid ""
 "GLS: No response from server printing label with ref %(ref)s.\n"
 "Traceback:\n"
@@ -656,15 +644,9 @@ msgstr ""
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/wizard/gls_asm_manifest_wizard.py:0
-#, python-format
 msgid ""
 "It wasn't possible to get the manifest. Maybe there aren'tdeliveries for the "
 "selected date."
-msgstr ""
-
-#. module: delivery_gls_asm
-#: model:ir.model.fields,field_description:delivery_gls_asm.field_gls_asm_minifest_wizard____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -710,7 +692,6 @@ msgstr ""
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
-#, python-format
 msgid ""
 "No response from server recording GLS delivery %(ref)s.\n"
 "Traceback:\n"
@@ -1019,6 +1000,20 @@ msgid "Solicitud de devolución"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
+msgid ""
+"The service %s is a pickup service. If you want to record a pickup, please "
+"first use the 'Send Pickup' button in the picking."
+msgstr ""
+
+#. module: delivery_gls_asm
+#. odoo-python
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
+msgid "The service %s is not a pickup service."
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model,name:delivery_gls_asm.model_stock_picking
 msgid "Transfer"
 msgstr ""
@@ -1026,7 +1021,6 @@ msgstr ""
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
-#, python-format
 msgid ""
 "Unable to cancel GLS Expedition with reference %(ref)s as it is in state "
 "%(state)s.\n"
