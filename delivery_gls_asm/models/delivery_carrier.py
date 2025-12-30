@@ -273,7 +273,17 @@ class DeliveryCarrier(models.Model):
         result = []
         for picking in pickings:
             if picking.carrier_id.gls_is_pickup_service:
-                continue
+                service_name = dict(
+                    picking.carrier_id._fields["gls_asm_service"].selection
+                ).get(picking.carrier_id.gls_asm_service)
+                raise UserError(
+                    _(
+                        "The service %s is a pickup service. "
+                        "If you want to record a pickup, please first use the "
+                        "'Send Pickup' button in the picking."
+                    )
+                    % service_name
+                )
             vals = self._prepare_gls_asm_shipping(picking)
             if len(vals.get("referencia_c", "")) > 15:
                 raise UserError(
@@ -343,7 +353,12 @@ class DeliveryCarrier(models.Model):
         result = []
         for picking in pickings:
             if not picking.carrier_id.gls_is_pickup_service:
-                continue
+                service_name = dict(
+                    picking.carrier_id._fields["gls_asm_service"].selection
+                ).get(picking.carrier_id.gls_asm_service)
+                raise UserError(
+                    _("The service %s is not a pickup service.") % service_name
+                )
             vals = self._prepare_gls_asm_pickup(picking)
             vals.update({"tracking_number": False, "exact_price": 0})
             response = gls_request._send_pickup(vals)
