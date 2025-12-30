@@ -28,11 +28,6 @@ msgstr "<strong>Import sense impostos SIGAUS</strong>"
 
 #. module: l10n_es_sigaus_stock_picking_report_valued
 #: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_stock_picking_report_valued.l10n_es_sigaus_report_delivery_document
-msgid "<strong>Total Picking</strong>"
-msgstr "<strong>Total recollida</strong>"
-
-#. module: l10n_es_sigaus_stock_picking_report_valued
-#: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_stock_picking_report_valued.l10n_es_sigaus_report_delivery_document
 msgid "<strong>Total SIGAUS</strong>"
 msgstr "<strong>Total SIGAUS</strong>"
 
@@ -73,3 +68,6 @@ msgstr "Import total SIGAUS"
 #: model:ir.model,name:l10n_es_sigaus_stock_picking_report_valued.model_stock_picking
 msgid "Transfer"
 msgstr "Transferència"
+
+#~ msgid "<strong>Total Picking</strong>"
+#~ msgstr "<strong>Total recollida</strong>"

@@ -29,11 +29,6 @@ msgstr "<strong>SIGAUS Imponible</strong>"
 
 #. module: l10n_es_sigaus_stock_picking_report_valued
 #: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_stock_picking_report_valued.l10n_es_sigaus_report_delivery_document
-msgid "<strong>Total Picking</strong>"
-msgstr "<strong>TOTAL ALBARÁN</strong>"
-
-#. module: l10n_es_sigaus_stock_picking_report_valued
-#: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_stock_picking_report_valued.l10n_es_sigaus_report_delivery_document
 msgid "<strong>Total SIGAUS</strong>"
 msgstr "<strong>Total SIGAUS</strong>"
 
@@ -74,3 +69,6 @@ msgstr "Total SIGAUS"
 #: model:ir.model,name:l10n_es_sigaus_stock_picking_report_valued.model_stock_picking
 msgid "Transfer"
 msgstr "Albarán"
+
+#~ msgid "<strong>Total Picking</strong>"
+#~ msgstr "<strong>TOTAL ALBARÁN</strong>"
