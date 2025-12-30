@@ -1,7 +1,8 @@
 # Copyright 2020 Tecnativa - David Vidal
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import _, fields, models
+from odoo import fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Domain
 
 
 class DeliverySeurManifiestoWizard(models.TransientModel):
@@ -20,21 +21,24 @@ class DeliverySeurManifiestoWizard(models.TransientModel):
     )
 
     def get_manifest_domain(self):
-        return [
-            ("carrier_id", "=", self.carrier_id.id),
-            ("carrier_tracking_ref", "!=", False),
-            ("state", "=", "done"),
-            ("date_done", ">=", self.date_from),
-        ]
+        return Domain(
+            [
+                ("carrier_id", "=", self.carrier_id.id),
+                ("carrier_tracking_ref", "!=", False),
+                ("state", "=", "done"),
+                ("date_done", ">=", self.date_from),
+            ]
+        )
 
     def get_manifest(self):
+        domain = self.get_manifest_domain()
         pickings = self.env["stock.picking"].search(
-            self.get_manifest_domain(), order="priority desc, date_done asc"
+            domain, order="priority desc, date_done asc"
         )
         if not pickings:
             raise UserError(
-                _(
-                    "It wasn't possible to get the manifest. Maybe there aren't"
+                self.env._(
+                    "It wasn't possible to get the manifest. Maybe there aren't "
                     "deliveries for the selected date."
                 )
             )
