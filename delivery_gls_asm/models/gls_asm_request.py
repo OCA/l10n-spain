@@ -4,7 +4,6 @@ import binascii
 import logging
 import os
 
-from odoo import _
 from odoo.exceptions import UserError
 
 from .gls_asm_master_data import GLS_PICKUP_ERROR_CODES, GLS_SHIPMENT_ERROR_CODES
@@ -27,11 +26,12 @@ class GlsAsmRequest:
     the provided API. We leave the operations empty for future.
     """
 
-    def __init__(self, uidcustomer=None):
+    def __init__(self, env, uidcustomer=None):
         """As the wsdl isn't public, we have to load it from local"""
         wsdl_path = os.path.join(
             os.path.dirname(os.path.realpath(__file__)), "../api/gls_asm_api.wsdl"
         )
+        self.env = env
         self.uidcustomer = uidcustomer or ""
         self.client = Client(f"file:{wsdl_path}", timeout=90)
 
@@ -221,11 +221,12 @@ class GlsAsmRequest:
             res = self.client.service.GrabaServicios(docIn=xml)
         except Exception as e:
             raise UserError(
-                _(
+                self.env._(
                     "No response from server recording GLS delivery %(ref)s.\n"
-                    "Traceback:\n%(error)s"
+                    "Traceback:\n%(error)s",
+                    ref=vals.get("referencia_c", ""),
+                    error=e,
                 )
-                % {"ref": vals.get("referencia_c", ""), "error": e}
             ) from e
         # Convert result suds object to dict and set the root conveniently
         # GLS API Errors have codes below 0 so we have to
@@ -236,16 +237,12 @@ class GlsAsmRequest:
         res["_return"] = int(res["Resultado"]["_return"])
         if res["_return"] < 0:
             raise UserError(
-                _(
+                self.env._(
                     "GLS returned an error trying to record the shipping for %(ref)s.\n"
-                    "Error:\n%(error)s"
+                    "Error:\n%(error)s",
+                    ref=vals.get("referencia_c", ""),
+                    error=GLS_SHIPMENT_ERROR_CODES.get(res["_return"], res["_return"]),
                 )
-                % {
-                    "ref": vals.get("referencia_c", ""),
-                    "error": GLS_SHIPMENT_ERROR_CODES.get(
-                        res["_return"], res["_return"]
-                    ),
-                }
             )
         if res.get("Etiquetas", {}).get("Etiqueta", {}).get("value"):
             res["gls_label"] = binascii.a2b_base64(
@@ -266,11 +263,12 @@ class GlsAsmRequest:
             res = self.client.service.GrabaServicios(docIn=xml)
         except Exception as e:
             raise UserError(
-                _(
+                self.env._(
                     "No response from server recording GLS delivery %(ref)s.\n"
-                    "Traceback:\n%(error)s"
+                    "Traceback:\n%(error)s",
+                    ref=vals.get("referencia_c", ""),
+                    error=e,
                 )
-                % {"ref": vals.get("referencia_c", ""), "error": e}
             ) from e
         # Convert result suds object to dict and set the root conveniently
         # GLS API Errors have codes below 0 so we have to
@@ -281,14 +279,12 @@ class GlsAsmRequest:
         res["_return"] = int(res["Resultado"]["_return"])
         if res["_return"] < 0:
             raise UserError(
-                _(
+                self.env._(
                     "GLS returned an error trying to record the shipping for %(ref)s.\n"
-                    "Error:\n%(error)s"
+                    "Error:\n%(error)s",
+                    ref=vals.get("referencia_c", ""),
+                    error=GLS_PICKUP_ERROR_CODES.get(res["_return"], res["_return"]),
                 )
-                % {
-                    "ref": vals.get("referencia_c", ""),
-                    "error": GLS_PICKUP_ERROR_CODES.get(res["_return"], res["_return"]),
-                }
             )
         return res
 
@@ -302,11 +298,12 @@ class GlsAsmRequest:
             _logger.debug(res)
         except Exception as e:
             raise UserError(
-                _(
+                self.env._(
                     "GLS: No response from server getting state from ref %(ref)s.\n"
-                    "Traceback:\n%(error)s"
+                    "Traceback:\n%(error)s",
+                    ref=reference,
+                    error=e,
                 )
-                % {"ref": reference, "error": e}
             ) from e
         res = self._recursive_asdict(res)
         return res
@@ -356,11 +353,12 @@ class GlsAsmRequest:
             _logger.debug(res)
         except Exception as e:
             raise UserError(
-                _(
+                self.env._(
                     "GLS: No response from server printing label with ref %(ref)s.\n"
-                    "Traceback:\n%(error)s"
+                    "Traceback:\n%(error)s",
+                    ref=reference,
+                    error=e,
                 )
-                % {"ref": reference, "error": e}
             ) from e
         res = self._recursive_asdict(res)
         label = res.get("base64Binary")
