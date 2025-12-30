@@ -6,7 +6,7 @@ from xml.sax.saxutils import escape
 
 import requests
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 from .gls_asm_master_data import (
@@ -133,12 +133,12 @@ class DeliveryCarrier(models.Model):
         if sender_partner.street2:
             sender_street += " " + sender_partner.street2
         if not sender_street:
-            raise UserError(_("Couldn't find the sender street"))
+            raise UserError(self.env._("Couldn't find the sender street"))
         consignee_street = consignee.street or ""
         if consignee.street2:
             consignee_street += " " + consignee.street2
         if not consignee_street:
-            raise UserError(_("Couldn't find the consignee street"))
+            raise UserError(self.env._("Couldn't find the consignee street"))
         cash_amount = 0
         if self.gls_asm_cash_on_delivery:
             cash_amount = picking.sale_id.amount_total
@@ -169,7 +169,14 @@ class DeliveryCarrier(models.Model):
             "remite_pais": "34",  # [mandatory] always 34=Spain
             "remite_cp": sender_partner.zip or "",
             "remite_telefono": self._sanitize_phone_gls(sender_partner.phone or ""),
-            "remite_movil": self._sanitize_phone_gls(sender_partner.mobile or ""),
+            "remite_movil": self._sanitize_phone_gls(
+                (
+                    "mobile" in sender_partner
+                    and sender_partner.mobile
+                    or sender_partner.phone
+                )
+                or ""
+            ),
             "remite_email": escape(sender_partner.email or ""),
             "remite_departamento": "",
             "remite_nif": sender_partner.vat or "",
@@ -188,7 +195,13 @@ class DeliveryCarrier(models.Model):
             # make the expedition. Try to fallback to the commercial entity one
             "destinatario_telefono": recipient_phone,
             "destinatario_movil": self._sanitize_phone_gls(
-                consignee.mobile or consignee_entity.mobile or recipient_phone
+                ("mobile" in consignee and consignee.mobile or consignee.phone)
+                or (
+                    "mobile" in consignee_entity
+                    and consignee_entity.mobile
+                    or consignee_entity.phone
+                )
+                or recipient_phone
             ),
             "destinatario_email": escape(
                 consignee.email or consignee_entity.email or ""
@@ -230,12 +243,12 @@ class DeliveryCarrier(models.Model):
         if sender_partner.street2:
             sender_street += " " + sender_partner.street2
         if not sender_street:
-            raise UserError(_("Couldn't find the sender street"))
+            raise UserError(self.env._("Couldn't find the sender street"))
         receiving_street = receiving_partner.street or ""
         if receiving_partner.street2:
             receiving_street += " " + receiving_partner.street2
         if not receiving_street:
-            raise UserError(_("Couldn't find the consignee street"))
+            raise UserError(self.env._("Couldn't find the consignee street"))
         recipient_phone = self._sanitize_phone_gls(
             receiving_partner.phone or receiving_partner.parent_id.phone or ""
         )
@@ -260,7 +273,17 @@ class DeliveryCarrier(models.Model):
                 sender_partner.phone or sender_partner.parent_id.phone or ""
             ),
             "remite_movil": self._sanitize_phone_gls(
-                sender_partner.mobile or sender_partner.parent_id.mobile or ""
+                (
+                    "mobile" in sender_partner
+                    and sender_partner.mobile
+                    or sender_partner.phone
+                )
+                or (
+                    "mobile" in sender_partner.parent_id
+                    and sender_partner.parent_id.mobile
+                    or sender_partner.parent_id.phone
+                )
+                or ""
             ),
             "remite_email": (
                 sender_partner.email or sender_partner.parent_id.email or ""
@@ -275,8 +298,16 @@ class DeliveryCarrier(models.Model):
             "destinatario_cp": receiving_partner.zip or "",
             "destinatario_telefono": recipient_phone,
             "destinatario_movil": self._sanitize_phone_gls(
-                receiving_partner.mobile
-                or receiving_partner.parent_id.mobile
+                (
+                    "mobile" in receiving_partner
+                    and receiving_partner.mobile
+                    or receiving_partner.phone
+                )
+                or (
+                    "mobile" in receiving_partner.parent_id
+                    and receiving_partner.parent_id.mobile
+                    or receiving_partner.parent_id.phone
+                )
                 or recipient_phone
             ),
             "destinatario_email": (
@@ -294,7 +325,7 @@ class DeliveryCarrier(models.Model):
         to this design, we have to inject vals in the context to be able to
         add them to the message.
         """
-        gls_request = GlsAsmRequest(self._gls_asm_uid())
+        gls_request = GlsAsmRequest(self.env, self._gls_asm_uid())
         result = []
         for picking in pickings:
             if picking.carrier_id.gls_is_pickup_service:
@@ -302,17 +333,17 @@ class DeliveryCarrier(models.Model):
                     picking.carrier_id._fields["gls_asm_service"].selection
                 ).get(picking.carrier_id.gls_asm_service)
                 raise UserError(
-                    _(
+                    self.env._(
                         "The service %s is a pickup service. "
                         "If you want to record a pickup, please first use the "
-                        "'Send Pickup' button in the picking."
+                        "'Send Pickup' button in the picking.",
+                        service_name,
                     )
-                    % service_name
                 )
             vals = self._prepare_gls_asm_shipping(picking)
             if len(vals.get("referencia_c", "")) > 15:
                 raise UserError(
-                    _(
+                    self.env._(
                         "GLS-ASM API doesn't admit a reference number higher than "
                         "15 characters. In order to handle it, they trim the"
                         "reference and as the reference is unique to every "
@@ -351,8 +382,8 @@ class DeliveryCarrier(models.Model):
             )
             # We post an extra message in the chatter with the barcode and the
             # label because there's clean way to override the one sent by core.
-            body = _("GLS Shipping extra info:\nbarcode: %s") % response.get(
-                "_codbarras"
+            body = self.env._(
+                "GLS Shipping extra info:\nbarcode: %s", response.get("_codbarras")
             )
             attachment = []
             if response.get("gls_label"):
@@ -374,7 +405,7 @@ class DeliveryCarrier(models.Model):
         to this design, we have to inject vals in the context to be able to
         add them to the message.
         """
-        gls_request = GlsAsmRequest(self._gls_asm_uid())
+        gls_request = GlsAsmRequest(self.env, self._gls_asm_uid())
         result = []
         for picking in pickings:
             if not picking.carrier_id.gls_is_pickup_service:
@@ -382,7 +413,7 @@ class DeliveryCarrier(models.Model):
                     picking.carrier_id._fields["gls_asm_service"].selection
                 ).get(picking.carrier_id.gls_asm_service)
                 raise UserError(
-                    _("The service %s is not a pickup service.") % service_name
+                    self.env._("The service %s is not a pickup service.", service_name)
                 )
             vals = self._prepare_gls_asm_pickup(picking)
             vals.update({"tracking_number": False, "exact_price": 0})
@@ -400,10 +431,12 @@ class DeliveryCarrier(models.Model):
             picking.gls_asm_public_tracking_ref = response.get("_codigo")
             # We post an extra message in the chatter with the barcode and the
             # label because there's clean way to override the one sent by core.
-            body = _(
+            body = self.env._(
                 "GLS Pickup extra info:<br/> "
                 "Tracking number: %(codigo)s<br/> Bultos: %(bultos)s",
-            ) % {"codigo": response.get("_codigo"), "bultos": vals["bultos"]}
+                codigo=response.get("_codigo"),
+                bultos=vals["bultos"],
+            )
             picking.message_post(body=body)
             result.append(vals)
         return result
@@ -413,7 +446,7 @@ class DeliveryCarrier(models.Model):
         self.ensure_one()
         if not picking.carrier_tracking_ref:
             return
-        gls_request = GlsAsmRequest(self._gls_asm_uid())
+        gls_request = GlsAsmRequest(self.env, self._gls_asm_uid())
         tracking_info = {}
         digitalizaciones = []
         if not picking.carrier_id.gls_is_pickup_service:
@@ -517,21 +550,19 @@ class DeliveryCarrier(models.Model):
 
     def gls_asm_cancel_shipment(self, pickings):
         """Cancel the expedition"""
-        gls_request = GlsAsmRequest(self._gls_asm_uid())
+        gls_request = GlsAsmRequest(self.env, self._gls_asm_uid())
         for picking in pickings.filtered("carrier_tracking_ref"):
             self.gls_asm_tracking_state_update(picking=picking)
             if picking.delivery_state != "shipping_recorded_in_carrier":
                 raise UserError(
-                    _(
+                    self.env._(
                         "Unable to cancel GLS Expedition with reference "
                         "%(ref)s as it is in state %(state)s.\n"
                         "Please manage the cancellation of this "
-                        "shipment/pickup with GLS via email."
+                        "shipment/pickup with GLS via email.",
+                        ref=picking.carrier_tracking_ref,
+                        state=picking.tracking_state,
                     )
-                    % {
-                        "ref": picking.carrier_tracking_ref,
-                        "state": picking.tracking_state,
-                    }
                 )
             if picking.carrier_id.gls_is_pickup_service:
                 response = gls_request._cancel_pickup(picking.carrier_tracking_ref)
@@ -542,8 +573,9 @@ class DeliveryCarrier(models.Model):
             )
             self.log_xml(response or "", "GLS ASM Cancel Response")
             if not response or response.get("_return") < 0:
-                msg = _("GLS Cancellation failed with reason: %s") % response.get(
-                    "value", "Connection Error"
+                msg = self.env._(
+                    "GLS Cancellation failed with reason: %s",
+                    response.get("value", "Connection Error"),
                 )
                 picking.message_post(body=msg)
                 continue
@@ -558,15 +590,15 @@ class DeliveryCarrier(models.Model):
         return {
             "success": True,
             "price": self.product_id.lst_price,
-            "error_message": _(
-                """GLS ASM API doesn't provide methods to compute delivery rates, so
-                you should relay on another price method instead or override this
-                one in your custom code."""
+            "error_message": self.env._(
+                "GLS ASM API doesn't provide methods to compute delivery rates, so "
+                "you should relay on another price method instead or override this "
+                "one in your custom code."
             ),
-            "warning_message": _(
-                """GLS ASM API doesn't provide methods to compute delivery rates, so
-                you should relay on another price method instead or override this
-                one in your custom code."""
+            "warning_message": self.env._(
+                "GLS ASM API doesn't provide methods to compute delivery rates, so "
+                "you should relay on another price method instead or override this "
+                "one in your custom code."
             ),
         }
 
@@ -578,7 +610,7 @@ class DeliveryCarrier(models.Model):
         self.ensure_one()
         if not gls_asm_public_tracking_ref:
             return False
-        gls_request = GlsAsmRequest(self._gls_asm_uid())
+        gls_request = GlsAsmRequest(self.env, self._gls_asm_uid())
         label = gls_request._shipping_label(gls_asm_public_tracking_ref)
         if not label:
             return False
@@ -590,7 +622,7 @@ class DeliveryCarrier(models.Model):
         wizard = self.env["gls.asm.minifest.wizard"].create({"carrier_id": self.id})
         view_id = self.env.ref("delivery_gls_asm.delivery_manifest_wizard_form").id
         return {
-            "name": _("GLS Manifest"),
+            "name": self.env._("GLS Manifest"),
             "type": "ir.actions.act_window",
             "view_mode": "form",
             "res_model": "gls.asm.minifest.wizard",

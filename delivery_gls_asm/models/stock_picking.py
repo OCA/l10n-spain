@@ -1,6 +1,6 @@
 # Copyright 2020 Tecnativa - David Vidal
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import _, fields, models
+from odoo import fields, models
 
 
 class StockPicking(models.Model):
@@ -77,7 +77,7 @@ class StockPicking(models.Model):
         pdf = self.carrier_id.gls_asm_get_label(self.gls_asm_public_tracking_ref)
         label_name = f"gls_{self.gls_asm_public_tracking_ref}.pdf"
         self.message_post(
-            body=(_("GLS label for %s") % self.gls_asm_public_tracking_ref),
+            body=self.env._("GLS label for %s", self.gls_asm_public_tracking_ref),
             attachments=[(label_name, pdf)],
         )
 
@@ -88,11 +88,9 @@ class StockPicking(models.Model):
         res = self.carrier_id.gls_asm_send_pickup(self)[0]
         if res.get("tracking_number", ""):
             self.carrier_tracking_ref = res["tracking_number"]
-        msg = _(
-            (
-                "Request sent to carrier %(carrier_name)s for pick-up with"
-                " tracking number %(ref)s"
-            ),
+        msg = self.env._(
+            "Request sent to carrier %(carrier_name)s for pick-up with"
+            " tracking number %(ref)s",
             carrier_name=self.carrier_id.name,
             ref=self.carrier_tracking_ref,
         )
