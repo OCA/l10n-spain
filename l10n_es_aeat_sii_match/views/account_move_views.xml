@@ -53,7 +53,7 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_invoice_tree" />
         <field name="arch" type="xml">
-            <field name="state" position="after">
+            <field name="move_sent_values" position="after">
                 <!-- We add the fields to list view to see the value of the
                      selection instead of the key when grouping -->
                 <field

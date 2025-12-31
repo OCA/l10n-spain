@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===============================================================
 Sistema de comprobación y contraste de facturas enviadas al SII
 ===============================================================
@@ -17,35 +13,35 @@ Sistema de comprobación y contraste de facturas enviadas al SII
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_aeat_sii_match
+    :target: https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_aeat_sii_match
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-17-0/l10n-spain-17-0-l10n_es_aeat_sii_match
+    :target: https://translation.odoo-community.org/projects/l10n-spain-18-0/l10n-spain-18-0-l10n_es_aeat_sii_match
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=17.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-- El módulo recupera los datos enviados a la AEAT mediante peticiones
-  unitarias o por meses (como una declaración AEAT)
-- Los datos recibidos se procesan intentando asociarlos mediante su CSV
-  (Código Seguro de Verificación) y si no encuentra el CSV, busca por
-  número de factura/fecha/partner
-- El módulo muestra aquellos registros que no han conseguido asociarse,
-  así como aquellas facturas en Odoo que no tienen su correspondiente
-  registro en los datos recibidos.
-- En segundo lugar se exponen los registros que tienen diferencias entre
-  Odoo y AEAT
-- Por último se muestran por separado facturas 'No contrastadas' o
-  'Parcialmente contrastadas', es decir, las que la propia AEAT no haya
-  podido cotejar entre el emisor de la factura y el receptor, siendo los
-  dos obligados a declarar en el sistema SII.
+-  El módulo recupera los datos enviados a la AEAT mediante peticiones
+   unitarias o por meses (como una declaración AEAT)
+-  Los datos recibidos se procesan intentando asociarlos mediante su CSV
+   (Código Seguro de Verificación) y si no encuentra el CSV, busca por
+   número de factura/fecha/partner
+-  El módulo muestra aquellos registros que no han conseguido asociarse,
+   así como aquellas facturas en Odoo que no tienen su correspondiente
+   registro en los datos recibidos.
+-  En segundo lugar se exponen los registros que tienen diferencias
+   entre Odoo y AEAT
+-  Por último se muestran por separado facturas 'No contrastadas' o
+   'Parcialmente contrastadas', es decir, las que la propia AEAT no haya
+   podido cotejar entre el emisor de la factura y el receptor, siendo
+   los dos obligados a declarar en el sistema SII.
 
 **Table of contents**
 
@@ -58,7 +54,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_sii_match%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_sii_match%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -73,18 +69,18 @@ Authors
 Contributors
 ------------
 
-- `Studio73 <https://www.studio73.es>`__
+-  `Studio73 <https://www.studio73.es>`__
 
-  - Abraham Anes
-  - Pablo Fuentes
-  - Jordi Tolsá
-  - Guillermo Llinares
-  - Carlos Reyes
+   -  Abraham Anes
+   -  Pablo Fuentes
+   -  Jordi Tolsá
+   -  Guillermo Llinares
+   -  Carlos Reyes
 
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Víctor Martínez
-  - David Bañón Gil
+   -  Víctor Martínez
+   -  David Bañón Gil
 
 Maintainers
 -----------
@@ -110,6 +106,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-Abranes| |maintainer-Reyes4711-S73| 
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/17.0/l10n_es_aeat_sii_match>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_aeat_sii_match>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
