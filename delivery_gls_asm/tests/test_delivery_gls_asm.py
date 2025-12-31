@@ -22,6 +22,7 @@ class TestDeliveryGlsAsm(BaseCommon):
                 "delivery_type": "gls_asm",
                 "product_id": cls.shipping_product.id,
                 "prod_environment": False,
+                "gls_asm_service": "37",
             }
         )
         cls.product = cls.env["product.product"].create(
