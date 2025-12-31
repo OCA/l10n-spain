@@ -429,6 +429,16 @@ class DeliveryCarrier(models.Model):
             tracking_info = gls_request._get_tracking_states(
                 picking.carrier_tracking_ref
             )
+            if isinstance(tracking_info, list):
+                if len(tracking_info) > 1:
+                    raise UserError(
+                        self.env._(
+                            "The tracking reference %s is not unique in GLS. "
+                            "Please contact GLS to manage this shipment.",
+                            picking.carrier_tracking_ref,
+                        )
+                    )
+                tracking_info = tracking_info[0] if tracking_info else {}
             tracking_states = tracking_info.get("tracking_list", {}).get("tracking", [])
             # If there's just one state, we'll get a single dict, otherwise we
             # get a list of dicts
