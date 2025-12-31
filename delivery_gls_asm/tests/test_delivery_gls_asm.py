@@ -22,6 +22,7 @@ class TestDeliveryGlsAsm(BaseCommon):
                 "delivery_type": "gls_asm",
                 "product_id": cls.shipping_product.id,
                 "prod_environment": False,
+                "gls_asm_service": "37",
             }
         )
         cls.product = cls.env["product.product"].create(
@@ -46,6 +47,10 @@ class TestDeliveryGlsAsm(BaseCommon):
         cls.picking = cls.sale_order.picking_ids
         cls.picking.move_ids.quantity = 20
         cls.picking.number_of_packages = 1
+        cls.company = cls.env.user.company_id
+        cls.company.partner_id.street = "Avinguda Diagonal, 405"
+        cls.company.partner_id.city = "Barcelona"
+        cls.company.partner_id.zip = "08008"
 
     def test_01_gls_picking_confirm_simple(self):
         """The picking is confirm and the shipping is recorded to GLS"""
