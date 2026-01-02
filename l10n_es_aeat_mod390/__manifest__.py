@@ -33,6 +33,9 @@
         "data/2024/l10n.es.aeat.map.tax.csv",
         "data/2024/l10n.es.aeat.map.tax.line.tax.csv",  # Should be before the main one
         "data/2024/l10n.es.aeat.map.tax.line.csv",
+        # 2025
+        "data/2025/aeat.model.export.config.csv",
+        "data/2025/aeat.model.export.config.line.csv",
         # rest of stuff
         "views/mod390_view.xml",
         "views/account_move_view.xml",
