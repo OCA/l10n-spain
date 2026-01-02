@@ -19,19 +19,25 @@
     "license": "AGPL-3",
     "depends": ["l10n_es", "l10n_es_aeat"],
     "data": [
+        # 2022
         "data/2022/aeat.model.export.config.csv",
         "data/2022/aeat.model.export.config.line.csv",
+        # 2023
         "data/2023/aeat.model.export.config.csv",
         "data/2023/aeat.model.export.config.line.csv",
         "data/2023/l10n.es.aeat.map.tax.csv",
         "data/2023/l10n.es.aeat.map.tax.line.account.csv",
         "data/2023/l10n.es.aeat.map.tax.line.tax.csv",
         "data/2023/l10n.es.aeat.map.tax.line.csv",
+        # 2024-10
         "data/2024-10/aeat.model.export.config.csv",
         "data/2024-10/aeat.model.export.config.line.csv",
         "data/2024-10/l10n.es.aeat.map.tax.csv",
         "data/2024-10/l10n.es.aeat.map.tax.line.tax.csv",
         "data/2024-10/l10n.es.aeat.map.tax.line.csv",
+        # 2025-12
+        "data/2025-12/aeat.model.export.config.csv",
+        "data/2025-12/aeat.model.export.config.line.csv",
         "data/l10n.es.aeat.mod303.report.activity.code.csv",
         "views/mod303_view.xml",
         "views/l10n_es_aeat_mod303_report_activity_code_data_views.xml",
