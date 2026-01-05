@@ -352,8 +352,10 @@ class SiiMixin(models.AbstractModel):
         return res
 
     def _is_aeat_simplified_invoice(self):
-        """Inheritable method to allow control when an
-        invoice are simplified or normal"""
+        """Inheritable method to control when a invoice is simplified or normal."""
+        # we use the flag added in 17+ as extra check for avoiding to set anything
+        if self.l10n_es_is_simplified:
+            return True
         partner = self._aeat_get_partner()
         return partner.aeat_simplified_invoice
 
