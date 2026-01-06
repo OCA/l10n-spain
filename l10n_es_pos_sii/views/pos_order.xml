@@ -33,7 +33,19 @@
                             required="sii_enabled"
                             widget="selection"
                         />
-                        <field name="sii_enabled" invisible="1" />
+                        <label for="sii_send_date" />
+                        <div
+                            name="sii_send_date"
+                            invisible="aeat_state in ['sent','cancelled']"
+                        >
+                            <field name="sii_send_date" class="oe_inline text-break" />
+                            <button
+                                type="object"
+                                class="oi oi-arrow-right oe_link"
+                                name="send_sii_now"
+                                string="Send now to SII"
+                            />
+                        </div>
                     </group>
                     <group
                         string="SII Result"
