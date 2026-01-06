@@ -167,13 +167,16 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-.. |maintainer-Christian-RB| image:: https://github.com/Christian-RB.png?size=40px
-    :target: https://github.com/Christian-RB
-    :alt: Christian-RB
+.. |maintainer-christian-ramos-tecnativa| image:: https://github.com/christian-ramos-tecnativa.png?size=40px
+    :target: https://github.com/christian-ramos-tecnativa
+    :alt: christian-ramos-tecnativa
+.. |maintainer-carlos-lopez-tecnativa| image:: https://github.com/carlos-lopez-tecnativa.png?size=40px
+    :target: https://github.com/carlos-lopez-tecnativa
+    :alt: carlos-lopez-tecnativa
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-Christian-RB| 
+|maintainer-christian-ramos-tecnativa| |maintainer-carlos-lopez-tecnativa| 
 
 This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_atc_mod420>`_ project on GitHub.
 
