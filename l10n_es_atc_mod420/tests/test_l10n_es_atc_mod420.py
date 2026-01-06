@@ -7,6 +7,7 @@ import logging
 from datetime import datetime
 
 import requests
+from freezegun import freeze_time
 from lxml import etree
 
 from odoo.exceptions import UserError
@@ -567,6 +568,7 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
         self.model420.button_cancel()
         self.assertEqual(self.model420.state, "cancelled")
 
+    @freeze_time("2025-01-01")
     def test_model_420_declaration_xml(self):
         """
         Test the generation of the .xml file
@@ -613,6 +615,7 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
         self.assertEqual(res_node[0].attrib["IMP"], "78385")
         self.assertEqual(res_node[0].attrib["FPA"], "5")
 
+    @freeze_time("2025-01-01")
     def test_model_420_declaration_pdf(self):
         """
         Test the generation of the .pdf file
@@ -645,6 +648,7 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
                 test_l10n_es_atc_report=True
             ).action_generar_mod420()
 
+    @freeze_time("2025-01-01")
     def test_model_420_declaration_dec(self):
         """
         Test the generation of the .dec file
