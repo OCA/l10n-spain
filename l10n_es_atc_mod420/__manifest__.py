@@ -28,7 +28,7 @@
         "reports/mod420_report.xml",
         "views/mod420_view.xml",
     ],
-    "maintainers": ["Christian-RB"],
+    "maintainers": ["christian-ramos-tecnativa", "carlos-lopez-tecnativa"],
     "installable": True,
     "auto_install": False,
 }
