@@ -53,14 +53,14 @@ msgstr "Facturas anuladas en el SII"
 
 #. module: l10n_es_pos_sii
 #. odoo-javascript
-#: code:addons/l10n_es_pos_sii/static/src/js/Screens/TicketScreen/ControlButtons/InvoiceButton.js:0
+#: code:addons/l10n_es_pos_sii/static/src/js/Screens/TicketScreen/ControlButtons/InvoiceButton.esm.js:0
 #, python-format
 msgid "Cannot Invoice"
 msgstr "No facturable"
 
 #. module: l10n_es_pos_sii
 #. odoo-javascript
-#: code:addons/l10n_es_pos_sii/static/src/js/Screens/TicketScreen/ControlButtons/InvoiceButton.js:0
+#: code:addons/l10n_es_pos_sii/static/src/js/Screens/TicketScreen/ControlButtons/InvoiceButton.esm.js:0
 #, python-format
 msgid "Cannot invoice order from closed session."
 msgstr "No se puede facturar un pedido de una sesión cerrada."
@@ -83,12 +83,6 @@ msgstr "Compañías"
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__company_id
 msgid "Company"
 msgstr "Compañía"
-
-#. module: l10n_es_pos_sii
-#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__order_jobs_ids
-#: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
-msgid "Connector Jobs"
-msgstr "Trabajos del conector"
 
 #. module: l10n_es_pos_sii
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_enabled
@@ -129,7 +123,7 @@ msgstr ""
 
 #. module: l10n_es_pos_sii
 #. odoo-javascript
-#: code:addons/l10n_es_pos_sii/static/src/js/Screens/TicketScreen/ControlButtons/InvoiceButton.js:0
+#: code:addons/l10n_es_pos_sii/static/src/js/Screens/TicketScreen/ControlButtons/InvoiceButton.esm.js:0
 #, python-format
 msgid "Invoice"
 msgstr "Factura"
@@ -156,7 +150,7 @@ msgstr "Sesión TPV"
 
 #. module: l10n_es_pos_sii
 #. odoo-javascript
-#: code:addons/l10n_es_pos_sii/static/src/js/Screens/TicketScreen/ControlButtons/InvoiceButton.js:0
+#: code:addons/l10n_es_pos_sii/static/src/js/Screens/TicketScreen/ControlButtons/InvoiceButton.esm.js:0
 #, python-format
 msgid "Reprint Invoice"
 msgstr "Reimprimir factura"
@@ -200,6 +194,11 @@ msgstr "Resultado SII"
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_return
 msgid "SII Return"
 msgstr "Retorno SII"
+
+#. module: l10n_es_pos_sii
+#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_send_date
+msgid "SII Send Date"
+msgstr ""
 
 #. module: l10n_es_pos_sii
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_account_registration_date
@@ -257,16 +256,38 @@ msgid "SII sent"
 msgstr "Enviadas SII"
 
 #. module: l10n_es_pos_sii
+#: model:ir.actions.server,name:l10n_es_pos_sii.pos_order_send_to_sii_ir_actions_server
+msgid "Send Invoices to SII (POS)"
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
+msgid "Send now to SII"
+msgstr ""
+
+#. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
 msgid "Send to SII"
 msgstr "Enviar al SII"
 
 #. module: l10n_es_pos_sii
 #. odoo-javascript
-#: code:addons/l10n_es_pos_sii/static/src/js/Screens/TicketScreen/ControlButtons/InvoiceButton.js:0
+#: code:addons/l10n_es_pos_sii/static/src/js/Screens/TicketScreen/ControlButtons/InvoiceButton.esm.js:0
 #, python-format
 msgid "Session is closed"
 msgstr "La sesión está cerrada"
+
+#. module: l10n_es_pos_sii
+#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_needs_cancel
+msgid "Sii Needs Cancel"
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#. odoo-python
+#: code:addons/l10n_es_pos_sii/models/pos_order.py:0
+#, python-format
+msgid "Simplified Invoice Partner not found. Please update l10n_es module."
+msgstr ""
 
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
@@ -295,12 +316,12 @@ msgstr "Hay un cruce erróneo para tasas en RE. Chequéelas."
 msgid "With modifications not sent to SII"
 msgstr "Modificaciones no enviadas al SII"
 
-#. module: l10n_es_pos_sii
-#. odoo-python
-#: code:addons/l10n_es_pos_sii/models/pos_order.py:0
+#~ msgid "Connector Jobs"
+#~ msgstr "Trabajos del conector"
+
 #, python-format
-msgid "You must define a default partner for POS {}"
-msgstr "Es necesario definir un cliente por defecto para el TPV {}"
+#~ msgid "You must define a default partner for POS {}"
+#~ msgstr "Es necesario definir un cliente por defecto para el TPV {}"
 
 #~ msgid ""
 #~ "Indicates the state of this document in relation with the presentation at "
