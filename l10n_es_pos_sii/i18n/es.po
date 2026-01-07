@@ -47,6 +47,11 @@ msgid "Already sent to SII. It includes cancelled invoices"
 msgstr "Ya enviadas al SII. Incluye facturas canceladas"
 
 #. module: l10n_es_pos_sii
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
+msgid "CSV"
+msgstr ""
+
+#. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_order_filter
 msgid "Cancelled invoices at SII"
 msgstr "Facturas anuladas en el SII"
@@ -83,9 +88,19 @@ msgid "Company"
 msgstr "Compañía"
 
 #. module: l10n_es_pos_sii
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
+msgid "Description"
+msgstr ""
+
+#. module: l10n_es_pos_sii
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_enabled
 msgid "Enable SII"
 msgstr "Activar SII"
+
+#. module: l10n_es_pos_sii
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
+msgid "Failed"
+msgstr ""
 
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
@@ -126,6 +141,16 @@ msgid "Invoice"
 msgstr "Factura"
 
 #. module: l10n_es_pos_sii
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
+msgid "Last content sent"
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
+msgid "Last header sent"
+msgstr ""
+
+#. module: l10n_es_pos_sii
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_macrodata
 msgid "MacroData"
 msgstr "MacroData"
@@ -146,10 +171,25 @@ msgid "Point of Sale Session"
 msgstr "Sesión TPV"
 
 #. module: l10n_es_pos_sii
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
+msgid "Refund type"
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
+msgid "Registration key"
+msgstr ""
+
+#. module: l10n_es_pos_sii
 #. odoo-javascript
 #: code:addons/l10n_es_pos_sii/static/src/app/screens/ticket_screen/invoice_button.esm.js:0
 msgid "Reprint Invoice"
 msgstr "Reimprimir factura"
+
+#. module: l10n_es_pos_sii
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
+msgid "Response"
+msgstr ""
 
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
@@ -263,6 +303,16 @@ msgstr ""
 
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
+msgid "Send date"
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
+msgid "Send error"
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
 msgid "Send now to SII"
 msgstr ""
 
@@ -286,6 +336,11 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_es_pos_sii/models/pos_order.py:0
 msgid "Simplified Invoice Partner not found. Please update l10n_es module."
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
+msgid "State"
 msgstr ""
 
 #. module: l10n_es_pos_sii
