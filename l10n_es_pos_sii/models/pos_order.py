@@ -5,7 +5,7 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
-SII_VALID_POS_ORDER_STATES = ["done"]
+SII_VALID_POS_ORDER_STATES = ["paid", "done"]
 
 
 class PosOrder(models.Model):
