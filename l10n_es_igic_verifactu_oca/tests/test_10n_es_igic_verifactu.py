@@ -25,7 +25,7 @@ class TestL10nEsAeatVerifactuIgic(TestVerifactuIgicCommon):
                 "out_invoice",
                 [(100, ["igic_r_3"]), (200, ["igic_r_7"])],
                 {
-                    "fiscal_position_id": self.fp_nacional.id,
+                    "fiscal_position_id": self.fp_canary.id,
                     "verifactu_registration_key": self.fp_registration_key_01.id,
                     "verifactu_registration_date": "2026-01-01 19:20:30",
                 },
@@ -35,7 +35,7 @@ class TestL10nEsAeatVerifactuIgic(TestVerifactuIgicCommon):
                 "out_refund",
                 [(100, ["igic_r_3"]), (100, ["igic_r_3"]), (200, ["igic_r_7"])],
                 {
-                    "fiscal_position_id": self.fp_nacional.id,
+                    "fiscal_position_id": self.fp_canary.id,
                     "verifactu_registration_key": self.fp_registration_key_01.id,
                     "verifactu_registration_date": "2026-01-01 19:20:30",
                 },

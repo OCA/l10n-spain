@@ -5,7 +5,7 @@
 {
     "name": "Comunicación Veri*FACTU IGIC",
     "summary": "Comunicación Veri*FACTU para IGIC",
-    "version": "17.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Binhex," "Odoo Community Association (OCA)",
@@ -13,7 +13,7 @@
     "application": False,
     "installable": True,
     "depends": [
-        "l10n_es_igic",
+        "l10n_es",
         "l10n_es_verifactu_oca",
     ],
     "data": [

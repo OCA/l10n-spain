@@ -1,4 +1,7 @@
 # Copyright 2025 Binhex - Christian Ramos
+
+from odoo import Command
+
 from odoo.addons.l10n_es_verifactu_oca.tests.common import TestVerifactuCommon
 
 
@@ -8,66 +11,55 @@ class TestVerifactuIgicCommon(TestVerifactuCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.fp_nacional = cls.env.ref(f"account.{cls.company.id}_fp_canary")
+        chart = cls.env["account.chart.template"]
+        chart._load(
+            template_code="es_canary_pymes", company=cls.company, install_demo=False
+        )
+
+        cls.account_expense = cls.env.ref(
+            f"account.{cls.company.id}_account_common_600"
+        )
+
         cls.fp_registration_key_01 = cls.env.ref(
             "l10n_es_verifactu_oca.verifactu_registration_keys_igic_01"
         )
-        cls.fp_nacional.verifactu_registration_key = cls.fp_registration_key_01
-        cls.fp_nacional.verifactu_tax_key = "03"  # IGIC"
+
+        cls.fp_canary = cls.env.ref(f"account.{cls.company.id}_fp_canary_1")
+        cls.fp_canary.verifactu_registration_key = cls.fp_registration_key_01
+        cls.fp_canary.verifactu_tax_key = "03"  # IGIC
         cls.fp_recargo = cls.env.ref(f"account.{cls.company.id}_fp_recargo_canary")
         cls.fp_recargo.verifactu_registration_key = cls.fp_registration_key_01
+        cls.fp_recargo.verifactu_tax_key = "03"
 
-    def _create_test_company(
-        self,
-        name="Test Company",
-        vat="B87654321",
-        verifactu_enabled=True,
-    ):
-        """
-        Helper method to create a test company configured for verifactu.
-
-        Args:
-            name: Company name
-            vat: Company VAT number (must be in valid Spanish format
-                without country code)
-            verifactu_enabled: Enable verifactu for the company
-            verifactu_test: Set verifactu test mode
-
-        Returns:
-            res.company: Created company record
-        """
-        company = self.env["res.company"].create(
-            {"name": name, "vat": vat, "country_id": self.env.ref("base.es").id}
-        )
-        if not company.chart_template_id:
-            chart = self.env["account.chart.template"]
-            chart._load(
-                template_code="es_pymes_canary", company=company, install_demo=False
-            )
-        company.write(
+        cls.company.write(
             {
-                "verifactu_enabled": verifactu_enabled,
+                "verifactu_enabled": True,
                 "verifactu_test": True,
-                "tax_agency_id": self.env.ref(
+                "vat": "G87846952",
+                "country_id": cls.env.ref("base.es").id,
+                "tax_agency_id": cls.env.ref(
                     "l10n_es_aeat.aeat_tax_agency_canarias"
                 ).id,
-                "verifactu_developer_id": self.verifactu_developer.id,
+                "verifactu_developer_id": cls.verifactu_developer.id,
+                "verifactu_chaining_id": cls.verifactu_chaining.id,
             }
         )
-        return company
-
-    @classmethod
-    def _chart_of_accounts_create(cls):
-        cls.company = cls.env["res.company"].create(
-            {"name": "Spanish test company", "currency_id": cls.env.ref("base.EUR").id}
+        cls.invoice = cls.env["account.move"].create(
+            {
+                "company_id": cls.company.id,
+                "partner_id": cls.partner.id,
+                "invoice_date": "2026-01-01",
+                "move_type": "out_invoice",
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "product_id": cls.product.id,
+                            "account_id": cls.account_expense.id,
+                            "name": "Test line",
+                            "price_unit": 100,
+                            "quantity": 1,
+                        },
+                    )
+                ],
+            }
         )
-        cls.env.ref("base.group_multi_company").write({"users": [(4, cls.env.uid)]})
-        cls.env.user.write(
-            {"company_ids": [(4, cls.company.id)], "company_id": cls.company.id}
-        )
-        chart = cls.env["account.chart.template"]
-        chart._load(
-            template_code="es_pymes_canary", company=cls.company, install_demo=False
-        )
-        cls.with_context(company_id=cls.company.id)
-        return True
