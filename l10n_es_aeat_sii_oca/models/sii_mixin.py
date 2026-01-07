@@ -769,6 +769,7 @@ class SiiMixin(models.AbstractModel):
                 "CuotaRectificada",
                 "CuotaDeducible",
                 "ImporteCompensacionREAGYP",
+                "BaseImponibleACoste",
             ],
         )
         return inv_dict
