@@ -2,7 +2,9 @@
 #                Daniel Rodriguez Lijo <drl.9319@gmail.com>
 # Copyright 2017 ForgeFlow, S.L. <contact@forgeflow.com>
 # Copyright 2019 Tecnativa - Carlos Dauden
+# Copyright 2026 Tecnativa - Eduardo Ezerouali
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
+
 
 from odoo import api, fields, models
 
@@ -64,3 +66,11 @@ class L10nEsVatBookLine(models.Model):
     def _compute_tax_rate(self):
         for rec in self:
             rec.tax_rate = rec.tax_id.amount
+
+    def _get_settlement_period(self):
+        self.ensure_one()
+        month = self.move_id.date.month
+        if self.vat_book_id.vat_settlement_period == "quarterly":
+            return "{}T".format(int(((month - 1) / 3) + 1))
+        else:
+            return "{:02d}".format(month)

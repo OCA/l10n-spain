@@ -93,6 +93,9 @@
                     </page>
                 </notebook>
             </xpath>
+            <field name="period_type" position="after">
+                <field name="vat_settlement_period" />
+            </field>
         </field>
     </record>
     <record id="l10n_es_vat_book_action" model="ir.actions.act_window">
@@ -121,7 +124,7 @@
         id="menu_vat_book_report"
         parent="l10n_es_aeat.menu_root_aeat"
         action="l10n_es_vat_book_action"
-        name="Libro de IVA"
+        name="Libros del IVA y del IRPF"
     />
     <!-- sequence="340" -->
 </odoo>

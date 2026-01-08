@@ -6,6 +6,7 @@
   * Pedro M. Baeza
   * Carlos Dauden
   * Ernesto Tejeda
+  * Eduardo Ezerouali
 * Omar Castiñeira <omar@comunitea.com>
 * Fernando La Chica <fernandolachica@gmail.com>
 * Victor Garcia <victor.garcia@kayuulab.com>
