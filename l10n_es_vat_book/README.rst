@@ -1,10 +1,6 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
-============
-Libro de IVA
-============
+==================================
+Libros registro del IVA y del IRPF
+==================================
 
 .. 
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -17,7 +13,7 @@ Libro de IVA
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
@@ -32,10 +28,10 @@ Libro de IVA
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Módulo que calcula el libro de IVA español.
+Módulo que calcula los libros de IVA e IRPF español.
 
-Esto módulo introduce el menú "Libro de IVA" en Contabilidad -> Informe
--> Declaraciones AEAT -> Libro de IVA.
+Esto módulo introduce el menú "Libros de IVA y del IRPF" en Contabilidad
+-> Informe -> Declaraciones AEAT.
 
 Es posible visualizar e imprimir por separado:
 
@@ -99,6 +95,9 @@ Funcionalidades del Libro Registro de IVA no incluídas por el momento:
 - Criterio de caja
 - Regímenes especiales de seguros, de agencias de viaje o de bienes
   usados.
+- Clave de operación.
+- Deducible en periodo posterior.
+- Actividad
 
 Bug Tracker
 ===========
@@ -131,6 +130,7 @@ Contributors
   - Pedro M. Baeza
   - Carlos Dauden
   - Ernesto Tejeda
+  - Eduardo Ezerouali
 
 - Omar Castiñeira <omar@comunitea.com>
 - Fernando La Chica <fernandolachica@gmail.com>
