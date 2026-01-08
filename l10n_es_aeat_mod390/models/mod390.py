@@ -776,6 +776,7 @@ class L10nEsAeatMod390Report(models.Model):
                     ("year", "=", mod390.year),
                     ("state", "not in", ("draft", "cancelled")),
                     ("statement_type", "=", "N"),
+                    ("company_id", "=", mod390.company_id.id),
                 ]
             )
             if not reports_303_this_year:
