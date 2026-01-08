@@ -6,10 +6,11 @@
 # Copyright 2020 Tecnativa - Carlos Daudén
 # Copyright 2022 Comunitea - Omar Castiñeira
 # Copyright 2018,2023,2025 Tecnativa - Pedro M. Baeza
+# Copyright 2026 Tecnativa - Eduardo Ezerouali
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
-    "name": "Libro de IVA",
+    "name": "Libros registro del IVA y del IRPF",
     "version": "17.0.2.0.3",
     "author": "PRAXYA, ForgeFlow, Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
