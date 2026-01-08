@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-12 11:25+0000\n"
+"PO-Revision-Date: 2026-01-12 11:25+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -36,6 +38,14 @@ msgstr ""
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__prorate_id
 msgid "Prorate"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303_vat_prorate
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod303_vat_prorate/models/mod303.py:0
+msgid ""
+"Prorate percentage not found, or it's 0. Please review the company's prorate"
+" adjustments."
 msgstr ""
 
 #. module: l10n_es_aeat_mod303_vat_prorate

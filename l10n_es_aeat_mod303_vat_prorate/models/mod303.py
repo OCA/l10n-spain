@@ -8,6 +8,7 @@ import math
 import re
 
 from odoo import _, api, exceptions, fields, models
+from odoo.tools import float_is_zero
 
 
 class L10nEsAeatMod303Report(models.Model):
@@ -72,6 +73,13 @@ class L10nEsAeatMod303Report(models.Model):
     def _general_prorate_method(self):
         self.ensure_one()
         theoretical_prorate = self.prorate_id.vat_prorate
+        if float_is_zero(theoretical_prorate, precision_digits=2):
+            raise exceptions.ValidationError(
+                self.env._(
+                    "Prorate percentage not found, or it's 0. "
+                    "Please review the company's prorate adjustments."
+                )
+            )
         diff_perc = self.vat_prorate_percent - theoretical_prorate
         if not diff_perc:
             return
