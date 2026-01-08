@@ -18,4 +18,47 @@
             </xpath>
         </field>
     </record>
+
+    <record id="account_journal_dashboard_kanban_view" model="ir.ui.view">
+        <field name="name">account.journal.dashboard.kanban</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.account_journal_dashboard_kanban_view" />
+        <field name="arch" type="xml">
+            <data>
+                <xpath
+                    expr="//t[@id='account.JournalBodySalePurchase']//div[@name='kanban_primary_right']"
+                    position="inside"
+                >
+                    <div class="row" t-if="dashboard.number_not_sent">
+                        <div class="col overflow-hidden text-start">
+                            <a
+                                type="object"
+                                name="open_action"
+                                context="{'search_default_sii_not_sent': '1'}"
+                                class="text-warning"
+                            >
+                                <span title="Invoices not sent to SII"><t
+                                    t-out="dashboard.number_not_sent"
+                                /> Not sent to SII</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row" t-if="dashboard.number_aeat_failed">
+                        <div class="col overflow-hidden text-start">
+                            <a
+                                type="object"
+                                name="open_action"
+                                context="{'search_default_aeat_send_failed': '1'}"
+                                class="text-danger"
+                            >
+                                <span title="Invoices with SII error"><t
+                                    t-out="dashboard.number_aeat_failed"
+                                /> With error in SII</span>
+                            </a>
+                        </div>
+                    </div>
+                </xpath>
+            </data>
+        </field>
+    </record>
 </odoo>
