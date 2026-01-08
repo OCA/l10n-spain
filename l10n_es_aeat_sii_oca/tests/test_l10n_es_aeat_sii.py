@@ -600,3 +600,18 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self.company.sii_start_date = False
         self.assertTrue(invoice2.sii_enabled)
         self.assertTrue(invoice2.filtered_domain([("sii_enabled", "=", True)]))
+
+    def test_journals_dashboard_data(self):
+        self.company.sii_start_date = "2018-01-01"
+        invoice1 = self._create_invoice("out_invoice")
+        invoice1.invoice_date = "2019-01-01"
+        invoice2 = self._create_invoice("out_invoice")
+        invoice2.invoice_date = "2017-01-01"
+        invoice3 = self._create_invoice("out_invoice")
+        invoice3.invoice_date = "2019-06-01"
+        invoice3.aeat_send_failed = True
+        dashboard_data = {invoice1.journal_id.id: {}}
+        invoice1.journal_id._fill_sale_purchase_dashboard_data(dashboard_data)
+        data = dashboard_data.get(invoice1.journal_id.id, {})
+        self.assertEqual(data.get("number_not_sent"), 4)
+        self.assertEqual(data.get("number_aeat_failed"), 1)
