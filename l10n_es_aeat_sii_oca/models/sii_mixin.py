@@ -368,6 +368,9 @@ class SiiMixin(models.AbstractModel):
             if (
                 (gen_type != 3 or country_code == "ES")
                 and not partner.vat
+                and not (
+                    partner.aeat_identification_type and partner.aeat_identification
+                )
                 and not is_simplified_invoice
             ):
                 raise UserError(self.env._("The partner has not a VAT configured."))
