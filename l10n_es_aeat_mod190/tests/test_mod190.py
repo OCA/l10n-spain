@@ -22,6 +22,7 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         # tax code: (base, tax_amount)
         "P_IRPF19": (100, -19),
         "P_IRPF20": (1000, -200),
+        "P_IRPF24": (100, -24),
         "S_GD0": (100, 0),
         "P_IRPF21TD": (2000, -15),
         "P_IRPF21TDIT": (1500, -15),
@@ -114,8 +115,8 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         )
         self.assertEqual(supplier_record.percepciones_dinerarias, 0)
         self.assertEqual(supplier_record.retenciones_dinerarias, 0)
-        self.assertEqual(supplier_record.percepciones_dinerarias_incap, 4600)
-        self.assertEqual(supplier_record.retenciones_dinerarias_incap, 744)
+        self.assertEqual(supplier_record.percepciones_dinerarias_incap, 4700)
+        self.assertEqual(supplier_record.retenciones_dinerarias_incap, 768)
         self.assertEqual(supplier_record.gastos_deducibles, -100)
         self.assertEqual(2, supplier_record.ad_required)
         self.assertEqual(2, self.supplier.ad_required)
@@ -129,8 +130,8 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         customer_record = model190.partner_record_ids.filtered(
             lambda r: r.partner_id == self.customer
         )
-        self.assertEqual(customer_record.percepciones_dinerarias, 3100)
-        self.assertEqual(customer_record.retenciones_dinerarias, 519)
+        self.assertEqual(customer_record.percepciones_dinerarias, 3200)
+        self.assertEqual(customer_record.retenciones_dinerarias, 543)
         self.assertEqual(customer_record.percepciones_dinerarias_incap, 1500)
         self.assertEqual(customer_record.retenciones_dinerarias_incap, 225)
         records = model190.partner_record_ids
