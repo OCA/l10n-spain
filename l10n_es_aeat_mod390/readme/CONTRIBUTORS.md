@@ -10,3 +10,4 @@
   - Enric Tobella
 - [Moduon](https://www.moduon.team):
   - Emilio Pascual
+  - Arantxa Sudón
