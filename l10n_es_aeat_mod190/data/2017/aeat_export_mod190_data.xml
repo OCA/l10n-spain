@@ -5,8 +5,9 @@
     <record id="aeat_mod190_main_export_config" model="aeat.model.export.config">
         <field
             name="name"
-        >Exportación modelo 190 - Tipo de Registro 1 – Registro de declarante</field>
+        >Exportación modelo 190 2017 - 2024 - Tipo de Registro 1 – Registro de declarante</field>
         <field name="date_start">2017-01-01</field>
+        <field name="date_end">2024-12-31</field>
         <field name="model_number">190</field>
         <field
             name="model_id"
