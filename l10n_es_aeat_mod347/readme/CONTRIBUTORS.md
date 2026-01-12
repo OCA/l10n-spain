@@ -14,3 +14,5 @@
   - Manuel Regidor
 - [Moduon](https://www.moduon.team)
   - Emilio Pascual
+- [Studio73](https://www.studio73.es):
+  - Pablo Cortés

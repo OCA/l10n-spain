@@ -1,6 +1,7 @@
 # Copyright 2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo import exceptions
 from odoo.tests import Form
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
@@ -12,6 +13,22 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.state_es_m = cls.env.ref("base.state_es_m")
+        cls.country_es = cls.env.ref("base.es")
+        cls.customer.with_context(no_vat_validation=True).write(
+            {
+                "state_id": cls.state_es_m.id,
+                "country_id": cls.country_es.id,
+                "vat": "12345678Z",
+            }
+        )
+        cls.supplier.with_context(no_vat_validation=True).write(
+            {
+                "state_id": cls.state_es_m.id,
+                "country_id": cls.country_es.id,
+                "vat": "87654321Z",
+            }
+        )
         # Create model
         cls.model347 = cls.env["l10n.es.aeat.mod347.report"].create(
             {
@@ -30,7 +47,9 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
         cls.customer_2 = cls.customer.copy(
             {"name": "Test customer 2", "vat": "ES12345678Z"}
         )
-        cls.customer_3 = cls.customer.copy({"name": "Test customer 3"})
+        cls.customer_3 = cls.customer.copy(
+            {"name": "Test customer 3", "vat": "12345678Z"}
+        )
         cls.customer_4 = cls.customer.copy(
             {"name": "Test customer 4", "vat": "ESB29805314"}
         )
@@ -52,7 +71,9 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
                 "zip": 28001,
             }
         )
-        cls.supplier_2 = cls.supplier.copy({"name": "Test supplier 2"})
+        cls.supplier_2 = cls.supplier.with_context(no_vat_validation=True).copy(
+            {"name": "Test supplier 2"}
+        )
         # Invoice lower than the limit
         cls.taxes_sale = {
             "S_IVA10B": (2000, 200),
@@ -191,18 +212,130 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
         first_partner_mod347_record = self.model347.partner_record_ids[0]
         first_partner = first_partner_mod347_record.partner_id
         self.assertFalse(first_partner.email)
-
         second_partner_mod347_record = self.model347.partner_record_ids[1]
         second_partner = second_partner_mod347_record.partner_id
         second_partner.email = "test@email.com"
-
         self.model347.button_send_mails()
         self.assertTrue(first_partner_mod347_record.state, "pending")
         self.assertTrue(second_partner_mod347_record.state, "sent")
-
         self.model347.button_send_mails()
         self.assertTrue(first_partner_mod347_record.state, "pending")
-
         first_partner.email = "test1@email.com"
         self.model347.button_send_mails()
         self.assertTrue(first_partner_mod347_record.state, "sent")
+
+    def test_mod347_unit_report(self):
+        # Test _error_count and _compute_error_count
+        self.model347.button_calculate()
+        # Mock an error in a partner record
+        partner_record = self.model347.partner_record_ids[0]
+        # Ensure it was OK before
+        partner_record._compute_check_ok()
+        self.assertTrue(partner_record.check_ok, partner_record.error_text)
+        partner_record.partner_state_code = "AA"  # Invalid, must be digits
+        partner_record._compute_check_ok()
+        self.assertFalse(partner_record.check_ok)
+        errors = self.model347._error_count("partner_record")
+        self.assertEqual(errors.get(self.model347.id), 1)
+        # Test _compute_error_count
+        self.model347._compute_error_count()
+        # It adds to existing error_count (if any)
+        self.assertGreaterEqual(self.model347.error_count, 1)
+        # Test button_confirm with errors
+        with self.assertRaises(exceptions.ValidationError):
+            self.model347.button_confirm()
+        # Fix error and test button_confirm
+        partner_record.partner_state_code = "28"
+        partner_record._compute_check_ok()
+        self.model347.button_confirm()
+        self.assertEqual(self.model347.state, "done")
+
+    def test_mod347_unit_partner_record(self):
+        self.model347.button_calculate()
+        partner_record = self.model347.partner_record_ids[0]
+        # Test action_exception, action_confirm, action_pending
+        partner_record.action_exception()
+        self.assertEqual(partner_record.state, "exception")
+        partner_record.action_confirm()
+        self.assertEqual(partner_record.state, "confirmed")
+        partner_record.action_pending()
+        self.assertEqual(partner_record.state, "pending")
+        # Test action_send
+        res = partner_record.action_send()
+        self.assertEqual(res["res_model"], "mail.compose.message")
+        # Test message_get_suggested_recipients
+        recipients = partner_record._message_get_suggested_recipients()
+        self.assertTrue(
+            any(r.get("partner_id") == partner_record.partner_id.id for r in recipients)
+        )
+        # Test _onchange_partner_id
+        new_partner = self.customer_5
+        new_partner.country_id = self.env.ref("base.es")
+        partner_record.partner_id = new_partner
+        partner_record._onchange_partner_id()
+        self.assertEqual(partner_record.partner_vat, "12345678Z")
+        self.assertEqual(partner_record.partner_state_code, "28")
+        # Test button_recompute
+        old_amount = partner_record.amount
+        # Force a change in underlying data to see recompute
+        # Creating a new invoice for this partner
+        self._invoice_purchase_create(
+            "2019-01-01", {"partner_id": partner_record.partner_id.id}
+        )
+        partner_record.button_recompute()
+        self.assertNotEqual(partner_record.amount, old_amount)
+
+    def test_mod347_unit_real_estate_record(self):
+        # Test _onchange_partner_id and _compute_check_ok
+        self.customer_5.state_id = self.state_es_m
+        real_estate = self.env["l10n.es.aeat.mod347.real_estate_record"].create(
+            {
+                "report_id": self.model347.id,
+                "partner_id": self.customer_5.id,
+                "situation": "1",
+            }
+        )
+        real_estate._onchange_partner_id()
+        self.assertEqual(real_estate.partner_vat, "12345678Z")
+        self.assertEqual(real_estate.state_code, "28")
+        real_estate.state_code = False
+        real_estate._compute_check_ok()
+        self.assertFalse(real_estate.check_ok)
+
+    def test_mod347_unit_move_record(self):
+        # Test _default_partner_record
+        self.model347.button_calculate()
+        partner_record = self.model347.partner_record_ids[0]
+        move_record = (
+            self.env["l10n.es.aeat.mod347.move.record"]
+            .with_context(partner_record_id=partner_record.id)
+            .create(
+                {
+                    "move_id": self.invoice_1.id,
+                    "amount": 100.0,
+                }
+            )
+        )
+        self.assertEqual(move_record.partner_record_id, partner_record)
+
+    def test_mod347_unit_wizard_send_mail(self):
+        self.model347.button_calculate()
+        partner_record = self.model347.partner_record_ids[0]
+        self.assertEqual(partner_record.state, "pending")
+        composer = (
+            self.env["mail.compose.message"]
+            .with_context(
+                default_model="l10n.es.aeat.mod347.partner_record",
+                active_id=partner_record.id,
+                active_ids=partner_record.ids,
+            )
+            .create(
+                {
+                    "subject": "Test",
+                    "body": "Test body",
+                    "composition_mode": "comment",
+                }
+            )
+        )
+        composer._action_send_mail()
+        self.assertEqual(partner_record.state, "sent")

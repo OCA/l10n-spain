@@ -14,6 +14,7 @@ import datetime
 from calendar import monthrange
 
 from odoo import api, exceptions, fields, models
+from odoo.fields import Command, Domain
 from odoo.tools import float_compare
 
 KEY_TAX_MAPPING = {
@@ -114,14 +115,14 @@ class L10nEsAeatMod347Report(models.Model):
     )
 
     def _error_count(self, model):
-        records_error_group = self.env[f"l10n.es.aeat.mod347.{model}"].read_group(
-            domain=[("check_ok", "=", False), ("report_id", "in", self.ids)],
-            fields=["report_id"],
+        records_error_group = self.env[f"l10n.es.aeat.mod347.{model}"]._read_group(
+            domain=Domain.AND(
+                [Domain("check_ok", "=", False), Domain("report_id", "in", self.ids)]
+            ),
             groupby=["report_id"],
+            aggregates=["__count"],
         )
-        return {
-            rec["report_id"][0]: rec["report_id_count"] for rec in records_error_group
-        }
+        return {rec[0].id: rec[1] for rec in records_error_group}
 
     def _compute_error_count(self):
         ret_val = super()._compute_error_count()
@@ -193,16 +194,21 @@ class L10nEsAeatMod347Report(models.Model):
 
         :param: taxes: Taxes to look for in move lines.
         """
-        return [
-            ("partner_id.not_in_mod347", "=", False),
-            ("move_id.not_in_mod347", "=", False),
-            ("date", ">=", self.date_start),
-            ("date", "<=", self.date_end),
-            "|",
-            ("tax_ids", "in", taxes.ids),
-            ("tax_line_id", "in", taxes.ids),
-            ("parent_state", "=", "posted"),
-        ]
+        return Domain.AND(
+            [
+                Domain("partner_id.not_in_mod347", "=", False),
+                Domain("move_id.not_in_mod347", "=", False),
+                Domain("date", ">=", self.date_start),
+                Domain("date", "<=", self.date_end),
+                Domain.OR(
+                    [
+                        Domain("tax_ids", "in", taxes.ids),
+                        Domain("tax_line_id", "in", taxes.ids),
+                    ]
+                ),
+                Domain("parent_state", "=", "posted"),
+            ]
+        )
 
     @api.model
     def _get_partner_347_identification(self, partner):
@@ -218,52 +224,48 @@ class L10nEsAeatMod347Report(models.Model):
                 ),
                 "partner_country_code": country_code,
             }
-        else:
-            return {
-                "community_vat": vat,
-                "partner_state_code": 99,
-                "partner_country_code": country_code,
-            }
+        return {
+            "community_vat": vat,
+            "partner_state_code": 99,
+            "partner_country_code": country_code,
+        }
 
     def _create_partner_records(self, key, map_ref, partner_record=None):
         sign = -1 if key == "B" else 1
         partner_record_obj = self.env["l10n.es.aeat.mod347.partner_record"]
-        partner_obj = self.env["res.partner"]
         map_line = self.env.ref(map_ref)
         taxes = map_line.get_taxes_for_company(self.company_id)
         domain = self._account_move_line_domain(taxes)
         if partner_record:
-            domain += [("partner_id", "=", partner_record.partner_id.id)]
-        groups = self.env["account.move.line"].read_group(
-            domain,
-            ["partner_id", "balance"],
-            ["partner_id"],
+            domain = domain & Domain("partner_id", "=", partner_record.partner_id.id)
+        groups = self.env["account.move.line"]._read_group(
+            domain=domain,
+            aggregates=["balance:sum"],
+            groupby=["partner_id"],
         )
         filtered_groups = list(
-            filter(lambda d: abs(d["balance"]) > self.operations_limit, groups)
+            filter(lambda d: abs(d[1]) > self.operations_limit, groups)
         )
         for group in filtered_groups:
-            partner = partner_obj.browse(group["partner_id"][0])
+            partner = group[0]
             vals = {
                 "report_id": self.id,
                 "partner_id": partner.id,
                 "representative_vat": "",
                 "operation_key": key,
-                "amount": sign * group["balance"],
+                "amount": sign * group[1],
             }
             vals.update(self._get_partner_347_identification(partner))
-            move_groups = self.env["account.move.line"].read_group(
-                group["__domain"],
-                ["move_id", "balance"],
-                ["move_id"],
+            move_groups = self.env["account.move.line"]._read_group(
+                domain=domain & Domain("partner_id", "=", partner.id),
+                aggregates=["balance:sum"],
+                groupby=["move_id"],
             )
             vals["move_record_ids"] = [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
-                        "move_id": move_group["move_id"][0],
-                        "amount": sign * move_group["balance"],
+                        "move_id": move_group[0].id,
+                        "amount": sign * move_group[1],
                     },
                 )
                 for move_group in move_groups
@@ -277,40 +279,47 @@ class L10nEsAeatMod347Report(models.Model):
                 partner_record_obj.create(vals)
 
     def _create_cash_moves(self):
-        partner_obj = self.env["res.partner"]
         move_line_obj = self.env["account.move.line"]
         cash_journals = self.env["account.journal"].search(
-            [("type", "=", "cash")],
+            [Domain("type", "=", "cash")],
         )
         if not cash_journals:
             return
-        domain = [
-            ("account_id.account_type", "=", "asset_receivable"),
-            ("journal_id", "in", cash_journals.ids),
-            ("date", ">=", self.date_start),
-            ("date", "<=", self.date_end),
-            ("partner_id.not_in_mod347", "=", False),
-        ]
-        cash_groups = move_line_obj.read_group(
-            domain, ["partner_id", "balance"], ["partner_id"]
+        domain = Domain.AND(
+            [
+                Domain("account_id.account_type", "=", "asset_receivable"),
+                Domain("journal_id", "in", cash_journals.ids),
+                Domain("date", ">=", self.date_start),
+                Domain("date", "<=", self.date_end),
+                Domain("partner_id.not_in_mod347", "=", False),
+            ]
+        )
+        cash_groups = move_line_obj._read_group(
+            domain=domain,
+            aggregates=["balance:sum"],
+            groupby=["partner_id"],
         )
         for cash_group in cash_groups:
-            partner = partner_obj.browse(cash_group["partner_id"][0])
+            partner = cash_group[0]
             partner_record_obj = self.env["l10n.es.aeat.mod347.partner_record"]
-            amount = abs(cash_group["balance"])
+            amount = abs(cash_group[1])
             if amount > self.received_cash_limit:
-                move_lines = move_line_obj.search(cash_group["__domain"])
+                move_lines = move_line_obj.search(
+                    domain & Domain("partner_id", "=", partner.id)
+                )
                 partner_record = partner_record_obj.search(
-                    [
-                        ("partner_id", "=", partner.id),
-                        ("operation_key", "=", "B"),
-                        ("report_id", "=", self.id),
-                    ]
+                    Domain.AND(
+                        [
+                            Domain("partner_id", "=", partner.id),
+                            Domain("operation_key", "=", "B"),
+                            Domain("report_id", "=", self.id),
+                        ]
+                    )
                 )
                 if partner_record:
                     partner_record.write(
                         {
-                            "cash_record_ids": [(6, 0, move_lines.ids)],
+                            "cash_record_ids": [Command.set(move_lines.ids)],
                             "cash_amount": amount,
                         }
                     )
@@ -322,7 +331,7 @@ class L10nEsAeatMod347Report(models.Model):
                         "operation_key": "B",
                         "amount": 0,
                         "cash_amount": amount,
-                        "cash_record_ids": [(6, 0, move_lines.ids)],
+                        "cash_record_ids": [Command.set(move_lines.ids)],
                     }
                     vals.update(self._get_partner_347_identification(partner))
                     partner_record_obj.create(vals)
@@ -354,7 +363,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         comodel_name="l10n.es.aeat.mod347.report",
         string="AEAT 347 Report",
         ondelete="cascade",
-        default=_default_record_id,
+        default=lambda self: self._default_record_id(),
     )
     user_id = fields.Many2one(
         comodel_name="res.users",
@@ -612,14 +621,14 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         self.ensure_one()
         template = self._get_partner_report_email_template()
         compose_form = self.env.ref("mail.email_compose_message_wizard_form")
-        ctx = dict(
-            default_model=self._name,
-            default_res_ids=self.ids,
-            default_use_template=bool(template),
-            default_template_id=template and template.id or False,
-            default_composition_mode="comment",
-            mark_invoice_as_sent=True,
-        )
+        ctx = {
+            "default_model": self._name,
+            "default_res_ids": self.ids,
+            "default_use_template": bool(template),
+            "default_template_id": template and template.id or False,
+            "default_composition_mode": "comment",
+            "mark_invoice_as_sent": True,
+        }
         return {
             "name": self.env._("Compose Email"),
             "type": "ir.actions.act_window",
@@ -660,21 +669,22 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
     def action_pending(self):
         self.write({"state": "pending"})
 
-    def message_get_suggested_recipients(self):
+    def _message_add_suggested_recipients(self, force_primary_email=False):
         """Add the invoicing partner to the suggested recipients sending an
         email.
         """
-        recipients = super().message_get_suggested_recipients()
-        partner_obj = self.env["res.partner"]
+        suggested = super()._message_add_suggested_recipients(
+            force_primary_email=force_primary_email
+        )
         for record in self:
-            partner = partner_obj.browse(
-                record.partner_id.address_get(["invoice"])["invoice"]
-            )
-            record._message_add_suggested_recipient(
-                recipients,
-                partner=partner,
-            )
-        return recipients
+            if record.partner_id:
+                invoice_address_id = record.partner_id.address_get(["invoice"])[
+                    "invoice"
+                ]
+                if invoice_address_id:
+                    invoice_partner = self.env["res.partner"].browse(invoice_address_id)
+                    suggested[record.id]["partners"] |= invoice_partner
+        return suggested
 
 
 class L10nEsAeatMod347RealStateRecord(models.Model):
@@ -696,7 +706,7 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
         string="AEAT 347 Report",
         ondelete="cascade",
         index=1,
-        default=_default_record_id,
+        default=lambda self: self._default_record_id(),
     )
     partner_id = fields.Many2one(
         comodel_name="res.partner",
@@ -710,7 +720,7 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
     representative_vat = fields.Char(
         string="L.R. VAT number",
         size=32,
-        default=_default_representative_vat,
+        default=lambda self: self._default_representative_vat(),
         help="Legal Representative VAT number",
     )
     amount = fields.Float(digits="Account")
@@ -792,7 +802,7 @@ class L10nEsAeatMod347MoveRecord(models.Model):
         required=True,
         ondelete="cascade",
         index=True,
-        default=_default_partner_record,
+        default=lambda self: self._default_partner_record(),
     )
     move_id = fields.Many2one(
         comodel_name="account.move",

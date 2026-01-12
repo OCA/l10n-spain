@@ -247,7 +247,7 @@
                     domain="[('state', '=', 'exception')]"
                 />
                 <separator />
-                <group expand='0' string='Group by...'>
+                <group>
                     <filter
                         name="operation_key_group"
                         string='Operation key'
