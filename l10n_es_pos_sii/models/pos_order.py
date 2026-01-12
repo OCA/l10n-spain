@@ -57,6 +57,13 @@ class PosOrder(models.Model):
             else:
                 record.sii_refund_type = False
 
+    @api.model
+    def _process_order(self, pos_order, existing_order):
+        # Inject proper value for aeat_state
+        if not existing_order:
+            pos_order["aeat_state"] = "not_sent"
+        return super()._process_order(pos_order, existing_order)
+
     def _is_sii_type_breakdown_required(self, taxes_dict):
         """As these are simplified invoices, we don't break taxes.
 
