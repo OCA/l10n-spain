@@ -70,8 +70,7 @@ class L10nEsAeatMod347Report(models.Model):
         string="Received cash Limit (2)",
         digits="Account",
         default=6000.00,
-        help="The declaration will show the total of cash operations over "
-        "this limit",
+        help="The declaration will show the total of cash operations over this limit",
     )
     total_partner_records = fields.Integer(
         compute="_compute_totals",
@@ -378,7 +377,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         selection=[
             (
                 "A",
-                "A - Adquisiciones de bienes y servicios superiores al " "límite (1)",
+                "A - Adquisiciones de bienes y servicios superiores al límite (1)",
             ),
             ("B", "B - Entregas de bienes y servicios superiores al límite (1)"),
             ("C", "C - Cobros por cuenta de terceros superiores al límite (3)"),
@@ -421,8 +420,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
     first_quarter_real_estate_transmission = fields.Float(
         string="First quarter real estate",
         digits="Account",
-        help="Total amount of first quarter real estate transmissions "
-        "for this partner",
+        help="Total amount of first quarter real estate transmissions for this partner",
     )
     second_quarter = fields.Float(
         string="Second quarter operations",
@@ -447,8 +445,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
     third_quarter_real_estate_transmission = fields.Float(
         string="Third quarter real estate",
         digits="Account",
-        help="Total amount of third quarter real estate transmissions "
-        "for this partner",
+        help="Total amount of third quarter real estate transmissions for this partner",
     )
     fourth_quarter = fields.Float(
         string="Fourth quarter operations",
