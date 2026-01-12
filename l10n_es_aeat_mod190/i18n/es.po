@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-29 08:25+0000\n"
-"PO-Revision-Date: 2025-10-29 08:25+0000\n"
-"Last-Translator: Jairo Llopis <jairo@moduon.team>\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-01-12 17:01+0100\n"
+"Last-Translator: Emilio Pascual <emilio@moduon.team>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.6\n"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__hijos_y_descendientes
@@ -1200,6 +1200,64 @@ msgid "Phone"
 msgstr "Teléfono"
 
 #. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__clave_b01_resto
+msgid "Prestacion no incluida en el resto"
+msgstr "Prestacion no incluida en el resto"
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__clave_b01_incapacidad
+msgid "Prestación de incapacidad permanente total o parcial"
+msgstr "Prestación de incapacidad permanente total o parcial"
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__clave_b01_incapacidad
+msgid ""
+"Prestación de incapacidad permanente total o parcial percibida en el "
+"ejercicio"
+msgstr ""
+"Prestación de incapacidad permanente total o parcial percibida en el "
+"ejercicio"
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__clave_b01_jubilacion
+msgid "Prestación de jubilación"
+msgstr "Prestación de jubilación"
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__clave_b01_jubilacion
+msgid "Prestación de jubilación percibida en el ejercicio"
+msgstr "Prestación de jubilación percibida en el ejercicio"
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__clave_b01_pensiones_no_contributivas
+msgid "Prestación de pensiones no contributivas por invalidez o jubilación"
+msgstr "Prestación de pensiones no contributivas por invalidez o jubilación"
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__clave_b01_pensiones_no_contributivas
+msgid ""
+"Prestación de pensiones no contributivas por invalidez o jubilación "
+"percibida en el ejercicio"
+msgstr ""
+"Prestación de pensiones no contributivas por invalidez o jubilación "
+"percibida en el ejercicio"
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__clave_b01_viudedad
+msgid "Prestación de viudedad"
+msgstr "Prestación de viudedad"
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__clave_b01_viudedad
+msgid "Prestación de viudedad percibida en el ejercicio"
+msgstr "Prestación de viudedad percibida en el ejercicio"
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__clave_b01_resto
+msgid "Prestación no incluida en el resto en el ejercicio"
+msgstr "Prestación no incluida en el resto en el ejercicio"
+
+#. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__previous_number
 msgid "Previous declaration number"
 msgstr "Número de declaración previa"
@@ -1235,6 +1293,15 @@ msgstr "Reducciones aplicables"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_form_inherit_l10n_es_aeat_mod190
 msgid "Reduced mobility"
 msgstr "Movilidad reducida"
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__rendimientos_obtenidos_fondos
+msgid ""
+"Rendimientos del trabajo obtenidos por la gestión de fondos vinculados al "
+"emprendimiento, a la innovación y al desarrollo de la actividad económica"
+msgstr ""
+"Rendimientos del trabajo obtenidos por la gestión de fondos vinculados al "
+"emprendimiento, a la innovación y al desarrollo de la actividad económica"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__name
@@ -1363,6 +1430,25 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
 msgid "Situación familiar"
 msgstr "Situación familiar"
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__rendimientos_obtenidos_fondos
+msgid ""
+"Solo marcar si la cuantía total de la percepción dineraria o la cuantía "
+"total de la valoración de la percepción en especie incluye, aunque sea de "
+"forma parcial, rendimientos del trabajo derivados directa o indirectamente "
+"de participaciones, acciones u otros derechos, incluidas comisiones de "
+"éxito, que otorguen derechos económicos especiales a los que se haya "
+"aplicado lo dispuesto en el apartado 3 de la Disposición adicional "
+"quincuagésima tercera a las que se refiere la Ley 35/2006, de 28 de noviembre"
+msgstr ""
+"Solo marcar si la cuantía total de la percepción dineraria o la cuantía "
+"total de la valoración de la percepción en especie incluye, aunque sea de "
+"forma parcial, rendimientos del trabajo derivados directa o indirectamente "
+"de participaciones, acciones u otros derechos, incluidas comisiones de "
+"éxito, que otorguen derechos económicos especiales a los que se haya "
+"aplicado lo dispuesto en el apartado 3 de la Disposición adicional "
+"quincuagésima tercera a las que se refiere la Ley 35/2006, de 28 de noviembre"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__contrato_o_relacion
@@ -1500,6 +1586,16 @@ msgstr "La clave de percepción del socio, %(partner)s. Debe ser llenado."
 #. module: l10n_es_aeat_mod190
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
+msgid ""
+"The perceptor %s has key B.01, you must check any type of benefit for key "
+"B.01"
+msgstr ""
+"El perceptor %s tiene la clave B.01, debe marcar un tipo de prestación para "
+"la clave B.01"
+
+#. module: l10n_es_aeat_mod190
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
 msgid "The state is not defined in the partner, %s"
 msgstr "La provincia no está definida en la empresa, %s"
 
@@ -1511,6 +1607,11 @@ msgid ""
 msgstr ""
 "Esta cuenta será la contrapartida para todos los apuntes contables que estén "
 "regularizados al publicar el informe."
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Tipos de prestaciones de la clave B.01 percibidas"
+msgstr "Tipos de prestaciones de la clave B.01 percibidas"
 
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_form
@@ -1668,6 +1769,11 @@ msgstr "Evaluación"
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__valued_tax_line_ids
 msgid "Valued tax lines"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__visible_key_b01
+msgid "Visible Key B01"
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
