@@ -17,7 +17,7 @@ aeat_mod190_main_export_line_15,aeat_mod190_main_export_config,15,Rendimientos d
 aeat_mod190_main_export_line_16,aeat_mod190_main_export_config,16,Correo electrónico,string,50,0,left,,N,0, ,X,${object.contact_email},,,,
 aeat_mod190_main_export_line_17,aeat_mod190_main_export_config,17,Reservado para la Administración. Rellenar con blancos,string,262,0,left,,N,0, ,X,,,,,
 aeat_mod190_main_export_line_18,aeat_mod190_main_export_config,18,Reservado para el sello electrónico de la AEAT (13),string,13,0,left,,N,0, ,X,,,,,
-aeat_mod190_main_export_line_19,aeat_mod190_main_export_config,19,"Constante CRLF (Hexadecimal 0D0A, Decimal 1310)",string,2,0,left,,N,0, ,X,"${""\r\n"".encode(""ascii"")}",,,,
+aeat_mod190_main_export_line_19,aeat_mod190_main_export_config,19,"Constante CRLF (Hexadecimal 0D0A, Decimal 1310)",string,2,0,left,,N,0, ,X,"${""\r\n""}",,,,
 aeat_mod190_main_export_line_20,aeat_mod190_main_export_config,20,Exportación modelo 190 - Tipo de Registro 2 – Registro de cliente,subconfig,0,0,,,N,0, ,X,,,,object.partner_record_ids,aeat_mod190_partner_export_config
 aeat_mod190_partner_export_line_01,aeat_mod190_partner_export_config,1,Tipo de Registro,string,1,0,left,,N,0, ,X,,2,,,
 aeat_mod190_partner_export_line_02,aeat_mod190_partner_export_config,2,Modelo de la declaración,string,3,0,left,,N,0, ,X,,190,,,
@@ -83,4 +83,4 @@ aeat_mod190_partner_export_line_61,aeat_mod190_partner_export_config,61,Ingresos
 aeat_mod190_partner_export_line_62,aeat_mod190_partner_export_config,62,Complemento ayuda infancia + diputaciones forales (forzado a 0s),integer,66,0,left,,N,0, ,X,,0,,,
 aeat_mod190_partner_export_line_63,aeat_mod190_partner_export_config,63,excesos entrega acciones empresas emergentes (forzado a 0s si es después de 2024),string,1,0,left,,N,0, ,X,${'0' if object.report_id.year > 2023 else ''},,,,
 aeat_mod190_partner_export_line_64,aeat_mod190_partner_export_config,64,Espacios en blanco,string,112,0,left,,N,0, ,X,,,,,
-aeat_mod190_partner_export_line_65,aeat_mod190_partner_export_config,65,"Constante CRLF (Hexadecimal 0D0A, Decimal 1310)",string,2,0,left,,N,0, ,X,"${""\r\n"".encode(""ascii"")}",,,,
+aeat_mod190_partner_export_line_65,aeat_mod190_partner_export_config,65,"Constante CRLF (Hexadecimal 0D0A, Decimal 1310)",string,2,0,left,,N,0, ,X,"${""\r\n""}",,,,
