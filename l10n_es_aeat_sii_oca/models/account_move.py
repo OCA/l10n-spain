@@ -681,6 +681,7 @@ class AccountMove(models.Model):
                     {
                         "aeat_send_failed": True,
                         "aeat_send_error": repr(fault)[:60],
+                        "sii_send_date": False,
                         "sii_return": repr(fault),
                     }
                 )
@@ -945,6 +946,7 @@ class AccountMove(models.Model):
                     "aeat_send_failed": True,
                     "aeat_send_error": repr(fault)[:60],
                     "sii_send_date": False,
+                    "sii_return": repr(fault),
                 }
                 invoice = env["account.move"].browse(doc.id)
                 invoice.write(doc_vals)
