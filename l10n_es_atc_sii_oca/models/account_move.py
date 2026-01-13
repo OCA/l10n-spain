@@ -62,3 +62,10 @@ class AccountMove(models.Model):
         ):
             inv_dict = self._sii_atc_replace_tax_keys(inv_dict)
         return inv_dict
+
+    def _get_sii_identifier(self):
+        if self._get_sii_tax_agency() == self.env.ref(
+            "l10n_es_aeat.aeat_tax_agency_canarias"
+        ):
+            self = self.with_context(is_canary_tax_agency=True)
+        return super()._get_sii_identifier()
