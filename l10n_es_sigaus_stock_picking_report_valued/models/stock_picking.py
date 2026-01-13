@@ -41,7 +41,8 @@ class StockPicking(models.Model):
             )
 
     def _get_report_valued_total_amount(self):
+        currency = self.currency_id or self.company_id.currency_id
         total = super()._get_report_valued_total_amount()
         if self.sale_id and self.sale_id.is_sigaus:
             total += self.sigaus_amount_total or 0.0
-        return total
+        return currency.round(total)
