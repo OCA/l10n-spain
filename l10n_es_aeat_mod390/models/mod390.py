@@ -294,14 +294,12 @@ class L10nEsAeatMod390Report(models.Model):
     casilla_58 = fields.Monetary(
         compute="_compute_casilla_58",
         store=True,
-        string="[58] Total base deducible adq. intracomunitarias bienes de "
-        "inversión",
+        string="[58] Total base deducible adq. intracomunitarias bienes de inversión",
     )
     casilla_59 = fields.Monetary(
         compute="_compute_casilla_59",
         store=True,
-        string="[59] Total cuota deducible adq. intracomunitarias bienes de "
-        "inversión",
+        string="[59] Total cuota deducible adq. intracomunitarias bienes de inversión",
     )
     casilla_597 = fields.Monetary(
         compute="_compute_casilla_597",
