@@ -644,6 +644,7 @@ class AccountMove(models.Model):
             inv_vals = {
                 "aeat_send_failed": True,
                 "aeat_send_error": False,
+                "sii_send_date": False,
             }
             try:
                 inv_dict = invoice._get_cancel_sii_invoice_dict()
@@ -939,6 +940,7 @@ class AccountMove(models.Model):
             try:
                 with self.env.cr.savepoint():
                     doc.confirm_one_document()
+                    doc.sii_send_date = False
             except Exception as fault:
                 new_cr = Registry(self.env.cr.dbname).cursor()
                 env = api.Environment(new_cr, self.env.uid, self.env.context)
