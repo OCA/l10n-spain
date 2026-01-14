@@ -384,13 +384,13 @@ class TestVerifactuSendResponse(TestVerifactuCommon):
             raise Exception("Incorrect JSON file: %s" % json_file)
         with open(path, "r") as f:
             response_dict = json.loads(f.read())
-        # Update the response to match the actual invoice name
+        self.invoice.action_post()
+        # Update the response to match the actual invoice name AFTER posting
         response_dict["RespuestaLinea"][0]["IDFactura"][
             "NumSerieFactura"
         ] = self.invoice.name
         mock_service.RegFactuSistemaFacturacion.return_value = response_dict
         mock_connect.return_value = mock_service
-        self.invoice.action_post()
         self.env["verifactu.invoice.entry"]._cron_send_documents_to_verifactu()
         activity = MailActivity.search(
             [
