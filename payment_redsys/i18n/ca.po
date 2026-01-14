@@ -23,6 +23,18 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/payment_transaction.py:0
+msgid "; multiple order found"
+msgstr ""
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/payment_transaction.py:0
+msgid "; no order found"
+msgstr ""
+
+#. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_merchant_lang__005
 msgid "Alemán"
 msgstr "Alemany"
@@ -30,12 +42,12 @@ msgstr "Alemany"
 #. module: payment_redsys
 #. odoo-python
 #: code:addons/payment_redsys/models/payment_transaction.py:0
-#, python-format
 msgid "Bank Error: %(status_code)s (%(error_code)s)"
 msgstr ""
 
 #. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_pay_method__z
+#: model:payment.method,name:payment_redsys.payment_method_cc_bizum
 msgid "Bizum"
 msgstr ""
 
@@ -55,11 +67,6 @@ msgid "Code"
 msgstr ""
 
 #. module: payment_redsys
-#: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_currency
-msgid "Currency"
-msgstr "Moneda"
-
-#. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_pay_method__d
 msgid "Domiciliacion"
 msgstr "Domiciliació"
@@ -67,7 +74,6 @@ msgstr "Domiciliació"
 #. module: payment_redsys
 #. odoo-python
 #: code:addons/payment_redsys/models/payment_transaction.py:0
-#, python-format
 msgid "Error: %(status_code)s (%(error_code)s)"
 msgstr ""
 
@@ -129,7 +135,6 @@ msgstr "Codi de comerciant"
 #. module: payment_redsys
 #. odoo-python
 #: code:addons/payment_redsys/models/payment_transaction.py:0
-#, python-format
 msgid "Ok: %s"
 msgstr "Ok: %s"
 
@@ -174,11 +179,20 @@ msgid "Product Description"
 msgstr "Descripció del producte"
 
 #. module: payment_redsys
-#: model:account.payment.method,name:payment_redsys.payment_method_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__code__redsys
 #: model:payment.provider,name:payment_redsys.payment_provider_redsys
 msgid "Redsys"
 msgstr "Redsys"
+
+#. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_currency
+msgid "Redsys Currency"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_secret_key
+msgid "Redsys Secret Key"
+msgstr ""
 
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_signature_version
@@ -188,12 +202,33 @@ msgstr "Versió de signatura Redsys"
 #. module: payment_redsys
 #. odoo-python
 #: code:addons/payment_redsys/models/payment_transaction.py:0
-#, python-format
 msgid "Redsys: feedback error: %(status_code)s (%(error_code)s)"
 msgstr ""
 
 #. module: payment_redsys
-#: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_secret_key
+#. odoo-python
+#: code:addons/payment_redsys/models/payment_transaction.py:0
+msgid ""
+"Redsys: invalid shasign, received %(shasign)s, computed,\n"
+"for data %(data)s"
+msgstr ""
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/payment_transaction.py:0
+msgid "Redsys: received data for reference %(reference)s"
+msgstr ""
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/payment_transaction.py:0
+msgid ""
+"Redsys: received data with missing reference %(reference)s or pay_id "
+"%(pay_id)s or shashign %(shasign)s"
+msgstr ""
+
+#. module: payment_redsys
+#: model_terms:ir.ui.view,arch_db:payment_redsys.provider_form_redsys
 msgid "Secret Key"
 msgstr "Clau secreta"
 
@@ -257,6 +292,9 @@ msgstr ""
 #: model_terms:payment.provider,done_msg:payment_redsys.payment_provider_redsys
 msgid "Your payment has been successfully processed."
 msgstr ""
+
+#~ msgid "Currency"
+#~ msgstr "Moneda"
 
 #~ msgid "Your payment has been successfully processed. Thank you!"
 #~ msgstr "El vostre pagament s'ha processat correctament. Gràcies!"
