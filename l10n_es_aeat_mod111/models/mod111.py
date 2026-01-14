@@ -9,7 +9,9 @@
 # Copyright 2022 Eduardo de Miguel <edu@moduon.team>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
+from odoo.tools import float_is_zero
 
 
 class L10nEsAeatMod111Report(models.Model):
@@ -202,16 +204,25 @@ class L10nEsAeatMod111Report(models.Model):
         compute="_compute_casilla_30",
         help="Result: ([28] - [29])",
     )
+    use_aeat_account = fields.Boolean(
+        "Usar cuenta corriente tributaria",
+        help=(
+            "Si está suscrito a la cuenta corriente en materia tributaria, "
+            "active esta opción para usarla en el ingreso o devolución."
+        ),
+    )
     tipo_declaracion = fields.Selection(
         selection=[
             ("I", "To enter"),
             ("U", "Direct debit"),
             ("G", "To enter on CCT"),
-            ("N", "To return"),
+            ("N", "Negative"),
         ],
         string="Result type",
-        default="I",
+        default="N",
+        compute="_compute_tipo_declaracion",
         required=True,
+        store=True,
     )
     colegio_concertado = fields.Boolean(string="College concerted", default=False)
 
@@ -328,3 +339,30 @@ class L10nEsAeatMod111Report(models.Model):
     def _compute_casilla_30(self):
         for report in self:
             report.casilla_30 = report.casilla_28 - report.casilla_29
+
+    @api.depends(
+        "casilla_30",
+        "use_aeat_account",
+        "partner_bank_id",
+    )
+    def _compute_tipo_declaracion(self):
+        for report in self:
+            if float_is_zero(
+                report.casilla_30,
+                precision_rounding=self.company_id.currency_id.rounding,
+            ):
+                report.tipo_declaracion = "N"
+            elif report.use_aeat_account:
+                # Si se usa una cuenta de AEAT
+                report.tipo_declaracion = "G"
+            elif report.partner_bank_id:
+                # Si hay cuenta seleccionada, pero no es de AEAT
+                report.tipo_declaracion = "U"
+            else:
+                report.tipo_declaracion = "I"
+
+    def button_confirm(self):
+        for record in self:
+            if record.casilla_30 < 0:
+                raise ValidationError(_("The box [30] Result cannot be negative"))
+        return super().button_confirm()
