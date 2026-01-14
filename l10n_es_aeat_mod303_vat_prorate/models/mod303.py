@@ -197,7 +197,14 @@ class L10nEsAeatMod303Report(models.Model):
         taxed = -sum(move_lines.mapped("balance"))
         # Get base amount of exempt operations
         mapline_vals["tax_xmlid_ids"] = [
-            (4, self.env.ref("l10n_es_aeat_mod303.s_iva0").id)
+            (4, self.env.ref(f"l10n_es_aeat_mod303.{x}").id)
+            for x in [
+                "s_iva0",
+                "s_iva0_art22",
+                "s_iva0_art23",
+                "s_iva0_nsd",
+                "s_iva0_ns",
+            ]
         ]
         map_line = MapLine.new(mapline_vals)
         move_lines = self._get_tax_lines(date_from, date_to, map_line)

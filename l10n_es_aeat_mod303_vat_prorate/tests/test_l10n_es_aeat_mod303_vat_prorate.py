@@ -237,3 +237,66 @@ class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
         self.model303.button_compute()
         self.assertEqual(self.model303.vat_prorate_percent, 67)
         self.assertEqual(self.model303.casilla_44, 0)
+
+    def test_button_compute_other_exempt(self):
+        self.company.write(
+            {
+                "with_vat_prorate": True,
+                "vat_prorate_ids": [
+                    Command.create({"date": "2024-01-01", "vat_prorate": 10})
+                ],
+            }
+        )
+        self._invoice_purchase_create(
+            "2024-01-01",
+            {
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "name": "Compra 100€ + IVA 21%",
+                            "account_id": self.accounts["600000"].id,
+                            "price_unit": 100,
+                            "quantity": 1,
+                            "with_vat_prorate": True,
+                            "tax_ids": [
+                                Command.link(t.id)
+                                for t in self._get_taxes("P_IVA21_BC")
+                            ],
+                        }
+                    ),
+                ]
+            },
+        )
+        self._invoice_sale_create(
+            "2024-01-01",
+            {
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "name": "Venta 200€ + IVA 21%",
+                            "account_id": self.accounts["700000"].id,
+                            "price_unit": 200,
+                            "quantity": 1,
+                            "tax_ids": [
+                                Command.link(t.id) for t in self._get_taxes("S_IVA21B")
+                            ],
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "name": "Venta 100€ exento art. 22",
+                            "account_id": self.accounts["700000"].id,
+                            "price_unit": 100,
+                            "quantity": 1,
+                            "tax_ids": [
+                                Command.link(t.id)
+                                for t in self._get_taxes("S_IVA0_ART22")
+                            ],
+                        }
+                    ),
+                ]
+            },
+        )
+        self.model303.button_compute()
+        self.assertEqual(self.model303.vat_prorate_percent, 67)
+        self.assertEqual(self.model303.casilla_44, 0)
