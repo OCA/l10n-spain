@@ -443,6 +443,11 @@ msgid "My Activity Deadline"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod111.selection__l10n_es_aeat_mod111_report__tipo_declaracion__n
+msgid "Negative"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__activity_date_deadline
 msgid "Next Activity Deadline"
 msgstr ""
@@ -523,6 +528,13 @@ msgid "Result: ([28] - [29])"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__use_aeat_account
+msgid ""
+"Si está suscrito a la cuenta corriente en materia tributaria, active esta "
+"opción para usarla en el ingreso o devolución."
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__date_start
 msgid "Starting date"
 msgstr ""
@@ -563,6 +575,13 @@ msgid "Tax lines"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod111/models/mod111.py:0
+#, python-format
+msgid "The box [30] Result cannot be negative"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__counterpart_account_id
 msgid ""
 "This account will be the counterpart for all the journal items that are "
@@ -580,11 +599,6 @@ msgid "To enter on CCT"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod111.selection__l10n_es_aeat_mod111_report__tipo_declaracion__n
-msgid "To return"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
 msgid "Totals"
 msgstr ""
@@ -592,6 +606,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__activity_exception_decoration
 msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__use_aeat_account
+msgid "Usar cuenta corriente tributaria"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
