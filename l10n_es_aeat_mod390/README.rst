@@ -21,13 +21,13 @@ AEAT modelo 390
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_aeat_mod390
+    :target: https://github.com/OCA/l10n-spain/tree/19.0/l10n_es_aeat_mod390
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-18-0/l10n-spain-18-0-l10n_es_aeat_mod390
+    :target: https://translation.odoo-community.org/projects/l10n-spain-19-0/l10n-spain-19-0-l10n_es_aeat_mod390
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -67,23 +67,23 @@ Para crear un modelo, por ejemplo de un trimestre del año:
 Known issues / Roadmap
 ======================
 
-- La declaración sólo se puede realizar para personas jurídicas.
-- No se calculan operaciones intragrupo.
-- No se contempla el régimen de criterio de caja.
-- No se contempla el régimen especial de bienes usados, objetos de arte,
-  antigüedades y objetos de colección.
-- No se contempla el régimen especial de agencias de viaje.
-- No se contempla el recargo de equivalencia de impuesto al tabaco
-  (casillas 41 y 42).
-- No se contempla el régimen especial de la agricultura, ganadería y
-  pesca.
-- No se contempla la prorrata general de IVA.
-- No se contempla el régimen simplificado.
-- No se contempla el régimen de deducción diferenciado.
-- No se contempla la inversión de sujeto pasivo nacional.
-- No se tienen en cuenta tributaciones territoriales.
-- Obtener las casillas 95, 97 y 98 de las declaraciones del 303.
-- Falta añadir la casilla 663 de cuota pendientes de compensación.
+-  La declaración sólo se puede realizar para personas jurídicas.
+-  No se calculan operaciones intragrupo.
+-  No se contempla el régimen de criterio de caja.
+-  No se contempla el régimen especial de bienes usados, objetos de
+   arte, antigüedades y objetos de colección.
+-  No se contempla el régimen especial de agencias de viaje.
+-  No se contempla el recargo de equivalencia de impuesto al tabaco
+   (casillas 41 y 42).
+-  No se contempla el régimen especial de la agricultura, ganadería y
+   pesca.
+-  No se contempla la prorrata general de IVA.
+-  No se contempla el régimen simplificado.
+-  No se contempla el régimen de deducción diferenciado.
+-  No se contempla la inversión de sujeto pasivo nacional.
+-  No se tienen en cuenta tributaciones territoriales.
+-  Obtener las casillas 95, 97 y 98 de las declaraciones del 303.
+-  Falta añadir la casilla 663 de cuota pendientes de compensación.
 
 Bug Tracker
 ===========
@@ -91,7 +91,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_mod390%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_mod390%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -106,27 +106,31 @@ Authors
 Contributors
 ------------
 
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Pedro M. Baeza <pedro.baeza@tecnativa.com>
+   -  Pedro M. Baeza <pedro.baeza@tecnativa.com>
 
-- Albert Cabedo
-- `Acysos <http://www.acysos.com>`__:
+-  Albert Cabedo
+-  `Acysos <http://www.acysos.com>`__:
 
-  - Ignacio Ibeas
+   -  Ignacio Ibeas
 
-- `Sygel <https://www.sygel.es>`__:
+-  `Sygel <https://www.sygel.es>`__:
 
-  - Harald Panten <harald.panten@sygel.es>
-  - Valentin Vinagre <valentin.vinagre@sygel.es>
+   -  Harald Panten <harald.panten@sygel.es>
+   -  Valentin Vinagre <valentin.vinagre@sygel.es>
 
-- `Dixmit <https://www.dixmit.com>`__:
+-  `Dixmit <https://www.dixmit.com>`__:
 
-  - Enric Tobella
+   -  Enric Tobella
 
-- `Moduon <https://www.moduon.team>`__:
+-  `Moduon <https://www.moduon.team>`__:
 
-  - Emilio Pascual
+   -  Emilio Pascual
+
+-  `Studio73 <https://studio73.es>`__:
+
+   -  Pablo Cortés
 
 Maintainers
 -----------
@@ -149,6 +153,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-pedrobaeza| 
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_aeat_mod390>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/19.0/l10n_es_aeat_mod390>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

@@ -10,3 +10,5 @@
   - Enric Tobella
 - [Moduon](https://www.moduon.team):
   - Emilio Pascual
+- [Studio73](https://studio73.es):
+  - Pablo Cortés
