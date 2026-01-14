@@ -1,7 +1,8 @@
 # Copyright 2017-2021 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
+from odoo.fields import Domain
 from odoo.tools import float_compare
 
 ACTIVITY_CODE_SELECTION = [
@@ -739,7 +740,7 @@ class L10nEsAeatMod390Report(models.Model):
     def _check_type(self):
         if "C" in self.mapped("statement_type"):
             raise exceptions.UserError(
-                _("You cannot make complementary reports for this model.")
+                self.env._("You cannot make complementary reports for this model.")
             )
 
     def _calculate_casilla_85(self, reports_303_this_year):
@@ -776,21 +777,26 @@ class L10nEsAeatMod390Report(models.Model):
         # Cuotas aplicadas este año
         applied_this_year = sum(
             reports_303.filtered_domain(
-                [("period_type", "not in", ("1T", "01"))]
+                Domain("period_type", "not in", ("1T", "01"))
             ).mapped("cuota_compensar")
         )
         # Compensaciones de este año
         compensation_this_year = abs(
             sum(
                 reports_303.filtered_domain(
-                    [("period_type", "not in", ("4T", "12")), ("result_type", "=", "C")]
+                    Domain.AND(
+                        [
+                            Domain("period_type", "not in", ("4T", "12")),
+                            Domain("result_type", "in", ("C",)),
+                        ]
+                    )
                 ).mapped("resultado_liquidacion")
             )
         )
         # Compensaciones de años anteriores
         compensation_previous_years = reports_303.filtered_domain(
-            [("period_type", "in", ("1T", "01"))]
-        )[:1].potential_cuota_compensar
+            Domain("period_type", "in", ("1T", "01"))
+        ).potential_cuota_compensar
         # Si lo aplicado este año es menor que compensaciones de años anteriores
         # significa que no se ha aplicado todo de años anteriores, por lo que
         # no hay que tenerlo en cuenta para la 662.
@@ -815,12 +821,14 @@ class L10nEsAeatMod390Report(models.Model):
                 continue
             casilla_85, casilla_95, casilla_97, casilla_98, casilla_662 = 0, 0, 0, 0, 0
             reports_303_this_year = self.env["l10n.es.aeat.mod303.report"].search(
-                [
-                    ("year", "=", mod390.year),
-                    ("state", "not in", ("draft", "cancelled")),
-                    ("statement_type", "=", "N"),
-                    ("company_id", "=", mod390.company_id.id),
-                ]
+                Domain.AND(
+                    [
+                        Domain("year", "in", (mod390.year,)),
+                        Domain("state", "not in", ("draft", "cancelled")),
+                        Domain("statement_type", "in", ("N",)),
+                        Domain("company_id", "in", (mod390.company_id.id,)),
+                    ]
+                )
             )
             if not reports_303_this_year:
                 continue
@@ -863,7 +871,7 @@ class L10nEsAeatMod390Report(models.Model):
         summary = self.casilla_95 - self.casilla_97 - self.casilla_98 - self.casilla_662
         if float_compare(summary, self.casilla_86, precision_digits=2) != 0:
             raise exceptions.UserError(
-                _(
+                self.env._(
                     "The result of the manual 303 summary (fields [95], [97], [98] and "
                     "[662] in the page '9. Resultado liquidaciones') doesn't match "
                     "the field [86]. Please check if you have filled such fields."
@@ -873,9 +881,9 @@ class L10nEsAeatMod390Report(models.Model):
 
     def _get_move_line_domain(self, date_start, date_end, map_line):
         """Consider bankrupcy proceedings or uncollectible debt."""
-        res = super()._get_move_line_domain(date_start, date_end, map_line)
+        domain = super()._get_move_line_domain(date_start, date_end, map_line)
         if map_line.field_number in {31, 32, 45, 46}:
-            res += [("move_id.is_bankrupcy_uncollectible_debt", "=", True)]
+            domain &= Domain("move_id.is_bankrupcy_uncollectible_debt", "in", (True,))
         elif map_line.field_number in {29, 30, 43, 44, 99}:
-            res += [("move_id.is_bankrupcy_uncollectible_debt", "=", False)]
-        return res
+            domain &= Domain("move_id.is_bankrupcy_uncollectible_debt", "in", (False,))
+        return domain
