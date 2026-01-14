@@ -11,3 +11,4 @@
 - Valentin Vinagre \<<valentin.vinagre@sygel.es>\>
 - Arantxa Sudón ([Moduon](https://www.moduon.team/))
 - Rafael Blasco ([Moduon](https://www.moduon.team/))
+- Joel Estrada ([Moduon](https://www.moduon.team/))

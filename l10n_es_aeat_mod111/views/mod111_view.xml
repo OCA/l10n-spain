@@ -23,6 +23,12 @@
         <field name="model">l10n.es.aeat.mod111.report</field>
         <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
         <field name="arch" type="xml">
+            <field name="partner_bank_id" position="before">
+                <field name="use_aeat_account" />
+            </field>
+            <field name="partner_bank_id" position="attributes">
+                <attribute name="invisible">use_aeat_account</attribute>
+            </field>
             <field name="previous_number" position="after">
                 <field name="tipo_declaracion" readonly="state != 'calculated'" />
                 <field name="colegio_concertado" readonly="state != 'calculated'" />
