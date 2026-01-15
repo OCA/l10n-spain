@@ -262,18 +262,8 @@ class TestL10nEsAeatVerifactuQR(TestVerifactuCommon):
             "odoo.addons.l10n_es_verifactu_oca.models."
             "verifactu_invoice_entry.VerifactuInvoiceEntry._connect_verifactu"
         ) as mock_connect:
-            mock_service = MagicMock()
-            module = "l10n_es_verifactu_oca"
             json_file = "verifactu_mocked_response_correct.json"
-            path = get_resource_path(module, "tests/json", json_file)
-            if not path:
-                raise Exception("Incorrect JSON file: %s" % json_file)
-            with open(path, "r") as f:
-                response_dict = json.loads(f.read())
-            mock_service.RegFactuSistemaFacturacion.return_value = response_dict
-            mock_connect.return_value = mock_service
-            # Execute the cron job to send the invoice to VERI*FACTU
-            self.env["verifactu.invoice.entry"]._cron_send_documents_to_verifactu()
+            self.mock_test(mock_connect, json_file)
             self.assertEqual(
                 self.invoice.aeat_state,
                 "sent",
@@ -293,6 +283,11 @@ class TestL10nEsAeatVerifactuQR(TestVerifactuCommon):
             raise Exception("Incorrect JSON file: %s" % json_file)
         with open(path, "r") as f:
             response_dict = json.loads(f.read())
+        # Update the response to use the actual invoice name from the test
+        if "RespuestaLinea" in response_dict and response_dict["RespuestaLinea"]:
+            for line in response_dict["RespuestaLinea"]:
+                if "IDFactura" in line and "NumSerieFactura" in line["IDFactura"]:
+                    line["IDFactura"]["NumSerieFactura"] = self.invoice.name
         mock_service.RegFactuSistemaFacturacion.return_value = response_dict
         mock_connect.return_value = mock_service
         # Execute the cron job to send the invoice to VERI*FACTU
@@ -493,9 +488,14 @@ class TestVerifactuSendResponse(TestVerifactuCommon):
             raise Exception("Incorrect JSON file: %s" % json_file)
         with open(path, "r") as f:
             response_dict = json.loads(f.read())
+        self.invoice.action_post()
+        # Update the response to match the actual invoice name AFTER posting
+        response_dict["RespuestaLinea"][0]["IDFactura"][
+            "NumSerieFactura"
+        ] = self.invoice.name
+        # Set up the mock AFTER updating the JSON
         mock_service.RegFactuSistemaFacturacion.return_value = response_dict
         mock_connect.return_value = mock_service
-        self.invoice.action_post()
         self.env["verifactu.invoice.entry"]._cron_send_documents_to_verifactu()
         activity = MailActivity.search(
             [
