@@ -119,4 +119,7 @@ class L10nEsAeatmod592LineAcquirer(models.Model):
         data["fiscal_acquirer"] = (
             self.fiscal_acquirer if self.concept not in ("2", "3", "4") else ""
         )  # En algunos casos no se debe indicar
+        data["supplier_document_type"] = (
+            self.supplier_document_type if self.concept != "3" else ""
+        )  # Campo vacío para concepto 3
         return self._get_csv_report_info_mapped(data)
