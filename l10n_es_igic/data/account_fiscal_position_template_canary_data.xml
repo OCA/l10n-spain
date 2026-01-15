@@ -61,6 +61,11 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0" />
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_0" />
     </record>
+    <record id="fptt_extra_canary_1" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_extra_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_1" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_1" />
+    </record>
     <record id="fptt_extra_canary_3_inv" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="fp_extra_canary" />
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv" />
@@ -127,6 +132,14 @@
     >
         <field name="position_id" ref="fp_extra_canary" />
         <field name="tax_src_id" ref="account_tax_template_igic_r_0" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_ex_0" />
+    </record>
+    <record
+        id="fptt_extra_ventas_canary_1"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_extra_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_r_1" />
         <field name="tax_dest_id" ref="account_tax_template_igic_ex_0" />
     </record>
     <record
@@ -200,6 +213,16 @@
         <field name="position_id" ref="fp_recargo_canary" />
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0" />
         <field name="tax_dest_id" ref="account_tax_template_igic_p_re0" />
+    </record>
+    <record id="fptt_recargo_canary_1" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_recargo_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_1" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_1" />
+    </record>
+    <record id="fptt_recargo_canary_1_2" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_recargo_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_1" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_p_re01" />
     </record>
     <record id="fptt_recargo_canary_3_inv" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="fp_recargo_canary" />
@@ -359,6 +382,16 @@
         <field name="tax_src_id" ref="account_tax_template_igic_r_0" />
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf9" />
     </record>
+    <record id="fptt_irpf9sale_canary_1" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_irpf9_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_r_1" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_r_1" />
+    </record>
+    <record id="fptt_irpf9sale_canary_1_2" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_irpf9_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_r_1" />
+        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf9" />
+    </record>
     <record id="fptt_irpf9sale_canary_3" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="fp_irpf9_canary" />
         <field name="tax_src_id" ref="account_tax_template_igic_r_3" />
@@ -446,6 +479,16 @@
     <record id="fptt_irpf9_canary_0_2" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="fp_irpf9_canary" />
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0" />
+        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf9" />
+    </record>
+    <record id="fptt_irpf9_canary_1" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_irpf9_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_1" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_1" />
+    </record>
+    <record id="fptt_irpf9_canary_1_2" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_irpf9_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_1" />
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf9" />
     </record>
     <record id="fptt_irpf9_canary_3_inv" model="account.fiscal.position.tax.template">
@@ -591,6 +634,19 @@
         <field name="tax_src_id" ref="account_tax_template_igic_r_0" />
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf15" />
     </record>
+    <record id="fptt_irpf15sale_canary_1" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_irpf15_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_r_1" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_r_1" />
+    </record>
+    <record
+        id="fptt_irpf15sale_canary_1_2"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_irpf15_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_r_1" />
+        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf15" />
+    </record>
     <record id="fptt_irpf15sale_canary_3" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="fp_irpf15_canary" />
         <field name="tax_src_id" ref="account_tax_template_igic_r_3" />
@@ -692,6 +748,18 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0" />
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf15" />
     </record>
+
+    <record id="fptt_irpf15_canary_1" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_irpf15_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_1" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_1" />
+    </record>
+    <record id="fptt_irpf15_canary_1_2" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_irpf15_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_1" />
+        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf15" />
+    </record>
+
     <record id="fptt_irpf15_canary_3_inv" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="fp_irpf15_canary" />
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv" />
@@ -844,6 +912,19 @@
         <field name="tax_src_id" ref="account_tax_template_igic_r_0" />
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf19a" />
     </record>
+    <record id="fptt_irpf19asale_canary_1" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_irpf19a_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_r_1" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_r_1" />
+    </record>
+    <record
+        id="fptt_irpf19asale_canary_1_2"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_irpf19a_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_r_1" />
+        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf19a" />
+    </record>
     <record id="fptt_irpf19asale_canary_3" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="fp_irpf19a_canary" />
         <field name="tax_src_id" ref="account_tax_template_igic_r_3" />
@@ -954,6 +1035,17 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0" />
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf19a" />
     </record>
+    <record id="fptt_irpf19a_canary_1" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_irpf19a_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_1" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_1" />
+    </record>
+    <record id="fptt_irpf19a_canary_1_2" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_irpf19a_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_1" />
+        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf19a" />
+    </record>
+
     <record id="fptt_irpf19a_canary_3_inv" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="fp_irpf19a_canary" />
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv" />
@@ -1112,6 +1204,11 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0" />
         <field name="tax_dest_id" ref="account_tax_template_igic_ISP0" />
     </record>
+    <record id="fptt_ispn_p_igic1" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_ispn_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_1" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_ISP1" />
+    </record>
     <record id="fptt_ispn_p_igic3_inv" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="fp_ispn_canary" />
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv" />
@@ -1177,6 +1274,11 @@
         <field name="tax_src_id" ref="account_tax_template_igic_r_0" />
         <field name="tax_dest_id" ref="account_tax_template_igic_s_ISP0" />
     </record>
+    <record id="fptt_ispn_s_igic1" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_ispn_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_r_1" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_s_ISP0" />
+    </record>
     <record id="fptt_ispn_s_igic3" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="fp_ispn_canary" />
         <field name="tax_src_id" ref="account_tax_template_igic_r_3" />
@@ -1213,6 +1315,11 @@
         <field name="tax_src_id" ref="account_tax_template_igic_r_0" />
         <field name="tax_dest_id" ref="account_tax_template_igic_cmino" />
     </record>
+    <record id="fptt_cmino_s_igic1" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_r_1" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_cmino" />
+    </record>
     <record id="fptt_cmino_s_igic3" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="fp_retailer_canary" />
         <field name="tax_src_id" ref="account_tax_template_igic_r_3" />
@@ -1247,6 +1354,11 @@
         <field name="position_id" ref="fp_retailer_canary" />
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0" />
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_cmino" />
+    </record>
+    <record id="fptt_cmino_p_igic1" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_1" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_1_cmino" />
     </record>
     <record id="fptt_cmino_p_igic3" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="fp_retailer_canary" />
@@ -1285,6 +1397,11 @@
     >
         <field name="position_id" ref="fp_lease_canary" />
         <field name="tax_src_id" ref="account_tax_template_igic_r_0" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_re_ex" />
+    </record>
+    <record id="fpl_extra_ventas_canary_1" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_lease_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_r_1" />
         <field name="tax_dest_id" ref="account_tax_template_igic_re_ex" />
     </record>
     <record id="fpl_extra_ventas_canary_3" model="account.fiscal.position.tax.template">

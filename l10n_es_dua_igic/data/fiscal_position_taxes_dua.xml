@@ -13,6 +13,11 @@
         <field name="tax_src_id" ref="l10n_es_igic.account_tax_template_igic_sop_0" />
         <field name="tax_dest_id" ref="account_tax_template_p_atc_dua0" />
     </record>
+    <record id="fptt_atc_dua_1" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_atc_dua" />
+        <field name="tax_src_id" ref="l10n_es_igic.account_tax_template_igic_sop_1" />
+        <field name="tax_dest_id" ref="account_tax_template_p_atc_dua0" />
+    </record>
     <record id="fptt_atc_dua_3_inv" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="fp_atc_dua" />
         <field
