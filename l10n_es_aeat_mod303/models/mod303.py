@@ -524,9 +524,22 @@ class L10nEsAeatMod303Report(models.Model):
     def check_qty(self):
         if self.filtered(
             lambda x: (
-                x.cuota_compensar < 0
-                or x.remaining_cuota_compensar < 0
-                or (x.potential_cuota_compensar - x.cuota_compensar) < 0
+                float_compare(
+                    x.cuota_compensar, 0, precision_digits=x.currency_id.decimal_places
+                )
+                < 0
+                or float_compare(
+                    x.remaining_cuota_compensar,
+                    0,
+                    precision_digits=x.currency_id.decimal_places,
+                )
+                < 0
+                or float_compare(
+                    x.potential_cuota_compensar,
+                    x.cuota_compensar,
+                    precision_digits=x.currency_id.decimal_places,
+                )
+                < 0
             )
         ):
             raise exceptions.ValidationError(
