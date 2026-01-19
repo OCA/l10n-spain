@@ -402,7 +402,11 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         self.assertAlmostEqual(self.model390_2018.casilla_95, 0.0, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_97, 560.85, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_98, 0.0, 2)
-        self.assertAlmostEqual(self.model390_2018.casilla_662, 0.0, 2)
+        # To compensate this year = 674.48
+        # Total compensation applied this year = 0
+        # Compensation from previous years = 0
+        # Then C662 = 674.48
+        self.assertAlmostEqual(self.model390_2018.casilla_662, 674.48, 2)
 
         model303_4T.return_last_period = True
         model303_4T.button_calculate()
@@ -413,7 +417,9 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         self.assertAlmostEqual(self.model390_2018.casilla_95, 0.0, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_97, 0.0, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_98, 1235.33, 2)
-        self.assertAlmostEqual(self.model390_2018.casilla_662, 200.0, 2)
+        # As 78 in 303 4T increases then all to compensate this year is appliead
+        # Then C662 = 0
+        self.assertAlmostEqual(self.model390_2018.casilla_662, 0.0, 2)
 
         model303_1T.potential_cuota_compensar = 500.0
         model303_1T.button_calculate()
@@ -423,7 +429,7 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         self.assertAlmostEqual(self.model390_2018.casilla_95, 0.0, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_97, 0.0, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_98, 1235.33, 2)
-        self.assertAlmostEqual(self.model390_2018.casilla_662, 200.0, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_662, 0.0, 2)
 
         model303_1T.potential_cuota_compensar = 1000.0
         model303_1T.button_calculate()
@@ -433,7 +439,7 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         self.assertAlmostEqual(self.model390_2018.casilla_95, 0.0, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_97, 0.0, 2)
         self.assertAlmostEqual(self.model390_2018.casilla_98, 1235.33, 2)
-        self.assertAlmostEqual(self.model390_2018.casilla_662, 200.0, 2)
+        self.assertAlmostEqual(self.model390_2018.casilla_662, 0.0, 2)
 
     def test_model_390_using_303_03(self):
         # Check use 303 activated, 303 reports exist and last period is to compensate
