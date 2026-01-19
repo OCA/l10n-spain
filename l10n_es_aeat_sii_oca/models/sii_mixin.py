@@ -252,6 +252,8 @@ class SiiMixin(models.AbstractModel):
         return header
 
     def _cancel_send_to_sii(self):
+        if not any(self.sudo().mapped("sii_send_date")):
+            return True
         try:
             self.sudo().write({"sii_send_date": False})
         except Exception:
