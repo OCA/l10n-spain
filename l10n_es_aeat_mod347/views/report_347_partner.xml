@@ -26,23 +26,23 @@
                 <t t-if="o.amount">
                     <h2>Invoices</h2>
                     <div class="row mt32 mb32">
-                        <div class="col-auto col-3 mw-100 mb-2">
+                        <div class="col-auto col-2 mw-100 mb-2">
                             <strong>Amount:</strong>
                             <p class="m-0" t-field="o.amount" />
                         </div>
-                        <div class="col-auto col-3 mw-100 mb-2">
+                        <div class="col-auto col-2 mw-100 mb-2">
                             <strong>Amount 1Q:</strong>
                             <p class="m-0" t-field="o.first_quarter" />
                         </div>
-                        <div class="col-auto col-3 mw-100 mb-2">
+                        <div class="col-auto col-2 mw-100 mb-2">
                             <strong>Amount 2Q:</strong>
                             <p class="m-0" t-field="o.second_quarter" />
                         </div>
-                        <div class="col-auto col-3 mw-100 mb-2">
+                        <div class="col-auto col-2 mw-100 mb-2">
                             <strong>Amount 3Q:</strong>
                             <p class="m-0" t-field="o.third_quarter" />
                         </div>
-                        <div class="col-auto col-3 mw-100 mb-2">
+                        <div class="col-auto col-2 mw-100 mb-2">
                             <strong>Amount 4Q:</strong>
                             <p class="m-0" t-field="o.fourth_quarter" />
                         </div>
@@ -124,35 +124,35 @@
                 <t t-if="o.real_estate_transmissions_amount">
                     <h2>Real State Transmissions</h2>
                     <div class="row mt32 mb32">
-                        <div class="col-auto col-3 mw-100 mb-2">
+                        <div class="col-auto col-2 mw-100 mb-2">
                             <strong>Amount:</strong>
                             <p
                                 class="m-0"
                                 t-field="o.real_estate_transmissions_amount"
                             />
                         </div>
-                        <div class="col-auto col-3 mw-100 mb-2">
+                        <div class="col-auto col-2 mw-100 mb-2">
                             <strong>Amount 1Q:</strong>
                             <p
                                 class="m-0"
                                 t-field="o.first_quarter_real_estate_transmission"
                             />
                         </div>
-                        <div class="col-auto col-3 mw-100 mb-2">
+                        <div class="col-auto col-2 mw-100 mb-2">
                             <strong>Amount 2Q:</strong>
                             <p
                                 class="m-0"
                                 t-field="o.second_quarter_real_estate_transmission"
                             />
                         </div>
-                        <div class="col-auto col-3 mw-100 mb-2">
+                        <div class="col-auto col-2 mw-100 mb-2">
                             <strong>Amount 3Q:</strong>
                             <p
                                 class="m-0"
                                 t-field="o.third_quarter_real_estate_transmission"
                             />
                         </div>
-                        <div class="col-auto col-3 mw-100 mb-2">
+                        <div class="col-auto col-2 mw-100 mb-2">
                             <strong>Amount 4Q:</strong>
                             <p
                                 class="m-0"
