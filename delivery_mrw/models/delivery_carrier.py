@@ -81,13 +81,13 @@ class DeliveryCarrier(models.Model):
 
     mrw_international_service = fields.Selection(
         selection=MRW_INTERNATIONAL_SERVICES,
-        string="MRW Service",
+        string="MRW International Service",
         help="Set the MRW Service",
         default="PAC",
     )
     mrw_national_service = fields.Selection(
         selection=MRW_NATIONAL_SERVICES,
-        string="MRW Service",
+        string="MRW National Service",
         help="Set the MRW Service",
         default="0300",
     )
@@ -205,7 +205,7 @@ class DeliveryCarrier(models.Model):
 
     def _mrw_check_response(self, response):
         if not int(response["Estado"]):
-            raise UserError(_("MRW Error: %s)" % response["Mensaje"]))
+            raise UserError(_("MRW Error: {})").format(response["Mensaje"]))
         elif response["Estado"] and response["Mensaje"]:
             return response["Mensaje"]
         return ""
@@ -395,7 +395,10 @@ class DeliveryCarrier(models.Model):
         label = self.mrw_get_label(mrw_tracking_ref, picking)
         # We post an extra message in the chatter with the barcode and the
         # label because there's clean way to override the one sent by core.
-        body = _(response_message + "<br> MRW Shipping Label:")
+        body = "{}<br>{}".format(
+            response_message or "",
+            _("MRW Shipping Label:"),
+        )
         attachment = []
         if label["EtiquetaFile"]:
             attachment = [
