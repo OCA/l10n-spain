@@ -773,7 +773,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
                 and not any([record[field] for field in fields_clave_b01])
             ):
                 raise exceptions.ValidationError(
-                    self.env._(
+                    _(
                         "The perceptor %s has key B.01, you must check any type of "
                         "benefit for key B.01",
                         record.partner_id.name,

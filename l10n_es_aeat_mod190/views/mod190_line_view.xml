@@ -242,7 +242,7 @@
                         </page>
                         <page
                             string="Tipos de prestaciones de la clave B.01 percibidas"
-                            invisible="not visible_key_b01"
+                            attrs="{'invisible': [('visible_key_b01', '=', False)]}"
                         >
                             <group>
                                 <group>
