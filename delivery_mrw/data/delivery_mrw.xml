@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="1">
-        <record id="mrw_carrier_test" model="delivery.carrier">
+    <record id="mrw_carrier_test" model="delivery.carrier">
         <field name="name">MRW Test</field>
         <field name="delivery_type">mrw</field>
         <field name="mrw_franquicia_code">00626</field>
