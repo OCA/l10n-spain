@@ -280,9 +280,9 @@ class DeliveryCarrier(models.Model):
         if channel:
             notifications["NotificacionRequest"] = {}
             notifications["NotificacionRequest"]["CanalNotificacion"] = channel
-            notifications["NotificacionRequest"][
-                "TipoNotificacion"
-            ] = self.mrw_notification_type
+            notifications["NotificacionRequest"]["TipoNotificacion"] = (
+                self.mrw_notification_type
+            )
             notifications["NotificacionRequest"]["MailSMS"] = (
                 partner.email if channel == "1" else partner.mobile
             )

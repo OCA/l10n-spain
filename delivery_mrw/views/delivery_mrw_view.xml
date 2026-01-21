@@ -28,7 +28,7 @@
                             />
                         </group>
                         <group string="Service">
-<!--                            we make international shipping invisible because it's not supported-->
+                            <!--                            we make international shipping invisible because it's not supported-->
                             <field
                                 name="international_shipping"
                                 invisible="1"
@@ -51,20 +51,20 @@
                             />
                             <div invisible="international_shipping">
                                 <field
-                                    name="mrw_horario_from"
-                                    class="oe_inline"
-                                    widget="float_time"
-                                    invisible="international_shipping"
-                                    required="delivery_type == 'mrw' and not international_shipping"
-                                />
+                                name="mrw_horario_from"
+                                class="oe_inline"
+                                widget="float_time"
+                                invisible="international_shipping"
+                                required="delivery_type == 'mrw' and not international_shipping"
+                            />
                                 a
                              <field
-                                    name="mrw_horario_to"
-                                    class="oe_inline"
-                                    widget="float_time"
-                                    invisible="international_shipping"
-                                    required="delivery_type == 'mrw' and not international_shipping"
-                                />
+                                name="mrw_horario_to"
+                                class="oe_inline"
+                                widget="float_time"
+                                invisible="international_shipping"
+                                required="delivery_type == 'mrw' and not international_shipping"
+                            />
                             </div>
                             <field
                                 name="mrw_en_franquicia"
