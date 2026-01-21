@@ -3,7 +3,9 @@
 from datetime import timedelta
 
 from odoo import fields
-from odoo.tests import common
+from odoo.tests import tagged
+
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 from ..models.subcontractor_certificate import (
     EXPIRED_WARNING_AEAT,
@@ -13,27 +15,49 @@ from ..models.subcontractor_certificate import (
 )
 
 
-class TestL10nEsSubcontractorCertificate(common.TransactionCase):
+@tagged("post_install", "-at_install")
+class TestL10nEsSubcontractorCertificate(AccountTestInvoicingCommon):
     def setUp(self):
         super(TestL10nEsSubcontractorCertificate, self).setUp()
+        self.account_receivable_a1 = self.env["account.account"].create(
+            {
+                "name": "Receivable A1",
+                "code": "REC.A",
+                "account_type": "asset_receivable",
+                "company_id": self.company_data["company"].id,
+            }
+        )
         self.ctx_no_mail = {
             "no_reset_password": True,
             "mail_create_nosubscribe": True,
             "mail_create_nolog": True,
         }
-        Partner = self.env["res.partner"].with_context(self.ctx_no_mail)
-        Purchase = self.env["purchase.order"].with_context(self.ctx_no_mail)
-        Invoice = self.env["account.invoice"].with_context(self.ctx_no_mail)
+        Partner = self.env["res.partner"].with_context(**self.ctx_no_mail)
+        Purchase = self.env["purchase.order"].with_context(**self.ctx_no_mail)
+        Invoice = self.env["account.move"].with_context(**self.ctx_no_mail)
+        Journal = self.env["account.journal"]
+        self.journal_purchase = Journal.create(
+            {
+                "name": "Vendor Bills",
+                "type": "purchase",
+                "code": "TPUR",
+                "company_id": self.env.company.id,
+            }
+        )
         self.partner = Partner.create(
             {
                 "name": "Demo Supplier",
                 "email": "demo@supplier.com",
-                "supplier": True,
+                "property_account_receivable_id": self.account_receivable_a1.id,
             }
         )
         self.purchase = Purchase.create({"partner_id": self.partner.id})
         self.invoice = Invoice.create(
-            {"partner_id": self.partner.id, "type": "in_invoice"}
+            {
+                "partner_id": self.partner.id,
+                "move_type": "in_invoice",
+                "journal_id": self.journal_purchase.id,
+            }
         )
         self.expired_date = fields.Date.today() - timedelta(days=1)
 
