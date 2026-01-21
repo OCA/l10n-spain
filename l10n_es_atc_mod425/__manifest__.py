@@ -11,7 +11,15 @@
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
-    "depends": ["l10n_es_igic", "l10n_es_atc"],
+    "depends": [
+        "base_location",
+        "l10n_es_igic",
+        "l10n_es_atc",
+        "report_xml",
+    ],
+    "external_dependencies": {
+        "deb": ["openjdk-8-jdk", "ttf-mscorefonts-installer", "fontconfig"],
+    },
     "data": [
         "security/ir.model.access.csv",
         "security/l10n_es_atc_mod425_security.xml",
