@@ -162,16 +162,16 @@
                             <td style="font-size:16px;text-align:center;">
                                 <strong>
                                     <span
-                                        t-esc="sum([int(x['number_of_packages']) for x in deliveries])"
-                                    />
+                                    t-esc="sum([int(x['number_of_packages']) for x in deliveries])"
+                                />
                                     <br />(Packages)
                                 </strong>
                             </td>
                             <td style="font-size: 16px; text-align: center;">
                                 <strong>
                                     <span
-                                        t-esc="round(sum([float(x['weight']) for x in deliveries]), 2)"
-                                    />
+                                    t-esc="round(sum([float(x['weight']) for x in deliveries]), 2)"
+                                />
                                     <br />(Kg.)
                                 </strong>
                             </td>
