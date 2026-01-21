@@ -26,7 +26,7 @@ class TestDeliveryMRW(BaseCommon):
             }
         )
         cls.product = cls.env["product.product"].create(
-            {"type": "product", "name": "Test product"}
+            {"type": "consu", "is_storable": True, "name": "Test product"}
         )
         stock_location = cls.env.ref("stock.stock_location_stock")
         inventory = cls.env["stock.quant"].create(
