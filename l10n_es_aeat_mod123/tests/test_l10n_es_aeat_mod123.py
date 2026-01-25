@@ -75,7 +75,7 @@ class TestL10nEsAeatMod123(TestL10nEsAeatModBase):
         self.assertTrue(export_to_boe._export_config(model123, export_config))
 
     def test_model_123_2024(self):
-        self.taxes_result = {"4": 3 * (100 + 1000), "5": 0, "7": 3 * (19 + 190), "8": 0}
+        self.taxes_result = {"4": 3 * 1000, "5": 3 * 100, "7": 3 * 190, "8": 3 * 19}
         self._invoice_purchase_create("2024-01-01")
         self._invoice_purchase_create("2024-01-02")
         self._invoice_purchase_create("2024-01-03")
@@ -124,13 +124,13 @@ class TestL10nEsAeatMod123(TestL10nEsAeatModBase):
         # Check result
         _logger.debug("Checking results")
         self.assertEqual(model123.casilla_01_2024, 1)
-        self.assertEqual(model123.casilla_02_2024, 0)
-        self.assertEqual(model123.casilla_03_2024, 1)
-        self.assertEqual(model123.casilla_04_2024, 3300.0)
-        self.assertEqual(model123.casilla_05_2024, 0.0)
+        self.assertEqual(model123.casilla_02_2024, 1)
+        self.assertEqual(model123.casilla_03_2024, 2)
+        self.assertEqual(model123.casilla_04_2024, 3000.0)
+        self.assertEqual(model123.casilla_05_2024, 300.0)
         self.assertEqual(model123.casilla_06_2024, 3300.0)
-        self.assertEqual(model123.casilla_07_2024, 627.0)
-        self.assertEqual(model123.casilla_08_2024, 0.0)
+        self.assertEqual(model123.casilla_07_2024, 570.0)
+        self.assertEqual(model123.casilla_08_2024, 57.0)
         self.assertEqual(model123.casilla_09_2024, 627.0)
         self.assertEqual(model123.casilla_10_2024, 0)
         self.assertEqual(model123.casilla_12_2024, 627.0)
