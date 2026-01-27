@@ -79,6 +79,11 @@ msgid "Account Move Facturae Signed"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_report_l10n_es_facturae_template_facturae
+msgid "Account Move Facturae Template without signature"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_move_reversal
 msgid "Account Move Reversal"
 msgstr ""
@@ -916,7 +921,7 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #. odoo-python
-#: code:addons/l10n_es_facturae/reports/report_facturae.py:0
+#: code:addons/l10n_es_facturae/reports/report_facturae_signed.py:0
 msgid ""
 "The generated XML file is not valid against the official XML Schema "
 "Definition. The generated XML file and the full error have been written in "
@@ -926,7 +931,7 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #. odoo-python
-#: code:addons/l10n_es_facturae/reports/report_facturae.py:0
+#: code:addons/l10n_es_facturae/reports/report_facturae_signed.py:0
 msgid "The provided certificate is not found in the system."
 msgstr ""
 
