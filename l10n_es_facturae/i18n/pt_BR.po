@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2018-02-26 12:00+0000\n"
 "PO-Revision-Date: 2018-02-26 12:00+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -76,6 +76,11 @@ msgstr ""
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_report_l10n_es_facturae_facturae_signed
 msgid "Account Move Facturae Signed"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_report_l10n_es_facturae_template_facturae
+msgid "Account Move Facturae Template without signature"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -915,7 +920,7 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #. odoo-python
-#: code:addons/l10n_es_facturae/reports/report_facturae.py:0
+#: code:addons/l10n_es_facturae/reports/report_facturae_signed.py:0
 msgid ""
 "The generated XML file is not valid against the official XML Schema "
 "Definition. The generated XML file and the full error have been written in "
@@ -925,7 +930,7 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #. odoo-python
-#: code:addons/l10n_es_facturae/reports/report_facturae.py:0
+#: code:addons/l10n_es_facturae/reports/report_facturae_signed.py:0
 msgid "The provided certificate is not found in the system."
 msgstr ""
 
