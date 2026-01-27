@@ -254,10 +254,34 @@ msgstr "Tbai Ordezkapen Pos Agindua"
 
 #. module: l10n_es_ticketbai_pos
 #. odoo-javascript
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/models.js:0
+#, python-format
+msgid ""
+"The TicketBAI invoice could not be signed. Please refresh and try again."
+msgstr ""
+
+#. module: l10n_es_ticketbai_pos
+#. odoo-javascript
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
+#, python-format
+msgid ""
+"The TicketBAI invoice was generated but is missing critical data.\n"
+"\n"
+"This may be due to:\n"
+"• Certificate signing failure\n"
+"• Network connectivity issues\n"
+"• Corrupt certificate\n"
+"\n"
+"Please try again or contact support."
+msgstr ""
+
+#. module: l10n_es_ticketbai_pos
+#. odoo-javascript
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PartnerListScreen/PartnerListScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/ProductScreen/ProductScreen.js:0
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/models.js:0
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/tbai_models.js:0
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
 #, python-format
 msgid "TicketBAI"
@@ -271,6 +295,13 @@ msgid "TicketBAI - Critical Error"
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
+#. odoo-javascript
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
+#, python-format
+msgid "TicketBAI - Incomplete Invoice"
+msgstr ""
+
+#. module: l10n_es_ticketbai_pos
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__tbai_certificate_id
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_res_config_settings__pos_tbai_certificate_id
 msgid "TicketBAI Certificate"
@@ -280,6 +311,13 @@ msgstr "TicketBAI Ziurtagiria"
 #: model:ir.ui.menu,name:l10n_es_ticketbai_pos.menu_pos_tbai_certificates
 msgid "TicketBAI Certificates"
 msgstr "TicketBAI Ziurtagiriak"
+
+#. module: l10n_es_ticketbai_pos
+#. odoo-javascript
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
+#, python-format
+msgid "TicketBAI Invoice is incomplete. Please try again."
+msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #. odoo-javascript
