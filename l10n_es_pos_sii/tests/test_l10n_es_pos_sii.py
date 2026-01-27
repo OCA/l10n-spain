@@ -4,6 +4,7 @@
 
 import json
 
+from odoo import Command
 from odoo.tests import tagged
 from odoo.tools.misc import file_path
 
@@ -83,6 +84,28 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
         self._create_session_closed()
         self.session = self.PosSession.search([], limit=1, order="id desc")
         self.order = self.session.order_ids[:1]
+
+    @classmethod
+    def _create_invoice(cls, move_type):
+        return cls.env["account.move"].create(
+            {
+                "company_id": cls.company.id,
+                "partner_id": cls.partner.id,
+                "invoice_date": "2018-02-01",
+                "move_type": move_type,
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "product_id": cls.product.id,
+                            "account_id": cls.account_expense.id,
+                            "name": "Test line",
+                            "price_unit": 100,
+                            "quantity": 1,
+                        },
+                    )
+                ],
+            }
+        )
 
     def _create_session_closed(self):
         cash = self.cash_pm1
