@@ -93,7 +93,8 @@ class PosOrder(models.Model):
         if pos_order is None:
             vals["previous_tbai_invoice_id"] = self.config_id.tbai_last_invoice_id.id
         else:
-            previous_order_pos_reference = pos_order.get(
+            order_data = pos_order["data"]
+            previous_order_pos_reference = order_data.get(
                 "tbai_previous_order_pos_reference", False
             )
             if previous_order_pos_reference:
@@ -103,7 +104,7 @@ class PosOrder(models.Model):
                 vals[
                     "previous_tbai_invoice_id"
                 ] = tbai_previous_order.tbai_invoice_id.id
-            datas = base64.b64encode(pos_order["data"]["tbai_datas"].encode("utf-8"))
+            datas = base64.b64encode(order_data["tbai_datas"].encode("utf-8"))
             vals.update(
                 {
                     "datas": datas,
@@ -111,7 +112,7 @@ class PosOrder(models.Model):
                         self.l10n_es_unique_id.replace("/", "-")
                     ),
                     "file_size": len(datas),
-                    "signature_value": pos_order["data"]["tbai_signature_value"],
+                    "signature_value": order_data["tbai_signature_value"],
                 }
             )
         gipuzkoa_tax_agency = self.env.ref(
@@ -184,10 +185,10 @@ class PosOrder(models.Model):
     def _process_order(self, pos_order, draft, existing_order):
         if draft:
             return super()._process_order(pos_order, draft, existing_order)
-
-        tbai_vat_regime_key = pos_order["data"].get("tbai_vat_regime_key")
+        order_data = pos_order["data"]
+        tbai_vat_regime_key = order_data.get("tbai_vat_regime_key")
         if tbai_vat_regime_key and isinstance(tbai_vat_regime_key, str):
-            pos_order["data"]["tbai_vat_regime_key"] = (
+            order_data["tbai_vat_regime_key"] = (
                 self.env["tbai.vat.regime.key"]
                 .search([("code", "=", tbai_vat_regime_key)], limit=1)
                 .id
@@ -196,7 +197,7 @@ class PosOrder(models.Model):
         order_id = super()._process_order(pos_order, draft, existing_order)
         order = self.browse(order_id)
 
-        if order.config_id.tbai_enabled and not pos_order.get("to_invoice", False):
+        if order.config_id.tbai_enabled and not order_data.get("to_invoice", False):
             vals = order.tbai_prepare_invoice_values(pos_order)
             tbai_invoice = self.env["tbai.invoice"].sudo().create(vals)
             order.tbai_invoice_id = tbai_invoice
