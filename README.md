@@ -43,7 +43,7 @@ addon | version | maintainers | summary
 [l10n_es_aeat_mod369](l10n_es_aeat_mod369/) | 16.0.1.1.2 |  | AEAT modelo 369
 [l10n_es_aeat_mod390](l10n_es_aeat_mod390/) | 16.0.2.12.2 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | AEAT modelo 390
 [l10n_es_aeat_mod390_oss](l10n_es_aeat_mod390_oss/) | 16.0.1.0.0 |  | AEAT modelo 390 - OSS
-[l10n_es_aeat_mod592](l10n_es_aeat_mod592/) | 16.0.1.0.2 |  | AEAT modelo 592
+[l10n_es_aeat_mod592](l10n_es_aeat_mod592/) | 16.0.1.0.3 |  | AEAT modelo 592
 [l10n_es_aeat_partner_check](l10n_es_aeat_partner_check/) | 16.0.1.1.0 |  | AEAT - Comprobación de Calidad de datos identificativos
 [l10n_es_aeat_sii_force_type](l10n_es_aeat_sii_force_type/) | 16.0.2.0.1 |  | Force SII communication type on invoices
 [l10n_es_aeat_sii_invoice_summary](l10n_es_aeat_sii_invoice_summary/) | 16.0.2.0.0 |  | Envio de factura simplificada resumen TPV a SII
