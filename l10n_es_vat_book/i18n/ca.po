@@ -463,8 +463,8 @@ msgstr "NIF del representant legal."
 
 #. module: l10n_es_vat_book
 #: model:ir.ui.menu,name:l10n_es_vat_book.menu_vat_book_report
-msgid "Libro de IVA"
-msgstr "Llibre d'IVA"
+msgid "Libros del IVA y del IRPF"
+msgstr ""
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line__line_type
@@ -490,6 +490,11 @@ msgstr "Missatges"
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__number
 msgid "Model number"
 msgstr "Nº de model"
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields.selection,name:l10n_es_vat_book.selection__l10n_es_vat_book__vat_settlement_period__monthly
+msgid "Monthly"
+msgstr ""
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax__move_line_ids
@@ -581,6 +586,11 @@ msgstr "Telèfon"
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__previous_number
 msgid "Previous declaration number"
 msgstr "Número de la declaració anterior"
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields.selection,name:l10n_es_vat_book.selection__l10n_es_vat_book__vat_settlement_period__quarterly
+msgid "Quarterly"
+msgstr ""
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields.selection,name:l10n_es_vat_book.selection__l10n_es_vat_book_line_tax__special_tax_group__req
@@ -901,6 +911,11 @@ msgid "Vat Number Xlsx"
 msgstr "Número d'IVA Xlsx"
 
 #. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__vat_settlement_period
+msgid "Vat Settlement Period"
+msgstr ""
+
+#. module: l10n_es_vat_book
 #: model:ir.actions.report,name:l10n_es_vat_book.act_report_vat_book_invoices_issued_html
 #: model:ir.actions.report,name:l10n_es_vat_book.act_report_vat_book_invoices_issued_pdf
 msgid "Vat book invoices issued"
@@ -955,6 +970,9 @@ msgstr "Any"
 #: model:ir.actions.report,print_report_name:l10n_es_vat_book.l10n_es_vat_book_xlsx
 msgid "object.get_report_file_name()"
 msgstr "object.get_report_file_name()"
+
+#~ msgid "Libro de IVA"
+#~ msgstr "Llibre d'IVA"
 
 #~ msgid "SMS Delivery error"
 #~ msgstr "Missatge d'error de l'enviament"

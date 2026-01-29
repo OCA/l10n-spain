@@ -463,7 +463,7 @@ msgstr ""
 
 #. module: l10n_es_vat_book
 #: model:ir.ui.menu,name:l10n_es_vat_book.menu_vat_book_report
-msgid "Libro de IVA"
+msgid "Libros del IVA y del IRPF"
 msgstr ""
 
 #. module: l10n_es_vat_book
@@ -489,6 +489,11 @@ msgstr ""
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__number
 msgid "Model number"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields.selection,name:l10n_es_vat_book.selection__l10n_es_vat_book__vat_settlement_period__monthly
+msgid "Monthly"
 msgstr ""
 
 #. module: l10n_es_vat_book
@@ -580,6 +585,11 @@ msgstr ""
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__previous_number
 msgid "Previous declaration number"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields.selection,name:l10n_es_vat_book.selection__l10n_es_vat_book__vat_settlement_period__quarterly
+msgid "Quarterly"
 msgstr ""
 
 #. module: l10n_es_vat_book
@@ -892,6 +902,11 @@ msgstr ""
 #. module: l10n_es_vat_book
 #: model:ir.model,name:l10n_es_vat_book.model_report_l10n_es_vat_book_l10n_es_vat_book_xlsx
 msgid "Vat Number Xlsx"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__vat_settlement_period
+msgid "Vat Settlement Period"
 msgstr ""
 
 #. module: l10n_es_vat_book
