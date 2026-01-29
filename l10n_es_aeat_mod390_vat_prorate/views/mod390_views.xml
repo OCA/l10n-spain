@@ -13,7 +13,7 @@
             ref="l10n_es_aeat_mod390.view_l10n_es_aeat_mod390_report_form"
         />
         <field name="arch" type="xml">
-            <field name="casilla_98" position="before">
+            <xpath expr="//field[@name='casilla_598']/parent::group" position="inside">
                 <field
                     name="casilla_522"
                     widget="monetary"
@@ -23,15 +23,42 @@
                     readonly="state == 'done'"
                 />
                 <label for="casilla_522" />
-            </field>
-            <field name="statement_type" position="after">
-                <field
-                    name="vat_prorate_percent"
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page
+                    string="12. Prorates"
+                    name="12_prorates"
                     invisible="not with_vat_prorate"
-                    required="with_vat_prorate or period_type == '0A'"
-                    readonly="state != 'draft'"
-                />
-            </field>
+                >
+                    <group>
+                        <field
+                            name="main_activity"
+                            required="state == 'calculated' and (with_vat_prorate or period_type == '0A')"
+                            readonly="state != 'calculated'"
+                        />
+                        <field
+                            name="cnae"
+                            required="state == 'calculated' and (with_vat_prorate or period_type == '0A')"
+                            readonly="state != 'calculated'"
+                            nolabel="1"
+                        />
+                        <label for="cnae" />
+                        <field name="casilla_115" nolabel="1" />
+                        <label for="casilla_115" />
+                        <field name="casilla_116" nolabel="1" />
+                        <label for="casilla_116" />
+                        <field name="type_prorate" nolabel="1" />
+                        <label for="type_prorate" />
+                        <field
+                            name="vat_prorate_percent"
+                            required="state == 'calculated' and (with_vat_prorate or period_type == '0A')"
+                            readonly="state != 'calculated'"
+                            nolabel="1"
+                        />
+                        <label for="vat_prorate_percent" />
+                    </group>
+                </page>
+            </xpath>
         </field>
     </record>
 </odoo>

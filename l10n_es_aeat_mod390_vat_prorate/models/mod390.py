@@ -15,16 +15,46 @@ class L10nEsAeatMod390Report(models.Model):
     )
     with_vat_prorate = fields.Boolean(related="company_id.with_vat_prorate")
     vat_prorate_percent = fields.Float(
-        string="Definitive VAT prorate percentage",
-        default=100,
+        string="[118] % Prorrata",
+        default=0,
         readonly=True,
+        help="se hará constar en esta casilla el porcentaje definitivo en función de "
+        "las operaciones del ejercicio correspondientes a la actividad de que se "
+        "trate.",
+    )
+    cnae = fields.Char(string="[114] C.N.A.E.", size=3)
+    casilla_115 = fields.Float(
+        string="[115] Importe total de las operaciones",
+        help="Se hará constar el importe total de las entregas de bienes y prestaciones"
+        " de servicios realizadas por el sujeto pasivo, incluidas aquellas que no "
+        "originan el derecho a deducir, correspondientes a la actividad de que se "
+        "trate.",
+    )
+    casilla_116 = fields.Float(
+        string="[116] Importe de las operaciones con derecho a deducción",
+        help="Se hará constar el importe total de las entregas de bienes y prestaciones"
+        " de servicios que originen el derecho a la deducción, realizadas por el sujeto"
+        " pasivo, correspondientes a la actividad de que se trate.",
+    )
+    type_prorate = fields.Selection(
+        selection=[("G", "General"), ("E", "Special")],
+        string="[117] Tipo",
+        compute="_compute_type_prorate",
+        store=True,
+        readonly=True,
+        help="Se consignará una “G” si aplica la prorrata general o una “E” si es la "
+        "prorrata especial la que aplica el sujeto pasivo.",
     )
 
-    @api.depends(
-        "company_id.vat_prorate_ids",
-        "company_id.with_vat_prorate",
-        "date_start",
-    )
+    @api.depends("company_id")
+    def _compute_type_prorate(self):
+        for record in self:
+            company_prorates = record._get_company_prorates()
+            type_prorate = False
+            if company_prorates:
+                type_prorate = "G" if company_prorates[:1].type == "general" else "E"
+            record.type_prorate = type_prorate
+
     def _get_company_prorates(self):
         self.ensure_one()
         if self.company_id.with_vat_prorate:
@@ -83,3 +113,14 @@ class L10nEsAeatMod390Report(models.Model):
                 continue
             report._calculate_casilla_522_mod390_vat_prorate()
         return res
+
+    def button_confirm(self):
+        for report in self:
+            if report.with_vat_prorate and not report.vat_prorate_percent:
+                raise exceptions.ValidationError(
+                    self.env._(
+                        "The field [118] % Prorate cannot be 0, please fill it in page "
+                        "12. Prorates"
+                    )
+                )
+        return super().button_confirm()

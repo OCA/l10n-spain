@@ -1,3 +1,9 @@
-id,alignment,apply_sign,bool_no,bool_yes,conditional_expression,decimal_size,export_config_id:id,export_type,expression,fixed_value,name,sequence,size,subconfig_id:id
-"l10n_es_aeat_mod390.aeat_mod390_2024_sub04_export_line_43","right","True",,,,"2","l10n_es_aeat_mod390.aeat_mod390_2024_sub04_export_config","float",${object.casilla_522},,"5. Operaciones Reg. Gral. - IVA deducible - Regularización por aplicación porcentaje definitivo de prorrata [522]","43","17",
-"l10n_es_aeat_mod390.aeat_mod390_2025_sub04_export_line_43","right","True",,,,"2","l10n_es_aeat_mod390.aeat_mod390_2025_sub04_export_config","float",${object.casilla_522},,"5. Operaciones Reg. Gral. - IVA deducible - Regularización por aplicación porcentaje definitivo de prorrata [522]","43","17",
+id,fixed_value,expression
+"l10n_es_aeat_mod390.aeat_mod390_2024_sub04_export_line_43",,${object.casilla_522}
+"l10n_es_aeat_mod390.aeat_mod390_2025_sub04_export_line_43",,${object.casilla_522}
+"l10n_es_aeat_mod390.aeat_mod390_2019_sub07_export_line_17",,${object.main_activity}
+"l10n_es_aeat_mod390.aeat_mod390_2019_sub07_export_line_18",,${object.cnae}
+"l10n_es_aeat_mod390.aeat_mod390_2019_sub07_export_line_19",,${object.casilla_115}
+"l10n_es_aeat_mod390.aeat_mod390_2019_sub07_export_line_20",,${object.casilla_116}
+"l10n_es_aeat_mod390.aeat_mod390_2019_sub07_export_line_21",,${object.type_prorate}
+"l10n_es_aeat_mod390.aeat_mod390_2019_sub07_export_line_22",,${object.vat_prorate_percent}
