@@ -27,6 +27,7 @@ class TestL10nEsAeatVatBookBase(TestL10nEsAeatModBase):
         "P_REQ05": (270, 1.35),
         "P_REQ014": (280, 3.92),
         "P_REQ52": (290, 15.08),
+        "P_IRPF19": (1024, 194.56),
     }
 
 
@@ -77,7 +78,7 @@ class TestL10nEsAeatVatBook(TestL10nEsAeatVatBookBase):
             self.assertEqual(line.base_amount, 0.0)
             self.assertEqual(line.tax_amount, 0.0)
         # Check tax summary for received invoices
-        self.assertEqual(len(vat_book.received_tax_summary_ids), 6)
+        self.assertEqual(len(vat_book.received_tax_summary_ids), 7)
         rec_summaries = sorted(
             vat_book.received_tax_summary_ids,
             key=lambda line: line.tax_amount,
@@ -107,6 +108,10 @@ class TestL10nEsAeatVatBook(TestL10nEsAeatVatBookBase):
         line = rec_summaries[5]
         self.assertAlmostEqual(line.base_amount, 270)
         self.assertAlmostEqual(line.tax_amount, 1.35)
+        # P_IRPF19 - 19% Impuesto sobre la resta fisica
+        line = rec_summaries[6]
+        self.assertAlmostEqual(line.base_amount, 1024)
+        self.assertAlmostEqual(line.tax_amount, -194.56)
         # Let's dig into this tax detail for checking the deductible amount
         tax_line = vat_book.received_line_ids.tax_line_ids.filtered(
             lambda x: "account_tax_template_p_iva0_nd" in x.tax_id.get_external_id()

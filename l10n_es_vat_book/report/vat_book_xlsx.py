@@ -1,4 +1,5 @@
 # Copyright 2019 Tecnativa - Carlos Dauden
+# Copyright 2026 Tecnativa - Eduardo Ezerouali
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields, models
@@ -62,37 +63,49 @@ class VatNumberXlsx(models.AbstractModel):
         sheet.write("A3", "NIF: %s" % book.company_vat)
         sheet.merge_range("A4:D4", "NOMBRE/RAZÓN SOCIAL: %s" % book.company_id.name)
 
-        sheet.merge_range("C6:E6", "Identificación de la Factura", header_format)
-        sheet.merge_range("F6:H6", "NIF Destinatario", header_format)
+        sheet.merge_range("A6:B6", "Autoliquidación", header_format)
+        sheet.merge_range("C6:E6", "Actividad", header_format)
+        sheet.merge_range("K6:M6", "Identificación de la Factura", header_format)
+        sheet.merge_range("N6:P6", "NIF Destinatario", header_format)
 
-        sheet.merge_range("A6:A7", "Fecha Expedición", header_format)
-        sheet.merge_range("B6:B7", "Fecha Operación", header_format)
-        sheet.write("C7", "Serie", subheader_format)
-        sheet.write("D7", "Número", subheader_format)
-        sheet.write("E7", "Número-Final", subheader_format)
-        sheet.write("F7", "Tipo", subheader_format)
-        sheet.write("G7", "Código País", subheader_format)
-        sheet.write("H7", "Identificación", subheader_format)
-        sheet.merge_range("I6:I7", "Nombre Destinatario", header_format)
-        sheet.merge_range("J6:J7", "Factura Sustitutiva", header_format)
-        sheet.merge_range("K6:K7", "Clave de Operación", header_format)
-        sheet.merge_range("L6:L7", "Total Factura", header_format)
-        sheet.merge_range("M6:M7", "Base Imponible", header_format)
-        sheet.merge_range("N6:N7", "Tipo de IVA", header_format)
-        sheet.merge_range("O6:O7", "Cuota IVA Repercutida", header_format)
-        last_col = "O"
+        sheet.write("A7", "Ejercicio", subheader_format)
+        sheet.write("B7", "Periodo", subheader_format)
+        sheet.write("C7", "Código", subheader_format)
+        sheet.write("D7", "Tipo", subheader_format)
+        sheet.write("E7", "Grupo o Epígrafe del IAE", subheader_format)
+        sheet.merge_range("F6:F7", "Tipo de factura", header_format)
+        sheet.merge_range("G6:G7", "Concepto de Ingreso", header_format)
+        sheet.merge_range("H6:H7", "Ingreso Computable", header_format)
+        sheet.merge_range("I6:I7", "Fecha Expedición", header_format)
+        sheet.merge_range("J6:J7", "Fecha Operación", header_format)
+        sheet.write("K7", "Serie", subheader_format)
+        sheet.write("L7", "Número", subheader_format)
+        sheet.write("M7", "Número-Final", subheader_format)
+        sheet.write("N7", "Tipo", subheader_format)
+        sheet.write("O7", "Código País", subheader_format)
+        sheet.write("P7", "Identificación", subheader_format)
+        sheet.merge_range("Q6:Q7", "Nombre Destinatario", header_format)
+        sheet.merge_range("R6:R7", "Clave de Operación", header_format)
+        sheet.merge_range("S6:S7", "Calificación de la operación", header_format)
+        sheet.merge_range("T6:T7", "Operación Exenta", header_format)
+        sheet.merge_range("U6:U7", "Total Factura", header_format)
+        sheet.merge_range("V6:V7", "Base Imponible", header_format)
+        sheet.merge_range("W6:W7", "Tipo de IVA", header_format)
+        sheet.merge_range("X6:X7", "Cuota IVA Repercutida", header_format)
+        last_col = "X"
         for line in self._get_vat_book_map_lines("issued"):
-            sheet.merge_range(
-                "{0}6:{0}7".format(line.fee_type_xlsx_column),
-                "Tipo de {}".format(line.name),
-                header_format,
-            )
-            sheet.merge_range(
-                "{0}6:{0}7".format(line.fee_amount_xlsx_column),
-                "Cuota {}".format(line.name),
-                header_format,
-            )
-            last_col = line.fee_amount_xlsx_column
+            if line.special_tax_group != "irpf":
+                sheet.merge_range(
+                    "{0}6:{0}7".format(line.fee_type_xlsx_column),
+                    "Tipo de {}".format(line.name),
+                    header_format,
+                )
+                sheet.merge_range(
+                    "{0}6:{0}7".format(line.fee_amount_xlsx_column),
+                    "Cuota {}".format(line.name),
+                    header_format,
+                )
+                last_col = line.fee_amount_xlsx_column
         next_col = excel_col_number(last_col) + 1
         # Las filas empiezan por 0, por eso se resta 1
         sheet.merge_range(
@@ -110,18 +123,37 @@ class VatNumberXlsx(models.AbstractModel):
         sheet.write(6, next_col, "Medio Utilizado", subheader_format)
         next_col += 1
         sheet.write(6, next_col, "Identificación Medio Utilizado", subheader_format)
+        next_col += 1
+        sheet.merge_range(
+            5,
+            next_col,
+            6,
+            next_col,
+            "Tipo de Retención del IRPF",
+            header_format,
+        )
+        next_col += 1
+        sheet.merge_range(
+            5,
+            next_col,
+            6,
+            next_col,
+            "Importe Retenido del IRPF",
+            header_format,
+        )
 
-        sheet.set_column("A:B", 16, date_format)
-        sheet.set_column("C:C", 14)
-        sheet.set_column("D:D", 17)
-        sheet.set_column("E:E", 17)
-        sheet.set_column("F:F", 8)
-        sheet.set_column("G:G", 12)
-        sheet.set_column("H:H", 14)
-        sheet.set_column("I:I", 40)
-        sheet.set_column("J:J", 16)
-        sheet.set_column("K:K", 16)
-        sheet.set_column("L:Q", 14, decimal_format)
+        sheet.set_column("A:G", 14)
+        sheet.set_column("H:H", 16, decimal_format)
+        sheet.set_column("I:J", 16, date_format)
+        sheet.set_column("K:K", 14)
+        sheet.set_column("L:L", 17)
+        sheet.set_column("M:M", 17)
+        sheet.set_column("N:N", 8)
+        sheet.set_column("O:O", 12)
+        sheet.set_column("P:P", 14)
+        sheet.set_column("Q:Q", 40)
+        sheet.set_column("R:T", 16)
+        sheet.set_column("U:Z", 14, decimal_format)
 
         next_col = excel_col_number(last_col) + 1
         sheet.set_column(next_col, next_col, 14, date_format)
@@ -131,6 +163,11 @@ class VatNumberXlsx(models.AbstractModel):
         sheet.set_column(next_col, next_col, 14)
         next_col += 1
         sheet.set_column(next_col, next_col, 30)
+        next_col += 1
+        sheet.set_column(next_col, next_col, 16)
+        next_col += 1
+        sheet.set_column(next_col, next_col, 16)
+
         if draft_export:
             next_col += 1
             sheet.write(5, next_col, "Impuesto (Solo borrador)")
@@ -149,30 +186,29 @@ class VatNumberXlsx(models.AbstractModel):
         country_code, identifier_type, vat_number = (
             line.partner_id and line.partner_id._parse_aeat_vat_info() or ("ES", "", "")
         )
-        sheet.write("A" + str(row), self.format_boe_date(line.invoice_date))
-        # sheet.write('B' + str(row), self.format_boe_date(line.invoice_date))
-        sheet.write("C" + str(row), line.ref[:-20])
-        sheet.write("D" + str(row), line.ref[-20:])
-        sheet.write("E" + str(row), "")  # Final number
-        sheet.write("F" + str(row), identifier_type)
+        sheet.write("A" + str(row), str(line.vat_book_id.year))
+        sheet.write("B" + str(row), str(line.vat_book_id.period_type))
+        sheet.write("I" + str(row), self.format_boe_date(line.invoice_date))
+        # sheet.write('J' + str(row), self.format_boe_date(line.invoice_date))
+        sheet.write("K" + str(row), line.ref[:-20])
+        sheet.write("L" + str(row), line.ref[-20:])
+        sheet.write("M" + str(row), "")  # Final number
+        sheet.write("N" + str(row), identifier_type)
         if country_code != "ES":
-            sheet.write("G" + str(row), country_code)
-        sheet.write("H" + str(row), vat_number)
+            sheet.write("O" + str(row), country_code)
+        sheet.write("P" + str(row), vat_number)
         if not vat_number and (
             line.partner_id.aeat_anonymous_cash_customer or not line.partner_id
         ):
-            sheet.write("I" + str(row), "Venta anónima")
+            sheet.write("Q" + str(row), "Venta anónima")
         else:
-            sheet.write("I" + str(row), (line.partner_id.name or "")[:40])
-        # TODO: Substitute Invoice
-        # sheet.write('J' + str(row),
-        #             line.invoice_id.refund_invoice_id.number or '')
-        sheet.write("K" + str(row), "")  # Operation Key
+            sheet.write("Q" + str(row), (line.partner_id.name or "")[:40])
+        sheet.write("R" + str(row), "")  # Operation Key
         if with_total:
-            sheet.write("L" + str(row), line.total_amount)
-        sheet.write("M" + str(row), tax_line.base_amount)
-        sheet.write("N" + str(row), tax_line.tax_id.amount)
-        sheet.write("O" + str(row), tax_line.tax_amount)
+            sheet.write("U" + str(row), line.total_amount)
+        sheet.write("V" + str(row), tax_line.base_amount)
+        sheet.write("W" + str(row), tax_line.tax_id.amount)
+        sheet.write("X" + str(row), tax_line.tax_amount)
         if tax_line.special_tax_id:
             map_vals = line.vat_book_id.get_special_taxes_dic()[
                 tax_line.special_tax_id.id
@@ -216,41 +252,58 @@ class VatNumberXlsx(models.AbstractModel):
         sheet.write("A3", "NIF: %s" % book.company_vat)
         sheet.merge_range("A4:D4", "NOMBRE/RAZÓN SOCIAL: %s" % book.company_id.name)
 
+        sheet.merge_range("A6:B6", "Autoliquidación", header_format)
+        sheet.merge_range("C6:E6", "Actividad", header_format)
         sheet.merge_range(
-            "C6:D6", "Identificación Factura del Expedidor", header_format
+            "K6:L6", "Identificación Factura del Expedidor", header_format
         )
-        sheet.merge_range("G6:I6", "NIF Expedidor", header_format)
+        sheet.merge_range("P6:R6", "NIF Expedidor", header_format)
+        sheet.merge_range("X6:Y6", "Periodo Deducción", header_format)
 
-        sheet.merge_range("A6:A7", "Fecha Expedición", header_format)
-        sheet.merge_range("B6:B7", "Fecha Operación", header_format)
-        sheet.write("C7", "(Serie-Número)", subheader_format)
-        sheet.write("D7", "Número-Final", subheader_format)
-        sheet.merge_range("E6:E7", "Número Recepción", header_format)
-        sheet.merge_range("F6:F7", "Número Recepción Final", header_format)
-        sheet.write("G7", "Tipo", subheader_format)
-        sheet.write("H7", "Código País", subheader_format)
-        sheet.write("I7", "Identificación", subheader_format)
-        sheet.merge_range("J6:J7", "Nombre Expedidor", header_format)
-        sheet.merge_range("K6:K7", "Factura Sustitutiva", header_format)
-        sheet.merge_range("L6:L7", "Clave de Operación", header_format)
-        sheet.merge_range("M6:M7", "Total Factura", header_format)
-        sheet.merge_range("N6:N7", "Base Imponible", header_format)
-        sheet.merge_range("O6:O7", "Tipo de IVA", header_format)
-        sheet.merge_range("P6:P7", "Cuota IVA Soportado", header_format)
-        sheet.merge_range("Q6:Q7", "Cuota Deducible", header_format)
-        last_col = "Q"
+        sheet.write("A7", "Ejercicio", subheader_format)
+        sheet.write("B7", "Periodo", subheader_format)
+        sheet.write("C7", "Código", subheader_format)
+        sheet.write("D7", "Tipo", subheader_format)
+        sheet.write("E7", "Grupo o Epígrafe del IAE", subheader_format)
+        sheet.merge_range("F6:F7", "Tipo de factura", header_format)
+        sheet.merge_range("G6:G7", "Concepto de Gasto", header_format)
+        sheet.merge_range("H6:H7", "Gasto Deducible", header_format)
+        sheet.merge_range("I6:I7", "Fecha Expedición", header_format)
+        sheet.merge_range("J6:J7", "Fecha Operación", header_format)
+        sheet.write("K7", "(Serie-Número)", subheader_format)
+        sheet.write("L7", "Número-Final", subheader_format)
+        sheet.merge_range("M6:M7", "Fecha Recepción", header_format)
+        sheet.merge_range("N6:N7", "Número Recepción", header_format)
+        sheet.merge_range("O6:O7", "Número Recepción Final", header_format)
+        sheet.write("P7", "Tipo", subheader_format)
+        sheet.write("Q7", "Código País", subheader_format)
+        sheet.write("R7", "Identificación", subheader_format)
+        sheet.merge_range("S6:S7", "Nombre Expedidor", header_format)
+        sheet.merge_range("T6:T7", "Clave de Operación", header_format)
+        sheet.merge_range("U6:U7", "Bien de Inversión", header_format)
+        sheet.merge_range("V6:V7", "Inversión del Sujeto Pasivo", header_format)
+        sheet.merge_range("W6:W7", "Deducible en Periodo Posterior", header_format)
+        sheet.write("X7", "Ejercicio", header_format)
+        sheet.write("Y7", "Periodo", header_format)
+        sheet.merge_range("Z6:Z7", "Total Factura", header_format)
+        sheet.merge_range("AA6:AA7", "Base Imponible", header_format)
+        sheet.merge_range("AB6:AB7", "Tipo de IVA", header_format)
+        sheet.merge_range("AC6:AC7", "Cuota IVA Soportado", header_format)
+        sheet.merge_range("AD6:AD7", "Cuota Deducible", header_format)
+        last_col = "AD"
         for line in self._get_vat_book_map_lines("received"):
-            sheet.merge_range(
-                "{0}6:{0}7".format(line.fee_type_xlsx_column),
-                "Tipo de {}".format(line.name),
-                header_format,
-            )
-            sheet.merge_range(
-                "{0}6:{0}7".format(line.fee_amount_xlsx_column),
-                "Cuota {}".format(line.name),
-                header_format,
-            )
-            last_col = line.fee_amount_xlsx_column
+            if line.special_tax_group != "irpf":
+                sheet.merge_range(
+                    "{0}6:{0}7".format(line.fee_type_xlsx_column),
+                    "Tipo de {}".format(line.name),
+                    header_format,
+                )
+                sheet.merge_range(
+                    "{0}6:{0}7".format(line.fee_amount_xlsx_column),
+                    "Cuota {}".format(line.name),
+                    header_format,
+                )
+                last_col = line.fee_amount_xlsx_column
         next_col = excel_col_number(last_col) + 1
         # Las filas empiezan por 0, por eso se resta 1
         sheet.merge_range(
@@ -268,16 +321,44 @@ class VatNumberXlsx(models.AbstractModel):
         sheet.write(6, next_col, "Medio Utilizado", subheader_format)
         next_col += 1
         sheet.write(6, next_col, "Identificación Medio Utilizado", subheader_format)
+        next_col += 1
+        sheet.merge_range(
+            5,
+            next_col,
+            6,
+            next_col,
+            "Tipo de Retención del IRPF",
+            header_format,
+        )
+        next_col += 1
+        sheet.merge_range(
+            5,
+            next_col,
+            6,
+            next_col,
+            "Importe Retenido del IRPF",
+            header_format,
+        )
+        next_col += 1
+        sheet.merge_range(
+            5,
+            next_col,
+            6,
+            next_col,
+            "Registro Acuerdo Facturación",
+            header_format,
+        )
 
-        sheet.set_column("A:B", 16, date_format)
-        sheet.set_column("C:F", 17)
-        sheet.set_column("G:G", 8)
-        sheet.set_column("H:H", 12)
-        sheet.set_column("I:I", 14)
-        sheet.set_column("J:J", 40)
-        sheet.set_column("K:K", 16)
-        sheet.set_column("L:L", 14)
-        sheet.set_column("M:S", 14, decimal_format)
+        sheet.set_column("A:G", 14)
+        sheet.set_column("H:H", 16, decimal_format)
+        sheet.set_column("I:J", 16, date_format)
+        sheet.set_column("K:O", 17)
+        sheet.set_column("P:P", 8)
+        sheet.set_column("Q:Q", 12)
+        sheet.set_column("R:R", 14)
+        sheet.set_column("S:S", 40)
+        sheet.set_column("T:Y", 16)
+        sheet.set_column("Z:AF", 14, decimal_format)
         next_col = excel_col_number(last_col) + 1
         sheet.set_column(next_col, next_col, 14, date_format)
         next_col += 1
@@ -286,6 +367,13 @@ class VatNumberXlsx(models.AbstractModel):
         sheet.set_column(next_col, next_col, 14)
         next_col += 1
         sheet.set_column(next_col, next_col, 30)
+        next_col += 1
+        sheet.set_column(next_col, next_col, 14, decimal_format)
+        next_col += 1
+        sheet.set_column(next_col, next_col, 14, decimal_format)
+        next_col += 1
+        sheet.set_column(next_col, next_col, 16)
+
         if draft_export:
             next_col += 1
             sheet.write(5, next_col, "Impuesto (Solo borrador)")
@@ -305,29 +393,30 @@ class VatNumberXlsx(models.AbstractModel):
         country_code, identifier_type, vat_number = (
             line.partner_id and line.partner_id._parse_aeat_vat_info() or ("ES", "", "")
         )
-        sheet.write("A" + str(row), self.format_boe_date(line.invoice_date))
+        sheet.write("A" + str(row), str(line.vat_book_id.year))
+        sheet.write("B" + str(row), str(line.vat_book_id.period_type))
+        sheet.write("I" + str(row), self.format_boe_date(line.invoice_date))
         if date_invoice and date_invoice != line.invoice_date:
-            sheet.write("B" + str(row), self.format_boe_date(date_invoice))
-        sheet.write("C" + str(row), (line.external_ref or "")[:40])
-        sheet.write("D" + str(row), "")
-        sheet.write("E" + str(row), line.ref[:20])
-        sheet.write("F" + str(row), "")
-        sheet.write("G" + str(row), identifier_type)
+            sheet.write("J" + str(row), self.format_boe_date(date_invoice))
+        sheet.write("K" + str(row), (line.external_ref or "")[:40])
+        sheet.write("L" + str(row), "")
+        sheet.write("N" + str(row), line.ref[:20])
+        sheet.write("O" + str(row), "")
+        sheet.write("P" + str(row), identifier_type)
         if country_code != "ES":
-            sheet.write("H" + str(row), country_code)
-        sheet.write("I" + str(row), vat_number)
-        sheet.write("J" + str(row), (line.partner_id.name or "")[:40])
-        # TODO: Substitute Invoice
-        # sheet.write('K' + str(row),
-        #             line.invoice_id.refund_invoice_id.number or '')
-        sheet.write("L" + str(row), "")  # Operation Key
+            sheet.write("Q" + str(row), country_code)
+        sheet.write("R" + str(row), vat_number)
+        sheet.write("S" + str(row), (line.partner_id.name or "")[:40])
+        sheet.write("T" + str(row), "")  # Operation Key
+        sheet.write("X" + str(row), line.move_id.date.year)
+        sheet.write("Y" + str(row), line._get_settlement_period())
         if with_total:
-            sheet.write("M" + str(row), line.total_amount)
-        sheet.write("N" + str(row), tax_line.base_amount)
-        sheet.write("O" + str(row), tax_line.tax_id.amount)
-        sheet.write("P" + str(row), tax_line.tax_amount)
+            sheet.write("Z" + str(row), line.total_amount)
+        sheet.write("AA" + str(row), tax_line.base_amount)
+        sheet.write("AB" + str(row), tax_line.tax_id.amount)
+        sheet.write("AC" + str(row), tax_line.tax_amount)
         if tax_line.tax_id not in self._get_undeductible_taxes(line.vat_book_id):
-            sheet.write("Q" + str(row), tax_line.deductible_amount)
+            sheet.write("AD" + str(row), tax_line.deductible_amount)
         if tax_line.special_tax_id:
             map_vals = line.vat_book_id.get_special_taxes_dic()[
                 tax_line.special_tax_id.id

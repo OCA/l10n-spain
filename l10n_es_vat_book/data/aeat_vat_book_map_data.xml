@@ -4,8 +4,8 @@
         <field name="name">IVA repercutido</field>
         <field name="book_type">issued</field>
         <field name="special_tax_group" eval="False" />
-        <field name="fee_type_xlsx_column">N</field>
-        <field name="fee_amount_xlsx_column">O</field>
+        <field name="fee_type_xlsx_column">W</field>
+        <field name="fee_amount_xlsx_column">X</field>
         <field
             name="tax_agency_ids"
             eval="[ Command.link(ref('l10n_es_aeat.aeat_tax_agency_spain')) ]"
@@ -42,8 +42,8 @@
         <field name="name">IVA soportado</field>
         <field name="book_type">received</field>
         <field name="special_tax_group" eval="False" />
-        <field name="fee_type_xlsx_column">O</field>
-        <field name="fee_amount_xlsx_column">P</field>
+        <field name="fee_type_xlsx_column">AB</field>
+        <field name="fee_amount_xlsx_column">AC</field>
         <field
             name="tax_agency_ids"
             eval="[ Command.link(ref('l10n_es_aeat.aeat_tax_agency_spain')) ]"
@@ -141,8 +141,8 @@
         <field name="name">Recargo Eq.</field>
         <field name="book_type">issued</field>
         <field name="special_tax_group">req</field>
-        <field name="fee_type_xlsx_column">P</field>
-        <field name="fee_amount_xlsx_column">Q</field>
+        <field name="fee_type_xlsx_column">Y</field>
+        <field name="fee_amount_xlsx_column">Z</field>
         <field
             name="tax_agency_ids"
             eval="[ Command.link(ref('l10n_es_aeat.aeat_tax_agency_spain')) ]"
@@ -162,8 +162,8 @@
         <field name="name">Recargo Eq.</field>
         <field name="book_type">received</field>
         <field name="special_tax_group">req</field>
-        <field name="fee_type_xlsx_column">R</field>
-        <field name="fee_amount_xlsx_column">S</field>
+        <field name="fee_type_xlsx_column">AE</field>
+        <field name="fee_amount_xlsx_column">AF</field>
         <field
             name="tax_agency_ids"
             eval="[ Command.link(ref('l10n_es_aeat.aeat_tax_agency_spain')) ]"
@@ -176,6 +176,86 @@
             (4, ref('l10n_es.account_tax_template_p_req062')),
             (4, ref('l10n_es.account_tax_template_p_req014')),
             (4, ref('l10n_es.account_tax_template_p_req52')),
+        ]"
+        />
+    </record>
+    <record id="aeat_vat_book_map_line_s_irpf" model="aeat.vat.book.map.line">
+        <field name="name">Retención del IRPF</field>
+        <field name="book_type">issued</field>
+        <field name="special_tax_group">irpf</field>
+        <field name="fee_type_xlsx_column">AE</field>
+        <field name="fee_amount_xlsx_column">AF</field>
+        <field
+            name="tax_agency_ids"
+            eval="[ Command.link(ref('l10n_es_aeat.aeat_tax_agency_spain')) ]"
+        />
+        <field
+            name="tax_tmpl_ids"
+            eval="[
+            (4, ref('l10n_es.account_tax_template_s_irpf1')),
+            (4, ref('l10n_es.account_tax_template_s_irpf2')),
+            (4, ref('l10n_es.account_tax_template_s_irpf7')),
+            (4, ref('l10n_es.account_tax_template_s_irpf9')),
+            (4, ref('l10n_es.account_tax_template_s_irpf15')),
+            (4, ref('l10n_es.account_tax_template_s_irpf18')),
+            (4, ref('l10n_es.account_tax_template_s_irpf19')),
+            (4, ref('l10n_es.account_tax_template_s_irpf19a')),
+            (4, ref('l10n_es.account_tax_template_s_irpf195a')),
+            (4, ref('l10n_es.account_tax_template_s_irpf20')),
+            (4, ref('l10n_es.account_tax_template_s_irpf20a')),
+            (4, ref('l10n_es.account_tax_template_s_irpf21')),
+            (4, ref('l10n_es.account_tax_template_s_irpf21a')),
+            (4, ref('l10n_es.account_tax_template_s_irpf24')),
+            (4, ref('l10n_es.account_tax_template_s_irpf24_rdc')),
+            (4, ref('l10n_es.account_tax_template_s_irpfnrue0')),
+            (4, ref('l10n_es.account_tax_template_s_irpfnrnue0')),
+            (4, ref('l10n_es.account_tax_template_s_irpfnrnue24')),
+            (4, ref('l10n_es.account_tax_template_s_irpfnrue19')),
+        ]"
+        />
+    </record>
+    <record id="aeat_vat_book_map_line_p_irpf" model="aeat.vat.book.map.line">
+        <field name="name">Retención del IRPF</field>
+        <field name="book_type">received</field>
+        <field name="special_tax_group">irpf</field>
+        <field name="fee_type_xlsx_column">AK</field>
+        <field name="fee_amount_xlsx_column">AL</field>
+        <field
+            name="tax_agency_ids"
+            eval="[ Command.link(ref('l10n_es_aeat.aeat_tax_agency_spain')) ]"
+        />
+        <field
+            name="tax_tmpl_ids"
+            eval="[
+            (4, ref('l10n_es.account_tax_template_p_irpf1')),
+            (4, ref('l10n_es.account_tax_template_p_irpf2')),
+            (4, ref('l10n_es.account_tax_template_p_irpf7')),
+            (4, ref('l10n_es.account_tax_template_p_irpf7e')),
+            (4, ref('l10n_es.account_tax_template_p_irpf9')),
+            (4, ref('l10n_es.account_tax_template_p_irpf15')),
+            (4, ref('l10n_es.account_tax_template_p_irpf15e')),
+            (4, ref('l10n_es.account_tax_template_p_irpf18')),
+            (4, ref('l10n_es.account_tax_template_p_irpf19')),
+            (4, ref('l10n_es.account_tax_template_p_irpf19a')),
+            (4, ref('l10n_es.account_tax_template_p_irpf19ca')),
+            (4, ref('l10n_es.account_tax_template_p_irpf19cs')),
+            (4, ref('l10n_es.account_tax_template_p_irpf195a')),
+            (4, ref('l10n_es.account_tax_template_p_irpf20')),
+            (4, ref('l10n_es.account_tax_template_p_irpf20a')),
+            (4, ref('l10n_es.account_tax_template_p_irpf21a')),
+            (4, ref('l10n_es.account_tax_template_p_irpf21p')),
+            (4, ref('l10n_es.account_tax_template_p_irpf21p')),
+            (4, ref('l10n_es.account_tax_template_p_irpf21t')),
+            (4, ref('l10n_es.account_tax_template_p_irpf21td')),
+            (4, ref('l10n_es.account_tax_template_p_irpf21te')),
+            (4, ref('l10n_es.account_tax_template_p_irpf24')),
+            (4, ref('l10n_es.account_tax_template_p_irpf24_rdc')),
+            (4, ref('l10n_es.account_tax_template_p_irpf35cya')),
+            (4, ref('l10n_es.account_tax_template_p_irpfnrue0p')),
+            (4, ref('l10n_es.account_tax_template_p_irpfnrnue24p')),
+            (4, ref('l10n_es.account_tax_template_p_irpfnrue19p')),
+            (4, ref('l10n_es.account_tax_template_p_rp19')),
+            (4, ref('l10n_es.account_tax_template_p_rrD19')),
         ]"
         />
     </record>
