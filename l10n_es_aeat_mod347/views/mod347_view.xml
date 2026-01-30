@@ -156,6 +156,10 @@
                                 </group>
                                 <group>
                                     <field name="bussiness_real_estate_rent" />
+                                    <field
+                                        name="bdns_number"
+                                        invisible="not visible_bdns_number"
+                                    />
                                 </group>
                             </group>
                         </page>
