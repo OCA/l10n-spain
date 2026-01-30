@@ -4,3 +4,5 @@
   - Valentin Vinagre
   - Manuel Regidor
 - Emilio Pascual ([Moduon](https://www.moduon.team/))
+- [NuoBiT](https://www.nuobit.com):
+  - Eric Antones
