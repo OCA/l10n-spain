@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Tecnativa - Sergio Teruel
+     Copyright 2023 Planesnet - Luis Planes, Laia Espinosa, Raul Solana
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3). -->
+<odoo noupdate="0">
+    <template id="redsys_form">
+        <form t-att-action="api_url" method="post">
+            <input
+                type="hidden"
+                name="data_set"
+                t-att-data-action-url="tx_url"
+                data-remove-me=""
+            />
+            <input
+                type="hidden"
+                name="Ds_SignatureVersion"
+                t-att-value="Ds_SignatureVersion"
+            />
+            <input
+                type="hidden"
+                name="Ds_MerchantParameters"
+                t-att-value="Ds_MerchantParameters"
+            />
+            <input type="hidden" name="Ds_Signature" t-att-value="Ds_Signature" />
+        </form>
+    </template>
+</odoo>

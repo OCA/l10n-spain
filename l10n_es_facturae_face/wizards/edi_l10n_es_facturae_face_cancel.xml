@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="edi_l10n_es_facturae_face_cancel_form_view">
+        <field
+            name="name"
+        >edi.l10n.es.facturae.face.cancel.form (in l10n_es_facturae_face)</field>
+        <field name="model">edi.l10n.es.facturae.face.cancel</field>
+        <field name="arch" type="xml">
+            <form string="Edi L10n Es Facturae FACe Cancel">
+                <group>
+                    <field name="motive" />
+                    <field name="move_id" invisible="1" />
+                </group>
+                <footer>
+                    <button
+                        name="cancel_face"
+                        string="OK"
+                        class="btn-primary"
+                        type="object"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record
+        model="ir.actions.act_window"
+        id="edi_l10n_es_facturae_face_cancel_act_window"
+    >
+        <field name="name">Cancel FACe</field>
+        <field name="res_model">edi.l10n.es.facturae.face.cancel</field>
+        <field name="view_mode">form</field>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,37 @@
+{
+  "IDFactura": {
+    "IDEmisorFactura": {
+      "NIF": "U2687761C"
+    },
+    "NumSerieFacturaEmisor": "Shop0001",
+    "FechaExpedicionFacturaEmisor": "14-06-2023"
+  },
+  "PeriodoLiquidacion": {
+    "Ejercicio": 2023,
+    "Periodo": "06"
+  },
+  "FacturaExpedida": {
+    "TipoFactura": "F2",
+    "ClaveRegimenEspecialOTrascendencia": "01",
+    "DescripcionOperacion": "/",
+    "TipoDesglose": {
+      "DesgloseFactura": {
+        "Sujeta": {
+          "NoExenta": {
+            "TipoNoExenta": "S1",
+            "DesgloseIVA": {
+              "DetalleIVA": [
+                {
+                  "TipoImpositivo": "21.0",
+                  "BaseImponible": 100.0,
+                  "CuotaRepercutida": 21.0
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "ImporteTotal": 121.0
+  }
+}

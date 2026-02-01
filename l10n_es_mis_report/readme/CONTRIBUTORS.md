@@ -1,0 +1,8 @@
+- ForgeFlow (<https://www.forgeflow.com>)
+- [Tecnativa](https://www.tecnativa.com):
+  - Pedro M. Baeza
+- [Sygel](http://www.sygel.es):
+  - Harald Panten \<<harald.panten@sygel.es>\>
+  - Valentin Vinagre \<<valentin.vinagre@sygel.es>\>
+- [APSL - Nagarro](http://www.apsl.tech):
+  - Miquel Pascual \<<mpascual@apsl.net>\>

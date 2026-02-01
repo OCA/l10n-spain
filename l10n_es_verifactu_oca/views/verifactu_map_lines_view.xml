@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Aures TIC - Almudena de La Puente
+     Copyright 2025 Tecnativa - Pedro M. Baeza
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="l10n_es_verifactu_map_lines_view_tree" model="ir.ui.view">
+        <field name="model">verifactu.map.line</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="code" />
+                <field name="name" />
+                <field name="tax_xmlid_ids" widget="many2many_tags" />
+            </list>
+        </field>
+    </record>
+</odoo>

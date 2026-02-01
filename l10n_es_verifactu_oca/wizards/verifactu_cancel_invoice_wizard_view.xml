@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--  Copyright 2025 Factor Libre - Almudena de La Puente <almudena.delapuente@factorlibre.com
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="verifactu_cancel_invoice_wizard_form_view" model="ir.ui.view">
+        <field name="name">verifactu.cancel.invoice.wizard.form</field>
+        <field name="model">verifactu.cancel.invoice.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="invoice_id" />
+                        <field name="cancel_reason" />
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        name="cancel_invoice_in_verifactu"
+                        string="Cancel Invoice"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button string="Close" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="verifactu_cancel_invoice_wizard_action" model="ir.actions.act_window">
+        <field name="name">VERI*FACTU Cancel Invoice</field>
+        <field name="res_model">verifactu.cancel.invoice.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,335 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* delivery_seur_atlas
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-08-20 11:58+0000\n"
+"Last-Translator: David Vidal <david.vidal@tecnativa.com>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: delivery_seur_atlas
+#: model_terms:ir.ui.view,arch_db:delivery_seur_atlas.view_delivery_carrier_form
+msgid "API credentials"
+msgstr "Credenciales del API"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields,field_description:delivery_seur_atlas.field_delivery_carrier__seur_atlas_vat
+msgid "Account VAT"
+msgstr "NIF de la cuenta"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields,field_description:delivery_seur_atlas.field_delivery_carrier__seur_atlas_account_code
+msgid "Account code (CCC)"
+msgstr "Código de cuenta (CCC)"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_label_template__custom_reference
+msgid "CUSTOM_REFERENCE"
+msgstr "CUSTOM_REFERENCE"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_product_code__76
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_service_code__77
+msgid "Classic"
+msgstr "Classic"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_product_code__116
+msgid "Classic Multiparcel"
+msgstr "Classic Multiparcel"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_service_code__7
+msgid "Courier"
+msgstr "Courier"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_product_code__108
+msgid "Courier Muestras"
+msgstr "Courier Muestras"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_product_code__104
+msgid "Crossborder Netexpres Internacional"
+msgstr "Crossborder Netexpres Internacional"
+
+#. module: delivery_seur_atlas
+#: model_terms:ir.ui.view,arch_db:delivery_seur_atlas.view_delivery_carrier_form
+msgid "Customer data"
+msgstr "Datos de cliente"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_label_format__a4_3
+msgid "Die-cut A4"
+msgstr "A4 troquelado"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_product_code__54
+msgid "Documentos"
+msgstr "Documentos"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_product_code__86
+msgid "Ecommerce Return 2home"
+msgstr "Ecommerce Return 2home"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_product_code__88
+msgid "Ecommerce Return 2shop"
+msgstr "Ecommerce Return 2shop"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_service_code__31
+msgid "Entrega particular"
+msgstr "Entrega particular"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_product_code__2
+msgid "Estandar"
+msgstr "Estandar"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_product_code__18
+msgid "Frio"
+msgstr "Frio"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_label_template__geolabel
+msgid "GEOLABEL"
+msgstr "GEOLABEL"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields,help:delivery_seur_atlas.field_delivery_carrier__seur_atlas_qr
+msgid "Generate an AZTEC QR code. Only valid for ECB pickups"
+msgstr "Generar QR AZTEC. Sólo válido para recogidas con ECB"
+
+#. module: delivery_seur_atlas
+#: model_terms:ir.ui.view,arch_db:delivery_seur_atlas.view_delivery_carrier_form
+msgid "Integration"
+msgstr "Integración"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_product_code__72
+msgid "Internacional A"
+msgstr "Internacional A"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_product_code__70
+msgid "Internacional T"
+msgstr "Internacional T"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_label_output_type__label
+#: model_terms:ir.ui.view,arch_db:delivery_seur_atlas.view_delivery_carrier_form
+msgid "Label"
+msgstr "Etiqueta"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_label_output_type__label_and_link
+msgid "Label and link"
+msgstr "Etiqueta y enlace"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_label_output_type__link
+msgid "Link"
+msgstr "Enlace"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_service_code__17
+msgid "Marítimo"
+msgstr "Marítimo"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_service_code__5
+msgid "Mismo día"
+msgstr "Mismo día"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_product_code__6
+msgid "Multi Box"
+msgstr "Multi Box"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_product_code__52
+msgid "Multi Doc"
+msgstr "Multi Doc"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_product_code__4
+msgid "Multipack"
+msgstr "Multipack"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_service_code__19
+msgid "NETEXPRESS"
+msgstr "NETEXPRESS"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_label_template__normal
+msgid "NORMAL"
+msgstr "NORMAL"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_product_code__122
+msgid "Neumaticos B2B"
+msgstr "Neumaticos B2B"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_product_code__124
+msgid "Neumaticos B2C"
+msgstr "Neumaticos B2C"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_label_format__pdf
+msgid "PDF"
+msgstr "PDF"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields,field_description:delivery_seur_atlas.field_delivery_carrier__seur_atlas_product_code
+msgid "Product code"
+msgstr "Código de producto"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields,field_description:delivery_seur_atlas.field_delivery_carrier__delivery_type
+msgid "Provider"
+msgstr "Proveedor"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields,help:delivery_seur_atlas.field_delivery_carrier__seur_atlas_label_output_type
+msgid "Return the file, a link to download the file or both"
+msgstr "Devolver el fichero, un enlace a la descarga del fichero o ambos"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_service_code__3
+msgid "SEUR 10"
+msgstr "SEUR 10"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_service_code__9
+msgid "SEUR 13:30"
+msgstr "SEUR 13:30"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_service_code__1
+msgid "SEUR 24"
+msgstr "SEUR 24"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_service_code__15
+msgid "SEUR 48"
+msgstr "SEUR 48"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_service_code__13
+msgid "SEUR 72"
+msgstr "SEUR 72"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_service_code__83
+msgid "SEUR 8:30"
+msgstr "SEUR 8:30"
+
+#. module: delivery_seur_atlas
+#: model_terms:ir.ui.view,arch_db:delivery_seur_atlas.view_delivery_carrier_form
+msgid "Service"
+msgstr "Servicio"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields,field_description:delivery_seur_atlas.field_delivery_carrier__seur_atlas_service_code
+msgid "Service code"
+msgstr "Código de servicio"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_product_code__48
+msgid "Seur 24 Pickup"
+msgstr "Seur 24 Pickup"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__delivery_type__seur_atlas
+msgid "Seur Atlas"
+msgstr "Seur Atlas"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields,field_description:delivery_seur_atlas.field_delivery_carrier__seur_atlas_client
+msgid "Seur Atlas Client"
+msgstr "Cliente Seur Atlas"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields,field_description:delivery_seur_atlas.field_delivery_carrier__seur_atlas_label_format
+msgid "Seur Atlas Label Format"
+msgstr "Formato de etiqueta Seur Atlas"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields,field_description:delivery_seur_atlas.field_delivery_carrier__seur_atlas_label_output_type
+msgid "Seur Atlas Label Output Type"
+msgstr "Tipo de etiqueta Seur Atlas"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields,field_description:delivery_seur_atlas.field_delivery_carrier__seur_atlas_label_template
+msgid "Seur Atlas Label Template"
+msgstr "Plantilla de etiqueta Seur Atlas"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields,field_description:delivery_seur_atlas.field_delivery_carrier__seur_atlas_password
+msgid "Seur Atlas Password"
+msgstr "Contraseña Seur Atlas"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields,field_description:delivery_seur_atlas.field_delivery_carrier__seur_atlas_qr
+msgid "Seur Atlas Qr"
+msgstr "QR Seur Atlas"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields,field_description:delivery_seur_atlas.field_delivery_carrier__seur_atlas_secret
+msgid "Seur Atlas Secret"
+msgstr "Secreto Seur Atlas"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields,field_description:delivery_seur_atlas.field_delivery_carrier__seur_atlas_username
+msgid "Seur Atlas Username"
+msgstr "Nombre de usuario de Seur Atlas"
+
+#. module: delivery_seur_atlas
+#: model:ir.model,name:delivery_seur_atlas.model_delivery_carrier
+msgid "Shipping Methods"
+msgstr "Métodos de envío"
+
+#. module: delivery_seur_atlas
+#: code:addons/delivery_seur_atlas/models/delivery_carrier.py:0
+#, python-format
+msgid "To be implemented"
+msgstr "Por implementar"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields,help:delivery_seur_atlas.field_delivery_carrier__seur_atlas_label_template
+msgid "Type of generated label"
+msgstr "Tipo de etiqueta generada"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_product_code__118
+msgid "Vino"
+msgstr "Vino"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_label_template__z4_one_body
+msgid "Z4_ONE_BODY"
+msgstr "Z4_ONE_BODY"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_label_template__z4_two_bodies
+msgid "Z4_TWO_BODIES"
+msgstr "Z4_TWO_BODIES"
+
+#. module: delivery_seur_atlas
+#: model:ir.model.fields.selection,name:delivery_seur_atlas.selection__delivery_carrier__seur_atlas_label_format__zpl
+msgid "ZPL"
+msgstr "ZPL"

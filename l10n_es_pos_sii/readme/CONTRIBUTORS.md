@@ -1,0 +1,5 @@
+- [Aures Tic](https://aurestic.es):
+  - Almudena de la Puente \<<almudena@aurestic.es>\>
+  - Jose Zambudio \<<jose@aurestic.es>\>
+- [APSL-Nagarro](<https://apsl.tech>):
+  - Bernat Obrador \<<bobrador@apsl.net>\>
