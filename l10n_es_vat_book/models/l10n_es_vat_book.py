@@ -122,6 +122,11 @@ class L10nEsVatBook(models.Model):
     error_count = fields.Integer(
         compute="_compute_error_count",
     )
+    vat_settlement_period = fields.Selection(
+        selection=[("monthly", "Monthly"), ("quarterly", "Quarterly")],
+        default="monthly",
+        required=True,
+    )
 
     def _compute_error_count(self):
         vat_book_exception_group = self.env["l10n.es.vat.book.line"].read_group(
