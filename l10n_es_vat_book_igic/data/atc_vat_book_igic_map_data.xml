@@ -4,8 +4,8 @@
         <field name="name">IGIC Repercutido</field>
         <field name="book_type">issued</field>
         <field name="special_tax_group" eval="False" />
-        <field name="fee_type_xlsx_column">N</field>
-        <field name="fee_amount_xlsx_column">O</field>
+        <field name="fee_type_xlsx_column">W</field>
+        <field name="fee_amount_xlsx_column">X</field>
         <field
             name="tax_agency_ids"
             eval="[ Command.link(ref('l10n_es_aeat.aeat_tax_agency_canarias')) ]"
@@ -30,8 +30,8 @@
         <field name="name">IGIC Soportado</field>
         <field name="book_type">received</field>
         <field name="special_tax_group" eval="False" />
-        <field name="fee_type_xlsx_column">O</field>
-        <field name="fee_amount_xlsx_column">P</field>
+        <field name="fee_type_xlsx_column">AB</field>
+        <field name="fee_amount_xlsx_column">AC</field>
         <field
             name="tax_agency_ids"
             eval="[ Command.link(ref('l10n_es_aeat.aeat_tax_agency_canarias')) ]"
@@ -82,8 +82,8 @@
         <field name="name">Recargo Eq.</field>
         <field name="book_type">received</field>
         <field name="special_tax_group">req</field>
-        <field name="fee_type_xlsx_column">R</field>
-        <field name="fee_amount_xlsx_column">S</field>
+        <field name="fee_type_xlsx_column">AE</field>
+        <field name="fee_amount_xlsx_column">AF</field>
         <field
             name="tax_agency_ids"
             eval="[ Command.link(ref('l10n_es_aeat.aeat_tax_agency_canarias')) ]"
