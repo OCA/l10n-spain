@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- # Copyright 2025 Tecnativa - Christian Ramos
+     # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).-->
+<odoo>
+    <record model="ir.ui.view" id="account_update_vat_prorate_form_view">
+        <field name="name">account.update.vat_prorate.form</field>
+        <field name="model">account.update.vat_prorate</field>
+        <field name="arch" type="xml">
+            <form>
+                <header />
+                <sheet>
+                    <group>
+                        <field name="company_id" invisible="1" />
+                        <field name="with_vat_prorate" />
+                        <field
+                            name="vat_prorate_ids"
+                            context="{'default_company_id': company_id}"
+                            attrs="{'invisible': [('with_vat_prorate', '=', False)]}"
+                        >
+                            <tree editable="bottom">
+                                <field name="company_id" invisible="1" />
+                                <field name="origin_vat_prorate_id" invisible="1" />
+                                <field name="date" />
+                                <field name="type" />
+                                <field name="vat_prorate" />
+                                <field
+                                    name="special_vat_prorate_default"
+                                    attrs="{'invisible': [('type', '=', 'general')]}"
+                                />
+                            </tree>
+                        </field>
+                        <field
+                            name="prorrate_asset_account_id"
+                            attrs="{'invisible': [('with_vat_prorate', '=', False)]}"
+                        />
+                        <field
+                            name="prorrate_investment_account_id"
+                            attrs="{'invisible': [('with_vat_prorate', '=', False)]}"
+                        />
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        string="Update"
+                        name="execute"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="account_update_vat_prorate_act_window">
+        <field name="name">Update VAT prorate</field>
+        <field name="res_model">account.update.vat_prorate</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <record model="ir.ui.menu" id="account_update_vat_prorate_menu">
+        <field name="name">Update VAT prorate</field>
+        <field name="parent_id" ref="l10n_es_aeat.menu_l10n_es_aeat_config" />
+        <field name="action" ref="account_update_vat_prorate_act_window" />
+        <field
+            name="groups_id"
+            eval="[(6, 0, [ref('account.group_account_manager')])]"
+        />
+        <field name="sequence" eval="70" />
+    </record>
+</odoo>
