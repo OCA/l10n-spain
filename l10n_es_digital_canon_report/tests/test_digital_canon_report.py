@@ -1,72 +1,76 @@
-# Copyright 2025 Juan Carlos Oñate - Tecnativa <juancarlos.onate@tecnativa.com>
+# Copyright 2025 Juan Carlos Oñate - Tecnativa
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from datetime import date
 
 import xlrd
 from freezegun import freeze_time
 
-from odoo import fields
-from odoo.tests import Form
-from odoo.tests.common import TransactionCase
+from odoo import Command, fields
+from odoo.tests import Form, tagged
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
 @freeze_time("2025-09-02")
-class TestDigitalCanonReport(TransactionCase):
-    def setUp(self):
-        super().setUp()
+@tagged("post_install", "-at_install")
+class TestDigitalCanonReport(BaseCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         today = date.today()
-        self.product_brand = self.env["product.brand"].create(
+        cls.product_brand = cls.env["product.brand"].create(
             {
                 "name": "Brand X",
             }
         )
-        self.product = self.env["product.product"].create(
+        cls.product = cls.env["product.product"].create(
             {
                 "name": "Mobile X",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "tracking": "serial",
                 "l10n_es_digital_canon": "3_25.phone_64",
-                "product_brand_id": self.product_brand.id,
+                "product_brand_id": cls.product_brand.id,
             }
         )
-        self.customer_es = self.env["res.partner"].create(
+        cls.customer_es = cls.env["res.partner"].create(
             {
                 "name": "Test Customer ES",
-                "country_id": self.env.ref("base.es").id,
+                "country_id": cls.env.ref("base.es").id,
                 "vat": "ESB87530432",
             }
         )
-        self.customer_us = self.env["res.partner"].create(
+        cls.customer_us = cls.env["res.partner"].create(
             {
                 "name": "Test Customer US",
-                "country_id": self.env.ref("base.us").id,
+                "country_id": cls.env.ref("base.us").id,
                 "vat": "US987654321",
             }
         )
-        self.excepted_customer_es = self.env["res.partner"].create(
+        cls.excepted_customer_es = cls.env["res.partner"].create(
             {
                 "name": "Test Excepted Customer ES",
-                "country_id": self.env.ref("base.es").id,
+                "country_id": cls.env.ref("base.es").id,
                 "vat": "ESB87530432",
                 "is_digital_canon_exempt": True,
                 "digital_canon_exempt_type": "administracion",
             }
         )
-        self.vendor_es = self.env["res.partner"].create(
+        cls.vendor_es = cls.env["res.partner"].create(
             {
                 "name": "Test Vendor ES",
-                "country_id": self.env.ref("base.es").id,
+                "country_id": cls.env.ref("base.es").id,
                 "vat": "ESB87530432",
             }
         )
-        self.vendor_us = self.env["res.partner"].create(
+        cls.vendor_us = cls.env["res.partner"].create(
             {
                 "name": "Test Vendor US",
-                "country_id": self.env.ref("base.us").id,
+                "country_id": cls.env.ref("base.us").id,
                 "vat": "US987654321",
             }
         )
-        self.wizard = self.env["digital.canon.report.wizard"].create(
+        cls.wizard = cls.env["digital.canon.report.wizard"].create(
             {
                 "date_start": today.replace(day=1),
                 "date_end": today,
@@ -75,33 +79,30 @@ class TestDigitalCanonReport(TransactionCase):
         ctx = {
             "report_name": "l10n_es_digital_canon_report.digital_canon_report",
             "active_model": "digital.canon.report.wizard",
-            "active_ids": [self.wizard.id],
+            "active_ids": [cls.wizard.id],
         }
-        self.report = self.env["ir.actions.report"].with_context(ctx)
-        self.lot_mobile_1 = self.env["stock.production.lot"].create(
+        cls.report = cls.env["ir.actions.report"].with_context(**ctx)
+        cls.lot_mobile_1 = cls.env["stock.lot"].create(
             {
                 "name": "LOT-MOBILEX-001",
-                "product_id": self.product.id,
+                "product_id": cls.product.id,
             }
         )
-        self.lot_mobile_2 = self.env["stock.production.lot"].create(
+        cls.lot_mobile_2 = cls.env["stock.lot"].create(
             {
                 "name": "LOT-MOBILE2-001",
-                "product_id": self.product.id,
+                "product_id": cls.product.id,
             }
         )
-        self.create_purchase_with_invoice(
-            self.vendor_es, self.product, self.lot_mobile_1
-        )
+        cls.create_purchase_with_invoice(cls.vendor_es, cls.product, cls.lot_mobile_1)
 
+    @classmethod
     def create_purchase_with_invoice(self, vendor, product, lot, qty=1):
         purchase = self.env["purchase.order"].create(
             {
                 "partner_id": vendor.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": product.id,
                             "name": product.name,
@@ -114,7 +115,7 @@ class TestDigitalCanonReport(TransactionCase):
         purchase.button_confirm()
         picking = purchase.picking_ids
         picking.action_assign()
-        picking.move_line_ids.qty_done = qty
+        picking.move_line_ids.quantity = qty
         picking.move_line_ids.lot_id = lot
         picking.button_validate()
         purchase.action_create_invoice()
@@ -127,7 +128,7 @@ class TestDigitalCanonReport(TransactionCase):
             "date_start": wizard.date_start.isoformat(),
             "date_end": wizard.date_end.isoformat(),
         }
-        report_xls = report._render_xlsx([wizard.id], data)
+        report_xls = report._render_xlsx(None, wizard, data)
         wb = xlrd.open_workbook(file_contents=report_xls[0])
         ws = wb.sheet_by_index(0)
         data_row = ws.row_values(row_n)
@@ -138,9 +139,7 @@ class TestDigitalCanonReport(TransactionCase):
             {
                 "partner_id": customer.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product.id,
                             "product_uom_qty": 1,
@@ -151,7 +150,7 @@ class TestDigitalCanonReport(TransactionCase):
         )
         self.sale_order.action_confirm()
         self.sale_order.picking_ids.action_assign()
-        self.sale_order.picking_ids.move_line_ids.qty_done = 1
+        self.sale_order.picking_ids.move_line_ids.quantity = 1
         self.sale_order.picking_ids.move_line_ids.lot_id = self.lot_mobile_1
         self.sale_order.picking_ids.button_validate()
         self.sale_order._create_invoices()
@@ -261,9 +260,7 @@ class TestDigitalCanonReport(TransactionCase):
             {
                 "partner_id": self.customer_es.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product.id,
                             "product_uom_qty": 2,
@@ -275,18 +272,19 @@ class TestDigitalCanonReport(TransactionCase):
         self.sale_order.action_confirm()
         picking = self.sale_order.picking_ids
         picking.action_assign()
-        picking.move_line_ids[0].qty_done = 1
+        picking.move_line_ids[0].quantity = 1
+        picking.move_line_ids[1].quantity = 0
         picking.move_line_ids.lot_id = self.lot_mobile_1
         action_data = picking.button_validate()
         backorder_wizard = Form(
             self.env["stock.backorder.confirmation"].with_context(
-                action_data["context"]
+                **action_data["context"]
             )
         ).save()
         backorder_wizard.process()
         picking_2 = self.sale_order.picking_ids[0]
         picking_2.action_assign()
-        picking_2.move_line_ids.qty_done = 1
+        picking_2.move_line_ids.quantity = 1
         picking_2.move_line_ids.lot_id = self.lot_mobile_2
         picking_2.button_validate()
         self.sale_order._create_invoices()
@@ -311,6 +309,37 @@ class TestDigitalCanonReport(TransactionCase):
         self.assertEqual(data_row_2[8], "Test Vendor ES")
         self.assertEqual(data_row_2[9], "ESB87530432")
 
+    def test_report_vendor_bill_multiple_invoices(self):
+        """When a purchase has multiple invoices, the report should pick the
+        posted one and not fail with a singleton error."""
+        self.create_sale_with_invoice(self.excepted_customer_es)
+        purchase = self.env["purchase.order"].search(
+            [("partner_id", "=", self.vendor_es.id)], limit=1
+        )
+        posted_bill = purchase.invoice_ids.filtered(lambda i: i.state == "posted")
+        self.assertTrue(posted_bill)
+        self.env["account.move"].create(
+            {
+                "move_type": "in_invoice",
+                "partner_id": self.vendor_es.id,
+                "invoice_date": fields.Date.today(),
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "product_id": self.product.id,
+                            "quantity": 1,
+                            "purchase_line_id": purchase.order_line[:1].id,
+                        }
+                    )
+                ],
+            }
+        )
+        self.assertEqual(len(purchase.invoice_ids), 2)
+        data_row = self._render_report_xlsx(self.wizard, self.report, row_n=4)
+        self.assertEqual(data_row[0], "Mayorista/Minorista")
+        self.assertEqual(data_row[4], "Sí")
+        self.assertEqual(data_row[10], posted_bill[:1].name)
+
     def test_report_xlsx_sale_mixed_providers(self):
         """Case of a single outgoing picking that contains two lots
         coming from two different providers: one national and one
@@ -323,9 +352,7 @@ class TestDigitalCanonReport(TransactionCase):
             {
                 "partner_id": self.customer_es.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product.id,
                             "product_uom_qty": 2,
@@ -336,8 +363,8 @@ class TestDigitalCanonReport(TransactionCase):
         )
         self.sale_order.action_confirm()
         self.sale_order.picking_ids.action_assign()
-        self.sale_order.picking_ids.move_line_ids[0].qty_done = 1
-        self.sale_order.picking_ids.move_line_ids[1].qty_done = 1
+        self.sale_order.picking_ids.move_line_ids[0].quantity = 1
+        self.sale_order.picking_ids.move_line_ids[1].quantity = 1
         self.sale_order.picking_ids.button_validate()
         self.sale_order._create_invoices()
         self.sale_order.invoice_ids.invoice_date = fields.Date.today()

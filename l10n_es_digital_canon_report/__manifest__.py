@@ -1,9 +1,9 @@
-# Copyright 2025 Juan Carlos Oñate - Tecnativa <juancarlos.onate@tecnativa.com>
+# Copyright 2025 Juan Carlos Oñate - Tecnativa
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
     "name": "Digital canon report",
     "summary": "Generate XLSX reports for digital canon operations",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",

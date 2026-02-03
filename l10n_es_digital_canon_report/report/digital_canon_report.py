@@ -243,12 +243,12 @@ class DigitalCanonReport(models.AbstractModel):
                 "header": {"value": "Dirección entrega"},
                 "data": {
                     "value": self._render(
-                        "(line.sale_line_ids.order_id."
+                        "(sale_order."
                         " partner_shipping_id.contact_address "
                         " or '') "
                         "if (line.quantity < 10 "
                         "    and is_exempted "
-                        "    and line.sale_line_ids.order_id."
+                        "    and sale_order."
                         "        partner_shipping_id) "
                         "else ''"
                     )
@@ -259,12 +259,12 @@ class DigitalCanonReport(models.AbstractModel):
                 "header": {"value": "Dirección Facturación"},
                 "data": {
                     "value": self._render(
-                        "(line.sale_line_ids.order_id."
+                        "(sale_order."
                         " partner_invoice_id.contact_address "
                         " or '') "
                         "if (line.quantity < 10 "
                         "    and is_exempted "
-                        "    and not line.sale_line_ids.order_id."
+                        "    and not sale_order."
                         "            partner_shipping_id) "
                         "else ''"
                     )
@@ -308,7 +308,7 @@ class DigitalCanonReport(models.AbstractModel):
         limited to the invoiced quantity and avoiding lots from unrelated
         deliveries.
         """
-        lots = self.env["stock.production.lot"]
+        lots = self.env["stock.lot"]
         for sol in line.sale_line_ids:
             qty_needed = line.quantity
             for sml in sol.move_ids.move_line_ids.filtered(
@@ -317,7 +317,7 @@ class DigitalCanonReport(models.AbstractModel):
             ):
                 if qty_needed <= 0:
                     break
-                take = min(sml.qty_done, qty_needed)
+                take = min(sml.quantity, qty_needed)
                 if take > 0 and sml.lot_id:
                     lots |= sml.lot_id
                     qty_needed -= take
@@ -447,7 +447,7 @@ class DigitalCanonReport(models.AbstractModel):
                 continue
             sale_pickings = line.sale_line_ids.order_id.picking_ids.filtered(
                 lambda p: p.picking_type_code == "outgoing" and p.state != "cancel"
-            )
+            )[:1]
             for purchase_picking in purchase_pickings:
                 operation_type = "Fabricante/Importador"
                 if (
@@ -455,6 +455,13 @@ class DigitalCanonReport(models.AbstractModel):
                     and purchase_picking.partner_id.country_id == country_es
                 ):
                     operation_type = "Mayorista/Minorista"
+                vendor_bill = (
+                    purchase_picking.purchase_id.invoice_ids.filtered(
+                        lambda inv: inv.state == "posted"
+                    )[:1]
+                    or purchase_picking.purchase_id.invoice_ids[:1]
+                )
+                sale_order = line.sale_line_ids[:1].order_id
                 row_pos = self._write_line(
                     ws,
                     row_pos,
@@ -465,8 +472,9 @@ class DigitalCanonReport(models.AbstractModel):
                         "country_es": country_es,
                         "purchase_picking": purchase_picking,
                         "sale_pickings": sale_pickings,
+                        "sale_order": sale_order,
                         "operation_type": operation_type,
-                        "vendor_bill": purchase_picking.purchase_id.invoice_ids,
+                        "vendor_bill": vendor_bill,
                         "is_exempted": self._is_operation_exempted(
                             line, sale_pickings, country_es
                         ),

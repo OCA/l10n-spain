@@ -28,8 +28,8 @@ Digital canon report
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Generates the official presentation report for SGAE regarding the
-digital canon as a tax.
+Genera el informe de presentación oficial para la SGAE sobre el canon
+digital como impuesto.
 
 **Table of contents**
 
