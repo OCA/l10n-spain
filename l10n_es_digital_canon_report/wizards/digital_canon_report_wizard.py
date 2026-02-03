@@ -14,7 +14,7 @@ class DigitalCanonReportWizard(models.TransientModel):
 
     def action_export_xls(self):
         module = __name__.split("addons.")[1].split(".")[0]
-        report_name = "{}.digital_canon_report".format(module)
+        report_name = f"{module}.digital_canon_report"
         quarter = (self.date_start.month - 1) // 3 + 1
         year = self.date_start.year
         report_filename = f"CanonDigital_Q{quarter}_{year}"
