@@ -61,22 +61,14 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
         cls.tax_account = cls.env.ref(
             f"account.{cls.env.user.company_id.id}_account_common_477"
         )
-        cls.tax_10b = cls.env.ref(
-            f"account.{cls.env.user.company_id.id}_account_tax_template_s_iva10b"
+        cls.tax_10s = cls.env.ref(
+            f"account.{cls.env.user.company_id.id}_account_tax_template_s_iva10s"
         )
         cls.product21 = cls.create_product(
-            "Product 21b",
-            cls.categ_basic,
-            100.0,
-            100.0,
-            tax_ids=cls.tax_21b.ids,
+            "Product 21b", cls.categ_basic, 100.0, 100.0, tax_ids=cls.tax_21b.ids
         )
         cls.product10 = cls.create_product(
-            "Product 10b",
-            cls.categ_basic,
-            100.0,
-            100.0,
-            tax_ids=cls.tax_10b.ids,
+            "Product 10b", cls.categ_basic, 100.0, 100.0, tax_ids=cls.tax_10s.ids
         )
 
     def setUp(self):
@@ -234,12 +226,12 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
                 "json": "sii_pos_order_iva21b.json",
                 "name": "Shop0001",
             },
-            self.tax_10b: {
-                "json": "sii_pos_order_iva10b.json",
+            self.tax_10s: {
+                "json": "sii_pos_order_iva10s.json",
                 "name": "Shop0002",
             },
-            (self.tax_10b + self.tax_21b): {
-                "json": "sii_pos_order_iva21b_iva10b.json",
+            (self.tax_10s + self.tax_21b): {
+                "json": "sii_pos_order_iva21b_iva10s.json",
                 "name": "Shop0003",
             },
         }
