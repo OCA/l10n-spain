@@ -68,7 +68,7 @@ class PosOrder(models.Model):
             pos_order["aeat_state"] = "not_sent"
         return super()._process_order(pos_order, existing_order)
 
-    def _is_sii_type_breakdown_required(self, taxes_dict):
+    def _is_sii_type_breakdown_required(self):
         """As these are simplified invoices, we don't break taxes.
 
         El desglose se hará obligatoriamente a nivel de tipo de operación si
