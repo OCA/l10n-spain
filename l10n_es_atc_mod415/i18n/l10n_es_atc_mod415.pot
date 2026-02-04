@@ -171,6 +171,11 @@ msgid "Attachment Count"
 msgstr ""
 
 #. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__bdns_number
+msgid "BDNS Call Number"
+msgstr ""
+
+#. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__partner_bank_id
 msgid "Bank account"
 msgstr ""
@@ -843,6 +848,13 @@ msgid "Record is OK"
 msgstr ""
 
 #. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__bdns_number
+msgid ""
+"Reference of Call of the subsidy or assistance in National Grands Database "
+"(BDNS)."
+msgstr ""
+
+#. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__related_goods_operation
 msgid "Related Goods Operation"
 msgstr ""
@@ -1050,6 +1062,11 @@ msgstr ""
 msgid ""
 "VAT number for professionals established in other state member without "
 "national VAT"
+msgstr ""
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__visible_bdns_number
+msgid "Visible Bdns Number"
 msgstr ""
 
 #. module: l10n_es_atc_mod415
