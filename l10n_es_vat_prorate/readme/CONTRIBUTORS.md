@@ -2,6 +2,7 @@
 - [Tecnativa](https://www.tecnativa.com/):
   - Pedro M. Baeza
   - Carolina Fernandez
+  - Christian Ramos
 - [Sygel](https://www.sygel.es/):
   - Harald Panten
   - Manuel Regidor
