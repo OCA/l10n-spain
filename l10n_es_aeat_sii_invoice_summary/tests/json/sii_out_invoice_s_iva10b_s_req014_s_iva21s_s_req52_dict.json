@@ -16,40 +16,27 @@
     "ClaveRegimenEspecialOTrascendencia": "01",
     "DescripcionOperacion": "/",
     "TipoDesglose": {
-      "DesgloseTipoOperacion": {
-        "PrestacionServicios": {
-          "Sujeta": {
-            "NoExenta": {
-              "TipoNoExenta": "S1",
-              "DesgloseIVA": {
-                "DetalleIVA": [
-                  {
-                    "TipoImpositivo": "21.0",
-                    "BaseImponible": 200.0,
-                    "CuotaRepercutida": 42.0,
-                    "TipoRecargoEquivalencia": 5.2,
-                    "CuotaRecargoEquivalencia": 10.4
-                  }
-                ]
-              }
-            }
-          }
-        },
-        "Entrega": {
-          "Sujeta": {
-            "NoExenta": {
-              "TipoNoExenta": "S1",
-              "DesgloseIVA": {
-                "DetalleIVA": [
-                  {
-                    "TipoImpositivo": "10.0",
-                    "BaseImponible": 100.0,
-                    "CuotaRepercutida": 10.0,
-                    "TipoRecargoEquivalencia": 1.4,
-                    "CuotaRecargoEquivalencia": 1.4
-                  }
-                ]
-              }
+      "DesgloseFactura": {
+        "Sujeta": {
+          "NoExenta": {
+            "TipoNoExenta": "S1",
+            "DesgloseIVA": {
+              "DetalleIVA": [
+                {
+                  "TipoImpositivo": "10.0",
+                  "BaseImponible": 100.0,
+                  "CuotaRepercutida": 10.0,
+                  "TipoRecargoEquivalencia": 1.4,
+                  "CuotaRecargoEquivalencia": 1.4
+                },
+                {
+                  "TipoImpositivo": "21.0",
+                  "BaseImponible": 200.0,
+                  "CuotaRepercutida": 42.0,
+                  "TipoRecargoEquivalencia": 5.2,
+                  "CuotaRecargoEquivalencia": 10.4
+                }
+              ]
             }
           }
         }

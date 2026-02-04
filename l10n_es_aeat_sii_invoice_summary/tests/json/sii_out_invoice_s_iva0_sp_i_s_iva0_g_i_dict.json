@@ -17,11 +17,6 @@
     "DescripcionOperacion": "/",
     "TipoDesglose": {
       "DesgloseTipoOperacion": {
-        "PrestacionServicios": {
-          "NoSujeta": {
-            "ImporteTAIReglasLocalizacion": 100.0
-          }
-        },
         "Entrega": {
           "Sujeta": {
             "Exenta": {
@@ -32,6 +27,11 @@
                 }
               ]
             }
+          }
+        },
+        "PrestacionServicios": {
+          "NoSujeta": {
+            "ImporteTAIReglasLocalizacion": 100.0
           }
         }
       }
