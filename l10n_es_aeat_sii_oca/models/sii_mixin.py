@@ -427,6 +427,7 @@ class SiiMixin(models.AbstractModel):
             return exempt_cause
 
     def _get_tax_info(self):
+        # TODO: To be renamed to _get_sii_tax_info
         raise NotImplementedError()
 
     def _get_sii_tax_req(self, tax):
