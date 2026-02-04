@@ -12,31 +12,34 @@ class AccountMove(models.Model):
     sii_invoice_summary_start = fields.Char("SII Invoice Summary: First Invoice")
     sii_invoice_summary_end = fields.Char("SII Invoice Summary: Last Invoice")
 
+    def _get_sii_invoice_type(self):
+        if self.is_invoice_summary and self.is_sale_document():
+            if self.move_type == "out_refund":
+                # TODO: It may not be necessary since a summary invoice implies
+                #  simplified invoice
+                invoice_type = "R5"
+            elif self.sii_invoice_summary_start == self.sii_invoice_summary_end:
+                invoice_type = "F2"
+            else:
+                invoice_type = "F4"
+        else:
+            invoice_type = super()._get_sii_invoice_type()
+        return invoice_type
+
     def _get_aeat_invoice_dict_out(self, cancel=False):
         inv_dict = super()._get_aeat_invoice_dict_out(cancel=cancel)
         if self.is_invoice_summary and self.is_sale_document():
-            tipo_factura = "F4"
-            if self.sii_invoice_summary_start:
-                if self.sii_invoice_summary_start == self.sii_invoice_summary_end:
-                    tipo_factura = "F2" if self.move_type == "out_invoice" else "R5"
-                else:
-                    inv_dict["IDFactura"][
-                        "NumSerieFacturaEmisor"
-                    ] = self.sii_invoice_summary_start
-                    inv_dict["IDFactura"][
-                        "NumSerieFacturaEmisorResumenFin"
-                    ] = self.sii_invoice_summary_end
-            if "FacturaExpedida" in inv_dict:
-                if "TipoFactura" in inv_dict["FacturaExpedida"]:
-                    inv_dict["FacturaExpedida"]["TipoFactura"] = tipo_factura
-                if "Contraparte" in inv_dict["FacturaExpedida"]:
-                    del inv_dict["FacturaExpedida"]["Contraparte"]
-                if (
-                    "TipoRectificativa" in inv_dict["FacturaExpedida"]
-                    and tipo_factura == "F4"
-                ):
-                    del inv_dict["FacturaExpedida"]["TipoRectificativa"]
-
+            if self.sii_invoice_summary_start != self.sii_invoice_summary_end:
+                inv_dict["IDFactura"][
+                    "NumSerieFacturaEmisor"
+                ] = self.sii_invoice_summary_start
+                inv_dict["IDFactura"][
+                    "NumSerieFacturaEmisorResumenFin"
+                ] = self.sii_invoice_summary_end
+            # TODO: It may not be necessary since a summary invoice implies
+            #  simplified invoice
+            if inv_dict.get("FacturaExpedida", {}).get("Contraparte"):
+                del inv_dict["FacturaExpedida"]["Contraparte"]
         return inv_dict
 
     def _aeat_check_exceptions(self):
