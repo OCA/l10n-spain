@@ -38,11 +38,12 @@ class PosOrder(models.Model):
         "company_id.sii_enabled",
         "fiscal_position_id",
         "fiscal_position_id.aeat_active",
+        "is_l10n_es_simplified_invoice",
     )
     def _compute_sii_enabled(self):
         """Compute if the order is enabled for the SII"""
         for order in self:
-            if order.company_id.sii_enabled:
+            if order.company_id.sii_enabled and order.is_l10n_es_simplified_invoice:
                 order.sii_enabled = (
                     order.fiscal_position_id and order.fiscal_position_id.aeat_active
                 ) or not order.fiscal_position_id

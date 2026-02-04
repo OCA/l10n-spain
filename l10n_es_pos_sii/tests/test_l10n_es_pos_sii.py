@@ -261,6 +261,7 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
             )
             order.write(
                 {
+                    "is_l10n_es_simplified_invoice": True,
                     "l10n_es_unique_id": json_by_taxes.get(taxes, {}).get("name"),
                     "date_order": "2023-06-14",
                 }
@@ -326,6 +327,7 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
         refund_order.write(
             {
                 "l10n_es_unique_id": "Shop0004",
+                "is_l10n_es_simplified_invoice": True,
                 "date_order": "2023-06-14",
             }
         )
@@ -334,11 +336,9 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
 
     def test_06_automatic_send(self):
         self.company.send_mode = "auto"
-
         cash = self.cash_pm1
         pos_session = self._start_pos_session(cash, 462.0)
-
-        self._create_orders(
+        order = self._create_orders(
             [
                 {
                     "pos_order_lines_ui_args": [(self.product21, 1)],
@@ -348,18 +348,17 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
                     "uuid": "00100-010-0004",
                 },
             ]
+        ).get("00100-010-0004")
+        order.write(
+            {"l10n_es_unique_id": "Shop0005", "is_l10n_es_simplified_invoice": True}
         )
-
         pos_session.post_closing_cash_details(583.0)
         sii_send_cron = self.env.ref("l10n_es_aeat_sii_oca.invoice_send_to_sii")
         Trigger = self.env["ir.cron.trigger"].sudo()
         before = Trigger.search_count([("cron_id", "=", sii_send_cron.id)])
-
         pos_session.close_session_from_ui()
-
         after = Trigger.search_count([("cron_id", "=", sii_send_cron.id)])
         self.assertEqual(after, before + 1)
-
         trigger = Trigger.search(
             [("cron_id", "=", sii_send_cron.id)], order="id desc", limit=1
         )
