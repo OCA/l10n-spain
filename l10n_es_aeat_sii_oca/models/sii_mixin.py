@@ -474,18 +474,13 @@ class SiiMixin(models.AbstractModel):
             or "ImporteTAIReglasLocalizacion"
         )
 
-    def _is_sii_type_breakdown_required(self, taxes_dict):
+    def _is_sii_type_breakdown_required(self):
         """Calculates if the block 'DesgloseTipoOperacion' is required for
         the invoice communication."""
         self.ensure_one()
-        if "DesgloseFactura" not in taxes_dict:
-            return False
         country_code = self._get_aeat_country_code()
         sii_gen_type = self._get_sii_gen_type()
-        if "DesgloseTipoOperacion" in taxes_dict:
-            # DesgloseTipoOperacion and DesgloseFactura are Exclusive
-            return True
-        elif sii_gen_type in (2, 3):
+        if sii_gen_type in (2, 3):
             # DesgloseTipoOperacion required for Intracommunity and
             # Export operations
             return True
@@ -521,23 +516,29 @@ class SiiMixin(models.AbstractModel):
         taxes_not_in_total_neg = self._get_aeat_taxes_map(
             ["NotIncludedInTotalNegative"], date
         )
+        do_breakdown = self._is_sii_type_breakdown_required()
+        if do_breakdown:
+            tax_breakdown = taxes_dict.setdefault("DesgloseTipoOperacion", {})
+            good_breakdown = tax_breakdown.setdefault("Entrega", {})
+            service_breakdown = tax_breakdown.setdefault("PrestacionServicios", {})
+        else:
+            tax_breakdown = taxes_dict.setdefault("DesgloseFactura", {})
+            good_breakdown = tax_breakdown
+            service_breakdown = tax_breakdown
         base_not_in_total = self._get_aeat_taxes_map(["BaseNotIncludedInTotal"], date)
         not_in_amount_total = 0
         exempt_cause = self._get_sii_exempt_cause(taxes_sfesbe + taxes_sfesse)
         tax_lines = self._get_tax_info()
         for tax_line in tax_lines.values():
             tax = tax_line["tax"]
-            breakdown_taxes = taxes_sfesb + taxes_sfesisp + taxes_sfens + taxes_sfesbe
             if tax in taxes_not_in_total:
                 not_in_amount_total += tax_line["amount"]
             elif tax in taxes_not_in_total_neg:
                 not_in_amount_total -= tax_line["amount"]
             elif tax in base_not_in_total:
                 not_in_amount_total += tax_line["base"]
-            if tax in breakdown_taxes:
-                tax_breakdown = taxes_dict.setdefault("DesgloseFactura", {})
             if tax in (taxes_sfesb + taxes_sfesbe + taxes_sfesisp):
-                sub_dict = tax_breakdown.setdefault("Sujeta", {})
+                sub_dict = good_breakdown.setdefault("Sujeta", {})
                 # TODO l10n_es no tiene impuesto exento de bienes
                 # corrientes nacionales
                 if tax in taxes_sfesbe:
@@ -571,21 +572,15 @@ class SiiMixin(models.AbstractModel):
             if tax in taxes_sfens:
                 # ImporteTAIReglasLocalizacion or ImportePorArticulos7_14_Otros
                 default_no_taxable_cause = self._get_no_taxable_cause()
-                nsub_dict = tax_breakdown.setdefault(
+                nsub_dict = good_breakdown.setdefault(
                     "NoSujeta",
                     {default_no_taxable_cause: 0},
                 )
                 nsub_dict[default_no_taxable_cause] += tax_line["base"]
             if tax in (taxes_sfess + taxes_sfesse + taxes_sfesns):
-                type_breakdown = taxes_dict.setdefault(
-                    "DesgloseTipoOperacion",
-                    {"PrestacionServicios": {}},
-                )
-                if tax in (taxes_sfesse + taxes_sfess):
-                    type_breakdown["PrestacionServicios"].setdefault("Sujeta", {})
-                service_dict = type_breakdown["PrestacionServicios"]
                 if tax in taxes_sfesse:
-                    exempt_dict = service_dict["Sujeta"].setdefault(
+                    service_breakdown.setdefault("Sujeta", {})
+                    exempt_dict = service_breakdown["Sujeta"].setdefault(
                         "Exenta",
                         {"DetalleExenta": [{"BaseImponible": 0}]},
                     )
@@ -594,34 +589,29 @@ class SiiMixin(models.AbstractModel):
                         det_dict["CausaExencion"] = exempt_cause
                     det_dict["BaseImponible"] += tax_line["base"]
                 if tax in taxes_sfess:
+                    service_breakdown.setdefault("Sujeta", {})
                     # TODO l10n_es_ no tiene impuesto ISP de servicios
                     # if tax in taxes_sfesisps:
                     #     TipoNoExenta = 'S2'
                     # else:
-                    service_dict["Sujeta"].setdefault(
+                    not_exempt = service_breakdown["Sujeta"].setdefault(
                         "NoExenta",
                         {"TipoNoExenta": "S1", "DesgloseIVA": {"DetalleIVA": []}},
                     )
-                    sub = type_breakdown["PrestacionServicios"]["Sujeta"]["NoExenta"][
-                        "DesgloseIVA"
-                    ]["DetalleIVA"]
+                    sub = not_exempt["DesgloseIVA"]["DetalleIVA"]
                     sub.append(self._get_sii_tax_dict(tax_line, tax_lines))
                 if tax in taxes_sfesns:
                     default_no_taxable_cause = self._get_no_taxable_cause()
-                    nsub_dict = service_dict.setdefault(
-                        "NoSujeta",
-                        {default_no_taxable_cause: 0},
+                    nsub_dict = service_breakdown.setdefault(
+                        "NoSujeta", {default_no_taxable_cause: 0}
                     )
                     nsub_dict[default_no_taxable_cause] += tax_line["base"]
-        # Ajustes finales breakdown
-        # - DesgloseFactura y DesgloseTipoOperacion son excluyentes
-        # - Ciertos condicionantes obligan DesgloseTipoOperacion
-        if self._is_sii_type_breakdown_required(taxes_dict):
-            taxes_dict.setdefault("DesgloseTipoOperacion", {})
-            taxes_dict["DesgloseTipoOperacion"]["Entrega"] = taxes_dict[
-                "DesgloseFactura"
-            ]
-            del taxes_dict["DesgloseFactura"]
+        # Ajustes finales breakdown: eliminar clave vacía de entrega / servicios
+        if "DesgloseTipoOperacion" in taxes_dict:
+            if not taxes_dict["DesgloseTipoOperacion"]["Entrega"]:
+                del taxes_dict["DesgloseTipoOperacion"]["Entrega"]
+            if not taxes_dict["DesgloseTipoOperacion"]["PrestacionServicios"]:
+                del taxes_dict["DesgloseTipoOperacion"]["PrestacionServicios"]
         return taxes_dict, not_in_amount_total
 
     def _get_sii_invoice_type(self):

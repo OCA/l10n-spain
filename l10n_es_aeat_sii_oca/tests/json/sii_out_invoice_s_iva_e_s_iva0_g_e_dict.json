@@ -10,23 +10,19 @@
     "ClaveRegimenEspecialOTrascendencia": "01",
     "DescripcionOperacion": "/",
     "TipoDesglose": {
-      "DesgloseTipoOperacion": {
-        "PrestacionServicios": {
-          "NoSujeta": {
-            "ImporteTAIReglasLocalizacion": 100.0
+      "DesgloseFactura": {
+        "Sujeta": {
+          "Exenta": {
+            "DetalleExenta": [
+              {
+                "BaseImponible": 200,
+                "CausaExencion": "E5"
+              }
+            ]
           }
         },
-        "Entrega": {
-          "Sujeta": {
-            "Exenta": {
-              "DetalleExenta": [
-                {
-                  "BaseImponible": 200,
-                  "CausaExencion": "E5"
-                }
-              ]
-            }
-          }
+        "NoSujeta": {
+          "ImporteTAIReglasLocalizacion": 100.0
         }
       }
     },
