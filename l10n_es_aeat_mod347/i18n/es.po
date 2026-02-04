@@ -30,8 +30,8 @@ msgid ""
 "><br/>\n"
 "  <strong>NIF:</strong> <t t-out=\"object.report_id.company_id.vat or ''\"/"
 "><br/>\n"
-"  <strong>Provincia:</strong> <t t-out=\"object.report_id.company_id."
-"state_id.name or ''\"/><br/>\n"
+"  <strong>Provincia:</strong> <t t-"
+"out=\"object.report_id.company_id.state_id.name or ''\"/><br/>\n"
 "</p>\n"
 "<p>Los datos que vamos a declarar en relación a las operaciones habidas con "
 "su empresa son:</p>\n"
@@ -40,8 +40,8 @@ msgid ""
 "  <strong>NIF:</strong> <t t-out=\"object.partner_vat\"/><br/>\n"
 "  <strong>Código de país:</strong> <t t-out=\"object.partner_country_code\"/"
 "><br/>\n"
-"  <strong>Código de provincia:</strong> <t t-out=\"object."
-"partner_state_code\"/><br/>\n"
+"  <strong>Código de provincia:</strong> <t t-"
+"out=\"object.partner_state_code\"/><br/>\n"
 "</p>\n"
 "<p>\n"
 "  <strong>Tipo de operación:</strong> <t t-out=\"object.operation_key\"/>\n"
@@ -51,34 +51,34 @@ msgid ""
 "  <p>\n"
 "  <strong>Importe de las operaciones:</strong> <t t-out=\"object.amount\"/"
 "><br/>\n"
-"  <strong>Operaciones primer trimestre:</strong> <t t-out=\"object."
-"first_quarter\"/><br/>\n"
-"  <strong>Operaciones segundo trimestre:</strong> <t t-out=\"object."
-"second_quarter\"/><br/>\n"
-"  <strong>Operaciones tercer trimestre:</strong> <t t-out=\"object."
-"third_quarter\"/><br/>\n"
-"  <strong>Operaciones cuarto trimestre:</strong> <t t-out=\"object."
-"fourth_quarter\"/><br/>\n"
+"  <strong>Operaciones primer trimestre:</strong> <t t-"
+"out=\"object.first_quarter\"/><br/>\n"
+"  <strong>Operaciones segundo trimestre:</strong> <t t-"
+"out=\"object.second_quarter\"/><br/>\n"
+"  <strong>Operaciones tercer trimestre:</strong> <t t-"
+"out=\"object.third_quarter\"/><br/>\n"
+"  <strong>Operaciones cuarto trimestre:</strong> <t t-"
+"out=\"object.fourth_quarter\"/><br/>\n"
 "  </p>\n"
 "  </t>\n"
 "  <t t-if=\"object.cash_amount\">\n"
 "  <p>\n"
-"  <strong>Importe recibido en efectivo:</strong> <t t-out=\"object."
-"cash_amount\"/><br/>\n"
+"  <strong>Importe recibido en efectivo:</strong> <t t-"
+"out=\"object.cash_amount\"/><br/>\n"
 "  </p>\n"
 "</t>\n"
 "  <t t-if=\"object.real_estate_transmissions_amount\">\n"
 "  <p>\n"
-"  <strong>Importe de transmisión de inmueble:</strong> <t t-out=\"object."
-"real_estate_transmissions_amount\"/><br/>\n"
-"  <strong>Inmuebles primer trimestre:</strong> <t t-out=\"object."
-"first_quarter_real_estate_transmission\"/><br/>\n"
-"  <strong>Inmuebles segundo trimestre:</strong> <t t-out=\"object."
-"second_quarter_real_estate_transmission\"/><br/>\n"
-"  <strong>Inmuebles tercer trimestre:</strong> <t t-out=\"object."
-"third_quarter_real_estate_transmission\"/><br/>\n"
-"  <strong>Inmuebles cuarto trimestre:</strong> <t t-out=\"object."
-"fourth_quarter_real_estate_transmission\"/><br/>\n"
+"  <strong>Importe de transmisión de inmueble:</strong> <t t-"
+"out=\"object.real_estate_transmissions_amount\"/><br/>\n"
+"  <strong>Inmuebles primer trimestre:</strong> <t t-"
+"out=\"object.first_quarter_real_estate_transmission\"/><br/>\n"
+"  <strong>Inmuebles segundo trimestre:</strong> <t t-"
+"out=\"object.second_quarter_real_estate_transmission\"/><br/>\n"
+"  <strong>Inmuebles tercer trimestre:</strong> <t t-"
+"out=\"object.third_quarter_real_estate_transmission\"/><br/>\n"
+"  <strong>Inmuebles cuarto trimestre:</strong> <t t-"
+"out=\"object.fourth_quarter_real_estate_transmission\"/><br/>\n"
 "  </p>\n"
 "</t>\n"
 "  <p>En el documento adjunto se incluyen las facturas en base a las cuales "
@@ -128,8 +128,8 @@ msgstr ""
 "><br/>\n"
 "  <strong>NIF:</strong> <t t-out=\"object.report_id.company_id.vat or ''\"/"
 "><br/>\n"
-"  <strong>Provincia:</strong> <t t-out=\"object.report_id.company_id."
-"state_id.name or ''\"/><br/>\n"
+"  <strong>Provincia:</strong> <t t-"
+"out=\"object.report_id.company_id.state_id.name or ''\"/><br/>\n"
 "</p>\n"
 "<p>Los datos que vamos a declarar en relación a las operaciones habidas con "
 "su empresa son:</p>\n"
@@ -138,8 +138,8 @@ msgstr ""
 "  <strong>NIF:</strong> <t t-out=\"object.partner_vat\"/><br/>\n"
 "  <strong>Código de país:</strong> <t t-out=\"object.partner_country_code\"/"
 "><br/>\n"
-"  <strong>Código de provincia:</strong> <t t-out=\"object."
-"partner_state_code\"/><br/>\n"
+"  <strong>Código de provincia:</strong> <t t-"
+"out=\"object.partner_state_code\"/><br/>\n"
 "</p>\n"
 "<p>\n"
 "  <strong>Tipo de operación:</strong> <t t-out=\"object.operation_key\"/>\n"
@@ -149,34 +149,34 @@ msgstr ""
 "  <p>\n"
 "  <strong>Importe de las operaciones:</strong> <t t-out=\"object.amount\"/"
 "><br/>\n"
-"  <strong>Operaciones primer trimestre:</strong> <t t-out=\"object."
-"first_quarter\"/><br/>\n"
-"  <strong>Operaciones segundo trimestre:</strong> <t t-out=\"object."
-"second_quarter\"/><br/>\n"
-"  <strong>Operaciones tercer trimestre:</strong> <t t-out=\"object."
-"third_quarter\"/><br/>\n"
-"  <strong>Operaciones cuarto trimestre:</strong> <t t-out=\"object."
-"fourth_quarter\"/><br/>\n"
+"  <strong>Operaciones primer trimestre:</strong> <t t-"
+"out=\"object.first_quarter\"/><br/>\n"
+"  <strong>Operaciones segundo trimestre:</strong> <t t-"
+"out=\"object.second_quarter\"/><br/>\n"
+"  <strong>Operaciones tercer trimestre:</strong> <t t-"
+"out=\"object.third_quarter\"/><br/>\n"
+"  <strong>Operaciones cuarto trimestre:</strong> <t t-"
+"out=\"object.fourth_quarter\"/><br/>\n"
 "  </p>\n"
 "  </t>\n"
 "  <t t-if=\"object.cash_amount\">\n"
 "  <p>\n"
-"  <strong>Importe recibido en efectivo:</strong> <t t-out=\"object."
-"cash_amount\"/><br/>\n"
+"  <strong>Importe recibido en efectivo:</strong> <t t-"
+"out=\"object.cash_amount\"/><br/>\n"
 "  </p>\n"
 "</t>\n"
 "  <t t-if=\"object.real_estate_transmissions_amount\">\n"
 "  <p>\n"
-"  <strong>Importe de transmisión de inmueble:</strong> <t t-out=\"object."
-"real_estate_transmissions_amount\"/><br/>\n"
-"  <strong>Inmuebles primer trimestre:</strong> <t t-out=\"object."
-"first_quarter_real_estate_transmission\"/><br/>\n"
-"  <strong>Inmuebles segundo trimestre:</strong> <t t-out=\"object."
-"second_quarter_real_estate_transmission\"/><br/>\n"
-"  <strong>Inmuebles tercer trimestre:</strong> <t t-out=\"object."
-"third_quarter_real_estate_transmission\"/><br/>\n"
-"  <strong>Inmuebles cuarto trimestre:</strong> <t t-out=\"object."
-"fourth_quarter_real_estate_transmission\"/><br/>\n"
+"  <strong>Importe de transmisión de inmueble:</strong> <t t-"
+"out=\"object.real_estate_transmissions_amount\"/><br/>\n"
+"  <strong>Inmuebles primer trimestre:</strong> <t t-"
+"out=\"object.first_quarter_real_estate_transmission\"/><br/>\n"
+"  <strong>Inmuebles segundo trimestre:</strong> <t t-"
+"out=\"object.second_quarter_real_estate_transmission\"/><br/>\n"
+"  <strong>Inmuebles tercer trimestre:</strong> <t t-"
+"out=\"object.third_quarter_real_estate_transmission\"/><br/>\n"
+"  <strong>Inmuebles cuarto trimestre:</strong> <t t-"
+"out=\"object.fourth_quarter_real_estate_transmission\"/><br/>\n"
 "  </p>\n"
 "</t>\n"
 "  <p>En el documento adjunto se incluyen las facturas en base a las cuales "
@@ -412,10 +412,7 @@ msgstr "Número de convocatoria BDNS"
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
-#, fuzzy
-#| msgid ""
-#| "Number of convocation BDSN is mandatory for operation key E and it must "
-#| "have 6 digits"
+#, fuzzy, python-format
 msgid ""
 "BDNS Call Number is mandatory for operation key E and it must have 6 digits"
 msgstr ""
@@ -537,14 +534,15 @@ msgstr "Complemento (urbanización, parque industrial...)"
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid "Compose Email"
 msgstr "Redactar correo electrónico"
 
 #. module: l10n_es_aeat_mod347
 #: model:mail.template,subject:l10n_es_aeat_mod347.email_template_347
 msgid ""
-"Comprobación datos de modelo 347 año {{object.report_id.year}} de {{object."
-"report_id.company_id.name}}"
+"Comprobación datos de modelo 347 año {{object.report_id.year}} de "
+"{{object.report_id.company_id.name}}"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -738,6 +736,7 @@ msgstr "Fuente awesome icon p.e. fa-tasks"
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_bank_statement_line__not_in_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_move__not_in_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_payment__not_in_mod347
 msgid "Force not included in 347 report"
 msgstr "Forzar no incluir en la declaración 347"
 
@@ -818,6 +817,7 @@ msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_account_bank_statement_line__not_in_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_account_move__not_in_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_account_payment__not_in_mod347
 msgid ""
 "If you mark this field, this invoice will not be included in any AEAT 347 "
 "model report."
@@ -1146,6 +1146,7 @@ msgstr "Registro de empresa"
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid "Partner record errors:\n"
 msgstr "Errores de registros de empresas:\n"
 
@@ -1153,6 +1154,7 @@ msgstr "Errores de registros de empresas:\n"
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
+#, python-format
 msgid "Partner records"
 msgstr "Registros de empresas"
 
@@ -1185,6 +1187,7 @@ msgstr "Teléfono"
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid ""
 "Please review partner and real estate records, some of them are in red "
 "color:\n"
@@ -1273,6 +1276,7 @@ msgstr "Información de inmuebles"
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid "Real estate record errors:\n"
 msgstr "Errores de registros de inmuebles:\n"
 
@@ -1439,6 +1443,7 @@ msgstr "Código de provincia"
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid "State code can only contain digits"
 msgstr "El código de provincia sólo puede contener dígitos"
 
@@ -1632,6 +1637,7 @@ msgstr "Tipo de actividad de excepción registrada."
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid "VAT must be defined for Spanish Contacts"
 msgstr "Debe definirse el NIF para los contactos españoles"
 
@@ -1670,6 +1676,7 @@ msgstr "Historial de comunicación del sitio web"
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid "Without country code"
 msgstr "Sin código de país"
 
@@ -1682,6 +1689,7 @@ msgstr "Sin número"
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid "Without state code"
 msgstr "Sin código de provincia"
 
