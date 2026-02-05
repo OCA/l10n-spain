@@ -53,7 +53,7 @@
                         />
                         <field
                             name="sii_refund_specific_invoice_type"
-                            invisible="move_type != 'out_refund'"
+                            invisible="move_type not in ['out_refund', 'in_refund']"
                         />
                         <field name="sii_registration_key_domain" invisible="1" />
                         <field

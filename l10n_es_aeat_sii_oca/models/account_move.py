@@ -10,6 +10,7 @@
 # Copyright 2023 Aures Tic - Almudena de la Puente <almudena@aurestic.es>
 # Copyright 2023 Aures Tic - Jose Zambudio <jose@aurestic.es>
 # Copyright 2023 Moduon Team - Eduardo de Miguel
+# Copyright 2026 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import json
@@ -428,7 +429,10 @@ class AccountMove(models.Model):
         if self.sii_lc_operation:
             return "LC"
         if self.move_type in ["in_invoice", "in_refund"]:
-            invoice_type = "R4" if self.move_type == "in_refund" else "F1"
+            if self.move_type == "in_refund":
+                invoice_type = self.sii_refund_specific_invoice_type or "R4"
+            else:
+                invoice_type = "F1"
         elif self.move_type in ["out_invoice", "out_refund"]:
             is_simplified = self._is_aeat_simplified_invoice()
             invoice_type = "F2" if is_simplified else "F1"
