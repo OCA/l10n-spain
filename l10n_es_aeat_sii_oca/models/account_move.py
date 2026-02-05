@@ -642,6 +642,7 @@ class AccountMove(models.Model):
 
     def _cancel_invoice_to_sii(self):
         for invoice in self.filtered(lambda i: i.state in ["cancel"]):
+            # TODO: Move communication code to sii.mixin
             serv = invoice._connect_aeat(invoice.move_type)
             header = invoice._get_aeat_header(cancellation=True)
             inv_vals = {
@@ -942,23 +943,7 @@ class AccountMove(models.Model):
         documents = all_documents[:batch]
         remaining_documents = all_documents - documents
         for doc in documents:
-            try:
-                with self.env.cr.savepoint():
-                    doc.confirm_one_document()
-                    doc.sii_send_date = False
-            except Exception as fault:
-                new_cr = Registry(self.env.cr.dbname).cursor()
-                env = api.Environment(new_cr, self.env.uid, self.env.context)
-                doc_vals = {
-                    "aeat_send_failed": True,
-                    "aeat_send_error": repr(fault)[:60],
-                    "sii_send_date": False,
-                    "sii_return": repr(fault),
-                }
-                invoice = env["account.move"].browse(doc.id)
-                invoice.write(doc_vals)
-                new_cr.commit()
-                new_cr.close()
+            doc.confirm_one_document()
         return remaining_documents
 
     @api.model
