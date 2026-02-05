@@ -97,8 +97,10 @@ class ResPartner(models.Model):
         self.ensure_one()
         vat_number = self.vat or ""
         prefix = vat_number[:2].upper()
-        if self._map_aeat_country_code(prefix) in self._get_aeat_europe_codes():
-            country_code = prefix
+        aeat_country_code = self._map_aeat_country_code(prefix)
+        if aeat_country_code in self._get_aeat_europe_codes():
+            # Return mapped vats like Greece. Take into account mapped countries
+            country_code = aeat_country_code
             vat_number = vat_number[2:]
             identifier_type = "02"
         else:
