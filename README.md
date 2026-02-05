@@ -26,7 +26,7 @@ addon | version | maintainers | summary
 [l10n_es_account_asset](l10n_es_account_asset/) | 16.0.2.0.0 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Gestión de activos fijos para España
 [l10n_es_account_banking_sepa_fsdd](l10n_es_account_banking_sepa_fsdd/) | 16.0.1.0.0 |  | Account Banking Sepa - FSDD (Anticipos de crédito)
 [l10n_es_account_statement_import_n43](l10n_es_account_statement_import_n43/) | 16.0.1.1.0 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Importación de extractos bancarios españoles (Norma 43)
-[l10n_es_aeat](l10n_es_aeat/) | 16.0.3.2.4 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Modulo base para declaraciones de la AEAT
+[l10n_es_aeat](l10n_es_aeat/) | 16.0.3.2.5 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Modulo base para declaraciones de la AEAT
 [l10n_es_aeat_mod111](l10n_es_aeat_mod111/) | 16.0.1.1.1 |  | AEAT modelo 111
 [l10n_es_aeat_mod115](l10n_es_aeat_mod115/) | 16.0.1.0.1 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | AEAT modelo 115
 [l10n_es_aeat_mod123](l10n_es_aeat_mod123/) | 16.0.2.2.0 |  | AEAT modelo 123
@@ -48,7 +48,7 @@ addon | version | maintainers | summary
 [l10n_es_aeat_sii_force_type](l10n_es_aeat_sii_force_type/) | 16.0.2.0.1 |  | Force SII communication type on invoices
 [l10n_es_aeat_sii_invoice_summary](l10n_es_aeat_sii_invoice_summary/) | 16.0.2.0.0 |  | Envio de factura simplificada resumen TPV a SII
 [l10n_es_aeat_sii_match](l10n_es_aeat_sii_match/) | 16.0.2.0.2 | <a href='https://github.com/Abranes'><img src='https://github.com/Abranes.png' width='32' height='32' style='border-radius:50%;' alt='Abranes'/></a> <a href='https://github.com/Reyes4711-S73'><img src='https://github.com/Reyes4711-S73.png' width='32' height='32' style='border-radius:50%;' alt='Reyes4711-S73'/></a> | Sistema de comprobación y contraste de facturas enviadas al SII
-[l10n_es_aeat_sii_oca](l10n_es_aeat_sii_oca/) | 16.0.2.5.8 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Suministro Inmediato de Información en el IVA
+[l10n_es_aeat_sii_oca](l10n_es_aeat_sii_oca/) | 16.0.2.5.9 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Suministro Inmediato de Información en el IVA
 [l10n_es_aeat_sii_oss](l10n_es_aeat_sii_oss/) | 16.0.2.0.0 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Suministro Inmediato de Información en el IVA: OSS
 [l10n_es_aeat_sii_taxfree](l10n_es_aeat_sii_taxfree/) | 16.0.2.0.2 |  | Régimen Especial de Viajeros - SII
 [l10n_es_atc](l10n_es_atc/) | 16.0.1.0.2 |  | Modulo 'glue' de la AEAT para el menú de la ATC
