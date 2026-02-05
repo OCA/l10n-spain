@@ -600,11 +600,16 @@ class SiiMixin(models.AbstractModel):
         """
         self.ensure_one()
         gen_type = self._get_sii_gen_type()
+        partner = self._aeat_get_partner()
         (
             country_code,
             identifier_type,
             identifier,
-        ) = self._aeat_get_partner()._parse_aeat_vat_info()
+        ) = partner._parse_aeat_vat_info()
+        # Take into account some vats construction like Greece
+        vat_country_code = (
+            partner._map_aeat_country_iso_code(partner.country_id) or country_code
+        )
         # Limpiar alfanum
         if identifier:
             identifier = "".join(e for e in identifier if e.isalnum()).upper()
@@ -627,14 +632,16 @@ class SiiMixin(models.AbstractModel):
                     "IDOtro": {
                         "CodigoPais": country_code,
                         "IDType": identifier_type,
-                        "ID": country_code + identifier
-                        if self._aeat_get_partner()._map_aeat_country_code(country_code)
+                        "ID": vat_country_code + identifier
+                        if self._aeat_get_partner()._map_aeat_country_code(
+                            vat_country_code
+                        )
                         in self._aeat_get_partner()._get_aeat_europe_codes()
                         else identifier,
                     },
                 }
         elif gen_type == 2:
-            return {"IDOtro": {"IDType": "02", "ID": country_code + identifier}}
+            return {"IDOtro": {"IDType": "02", "ID": vat_country_code + identifier}}
         elif gen_type == 3 and identifier_type:
             # Si usamos identificador tipo 02 en exportaciones, el envío falla con:
             #   {'CodigoErrorRegistro': 1104,
