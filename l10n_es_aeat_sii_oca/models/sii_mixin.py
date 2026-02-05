@@ -855,6 +855,7 @@ class SiiMixin(models.AbstractModel):
                         document._get_account_registration_date()
                     )
                 doc_vals["sii_return"] = res
+                doc_vals["sii_send_date"] = False
                 send_error = False
                 if res_line["CodigoErrorRegistro"]:
                     send_error = "{} | {}".format(
