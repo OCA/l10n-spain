@@ -60,6 +60,11 @@ msgstr ""
 "archivo."
 
 #. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_journal__n43_exclude_pattern
+msgid "Exclude pattern for N43 Import"
+msgstr "Patrón de exclusion para importación N43"
+
+#. module: l10n_es_account_statement_import_n43
 #. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
 #, python-format

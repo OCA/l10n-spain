@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
+import re
 from datetime import datetime
 
 from odoo import _, api, exceptions, fields, models
@@ -409,9 +410,12 @@ class AccountStatementImport(models.TransientModel):
         return CURRENCY_ISO4217_MAP.get(iso_currency)
 
     def _complete_stmts_vals(self, stmts_vals, journal, account_number):
-        """Match partner_id if if hasn't been deducted yet."""
+        """Match partner_id if it hasn't been deducted yet & discard excluded lines."""
         res = super()._complete_stmts_vals(stmts_vals, journal, account_number)
+        pattern = journal.n43_exclude_pattern
+        pattern = re.compile(pattern) if pattern else False
         for st_vals in res:
+            transactions = []
             for line_vals in st_vals["transactions"]:
                 if line_vals.get("n43_line"):
                     n43_line = line_vals.pop("n43_line")
@@ -422,9 +426,18 @@ class AccountStatementImport(models.TransientModel):
                     line_vals["date"] = fields.Date.to_string(
                         n43_line.get(journal.n43_date_type or "fecha_valor")
                     )
+                    if (
+                        pattern
+                        and not pattern.match(line_vals["payment_ref"])
+                        or not pattern
+                    ):
+                        transactions.append(line_vals)
+                else:
+                    transactions.append(line_vals)
                 # This can't be used, as Odoo doesn't present the lines
                 # that already have a counterpart account as final
                 # verification, making this very counter intuitive to the user
                 # line_vals['account_id'] = self._get_n43_account(
                 #     line_vals['raw_data'], journal).id
+            st_vals["transactions"] = transactions
         return res
