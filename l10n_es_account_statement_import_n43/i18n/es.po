@@ -61,8 +61,15 @@ msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
 #: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_journal__n43_exclude_pattern
-msgid "Exclude pattern for N43 Import"
-msgstr "Patrón de exclusion para importación N43"
+msgid "Exclude pattern for N43 import"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,help:l10n_es_account_statement_import_n43.field_account_journal__n43_exclude_pattern
+msgid ""
+"Fill this field if you want to exclude some lines of the N43 according this "
+"regexp pattern."
+msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
 #. odoo-python
@@ -157,6 +164,9 @@ msgstr "Santander"
 #: model:ir.model.fields.selection,name:l10n_es_account_statement_import_n43.selection__account_journal__n43_date_type__fecha_valor
 msgid "Value Date"
 msgstr "Fecha valor"
+
+#~ msgid "Exclude pattern for N43 Import"
+#~ msgstr "Patrón de exclusion para importación N43"
 
 #~ msgid "Display Name"
 #~ msgstr "Nombre mostrado"
