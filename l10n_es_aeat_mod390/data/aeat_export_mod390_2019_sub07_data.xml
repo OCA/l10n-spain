@@ -178,7 +178,9 @@
         <field
             name="name"
         >11. Oper. Específicas - Servicios localizados en el territorio de aplicación del impuesto por inversión del sujeto pasivo [523]</field>
-        <field name="fixed_value">0</field>
+        <field
+            name="expression"
+        >${object.tax_line_ids.filtered(lambda r: r.field_number == 523).amount}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True" />
         <field name="size">17</field>
