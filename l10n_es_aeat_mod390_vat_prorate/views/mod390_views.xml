@@ -32,6 +32,129 @@
                     readonly="state != 'draft'"
                 />
             </field>
+            <notebook position="inside">
+                <page string="12. Prorrata" invisible="not with_vat_prorate">
+                    <group>
+                        <group string="Desarrollo - 1ª Actividad">
+                            <field
+                                name="first_dev_activity"
+                                readonly="state != 'calculated'"
+                                required="state == 'calculated' and with_vat_prorate"
+                            />
+                            <field
+                                name="first_dev_activity_cnae_code"
+                                readonly="state != 'calculated'"
+                                required="state == 'calculated' and with_vat_prorate"
+                            />
+                            <field
+                                name="first_dev_activity_operation_amount"
+                                readonly="state != 'calculated'"
+                            />
+                            <field
+                                name="first_dev_activity_operation_amount_deductible"
+                                readonly="state != 'calculated'"
+                            />
+                            <field
+                                name="first_dev_activity_prorate_type"
+                                readonly="state != 'calculated'"
+                            />
+                            <field name="first_dev_activity_prorate_percent" />
+                        </group>
+                        <group string="Desarrollo - 2ª Actividad">
+                            <field
+                                name="second_dev_activity"
+                                readonly="state != 'calculated'"
+                            />
+                            <field
+                                name="second_dev_activity_cnae_code"
+                                readonly="state != 'calculated'"
+                            />
+                            <field
+                                name="second_dev_activity_operation_amount"
+                                readonly="state != 'calculated'"
+                            />
+                            <field
+                                name="second_dev_activity_operation_amount_deductible"
+                                readonly="state != 'calculated'"
+                            />
+                            <field
+                                name="second_dev_activity_prorate_type"
+                                readonly="state != 'calculated'"
+                            />
+                            <field name="second_dev_activity_prorate_percent" />
+                        </group>
+                        <group string="Desarrollo - 3ª Actividad">
+                            <field
+                                name="third_dev_activity"
+                                readonly="state != 'calculated'"
+                            />
+                            <field
+                                name="third_dev_activity_cnae_code"
+                                readonly="state != 'calculated'"
+                            />
+                            <field
+                                name="third_dev_activity_operation_amount"
+                                readonly="state != 'calculated'"
+                            />
+                            <field
+                                name="third_dev_activity_operation_amount_deductible"
+                                readonly="state != 'calculated'"
+                            />
+                            <field
+                                name="third_dev_activity_prorate_type"
+                                readonly="state != 'calculated'"
+                            />
+                            <field name="third_dev_activity_prorate_percent" />
+                        </group>
+                        <group string="Desarrollo - 4ª Actividad">
+                            <field
+                                name="fourth_dev_activity"
+                                readonly="state != 'calculated'"
+                            />
+                            <field
+                                name="fourth_dev_activity_cnae_code"
+                                readonly="state != 'calculated'"
+                            />
+                            <field
+                                name="fourth_dev_activity_operation_amount"
+                                readonly="state != 'calculated'"
+                            />
+                            <field
+                                name="fourth_dev_activity_operation_amount_deductible"
+                                readonly="state != 'calculated'"
+                            />
+                            <field
+                                name="fourth_dev_activity_prorate_type"
+                                readonly="state != 'calculated'"
+                            />
+                            <field name="fourth_dev_activity_prorate_percent" />
+                        </group>
+                        <group string="Desarrollo - 5ª Actividad">
+                            <field
+                                name="fifth_dev_activity"
+                                readonly="state != 'calculated'"
+                            />
+                            <field
+                                name="fifth_dev_activity_cnae_code"
+                                readonly="state != 'calculated'"
+                            />
+                            <field
+                                name="fifth_dev_activity_operation_amount"
+                                readonly="state != 'calculated'"
+                            />
+                            <field
+                                name="fifth_dev_activity_operation_amount_deductible"
+                                readonly="state != 'calculated'"
+                            />
+                            <field
+                                name="fifth_dev_activity_prorate_type"
+                                readonly="state != 'calculated'"
+                            />
+                            <field name="fifth_dev_activity_prorate_percent" />
+                        </group>
+                    </group>
+                </page>
+            </notebook>
         </field>
     </record>
 </odoo>
