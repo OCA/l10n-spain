@@ -11,7 +11,7 @@
                 t-value="sum(tax.amount * line.product_uom_qty
                             for line in website_sale_order.website_order_line
                             for tax in line.tax_id
-                            if tax.tax_group_id.name == 'Canon digital')"
+                            if tax.tax_group_id.name.startswith('Canon digital'))"
             />
             <t
                 t-set="tax_without_canon"
@@ -22,15 +22,18 @@
             expr="//tr[@id='order_total_taxes']//span[@t-field='website_sale_order.amount_tax']"
             position="attributes"
         >
-            <attribute name="t-esc">website_sale_order.amount_tax - canon</attribute>
+            <attribute name="t-out">website_sale_order.amount_tax - canon</attribute>
             <attribute name="t-field" />
         </xpath>
         <xpath expr="//tr[@id='order_total_taxes']" position="after">
             <tr id="order_total_canon">
-                <td class="text-right border-0">Digital Canon:</td>
-                <td class="text-xl-right border-0">
+                <td
+                    colspan="2"
+                    class="border-0 pb-0 ps-0 pt-0 text-start text-muted"
+                >Digital Canon</td>
+                <td class="text-end border-0 pb-2 pe-0 pt-0">
                     <span
-                        t-esc="canon"
+                        t-out="canon"
                         class="monetary_field"
                         t-options="{'widget': 'monetary', 'display_currency': website_sale_order.currency_id}"
                     />
