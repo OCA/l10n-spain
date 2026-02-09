@@ -235,7 +235,7 @@ class AccountStatementImport(models.TransientModel):
                 continue
             else:  # pragma: no cover
                 raise exceptions.ValidationError(
-                    self.env._("Record type %s is not valid.") % raw_line[0:2]
+                    self.env._("Record type %s is not valid.", raw_line[0:2])
                 )
             # Update the record counter
             st_data["_num_records"] += 1
