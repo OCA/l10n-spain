@@ -1,1 +1,1 @@
-Break down and display the Spanish digital canon separately in the website shopping cart totals.
+Desglosar y mostrar por separado el Canon digital español en el total del carrito de compra del sitio web.
