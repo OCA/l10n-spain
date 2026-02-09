@@ -14,6 +14,161 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__first_dev_activity_prorate_percent
+msgid "1 - % de prorrata [118]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__first_dev_activity
+msgid "1 - Actividad desarrollada"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__first_dev_activity_cnae_code
+msgid "1 - Código CNAE [114]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__first_dev_activity_operation_amount_deductible
+msgid "1 - Importe de operaciones con derecho a deducción [116]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__first_dev_activity_operation_amount
+msgid "1 - Importe operaciones [115]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__first_dev_activity_prorate_type
+msgid "1 - Tipo de prorrata [117]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390_vat_prorate.view_l10n_es_aeat_mod390_report_form_inherit_prorate
+msgid "12. Prorrata"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__second_dev_activity_prorate_percent
+msgid "2 - % de prorrata [118]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__second_dev_activity
+msgid "2 - Actividad desarrollada"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__second_dev_activity_cnae_code
+msgid "2 - Código CNAE [114]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__second_dev_activity_operation_amount_deductible
+msgid "2 - Importe de operaciones con derecho a deducción [116]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__second_dev_activity_operation_amount
+msgid "2 - Importe operaciones [115]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__second_dev_activity_prorate_type
+msgid "2 - Tipo de prorrata [117]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__third_dev_activity_prorate_percent
+msgid "3 - % de prorrata [118]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__third_dev_activity
+msgid "3 - Actividad desarrollada"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__third_dev_activity_cnae_code
+msgid "3 - Código CNAE [114]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__third_dev_activity_operation_amount_deductible
+msgid "3 - Importe de operaciones con derecho a deducción [116]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__third_dev_activity_operation_amount
+msgid "3 - Importe operaciones [115]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__third_dev_activity_prorate_type
+msgid "3 - Tipo de prorrata [117]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__fourth_dev_activity_prorate_percent
+msgid "4 - % de prorrata [118]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__fourth_dev_activity
+msgid "4 - Actividad desarrollada"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__fourth_dev_activity_cnae_code
+msgid "4 - Código CNAE [114]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__fourth_dev_activity_operation_amount_deductible
+msgid "4 - Importe de operaciones con derecho a deducción [116]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__fourth_dev_activity_operation_amount
+msgid "4 - Importe operaciones [115]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__fourth_dev_activity_prorate_type
+msgid "4 - Tipo de prorrata [117]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__fifth_dev_activity_prorate_percent
+msgid "5 - % de prorrata [118]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__fifth_dev_activity
+msgid "5 - Actividad desarrollada"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__fifth_dev_activity_cnae_code
+msgid "5 - Código CNAE [114]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__fifth_dev_activity_operation_amount_deductible
+msgid "5 - Importe de operaciones con derecho a deducción [116]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__fifth_dev_activity_operation_amount
+msgid "5 - Importe operaciones [115]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__fifth_dev_activity_prorate_type
+msgid "5 - Tipo de prorrata [117]"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
 #: model:ir.model,name:l10n_es_aeat_mod390_vat_prorate.model_l10n_es_aeat_mod390_report
 msgid "AEAT 390 report"
 msgstr ""
@@ -21,6 +176,49 @@ msgstr ""
 #. module: l10n_es_aeat_mod390_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390_vat_prorate.field_l10n_es_aeat_mod390_report__vat_prorate_percent
 msgid "Definitive VAT prorate percentage"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390_vat_prorate.view_l10n_es_aeat_mod390_report_form_inherit_prorate
+msgid "Desarrollo - 1ª Actividad"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390_vat_prorate.view_l10n_es_aeat_mod390_report_form_inherit_prorate
+msgid "Desarrollo - 2ª Actividad"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390_vat_prorate.view_l10n_es_aeat_mod390_report_form_inherit_prorate
+msgid "Desarrollo - 3ª Actividad"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390_vat_prorate.view_l10n_es_aeat_mod390_report_form_inherit_prorate
+msgid "Desarrollo - 4ª Actividad"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390_vat_prorate.view_l10n_es_aeat_mod390_report_form_inherit_prorate
+msgid "Desarrollo - 5ª Actividad"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod390_vat_prorate.selection__l10n_es_aeat_mod390_report__fifth_dev_activity_prorate_type__e
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod390_vat_prorate.selection__l10n_es_aeat_mod390_report__first_dev_activity_prorate_type__e
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod390_vat_prorate.selection__l10n_es_aeat_mod390_report__fourth_dev_activity_prorate_type__e
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod390_vat_prorate.selection__l10n_es_aeat_mod390_report__second_dev_activity_prorate_type__e
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod390_vat_prorate.selection__l10n_es_aeat_mod390_report__third_dev_activity_prorate_type__e
+msgid "Especial"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390_vat_prorate
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod390_vat_prorate.selection__l10n_es_aeat_mod390_report__fifth_dev_activity_prorate_type__g
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod390_vat_prorate.selection__l10n_es_aeat_mod390_report__first_dev_activity_prorate_type__g
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod390_vat_prorate.selection__l10n_es_aeat_mod390_report__fourth_dev_activity_prorate_type__g
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod390_vat_prorate.selection__l10n_es_aeat_mod390_report__second_dev_activity_prorate_type__g
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod390_vat_prorate.selection__l10n_es_aeat_mod390_report__third_dev_activity_prorate_type__g
+msgid "General"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390_vat_prorate
