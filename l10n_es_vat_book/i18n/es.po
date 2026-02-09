@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-28 23:52+0100\n"
-"PO-Revision-Date: 2025-11-09 10:52+0000\n"
+"PO-Revision-Date: 2026-02-09 15:56+0000\n"
 "Last-Translator: \"Pedro M. Baeza\" <pedro.baeza@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_vat_book
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_summary
@@ -461,7 +461,7 @@ msgstr "NIF del representante legal."
 #. module: l10n_es_vat_book
 #: model:ir.ui.menu,name:l10n_es_vat_book.menu_vat_book_report
 msgid "Libros del IVA y del IRPF"
-msgstr ""
+msgstr "Libros del IVA y del IRPF"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line__line_type
