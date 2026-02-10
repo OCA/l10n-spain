@@ -21,6 +21,12 @@ msgid "- The operation date cannot be greater than the invoice date."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca_operation_date
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca_operation_date.invoice_verifactu_operation_date_form
+msgid ""
+"Fill this field if the operation date is earlier than the invoice date."
+msgstr ""
+
+#. module: l10n_es_verifactu_oca_operation_date
 #: model:ir.model,name:l10n_es_verifactu_oca_operation_date.model_account_move
 msgid "Journal Entry"
 msgstr ""
@@ -28,9 +34,4 @@ msgstr ""
 #. module: l10n_es_verifactu_oca_operation_date
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca_operation_date.invoice_verifactu_operation_date_form
 msgid "Operation date"
-msgstr ""
-
-#. module: l10n_es_verifactu_oca_operation_date
-#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca_operation_date.invoice_verifactu_operation_date_form
-msgid "Fill this field if the operation date is earlier than the invoice date."
 msgstr ""
