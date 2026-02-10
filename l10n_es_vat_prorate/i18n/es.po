@@ -201,6 +201,15 @@ msgid "The chart of accounts must be from Spain"
 msgstr "El plan contable debe ser de España"
 
 #. module: l10n_es_vat_prorate
+#: code:addons/l10n_es_vat_prorate/models/account_move.py:0
+msgid ""
+"The invoice [ID %(invoice_id)s] cannot be posted. It is necessary to verify "
+"that the VAT prorate has been applied correctly."
+msgstr ""
+"No se puede confirmar la factura [ID %(invoice_id)s] es necesario comprobar "
+"que la prorrata del IVA se ha aplicado correctamente."
+
+#. module: l10n_es_vat_prorate
 #: model:ir.model.fields,help:l10n_es_vat_prorate.field_account_move_line__vat_prorate
 msgid "The line is a vat prorate"
 msgstr "La línea es una prorrata de IVA"
