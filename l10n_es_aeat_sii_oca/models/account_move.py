@@ -430,13 +430,13 @@ class AccountMove(models.Model):
         if self.move_type in ["in_invoice", "in_refund"]:
             invoice_type = "R4" if self.move_type == "in_refund" else "F1"
         elif self.move_type in ["out_invoice", "out_refund"]:
-            is_simplified = self._is_aeat_simplified_invoice()
-            invoice_type = "F2" if is_simplified else "F1"
+            is_unidentified_document = self._is_aeat_unidentified_document()
+            invoice_type = "F2" if is_unidentified_document else "F1"
             if self.move_type == "out_refund":
                 if self.sii_refund_specific_invoice_type:
                     invoice_type = self.sii_refund_specific_invoice_type
                 else:
-                    invoice_type = "R5" if is_simplified else "R1"
+                    invoice_type = "R5" if is_unidentified_document else "R1"
         return invoice_type
 
     def _get_aeat_invoice_dict_out(self, cancel=False):

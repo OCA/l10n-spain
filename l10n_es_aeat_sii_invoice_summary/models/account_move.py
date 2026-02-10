@@ -22,13 +22,13 @@ class AccountMove(models.Model):
             return True
         return False
 
-    def _is_aeat_simplified_invoice(self):
+    def _is_aeat_unidentified_document(self):
         # En el SII, una factura resumen (F4) debe considerarse, a efectos de estructura
         # y validaciones, equivalente a una factura simplificada (F2), compartiendo
         # todas sus restricciones y campos obligatorios, con la única diferencia de
         # requerir la clave TipoFactura = F4 y el campo adicional
         # NumSerieFacturaEmisorResumenFin
-        return self.is_invoice_summary or super()._is_aeat_simplified_invoice()
+        return self.is_invoice_summary or super()._is_aeat_unidentified_document()
 
     def _get_sii_invoice_type(self):
         invoice_type = super()._get_sii_invoice_type()

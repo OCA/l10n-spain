@@ -388,3 +388,7 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
             ),
             "The session is closed",
         )
+
+    def test_08_is_aeat_unidentified_document(self):
+        for order in self.session.order_ids:
+            self.assertTrue(order._is_aeat_unidentified_document())

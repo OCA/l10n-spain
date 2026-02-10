@@ -347,12 +347,6 @@ class SiiMixin(models.AbstractModel):
             res = 1
         return res
 
-    def _is_aeat_simplified_invoice(self):
-        """Inheritable method to allow control when an
-        invoice are simplified or normal"""
-        partner = self._aeat_get_partner()
-        return partner.aeat_simplified_invoice
-
     def _aeat_check_exceptions(self):
         """Inheritable method for exceptions control when sending SII invoices."""
         res = super()._aeat_check_exceptions()
@@ -360,14 +354,14 @@ class SiiMixin(models.AbstractModel):
             gen_type = self._get_sii_gen_type()
             partner = self._aeat_get_partner()
             country_code = self._get_aeat_country_code()
-            is_simplified_invoice = self._is_aeat_simplified_invoice()
+            is_unidentified_document = self._is_aeat_unidentified_document()
             if (
                 (gen_type != 3 or country_code == "ES")
                 and not partner.vat
                 and not (
                     partner.aeat_identification_type and partner.aeat_identification
                 )
-                and not is_simplified_invoice
+                and not is_unidentified_document
             ):
                 raise UserError(_("The partner has not a VAT configured."))
             if not self.sii_enabled:
@@ -697,7 +691,7 @@ class SiiMixin(models.AbstractModel):
         company = self.company_id
         fiscal_year = self._get_document_fiscal_year()
         period = self._get_document_period()
-        is_simplified_invoice = self._is_aeat_simplified_invoice()
+        is_unidentified_document = self._is_aeat_unidentified_document()
         serial_number = self._get_document_serial_number()
         inv_dict = {
             "IDFactura": {
@@ -726,7 +720,7 @@ class SiiMixin(models.AbstractModel):
             if self.sii_macrodata:
                 inv_dict["FacturaExpedida"].update(Macrodato="S")
             exp_dict = inv_dict["FacturaExpedida"]
-            if not is_simplified_invoice:
+            if not is_unidentified_document:
                 # Simplified invoices don't have counterpart
                 exp_dict["Contraparte"] = {
                     "NombreRazon": partner.name[0:120],
