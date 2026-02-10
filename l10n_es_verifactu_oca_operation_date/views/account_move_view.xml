@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Ozono Multimedia - Iván Antón
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="invoice_verifactu_operation_date_form" model="ir.ui.view">
+        <field name="name">account.invoice.verifactu.operation.date.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="l10n_es_verifactu_oca.invoice_verifactu_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_date']" position="after">
+                <field
+                    name="date"
+                    string="Operation date"
+                    attrs="{'invisible': ['|', ('verifactu_enabled', '=', False), ('move_type', 'not in', ('out_invoice', 'out_refund'))]}"
+                    help="Fill this field if the operation date is earlier than the invoice date."
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
