@@ -250,3 +250,32 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
                 with self.assertRaises(AssertionError):
                     # User without permissions can't
                     getattr(supplier_limited_f, field)
+
+    def test_mod190_add_partner_without_tax_lines(self):
+        model190 = self.env["l10n.es.aeat.mod190.report"].create(
+            {
+                "company_id": self.company.id,
+                "company_vat": "1234567890",
+                "contact_name": "Test owner",
+                "contact_phone": "911234455",
+                "year": 2017,
+                "date_start": "2017-01-01",
+                "date_end": "2017-12-31",
+            }
+        )
+        perception_key = self.env["l10n.es.aeat.report.perception.key"].search(
+            [], limit=1
+        )
+        self.assertTrue(perception_key, "At least one perception key should exist")
+        partner_record = self.env["l10n.es.aeat.mod190.report.line"].create(
+            {
+                "report_id": model190.id,
+                "partner_id": self.supplier.id,
+                "aeat_perception_key_id": perception_key.id,
+            }
+        )
+        self.assertTrue(partner_record, "Partner record should be created")
+        self.assertEqual(len(partner_record), 1)
+        self.assertEqual(partner_record.partner_id, self.supplier)
+        self.assertFalse(partner_record.percepciones_dinerarias)
+        self.assertFalse(partner_record.retenciones_dinerarias)
