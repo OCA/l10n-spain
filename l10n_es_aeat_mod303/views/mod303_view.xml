@@ -195,6 +195,18 @@
                             widget="monetary"
                             options="{'currency_field': 'currency_id'}"
                         />
+                        <field name="casilla_108" />
+                        <field name="casilla_109" />
+                        <field
+                            name="deduct_payment_petrol_delivery"
+                            invisible="(year &lt; 2026) or (year == 2026 and period_type == '01')"
+                            readonly="state not in ('draft', 'calculated')"
+                        />
+                        <field
+                            name="casilla_112"
+                            invisible="not deduct_payment_petrol_delivery"
+                            required="deduct_payment_petrol_delivery"
+                        />
                     </group>
                     <group>
                         <field
