@@ -552,7 +552,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
             if record.partner_state_code and not record.partner_state_code.isdigit():
                 errors.append(_("State code can only contain digits"))
             if not (record.partner_vat or record.partner_country_code != "ES"):
-                errors.append(self.env._("VAT must be defined for Spanish Contacts"))
+                errors.append(_("VAT must be defined for Spanish Contacts"))
             if (record.operation_key == "E" and not record.bdns_number) or (
                 record.operation_key == "E"
                 and record.bdns_number
@@ -560,7 +560,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
             ):
                 # BDSN can have a maximum of 6 digits
                 errors.append(
-                    self.env._(
+                    _(
                         "BDNS Call Number is mandatory for operation key E and it must"
                         " have 6 digits"
                     )
