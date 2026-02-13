@@ -737,6 +737,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
             }
         )
         company.write(vals)
+        company.bank_ids.allow_out_payment = True
 
     def get_next_number(self):
         with open(self.company_values_json_filepath, "r") as fp:
@@ -793,7 +794,6 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
         )
         self.main_company = self.env.ref("base.main_company")
         self._prepare_company(self.main_company)
-
         # Contact creation
         self.partner = self.env["res.partner"].create(
             {
