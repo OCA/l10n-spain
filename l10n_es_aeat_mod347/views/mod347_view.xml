@@ -98,6 +98,7 @@
                         <page string="Partner info">
                             <group>
                                 <group>
+                                    <field name="report_id" invisible="1" />
                                     <field name="partner_id" />
                                     <field name="check_ok" invisible="1" />
                                     <field
