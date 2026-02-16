@@ -186,6 +186,7 @@ class L10nEsAeatMod347Report(models.Model):
             "name": _("Partner records"),
             "view_mode": "tree,form",
             "res_model": "l10n.es.aeat.mod347.partner_record",
+            "context": dict(self.env.context, default_report_id=self.id),
             "type": "ir.actions.act_window",
         }
 
