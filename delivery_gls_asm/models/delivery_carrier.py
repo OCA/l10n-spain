@@ -402,6 +402,7 @@ class DeliveryCarrier(models.Model):
             tracking_info = gls_request._get_tracking_states(
                 picking.carrier_tracking_ref
             )
+            picking.tracking_json = tracking_info
             digitalizaciones = (tracking_info.get("digitalizaciones") or {}).get(
                 "digitalizacion"
             ) or []
