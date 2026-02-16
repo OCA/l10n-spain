@@ -7,7 +7,7 @@
 
 {
     "name": "AEAT modelo 303",
-    "version": "15.0.3.11.4",
+    "version": "15.0.3.12.0",
     "category": "Accounting",
     "development_status": "Mature",
     "author": "Guadaltech,"
