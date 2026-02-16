@@ -1,7 +1,10 @@
 # Copyright 2020 Tecnativa - David Vidal
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+import base64
 import logging
 from xml.sax.saxutils import escape
+
+import requests
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
@@ -394,10 +397,16 @@ class DeliveryCarrier(models.Model):
             return
         gls_request = GlsAsmRequest(self._gls_asm_uid())
         tracking_info = {}
+        digitalizaciones = []
         if not picking.carrier_id.gls_is_pickup_service:
             tracking_info = gls_request._get_tracking_states(
                 picking.carrier_tracking_ref
             )
+            digitalizaciones = (tracking_info.get("digitalizaciones") or {}).get(
+                "digitalizacion"
+            ) or []
+            if not isinstance(digitalizaciones, list):
+                digitalizaciones = [digitalizaciones]
             tracking_states = tracking_info.get("tracking_list", {}).get("tracking", [])
             # If there's just one state, we'll get a single dict, otherwise we
             # get a list of dicts
@@ -451,6 +460,30 @@ class DeliveryCarrier(models.Model):
         if delivery_state == "incidence":
             delivery_state = "incident"
         picking.delivery_state = delivery_state
+        for pod_info in digitalizaciones:
+            url = pod_info.get("imagen") or ""
+            if "pods.gls-spain.es" not in url:
+                continue
+            self._gls_process_pod_file(picking, pod_info)
+
+    def _gls_process_pod_file(self, picking, pod_info):
+        """Process the Proof of Delivery file received from GLS and attach it to
+        the picking record."""
+        url = pod_info.get("imagen")
+        try:
+            response = requests.get(url, timeout=60)
+            response.raise_for_status()
+            picking.write(
+                {
+                    "pod_filename": f"gls_pod_{picking.carrier_tracking_ref}",
+                    "pod_file": base64.b64encode(response.content),
+                }
+            )
+        except requests.RequestException as ex:
+            self.log_xml(
+                f"POD info: {str(pod_info)} Exception: {str(ex)}",
+                "GLS ASM POD Response",
+            )
 
     def gls_asm_cancel_shipment(self, pickings):
         """Cancel the expedition"""
