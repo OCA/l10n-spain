@@ -297,6 +297,26 @@ class L10nEsAeatMod303Report(models.Model):
         ],
         compute="_compute_marca_sepa",
     )
+    casilla_108 = fields.Monetary(
+        string="[108] Devoluciones acordadas por la Agencia Tributaria",
+        help="Rectificativa - Exclusivamente para determinados supuestos "
+        "de autoliquidación rectificativa por discrepancia de criterio "
+        "administrativo que no deban incluirse en otras casillas. Otros ajustes",
+    )
+    casilla_109 = fields.Monetary(
+        string="[109] Devoluciones acordadas por la Agencia Tributaria",
+        help="Resultado - Devoluciones acordadas por la Agencia Tributaria "
+        "como consecuencia de la tramitación de anteriores autoliquidaciones "
+        "correspondientes al ejercicio y período objeto de la autoliquidación",
+    )
+    casilla_112 = fields.Monetary(
+        string="[112] Pago a cuenta de entregas de gasolinas, gasóleos y biocarburantes",
+        help="Result - Payment on account for deliveries of petrol, diesel and "
+        "biofuels after completion of the non-customs warehouse regime "
+        "attributable to the State Administration (Sum of box 36 of all forms "
+        "319 corresponding to deliveries included in this self-assessment)",
+    )
+    deduct_payment_petrol_delivery = fields.Boolean()
 
     def _get_export_config(self, date):
         # Force the configuration of 2024-10 for 2024/09, as it can't be obtained with
@@ -432,14 +452,17 @@ class L10nEsAeatMod303Report(models.Model):
                 + report.casilla_77
                 - report.cuota_compensar
                 + report.regularizacion_anual
+                + report.casilla_108
             )
 
     @api.depends("casilla_69", "previous_result")
     def _compute_resultado_liquidacion(self):
-        # TODO: Add field 109
         for report in self:
             report.resultado_liquidacion = report.currency_id.round(
-                report.casilla_69 - report.previous_result
+                report.casilla_69
+                - report.previous_result
+                + report.casilla_109
+                - report.casilla_112
             )
 
     @api.depends("tax_line_ids", "tax_line_ids.amount")

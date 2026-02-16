@@ -145,6 +145,22 @@
                             widget="monetary"
                             options="{'currency_field': 'currency_id'}"
                         />
+                        <field name="casilla_108" />
+                        <field name="casilla_109" />
+                        <field
+                            name="deduct_payment_petrol_delivery"
+                            attrs="{
+                                'invisible': ['|',('year', '&lt;', 2026),'&amp;',('year', '=', 2026), ('period_type','=','01')],
+                                'readonly': [('state', 'not in', ('draft', 'calculated'))],
+                                }"
+                        />
+                        <field
+                            name="casilla_112"
+                            attrs="{
+                            'invisible': [('deduct_payment_petrol_delivery', '=', False)],
+                            'required': [('deduct_payment_petrol_delivery', '=', True)]
+                            }"
+                        />
                     </group>
                     <group>
                         <field
