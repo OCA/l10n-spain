@@ -387,6 +387,11 @@ msgid "December"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__deduct_payment_petrol_delivery
+msgid "Deduct Payment Petrol Delivery"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_activity_code__display_name
 msgid "Display Name"
@@ -735,6 +740,14 @@ msgid "Previous declaration number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_108
+msgid ""
+"Rectificativa - Exclusivamente para determinados supuestos de "
+"autoliquidación rectificativa por discrepancia de criterio administrativo "
+"que no deban incluirse en otras casillas. Otros ajustes"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__devolucion_mensual
 msgid "Registered in the Register of Monthly Return"
 msgstr ""
@@ -747,6 +760,15 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__activity_user_id
 msgid "Responsible User"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_112
+msgid ""
+"Result - Payment on account for deliveries of petrol, diesel and biofuels "
+"after completion of the non-customs warehouse regime attributable to the "
+"State Administration (Sum of box 36 of all forms 319 corresponding to "
+"deliveries included in this self-assessment)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -764,6 +786,14 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form
 msgid "Resultado"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_109
+msgid ""
+"Resultado - Devoluciones acordadas por la Agencia Tributaria como "
+"consecuencia de la tramitación de anteriores autoliquidaciones "
+"correspondientes al ejercicio y período objeto de la autoliquidación"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -916,8 +946,23 @@ msgid "Year"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_108
+msgid "[108] Devoluciones acordadas por la Agencia Tributaria"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_109
+msgid "[109] Devoluciones acordadas por la Agencia Tributaria"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__potential_cuota_compensar
 msgid "[110] Pending fees to compensate"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_112
+msgid "[112] Pago a cuenta de entregas de gasolinas, gasóleos y biocarburantes"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
