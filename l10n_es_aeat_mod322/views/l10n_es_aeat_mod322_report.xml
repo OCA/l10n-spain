@@ -2,7 +2,6 @@
 <!-- Copyright 2023 Dixmit
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
-
     <record model="ir.ui.view" id="l10n_es_aeat_mod322_report_form_view">
         <field
             name="name"
@@ -59,15 +58,15 @@
                             attrs="{'readonly': [('period_type', 'not in', ('4T', '12'))]}"
                         />
                     </group>
-                <group
+                    <group
                         string="Tax lines"
                         name="group_tax_lines"
                         colspan="4"
                         attrs="{'invisible': [('state', '=', 'draft')]}"
                     >
-                    <field name="tax_line_ids" nolabel="1" readonly="1" />
+                        <field name="tax_line_ids" nolabel="1" readonly="1" />
+                    </group>
                 </group>
-            </group>
             </group>
             <field name="company_vat" position="after">
                 <field name="company_type" required="1" />
@@ -108,7 +107,8 @@
     </record>
 
     <record model="ir.actions.act_window" id="l10n_es_aeat_mod322_report_act_window">
-        <field name="name">AEAT model 322</field> <!-- TODO -->
+        <field name="name">AEAT model 322</field>
+        <!-- TODO -->
         <field name="res_model">l10n.es.aeat.mod322.report</field>
         <field name="view_mode">tree,form</field>
         <field name="domain">[]</field>
@@ -117,9 +117,10 @@
 
     <record model="ir.ui.menu" id="l10n_es_aeat_mod322_report_menu">
         <field name="name">AEAT 322 model</field>
-        <field name="parent_id" ref="l10n_es_aeat.menu_root_aeat" /> <!-- TODO -->
+        <field name="parent_id" ref="l10n_es_aeat.menu_root_aeat" />
+        <!-- TODO -->
         <field name="action" ref="l10n_es_aeat_mod322_report_act_window" />
-        <field name="sequence" eval="322" /> <!-- TODO -->
+        <field name="sequence" eval="322" />
+        <!-- TODO -->
     </record>
-
 </odoo>

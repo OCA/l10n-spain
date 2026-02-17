@@ -2,7 +2,6 @@
 <!-- Copyright 2023 Dixmit
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
-
     <record model="ir.ui.view" id="l10n_es_aeat_mod322_group_form_view">
         <field
             name="name"
@@ -58,7 +57,8 @@
     </record>
 
     <record model="ir.actions.act_window" id="l10n_es_aeat_mod322_group_act_window">
-        <field name="name">AEAT 322 Groups</field> <!-- TODO -->
+        <field name="name">AEAT 322 Groups</field>
+        <!-- TODO -->
         <field name="res_model">l10n.es.aeat.mod322.group</field>
         <field name="view_mode">tree,form</field>
         <field name="domain">[]</field>
@@ -67,12 +67,10 @@
 
     <record model="ir.ui.menu" id="l10n_es_aeat_mod322_group_menu">
         <field name="name">AEAT 322 Groups</field>
-        <field
-            name="parent_id"
-            ref="l10n_es_aeat.menu_l10n_es_aeat_config"
-        /> <!-- TODO -->
+        <field name="parent_id" ref="l10n_es_aeat.menu_l10n_es_aeat_config" />
+        <!-- TODO -->
         <field name="action" ref="l10n_es_aeat_mod322_group_act_window" />
-        <field name="sequence" eval="16" /> <!-- TODO -->
+        <field name="sequence" eval="16" />
+        <!-- TODO -->
     </record>
-
 </odoo>
