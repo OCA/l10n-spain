@@ -274,6 +274,18 @@ msgid "B - Entregas de bienes y servicios superiores al límite (1)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__bdns_number
+msgid "BDNS Call Number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+msgid ""
+"BDNS Call Number is mandatory for operation key E and it must have 6 digits"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__partner_bank_id
 msgid "Bank account"
 msgstr ""
@@ -1166,6 +1178,13 @@ msgid "Records in exception"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__bdns_number
+msgid ""
+"Reference of Call of the subsidy or assistance in National Grands Database "
+"(BDNS)."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__related_goods_operation
 msgid "Related Goods Operation"
 msgstr ""
@@ -1454,6 +1473,11 @@ msgstr ""
 msgid ""
 "VAT number for professionals established in other state member without "
 "national VAT"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__visible_bdns_number
+msgid "Visible Bdns Number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
