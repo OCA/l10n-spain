@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-01 08:00+0000\n"
-"PO-Revision-Date: 2026-02-16 19:09+0000\n"
+"PO-Revision-Date: 2026-02-17 08:09+0000\n"
 "Last-Translator: Jonathan Pasquier <jpasquier@fundesplai.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
 "language/ca/)\n"
@@ -289,6 +289,8 @@ msgid ""
 "<strong>Color codes: </strong> <span class=\"text-info\">Normal invoices</"
 "span> - Refund invoices"
 msgstr ""
+"<strong>Codis de color: </strong> <span class=\"text-info\">factures "
+"normals</span> - factures de reemborsament"
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
@@ -421,7 +423,7 @@ msgid ""
 "BDNS Call Number is mandatory for operation key E and it must have 6 digits"
 msgstr ""
 "El número de convocatòria BDNS és obligatori per a la clau d'operació E i ha "
-"de tenir 6 dígits."
+"de tenir 6 dígits"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__partner_bank_id
@@ -1545,7 +1547,7 @@ msgstr ""
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
 #, python-format
 msgid "The selected partner doesn't have a VAT or a state code"
-msgstr "El soci seleccionat no té ni número d'IVA ni codi estatal."
+msgstr "El soci seleccionat no té ni número d'IVA ni codi de província"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__third_quarter
@@ -1678,7 +1680,7 @@ msgstr "Tipus de l'activitat d'excepció del registre."
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
 #, python-format
 msgid "VAT must be defined for Spanish Contacts"
-msgstr "Cal definir el número d'IVA per als contactes espanyols."
+msgstr "Cal definir el número d'IVA per als contactes espanyols"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__partner_vat
