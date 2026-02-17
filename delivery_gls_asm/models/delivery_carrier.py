@@ -478,9 +478,11 @@ class DeliveryCarrier(models.Model):
                 {
                     "pod_filename": f"gls_pod_{picking.carrier_tracking_ref}",
                     "pod_file": base64.b64encode(response.content),
+                    "pod_error": False,
                 }
             )
         except requests.RequestException as ex:
+            picking.write({"pod_error": str(ex)})
             self.log_xml(
                 f"POD info: {str(pod_info)} Exception: {str(ex)}",
                 "GLS ASM POD Response",
