@@ -17,22 +17,23 @@ AEAT Modelo 322
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/14.0/l10n_es_aeat_mod322
+    :target: https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_aeat_mod322
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-14-0/l10n-spain-14-0-l10n_es_aeat_mod322
+    :target: https://translation.odoo-community.org/projects/l10n-spain-18-0/l10n-spain-18-0-l10n_es_aeat_mod322
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=14.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Módulo para la presentación del modelo 322 (IVA - Autodeclaración mensual individual
-para grupos de entidades) de la Agencia Española de Administración Tributaria.
+Módulo para la presentación del modelo 322 (IVA - Autodeclaración
+mensual individual para grupos de entidades) de la Agencia Española de
+Administración Tributaria.
 
-Incluye la exportación al formato BOE para su uso telemático y la creación del asiento
-de regularización de las cuentas de impuestos.
+Incluye la exportación al formato BOE para su uso telemático y la
+creación del asiento de regularización de las cuentas de impuestos.
 
 **Table of contents**
 
@@ -42,19 +43,23 @@ de regularización de las cuentas de impuestos.
 Usage
 =====
 
-Para configurar una entidad vinculada: #. Accedemos a un contacto #. En la pestaña
-contabilidad marcamos como entidad vinculada (es necesario definirlo por cada compañía)
+Para configurar una entidad vinculada: #. Accedemos a un contacto #. En
+la pestaña contabilidad marcamos como entidad vinculada (es necesario
+definirlo por cada compañía)
 
 Para crear un modelo:
 
-#. Ir a Contabilidad > Informe > Informes legales > Declaraciones AEAT > Modelo 322.
-#. Pulsar en el botón "Crear".
-#. Seleccionar el año y el tipo de período. Las fechas incluidas se calculan automáticamente.
-#. Seleccionar el tipo de declaración.
-#. Rellenar el teléfono de contacto, necesario para la exportacion BOE.
-#. Guardar y pulsar en el botón "Calcular".
-#. Cuando los valores sean los correctos, pulsar en el botón "Confirmar"
-#. Podemos exportar en formato BOE para presentarlo telemáticamente en el portal de la AEAT
+1. Ir a Contabilidad > Informe > Informes legales > Declaraciones AEAT >
+   Modelo 322.
+2. Pulsar en el botón "Crear".
+3. Seleccionar el año y el tipo de período. Las fechas incluidas se
+   calculan automáticamente.
+4. Seleccionar el tipo de declaración.
+5. Rellenar el teléfono de contacto, necesario para la exportacion BOE.
+6. Guardar y pulsar en el botón "Calcular".
+7. Cuando los valores sean los correctos, pulsar en el botón "Confirmar"
+8. Podemos exportar en formato BOE para presentarlo telemáticamente en
+   el portal de la AEAT
 
 Bug Tracker
 ===========
@@ -62,7 +67,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_mod322%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_mod322%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -70,12 +75,12 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Dixmit
 
 Contributors
-~~~~~~~~~~~~
+------------
 
 - Enric Tobella
 - `NuoBiT <https://www.nuobit.com>`__:
@@ -84,7 +89,7 @@ Contributors
   * Eric Antones
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -96,6 +101,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/14.0/l10n_es_aeat_mod322>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_aeat_mod322>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

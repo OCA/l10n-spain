@@ -5,7 +5,6 @@ from odoo import fields, models
 
 
 class L10nEsAeatMod322Group(models.Model):
-
     _name = "l10n.es.aeat.mod322.group"
     _description = "Grupo de IVA para el modelo 322"
 
