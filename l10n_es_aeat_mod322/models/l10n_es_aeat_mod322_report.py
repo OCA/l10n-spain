@@ -1,4 +1,5 @@
 # Copyright 2023 Dixmit
+# Copyright 2026 NuoBiT Solutions SL - Deniz Gallo <dgallo@nuobit.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import re
@@ -9,8 +10,6 @@ from odoo.tools import float_compare
 
 from odoo.addons.l10n_es_aeat_mod303.models.mod303 import (
     ACTIVITY_CODE_DOMAIN,
-    EDITABLE_ON_DRAFT,
-    NON_EDITABLE_ON_DONE,
 )
 
 
@@ -23,7 +22,6 @@ class L10nEsAeatMod322Report(models.Model):
 
     vinculated_partner_ids = fields.Many2many(
         "res.partner",
-        states=EDITABLE_ON_DRAFT,
         store=True,
         compute="_compute_company_info",
     )
@@ -34,30 +32,31 @@ class L10nEsAeatMod322Report(models.Model):
             ("P", "Dependiente"),
         ],
         compute="_compute_company_info",
-        states=EDITABLE_ON_DRAFT,
         store=True,
     )
     dominant_company_vat = fields.Char(
         string="NIF de la entidad dominante",
         compute="_compute_company_info",
         store=True,
-        states=EDITABLE_ON_DRAFT,
     )
     group_number = fields.Char(
         string="Nº Grupo",
         compute="_compute_company_info",
         store=True,
-        states=EDITABLE_ON_DRAFT,
     )
     exonerated_390 = fields.Selection(
         selection=[("1", "Exonerado"), ("2", "No exonerado")],
         default="2",
         required=True,
-        states=EDITABLE_ON_DRAFT,
         readonly=True,
         string="Exonerado mod. 390",
         help="Exonerado de la Declaración-resumen anual del IVA, modelo 390: "
         "Volumen de operaciones (art. 121 LIVA)",
+    )
+    has_operation_volume = fields.Boolean(
+        string="¿Volumen de operaciones?",
+        default=True,
+        help="¿Existe volumen de operaciones (art. 121 LIVA)?",
     )
     total_deducir = fields.Float(
         string="[62] Total a deducir", compute="_compute_total_deducir"
@@ -75,7 +74,6 @@ class L10nEsAeatMod322Report(models.Model):
     porcentaje_atribuible_estado = fields.Float(
         string="[64] % attributable to State",
         default=100,
-        states=NON_EDITABLE_ON_DONE,
         help="Taxpayers who pay jointly to the Central Government and "
         "the Provincial Councils of the Basque Country or the "
         "Autonomous Community of Navarra, will enter in this box the "
@@ -91,14 +89,12 @@ class L10nEsAeatMod322Report(models.Model):
     cuota_compensar = fields.Float(
         string="[66] Applied fees to compensate",
         default=0,
-        states=NON_EDITABLE_ON_DONE,
         help="Fee to compensate for prior periods, in which his statement "
         "was to return and compensation back option was chosen",
     )
     cuota_liquidacion = fields.Float(
         string="[68] Result",
         default=0,
-        states=NON_EDITABLE_ON_DONE,
         store=True,
         compute="_compute_cuota_liquidacion",
     )
@@ -111,11 +107,9 @@ class L10nEsAeatMod322Report(models.Model):
     main_activity_code_id = fields.Many2one(
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
         domain=ACTIVITY_CODE_DOMAIN,
-        states=NON_EDITABLE_ON_DONE,
         string="Código actividad principal",
     )
     main_activity_iae = fields.Char(
-        states=NON_EDITABLE_ON_DONE,
         string="Epígrafe I.A.E. actividad principal",
         size=4,
     )
@@ -123,7 +117,7 @@ class L10nEsAeatMod322Report(models.Model):
         comodel_name="account.account",
         string="Counterpart account",
         compute="_compute_counterpart_account_id",
-        domain="[('company_id', '=', company_id)]",
+        domain="[('company_ids', '=', company_id)]",
         store=True,
         readonly=False,
     )
@@ -151,9 +145,12 @@ class L10nEsAeatMod322Report(models.Model):
             )
             if result == -1:
                 account_prefix = "4700"
-            code = ("%s%%" % account_prefix,)
+            code = (f"{account_prefix}%",)
             record.counterpart_account_id = self.env["account.account"].search(
-                [("code", "=like", code[0]), ("company_id", "=", record.company_id.id)],
+                [
+                    ("code", "=like", code[0]),
+                    ("company_ids", "in", record.company_id.id),
+                ],
                 limit=1,
             )
 
@@ -250,16 +247,14 @@ class L10nEsAeatMod322Report(models.Model):
                 raise ValidationError(_("More than one configuration for the company"))
             if not len(mod322_group):
                 record.group_number = False
-                record.dominant_company_vat = re.match(
-                    "(ES){0,1}(.*)", record.company_id.vat
-                ).groups()[1]
+                match = re.match(r"(ES){0,1}(.*)", record.company_id.vat or "")
+                record.dominant_company_vat = match.groups()[1] if match else False
                 record.vinculated_partner_ids = False
                 record.company_type = "D"
                 continue
             record.group_number = mod322_group.name
-            record.dominant_company_vat = re.match(
-                "(ES){0,1}(.*)", mod322_group.main_company_id.vat
-            ).groups()[1]
+            match = re.match(r"(ES){0,1}(.*)", mod322_group.main_company_id.vat or "")
+            record.dominant_company_vat = match.groups()[1] if match else False
             record.company_type = (
                 "P" if mod322_group.main_company_id == record.company_id else "D"
             )
@@ -267,7 +262,10 @@ class L10nEsAeatMod322Report(models.Model):
                 mod322_group.main_company_id.partner_id
                 | mod322_group.company_ids.partner_id
                 | mod322_group.vinculated_partner_ids
-            ).filtered(lambda r: not r.company_id or r.company_id == record.company_id)
+            ).filtered(
+                lambda r, record=record: not r.company_id
+                or r.company_id == record.company_id
+            )
 
     def _get_move_line_domain(self, date_start, date_end, map_line):
         domain = super()._get_move_line_domain(date_start, date_end, map_line)

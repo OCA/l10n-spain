@@ -458,12 +458,12 @@ class TestL10nEsAeatMod322Base(TestL10nEsAeatModBase):
     def setUpClass(cls):
         super().setUpClass()
         # Create model
-        cls.company.write({"vat": "1234567890"})
+        cls.company.write({"vat": "ESA12345674"})
         cls.model322 = cls.env["l10n.es.aeat.mod322.report"].create(
             {
                 "name": "9990000000322",
                 "company_id": cls.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "ESA12345674",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
@@ -518,21 +518,21 @@ class TestL10nEsAeatMod322(TestL10nEsAeatMod322Base):
 
     def _check_tax_lines(self):
         for field, result in iter(self.taxes_result.items()):
-            _logger.debug("Checking tax line: %s" % field)
+            _logger.debug("Checking tax line: %s", field)
             lines = self.model322.tax_line_ids.filtered(
-                lambda x: x.field_number == int(field)
+                lambda x, field=field: x.field_number == int(field)
             )
             self.assertAlmostEqual(
                 sum(lines.mapped("amount")),
                 result,
                 2,
-                "Incorrect result in field %s" % field,
+                f"Incorrect result in field {field}",
             )
 
     def test_model_322(self):
         _logger.debug("Calculate AEAT 322 1T 2023")
         self.model322.button_calculate()
-        self.model322.invalidate_cache()
+        self.model322.env.invalidate_all()
         # Test default counterpart.
         self.assertEqual(
             self.model322.counterpart_account_id.id, self.accounts["475000"].id
