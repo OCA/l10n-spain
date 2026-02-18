@@ -1,7 +1,7 @@
-Módulo que calcula los libros de IVA e IRPF español.
+Módulo que calcula el libro de IVA español.
 
-Esto módulo introduce el menú "Libros de IVA y del IRPF" en Contabilidad -\> Informe
--\> Declaraciones AEAT.
+Esto módulo introduce el menú "Libro de IVA" en Contabilidad -> Informe ->
+Declaraciones AEAT -> Libro de IVA.
 
 Es posible visualizar e imprimir por separado:
 
