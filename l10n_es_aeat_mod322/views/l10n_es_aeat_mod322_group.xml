@@ -24,7 +24,7 @@
                         </page>
                     </notebook>
                 </sheet>
-                <div class="oe_chatter" />
+                <chatter />
             </form>
         </field>
     </record>
@@ -48,11 +48,11 @@
         >l10n.es.aeat.mod322.group.tree (in l10n_es_aeat_mod322)</field>
         <field name="model">l10n.es.aeat.mod322.group</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="main_company_id" />
                 <field name="company_ids" widget="many2many_tags" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -60,7 +60,7 @@
         <field name="name">AEAT 322 Groups</field>
         <!-- TODO -->
         <field name="res_model">l10n.es.aeat.mod322.group</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[]</field>
         <field name="context">{}</field>
     </record>
