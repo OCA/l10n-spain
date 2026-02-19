@@ -12,7 +12,13 @@ class TestVATBookPOS(TestL10nEsAeatVatBook):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.config = cls.env["pos.config"].search([("company_id", "=", cls.company.id)])
+        cls.config = cls.env["pos.config"].search(
+            [("company_id", "=", cls.company.id)], limit=1
+        )
+        if not cls.config:
+            cls.config = cls.env["pos.config"].create(
+                {"name": "Test POS", "company_id": cls.company.id}
+            )
         cls.product_id = cls.env["product.product"].create(
             {"name": "Test POS", "available_in_pos": True, "list_price": 200}
         )
@@ -20,7 +26,7 @@ class TestVATBookPOS(TestL10nEsAeatVatBook):
     def _create_session(self):
         self.config.open_ui()
         session = self.config.current_session_id
-        session.set_cashbox_pos(0, None)
+        session.set_opening_control(0, None)
         return session
 
     def _create_order(self, session, product_id, amount):
