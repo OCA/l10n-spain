@@ -63,16 +63,16 @@ msgid ""
 "  % endif\n"
 "  % if object.real_estate_transmissions_amount:\n"
 "  <p>\n"
-"  <strong>Importe de transmisión de inmueble:</strong> ${object."
-"real_estate_transmissions_amount}<br/>\n"
-"  <strong>Inmuebles primer trimestre:</strong> ${object."
-"first_quarter_real_estate_transmission}<br/>\n"
-"  <strong>Inmuebles segundo trimestre:</strong> ${object."
-"second_quarter_real_estate_transmission}<br/>\n"
-"  <strong>Inmuebles tercer trimestre:</strong> ${object."
-"third_quarter_real_estate_transmission}<br/>\n"
-"  <strong>Inmuebles cuarto trimestre:</strong> ${object."
-"fourth_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Importe de transmisión de inmueble:</strong> $"
+"{object.real_estate_transmissions_amount}<br/>\n"
+"  <strong>Inmuebles primer trimestre:</strong> $"
+"{object.first_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Inmuebles segundo trimestre:</strong> $"
+"{object.second_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Inmuebles tercer trimestre:</strong> $"
+"{object.third_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Inmuebles cuarto trimestre:</strong> $"
+"{object.fourth_quarter_real_estate_transmission}<br/>\n"
 "  </p>\n"
 "  % endif\n"
 "  <p>En el documento adjunto se incluyen las facturas en base a las cuales "
@@ -155,16 +155,16 @@ msgstr ""
 "  % endif\n"
 "  % if object.real_estate_transmissions_amount:\n"
 "  <p>\n"
-"  <strong>Importe de transmisión de inmueble:</strong> ${object."
-"real_estate_transmissions_amount}<br/>\n"
-"  <strong>Inmuebles primer trimestre:</strong> ${object."
-"first_quarter_real_estate_transmission}<br/>\n"
-"  <strong>Inmuebles segundo trimestre:</strong> ${object."
-"second_quarter_real_estate_transmission}<br/>\n"
-"  <strong>Inmuebles tercer trimestre:</strong> ${object."
-"third_quarter_real_estate_transmission}<br/>\n"
-"  <strong>Inmuebles cuarto trimestre:</strong> ${object."
-"fourth_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Importe de transmisión de inmueble:</strong> $"
+"{object.real_estate_transmissions_amount}<br/>\n"
+"  <strong>Inmuebles primer trimestre:</strong> $"
+"{object.first_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Inmuebles segundo trimestre:</strong> $"
+"{object.second_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Inmuebles tercer trimestre:</strong> $"
+"{object.third_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Inmuebles cuarto trimestre:</strong> $"
+"{object.fourth_quarter_real_estate_transmission}<br/>\n"
 "  </p>\n"
 "  % endif\n"
 "  <p>En el documento adjunto se incluyen las facturas en base a las cuales "
@@ -395,12 +395,8 @@ msgid "BDNS Call Number"
 msgstr "Número de convocatoria BDNS"
 
 #. module: l10n_es_aeat_mod347
-#. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
-#, fuzzy
-#| msgid ""
-#| "Number of convocation BDSN is mandatory for operation key E and it must "
-#| "have 6 digits"
+#, fuzzy, python-format
 msgid ""
 "BDNS Call Number is mandatory for operation key E and it must have 6 digits"
 msgstr ""
@@ -520,14 +516,15 @@ msgstr "Complemento (urbanización, parque industrial...)"
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid "Compose Email"
 msgstr "Componer Correo Electrónico"
 
 #. module: l10n_es_aeat_mod347
 #: model:mail.template,subject:l10n_es_aeat_mod347.email_template_347
 msgid ""
-"Comprobación datos de modelo 347 año ${object.report_id.year} de ${object."
-"report_id.company_id.name}"
+"Comprobación datos de modelo 347 año ${object.report_id.year} de $"
+"{object.report_id.company_id.name}"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -713,6 +710,7 @@ msgstr "fuente iconos sorprendentes , por ejemplo fa-tasks"
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_bank_statement_line__not_in_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_move__not_in_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_payment__not_in_mod347
 msgid "Force not included in 347 report"
 msgstr "Forzar no incluir en la declaración 347"
 
@@ -790,6 +788,7 @@ msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_account_bank_statement_line__not_in_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_account_move__not_in_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_account_payment__not_in_mod347
 msgid ""
 "If you mark this field, this invoice will not be included in any AEAT 347 "
 "model report."
@@ -1147,12 +1146,14 @@ msgstr "Registro de empresa"
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid "Partner record errors:\n"
 msgstr "Errores de registros de empresas:\n"
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
+#, python-format
 msgid "Partner records"
 msgstr "Registros de empresas"
 
@@ -1183,6 +1184,7 @@ msgstr "Teléfono"
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid ""
 "Please review partner and real estate records, some of them are in red "
 "color:\n"
@@ -1270,6 +1272,7 @@ msgstr "Información de inmuebles"
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid "Real estate record errors:\n"
 msgstr "Errores de registros de inmuebles:\n"
 
@@ -1434,6 +1437,7 @@ msgstr "Código de provincia"
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid "State code can only contain digits"
 msgstr "El código del Estado sólo puede contener dígitos"
 
@@ -1633,6 +1637,7 @@ msgstr "Contador de mensajes no leídos"
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid "VAT must be defined for Spanish Contacts"
 msgstr "Debe definirse el IVA para los contactos españoles"
 
@@ -1670,6 +1675,7 @@ msgstr "Historial de comunicación del sitio web"
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid "Without country code"
 msgstr "Sin código de país"
 
@@ -1680,6 +1686,7 @@ msgstr "Sin número"
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
 msgid "Without state code"
 msgstr "Sin código de estado"
 

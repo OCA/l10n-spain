@@ -64,16 +64,16 @@ msgid ""
 "  % endif\n"
 "  % if object.real_estate_transmissions_amount:\n"
 "  <p>\n"
-"  <strong>Importe de transmisión de inmueble:</strong> ${object."
-"real_estate_transmissions_amount}<br/>\n"
-"  <strong>Inmuebles primer trimestre:</strong> ${object."
-"first_quarter_real_estate_transmission}<br/>\n"
-"  <strong>Inmuebles segundo trimestre:</strong> ${object."
-"second_quarter_real_estate_transmission}<br/>\n"
-"  <strong>Inmuebles tercer trimestre:</strong> ${object."
-"third_quarter_real_estate_transmission}<br/>\n"
-"  <strong>Inmuebles cuarto trimestre:</strong> ${object."
-"fourth_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Importe de transmisión de inmueble:</strong> $"
+"{object.real_estate_transmissions_amount}<br/>\n"
+"  <strong>Inmuebles primer trimestre:</strong> $"
+"{object.first_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Inmuebles segundo trimestre:</strong> $"
+"{object.second_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Inmuebles tercer trimestre:</strong> $"
+"{object.third_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Inmuebles cuarto trimestre:</strong> $"
+"{object.fourth_quarter_real_estate_transmission}<br/>\n"
 "  </p>\n"
 "  % endif\n"
 "  <p>En el documento adjunto se incluyen las facturas en base a las cuales "
@@ -297,6 +297,18 @@ msgid "B - Entregas de bienes y servicios superiores al límite (1)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__bdns_number
+msgid "BDNS Call Number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
+msgid ""
+"BDNS Call Number is mandatory for operation key E and it must have 6 digits"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__partner_bank_id
 msgid "Bank account"
 msgstr "Compte bancaire"
@@ -415,8 +427,8 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model:mail.template,subject:l10n_es_aeat_mod347.email_template_347
 msgid ""
-"Comprobación datos de modelo 347 año ${object.report_id.year} de ${object."
-"report_id.company_id.name}"
+"Comprobación datos de modelo 347 año ${object.report_id.year} de $"
+"{object.report_id.company_id.name}"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -1193,6 +1205,13 @@ msgid "Records in exception"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__bdns_number
+msgid ""
+"Reference of Call of the subsidy or assistance in National Grands Database "
+"(BDNS)."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__related_goods_operation
 msgid "Related Goods Operation"
 msgstr ""
@@ -1481,6 +1500,11 @@ msgstr ""
 msgid ""
 "VAT number for professionals established in other state member without "
 "national VAT"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__visible_bdns_number
+msgid "Visible Bdns Number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
