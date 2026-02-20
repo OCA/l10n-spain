@@ -14,17 +14,16 @@ TEST_MODEL_NAME = "l10n.es.aeat.mod999.report"
 
 @tagged("post_install", "-at_install")
 class TestL10nEsAeatReport(BaseCommon):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
+    def setUp(self):
+        super().setUp()
         # Load a test model using odoo_test_helper
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
+        self.loader = FakeModelLoader(self.env, self.__module__)
+        self.loader.backup_registry()
         from .models import L10nEsAeatTestReport
 
-        cls.loader.update_registry((L10nEsAeatTestReport,))
-        cls.AeatReport = cls.env[TEST_MODEL_NAME]
-        cls.period_types = {
+        self.loader.update_registry((L10nEsAeatTestReport,))
+        self.AeatReport = self.env[TEST_MODEL_NAME]
+        self.period_types = {
             "0A": ("2016-01-01", "2016-12-31"),
             "1T": ("2016-01-01", "2016-03-31"),
             "2T": ("2016-04-01", "2016-06-30"),
@@ -44,10 +43,9 @@ class TestL10nEsAeatReport(BaseCommon):
             "12": ("2016-12-01", "2016-12-31"),
         }
 
-    @classmethod
-    def tearDownClass(cls):
-        cls.loader.restore_registry()
-        return super().tearDownClass()
+    def tearDown(self):
+        self.loader.restore_registry()
+        return super().tearDown()
 
     def test_compute_dates(self):
         report = self.AeatReport.new({"year": 2016})
