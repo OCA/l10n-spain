@@ -1,4 +1,7 @@
 
+[![Support the OCA](https://odoo-community.org/readme-banner-image)](https://odoo-community.org/get-involved?utm_source=repo-readme)
+
+# l10n-spain
 [![Runboat](https://img.shields.io/badge/runboat-Try%20me-875A7B.png)](https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=16.0)
 [![Pre-commit Status](https://github.com/OCA/l10n-spain/actions/workflows/pre-commit.yml/badge.svg?branch=16.0)](https://github.com/OCA/l10n-spain/actions/workflows/pre-commit.yml?query=branch%3A16.0)
 [![Build Status](https://github.com/OCA/l10n-spain/actions/workflows/test.yml/badge.svg?branch=16.0)](https://github.com/OCA/l10n-spain/actions/workflows/test.yml?query=branch%3A16.0)
@@ -6,8 +9,6 @@
 [![Translation Status](https://translation.odoo-community.org/widgets/l10n-spain-16-0/-/svg-badge.svg)](https://translation.odoo-community.org/engage/l10n-spain-16-0/?utm_source=widget)
 
 <!-- /!\ do not modify above this line -->
-
-# l10n-spain
 
 TODO: add repo description.
 
