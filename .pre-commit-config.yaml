@@ -60,7 +60,7 @@ repos:
           - --convert-fragments-to-markdown
       - id: oca-gen-external-dependencies
   - repo: https://github.com/OCA/odoo-pre-commit-hooks
-    rev: v0.1.6
+    rev: v0.1.7
     hooks:
       - id: oca-checks-odoo-module
       - id: oca-checks-po
