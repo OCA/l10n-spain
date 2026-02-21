@@ -1,5 +1,6 @@
 # Copyright 2023 Aures Tic - Almudena de la Puente <almudena@aurestic.es>
 # Copyright 2023 Aures Tic - Jose Zambudio <jose@aurestic.es>
+# Copyright 2026 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 import json
@@ -364,3 +365,44 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
         )
         self.assertTrue(trigger)
         self.assertTrue(trigger.call_at)
+
+    def test_07_search_sii_enabled(self):
+        order = self.order
+        false_domain = [("id", "=", order.id), ("sii_enabled", "=", False)]
+        true_domain = [("id", "=", order.id), ("sii_enabled", "=", True)]
+        PosOrder = self.env["pos.order"]
+        # Non simplified: no SII enabled
+        self.assertFalse(order.sii_enabled)
+        self.assertTrue(PosOrder.search(false_domain))
+        self.assertFalse(PosOrder.search(true_domain))
+        # Simplified: SII enabled
+        order.is_l10n_es_simplified_invoice = True
+        self.assertTrue(order.sii_enabled)
+        self.assertFalse(PosOrder.search(false_domain))
+        self.assertTrue(PosOrder.search(true_domain))
+        # Fiscal position with SII enabled and simplified
+        fp = (
+            self.env["account.fiscal.position"]
+            .sudo()
+            .create({"name": "Test PoS SII FP", "aeat_active": True})
+        )
+        order.fiscal_position_id = fp.id
+        self.assertTrue(order.sii_enabled)
+        self.assertFalse(PosOrder.search(false_domain))
+        self.assertTrue(PosOrder.search(true_domain))
+        # Fiscal position with SII not enabled and simplified
+        fp.aeat_active = False
+        self.assertFalse(order.sii_enabled)
+        self.assertTrue(PosOrder.search(false_domain))
+        self.assertFalse(PosOrder.search(true_domain))
+        # Fiscal position with SII enabled and not simplified
+        fp.aeat_active = True
+        order.is_l10n_es_simplified_invoice = False
+        self.assertFalse(order.sii_enabled)
+        self.assertTrue(PosOrder.search(false_domain))
+        self.assertFalse(PosOrder.search(true_domain))
+        # Fiscal position with SII not enabled and not simplified
+        fp.aeat_active = False
+        self.assertFalse(order.sii_enabled)
+        self.assertTrue(PosOrder.search(false_domain))
+        self.assertFalse(PosOrder.search(true_domain))

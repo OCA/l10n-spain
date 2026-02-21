@@ -1,9 +1,11 @@
 # Copyright 2023 Aures Tic - Almudena de la Puente <almudena@aurestic.es>
 # Copyright 2023 Aures Tic - Jose Zambudio <jose@aurestic.es>
+# Copyright 2026 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.osv.expression import AND, OR
 
 SII_VALID_POS_ORDER_STATES = ["paid", "done"]
 
@@ -37,6 +39,19 @@ class PosOrder(models.Model):
                 ) or not order.fiscal_position_id
             else:
                 order.sii_enabled = False
+
+    @api.model
+    def _search_sii_enabled(self, operator, value):
+        # Extend the search method for taking into account PoS SII enabled conditions
+        domain = super()._search_sii_enabled(operator, value)
+        condition_1 = [("is_l10n_es_simplified_invoice", operator, value)]
+        condition_2 = [("fiscal_position_id.aeat_active", operator, value)]
+        search_ko = (operator == "=" and not value) or (operator == "!=" and value)
+        if not search_ko:
+            condition_2 = OR([condition_2, [("fiscal_position_id", "=", False)]])
+        conditions = [domain, condition_1, condition_2]
+        exp_condition = OR if search_ko else AND
+        return exp_condition(conditions)
 
     @api.depends("amount_total")
     def _compute_sii_refund_type(self):
