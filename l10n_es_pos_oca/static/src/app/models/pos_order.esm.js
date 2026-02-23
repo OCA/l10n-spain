@@ -76,4 +76,8 @@ patch(PosOrder.prototype, {
         }
         return result;
     },
+
+    get_l10n_es_unique_id() {
+        return this.l10n_es_unique_id ? this.l10n_es_unique_id : "";
+    },
 });
