@@ -22,7 +22,10 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         # tax code: (base, tax_amount)
         "P_IRPF19": (100, -19),
         "P_IRPF20": (1000, -200),
+        "P_IRPF24": (100, -24),
         "S_GD0": (100, 0),
+        "P_IRPF21TD": (2000, -15),
+        "P_IRPF21TDIT": (1500, -15),
     }
 
     @classmethod
@@ -46,6 +49,7 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
                     "l10n_es_aeat_mod190.aeat_m190_perception_key_01"
                 ).id,
                 "a_nacimiento": "2000",
+                "discapacidad": "1",
             }
         )
         cls.customer.write(
@@ -57,6 +61,9 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
                 "aeat_perception_subkey_id": cls.env.ref(
                     "l10n_es_aeat_mod190.aeat_m190_perception_subkey_08_01"
                 ).id,
+                "vat": "ESA12345674",
+                "country_id": cls.env.ref("base.es").id,
+                "state_id": cls.env.ref("base.state_es_bi").id,
             }
         )
         cls.fiscal_position = cls.env["account.fiscal.position"].create(
@@ -73,8 +80,8 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         )
 
     def test_mod190(self):
-        self._invoice_purchase_create("2017-01-01")
-        self._invoice_purchase_create("2017-01-02")
+        self._invoice_purchase_create("2017-01-01", {"partner_id": self.supplier.id})
+        self._invoice_purchase_create("2017-01-02", {"partner_id": self.customer.id})
         model190 = self.env["l10n.es.aeat.mod190.report"].create(
             {
                 "company_id": self.company.id,
@@ -106,9 +113,11 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         supplier_record = model190.partner_record_ids.filtered(
             lambda r: r.partner_id == self.supplier
         )
-        self.assertEqual(supplier_record.percepciones_dinerarias, 2200)
-        self.assertEqual(supplier_record.retenciones_dinerarias, 438)
-        self.assertEqual(supplier_record.gastos_deducibles, -200)
+        self.assertEqual(supplier_record.percepciones_dinerarias, 0)
+        self.assertEqual(supplier_record.retenciones_dinerarias, 0)
+        self.assertEqual(supplier_record.percepciones_dinerarias_incap, 4700)
+        self.assertEqual(supplier_record.retenciones_dinerarias_incap, 768)
+        self.assertEqual(supplier_record.gastos_deducibles, -100)
         self.assertEqual(2, supplier_record.ad_required)
         self.assertEqual(2, self.supplier.ad_required)
         self.customer.write(
@@ -118,9 +127,13 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
                 "state_id": self.browse_ref("base.state_es_bi").id,
             }
         )
-        self.assertNotIn(
-            self.customer, model190.mapped("partner_record_ids.partner_id")
+        customer_record = model190.partner_record_ids.filtered(
+            lambda r: r.partner_id == self.customer
         )
+        self.assertEqual(customer_record.percepciones_dinerarias, 3200)
+        self.assertEqual(customer_record.retenciones_dinerarias, 543)
+        self.assertEqual(customer_record.percepciones_dinerarias_incap, 1500)
+        self.assertEqual(customer_record.retenciones_dinerarias_incap, 225)
         records = model190.partner_record_ids
         model190_form = Form(model190)
         with model190_form.partner_record_ids.new() as record:
@@ -186,14 +199,12 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         self.assertTrue(
             self.env.user.has_group("l10n_es_aeat_mod190.group_aeat_mod190")
         )
-
         # Create a user without the AEAT group
         user_without_group = new_test_user(
             self.env(user=SUPERUSER_ID),
             "no_190_user",
             "base.group_partner_manager,base.group_user",
         )
-
         # Attempt to access AEAT fields
         supplier_f = Form(self.supplier)
         supplier_limited_f = Form(self.supplier.with_user(user_without_group))

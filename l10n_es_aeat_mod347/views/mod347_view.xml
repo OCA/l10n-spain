@@ -98,6 +98,7 @@
                         <page string="Partner info">
                             <group>
                                 <group>
+                                    <field name="report_id" invisible="1" />
                                     <field name="partner_id" />
                                     <field
                                         name="error_text"
@@ -156,6 +157,10 @@
                                 </group>
                                 <group>
                                     <field name="bussiness_real_estate_rent" />
+                                    <field
+                                        name="bdns_number"
+                                        invisible="not visible_bdns_number"
+                                    />
                                 </group>
                             </group>
                         </page>

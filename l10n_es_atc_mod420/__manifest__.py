@@ -4,7 +4,7 @@
 
 {
     "name": "ATC Modelo 420",
-    "version": "18.0.1.0.3",
+    "version": "18.0.1.0.5",
     "author": "Binhex, Tecnativa, Odoo Community Association (OCA)",
     "category": "Accounting",
     "website": "https://github.com/OCA/l10n-spain",
@@ -28,7 +28,7 @@
         "reports/mod420_report.xml",
         "views/mod420_view.xml",
     ],
-    "maintainers": ["Christian-RB"],
+    "maintainers": ["christian-ramos-tecnativa", "carlos-lopez-tecnativa"],
     "installable": True,
     "auto_install": False,
 }

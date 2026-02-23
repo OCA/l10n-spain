@@ -7,7 +7,7 @@
 
 {
     "name": "Comunicación VERI*FACTU",
-    "version": "18.0.1.1.2",
+    "version": "18.0.1.2.2",
     "category": "Accounting/Localizations/EDI",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Aures Tic,"
@@ -43,6 +43,7 @@
         "views/verifactu_developer_view.xml",
         "views/report_invoice.xml",
         "views/verifactu_invoice_entry_response_view.xml",
+        "wizards/verifactu_cancel_invoice_wizard_view.xml",
     ],
     "pre_init_hook": "pre_init_hook",
     "post_init_hook": "post_init_hook",

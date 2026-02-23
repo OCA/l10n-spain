@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-l10n-spain"
-version = "18.0.20251119.0"
+version = "18.0.20260220.0"
 dependencies = [
     "odoo-addon-account_promissory_note_caixabank==18.0.*",
     "odoo-addon-delivery_dhl_parcel==18.0.*",
@@ -20,11 +20,13 @@ dependencies = [
     "odoo-addon-l10n_es_aeat_mod296==18.0.*",
     "odoo-addon-l10n_es_aeat_mod303==18.0.*",
     "odoo-addon-l10n_es_aeat_mod303_oss==18.0.*",
+    "odoo-addon-l10n_es_aeat_mod303_vat_prorate==18.0.*",
     "odoo-addon-l10n_es_aeat_mod347==18.0.*",
     "odoo-addon-l10n_es_aeat_mod349==18.0.*",
     "odoo-addon-l10n_es_aeat_mod369==18.0.*",
     "odoo-addon-l10n_es_aeat_mod390==18.0.*",
     "odoo-addon-l10n_es_aeat_mod390_oss==18.0.*",
+    "odoo-addon-l10n_es_aeat_mod390_vat_prorate==18.0.*",
     "odoo-addon-l10n_es_aeat_partner_check==18.0.*",
     "odoo-addon-l10n_es_aeat_sii_invoice_summary==18.0.*",
     "odoo-addon-l10n_es_aeat_sii_oca==18.0.*",
@@ -34,6 +36,7 @@ dependencies = [
     "odoo-addon-l10n_es_cnae==18.0.*",
     "odoo-addon-l10n_es_facturae==18.0.*",
     "odoo-addon-l10n_es_facturae_face==18.0.*",
+    "odoo-addon-l10n_es_facturae_sale_stock==18.0.*",
     "odoo-addon-l10n_es_intrastat_report==18.0.*",
     "odoo-addon-l10n_es_location_nuts==18.0.*",
     "odoo-addon-l10n_es_mis_report==18.0.*",
@@ -42,10 +45,12 @@ dependencies = [
     "odoo-addon-l10n_es_payment_order_confirming_aef==18.0.*",
     "odoo-addon-l10n_es_payment_order_confirming_sabadell==18.0.*",
     "odoo-addon-l10n_es_pos_oca==18.0.*",
+    "odoo-addon-l10n_es_pos_sii==18.0.*",
     "odoo-addon-l10n_es_toponyms==18.0.*",
     "odoo-addon-l10n_es_vat_book==18.0.*",
     "odoo-addon-l10n_es_vat_book_invoice_summary==18.0.*",
     "odoo-addon-l10n_es_vat_book_oss==18.0.*",
+    "odoo-addon-l10n_es_vat_book_pos==18.0.*",
     "odoo-addon-l10n_es_vat_prorate==18.0.*",
     "odoo-addon-l10n_es_verifactu_oca==18.0.*",
     "odoo-addon-payment_redsys==18.0.*",

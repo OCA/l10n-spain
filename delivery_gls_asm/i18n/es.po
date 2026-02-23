@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-20 12:24+0000\n"
-"PO-Revision-Date: 2023-10-09 05:30+0000\n"
-"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"PO-Revision-Date: 2026-01-05 09:38+0000\n"
+"Last-Translator: Ricard <ricard.calvo@forgeflow.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__27
@@ -248,14 +248,12 @@ msgstr "Con incidencia"
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
-#, python-format
 msgid "Couldn't find the consignee street"
 msgstr "No se ha podido encontrar la calle del consignatario (obligatorio)"
 
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
-#, python-format
 msgid "Couldn't find the sender street"
 msgstr "No se ha podido encontrar la calle del remitente (obligatorio)"
 
@@ -468,7 +466,6 @@ msgstr "GLS ASM"
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
-#, python-format
 msgid ""
 "GLS ASM API doesn't provide methods to compute delivery rates, so\n"
 "                you should relay on another price method instead or override "
@@ -489,7 +486,6 @@ msgstr "Código de barras GLS"
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
-#, python-format
 msgid "GLS Cancellation failed with reason: %s"
 msgstr "La cancelación de GLS falló por esta causa: %s"
 
@@ -514,7 +510,6 @@ msgstr "Etiqueta GLS"
 #: model:ir.actions.act_window,name:delivery_gls_asm.action_delivery_gls_asm_manifest_wizard
 #: model:ir.actions.report,name:delivery_gls_asm.gls_asm_manifest_report
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.delivery_manifest_wizard_form
-#, python-format
 msgid "GLS Manifest"
 msgstr "Manifiesto GLS"
 
@@ -526,7 +521,6 @@ msgstr "Referencia albarán GLS"
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
-#, python-format
 msgid ""
 "GLS Pickup extra info:<br/> Tracking number: %(codigo)s<br/> Bultos: "
 "%(bultos)s"
@@ -543,7 +537,6 @@ msgstr "Servicio GLS"
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
-#, python-format
 msgid ""
 "GLS Shipping extra info:\n"
 "barcode: %s"
@@ -559,14 +552,12 @@ msgstr "UID GLS"
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/stock_picking.py:0
-#, python-format
 msgid "GLS label for %s"
 msgstr "Etiqueta GLS para% s"
 
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
-#, python-format
 msgid ""
 "GLS returned an error trying to record the shipping for %(ref)s.\n"
 "Error:\n"
@@ -579,7 +570,6 @@ msgstr ""
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
-#, python-format
 msgid ""
 "GLS-ASM API doesn't admit a reference number higher than 15 characters. In "
 "order to handle it, they trim thereference and as the reference is unique to "
@@ -601,7 +591,6 @@ msgstr "Con recogida GLS/ASM"
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
-#, python-format
 msgid ""
 "GLS: No response from server getting state from ref %(ref)s.\n"
 "Traceback:\n"
@@ -615,7 +604,6 @@ msgstr ""
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
-#, python-format
 msgid ""
 "GLS: No response from server printing label with ref %(ref)s.\n"
 "Traceback:\n"
@@ -694,18 +682,12 @@ msgstr "Int. WEB"
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/wizard/gls_asm_manifest_wizard.py:0
-#, python-format
 msgid ""
 "It wasn't possible to get the manifest. Maybe there aren'tdeliveries for the "
 "selected date."
 msgstr ""
 "No fue posible obtener el manifiesto. Quizá no haya expediciones para la "
 "fecha seleccionada."
-
-#. module: delivery_gls_asm
-#: model:ir.model.fields,field_description:delivery_gls_asm.field_gls_asm_minifest_wizard____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_gls_asm_minifest_wizard__write_uid
@@ -750,7 +732,6 @@ msgstr "No Realizada"
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
-#, python-format
 msgid ""
 "No response from server recording GLS delivery %(ref)s.\n"
 "Traceback:\n"
@@ -1062,6 +1043,22 @@ msgid "Solicitud de devolución"
 msgstr "Solicitud de devolución"
 
 #. module: delivery_gls_asm
+#. odoo-python
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
+msgid ""
+"The service %s is a pickup service. If you want to record a pickup, please "
+"first use the 'Send Pickup' button in the picking."
+msgstr ""
+"El servicio %s es un servicio de recogida. Si desea registrar una recogida, "
+"por favor utilice primero el botón 'Enviar recogida' en el albarán."
+
+#. module: delivery_gls_asm
+#. odoo-python
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
+msgid "The service %s is not a pickup service."
+msgstr "El servicio %s no es un servicio de recogida."
+
+#. module: delivery_gls_asm
 #: model:ir.model,name:delivery_gls_asm.model_stock_picking
 msgid "Transfer"
 msgstr "Albarán"
@@ -1069,7 +1066,6 @@ msgstr "Albarán"
 #. module: delivery_gls_asm
 #. odoo-python
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
-#, python-format
 msgid ""
 "Unable to cancel GLS Expedition with reference %(ref)s as it is in state "
 "%(state)s.\n"
@@ -1098,6 +1094,9 @@ msgstr "C.P."
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__35
 msgid "dPRO"
 msgstr "dPRO"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"
 
 #~ msgid "10:00 Service"
 #~ msgstr "10:00 Service"

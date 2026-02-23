@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-02 11:29+0000\n"
-"PO-Revision-Date: 2025-08-07 12:25+0000\n"
-"Last-Translator: Miquel Romera <mromera@pmsastro.es>\n"
+"POT-Creation-Date: 2026-02-12 14:51+0000\n"
+"PO-Revision-Date: 2026-02-12 15:58+0100\n"
+"Last-Translator: Emilio Pascual <emilio@moduon.team>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_46
@@ -402,6 +402,13 @@ msgid "December"
 msgstr "Diciembre"
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__deduct_payment_petrol_delivery
+msgid "Deduct Payment Petrol Delivery"
+msgstr ""
+"Sujeto pasivo con derecho a deducir pago a cuenta de entregas de gasolinas, "
+"gasóleos y biocarburantes"
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_activity_code__display_name
 msgid "Display Name"
@@ -757,6 +764,14 @@ msgid "Previous declaration number"
 msgstr "Número de declaración anterior"
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_108
+msgid ""
+"Rectificativa - Exclusivamente para determinados supuestos de "
+"autoliquidación rectificativa por discrepancia de criterio administrativo "
+"que no deban incluirse en otras casillas. Otros ajustes"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__devolucion_mensual
 msgid "Registered in the Register of Monthly Return"
 msgstr "Inscrito en el Registro de Devolución Mensual"
@@ -770,6 +785,20 @@ msgstr "Identificador del informe"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__activity_user_id
 msgid "Responsible User"
 msgstr "Usuario Responsable"
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_112
+msgid ""
+"Result - Payment on account for deliveries of petrol, diesel and biofuels "
+"after completion of the non-customs warehouse regime attributable to the "
+"State Administration (Sum of box 36 of all forms 319 corresponding to "
+"deliveries included in this self-assessment)"
+msgstr ""
+"Resultado - Pago a cuenta de entregas de gasolinas, gasóleos y "
+"biocarburantes posteriores a la ultimación del régimen de depósito distinto "
+"del aduanero atribuible a la Administración del Estado (Suma de la casilla "
+"36 de todos los modelos 319 correspondientes a entregas incluidas en esta "
+"autoliquidación)  [112]"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__result_type
@@ -789,6 +818,14 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form
 msgid "Resultado"
 msgstr "Resultado"
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_109
+msgid ""
+"Resultado - Devoluciones acordadas por la Agencia Tributaria como "
+"consecuencia de la tramitación de anteriores autoliquidaciones "
+"correspondientes al ejercicio y período objeto de la autoliquidación"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #. odoo-python
@@ -951,9 +988,24 @@ msgid "Year"
 msgstr "Año"
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_108
+msgid "[108] Devoluciones acordadas por la Agencia Tributaria"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_109
+msgid "[109] Devoluciones acordadas por la Agencia Tributaria"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__potential_cuota_compensar
 msgid "[110] Pending fees to compensate"
 msgstr "[110] A compensar pendiente"
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_112
+msgid "[112] Pago a cuenta de entregas de gasolinas, gasóleos y biocarburantes"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__total_devengado
@@ -1057,3 +1109,7 @@ msgstr "¿SII voluntario?"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__has_operation_volume
 msgid "¿Volumen de operaciones?"
 msgstr "¿Volumen de operaciones?"
+
+#~ msgid "[112] Payment on account for petrol deliveries"
+#~ msgstr ""
+#~ "[112]  Pago a cuenta de entregas de gasolinas, gasóleos y biocarburantes"

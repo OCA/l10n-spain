@@ -995,6 +995,20 @@ msgid "Solicitud de devolución"
 msgstr ""
 
 #. module: delivery_gls_asm
+#. odoo-python
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
+msgid ""
+"The service %s is a pickup service. If you want to record a pickup, please "
+"first use the 'Send Pickup' button in the picking."
+msgstr ""
+
+#. module: delivery_gls_asm
+#. odoo-python
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
+msgid "The service %s is not a pickup service."
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model,name:delivery_gls_asm.model_stock_picking
 msgid "Transfer"
 msgstr ""

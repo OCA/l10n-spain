@@ -12,3 +12,5 @@
   - Carlos Dauden
 - [Sygel](https://www.sygel.es):
   - Manuel Regidor
+- [Moduon](https://www.moduon.team)
+  - Emilio Pascual

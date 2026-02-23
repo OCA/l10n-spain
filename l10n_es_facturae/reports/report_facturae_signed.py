@@ -17,20 +17,18 @@ from lxml import etree
 
 from odoo import api, models, tools
 from odoo.exceptions import UserError, ValidationError
-from odoo.tools import cleanup_xml_node
 
 _logger = logging.getLogger(__name__)
 
 
-class ReportFacturae(models.AbstractModel):
-    _name = "report.l10n_es_facturae.facturae_signed"
-    _inherit = "report.report_xml.abstract"
-    _description = "Account Move Facturae Signed"
+class ReportFacturaeSigned(models.AbstractModel):
+    """As the name is report.{module}.{template}, this model is used as
+    a base to generate the signed facturae XML.
+    """
 
-    def _get_report_values(self, docids, data=None):
-        result = super()._get_report_values(docids, data=data)
-        result["docs"] = self.env["account.move"].browse(docids)
-        return result
+    _name = "report.l10n_es_facturae.facturae_signed"
+    _inherit = "report.l10n_es_facturae.template_facturae"
+    _description = "Account Move Facturae Signed"
 
     @api.model
     def generate_report(self, ir_report, docids, data=None):
@@ -40,10 +38,6 @@ class ReportFacturae(models.AbstractModel):
         xml_facturae, content_type = super().generate_report(
             ir_report, docids, data=data
         )
-        # Quitamos espacios en blanco, para asegurar que el XML final quede
-        # totalmente libre de ellos.
-        tree = cleanup_xml_node(xml_facturae)
-        xml_facturae = etree.tostring(tree, xml_declaration=True, encoding="UTF-8")
         self._validate_facturae(move, xml_facturae)
         public_crt, private_key = (
             self.env["l10n.es.aeat.certificate"]

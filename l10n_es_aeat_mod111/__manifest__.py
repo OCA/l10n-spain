@@ -4,7 +4,7 @@
 
 {
     "name": "AEAT modelo 111",
-    "version": "18.0.1.0.2",
+    "version": "18.0.1.0.4",
     "development_status": "Mature",
     "category": "Localization/Accounting",
     "author": "AvanzOSC, "

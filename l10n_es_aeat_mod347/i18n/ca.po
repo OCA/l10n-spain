@@ -20,111 +20,8 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_aeat_mod347
-#: model:mail.template,body_html:l10n_es_aeat_mod347.email_template_347
-msgid ""
-"\n"
-"<p>Estimado/a <t t-out=\"object.partner_id.name\" />\n"
-"</p>\n"
-"<p>Le comunicamos que a efectos de comprobación del modelo 347:</p>\n"
-"<p>Nuestros datos en dicha declaración son:</p>\n"
-"<p>\n"
-"  <strong>Nombre:</strong> <t t-out=\"object.report_id.company_id.name\"/"
-"><br/>\n"
-"  <strong>NIF:</strong> <t t-out=\"object.report_id.company_id.vat or ''\"/"
-"><br/>\n"
-"  <strong>Provincia:</strong> <t t-out=\"object.report_id.company_id."
-"state_id.name or ''\"/><br/>\n"
-"</p>\n"
-"<p>Los datos que vamos a declarar en relación a las operaciones habidas con "
-"su empresa son:</p>\n"
-"<p>\n"
-"  <strong>Nombre:</strong> <t t-out=\"object.partner_id.name\"/><br/>\n"
-"  <strong>NIF:</strong> <t t-out=\"object.partner_vat\"/><br/>\n"
-"  <strong>Código de país:</strong> <t t-out=\"object.partner_country_code\"/"
-"><br/>\n"
-"  <strong>Código de provincia:</strong> <t t-out=\"object."
-"partner_state_code\"/><br/>\n"
-"</p>\n"
-"<p>\n"
-"  <strong>Tipo de operación:</strong> <t t-out=\"object.operation_key\"/>\n"
-"</p>\n"
-"\n"
-"  <t t-if=\"object.amount\">\n"
-"  <p>\n"
-"  <strong>Importe de las operaciones:</strong> <t t-out=\"object.amount\"/"
-"><br/>\n"
-"  <strong>Operaciones primer trimestre:</strong> <t t-out=\"object."
-"first_quarter\"/><br/>\n"
-"  <strong>Operaciones segundo trimestre:</strong> <t t-out=\"object."
-"second_quarter\"/><br/>\n"
-"  <strong>Operaciones tercer trimestre:</strong> <t t-out=\"object."
-"third_quarter\"/><br/>\n"
-"  <strong>Operaciones cuarto trimestre:</strong> <t t-out=\"object."
-"fourth_quarter\"/><br/>\n"
-"  </p>\n"
-"  </t>\n"
-"  <t t-if=\"object.cash_amount\">\n"
-"  <p>\n"
-"  <strong>Importe recibido en efectivo:</strong> <t t-out=\"object."
-"cash_amount\"/><br/>\n"
-"  </p>\n"
-"</t>\n"
-"  <t t-if=\"object.real_estate_transmissions_amount\">\n"
-"  <p>\n"
-"  <strong>Importe de transmisión de inmueble:</strong> <t t-out=\"object."
-"real_estate_transmissions_amount\"/><br/>\n"
-"  <strong>Inmuebles primer trimestre:</strong> <t t-out=\"object."
-"first_quarter_real_estate_transmission\"/><br/>\n"
-"  <strong>Inmuebles segundo trimestre:</strong> <t t-out=\"object."
-"second_quarter_real_estate_transmission\"/><br/>\n"
-"  <strong>Inmuebles tercer trimestre:</strong> <t t-out=\"object."
-"third_quarter_real_estate_transmission\"/><br/>\n"
-"  <strong>Inmuebles cuarto trimestre:</strong> <t t-out=\"object."
-"fourth_quarter_real_estate_transmission\"/><br/>\n"
-"  </p>\n"
-"</t>\n"
-"  <p>En el documento adjunto se incluyen las facturas en base a las cuales "
-"se obtienen los importes anteriores.</p>\n"
-"  <p>Si los datos son correctos puede indicar su conformidad en el siguiente "
-"botón:</p>\n"
-"  <br><br>\n"
-"  <center>\n"
-"      <a style=\"background-color: #1abc9c; padding: 20px; text-decoration: "
-"none; color: #fff; border-radius: 5px; font-size: 16px;\"\n"
-"              class=\"o_default_snippet_text\"\n"
-"              t-att-href=\"object.get_confirm_url()\">\n"
-"          Aceptar datos del 347\n"
-"      </a>\n"
-"  </center>\n"
-"  <br><br>\n"
-"  <p>Si los importes no son correctos, puede pulsar en este botón para que "
-"nos pongamos en contacto posteriormente, o responder a este correo indicando "
-"el problema:</p>\n"
-"  <br><br>\n"
-"  <center>\n"
-"      <a style=\"background-color: #d55937; padding: 20px; text-decoration: "
-"none; color: #fff; border-radius: 5px; font-size: 16px;\"\n"
-"              class=\"o_default_snippet_text\"\n"
-"              t-att-href=\"object.get_reject_url()\">\n"
-"          Rechazar datos del 347\n"
-"      </a>\n"
-"  </center>\n"
-"  <br><br>\n"
-"  <p>Para cualquier otra pregunta, no dude en contactar con nosotros "
-"respondiendo a este correo.</p>\n"
-"<p style=\"color:#888888\">\n"
-"    <t t-if=\"user and user.signature\">\n"
-"    <t t-out=\"user.signature\"/>\n"
-"    </t>\n"
-"</p>\n"
-"\n"
-"        "
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
-#, python-format
 msgid "- %(name)s %(id)s"
 msgstr ""
 
@@ -152,6 +49,105 @@ msgstr "Detall 347 partner"
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__situation__4
 msgid "4 - Foreign"
 msgstr "4 - Estranger"
+
+#. module: l10n_es_aeat_mod347
+#: model:mail.template,body_html:l10n_es_aeat_mod347.email_template_347
+msgid ""
+"<p>Estimado/a <t t-out=\"object.partner_id.name\"/>\n"
+"</p>\n"
+"<p>Le comunicamos que a efectos de comprobación del modelo 347:</p>\n"
+"<p>Nuestros datos en dicha declaración son:</p>\n"
+"<p>\n"
+"  <strong>Nombre:</strong> <t t-out=\"object.report_id.company_id.name\"/"
+"><br/>\n"
+"  <strong>NIF:</strong> <t t-out=\"object.report_id.company_id.vat or ''\"/"
+"><br/>\n"
+"  <strong>Provincia:</strong> <t t-"
+"out=\"object.report_id.company_id.state_id.name or ''\"/><br/>\n"
+"</p>\n"
+"<p>Los datos que vamos a declarar en relación a las operaciones habidas con "
+"su empresa son:</p>\n"
+"<p>\n"
+"  <strong>Nombre:</strong> <t t-out=\"object.partner_id.name\"/><br/>\n"
+"  <strong>NIF:</strong> <t t-out=\"object.partner_vat\"/><br/>\n"
+"  <strong>Código de país:</strong> <t t-out=\"object.partner_country_code\"/"
+"><br/>\n"
+"  <strong>Código de provincia:</strong> <t t-"
+"out=\"object.partner_state_code\"/><br/>\n"
+"</p>\n"
+"<p>\n"
+"  <strong>Tipo de operación:</strong> <t t-out=\"object.operation_key\"/>\n"
+"</p>\n"
+"\n"
+"  <t t-if=\"object.amount\">\n"
+"  <p>\n"
+"  <strong>Importe de las operaciones:</strong> <t t-out=\"object.amount\"/"
+"><br/>\n"
+"  <strong>Operaciones primer trimestre:</strong> <t t-"
+"out=\"object.first_quarter\"/><br/>\n"
+"  <strong>Operaciones segundo trimestre:</strong> <t t-"
+"out=\"object.second_quarter\"/><br/>\n"
+"  <strong>Operaciones tercer trimestre:</strong> <t t-"
+"out=\"object.third_quarter\"/><br/>\n"
+"  <strong>Operaciones cuarto trimestre:</strong> <t t-"
+"out=\"object.fourth_quarter\"/><br/>\n"
+"  </p>\n"
+"  </t>\n"
+"  <t t-if=\"object.cash_amount\">\n"
+"  <p>\n"
+"  <strong>Importe recibido en efectivo:</strong> <t t-"
+"out=\"object.cash_amount\"/><br/>\n"
+"  </p>\n"
+"</t>\n"
+"  <t t-if=\"object.real_estate_transmissions_amount\">\n"
+"  <p>\n"
+"  <strong>Importe de transmisión de inmueble:</strong> <t t-"
+"out=\"object.real_estate_transmissions_amount\"/><br/>\n"
+"  <strong>Inmuebles primer trimestre:</strong> <t t-"
+"out=\"object.first_quarter_real_estate_transmission\"/><br/>\n"
+"  <strong>Inmuebles segundo trimestre:</strong> <t t-"
+"out=\"object.second_quarter_real_estate_transmission\"/><br/>\n"
+"  <strong>Inmuebles tercer trimestre:</strong> <t t-"
+"out=\"object.third_quarter_real_estate_transmission\"/><br/>\n"
+"  <strong>Inmuebles cuarto trimestre:</strong> <t t-"
+"out=\"object.fourth_quarter_real_estate_transmission\"/><br/>\n"
+"  </p>\n"
+"</t>\n"
+"  <p>En el documento adjunto se incluyen las facturas en base a las cuales "
+"se obtienen los importes anteriores.</p>\n"
+"  <p>Si los datos son correctos puede indicar su conformidad en el siguiente "
+"botón:</p>\n"
+"  <br/><br/>\n"
+"  <center>\n"
+"      <a style=\"background-color: #1abc9c; padding: 20px; text-decoration: "
+"none; color: #fff; border-radius: 5px; font-size: 16px;\" "
+"class=\"o_default_snippet_text\" t-att-href=\"object.get_confirm_url()\">\n"
+"          Aceptar datos del 347\n"
+"      </a>\n"
+"  </center>\n"
+"  <br/><br/>\n"
+"  <p>Si los importes no son correctos, puede pulsar en este botón para que "
+"nos pongamos en contacto posteriormente, o responder a este correo indicando "
+"el problema:</p>\n"
+"  <br/><br/>\n"
+"  <center>\n"
+"      <a style=\"background-color: #d55937; padding: 20px; text-decoration: "
+"none; color: #fff; border-radius: 5px; font-size: 16px;\" "
+"class=\"o_default_snippet_text\" t-att-href=\"object.get_reject_url()\">\n"
+"          Rechazar datos del 347\n"
+"      </a>\n"
+"  </center>\n"
+"  <br/><br/>\n"
+"  <p>Para cualquier otra pregunta, no dude en contactar con nosotros "
+"respondiendo a este correo.</p>\n"
+"<p style=\"color:#888888\">\n"
+"    <t t-if=\"user and user.signature\">\n"
+"    <t t-out=\"user.signature\"/>\n"
+"    </t>\n"
+"</p>\n"
+"\n"
+"        "
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
@@ -301,6 +297,18 @@ msgid "B - Entregas de bienes y servicios superiores al límite (1)"
 msgstr "B - Entregues de bens i serveis superiors al límit (1)"
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__bdns_number
+msgid "BDNS Call Number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+msgid ""
+"BDNS Call Number is mandatory for operation key E and it must have 6 digits"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__partner_bank_id
 msgid "Bank account"
 msgstr "Compte bancari"
@@ -413,15 +421,14 @@ msgstr "Complement (urbanització, centre comercial, ...)"
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
-#, python-format
 msgid "Compose Email"
 msgstr "Redactar email"
 
 #. module: l10n_es_aeat_mod347
 #: model:mail.template,subject:l10n_es_aeat_mod347.email_template_347
 msgid ""
-"Comprobación datos de modelo 347 año {{object.report_id.year}} de {{object."
-"report_id.company_id.name}}"
+"Comprobación datos de modelo 347 año {{object.report_id.year}} de "
+"{{object.report_id.company_id.name}}"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -609,7 +616,6 @@ msgstr "Icona de lletra impressionant, p. ex. fa-tasques"
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_bank_statement_line__not_in_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_move__not_in_mod347
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_payment__not_in_mod347
 msgid "Force not included in 347 report"
 msgstr "Força com no inclosa al model 347"
 
@@ -690,7 +696,6 @@ msgstr "Si està marcat, hi ha missatges amb error d'entrega."
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_account_bank_statement_line__not_in_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_account_move__not_in_mod347
-#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_account_payment__not_in_mod347
 msgid ""
 "If you mark this field, this invoice will not be included in any AEAT 347 "
 "model report."
@@ -1017,7 +1022,6 @@ msgstr "Registre d'empresa"
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
-#, python-format
 msgid "Partner record errors:\n"
 msgstr "Registres d'empresa\n"
 
@@ -1025,7 +1029,6 @@ msgstr "Registres d'empresa\n"
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
-#, python-format
 msgid "Partner records"
 msgstr "Registres d'empresa"
 
@@ -1057,7 +1060,6 @@ msgstr "Telèfon"
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
-#, python-format
 msgid ""
 "Please review partner and real estate records, some of them are in red "
 "color:\n"
@@ -1091,12 +1093,6 @@ msgstr "Número de la declaració prèvia"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_tree
 msgid "Print"
 msgstr "Imprimir"
-
-#. module: l10n_es_aeat_mod347
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__rating_ids
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__rating_ids
-msgid "Ratings"
-msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__total_real_estate_amount
@@ -1152,7 +1148,6 @@ msgstr "Informació Immobles"
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
-#, python-format
 msgid "Real estate record errors:\n"
 msgstr "Error de registres d'immobles\n"
 
@@ -1196,6 +1191,13 @@ msgstr "Registres"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.partner_record_search_view
 msgid "Records in exception"
 msgstr "Registres en excepció"
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__bdns_number
+msgid ""
+"Reference of Call of the subsidy or assistance in National Grands Database "
+"(BDNS)."
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__related_goods_operation
@@ -1313,7 +1315,6 @@ msgstr "Codi de província"
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
-#, python-format
 msgid "State code can only contain digits"
 msgstr ""
 
@@ -1506,7 +1507,6 @@ msgstr "Tipus de l'activitat d'excepció del registre."
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
-#, python-format
 msgid "VAT must be defined for Spanish Contacts"
 msgstr ""
 
@@ -1527,6 +1527,11 @@ msgstr ""
 "nacional"
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__visible_bdns_number
+msgid "Visible Bdns Number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__website_message_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__website_message_ids
 msgid "Website Messages"
@@ -1541,7 +1546,6 @@ msgstr "Històric de comunicació de la pàgina web"
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
-#, python-format
 msgid "Without country code"
 msgstr ""
 
@@ -1553,7 +1557,6 @@ msgstr "Sense número"
 #. module: l10n_es_aeat_mod347
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
-#, python-format
 msgid "Without state code"
 msgstr ""
 
@@ -1674,16 +1677,16 @@ msgstr "Any"
 #~ "  % endif\n"
 #~ "  % if object.real_estate_transmissions_amount:\n"
 #~ "  <p>\n"
-#~ "  <strong>Importe de transmisión de inmueble:</strong> ${object."
-#~ "real_estate_transmissions_amount}<br/>\n"
-#~ "  <strong>Inmuebles primer trimestre:</strong> ${object."
-#~ "first_quarter_real_estate_transmission}<br/>\n"
-#~ "  <strong>Inmuebles segundo trimestre:</strong> ${object."
-#~ "second_quarter_real_estate_transmission}<br/>\n"
-#~ "  <strong>Inmuebles tercer trimestre:</strong> ${object."
-#~ "third_quarter_real_estate_transmission}<br/>\n"
-#~ "  <strong>Inmuebles cuarto trimestre:</strong> ${object."
-#~ "fourth_quarter_real_estate_transmission}<br/>\n"
+#~ "  <strong>Importe de transmisión de inmueble:</strong> $"
+#~ "{object.real_estate_transmissions_amount}<br/>\n"
+#~ "  <strong>Inmuebles primer trimestre:</strong> $"
+#~ "{object.first_quarter_real_estate_transmission}<br/>\n"
+#~ "  <strong>Inmuebles segundo trimestre:</strong> $"
+#~ "{object.second_quarter_real_estate_transmission}<br/>\n"
+#~ "  <strong>Inmuebles tercer trimestre:</strong> $"
+#~ "{object.third_quarter_real_estate_transmission}<br/>\n"
+#~ "  <strong>Inmuebles cuarto trimestre:</strong> $"
+#~ "{object.fourth_quarter_real_estate_transmission}<br/>\n"
 #~ "  </p>\n"
 #~ "  % endif\n"
 #~ "  <p>En el documento adjunto se incluyen las facturas en base a las "
@@ -1766,16 +1769,16 @@ msgstr "Any"
 #~ "  % endif\n"
 #~ "  % if object.real_estate_transmissions_amount:\n"
 #~ "  <p>\n"
-#~ "  <strong>Import de transmisió d'immoble:</strong> ${object."
-#~ "real_estate_transmissions_amount}<br/>\n"
-#~ "  <strong>Immobles primer trimestre:</strong> ${object."
-#~ "first_quarter_real_estate_transmission}<br/>\n"
-#~ "  <strong>Immobles segon trimestre:</strong> ${object."
-#~ "second_quarter_real_estate_transmission}<br/>\n"
-#~ "  <strong>Immobles tercer trimestre:</strong> ${object."
-#~ "third_quarter_real_estate_transmission}<br/>\n"
-#~ "  <strong>Immobles quart trimestre:</strong> ${object."
-#~ "fourth_quarter_real_estate_transmission}<br/>\n"
+#~ "  <strong>Import de transmisió d'immoble:</strong> $"
+#~ "{object.real_estate_transmissions_amount}<br/>\n"
+#~ "  <strong>Immobles primer trimestre:</strong> $"
+#~ "{object.first_quarter_real_estate_transmission}<br/>\n"
+#~ "  <strong>Immobles segon trimestre:</strong> $"
+#~ "{object.second_quarter_real_estate_transmission}<br/>\n"
+#~ "  <strong>Immobles tercer trimestre:</strong> $"
+#~ "{object.third_quarter_real_estate_transmission}<br/>\n"
+#~ "  <strong>Immobles quart trimestre:</strong> $"
+#~ "{object.fourth_quarter_real_estate_transmission}<br/>\n"
 #~ "  </p>\n"
 #~ "  % endif\n"
 #~ "  <p>Al document adjunt s'inclouen les factures en base a las quals "
@@ -1831,11 +1834,11 @@ msgstr "Any"
 #~ msgstr "Registres d'efectiu"
 
 #~ msgid ""
-#~ "Comprobación datos de modelo 347 año ${object.report_id.year} de ${user."
-#~ "company_id.name}"
+#~ "Comprobación datos de modelo 347 año ${object.report_id.year} de $"
+#~ "{user.company_id.name}"
 #~ msgstr ""
-#~ "Comprobació dades model 347 any ${object.report_id.year} de ${user."
-#~ "company_id.name}"
+#~ "Comprobació dades model 347 any ${object.report_id.year} de $"
+#~ "{user.company_id.name}"
 
 #~ msgid "Contact email"
 #~ msgstr "Email del contacte"

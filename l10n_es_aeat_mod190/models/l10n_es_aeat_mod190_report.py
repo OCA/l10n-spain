@@ -72,7 +72,7 @@ class L10nEsAeatMod190Report(models.Model):
                 )
             else:
                 tax_lines = item.tax_line_ids.filtered(
-                    lambda x: x.field_number in {11, 13, 15}
+                    lambda x: x.field_number in {11, 13, 15, 18}
                 )
                 for move_line in tax_lines.move_line_ids:
                     value += move_line.debit - move_line.credit
@@ -95,7 +95,7 @@ class L10nEsAeatMod190Report(models.Model):
                 )
             else:
                 tax_lines = item.tax_line_ids.filtered(
-                    lambda x: x.field_number in {12, 14, 16}
+                    lambda x: x.field_number in {12, 14, 16, 19}
                 )
                 for move_line in tax_lines.move_line_ids:
                     value += move_line.credit - move_line.debit
@@ -111,6 +111,7 @@ class L10nEsAeatMod190Report(models.Model):
 
     def button_confirm(self):
         self._check_report_lines()
+        self.partner_record_ids._check_b01()
         return super().button_confirm()
 
     def calculate(self):
@@ -119,7 +120,8 @@ class L10nEsAeatMod190Report(models.Model):
         manual_records.partner_record_ids.unlink()
         for report in self - manual_records:
             tax_lines = report.tax_line_ids.filtered(
-                lambda x, report=report: x.field_number in (11, 12, 13, 14, 15, 16, 17)
+                lambda x, report=report: x.field_number
+                in (11, 12, 13, 14, 15, 16, 17, 18, 19)
                 and x.res_id == report.id
             )
             tax_line_vals = {}
@@ -476,6 +478,40 @@ class L10nEsAeatMod190ReportLine(models.Model):
         string="3", compute="_compute_partner_id_ad_required", store=True
     )
     ad_required = fields.Integer(compute="_compute_ad_required", store=True)
+    rendimientos_obtenidos_fondos = fields.Boolean(
+        string="Rendimientos del trabajo obtenidos por la gestión de fondos vinculados "
+        "al emprendimiento, a la innovación y al desarrollo de la actividad económica",
+        help="Solo marcar si la cuantía total de la percepción dineraria o la cuantía "
+        "total de la valoración de la percepción en especie incluye, aunque sea de "
+        "forma parcial, rendimientos del trabajo derivados directa o indirectamente de "
+        "participaciones, acciones u otros derechos, incluidas comisiones de éxito, "
+        "que otorguen derechos económicos especiales a los que se haya aplicado lo "
+        "dispuesto en el apartado 3 de la Disposición adicional quincuagésima tercera "
+        "a las que se refiere la Ley 35/2006, de 28 de noviembre",
+    )
+    clave_b01_jubilacion = fields.Boolean(
+        string="Prestación de jubilación",
+        help="Prestación de jubilación percibida en el ejercicio",
+    )
+    clave_b01_viudedad = fields.Boolean(
+        string="Prestación de viudedad",
+        help="Prestación de viudedad percibida en el ejercicio",
+    )
+    clave_b01_incapacidad = fields.Boolean(
+        string="Prestación de incapacidad permanente total o parcial",
+        help="Prestación de incapacidad permanente total o parcial percibida en el "
+        "ejercicio",
+    )
+    clave_b01_pensiones_no_contributivas = fields.Boolean(
+        string="Prestación de pensiones no contributivas por invalidez o jubilación",
+        help="Prestación de pensiones no contributivas por invalidez o jubilación "
+        "percibida en el ejercicio",
+    )
+    clave_b01_resto = fields.Boolean(
+        string="Prestacion no incluida en el resto",
+        help="Prestación no incluida en el resto en el ejercicio",
+    )
+    visible_key_b01 = fields.Boolean(compute="_compute_visible_key_b01")
 
     @api.depends(
         "partner_vat",
@@ -585,6 +621,8 @@ class L10nEsAeatMod190ReportLine(models.Model):
                 "15": report._get_grouped_data(15, domain),
                 "16": report._get_grouped_data(16, domain),
                 "17": report._get_grouped_data(17, domain),
+                "18": report._get_grouped_data(18, domain),
+                "19": report._get_grouped_data(19, domain),
             }
         for item in self:
             keys = [
@@ -613,10 +651,17 @@ class L10nEsAeatMod190ReportLine(models.Model):
             ingresos_a_cuenta_efectuados = sum(
                 tax_data[item.report_id.id]["14"].get(key, 0) for key in keys
             )
+            percepciones_dinerarias_incap = (
+                incapacidad and percepciones_dinerarias
+            ) - sum(tax_data[item.report_id.id]["18"].get(key, 0) for key in keys)
+            retenciones_dinerarias_incap = (
+                incapacidad and retenciones_dinerarias
+            ) + sum(tax_data[item.report_id.id]["19"].get(key, 0) for key in keys)
+
             item.percepciones_dinerarias = not incapacidad and percepciones_dinerarias
-            item.percepciones_dinerarias_incap = incapacidad and percepciones_dinerarias
+            item.percepciones_dinerarias_incap = percepciones_dinerarias_incap
             item.retenciones_dinerarias = not incapacidad and retenciones_dinerarias
-            item.retenciones_dinerarias_incap = incapacidad and retenciones_dinerarias
+            item.retenciones_dinerarias_incap = retenciones_dinerarias_incap
             item.percepciones_en_especie = not incapacidad and percepciones_en_especie
             item.percepciones_en_especie_incap = incapacidad and percepciones_en_especie
             item.ingresos_a_cuenta_efectuados = (
@@ -635,6 +680,15 @@ class L10nEsAeatMod190ReportLine(models.Model):
                 tax_data[item.report_id.id]["17"].get(key, 0) for key in keys
             )
 
+    @api.depends("aeat_perception_key_id", "aeat_perception_subkey_id")
+    def _compute_visible_key_b01(self):
+        for record in self:
+            record.visible_key_b01 = record.aeat_perception_key_id == self.env.ref(
+                "l10n_es_aeat_mod190.aeat_m190_perception_key_02"
+            ) and record.aeat_perception_subkey_id == self.env.ref(
+                "l10n_es_aeat_mod190.aeat_m190_perception_subkey_02_01"
+            )
+
     @api.onchange("partner_id")
     def onchange_partner_id(self):
         if self.partner_id:
@@ -650,3 +704,27 @@ class L10nEsAeatMod190ReportLine(models.Model):
     def onchange_aeat_perception_key_id(self):
         if self.aeat_perception_key_id:
             self.aeat_perception_subkey_id = False
+
+    def _check_b01(self):
+        fields_clave_b01 = {
+            "clave_b01_jubilacion",
+            "clave_b01_viudedad",
+            "clave_b01_incapacidad",
+            "clave_b01_pensiones_no_contributivas",
+            "clave_b01_resto",
+        }
+        for record in self:
+            if (
+                record.aeat_perception_key_id
+                == self.env.ref("l10n_es_aeat_mod190.aeat_m190_perception_key_02")
+                and record.aeat_perception_subkey_id
+                == self.env.ref("l10n_es_aeat_mod190.aeat_m190_perception_subkey_02_01")
+                and not any([record[field] for field in fields_clave_b01])
+            ):
+                raise exceptions.ValidationError(
+                    self.env._(
+                        "The perceptor %s has key B.01, you must check any type of "
+                        "benefit for key B.01",
+                        record.partner_id.name,
+                    )
+                )

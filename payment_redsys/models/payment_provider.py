@@ -38,7 +38,7 @@ class PaymentProvider(models.Model):
         "Product Description", required_if_provider="redsys"
     )
     redsys_secret_key = fields.Char(
-        "Secret Key", required_if_provider="redsys", groups="base.group_system"
+        required_if_provider="redsys", groups="base.group_system"
     )
     redsys_terminal = fields.Char(
         "Terminal", default="1", required_if_provider="redsys"

@@ -53,6 +53,18 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_journal__n43_exclude_pattern
+msgid "Exclude pattern for N43 import"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,help:l10n_es_account_statement_import_n43.field_account_journal__n43_exclude_pattern
+msgid ""
+"Fill this field if you want to exclude some lines of the N43 according this "
+"regexp pattern."
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
 #. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
 msgid ""

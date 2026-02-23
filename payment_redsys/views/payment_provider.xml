@@ -11,7 +11,11 @@
                 <group invisible="code  != 'redsys'">
                     <field name="redsys_merchant_name" required="code == 'redsys'" />
                     <field name="redsys_merchant_code" required="code == 'redsys'" />
-                    <field name="redsys_secret_key" required="code == 'redsys'" />
+                    <field
+                        name="redsys_secret_key"
+                        string="Secret Key"
+                        required="code == 'redsys'"
+                    />
                     <field name="redsys_terminal" required="code == 'redsys'" />
                     <field name="redsys_currency" required="code == 'redsys'" />
                     <field name="redsys_transaction_type" required="code == 'redsys'" />

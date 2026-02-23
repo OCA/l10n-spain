@@ -170,8 +170,8 @@ class SiiMixin(models.AbstractModel):
 
     def _filter_sii_unlink_not_possible(self):
         """Filter records that we do not allow to be deleted, all those
-        that are not in not_sent sii status."""
-        return self.filtered(lambda rec: rec.aeat_state != "not_sent")
+        that are not in not_sent sii status or False."""
+        return self.filtered(lambda rec: rec.aeat_state not in ["not_sent", False])
 
     @api.ondelete(at_uninstall=False)
     def _unlink_except_sii(self):
@@ -252,6 +252,8 @@ class SiiMixin(models.AbstractModel):
         return header
 
     def _cancel_send_to_sii(self):
+        if not any(self.sudo().mapped("sii_send_date")):
+            return True
         try:
             self.sudo().write({"sii_send_date": False})
         except Exception:
@@ -368,6 +370,9 @@ class SiiMixin(models.AbstractModel):
             if (
                 (gen_type != 3 or country_code == "ES")
                 and not partner.vat
+                and not (
+                    partner.aeat_identification_type and partner.aeat_identification
+                )
                 and not is_simplified_invoice
             ):
                 raise UserError(self.env._("The partner has not a VAT configured."))
@@ -422,6 +427,7 @@ class SiiMixin(models.AbstractModel):
             return exempt_cause
 
     def _get_tax_info(self):
+        # TODO: To be renamed to _get_sii_tax_info
         raise NotImplementedError()
 
     def _get_sii_tax_req(self, tax):
@@ -628,11 +634,16 @@ class SiiMixin(models.AbstractModel):
         """
         self.ensure_one()
         gen_type = self._get_sii_gen_type()
+        partner = self._aeat_get_partner()
         (
             country_code,
             identifier_type,
             identifier,
-        ) = self._aeat_get_partner()._parse_aeat_vat_info()
+        ) = partner._parse_aeat_vat_info()
+        # Take into account some vats construction like Greece
+        vat_country_code = (
+            partner._map_aeat_country_iso_code(partner.country_id) or country_code
+        )
         # Limpiar alfanum
         if identifier:
             identifier = "".join(e for e in identifier if e.isalnum()).upper()
@@ -655,14 +666,16 @@ class SiiMixin(models.AbstractModel):
                     "IDOtro": {
                         "CodigoPais": country_code,
                         "IDType": identifier_type,
-                        "ID": country_code + identifier
-                        if self._aeat_get_partner()._map_aeat_country_code(country_code)
+                        "ID": vat_country_code + identifier
+                        if self._aeat_get_partner()._map_aeat_country_code(
+                            vat_country_code
+                        )
                         in self._aeat_get_partner()._get_aeat_europe_codes()
                         else identifier,
                     },
                 }
         elif gen_type == 2:
-            return {"IDOtro": {"IDType": "02", "ID": country_code + identifier}}
+            return {"IDOtro": {"IDType": "02", "ID": vat_country_code + identifier}}
         elif gen_type == 3 and identifier_type:
             # Si usamos identificador tipo 02 en exportaciones, el envío falla con:
             #   {'CodigoErrorRegistro': 1104,
@@ -842,6 +855,7 @@ class SiiMixin(models.AbstractModel):
                         document._get_account_registration_date()
                     )
                 doc_vals["sii_return"] = res
+                doc_vals["sii_send_date"] = False
                 send_error = False
                 if res_line["CodigoErrorRegistro"]:
                     send_error = "{} | {}".format(
