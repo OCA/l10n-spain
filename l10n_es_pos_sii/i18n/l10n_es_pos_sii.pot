@@ -54,18 +54,6 @@ msgid "Cancelled invoices at SII"
 msgstr ""
 
 #. module: l10n_es_pos_sii
-#. odoo-javascript
-#: code:addons/l10n_es_pos_sii/static/src/app/screens/ticket_screen/invoice_button.esm.js:0
-msgid "Cannot Invoice"
-msgstr ""
-
-#. module: l10n_es_pos_sii
-#. odoo-javascript
-#: code:addons/l10n_es_pos_sii/static/src/app/screens/ticket_screen/invoice_button.esm.js:0
-msgid "Cannot invoice order from closed session."
-msgstr ""
-
-#. module: l10n_es_pos_sii
 #: model:ir.model.fields,help:l10n_es_pos_sii.field_pos_order__sii_macrodata
 msgid ""
 "Check to confirm that the document has an absolute amount greater o equal to"
@@ -125,12 +113,6 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_pos_sii
-#. odoo-javascript
-#: code:addons/l10n_es_pos_sii/static/src/app/screens/ticket_screen/invoice_button.esm.js:0
-msgid "Invoice"
-msgstr ""
-
-#. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
 msgid "Last content sent"
 msgstr ""
@@ -168,12 +150,6 @@ msgstr ""
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
 msgid "Registration key"
-msgstr ""
-
-#. module: l10n_es_pos_sii
-#. odoo-javascript
-#: code:addons/l10n_es_pos_sii/static/src/app/screens/ticket_screen/invoice_button.esm.js:0
-msgid "Reprint Invoice"
 msgstr ""
 
 #. module: l10n_es_pos_sii
@@ -224,11 +200,6 @@ msgstr ""
 #. module: l10n_es_pos_sii
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_send_date
 msgid "SII Send Date"
-msgstr ""
-
-#. module: l10n_es_pos_sii
-#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_session_closed
-msgid "SII Session Closed"
 msgstr ""
 
 #. module: l10n_es_pos_sii
@@ -309,12 +280,6 @@ msgstr ""
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
 msgid "Send to SII"
-msgstr ""
-
-#. module: l10n_es_pos_sii
-#. odoo-javascript
-#: code:addons/l10n_es_pos_sii/static/src/app/screens/ticket_screen/invoice_button.esm.js:0
-msgid "Session is closed"
 msgstr ""
 
 #. module: l10n_es_pos_sii
