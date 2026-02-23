@@ -57,18 +57,6 @@ msgid "Cancelled invoices at SII"
 msgstr "Facturas anuladas en el SII"
 
 #. module: l10n_es_pos_sii
-#. odoo-javascript
-#: code:addons/l10n_es_pos_sii/static/src/app/screens/ticket_screen/invoice_button.esm.js:0
-msgid "Cannot Invoice"
-msgstr "No facturable"
-
-#. module: l10n_es_pos_sii
-#. odoo-javascript
-#: code:addons/l10n_es_pos_sii/static/src/app/screens/ticket_screen/invoice_button.esm.js:0
-msgid "Cannot invoice order from closed session."
-msgstr "No se puede facturar un pedido de una sesión cerrada."
-
-#. module: l10n_es_pos_sii
 #: model:ir.model.fields,help:l10n_es_pos_sii.field_pos_order__sii_macrodata
 msgid ""
 "Check to confirm that the document has an absolute amount greater o equal to "
@@ -135,12 +123,6 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_pos_sii
-#. odoo-javascript
-#: code:addons/l10n_es_pos_sii/static/src/app/screens/ticket_screen/invoice_button.esm.js:0
-msgid "Invoice"
-msgstr "Factura"
-
-#. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
 msgid "Last content sent"
 msgstr ""
@@ -179,12 +161,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
 msgid "Registration key"
 msgstr ""
-
-#. module: l10n_es_pos_sii
-#. odoo-javascript
-#: code:addons/l10n_es_pos_sii/static/src/app/screens/ticket_screen/invoice_button.esm.js:0
-msgid "Reprint Invoice"
-msgstr "Reimprimir factura"
 
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
@@ -234,11 +210,6 @@ msgstr "Retorno SII"
 #. module: l10n_es_pos_sii
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_send_date
 msgid "SII Send Date"
-msgstr ""
-
-#. module: l10n_es_pos_sii
-#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_session_closed
-msgid "SII Session Closed"
 msgstr ""
 
 #. module: l10n_es_pos_sii
@@ -322,12 +293,6 @@ msgid "Send to SII"
 msgstr "Enviar al SII"
 
 #. module: l10n_es_pos_sii
-#. odoo-javascript
-#: code:addons/l10n_es_pos_sii/static/src/app/screens/ticket_screen/invoice_button.esm.js:0
-msgid "Session is closed"
-msgstr "La sesión está cerrada"
-
-#. module: l10n_es_pos_sii
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_needs_cancel
 msgid "Sii Needs Cancel"
 msgstr ""
@@ -368,6 +333,21 @@ msgstr "Hay un cruce erróneo para tasas en RE. Chequéelas."
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_order_filter
 msgid "With modifications not sent to SII"
 msgstr "Modificaciones no enviadas al SII"
+
+#~ msgid "Cannot Invoice"
+#~ msgstr "No facturable"
+
+#~ msgid "Cannot invoice order from closed session."
+#~ msgstr "No se puede facturar un pedido de una sesión cerrada."
+
+#~ msgid "Invoice"
+#~ msgstr "Factura"
+
+#~ msgid "Reprint Invoice"
+#~ msgstr "Reimprimir factura"
+
+#~ msgid "Session is closed"
+#~ msgstr "La sesión está cerrada"
 
 #~ msgid "Connector Jobs"
 #~ msgstr "Trabajos del conector"
