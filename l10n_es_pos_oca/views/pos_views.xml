@@ -30,6 +30,9 @@
         <field name="inherit_id" ref="point_of_sale.view_pos_order_filter" />
         <field name="priority">20</field>
         <field name="arch" type="xml">
+            <field name="pos_reference" position="after">
+                <field name="l10n_es_unique_id" />
+            </field>
             <field name="date_order" position="after">
                 <separator />
                 <filter
