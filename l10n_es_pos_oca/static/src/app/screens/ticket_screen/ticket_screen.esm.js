@@ -17,10 +17,9 @@ patch(TicketScreen.prototype, {
      * @private
      */
     _getSearchFields() {
-        console.log("Patched _getSearchFields called");
         const fields = super._getSearchFields();
         fields.SIMPLIFIED_INVOICE = {
-            repr: (order) => order.name,
+            repr: (order) => order.get_l10n_es_unique_id() || "",
             displayName: _t("Simplified Invoice"),
             modelField: "l10n_es_unique_id",
         };
