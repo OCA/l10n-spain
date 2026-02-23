@@ -3,13 +3,13 @@
 # Copyright 2023 Aures Tic - Almudena de la Puente <almudena@aurestic.es>
 # Copyright 2023 Aures Tic - Jose Zambudio <jose@aurestic.es>
 # Copyright 2011,2024 Tecnativa - Pedro M. Baeza
+# Copyright 2026 Moval Agroingeniería - Jesús Martínez <jmartinez@moval.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import json
 import logging
 
 from odoo import api, exceptions, fields, models
 from odoo.exceptions import UserError, ValidationError
-from odoo.modules.registry import Registry
 from odoo.tools.float_utils import float_compare
 
 from odoo.addons.l10n_es_aeat.models.aeat_mixin import round_by_keys
@@ -864,22 +864,11 @@ class SiiMixin(models.AbstractModel):
                     )
                 doc_vals["aeat_send_error"] = send_error
                 document.write(doc_vals)
-            except Exception as fault:
-                new_cr = Registry(self.env.cr.dbname).cursor()
-                env = api.Environment(new_cr, self.env.uid, self.env.context)
-                document = env[document._name].browse(document.id)
-                doc_vals.update(
-                    {
-                        "aeat_send_failed": True,
-                        "aeat_send_error": repr(fault)[:60],
-                        "sii_return": repr(fault),
-                        "aeat_content_sent": json.dumps(inv_dict, indent=4),
-                        "sii_send_date": False,
-                    }
-                )
-                document.write(doc_vals)
-                new_cr.commit()
-                new_cr.close()
+            except Exception:
+                # Let the exception propagate so the caller's savepoint can
+                # roll back cleanly and persist error state on the original
+                # cursor (avoiding deadlocks with a separate DB connection).
+                raise
 
     def confirm_one_document(self):
         self.sudo()._send_document_to_sii()

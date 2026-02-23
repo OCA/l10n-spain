@@ -10,6 +10,7 @@
 # Copyright 2023 Aures Tic - Almudena de la Puente <almudena@aurestic.es>
 # Copyright 2023 Aures Tic - Jose Zambudio <jose@aurestic.es>
 # Copyright 2023 Moduon Team - Eduardo de Miguel
+# Copyright 2026 Moval Agroingeniería - Jesús Martínez <jmartinez@moval.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import json
@@ -17,7 +18,6 @@ import logging
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
-from odoo.modules.registry import Registry
 from odoo.osv.expression import AND, OR
 
 SII_VALID_INVOICE_STATES = ["posted"]
@@ -556,21 +556,10 @@ class AccountMove(models.Model):
                         str(res_line["DescripcionErrorRegistro"])[:60],
                     )
                 invoice.write(inv_vals)
-            except Exception as fault:
-                new_cr = Registry(self.env.cr.dbname).cursor()
-                env = api.Environment(new_cr, self.env.uid, self.env.context)
-                invoice = env["account.move"].browse(invoice.id)
-                inv_vals.update(
-                    {
-                        "aeat_send_failed": True,
-                        "aeat_send_error": repr(fault)[:60],
-                        "sii_send_date": False,
-                        "sii_return": repr(fault),
-                    }
-                )
-                invoice.write(inv_vals)
-                new_cr.commit()
-                new_cr.close()
+            except Exception:
+                # Let the exception propagate so the caller's savepoint can
+                # roll back cleanly and persist error state on the original
+                # cursor (avoiding deadlocks with a separate DB connection).
                 raise
 
     def cancel_sii(self):
@@ -802,46 +791,133 @@ class AccountMove(models.Model):
     @api.model
     def _send_to_sii_valid(self):
         remaining_documents = self.env["account.move"]
-        documents = all_documents = self.search(
-            [
-                ("state", "in", self._get_valid_document_states()),
-                (
-                    "aeat_state",
-                    "not in",
-                    ["sent", "cancelled"],
-                ),
-                ("sii_send_date", "<=", fields.Datetime.now()),
-            ]
-        )
-        if not documents:
-            return remaining_documents
+        # Use SELECT FOR UPDATE SKIP LOCKED to prevent concurrent Odoo workers
+        # or simultaneous cron triggers from picking up the same document and
+        # causing a PostgreSQL SerializationFailure on the result write-back.
+        # LIMIT to the batch size so we only lock the rows we will actually
+        # process, avoiding starvation of concurrent workers.
+        valid_states = self._get_valid_document_states()
         batch = self._get_sii_batch()
-        documents = all_documents[:batch]
-        remaining_documents = all_documents - documents
+        self.env.cr.execute(
+            """
+            SELECT id
+            FROM account_move
+            WHERE state = ANY(%s)
+              AND (aeat_state NOT IN ('sent', 'cancelled')
+                   OR aeat_state IS NULL)
+              AND sii_send_date IS NOT NULL
+              AND sii_send_date <= %s
+            ORDER BY sii_send_date
+            LIMIT %s
+            FOR UPDATE SKIP LOCKED
+            """,
+            (valid_states, fields.Datetime.now(), batch),
+        )
+        doc_ids = [row[0] for row in self.env.cr.fetchall()]
+        if not doc_ids:
+            return remaining_documents
+        documents = self.browse(doc_ids)
+        # If we got exactly 'batch' rows, there may be more pending — signal
+        # the caller to re-schedule the cron for the remaining documents.
+        if len(doc_ids) >= batch:
+            remaining_documents = documents[:1]  # non-empty sentinel
         for doc in documents:
-            doc.confirm_one_document()
+            # Use a savepoint so that an error on one document does not abort
+            # the whole batch. The document is retried on the next cron run.
+            try:
+                with self.env.cr.savepoint():
+                    doc.confirm_one_document()
+            except Exception as fault:
+                _logger.exception(
+                    "SII cron: unexpected error sending document %s (id=%s), "
+                    "will retry on next execution.",
+                    doc.name,
+                    doc.id,
+                )
+                # Persist the error state on the original cursor (the
+                # savepoint has already rolled back, but the FOR UPDATE row
+                # lock is still held, so this write is safe).
+                try:
+                    doc.sudo().write(
+                        {
+                            "aeat_send_failed": True,
+                            "aeat_send_error": repr(fault)[:60],
+                            "sii_return": repr(fault),
+                            "sii_send_date": False,
+                        }
+                    )
+                except Exception:
+                    _logger.exception(
+                        "SII cron: could not persist error state for "
+                        "document %s (id=%s).",
+                        doc.name,
+                        doc.id,
+                    )
         return remaining_documents
 
     @api.model
     def _send_to_sii_cancel(self):
         remaining_cancel_documents = self.env["account.move"]
-        cancel_documents = all_cancel_documents = self.search(
-            [
-                ("state", "in", ["cancel"]),
-                (
-                    "aeat_state",
-                    "in",
-                    ["sent", "sent_w_errors", "sent_modified"],
-                ),
-                ("sii_needs_cancel", "=", True),
-                ("sii_send_date", "<=", fields.Datetime.now()),
-            ]
+        # Use SELECT FOR UPDATE SKIP LOCKED to prevent concurrent Odoo workers
+        # or simultaneous cron triggers from picking up the same document and
+        # causing a PostgreSQL SerializationFailure on the result write-back.
+        # LIMIT to the batch size so we only lock the rows we will actually
+        # process, avoiding starvation of concurrent workers.
+        batch = self._get_sii_batch()
+        self.env.cr.execute(
+            """
+            SELECT id
+            FROM account_move
+            WHERE state = 'cancel'
+              AND aeat_state IN ('sent', 'sent_w_errors', 'sent_modified')
+              AND sii_needs_cancel = TRUE
+              AND sii_send_date IS NOT NULL
+              AND sii_send_date <= %s
+            ORDER BY sii_send_date
+            LIMIT %s
+            FOR UPDATE SKIP LOCKED
+            """,
+            (fields.Datetime.now(), batch),
         )
-        if cancel_documents:
-            batch = self._get_sii_batch()
-            cancel_documents = all_cancel_documents[:batch]
-            remaining_cancel_documents = all_cancel_documents - cancel_documents
-            cancel_documents.cancel_one_invoice()
+        doc_ids = [row[0] for row in self.env.cr.fetchall()]
+        if not doc_ids:
+            return remaining_cancel_documents
+        cancel_documents = self.browse(doc_ids)
+        # If we got exactly 'batch' rows, there may be more pending.
+        if len(doc_ids) >= batch:
+            remaining_cancel_documents = cancel_documents[:1]  # non-empty sentinel
+        for doc in cancel_documents:
+            # Use a savepoint so that an error on one document does not abort
+            # the whole batch. The document is retried on the next cron run.
+            try:
+                with self.env.cr.savepoint():
+                    doc.cancel_one_invoice()
+            except Exception as fault:
+                _logger.exception(
+                    "SII cron: unexpected error canceling document %s (id=%s), "
+                    "will retry on next execution.",
+                    doc.name,
+                    doc.id,
+                )
+                # Persist the error state on the original cursor (the
+                # savepoint has already rolled back, but the FOR UPDATE row
+                # lock is still held, so this write is safe).
+                try:
+                    doc.sudo().write(
+                        {
+                            "aeat_send_failed": True,
+                            "aeat_send_error": repr(fault)[:60],
+                            "sii_return": repr(fault),
+                            "sii_send_date": False,
+                        }
+                    )
+                except Exception:
+                    _logger.exception(
+                        "SII cron: could not persist error state for "
+                        "document %s (id=%s).",
+                        doc.name,
+                        doc.id,
+                    )
         return remaining_cancel_documents
 
     @api.model
