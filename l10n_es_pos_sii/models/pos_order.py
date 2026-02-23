@@ -1,9 +1,11 @@
 # Copyright 2023 Aures Tic - Almudena de la Puente <almudena@aurestic.es>
 # Copyright 2023 Aures Tic - Jose Zambudio <jose@aurestic.es>
+# Copyright 2026 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.osv.expression import AND, OR
 
 SII_VALID_POS_ORDER_STATES = ["paid", "done"]
 
@@ -11,18 +13,6 @@ SII_VALID_POS_ORDER_STATES = ["paid", "done"]
 class PosOrder(models.Model):
     _name = "pos.order"
     _inherit = ["pos.order", "sii.mixin"]
-
-    sii_session_closed = fields.Boolean(
-        compute="_compute_sii_session_closed",
-        string="SII Session Closed",
-    )
-
-    @api.depends("sii_enabled", "session_id.state")
-    def _compute_sii_session_closed(self):
-        for order in self:
-            order.sii_session_closed = (
-                order.sii_enabled and order.session_id.state == "closed"
-            )
 
     @api.depends("company_id", "state")
     def _compute_sii_description(self):
@@ -38,16 +28,30 @@ class PosOrder(models.Model):
         "company_id.sii_enabled",
         "fiscal_position_id",
         "fiscal_position_id.aeat_active",
+        "is_l10n_es_simplified_invoice",
     )
     def _compute_sii_enabled(self):
         """Compute if the order is enabled for the SII"""
         for order in self:
-            if order.company_id.sii_enabled:
+            if order.company_id.sii_enabled and order.is_l10n_es_simplified_invoice:
                 order.sii_enabled = (
                     order.fiscal_position_id and order.fiscal_position_id.aeat_active
                 ) or not order.fiscal_position_id
             else:
                 order.sii_enabled = False
+
+    @api.model
+    def _search_sii_enabled(self, operator, value):
+        # Extend the search method for taking into account PoS SII enabled conditions
+        domain = super()._search_sii_enabled(operator, value)
+        condition_1 = [("is_l10n_es_simplified_invoice", operator, value)]
+        condition_2 = [("fiscal_position_id.aeat_active", operator, value)]
+        search_ko = (operator == "=" and not value) or (operator == "!=" and value)
+        if not search_ko:
+            condition_2 = OR([condition_2, [("fiscal_position_id", "=", False)]])
+        conditions = [domain, condition_1, condition_2]
+        exp_condition = OR if search_ko else AND
+        return exp_condition(conditions)
 
     @api.depends("amount_total")
     def _compute_sii_refund_type(self):

@@ -3,3 +3,6 @@
   - Jose Zambudio \<<jose@aurestic.es>\>
 - [APSL-Nagarro](<https://apsl.tech>):
   - Bernat Obrador \<<bobrador@apsl.net>\>
+- [Tecnativa](https://www.tecnativa.com):
+  - Christian Ramos
+  - Pedro M. Baeza

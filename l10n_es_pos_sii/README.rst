@@ -77,6 +77,7 @@ Authors
 -------
 
 * Aures Tic
+* Tecnativa
 
 Contributors
 ------------
@@ -89,6 +90,11 @@ Contributors
 - `APSL-Nagarro <https://apsl.tech>`__:
 
   - Bernat Obrador <bobrador@apsl.net>
+
+- `Tecnativa <https://www.tecnativa.com>`__:
+
+  - Christian Ramos
+  - Pedro M. Baeza
 
 Maintainers
 -----------
