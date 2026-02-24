@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="publication_none" model="collective.agreement.official.publication">
+        <field name="name">Nada</field>
+    </record>
+    <record id="publication_boe" model="collective.agreement.official.publication">
+        <field name="name">BOE</field>
+    </record>
+    <record id="publication_dogc" model="collective.agreement.official.publication">
+        <field name="name">DOGC</field>
+    </record>
+</odoo>
