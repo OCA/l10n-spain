@@ -3,10 +3,12 @@
 
 import base64
 import contextlib
+import logging
 import os
 import subprocess
 import tempfile
 import zipfile
+from email.utils import parsedate_to_datetime
 from io import BytesIO
 
 import requests
@@ -17,6 +19,8 @@ from odoo.tools import ustr
 from odoo.tools.float_utils import float_is_zero, float_round
 
 from odoo.addons.l10n_es_aeat.models.spanish_states_mapping import SPANISH_STATES
+
+_logger = logging.getLogger(__name__)
 
 # The URL to download the file
 # this should be inherited in the module that uses this model
@@ -225,12 +229,6 @@ class L10nEsAtcReport(models.AbstractModel):
         """
         Get the ATC jar file from the database or download it from the server
         :param timeout: max timeout for the request"""
-        attachment = self.env["ir.attachment"].search(
-            [("name", "=", jar_filename)], limit=1
-        )
-        if attachment:
-            return attachment
-        # If the jar file is not present, download it from the server
         url = ATC_JAR_URL.get(self._aeat_number)
         if not url:
             raise UserError(
@@ -240,6 +238,37 @@ class L10nEsAtcReport(models.AbstractModel):
                     self._aeat_number,
                 )
             )
+        attachment = self.env["ir.attachment"].search(
+            [("name", "=", jar_filename)], limit=1
+        )
+        if attachment:
+            # Check if there's a newer version available using HEAD request
+            try:
+                response = requests.head(url, timeout=timeout)
+                response.raise_for_status()
+                last_modified_header = response.headers.get("last-modified")
+                if last_modified_header:
+                    server_date = parsedate_to_datetime(last_modified_header)
+                    if server_date and server_date.replace(
+                        tzinfo=None
+                    ) > attachment.create_date.replace(tzinfo=None):
+                        # Server version is newer,
+                        # delete old attachment to force re-download
+                        attachment.unlink()
+                        attachment = None
+
+            except Exception as error:
+                # If we can't check for updates,
+                # log error but continue with existing attachment
+                _logger.debug(
+                    "Could not check for JAR updates from %s: %s",
+                    url,
+                    ustr(error),
+                    exc_info=True,
+                )
+            if attachment:
+                return attachment
+        # If no attachment exists or need to download new version
         try:
             response = requests.get(url, timeout=timeout)
             response.raise_for_status()
