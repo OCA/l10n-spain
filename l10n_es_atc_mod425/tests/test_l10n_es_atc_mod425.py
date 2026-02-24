@@ -400,10 +400,10 @@ class TestL10nEsAtcMod425Base(TestL10nEsAeatModBase):
                 "statement_type": "N",
                 "support_type": "T",
                 "contact_phone": "911234455",
-                "year": 2024,
+                "year": 2025,
                 "period_type": "0A",
-                "date_start": "2024-01-01",
-                "date_end": "2024-03-31",
+                "date_start": "2025-01-01",
+                "date_end": "2025-03-31",
                 "journal_id": cls.journal_misc.id,
             }
         )
@@ -429,15 +429,15 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
         cls._super_send = requests.Session.send
         super().setUpClass()
         # Purchase invoices
-        cls._invoice_purchase_create("2024-01-01")
-        cls._invoice_purchase_create("2024-01-02")
-        purchase = cls._invoice_purchase_create("2024-01-03")
-        cls._invoice_refund(purchase, "2024-01-18")
+        cls._invoice_purchase_create("2025-01-01")
+        cls._invoice_purchase_create("2025-01-02")
+        purchase = cls._invoice_purchase_create("2025-01-03")
+        cls._invoice_refund(purchase, "2025-01-18")
         # Sale invoices
-        cls._invoice_sale_create("2024-01-11")
-        cls._invoice_sale_create("2024-01-12")
-        sale = cls._invoice_sale_create("2024-01-13")
-        cls._invoice_refund(sale, "2024-01-14")
+        cls._invoice_sale_create("2025-01-11")
+        cls._invoice_sale_create("2025-01-12")
+        sale = cls._invoice_sale_create("2025-01-13")
+        cls._invoice_refund(sale, "2025-01-14")
 
     @classmethod
     def _request_handler(cls, s, r, /, **kw):
@@ -493,13 +493,13 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
         self.model425.first_representative_name = "Primer Representante"
         self.model425.first_representative_vat = "B12345674"
         self.model425.first_representative_notary = "01"
-        self.model425.first_representative_date = "2024-01-01"
+        self.model425.first_representative_date = "2025-01-01"
         self.model425.casilla_118 = "1"  # Valor a compensar
         with Form(self.model425.company_id) as company_form:
             company_form.zip_id = self.palmas_zip
 
     def test_model_425(self):
-        _logger.debug("Calculate ATC 425 1T 2024")
+        _logger.debug("Calculate ATC 425 1T 2025")
         self.model425.button_calculate()
         self.assertEqual(self.model425.state, "calculated")
         # Fill manual fields
@@ -546,7 +546,7 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
         self.assertEqual(len(dec_node), 1)
         dec_node = dec_node[0]
         self.assertEqual(dec_node.attrib["MOD"], "425")
-        self.assertEqual(dec_node.attrib["ANY"], "2024")
+        self.assertEqual(dec_node.attrib["ANY"], "2025")
         self.assertEqual(dec_node.attrib["PER"], "0A")
         act_node = dec_node.xpath("//EST/ACT")
         self.assertEqual(len(act_node), 1)
@@ -559,7 +559,7 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
         rep_node = rep_node[0]
         self.assertEqual(rep_node.attrib["TIP"], "PJ")
         self.assertEqual(rep_node.attrib["NOT"], "01")
-        self.assertEqual(rep_node.attrib["FPO"], "01/01/2024")
+        self.assertEqual(rep_node.attrib["FPO"], "01/01/2025")
         person_node = rep_node.xpath("//OTP/PER")
         self.assertEqual(len(person_node), 1)
         person_node = person_node[0]
