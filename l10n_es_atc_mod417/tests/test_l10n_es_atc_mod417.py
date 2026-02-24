@@ -569,7 +569,7 @@ class TestL10nEsAeatmod417(TestL10nEsAtcmod417Base):
         self.model417.button_cancel()
         self.assertEqual(self.model417.state, "cancelled")
 
-    @freeze_time("2025-01-01")
+    @freeze_time("2026-01-01")
     def test_model_417_declaration_xml(self):
         """
         Test the generation of the .xml file
@@ -593,7 +593,7 @@ class TestL10nEsAeatmod417(TestL10nEsAtcmod417Base):
         self.assertEqual(len(dec_node), 1)
         dec_node = dec_node[0]
         self.assertEqual(dec_node.attrib["MOD"], "417")
-        self.assertEqual(dec_node.attrib["ANY"], "2025")
+        self.assertEqual(dec_node.attrib["ANY"], "2026")
         self.assertEqual(dec_node.attrib["PER"], "01")
         otp_node = dec_node.xpath("//IDE/OTP")
         self.assertEqual(len(otp_node), 1)
@@ -616,7 +616,7 @@ class TestL10nEsAeatmod417(TestL10nEsAtcmod417Base):
         self.assertEqual(res_node[0].attrib["IMP"], "78385")
         self.assertEqual(res_node[0].attrib["FPA"], "5")
 
-    @freeze_time("2025-01-01")
+    @freeze_time("2026-01-01")
     def test_model_417_declaration_pdf(self):
         """
         Test the generation of the .pdf file
@@ -643,7 +643,7 @@ class TestL10nEsAeatmod417(TestL10nEsAtcmod417Base):
                 test_l10n_es_atc_report=True
             ).action_generar_mod417()
 
-    @freeze_time("2025-01-01")
+    @freeze_time("2026-01-01")
     def test_model_417_declaration_dec(self):
         """
         Test the generation of the .dec file
