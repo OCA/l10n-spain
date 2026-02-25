@@ -65,16 +65,16 @@ msgid ""
 "  % endif\n"
 "  % if object.real_estate_transmissions_amount:\n"
 "  <p>\n"
-"  <strong>Importe de transmisión de inmueble:</strong> ${object."
-"real_estate_transmissions_amount}<br/>\n"
-"  <strong>Inmuebles primer trimestre:</strong> ${object."
-"first_quarter_real_estate_transmission}<br/>\n"
-"  <strong>Inmuebles segundo trimestre:</strong> ${object."
-"second_quarter_real_estate_transmission}<br/>\n"
-"  <strong>Inmuebles tercer trimestre:</strong> ${object."
-"third_quarter_real_estate_transmission}<br/>\n"
-"  <strong>Inmuebles cuarto trimestre:</strong> ${object."
-"fourth_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Importe de transmisión de inmueble:</strong> $"
+"{object.real_estate_transmissions_amount}<br/>\n"
+"  <strong>Inmuebles primer trimestre:</strong> $"
+"{object.first_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Inmuebles segundo trimestre:</strong> $"
+"{object.second_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Inmuebles tercer trimestre:</strong> $"
+"{object.third_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Inmuebles cuarto trimestre:</strong> $"
+"{object.fourth_quarter_real_estate_transmission}<br/>\n"
 "  </p>\n"
 "  % endif\n"
 "  <p>En el documento adjunto se incluyen las facturas en base a las cuales "
@@ -157,16 +157,16 @@ msgstr ""
 "  % endif\n"
 "  % if object.real_estate_transmissions_amount:\n"
 "  <p>\n"
-"  <strong>Import de transmisió d'immoble:</strong> ${object."
-"real_estate_transmissions_amount}<br/>\n"
-"  <strong>Immobles primer trimestre:</strong> ${object."
-"first_quarter_real_estate_transmission}<br/>\n"
-"  <strong>Immobles segon trimestre:</strong> ${object."
-"second_quarter_real_estate_transmission}<br/>\n"
-"  <strong>Immobles tercer trimestre:</strong> ${object."
-"third_quarter_real_estate_transmission}<br/>\n"
-"  <strong>Immobles quart trimestre:</strong> ${object."
-"fourth_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Import de transmisió d'immoble:</strong> $"
+"{object.real_estate_transmissions_amount}<br/>\n"
+"  <strong>Immobles primer trimestre:</strong> $"
+"{object.first_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Immobles segon trimestre:</strong> $"
+"{object.second_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Immobles tercer trimestre:</strong> $"
+"{object.third_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Immobles quart trimestre:</strong> $"
+"{object.fourth_quarter_real_estate_transmission}<br/>\n"
 "  </p>\n"
 "  % endif\n"
 "  <p>Al document adjunt s'inclouen les factures en base a las quals "
@@ -391,6 +391,18 @@ msgid "Ant"
 msgstr "Ant"
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__bdns_number
+msgid "BDNS Call Number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+msgid ""
+"BDNS Call Number is mandatory for operation key E and it must have 6 digits"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_attachment_count
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_attachment_count
 msgid "Attachment Count"
@@ -526,8 +538,8 @@ msgstr "Redactar email"
 #. module: l10n_es_aeat_mod347
 #: model:mail.template,subject:l10n_es_aeat_mod347.email_template_347
 msgid ""
-"Comprobación datos de modelo 347 año ${object.report_id.year} de ${object."
-"report_id.company_id.name}"
+"Comprobación datos de modelo 347 año ${object.report_id.year} de $"
+"{object.report_id.company_id.name}"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -1207,6 +1219,13 @@ msgid "Print"
 msgstr "Imprimir"
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__bdns_number
+msgid ""
+"Reference of Call of the subsidy or assistance in National Grands Database "
+"(BDNS)."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__total_real_estate_amount
 msgid "Real Estate Amount"
 msgstr "Registre d'immoble"
@@ -1641,6 +1660,11 @@ msgstr ""
 "nacional"
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__visible_bdns_number
+msgid "Visible Bdns Number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__website_message_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__website_message_ids
 msgid "Website Messages"
@@ -1680,11 +1704,11 @@ msgid "Year"
 msgstr "Any"
 
 #~ msgid ""
-#~ "Comprobación datos de modelo 347 año ${object.report_id.year} de ${user."
-#~ "company_id.name}"
+#~ "Comprobación datos de modelo 347 año ${object.report_id.year} de $"
+#~ "{user.company_id.name}"
 #~ msgstr ""
-#~ "Comprobació dades model 347 any ${object.report_id.year} de ${user."
-#~ "company_id.name}"
+#~ "Comprobació dades model 347 any ${object.report_id.year} de $"
+#~ "{user.company_id.name}"
 
 #~ msgid "Amount signed"
 #~ msgstr "Import amb signe"
