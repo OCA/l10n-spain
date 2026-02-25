@@ -247,6 +247,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
 
     def test_get_invoice_data(self):
         mapping = [
+            ("out_invoice", [(100, ["s_iva21b"]), (200, ["s_iva21s"])], {}, False),
             ("out_invoice", [(100, ["s_iva10b"]), (200, ["s_iva21s"])], {}, False),
             ("out_invoice", [(100, ["s_iva10b"]), (200, ["s_iva0_ns"])], {}, False),
             (
