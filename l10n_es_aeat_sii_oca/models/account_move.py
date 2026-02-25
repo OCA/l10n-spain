@@ -220,16 +220,6 @@ class AccountMove(models.Model):
         # Use the method at l10n_es_aeat that returns the needed info
         return self._get_aeat_tax_info()
 
-    @api.model
-    def _merge_tax_dict(self, vat_list, tax_dict, comp_key, merge_keys):
-        """Helper method for merging values in an existing tax dictionary."""
-        for existing_dict in vat_list:
-            if existing_dict.get(comp_key, "-99") == tax_dict.get(comp_key, "-99"):
-                for key in merge_keys:
-                    existing_dict[key] += tax_dict[key]
-                return True
-        return False
-
     def _get_sii_in_taxes(self):
         """Get the taxes for purchase invoices.
 
