@@ -15,6 +15,8 @@
 import json
 import logging
 
+from unidecode import unidecode
+
 from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.modules.registry import Registry
@@ -679,6 +681,7 @@ class AccountMove(models.Model):
                     names = invoice.mapped("invoice_line_ids.name") or invoice.mapped(
                         "invoice_line_ids.ref"
                     )
+                    names = [unidecode(x) for x in names]  # Avoid "ugly" chars
                     description += " - ".join(filter(None, names))
             invoice.sii_description = (description or "")[:500] or "/"
 
