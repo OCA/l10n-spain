@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===============================================================
 Sistema de comprobación y contraste de facturas enviadas al SII
 ===============================================================
@@ -17,7 +13,7 @@ Sistema de comprobación y contraste de facturas enviadas al SII
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
@@ -69,6 +65,7 @@ Authors
 -------
 
 * Studio73
+* Tecnativa
 
 Contributors
 ------------
@@ -85,6 +82,7 @@ Contributors
 
   - Víctor Martínez
   - David Bañón Gil
+  - Pedro M. Baeza
 
 Maintainers
 -----------
@@ -105,10 +103,13 @@ promote its widespread use.
 .. |maintainer-Reyes4711-S73| image:: https://github.com/Reyes4711-S73.png?size=40px
     :target: https://github.com/Reyes4711-S73
     :alt: Reyes4711-S73
+.. |maintainer-pedrobaeza| image:: https://github.com/pedrobaeza.png?size=40px
+    :target: https://github.com/pedrobaeza
+    :alt: pedrobaeza
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-Abranes| |maintainer-Reyes4711-S73| 
+|maintainer-Abranes| |maintainer-Reyes4711-S73| |maintainer-pedrobaeza| 
 
 This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_aeat_sii_match>`_ project on GitHub.
 

@@ -9,9 +9,15 @@ class SiiMatchDifferences(models.Model):
     _name = "l10n.es.aeat.sii.match.difference"
     _description = "SII match difference"
 
-    invoice_id = fields.Many2one(string="Related invoice", comodel_name="account.move")
+    invoice_id = fields.Many2oneReference(
+        string="Document", model_field="model", readonly=True, index=True
+    )
+    model = fields.Char(default="account.move")  # the default keeps the retro-compat.
     report_id = fields.Many2one(
-        string="Related SII match report", comodel_name="l10n.es.aeat.sii.match.result"
+        string="Related SII match report",
+        comodel_name="l10n.es.aeat.sii.match.result",
+        ondelete="cascade",
+        index=True,
     )
     sii_field = fields.Char(string="SII field name", copy=False)
     sii_return_field_value = fields.Char(string="SII return field value", copy=False)

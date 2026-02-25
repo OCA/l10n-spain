@@ -2,14 +2,13 @@
 # Copyright 2019 Studio73 - Pablo Fuentes
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import copy
 import json
+from calendar import monthrange
 from datetime import datetime
 
-from dateutil.relativedelta import relativedelta
 from zeep.helpers import serialize_object
 
-from odoo import _, api, exceptions, fields, models
+from odoo import Command, _, api, exceptions, fields, models
 from odoo.exceptions import UserError
 from odoo.modules.registry import Registry
 
@@ -22,10 +21,7 @@ class SiiMatchReport(models.Model):
     _name = "l10n.es.aeat.sii.match.report"
     _description = "AEAT SII match Report"
 
-    name = fields.Char(
-        string="Report identifier",
-        required=True,
-    )
+    name = fields.Char(string="Report identifier", required=True)
     state = fields.Selection(
         selection=[
             ("draft", "Draft"),
@@ -55,9 +51,7 @@ class SiiMatchReport(models.Model):
         required=True,
     )
     fiscalyear = fields.Integer(
-        string="Fiscal year",
-        required=True,
-        default=fields.Date.today().year,
+        string="Fiscal year", required=True, default=fields.Date.today().year
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
@@ -65,10 +59,8 @@ class SiiMatchReport(models.Model):
         string="Company",
         required=True,
     )
-    calculate_date = fields.Datetime(
-        string="Calculate date",
-    )
-    sii_match_result = fields.One2many(
+    calculate_date = fields.Datetime(string="Calculate date")
+    result_ids = fields.One2many(
         comodel_name="l10n.es.aeat.sii.match.result",
         inverse_name="report_id",
         string="SII Match Result",
@@ -81,49 +73,55 @@ class SiiMatchReport(models.Model):
     )
     number_records = fields.Integer(string="Total records", readonly=True)
     number_records_both = fields.Integer(
-        string="Records in Odoo and SII",
-        readonly=True,
+        string="Records in Odoo and SII", readonly=True
     )
-    number_records_odoo = fields.Integer(
-        string="Records only in Odoo",
-        readonly=True,
-    )
-    number_records_sii = fields.Integer(
-        string="Records only in SII",
-        readonly=True,
-    )
+    number_records_odoo = fields.Integer(string="Records only in Odoo", readonly=True)
+    number_records_sii = fields.Integer(string="Records only in SII", readonly=True)
     number_records_correct = fields.Integer(
-        string="Records correctly contrasted",
-        readonly=True,
+        string="Records correctly contrasted", readonly=True
     )
     number_records_no_exist = fields.Integer(
-        string="Records without contrast",
-        readonly=True,
+        string="Records without contrast", readonly=True
     )
     number_records_partially = fields.Integer(
-        string="Records partially correct",
-        readonly=True,
+        string="Records partially correct", readonly=True
     )
     number_records_no_test = fields.Integer(
-        string="Records no testables",
-        readonly=True,
+        string="Records no testables", readonly=True
     )
     number_records_in_process = fields.Integer(
-        string="Records in process of contrast",
-        readonly=True,
+        string="Records in process of contrast", readonly=True
     )
     number_records_not_contrasted = fields.Integer(
-        string="Records not contasted",
-        readonly=True,
+        string="Records not contasted", readonly=True
     )
     number_records_partially_contrasted = fields.Integer(
-        string="Records partially contrasted",
-        readonly=True,
+        string="Records partially contrasted", readonly=True
     )
     number_records_contrasted = fields.Integer(
-        string="Records contrasted",
-        readonly=True,
+        string="Records contrasted", readonly=True
     )
+
+    def _get_date_interval(self):
+        """Obtain the starting and ending dates for the selected period type."""
+        self.ensure_one()
+        year = self.fiscalyear
+        if self.period_type in ("1T", "2T", "3T", "4T"):
+            # Trimestral
+            starting_month = 1 + (int(self.period_type[0]) - 1) * 3
+            ending_month = starting_month + 2
+            date_start = fields.Date.to_date(f"{year}-{starting_month}-01")
+            date_end = fields.Date.to_date(
+                f"{year}-{ending_month}-{monthrange(year, ending_month)[1]}"
+            )
+        else:
+            # Mensual
+            month = int(self.period_type)
+            date_start = fields.Date.to_date(f"{year}-{self.period_type}-01")
+            date_end = fields.Date.to_date(
+                f"{year}-{month}-{monthrange(year, month)[1]}"
+            )
+        return date_start, date_end
 
     def _get_invoice_dict(self):
         self.ensure_one()
@@ -145,7 +143,7 @@ class SiiMatchReport(models.Model):
             invoice_state = invoice["EstadoFactura"]["EstadoRegistro"]
             odoo_invoice = self.env["account.move"].search([("sii_csv", "=", csv)])
             if odoo_invoice:
-                matched_invoices[odoo_invoice.id] = invoice
+                matched_invoices[odoo_invoice] = invoice
             elif invoice_state != "Anulada":
                 left_invoices.append(invoice)
         return matched_invoices, left_invoices
@@ -182,8 +180,8 @@ class SiiMatchReport(models.Model):
                             break
                     else:
                         odoo_invoice = False  # Don't match with any of them
-            if odoo_invoice and odoo_invoice.id not in list(matched_invoices.keys()):
-                matched_invoices[odoo_invoice.id] = invoice
+            if odoo_invoice and odoo_invoice not in list(matched_invoices.keys()):
+                matched_invoices[odoo_invoice] = invoice
             else:
                 left_results.append(invoice)
         return matched_invoices, left_results
@@ -197,95 +195,50 @@ class SiiMatchReport(models.Model):
         )
         res = []
         invoices_list = {}
-        for odoo_inv_id, invoice in list(matched_invoices.items()):
-            name = invoice["IDFactura"]["NumSerieFacturaEmisor"]
-            csv = invoice["DatosPresentacion"]["CSV"]
-            match_state = invoice["EstadoFactura"]["EstadoCuadre"]
-            odoo_invoice = self.env["account.move"].browse([odoo_inv_id])
-            inv_location = "both"
-            contrast_state = "correct"
-            diffs = odoo_invoice._get_diffs_values(invoice)
-            if diffs:
-                contrast_state = "partially"
-            invoices_list[odoo_invoice.id] = {
-                "sii_match_return": json.dumps(str(invoice), indent=4),
-                "sii_match_state": match_state,
-                "sii_contrast_state": contrast_state,
-                "sii_match_difference_ids": copy.deepcopy(diffs),
+        for odoo_document, invoice in list(matched_invoices.items()):
+            vals = odoo_document._get_match_report_values(invoice)
+            res.append(vals)
+            invoices_list[odoo_document] = {
+                "sii_match_return": vals.pop("sii_match_return"),
+                "sii_match_state": vals["sii_match_state"],
+                "sii_contrast_state": vals["sii_contrast_state"],
             }
-            res.append(
-                {
-                    "invoice": name,
-                    "invoice_id": odoo_invoice.id,
-                    "csv": csv,
-                    "invoice_location": inv_location,
-                    "sii_match_difference_ids": diffs,
-                    "sii_match_state": match_state,
-                    "sii_contrast_state": contrast_state,
-                }
-            )
         for invoice in left_invoices:
-            name = invoice["IDFactura"]["NumSerieFacturaEmisor"]
-            csv = invoice["DatosPresentacion"]["CSV"]
-            match_state = invoice["EstadoFactura"]["EstadoCuadre"]
-            contrast_state = "no_exist"
-            inv_location = "sii"
-            diffs = []
-            res.append(
-                {
-                    "invoice": name,
-                    "invoice_id": False,
-                    "csv": csv,
-                    "invoice_location": inv_location,
-                    "sii_match_difference_ids": diffs,
-                    "sii_match_state": match_state,
-                    "sii_contrast_state": contrast_state,
-                }
-            )
+            # We call the method with empty record for getting the expected result
+            vals = self.env["account.move"]._get_match_report_values(invoice)
+            vals.pop("sii_match_return")
+            res.append(vals)
         return res, invoices_list
 
     def _get_not_in_sii_invoices(self, invoices):
         self.ensure_one()
-        start_date = fields.Date.from_string(f"{self.fiscalyear}-{self.period_type}-01")
-        date_from = start_date
-        date_to = start_date + relativedelta(months=1)
+        date_start, date_end = self._get_date_interval()
         res = []
-        inv_type = (
+        inv_types = (
             ["out_invoice", "out_refund"]
             if self.invoice_type == "out"
             else ["in_invoice", "in_refund"]
         )
-        invoice_ids = self.env["account.move"].search(
+        prev_move_ids = [x.id for x in invoices.keys() if x._name == "account.move"]
+        invoices = self.env["account.move"].search(
             [
-                ("date", ">=", date_from),
-                ("date", "<", date_to),
+                ("id", "not in", prev_move_ids),
+                ("date", ">=", date_start),
+                ("date", "<", date_end),
                 ("company_id", "=", self.company_id.id),
-                ("id", "not in", list(invoices.keys())),
-                ("move_type", "in", inv_type),
+                ("move_type", "in", inv_types),
+                ("sii_enabled", "=", True),
+                ("state", "=", "posted"),
             ]
         )
-        for invoice in invoice_ids.filtered("sii_enabled"):
-            if "out_invoice" in inv_type:
-                number = invoice.name or invoice.thirdparty_number or _("Draft")
-            else:
-                number = invoice.ref
-            res.append(
-                {
-                    "invoice": number,
-                    "invoice_id": invoice.id,
-                    "sii_contrast_state": "no_exist",
-                    "invoice_location": "odoo",
-                }
-            )
+        for invoice in invoices:
+            res.append(invoice._get_match_report_values(False))
         return res
 
-    def _update_odoo_invoices(self, invoices):
+    def _update_odoo_invoices(self, documents):
         self.ensure_one()
-        for invoice_id, values in list(invoices.items()):
-            invoice = self.env["account.move"].browse([invoice_id])
-            invoice.sii_match_difference_ids.unlink()
-            invoice.write(values)
-        return []
+        for document, values in documents.items():
+            document.write(values)
 
     def _get_match_result_values(self, sii_response):
         self.ensure_one()
@@ -343,7 +296,7 @@ class SiiMatchReport(models.Model):
             ),
         }
         vals = [
-            (0, 0, i)
+            Command.create(i)
             for i in invoices
             if (i["sii_contrast_state"] != "correct" or i["sii_match_state"] == "4")
         ]
@@ -371,6 +324,7 @@ class SiiMatchReport(models.Model):
             header = sii_match_report._get_aeat_header()
             match_vals = {}
             summary = {}
+            diffs = []
             try:
                 inv_dict = sii_match_report._get_invoice_dict()
                 if sii_match_report.invoice_type == "out":
@@ -380,10 +334,9 @@ class SiiMatchReport(models.Model):
                     res = serv.ConsultaLRFacturasRecibidas(header, inv_dict)
                     res_line = res["RegistroRespuestaConsultaLRFacturasRecibidas"]
                 if res_line:
-                    (
-                        match_vals["sii_match_result"],
-                        summary,
-                    ) = sii_match_report._get_match_result_values(res_line)
+                    (diffs, summary) = sii_match_report._get_match_result_values(
+                        res_line
+                    )
                 match_vals.update(
                     {
                         "number_records": summary.get("total", 0),
@@ -404,10 +357,7 @@ class SiiMatchReport(models.Model):
                         "number_records_contrasted": summary.get("contrasted", 0),
                     }
                 )
-                sii_match_report.sii_match_result.mapped(
-                    "sii_match_difference_ids"
-                ).unlink()
-                sii_match_report.sii_match_result.unlink()
+                match_vals["result_ids"] = [Command.clear()] + diffs
                 match_vals["state"] = "calculated"
                 match_vals["calculate_date"] = fields.Datetime.now()
                 sii_match_report.write(match_vals)
@@ -443,19 +393,15 @@ class SiiMatchReport(models.Model):
 
     def button_calculate(self):
         self._get_invoices_from_sii()
-        return []
 
     def button_cancel(self):
         self.write({"state": "cancelled"})
-        return []
 
     def button_recover(self):
         self.write({"state": "draft"})
-        return []
 
     def button_confirm(self):
         self.write({"state": "done"})
-        return []
 
     def open_result(self):
         self.ensure_one()
@@ -468,7 +414,7 @@ class SiiMatchReport(models.Model):
             "res_model": "l10n.es.aeat.sii.match.result",
             "views": [(tree_view and tree_view.id or False, "list"), (False, "form")],
             "type": "ir.actions.act_window",
-            "domain": [("id", "in", self.sii_match_result.ids)],
+            "domain": [("id", "in", self.result_ids.ids)],
             "context": {},
         }
 
@@ -490,7 +436,11 @@ class SiiMatchResult(models.Model):
         ondelete="cascade",
     )
     invoice = fields.Char()
-    invoice_id = fields.Many2one(string="Odoo invoice", comodel_name="account.move")
+    invoice_id = fields.Many2oneReference(
+        string="Document", model_field="model", readonly=True, index=True, required=True
+    )
+    # the default keeps the retro-compatibility
+    model = fields.Char(default="account.move", required=True)
     csv = fields.Char(string="CSV")
     sii_match_state = fields.Selection(
         string="Match state",

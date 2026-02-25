@@ -7,7 +7,7 @@
     "version": "18.0.1.0.1",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
-    "author": "Studio73, Odoo Community Association (OCA)",
+    "author": "Studio73,Tecnativa,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "external_dependencies": {"python": ["deepdiff<8"]},
     "depends": ["l10n_es_aeat_sii_oca"],
@@ -17,5 +17,5 @@
         "views/aeat_sii_match_report.xml",
     ],
     "installable": True,
-    "maintainers": ["Abranes", "Reyes4711-S73"],
+    "maintainers": ["Abranes", "Reyes4711-S73", "pedrobaeza"],
 }
