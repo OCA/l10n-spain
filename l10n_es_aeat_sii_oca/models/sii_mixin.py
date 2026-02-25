@@ -35,7 +35,7 @@ class SiiMixin(models.AbstractModel):
         comodel_name="res.company",
         string="Company",
     )
-    sii_description = fields.Text(
+    sii_description = fields.Char(
         string="SII computed description",
         compute="_compute_sii_description",
         default="/",
