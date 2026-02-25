@@ -423,7 +423,7 @@ class SiiMatchReport(models.Model):
             "IDVersionSii": SII_VERSION,
             "Titular": {
                 "NombreRazon": self.company_id.name[0:120],
-                "NIF": self.company_id.vat[2:],
+                "NIF": self.company_id.partner_id._parse_aeat_vat_info()[2],
             },
         }
         return header
