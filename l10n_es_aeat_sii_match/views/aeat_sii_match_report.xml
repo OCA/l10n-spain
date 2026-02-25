@@ -117,7 +117,7 @@
                             <page
                                 string="Result"
                                 name="result"
-                                invisible="sii_match_result == [] or state not in ['calculated', 'done']"
+                                invisible="not result_ids or state not in ['calculated', 'done']"
                             >
                                 <group col="1" colspan="2">
                                     <button
@@ -126,10 +126,11 @@
                                         type="object"
                                         icon="fa-check"
                                     />
-                                    <field name="sii_match_result" nolabel="1">
+                                    <field name="result_ids" nolabel="1">
                                         <list>
                                             <field name="invoice" />
                                             <field name="invoice_id" />
+                                            <field name="model" column_invisible="1" />
                                             <field name="sii_match_state" />
                                             <field name="sii_contrast_state" />
                                             <field name="invoice_location" />

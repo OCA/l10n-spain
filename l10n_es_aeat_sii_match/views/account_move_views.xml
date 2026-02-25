@@ -27,7 +27,7 @@
             </field>
             <page name="page_sii_result_general" position="inside">
                 <group
-                    invisible="sii_match_difference_ids == []"
+                    invisible="not sii_match_difference_ids"
                     groups="l10n_es_aeat.group_account_aeat"
                 >
                     <field name="sii_match_difference_ids">
