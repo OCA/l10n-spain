@@ -16,6 +16,8 @@
 import json
 import logging
 
+from unidecode import unidecode
+
 from odoo import _, api, exceptions, fields, models
 from odoo.modules.registry import Registry
 from odoo.osv.expression import AND, OR
@@ -682,6 +684,7 @@ class AccountMove(models.Model):
                     names = invoice.mapped("invoice_line_ids.name") or invoice.mapped(
                         "invoice_line_ids.ref"
                     )
+                    names = [unidecode(x) for x in names if x]  # Avoid "ugly" chars
                     description += " - ".join(filter(None, names))
             invoice.sii_description = (description or "")[:500] or "/"
 

@@ -5,7 +5,8 @@
 # Copyright 2011,2024 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import json
-import logging
+
+from unidecode import unidecode
 
 from odoo import _, api, exceptions, fields, models
 from odoo.exceptions import UserError, ValidationError
@@ -13,8 +14,6 @@ from odoo.modules.registry import Registry
 from odoo.tools.float_utils import float_compare
 
 from odoo.addons.l10n_es_aeat.models.aeat_mixin import round_by_keys
-
-_logger = logging.getLogger(__name__)
 
 SII_STATES = [
     ("sent_modified", "Registered in SII but last modifications not sent"),
@@ -791,6 +790,10 @@ class SiiMixin(models.AbstractModel):
         for document in self.filtered(
             lambda i: i.state in self._get_valid_document_states()
         ):
+            # Filter the SII description for avoiding manual invalid inputs
+            text = unidecode(document.sii_description)
+            if text != document.sii_description:
+                document.sii_description = text
             if document.aeat_state == "not_sent":
                 tipo_comunicacion = "A0"
             else:
