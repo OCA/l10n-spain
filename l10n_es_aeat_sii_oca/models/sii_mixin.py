@@ -474,6 +474,16 @@ class SiiMixin(models.AbstractModel):
             or "ImporteTAIReglasLocalizacion"
         )
 
+    @api.model
+    def _merge_tax_dict(self, vat_list, tax_dict, comp_key, merge_keys):
+        """Helper method for merging values in an existing tax dictionary."""
+        for existing_dict in vat_list:
+            if existing_dict.get(comp_key, "-99") == tax_dict.get(comp_key, "-99"):
+                for key in merge_keys:
+                    existing_dict[key] += tax_dict[key]
+                return True
+        return False
+
     def _is_sii_type_breakdown_required(self):
         """Calculates if the block 'DesgloseTipoOperacion' is required for
         the invoice communication."""
@@ -565,9 +575,15 @@ class SiiMixin(models.AbstractModel):
                         is_s3 = not_ex_type == "S2"
                     if is_s3:
                         sub_dict["NoExenta"]["TipoNoExenta"] = "S3"
-                    sub_dict["NoExenta"]["DesgloseIVA"]["DetalleIVA"].append(
-                        self._get_sii_tax_dict(tax_line, tax_lines),
-                    )
+                    sub = sub_dict["NoExenta"]["DesgloseIVA"]["DetalleIVA"]
+                    tax_dict = self._get_sii_tax_dict(tax_line, tax_lines)
+                    if not self._merge_tax_dict(
+                        sub,
+                        tax_dict,
+                        "TipoImpositivo",
+                        ["BaseImponible", "CuotaRepercutida"],
+                    ):
+                        sub.append(tax_dict)
             # No sujetas
             if tax in taxes_sfens:
                 # ImporteTAIReglasLocalizacion or ImportePorArticulos7_14_Otros
@@ -599,7 +615,14 @@ class SiiMixin(models.AbstractModel):
                         {"TipoNoExenta": "S1", "DesgloseIVA": {"DetalleIVA": []}},
                     )
                     sub = not_exempt["DesgloseIVA"]["DetalleIVA"]
-                    sub.append(self._get_sii_tax_dict(tax_line, tax_lines))
+                    tax_dict = self._get_sii_tax_dict(tax_line, tax_lines)
+                    if not self._merge_tax_dict(
+                        sub,
+                        tax_dict,
+                        "TipoImpositivo",
+                        ["BaseImponible", "CuotaRepercutida"],
+                    ):
+                        sub.append(tax_dict)
                 if tax in taxes_sfesns:
                     default_no_taxable_cause = self._get_no_taxable_cause()
                     nsub_dict = service_breakdown.setdefault(
