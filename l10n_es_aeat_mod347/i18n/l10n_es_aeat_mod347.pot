@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-26 08:51+0000\n"
+"PO-Revision-Date: 2026-02-26 08:51+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -91,8 +93,8 @@ msgid "\n"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:124
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:131
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:125
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:132
 #, python-format
 msgid "- %s (%s)"
 msgstr ""
@@ -277,6 +279,17 @@ msgid "B - Entregas de bienes y servicios superiores al límite (1)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__bdns_number
+msgid "BDNS Call Number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:494
+#, python-format
+msgid "BDNS Call Number is mandatory for operation key E and it must have 6 digits"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__partner_bank_id
 msgid "Bank account"
 msgstr ""
@@ -399,7 +412,7 @@ msgid "Complementary"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:556
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:583
 #, python-format
 msgid "Compose Email"
 msgstr ""
@@ -538,6 +551,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
 msgid "F - Ventas agencia viaje"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__failed_message_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__failed_message_ids
+msgid "Failed Messages"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -758,9 +777,21 @@ msgid "Main Attachment"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_content
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_content
+msgid "Message Content"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_has_error
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_has_error
 msgid "Message Delivery error"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_content
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_content
+msgid "Message content, to be used only in searches"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -835,7 +866,7 @@ msgid "Next Activity Type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:183
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:184
 #, python-format
 msgid "No Tax Mapping was found"
 msgstr ""
@@ -982,14 +1013,14 @@ msgid "Partner record"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:137
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:138
 #, python-format
 msgid "Partner record errors:\n"
 ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:155
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:156
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
 #, python-format
 msgid "Partner records"
@@ -1027,7 +1058,7 @@ msgid "Planned"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:134
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:135
 #, python-format
 msgid "Please review partner and real estate records, some of them are in red color:\n"
 "\n"
@@ -1122,7 +1153,7 @@ msgid "Real estate info"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:141
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:142
 #, python-format
 msgid "Real estate record errors:\n"
 ""
@@ -1167,6 +1198,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.partner_record_search_view
 msgid "Records in exception"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__bdns_number
+msgid "Reference of Call of the subsidy or assistance in National Grands Database (BDNS)."
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -1425,6 +1461,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__community_vat
 msgid "VAT number for professionals established in other state member without national VAT"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__visible_bdns_number
+msgid "Visible Bdns Number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347

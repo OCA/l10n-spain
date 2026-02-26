@@ -15,6 +15,7 @@ import datetime
 from calendar import monthrange
 import odoo.addons.decimal_precision as dp
 
+
 KEY_TAX_MAPPING = {
     'A': 'l10n_es_aeat_mod347.aeat_mod347_map_a',
     'B': 'l10n_es_aeat_mod347.aeat_mod347_map_b',
@@ -471,16 +472,42 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         store=True,
         help='Checked if this record is OK',
     )
+    bdns_number = fields.Char(
+        string="BDNS Call Number",
+        help="Reference of Call of the subsidy or assistance in National Grands "
+             "Database (BDNS).",
+    )
+    visible_bdns_number = fields.Boolean(
+        compute="_compute_visible_bdns_number")
 
     @api.depends('partner_country_code', 'partner_state_code', 'partner_vat',
-                 'community_vat')
+                 'community_vat', "operation_key", "bdns_number")
     def _compute_check_ok(self):
         for record in self:
+            if (record.operation_key == "E" and not record.bdns_number) or (
+                record.operation_key == "E"
+                and record.bdns_number
+                and len(record.bdns_number) != 6
+            ):
+                # BDSN can have a maximum of 6 digits
+                raise exceptions.ValidationError(
+                    _(
+                        "BDNS Call Number is mandatory for operation key E and it must"
+                        " have 6 digits"
+                    )
+                )
             record.check_ok = (
                 record.partner_country_code and
                 record.partner_state_code and
                 record.partner_state_code.isdigit() and
                 (record.partner_vat or record.partner_country_code != 'ES')
+            )
+
+    @api.depends("operation_key", "report_id.year")
+    def _compute_visible_bdns_number(self):
+        for record in self:
+            record.visible_bdns_number = (
+                record.operation_key == "E" and record.report_id.year >= 2025
             )
 
     @api.onchange('partner_id')

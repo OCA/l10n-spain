@@ -6,15 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-08 12:15+0000\n"
-"PO-Revision-Date: 2019-02-08 12:15+0000\n"
+"POT-Creation-Date: 2026-02-26 08:51+0000\n"
+"PO-Revision-Date: 2026-02-26 09:55+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: l10n_es_aeat_mod347
 #: model:mail.template,body_html:l10n_es_aeat_mod347.email_template_347
@@ -62,16 +63,16 @@ msgid ""
 "  % endif\n"
 "  % if object.real_estate_transmissions_amount:\n"
 "  <p>\n"
-"  <strong>Importe de transmisión de inmueble:</strong> ${object."
-"real_estate_transmissions_amount}<br/>\n"
-"  <strong>Inmuebles primer trimestre:</strong> ${object."
-"first_quarter_real_estate_transmission}<br/>\n"
-"  <strong>Inmuebles segundo trimestre:</strong> ${object."
-"second_quarter_real_estate_transmission}<br/>\n"
-"  <strong>Inmuebles tercer trimestre:</strong> ${object."
-"third_quarter_real_estate_transmission}<br/>\n"
-"  <strong>Inmuebles cuarto trimestre:</strong> ${object."
-"fourth_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Importe de transmisión de inmueble:</strong> $"
+"{object.real_estate_transmissions_amount}<br/>\n"
+"  <strong>Inmuebles primer trimestre:</strong> $"
+"{object.first_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Inmuebles segundo trimestre:</strong> $"
+"{object.second_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Inmuebles tercer trimestre:</strong> $"
+"{object.third_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Inmuebles cuarto trimestre:</strong> $"
+"{object.fourth_quarter_real_estate_transmission}<br/>\n"
 "  </p>\n"
 "  % endif\n"
 "  <p>En el documento adjunto se incluyen las facturas en base a las cuales "
@@ -113,8 +114,8 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:124
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:131
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:125
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:132
 #, python-format
 msgid "- %s (%s)"
 msgstr "- %s (%s)"
@@ -305,6 +306,18 @@ msgid "B - Entregas de bienes y servicios superiores al límite (1)"
 msgstr "B - Entregas de bienes y servicios superiores al límite (1)"
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__bdns_number
+msgid "BDNS Call Number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:494
+#, python-format
+msgid ""
+"BDNS Call Number is mandatory for operation key E and it must have 6 digits"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__partner_bank_id
 msgid "Bank account"
 msgstr ""
@@ -432,7 +445,7 @@ msgid "Complementary"
 msgstr "Complemento"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:556
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:583
 #, python-format
 msgid "Compose Email"
 msgstr "Compose Email"
@@ -440,11 +453,11 @@ msgstr "Compose Email"
 #. module: l10n_es_aeat_mod347
 #: model:mail.template,subject:l10n_es_aeat_mod347.email_template_347
 msgid ""
-"Comprobación datos de modelo 347 año ${object.report_id.year} de ${user."
-"company_id.name}"
+"Comprobación datos de modelo 347 año ${object.report_id.year} de $"
+"{user.company_id.name}"
 msgstr ""
-"Comprobación datos de modelo 347 año ${object.report_id.year} de ${user."
-"company_id.name}"
+"Comprobación datos de modelo 347 año ${object.report_id.year} de $"
+"{user.company_id.name}"
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
@@ -585,6 +598,12 @@ msgstr ""
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
 msgid "F - Ventas agencia viaje"
 msgstr "F - Ventas agencia viaje"
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__failed_message_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__failed_message_ids
+msgid "Failed Messages"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__first_quarter
@@ -812,9 +831,21 @@ msgid "Main Attachment"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_content
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_content
+msgid "Message Content"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_has_error
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_has_error
 msgid "Message Delivery error"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_content
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_content
+msgid "Message content, to be used only in searches"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -890,7 +921,7 @@ msgid "Next Activity Type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:183
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:184
 #, python-format
 msgid "No Tax Mapping was found"
 msgstr "No se ha encontrado mapeado de impuestos"
@@ -1056,13 +1087,13 @@ msgid "Partner record"
 msgstr "Registro de empresa"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:137
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:138
 #, python-format
 msgid "Partner record errors:\n"
 msgstr "Errores de registros de empresas:\n"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:155
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:156
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
 #, python-format
 msgid "Partner records"
@@ -1101,7 +1132,7 @@ msgid "Planned"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:134
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:135
 #, python-format
 msgid ""
 "Please review partner and real estate records, some of them are in red "
@@ -1200,7 +1231,7 @@ msgid "Real estate info"
 msgstr "Información de inmuebles"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:141
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:142
 #, python-format
 msgid "Real estate record errors:\n"
 msgstr "Errores de registros de inmuebles:\n"
@@ -1245,6 +1276,13 @@ msgstr "Registros"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.partner_record_search_view
 msgid "Records in exception"
 msgstr "Registros con excepción"
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__bdns_number
+msgid ""
+"Reference of Call of the subsidy or assistance in National Grands Database "
+"(BDNS)."
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__related_goods_operation
@@ -1564,6 +1602,11 @@ msgstr ""
 "NIE de profesionales establecidos en otros países miembros sin NIF nacional."
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__visible_bdns_number
+msgid "Visible Bdns Number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__website_message_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__website_message_ids
 msgid "Website Messages"
@@ -1644,16 +1687,16 @@ msgstr ""
 #~ "  % endif\n"
 #~ "  % if object.real_estate_transmissions_amount:\n"
 #~ "  <p>\n"
-#~ "  <strong>Importe de transmisión de inmueble:</strong> ${object."
-#~ "real_estate_transmissions_amount}<br/>\n"
-#~ "  <strong>Inmuebles primer trimestre:</strong> ${object."
-#~ "first_quarter_real_estate_transmission_amount}<br/>\n"
-#~ "  <strong>Inmuebles segundo trimestre:</strong> ${object."
-#~ "second_quarter_real_estate_transmission_amount}<br/>\n"
-#~ "  <strong>Inmuebles tercer trimestre:</strong> ${object."
-#~ "third_quarter_real_estate_transmission_amount}<br/>\n"
-#~ "  <strong>Inmuebles cuarto trimestre:</strong> ${object."
-#~ "fourth_quarter_real_estate_transmission_amount}<br/>\n"
+#~ "  <strong>Importe de transmisión de inmueble:</strong> $"
+#~ "{object.real_estate_transmissions_amount}<br/>\n"
+#~ "  <strong>Inmuebles primer trimestre:</strong> $"
+#~ "{object.first_quarter_real_estate_transmission_amount}<br/>\n"
+#~ "  <strong>Inmuebles segundo trimestre:</strong> $"
+#~ "{object.second_quarter_real_estate_transmission_amount}<br/>\n"
+#~ "  <strong>Inmuebles tercer trimestre:</strong> $"
+#~ "{object.third_quarter_real_estate_transmission_amount}<br/>\n"
+#~ "  <strong>Inmuebles cuarto trimestre:</strong> $"
+#~ "{object.fourth_quarter_real_estate_transmission_amount}<br/>\n"
 #~ "  </p>\n"
 #~ "  % endif\n"
 #~ "  <p>En el documento adjunto se incluyen las facturas en base a las "
@@ -1738,16 +1781,16 @@ msgstr ""
 #~ "  % endif\n"
 #~ "  % if object.real_estate_transmissions_amount:\n"
 #~ "  <p>\n"
-#~ "  <strong>Importe de transmisión de inmueble:</strong> ${object."
-#~ "real_estate_transmissions_amount}<br/>\n"
-#~ "  <strong>Inmuebles primer trimestre:</strong> ${object."
-#~ "first_quarter_real_estate_transmission_amount}<br/>\n"
-#~ "  <strong>Inmuebles segundo trimestre:</strong> ${object."
-#~ "second_quarter_real_estate_transmission_amount}<br/>\n"
-#~ "  <strong>Inmuebles tercer trimestre:</strong> ${object."
-#~ "third_quarter_real_estate_transmission_amount}<br/>\n"
-#~ "  <strong>Inmuebles cuarto trimestre:</strong> ${object."
-#~ "fourth_quarter_real_estate_transmission_amount}<br/>\n"
+#~ "  <strong>Importe de transmisión de inmueble:</strong> $"
+#~ "{object.real_estate_transmissions_amount}<br/>\n"
+#~ "  <strong>Inmuebles primer trimestre:</strong> $"
+#~ "{object.first_quarter_real_estate_transmission_amount}<br/>\n"
+#~ "  <strong>Inmuebles segundo trimestre:</strong> $"
+#~ "{object.second_quarter_real_estate_transmission_amount}<br/>\n"
+#~ "  <strong>Inmuebles tercer trimestre:</strong> $"
+#~ "{object.third_quarter_real_estate_transmission_amount}<br/>\n"
+#~ "  <strong>Inmuebles cuarto trimestre:</strong> $"
+#~ "{object.fourth_quarter_real_estate_transmission_amount}<br/>\n"
 #~ "  </p>\n"
 #~ "  % endif\n"
 #~ "  <p>En el documento adjunto se incluyen las facturas en base a las "
