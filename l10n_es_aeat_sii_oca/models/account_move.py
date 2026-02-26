@@ -681,7 +681,7 @@ class AccountMove(models.Model):
                     names = invoice.mapped("invoice_line_ids.name") or invoice.mapped(
                         "invoice_line_ids.ref"
                     )
-                    names = [unidecode(x) for x in names]  # Avoid "ugly" chars
+                    names = [unidecode(x) for x in names if x]  # Avoid "ugly" chars
                     description += " - ".join(filter(None, names))
             invoice.sii_description = (description or "")[:500] or "/"
 
