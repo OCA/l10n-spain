@@ -452,9 +452,13 @@ class AccountStatementImport(models.TransientModel):
             for line in group["lines"]:
                 conceptos = []
                 for concept_line in line["conceptos"]:
-                    conceptos.extend(
-                        x.strip() for x in line["conceptos"][concept_line] if x.strip()
-                    )
+                    # Concatenate both halves of the same concept record
+                    # without adding a space — they are continuous text
+                    # split at the fixed-width boundary (position 39).
+                    parts = line["conceptos"][concept_line]
+                    joined = (parts[0] + parts[1]).strip()
+                    if joined:
+                        conceptos.append(joined)
                 vals_line = {
                     "payment_ref": " ".join(conceptos)
                     or self._get_n43_ref(line)
