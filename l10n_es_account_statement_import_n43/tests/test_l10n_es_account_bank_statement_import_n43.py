@@ -167,6 +167,45 @@ class L10nEsAccountStatementImportN43(common.TransactionCase):
         result = wizard._get_n43_partner_from_sabadell(conceptos)
         self.assertEqual(result, partner)
 
+    def test_sabadell_beneficiario_transferencia_prefix(self):
+        """Test 'BENEFICIARIO DE LA TRANSFERENCIA' prefix (outgoing transfer)."""
+        partner = self.env["res.partner"].create(
+            {"name": "ANA GARCIA LOPEZ", "company_id": self.env.company.id}
+        )
+        wizard = self.env["account.statement.import"]
+        conceptos = {
+            "01": (
+                "BENEFICIARIO DE LA TRANSFERENCIA :",
+                "      ANA GARCIA LOPEZ",
+            ),
+        }
+        result = wizard._get_n43_partner_from_sabadell(conceptos)
+        self.assertEqual(result, partner)
+
+    def test_sabadell_beneficiario_prefix(self):
+        """Test 'BENEFICIARIO' prefix (short form, outgoing transfer)."""
+        partner = self.env["res.partner"].create(
+            {"name": "CARLOS RUIZ MARTINEZ", "company_id": self.env.company.id}
+        )
+        wizard = self.env["account.statement.import"]
+        conceptos = {
+            "01": ("BENEFICIARIO CARLOS RUIZ MARTINEZ", ""),
+        }
+        result = wizard._get_n43_partner_from_sabadell(conceptos)
+        self.assertEqual(result, partner)
+
+    def test_sabadell_core_sepa_prefix(self):
+        """Test 'CORE' prefix (SEPA direct debit) — name glued without space."""
+        partner = self.env["res.partner"].create(
+            {"name": "Suministros Eolicos del Norte SL", "company_id": self.env.company.id}
+        )
+        wizard = self.env["account.statement.import"]
+        conceptos = {
+            "01": ("CORESuministros Eolicos del Norte", " SL"),
+        }
+        result = wizard._get_n43_partner_from_sabadell(conceptos)
+        self.assertEqual(result, partner)
+
     def test_sabadell_word_boundary_match(self):
         """Test word boundary regex fallback finds partner by unique word."""
         partner = self.env["res.partner"].create(

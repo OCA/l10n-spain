@@ -335,14 +335,17 @@ class AccountStatementImport(models.TransientModel):
             partner = partner_obj.search([("name", "ilike", name)], limit=1)
         if partner:
             return partner
-        # 2) Incoming transfer detection: concept 01 starts with a known
-        #    prefix followed by spaces + partner name.
-        #    Sabadell uses these formats for incoming transfers.
+        # 2) Transfer / direct debit detection: concept 01 starts with a
+        #    known prefix followed by the partner name.
+        #    Sabadell uses these formats for transfers and SEPA direct debits.
         full_name = (conceptos["01"][0] + conceptos["01"][1]).strip()
         prefixes = (
             "NOMBRE DEL ORDENANTE",
             "ORDENANTE DE LA TRANSFERENCIA",
+            "BENEFICIARIO DE LA TRANSFERENCIA",
             "TRANSFERENC. DE",
+            "BENEFICIARIO",
+            "CORE",
         )
         extracted = ""
         for prefix in prefixes:
