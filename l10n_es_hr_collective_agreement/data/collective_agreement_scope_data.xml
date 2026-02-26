@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="scope_autonomic" model="collective.agreement.scope">
+        <field name="name">Autonómico</field>
+    </record>
+    <record id="scope_provincial" model="collective.agreement.scope">
+        <field name="name">Provincial</field>
+    </record>
+    <record id="scope_comarcal" model="collective.agreement.scope">
+        <field name="name">Comarcal</field>
+    </record>
+    <record id="scope_own" model="collective.agreement.scope">
+        <field name="name">Propio</field>
+    </record>
+</odoo>
