@@ -345,6 +345,9 @@ class CommonTest(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
         with self.assertRaises(exceptions.ValidationError):
             self.move_02.validate_facturae_fields()
         self.bank.bank_id.bic = "CAIXESBBXXX"
+        # Ensure that we can edit the bank account for testing purposes,
+        # even if it's usually not allowed
+        self.bank.allow_out_payment = False
         self.bank.acc_number = "1111"
         with self.assertRaises(exceptions.ValidationError):
             self.move.validate_facturae_fields()

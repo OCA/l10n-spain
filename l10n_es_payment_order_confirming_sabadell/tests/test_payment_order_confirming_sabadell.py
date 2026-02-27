@@ -134,6 +134,9 @@ class TestPaymentOrderConfirmingSabadell(common.TransactionCase):
 
     def test_payment_file_acc_type_other(self):
         order = self._create_payment_order()
+        # Ensure that we can edit the bank account for testing purposes,
+        # even if it's usually not allowed
+        order.company_partner_bank_id.allow_out_payment = False
         order.company_partner_bank_id.acc_type = "other"
         order.draft2open()
         order.open2generated()
