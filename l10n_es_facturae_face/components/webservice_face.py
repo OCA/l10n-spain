@@ -5,6 +5,7 @@
 import base64
 import logging
 
+import zeep
 from cryptography import x509
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
@@ -63,23 +64,43 @@ class WebServiceFace(Component):
         invoice_call = client.get_type("ns0:EnviarFacturaRequest")(
             email, invoice_file, anexos
         )
-        response = client.service.enviarFactura(invoice_call)
+        try:
+            response = client.service.enviarFactura(invoice_call)
+        except zeep.exceptions.Fault as err:
+            raise ValidationError(
+                _("Connection with FACe returned error: %(error)s", error=err)
+            ) from err
         if response.resultado.codigo != "0":
             raise ValidationError(response.resultado.descripcion)
         return response
 
     def consult_invoice(self, public_crt, private_key, invoice_number):
         client = self._get_client(public_crt, private_key)
-        return client.service.consultarFactura(invoice_number)
+        try:
+            return client.service.consultarFactura(invoice_number)
+        except zeep.exceptions.Fault as err:
+            raise ValidationError(
+                _("Connection with FACe returned error: %(error)s", error=err)
+            ) from err
 
     def consult_invoices(self, public_crt, private_key, invoices):
         client = self._get_client(public_crt, private_key)
         request = client.get_type("ns0:ConsultarListadoFacturaRequest")(invoices)
-        return client.service.consultarListadoFacturas(request)
+        try:
+            return client.service.consultarListadoFacturas(request)
+        except zeep.exceptions.Fault as err:
+            raise ValidationError(
+                _("Connection with FACe returned error: %(error)s", error=err)
+            ) from err
 
     def cancel(self, public_crt, private_key, identifier, motive):
         client = self._get_client(public_crt, private_key)
-        response = client.service.anularFactura(identifier, motive)
+        try:
+            response = client.service.anularFactura(identifier, motive)
+        except zeep.exceptions.Fault as err:
+            raise ValidationError(
+                _("Connection with FACe returned error: %(error)s", error=err)
+            ) from err
         if response.resultado.codigo != "0":
             raise UserError(
                 _("Connection with FACe returned error %(code)s - %(description)s")
