@@ -307,6 +307,12 @@ class AccountMove(models.Model):
                     if exempt_cause:
                         det_dict["CausaExencion"] = exempt_cause
                     det_dict["BaseImponible"] += tax_line["base"]
+                    if "06" in [
+                        self.sii_registration_key.code,
+                        self.sii_registration_key_additional1.code,
+                        self.sii_registration_key_additional2.code,
+                    ]:
+                        det_dict["BaseImponibleACoste"] = tax_line["base"]
                 if tax in taxes_sfess:
                     # TODO l10n_es_ no tiene impuesto ISP de servicios
                     # if tax in taxes_sfesisps:
@@ -472,6 +478,15 @@ class AccountMove(models.Model):
                     "ReferenciaCatastral": (self.sii_property_cadastrial_code or ""),
                 }
             }
+        # Base imponible a coste
+        if "06" in [
+            self.sii_registration_key.code,
+            self.sii_registration_key_additional1.code,
+            self.sii_registration_key_additional2.code,
+        ]:
+            inv_dict["FacturaExpedida"][
+                "BaseImponibleACoste"
+            ] = self.amount_untaxed_signed
         exp_dict = inv_dict["FacturaExpedida"]
         if self.move_type == "out_refund":
             exp_dict["TipoRectificativa"] = self.sii_refund_type
@@ -587,6 +602,7 @@ class AccountMove(models.Model):
                 inv_dict["FacturaRecibida"]["IDEmisorFactura"] = {"NIF": nif}
                 inv_dict["IDFactura"]["IDEmisorFactura"] = {"NIF": nif}
                 inv_dict["FacturaRecibida"]["Contraparte"]["NIF"] = nif
+
         return inv_dict
 
     def _get_cancel_sii_invoice_dict(self):
