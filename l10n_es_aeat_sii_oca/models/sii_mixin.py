@@ -561,19 +561,16 @@ class SiiMixin(models.AbstractModel):
                         det_dict["CausaExencion"] = exempt_cause
                     det_dict["BaseImponible"] += tax_line["base"]
                 else:
+                    not_exempt_type = "S2" if tax in taxes_sfesisp else "S1"
                     sub_dict.setdefault(
                         "NoExenta",
                         {
-                            "TipoNoExenta": ("S2" if tax in taxes_sfesisp else "S1"),
+                            "TipoNoExenta": not_exempt_type,
                             "DesgloseIVA": {"DetalleIVA": []},
                         },
                     )
-                    not_ex_type = sub_dict["NoExenta"]["TipoNoExenta"]
-                    if tax in taxes_sfesisp:
-                        is_s3 = not_ex_type == "S1"
-                    else:
-                        is_s3 = not_ex_type == "S2"
-                    if is_s3:
+                    if not_exempt_type != sub_dict["NoExenta"]["TipoNoExenta"]:
+                        # There's a mix of ISP/non ISP -> S3
                         sub_dict["NoExenta"]["TipoNoExenta"] = "S3"
                     sub = sub_dict["NoExenta"]["DesgloseIVA"]["DetalleIVA"]
                     tax_dict = self._get_sii_tax_dict(tax_line, tax_lines)
@@ -607,13 +604,18 @@ class SiiMixin(models.AbstractModel):
                 if tax in taxes_sfess:
                     service_breakdown.setdefault("Sujeta", {})
                     # TODO l10n_es_ no tiene impuesto ISP de servicios
-                    # if tax in taxes_sfesisps:
-                    #     TipoNoExenta = 'S2'
-                    # else:
+                    # not_exempt_type = "S2" if tax in taxes_sfesisps else "S1"
+                    not_exempt_type = "S1"
                     not_exempt = service_breakdown["Sujeta"].setdefault(
                         "NoExenta",
-                        {"TipoNoExenta": "S1", "DesgloseIVA": {"DetalleIVA": []}},
+                        {
+                            "TipoNoExenta": not_exempt_type,
+                            "DesgloseIVA": {"DetalleIVA": []},
+                        },
                     )
+                    if not_exempt_type != not_exempt["TipoNoExenta"]:
+                        # There's a mix of ISP/non ISP -> S3
+                        not_exempt["TipoNoExenta"] = "S3"
                     sub = not_exempt["DesgloseIVA"]["DetalleIVA"]
                     tax_dict = self._get_sii_tax_dict(tax_line, tax_lines)
                     if not self._merge_tax_dict(
