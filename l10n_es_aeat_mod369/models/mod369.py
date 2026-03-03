@@ -148,47 +148,58 @@ class L10nEsAeatMod369Report(models.Model):
         oss_map_lines = self.env.context.get("oss_map_lines", {})
         if map_line in oss_map_lines:
             oss_taxes_map = self.env.context.get("oss_taxes_map", {})
-            return oss_taxes_map.get(map_line.field_number, {}).get(
-                "tax", self.env["account.tax"]
-            )
+            tax_data = oss_taxes_map.get(map_line.field_number, {})
+            return tax_data.get("taxes", tax_data.get("tax", self.env["account.tax"]))
         return super().get_taxes_from_map(map_line)
 
     def _get_oss_taxes_map(self):
         oss_taxes = self.env["account.tax"].search(
             [("oss_country_id", "!=", False), ("company_id", "=", self.company_id.id)]
         )
-        oss_countries = {}
+        # Group taxes by (oss_country_id, amount) so duplicate OSS taxes
+        # (same country and rate) share one slot but all IDs are available
+        # for the move line domain search
+        oss_country_rates = {}
         for tax in oss_taxes:
-            oss_countries.setdefault(tax.oss_country_id, self.env["account.tax"])
-            oss_countries[tax.oss_country_id] |= tax
+            key = (tax.oss_country_id, tax.amount)
+            if key not in oss_country_rates:
+                oss_country_rates[key] = self.env["account.tax"]
+            oss_country_rates[key] |= tax
+        # Rebuild per-country unique rates preserving country order
+        oss_countries = {}
+        for (country, _amount), taxes in oss_country_rates.items():
+            oss_countries.setdefault(country, [])
+            oss_countries[country].append(taxes)
         oss_taxes_map = {}
         line_number = 1
         previous_country = False
         previous_tax_count = 0
-        for country, taxes in oss_countries.items():
+        for country, tax_groups in oss_countries.items():
             if previous_country and country != previous_country:
                 line_number += 8 - (previous_tax_count * 2)
                 previous_tax_count = 0
-            for tax in taxes:
+            for taxes in tax_groups:
+                tax = taxes[:1]
                 previous_tax_count += 1
+                entry = {"tax": tax, "taxes": taxes, "country": country}
                 oss_taxes_map.update(
                     {
                         # Goods + spain (base)
-                        line_number: {"tax": tax, "country": country},
+                        line_number: entry,
                         # Goods + spain (amount)
-                        line_number + 1: {"tax": tax, "country": country},
+                        line_number + 1: entry,
                         # Goods + outside spain (base)
-                        line_number + 224: {"tax": tax, "country": country},
+                        line_number + 224: entry,
                         # Goods + outside spain (amount)
-                        line_number + 225: {"tax": tax, "country": country},
+                        line_number + 225: entry,
                         # Services + spain (base)
-                        line_number + 448: {"tax": tax, "country": country},
+                        line_number + 448: entry,
                         # Services + spain (amount)
-                        line_number + 449: {"tax": tax, "country": country},
+                        line_number + 449: entry,
                         # Services + outside spain (base)
-                        line_number + 672: {"tax": tax, "country": country},
+                        line_number + 672: entry,
                         # Services + outside spain (amount)
-                        line_number + 673: {"tax": tax, "country": country},
+                        line_number + 673: entry,
                     }
                 )
                 line_number += 2
