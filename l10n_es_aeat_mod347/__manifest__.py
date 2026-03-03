@@ -10,7 +10,7 @@
 
 {
     "name": "AEAT modelo 347",
-    "version": "18.0.1.2.2",
+    "version": "18.0.1.2.3",
     "author": "Tecnativa,PESOL,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Accounting",
