@@ -67,15 +67,14 @@ class ResPartner(models.Model):
                 if not record.country_id:
                     raise ValidationError(
                         self.env._(
-                            "Country must be defined for factura-e " "enabled partners."
+                            "Country must be defined for factura-e enabled partners."
                         )
                     )
                 if record.country_id.code_alpha3 == "ESP":
                     if not record.state_id:
                         raise ValidationError(
                             self.env._(
-                                "State must be defined for factura-e "
-                                "enabled partners."
+                                "State must be defined for factura-e enabled partners."
                             )
                         )
 

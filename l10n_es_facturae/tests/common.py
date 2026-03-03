@@ -326,7 +326,7 @@ class CommonTest(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
         generated_facturae = self._create_facturae_file(self.move, force=True)
         self.assertTrue(
             generated_facturae.xpath(
-                "/fe:Facturae/Invoices/Invoice/AdditionalData/" "RelatedDocuments",
+                "/fe:Facturae/Invoices/Invoice/AdditionalData/RelatedDocuments",
                 namespaces={"fe": self.fe},
             ),
         )

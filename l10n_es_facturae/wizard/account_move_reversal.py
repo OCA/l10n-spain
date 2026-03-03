@@ -43,8 +43,8 @@ class AccountMoveReversal(models.TransientModel):
             ("16", "Base imponible"),
             ("80", "Cálculo de cuotas repercutidas"),
             ("81", "Cálculo de cuotas retenidas"),
-            ("82", "Base imponible modificada por devolución de envases" "/embalajes"),
-            ("83", "Base imponible modificada por descuentos y " "bonificaciones"),
+            ("82", "Base imponible modificada por devolución de envases/embalajes"),
+            ("83", "Base imponible modificada por descuentos y bonificaciones"),
             (
                 "84",
                 "Base imponible modificada por resolución firme, judicial "

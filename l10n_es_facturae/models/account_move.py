@@ -48,8 +48,8 @@ class AccountMove(models.Model):
             ("16", "Base imponible"),
             ("80", "Cálculo de cuotas repercutidas"),
             ("81", "Cálculo de cuotas retenidas"),
-            ("82", "Base imponible modificada por devolución de envases" "/embalajes"),
-            ("83", "Base imponible modificada por descuentos y " "bonificaciones"),
+            ("82", "Base imponible modificada por devolución de envases/embalajes"),
+            ("83", "Base imponible modificada por descuentos y bonificaciones"),
             (
                 "84",
                 "Base imponible modificada por resolución firme, judicial "
@@ -157,7 +157,7 @@ class AccountMove(models.Model):
         for line in lines:
             if not line.tax_ids:
                 raise ValidationError(
-                    self.env._("Taxes not provided in move line " "%s") % line.name
+                    self.env._("Taxes not provided in move line %s") % line.name
                 )
         if self.state not in self._get_valid_move_statuses():
             raise ValidationError(
