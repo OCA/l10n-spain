@@ -197,6 +197,7 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiBase):
                     "is_invoice_summary": True,
                     "sii_invoice_summary_start": 1,
                     "sii_invoice_summary_end": 10,
+                    "fiscal_position_id": self.fp_intra.id,
                 },
             ),
             (
@@ -206,6 +207,7 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiBase):
                     "is_invoice_summary": True,
                     "sii_invoice_summary_start": 1,
                     "sii_invoice_summary_end": 10,
+                    "fiscal_position_id": self.fp_intra.id,
                 },
             ),
             (

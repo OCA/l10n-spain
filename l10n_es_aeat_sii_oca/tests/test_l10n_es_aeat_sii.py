@@ -160,6 +160,10 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
                 "tax_agency_id": cls.env.ref("l10n_es_aeat.aeat_tax_agency_spain"),
             }
         )
+        cls.fp_intra = cls.env.ref(f"account.{cls.company.id}_fp_intra")
+        cls.fp_intra.sii_partner_identification_type = "2"
+        cls.fp_extra = cls.env.ref(f"account.{cls.company.id}_fp_extra")
+        cls.fp_extra.sii_partner_identification_type = "3"
 
 
 class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
@@ -243,6 +247,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
 
     def test_get_invoice_data(self):
         mapping = [
+            ("out_invoice", [(100, ["s_iva21b"]), (200, ["s_iva21s"])], {}, False),
             ("out_invoice", [(100, ["s_iva10b"]), (200, ["s_iva21s"])], {}, False),
             ("out_invoice", [(100, ["s_iva10b"]), (200, ["s_iva0_ns"])], {}, False),
             (
