@@ -129,14 +129,13 @@ class L10nEsVatBook(models.Model):
     )
 
     def _compute_error_count(self):
-        vat_book_exception_group = self.env["l10n.es.vat.book.line"].read_group(
+        vat_book_exception_group = self.env["l10n.es.vat.book.line"]._read_group(
             domain=[("exception_text", "!=", False), ("vat_book_id", "in", self.ids)],
-            fields=["vat_book_id"],
             groupby=["vat_book_id"],
+            aggregates=["__count"],
         )
         vat_book_exception_dict = {
-            vbe["vat_book_id"][0]: vbe["vat_book_id_count"]
-            for vbe in vat_book_exception_group
+            vat_book_id.id: count for vat_book_id, count in vat_book_exception_group
         }
         for vat_book_report in self:
             vat_book_report.error_count = vat_book_exception_dict.get(
@@ -159,19 +158,19 @@ class L10nEsVatBook(models.Model):
                     "base_move_line_ids": tax_line.base_move_line_ids.ids,
                     "move_line_ids": tax_line.move_line_ids.ids,
                 }
-            tax_summary_data_recs[tax_line.tax_id]["base_amount"] += (
-                tax_line.base_amount
-            )
+            tax_summary_data_recs[tax_line.tax_id][
+                "base_amount"
+            ] += tax_line.base_amount
             tax_summary_data_recs[tax_line.tax_id]["tax_amount"] += tax_line.tax_amount
-            tax_summary_data_recs[tax_line.tax_id]["total_amount"] += (
-                tax_line.total_amount
-            )
-            tax_summary_data_recs[tax_line.tax_id]["base_move_line_ids"] += (
-                tax_line.base_move_line_ids.ids
-            )
-            tax_summary_data_recs[tax_line.tax_id]["move_line_ids"] += (
-                tax_line.move_line_ids.ids
-            )
+            tax_summary_data_recs[tax_line.tax_id][
+                "total_amount"
+            ] += tax_line.total_amount
+            tax_summary_data_recs[tax_line.tax_id][
+                "base_move_line_ids"
+            ] += tax_line.base_move_line_ids.ids
+            tax_summary_data_recs[tax_line.tax_id][
+                "move_line_ids"
+            ] += tax_line.move_line_ids.ids
         return tax_summary_data_recs
 
     @api.model
@@ -381,7 +380,9 @@ class L10nEsVatBook(models.Model):
             req_vat_identif_types = [
                 s_opt[0]
                 for s_opt in rp_model._fields["aeat_identification_type"].selection
-            ] + [""]  # "" is the identification type for Spain
+            ] + [
+                ""
+            ]  # "" is the identification type for Spain
             # Partner type requires VAT
             if (
                 identifier_type in req_vat_identif_types
