@@ -59,6 +59,10 @@ class L10nEsFacturaeFaceBaseHandler(models.AbstractModel):
             email, invoice_file, anexos
         )
         response = client.service.enviarFactura(invoice_call)
+        if not response:
+            raise ValidationError(
+                self.env._("No response received from FACe webservice")
+            )
         if response.resultado.codigo != "0":
             raise ValidationError(response.resultado.descripcion)
         return response
@@ -75,14 +79,14 @@ class L10nEsFacturaeFaceBaseHandler(models.AbstractModel):
     def cancel(self, public_crt, private_key, identifier, motive):
         client = self._get_client(public_crt, private_key)
         response = client.service.anularFactura(identifier, motive)
+        if not response:
+            raise UserError(self.env._("No response received from FACe webservice"))
         if response.resultado.codigo != "0":
             raise UserError(
                 self.env._(
-                    "Connection with FACe returned error %(code)s - %(description)s"
+                    "Connection with FACe returned error %(code)s - %(description)s",
+                    code=response.resultado.codigo,
+                    description=response.resultado.descripcion,
                 )
-                % {
-                    "code": response.resultado.codigo,
-                    "description": response.resultado.descripcion,
-                }
             )
         return response
