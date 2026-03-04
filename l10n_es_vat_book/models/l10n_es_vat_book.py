@@ -129,14 +129,13 @@ class L10nEsVatBook(models.Model):
     )
 
     def _compute_error_count(self):
-        vat_book_exception_group = self.env["l10n.es.vat.book.line"].read_group(
+        vat_book_exception_group = self.env["l10n.es.vat.book.line"]._read_group(
             domain=[("exception_text", "!=", False), ("vat_book_id", "in", self.ids)],
-            fields=["vat_book_id"],
             groupby=["vat_book_id"],
+            aggregates=["__count"],
         )
         vat_book_exception_dict = {
-            vbe["vat_book_id"][0]: vbe["vat_book_id_count"]
-            for vbe in vat_book_exception_group
+            vat_book_id.id: count for vat_book_id, count in vat_book_exception_group
         }
         for vat_book_report in self:
             vat_book_report.error_count = vat_book_exception_dict.get(
