@@ -12,7 +12,7 @@
 
 {
     "name": "Creación de Facturae",
-    "version": "18.0.1.2.1",
+    "version": "19.0.1.0.0",
     "author": "ASR-OSS, "
     "FactorLibre, "
     "Tecon, "
@@ -24,7 +24,7 @@
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "depends": [
-        "account_payment_partner",
+        "account_payment_mode",
         "l10n_es_partner",
         "l10n_es",
         "base_iso3166",

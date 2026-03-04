@@ -69,22 +69,22 @@ class ReportFacturaeSigned(models.AbstractModel):
                     "XML Schema Definition. The generated XML file and the "
                     "full error have been written in the server logs. Here "
                     "is the error, which may give you an idea on the cause "
-                    "of the problem : %s"
+                    "of the problem : %s",
+                    str(e),
                 )
-                % str(e)
             ) from e
         return True
 
     def _sign_file(self, move, request, public_cert, private_key):
         rand_min = 1
         rand_max = 99999
-        signature_id = "Signature%05d" % random.randint(rand_min, rand_max)
-        signed_properties_id = signature_id + "-SignedProperties%05d" % random.randint(
-            rand_min, rand_max
+        signature_id = f"Signature{random.randint(rand_min, rand_max):05d}"
+        signed_properties_id = (
+            f"{signature_id}-SignedProperties{random.randint(rand_min, rand_max):05d}"
         )
-        key_info_id = "KeyInfo%05d" % random.randint(rand_min, rand_max)
-        reference_id = "Reference%05d" % random.randint(rand_min, rand_max)
-        object_id = "Object%05d" % random.randint(rand_min, rand_max)
+        key_info_id = f"KeyInfo{random.randint(rand_min, rand_max):05d}"
+        reference_id = f"Reference{random.randint(rand_min, rand_max):05d}"
+        object_id = f"Object{random.randint(rand_min, rand_max):05d}"
         etsi = "http://uri.etsi.org/01903/v1.3.2#"
         sig_policy_identifier = (
             "http://www.facturae.es/"

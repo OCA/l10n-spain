@@ -157,7 +157,7 @@ class AccountMove(models.Model):
         for line in lines:
             if not line.tax_ids:
                 raise ValidationError(
-                    self.env._("Taxes not provided in move line %s") % line.name
+                    self.env._("Taxes not provided in move line %s", line.name)
                 )
         if self.state not in self._get_valid_move_statuses():
             raise ValidationError(
@@ -217,7 +217,7 @@ class AccountMove(models.Model):
                     "data": base64.b64encode(content).decode("utf-8"),
                     "content_type": content_type,
                     "encoding": "BASE64",
-                    "description": self.env._("Invoice %s") % self.name,
+                    "description": self.env._("Invoice %s", self.name),
                     "compression": False,
                 }
             )

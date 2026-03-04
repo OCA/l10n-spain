@@ -24,7 +24,7 @@
             <xpath expr="/form" position="inside">
                 <field name="facturae" invisible="1" />
             </xpath>
-            <group name="accounting_entries" position="after">
+            <group id="invoice_send_settings" position="after">
                 <group
                     name="group_facturae"
                     string="Facturae"

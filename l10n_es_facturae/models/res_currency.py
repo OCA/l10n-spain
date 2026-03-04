@@ -8,9 +8,10 @@ class ResCurrency(models.Model):
     _inherit = "res.currency"
 
     def get_current_rate(self):
-        date = self._context.get("date") or fields.Datetime.now()
+        date = self.env.context.get("date") or fields.Datetime.now()
         company_id = (
-            self._context.get("company_id") or self.env["res.users"]._get_company().id
+            self.env.context.get("company_id")
+            or self.env["res.users"]._get_company().id
         )
         rate = self.env["res.currency.rate"].search(
             [
