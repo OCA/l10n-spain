@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-06 09:08+0000\n"
-"PO-Revision-Date: 2024-12-07 10:06+0000\n"
-"Last-Translator: QuiJoQuim <quim.rebull@gmail.com>\n"
+"PO-Revision-Date: 2026-03-04 17:45+0000\n"
+"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: \n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
@@ -291,7 +291,7 @@ msgstr "Càlcul de quotes retingudes"
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move__facturae_refund_reason__10
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move_reversal__refund_reason__10
 msgid "Detalle Operación"
-msgstr "Detall operació"
+msgstr "Detalle Operación"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__display_name
@@ -886,13 +886,13 @@ msgstr "Rectificació per descompte per volum d'operacions durant un període"
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move__correction_method__02
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move_reversal__correction_method__02
 msgid "Rectificación por diferencias"
-msgstr "Rectificació por diferències"
+msgstr "Rectificación por diferencias"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move__correction_method__01
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move_reversal__correction_method__01
 msgid "Rectificación íntegra"
-msgstr "Rectificació íntegra"
+msgstr "Rectificación íntegra"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move_reversal__refund_reason
