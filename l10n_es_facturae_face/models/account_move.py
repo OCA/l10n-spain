@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
 
@@ -60,7 +60,7 @@ class AccountMove(models.Model):
                 self.env.ref("l10n_es_facturae_face.face_backend"),
             )
             if not related_record:
-                raise UserError(_("Exchange record cannot be found for FACe"))
+                raise UserError(self.env._("Exchange record cannot be found for FACe"))
             result.update(
                 {"edi_exchange_state": "input_pending", "parent_id": related_record.id}
             )
@@ -107,17 +107,17 @@ class AccountMove(models.Model):
             self.partner_id.l10n_es_facturae_sending_code == "face"
             and not self.partner_id.organo_gestor
         ):
-            raise ValidationError(_("Organo Gestor not provided"))
+            raise ValidationError(self.env._("Organo Gestor not provided"))
         if (
             self.partner_id.l10n_es_facturae_sending_code == "face"
             and not self.partner_id.unidad_tramitadora
         ):
-            raise ValidationError(_("Unidad Tramitadora not provided"))
+            raise ValidationError(self.env._("Unidad Tramitadora not provided"))
         if (
             self.partner_id.l10n_es_facturae_sending_code == "face"
             and not self.partner_id.oficina_contable
         ):
-            raise ValidationError(_("Oficina Contable not provided"))
+            raise ValidationError(self.env._("Oficina Contable not provided"))
         return
 
     def _get_l10n_es_facturae_face_backend(self):
