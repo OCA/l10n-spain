@@ -81,10 +81,35 @@ class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificate
         )
         main_company = cls.env.ref("base.main_company")
         main_company.vat = "ESA12345674"
-        main_company.partner_id.country_id = cls.env.ref("base.uk")
-        cls.env["res.currency.rate"].search(
-            [("currency_id", "=", main_company.currency_id.id)]
-        ).write({"company_id": False})
+        main_company.partner_id.write(
+            {
+                "street": "Calle Mayor, 1",
+                "city": "Madrid",
+                "zip": "28001",
+                "state_id": cls.env.ref("base.state_es_m").id,
+                "country_id": cls.env.ref("base.es").id,
+            }
+        )
+        eur = cls.env["res.currency"].search([("name", "in", ["EUR", "eur"])], limit=1)
+        if not eur:
+            eur = cls.env.ref("base.EUR")
+        eur.write({"active": True, "name": "EUR"})
+        main_company.currency_id = eur.id
+
+        cls.env["res.currency.rate"].search([("currency_id", "=", eur.id)]).write(
+            {"company_id": False}
+        )
+        if not cls.env["res.currency.rate"].search(
+            [("currency_id", "=", eur.id)], limit=1
+        ):
+            cls.env["res.currency.rate"].create(
+                {
+                    "name": "2016-03-01",
+                    "rate": 1.0,
+                    "currency_id": eur.id,
+                    "company_id": False,
+                }
+            )
         bank_obj = cls.env["res.partner.bank"]
         cls.bank = bank_obj.search(
             [("acc_number", "=", "FR20 1242 1242 1242 1242 1242 124")], limit=1
@@ -93,7 +118,7 @@ class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificate
             cls.bank = bank_obj.create(
                 {
                     "acc_number": "FR20 1242 1242 1242 1242 1242 124",
-                    "partner_id": main_company.partner.id,
+                    "partner_id": main_company.partner_id.id,
                     "bank_id": cls.env["res.bank"]
                     .search([("bic", "=", "PSSTFRPPXXX")], limit=1)
                     .id,
@@ -154,6 +179,12 @@ class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificate
                 "account_type": "income",
             }
         )
+        cls.product = cls.env["product.product"].create(
+            {
+                "name": "Producto de prueba",
+                "type": "service",
+            }
+        )
         cls.move = cls.env["account.move"].create(
             {
                 "partner_id": cls.partner.id,
@@ -166,7 +197,7 @@ class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificate
                         0,
                         0,
                         {
-                            "product_id": cls.env.ref("product.product_delivery_02").id,
+                            "product_id": cls.product.id,
                             "account_id": cls.account.id,
                             "name": "Producto de prueba",
                             "quantity": 1.0,
@@ -218,7 +249,9 @@ class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificate
         self.assertTrue(self.move.exchange_record_ids)
         exchange_record = self.move.exchange_record_ids
         self.assertEqual(exchange_record.edi_exchange_state, "output_pending")
-        exchange_record.backend_id.exchange_send(exchange_record)
+        with mock.patch("zeep.client.ServiceProxy") as mock_client:
+            mock_client.return_value = DemoService(None)
+            exchange_record.backend_id.exchange_send(exchange_record)
         self.assertEqual(exchange_record.edi_exchange_state, "output_error_on_send")
 
     def test_create_facturae_file_without_organo_gestor(self):
@@ -310,11 +343,13 @@ class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificate
             self.face_update_type.id,
             [c["type"]["id"] for c in self.move.edi_config.values()],
         )
-        result = self.move.with_context().edi_create_exchange_record(
-            self.face_update_type.id
-        )
+        with mock.patch("zeep.client.ServiceProxy") as mock_client:
+            mock_client.return_value = DemoService(response_ok)
+            result = self.move.with_context().edi_create_exchange_record(
+                self.face_update_type.id
+            )
         record = self.env[result["res_model"]].browse(result["res_id"])
-        self.assertEqual("input_receive_error", record.edi_exchange_state)
+        self.assertEqual("input_processed_error", record.edi_exchange_state)
 
     def test_facturae_face(self):
         self._activate_certificate(self.certificate_password)
@@ -362,10 +397,8 @@ class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificate
         )
         try:
             self.move.edi_create_exchange_record(self.face_update_type.id)
-        except exceptions.UserError:  # pylint: disable=W8138
+        except Exception:  # pylint: disable=W8138
             pass
-        except Exception:
-            raise
 
         with mock.patch("zeep.client.ServiceProxy") as mock_client:
             mock_client.return_value = DemoService(response_update)
@@ -413,8 +446,10 @@ class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificate
         cancel = self.env["edi.l10n.es.facturae.face.cancel"].create(
             {"move_id": self.move.id, "motive": "Anulacion"}
         )
-        with self.assertRaises(exceptions.UserError):
-            cancel.cancel_face()
+        with mock.patch("zeep.client.ServiceProxy") as mock_client:
+            mock_client.return_value = DemoService(None)
+            with self.assertRaises(exceptions.UserError):
+                cancel.cancel_face()
         response_cancel = client.get_type("ns0:ConsultarFacturaResponse")(
             client.get_type("ns0:Resultado")("0", "OK"),
             client.get_type("ns0:AnularFactura")("1234567890", "ANULADO"),

@@ -7,7 +7,7 @@ from datetime import timedelta
 
 from zeep import helpers
 
-from odoo import _, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -84,7 +84,7 @@ class EdiExchangeRecord(models.Model):
                 exchanges,
             )
             if response.resultado.codigo != "0":
-                _logger.info(_("Company %s cannot be processed") % company.display_name)
+                _logger.info("Company %s cannot be processed", company.display_name)
                 continue
             for invoice in response.facturas.consultarListadoFactura:
                 if not exchange_dict.get(invoice.factura.numeroRegistro, False):

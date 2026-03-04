@@ -32,20 +32,20 @@ class L10nEsFacturaeUpdateHandler(models.AbstractModel):
         if response.resultado.codigo != "0":
             raise UserError(
                 self.env._(
-                    "Connection with FACe returned error %(code)s - %(description)s"
+                    "Connection with FACe returned error %(code)s - %(description)s",
+                    code=response.resultado.codigo,
+                    description=response.resultado.descripcion,
                 )
-                % {
-                    "code": response.resultado.codigo,
-                    "description": response.resultado.descripcion,
-                }
             )
         return json.dumps(helpers.serialize_object(response.factura))
 
     def process(self, exchange_record):
         data = json.loads(exchange_record._get_file_content())
         parent = exchange_record.parent_id
-        process_code = "face-" + data["tramitacion"]["codigo"]
-        revocation_code = "face-" + data["anulacion"]["codigo"]
+        tramitacion = data.get("tramitacion") or {}
+        anulacion = data.get("anulacion") or {}
+        process_code = "face-" + tramitacion.get("codigo", "")
+        revocation_code = "face-" + anulacion.get("codigo", "")
         if (
             process_code == parent.l10n_es_facturae_status
             and revocation_code == parent.l10n_es_facturae_cancellation_status
@@ -54,9 +54,9 @@ class L10nEsFacturaeUpdateHandler(models.AbstractModel):
         parent.write(
             {
                 "l10n_es_facturae_status": process_code,
-                "l10n_es_facturae_motive": data["tramitacion"]["motivo"],
+                "l10n_es_facturae_motive": tramitacion.get("motivo", ""),
                 "l10n_es_facturae_cancellation_status": revocation_code,
-                "l10n_es_facturae_cancellation_motive": data["anulacion"]["motivo"],
+                "l10n_es_facturae_cancellation_motive": anulacion.get("motivo", ""),
             }
         )
         exchange_record.record.write(
