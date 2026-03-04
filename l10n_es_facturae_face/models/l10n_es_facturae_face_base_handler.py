@@ -65,6 +65,10 @@ class L10nEsFacturaeFaceBaseHandler(models.AbstractModel):
             raise ValidationError(
                 self.env._("Connection with FACe returned error: %(error)s", error=err)
             ) from err
+        if not response:
+            raise ValidationError(
+                self.env._("No response received from FACe webservice")
+            )
         if response.resultado.codigo != "0":
             raise ValidationError(response.resultado.descripcion)
         return response
@@ -96,14 +100,14 @@ class L10nEsFacturaeFaceBaseHandler(models.AbstractModel):
             raise ValidationError(
                 self.env._("Connection with FACe returned error: %(error)s", error=err)
             ) from err
+        if not response:
+            raise UserError(self.env._("No response received from FACe webservice"))
         if response.resultado.codigo != "0":
             raise UserError(
                 self.env._(
-                    "Connection with FACe returned error %(code)s - %(description)s"
+                    "Connection with FACe returned error %(code)s - %(description)s",
+                    code=response.resultado.codigo,
+                    description=response.resultado.descripcion,
                 )
-                % {
-                    "code": response.resultado.codigo,
-                    "description": response.resultado.descripcion,
-                }
             )
         return response

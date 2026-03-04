@@ -6,8 +6,8 @@ import os
 from datetime import datetime, timedelta
 from unittest import mock
 
-import requests
 from freezegun import freeze_time
+from lxml import etree
 
 from odoo import exceptions
 
@@ -15,10 +15,15 @@ from odoo.addons.edi_core_oca.tests.common import EDIBackendCommonTestCase
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
     TestL10nEsAeatCertificateBase,
 )
+from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
+    TestL10nEsAeatModBase,
+)
+from odoo.addons.l10n_es_facturae_face.models.wsse_signature import verify_envelope
 
 _logger = logging.getLogger(__name__)
 try:
-    from zeep import Client
+    from zeep import Client, ns
+    from zeep.exceptions import Fault, SignatureVerificationFailed
 except (OSError, ImportError) as err:
     _logger.info(err)
 
@@ -40,10 +45,11 @@ class DemoService:
         return self.value
 
 
-class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificateBase):
+class TestL10nEsFacturaeFace(
+    EDIBackendCommonTestCase, TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase
+):
     @classmethod
     def setUpClass(cls):
-        cls._super_send = requests.Session.send
         super().setUpClass()
         cls.env["ir.config_parameter"].sudo().set_param(
             "facturae.face.ws",
@@ -84,12 +90,37 @@ class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificate
                 "l10n_es_facturae_sending_code": "face",
             }
         )
-        main_company = cls.env.ref("base.main_company")
+        main_company = cls.company
         main_company.vat = "ESA12345674"
-        main_company.partner_id.country_id = cls.env.ref("base.uk")
-        cls.env["res.currency.rate"].search(
-            [("currency_id", "=", main_company.currency_id.id)]
-        ).write({"company_id": False})
+        main_company.partner_id.write(
+            {
+                "street": "Calle Mayor, 1",
+                "city": "Madrid",
+                "zip": "28001",
+                "state_id": cls.env.ref("base.state_es_m").id,
+                "country_id": cls.env.ref("base.es").id,
+            }
+        )
+        eur = cls.env["res.currency"].search([("name", "in", ["EUR", "eur"])], limit=1)
+        if not eur:
+            eur = cls.env.ref("base.EUR")
+        eur.write({"active": True, "name": "EUR"})
+        main_company.currency_id = eur.id
+
+        cls.env["res.currency.rate"].search([("currency_id", "=", eur.id)]).write(
+            {"company_id": False}
+        )
+        if not cls.env["res.currency.rate"].search(
+            [("currency_id", "=", eur.id)], limit=1
+        ):
+            cls.env["res.currency.rate"].create(
+                {
+                    "name": "2016-03-01",
+                    "rate": 1.0,
+                    "currency_id": eur.id,
+                    "company_id": False,
+                }
+            )
         bank_obj = cls.env["res.partner.bank"]
         cls.bank = bank_obj.search(
             [("acc_number", "=", "FR20 1242 1242 1242 1242 1242 124")], limit=1
@@ -98,7 +129,7 @@ class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificate
             cls.bank = bank_obj.create(
                 {
                     "acc_number": "FR20 1242 1242 1242 1242 1242 124",
-                    "partner_id": main_company.partner.id,
+                    "partner_id": main_company.partner_id.id,
                     "bank_id": cls.env["res.bank"]
                     .search([("bic", "=", "PSSTFRPPXXX")], limit=1)
                     .id,
@@ -159,6 +190,12 @@ class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificate
                 "account_type": "income",
             }
         )
+        cls.product = cls.env["product.product"].create(
+            {
+                "name": "Producto de prueba",
+                "type": "service",
+            }
+        )
         cls.move = cls.env["account.move"].create(
             {
                 "partner_id": cls.partner.id,
@@ -171,7 +208,7 @@ class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificate
                         0,
                         0,
                         {
-                            "product_id": cls.env.ref("product.product_delivery_02").id,
+                            "product_id": cls.product.id,
                             "account_id": cls.account.id,
                             "name": "Producto de prueba",
                             "quantity": 1.0,
@@ -182,16 +219,11 @@ class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificate
                 ],
             }
         )
-        cls.main_company = cls.env.ref("base.main_company")
+        cls.main_company = cls.company
         cls.main_company.face_email = "test@test.com"
         cls.face_update_type = cls.env.ref(
             "l10n_es_facturae_face.facturae_face_update_exchange_type"
         )
-
-    # Don't block external requests.
-    @classmethod
-    def _request_handler(cls, s, r, /, **kw):
-        return cls._super_send(s, r, **kw)
 
     def test_constrain_company_mail(self):
         with self.assertRaises(exceptions.ValidationError):
@@ -213,6 +245,82 @@ class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificate
         with self.assertRaises(exceptions.ValidationError):
             self.partner.state_id = False
 
+    def test_soap_signature(self):
+        self._activate_certificate(self.certificate_password)
+        public_crt, private_key = self.env["l10n.es.aeat.certificate"].get_certificates(
+            self.company
+        )
+        signer = (
+            self.env["l10n_es.facturae.face.base.handler"]
+            ._get_client(public_crt, private_key)
+            .wsse
+        )
+        headers = {"SOAPAction": "enviarFactura"}
+        for altered_node in (None, "Body", "Timestamp"):
+            with self.subTest(altered_node=altered_node):
+                envelope = etree.fromstring(
+                    b'<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">'
+                    b"<soap:Body><Invoice>Original invoice</Invoice></soap:Body>"
+                    b"</soap:Envelope>"
+                )
+                signed, signed_headers = signer.apply(envelope, headers)
+                self.assertIs(signed_headers, headers)
+                self.assertIs(signer.verify(signed), signed)
+                if altered_node is None:
+                    continue
+                if altered_node == "Body":
+                    signed.find(f"{{{ns.SOAP_ENV_11}}}Body")[0].text = "Altered invoice"
+                else:
+                    signed.find(f".//{{{ns.WSU}}}Created").text = "2000-01-01T00:00:00Z"
+                with self.assertRaises(SignatureVerificationFailed):
+                    signer.verify(signed)
+
+    def test_soap_signature_without_header(self):
+        envelope = etree.fromstring(
+            b'<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">'
+            b"<soap:Body/></soap:Envelope>"
+        )
+        with self.assertRaises(SignatureVerificationFailed):
+            verify_envelope(envelope, None)
+
+    def test_soap_faults(self):
+        handler = self.env["l10n_es.facturae.face.base.handler"]
+        client = Client(
+            wsdl=self.env["ir.config_parameter"].sudo().get_param("facturae.face.ws")
+        )
+        calls = [
+            (
+                "send_webservice",
+                "enviarFactura",
+                (False, False, "<Facturae/>", "invoice.xml", "test@example.com"),
+            ),
+            ("consult_invoice", "consultarFactura", (False, False, "1234567890")),
+            (
+                "consult_invoices",
+                "consultarListadoFacturas",
+                (False, False, ["1234567890"]),
+            ),
+            ("cancel", "anularFactura", (False, False, "1234567890", "Test")),
+        ]
+        for method, operation, args in calls:
+            with self.subTest(method=method):
+                fault = Fault("Test SOAP fault")
+                with (
+                    mock.patch.object(
+                        type(handler), "_get_client", return_value=client
+                    ),
+                    mock.patch.object(
+                        client.service, operation, side_effect=fault
+                    ) as call,
+                    self.assertRaisesRegex(
+                        exceptions.ValidationError,
+                        "Connection with FACe returned error: Test SOAP fault",
+                    ) as error,
+                ):
+                    getattr(handler, method)(*args)
+                call.assert_called_once()
+                self.assertIs(error.exception.__cause__, fault)
+
     def test_facturae_face_error(self):
         self._activate_certificate(self.certificate_password)
         self.assertFalse(self.move.exchange_record_ids)
@@ -223,7 +331,9 @@ class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificate
         self.assertTrue(self.move.exchange_record_ids)
         exchange_record = self.move.exchange_record_ids
         self.assertEqual(exchange_record.edi_exchange_state, "output_pending")
-        exchange_record.backend_id.exchange_send(exchange_record)
+        with mock.patch("zeep.client.ServiceProxy") as mock_client:
+            mock_client.return_value = DemoService(None)
+            exchange_record.backend_id.exchange_send(exchange_record)
         self.assertEqual(exchange_record.edi_exchange_state, "output_error_on_send")
 
     def test_create_facturae_file_without_organo_gestor(self):
@@ -315,11 +425,13 @@ class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificate
             self.face_update_type.id,
             [c["type"]["id"] for c in self.move.edi_config.values()],
         )
-        result = self.move.with_context().edi_create_exchange_record(
-            self.face_update_type.id
-        )
+        with mock.patch("zeep.client.ServiceProxy") as mock_client:
+            mock_client.return_value = DemoService(response_ok)
+            result = self.move.with_context().edi_create_exchange_record(
+                self.face_update_type.id
+            )
         record = self.env[result["res_model"]].browse(result["res_id"])
-        self.assertEqual("input_receive_error", record.edi_exchange_state)
+        self.assertEqual("input_processed_error", record.edi_exchange_state)
 
     def test_facturae_face(self):
         self._activate_certificate(self.certificate_password)
@@ -365,12 +477,9 @@ class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificate
             self.face_update_type.id,
             [c["type"]["id"] for c in self.move.edi_config.values()],
         )
-        try:
+        with mock.patch("zeep.client.ServiceProxy") as mock_client:
+            mock_client.return_value = DemoService(response_ok)
             self.move.edi_create_exchange_record(self.face_update_type.id)
-        except exceptions.UserError:  # pylint: disable=W8138
-            pass
-        except Exception:
-            raise
 
         with mock.patch("zeep.client.ServiceProxy") as mock_client:
             mock_client.return_value = DemoService(response_update)
@@ -418,8 +527,10 @@ class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificate
         cancel = self.env["edi.l10n.es.facturae.face.cancel"].create(
             {"move_id": self.move.id, "motive": "Anulacion"}
         )
-        with self.assertRaises(exceptions.UserError):
-            cancel.cancel_face()
+        with mock.patch("zeep.client.ServiceProxy") as mock_client:
+            mock_client.return_value = DemoService(None)
+            with self.assertRaises(exceptions.UserError):
+                cancel.cancel_face()
         response_cancel = client.get_type("ns0:ConsultarFacturaResponse")(
             client.get_type("ns0:Resultado")("0", "OK"),
             client.get_type("ns0:AnularFactura")("1234567890", "ANULADO"),
