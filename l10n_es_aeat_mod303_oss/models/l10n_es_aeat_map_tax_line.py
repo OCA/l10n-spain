@@ -18,8 +18,9 @@ class L10nEsAeatMapTaxLine(models.Model):
         if self in oss_map_lines:
             return self.env["account.tax"].search(
                 [
-                    ("oss_country_id", "!=", False),
-                    ("company_id", "=", company.id),
+                    ("company_id", "child_of", company.root_id.id),
+                    ("type_tax_use", "=", "sale"),
+                    ("country_id", "=", company.account_fiscal_country_id.id),
                 ]
             )
         return super().get_taxes_for_company(company)

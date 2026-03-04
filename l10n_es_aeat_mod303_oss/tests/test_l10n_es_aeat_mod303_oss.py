@@ -17,19 +17,9 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         cls.oss_country = cls.env.ref("base.fr")
         cls.company.country_id = cls.env.ref("base.es").id
         cls.company.account_fiscal_country_id = cls.env.ref("base.es").id
-        general_tax = cls.env.ref(
-            f"account.{cls.company.id}_account_tax_template_s_iva21b"
-        )
-        wizard = cls.env["l10n.eu.oss.wizard"].create(
-            {
-                "company_id": cls.company.id,
-                "general_tax": general_tax.id,
-                "todo_country_ids": [(4, cls.oss_country.id)],
-            }
-        )
-        wizard.generate_eu_oss_taxes()
         cls.fr_fiscal_position = cls.env["account.fiscal.position"].search(
-            [("country_id", "=", cls.oss_country.id), ("oss_oca", "=", True)], limit=1
+            [("country_id", "=", cls.oss_country.id), ("name", "ilike", "OSS B2C")],
+            limit=1,
         )
         cls.taxes_sale = {}
         cls.oss_tax = cls.env["account.tax"].search(
