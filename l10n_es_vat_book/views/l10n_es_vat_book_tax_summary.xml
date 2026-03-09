@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_vat_book_tax_summary_form" model="ir.ui.view">
+        <field name="name">view.l10n_es_vat_book_tax_summary.form</field>
+        <field name="model">l10n.es.vat.book.tax.summary</field>
+        <field name="arch" type="xml">
+            <form string="Tax Summary">
+                <sheet>
+                    <group name="main">
+                        <field name="special_tax_group" />
+                        <field name="base_amount" />
+                        <field name="tax_id" />
+                        <field name="tax_amount" />
+                        <field name="total_amount" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_vat_book_tax_summary_tree" model="ir.ui.view">
+        <field name="name">view.l10n_es_vat_book_tax_summary.tree</field>
+        <field name="model">l10n.es.vat.book.tax.summary</field>
+        <field name="arch" type="xml">
+            <list decoration-muted="special_tax_group">
+                <field name="special_tax_group" />
+                <field name="base_amount" />
+                <!-- We don't add a visibility condition, as that would mean to have
+                a field determining if there are moves or not, which can drain the
+                performance -->
+                <button
+                    name="view_move_lines_base"
+                    type="object"
+                    aria-label="Show journal items"
+                    title="Show journal items"
+                    icon="fa-search-plus"
+                />
+                <field name="tax_id" />
+                <field name="tax_amount" />
+                <button
+                    name="view_move_lines_tax"
+                    type="object"
+                    aria-label="Show journal items"
+                    title="Show journal items"
+                    icon="fa-search-plus"
+                />
+                <field name="total_amount" />
+            </list>
+        </field>
+    </record>
+</odoo>

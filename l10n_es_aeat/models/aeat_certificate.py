@@ -1,0 +1,100 @@
+# (c) 2017 Diagram Software S.L.
+# (c) 2017 Consultoría Informática Studio 73 S.L.
+# (c) 2019 Acysos S.L.
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+
+from odoo import exceptions, fields, models
+from odoo.fields import Domain
+
+
+class L10nEsAeatCertificate(models.Model):
+    _name = "l10n.es.aeat.certificate"
+    _description = "AEAT Certificate"
+
+    name = fields.Char()
+    state = fields.Selection(
+        selection=[("draft", "Draft"), ("active", "Active")],
+        default="draft",
+    )
+    file = fields.Binary(required=True)
+    folder = fields.Char(string="Folder Name", required=True)
+    date_start = fields.Date(string="Start Date")
+    date_end = fields.Date(string="End Date")
+    public_key = fields.Char(readonly=True)
+    private_key = fields.Char(readonly=True)
+    company_id = fields.Many2one(
+        comodel_name="res.company",
+        string="Company",
+        required=True,
+        default=lambda self: self.env.company,
+    )
+
+    def load_password_wizard(self):
+        self.ensure_one()
+        return {
+            "type": "ir.actions.act_window",
+            "name": self.env._("Insert Password"),
+            "res_model": "l10n.es.aeat.certificate.password",
+            "view_mode": "form",
+            "views": [(False, "form")],
+            "target": "new",
+        }
+
+    def action_active(self):
+        self.ensure_one()
+        other_configs = self.search(
+            Domain.AND(
+                [
+                    Domain("id", "!=", self.id),
+                    Domain("company_id", "=", self.company_id.id),
+                ]
+            )
+        )
+        for config_id in other_configs:
+            config_id.state = "draft"
+        self.state = "active"
+
+    def get_certificates(self, company=False):
+        if not company:
+            company = self.env.user.company_id
+        today = fields.Date.today()
+        aeat_certificate = self.search(
+            Domain.AND(
+                [
+                    Domain.AND(
+                        [
+                            Domain("company_id", "=", company.id),
+                            Domain("public_key", "!=", False),
+                            Domain("private_key", "!=", False),
+                            Domain("state", "=", "active"),
+                        ]
+                    ),
+                    Domain.OR(
+                        [
+                            Domain("date_start", "=", False),
+                            Domain("date_start", "<=", today),
+                        ]
+                    ),
+                    Domain.OR(
+                        [
+                            Domain("date_end", "=", False),
+                            Domain("date_end", ">=", today),
+                        ]
+                    ),
+                ]
+            ),
+            limit=1,
+        )
+        if aeat_certificate:
+            public_crt = aeat_certificate.public_key
+            private_key = aeat_certificate.private_key
+        else:
+            public_crt = self.env["ir.config_parameter"].get_param(
+                "l10n_es_aeat_certificate.publicCrt", False
+            )
+            private_key = self.env["ir.config_parameter"].get_param(
+                "l10n_es_aeat_certificate.privateKey", False
+            )
+        if not public_crt or not private_key:
+            raise exceptions.UserError(self.env._("Error! There aren't certificates."))
+        return public_crt, private_key
