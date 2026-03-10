@@ -17,11 +17,6 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_intrastat_report
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_computation_line_view_tree
-msgid "/&gt;"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_needaction
 msgid "Action Needed"
 msgstr "Necessària acció"
@@ -260,18 +255,6 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_intrastat_report
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_search
-msgid "Search Spanish Intrastat Product Declaration"
-msgstr "Buscar declaració de producte Intrastat Espanyola"
-
-#. module: l10n_es_intrastat_report
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_graph
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_tree
-msgid "Spanish Intrastat Product Declaration"
-msgstr "Declaració de producte Intrastat Espanyola"
-
-#. module: l10n_es_intrastat_report
 #: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.view_l10n_es_intrastat_code_import
 msgid ""
 "This wizard will import Spanish Product HS Codes from the local copy and set "
@@ -340,6 +323,12 @@ msgstr "Historial de comunicació del web"
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration_line__weight
 msgid "Weight"
 msgstr "Pes"
+
+#~ msgid "Search Spanish Intrastat Product Declaration"
+#~ msgstr "Buscar declaració de producte Intrastat Espanyola"
+
+#~ msgid "Spanish Intrastat Product Declaration"
+#~ msgstr "Declaració de producte Intrastat Espanyola"
 
 #, python-format
 #~ msgid ""
