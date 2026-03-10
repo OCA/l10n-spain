@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_intrastat_report
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_computation_line_view_tree
-msgid "/&gt;"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_needaction
 msgid "Action Needed"
 msgstr ""
@@ -254,18 +249,6 @@ msgstr ""
 msgid ""
 "Operaciones posteriores al perfeccionamiento bajo contrato (no se traspasa "
 "la propiedad al contratista): Reparación o mantenimiento a título oneroso."
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_search
-msgid "Search Spanish Intrastat Product Declaration"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_graph
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_tree
-msgid "Spanish Intrastat Product Declaration"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
