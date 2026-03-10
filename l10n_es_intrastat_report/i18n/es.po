@@ -264,20 +264,6 @@ msgstr ""
 "la propiedad al contratista): Reparación o mantenimiento a título oneroso."
 
 #. module: l10n_es_intrastat_report
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_search
-msgid "Search Spanish Intrastat Product Declaration"
-msgstr "Buscar declaraciones de producto Intrastat españolas"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.actions.act_window,name:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_action
-#: model:ir.ui.menu,name:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_menu
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_graph
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_tree
-msgid "Spanish Intrastat Product Declaration"
-msgstr "Declaración de producto Intrastat española"
-
-#. module: l10n_es_intrastat_report
 #. odoo-python
 #: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
 #, python-format
@@ -367,6 +353,12 @@ msgstr "Historial de comunicación del sitio web"
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration_line__weight
 msgid "Weight"
 msgstr "Peso"
+
+#~ msgid "Search Spanish Intrastat Product Declaration"
+#~ msgstr "Buscar declaraciones de producto Intrastat españolas"
+
+#~ msgid "Spanish Intrastat Product Declaration"
+#~ msgstr "Declaración de producto Intrastat española"
 
 #~ msgid "/&gt;"
 #~ msgstr "/&gt;"

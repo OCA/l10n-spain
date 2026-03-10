@@ -250,20 +250,6 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_intrastat_report
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_search
-msgid "Search Spanish Intrastat Product Declaration"
-msgstr "Buscar declaració de producte Intrastat Espanyola"
-
-#. module: l10n_es_intrastat_report
-#: model:ir.actions.act_window,name:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_action
-#: model:ir.ui.menu,name:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_menu
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_graph
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_tree
-msgid "Spanish Intrastat Product Declaration"
-msgstr "Declaració de producte Intrastat Espanyola"
-
-#. module: l10n_es_intrastat_report
 #. odoo-python
 #: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
 #, python-format
@@ -343,6 +329,12 @@ msgstr "Historial de comunicació del web"
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration_line__weight
 msgid "Weight"
 msgstr "Pes"
+
+#~ msgid "Search Spanish Intrastat Product Declaration"
+#~ msgstr "Buscar declaració de producte Intrastat Espanyola"
+
+#~ msgid "Spanish Intrastat Product Declaration"
+#~ msgstr "Declaració de producte Intrastat Espanyola"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Darrera modificació el"
