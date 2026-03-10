@@ -230,7 +230,7 @@ class EDIBackendTestCase(
         self._activate_certificate(self.certificate_password)
         self.assertFalse(self.move.exchange_record_ids)
         self.move.with_context(
-            force_edi_send=True, test_queue_job_no_delay=True
+            force_edi_send=True, queue_job__no_delay=True
         ).action_post()
         self.move.invalidate_recordset()
         self.assertTrue(self.move.exchange_record_ids)
@@ -309,7 +309,7 @@ class EDIBackendTestCase(
             mock_client.return_value = DemoService(response_ok)
 
             self.move.with_context(
-                force_edi_send=True, test_queue_job_no_delay=True
+                force_edi_send=True, queue_job__no_delay=True
             ).action_post()
             self.move.name = "2999/99998"
             mock_client.assert_not_called()
@@ -346,7 +346,7 @@ class EDIBackendTestCase(
             mock_client.return_value = DemoService(response_ok)
 
             self.move.with_context(
-                force_edi_send=True, test_queue_job_no_delay=True
+                force_edi_send=True, queue_job__no_delay=True
             ).action_post()
             self.move.name = "2999/99998"
             mock_client.assert_not_called()
@@ -458,7 +458,7 @@ class EDIBackendTestCase(
         with mock.patch("zeep.client.ServiceProxy") as mock_client:
             mock_client.return_value = DemoService(response_ok)
             self.move.with_context(
-                force_edi_send=True, test_queue_job_no_delay=True
+                force_edi_send=True, queue_job__no_delay=True
             ).action_post()
             self.move.name = "2999/99998"
             mock_client.assert_not_called()
