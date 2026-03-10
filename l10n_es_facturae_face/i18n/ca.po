@@ -78,6 +78,13 @@ msgid "Connection with FACe returned error %(code)s - %(description)s"
 msgstr "La connexió amb FACe ha retornat l'error %(code)s - %(description)s"
 
 #. module: l10n_es_facturae_face
+#. odoo-python
+#: code:addons/l10n_es_facturae_face/components/webservice_face.py:0
+#, python-format
+msgid "Connection with FACe returned error: %(error)s"
+msgstr ""
+
+#. module: l10n_es_facturae_face
 #: model:ir.model,name:l10n_es_facturae_face.model_res_partner
 msgid "Contact"
 msgstr "Contacte"
