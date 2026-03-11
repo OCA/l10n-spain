@@ -8,7 +8,7 @@ from odoo.addons.l10n_es_atc.models.l10n_es_atc_report import ATC_JAR_URL
 
 ATC_JAR_URL[
     "420"
-] = "https://www3.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/modelos/ref_y_propios/igic/mod420/bin/M420V920E25.zip"
+] = "https://www3.gobiernodecanarias.org/tributos/atc/documents/d/agencia-tributaria-canaria/m420v930e26-zip"
 
 
 class L10nEsAtcMod420Report(models.Model):
