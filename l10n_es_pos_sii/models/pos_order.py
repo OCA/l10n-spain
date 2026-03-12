@@ -14,6 +14,13 @@ class PosOrder(models.Model):
     _name = "pos.order"
     _inherit = ["pos.order", "sii.mixin"]
 
+    # It is necessary to define a group to prevent point_of_sale at
+    # https://github.com/odoo/odoo/blob/404b839566fbc1a72d3e68c7a02ddbfa3b18980d/addons/point_of_sale/models/pos_order.py# L1166  # noqa: E501
+    # from returning an error when attempting to access the
+    # l10n.es.aeat.sii.match.difference model of the field if the user does not have
+    # sufficient permissions.
+    sii_match_difference_ids = fields.One2many(groups="l10n_es_aeat.group_account_aeat")
+
     @api.depends("company_id", "state")
     def _compute_sii_description(self):
         for order in self:
