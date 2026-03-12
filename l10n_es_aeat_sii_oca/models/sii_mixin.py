@@ -9,7 +9,7 @@ import json
 from unidecode import unidecode
 
 from odoo import _, api, exceptions, fields, models
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import UserError
 from odoo.modules.registry import Registry
 from odoo.tools.float_utils import float_compare
 
@@ -821,13 +821,9 @@ class SiiMixin(models.AbstractModel):
             doc_vals = {
                 "aeat_header_sent": json.dumps(header, indent=4),
             }
-            # add this extra try except in case _get_aeat_invoice_dict fails
-            # if not, get the value doc_dict for the next try and except below
+            inv_dict = False
             try:
                 inv_dict = document._get_aeat_invoice_dict()
-            except Exception as fault:
-                raise ValidationError(fault) from fault
-            try:
                 mapping_key = document._get_mapping_key()
                 serv = document._connect_aeat(mapping_key)
                 doc_vals["aeat_content_sent"] = json.dumps(inv_dict, indent=4)
@@ -889,10 +885,11 @@ class SiiMixin(models.AbstractModel):
                         "aeat_send_failed": True,
                         "aeat_send_error": repr(fault)[:60],
                         "sii_return": repr(fault),
-                        "aeat_content_sent": json.dumps(inv_dict, indent=4),
                         "sii_send_date": False,
                     }
                 )
+                if inv_dict:
+                    doc_vals["aeat_content_sent"] = json.dumps(inv_dict, indent=4)
                 document.write(doc_vals)
                 new_cr.commit()
                 new_cr.close()
