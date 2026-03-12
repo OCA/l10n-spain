@@ -24,6 +24,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [l10n_es_account_statement_import_n43](l10n_es_account_statement_import_n43/) | 19.0.1.0.0 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Importación de extractos bancarios españoles (Norma 43)
 [l10n_es_aeat](l10n_es_aeat/) | 19.0.1.0.0 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Modulo base para declaraciones de la AEAT
+[l10n_es_aeat_partner_check](l10n_es_aeat_partner_check/) | 19.0.1.0.0 |  | AEAT - Comprobación de Calidad de datos identificativos
 [l10n_es_partner](l10n_es_partner/) | 19.0.1.0.2 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Adaptación de los clientes, proveedores y bancos para España
 [l10n_es_toponyms](l10n_es_toponyms/) | 19.0.1.0.0 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Topónimos españoles
 
