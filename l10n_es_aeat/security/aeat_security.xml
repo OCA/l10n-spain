@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record model="res.groups.privilege" id="res_groups_privilege_aeat">
+        <field name="name">Aeat Permissions</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+        <field name="sequence">8</field>
+    </record>
+    <record model="res.groups" id="group_account_aeat">
+        <field name="name">AEAT manager</field>
+        <field name="privilege_id" ref="res_groups_privilege_aeat" />
+        <field
+            name="user_ids"
+            eval="[Command.link(ref('base.user_root')), Command.link(ref('base.user_admin'))]"
+        />
+    </record>
+    <record id="l10n_es_aeat_certificate_rule" model="ir.rule">
+        <field name="name">AEAT Certificate multi-company</field>
+        <field ref="model_l10n_es_aeat_certificate" name="model_id" />
+        <field eval="True" name="global" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>
