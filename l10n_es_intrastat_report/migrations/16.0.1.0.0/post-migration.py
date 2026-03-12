@@ -63,20 +63,18 @@ intr_prod_dec_lin_fields = [
 @openupgrade.migrate()
 def migrate(env, version):
     if not column_exists(env.cr, "intrastat_product_declaration", "old_l10n_es_id"):
-        create_column(
-            env.cr, "intrastat_product_declaration", "old_l10n_es_id", "numeric"
-        )
+        create_column(env.cr, "intrastat_product_declaration", "old_l10n_es_id", "int4")
     if not column_exists(
         env.cr, "intrastat_product_declaration_line", "old_l10n_es_id"
     ):
         create_column(
-            env.cr, "intrastat_product_declaration_line", "old_l10n_es_id", "numeric"
+            env.cr, "intrastat_product_declaration_line", "old_l10n_es_id", "int4"
         )
     if not column_exists(
         env.cr, "intrastat_product_computation_line", "old_l10n_es_id"
     ):
         create_column(
-            env.cr, "intrastat_product_computation_line", "old_l10n_es_id", "numeric"
+            env.cr, "intrastat_product_computation_line", "old_l10n_es_id", "int4"
         )
     new_fields = ", ".join(f'"{f}"' for f in ["old_l10n_es_id"] + intr_prod_dec_fields)
     old_fields = ", ".join(f'"{f}"' for f in ["id"] + intr_prod_dec_fields)
