@@ -84,6 +84,37 @@ def migrate(env, version):
         new_fields=new_fields, old_fields=old_fields
     )
     openupgrade.logged_query(env.cr, query)
+    # Adapt attachment/messages/followers
+    openupgrade.logged_query(
+        env.cr,
+        """
+        UPDATE ir_attachment
+        SET res_model='intrastat.product.declaration', res_id=ipd.id
+        FROM intrastat_product_declaration ipd
+        WHERE res_model='l10n.es.intrastat.product.declaration'
+        AND res_id=ipd.old_l10n_es_id
+        """,
+    )
+    openupgrade.logged_query(
+        env.cr,
+        """
+        UPDATE mail_message
+        SET model='intrastat.product.declaration', res_id=ipd.id
+        FROM intrastat_product_declaration ipd
+        WHERE model='l10n.es.intrastat.product.declaration'
+        AND res_id=ipd.old_l10n_es_id
+        """,
+    )
+    openupgrade.logged_query(
+        env.cr,
+        """
+        UPDATE mail_followers
+        SET res_model='intrastat.product.declaration', res_id=ipd.id
+        FROM intrastat_product_declaration ipd
+        WHERE res_model='l10n.es.intrastat.product.declaration'
+        AND res_id=ipd.old_l10n_es_id
+        """,
+    )
 
     new_fields = ", ".join(
         f"{f}" for f in ["old_l10n_es_id"] + intr_prod_dec_lin_fields
