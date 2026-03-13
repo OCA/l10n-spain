@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===============
 AEAT modelo 190
 ===============
@@ -17,7 +13,7 @@ AEAT modelo 190
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
@@ -69,8 +65,8 @@ Para crear un modelo, por ejemplo de un año:
 6. Guardar y pulsar en el botón "Calcular"
 7. Rellenar aquellos campos que Odoo no calcula automáticamente:
 
-   - Información relacionada con datos sensibles del perceptor solo en
-     las claves A, B.01, B.03, C, E.01 y E.02
+   -  Información relacionada con datos sensibles del perceptor solo en
+      las claves A, B.01, B.03, B.04, B.99, C, E.01 y E.02
 
 8. Cuando los valores sean los correctos, pulsar en el botón
    "Confirmar".
@@ -82,8 +78,8 @@ una nueva pestaña en los terceros, queda pendiente del trato que se le
 debe de dar a esta información ya es información sensible según la LOPD,
 de momento, sólo el responsable de aeat, puede acceder a los datos.
 
-- Se puede añadir un adjunto en los terceros donde se guarde el
-  justificante del consentimiento expreso del tercero.
+-  Se puede añadir un adjunto en los terceros donde se guarde el
+   justificante del consentimiento expreso del tercero.
 
 NOTA: En el caso en que tengamos el addon 'l10n_es_aeat_mod216'
 deberemos indicar los proveedores que son residentes (éste es el valor
@@ -99,7 +95,25 @@ Known issues / Roadmap
 ======================
 
 A dia de hoy, las retenciones en especie se computan como repercutidas
-al trabajador.
+al trabajador. Cambios 2025
+(https://sede.agenciatributaria.gob.es/Sede/declaraciones-informativas-otros-impuestos-tasas/campana-declaraciones-informativas-2025/novedades-campana-modelo/modelo-190.html):
+
+-  Se incluye un nuevo campo para que el pagador especifique los
+   rendimientos del trabajo derivados de participaciones que otorguen
+   derechos económicos especiales por la gestión de fondos vinculados al
+   emprendimiento, a la innovación y al desarrollo de la actividad
+   económica a los que se haya aplicado la Disposición adicional 53ª de
+   la Ley 35/2006, de 28 de noviembre, del Impuesto sobre la Renta de
+   las Personas Físicas y de modificación parcial de las leyes de los
+   Impuestos sobre Sociedades, sobre la Renta de no Residentes y sobre
+   el Patrimonio.
+-  Se crea un campo adicional denominado «Tipo/s de prestación/es de la
+   clave B.01 percibida/s en el ejercicio» dentro de la clave de
+   percepción «B. Rendimientos del trabajo: Pensionistas y perceptores
+   de haberes pasivos y demás prestaciones previstas en el artículo
+   17.2.a)», Subclave «01: pensiones y haberes pasivos de los regímenes
+   de la Seguridad Social y Clases Pasivas del Estado» con el objetivo
+   de identificar y distinguir el tipo de prestación que se abona.
 
 Bug Tracker
 ===========
@@ -124,32 +138,32 @@ Authors
 Contributors
 ------------
 
-- `Punt Sistemes <http://www.puntsistemes.com>`__
+-  `Punt Sistemes <http://www.puntsistemes.com>`__
 
-  - Juan Vicente Pascual
-  - Pedro Ortega
+   -  Juan Vicente Pascual
+   -  Pedro Ortega
 
-- `Dixmit <https://www.dixmit.com>`__
+-  `Dixmit <https://www.dixmit.com>`__
 
-  - Enric Tobella
+   -  Enric Tobella
 
-- `Vunkers <https://www.vunkers.com>`__
+-  `Vunkers <https://www.vunkers.com>`__
 
-  - Nestor Torres
-  - Marc Sánchez Fauste
+   -  Nestor Torres
+   -  Marc Sánchez Fauste
 
-- `Sygel <https://www.sygel.es>`__
+-  `Sygel <https://www.sygel.es>`__
 
-  - Manuel Regidor González
+   -  Manuel Regidor González
 
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Víctor Martínez
+   -  Víctor Martínez
 
-- `Moduon <https://www.moduon.team>`__
+-  `Moduon <https://www.moduon.team>`__
 
-  - Jairo Llopis
-  - Emilio Pascual
+   -  Jairo Llopis
+   -  Emilio Pascual
 
 Maintainers
 -----------
