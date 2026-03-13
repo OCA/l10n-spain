@@ -9,7 +9,7 @@ Para crear un modelo, por ejemplo de un año:
 6.  Guardar y pulsar en el botón "Calcular"
 7.  Rellenar aquellos campos que Odoo no calcula automáticamente:
     - Información relacionada con datos sensibles del perceptor solo en
-      las claves A, B.01, B.03, C, E.01 y E.02
+      las claves A, B.01, B.03, B.04, B.99, C, E.01 y E.02
 8.  Cuando los valores sean los correctos, pulsar en el botón
     "Confirmar".
 9.  Podemos exportar en formato BOE para presentarlo telemáticamente en

@@ -49,11 +49,35 @@
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_02" />
         <field name="name">03</field>
         <field name="aeat_number">190</field>
-        <field name="description">
-            Se consignará esta subclave en todas las percepciones
-            de la clave B distintas de las que deban relacionarse bajo
-            las subclaves 01 y 02.
-        </field>
+        <field
+            name="description"
+        >Prestaciones percibidas por los beneficiarios de mutualidades generales obligatorias de funcionarios, colegios de huérfanos y entidades similares</field>
+        <field name="active">True</field>
+        <field name="ad_required">1</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_02_04"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_02" />
+        <field name="name">04</field>
+        <field name="aeat_number">190</field>
+        <field
+            name="description"
+        >Prestaciones derivadas de Planes de Pensiones y otros Sistemas de Previsión Social a los que se refiere el artículo 17.2.a) de la Ley 35/2006, de 28 de noviembre</field>
+        <field name="active">True</field>
+        <field name="ad_required">1</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_02_99"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_02" />
+        <field name="name">99</field>
+        <field name="aeat_number">190</field>
+        <field
+            name="description"
+        >Resto de prestaciones de la Clave B distintas de las que deban relacionarse bajo las subclaves anteriores</field>
         <field name="active">True</field>
         <field name="ad_required">1</field>
     </record>
@@ -610,21 +634,9 @@
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_11" />
         <field name="name">01</field>
         <field name="aeat_number">190</field>
-        <field name="description">
-            Se consignará esta subclave cuando las percepciones
-            correspondan a premios por la participación en juegos,
-            rifas o combinaciones aleatorias sin fines publicitarios,
-            enmarcables en la definición del concepto de "juego" que
-            se contiene en el artículo 3.a) de la Ley 13/2011, de 27 de
-            mayo, de regulación del juego, caracterizado por
-            arriesgarse cantidades de dinero u otros elementos
-            patrimoniales a cambio de la posibilidad de obtener un
-            premio o ganancia. Estos premios se consignarán por su
-            importe íntegro, sin perjuicio del derecho del perceptor a
-            minorar su importe en las pérdidas en el juego obtenidas
-            en el mismo período impositivo, en los términos
-            establecidos en el artículo 35.5.d) de la Ley del impuesto.
-        </field>
+        <field
+            name="description"
+        >Premios otorgados en juegos, concursos, rifas, etc., sujetos a retención, sin fines publicitarios.</field>
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
@@ -651,19 +663,35 @@
         <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_11" />
         <field name="name">03</field>
         <field name="aeat_number">190</field>
-        <field name="description">
-            Se consignará esta subclave cuando las percepciones
-            correspondan a premios por la participación en concursos
-            o combinaciones aleatorias con fines publicitarios, en los
-            que no se realice un desembolso económico por su
-            participación en ellos, y por tanto, no enmarcables en la
-            definición del concepto de "juego" que se contiene en el
-            artículo 3.a) de la Ley 13/2011, de 27 de mayo, de regulación
-            del juego. Se incluyen aquí premios derivados de programas
-            desarrollados en medios de comunicación, así como los derivados
-            de combinaciones aleatorias con fines publicitarios y
-            promocionales definidas en el art. 3.i) de la Ley 13/2011.
-        </field>
+        <field
+            name="description"
+        >Premios sujetos a retención, organizados con fines publicitarios.</field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_11_04"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_11" />
+        <field name="name">04</field>
+        <field name="aeat_number">190</field>
+        <field
+            name="description"
+        >Premios no sujetos a retención sin fines publicitarios.</field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record
+        id="aeat_m190_perception_subkey_11_05"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_11" />
+        <field name="name">05</field>
+        <field name="aeat_number">190</field>
+        <field
+            name="description"
+        >Premios no sujetos a retención con fines publicitarios.</field>
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>

@@ -102,7 +102,7 @@ class ResPartner(models.Model):
         copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
         help="""Solo para percepciones correspondientes a las claves A,
-            B.01, B.03 y C.
+            B.01, B.03, B.04, B.99 y C.
             Únicamente en el supuesto de que la «SITUACIÓN
             FAMILIAR» del perceptor sea la señalada con el número
             2, se hará constar el número de identificación fiscal de su
@@ -128,7 +128,7 @@ class ResPartner(models.Model):
         copy=False,
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
         help="""Solo para percepciones correspondientes a las claves A,
-            B.01, B.03 y C.
+            B.01, B.03, B.04, B.99 y C.
             Si el perceptor es una persona con discapacidad que tiene
             acreditado un grado de minusvalía igual o superior al 33
             por 100, se hará constar en este campo el código
@@ -169,7 +169,7 @@ class ResPartner(models.Model):
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
         help="""
         Solo para percepciones correspondientes a las claves A,
-        B.01, B.03 y C.
+        B.01, B.03, B.04, B.99 y C.
         Datos referidos a los hijos y demás descendientes del
         perceptor por los que éste tenga derecho a la aplicación
         del mínimo por descendientes previsto en el artículo 58 de
@@ -187,7 +187,7 @@ class ResPartner(models.Model):
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
         help="""
         Solo para percepciones correspondientes a las claves A,
-        B.01, B.03 y C.
+        B.01, B.03, B.04, B.99 y C.
         Datos referidos a los hijos y demás descendientes del
         perceptor por los que éste tenga derecho a la aplicación
         del mínimo por descendientes previsto en el artículo 58 de
@@ -285,7 +285,7 @@ class ResPartner(models.Model):
         groups="l10n_es_aeat_mod190.group_aeat_mod190",
         help="""CÓMPUTO DE LOS 3 PRIMEROS HIJOS.
             Solo para percepciones correspondientes a las claves A,
-            B.01, B.03 y C.
+            B.01, B.03, B.04, B.99 y C.
             Datos referidos a la proporción en la que ha sido
             computado a efectos de determinar el tipo de retención
             cada uno de los tres primeros hijos o descendientes del
@@ -346,9 +346,11 @@ class ResPartner(models.Model):
             "l10n_es_aeat_mod190.aeat_m190_perception_key_01",
             "l10n_es_aeat_mod190.aeat_m190_perception_key_03",
         ]
-        aeat_perception_subkey_id = [  # B01, B03
+        aeat_perception_subkey_id = [  # B01, B03, B04, B99
             "l10n_es_aeat_mod190.aeat_m190_perception_subkey_02_01",
             "l10n_es_aeat_mod190.aeat_m190_perception_subkey_02_03",
+            "l10n_es_aeat_mod190.aeat_m190_perception_subkey_02_04",
+            "l10n_es_aeat_mod190.aeat_m190_perception_subkey_02_99",
         ]
         for record in self:
             record.is_first_child_computation_visible = (
