@@ -1,9 +1,10 @@
 [project]
 name = "odoo-addons-oca-l10n-spain"
-version = "19.0.20260312.1"
+version = "19.0.20260313.0"
 dependencies = [
     "odoo-addon-l10n_es_account_statement_import_n43==19.0.*",
     "odoo-addon-l10n_es_aeat==19.0.*",
+    "odoo-addon-l10n_es_aeat_mod347==19.0.*",
     "odoo-addon-l10n_es_aeat_partner_check==19.0.*",
     "odoo-addon-l10n_es_partner==19.0.*",
     "odoo-addon-l10n_es_toponyms==19.0.*",
