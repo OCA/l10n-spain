@@ -154,8 +154,8 @@ class DeliveryCarrier(models.Model):
             "remite_provincia": escape(sender_partner.state_id.name or ""),
             "remite_pais": "34",  # [mandatory] always 34=Spain
             "remite_cp": sender_partner.zip or "",
-            "remite_telefono": sender_partner.phone or "",
-            "remite_movil": sender_partner.mobile or "",
+            "remite_telefono": self._sanitize_phone_gls(sender_partner.phone or ""),
+            "remite_movil": self._sanitize_phone_gls(sender_partner.mobile or ""),
             "remite_email": escape(sender_partner.email or ""),
             "remite_departamento": "",
             "remite_nif": sender_partner.vat or "",
@@ -172,8 +172,12 @@ class DeliveryCarrier(models.Model):
             "destinatario_cp": consignee.zip,
             # For certain destinations the consignee mobile and email are required to
             # make the expedition. Try to fallback to the commercial entity one
-            "destinatario_telefono": consignee.phone or consignee_entity.phone or "",
-            "destinatario_movil": consignee.mobile or consignee_entity.mobile or "",
+            "destinatario_telefono": self._sanitize_phone_gls(
+                consignee.phone or consignee_entity.phone or ""
+            ),
+            "destinatario_movil": self._sanitize_phone_gls(
+                consignee.mobile or consignee_entity.mobile or ""
+            ),
             "destinatario_email": escape(
                 consignee.email or consignee_entity.email or ""
             ),
@@ -231,10 +235,10 @@ class DeliveryCarrier(models.Model):
             "remite_provincia": sender_partner.state_id.name or "",
             "remite_pais": (sender_partner.country_id.phone_code or ""),
             "remite_cp": sender_partner.zip or "",
-            "remite_telefono": (
+            "remite_telefono": self._sanitize_phone_gls(
                 sender_partner.phone or sender_partner.parent_id.phone or ""
             ),
-            "remite_movil": (
+            "remite_movil": self._sanitize_phone_gls(
                 sender_partner.mobile or sender_partner.parent_id.mobile or ""
             ),
             "remite_email": (
@@ -248,10 +252,10 @@ class DeliveryCarrier(models.Model):
             "destinatario_provincia": receiving_partner.state_id.name or "",
             "destinatario_pais": (receiving_partner.country_id.code or ""),
             "destinatario_cp": receiving_partner.zip or "",
-            "destinatario_telefono": (
+            "destinatario_telefono": self._sanitize_phone_gls(
                 receiving_partner.phone or receiving_partner.parent_id.phone or ""
             ),
-            "destinatario_movil": (
+            "destinatario_movil": self._sanitize_phone_gls(
                 receiving_partner.mobile or receiving_partner.parent_id.mobile or ""
             ),
             "destinatario_email": (
@@ -533,3 +537,13 @@ class DeliveryCarrier(models.Model):
             "res_id": wizard.id,
             "context": self.env.context,
         }
+
+    @api.model
+    def _sanitize_phone_gls(self, phone_number):
+        """Use method from phone_validation module without add it to dependencies
+        Default format is E164
+        """
+        sanitize = getattr(self, "_phone_format", None)
+        if sanitize:
+            phone_number = sanitize(number=phone_number)
+        return phone_number
