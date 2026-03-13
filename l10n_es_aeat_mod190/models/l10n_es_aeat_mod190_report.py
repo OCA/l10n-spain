@@ -279,7 +279,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
         compute="_compute_codigo_provincia",
         store=True,
     )
-    # DATOS ADICIONALES (solo en las claves A, B.01, B.03, C, E.01 y E.02).
+    # DATOS ADICIONALES (solo en las claves A, B.01, B.03, B.04, B.99, C, E.01 y E.02).
     a_nacimiento = fields.Char(
         string="Year of birth", compute="_compute_partner_id_ad_required", store=True
     )

@@ -55,8 +55,8 @@ Para crear un modelo, por ejemplo de un año:
 6. Guardar y pulsar en el botón "Calcular"
 7. Rellenar aquellos campos que Odoo no calcula automáticamente:
 
-   - Información relacionada con datos sensibles del perceptor solo en
-     las claves A, B.01, B.03, C, E.01 y E.02
+   -  Información relacionada con datos sensibles del perceptor solo en
+      las claves A, B.01, B.03, B.04, B.99, C, E.01 y E.02
 
 8. Cuando los valores sean los correctos, pulsar en el botón
    "Confirmar".
@@ -68,8 +68,8 @@ una nueva pestaña en los terceros, queda pendiente del trato que se le
 debe de dar a esta información ya es información sensible según la LOPD,
 de momento, sólo el responsable de aeat, puede acceder a los datos.
 
-- Se puede añadir un adjunto en los terceros donde se guarde el
-  justificante del consentimiento expreso del tercero.
+-  Se puede añadir un adjunto en los terceros donde se guarde el
+   justificante del consentimiento expreso del tercero.
 
 NOTA: En el caso en que tengamos el addon 'l10n_es_aeat_mod216'
 deberemos indicar los proveedores que son residentes (éste es el valor
@@ -85,7 +85,25 @@ Known issues / Roadmap
 ======================
 
 A dia de hoy, las retenciones en especie se computan como repercutidas
-al trabajador.
+al trabajador. Cambios 2025
+(https://sede.agenciatributaria.gob.es/Sede/declaraciones-informativas-otros-impuestos-tasas/campana-declaraciones-informativas-2025/novedades-campana-modelo/modelo-190.html):
+
+-  Se incluye un nuevo campo para que el pagador especifique los
+   rendimientos del trabajo derivados de participaciones que otorguen
+   derechos económicos especiales por la gestión de fondos vinculados al
+   emprendimiento, a la innovación y al desarrollo de la actividad
+   económica a los que se haya aplicado la Disposición adicional 53ª de
+   la Ley 35/2006, de 28 de noviembre, del Impuesto sobre la Renta de
+   las Personas Físicas y de modificación parcial de las leyes de los
+   Impuestos sobre Sociedades, sobre la Renta de no Residentes y sobre
+   el Patrimonio.
+-  Se crea un campo adicional denominado «Tipo/s de prestación/es de la
+   clave B.01 percibida/s en el ejercicio» dentro de la clave de
+   percepción «B. Rendimientos del trabajo: Pensionistas y perceptores
+   de haberes pasivos y demás prestaciones previstas en el artículo
+   17.2.a)», Subclave «01: pensiones y haberes pasivos de los regímenes
+   de la Seguridad Social y Clases Pasivas del Estado» con el objetivo
+   de identificar y distinguir el tipo de prestación que se abona.
 
 Bug Tracker
 ===========
@@ -110,15 +128,15 @@ Authors
 Contributors
 ------------
 
-- Juan Vicente Pascual (http://www.puntsistemes.com)
-- Pedro Ortega (http://www.puntsistemes.com)
-- Enric Tobella <etobella@creublanca.es>
-- Nestor Torres (https://www.vunkers.com)
-- Marc Sánchez Fauste (https://www.vunkers.com)
-- Manuel Regidor González (https://www.sygel.es)
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  Juan Vicente Pascual (http://www.puntsistemes.com)
+-  Pedro Ortega (http://www.puntsistemes.com)
+-  Enric Tobella <etobella@creublanca.es>
+-  Nestor Torres (https://www.vunkers.com)
+-  Marc Sánchez Fauste (https://www.vunkers.com)
+-  Manuel Regidor González (https://www.sygel.es)
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Víctor Martínez
+   -  Víctor Martínez
 
 Maintainers
 -----------
