@@ -56,7 +56,7 @@ class PosOrder(models.Model):
         )
         return res
 
-    def _is_sii_type_breakdown_required(self, taxes_dict):
+    def _is_sii_type_breakdown_required(self):
         """As these are simplified invoices, we don't break taxes.
 
         El desglose se hará obligatoriamente a nivel de tipo de operación si
