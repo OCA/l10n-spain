@@ -5,7 +5,7 @@
     "summary": "Display the Spanish digital canon separately in the website cart total",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
-    "version": "18.0.1.0.0",
+    "version": "17.0.1.0.0",
     "license": "AGPL-3",
     "depends": ["l10n_es_digital_canon", "website_sale"],
     "data": [
