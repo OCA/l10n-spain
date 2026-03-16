@@ -85,10 +85,7 @@ class ResCompanyVatProrate(models.Model):
     )
     vat_prorate = fields.Float()
 
-    _sql_constraints = [
-        (
-            "vat_prorate_percent_amount",
-            "CHECK (vat_prorate > 0 and vat_prorate < 100)",
-            "VAT prorate must be between 0.01 and 99.9!",
-        ),
-    ]
+    _vat_prorate_percent_amount = models.Constraint(
+        "CHECK (vat_prorate > 0 and vat_prorate < 100)",
+        "VAT prorate must be between 0.01 and 99.9!",
+    )

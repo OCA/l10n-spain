@@ -57,7 +57,7 @@
         <field name="parent_id" ref="l10n_es_aeat.menu_l10n_es_aeat_config" />
         <field name="action" ref="account_update_vat_prorate_act_window" />
         <field
-            name="groups_id"
+            name="group_ids"
             eval="[Command.set([ref('account.group_account_manager')])]"
         />
         <field name="sequence" eval="70" />
