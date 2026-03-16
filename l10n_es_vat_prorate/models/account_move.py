@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later(http://www.gnu.org/licenses/agpl).
 
 
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 from odoo.tools import float_round
 
 
@@ -177,18 +177,16 @@ class AccountMove(models.Model):
             )
             prorate_line_ids = []
             for prorate_data in prorate_taxes.values():
-                prorate_line = tax_line.copy()
+                prorate_line = tax_line.copy({"account_id": prorate_data["account_id"]})
                 tax_total = prorate_data.get("tax_total", 0)
                 prorate_total = prorate_data.get("prorate_total", 0)
                 prorate_amount += tax_total - prorate_total
                 prorate_line_ids.append(prorate_line.id)
                 line_to_update["line_ids"].append(
-                    (
-                        1,
+                    Command.update(
                         prorate_line.id,
                         {
                             "balance": tax_total - prorate_total,
-                            "account_id": prorate_data["account_id"],
                             "analytic_distribution": prorate_data[
                                 "analytic_distribution"
                             ],
@@ -198,25 +196,23 @@ class AccountMove(models.Model):
                 )
             tax_val = taxes_with_prorate.pop(tax_id)
             line_to_update["line_ids"].append(
-                [
-                    1,
+                Command.update(
                     tax_line.id,
                     {
                         "balance": tax_val["tax_total"] - prorate_amount,
-                        "prorate_line_ids": [fields.Command.set(prorate_line_ids)],
+                        "prorate_line_ids": [Command.set(prorate_line_ids)],
                     },
-                ]
+                )
             )
         for tax_id, tax_val in taxes_with_prorate.items():
             tax_line = tax_lines.filtered_domain([("tax_line_id", "=", tax_id)])
             line_to_update["line_ids"].append(
-                [
-                    1,
+                Command.update(
                     tax_line.id,
                     {
                         "balance": tax_val["tax_total"],
                     },
-                ]
+                )
             )
         self.with_context(skip_vat_prorate=True).write(line_to_update)
 

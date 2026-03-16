@@ -1,5 +1,6 @@
 from datetime import date
 
+from odoo import Command
 from odoo.tests.common import tagged
 
 try:
@@ -22,8 +23,8 @@ class TestSIIVatProrate(TestL10nEsAeatSiiBase):
             {
                 "with_vat_prorate": True,
                 "vat_prorate_ids": [
-                    (0, 0, {"date": date(2020, 1, 1), "vat_prorate": 20}),
-                    (0, 0, {"date": date(2021, 1, 1), "vat_prorate": 10}),
+                    Command.create({"date": date(2020, 1, 1), "vat_prorate": 20}),
+                    Command.create({"date": date(2021, 1, 1), "vat_prorate": 10}),
                 ],
             }
         )
