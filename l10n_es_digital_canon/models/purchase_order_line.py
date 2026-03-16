@@ -6,9 +6,8 @@ from odoo import models
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    # pylint:disable=missing-return
     def _compute_tax_id(self):
-        super()._compute_tax_id()
+        res = super()._compute_tax_id()
         for line in self:
             taxes = line.taxes_id
             product = line.product_id
@@ -28,3 +27,4 @@ class PurchaseOrderLine(models.Model):
                 )
                 if tax:
                     line.taxes_id |= tax
+        return res

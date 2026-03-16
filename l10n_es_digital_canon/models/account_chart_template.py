@@ -20,11 +20,11 @@ class AccountChartTemplate(models.AbstractModel):
             "es_common", "account.tax", module="l10n_es_digital_canon"
         )
 
-    def _load_data(self, data, ignore_duplicates=False):
+    def _load_data(self, data):
         """When loading digital canon taxes, they must have a lower sequence
         than all other taxes so that subsequent taxes can be calculated.
         """
-        result = super()._load_data(data, ignore_duplicates=ignore_duplicates)
+        result = super()._load_data(data)
         if "account.tax" not in result:
             return result
         # Get all canon digital tax groups

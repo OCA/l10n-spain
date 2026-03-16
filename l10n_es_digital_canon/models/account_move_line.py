@@ -1,6 +1,7 @@
 # Copyright 2025 Juan Carlos Oñate - Tecnativa <juancarlos.onate@tecnativa.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-from odoo import models
+
+from odoo import fields, models
 
 
 class AccountMoveLine(models.Model):
@@ -13,7 +14,7 @@ class AccountMoveLine(models.Model):
             self.move_id.partner_id.country_id == self.env.ref("base.es")
             and not self.move_id.partner_id.is_digital_canon_exempt
         ):
-            ttype = "sale" if taxes.type_tax_use == "sale" else "purchase"
+            ttype = "sale" if fields.first(taxes).type_tax_use == "sale" else "purchase"
             if self.product_id.l10n_es_digital_canon:
                 tax = self.env.ref(
                     f"account.{self.company_id.id}_tax_template_canon_{ttype}_"

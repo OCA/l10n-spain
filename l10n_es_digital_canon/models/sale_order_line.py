@@ -6,10 +6,9 @@ from odoo import api, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    # pylint:disable=missing-return
     @api.depends("product_id", "company_id")
     def _compute_tax_id(self):
-        super()._compute_tax_id()
+        res = super()._compute_tax_id()
         for line in self:
             taxes = line.tax_id
             product = line.product_id
@@ -30,3 +29,4 @@ class SaleOrderLine(models.Model):
                 )
                 if tax:
                     line.tax_id |= tax
+        return res
