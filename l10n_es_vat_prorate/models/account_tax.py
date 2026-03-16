@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 
 from .prorate_taxes import PRORATE_TAXES
 
@@ -45,7 +45,7 @@ class AccountTax(models.Model):
                     with_vat_prorate = True
                     if PRORATE_TAXES.get(xml_id).get("prorate_account_template_ids"):
                         prorate_taxes = self.company_id._get_prorate_accounts()
-                        prorate_account_ids = [(5, 0, 0)]
+                        prorate_account_ids = [Command.clear()]
                         for account_from_tmpl_id in prorate_taxes.get(xml_id).get(
                             "prorate_account_ids"
                         ):
