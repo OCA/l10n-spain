@@ -129,6 +129,7 @@ msgid "AEAT report base module"
 msgstr "Mòdul base per declaracions AEAT"
 
 #. module: l10n_es_aeat
+#: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod111_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod123_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod347_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_report_name_uniq
@@ -379,6 +380,7 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__state__cancelled
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod123_report__state__cancelled
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod347_report__state__cancelled
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__state__cancelled
@@ -459,6 +461,7 @@ msgid "Compare file"
 msgstr "Comparar arxiu"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__statement_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod123_report__statement_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod347_report__statement_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__statement_type__c
@@ -574,6 +577,7 @@ msgid "Currency"
 msgstr "Moneda"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__support_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod123_report__support_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod347_report__support_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__support_type__c
@@ -637,6 +641,7 @@ msgid "Display Name"
 msgstr "Nombre a mostrar"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__state__done
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod123_report__state__done
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod347_report__state__done
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__state__done
@@ -652,6 +657,7 @@ msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_certificate__state__draft
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__state__draft
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod123_report__state__draft
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod347_report__state__draft
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__state__draft
@@ -1218,6 +1224,7 @@ msgid "No export configuration selected."
 msgstr "Cap configuració d'exportació seleccionada."
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__statement_type__n
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod123_report__statement_type__n
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod347_report__statement_type__n
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__statement_type__n
@@ -1364,6 +1371,7 @@ msgid "Positive sign character"
 msgstr "Caràcter del signe positiu"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__state__posted
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod123_report__state__posted
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod347_report__state__posted
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__state__posted
@@ -1383,6 +1391,7 @@ msgid "Private Key"
 msgstr "Clau privada"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__state__calculated
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod123_report__state__calculated
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod347_report__state__calculated
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__state__calculated
@@ -1572,6 +1581,7 @@ msgid "Sub-configuration"
 msgstr "Sub-configuració"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__statement_type__s
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod123_report__statement_type__s
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod347_report__statement_type__s
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__statement_type__s
@@ -1640,6 +1650,7 @@ msgid "Taxes templates"
 msgstr "Plantilles d'impostos"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__support_type__t
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod123_report__support_type__t
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod347_report__support_type__t
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__support_type__t
