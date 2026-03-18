@@ -24,11 +24,6 @@ msgid "Action Needed"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration_line__amount_company_currency
-msgid "Amount Company Currency"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_attachment_count
 msgid "Attachment Count"
 msgstr ""
@@ -313,9 +308,4 @@ msgstr ""
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,help:l10n_es_intrastat_report.field_intrastat_product_declaration__website_message_ids
 msgid "Website communication history"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration_line__weight
-msgid "Weight"
 msgstr ""
