@@ -261,6 +261,7 @@ class TicketBaiTax(models.Model):
                     or record.surcharge_or_simplified_regime
                     != SurchargeOrSimplifiedRegimeType.S.value
                 )
+                and record.tbai_invoice_id.company_id.is_operation_in_surcharge_equivalence_or_simplified_regime()  # noqa: B950
             ):
                 raise exceptions.ValidationError(
                     _(
