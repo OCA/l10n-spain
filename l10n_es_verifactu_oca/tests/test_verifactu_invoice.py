@@ -3,6 +3,8 @@
 
 from datetime import date, timedelta
 
+from odoo import Command
+
 from .common import TestVerifactuCommon
 
 
@@ -323,6 +325,38 @@ class TestVerifactuInvoice(TestVerifactuCommon):
             chain_entry1,
             "Second entry should reference first entry as previous",
         )
+
+    def test_post_mixed_current_and_future_invoices(self):
+        """Current + future invoices must not crash on sorting."""
+        vals = {
+            "company_id": self.company.id,
+            "partner_id": self.partner.id,
+            "move_type": "out_invoice",
+            "invoice_line_ids": [
+                Command.create(
+                    {
+                        "product_id": self.product.id,
+                        "account_id": self.account_expense.id,
+                        "name": "Test line",
+                        "price_unit": 100,
+                        "quantity": 1,
+                    },
+                )
+            ],
+        }
+        current = self.env["account.move"].create(
+            {**vals, "invoice_date": "2026-01-01"}
+        )
+        future = self.env["account.move"].create({**vals, "invoice_date": "2099-01-01"})
+        wizard = (
+            self.env["validate.account.move"]
+            .with_context(
+                active_model="account.move",
+                active_ids=(current | future).ids,
+            )
+            .create({})
+        )
+        wizard.validate_move()
 
     def test_invoice_entry_creation(self):
         """Test the VERI*FACTU invoice entry creation."""
