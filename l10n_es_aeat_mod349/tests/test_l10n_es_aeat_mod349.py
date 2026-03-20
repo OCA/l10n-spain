@@ -401,11 +401,11 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         self.assertTrue(partner_record.partner_record_ok)
         # No country code in vat and GR country
         self.customer.write(
-            {"vat": "12345670", "country_id": self.env.ref("base.gr").id}
+            {"vat": "123456783", "country_id": self.env.ref("base.gr").id}
         )
         model349_errors.button_recalculate()
         partner_record = model349_errors.partner_record_ids.filtered(
-            lambda x: x.partner_vat == "EL12345670"
+            lambda x: x.partner_vat == "EL123456783"
         )
         self.assertTrue(partner_record.partner_record_ok)
         # Reset vat and country

@@ -11,7 +11,6 @@
 import math
 
 from odoo import api, exceptions, fields, models
-from odoo.fields import first
 from odoo.tools import float_is_zero, float_round
 
 
@@ -71,16 +70,18 @@ class Mod349(models.Model):
 
     def _compute_error_count(self):
         ret_val = super()._compute_error_count()
-        partner_records_error_dict = self.env[
-            "l10n.es.aeat.mod349.partner_record"
-        ].read_group(
-            domain=[("partner_record_ok", "=", False), ("report_id", "in", self.ids)],
-            fields=["report_id"],
-            groupby=["report_id"],
-        )
         partner_records_error_dict = {
-            rec["report_id"][0]: rec["report_id_count"]
-            for rec in partner_records_error_dict
+            report.id: count
+            for report, count in self.env[
+                "l10n.es.aeat.mod349.partner_record"
+            ]._read_group(
+                domain=[
+                    ("partner_record_ok", "=", False),
+                    ("report_id", "in", self.ids),
+                ],
+                groupby=["report_id"],
+                aggregates=["__count"],
+            )
         }
         for report in self:
             report.error_count += partner_records_error_dict.get(report.id, 0)
@@ -201,7 +202,7 @@ class Mod349(models.Model):
             groups.setdefault(key, refund_detail_obj)
             groups[key] += refund_detail
         for (origin_invoice, op_key), refund_details in groups.items():
-            refund_detail = first(refund_details)
+            refund_detail = next(iter(refund_details), None)
             move_line = refund_detail.refund_line_id
             partner = move_line.partner_id
             op_key = move_line.l10n_es_aeat_349_operation_key
@@ -274,7 +275,7 @@ class Mod349(models.Model):
                 if original_amls:
                     original_move = original_amls[:1]
                     year = str(original_move.date.year)
-                    month = "%02d" % (original_move.date.month)
+                    month = f"{original_move.date.month:02d}"
                 else:
                     continue  # We can't find information to attach to
                 if self.period_type == "0A":
@@ -320,7 +321,7 @@ class Mod349(models.Model):
     @api.model
     def _get_taxes(self):
         """Obtain all the taxes to be considered for 349."""
-        map_lines = self.env["aeat.349.map.line"].search([])
+        map_lines = self.env["aeat.349.map.line"].search([])  # pylint: disable=no-search-all
         tax_templates = map_lines.mapped("tax_xmlid_ids")
         if not tax_templates:
             raise exceptions.UserError(self.env._("No Tax Mapping was found"))
