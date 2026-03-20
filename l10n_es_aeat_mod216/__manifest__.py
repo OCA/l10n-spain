@@ -5,7 +5,7 @@
 
 {
     "name": "AEAT modelo 216",
-    "version": "18.0.1.1.2",
+    "version": "19.0.1.0.0",
     "category": "Localisation/Accounting",
     "author": "AvanzOSC, Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
