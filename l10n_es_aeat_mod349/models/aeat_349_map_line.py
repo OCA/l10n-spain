@@ -10,13 +10,10 @@ class Aeat349MapLines(models.Model):
     _description = "Aeat 349 Map Line"
     _rec_name = "operation_key"
 
-    _sql_constraints = [
-        (
-            "unique_operation_key",
-            "UNIQUE(operation_key)",
-            "There's already another record with the same operation key",
-        ),
-    ]
+    _unique_operation_key = models.Constraint(
+        "UNIQUE(operation_key)",
+        "There's already another record with the same operation key",
+    )
 
     def _selection_operation_key(self):
         return self.env["account.move.line"].fields_get(
@@ -35,7 +32,7 @@ class Aeat349MapLines(models.Model):
     @api.model
     def _get_tax_ids_from_xmlids(self, tax_templates, company=False):
         if not company:
-            companies = self.env["res.company"].search([])
+            companies = self.env.user.company_ids
         else:
             companies = company
         taxes_ids = []

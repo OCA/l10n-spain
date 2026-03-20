@@ -23,10 +23,16 @@ class AccountTax(models.Model):
     )
 
     def _taxes_without_operation_key(self):
-        map_349_lines = self.env["aeat.349.map.line"].search([])
+        map_349_lines = self.env["aeat.349.map.line"].search([])  # pylint: disable=no-search-all
         all_349_taxes_xmlid = map_349_lines.mapped("tax_xmlid_ids")
         all_349_taxes = map_349_lines._get_tax_ids_from_xmlids(all_349_taxes_xmlid)
-        return list(set(self.env["account.tax"].search([]).ids) - set(all_349_taxes))
+        return list(
+            set(
+                self.env["account.tax"]
+                .search([("id", "not in", set(all_349_taxes))])
+                .ids
+            )
+        )
 
     def _search_l10n_es_aeat_349_operation_key(self, operator, value):
         tax_ids = []
@@ -46,7 +52,11 @@ class AccountTax(models.Model):
                 )
             if is_not_in:
                 tax_ids = list(
-                    set(self.env["account.tax"].search([]).ids) - set(tax_ids)
+                    set(
+                        self.env["account.tax"]
+                        .search([("id", "not in", set(tax_ids))])
+                        .ids
+                    )
                 )
             elif operator == "!=" and value:
                 taxes_without_operation_key = self._taxes_without_operation_key()
@@ -55,7 +65,7 @@ class AccountTax(models.Model):
 
     def _compute_l10n_es_aeat_349_operation_key(self):
         # TODO: Improve performance
-        map_349 = self.env["aeat.349.map.line"].search([])
+        map_349 = self.env["aeat.349.map.line"].search([])  # pylint: disable=no-search-all
         for tax in self:
             tax.l10n_es_aeat_349_operation_key = False
             for line in map_349:

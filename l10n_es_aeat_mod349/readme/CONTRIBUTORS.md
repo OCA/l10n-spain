@@ -35,3 +35,7 @@
 
   > - Luis J. Salvatierra \<<luis.salvatierra@factorlibre.com>\>
   > - Alejandro Ji Cheung \<<alejandro.jicheung@factorlibre.com>\>
+
+- [Studio73](https://www.studio73.es/)
+
+  - Sergio Martínez  \<<sergio.martinez@studio73.com>\>
