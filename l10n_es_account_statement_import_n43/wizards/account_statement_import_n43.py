@@ -366,23 +366,28 @@ class AccountStatementImport(models.TransientModel):
 
     def _parse_single_file_n43(self, n43):
         transactions = []
+        sequence = 0
         for group in n43:
+            cuenta = group.get("cuenta", "")
             for line in group["lines"]:
                 conceptos = []
                 for concept_line in line["conceptos"]:
                     conceptos.extend(
                         x.strip() for x in line["conceptos"][concept_line] if x.strip()
                     )
+                fecha = line["fecha_valor"].strftime("%Y-%m-%d")
                 vals_line = {
                     "payment_ref": " ".join(conceptos)
                     or self._get_n43_ref(line)
                     or "/",
                     "ref": self._get_n43_ref(line),
                     "amount": line["importe"],
+                    "unique_import_id": f"{cuenta}-{fecha}-{sequence}",
                     # inject raw parsed N43 dict for later use, that will be
                     # removed before passing final values to create the record
                     "n43_line": line,
                 }
+                sequence += 1
                 c = line["conceptos"]
                 if c.get("01"):
                     vals_line["partner_name"] = c["01"][0] + c["01"][1]
