@@ -24,8 +24,11 @@ msgid "Action Needed"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration_line__amount_company_currency
-msgid "Amount Company Currency"
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_intrastat_product_declaration_line__amount_company_currency
+msgid ""
+"Amount in company currency to write in the declaration. Amount in company "
+"currency = amount in invoice currency converted to company currency with the"
+" rate of the invoice date."
 msgstr ""
 
 #. module: l10n_es_intrastat_report
@@ -66,6 +69,11 @@ msgstr ""
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration_line__amount_company_currency
+msgid "Fiscal Value"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
@@ -189,6 +197,11 @@ msgstr ""
 #: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
 #, python-format
 msgid "Missing partner <em>VAT Number</em>"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_intrastat_product_declaration_line__weight
+msgid "Net weight in Kg"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
