@@ -4,7 +4,7 @@
 
 from collections import defaultdict
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 
 from odoo.addons.l10n_es_aeat.models.spanish_states_mapping import SPANISH_STATES
 
@@ -108,7 +108,9 @@ class L10nEsAeatMod190Report(models.Model):
         (partner records) are filled"""
         if any(not item.partner_record_ok for item in self.partner_record_ids):
             raise exceptions.UserError(
-                _("All partner records fields (country, VAT number) " "must be filled.")
+                self.env._(
+                    "All partner records fields (country, VAT number) must be filled."
+                )
             )
 
     def button_confirm(self):
@@ -142,11 +144,11 @@ class L10nEsAeatMod190Report(models.Model):
                     tax_line_vals[rp.id][key_id.id][subkey_id.id] = {}
                     if not rp.aeat_perception_key_id:
                         raise exceptions.UserError(
-                            _(
+                            self.env._(
                                 "The perception key of the partner, %(partner)s. "
-                                "Must be filled."
+                                "Must be filled.",
+                                partner=rp.name,
                             )
-                            % ({"partner": rp.name})
                         )
                     values = report._get_line_mod190_vals(rp, key_id, subkey_id)
                     partner_vals.append(values)
@@ -159,7 +161,10 @@ class L10nEsAeatMod190Report(models.Model):
         codigo_provincia = SPANISH_STATES.get(rp.state_id.code)
         if not codigo_provincia:
             raise exceptions.UserError(
-                _("The state is not defined in the partner, %s") % rp.name
+                self.env._(
+                    "The state is not defined in the partner, %(partner)s",
+                    partner=rp.name,
+                )
             )
         return {
             "partner_id": rp.id,
@@ -170,12 +175,17 @@ class L10nEsAeatMod190Report(models.Model):
     def _get_grouped_data(self, field_number, domain):
         return {
             (
-                item["partner_id"][0],
-                item["aeat_perception_key_id"] and item["aeat_perception_key_id"][0],
-                item["aeat_perception_subkey_id"]
-                and item["aeat_perception_subkey_id"][0],
-            ): item["credit"] - item["debit"]
-            for item in self.env["account.move.line"].read_group(
+                partner.id,
+                aeat_perception_key.id,
+                aeat_perception_subkey.id,
+            ): credit - debit
+            for (
+                partner,
+                aeat_perception_key,
+                aeat_perception_subkey,
+                credit,
+                debit,
+            ) in self.env["account.move.line"]._read_group(
                 self._get_move_line_domain(
                     self.date_start,
                     self.date_end,
@@ -184,9 +194,8 @@ class L10nEsAeatMod190Report(models.Model):
                     ).map_line_id,
                 )
                 + domain,
-                ["credit", "debit"],
                 ["partner_id", "aeat_perception_key_id", "aeat_perception_subkey_id"],
-                lazy=False,
+                ["credit:sum", "debit:sum"],
             )
         }
 
@@ -267,7 +276,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
         store=True,
     )
     ingresos_a_cuenta_efectuados_incap = fields.Float(
-        string="Income on account in kind made as a result of incapacity " "for work",
+        string="Income on account in kind made as a result of incapacity for work",
         compute="_compute_percepciones",
         store=True,
     )
@@ -334,8 +343,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
             ("2", "2 - Contract or ratio less than a year"),
             (
                 "3",
-                "3 - Contract or special employment relationship of a dependent "
-                "nature",
+                "3 - Contract or special employment relationship of a dependent nature",
             ),
             ("4", "4 - Sporadic relationship of manual workers"),
         ],
@@ -404,8 +412,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
         store=True,
     )
     hijos_y_desc_discapacidad_entero_33 = fields.Integer(
-        string="Hijos y descendientes con discapacidad del 33%"
-        ", computados por entero",
+        string="Hijos y descendientes con discapacidad del 33%, computados por entero",
         compute="_compute_partner_id_ad_required",
         store=True,
     )
@@ -415,8 +422,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
         store=True,
     )
     hijos_y_desc_discapacidad_entero_66 = fields.Integer(
-        string="Hijos y descendientes con discapacidad del 66%"
-        ", computados por entero",
+        string="Hijos y descendientes con discapacidad del 66%, computados por entero",
         compute="_compute_partner_id_ad_required",
         store=True,
     )
@@ -456,7 +462,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
         store=True,
     )
     ascendientes_discapacidad_entero_mr = fields.Integer(
-        string="Ascendientes con discapacidad de más del 33%" ", computados por entero",
+        string="Ascendientes con discapacidad de más del 33%, computados por entero",
         compute="_compute_partner_id_ad_required",
         store=True,
     )
@@ -466,7 +472,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
         store=True,
     )
     ascendientes_discapacidad_entero_66 = fields.Integer(
-        string="Ascendientes con discapacidad de más del 66%" ", computados por entero",
+        string="Ascendientes con discapacidad de más del 66%, computados por entero",
         compute="_compute_partner_id_ad_required",
         store=True,
     )
@@ -691,7 +697,9 @@ class L10nEsAeatMod190ReportLine(models.Model):
     def onchange_partner_id(self):
         if self.partner_id:
             if not self.partner_id.state_id:
-                raise exceptions.UserError(_("Provincia no definida en el cliente"))
+                raise exceptions.UserError(
+                    self.env._("Provincia no definida en el cliente")
+                )
             # Cargamos valores establecidos en el tercero.
             self.aeat_perception_key_id = self.partner_id.aeat_perception_key_id
             self.aeat_perception_subkey_id = self.partner_id.aeat_perception_subkey_id
