@@ -31,7 +31,7 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.account_manager.groups_id |= cls.env.ref(
+        cls.account_manager.group_ids |= cls.env.ref(
             "l10n_es_aeat_mod190.group_aeat_mod190"
         ) | cls.env.ref("base.group_partner_manager")
         cls.env = cls.env(
