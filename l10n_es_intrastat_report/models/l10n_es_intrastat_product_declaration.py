@@ -242,6 +242,4 @@ class IntrastatProductDeclarationLine(models.Model):
     intrastat_state_id = fields.Many2one(
         comodel_name="res.country.state", string="Intrastat State"
     )
-    weight = fields.Float(digits="Stock Weight")
-    amount_company_currency = fields.Float(digits="Account")
     partner_vat = fields.Char(string="Customer VAT")
