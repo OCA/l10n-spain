@@ -28,11 +28,6 @@ msgid "Action Needed"
 msgstr "Acción necesaria"
 
 #. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration_line__amount_company_currency
-msgid "Amount Company Currency"
-msgstr "Importe en la moneda de la compañía"
-
-#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_attachment_count
 msgid "Attachment Count"
 msgstr "Nº de adjuntos"
@@ -347,10 +342,11 @@ msgstr "Mensajes del sitio web"
 msgid "Website communication history"
 msgstr "Historial de comunicación del sitio web"
 
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration_line__weight
-msgid "Weight"
-msgstr "Peso"
+#~ msgid "Amount Company Currency"
+#~ msgstr "Importe en la moneda de la compañía"
+
+#~ msgid "Weight"
+#~ msgstr "Peso"
 
 #~ msgid "Search Spanish Intrastat Product Declaration"
 #~ msgstr "Buscar declaraciones de producto Intrastat españolas"
