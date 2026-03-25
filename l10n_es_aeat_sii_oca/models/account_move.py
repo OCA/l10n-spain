@@ -403,7 +403,7 @@ class AccountMove(models.Model):
             if self.sii_dua_invoice:
                 company_name = self.company_id.name
                 if not self.sii_lc_operation:
-                    invoice_type = "F5"
+                    invoice_type = "F5" if self.move_type == "in_invoice" else "R4"
 
             inv_dict["FacturaRecibida"] = {
                 # TODO: Incluir los 5 tipos de facturas rectificativas
