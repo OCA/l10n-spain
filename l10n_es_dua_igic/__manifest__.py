@@ -4,7 +4,7 @@
 {
     "name": "Importaciones con DUA ATC",
     "category": "Localization/Account Charts",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.1.0",
     "depends": ["l10n_es_igic"],
     "data": [
         "data/tax_group_data.xml",
