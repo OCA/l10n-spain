@@ -56,6 +56,10 @@ class PosConfig(models.Model):
         string="Simplified invoice partner",
         compute="_compute_simplified_partner_id",
     )
+    prevent_offline_validation = fields.Boolean(
+        help="Prevent order validation when the POS is offline. "
+        "This helps ensure data integrity and prevents synchronization issues.",
+    )
 
     @api.depends("iface_l10n_es_simplified_invoice")
     def _compute_simplified_config(self):
