@@ -94,6 +94,13 @@ patch(PosStore.prototype, {
             this.config.l10n_es_simplified_invoice_number =
                 config[0]?.l10n_es_simplified_invoice_number || 1;
         } catch (error) {
+            // Throw error if it's a connection lost error and we want to prevent offline validation
+            if (
+                error instanceof ConnectionLostError &&
+                this.config.prevent_offline_validation
+            ) {
+                throw error;
+            }
             // Offline -> First time connection lost no has pending orders, we can increment the number
             if (!this.hasPendingOrders()) {
                 this.incrementSimplifiedInvoiceNumber();
