@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-10 11:42+0000\n"
-"PO-Revision-Date: 2024-10-10 11:42+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: \n"
@@ -28,14 +26,31 @@ msgid "Autogenerate for each POS created"
 msgstr "Autogenerada por cada TPV creado"
 
 #. module: l10n_es_pos_oca
+#. odoo-javascript
+#: code:addons/l10n_es_pos_oca/static/src/app/screens/payment_screen/payment_screen.esm.js:0
+msgid ""
+"Cannot validate the order without connection. This may be due to a lost "
+"connection or the server being unreachable at this moment. Please reconnect "
+"and try again."
+msgstr ""
+"No se puede validar el pedido sin conexión. Esto puede deberse a una conexión perdida "
+"o a que el servidor no esté disponible en este momento. Por favor, reconéctese "
+"y vuelva a intentarlo."
+
+#. module: l10n_es_pos_oca
 #: model:ir.model,name:l10n_es_pos_oca.model_res_config_settings
 msgid "Config Settings"
 msgstr "Ajustes de configuración"
 
 #. module: l10n_es_pos_oca
 #. odoo-javascript
+#: code:addons/l10n_es_pos_oca/static/src/app/screens/payment_screen/payment_screen.esm.js:0
+msgid "Connection Lost"
+msgstr "Conexión perdida"
+
+#. module: l10n_es_pos_oca
+#. odoo-javascript
 #: code:addons/l10n_es_pos_oca/static/src/app/screens/receipt_screen/receipt/receipt_header/receipt_header.xml:0
-#, python-format
 msgid "Customer:"
 msgstr "Cliente:"
 
@@ -50,11 +65,16 @@ msgid "Is Simplified Config"
 msgstr "Es la configuración simplificada"
 
 #. module: l10n_es_pos_oca
+#. odoo-javascript
+#: code:addons/l10n_es_pos_oca/static/src/app/screens/payment_screen/payment_screen.esm.js:0
+msgid "Ok"
+msgstr "Vale"
+
+#. module: l10n_es_pos_oca
 #: model:ir.model.fields,help:l10n_es_pos_oca.field_pos_config__l10n_es_simplified_invoice_limit
 #: model:ir.model.fields,help:l10n_es_pos_oca.field_res_config_settings__pos_l10n_es_simplified_invoice_limit
 msgid "Over this amount is not legally posible to create a simplified invoice"
-msgstr ""
-"Por encima de esta cantidad no es legal crear una factura simplificada"
+msgstr "Por encima de esta cantidad no es legal crear una factura simplificada"
 
 #. module: l10n_es_pos_oca
 #: model:ir.model,name:l10n_es_pos_oca.model_pos_config
@@ -70,6 +90,23 @@ msgstr "Pedidos del TPV"
 #: model:ir.model,name:l10n_es_pos_oca.model_pos_session
 msgid "Point of Sale Session"
 msgstr "Sesión TPV"
+
+#. module: l10n_es_pos_oca
+#: model:ir.model.fields,field_description:l10n_es_pos_oca.field_pos_config__prevent_offline_validation
+#: model:ir.model.fields,field_description:l10n_es_pos_oca.field_res_config_settings__pos_iface_prevent_offline_validation
+msgid "Prevent Offline Validation"
+msgstr "Prevenir validación sin conexión"
+
+#. module: l10n_es_pos_oca
+#: model:ir.model.fields,help:l10n_es_pos_oca.field_pos_config__prevent_offline_validation
+#: model:ir.model.fields,help:l10n_es_pos_oca.field_res_config_settings__pos_iface_prevent_offline_validation
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_oca.res_config_settings_view_form
+msgid ""
+"Prevent order validation when the POS is offline. This helps ensure data "
+"integrity and prevents synchronization issues."
+msgstr ""
+"Prevenir la validación de pedidos cuando el TPV está sin conexión. Esto ayuda "
+"a garantizar la integridad de los datos y previene problemas de sincronización."
 
 #. module: l10n_es_pos_oca
 #: model:ir.model,name:l10n_es_pos_oca.model_ir_sequence
@@ -97,14 +134,12 @@ msgstr "Número de factura simplificada"
 #. odoo-javascript
 #: code:addons/l10n_es_pos_oca/static/src/app/screens/ticket_screen/ticket_screen.esm.js:0
 #: code:addons/l10n_es_pos_oca/static/src/app/screens/ticket_screen/ticket_screen.xml:0
-#, python-format
 msgid "Simplified Invoice"
 msgstr "Factura simplificada"
 
 #. module: l10n_es_pos_oca
 #. odoo-python
 #: code:addons/l10n_es_pos_oca/models/pos_config.py:0
-#, python-format
 msgid "Simplified Invoice %s"
 msgstr "Factura simplificada %s"
 
@@ -140,7 +175,6 @@ msgstr "Prefijo de Factura Simplificada"
 #. odoo-javascript
 #: code:addons/l10n_es_pos_oca/static/src/app/screens/receipt_screen/receipt/receipt_header/receipt_header.xml:0
 #: model:ir.model.fields,field_description:l10n_es_pos_oca.field_pos_order__is_l10n_es_simplified_invoice
-#, python-format
 msgid "Simplified invoice"
 msgstr "Factura simplificada"
 
@@ -155,6 +189,11 @@ msgid "Simplified invoice partner"
 msgstr "Socio de factura simplificada"
 
 #. module: l10n_es_pos_oca
+#: model:ir.model.fields,field_description:l10n_es_pos_oca.field_pos_order__l10n_es_simplified_number
+msgid "Simplified invoice sequence number"
+msgstr "Número de secuencia de factura simplificada"
+
+#. module: l10n_es_pos_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_oca.view_pos_order_filter_simplified_invoice
 msgid "Simplified invoices"
 msgstr "Facturas simplificadas"
@@ -162,7 +201,6 @@ msgstr "Facturas simplificadas"
 #. module: l10n_es_pos_oca
 #. odoo-python
 #: code:addons/l10n_es_pos_oca/models/ir_sequence.py:0
-#, python-format
 msgid ""
 "There is already a simplified invoice sequence with that prefix and it "
 "should be unique."

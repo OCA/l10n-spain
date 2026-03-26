@@ -25,3 +25,7 @@ class ResConfigSettings(models.TransientModel):
     pos_l10n_es_simplified_invoice_number = fields.Integer(
         related="pos_config_id.l10n_es_simplified_invoice_number",
     )
+    pos_iface_prevent_offline_validation = fields.Boolean(
+        related="pos_config_id.prevent_offline_validation",
+        readonly=False,
+    )

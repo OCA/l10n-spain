@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =================================================
 Punto de venta adaptado a la legislación española
 =================================================
@@ -17,7 +13,7 @@ Punto de venta adaptado a la legislación española
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
@@ -69,6 +65,11 @@ Para activar la factura simplificada en un TPV, iremos a *Punto de Venta
 sección *Facturación y recibos* activaremos la opción *Secuencia de
 Factura Simplificada*. Podemos configurar el límite a partir del cual no
 se considera factura simplificada, que por defecto es 3.000,00 €.
+
+En caso de utilizar múltiples dispositivos para el mismo TPV se puede
+activar el campo "Prevenir validación offline" evitando posibles
+duplicidades en los números de factura simplificada, en caso de que
+algún dispositivo pierda conexión momentáneamente.
 
 Si entramos en la configuración del TPV en modo debug, podremos también
 configurar la sequencia asociada al TPV.
