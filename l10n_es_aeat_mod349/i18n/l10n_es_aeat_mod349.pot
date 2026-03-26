@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -292,6 +292,9 @@ msgid "Details"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__display_name
@@ -385,6 +388,9 @@ msgid "I - Intra-Community services acquisitions"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move_line__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__id
