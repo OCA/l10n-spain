@@ -196,9 +196,9 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
         self.assertTrue(fp_es_b2b.vat_required)
         self.assertEqual(fp_es_b2c.intrastat, "b2c")
         self.assertFalse(fp_es_b2c.vat_required)
-        self.assertFalse(fp_es_ok.intrastat)
+        self.assertEqual(fp_es_ok.intrastat, "no")
         self.assertFalse(fp_es_ok.vat_required)
-        self.assertFalse(fp_not_es_ok.intrastat)
+        self.assertEqual(fp_not_es_ok.intrastat, "no")
         self.assertFalse(fp_not_es_ok.vat_required)
 
     def _check_move_lines_present(self, original, target):
