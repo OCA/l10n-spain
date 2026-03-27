@@ -15,7 +15,7 @@ class PosOrder(models.Model):
 
     @api.model
     def _order_fields(self, ui_order):
-        res = super(PosOrder, self)._order_fields(ui_order)
+        res = super()._order_fields(ui_order)
         if ui_order.get("pos_device", False):
             res.update({"pos_device_id": ui_order["pos_device"]})
         return res
@@ -23,7 +23,7 @@ class PosOrder(models.Model):
     @api.model
     def _update_sequence_number(self, pos):
         if not pos.pos_sequence_by_device:
-            return super(PosOrder, self)._update_sequence_number(pos)
+            return super()._update_sequence_number(pos)
         return
 
     @api.model
@@ -41,7 +41,7 @@ class PosOrder(models.Model):
                 if not draft:
                     device_seq.next_by_id()
                 pos_order["data"].update({"pos_device": order_data["device"]["id"]})
-        return super(PosOrder, self)._process_order(pos_order, draft, existing_order)
+        return super()._process_order(pos_order, draft, existing_order)
 
     def write(self, vals):
         for order in self.filtered(lambda o: o.config_id.pos_sequence_by_device):
@@ -52,4 +52,4 @@ class PosOrder(models.Model):
                 and order.l10n_es_unique_id
             ):
                 order.name = order.l10n_es_unique_id
-        return super(PosOrder, self).write(vals)
+        return super().write(vals)

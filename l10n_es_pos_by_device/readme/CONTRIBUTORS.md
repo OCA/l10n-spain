@@ -1,0 +1,5 @@
+- [Landoo](https://www.landoo.es):
+  - Aritz Olea \<ao@landoo.es\>
+  - Gelo Joga \<gj@landoo.es\>
+- [Factor Libre](https://www.factorlibre.com):
+  - Juan Carlos Bonilla \<juancarlos.bonilla@factorlibre.com\>

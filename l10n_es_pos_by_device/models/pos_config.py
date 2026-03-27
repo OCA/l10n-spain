@@ -33,13 +33,13 @@ class PosConfig(models.Model):
         for config in self:
             if config.pos_sequence_by_device:
                 config._check_available_devices()
-        return super(PosConfig, self).open_ui()
+        return super().open_ui()
 
     def _open_session(self, session_id):
         for config in self:
             if config.pos_sequence_by_device:
                 config._check_available_devices()
-        return super(PosConfig, self)._open_session(session_id)
+        return super()._open_session(session_id)
 
     @api.depends("pos_sequence_by_device")
     def _compute_simplified_config(self):

@@ -9,7 +9,7 @@ class PosSession(models.Model):
         for session in self:
             if session.config_id.pos_sequence_by_device:
                 session.config_id._check_available_devices()
-        return super(PosSession, self).open_frontend_cb()
+        return super().open_frontend_cb()
 
     def _loader_params_pos_device(self):
         config = self.config_id

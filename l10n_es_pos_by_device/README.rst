@@ -17,19 +17,19 @@ Punto de venta adaptado a la legislación española por dispositivo
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_pos_by_device
+    :target: https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_pos_by_device
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-16-0/l10n-spain-16-0-l10n_es_pos_by_device
+    :target: https://translation.odoo-community.org/projects/l10n-spain-18-0/l10n-spain-18-0-l10n_es_pos_by_device
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-* Cubre el requerimiento legal de secuencias de facturas simplificadas del TPV
-  en el caso de que los dispositivos se queden sin conexión.
+- Cubre el requerimiento legal de secuencias de facturas simplificadas
+  del TPV en el caso de que los dispositivos se queden sin conexión.
 
 **Table of contents**
 
@@ -41,17 +41,22 @@ Configuration
 
 **Activación de secuencia por dispositivo**
 
-* Esta configuración se activa en *Punto de venta > Configuración > Ajustes > Secuenciación > Secuencia TPV por dispositivo*.
+- Esta configuración se activa en *Punto de venta > Configuración >
+  Ajustes > Secuenciación > Secuencia TPV por dispositivo*.
 
 **Configuración de dispositivos físicos por TPV**
 
-* Acceder a *Punto de venta > Configuración > Dispositivos físicos TPV*
-   - Crear dispositivos y sus secuencias. Cada dispositivo debe tener su
-     propia secuencia.
+- Acceder a *Punto de venta > Configuración > Dispositivos físicos TPV*
 
-* En *Punto de venta > Configuración > Ajustes > Secuenciación > Dispositivos físicos TPV*.
-   - Establecer los dispositivos físicos disponibles en ese punto de venta.
-     Si se deja en blanco, se podrán seleccionar todos los dispositivos creados.
+  - Crear dispositivos y sus secuencias. Cada dispositivo debe tener su
+    propia secuencia.
+
+- En *Punto de venta > Configuración > Ajustes > Secuenciación >
+  Dispositivos físicos TPV*.
+
+  - Establecer los dispositivos físicos disponibles en ese punto de
+    venta. Si se deja en blanco, se podrán seleccionar todos los
+    dispositivos creados.
 
 Usage
 =====
@@ -62,27 +67,27 @@ En caso de la activación de secuencias por dispositivo:
 
 Al entrar en la sesión se establecerá el dispositivo a utilizar.
 
-* En caso de que haya conexión, el dispositivo es bloqueado y no puede ser
-  seleccionado al entrar a la sesión desde otro dispositivo.
-
-* En caso de que no haya conexión, al intentar realizar el primer pedido
-  el dispositivo será expulsado de la sesión. Cuando se vuelva a conectar y
-  entre en la sesión, el pedido estará pendiente. Se podrá acabar de tramitar.
+- En caso de que haya conexión, el dispositivo es bloqueado y no puede
+  ser seleccionado al entrar a la sesión desde otro dispositivo.
+- En caso de que no haya conexión, al intentar realizar el primer pedido
+  el dispositivo será expulsado de la sesión. Cuando se vuelva a
+  conectar y entre en la sesión, el pedido estará pendiente. Se podrá
+  acabar de tramitar.
 
 **Transcurso de sesión**
 
 Se irán haciendo pedidos, y se establecerá la secuencia indicada en la
 definición del dispositivo.
 
-En caso de pérdida de conexión: Cuando se recupere la conexión se incluirán los
-pedidos en la sesión.
+En caso de pérdida de conexión: Cuando se recupere la conexión se
+incluirán los pedidos en la sesión.
 
-En caso de pérdida de conexión + incidente en dispositivo (pérdida de batería,
-cierre de ventana o navegador): El dispositivo se queda bloqueado. Tiene que
-ser desbloqueado manualmente para volver a usarse. En caso de entrar en la misma
-sesión, los pedidos pendientes se incluirán en la misma sesión. En caso de ser
-una sesión diferente, serán incluidos en una sesión de rescate siguiendo el
-estándar de Odoo.
+En caso de pérdida de conexión + incidente en dispositivo (pérdida de
+batería, cierre de ventana o navegador): El dispositivo se queda
+bloqueado. Tiene que ser desbloqueado manualmente para volver a usarse.
+En caso de entrar en la misma sesión, los pedidos pendientes se
+incluirán en la misma sesión. En caso de ser una sesión diferente, serán
+incluidos en una sesión de rescate siguiendo el estándar de Odoo.
 
 Bug Tracker
 ===========
@@ -90,7 +95,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_pos_by_device%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_pos_by_device%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -98,24 +103,24 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Landoo Sistemas de Información S.L
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Landoo <https://www.landoo.es>`_:
+- `Landoo <https://www.landoo.es>`__:
 
-  * Aritz Olea <ao@landoo.es>
-  * Gelo Joga <gj@landoo.es>
+  - Aritz Olea <ao@landoo.es>
+  - Gelo Joga <gj@landoo.es>
 
-* `Factor Libre <https://www.factorlibre.com>`_:
+- `Factor Libre <https://www.factorlibre.com>`__:
 
-  * Juan Carlos Bonilla <juancarlos.bonilla@factorlibre.com>
+  - Juan Carlos Bonilla <juancarlos.bonilla@factorlibre.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -135,6 +140,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-ao-landoo| 
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_pos_by_device>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_pos_by_device>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
