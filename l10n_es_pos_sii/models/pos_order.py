@@ -186,3 +186,10 @@ class PosOrder(models.Model):
     @api.model
     def _send_to_sii(self):
         self._send_to_sii_valid()
+
+    def action_pos_order_paid(self):
+        res = super().action_pos_order_paid()
+        company = self.company_id
+        if self.sii_enabled and company.sii_method == "auto":
+            self._process_sii_send()
+        return res
