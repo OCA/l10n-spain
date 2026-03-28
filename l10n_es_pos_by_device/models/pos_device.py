@@ -19,25 +19,24 @@ class PosDevice(models.Model):
     )
     device_simplified_invoice_prefix = fields.Char(
         "Simplified Invoice prefix",
-        readonly=True,
         compute="_compute_simplified_invoice_sequence",
     )
     device_simplified_invoice_padding = fields.Integer(
         "Simplified Invoice padding",
-        readonly=True,
         compute="_compute_simplified_invoice_sequence",
     )
     device_simplified_invoice_number = fields.Integer(
         "Sim.Inv number",
-        readonly=True,
         compute="_compute_simplified_invoice_sequence",
     )
 
     def lock_device(self):
-        return self.write({"locked": True})
+        self.locked = True
+        return True
 
     def unlock_device(self):
-        return self.write({"locked": False})
+        self.locked = False
+        return True
 
     @api.depends(
         "sequence.number_next_actual",
@@ -52,3 +51,31 @@ class PosDevice(models.Model):
             )
             dev.device_simplified_invoice_prefix = seq._get_prefix_suffix()[0]
             dev.device_simplified_invoice_padding = seq.padding
+
+    def _load_pos_data_domain(self, data):
+        config_id = data["pos.config"]["data"][0]["id"]
+        config = self.env["pos.config"].browse(config_id)
+        domain = [("company_id", "=", config.company_id.id), ("locked", "=", False)]
+        if config.pos_device_ids:
+            domain += [("id", "in", config.pos_device_ids.ids)]
+        return domain
+
+    @api.model
+    def _load_pos_data_fields(self, config_id):
+        return [
+            "name",
+            "sequence",
+            "locked",
+            "company_id",
+            "device_simplified_invoice_prefix",
+            "device_simplified_invoice_padding",
+            "device_simplified_invoice_number",
+        ]
+
+    def _load_pos_data(self, data):
+        domain = self._load_pos_data_domain(data)
+        fields = self._load_pos_data_fields(data["pos.config"]["data"][0]["id"])
+        return {
+            "data": self.search_read(domain, fields, load=False),
+            "fields": fields,
+        }

@@ -14,34 +14,24 @@ class PosOrder(models.Model):
     )
 
     @api.model
-    def _order_fields(self, ui_order):
-        res = super()._order_fields(ui_order)
-        if ui_order.get("pos_device", False):
-            res.update({"pos_device_id": ui_order["pos_device"]})
-        return res
-
-    @api.model
     def _update_sequence_number(self, pos):
         if not pos.pos_sequence_by_device:
             return super()._update_sequence_number(pos)
         return
 
     @api.model
-    def _process_order(self, pos_order, draft, existing_order):
-        order_data = pos_order.get("data", {})
+    def _process_order(self, pos_order, existing_order):
         pos_order_obj = self.env["pos.order"]
-        pos = self.env["pos.session"].browse(order_data.get("pos_session_id")).config_id
+        pos = self.env["pos.session"].browse(pos_order.get("session_id")).config_id
         if pos_order_obj._simplified_limit_check(
-            order_data.get("amount_total", 0), pos.l10n_es_simplified_invoice_limit
+            pos_order.get("amount_total", 0), pos.l10n_es_simplified_invoice_limit
         ):
-            if pos.pos_sequence_by_device and order_data.get("device", False):
-                device_seq = self.env["ir.sequence"].browse(
-                    order_data["device"]["sequence"][0]
-                )
+            if pos.pos_sequence_by_device and pos_order.get("pos_device_id", False):
+                device = self.env["pos.device"].browse(pos_order["pos_device_id"])
+                draft = pos_order.get("state") == "draft"
                 if not draft:
-                    device_seq.next_by_id()
-                pos_order["data"].update({"pos_device": order_data["device"]["id"]})
-        return super()._process_order(pos_order, draft, existing_order)
+                    device.sequence.next_by_id()
+        return super()._process_order(pos_order, existing_order)
 
     def write(self, vals):
         for order in self.filtered(lambda o: o.config_id.pos_sequence_by_device):

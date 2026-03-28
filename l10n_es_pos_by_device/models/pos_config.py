@@ -1,6 +1,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -26,7 +26,9 @@ class PosConfig(models.Model):
         )
         if len(devices) == 0:
             raise ValidationError(
-                _("There are no physical devices available. Cannot start session.")
+                self.env._(
+                    "There are no physical devices available. Cannot start session."
+                )
             )
 
     def open_ui(self):

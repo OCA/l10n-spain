@@ -5,15 +5,12 @@
         <field name="model">pos.order</field>
         <field
             name="inherit_id"
-            ref="l10n_es_pos.view_pos_pos_form_simplified_invoice"
+            ref="l10n_es_pos_oca.view_pos_pos_form_simplified_invoice"
         />
         <field name="arch" type="xml">
             <field name="session_id" position="after">
                 <field name="pos_sequence_by_device" invisible="1" />
-                <field
-                    name="pos_device_id"
-                    attrs="{'invisible': [('pos_sequence_by_device', '=', False)]}"
-                />
+                <field name="pos_device_id" invisible="not pos_sequence_by_device" />
             </field>
         </field>
     </record>
@@ -22,7 +19,7 @@
         <field name="model">pos.order</field>
         <field
             name="inherit_id"
-            ref="l10n_es_pos.view_pos_order_filter_simplified_invoice"
+            ref="l10n_es_pos_oca.view_pos_order_filter_simplified_invoice"
         />
         <field name="arch" type="xml">
             <group position="inside">
@@ -39,7 +36,7 @@
     <record model="ir.actions.act_window" id="pos_devices_act_window">
         <field name="name">POS Physical devices</field>
         <field name="res_model">pos.device</field>
-        <field name="view_mode">tree</field>
+        <field name="view_mode">list</field>
     </record>
     <!-- POS device menu -->
     <record id="pos_device_menu" model="ir.ui.menu">
@@ -47,25 +44,25 @@
         <field name="parent_id" ref="point_of_sale.menu_point_config_product" />
         <field name="action" ref="pos_devices_act_window" />
     </record>
-    <!-- POS device tree -->
-    <record id="pos_device_view_tree" model="ir.ui.view">
-        <field name="name">pos.device.view.tree</field>
+    <!-- POS device list -->
+    <record id="pos_device_view_list" model="ir.ui.view">
+        <field name="name">pos.device.view.list</field>
         <field name="model">pos.device</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <list editable="bottom">
                 <field name="name" />
                 <field name="sequence" />
                 <field name="company_id" />
-                <field name="locked" invisible="1" />
+                <field name="locked" column_invisible="1" />
                 <button
                     name="unlock_device"
                     string="Device locked"
                     help="Unlock device"
                     icon="fa-lock"
-                    attrs="{'invisible': [('locked','=', False)]}"
+                    invisible="not locked"
                     type="object"
                 />
-            </tree>
+            </list>
         </field>
     </record>
 </odoo>
