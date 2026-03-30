@@ -91,8 +91,8 @@
             </t>
         </xpath>
     </template>
-    <template id="caser_insurance_checkout_modal" inherit_id="website_sale.payment">
-        <xpath expr="//div[@id='payment_method']" position="before">
+    <template id="caser_insurance_checkout_modal" inherit_id="website_sale.cart">
+        <xpath expr="//t[@t-call='website_sale.cart_lines']" position="after">
             <div class="modal fade" id="caserInsuranceModal" tabindex="-1">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -102,8 +102,8 @@
                             </h5>
                             <button
                                 type="button"
-                                class="btn-close btn-close-white"
-                                data-bs-dismiss="modal"
+                                class="btn-close"
+                                id="closeInsuranceModal"
                             />
                         </div>
                         <div class="modal-body">
@@ -115,8 +115,13 @@
                         <div class="modal-footer">
                             <button
                                 type="button"
+                                class="btn btn-link me-auto d-none"
+                                id="toggleAllInsurance"
+                            >Marcar / Desmarcar todos</button>
+                            <button
+                                type="button"
                                 class="btn btn-secondary"
-                                data-bs-dismiss="modal"
+                                id="skipInsuranceBtn"
                             >No, thanks</button>
                             <button
                                 type="button"
