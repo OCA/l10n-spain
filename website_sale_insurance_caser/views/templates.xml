@@ -5,7 +5,7 @@
         inherit_id="website_sale.product"
         name="Caser Insurance Checkbox"
     >
-        <xpath expr="//div[@id='add_to_cart_wrap']" position="before">
+        <xpath expr="//div[@id='o_wsale_cta_wrapper']/*" position="before">
             <t
                 t-if="website.caser_insurance_enabled and product.caser_insurance_ecommerce"
             >
@@ -13,32 +13,37 @@
                     t-set="caser_price_display"
                     t-value="product.get_caser_insurance_price_display(combination_info['price'])"
                 />
-                <div class="mb-3 w-100">
-                    <div>
-                        Tu dispositivo protegido, pase lo que pase
-                        <img
-                        src="/website_sale_insurance_caser/static/src/img/logo-caser.png"
-                        alt="Caser"
-                        style="height: 30px; margin-left: 10px;"
-                    />
-                    </div>
-                    <t t-if="caser_price_display">
-                        <div class="form-check">
-                            <input
-                                type="checkbox"
-                                class="form-check-input"
-                                id="caser_insurance_checkbox"
-                                name="caser_add_insurance"
-                                value="1"
-                            />
-                            <label
-                                class="form-check-label"
-                                for="caser_insurance_checkbox"
-                            >
-                                Seguro anual por <t t-esc="caser_price_display" />
-                            </label>
+                <div class="p-2 mb-3 w-100 border border-secondary">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="me-3">
+                            <div>Tu dispositivo protegido, pase lo que pase</div>
+                            <t t-if="caser_price_display">
+                                <div class="form-check">
+                                    <input
+                                        type="checkbox"
+                                        class="form-check-input"
+                                        id="caser_insurance_checkbox"
+                                        name="caser_add_insurance"
+                                        value="1"
+                                    />
+                                    <label
+                                        class="form-check-label"
+                                        for="caser_insurance_checkbox"
+                                    >
+                                        Seguro anual por <t
+                                        t-esc="caser_price_display"
+                                    />
+                                    </label>
+                                </div>
+                            </t>
                         </div>
-                    </t>
+                        <img
+                            src="/website_sale_insurance_caser/static/src/img/logo-caser.png"
+                            alt="Caser"
+                            class="d-block flex-shrink-0"
+                            style="height: 30px;"
+                        />
+                    </div>
                 </div>
             </t>
         </xpath>

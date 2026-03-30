@@ -33,11 +33,11 @@ purchase insurance for their products directly from the online store.
 
 This module extends **sale_insurance_caser** by adding:
 
-- Checkbox on product page to add insurance
-- Interactive modal at checkout offering insurance for uncovered
-  products
-- Visual badges identifying insurance lines in the cart
-- Automatic synchronization between cart and insurance lines
+-  Checkbox on product page to add insurance
+-  Interactive modal at checkout offering insurance for uncovered
+   products
+-  Visual badges identifying insurance lines in the cart
+-  Automatic synchronization between cart and insurance lines
 
 **Table of contents**
 
@@ -49,16 +49,16 @@ Configuration
 
 1. **Configure the base module** ``sale_insurance_caser``:
 
-   - Define price ranges (``caser.price.range``)
-   - Configure insurance products
-   - Set up Caser API credentials
+   -  Define price ranges (``caser.price.range``)
+   -  Configure insurance products
+   -  Set up Caser API credentials
 
 2. **Enable insurance on eCommerce products**:
 
-   - Go to *Inventory > Products > Products*
-   - Open a product you want to offer with insurance
-   - In the **Sales** tab, check the **Caser Insurance in eCommerce**
-     checkbox
+   -  Go to *Inventory > Products > Products*
+   -  Open a product you want to offer with insurance
+   -  In the **Sales** tab, check the **Caser Insurance in eCommerce**
+      checkbox
 
 Usage
 =====
@@ -83,9 +83,9 @@ Usage
    uninsured products
 7. The modal displays:
 
-   - Product image and name
-   - Insurance price per unit and total
-   - Toggle switches to select which products to insure
+   -  Product image and name
+   -  Insurance price per unit and total
+   -  Toggle switches to select which products to insure
 
 8. Upon confirmation, page reloads with new insurance lines added
 
@@ -110,9 +110,9 @@ Authors
 Contributors
 ------------
 
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Juan Carlos Oñate
+   -  Juan Carlos Oñate
 
 Maintainers
 -----------
