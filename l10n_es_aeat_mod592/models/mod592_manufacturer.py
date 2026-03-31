@@ -16,22 +16,18 @@ class L10nEsAeatmod592LineManufacturer(models.Model):
 
     concept = fields.Selection(
         selection=[
-            ("1", _("(1) Initial existence")),
-            ("2", _("(2) Manufacturing")),
+            ("1", "(1) Initial existence"),
+            ("2", "(2) Manufacturing"),
             (
                 "3",
-                _(
-                    "(3) Return of products for destruction or reincorporation into "
-                    "the manufacturing process"
-                ),
+                "(3) Return of products for destruction or reincorporation into "
+                "the manufacturing process",
             ),
-            ("4", _("(4) Delivery or making available of the products accounted for")),
+            ("4", "(4) Delivery or making available of the products accounted for"),
             (
                 "5",
-                _(
-                    "(5) Other cancellations of the products accounted for other than "
-                    "their delivery or availability"
-                ),
+                "(5) Other cancellations of the products accounted for other than "
+                "their delivery or availability",
             ),
         ],
         compute="_compute_concept",

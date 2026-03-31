@@ -16,9 +16,9 @@ class ProductProduct(models.Model):
     is_plastic_tax = fields.Boolean(string="Is plastic tax?", tracking=True)
     tax_plastic_type = fields.Selection(
         selection=[
-            ("manufacturer", _("Manufacturer")),
-            ("acquirer", _("Acquirer")),
-            ("both", _("Both")),
+            ("manufacturer", "Manufacturer"),
+            ("acquirer", "Acquirer"),
+            ("both", "Both"),
         ],
         default="both",
     )

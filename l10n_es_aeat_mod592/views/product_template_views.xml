@@ -22,7 +22,7 @@
                     <field name="is_plastic_tax" />
                 </div>
             </xpath>
-             <xpath expr="//group[@name='group_lots_and_weight']" position="after">
+            <xpath expr="//group[@name='group_lots_and_weight']" position="after">
                 <group
                     name="plastic_tax"
                     string="Plastic Tax Parameters"

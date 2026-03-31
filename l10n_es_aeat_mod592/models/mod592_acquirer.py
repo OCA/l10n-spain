@@ -2,7 +2,7 @@
 # Copyright 2023 Javier Colmenero - (https://javier@comunitea.com)
 # Copyright 2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 from .misc import FISCAL_ACQUIRERS
 
@@ -14,15 +14,13 @@ class L10nEsAeatmod592LineAcquirer(models.Model):
 
     concept = fields.Selection(
         selection=[
-            ("1", _("(1) Intra-community acquisition")),
-            ("2", _("(2) Shipping outside Spanish territory")),
-            ("3", _("(3) Inadequacy or destruction")),
+            ("1", "(1) Intra-community acquisition"),
+            ("2", "(2) Shipping outside Spanish territory"),
+            ("3", "(3) Inadequacy or destruction"),
             (
                 "4",
-                _(
-                    """(4) Return for destruction or reincorporation into the
-                manufacturing process"""
-                ),
+                """(4) Return for destruction or reincorporation into the
+                manufacturing process""",
             ),
         ],
         compute="_compute_concept",
@@ -80,11 +78,11 @@ class L10nEsAeatmod592LineAcquirer(models.Model):
         for record in self:
             errors = []
             if record.concept != "3" and not record.supplier_social_reason:
-                errors.append(_("Without supplier name"))
+                errors.append(self.env._("Without supplier name"))
             if not record.fiscal_acquirer:
-                errors.append(_("Without regime"))
+                errors.append(self.env._("Without regime"))
             if record.concept != "3" and not record.supplier_document_number:
-                errors.append(_("Without VAT"))
+                errors.append(self.env._("Without VAT"))
             record.error_text += ", ".join(errors)
         return res
 
@@ -115,11 +113,7 @@ class L10nEsAeatmod592LineAcquirer(models.Model):
     def _get_csv_report_info(self):
         self.ensure_one()
         data = super()._get_csv_report_info()
-        data["product_description"] = ""  # Campo ignorado para adquirientes
         data["fiscal_acquirer"] = (
-            self.fiscal_acquirer if self.concept not in ("2", "3", "4") else ""
+            self.fiscal_acquirer if self.concept not in ("2", "3") else ""
         )  # En algunos casos no se debe indicar
-        data["supplier_document_type"] = (
-            self.supplier_document_type if self.concept != "3" else ""
-        )  # Campo vacío para concepto 3
         return self._get_csv_report_info_mapped(data)
