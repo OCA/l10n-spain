@@ -774,6 +774,12 @@ class L10nEsAeatMod390Report(models.Model):
           period.
         - Compensation previous year is the box 78 of the first period of the year.
         """
+        last_period = reports_303.filtered(lambda r: r.period_type in {"4T", "12"})
+        if last_period and last_period[0].result_type in {"D", "V", "X"}:
+            # Al solicitar la devolución en el último periodo, el saldo acumulado se
+            # recibe de vuelta, por lo que no queda nada pendiente de compensar para
+            # años siguientes (casilla 662 = 0).
+            return 0.0
         # Cuotas aplicadas este año
         applied_this_year = sum(
             reports_303.filtered_domain(
@@ -852,7 +858,7 @@ class L10nEsAeatMod390Report(models.Model):
                     casilla_97 = abs(report_303_last_period.resultado_liquidacion)
                 elif report_303_last_period[0].result_type in {"D", "V", "X"}:
                     # Si salió a devolver, casilla 98 = casilla 71 del último periodo
-                    # del año si fue a devolver
+                    # del año si fue a devolver.
                     casilla_98 = abs(report_303_last_period.resultado_liquidacion)
             mod390.update(
                 {
