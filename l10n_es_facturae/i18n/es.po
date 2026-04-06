@@ -55,24 +55,6 @@ msgstr ""
 "Facturaev3_2_2.xml\""
 
 #. module: l10n_es_facturae
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__res_company__facturae_version__3_2
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__res_partner__facturae_version__3_2
-msgid "3.2"
-msgstr "3.2"
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__res_company__facturae_version__3_2_1
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__res_partner__facturae_version__3_2_1
-msgid "3.2.1"
-msgstr "3.2.1"
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__res_company__facturae_version__3_2_2
-#: model:ir.model.fields.selection,name:l10n_es_facturae.selection__res_partner__facturae_version__3_2_2
-msgid "3.2.2"
-msgstr "3.2.2"
-
-#. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_chart_template
 msgid "Account Chart Template"
 msgstr ""
@@ -1161,6 +1143,15 @@ msgstr "[19] Pago mediante tarjeta"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_proponente
 msgid "Órgano proponente"
 msgstr "Órgano proponente"
+
+#~ msgid "3.2"
+#~ msgstr "3.2"
+
+#~ msgid "3.2.1"
+#~ msgstr "3.2.1"
+
+#~ msgid "3.2.2"
+#~ msgstr "3.2.2"
 
 #, python-format
 #~ msgid "Oficina Contable not provided"
