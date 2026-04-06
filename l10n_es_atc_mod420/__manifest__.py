@@ -4,7 +4,7 @@
 
 {
     "name": "ATC Modelo 420",
-    "version": "17.0.1.1.3",
+    "version": "17.0.1.1.4",
     "author": "Binhex, Tecnativa, Odoo Community Association (OCA)",
     "category": "Accounting",
     "website": "https://github.com/OCA/l10n-spain",

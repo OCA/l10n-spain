@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 {
     "name": "ATC Modelo 425",
-    "version": "17.0.1.0.2",
+    "version": "17.0.1.0.3",
     "category": "Localisation/Accounting",
     "author": "Tecnativa,"
     "Binhex System Solutions,"
