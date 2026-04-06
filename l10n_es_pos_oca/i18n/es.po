@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-10 11:42+0000\n"
-"PO-Revision-Date: 2024-10-10 11:42+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: \n"
@@ -28,9 +26,29 @@ msgid "Autogenerate for each POS created"
 msgstr "Autogenerada por cada TPV creado"
 
 #. module: l10n_es_pos_oca
+#. odoo-javascript
+#: code:addons/l10n_es_pos_oca/static/src/app/screens/payment_screen/payment_screen.esm.js:0
+#, python-format
+msgid ""
+"Cannot validate the order without connection. This may be due to a lost "
+"connection or the server being unreachable at this moment. Please reconnect "
+"and try again."
+msgstr ""
+"No se puede validar el pedido sin conexión. Esto puede deberse a una "
+"conexión perdida o a que el servidor no esté disponible en este momento. Por "
+"favor, reconéctese y vuelva a intentarlo."
+
+#. module: l10n_es_pos_oca
 #: model:ir.model,name:l10n_es_pos_oca.model_res_config_settings
 msgid "Config Settings"
 msgstr "Ajustes de configuración"
+
+#. module: l10n_es_pos_oca
+#. odoo-javascript
+#: code:addons/l10n_es_pos_oca/static/src/app/screens/payment_screen/payment_screen.esm.js:0
+#, python-format
+msgid "Connection Lost"
+msgstr "Conexión perdida"
 
 #. module: l10n_es_pos_oca
 #. odoo-javascript
@@ -69,6 +87,24 @@ msgstr "Pedidos del TPV"
 #: model:ir.model,name:l10n_es_pos_oca.model_pos_session
 msgid "Point of Sale Session"
 msgstr "Sesión TPV"
+
+#. module: l10n_es_pos_oca
+#: model:ir.model.fields,field_description:l10n_es_pos_oca.field_pos_config__prevent_offline_validation
+#: model:ir.model.fields,field_description:l10n_es_pos_oca.field_res_config_settings__pos_iface_prevent_offline_validation
+msgid "Prevent Offline Validation"
+msgstr "Prevenir validación sin conexión"
+
+#. module: l10n_es_pos_oca
+#: model:ir.model.fields,help:l10n_es_pos_oca.field_pos_config__prevent_offline_validation
+#: model:ir.model.fields,help:l10n_es_pos_oca.field_res_config_settings__pos_iface_prevent_offline_validation
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_oca.res_config_settings_view_form
+msgid ""
+"Prevent order validation when the POS is offline. This helps ensure data "
+"integrity and prevents synchronization issues."
+msgstr ""
+"Prevenir la validación de pedidos cuando el TPV está sin conexión. Esto "
+"ayuda a garantizar la integridad de los datos y previene problemas de "
+"sincronización."
 
 #. module: l10n_es_pos_oca
 #: model:ir.model,name:l10n_es_pos_oca.model_ir_sequence

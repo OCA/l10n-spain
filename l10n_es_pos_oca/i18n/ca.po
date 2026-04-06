@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-10 11:43+0000\n"
-"PO-Revision-Date: 2024-10-10 11:43+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: \n"
@@ -28,9 +26,26 @@ msgid "Autogenerate for each POS created"
 msgstr "Autogenerada per cada TPV creat"
 
 #. module: l10n_es_pos_oca
+#. odoo-javascript
+#: code:addons/l10n_es_pos_oca/static/src/app/screens/payment_screen/payment_screen.esm.js:0
+#, python-format
+msgid ""
+"Cannot validate the order without connection. This may be due to a lost "
+"connection or the server being unreachable at this moment. Please reconnect "
+"and try again."
+msgstr ""
+
+#. module: l10n_es_pos_oca
 #: model:ir.model,name:l10n_es_pos_oca.model_res_config_settings
 msgid "Config Settings"
 msgstr "Paràmetres de configuració"
+
+#. module: l10n_es_pos_oca
+#. odoo-javascript
+#: code:addons/l10n_es_pos_oca/static/src/app/screens/payment_screen/payment_screen.esm.js:0
+#, python-format
+msgid "Connection Lost"
+msgstr ""
 
 #. module: l10n_es_pos_oca
 #. odoo-javascript
@@ -69,6 +84,21 @@ msgstr "Comandes del Punt de Venda"
 #: model:ir.model,name:l10n_es_pos_oca.model_pos_session
 msgid "Point of Sale Session"
 msgstr "Sessió del Punt de Venda"
+
+#. module: l10n_es_pos_oca
+#: model:ir.model.fields,field_description:l10n_es_pos_oca.field_pos_config__prevent_offline_validation
+#: model:ir.model.fields,field_description:l10n_es_pos_oca.field_res_config_settings__pos_iface_prevent_offline_validation
+msgid "Prevent Offline Validation"
+msgstr ""
+
+#. module: l10n_es_pos_oca
+#: model:ir.model.fields,help:l10n_es_pos_oca.field_pos_config__prevent_offline_validation
+#: model:ir.model.fields,help:l10n_es_pos_oca.field_res_config_settings__pos_iface_prevent_offline_validation
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_oca.res_config_settings_view_form
+msgid ""
+"Prevent order validation when the POS is offline. This helps ensure data "
+"integrity and prevents synchronization issues."
+msgstr ""
 
 #. module: l10n_es_pos_oca
 #: model:ir.model,name:l10n_es_pos_oca.model_ir_sequence
