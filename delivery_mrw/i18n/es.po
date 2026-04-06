@@ -49,6 +49,7 @@ msgid "<br/>(Packages)"
 msgstr "<br/>(Bultos)"
 
 #. module: delivery_mrw
+#. odoo-python
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
 #, python-format
 msgid "<br> MRW Shipping Label:"
@@ -108,11 +109,6 @@ msgid "Address"
 msgstr "Dirección"
 
 #. module: delivery_mrw
-#: model:ir.model.fields,field_description:delivery_mrw.field_stock_immediate_transfer__mrw_to_address
-msgid "Address sent to MRW"
-msgstr "Dirección enviada a MRW"
-
-#. module: delivery_mrw
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_notification_type__3
 msgid "Aviso de entrega en franquicia"
 msgstr "Aviso de entrega en franquicia"
@@ -136,22 +132,6 @@ msgstr "Caja Express 3 Kilos"
 #: model_terms:ir.ui.view,arch_db:delivery_mrw.delivery_mrw_manifest_wizard_form
 msgid "Cancelar"
 msgstr "Cancelar"
-
-#. module: delivery_mrw
-#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_view_immediate_transfer
-msgid ""
-"Check that the address sent to MRW is correct, otherwise you should\n"
-"                    change it in the partner form. Try to put street and "
-"number in the\n"
-"                    first address line, and floor and door number in the "
-"second one."
-msgstr ""
-"Comprueba que la dirección enviada a MRW es correcta, en caso contrario "
-"debería\n"
-"                    cambiarla en el formulario de contacto. Prueba de poner "
-"calle y número\n"
-"                    en la primera línea de dirección, y piso y puerta en la "
-"segunda."
 
 #. module: delivery_mrw
 #: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
@@ -236,6 +216,7 @@ msgid "Connection"
 msgstr "Conexión"
 
 #. module: delivery_mrw
+#. odoo-python
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
 #, python-format
 msgid "Couldn't find partner %s street"
@@ -277,10 +258,7 @@ msgid "Department Code"
 msgstr "Código de Departamento"
 
 #. module: delivery_mrw
-#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__display_name
 #: model:ir.model.fields,field_description:delivery_mrw.field_mrw_manifest_wizard__display_name
-#: model:ir.model.fields,field_description:delivery_mrw.field_stock_immediate_transfer__display_name
-#: model:ir.model.fields,field_description:delivery_mrw.field_stock_picking__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
@@ -355,6 +333,7 @@ msgid "Filter Type"
 msgstr "Tipo de filtro"
 
 #. module: delivery_mrw
+#. odoo-python
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
 #, python-format
 msgid ""
@@ -382,10 +361,7 @@ msgid "Get the MRW Manifest for the given date"
 msgstr "Manifiesto de MRW para la fecha seleccionada"
 
 #. module: delivery_mrw
-#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__id
 #: model:ir.model.fields,field_description:delivery_mrw.field_mrw_manifest_wizard__id
-#: model:ir.model.fields,field_description:delivery_mrw.field_stock_immediate_transfer__id
-#: model:ir.model.fields,field_description:delivery_mrw.field_stock_picking__id
 msgid "ID"
 msgstr "ID"
 
@@ -394,11 +370,6 @@ msgstr "ID"
 msgid ""
 "If no service is selected, all MRW type shippment methods will be printed"
 msgstr "Si no se selecciona un servicio se imprimirán todos los envíos de MRW"
-
-#. module: delivery_mrw
-#: model:ir.model,name:delivery_mrw.model_stock_immediate_transfer
-msgid "Immediate Transfer"
-msgstr "Transferencia inmediata"
 
 #. module: delivery_mrw
 #: model:ir.model.fields,help:delivery_mrw.field_delivery_carrier__mrw_en_franquicia
@@ -425,6 +396,7 @@ msgid "International Shipping"
 msgstr "Envío Internacional"
 
 #. module: delivery_mrw
+#. odoo-python
 #: code:addons/delivery_mrw/wizard/mrw_manifest_wizard.py:0
 #, python-format
 msgid ""
@@ -438,14 +410,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_api_language
 msgid "Language Code"
 msgstr "Código de lenguaje"
-
-#. module: delivery_mrw
-#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier____last_update
-#: model:ir.model.fields,field_description:delivery_mrw.field_mrw_manifest_wizard____last_update
-#: model:ir.model.fields,field_description:delivery_mrw.field_stock_immediate_transfer____last_update
-#: model:ir.model.fields,field_description:delivery_mrw.field_stock_picking____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
 
 #. module: delivery_mrw
 #: model:ir.model.fields,field_description:delivery_mrw.field_mrw_manifest_wizard__write_uid
@@ -463,6 +427,7 @@ msgid "MRW"
 msgstr "MRW"
 
 #. module: delivery_mrw
+#. odoo-python
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
 #, python-format
 msgid ""
@@ -489,6 +454,7 @@ msgid "MRW Deliveries Manifest"
 msgstr "Manifiesto de Envíos MRW"
 
 #. module: delivery_mrw
+#. odoo-python
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
 #, python-format
 msgid "MRW Error: %s)Mensaje"
@@ -500,6 +466,7 @@ msgid "MRW Label"
 msgstr "Etiqueta MRW"
 
 #. module: delivery_mrw
+#. odoo-python
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
 #: model:ir.actions.act_window,name:delivery_mrw.action_delivery_mrw_manifest_wizard
 #: model:ir.actions.report,name:delivery_mrw.mrw_manifest_report
@@ -516,6 +483,7 @@ msgid "MRW Service"
 msgstr "Servicio"
 
 #. module: delivery_mrw
+#. odoo-python
 #: code:addons/delivery_mrw/models/stock_picking.py:0
 #, python-format
 msgid "MRW Shipping Label:"
@@ -547,6 +515,7 @@ msgid "Marítimo Interinsular"
 msgstr "Marítimo Interinsular"
 
 #. module: delivery_mrw
+#. odoo-python
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
 #, python-format
 msgid "MensajeSeguimiento"
@@ -720,6 +689,7 @@ msgid "Sin retorno"
 msgstr "Sin retorno"
 
 #. module: delivery_mrw
+#. odoo-python
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
 #, python-format
 msgid ""
@@ -814,6 +784,34 @@ msgstr "Peso"
 msgid "ZIP Code"
 msgstr "Código postal"
 
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_view_delivery_carrier_form
+msgid "a"
+msgstr ""
+
+#~ msgid "Address sent to MRW"
+#~ msgstr "Dirección enviada a MRW"
+
+#~ msgid ""
+#~ "Check that the address sent to MRW is correct, otherwise you should\n"
+#~ "                    change it in the partner form. Try to put street and "
+#~ "number in the\n"
+#~ "                    first address line, and floor and door number in the "
+#~ "second one."
+#~ msgstr ""
+#~ "Comprueba que la dirección enviada a MRW es correcta, en caso contrario "
+#~ "debería\n"
+#~ "                    cambiarla en el formulario de contacto. Prueba de "
+#~ "poner calle y número\n"
+#~ "                    en la primera línea de dirección, y piso y puerta en "
+#~ "la segunda."
+
+#~ msgid "Immediate Transfer"
+#~ msgstr "Transferencia inmediata"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
+
 #~ msgid "Create Shipping"
 #~ msgstr "Crear envío"
 
@@ -822,8 +820,8 @@ msgstr "Código postal"
 #~ "Destination country doesn't match carrier service type, international = "
 #~ "%s and partner country = %s"
 #~ msgstr ""
-#~ "El país de destino no concuerda con el tipo de servicio de proveedor,"
-#~ "internacional = %s y el país de cliente = %s"
+#~ "El país de destino no concuerda con el tipo de servicio de "
+#~ "proveedor,internacional = %s y el país de cliente = %s"
 
 #~ msgid "Integration Level"
 #~ msgstr "Nivel de Integración"
