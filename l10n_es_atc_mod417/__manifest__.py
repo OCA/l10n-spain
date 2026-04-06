@@ -2,7 +2,7 @@
 
 {
     "name": "ATC Modelo 417",
-    "version": "17.0.1.2.2",
+    "version": "17.0.1.2.3",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "category": "Accounting",
     "website": "https://github.com/OCA/l10n-spain",
