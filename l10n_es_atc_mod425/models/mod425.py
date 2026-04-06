@@ -5,7 +5,7 @@ from odoo.addons.l10n_es_atc.models.l10n_es_atc_report import ATC_JAR_URL
 
 ATC_JAR_URL[
     "425"
-] = "https://www3.gobiernodecanarias.org/tributos/atc/documents/d/agencia-tributaria-canaria/m425v631e25-zip"
+] = "https://www3.gobiernodecanarias.org/tributos/atc/documents/d/agencia-tributaria-canaria/m425v631e25-zip-1"
 
 ACTIVITY_CODE_SELECTION = [
     (
