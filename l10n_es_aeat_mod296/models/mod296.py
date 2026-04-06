@@ -5,6 +5,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+from odoo.fields import Domain
 
 
 class L10nEsAeatMod296Report(models.Model):
@@ -45,22 +46,22 @@ class L10nEsAeatMod296Report(models.Model):
 
     def partner_group(self, move_lines_base_ids, move_lines_cuota_ids):
         partner_groups = {}
-        for group in self.env["account.move.line"].read_group(
-            [("id", "in", move_lines_base_ids)],
-            ["partner_id", "credit", "debit"],
+        for group in self.env["account.move.line"]._read_group(
+            Domain("id", "in", move_lines_base_ids),
             ["partner_id"],
+            ["credit:sum", "debit:sum"],
         ):
-            partner_groups[group["partner_id"][0]] = {
-                "base": {"credit": group["credit"], "debit": group["debit"]}
+            partner_groups[group[0].id] = {
+                "base": {"credit": group[1], "debit": group[2]}
             }
-        for group in self.env["account.move.line"].read_group(
-            [("id", "in", move_lines_cuota_ids)],
-            ["partner_id", "credit", "debit"],
+        for group in self.env["account.move.line"]._read_group(
+            Domain("id", "in", move_lines_cuota_ids),
             ["partner_id"],
+            ["credit:sum", "debit:sum"],
         ):
-            partner_groups[group["partner_id"][0]]["cuota"] = {
-                "credit": group["credit"],
-                "debit": group["debit"],
+            partner_groups[group[0].id]["cuota"] = {
+                "credit": group[1],
+                "debit": group[2],
             }
         return partner_groups
 
