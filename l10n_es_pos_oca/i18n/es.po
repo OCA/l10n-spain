@@ -33,9 +33,9 @@ msgid ""
 "connection or the server being unreachable at this moment. Please reconnect "
 "and try again."
 msgstr ""
-"No se puede validar el pedido sin conexión. Esto puede deberse a una conexión perdida "
-"o a que el servidor no esté disponible en este momento. Por favor, reconéctese "
-"y vuelva a intentarlo."
+"No se puede validar el pedido sin conexión. Esto puede deberse a una "
+"conexión perdida o a que el servidor no esté disponible en este momento. Por "
+"favor, reconéctese y vuelva a intentarlo."
 
 #. module: l10n_es_pos_oca
 #: model:ir.model,name:l10n_es_pos_oca.model_res_config_settings
@@ -105,8 +105,9 @@ msgid ""
 "Prevent order validation when the POS is offline. This helps ensure data "
 "integrity and prevents synchronization issues."
 msgstr ""
-"Prevenir la validación de pedidos cuando el TPV está sin conexión. Esto ayuda "
-"a garantizar la integridad de los datos y previene problemas de sincronización."
+"Prevenir la validación de pedidos cuando el TPV está sin conexión. Esto "
+"ayuda a garantizar la integridad de los datos y previene problemas de "
+"sincronización."
 
 #. module: l10n_es_pos_oca
 #: model:ir.model,name:l10n_es_pos_oca.model_ir_sequence
