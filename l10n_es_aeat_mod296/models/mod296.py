@@ -121,10 +121,10 @@ class L10nEsAeatMod296ReportLine(models.Model):
         comodel_name="account.move.line", string="Move Lines"
     )
     base_retenciones_ingresos = fields.Float(
-        string="Base retention and " "income on account"
+        string="Base retention and income on account"
     )
     porcentaje_retencion = fields.Float(string="% retention")
-    retenciones_ingresos = fields.Float(string="Retention and income on " "account")
+    retenciones_ingresos = fields.Float(string="Retention and income on account")
     fisica_juridica = fields.Selection(
         selection=[("F", "Physical person"), ("J", "Legal person or entity")],
         string="F/J",
@@ -209,8 +209,7 @@ class L10nEsAeatMod296ReportLine(models.Model):
             ),
             (
                 "2",
-                "2 - Retention practiced applying limits of imposition of "
-                "Agreements.",
+                "2 - Retention practiced applying limits of imposition of Agreements.",
             ),
             (
                 "3",
@@ -271,7 +270,7 @@ class L10nEsAeatMod296ReportLine(models.Model):
     )
     tipo_codigo = fields.Selection(
         selection=[
-            ("C", "Identification with the Account " "Code Values (C.C.V.)"),
+            ("C", "Identification with the Account Code Values (C.C.V.)"),
             ("O", "Other identification"),
         ],
         string="Code type",
