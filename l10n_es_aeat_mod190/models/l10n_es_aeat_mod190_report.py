@@ -95,6 +95,12 @@ class L10nEsAeatMod190Report(models.Model):
                 value += sum(
                     item.mapped("partner_record_ids.retenciones_dinerarias_incap")
                 )
+                value += sum(
+                    item.mapped("partner_record_ids.ingresos_a_cuenta_efectuados")
+                )
+                value += sum(
+                    item.mapped("partner_record_ids.ingresos_a_cuenta_efectuados_incap")
+                )
             else:
                 tax_lines = item.tax_line_ids.filtered(
                     lambda x: x.field_number in {12, 14, 16, 19}
