@@ -11,7 +11,7 @@
 
 {
     "name": "Libros registro del IVA y del IRPF",
-    "version": "18.0.2.1.2",
+    "version": "18.0.2.1.3",
     "author": "PRAXYA, ForgeFlow, Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
