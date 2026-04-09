@@ -43,7 +43,7 @@ class AeatSiiMap(models.Model):
         if date_lst:
             raise exceptions.UserError(
                 self.env._(
-                    "Error! The dates of the record overlap with an existing " "record."
+                    "Error! The dates of the record overlap with an existing record."
                 )
             )
 
