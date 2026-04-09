@@ -1,12 +1,12 @@
 # Copyright 2014-2019 Tecnativa - Pedro M. Baeza
 # Copyright 2024 Tecnativa - Carolina Fernandez
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 from odoo.tools import float_compare
 
 
 def trunc(f, n):
-    slen = len("%.*f" % (n, f))
-    return float(str(f)[:slen])
+    s = f"{f:.{n}f}"
+    return float(s)
 
 
 class L10nEsAeatMod130Report(models.Model):
@@ -181,7 +181,7 @@ class L10nEsAeatMod130Report(models.Model):
                 if deduccion > 660.14:
                     deduccion = 660.14
             else:
-                raise exceptions.UserError(_("No implementado"))
+                raise exceptions.UserError(self.env._("No implementado"))
             dif = report.casilla_14 - report.casilla_15
             if deduccion > dif:
                 deduccion = dif
@@ -261,11 +261,13 @@ class L10nEsAeatMod130Report(models.Model):
         for report in self:
             if report.activity_type == "primary":
                 raise exceptions.UserError(
-                    _("Este tipo de actividad no está aún soportado por el módulo.")
+                    self.env._(
+                        "Este tipo de actividad no está aún soportado por el módulo."
+                    )
                 )
             if report.has_deduccion_80:
                 raise exceptions.UserError(
-                    _(
+                    self.env._(
                         "No se pueden calcular por el momento declaraciones que "
                         "contengan deducciones por el artículo 80 bis."
                     )
@@ -298,9 +300,9 @@ class L10nEsAeatMod130Report(models.Model):
         msg = ""
         for report in self:
             if report.statement_type == "C" and not report.casilla_18:
-                msg = _(
+                msg = self.env._(
                     "Debe introducir una cantidad en la casilla 18 como "
-                    "ha marcado la casilla de declaración complementaria."
+                    "ha marcado la declaración complementaria."
                 )
         if msg:
             raise exceptions.ValidationError(msg)
