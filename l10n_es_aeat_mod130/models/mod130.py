@@ -1,6 +1,7 @@
 # Copyright 2014-2019 Tecnativa - Pedro M. Baeza
 # Copyright 2024 Tecnativa - Carolina Fernandez
 from odoo import api, exceptions, fields, models
+from odoo.fields import Domain
 from odoo.tools import float_compare
 
 
@@ -214,38 +215,31 @@ class L10nEsAeatMod130Report(models.Model):
         self.ensure_one()
         aml_obj = self.env["account.move.line"]
         date_start = f"{self.year}-01-01"
-        extra_domain = [
-            ("company_id", "=", self.company_id.id),
-            ("date", ">=", date_start),
-            ("date", "<=", self.date_end),
-        ]
-        groups = aml_obj.read_group(
+        extra_domain = Domain(
             [
-                ("account_id.code", "=like", "7%"),
+                ("company_id", "=", self.company_id.id),
+                ("date", ">=", date_start),
+                ("date", "<=", self.date_end),
             ]
-            + extra_domain,
-            ["balance"],
-            [],
         )
-        incomes = groups[0]["balance"] and -groups[0]["balance"] or 0.0
-        groups = aml_obj.read_group(
-            [
-                ("account_id.code", "=like", "6%"),
-            ]
-            + extra_domain,
-            ["balance"],
+        groups = aml_obj._read_group(
+            Domain("account_id.code", "=like", "7%") & extra_domain,
             [],
+            ["balance:sum"],
         )
-        expenses = groups[0]["balance"] or 0.0
-        groups = aml_obj.read_group(
-            [
-                ("account_id.code", "=like", "473%"),
-            ]
-            + extra_domain,
-            ["balance"],
+        incomes = groups[0][0] and -groups[0][0] or 0.0
+        groups = aml_obj._read_group(
+            Domain("account_id.code", "=like", "6%") & extra_domain,
             [],
+            ["balance:sum"],
         )
-        withholdings = groups[0]["balance"] or 0.0
+        expenses = groups[0][0] or 0.0
+        groups = aml_obj._read_group(
+            Domain("account_id.code", "=like", "473%") & extra_domain,
+            [],
+            ["balance:sum"],
+        )
+        withholdings = groups[0][0] or 0.0
         return (incomes, expenses, withholdings)
 
     def _calc_prev_trimesters_data(self):
