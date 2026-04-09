@@ -66,7 +66,7 @@ class AccountMove(models.Model):
                 "[1]-Real property with cadastral code located within "
                 "the Spanish territory except Basque Country or Navarra",
             ),
-            ("2", "[2]-Real property located in the " "Basque Country or Navarra"),
+            ("2", "[2]-Real property located in the Basque Country or Navarra"),
             (
                 "3",
                 "[3]-Real property in any of the above situations "
