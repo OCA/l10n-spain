@@ -12,7 +12,7 @@ class ProductTemplate(models.Model):
         selection=[
             ("none", "None"),
             ("E1", "[E1] Art. 20: Operaciones interiores exentas"),
-            ("E2", "[E2] Art. 21: Exenciones en las exportaciones de " "bienes"),
+            ("E2", "[E2] Art. 21: Exenciones en las exportaciones de bienes"),
             (
                 "E3",
                 "[E3] Art. 22: Exenciones en las operaciones "
