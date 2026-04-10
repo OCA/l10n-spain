@@ -10,6 +10,7 @@ from unidecode import unidecode
 
 from odoo import api, exceptions, fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Domain
 from odoo.modules.registry import Registry
 from odoo.tools.float_utils import float_compare
 
@@ -127,14 +128,11 @@ class SiiMixin(models.AbstractModel):
                 if key:
                     document.sii_registration_key = key
             else:
-                domain = [
-                    ("code", "=", "01"),
-                    (
-                        "type",
-                        "=",
-                        "sale" if mapping_key.startswith("out_") else "purchase",
-                    ),
-                ]
+                domain = Domain("code", "=", "01") & Domain(
+                    "type",
+                    "=",
+                    "sale" if mapping_key.startswith("out_") else "purchase",
+                )
                 sii_key_obj = self.env["aeat.sii.mapping.registration.keys"]
                 document.sii_registration_key = sii_key_obj.search(domain, limit=1)
 
@@ -148,13 +146,13 @@ class SiiMixin(models.AbstractModel):
 
     @api.model
     def _is_unsupported_search_operator(self, operator):
-        return operator not in ("=", "!=")
+        return operator not in ("in", "not in")
 
     @api.model
     def _search_sii_enabled(self, operator, value):
         if self._is_unsupported_search_operator(operator):
             raise ValueError(self.env._("Unsupported search operator"))
-        return [("company_id.sii_enabled", operator, value)]
+        return Domain("company_id.sii_enabled", operator, value)
 
     def _compute_macrodata(self):
         for document in self:
@@ -193,16 +191,11 @@ class SiiMixin(models.AbstractModel):
         map_obj = self.env["aeat.sii.map"].sudo().with_context(active_test=False)
         tax_agency = self._get_sii_tax_agency()
         sii_map = map_obj.search(
-            [
-                "&",
-                ("tax_agency_id", "in", [tax_agency.id, False]),
-                "|",
-                ("date_from", "<=", date),
-                ("date_from", "=", False),
-                "|",
-                ("date_to", ">=", date),
-                ("date_to", "=", False),
-            ],
+            Domain("tax_agency_id", "in", [tax_agency.id, False])
+            & (
+                (Domain("date_from", "<=", date) | Domain("date_from", "=", False))
+                & (Domain("date_to", ">=", date) | Domain("date_to", "=", False))
+            ),
             limit=1,
         )
         tax_templates = sii_map.map_lines.filtered(
@@ -235,8 +228,8 @@ class SiiMixin(models.AbstractModel):
         self.ensure_one()
         if not self.company_id.vat:
             raise UserError(
-                self.env._("No VAT configured for the company '{}'").format(
-                    self.company_id.name
+                self.env._(
+                    "No VAT configured for the company '%s'", self.company_id.name
                 )
             )
         header = {
@@ -392,7 +385,7 @@ class SiiMixin(models.AbstractModel):
     def _get_document_period(self):
         month = fields.Date.to_date(self._get_document_fiscal_date()).month
         if self.company_id.sii_period == "monthly":
-            period = "%02d" % month
+            period = f"{month:02d}"
         else:
             period = str(int(((month - 1) / 3) + 1)) + "T"
         return period

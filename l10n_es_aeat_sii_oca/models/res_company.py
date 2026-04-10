@@ -80,7 +80,7 @@ class ResCompany(models.Model):
 
     def _get_sii_sending_time(self):
         if self.send_mode == "fixed":
-            tz = self.env.context.get("tz", self.env.user.partner_id.tz)
+            tz = self.env.tz
             offset = datetime.now(pytz.timezone(tz)).strftime("%z") if tz else "+00"
             hour_diff = int(offset[:3])
             hour, minute = divmod(self.sent_time * 60, 60)

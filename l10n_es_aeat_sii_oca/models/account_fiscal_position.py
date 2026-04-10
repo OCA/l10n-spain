@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
+from odoo.fields import Domain
 
 
 class AccountFiscalPosition(models.Model):
@@ -25,12 +26,12 @@ class AccountFiscalPosition(models.Model):
     sii_registration_key_sale = fields.Many2one(
         "aeat.sii.mapping.registration.keys",
         "Default SII Registration Key for Sales",
-        domain=[("type", "=", "sale")],
+        domain=Domain("type", "=", "sale"),
     )
     sii_registration_key_purchase = fields.Many2one(
         "aeat.sii.mapping.registration.keys",
         "Default SII Registration Key for Purchases",
-        domain=[("type", "=", "purchase")],
+        domain=Domain("type", "=", "purchase"),
     )
     sii_no_taxable_cause = fields.Selection(
         selection=[
@@ -49,7 +50,7 @@ class AccountFiscalPosition(models.Model):
     sii_exempt_cause = fields.Selection(
         string="SII Exempt Cause",
         selection="_get_selection_sii_exempt_cause",
-        default=default_sii_exempt_cause,
+        default=lambda self: self.default_sii_exempt_cause(),
     )
     sii_partner_identification_type = fields.Selection(
         selection=[("1", "National"), ("2", "Intracom"), ("3", "Export")],

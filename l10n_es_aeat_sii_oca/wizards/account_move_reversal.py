@@ -3,6 +3,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo import fields, models
+from odoo.fields import Domain
 
 
 class AccountMoveReversal(models.TransientModel):
@@ -39,11 +40,9 @@ class AccountMoveReversal(models.TransientModel):
             or "sii_refund_type_required" in fields_list
         ):
             to_refund = self.env["account.move"].search(
-                [
-                    ("id", "in", self.env.context.get("active_ids")),
-                    ("move_type", "in", ["in_invoice", "out_invoice"]),
-                    ("journal_id.sii_enabled", "=", True),
-                ]
+                Domain("id", "in", self.env.context.get("active_ids"))
+                & Domain("move_type", "in", ("in_invoice", "out_invoice"))
+                & Domain("journal_id.sii_enabled", "=", True)
             )
             if any(to_refund.mapped("company_id.sii_enabled")):
                 defaults["sii_refund_type"] = "I"

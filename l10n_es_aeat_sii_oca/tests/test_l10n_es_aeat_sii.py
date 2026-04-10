@@ -9,6 +9,7 @@
 import json
 
 from odoo import exceptions
+from odoo.fields import Domain
 from odoo.tools.misc import file_path
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
@@ -72,10 +73,9 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
         comparing the expected SII dict with .
         """
         module = module or "l10n_es_aeat_sii_oca"
-        domain = [
-            ("code", "=", "01"),
-            ("type", "=", "sale" if "out" in inv_type else "purchase"),
-        ]
+        domain = Domain("code", "=", "01") & Domain(
+            "type", "=", "sale" if "out" in inv_type else "purchase"
+        )
         sii_key_obj = self.env["aeat.sii.mapping.registration.keys"]
         vals = {
             "name": "TEST001",
@@ -177,12 +177,12 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             {
                 "name": "Test user",
                 "login": "test_user",
-                "groups_id": [(4, cls.env.ref("account.group_account_invoice").id)],
+                "group_ids": [(4, cls.env.ref("account.group_account_invoice").id)],
                 "email": "somebody@somewhere.com",
             }
         )
         cls.tax_agencies = cls.env["aeat.tax.agency"].search(
-            [("sii_wsdl_out", "!=", False)]
+            Domain("sii_wsdl_out", "!=", False)
         )
 
     def test_invoice_search_sii_enabled(self):
@@ -592,14 +592,14 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         invoice1 = self._create_invoice("out_invoice")
         invoice1.invoice_date = "2019-01-01"
         self.assertTrue(invoice1.sii_enabled)
-        self.assertTrue(invoice1.filtered_domain([("sii_enabled", "=", True)]))
+        self.assertTrue(invoice1.filtered_domain(Domain("sii_enabled", "=", True)))
         invoice2 = self._create_invoice("out_invoice")
         invoice2.invoice_date = "2017-01-01"
         self.assertFalse(invoice2.sii_enabled)
-        self.assertTrue(invoice2.filtered_domain([("sii_enabled", "=", False)]))
+        self.assertTrue(invoice2.filtered_domain(Domain("sii_enabled", "=", False)))
         self.company.sii_start_date = False
         self.assertTrue(invoice2.sii_enabled)
-        self.assertTrue(invoice2.filtered_domain([("sii_enabled", "=", True)]))
+        self.assertTrue(invoice2.filtered_domain(Domain("sii_enabled", "=", True)))
 
     def test_journals_dashboard_data(self):
         self.company.sii_start_date = "2018-01-01"
