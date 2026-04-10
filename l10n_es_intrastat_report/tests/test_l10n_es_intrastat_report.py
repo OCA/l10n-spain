@@ -6,6 +6,7 @@ from datetime import datetime
 from odoo import _
 from odoo.tests import tagged
 from odoo.tests.common import Form
+from odoo.tools import mute_logger
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
@@ -235,6 +236,7 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
             self.assertEqual(items[6], self.hs_code.local_code)
 
     # TODO: Remove if a test is added in intrastat_product to test it
+    @mute_logger("odoo.models.unlink")
     def test_report_creation_dispatches_notes_and_lines(self):
         # Generate report
         self.product.origin_country_id = False
@@ -262,6 +264,13 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
             self.assertNotIn(expected_note, report_dispatches.note)
 
     def test_report_creation_arrivals(self):
+        # You must enable the language to check the values at the end
+        self.env.ref("base.lang_es").active = True
+        # We change the invoice amount to verify the values at the end
+        for invoice in self.invoices["arrivals"]["invoices"]:
+            invoice.button_draft()
+            invoice.invoice_line_ids.price_unit = 1000
+            invoice.action_post()
         # Generate report
         report_arrivals = self._create_declaration("arrivals")
         report_arrivals.action_gather()
@@ -283,6 +292,8 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
             self.invoices["arrivals"][self.partner_1.country_id],
             self.invoices["arrivals"][self.partner_2.country_id],
         )
+        # We change the weight to check the value of the csv later
+        report_arrivals.declaration_line_ids.weight = 1000
         csv_result = report_arrivals._generate_csv()
         csv_lines = csv_result.decode("utf-8").rstrip().splitlines()
         self.assertEqual(len(csv_lines), 2)
@@ -290,3 +301,6 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
             items = line.split(";")
             self.assertTrue(items[0] in ("PT", "FR"))
             self.assertEqual(items[6], self.hs_code.local_code)
+            self.assertEqual(items[9], "1000,00")
+            self.assertEqual(items[11], "2000,00")
+            self.assertEqual(items[12], "2000,00")

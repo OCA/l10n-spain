@@ -86,6 +86,7 @@ class IntrastatProductDeclaration(models.Model):
 
     def _generate_csv_line(self, line):
         state_code = line.intrastat_state_id.code
+        qweb_f_float = self.env["ir.qweb.field.float"].with_context(lang="es_ES")
         vals = (
             # Estado destino/origen
             line.src_dest_country_code,
@@ -106,13 +107,17 @@ class IntrastatProductDeclaration(models.Model):
             # Régimen estadístico
             False,
             # Masa neta
-            str(line.weight).replace(".", ","),
+            qweb_f_float.value_to_html(line.weight, {"precision": 2}).replace(".", ""),
             # Unidades suplementarias
             str(line.suppl_unit_qty).replace(".", ","),
             # Valor
-            str(line.amount_company_currency).replace(".", ","),
+            qweb_f_float.value_to_html(
+                line.amount_company_currency, {"precision": 2}
+            ).replace(".", ""),
             # Valor estadístico
-            str(line.amount_company_currency).replace(".", ","),
+            qweb_f_float.value_to_html(
+                line.amount_company_currency, {"precision": 2}
+            ).replace(".", ""),
         )
         # Nº IVA-VIES asignado a la contraparte de la operación
         if self.declaration_type == "dispatches" and int(self.year) >= 2022:
