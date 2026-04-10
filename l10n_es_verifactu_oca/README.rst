@@ -175,6 +175,10 @@ Contributors
 
   - Luis J. Salvatierra
 
+- Batista10:
+
+  - Ivan Vilata i Balaguer
+
 Maintainers
 -----------
 
