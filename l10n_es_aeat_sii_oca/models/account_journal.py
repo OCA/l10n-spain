@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields, models
+from odoo.fields import Domain
 
 
 class AccountJournal(models.Model):
@@ -18,13 +19,14 @@ class AccountJournal(models.Model):
         if not journals:
             return res
         AccountMove = self.env["account.move"]
-        domain_base = [
-            ("journal_id", "in", journals.ids),
-            ("sii_enabled", "=", True),
-            "|",
-            ("aeat_state", "=", "not_sent"),
-            ("aeat_send_failed", "=", True),
-        ]
+        domain_base = (
+            Domain("journal_id", "in", journals.ids)
+            & Domain("sii_enabled", "=", True)
+            & (
+                Domain("aeat_state", "=", "not_sent")
+                | Domain("aeat_send_failed", "=", True)
+            )
+        )
         all_data = AccountMove._read_group(
             domain_base, ["journal_id", "aeat_state", "aeat_send_failed"], ["__count"]
         )
