@@ -1,0 +1,14 @@
+- [Tecnativa](https://www.tecnativa.com):
+  - Pedro M. Baeza \<<pedro.baeza@tecnativa.com>\>
+- Albert Cabedo
+- [Acysos](http://www.acysos.com):
+  - Ignacio Ibeas
+- [Sygel](https://www.sygel.es):
+  - Harald Panten \<<harald.panten@sygel.es>\>
+  - Valentin Vinagre \<<valentin.vinagre@sygel.es>\>
+- [Dixmit](https://www.dixmit.com):
+  - Enric Tobella
+- [Moduon](https://www.moduon.team):
+  - Emilio Pascual
+- [Studio73](https://studio73.es):
+  - Pablo Cortés
