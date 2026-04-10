@@ -22,7 +22,7 @@
                 <field name="name" />
                 <field name="code" />
                 <field name="type" />
-                <group expand="0" string="Group By...">
+                <group>
                     <filter string="Type" name="type" context="{'group_by':'type'}" />
                 </group>
             </search>

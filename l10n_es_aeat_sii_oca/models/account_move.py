@@ -19,8 +19,8 @@ from unidecode import unidecode
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Domain
 from odoo.modules.registry import Registry
-from odoo.osv.expression import AND, OR
 
 SII_VALID_INVOICE_STATES = ["posted"]
 _logger = logging.getLogger(__name__)
@@ -131,9 +131,9 @@ class AccountMove(models.Model):
             self.env._(
                 "You cannot change the %s of an invoice "
                 "already registered at the SII. You must cancel the "
-                "invoice and create a new one with the correct value"
+                "invoice and create a new one with the correct value",
+                field_name,
             )
-            % field_name
         )
 
     def write(self, vals):
@@ -727,11 +727,11 @@ class AccountMove(models.Model):
         invoice_types = self.get_sale_types() + self.get_purchase_types()
         condition_1 = [("journal_id.sii_enabled", operator, value)]
         condition_2 = [("fiscal_position_id.aeat_active", operator, value)]
-        search_ko = (operator == "=" and not value) or (operator == "!=" and value)
-        exp_condition = OR if search_ko else AND
+        search_ko = (operator == "in" and not value) or (operator == "not in" and value)
+        exp_condition = Domain.OR if search_ko else Domain.AND
         condition_3 = []
         if not search_ko:
-            condition_2 = OR([condition_2, [("fiscal_position_id", "=", False)]])
+            condition_2 = Domain.OR([condition_2, [("fiscal_position_id", "=", False)]])
             for company in self.env.companies.filtered("sii_enabled"):
                 if company.sii_start_date:
                     condition_3.append(
@@ -743,11 +743,13 @@ class AccountMove(models.Model):
                 else:
                     condition_3.append([("company_id", "=", company.id)])
             if condition_3:
-                condition_3 = OR(condition_3)
+                condition_3 = Domain.OR(condition_3)
         conditions = [domain, condition_1, condition_2]
         if condition_3:
             conditions.append(condition_3)
-        return AND([[("move_type", "in", invoice_types)], exp_condition(conditions)])
+        return Domain.AND(
+            [[("move_type", "in", invoice_types)], exp_condition(conditions)]
+        )
 
     def _reverse_moves(self, default_values_list=None, cancel=False):
         # OVERRIDE
