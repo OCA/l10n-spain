@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-01 14:14+0000\n"
-"PO-Revision-Date: 2023-10-09 05:51+0000\n"
-"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"PO-Revision-Date: 2026-04-13 17:16+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_company_sii_form
@@ -26,31 +26,31 @@ msgstr "Configuración AEAT SII"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__aeat_send_error
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_sii_mixin__aeat_send_error
 msgid "AEAT Send Error"
-msgstr ""
+msgstr "Error de envío AEAT"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__aeat_content_sent
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_sii_mixin__aeat_content_sent
 msgid "AEAT last content sent"
-msgstr ""
+msgstr "Último contenido enviado a AEAT"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__aeat_header_sent
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_sii_mixin__aeat_header_sent
 msgid "AEAT last header sent"
-msgstr ""
+msgstr "Última cabecera enviada a AEAT"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__aeat_state
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__aeat_state
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_sii_mixin__aeat_state
 msgid "AEAT send state"
-msgstr ""
+msgstr "Estado de envío AEAT"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model,name:l10n_es_aeat_sii_oca.model_account_chart_template
 msgid "Account Chart Template"
-msgstr ""
+msgstr "Plantilla del plan contable"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model,name:l10n_es_aeat_sii_oca.model_account_move_reversal
@@ -60,7 +60,7 @@ msgstr "Reversión de asiento"
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 msgid "Account registration date"
-msgstr ""
+msgstr "Fecha de registro contable"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_registration_key_additional2
@@ -77,12 +77,12 @@ msgstr "Clave de registro adicional SII"
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 msgid "Additional registration key 1"
-msgstr ""
+msgstr "Clave de registro adicional 1"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 msgid "Additional registration key 2"
-msgstr ""
+msgstr "Clave de registro adicional 2"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model,name:l10n_es_aeat_sii_oca.model_aeat_sii_mapping_registration_keys
@@ -182,8 +182,9 @@ msgstr "Por diferencias"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
+#, fuzzy
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_wizard_send_sii
@@ -253,7 +254,7 @@ msgstr "Companía"
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_journal__company_sii_enabled
 msgid "Company enable SII"
-msgstr ""
+msgstr "Compañía con SII hablilitado"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model,name:l10n_es_aeat_sii_oca.model_res_partner
@@ -263,7 +264,7 @@ msgstr "Contacto"
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 msgid "Content sent"
-msgstr ""
+msgstr "Contenido Enviado"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__create_uid
@@ -284,7 +285,7 @@ msgstr "Creado en"
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_company_sii_form
 msgid "Cron Config"
-msgstr ""
+msgstr "Configurar Cron"
 
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
@@ -326,7 +327,7 @@ msgstr "Tiempo de retardo"
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 msgid "Description"
-msgstr ""
+msgstr "descripción"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_company_sii_form
@@ -450,11 +451,12 @@ msgid ""
 "Indicates the state of this document in relation with the presentation at "
 "the AEAT"
 msgstr ""
+"Indica el estado de este documento en relación con la presentación a la AEAT"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 msgid "Information"
-msgstr ""
+msgstr "Información"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_fiscal_position__sii_partner_identification_type__2
@@ -582,7 +584,7 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__res_company__sii_period__monthly
 msgid "Monthly"
-msgstr ""
+msgstr "Mensualmente"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_wizard_send_sii__moves_to_send
@@ -659,7 +661,7 @@ msgstr "Compras"
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__res_company__sii_period__quarterly
 msgid "Quarterly"
-msgstr ""
+msgstr "Trimestral"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_property_cadastrial_code
@@ -676,7 +678,7 @@ msgstr "Situación del inmueble"
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 msgid "Refund type"
-msgstr ""
+msgstr "Tipo de rectificación"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__aeat_state__sent_modified
@@ -688,12 +690,12 @@ msgstr "Registro correcto en SII con modificaciones pendientes de comunicar"
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 msgid "Registration date"
-msgstr ""
+msgstr "Fecha de registro"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 msgid "Registration key"
-msgstr ""
+msgstr "Clave de registro"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_refund_specific_invoice_type__r4
@@ -703,12 +705,12 @@ msgstr "Resto de causas (R4)"
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 msgid "Result"
-msgstr ""
+msgstr "Resultado"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 msgid "Return"
-msgstr ""
+msgstr "Devolver"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_tax_agency_form_view
@@ -785,7 +787,7 @@ msgstr "Retorno SII"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_send_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_sii_mixin__sii_send_date
 msgid "SII Send Date"
-msgstr ""
+msgstr "Fecha Envío SIII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_header_supplier
@@ -890,17 +892,17 @@ msgstr "Enviar anulación al SII"
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 msgid "Send date"
-msgstr ""
+msgstr "Fecha de envío"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 msgid "Send error"
-msgstr ""
+msgstr "Error de envío"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 msgid "Send failed"
-msgstr ""
+msgstr "Envío Fallido"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
@@ -910,7 +912,7 @@ msgstr "Enviar ahora"
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 msgid "Send state"
-msgstr ""
+msgstr "Estado de envío"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
@@ -940,12 +942,12 @@ msgstr "SII habilitado"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_needs_cancel
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_sii_mixin__sii_needs_cancel
 msgid "Sii Needs Cancel"
-msgstr ""
+msgstr "SII Necesita Cancelar"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_period
 msgid "Sii Period"
-msgstr ""
+msgstr "Periodo SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_refund_specific_invoice_type
@@ -956,7 +958,7 @@ msgstr "Tipo específico de factura rectificativa SII"
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_start_date
 msgid "Sii Start Date"
-msgstr ""
+msgstr "Fecha Inicio SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
@@ -1076,12 +1078,12 @@ msgstr "Nº de factura del proveedor"
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__tax_agency_id
 msgid "Tax Agency"
-msgstr ""
+msgstr "Agencia Tributaria"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__tax_xmlid_ids
 msgid "Taxes templates"
-msgstr ""
+msgstr "Plantillas de impuestos"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
@@ -1149,7 +1151,7 @@ msgstr "Tipo"
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/sii_mixin.py:0
 msgid "Unsupported search operator"
-msgstr ""
+msgstr "Operador de búsqueda no soportado"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_tax_agency_form_view
@@ -1159,7 +1161,7 @@ msgstr "WSDL"
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_wizard_send_sii__with_errors_number
 msgid "With Errors Number"
-msgstr ""
+msgstr "Con Errores Número"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__res_company__send_mode__delayed
@@ -1169,7 +1171,7 @@ msgstr "Con retardo"
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.account_journal_dashboard_kanban_view
 msgid "With error in SII"
-msgstr ""
+msgstr "Con error en SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_account_invoice_sii_filter
