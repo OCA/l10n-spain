@@ -7,20 +7,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2025-07-16 18:22+0200\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@tecnativa.com>\n"
+"PO-Revision-Date: 2026-04-13 17:16+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model,name:l10n_es_vat_prorate.model_account_update_vat_prorate
 msgid "Account Update Vat Prorate"
-msgstr ""
+msgstr "Actualizar prorrata de IVA en cuenta"
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,help:l10n_es_vat_prorate.field_account_tax__prorate_account_ids
@@ -30,7 +30,7 @@ msgstr "Cuentas para aplicar el recálculo"
 #. module: l10n_es_vat_prorate
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_prorate.account_update_vat_prorate_form_view
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model,name:l10n_es_vat_prorate.model_res_company
@@ -97,6 +97,9 @@ msgid ""
 "invoice lines will be prorated by default. On the other hand, all the "
 "invoice lines will be not prorated by default."
 msgstr ""
+"Si la prorrata especial de IVA está habilitada, este valor indica si todas "
+"las líneas de factura serán prorrateadas por defecto. En caso contrario, "
+"ninguna línea de factura será prorrateada por defecto."
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,help:l10n_es_vat_prorate.field_res_company_vat_prorate__type
@@ -106,6 +109,9 @@ msgid ""
 "the special prorate is enabled, you will be able to select which invoice "
 "lines will be prorated."
 msgstr ""
+"Si la prorrata general está habilitada, todas las líneas de factura serán "
+"prorrateadas. Si la prorrata especial está habilitada, podrá seleccionar qué "
+"líneas de factura serán prorrateadas."
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,help:l10n_es_vat_prorate.field_account_tax__company_with_vat_prorate
@@ -148,7 +154,7 @@ msgstr "Última Actualización el"
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate_wizard__origin_vat_prorate_id
 msgid "Origin Vat Prorate"
-msgstr ""
+msgstr "Prorrata de IVA de origen"
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_bank_statement_line__prorate_id
@@ -164,12 +170,12 @@ msgstr "Cuenta prorrateada"
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move_line__prorate_line_ids
 msgid "Prorate Line"
-msgstr ""
+msgstr "Linea Prorata"
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model,name:l10n_es_vat_prorate.model_res_company_vat_prorate_wizard
 msgid "Res Company Vat Prorate Wizard"
-msgstr ""
+msgstr "Asistente de prorrata de IVA de empresa"
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields.selection,name:l10n_es_vat_prorate.selection__res_company_vat_prorate__type__special
@@ -192,7 +198,7 @@ msgstr "Impuesto"
 #. odoo-python
 #: code:addons/l10n_es_vat_prorate/models/res_company.py:0
 msgid "The chart of accounts must be from Spain"
-msgstr ""
+msgstr "El plan contable debe ser de España"
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,help:l10n_es_vat_prorate.field_account_move_line__vat_prorate
@@ -208,13 +214,13 @@ msgstr "Tipo"
 #. module: l10n_es_vat_prorate
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_prorate.account_update_vat_prorate_form_view
 msgid "Update"
-msgstr ""
+msgstr "Actualización"
 
 #. module: l10n_es_vat_prorate
 #: model:ir.actions.act_window,name:l10n_es_vat_prorate.account_update_vat_prorate_act_window
 #: model:ir.ui.menu,name:l10n_es_vat_prorate.account_update_vat_prorate_menu
 msgid "Update VAT prorate"
-msgstr ""
+msgstr "Actualizar Prorata IVA"
 
 #. module: l10n_es_vat_prorate
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_prorate.res_company_form_view
@@ -230,7 +236,7 @@ msgstr "Tabla de prorrateo del IVA"
 #: model:ir.model.constraint,message:l10n_es_vat_prorate.constraint_res_company_vat_prorate_vat_prorate_percent_amount
 #: model:ir.model.constraint,message:l10n_es_vat_prorate.constraint_res_company_vat_prorate_wizard_vat_prorate_percent_amount
 msgid "VAT prorate must be between 0.01 and 99.9!"
-msgstr ""
+msgstr "¡La prorrata de IVA debe estar entre 0,01 y 99,9!"
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_update_vat_prorate__vat_prorate_ids
@@ -257,12 +263,12 @@ msgstr "Con prorrata de IVA"
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move_line__with_vat_prorate
 msgid "With Vat Prorate"
-msgstr ""
+msgstr "Con Prorrata de IVA"
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate_wizard__wizard_id
 msgid "Wizard"
-msgstr ""
+msgstr "Asistente"
 
 #. module: l10n_es_vat_prorate
 #. odoo-python
