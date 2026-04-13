@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import base64
 
-from odoo import _, fields, models
+from odoo import fields, models
 from odoo.tools import float_compare
 
 from .dhl_parcel_request import (
@@ -69,7 +69,7 @@ class DeliveryCarrier(models.Model):
 
     def _prepare_dhl_parcel_address_info(self, partner):
         phone = partner.phone and partner.phone.replace(" ", "") or ""
-        mobile = partner.mobile and partner.mobile.replace(" ", "") or ""
+
         address = partner.street or ""
         if partner.street2:
             address += " " + partner.street2
@@ -91,7 +91,7 @@ class DeliveryCarrier(models.Model):
             "City": partner.city or "",
             "PostalCode": partner.zip or "",
             "Country": partner.country_id.code or "",
-            "Phone": phone or mobile,
+            "Phone": phone,
             "Email": partner.email or "",
         }
 
@@ -182,15 +182,14 @@ class DeliveryCarrier(models.Model):
                 continue
             vals["tracking_number"] = response.get("Tracking", "")
             # We post an extra message in the chatter with the rest of the response
-            body = _(
+            body = self.env._(
                 "DHL Parcel Shipping extra info:\n"
-                "Origin: %(origin)s, Customer: %(customer)s, AWB: %(awb)s, LP: %(lp)s"
-            ) % {
-                "origin": response.get("Origin", "N/A"),
-                "customer": response.get("Customer", "N/A"),
-                "awb": response.get("AWB", "N/A"),
-                "lp": response.get("LP", "N/A"),
-            }
+                "Origin: %(origin)s, Customer: %(customer)s, AWB: %(awb)s, LP: %(lp)s",
+                origin=response.get("Origin", "N/A"),
+                customer=response.get("Customer", "N/A"),
+                awb=response.get("AWB", "N/A"),
+                lp=response.get("LP", "N/A"),
+            )
             attachment = []
             if response.get("Label"):
                 label_format = picking.carrier_id.dhl_parcel_label_format.lower()
@@ -243,15 +242,18 @@ class DeliveryCarrier(models.Model):
         for picking in pickings.filtered("carrier_tracking_ref"):
             response = dhl_parcel_request.cancel_shipment(picking.carrier_tracking_ref)
             if not response.status_code == 200:
-                msg = _(
-                    "DHL Parcel Cancellation failed with reason: %s"
-                ) % response.get("Message", "Connection Error")
+                msg = self.env._(
+                    "DHL Parcel Cancellation failed with reason: %(reason)s",
+                    reason=response.get("Message", "Connection Error"),
+                )
                 picking.message_post(body=msg)
                 continue
             picking.carrier_tracking_ref = False
             picking.message_post(
-                body=_("DHL Parcel Expedition with reference %s cancelled")
-                % picking.carrier_tracking_ref
+                body=self.env._(
+                    "DHL Parcel Expedition with reference %(reference)s cancelled",
+                    reference=picking.carrier_tracking_ref,
+                )
             )
 
     def dhl_parcel_get_label(self, carrier_tracking_ref):
@@ -293,12 +295,12 @@ class DeliveryCarrier(models.Model):
         return {
             "success": True,
             "price": self.product_id.lst_price,
-            "error_message": _(
+            "error_message": self.env._(
                 """DHL Parcel API doesn't provide methods to compute delivery rates, so
                 you should rely on another price method instead or override this
                 one in your custom code."""
             ),
-            "warning_message": _(
+            "warning_message": self.env._(
                 """DHL Parcel API doesn't provide methods to compute delivery rates, so
                 you should rely on another price method instead or override this
                 one in your custom code."""
@@ -313,7 +315,7 @@ class DeliveryCarrier(models.Model):
         )
         view_id = self.env.ref("delivery_dhl_parcel.delivery_endday_wizard_form").id
         return {
-            "name": _("DHL Parcel End Day"),
+            "name": self.env._("DHL Parcel End Day"),
             "type": "ir.actions.act_window",
             "view_mode": "form",
             "res_model": "dhl.parcel.endday.wizard",

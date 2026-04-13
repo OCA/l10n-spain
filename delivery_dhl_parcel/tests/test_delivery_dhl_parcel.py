@@ -4,8 +4,9 @@ import time
 from unittest import mock
 from unittest.mock import MagicMock, Mock
 
-from odoo.tests import Form, common
+from odoo.tests import Form
 
+from odoo.addons.base.tests.common import BaseCommon
 from odoo.addons.delivery_dhl_parcel.models.dhl_parcel_request import DhlParcelRequest
 
 request_model = (
@@ -15,7 +16,7 @@ request_model = (
 # There is also no public test user so we mock all API requests
 
 
-class TestDeliveryDhlParcel(common.SingleTransactionCase):
+class TestDeliveryDhlParcel(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -258,6 +259,7 @@ class TestDeliveryDhlParcel(common.SingleTransactionCase):
         ],
     )
     def test_02_dhl_parcel_picking_update(self, redirect_mock, *args):
+        self.picking.carrier_tracking_ref = "0870002260"
         self.picking.tracking_state_update()
         self.assertEqual(
             self.picking.tracking_state_history,
@@ -285,6 +287,7 @@ class TestDeliveryDhlParcel(common.SingleTransactionCase):
     @mock.patch(f"{request_model}.hold_shipment", return_value=True)
     @mock.patch(f"{request_model}.release_shipment", return_value=True)
     def test_03_dhl_parcel_picking_toggle_hold(self, redirect_mock, *args):
+        self.picking.carrier_tracking_ref = "0870002260"
         self.assertFalse(self.picking.dhl_parcel_shipment_held)
         self.picking.dhl_parcel_toggle_hold_shipment()  # hold
         self.assertTrue(self.picking.dhl_parcel_shipment_held)
@@ -322,6 +325,7 @@ class TestDeliveryDhlParcel(common.SingleTransactionCase):
         f"{request_model}.print_shipment", return_value="JVBERiasdasdsdcfnsdhfbasdf=="
     )
     def test_06_dhl_parcel_get_label(self, redirect_mock, *args):
+        self.picking.carrier_tracking_ref = "0870002260"
         label = self.picking.dhl_parcel_get_label()
         self.assertTrue(label)
 
