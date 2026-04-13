@@ -7,34 +7,35 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-25 07:45+0000\n"
-"PO-Revision-Date: 2023-08-25 07:45+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2026-04-13 17:16+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_pos_sii
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__aeat_send_error
 msgid "AEAT Send Error"
-msgstr ""
+msgstr "Error de envío AEAT"
 
 #. module: l10n_es_pos_sii
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__aeat_content_sent
 msgid "AEAT last content sent"
-msgstr ""
+msgstr "Último contenido enviado a AEAT"
 
 #. module: l10n_es_pos_sii
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__aeat_header_sent
 msgid "AEAT last header sent"
-msgstr ""
+msgstr "Última cabecera enviada a AEAT"
 
 #. module: l10n_es_pos_sii
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__aeat_state
 msgid "AEAT send state"
-msgstr ""
+msgstr "Estado de envío AEAT"
 
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_order_filter
@@ -49,7 +50,7 @@ msgstr "Ya enviadas al SII. Incluye facturas canceladas"
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_order_filter
@@ -78,7 +79,7 @@ msgstr "Compañía"
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
 msgid "Description"
-msgstr ""
+msgstr "Descripción"
 
 #. module: l10n_es_pos_sii
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_enabled
@@ -87,8 +88,9 @@ msgstr "Activar SII"
 
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
+#, fuzzy
 msgid "Failed"
-msgstr ""
+msgstr "Falló"
 
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
@@ -117,20 +119,22 @@ msgstr ""
 
 #. module: l10n_es_pos_sii
 #: model:ir.model.fields,help:l10n_es_pos_sii.field_pos_order__aeat_state
+#, fuzzy
 msgid ""
 "Indicates the state of this document in relation with the presentation at "
 "the AEAT"
 msgstr ""
+"Indica el estado de este documento en relación con la presentación a la AEAT"
 
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
 msgid "Last content sent"
-msgstr ""
+msgstr "Último contenido enviado"
 
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
 msgid "Last header sent"
-msgstr ""
+msgstr "Última cabecera enviada"
 
 #. module: l10n_es_pos_sii
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_macrodata
@@ -155,17 +159,17 @@ msgstr "Sesión TPV"
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
 msgid "Refund type"
-msgstr ""
+msgstr "Tipo de rectificación"
 
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
 msgid "Registration key"
-msgstr ""
+msgstr "Clave de registro"
 
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
 msgid "Response"
-msgstr ""
+msgstr "Respuesta"
 
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
@@ -210,7 +214,7 @@ msgstr "Retorno SII"
 #. module: l10n_es_pos_sii
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_send_date
 msgid "SII Send Date"
-msgstr ""
+msgstr "Fecha Envío SIII"
 
 #. module: l10n_es_pos_sii
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_account_registration_date
@@ -270,22 +274,22 @@ msgstr "Enviadas SII"
 #. module: l10n_es_pos_sii
 #: model:ir.actions.server,name:l10n_es_pos_sii.pos_order_send_to_sii_ir_actions_server
 msgid "Send Invoices to SII (POS)"
-msgstr ""
+msgstr "Enviar facturas a SII (POS- TPV)"
 
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
 msgid "Send date"
-msgstr ""
+msgstr "Fecha de envío"
 
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
 msgid "Send error"
-msgstr ""
+msgstr "Error de envío"
 
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
 msgid "Send now to SII"
-msgstr ""
+msgstr "Enviar ahora al SII"
 
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
@@ -295,7 +299,7 @@ msgstr "Enviar al SII"
 #. module: l10n_es_pos_sii
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_needs_cancel
 msgid "Sii Needs Cancel"
-msgstr ""
+msgstr "SII Necesita Cancelar"
 
 #. module: l10n_es_pos_sii
 #. odoo-python
@@ -305,8 +309,9 @@ msgstr ""
 
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
+#, fuzzy
 msgid "State"
-msgstr ""
+msgstr "Provincia"
 
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
