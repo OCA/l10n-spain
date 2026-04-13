@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2025-06-28 13:19+0200\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@tecnativa.com>\n"
+"PO-Revision-Date: 2026-04-13 17:16+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_account_statement_import_n43
 #: model_terms:ir.ui.view,arch_db:l10n_es_account_statement_import_n43.account_statement_import_form
@@ -60,7 +60,7 @@ msgstr ""
 #. module: l10n_es_account_statement_import_n43
 #: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_journal__n43_exclude_pattern
 msgid "Exclude pattern for N43 import"
-msgstr ""
+msgstr "Patrón de exclusión para importación N43"
 
 #. module: l10n_es_account_statement_import_n43
 #: model:ir.model.fields,help:l10n_es_account_statement_import_n43.field_account_journal__n43_exclude_pattern
@@ -68,6 +68,8 @@ msgid ""
 "Fill this field if you want to exclude some lines of the N43 according this "
 "regexp pattern."
 msgstr ""
+"Rellene este campo si desea excluir algunas líneas del N43 según este patrón "
+"de expresión regular."
 
 #. module: l10n_es_account_statement_import_n43
 #. odoo-python
