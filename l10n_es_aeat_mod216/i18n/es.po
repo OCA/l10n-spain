@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2025-08-07 12:25+0000\n"
-"Last-Translator: Miquel Romera <mromera@pmsastro.es>\n"
+"PO-Revision-Date: 2026-04-13 17:16+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.ui.menu,name:l10n_es_aeat_mod216.menu_aeat_mod216_report
@@ -131,31 +131,43 @@ msgstr "Moneda"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_07
+#, fuzzy
 msgid ""
 "Deberá consignarse el número total de rentas sobre las que el declarante "
 "haya venido obligado a retener o a efectuar ingreso a cuenta declaradas en "
 "las casillas 05 y 06."
 msgstr ""
+"Deberá consignarse el número total de rentas sobre las que el declarante "
+"haya venido obligado a retener o a efectuar ingreso a cuenta declaradas en "
+"las casillas 05 y 06."
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_05
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_06
+#, fuzzy
 msgid ""
 "Deberá consignarse el número total de rentas sobre las que el declarante "
 "haya venido obligado a retener o a efectuar ingreso a cuenta en el mes o "
 "trimestre objeto de declaración."
 msgstr ""
+"Deberá consignarse el número total de rentas sobre las que el declarante "
+"haya venido obligado a retener o a efectuar ingreso a cuenta en el mes o "
+"trimestre objeto de declaración."
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_16
+#, fuzzy
 msgid ""
 "Deberá consignarse el número total de rentas sujetas al impuesto exceptuadas "
 "de retención o de ingreso a cuenta declaradas en las casillas 14 y 15."
 msgstr ""
+"Deberá consignarse el número total de rentas sujetas al impuesto exceptuadas "
+"de retención o de ingreso a cuenta declaradas en las casillas 14 y 15."
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_14
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_15
+#, fuzzy
 msgid ""
 "Deberá consignarse el número total de rentas sujetas al impuesto exceptuadas "
 "de retención o de ingreso a cuenta, conforme a lo previsto en los puntos 2 y "
@@ -163,21 +175,33 @@ msgid ""
 "recogen en el apartado 'Obligados' de estas instrucciones como apartados Dos "
 "y Tres)."
 msgstr ""
+"Deberá consignarse el número total de rentas sujetas al impuesto exceptuadas "
+"de retención o de ingreso a cuenta, conforme a lo previsto en los puntos 2 y "
+"3 del artículo 2 de la Orden que aprueba este modelo (estos puntos se "
+"recogen en el apartado 'Obligados' de estas instrucciones como apartados Dos "
+"y Tres)."
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_20
+#, fuzzy
 msgid ""
 "Deberá consignarse en esta casilla el importe correspondiente a "
 "declaraciones anteriores, por el mismo concepto, ejercicio y período, "
 "exclusivamente en caso de declaración complementaria."
 msgstr ""
+"Deberá consignarse en esta casilla el importe correspondiente a "
+"declaraciones anteriores, por el mismo concepto, ejercicio y período, "
+"exclusivamente en caso de declaración complementaria."
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_21
+#, fuzzy
 msgid ""
 "Deberá consignarse en esta casilla el importe correspondiente a la resta de "
 "las casillas 13 y 20"
 msgstr ""
+"Deberá consignarse en esta casilla el importe correspondiente a la resta de "
+"las casillas 13 y 20"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod216.selection__l10n_es_aeat_mod216_report__tipo_declaracion__u
@@ -191,9 +215,11 @@ msgstr "Nombre mostrado"
 
 #. module: l10n_es_aeat_mod216
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
+#, fuzzy
 msgid ""
 "Dividendos y otras rentas de participación en fondos propios de entidades"
 msgstr ""
+"Dividendos y otras rentas de participación en fondos propios de entidades"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__date_end
@@ -248,8 +274,9 @@ msgstr "Tiene mensaje"
 
 #. module: l10n_es_aeat_mod216
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
+#, fuzzy
 msgid "I. Rentas sometidas a retención/ingreso a cuenta"
-msgstr ""
+msgstr "I. Rentas sometidas a retención/ingreso a cuenta"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__id
@@ -258,8 +285,9 @@ msgstr "ID"
 
 #. module: l10n_es_aeat_mod216
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
+#, fuzzy
 msgid "II. Rentas no sometidas a retención/ingreso a cuenta"
-msgstr ""
+msgstr "II. Rentas no sometidas a retención/ingreso a cuenta"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__activity_exception_icon
@@ -438,8 +466,9 @@ msgstr "Usuario Responsable"
 
 #. module: l10n_es_aeat_mod216
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
+#, fuzzy
 msgid "Resto de rentas"
-msgstr ""
+msgstr "Resto de rentas"
 
 #. module: l10n_es_aeat_mod216
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
@@ -463,66 +492,93 @@ msgstr "Resultado"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_13
+#, fuzzy
 msgid ""
 "Se consignará el importe total de las retenciones e ingresos a cuenta "
 "declaradas en las casillas 11 y 12."
 msgstr ""
+"Se consignará el importe total de las retenciones e ingresos a cuenta "
+"declaradas en las casillas 11 y 12."
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_11
+#, fuzzy
 msgid ""
 "Se consignará el importe total de las retenciones e ingresos a cuenta que "
 "correspondan a las rentas declaradas en la casilla 05."
 msgstr ""
+"Se consignará el importe total de las retenciones e ingresos a cuenta que "
+"correspondan a las rentas declaradas en la casilla 05."
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_12
+#, fuzzy
 msgid ""
 "Se consignará el importe total de las retenciones e ingresos a cuenta que "
 "correspondan a las rentas declaradas en la casilla 06."
 msgstr ""
+"Se consignará el importe total de las retenciones e ingresos a cuenta que "
+"correspondan a las rentas declaradas en la casilla 06."
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_08
+#, fuzzy
 msgid ""
 "Se consignará la suma total de las bases de retención o de ingreso a cuenta "
 "correspondientes a las rentas declaradas en la casilla 05."
 msgstr ""
+"Se consignará la suma total de las bases de retención o de ingreso a cuenta "
+"correspondientes a las rentas declaradas en la casilla 05."
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_09
+#, fuzzy
 msgid ""
 "Se consignará la suma total de las bases de retención o de ingreso a cuenta "
 "correspondientes a las rentas declaradas en la casilla 06."
 msgstr ""
+"Se consignará la suma total de las bases de retención o de ingreso a cuenta "
+"correspondientes a las rentas declaradas en la casilla 06."
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_17
+#, fuzzy
 msgid ""
 "Se consignará la suma total de las bases de retención o de ingreso a cuenta "
 "correspondientes a las rentas declaradas en la casilla 14."
 msgstr ""
+"Se consignará la suma total de las bases de retención o de ingreso a cuenta "
+"correspondientes a las rentas declaradas en la casilla 14."
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_18
+#, fuzzy
 msgid ""
 "Se consignará la suma total de las bases de retención o de ingreso a cuenta "
 "correspondientes a las rentas declaradas en la casilla 15."
 msgstr ""
+"Se consignará la suma total de las bases de retención o de ingreso a cuenta "
+"correspondientes a las rentas declaradas en la casilla 15."
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_19
+#, fuzzy
 msgid ""
 "Se consignará la suma total de las bases de retención o de ingreso a cuenta "
 "correspondientes a las rentas declaradas en las casillas 17 y 18."
 msgstr ""
+"Se consignará la suma total de las bases de retención o de ingreso a cuenta "
+"correspondientes a las rentas declaradas en las casillas 17 y 18."
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_10
+#, fuzzy
 msgid ""
 "Se consignará la suma total de las bases de retención o de ingreso a cuenta "
 "declaradas en las casillas 08 y 09."
 msgstr ""
+"Se consignará la suma total de las bases de retención o de ingreso a cuenta "
+"declaradas en las casillas 08 y 09."
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__date_start
@@ -615,7 +671,7 @@ msgstr "NIF"
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__valued_tax_line_ids
 msgid "Valued tax lines"
-msgstr ""
+msgstr "Líneas de impuestos con valores"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__website_message_ids
@@ -654,8 +710,9 @@ msgstr "[05] Base imponible"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_05
+#, fuzzy
 msgid "[05] Número de rentas"
-msgstr ""
+msgstr "[05] Número de rentas"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_06_pre_2024
@@ -664,13 +721,15 @@ msgstr "[06] Resultados anteriores a compensar"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_06
+#, fuzzy
 msgid "[06] Número de rentas"
-msgstr ""
+msgstr "[06] Número de rentas"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_07
+#, fuzzy
 msgid "[07] Número de rentas"
-msgstr ""
+msgstr "[07] Número de rentas"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_07_pre_2024
@@ -679,75 +738,91 @@ msgstr "[07] Resultado a ingresar"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_08
+#, fuzzy
 msgid "[08] Base de retenciones e ingresos a cuenta"
-msgstr ""
+msgstr "[08] Base de retenciones e ingresos a cuenta"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_09
+#, fuzzy
 msgid "[09] Base de retenciones e ingresos a cuenta"
-msgstr ""
+msgstr "[09] Base de retenciones e ingresos a cuenta"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_10
+#, fuzzy
 msgid "[10] Base de retenciones e ingresos a cuenta"
-msgstr ""
+msgstr "[10] Base de retenciones e ingresos a cuenta"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_11
+#, fuzzy
 msgid "[11] Retenciones e ingresos a cuenta"
-msgstr ""
+msgstr "[11] Retenciones e ingresos a cuenta"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_12
+#, fuzzy
 msgid "[12] Retenciones e ingresos a cuenta"
-msgstr ""
+msgstr "[12] Retenciones e ingresos a cuenta"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_13
+#, fuzzy
 msgid "[13] Retenciones e ingresos a cuenta"
-msgstr ""
+msgstr "[13] Retenciones e ingresos a cuenta"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_14
+#, fuzzy
 msgid "[14] Número de rentas"
-msgstr ""
+msgstr "[14] Número de rentas"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_15
+#, fuzzy
 msgid "[15] Número de rentas"
-msgstr ""
+msgstr "[15] Número de rentas"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_16
+#, fuzzy
 msgid "[16] Número de rentas"
-msgstr ""
+msgstr "[16] Número de rentas"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_17
+#, fuzzy
 msgid "[17] Base de retenciones e ingresos a cuenta"
-msgstr ""
+msgstr "[17] Base de retenciones e ingresos a cuenta"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_18
+#, fuzzy
 msgid "[18] Base de retenciones e ingresos a cuenta"
-msgstr ""
+msgstr "[18] Base de retenciones e ingresos a cuenta"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_19
+#, fuzzy
 msgid "[19] Base de retenciones e ingresos a cuenta"
-msgstr ""
+msgstr "[19] Base de retenciones e ingresos a cuenta"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_20
+#, fuzzy
 msgid ""
 "[20] Resultados a ingresar de anteriores declaraciones por el mismo "
 "concepto, ejercicio y período"
 msgstr ""
+"[20] Resultados a ingresar de anteriores declaraciones por el mismo "
+"concepto, ejercicio y período"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_21
+#, fuzzy
 msgid "[21] Resultado a ingresar"
-msgstr ""
+msgstr "[21] Resultado a ingresar"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Ultima modificación"
