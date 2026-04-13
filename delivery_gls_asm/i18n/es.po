@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-20 12:24+0000\n"
-"PO-Revision-Date: 2026-01-05 09:38+0000\n"
-"Last-Translator: Ricard <ricard.calvo@forgeflow.com>\n"
+"PO-Revision-Date: 2026-04-13 17:16+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__27
@@ -147,8 +147,9 @@ msgstr "BICI"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__96
+#, fuzzy
 msgid "BUSINESS PARCEL"
-msgstr ""
+msgstr "BUSINESS PARCEL"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__31
@@ -344,8 +345,9 @@ msgstr "EUROBUSINESS SMALL PARCEL"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__16
+#, fuzzy
 msgid "Economy"
-msgstr ""
+msgstr "Economy"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__agency_transit
@@ -384,8 +386,9 @@ msgstr "Ent. Pto. ASM"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__18
+#, fuzzy
 msgid "Entrega 24-48h (serv. 96) o 48h (serv. 37)"
-msgstr ""
+msgstr "Entrega 24-48h (serv. 96) o 48h (serv. 37)"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__cancel_returned
@@ -419,23 +422,27 @@ msgstr "Estado recogida GLS"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__17
+#, fuzzy
 msgid "Express"
-msgstr ""
+msgstr "Express"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__0
+#, fuzzy
 msgid "Express 10:00"
-msgstr ""
+msgstr "Express 10:00"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__2
+#, fuzzy
 msgid "Express 14:00"
-msgstr ""
+msgstr "Express 14:00"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__3
+#, fuzzy
 msgid "Express 19:00"
-msgstr ""
+msgstr "Express 19:00"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__9
@@ -935,7 +942,7 @@ msgstr "Realizada con éxito"
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__11
 msgid "Rec. en agencia"
-msgstr ""
+msgstr "Recoger en Agencia"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__extinguished
