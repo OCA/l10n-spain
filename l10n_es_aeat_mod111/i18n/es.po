@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-29 22:48+0000\n"
-"PO-Revision-Date: 2025-08-07 12:25+0000\n"
-"Last-Translator: Miquel Romera <mromera@pmsastro.es>\n"
+"PO-Revision-Date: 2026-04-13 17:16+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.ui.menu,name:l10n_es_aeat_mod111.menu_aeat_mod111_report
@@ -493,7 +493,7 @@ msgstr "Fecha límite de mi actividad"
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod111.selection__l10n_es_aeat_mod111_report__tipo_declaracion__n
 msgid "Negative"
-msgstr ""
+msgstr "Negativo"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__activity_date_deadline
@@ -577,10 +577,13 @@ msgstr "Resultado a ingresar: ([28] - [29])"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__use_aeat_account
+#, fuzzy
 msgid ""
 "Si está suscrito a la cuenta corriente en materia tributaria, active esta "
 "opción para usarla en el ingreso o devolución."
 msgstr ""
+"Si está suscrito a la cuenta corriente en materia tributaria, active esta "
+"opción para usarla en el ingreso o devolución."
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__date_start
@@ -663,8 +666,9 @@ msgstr "Tipo de la actividad de excepción registrada."
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__use_aeat_account
+#, fuzzy
 msgid "Usar cuenta corriente tributaria"
-msgstr ""
+msgstr "Usar cuenta corriente tributaria"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__company_vat
@@ -674,7 +678,7 @@ msgstr "NIF"
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__valued_tax_line_ids
 msgid "Valued tax lines"
-msgstr ""
+msgstr "Líneas de impuestos con valores"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__website_message_ids
