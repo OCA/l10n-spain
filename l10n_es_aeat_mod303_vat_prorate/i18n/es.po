@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-12 11:25+0000\n"
-"PO-Revision-Date: 2026-01-12 13:16+0100\n"
-"Last-Translator: Andrii Kompaniiets <andrii@moduon.team>\n"
+"PO-Revision-Date: 2026-04-13 17:16+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model,name:l10n_es_aeat_mod303_vat_prorate.model_l10n_es_aeat_mod303_report
@@ -25,7 +25,7 @@ msgstr "Modelo AEAT 303"
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod303_vat_prorate.l10n_es_aeat_mod303_prorrata_form
 msgid "Calcular prorrata definitiva"
-msgstr ""
+msgstr "Calcular prorrata definitiva"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__vat_prorate_percent
@@ -34,7 +34,6 @@ msgstr "Porcentaje definitivo de prorrata"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,help:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__with_vat_prorate
-#, fuzzy
 msgid "If this option is enabled, all invoice lines with VAT will be prorated"
 msgstr ""
 "Si esta opción está establecida, todas las líneas de facturas con IVA serán "
