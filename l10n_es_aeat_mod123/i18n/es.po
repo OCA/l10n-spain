@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-04-16 10:40+0000\n"
-"PO-Revision-Date: 2025-08-07 12:25+0000\n"
-"Last-Translator: Miquel Romera <mromera@pmsastro.es>\n"
+"PO-Revision-Date: 2026-04-13 17:16+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.ui.menu,name:l10n_es_aeat_mod123.menu_aeat_mod123_report
@@ -86,120 +86,157 @@ msgstr "Fecha de cálculo"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_01_2024
+#, fuzzy
 msgid ""
 "Casilla [01] Número de Rentas. Dividendos y otras rentas de participación en "
 "fondos propios de entidades. Totales de número de perceptores (se contará "
 "por números de NIF)."
 msgstr ""
+"Casilla [01] Número de Rentas. Dividendos y otras rentas de participación en "
+"fondos propios de entidades. Totales de número de perceptores (se contará "
+"por números de NIF)."
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_01
+#, fuzzy
 msgid "Casilla [01] Número de perceptores"
-msgstr ""
+msgstr "Casilla [01] Número de perceptores"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_02
+#, fuzzy
 msgid "Casilla [02] Base de la retención y/o del ingreso a cuenta"
-msgstr ""
+msgstr "Casilla [02] Base de la retención y/o del ingreso a cuenta"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_03_2024
+#, fuzzy
 msgid "Casilla [03] ([01] + [02]). Número de Rentas. Totales."
-msgstr ""
+msgstr "Casilla [03] ([01] + [02]). Número de Rentas. Totales."
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_03
+#, fuzzy
 msgid "Casilla [03] Retenciones e ingresos a cuenta"
-msgstr ""
+msgstr "Casilla [03] Retenciones e ingresos a cuenta"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_04_2024
+#, fuzzy
 msgid ""
 "Casilla [04] Base de retenciones e ingresos a cuenta. Dividendos y otras "
 "rentas de participación en fondos propios de entidades."
 msgstr ""
+"Casilla [04] Base de retenciones e ingresos a cuenta. Dividendos y otras "
+"rentas de participación en fondos propios de entidades."
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_04
+#, fuzzy
 msgid "Casilla [04] Periodificación - Ingresos ejercicios anteriores"
-msgstr ""
+msgstr "Casilla [04] Periodificación - Ingresos ejercicios anteriores"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_05_2024
+#, fuzzy
 msgid "Casilla [05] Base de retenciones e ingresos a cuenta. Resto de rentas."
-msgstr ""
+msgstr "Casilla [05] Base de retenciones e ingresos a cuenta. Resto de rentas."
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_05
+#, fuzzy
 msgid "Casilla [05] Periodificación - Regularización"
-msgstr ""
+msgstr "Casilla [05] Periodificación - Regularización"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_06_2024
+#, fuzzy
 msgid "Casilla [06] ([05] + [06]). Base de retenciones e ingresos a cuenta."
-msgstr ""
+msgstr "Casilla [06] ([05] + [06]). Base de retenciones e ingresos a cuenta."
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_06
+#, fuzzy
 msgid ""
 "Casilla [06] Suma de retenciones e ingresos a cuenta y regularización, en su "
 "caso ([3] + [5])"
 msgstr ""
+"Casilla [06] Suma de retenciones e ingresos a cuenta y regularización, en su "
+"caso ([3] + [5])"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_07
+#, fuzzy
 msgid ""
 "Casilla [07] A deducir (exclusivamente en caso de declaración "
 "complementaria) Resultados a ingresar de anteriores declaraciones por el "
 "mismo concepto, ejercicio y período"
 msgstr ""
+"Casilla [07] A deducir (exclusivamente en caso de declaración "
+"complementaria) Resultados a ingresar de anteriores declaraciones por el "
+"mismo concepto, ejercicio y período"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_07_2024
+#, fuzzy
 msgid ""
 "Casilla [07] Retenciones e ingresos a cuenta. Dividendos y otras rentas de "
 "participación en fondos propios de entidades"
 msgstr ""
+"Casilla [07] Retenciones e ingresos a cuenta. Dividendos y otras rentas de "
+"participación en fondos propios de entidades"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_08_2024
+#, fuzzy
 msgid "Casilla [08] Retenciones e ingresos a cuenta. Resto de rentas."
-msgstr ""
+msgstr "Casilla [08] Retenciones e ingresos a cuenta. Resto de rentas."
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_09_2024
+#, fuzzy
 msgid "Casilla [09]([07] + [08]). Retenciones e ingresos a cuenta."
-msgstr ""
+msgstr "Casilla [09]([07] + [08]). Retenciones e ingresos a cuenta."
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_10_2024
+#, fuzzy
 msgid "Casilla [10] Periodificación - Ingresos ejercicios anteriores"
-msgstr ""
+msgstr "Casilla [10] Periodificación - Ingresos ejercicios anteriores"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_11_2024
+#, fuzzy
 msgid "Casilla [11] Periodificación - Regularización"
-msgstr ""
+msgstr "Casilla [11] Periodificación - Regularización"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_12_2024
+#, fuzzy
 msgid ""
 "Casilla [12] Suma de retenciones e ingresos a cuenta y regularización, en su "
 "caso ([9] + [11])"
 msgstr ""
+"Casilla [12] Suma de retenciones e ingresos a cuenta y regularización, en su "
+"caso ([9] + [11])"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_13_2024
+#, fuzzy
 msgid ""
 "Casilla [13] A deducir (exclusivamente en caso de declaración "
 "complementaria) Resultados a ingresar de anteriores declaraciones por el "
 "mismo concepto, ejercicio y período"
 msgstr ""
+"Casilla [13] A deducir (exclusivamente en caso de declaración "
+"complementaria) Resultados a ingresar de anteriores declaraciones por el "
+"mismo concepto, ejercicio y período"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_14_2024
+#, fuzzy
 msgid "Casilla [14] Resultado a ingresar ([12] - [13])"
-msgstr ""
+msgstr "Casilla [14] Resultado a ingresar ([12] - [13])"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__company_id
@@ -442,15 +479,19 @@ msgstr "Nº de mensajes con error de entrega"
 
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+#, fuzzy
 msgid "Número de rentas"
-msgstr ""
+msgstr "Número de rentas"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_02_2024
+#, fuzzy
 msgid ""
 "Número de rentas. Resto de rentas. Totales de número de perceptores (se "
 "contará por números de NIF)."
 msgstr ""
+"Número de rentas. Resto de rentas. Totales de número de perceptores (se "
+"contará por números de NIF)."
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__partner_id
@@ -494,8 +535,9 @@ msgstr "Resultado"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__amount_result
+#, fuzzy
 msgid "Resultado a ingresar"
-msgstr ""
+msgstr "Resultado a ingresar"
 
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
@@ -562,13 +604,14 @@ msgstr "Resultado declaración"
 
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+#, fuzzy
 msgid "Total Liquidación"
-msgstr ""
+msgstr "Total Liquidación"
 
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
 msgid "Total liquidación"
-msgstr ""
+msgstr "Total liquidación"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_exception_decoration
@@ -583,7 +626,7 @@ msgstr "NIF"
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__valued_tax_line_ids
 msgid "Valued tax lines"
-msgstr ""
+msgstr "Líneas de impuestos con valores"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__website_message_ids
@@ -602,174 +645,216 @@ msgstr "Año"
 
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+#, fuzzy
 msgid ""
 "[01] Dividendos y otras rentas de participación en fondos propios de "
 "entidades"
 msgstr ""
+"[01] Dividendos y otras rentas de participación en fondos propios de "
+"entidades"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_01
+#, fuzzy
 msgid "[01] Número de perceptores"
-msgstr ""
+msgstr "[01] Número de perceptores"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_01_2024
+#, fuzzy
 msgid ""
 "[01] Número de rentas. Dividendos y otras rentas de participación en fondos "
 "propios de entidades"
 msgstr ""
+"[01] Número de rentas. Dividendos y otras rentas de participación en fondos "
+"propios de entidades"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_02
+#, fuzzy
 msgid "[02] Base retenciones"
-msgstr ""
+msgstr "[02] Base retenciones"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_02_2024
+#, fuzzy
 msgid "[02] Número de Rentas. Resto de rentas"
-msgstr ""
+msgstr "[02] Número de Rentas. Resto de rentas"
 
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+#, fuzzy
 msgid "[02] Resto de rentas"
-msgstr ""
+msgstr "[02] Resto de rentas"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_03_2024
+#, fuzzy
 msgid "[03] Número de Rentas. Totales"
-msgstr ""
+msgstr "[03] Número de Rentas. Totales"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_03
+#, fuzzy
 msgid "[03] Retenciones"
-msgstr ""
+msgstr "[03] Retenciones"
 
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+#, fuzzy
 msgid "[03] Totales"
-msgstr ""
+msgstr "[03] Totales"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_04_2024
+#, fuzzy
 msgid ""
 "[04] Base de retenciones e ingresos a cuenta. Dividendos y otras rentas."
 msgstr ""
+"[04] Base de retenciones e ingresos a cuenta. Dividendos y otras rentas."
 
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+#, fuzzy
 msgid ""
 "[04] Dividendos y otras rentas de participación en fondos propios de "
 "entidades"
 msgstr ""
+"[04] Dividendos y otras rentas de participación en fondos propios de "
+"entidades"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_04
+#, fuzzy
 msgid "[04] Ingresos ejercicios anteriores"
-msgstr ""
+msgstr "[04] Ingresos ejercicios anteriores"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_05_2024
+#, fuzzy
 msgid "[05] Base de retenciones e ingresos a cuenta. Resto de rentas"
-msgstr ""
+msgstr "[05] Base de retenciones e ingresos a cuenta. Resto de rentas"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_05
+#, fuzzy
 msgid "[05] Regularización"
-msgstr ""
+msgstr "[05] Regularización"
 
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+#, fuzzy
 msgid "[05] Resto de rentas"
-msgstr ""
+msgstr "[05] Resto de rentas"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_06_2024
+#, fuzzy
 msgid "[06] Base de Retenciones e ingresos a cuenta. Totales"
-msgstr ""
+msgstr "[06] Base de Retenciones e ingresos a cuenta. Totales"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_06
+#, fuzzy
 msgid "[06] Total retenciones"
-msgstr ""
+msgstr "[06] Total retenciones"
 
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+#, fuzzy
 msgid "[06] Totales"
-msgstr ""
+msgstr "[06] Totales"
 
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+#, fuzzy
 msgid ""
 "[07] Dividendos y otras rentas de participación en fondos propios de "
 "entidades"
 msgstr ""
+"[07] Dividendos y otras rentas de participación en fondos propios de "
+"entidades"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_07
+#, fuzzy
 msgid "[07] Ingresos ejercicios anteriores"
-msgstr ""
+msgstr "[07] Ingresos ejercicios anteriores"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_07_2024
+#, fuzzy
 msgid "[07] Retenciones e ingresos a cuenta. Dividendos y otras rentas."
-msgstr ""
+msgstr "[07] Retenciones e ingresos a cuenta. Dividendos y otras rentas."
 
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+#, fuzzy
 msgid "[08] Resto de rentas"
-msgstr ""
+msgstr "[08] Resto de rentas"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_08
+#, fuzzy
 msgid "[08] Resultado a ingresar"
-msgstr ""
+msgstr "[08] Resultado a ingresar"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_08_2024
+#, fuzzy
 msgid "[08] Retenciones e ingresos a cuenta. Resto de rentas"
-msgstr ""
+msgstr "[08] Retenciones e ingresos a cuenta. Resto de rentas"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_09_2024
+#, fuzzy
 msgid "[09] Retenciones e ingresos a cuenta. Totales"
-msgstr ""
+msgstr "[09] Retenciones e ingresos a cuenta. Totales"
 
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+#, fuzzy
 msgid "[09] Totales"
-msgstr ""
+msgstr "[09] Totales"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_10_2024
+#, fuzzy
 msgid "[10] Ingresos ejercicios anteriores"
-msgstr ""
+msgstr "[10] Ingresos ejercicios anteriores"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_11_2024
+#, fuzzy
 msgid "[11] Regularización"
-msgstr ""
+msgstr "[11] Regularización"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_12_2024
+#, fuzzy
 msgid "[12] Total retenciones"
-msgstr ""
+msgstr "[12] Total retenciones"
 
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+#, fuzzy
 msgid "[12] Total retenciones ([09] + [11])"
-msgstr ""
+msgstr "[12] Total retenciones ([09] + [11])"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_13_2024
+#, fuzzy
 msgid "[13] Ingresos ejercicios anteriores"
-msgstr ""
+msgstr "[13] Ingresos ejercicios anteriores"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_14_2024
+#, fuzzy
 msgid "[14] Resultado a ingresar"
-msgstr ""
+msgstr "[14] Resultado a ingresar"
 
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
+#, fuzzy
 msgid "[14] Resultado a ingresar ([12] - [13])"
-msgstr ""
+msgstr "[14] Resultado a ingresar ([12] - [13])"
