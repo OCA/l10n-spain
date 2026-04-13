@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-02 13:23+0000\n"
-"PO-Revision-Date: 2025-09-02 15:24+0200\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@tecnativa.com>\n"
+"PO-Revision-Date: 2026-04-13 17:16+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.7\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
@@ -118,8 +118,9 @@ msgstr "Estado de envío AEAT"
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model,name:l10n_es_verifactu_oca.model_account_chart_template
+#, fuzzy
 msgid "Account Chart Template"
-msgstr ""
+msgstr "Plantilla del plan contable"
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model,name:l10n_es_verifactu_oca.model_account_move_reversal
@@ -241,7 +242,7 @@ msgstr "Motivo de cancelación"
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_invoice_entry__send_state__cancel
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_invoice_entry_response_line__send_state__cancel
 msgid "Cancelled "
-msgstr ""
+msgstr "Anulada "
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__account_move__aeat_state__cancel
@@ -602,6 +603,8 @@ msgid ""
 "Identifier of the billing software (SIF). Must be exactly 2 alphanumeric "
 "characters (A,Z, 0,9)."
 msgstr ""
+"Identificador del software de facturación (SIF). Debe tener exactamente 2 "
+"caracteres alfanuméricos (A,Z, 0,9)."
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_chaining__message_needaction
@@ -634,6 +637,10 @@ msgid ""
 "sequence from the entry back to the last hashed entry. The hash can also be "
 "performed on demand by the Secure Entries wizard."
 msgstr ""
+"Si está marcado, cuando se publica un asiento, aplicamos retroactivamente el "
+"hash a todos los movimientos en la secuencia desde el asiento hasta el "
+"último asiento con hash. El hash también puede realizarse bajo demanda "
+"mediante el asistente de Asientos Seguros."
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__account_move__aeat_state__incorrect
@@ -1074,7 +1081,7 @@ msgstr "Envío SII fallido"
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_journal__restrict_mode_hash_table
 msgid "Secure Posted Entries with Hash"
-msgstr ""
+msgstr "Asegurar asientos publicados con hash"
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry__send_attempt
@@ -1162,7 +1169,7 @@ msgstr "Clave de impuesto"
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_map_line__tax_xmlid_ids
 msgid "Taxes templates"
-msgstr ""
+msgstr "Plantillas de impuestos"
 
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_form
@@ -1266,7 +1273,7 @@ msgstr "VERI*FACTU CSV"
 #. module: l10n_es_verifactu_oca
 #: model:ir.actions.act_window,name:l10n_es_verifactu_oca.verifactu_cancel_invoice_wizard_action
 msgid "VERI*FACTU Cancel Invoice"
-msgstr ""
+msgstr "VERI*FACTU Cancelar Factura"
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_qr
@@ -1320,14 +1327,14 @@ msgstr "VERI*FACTU WSDL"
 #. module: l10n_es_verifactu_oca
 #: model:ir.model,name:l10n_es_verifactu_oca.model_verifactu_cancel_invoice_wizard
 msgid "VERI*FACTU cancel invoice wizard"
-msgstr ""
+msgstr "Asistente Cancelar Factura VERI*FACTU"
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_cancel_reason
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_cancel_reason
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_cancel_reason
 msgid "VERI*FACTU cancel reason"
-msgstr ""
+msgstr "Razón Cancelación VERI*FACTU"
 
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_search
