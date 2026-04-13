@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-06 09:06+0000\n"
-"PO-Revision-Date: 2023-07-05 19:08+0000\n"
-"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"PO-Revision-Date: 2026-04-13 17:16+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__account_move__l10n_es_facturae_status__face-2400
@@ -25,7 +25,7 @@ msgstr "Aceptado"
 #. module: l10n_es_facturae_face
 #: model:ir.model,name:l10n_es_facturae_face.model_l10n_es_facturae_face_base_handler
 msgid "Base handler for FACe webservice"
-msgstr ""
+msgstr "Manejador base para el servicio web FACe"
 
 #. module: l10n_es_facturae_face
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae_face.edi_l10n_es_facturae_face_cancel_form_view
@@ -85,7 +85,7 @@ msgstr "La conexión con FACe devolvió error %(code)s-%(description)s"
 #. odoo-python
 #: code:addons/l10n_es_facturae_face/models/l10n_es_facturae_face_base_handler.py:0
 msgid "Connection with FACe returned error: %(error)s"
-msgstr ""
+msgstr "La conexión con FACe devolvió un error: %(error)es"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model,name:l10n_es_facturae_face.model_res_partner
@@ -190,17 +190,18 @@ msgstr "estado de la facturae"
 #. module: l10n_es_facturae_face
 #: model:ir.model,name:l10n_es_facturae_face.model_l10n_es_facturae_face_cancel_handler
 msgid "Handler to cancel an invoice via FACe webservice"
-msgstr ""
+msgstr "Manejador para cancelar una factura mediante el servicio web FACe"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model,name:l10n_es_facturae_face.model_l10n_es_facturae_face_output_handler
 msgid "Handler to generate and send an invoice via FACe webservice"
 msgstr ""
+"Manejador para generar y enviar una factura mediante el servicio web FACe"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model,name:l10n_es_facturae_face.model_l10n_es_facturae_face_update_handler
 msgid "Handler to update an invoice via FACe webservice"
-msgstr ""
+msgstr "Manejador para actualizar una factura mediante el servicio web FACe"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel__id
@@ -252,7 +253,7 @@ msgstr "Aceptar"
 #. odoo-python
 #: code:addons/l10n_es_facturae_face/models/account_move.py:0
 msgid "Oficina Contable not provided"
-msgstr ""
+msgstr "Oficina Contable no especificada"
 
 #. module: l10n_es_facturae_face
 #. odoo-python
@@ -298,7 +299,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_es_facturae_face/models/account_move.py:0
 msgid "Unidad Tramitadora not provided"
-msgstr ""
+msgstr "La Unidad Tramitadora es obligatoria"
 
 #. module: l10n_es_facturae_face
 #. odoo-python
