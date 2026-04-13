@@ -3,7 +3,7 @@
 
 import requests
 
-from odoo import _, fields
+from odoo import fields
 from odoo.exceptions import UserError
 
 DHL_PARCEL_DELIVERY_STATES_STATIC = {
@@ -27,6 +27,7 @@ class DhlParcelRequest:
 
     def __init__(self, carrier):
         self.carrier_id = carrier
+        self.env = carrier.env
         self.token = self._get_new_auth_token(
             username=carrier.dhl_parcel_uid or "",
             password=carrier.dhl_parcel_password or "",
@@ -47,7 +48,9 @@ class DhlParcelRequest:
                 res = requests.post(url=url, json=data, headers=auth, timeout=60)
             else:
                 raise UserError(
-                    _("Unsupported request type, please only use 'GET' or 'POST'")
+                    self.env._(
+                        "Unsupported request type, please only use 'GET' or 'POST'"
+                    )
                 )
             res.raise_for_status()
             dhl_parcel_last_request = (
@@ -56,14 +59,19 @@ class DhlParcelRequest:
             self.carrier_id.log_xml(dhl_parcel_last_request, "dhl_parcel_last_request")
             self.carrier_id.log_xml(res.text or "", "dhl_parcel_last_response")
         except requests.exceptions.Timeout:
-            raise UserError(_("Timeout: the server did not reply within 60s")) from None
+            raise UserError(
+                self.env._("Timeout: the server did not reply within 60s")
+            ) from None
         except (ValueError, requests.exceptions.ConnectionError):
-            raise UserError(_("Server not reachable, please try again later")) from None
+            raise UserError(
+                self.env._("Server not reachable, please try again later")
+            ) from None
         except requests.exceptions.HTTPError as e:
-            error_message = _("%(error)s\n%(message)s") % {
-                "error": str(e),
-                "message": res.json().get("Message", "") if res.text else "",
-            }
+            error_message = self.env._(
+                "%(error)s\n%(message)s",
+                error=str(e),
+                message=res.json().get("Message", "") if res and res.text else "",
+            )
             raise UserError(error_message) from None
         return res
 

@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import base64
 
-from odoo import _, fields, models
+from odoo import fields, models
 
 
 class StockPicking(models.Model):
@@ -23,7 +23,9 @@ class StockPicking(models.Model):
             "pdf" if label_format == "pdf" else "txt",
         )
         self.message_post(
-            body=(_("DHL Parcel label for %s") % tracking_ref),
+            body=self.env._(
+                "DHL Parcel label for %(reference)s", reference=tracking_ref
+            ),
             attachments=[(label_name, label)],
         )
         # We return label in case it wants to be printed in an inheritance
@@ -41,10 +43,14 @@ class StockPicking(models.Model):
             self.dhl_parcel_shipment_held = not carrier.dhl_parcel_release_shipment(
                 tracking_ref
             )
-            message = _("Released shipment for {}").format(tracking_ref)
+            message = self.env._(
+                "Released shipment for %(reference)s", reference=tracking_ref
+            )
         else:
             self.dhl_parcel_shipment_held = carrier.dhl_parcel_hold_shipment(
                 tracking_ref
             )
-            message = _("Held shipment for {}").format(tracking_ref)
+            message = self.env._(
+                "Held shipment for %(reference)s", reference=tracking_ref
+            )
         self.message_post(body=message)
