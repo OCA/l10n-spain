@@ -16,3 +16,5 @@
   * Pedro M. Baeza
 * Factor Libre S.L.:
   * Luis J. Salvatierra
+* Batista10:
+  * Ivan Vilata i Balaguer

@@ -6,6 +6,7 @@ import json
 
 from requests import Session
 from zeep import Client, Settings
+from zeep.cache import SqliteCache
 from zeep.plugins import HistoryPlugin
 from zeep.transports import Transport
 
@@ -207,7 +208,10 @@ class VerifactuInvoiceEntry(models.Model):
         params = self._connect_verifactu_params_aeat()
         session = Session()
         session.cert = (public_crt, private_key)
-        transport = Transport(session=session)
+        # The cache avoids hammering AEAT and W3 servers
+        # with WSDL and schema requests (which may trigger challenges).
+        cache = SqliteCache(timeout=7200)  # in seconds
+        transport = Transport(session=session, cache=cache)
         history = HistoryPlugin()
         settings = Settings(forbid_entities=False)
         client = Client(
