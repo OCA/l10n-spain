@@ -606,19 +606,40 @@ class L10nEsAeatMod303Report(models.Model):
         )
 
     def _get_move_line_domain(self, date_start, date_end, map_line):
-        """Changes dates to full year when the summary on last report of the
-        year for the corresponding fields. Only field number is checked as
-        the complete check for not bringing results is done on
-        `_get_tax_lines`.
+        """Filter move lines by ``move_id.invoice_date`` (falling back to
+        ``date`` for entries without an invoice).
+
+        AEAT's Pre-303 / SII matches each received invoice against the period
+        stated on the invoice itself ("período consignado en la factura igual
+        al periodo de autoliquidación"), not against the accounting date. This
+        override keeps that criterion for the 303 only; other AEAT reports
+        (347, 349, 390, Verifactu, SII, IRPF…) still filter by ``date``.
+
+        For the yearly summary fields (79-99 and 125) the date range is
+        extended to the full year; the completeness check is done in
+        ``_get_tax_lines``.
         """
         if 79 <= map_line.field_number <= 99 or map_line.field_number == 125:
             date_start = date_start.replace(day=1, month=1)
             date_end = date_end.replace(day=31, month=12)
-        return super()._get_move_line_domain(
-            date_start,
-            date_end,
-            map_line,
-        )
+        domain = super()._get_move_line_domain(date_start, date_end, map_line)
+        domain = [
+            leaf
+            for leaf in domain
+            if not (isinstance(leaf, (tuple, list)) and leaf[0] == "date")
+        ]
+        domain += [
+            "|",
+            "&",
+            ("move_id.invoice_date", ">=", date_start),
+            ("move_id.invoice_date", "<=", date_end),
+            "&",
+            ("move_id.invoice_date", "=", False),
+            "&",
+            ("date", ">=", date_start),
+            ("date", "<=", date_end),
+        ]
+        return domain
 
     def _prepare_regularization_extra_move_lines(self):
         """Include behavior for the regularization of the fees to compensate."""

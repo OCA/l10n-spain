@@ -774,3 +774,137 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
                 },
             ],
         )
+
+
+class TestL10nEsAeatMod303InvoiceDate(TestL10nEsAeatMod303Base):
+    """Tests for the period assignment based on ``invoice_date``.
+
+    AEAT's Pre-303 / SII assigns each received invoice to the period stated
+    on the invoice itself, not to the accounting date. The 303 override of
+    ``_get_move_line_domain`` should therefore filter by ``move_id.invoice_date``
+    when available, falling back to ``date`` for entries without an invoice.
+    """
+
+    taxes_purchase = {"P_IVA21_BC": (1000, 210)}
+    taxes_sale = {"S_IVA21B": (1000, 210)}
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        # Supplier invoice straddling a period boundary:
+        #   invoice_date = 2017-03-30 (Q1), date = 2017-04-05 (Q2)
+        cls.cross_bill = cls._invoice_purchase_create(
+            "2017-03-30", extra_vals={"date": "2017-04-05"}
+        )
+        # Regular supplier invoice fully in Q1 (control case).
+        cls._invoice_purchase_create("2017-02-15")
+        # A sale invoice in Q1 just to have something on the output side.
+        cls._invoice_sale_create("2017-02-15")
+
+    def _purchase_tax_lines_for(self, report):
+        # Field 29 = deductible VAT quota on current domestic operations.
+        return report.tax_line_ids.filtered(lambda x: x.field_number == 29)
+
+    def test_cross_period_bill_goes_to_invoice_date_period(self):
+        """A bill with invoice_date in Q1 and date in Q2 must appear in Q1."""
+        # Sanity: the bill really has divergent dates.
+        self.assertNotEqual(
+            self.cross_bill.invoice_date,
+            self.cross_bill.date,
+            "Test fixture is broken: invoice_date and date should differ",
+        )
+        self.model303.button_calculate()
+        field_29_total = sum(
+            self._purchase_tax_lines_for(self.model303).mapped("amount")
+        )
+        # Q1 must include BOTH purchase invoices' 21% quota: 2 * 210 = 420.
+        self.assertAlmostEqual(
+            field_29_total,
+            420.0,
+            2,
+            "Q1 303 should include the bill whose invoice_date falls in Q1, "
+            "even if the accounting date is in Q2",
+        )
+        # And Q2 must NOT include the cross bill.
+        model303_2t = self.model303.copy(
+            {
+                "name": "9991000000303",
+                "period_type": "2T",
+                "date_start": "2017-04-01",
+                "date_end": "2017-06-30",
+            }
+        )
+        model303_2t.button_calculate()
+        q2_total = sum(self._purchase_tax_lines_for(model303_2t).mapped("amount"))
+        self.assertAlmostEqual(
+            q2_total,
+            0.0,
+            2,
+            "Q2 303 should NOT include a bill whose invoice_date is in Q1",
+        )
+
+    def test_move_without_invoice_date_falls_back_to_date(self):
+        """A journal entry with no invoice_date must be filtered by ``date``."""
+        tax = self._get_taxes("P_IVA21_BC")
+        # Build a manual journal entry with a deductible VAT tax and no
+        # invoice_date. It must live in the period of its accounting ``date``.
+        account_expense = self.accounts["600000"]
+        account_tax = self.accounts["472000"]
+        move = self.env["account.move"].create(
+            {
+                "company_id": self.company.id,
+                "journal_id": self.journal_misc.id,
+                "date": "2017-02-20",
+                "line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Manual expense",
+                            "account_id": account_expense.id,
+                            "debit": 1000.0,
+                            "credit": 0.0,
+                            "tax_ids": [(6, 0, tax.ids)],
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Manual VAT",
+                            "account_id": account_tax.id,
+                            "debit": 210.0,
+                            "credit": 0.0,
+                            "tax_line_id": tax.id,
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Balance",
+                            "account_id": self.accounts["410000"].id,
+                            "debit": 0.0,
+                            "credit": 1210.0,
+                        },
+                    ),
+                ],
+            }
+        )
+        move.action_post()
+        self.assertFalse(move.invoice_date)
+
+        self.model303.button_calculate()
+        q1_lines = self._purchase_tax_lines_for(self.model303)
+        # Q1 has 3 entries contributing to field 29:
+        #   - cross bill (invoice_date in Q1): 210
+        #   - regular Q1 bill:                 210
+        #   - manual move (date in Q1):        210
+        # Total = 630
+        self.assertAlmostEqual(
+            sum(q1_lines.mapped("amount")),
+            630.0,
+            2,
+            "Manual entry without invoice_date should be filtered by its "
+            "accounting date",
+        )
