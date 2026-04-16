@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-08 12:15+0000\n"
-"PO-Revision-Date: 2026-04-13 17:16+0000\n"
+"PO-Revision-Date: 2026-04-16 18:44+0000\n"
 "Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -50,7 +50,6 @@ msgstr "4 - Extranjero"
 
 #. module: l10n_es_aeat_mod347
 #: model:mail.template,body_html:l10n_es_aeat_mod347.email_template_347
-#, fuzzy
 msgid ""
 "<p>Estimado/a <t t-out=\"object.partner_id.name\"/>\n"
 "</p>\n"
