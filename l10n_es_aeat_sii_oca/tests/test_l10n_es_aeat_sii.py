@@ -348,6 +348,17 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
                 },
                 True,
             ),
+            # In invoice with same rate but different investment goods
+            (
+                "in_invoice",
+                [(100, ["p_iva21_bc"]), (100, ["p_iva21_bi"])],
+                {
+                    "ref": "sup0008",
+                    "sii_account_registration_date": "2020-10-01",
+                    "currency_id": self.usd.id,
+                },
+                False,
+            ),
         ]
         for inv_type, lines, extra_vals, is_dua in mapping:
             invoice = self._create_and_test_invoice_sii_dict(
