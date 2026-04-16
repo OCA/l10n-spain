@@ -7,7 +7,7 @@
 
 {
     "name": "Comunicación VERI*FACTU",
-    "version": "18.0.1.2.3",
+    "version": "18.0.1.2.4",
     "category": "Accounting/Localizations/EDI",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Aures Tic,"
