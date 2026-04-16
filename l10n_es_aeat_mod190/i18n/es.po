@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-04-13 17:16+0000\n"
+"PO-Revision-Date: 2026-04-16 18:44+0000\n"
 "Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -22,6 +22,7 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__hijos_y_descendientes_m
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_users__hijos_y_descendientes
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_users__hijos_y_descendientes_m
+#, fuzzy
 msgid ""
 "\n"
 "        Solo para percepciones correspondientes a las claves A,\n"
@@ -32,6 +33,14 @@ msgid ""
 "        la Ley del Impuesto.\n"
 "        "
 msgstr ""
+"\n"
+"        Solo para percepciones correspondientes a las claves A,\n"
+"        B.01, B.03, B.04, B.99 y C.\n"
+"        Datos referidos a los hijos y demás descendientes del\n"
+"        perceptor por los que éste tenga derecho a la aplicación\n"
+"        del mínimo por descendientes previsto en el artículo 58 de\n"
+"        la Ley del Impuesto.\n"
+"        "
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__discapacidad__0
