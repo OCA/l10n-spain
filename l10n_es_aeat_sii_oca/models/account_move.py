@@ -277,7 +277,7 @@ class AccountMove(models.Model):
                 if not self._merge_tax_dict(
                     base_dict["DetalleIVA"],
                     tax_dict,
-                    "TipoImpositivo",
+                    ["TipoImpositivo", "BienInversion"],
                     ["BaseImponible", "CuotaSoportada"],
                 ):
                     base_dict["DetalleIVA"].append(tax_dict)
