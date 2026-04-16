@@ -307,9 +307,9 @@ class VerifactuInvoiceEntry(models.Model):
         try:
             serv = rec._connect_verifactu()
             res = serv.RegFactuSistemaFacturacion(header, registro_factura_list)
-        except Exception:
+        except Exception as exc:
             res = {}
-            create_exception = True
+            create_exception = exc
         response_name = ""
         response = (
             self.env["verifactu.invoice.entry.response"]
@@ -321,6 +321,7 @@ class VerifactuInvoiceEntry(models.Model):
                     "invoice_data": json.dumps(registro_factura_list),
                     "response": res,
                     "verifactu_csv": "CSV" in res and res["CSV"] or _("-"),
+                    "connection_error": create_exception and repr(create_exception),
                 }
             )
         )

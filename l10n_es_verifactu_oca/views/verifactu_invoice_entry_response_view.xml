@@ -46,6 +46,11 @@
                         <page string="Details">
                             <group>
                                 <group name="verifactu1">
+                                    <field
+                                        name="connection_error"
+                                        readonly="1"
+                                        attrs="{'invisible': [('connection_error', '=', False)]}"
+                                    />
                                     <field name="response" readonly="1" />
                                     <field name="header" readonly="1" />
                                     <field name="invoice_data" readonly="1" />
