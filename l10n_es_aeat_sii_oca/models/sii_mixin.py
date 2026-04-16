@@ -473,10 +473,21 @@ class SiiMixin(models.AbstractModel):
         )
 
     @api.model
-    def _merge_tax_dict(self, vat_list, tax_dict, comp_key, merge_keys):
-        """Helper method for merging values in an existing tax dictionary."""
+    def _merge_tax_dict(self, vat_list, tax_dict, comp_keys, merge_keys):
+        """Helper method for merging values in an existing tax dictionary.
+
+        :param vat_list: List of tax dictionaries to check for merge.
+        :param tax_dict: Tax dictionary to merge.
+        :param comp_keys: List of keys to compare for matching.
+        :param merge_keys: List of keys whose values should be summed.
+        """
         for existing_dict in vat_list:
-            if existing_dict.get(comp_key, "-99") == tax_dict.get(comp_key, "-99"):
+            match = True
+            for key in comp_keys:
+                if existing_dict.get(key, "-99") != tax_dict.get(key, "-99"):
+                    match = False
+                    break
+            if match:
                 for key in merge_keys:
                     existing_dict[key] += tax_dict[key]
                 return True
@@ -575,7 +586,7 @@ class SiiMixin(models.AbstractModel):
                     if not self._merge_tax_dict(
                         sub,
                         tax_dict,
-                        "TipoImpositivo",
+                        ["TipoImpositivo"],
                         ["BaseImponible", "CuotaRepercutida"],
                     ):
                         sub.append(tax_dict)
@@ -619,7 +630,7 @@ class SiiMixin(models.AbstractModel):
                     if not self._merge_tax_dict(
                         sub,
                         tax_dict,
-                        "TipoImpositivo",
+                        ["TipoImpositivo"],
                         ["BaseImponible", "CuotaRepercutida"],
                     ):
                         sub.append(tax_dict)
