@@ -8,7 +8,7 @@
         <field name="inherit_id" ref="base.view_company_form" />
         <field name="arch" type="xml">
             <notebook position="inside">
-                <page name="aeat" string="AEAT">
+                <page name="aeat" string="AEAT" invisible="country_code != 'ES'">
                     <group>
                         <group name="aeat_config">
                             <field name="tax_agency_id" />
