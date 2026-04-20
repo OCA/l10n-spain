@@ -3,6 +3,7 @@
 # Copyright 2023 Aures Tic - Almudena de la Puente <almudena@aurestic.es>
 # Copyright 2023 Aures Tic - Jose Zambudio <jose@aurestic.es>
 # Copyright 2011,2024 Tecnativa - Pedro M. Baeza
+# Copyright 2026 Binhex - Edilio Escalona Almira
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import json
 
@@ -96,6 +97,7 @@ class SiiMixin(models.AbstractModel):
         compute="_compute_macrodata",
     )
     sii_send_date = fields.Datetime(string="SII Send Date", index=True, copy=False)
+    sii_send_delay = fields.Boolean(copy=False, help="Prior registration GGEE/REDEME")
     sii_needs_cancel = fields.Boolean(readonly=True, copy=False)
 
     def _compute_sii_refund_type(self):
@@ -704,6 +706,9 @@ class SiiMixin(models.AbstractModel):
         elif gen_type == 3:
             return {"NIF": identifier}
 
+    def _get_aeat_invoice_send_delay(self):
+        return {"RegPrevioGGEEREDEMEoCompetencia": "S"}
+
     def _get_aeat_invoice_dict_out(self, cancel=False):
         """Build dict with data to send to AEAT WS for document types:
         out_invoice and out_refund.
@@ -744,6 +749,8 @@ class SiiMixin(models.AbstractModel):
                 "TipoDesglose": tipo_desglose,
                 "ImporteTotal": amount_total,
             }
+            if self.sii_send_delay:
+                inv_dict["FacturaExpedida"].update(self._get_aeat_invoice_send_delay())
             if self.sii_macrodata:
                 inv_dict["FacturaExpedida"].update(Macrodato="S")
             exp_dict = inv_dict["FacturaExpedida"]

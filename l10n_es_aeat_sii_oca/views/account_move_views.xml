@@ -45,6 +45,7 @@
                             required="sii_enabled"
                         />
                         <field name="thirdparty_invoice" />
+                        <field name="sii_send_delay" readonly="aeat_state =='sent'" />
                         <field
                             name="thirdparty_number"
                             required="thirdparty_invoice"

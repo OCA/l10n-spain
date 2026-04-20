@@ -11,6 +11,7 @@
 # Copyright 2023 Aures Tic - Jose Zambudio <jose@aurestic.es>
 # Copyright 2023 Moduon Team - Eduardo de Miguel
 # Copyright 2026 Tecnativa - Carlos Dauden
+# Copyright 2026 Binhex - Edilio Escalona Almira
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import json
@@ -418,6 +419,9 @@ class AccountMove(models.Model):
                 "FechaRegContable": reg_date,
                 "CuotaDeducible": tax_amount,
             }
+
+            if self.sii_send_delay:
+                inv_dict["FacturaRecibida"].update(self._get_aeat_invoice_send_delay())
             if not self.sii_dua_invoice:
                 inv_dict["FacturaRecibida"]["ImporteTotal"] = (
                     -self.amount_total_signed - not_in_amount_total

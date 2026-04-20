@@ -22,3 +22,5 @@
 - Jose Zambudio \<<jose@aurestic.es>\>
 - [Factor Libre](https://factorlibre.com):
   - Luis J. Salvatierra \<<luis.salvatierra@factorlibre.com>\>
+- [Binhex](https://www.binhex.cloud):
+  - Edilio Escalona Almira
