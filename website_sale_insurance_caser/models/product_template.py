@@ -34,6 +34,8 @@ class ProductTemplate(models.Model):
         if not self.caser_insurance_ecommerce or not price:
             return ""
         insurance_product = (
-            self.env["caser.price.range"].sudo().get_insurance_product_for_price(price)
+            self.env["caser.price.range"]
+            .sudo()
+            .get_insurance_product_for_price(price, self.categ_id.caser_asset_type)
         )
         return f"{insurance_product.list_price}€" if insurance_product else ""
