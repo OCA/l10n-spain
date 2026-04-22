@@ -28,7 +28,10 @@ class WebsaleCaserInsuranceController(http.Controller):
                 insurance_product = (
                     request.env["caser.price.range"]
                     .sudo()
-                    .get_insurance_product_for_price(line.price_reduce_taxinc)
+                    .get_insurance_product_for_price(
+                        line.price_reduce_taxinc,
+                        line.product_id.categ_id.caser_asset_type,
+                    )
                 )
                 uninsured.append(
                     {
