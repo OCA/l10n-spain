@@ -45,9 +45,9 @@ class TestL10nEsAeatMod296Base(TestL10nEsAeatModBase):
                 "support_type": "T",
                 "contact_phone": "911234455",
                 "year": 2015,
-                "period_type": "1T",
+                "period_type": "0A",
                 "date_start": "2015-01-01",
-                "date_end": "2015-03-31",
+                "date_end": "2015-12-31",
                 "journal_id": self.journal_misc.id,
             }
         )

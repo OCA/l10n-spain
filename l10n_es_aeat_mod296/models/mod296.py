@@ -13,6 +13,9 @@ class L10nEsAeatMod296Report(models.Model):
     _inherit = "l10n.es.aeat.report.tax.mapping"
     _name = "l10n.es.aeat.mod296.report"
     _aeat_number = "296"
+    _period_quarterly = False
+    _period_monthly = False
+    _period_yearly = True
 
     casilla_01 = fields.Integer(
         string="[01] # Recipients",
