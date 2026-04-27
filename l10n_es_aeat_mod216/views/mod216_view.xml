@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2015 AvanzOSC - Ainara Galdona
+     Copyright 2015-2019 Pedro M. Baeza
+     Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+     Copyright 2025 Moduon Team S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_l10n_es_aeat_mod216_report_tree" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod216.report.tree</field>
+        <field name="model">l10n.es.aeat.mod216.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree" />
+        <field name="arch" type="xml">
+            <list position="attributes">
+                <attribute name="string">AEAT 216 reports</attribute>
+            </list>
+            <field name="period_type" position="after">
+                <field name="casilla_07" />
+                <field name="casilla_10" />
+                <field name="casilla_13" />
+                <field name="casilla_16" />
+                <field name="casilla_19" />
+                <field name="casilla_20" />
+                <field name="casilla_21" />
+            </field>
+        </field>
+    </record>
+    <record id="view_l10n_es_aeat_mod216_report_form" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod216.report.form</field>
+        <field name="model">l10n.es.aeat.mod216.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
+        <field name="arch" type="xml">
+            <field name="previous_number" position="after">
+                <field name="tipo_declaracion" readonly="state != 'draft'" />
+            </field>
+            <group name="group_declaration" position="after">
+                <!-- View before 2024 -->
+                <group
+                    string="Result"
+                    name="group_result"
+                    invisible="state == 'draft' or year &gt;= 2024"
+                    colspan="4"
+                >
+                    <group string="Income subject to retention">
+                        <field name="casilla_01_pre_2024" />
+                        <field name="casilla_03_pre_2024" />
+                    </group>
+                    <group string="Income not subject to retention">
+                        <field
+                            name="casilla_04_pre_2024"
+                            readonly="state != 'calculated'"
+                        />
+                        <field
+                            name="casilla_05_pre_2024"
+                            readonly="state != 'calculated'"
+                        />
+                    </group>
+                    <group string="Totals">
+                        <field
+                            name="casilla_06_pre_2024"
+                            readonly="state != 'calculated' or statement_type != 'C'"
+                        />
+                        <field name="casilla_07_pre_2024" />
+                    </group>
+                    <separator
+                        string="Tax lines"
+                        name="group_tax_lines"
+                        invisible="state == 'draft'"
+                    />
+                    <field name="tax_line_ids" nolabel="1" readonly="1" />
+                </group>
+                <!-- View 2024 -->
+                <group
+                    string="I. Rentas sometidas a retención/ingreso a cuenta"
+                    col="3"
+                    invisible="state == 'draft' or year &lt;= 2024"
+                >
+                    <group
+                        string="Dividendos y otras rentas de participación en fondos propios de entidades"
+                    >
+                        <field name="casilla_05" readonly="state != 'calculated'" />
+                        <field name="casilla_08" readonly="state != 'calculated'" />
+                        <field name="casilla_11" readonly="state != 'calculated'" />
+                    </group>
+                    <group string="Resto de rentas">
+                        <field name="casilla_06" readonly="state != 'calculated'" />
+                        <field name="casilla_09" readonly="state != 'calculated'" />
+                        <field name="casilla_12" readonly="state != 'calculated'" />
+                    </group>
+                    <group string="Total">
+                        <field name="casilla_07" />
+                        <field name="casilla_10" />
+                        <field name="casilla_13" />
+                    </group>
+                </group>
+                <group
+                    string="II. Rentas no sometidas a retención/ingreso a cuenta"
+                    col="3"
+                    invisible="state == 'draft' or year &lt;= 2024"
+                >
+                    <group
+                        string="Dividendos y otras rentas de participación en fondos propios de entidades"
+                    >
+                        <field name="casilla_14" readonly="state != 'calculated'" />
+                        <field name="casilla_17" readonly="state != 'calculated'" />
+                    </group>
+                    <group string="Resto de rentas">
+                        <field name="casilla_15" readonly="state != 'calculated'" />
+                        <field name="casilla_18" readonly="state != 'calculated'" />
+                    </group>
+                    <group string="Total">
+                        <field name="casilla_16" />
+                        <field name="casilla_19" />
+                    </group>
+                </group>
+                <group
+                    string="Resultados"
+                    col="2"
+                    invisible="state == 'draft' or year &lt;= 2024"
+                >
+                    <group>
+                        <field name="casilla_20" readonly="state != 'calculated'" />
+                    </group>
+                    <group>
+                        <field name="casilla_21" />
+                    </group>
+                </group>
+            </group>
+            <form position="inside">
+                <chatter />
+            </form>
+        </field>
+    </record>
+    <record id="action_l10n_es_aeat_mod216_report" model="ir.actions.act_window">
+        <field name="name">AEAT model 216</field>
+        <field name="res_model">l10n.es.aeat.mod216.report</field>
+        <field name="view_mode">form,list</field>
+        <field name="help">Create and query AEAT Model 216 reports.</field>
+    </record>
+    <record
+        id="action_l10n_es_aeat_mod216_report_tree"
+        model="ir.actions.act_window.view"
+    >
+        <field name="sequence" eval="2" />
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod216_report_tree" />
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod216_report" />
+    </record>
+    <record
+        id="action_l10n_es_aeat_mod216_report_form"
+        model="ir.actions.act_window.view"
+    >
+        <field name="sequence" eval="3" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod216_report_form" />
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod216_report" />
+    </record>
+    <menuitem
+        id="menu_aeat_mod216_report"
+        parent="l10n_es_aeat.menu_l10n_es_aeat_submenu"
+        action="action_l10n_es_aeat_mod216_report"
+        sequence="216"
+        name="AEAT 216 model"
+    />
+</odoo>
