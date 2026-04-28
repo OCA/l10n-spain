@@ -3,7 +3,7 @@
 
 {
     "name": "Envío de Facturae a FACe",
-    "version": "15.0.2.5.0",
+    "version": "15.0.2.5.1",
     "author": "Creu Blanca, " "Odoo Community Association (OCA)",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
