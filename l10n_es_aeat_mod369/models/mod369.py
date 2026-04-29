@@ -170,17 +170,13 @@ class L10nEsAeatMod369Report(models.Model):
         for (country, _amount), taxes in oss_country_rates.items():
             oss_countries.setdefault(country, [])
             oss_countries[country].append(taxes)
+        # Sequential allocation. AEAT DR369e21 v1.1 defines each section as a
+        # flat 28-entry list, no per-country slot limit.
         oss_taxes_map = {}
         line_number = 1
-        previous_country = False
-        previous_tax_count = 0
         for country, tax_groups in oss_countries.items():
-            if previous_country and country != previous_country:
-                line_number += 8 - (previous_tax_count * 2)
-                previous_tax_count = 0
             for taxes in tax_groups:
                 tax = taxes[:1]
-                previous_tax_count += 1
                 entry = {"tax": tax, "taxes": taxes, "country": country}
                 oss_taxes_map.update(
                     {
@@ -203,7 +199,6 @@ class L10nEsAeatMod369Report(models.Model):
                     }
                 )
                 line_number += 2
-            previous_country = country
         return oss_taxes_map
 
     def _prepare_tax_line_vals(self, map_line):
