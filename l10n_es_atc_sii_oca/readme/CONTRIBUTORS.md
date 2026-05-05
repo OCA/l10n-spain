@@ -4,3 +4,5 @@
   - Mario Montes \<<mario@comunitea.com>\>
 - [Tecnativa](https://www.tecnativa.com):
   - Sergio Teruel
+- [APSL-Nagarro](https://www.apsl.tech):
+  - Vicent Cubells \<<vcubells@apsl.net>\>
