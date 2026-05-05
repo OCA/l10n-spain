@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="atc_sii_map" model="aeat.sii.map">
         <field name="name">SII - ATC</field>
         <field name="tax_agency_id" ref="l10n_es_aeat.aeat_tax_agency_canarias" />
@@ -44,7 +43,6 @@
         <field name="sii_map_id" ref="atc_sii_map" />
         <field name="name">SuministroFactEmitidas Servicios Exento</field>
     </record>
-
 
     <record id="aeat_sii_map_line_SFRS" model="aeat.sii.map.lines">
         <field name="code">SFRS</field>
