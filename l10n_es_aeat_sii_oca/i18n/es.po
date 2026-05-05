@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-01 14:14+0000\n"
-"PO-Revision-Date: 2026-04-13 17:16+0000\n"
-"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
+"PO-Revision-Date: 2026-05-05 10:41+0000\n"
+"Last-Translator: Carlos Sainz-Pardo Ortiz <carlos.sainz@netkia.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -403,7 +403,7 @@ msgstr "Agrupar por..."
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 msgid "Header sent"
-msgstr ""
+msgstr "Encabezado enviado"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__id
@@ -419,6 +419,9 @@ msgid ""
 "If this field is set, the sii won't be enabled on invoices with lower "
 "invoice date. If not set, the sii can be enabled on all invoice dates"
 msgstr ""
+"Si este campo está informado, el SII no se habilitará en facturas con una "
+"fecha de factura anterior. Si no está informado, el SII podrá habilitarse "
+"para facturas con cualquier fecha"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__aeat_send_failed
@@ -471,12 +474,12 @@ msgstr "Facturas"
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.account_journal_dashboard_kanban_view
 msgid "Invoices not sent to SII"
-msgstr ""
+msgstr "Facturas no enviadas al SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.account_journal_dashboard_kanban_view
 msgid "Invoices with SII error"
-msgstr ""
+msgstr "Facturas con errores SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move_reversal__sii_refund_type_required
@@ -491,7 +494,7 @@ msgstr "¿Es requerido el nº de factura de proveedor?"
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_test
 msgid "Is it the SII test environment?"
-msgstr ""
+msgstr "¿Es un entorno de pruebas del SII?"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model,name:l10n_es_aeat_sii_oca.model_account_journal
@@ -579,7 +582,7 @@ msgstr "Modelo"
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_wizard_send_sii__modified_number
 msgid "Modified Number"
-msgstr ""
+msgstr "Número modificado"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__res_company__sii_period__monthly
@@ -589,7 +592,7 @@ msgstr "Mensualmente"
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_wizard_send_sii__moves_to_send
 msgid "Moves To Send"
-msgstr ""
+msgstr "Asientos a enviar"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__name
@@ -605,7 +608,7 @@ msgstr "Nacional"
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 msgid "Needs cancellation"
-msgstr ""
+msgstr "Necesita cancelación"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_account_invoice_sii_filter
@@ -631,12 +634,12 @@ msgstr "Ninguno"
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_wizard_send_sii__not_send_without_errors_number
 msgid "Not Send Without Errors Number"
-msgstr ""
+msgstr "Número de no enviados sin errores"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.account_journal_dashboard_kanban_view
 msgid "Not sent to SII"
-msgstr ""
+msgstr "No enviado al SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__res_company__send_mode__auto
@@ -929,7 +932,7 @@ msgstr "Hora de envío"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_dua_invoice
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_dua_invoice
 msgid "Sii Dua Invoice"
-msgstr ""
+msgstr "Factura DUA SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_partner__sii_enabled
@@ -963,7 +966,7 @@ msgstr "Fecha Inicio SII"
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 msgid "Specific refund type"
-msgstr ""
+msgstr "Tipo específico de rectificativa"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_tax_agency_form_view
@@ -1128,6 +1131,8 @@ msgid ""
 "The value in l10n_es_aeat_sii_oca.sii_batch system parameter must be an "
 "integer. Please, check the value of the parameter."
 msgstr ""
+"El valor del parámetro del sistema l10n_es_aeat_sii_oca.sii_batch debe ser "
+"un número entero. Por favor, compruebe el valor del parámetro."
 
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
@@ -1185,6 +1190,8 @@ msgid ""
 "You can not communicate the cancellation of this invoice at this moment. "
 "Please, try again later."
 msgstr ""
+"No puede comunicar la anulación de esta factura en este momento. Por favor, "
+"inténtelo de nuevo más tarde."
 
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
@@ -1193,6 +1200,8 @@ msgid ""
 "You can not communicate this document at this moment. Please, try again "
 "later."
 msgstr ""
+"No se puede comunicar este documento en este momento. Por favor, inténtelo "
+"de nuevo más tarde."
 
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
@@ -1201,6 +1210,8 @@ msgid ""
 "You can not set to draft this invoice because the SII trigger could not be "
 "cancelled."
 msgstr ""
+"No se puede restablecer esta factura a borrador porque no se ha podido "
+"cancelar el disparador SII."
 
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
@@ -1213,6 +1224,7 @@ msgstr "No puede realizar una factura simplificada a un proveedor."
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 msgid "You cannot cancel this invoice. Please, try again later."
 msgstr ""
+"No se puede cancelar esta factura. Por favor, inténtelo de nuevo más tarde."
 
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
@@ -1315,6 +1327,8 @@ msgid ""
 "of the selected invoices are being processed to be sent to the SII. If you "
 "confirm, they will be sent."
 msgstr ""
+"de las facturas seleccionadas se están procesando para enviarse al SII. Si "
+"confirma, se enviarán."
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_wizard_send_sii
@@ -1322,6 +1336,8 @@ msgid ""
 "of the selected invoices failed when trying to send them to the SII. If "
 "confirm, they will be resent"
 msgstr ""
+"de las facturas seleccionadas fallaron al intentar enviarlas al SII. Si "
+"confirma, se reenviarán"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_wizard_send_sii
@@ -1329,6 +1345,8 @@ msgid ""
 "of the selected invoices have changed but changes have not been sent to the "
 "SII yet. If you confirm, they will be sent to sii."
 msgstr ""
+"de las facturas seleccionadas han cambiado, pero los cambios aún no se han "
+"enviado al SII. Si confirma, se enviarán al SII."
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_wizard_send_sii
@@ -1336,6 +1354,7 @@ msgid ""
 "of the selected invoices have not been sent to to the SII yet and will be "
 "sent."
 msgstr ""
+"de las facturas seleccionadas aún no se han enviado al SII y se enviarán."
 
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
