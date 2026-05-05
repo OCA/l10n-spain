@@ -66,7 +66,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
                         vals["intrastat_unit_id"] = iu_unit_id
                     else:
                         raise exceptions.UserError(
-                            self.env._("Unit not found: '%s'") % iu
+                            self.env._("Unit not found: '%s'", iu)
                         )
                 vals_list.append(vals)
         if vals_list:
