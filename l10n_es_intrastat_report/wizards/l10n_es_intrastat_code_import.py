@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3).
 
 
-import xlrd
+import openpyxl
 
 from odoo import exceptions, models, tools
 from odoo.tools.misc import file_path
@@ -31,15 +31,15 @@ class L10nEsPartnerImportWizard(models.TransientModel):
     def _import_hs_codes(self):
         code_obj = self.env["hs.code"].with_context(active_test=False)
         path = file_path("l10n_es_intrastat_report/data/Estruc_NC2023.xlsx")
-        workbook = xlrd.open_workbook(path)
-        sheet = workbook.sheet_by_index(0)
+        wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+        sheet_rows = list(wb.worksheets[0].iter_rows(min_row=2, values_only=True))
         vals_list = []
         parents = []
         prev_level = 0
-        for nrow in range(1, sheet.nrows):
-            code = sheet.cell_value(nrow, 2).replace(" ", "")
-            description = sheet.cell_value(nrow, 6).lstrip("-")
-            level = int(sheet.cell_value(nrow, 3))
+        for row in sheet_rows:
+            code = str(row[2] or "").replace(" ", "")
+            description = str(row[6] or "").lstrip("-")
+            level = int(row[3] or 0)
             temp = prev_level
             while temp > level and parents:
                 del parents[-1]
@@ -54,7 +54,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
                 "description": " /".join(parents + [description]),
             }
             if not code_obj.search([("local_code", "=", code)]):
-                iu = sheet.cell_value(nrow, 5).replace("\xa0", " ")
+                iu = str(row[5] or "").replace("\xa0", " ")
                 if iu and iu != "-":  # specific unit
                     if iu in UOM_MAPPING:
                         iu_unit_id = self.env.ref(

@@ -69,7 +69,7 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
                 "vat": "ESA12345674",
             }
         )
-        cls.env.user.groups_id += cls.env.ref("account.group_delivery_invoice_address")
+        cls.env.user.group_ids += cls.env.ref("account.group_delivery_invoice_address")
         cls.fiscal_position_b2b = cls.env["account.fiscal.position"].create(
             {
                 "name": "B2B FP",
