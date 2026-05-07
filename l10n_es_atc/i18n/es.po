@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-04-13 17:16+0000\n"
+"PO-Revision-Date: 2026-05-07 17:30+0000\n"
 "Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -92,9 +92,8 @@ msgstr "Acción necesaria"
 
 #. module: l10n_es_atc
 #: model:ir.model.fields,field_description:l10n_es_atc.field_l10n_es_atc_report__activity_ids
-#, fuzzy
 msgid "Activities"
-msgstr "Acividades"
+msgstr "Actividades"
 
 #. module: l10n_es_atc
 #: model:ir.model.fields,field_description:l10n_es_atc.field_l10n_es_atc_report__activity_exception_decoration
@@ -104,9 +103,8 @@ msgstr "Decorador de actividad de excepción"
 
 #. module: l10n_es_atc
 #: model:ir.model.fields,field_description:l10n_es_atc.field_l10n_es_atc_report__activity_state
-#, fuzzy
 msgid "Activity State"
-msgstr "estado de la actividad"
+msgstr "Estado de la Actividad"
 
 #. module: l10n_es_atc
 #: model:ir.model.fields,field_description:l10n_es_atc.field_l10n_es_atc_report__activity_type_icon
