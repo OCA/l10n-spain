@@ -340,6 +340,11 @@ class CommonTest(CommonTestBase):
                 ]
             }
         )
+        # Ensure attachments data is correctly decoded on base64
+        attachments = self.move._get_facturae_move_attachments()
+        for attachment in attachments:
+            self.assertFalse(isinstance(attachment["data"], bytes))
+            self.assertTrue(isinstance(attachment["data"], str))
         generated_facturae = self._create_facturae_file(self.move, force=True)
         self.assertTrue(
             generated_facturae.xpath(
