@@ -225,7 +225,7 @@ class AccountMove(models.Model):
             description, content_type = attachment.filename.rsplit(".", 1)
             result.append(
                 {
-                    "data": attachment.file,
+                    "data": attachment.file.decode("utf-8"),
                     "content_type": content_type,
                     "encoding": "BASE64",
                     "description": description,
