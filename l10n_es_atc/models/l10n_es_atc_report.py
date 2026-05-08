@@ -35,6 +35,7 @@ ATC_JAR_URL = {}
 class L10nEsAtcReport(models.AbstractModel):
     _inherit = "l10n.es.aeat.report.tax.mapping"
     _name = "l10n.es.atc.report"
+    _description="Report ATC"
 
     output_type = fields.Selection(
         selection=[
