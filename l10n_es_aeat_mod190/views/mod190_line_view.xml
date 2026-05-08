@@ -6,6 +6,8 @@
         <field name="arch" type="xml">
             <list>
                 <field name="partner_id" />
+                <field name="aeat_perception_key_id" optional="show" />
+                <field name="aeat_perception_subkey_id" optional="show" />
             </list>
         </field>
     </record>
