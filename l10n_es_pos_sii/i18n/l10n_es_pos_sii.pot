@@ -14,8 +14,23 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_pos_sii
+#: model:ir.model.fields,help:l10n_es_pos_sii.field_pos_order__sii_match_state
+msgid ""
+"- No testable: The counterpart is not subscribed to SII the record will not be contrasted.\n"
+"- In process of contrast: AEAT is processing the data soon will be a result.\n"
+"- Not contrasted: The counterpart has not sent the invoice to SII, AEAT gives up to 4 months in order to contrast the information.\n"
+"- Partially contrasted: A invoice has been found but some data is different.\n"
+"- Contrasted: The counterpart has send the invoice to SII, all is OK."
+msgstr ""
+
+#. module: l10n_es_pos_sii
 #: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__aeat_send_error
 msgid "AEAT Send Error"
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_contrast_state
+msgid "AEAT contrast state"
 msgstr ""
 
 #. module: l10n_es_pos_sii
@@ -128,6 +143,11 @@ msgid "MacroData"
 msgstr ""
 
 #. module: l10n_es_pos_sii
+#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_match_state
+msgid "Match state"
+msgstr ""
+
+#. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_order_filter
 msgid "Never sent to SII"
 msgstr ""
@@ -230,6 +250,21 @@ msgstr ""
 #. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_order_filter
 msgid "SII filters"
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_match_difference_ids
+msgid "SII match differences"
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_match_return
+msgid "SII match return"
+msgstr ""
+
+#. module: l10n_es_pos_sii
+#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__sii_match_sent
+msgid "SII match sent"
 msgstr ""
 
 #. module: l10n_es_pos_sii
