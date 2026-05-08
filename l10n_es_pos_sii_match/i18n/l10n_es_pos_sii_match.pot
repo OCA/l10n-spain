@@ -1,0 +1,57 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_pos_sii_match
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_pos_sii_match
+#: model:ir.model,name:l10n_es_pos_sii_match.model_l10n_es_aeat_sii_match_report
+msgid "AEAT SII match Report"
+msgstr ""
+
+#. module: l10n_es_pos_sii_match
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii_match.view_pos_order_filter
+msgid "AEAT contrast state"
+msgstr ""
+
+#. module: l10n_es_pos_sii_match
+#: model:ir.actions.server,name:l10n_es_pos_sii_match.action_contrast_aeat
+msgid "Contrast Invoices with AEAT"
+msgstr ""
+
+#. module: l10n_es_pos_sii_match
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii_match.view_pos_pos_form
+msgid "Contrast with AEAT"
+msgstr ""
+
+#. module: l10n_es_pos_sii_match
+#: model:ir.model,name:l10n_es_pos_sii_match.model_pos_order
+msgid "Point of Sale Orders"
+msgstr ""
+
+#. module: l10n_es_pos_sii_match
+#: model:ir.model.fields,field_description:l10n_es_pos_sii_match.field_pos_order__sii_match_difference_ids
+msgid "SII match differences"
+msgstr ""
+
+#. module: l10n_es_pos_sii_match
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii_match.view_pos_order_filter
+msgid "SII match state"
+msgstr ""
+
+#. module: l10n_es_pos_sii_match
+#. odoo-python
+#: code:addons/l10n_es_pos_sii_match/models/pos_order.py:0
+msgid ""
+"The orders must be sent to SII in order to be matched.\n"
+"Non-matchable orders: %(order_names)s"
+msgstr ""
