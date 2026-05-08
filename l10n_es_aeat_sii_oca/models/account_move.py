@@ -672,7 +672,7 @@ class AccountMove(models.Model):
                         "invoice_line_ids.ref"
                     )
                     names = [unidecode(x) for x in names if x]  # Avoid "ugly" chars
-                    description += " - ".join(filter(None, names))
+                    description += " - ".join(filter(None, names)).replace("\n", " ")
             invoice.sii_description = (description or "")[:500] or "/"
 
     @api.depends(
