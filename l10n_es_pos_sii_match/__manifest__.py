@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Extensión del contraste SII para el TPV",
-    "version": "18.0.1.0.0",
+    "version": "18.0.2.0.0",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Tecnativa, Odoo Community Association (OCA)",
