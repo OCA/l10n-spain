@@ -19,7 +19,7 @@ msgstr ""
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields,help:l10n_es_aeat_sii_match.field_account_bank_statement_line__sii_match_state
 #: model:ir.model.fields,help:l10n_es_aeat_sii_match.field_account_move__sii_match_state
-#: model:ir.model.fields,help:l10n_es_aeat_sii_match.field_account_payment__sii_match_state
+#: model:ir.model.fields,help:l10n_es_aeat_sii_match.field_sii_mixin__sii_match_state
 msgid ""
 "- No testable: The counterpart is not subscribed to SII the record will not "
 "be contrasted.\n"
@@ -126,8 +126,8 @@ msgstr "Informe de cuadre SII"
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_bank_statement_line__sii_contrast_state
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_move__sii_contrast_state
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_payment__sii_contrast_state
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__sii_contrast_state
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_sii_mixin__sii_contrast_state
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_account_invoice_sii_match_filter
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
 msgid "AEAT contrast state"
@@ -187,6 +187,8 @@ msgstr "Contrastar con AEAT"
 
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_match_state__5
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__pos_order__sii_match_state__5
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__sii_mixin__sii_match_state__5
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
 msgid "Contrasted"
 msgstr "Contrastada"
@@ -194,6 +196,8 @@ msgstr "Contrastada"
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_contrast_state__correct
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_result__sii_contrast_state__correct
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__pos_order__sii_contrast_state__correct
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__sii_mixin__sii_contrast_state__correct
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
 msgid "Correct"
 msgstr "Correcto"
@@ -220,8 +224,16 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_difference__invoice_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__invoice_id
+msgid "Document"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_contrast_state__no_exist
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_result__sii_contrast_state__no_exist
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__pos_order__sii_contrast_state__no_exist
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__sii_mixin__sii_contrast_state__no_exist
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
 msgid "Doesn't exist"
 msgstr "No existe"
@@ -233,12 +245,9 @@ msgid "Done"
 msgstr "Completado"
 
 #. module: l10n_es_aeat_sii_match
-#. odoo-python
-#: code:addons/l10n_es_aeat_sii_match/models/aeat_sii_match_report.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__state__draft
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_filter
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_form
-#, python-format
 msgid "Draft"
 msgstr "Borrador"
 
@@ -252,7 +261,6 @@ msgstr "Error"
 #. module: l10n_es_aeat_sii_match
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_match/models/aeat_sii_match_report.py:0
-#, python-format
 msgid "Error with AEAT certificates: %(error)s"
 msgstr "Error con los certificados de AEAT: %(error)s"
 
@@ -281,6 +289,8 @@ msgstr "Factura/rectificativa de proveedor"
 
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_match_state__2
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__pos_order__sii_match_state__2
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__sii_mixin__sii_match_state__2
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
 msgid "In process of contrast"
 msgstr "En proceso de contraste"
@@ -356,35 +366,39 @@ msgstr "Última actualización en"
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_bank_statement_line__sii_match_state
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_move__sii_match_state
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_payment__sii_match_state
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__sii_match_state
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_sii_mixin__sii_match_state
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
 msgid "Match state"
 msgstr "Estado cuadre"
 
 #. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_difference__model
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__model
+msgid "Model"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_match
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_match/models/aeat_sii_match_report.py:0
-#, python-format
 msgid "No VAT configured for the company '{}'"
 msgstr "El VAT de la compañía '{}' no esta configurado"
 
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_match_state__1
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__pos_order__sii_match_state__1
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__sii_mixin__sii_match_state__1
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
 msgid "No testable"
 msgstr "No contrastable"
 
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_match_state__3
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__pos_order__sii_match_state__3
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__sii_mixin__sii_match_state__3
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
 msgid "Not contrasted"
 msgstr "No contrastada"
-
-#. module: l10n_es_aeat_sii_match
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__invoice_id
-msgid "Odoo invoice"
-msgstr "Factura Odoo"
 
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__invoice_type__out
@@ -393,6 +407,8 @@ msgstr "Factura/rectificativa de cliente"
 
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_match_state__4
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__pos_order__sii_match_state__4
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__sii_mixin__sii_match_state__4
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
 msgid "Partially contrasted"
 msgstr "Parcialmente contrastada"
@@ -400,6 +416,8 @@ msgstr "Parcialmente contrastada"
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_contrast_state__partially
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_result__sii_contrast_state__partially
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__pos_order__sii_contrast_state__partially
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__sii_mixin__sii_contrast_state__partially
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
 msgid "Partially correct"
 msgstr "Parcialmente correcto"
@@ -475,11 +493,6 @@ msgid "Related SII match report"
 msgstr "Informe SII emparejamiento relacionado"
 
 #. module: l10n_es_aeat_sii_match
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_difference__invoice_id
-msgid "Related invoice"
-msgstr "Factura relacionada"
-
-#. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__name
 msgid "Report identifier"
 msgstr "Identificador del informe"
@@ -492,12 +505,11 @@ msgstr "Resultado"
 #. module: l10n_es_aeat_sii_match
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_match/models/aeat_sii_match_report.py:0
-#, python-format
 msgid "Results"
 msgstr "Resultados"
 
 #. module: l10n_es_aeat_sii_match
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__sii_match_result
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__result_ids
 msgid "SII Match Result"
 msgstr "Resultado de cuadre de SII"
 
@@ -514,6 +526,11 @@ msgid "SII Match result"
 msgstr "Resultado de cuadre de SII"
 
 #. module: l10n_es_aeat_sii_match
+#: model:ir.model,name:l10n_es_aeat_sii_match.model_sii_mixin
+msgid "SII Mixin"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_difference__sii_field
 msgid "SII field name"
 msgstr "Nombre del campo SII"
@@ -526,22 +543,22 @@ msgstr "Diferencia de cuadre SII"
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_bank_statement_line__sii_match_difference_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_move__sii_match_difference_ids
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_payment__sii_match_difference_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__sii_match_difference_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_sii_mixin__sii_match_difference_ids
 msgid "SII match differences"
 msgstr "Diferencias de cuadre SII"
 
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_bank_statement_line__sii_match_return
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_move__sii_match_return
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_payment__sii_match_return
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_sii_mixin__sii_match_return
 msgid "SII match return"
 msgstr "Retorno de cuadre de SII"
 
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_bank_statement_line__sii_match_sent
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_move__sii_match_sent
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_payment__sii_match_sent
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_sii_mixin__sii_match_sent
 msgid "SII match sent"
 msgstr "Cuadre SII enviado"
 
@@ -574,7 +591,6 @@ msgstr "Resumen"
 #. module: l10n_es_aeat_sii_match
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_match/models/account_move.py:0
-#, python-format
 msgid ""
 "The invoices must be posted and have a CSV in order to be matched.\n"
 "Non-matchable invoices: %(invoice_names)s"
@@ -593,13 +609,16 @@ msgstr "Registros totales"
 msgid "View full tree"
 msgstr "Ver vista completa"
 
-#. module: l10n_es_aeat_sii_match
-#. odoo-python
-#: code:addons/l10n_es_aeat_sii_match/models/account_move.py:0
+#~ msgid "Odoo invoice"
+#~ msgstr "Factura Odoo"
+
+#~ msgid "Related invoice"
+#~ msgstr "Factura relacionada"
+
 #, python-format
-msgid ""
-"You have not installed deepdiff library, please install it in order to use "
-"this feature"
-msgstr ""
-"La librería deepdiff no esta instalada, por favor tienes que instalarla para "
-"utilizar esta característica"
+#~ msgid ""
+#~ "You have not installed deepdiff library, please install it in order to "
+#~ "use this feature"
+#~ msgstr ""
+#~ "La librería deepdiff no esta instalada, por favor tienes que instalarla "
+#~ "para utilizar esta característica"
