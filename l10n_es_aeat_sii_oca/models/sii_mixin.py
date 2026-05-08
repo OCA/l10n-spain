@@ -45,7 +45,7 @@ class SiiMixin(models.AbstractModel):
     aeat_state = fields.Selection(
         selection_add=SII_STATES,
     )
-    sii_csv = fields.Char(string="SII CSV", copy=False, readonly=True)
+    sii_csv = fields.Char(string="SII CSV", copy=False, readonly=True, index=True)
     sii_return = fields.Text(string="SII Return", copy=False, readonly=True)
     sii_refund_type = fields.Selection(
         selection=[
