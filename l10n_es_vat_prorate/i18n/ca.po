@@ -7,20 +7,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2025-07-16 18:23+0200\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@tecnativa.com>\n"
+"PO-Revision-Date: 2026-05-11 08:27+0000\n"
+"Last-Translator: QuiJoQuim <quim.rebull@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model,name:l10n_es_vat_prorate.model_account_update_vat_prorate
 msgid "Account Update Vat Prorate"
-msgstr ""
+msgstr "Actualitzar prorrata de l'IVA en compte"
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model.fields,help:l10n_es_vat_prorate.field_account_tax__prorate_account_ids
@@ -30,7 +30,7 @@ msgstr "Comptes per aplicar el recalcul"
 #. module: l10n_es_vat_prorate
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_prorate.account_update_vat_prorate_form_view
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel·lar"
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model,name:l10n_es_vat_prorate.model_res_company
