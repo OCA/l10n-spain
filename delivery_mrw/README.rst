@@ -183,6 +183,10 @@ Contributors
 
    -  Eduardo Ezerouali
 
+-  `Studio73 <https://www.studio73.es>`__:
+
+   -  Sergio Martínez <sergio.martinez@studio73.es>
+
 Maintainers
 -----------
 
