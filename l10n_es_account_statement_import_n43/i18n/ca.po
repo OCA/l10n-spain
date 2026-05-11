@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-29 15:03+0000\n"
-"PO-Revision-Date: 2021-03-30 09:46+0000\n"
-"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
+"PO-Revision-Date: 2026-05-11 08:27+0000\n"
+"Last-Translator: QuiJoQuim <quim.rebull@gmail.com>\n"
 "Language-Team: \n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_account_statement_import_n43
 #: model_terms:ir.ui.view,arch_db:l10n_es_account_statement_import_n43.account_statement_import_form
@@ -25,12 +25,12 @@ msgstr "Norma AEB 43 (.n43)"
 #. module: l10n_es_account_statement_import_n43
 #: model:ir.model.fields.selection,name:l10n_es_account_statement_import_n43.selection__account_journal__n43_partner_search__all
 msgid "All"
-msgstr ""
+msgstr "Tots"
 
 #. module: l10n_es_account_statement_import_n43
 #: model:ir.model.fields.selection,name:l10n_es_account_statement_import_n43.selection__account_journal__n43_partner_search__caixabank
 msgid "CaixaBank"
-msgstr ""
+msgstr "CaixaBank"
 
 #. module: l10n_es_account_statement_import_n43
 #. odoo-python
@@ -58,7 +58,7 @@ msgstr ""
 #. module: l10n_es_account_statement_import_n43
 #: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_journal__n43_exclude_pattern
 msgid "Exclude pattern for N43 import"
-msgstr ""
+msgstr "Patró d'exclusió per a importació N43"
 
 #. module: l10n_es_account_statement_import_n43
 #: model:ir.model.fields,help:l10n_es_account_statement_import_n43.field_account_journal__n43_exclude_pattern
@@ -66,6 +66,8 @@ msgid ""
 "Fill this field if you want to exclude some lines of the N43 according this "
 "regexp pattern."
 msgstr ""
+"Ompliu aquest camp si voleu excloure algunes línies del N43 segons aquest "
+"patró d'expressió regular."
 
 #. module: l10n_es_account_statement_import_n43
 #. odoo-python
