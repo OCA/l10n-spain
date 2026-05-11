@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-09-02 11:06+0000\n"
-"Last-Translator: Alberto Martínez <alberto.martinez@sygel.es>\n"
+"PO-Revision-Date: 2026-05-11 08:27+0000\n"
+"Last-Translator: QuiJoQuim <quim.rebull@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model,name:l10n_es_aeat_mod303_vat_prorate.model_l10n_es_aeat_mod303_report
@@ -24,7 +24,7 @@ msgstr "Declaration AEAT 303"
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod303_vat_prorate.l10n_es_aeat_mod303_prorrata_form
 msgid "Calcular prorrata definitiva"
-msgstr ""
+msgstr "Calcular prorrata definitiva"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__vat_prorate_percent
@@ -35,6 +35,8 @@ msgstr "Percentatge de prorrateig d'IVA definitiu"
 #: model:ir.model.fields,help:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__with_vat_prorate
 msgid "If this option is enabled, all invoice lines with VAT will be prorated"
 msgstr ""
+"Si aquesta opció està establerta, totes les línies de factures amb IVA seran "
+"prorratejades"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__prorate_id
@@ -48,6 +50,8 @@ msgid ""
 "Prorate percentage not found, or it's 0. Please review the company's prorate "
 "adjustments."
 msgstr ""
+"No es troba percentatge de prorrata o és 0. Si us plau, reviseu els "
+"ajustaments de prorrata de la companyia."
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__prorate_account_id
