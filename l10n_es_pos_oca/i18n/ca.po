@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2026-05-11 08:27+0000\n"
+"Last-Translator: QuiJoQuim <quim.rebull@gmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_pos_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_oca.res_config_settings_view_form
@@ -33,6 +35,9 @@ msgid ""
 "connection or the server being unreachable at this moment. Please reconnect "
 "and try again."
 msgstr ""
+"No es pot validar la comanda sense connexió. Això pot ser degut a una "
+"connexió perduda o que el servidor no estigui disponible en aquest moment. "
+"Si us plau, reconegui's i torneu a intentar-ho."
 
 #. module: l10n_es_pos_oca
 #: model:ir.model,name:l10n_es_pos_oca.model_res_config_settings
@@ -43,7 +48,7 @@ msgstr "Paràmetres de configuració"
 #. odoo-javascript
 #: code:addons/l10n_es_pos_oca/static/src/app/screens/payment_screen/payment_screen.esm.js:0
 msgid "Connection Lost"
-msgstr ""
+msgstr "Connexió perduda"
 
 #. module: l10n_es_pos_oca
 #. odoo-javascript
@@ -65,7 +70,7 @@ msgstr "Es la configuració simplificada"
 #. odoo-javascript
 #: code:addons/l10n_es_pos_oca/static/src/app/screens/payment_screen/payment_screen.esm.js:0
 msgid "Ok"
-msgstr ""
+msgstr "D'acord"
 
 #. module: l10n_es_pos_oca
 #: model:ir.model.fields,help:l10n_es_pos_oca.field_pos_config__l10n_es_simplified_invoice_limit
