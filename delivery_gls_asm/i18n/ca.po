@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-22 14:46+0000\n"
-"Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
+"PO-Revision-Date: 2026-05-11 08:27+0000\n"
+"Last-Translator: QuiJoQuim <quim.rebull@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__27
@@ -53,17 +53,17 @@ msgstr ""
 #. module: delivery_gls_asm
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.gls_asm_manifest_report_view
 msgid "<span>TOTAL EXPEDITIONS: </span>"
-msgstr ""
+msgstr "<span>TOTAL EXPEDICIONS: </span>"
 
 #. module: delivery_gls_asm
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.gls_asm_manifest_report_view
 msgid "<strong>Company:</strong>"
-msgstr ""
+msgstr "<strong>Companyia:</strong>"
 
 #. module: delivery_gls_asm
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.gls_asm_manifest_report_view
 msgid "<strong>Date of printing</strong>"
-msgstr ""
+msgstr "<strong>Data d'impressió</strong>"
 
 #. module: delivery_gls_asm
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.gls_asm_manifest_report_view
