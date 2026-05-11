@@ -1,6 +1,6 @@
 import datetime
 
-from odoo import _, fields, models
+from odoo import fields, models
 from odoo.exceptions import UserError
 
 
@@ -87,7 +87,7 @@ class DeliveryMRWManifiestoWizard(models.TransientModel):
             )
         if not manifest_data:
             raise UserError(
-                _(
+                self.env._(
                     "It wasn't possible to get the manifest. Maybe there aren't"
                     "deliveries for the selected date."
                 )

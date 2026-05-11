@@ -7,3 +7,5 @@
   - Miguel Poyatos \<miguel@trey.es\>
 - [Tecnativa](https://www.tecnativa.com):
   - Eduardo Ezerouali
+- [Studio73](https://www.studio73.es):
+  - Sergio Martínez \<sergio.martinez@studio73.es\>
