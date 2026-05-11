@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-17 10:44+0000\n"
-"PO-Revision-Date: 2023-06-23 13:11+0000\n"
-"Last-Translator: eccit-quim <quim@eccit.com>\n"
+"PO-Revision-Date: 2026-05-11 08:27+0000\n"
+"Last-Translator: QuiJoQuim <quim.rebull@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_46
@@ -144,7 +144,7 @@ msgstr "A02 - Arrendadors de bens immobles"
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A02
 msgid "A02 - Ganadería independiente"
-msgstr ""
+msgstr "A02 - Ramaderia independent"
 
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A03
@@ -152,21 +152,23 @@ msgid ""
 "A03 - Resto de actividades empresariales no incluidas en los dos subtipos "
 "anteriores"
 msgstr ""
+"A03 - Resta d'activitats empresarials no incloses en els dos subtipus "
+"anteriors"
 
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A04
 msgid "A04 - Actividades profesionales de carácter artístico o deportivo"
-msgstr ""
+msgstr "A04 - Activitats professionals de caràcter artístic o esportiu"
 
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A05
 msgid "A05 - Resto de actividades profesionales"
-msgstr ""
+msgstr "A05 - Resta d'activitats professionals"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model,name:l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_report
 msgid "AEAT 303 Report"
-msgstr "Declaración AEAT 303"
+msgstr "Declaració AEAT 303"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model,name:l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_report_activity_code
