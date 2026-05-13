@@ -56,6 +56,23 @@ class DeliveryCarrier(models.Model):
             "It will also exclude this carrier from the e-commerce checkout."
         ),
     )
+    dhl_parcel_pre_1330 = fields.Boolean(
+        string="Pre 13:30",
+        help="Activates Feature 714 for Pre 13:30 time-definite delivery.",
+    )
+    dhl_parcel_insurance = fields.Boolean(
+        string="Insured shipment",
+        help=(
+            "If checked, the shipment will be declared as insured. It assumes "
+            "there is a sale order linked and it will use the picking lines "
+            "total as the declared insurance value."
+        ),
+    )
+    dhl_parcel_insurance_expenses = fields.Selection(
+        selection=[("P", "Paid by sender"), ("D", "Paid by recipient")],
+        string="Insurance expenses",
+        default="P",
+    )
 
     def dhl_parcel_get_tracking_link(self, picking):
         """Provide tracking link for the customer"""
@@ -162,6 +179,28 @@ class DeliveryCarrier(models.Model):
                     "CODCurrency": sale.currency_id.name,
                 }
             )
+        if self.dhl_parcel_insurance and picking.move_ids:
+            insurance_amount = sum(
+                move.sale_line_id.currency_id.round(
+                    move.sale_line_id.price_reduce_taxexcl * move.quantity
+                )
+                for move in picking.move_ids
+                if move.sale_line_id
+            )
+            currency = (
+                picking.sale_id.currency_id.name
+                if picking.sale_id
+                else picking.company_id.currency_id.name
+            )
+            vals.update(
+                {
+                    "InsuranceAmount": insurance_amount,
+                    "InsuranceExpenses": self.dhl_parcel_insurance_expenses,
+                    "InsuranceCurrency": currency,
+                }
+            )
+        if self.dhl_parcel_pre_1330:
+            vals["Features"] = [{"Key": "714"}]
         return vals
 
     def dhl_parcel_send_shipping(self, pickings):
