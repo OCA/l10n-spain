@@ -3,3 +3,4 @@
   - Sergio Martínez
 - [Tecnativa](https://www.tecnativa.com):
   - Víctor Martínez
+  - Cristina Hidalgo
