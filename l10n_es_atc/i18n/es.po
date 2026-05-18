@@ -85,6 +85,11 @@ msgid "ATC"
 msgstr "ATC"
 
 #. module: l10n_es_atc
+#: model:ir.model,name:l10n_es_atc.model_l10n_es_atc_report
+msgid "ATC Report"
+msgstr ""
+
+#. module: l10n_es_atc
 #: model:res.groups,name:l10n_es_atc.group_account_atc
 msgid "ATC manager"
 msgstr "Gerente de ATC"
@@ -473,11 +478,6 @@ msgstr ""
 #. module: l10n_es_atc
 #: model:ir.model.fields,field_description:l10n_es_atc.field_l10n_es_atc_report__year
 msgid "Year"
-msgstr ""
-
-#. module: l10n_es_atc
-#: model:ir.model,name:l10n_es_atc.model_l10n_es_atc_report
-msgid "l10n.es.atc.report"
 msgstr ""
 
 #~ msgid "Declaraciones ATC"
