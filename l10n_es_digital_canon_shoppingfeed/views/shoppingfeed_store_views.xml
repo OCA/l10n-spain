@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_shoppingfeed_store_form" model="ir.ui.view">
+        <field name="model">shoppingfeed.store</field>
+        <field
+            name="inherit_id"
+            ref="shoppingfeed_integration.view_shoppingfeed_store_form"
+        />
+        <field name="arch" type="xml">
+            <field name="include_taxes_in_price" position="after">
+                <field name="include_l10n_es_canon_taxes_in_price" />
+            </field>
+        </field>
+    </record>
+</odoo>
