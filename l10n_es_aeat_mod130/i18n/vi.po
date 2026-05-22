@@ -19,6 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: l10n_es_aeat_mod130
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod130.action_l10n_es_aeat_mod130_report
+msgid "<span>Create and query AEAT Model 130 reports</span>"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod130.selection__l10n_es_aeat_mod130_report__tipo_declaracion__b
 msgid "A deducir"
 msgstr ""
@@ -225,11 +230,6 @@ msgid "Counterpart account"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod130.action_l10n_es_aeat_mod130_report
-msgid "Create and query AEAT Model 130 reports"
-msgstr ""
-
-#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__create_uid
 msgid "Created by"
 msgstr "Được tạo bởi"
@@ -252,10 +252,9 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
-#, python-format
 msgid ""
-"Debe introducir una cantidad en la casilla 18 como ha marcado la casilla de "
-"declaración complementaria."
+"Debe introducir una cantidad en la casilla 18 como ha marcado la declaración "
+"complementaria."
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -276,7 +275,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
-#, python-format
 msgid "Este tipo de actividad no está aún soportado por el módulo."
 msgstr ""
 
@@ -434,14 +432,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
-#, python-format
 msgid "No implementado"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
-#, python-format
 msgid ""
 "No se pueden calcular por el momento declaraciones que contengan deducciones "
 "por el artículo 80 bis."

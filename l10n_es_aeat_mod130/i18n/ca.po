@@ -20,6 +20,11 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_aeat_mod130
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod130.action_l10n_es_aeat_mod130_report
+msgid "<span>Create and query AEAT Model 130 reports</span>"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod130.selection__l10n_es_aeat_mod130_report__tipo_declaracion__b
 msgid "A deducir"
 msgstr "A deduir"
@@ -227,11 +232,6 @@ msgid "Counterpart account"
 msgstr "Compte de contrapart"
 
 #. module: l10n_es_aeat_mod130
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod130.action_l10n_es_aeat_mod130_report
-msgid "Create and query AEAT Model 130 reports"
-msgstr "Creeu i consulteu informes de l'AEAT Model 130"
-
-#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__create_uid
 msgid "Created by"
 msgstr "Creat per"
@@ -254,13 +254,10 @@ msgstr "Dades a completar"
 #. module: l10n_es_aeat_mod130
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
-#, python-format
 msgid ""
-"Debe introducir una cantidad en la casilla 18 como ha marcado la casilla de "
-"declaración complementaria."
+"Debe introducir una cantidad en la casilla 18 como ha marcado la declaración "
+"complementaria."
 msgstr ""
-"Ha d'introduir una quantitat a la casella 18 com ha marcat la casella de "
-"declaració complementària."
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__display_name
@@ -280,7 +277,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
-#, python-format
 msgid "Este tipo de actividad no está aún soportado por el módulo."
 msgstr "Aquest tipus d'activitat no està suportat pel mòdul."
 
@@ -440,14 +436,12 @@ msgstr "Tipus d'activitat següent"
 #. module: l10n_es_aeat_mod130
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
-#, python-format
 msgid "No implementado"
 msgstr "No implementat"
 
 #. module: l10n_es_aeat_mod130
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
-#, python-format
 msgid ""
 "No se pueden calcular por el momento declaraciones que contengan deducciones "
 "por el artículo 80 bis."
@@ -735,6 +729,17 @@ msgstr "¿Deducció per art. 80 bis?"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__has_prestamo
 msgid "¿Préstamo para vivienda habitual?"
 msgstr "¿Préstec per a habitatge habitual?"
+
+#~ msgid "Create and query AEAT Model 130 reports"
+#~ msgstr "Creeu i consulteu informes de l'AEAT Model 130"
+
+#, python-format
+#~ msgid ""
+#~ "Debe introducir una cantidad en la casilla 18 como ha marcado la casilla "
+#~ "de declaración complementaria."
+#~ msgstr ""
+#~ "Ha d'introduir una quantitat a la casella 18 com ha marcat la casella de "
+#~ "declaració complementària."
 
 #~ msgid "Last Modified on"
 #~ msgstr "Darrera modificació el"
