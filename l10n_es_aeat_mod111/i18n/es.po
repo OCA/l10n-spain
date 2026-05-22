@@ -20,6 +20,11 @@ msgstr ""
 "X-Generator: Weblate 5.10.4\n"
 
 #. module: l10n_es_aeat_mod111
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod111.action_l10n_es_aeat_mod111_report
+msgid "<span>Create and query AEAT Model 111 reports.</span>"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
 #: model:ir.ui.menu,name:l10n_es_aeat_mod111.menu_aeat_mod111_report
 msgid "AEAT 111 model"
 msgstr "Modelo 111"
@@ -315,11 +320,6 @@ msgid "Counterpart account"
 msgstr "Cuenta de la contraparte"
 
 #. module: l10n_es_aeat_mod111
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod111.action_l10n_es_aeat_mod111_report
-msgid "Create and query AEAT Model 111 reports."
-msgstr "Crea y consulta las declaraciones del modelo 111 de la AEAT."
-
-#. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__create_uid
 msgid "Created by"
 msgstr "Creado por"
@@ -491,6 +491,11 @@ msgid "My Activity Deadline"
 msgstr "Fecha límite de mi actividad"
 
 #. module: l10n_es_aeat_mod111
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod111.selection__l10n_es_aeat_mod111_report__tipo_declaracion__n
+msgid "Negative"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__activity_date_deadline
 msgid "Next Activity Deadline"
 msgstr "Fecha límite de la actividad siguiente"
@@ -571,6 +576,13 @@ msgid "Result: ([28] - [29])"
 msgstr "Resultado a ingresar: ([28] - [29])"
 
 #. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__use_aeat_account
+msgid ""
+"Si está suscrito a la cuenta corriente en materia tributaria, active esta "
+"opción para usarla en el ingreso o devolución."
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__date_start
 msgid "Starting date"
 msgstr "Fecha de inicio"
@@ -615,6 +627,12 @@ msgid "Tax lines"
 msgstr "Líneas de impuestos"
 
 #. module: l10n_es_aeat_mod111
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod111/models/mod111.py:0
+msgid "The box [30] Result cannot be negative"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__counterpart_account_id
 msgid ""
 "This account will be the counterpart for all the journal items that are "
@@ -634,11 +652,6 @@ msgid "To enter on CCT"
 msgstr "Ingreso a anotar en CCT"
 
 #. module: l10n_es_aeat_mod111
-#: model:ir.model.fields.selection,name:l10n_es_aeat_mod111.selection__l10n_es_aeat_mod111_report__tipo_declaracion__n
-msgid "To return"
-msgstr "Negativa"
-
-#. module: l10n_es_aeat_mod111
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
 msgid "Totals"
 msgstr "Totales"
@@ -647,6 +660,11 @@ msgstr "Totales"
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__activity_exception_decoration
 msgid "Type of the exception activity on record."
 msgstr "Tipo de la actividad de excepción registrada."
+
+#. module: l10n_es_aeat_mod111
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__use_aeat_account
+msgid "Usar cuenta corriente tributaria"
+msgstr ""
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__company_vat
@@ -849,6 +867,12 @@ msgstr "[29] Resultados a ingresar anteriores"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_30
 msgid "[30] Result"
 msgstr "[30] Resultado a ingresar"
+
+#~ msgid "Create and query AEAT Model 111 reports."
+#~ msgstr "Crea y consulta las declaraciones del modelo 111 de la AEAT."
+
+#~ msgid "To return"
+#~ msgstr "Negativa"
 
 #~ msgid "SMS Delivery error"
 #~ msgstr "SMS Error de entrega"
