@@ -20,6 +20,14 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_aeat_mod123
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod123.action_l10n_es_aeat_mod123_report
+msgid ""
+"<span>Crea y consulta las declaraciones del modelo 123 de\n"
+"            la AEAT.\n"
+"        </span>"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
 #: model:ir.ui.menu,name:l10n_es_aeat_mod123.menu_aeat_mod123_report
 msgid "AEAT 123 Model"
 msgstr "Model AEAT 123"
@@ -225,15 +233,6 @@ msgstr "Correu electrònic de contacte"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__counterpart_account_id
 msgid "Counterpart account"
 msgstr "Compte de contrapartida"
-
-#. module: l10n_es_aeat_mod123
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod123.action_l10n_es_aeat_mod123_report
-msgid ""
-"Crea y consulta las declaraciones del modelo 123 de\n"
-"            la AEAT."
-msgstr ""
-"Crea i consulta les declaracions del model 123 de\n"
-"            l'AEAT."
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__create_uid
@@ -778,6 +777,13 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
 msgid "[14] Resultado a ingresar ([12] - [13])"
 msgstr ""
+
+#~ msgid ""
+#~ "Crea y consulta las declaraciones del modelo 123 de\n"
+#~ "            la AEAT."
+#~ msgstr ""
+#~ "Crea i consulta les declaracions del model 123 de\n"
+#~ "            l'AEAT."
 
 #~ msgid "SMS Delivery error"
 #~ msgstr "Error d'entrega d'SMS"
