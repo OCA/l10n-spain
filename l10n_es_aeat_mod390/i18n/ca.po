@@ -141,6 +141,11 @@ msgid "9. Resultado liquidaciones"
 msgstr "9. Resultat liquidacions"
 
 #. module: l10n_es_aeat_mod390
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod390.action_l10n_es_aeat_mod390_report
+msgid "<span>Create and query AEAT Model 390 reports.</span>"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.ui.menu,name:l10n_es_aeat_mod390.menu_aeat_mod390_report
 msgid "AEAT 390 model"
 msgstr "Model AEAT 390"
@@ -219,7 +224,6 @@ msgstr "Compte bancari"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_account_bank_statement_line__is_bankrupcy_uncollectible_debt
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_account_move__is_bankrupcy_uncollectible_debt
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_account_payment__is_bankrupcy_uncollectible_debt
 msgid "Bankrupcy/uncollectible debt"
 msgstr ""
 
@@ -247,11 +251,6 @@ msgstr "Correu electrònic de contacte"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__counterpart_account_id
 msgid "Counterpart account"
 msgstr "Compte de contrapartida"
-
-#. module: l10n_es_aeat_mod390
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod390.action_l10n_es_aeat_mod390_report
-msgid "Create and query AEAT Model 390 reports."
-msgstr "Crea i consulta informes model 390 AEAT."
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__create_uid
@@ -329,12 +328,9 @@ msgid "Código actividad principal (antiguo)"
 msgstr "Codi activitat principal (antic)"
 
 #. module: l10n_es_aeat_mod390
-#. odoo-python
-#: code:addons/l10n_es_aeat_mod390/models/mod390.py:0
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__first_representative_notary
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__second_representative_notary
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__third_representative_notary
-#, python-format
 msgid ""
 "Código de la notaría en la que se concedió el poder de representación para "
 "esta persona."
@@ -343,6 +339,8 @@ msgstr ""
 "persona."
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_map_tax_line__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__display_name
 msgid "Display Name"
 msgstr "Nom a mostrar"
@@ -433,6 +431,8 @@ msgid "Has Message"
 msgstr "Té missatge"
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_map_tax_line__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__id
 msgid "ID"
 msgstr "ID"
@@ -594,12 +594,9 @@ msgid "Nombre del tercer representante"
 msgstr "Nom del tercer representant"
 
 #. module: l10n_es_aeat_mod390
-#. odoo-python
-#: code:addons/l10n_es_aeat_mod390/models/mod390.py:0
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__first_representative_name
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__second_representative_name
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__third_representative_name
-#, python-format
 msgid "Nombre y apellidos del representante"
 msgstr "Nom i cognoms del representant"
 
@@ -797,7 +794,6 @@ msgstr "Tercer representant"
 #. module: l10n_es_aeat_mod390
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod390/models/mod390.py:0
-#, python-format
 msgid ""
 "The result of the manual 303 summary (fields [95], [97], [98] and [662] in "
 "the page '9. Resultado liquidaciones') doesn't match the field [86]. Please "
@@ -856,7 +852,6 @@ msgstr "Historial de comunicacions del lloc web"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_account_bank_statement_line__is_bankrupcy_uncollectible_debt
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_account_move__is_bankrupcy_uncollectible_debt
-#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_account_payment__is_bankrupcy_uncollectible_debt
 msgid ""
 "When this is set, the tax base and rate will be reflected in fields 31, 32, "
 "45 and 46 of the AEAT 390 model"
@@ -870,7 +865,6 @@ msgstr "Any"
 #. module: l10n_es_aeat_mod390
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod390/models/mod390.py:0
-#, python-format
 msgid "You cannot make complementary reports for this model."
 msgstr "No podeu fer declaracions complementàries per aquest model."
 
@@ -1032,6 +1026,9 @@ msgstr "[98] Result. 303 darrer període a tornar"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__has_347
 msgid "¿Obligación del 347?"
 msgstr "Obligació del 347?"
+
+#~ msgid "Create and query AEAT Model 390 reports."
+#~ msgstr "Crea i consulta informes model 390 AEAT."
 
 #~ msgid ""
 #~ "Si en la autoliquidación del último período del ejercicio anterior "
