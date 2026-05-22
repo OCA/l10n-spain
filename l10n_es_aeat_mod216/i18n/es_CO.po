@@ -20,6 +20,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_mod216
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod216.action_l10n_es_aeat_mod216_report
+msgid "<span>Create and query AEAT Model 216 reports.</span>"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
 #: model:ir.ui.menu,name:l10n_es_aeat_mod216.menu_aeat_mod216_report
 msgid "AEAT 216 model"
 msgstr ""
@@ -107,11 +112,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__counterpart_account_id
 msgid "Counterpart account"
-msgstr ""
-
-#. module: l10n_es_aeat_mod216
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod216.action_l10n_es_aeat_mod216_report
-msgid "Create and query AEAT Model 216 reports."
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
