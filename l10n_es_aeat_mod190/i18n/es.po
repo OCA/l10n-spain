@@ -192,6 +192,11 @@ msgid "4 - Sporadic relationship of manual workers"
 msgstr "4 - Relación esporádica propia de los trabajadores manuales"
 
 #. module: l10n_es_aeat_mod190
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod190.action_l10n_es_aeat_mod190_report
+msgid "<span>Create and query AEAT Model 190 reports.</span>"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__report_id
 msgid "AEAT 190 Report ID"
 msgstr "AEAT 190 ID del informe"
@@ -536,11 +541,6 @@ msgid "Counterpart account"
 msgstr "Cuenta de contrapartida"
 
 #. module: l10n_es_aeat_mod190
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod190.action_l10n_es_aeat_mod190_report
-msgid "Create and query AEAT Model 190 reports."
-msgstr "Crea y consulta las declaraciones del modelo 190 de la AEAT."
-
-#. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__create_uid
@@ -652,10 +652,15 @@ msgid "Discapacidad"
 msgstr "Discapacidad"
 
 #. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_fiscal_position__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_mixin__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__display_name
 msgid "Display Name"
 msgstr "Nombre para Mostrar"
 
@@ -771,10 +776,15 @@ msgid "Hijos y descendientes con discapacidad, computados por entero"
 msgstr "Hijos y descendientes con discapacidad, computados por entero"
 
 #. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_fiscal_position__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move_line__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_mixin__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__id
 msgid "ID"
 msgstr "ID (identificación)"
 
@@ -1564,8 +1574,8 @@ msgstr ""
 #. module: l10n_es_aeat_mod190
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
-msgid "The state is not defined in the partner, %s"
-msgstr "La provincia no está definida en la empresa, %s"
+msgid "The state is not defined in the partner, %(partner)s"
+msgstr ""
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__counterpart_account_id
@@ -1783,6 +1793,12 @@ msgstr "[03] Importe de las retenciones"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__ejercicio_devengo
 msgid "year"
 msgstr "año"
+
+#~ msgid "Create and query AEAT Model 190 reports."
+#~ msgstr "Crea y consulta las declaraciones del modelo 190 de la AEAT."
+
+#~ msgid "The state is not defined in the partner, %s"
+#~ msgstr "La provincia no está definida en la empresa, %s"
 
 #~ msgid ""
 #~ "\n"
