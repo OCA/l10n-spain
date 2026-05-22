@@ -170,6 +170,11 @@ msgid "4 - Sporadic relationship of manual workers"
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod190.action_l10n_es_aeat_mod190_report
+msgid "<span>Create and query AEAT Model 190 reports.</span>"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__report_id
 msgid "AEAT 190 Report ID"
 msgstr ""
@@ -507,11 +512,6 @@ msgid "Counterpart account"
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod190.action_l10n_es_aeat_mod190_report
-msgid "Create and query AEAT Model 190 reports."
-msgstr ""
-
-#. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__create_uid
@@ -623,10 +623,15 @@ msgid "Discapacidad"
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_fiscal_position__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_mixin__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -742,10 +747,15 @@ msgid "Hijos y descendientes con discapacidad, computados por entero"
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_fiscal_position__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_account_move_line__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_key__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_mixin__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_report_perception_subkey__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__id
 msgid "ID"
 msgstr ""
 
@@ -1488,7 +1498,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod190
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
-msgid "The state is not defined in the partner, %s"
+msgid "The state is not defined in the partner, %(partner)s"
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
