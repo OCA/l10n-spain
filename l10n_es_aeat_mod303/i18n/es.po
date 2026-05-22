@@ -136,6 +136,11 @@ msgstr ""
 "6 - Sin epígrafe, correspondiente a: Otras actividades no sujetas al IAE"
 
 #. module: l10n_es_aeat_mod303
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod303.action_l10n_es_aeat_mod303_report
+msgid "<span>Create and query AEAT Model 303 reports</span>"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A01
 msgid "A01 - Arrendadores de bienes inmuebles"
 msgstr "A01 - Arrendadores de bienes inmuebles"
@@ -338,11 +343,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__counterpart_account_id
 msgid "Counterpart account"
 msgstr "Cuenta contrapartida"
-
-#. module: l10n_es_aeat_mod303
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod303.action_l10n_es_aeat_mod303_report
-msgid "Create and query AEAT Model 303 reports"
-msgstr "Crea y consulta declaración AEAT del modelo 303"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__create_uid
@@ -764,6 +764,14 @@ msgid "Previous declaration number"
 msgstr "Número de declaración anterior"
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_108
+msgid ""
+"Rectificativa - Exclusivamente para determinados supuestos de "
+"autoliquidación rectificativa por discrepancia de criterio administrativo "
+"que no deban incluirse en otras casillas. Otros ajustes"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__devolucion_mensual
 msgid "Registered in the Register of Monthly Return"
 msgstr "Inscrito en el Registro de Devolución Mensual"
@@ -810,6 +818,14 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form
 msgid "Resultado"
 msgstr "Resultado"
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_109
+msgid ""
+"Resultado - Devoluciones acordadas por la Agencia Tributaria como "
+"consecuencia de la tramitación de anteriores autoliquidaciones "
+"correspondientes al ejercicio y período objeto de la autoliquidación"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #. odoo-python
@@ -972,15 +988,24 @@ msgid "Year"
 msgstr "Año"
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_108
+msgid "[108] Devoluciones acordadas por la Agencia Tributaria"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_109
+msgid "[109] Devoluciones acordadas por la Agencia Tributaria"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__potential_cuota_compensar
 msgid "[110] Pending fees to compensate"
 msgstr "[110] A compensar pendiente"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_112
-msgid "[112] Payment on account for petrol deliveries"
+msgid "[112] Pago a cuenta de entregas de gasolinas, gasóleos y biocarburantes"
 msgstr ""
-"[112]  Pago a cuenta de entregas de gasolinas, gasóleos y biocarburantes"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__total_devengado
@@ -1084,3 +1109,10 @@ msgstr "¿SII voluntario?"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__has_operation_volume
 msgid "¿Volumen de operaciones?"
 msgstr "¿Volumen de operaciones?"
+
+#~ msgid "Create and query AEAT Model 303 reports"
+#~ msgstr "Crea y consulta declaración AEAT del modelo 303"
+
+#~ msgid "[112] Payment on account for petrol deliveries"
+#~ msgstr ""
+#~ "[112]  Pago a cuenta de entregas de gasolinas, gasóleos y biocarburantes"
