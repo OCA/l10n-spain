@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_aeat_mod349
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod349.action_l10n_es_aeat_mod349_report
+msgid "<span>Create and query AEAT Model 349 reports</span>"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod349.selection__account_move_line__l10n_es_aeat_349_operation_key__a
 msgid "A - Intra-Community acquisition"
 msgstr ""
@@ -238,11 +243,6 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 msgid "Country code not found in Europe"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod349.action_l10n_es_aeat_mod349_report
-msgid "Create and query AEAT Model 349 reports"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
