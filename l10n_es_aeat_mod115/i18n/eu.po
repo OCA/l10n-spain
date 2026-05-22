@@ -19,6 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_mod115
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod115.action_l10n_es_aeat_mod115_report
+msgid "<span>Create and query AEAT Model 115 reports.</span>"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
 #: model:ir.ui.menu,name:l10n_es_aeat_mod115.menu_aeat_mod115_report
 msgid "AEAT 115 model"
 msgstr ""
@@ -117,11 +122,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__counterpart_account_id
 msgid "Counterpart account"
 msgstr "Cuenta contrapartida"
-
-#. module: l10n_es_aeat_mod115
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod115.action_l10n_es_aeat_mod115_report
-msgid "Create and query AEAT Model 115 reports."
-msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__create_uid
@@ -383,14 +383,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
-#, python-format
 msgid "Select an account for making the charge"
 msgstr "Seleccione una cuenta bancaria para realizar el cargo"
 
 #. module: l10n_es_aeat_mod115
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
-#, python-format
 msgid "Select an account for receiving the money"
 msgstr "Seleccione una cuenta bancaria para recibir el dinero"
 
@@ -437,7 +435,6 @@ msgstr "Líneas de impuestos"
 #. module: l10n_es_aeat_mod115
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
-#, python-format
 msgid ""
 "The result of the declaration is negative. You should select another Result "
 "type"
@@ -446,7 +443,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
-#, python-format
 msgid ""
 "The result of the declaration is positive. You should select another Result "
 "type"
