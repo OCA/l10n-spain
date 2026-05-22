@@ -239,6 +239,11 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod296.action_l10n_es_aeat_mod296_report
+msgid "<span>Create and query AEAT Model 296 reports.</span>"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
 #: model:ir.ui.menu,name:l10n_es_aeat_mod296.menu_aeat_mod296_report
 msgid "AEAT 296 model"
 msgstr ""
@@ -386,11 +391,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__pais_residencia_fiscal
 msgid "Country territory of fiscal residence"
-msgstr ""
-
-#. module: l10n_es_aeat_mod296
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod296.action_l10n_es_aeat_mod296_report
-msgid "Create and query AEAT Model 296 reports."
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
