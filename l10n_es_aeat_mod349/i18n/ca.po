@@ -17,6 +17,11 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_aeat_mod349
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod349.action_l10n_es_aeat_mod349_report
+msgid "<span>Create and query AEAT Model 349 reports</span>"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod349.selection__account_move_line__l10n_es_aeat_349_operation_key__a
 msgid "A - Intra-Community acquisition"
 msgstr "A - Adquisició intracomunitària"
@@ -139,7 +144,6 @@ msgstr "Línia de mapa Aeat 349"
 #. module: l10n_es_aeat_mod349
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
-#, python-format
 msgid "All partner records fields (country, VAT number) must be filled."
 msgstr ""
 "S'han d'omplir tots els camps dels registres de socis (país, número d'IVA)."
@@ -147,7 +151,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
-#, python-format
 msgid "All partner refunds fields (country, VAT number) must be filled."
 msgstr ""
 "S'han d'omplir tots els camps de reemborsament de socis (país, número d'IVA)."
@@ -222,7 +225,6 @@ msgstr "Correu electrònic de contacte"
 #. module: l10n_es_aeat_mod349
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
-#, python-format
 msgid "Contact name (Full name) must have name and surname"
 msgstr "El nom del contacte (nom complet) ha de tenir nom i cognoms"
 
@@ -245,14 +247,8 @@ msgstr "País"
 #. module: l10n_es_aeat_mod349
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
-#, python-format
 msgid "Country code not found in Europe"
 msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod349.action_l10n_es_aeat_mod349_report
-msgid "Create and query AEAT Model 349 reports"
-msgstr "Crear i consultar informes AEAT Model 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line__create_uid
@@ -301,6 +297,9 @@ msgid "Details"
 msgstr "Detalls"
 
 #. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__display_name
@@ -318,7 +317,6 @@ msgstr "E - Subministraments intracomunitaris"
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_bank_statement_line__eu_triangular_deal
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move__eu_triangular_deal
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_payment__eu_triangular_deal
 msgid "EU Triangular deal"
 msgstr "Acord triangular de la UE"
 
@@ -397,6 +395,9 @@ msgid "I - Intra-Community services acquisitions"
 msgstr "I - Adquisicions de serveis intracomunitaris"
 
 #. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move_line__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__id
@@ -538,7 +539,6 @@ msgstr "Data límit de la meva activitat"
 #. module: l10n_es_aeat_mod349
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
-#, python-format
 msgid "Negative amount"
 msgstr ""
 
@@ -565,7 +565,6 @@ msgstr "Tipus d'activitat següent"
 #. module: l10n_es_aeat_mod349
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
-#, python-format
 msgid "No Tax Mapping was found"
 msgstr "No s'ha trobat cap mapeig fiscal"
 
@@ -861,7 +860,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_account_bank_statement_line__eu_triangular_deal
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_account_move__eu_triangular_deal
-#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_account_payment__eu_triangular_deal
 msgid ""
 "This invoice constitutes a triangular operation for the purposes of intra-"
 "community operations."
@@ -921,7 +919,6 @@ msgstr "Número d'Identitat"
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #: code:addons/l10n_es_aeat_mod349/tests/test_l10n_es_aeat_mod349.py:0
-#, python-format
 msgid "VAT without country code"
 msgstr ""
 
@@ -944,14 +941,12 @@ msgstr "Historial de comunicacions de la web"
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #: code:addons/l10n_es_aeat_mod349/tests/test_l10n_es_aeat_mod349.py:0
-#, python-format
 msgid "Without Country"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
-#, python-format
 msgid "Without Total Operation Amount"
 msgstr ""
 
@@ -959,7 +954,6 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #: code:addons/l10n_es_aeat_mod349/tests/test_l10n_es_aeat_mod349.py:0
-#, python-format
 msgid "Without VAT"
 msgstr ""
 
@@ -973,6 +967,9 @@ msgstr "Any"
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod349.action_aeat_349_mapping
 msgid "aeat 349 Map"
 msgstr "Mapa AEAT 349"
+
+#~ msgid "Create and query AEAT Model 349 reports"
+#~ msgstr "Crear i consultar informes AEAT Model 349"
 
 #~ msgid "SMS Delivery error"
 #~ msgstr "Error d'entrega d'SMS"

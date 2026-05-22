@@ -17,6 +17,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_aeat_mod349
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod349.action_l10n_es_aeat_mod349_report
+msgid "<span>Create and query AEAT Model 349 reports</span>"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod349.selection__account_move_line__l10n_es_aeat_349_operation_key__a
 msgid "A - Intra-Community acquisition"
 msgstr "A - Adquisición intracomunitaria"
@@ -139,7 +144,6 @@ msgstr "Mapeo de Línea Aeat 349"
 #. module: l10n_es_aeat_mod349
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
-#, python-format
 msgid "All partner records fields (country, VAT number) must be filled."
 msgstr ""
 "Todos los campos de los registros de empresas (país, número NIF) deben estar "
@@ -148,7 +152,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
-#, python-format
 msgid "All partner refunds fields (country, VAT number) must be filled."
 msgstr ""
 "Todos los campos de las rectificaciones (país, número, NIF) deben estar "
@@ -224,7 +227,6 @@ msgstr "Email de contacto"
 #. module: l10n_es_aeat_mod349
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
-#, python-format
 msgid "Contact name (Full name) must have name and surname"
 msgstr ""
 "El nombre del contacto (Nombre completo) debe contener nombre y apellidos"
@@ -248,14 +250,8 @@ msgstr "País"
 #. module: l10n_es_aeat_mod349
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
-#, python-format
 msgid "Country code not found in Europe"
 msgstr "Código de país no encontrado en Europa"
-
-#. module: l10n_es_aeat_mod349
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod349.action_l10n_es_aeat_mod349_report
-msgid "Create and query AEAT Model 349 reports"
-msgstr "Crea y consulta declaraciones de la AEAT modelo 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line__create_uid
@@ -304,6 +300,9 @@ msgid "Details"
 msgstr "Detalles"
 
 #. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__display_name
@@ -321,7 +320,6 @@ msgstr "E - Entregas intracomunitarias"
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_bank_statement_line__eu_triangular_deal
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move__eu_triangular_deal
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_payment__eu_triangular_deal
 msgid "EU Triangular deal"
 msgstr "Acuerdo triangular UE"
 
@@ -400,6 +398,9 @@ msgid "I - Intra-Community services acquisitions"
 msgstr "I - Adquisición de servicios intracomunitarios"
 
 #. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move_line__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__id
@@ -541,7 +542,6 @@ msgstr "Fecha límite de mi actividad"
 #. module: l10n_es_aeat_mod349
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
-#, python-format
 msgid "Negative amount"
 msgstr "Importe negativo"
 
@@ -568,7 +568,6 @@ msgstr "Próximo tipo de actividad"
 #. module: l10n_es_aeat_mod349
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
-#, python-format
 msgid "No Tax Mapping was found"
 msgstr "No se encontró Mapeo de Impuestos"
 
@@ -864,7 +863,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_account_bank_statement_line__eu_triangular_deal
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_account_move__eu_triangular_deal
-#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_account_payment__eu_triangular_deal
 msgid ""
 "This invoice constitutes a triangular operation for the purposes of intra-"
 "community operations."
@@ -924,7 +922,6 @@ msgstr "Número NIF"
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #: code:addons/l10n_es_aeat_mod349/tests/test_l10n_es_aeat_mod349.py:0
-#, python-format
 msgid "VAT without country code"
 msgstr "NIF sin código de país"
 
@@ -947,14 +944,12 @@ msgstr "Historial de comunicación del sitio Web"
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #: code:addons/l10n_es_aeat_mod349/tests/test_l10n_es_aeat_mod349.py:0
-#, python-format
 msgid "Without Country"
 msgstr "Sin país"
 
 #. module: l10n_es_aeat_mod349
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
-#, python-format
 msgid "Without Total Operation Amount"
 msgstr "Sin Importe total de la operación"
 
@@ -962,7 +957,6 @@ msgstr "Sin Importe total de la operación"
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #: code:addons/l10n_es_aeat_mod349/tests/test_l10n_es_aeat_mod349.py:0
-#, python-format
 msgid "Without VAT"
 msgstr "Sin NIF"
 
@@ -976,6 +970,9 @@ msgstr "Año"
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod349.action_aeat_349_mapping
 msgid "aeat 349 Map"
 msgstr "Mapeo aeat 349"
+
+#~ msgid "Create and query AEAT Model 349 reports"
+#~ msgstr "Crea y consulta declaraciones de la AEAT modelo 349"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Última modificación en"
