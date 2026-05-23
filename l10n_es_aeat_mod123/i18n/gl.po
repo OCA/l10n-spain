@@ -9,79 +9,80 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-10 03:41+0000\n"
-"PO-Revision-Date: 2018-02-10 03:41+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2026-05-23 04:26+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.ui.menu,name:l10n_es_aeat_mod123.menu_aeat_mod123_report
 msgid "AEAT 123 Model"
-msgstr ""
+msgstr "Modelo 123"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model,name:l10n_es_aeat_mod123.model_l10n_es_aeat_mod123_report
 msgid "AEAT 123 report"
-msgstr ""
+msgstr "Declaración AEAT 123"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__move_id
 msgid "Account entry"
-msgstr ""
+msgstr "Asento contable"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Acción necesaria"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "Actividades"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "Actividade Excepción Decoración"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "Estado da actividade"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "Icona para o tipo de actividade"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__allow_posting
 msgid "Allow Posting"
-msgstr ""
+msgstr "Permitir publicación"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Contador de adxuntos"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__partner_bank_id
 msgid "Bank account"
-msgstr ""
+msgstr "Conta bancaria"
 
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
 msgid "Base de retenciones e ingresos a cuenta"
-msgstr ""
+msgstr "Base de retencións e ingresos a conta"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__calculation_date
 msgid "Calculation Date"
-msgstr ""
+msgstr "Data de cálculo"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__casilla_01_2024
@@ -203,22 +204,22 @@ msgstr ""
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__company_id
 msgid "Company"
-msgstr ""
+msgstr "Compañía"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__partner_bank_id
 msgid "Company bank account used for the presentation"
-msgstr ""
+msgstr "Conta bancaria da empresa utilizada para a presentación"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__contact_email
 msgid "Contact Email"
-msgstr ""
+msgstr "Correo electrónico de contacto"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__counterpart_account_id
 msgid "Counterpart account"
-msgstr ""
+msgstr "Conta contrapartida"
 
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod123.action_l10n_es_aeat_mod123_report
@@ -226,6 +227,8 @@ msgid ""
 "Crea y consulta las declaraciones del modelo 123 de\n"
 "            la AEAT."
 msgstr ""
+"Crea e consulta as declaracións do modelo 123 da\n"
+"            AEAT."
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__create_uid
@@ -240,12 +243,12 @@ msgstr "Creado o"
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_tree
 msgid "Declaraciones AEAT 123"
-msgstr ""
+msgstr "Declaracións AEAT 123"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod123.action_l10n_es_aeat_mod123_report
 msgid "Declaración AEAT 123"
-msgstr ""
+msgstr "Declaración AEAT 123"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__display_name
@@ -255,47 +258,47 @@ msgstr "Display Name"
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod123.selection__l10n_es_aeat_mod123_report__tipo_declaracion__u
 msgid "Domiciliación"
-msgstr ""
+msgstr "Domiciliación"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__date_end
 msgid "Ending date"
-msgstr ""
+msgstr "Data final"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__error_count
 msgid "Error Count"
-msgstr ""
+msgstr "Cálculo de erros"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__export_config_id
 msgid "Export config"
-msgstr ""
+msgstr "Configuración de exportación"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Seguidores"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Seguidores (Socios)"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Icona de fonte impresionante, por exemplo fa-tasks"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__contact_name
 msgid "Full Name"
-msgstr ""
+msgstr "Nome completo"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "Ten mensaxe"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__id
@@ -305,52 +308,52 @@ msgstr "ID"
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "Icona"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "Icona para indicar unha actividade de excepción."
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Se está marcado, hai novas mensaxes que requiren a súa atención."
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Se está marcado, algunhas mensaxes teñen un erro no envío."
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod123.selection__l10n_es_aeat_mod123_report__tipo_declaracion__i
 msgid "Ingreso"
-msgstr ""
+msgstr "Ingreso"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod123.selection__l10n_es_aeat_mod123_report__tipo_declaracion__g
 msgid "Ingreso a anotar en CCT"
-msgstr ""
+msgstr "Ingreso a anotar en CCT"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "É seguidor"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__journal_id
 msgid "Journal"
-msgstr ""
+msgstr "Diario"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__journal_id
 msgid "Journal in which post the move."
-msgstr ""
+msgstr "Diario no que publicar o movemento."
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__representative_vat
 msgid "L.R. VAT number"
-msgstr ""
+msgstr "NIF repr. legal"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report____last_update
@@ -370,22 +373,22 @@ msgstr "Actualizado por derradeira vez o"
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__representative_vat
 msgid "Legal Representative VAT number."
-msgstr ""
+msgstr "NIF do representant legal."
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "Adxunto principal"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Erro no envío da mensaxe"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Mensaxes"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__number
@@ -395,57 +398,57 @@ msgstr "Nº modelo"
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__currency_id
 msgid "Moneda"
-msgstr ""
+msgstr "Moeda"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__contact_name
 msgid "Must have name and surname."
-msgstr ""
+msgstr "Debe ter nome e apelidos."
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "Data límite da miña Actividade"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod123.selection__l10n_es_aeat_mod123_report__tipo_declaracion__n
 msgid "Negativa"
-msgstr ""
+msgstr "Negativa"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "Data límite da seguinte actividade"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "Resumo da seguinte actividade"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "Tipo da seguinte actividade"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Número de accións"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "Número de erros"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "Número de mensaxes que requiren unha acción"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Nº de mensaxes con erro de entrega"
 
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
@@ -462,37 +465,37 @@ msgstr ""
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__partner_id
 msgid "Partner"
-msgstr ""
+msgstr "Empresa"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__period_type
 msgid "Period Type"
-msgstr ""
+msgstr "Tipo de Período"
 
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
 msgid "Periodificación"
-msgstr ""
+msgstr "Periodificación"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__contact_phone
 msgid "Phone"
-msgstr ""
+msgstr "Teléfono"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__previous_number
 msgid "Previous declaration number"
-msgstr ""
+msgstr "Nº previo declaración"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__name
 msgid "Report identifier"
-msgstr ""
+msgstr "Identificador do informe"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "Usuario responsable"
 
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
@@ -507,22 +510,22 @@ msgstr ""
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
 msgid "Retenciones e ingresos a cuenta"
-msgstr ""
+msgstr "Retencións e ingresos a conta"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__date_start
 msgid "Starting date"
-msgstr ""
+msgstr "Data inicial"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__state
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__statement_type
 msgid "Statement Type"
-msgstr ""
+msgstr "Tipo de declaración"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_state
@@ -532,16 +535,20 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"Estado baseado nas actividades\n"
+"Atrasado: A data de vencemento xa está vencida\n"
+"Hoxe: A data da actividade é hoxe\n"
+"Planificado: Actividades futuras."
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__support_type
 msgid "Support Type"
-msgstr ""
+msgstr "Tipo de soporte"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__tax_agency_ids
 msgid "Tax Agency"
-msgstr ""
+msgstr "Axencia Tributaria"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__tax_line_ids
@@ -555,11 +562,13 @@ msgid ""
 "This account will be the counterpart for all the journal items that are "
 "regularized when posting the report."
 msgstr ""
+"Esta conta será a contrapartida para todos os elementos do diario que están "
+"regularizados ao contabilizar o informe."
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__tipo_declaracion
 msgid "Tipo de declaración"
-msgstr ""
+msgstr "Resultado declaración"
 
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
@@ -574,13 +583,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Tipo de actividade de excepción rexistrada."
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__company_vat
-#, fuzzy
 msgid "VAT number"
-msgstr "Nº modelo"
+msgstr "NIF"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__valued_tax_line_ids
@@ -590,17 +598,17 @@ msgstr ""
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Mensaxes do sitio web"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Historial de comunicación do sitio web"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__year
 msgid "Year"
-msgstr ""
+msgstr "Ano"
 
 #. module: l10n_es_aeat_mod123
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
