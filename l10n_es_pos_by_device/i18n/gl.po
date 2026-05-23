@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 17:39+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_pos_by_device
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
@@ -21,11 +23,14 @@ msgid ""
 "specific.\" aria-label=\"Values set here are company-specific.\" "
 "groups=\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" aria-label=\"Values set here are company-specific.\" "
+"groups=\"base.group_multi_company\" role=\"img\"/>"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_config__pos_device_ids
 msgid "Available POS devices"
-msgstr ""
+msgstr "Dispositivos TPV dispoñibles"
 
 #. module: l10n_es_pos_by_device
 #. openerp-web
@@ -33,112 +38,112 @@ msgstr ""
 #: code:addons/l10n_es_pos_by_device/static/src/js/models.js:0
 #, python-format
 msgid "Cannot establish device. Clossing POS."
-msgstr ""
+msgstr "Non é posible establecer dispositivo. Pechando TPV."
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model,name:l10n_es_pos_by_device.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Compañías"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__company_id
 msgid "Company"
-msgstr ""
+msgstr "Compañía"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model,name:l10n_es_pos_by_device.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Opcións de configuración"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado o"
 
 #. module: l10n_es_pos_by_device
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.pos_device_view_tree
 msgid "Device locked"
-msgstr ""
+msgstr "Dispositivo bloqueado"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome mostrado"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__id
 msgid "ID"
-msgstr ""
+msgstr "ID (identificación)"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,help:l10n_es_pos_by_device.field_pos_config__pos_device_ids
 msgid "If left empty, all devices will be selectable"
-msgstr ""
+msgstr "Se se deixa baleiro, pódense seleccionar todos os dispositivos"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación o"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualización por"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última Actualización o"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__locked
 msgid "Locked"
-msgstr ""
+msgstr "Bloqueado"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__name
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #. module: l10n_es_pos_by_device
 #. openerp-web
 #: code:addons/l10n_es_pos_by_device/static/src/js/Screens/Chrome/DeviceName.js:0
 #, python-format
 msgid "No device"
-msgstr ""
+msgstr "Sen dispositivo"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_order__pos_device_id
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_pos_order_filter_simplified_invoice_by_device
 msgid "POS Physical Device"
-msgstr ""
+msgstr "Dispositivo físico TPV"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.actions.act_window,name:l10n_es_pos_by_device.pos_devices_act_window
 #: model:ir.ui.menu,name:l10n_es_pos_by_device.pos_device_menu
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.pos_config_view_form_by_device
 msgid "POS Physical devices"
-msgstr ""
+msgstr "Dispositivos físicos TPV"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model,name:l10n_es_pos_by_device.model_pos_config
 msgid "Point of Sale Configuration"
-msgstr ""
+msgstr "Configuración do TPV"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model,name:l10n_es_pos_by_device.model_pos_order
 msgid "Point of Sale Orders"
-msgstr ""
+msgstr "Pedidos do TPV"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model,name:l10n_es_pos_by_device.model_pos_session
 msgid "Point of Sale Session"
-msgstr ""
+msgstr "Sesión TPV"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_config__pos_sequence_by_device
@@ -146,55 +151,56 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_res_company__pos_sequence_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_res_config_settings__pos_sequence_by_device
 msgid "Pos Sequence By Device"
-msgstr ""
+msgstr "Secuencia TPV por dispositivo"
 
 #. module: l10n_es_pos_by_device
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
 msgid "Secuencing by physical device"
-msgstr ""
+msgstr "Secuencia TPV por dispositivo"
 
 #. module: l10n_es_pos_by_device
 #. openerp-web
 #: code:addons/l10n_es_pos_by_device/static/src/js/models.js:0
 #, python-format
 msgid "Select Physical Device"
-msgstr ""
+msgstr "Selecciona dispositivo físico"
 
 #. module: l10n_es_pos_by_device
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.pos_config_view_form_by_device
 msgid "Select available physical devices for this POS configuration"
 msgstr ""
+"Selecciona os dispositivos físicos dispoñibles para esta configuración TPV"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Secuencia"
 
 #. module: l10n_es_pos_by_device
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
 msgid "Sequencing"
-msgstr ""
+msgstr "Secuenciación"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__device_simplified_invoice_number
 msgid "Sim.Inv number"
-msgstr ""
+msgstr "Número de factura simplificada"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__device_simplified_invoice_padding
 msgid "Simplified Invoice padding"
-msgstr ""
+msgstr "Recheo de Factura Simplificada"
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__device_simplified_invoice_prefix
 msgid "Simplified Invoice prefix"
-msgstr ""
+msgstr "Prefixo de Factura Simplificada"
 
 #. module: l10n_es_pos_by_device
 #: code:addons/l10n_es_pos_by_device/models/pos_config.py:0
 #, python-format
 msgid "There are no physical devices available. Cannot start session."
-msgstr ""
+msgstr "Non hai dispositivos físicos dispoñibles. Non é posible iniciar sesión."
 
 #. module: l10n_es_pos_by_device
 #. openerp-web
@@ -202,19 +208,20 @@ msgstr ""
 #: code:addons/l10n_es_pos_by_device/static/src/js/models.js:0
 #, python-format
 msgid "There was a connection error when trying to establish the device."
-msgstr ""
+msgstr "Houbo un erro de conexión ao tentar establecer o dispositivo."
 
 #. module: l10n_es_pos_by_device
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.pos_device_view_tree
 msgid "Unlock device"
-msgstr ""
+msgstr "Desbloquear o dispositivo"
 
 #. module: l10n_es_pos_by_device
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
 msgid "Use a different subsequence for each physical device on POS."
 msgstr ""
+"Utilice unha subsecuencia diferente para cada dispositivo físico en POS."
 
 #. module: l10n_es_pos_by_device
 #: model:ir.model,name:l10n_es_pos_by_device.model_pos_device
 msgid "pos.device"
-msgstr ""
+msgstr "pos.dispositivo"
