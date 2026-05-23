@@ -6,23 +6,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 16:30+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model,name:l10n_es_aeat_mod303_vat_prorate.model_l10n_es_aeat_mod303_report
 msgid "AEAT 303 Report"
-msgstr ""
+msgstr "Modelo AEAT 303"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__vat_prorate_percent
 msgid "Definitive VAT prorate percentage"
-msgstr ""
+msgstr "Porcentaxe definitiva de prorrata"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,help:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__with_vat_prorate
@@ -37,17 +39,17 @@ msgstr ""
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__prorate_account_id
 msgid "Prorate regularization account"
-msgstr ""
+msgstr "Conta de regularización de prorrata"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__prorate_analytic_account_id
 msgid "Prorate regularization analytic account"
-msgstr ""
+msgstr "Conta analítica de regularización de prorrata"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,help:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__casilla_44
 msgid "Regularización por aplicación del porcentaje definitivo de prorrata."
-msgstr ""
+msgstr "Regularización por aplicación da porcentaxe definitiva de prorrata."
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,help:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__prorate_account_id
@@ -55,6 +57,8 @@ msgid ""
 "This account will be the one where charging the regularization of the VAT "
 "prorate."
 msgstr ""
+"Esta conta será a usada cando se engada a regularización de prorrata ao "
+"asento."
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,help:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__prorate_analytic_account_id
@@ -62,6 +66,8 @@ msgid ""
 "This analytic account will be the one where charging the regularization of "
 "the VAT prorate."
 msgstr ""
+"Esta conta analítica será a usada cando se engada a regularización de "
+"prorrata ao asento."
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #. odoo-python
@@ -75,7 +81,7 @@ msgstr ""
 #: code:addons/l10n_es_aeat_mod303_vat_prorate/models/mod303.py:0
 #, python-format
 msgid "VAT prorate regularization"
-msgstr ""
+msgstr "Regularización de prorrata de IVE"
 
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__with_special_vat_prorate
@@ -90,4 +96,4 @@ msgstr ""
 #. module: l10n_es_aeat_mod303_vat_prorate
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303_vat_prorate.field_l10n_es_aeat_mod303_report__casilla_44
 msgid "[44] Prorate regularization"
-msgstr ""
+msgstr "[44] Regularización de prorrata"
