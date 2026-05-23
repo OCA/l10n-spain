@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 16:31+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_atc_mod415
 #: model:mail.template,body_html:l10n_es_atc_mod415.email_template_415
@@ -106,7 +108,7 @@ msgstr ""
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__access_warning
 msgid "Access warning"
-msgstr ""
+msgstr "Advertencia de acceso"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__move_id
@@ -117,36 +119,36 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_needaction
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Acción requirida"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_ids
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "Actividades"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_exception_decoration
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "Decoración de Actividade  de Excepción"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_state
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "Estado da actividade"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_type_icon
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "Ícono de tipo de actividade"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__address
 msgid "Address"
-msgstr ""
+msgstr "Dirección"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__address_type
@@ -163,13 +165,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__amount
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__total_amount
 msgid "Amount"
-msgstr ""
+msgstr "Cantidade"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_attachment_count
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Nº de arquivos adxuntos"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__bdns_number
@@ -179,7 +181,7 @@ msgstr ""
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__partner_bank_id
 msgid "Bank account"
-msgstr ""
+msgstr "Conta Bancaria"
 
 #. module: l10n_es_atc_mod415
 #: model_terms:ir.actions.act_window,help:l10n_es_atc_mod415.action_l10n_es_atc_mod415_report
@@ -191,7 +193,7 @@ msgstr ""
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__block
 msgid "Block"
-msgstr ""
+msgstr "Bloque"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__bussiness_real_estate_rent
@@ -206,7 +208,7 @@ msgstr ""
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__total_cash_amount
 msgid "Cash Amount"
-msgstr ""
+msgstr "Cantidade Efectivo"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__cash_basis_operation
@@ -232,7 +234,7 @@ msgstr ""
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__city
 msgid "City"
-msgstr ""
+msgstr "Ciudad"
 
 #. module: l10n_es_atc_mod415
 #: model_terms:ir.actions.act_window,help:l10n_es_atc_mod415.action_l10n_es_atc_mod415_report
@@ -247,7 +249,7 @@ msgstr ""
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__company_id
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__partner_bank_id
@@ -257,7 +259,7 @@ msgstr ""
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__complement
 msgid "Complement"
-msgstr ""
+msgstr "Complemento"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__complement
@@ -294,7 +296,7 @@ msgstr ""
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__partner_country_code
 msgid "Country Code"
-msgstr ""
+msgstr "Código de país"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_move_record__create_uid
@@ -302,7 +304,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__create_uid
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_move_record__create_date
@@ -310,22 +312,22 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__create_date
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado o"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Moeda"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__access_url
 msgid "Customer Portal URL"
-msgstr ""
+msgstr "URL para cliente"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_move_record__date
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_move_record__display_name
@@ -333,17 +335,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__display_name
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome para mostrar"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__door
 msgid "Door"
-msgstr ""
+msgstr "Porta"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__date_end
 msgid "Ending date"
-msgstr ""
+msgstr "Data de finalización"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__error_count
@@ -358,7 +360,7 @@ msgstr ""
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__error_text
 msgid "Errors"
-msgstr ""
+msgstr "Erros"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__export_config_id
@@ -378,25 +380,25 @@ msgstr ""
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__floor
 msgid "Floor"
-msgstr ""
+msgstr "Piso"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_follower_ids
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Seguidores"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_partner_ids
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Seguidores (Contactos)"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_type_icon
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Icona de Font Awesome ex. fa-tasks"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_account_bank_statement_line__not_in_mod415
@@ -418,7 +420,7 @@ msgstr ""
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__contact_name
 msgid "Full Name"
-msgstr ""
+msgstr "Nome completo"
 
 #. module: l10n_es_atc_mod415
 #: model_terms:ir.ui.view,arch_db:l10n_es_atc_mod415.communication_failed
@@ -437,31 +439,31 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__id
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_exception_icon
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "Icona"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_exception_icon
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "Icona para indicar unha actividade de excepción."
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_needaction
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Se está marcado, hai novas mensaxes que requiren a túa atención."
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_has_error
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Se se atopa seleccionado, algunhas mensaxes teñen erro de envío."
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_account_bank_statement_line__not_in_mod415
@@ -499,17 +501,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_is_follower
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "É un seguidor"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__journal_id
 msgid "Journal"
-msgstr ""
+msgstr "Diario"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model,name:l10n_es_atc_mod415.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Asento contable"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__journal_id
@@ -534,7 +536,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record____last_update
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación o"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_move_record__write_uid
@@ -542,7 +544,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__write_uid
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Actualizado por"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_move_record__write_date
@@ -550,7 +552,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__write_date
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Actualizado o"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__representative_vat
@@ -567,19 +569,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_main_attachment_id
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "Adxunto principal"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_has_error
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Erro de Envío de Mensaxe"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_ids
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Mensaxes"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__number
@@ -620,25 +622,25 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__my_activity_date_deadline
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "A miña data límite de actividade"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_date_deadline
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "Data límite da seguinte actividade"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_summary
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "Resumo da seguinte actividade"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_type_id
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "Seguinte tipo de actividade"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_res_partner__not_in_mod415
@@ -649,7 +651,7 @@ msgstr ""
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__number
 msgid "Number"
-msgstr ""
+msgstr "Número"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__number_calification
@@ -665,13 +667,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_needaction_counter
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Número de accións"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_has_error_counter
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "Número de erros"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_needaction_counter
@@ -683,7 +685,7 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_has_error_counter
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Número de mensaxes con erro de envío"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__cash_basis_operation
@@ -738,7 +740,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__partner_id
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__partner_id
 msgid "Partner"
-msgstr ""
+msgstr "Socio"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model,name:l10n_es_atc_mod415.model_l10n_es_atc_mod415_partner_record
@@ -775,17 +777,17 @@ msgstr ""
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__contact_phone
 msgid "Phone"
-msgstr ""
+msgstr "Teléfono"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__portal
 msgid "Portal"
-msgstr ""
+msgstr "Portal"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__access_url
 msgid "Portal Access URL"
-msgstr ""
+msgstr "URL de acceso ao portal"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__postal_code
@@ -869,7 +871,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_user_id
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "Usuario responsable"
 
 #. module: l10n_es_atc_mod415
 #: model_terms:ir.ui.view,arch_db:l10n_es_atc_mod415.communication_failed
@@ -881,7 +883,7 @@ msgstr ""
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__user_id
 msgid "Salesperson"
-msgstr ""
+msgstr "Comercial"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__second_quarter
@@ -896,7 +898,7 @@ msgstr ""
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__access_token
 msgid "Security Token"
-msgstr ""
+msgstr "Token de seguridade"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__bussiness_real_estate_rent
@@ -914,19 +916,19 @@ msgstr ""
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__date_start
 msgid "Starting date"
-msgstr ""
+msgstr "Data de inicio"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__state
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__state
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__partner_state_code
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__state_code
 msgid "State Code"
-msgstr ""
+msgstr "Código de provincia"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__statement_type
@@ -942,11 +944,15 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"Estado baseado en actividades\n"
+"Vencida: a data tope xa pasou\n"
+"Hoxe: A data tope é hoxe\n"
+"Planificada: futuras actividades."
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__support_type
 msgid "Support Type"
-msgstr ""
+msgstr "Tipo Soporte"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__tax_agency_ids
@@ -1038,7 +1044,7 @@ msgstr ""
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__township
 msgid "Township"
-msgstr ""
+msgstr "Municipio"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__township_code
@@ -1049,14 +1055,14 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_exception_decoration
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Tipo de actividade de excepción rexistrada."
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__partner_vat
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__partner_vat
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__company_vat
 msgid "VAT number"
-msgstr ""
+msgstr "Número de IVE"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__community_vat
@@ -1074,13 +1080,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__website_message_ids
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Mensaxes do sitio web"
 
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__website_message_ids
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Historial de comunicacións do sitio web"
 
 #. module: l10n_es_atc_mod415
 #: model_terms:ir.ui.view,arch_db:l10n_es_atc_mod415.communication_success
@@ -1090,4 +1096,4 @@ msgstr ""
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__year
 msgid "Year"
-msgstr ""
+msgstr "Ano"
