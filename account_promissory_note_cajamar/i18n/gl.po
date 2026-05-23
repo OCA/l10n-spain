@@ -6,40 +6,42 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 05:08+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: account_promissory_note_cajamar
 #: model:ir.model.fields,field_description:account_promissory_note_cajamar.field_account_journal__account_check_printing_layout
 #: model:ir.model.fields,field_description:account_promissory_note_cajamar.field_res_company__account_check_printing_layout
 msgid "Check Layout"
-msgstr ""
+msgstr "Persoal de cheque"
 
 #. module: account_promissory_note_cajamar
 #: model:ir.model,name:account_promissory_note_cajamar.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Compañías"
 
 #. module: account_promissory_note_cajamar
 #: model:ir.model,name:account_promissory_note_cajamar.model_account_journal
 msgid "Journal"
-msgstr ""
+msgstr "Diario"
 
 #. module: account_promissory_note_cajamar
 #: model:ir.actions.report,name:account_promissory_note_cajamar.action_report_promissory_footer_cm
 msgid "Payment Promissory Note Cajamar"
-msgstr ""
+msgstr "Pagarei de Cajamar"
 
 #. module: account_promissory_note_cajamar
 #: model:ir.model.fields.selection,name:account_promissory_note_cajamar.selection__account_journal__account_check_printing_layout__account_promissory_note_cajamar_action_report_promissory_footer_cm
 #: model:ir.model.fields.selection,name:account_promissory_note_cajamar.selection__res_company__account_check_printing_layout__account_promissory_note_cajamar_action_report_promissory_footer_cm
 msgid "Promissory note Cajamar"
-msgstr ""
+msgstr "Pagarei Cajamar"
 
 #. module: account_promissory_note_cajamar
 #: model:ir.model.fields,help:account_promissory_note_cajamar.field_account_journal__account_check_printing_layout
@@ -48,8 +50,10 @@ msgid ""
 "Select the format corresponding to the check paper you will be printing your checks on.\n"
 "In order to disable the printing feature, select 'None'."
 msgstr ""
+"Seleccione o tamaño correspondente ao tamaño de cheque que vai imprimir.\n"
+"Para desactivar a función de impresión, seleccione 'Ningún'."
 
 #. module: account_promissory_note_cajamar
 #: model:ir.model,name:account_promissory_note_cajamar.model_report_account_promissory_note_cajamar_report_check_cm_a4
 msgid "report.account_promissory_note_cajamar.report_check_cm_a4"
-msgstr ""
+msgstr "report.account_promissory_note_cajamar.report_check_cm_a4"
