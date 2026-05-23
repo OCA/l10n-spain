@@ -6,27 +6,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 17:39+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/mod592_manufacturer.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__concept__1
 #, python-format
 msgid "(1) Initial existence"
-msgstr ""
+msgstr "(1) Existencia Inicial"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/mod592_acquirer.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__concept__1
 #, python-format
 msgid "(1) Intra-community acquisition"
-msgstr ""
+msgstr "(1) Adquisición Intracomunitaria"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -36,7 +38,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__res_partner__plastic_document_type__1
 #, python-format
 msgid "(1) NIF or Spanish NIE"
-msgstr ""
+msgstr "(1) NIF ou NIE Español"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -46,28 +48,28 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__res_partner__plastic_document_type__2
 #, python-format
 msgid "(2) Intra-Community VAT NIF"
-msgstr ""
+msgstr "(2) NIF intracomunitario"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/mod592_manufacturer.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__concept__2
 #, python-format
 msgid "(2) Manufacturing"
-msgstr ""
+msgstr "(2) Fabricación"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/mod592_acquirer.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__concept__2
 #, python-format
 msgid "(2) Shipping outside Spanish territory"
-msgstr ""
+msgstr "(2) Envío fose do territorio español"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/mod592_acquirer.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_acquirer__concept__3
 #, python-format
 msgid "(3) Inadequacy or destruction"
-msgstr ""
+msgstr "(3) Inadecuación ou destrución"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -77,7 +79,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__res_partner__plastic_document_type__3
 #, python-format
 msgid "(3) Others"
-msgstr ""
+msgstr "(3) Outros"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/mod592_manufacturer.py:0
@@ -87,13 +89,15 @@ msgid ""
 "(3) Return of products for destruction or reincorporation into the\n"
 "                manufacturing process"
 msgstr ""
+"(3) Retorno de produtos para destrución ou reincorporación ao proceso de "
+"fabricación"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/mod592_manufacturer.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__l10n_es_aeat_mod592_report_line_manufacturer__concept__4
 #, python-format
 msgid "(4) Delivery or making available of the products accounted for"
-msgstr ""
+msgstr "(4) Entrega ou posta ao dispor dos produtos contabilizados"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/mod592_acquirer.py:0
@@ -103,6 +107,7 @@ msgid ""
 "(4) Return for destruction or reincorporation into the\n"
 "                manufacturing process"
 msgstr ""
+"(4) Devolución para destrución ou reincorporación ao proceso de fabricación"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/mod592_manufacturer.py:0
@@ -112,6 +117,8 @@ msgid ""
 "(5) Other cancellations of the products accounted for other than\n"
 "                their delivery or availability"
 msgstr ""
+"(5) Outras anulacións dos produtos contabilizados distintas á súa entrega ou "
+"posta ao dispor"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -122,7 +129,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_type_key__a
 #, python-format
 msgid "(A) Non-reusable"
-msgstr ""
+msgstr "(A) Non reutilizable"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -131,7 +138,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_manufacturer__a
 #, python-format
 msgid "(A) Subjection and non-exemption "
-msgstr ""
+msgstr "(A) Suxeición e non exención "
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -140,7 +147,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_acquirer__a
 #, python-format
 msgid "(A) Subjection and non-exemption Law 7/2022, of April 8"
-msgstr ""
+msgstr "(A) Suxeición e non exención Lei 7/2022, do 8 de abril"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -149,7 +156,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_acquirer__b
 #, python-format
 msgid "(B) Non-subjection article 73 c) Law 7/2022, of April 8"
-msgstr ""
+msgstr "(B) Non suxeición artigo 73 c) Lei 7/2022, do 8 de abril"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -158,7 +165,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_manufacturer__b
 #, python-format
 msgid "(B) Not subject to article 73 a) Law 7/2022, of April 8"
-msgstr ""
+msgstr "(B) Non suxeición artigo 73 a) Lei 7/2022, do 8 de abril"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -169,7 +176,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_type_key__b
 #, python-format
 msgid "(B) Semi-finished"
-msgstr ""
+msgstr "(B) Semielaborado"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -178,7 +185,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_manufacturer__c
 #, python-format
 msgid "(C) Not subject to article 73 b) Law 7/2022, of April 8"
-msgstr ""
+msgstr "(C) Non suxeición artigo 73 b) Lei 7/2022, do 8 de abril"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -187,7 +194,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_acquirer__c
 #, python-format
 msgid "(C) Not subject to article 73 d) Law 7/2022, of April 8"
-msgstr ""
+msgstr "(C) Non suxeición artigo 73 d) Lei 7/2022, do 8 de abril"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -198,7 +205,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_type_key__c
 #, python-format
 msgid "(C) Plastic product intended to allow the closure"
-msgstr ""
+msgstr "(C) Produto plástico destinado a permitir o peche"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -207,7 +214,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_acquirer__d
 #, python-format
 msgid "(D) Exemption article 75 a) 1º Law 7/2022, of April 8"
-msgstr ""
+msgstr "(D) Exención artigo 75 a) 1º Lei 7/2022, do 8 de abril"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -216,7 +223,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_manufacturer__d
 #, python-format
 msgid "(D) Non-subjection article 73 c) Law 7/2022, of April 8"
-msgstr ""
+msgstr "(D) Non suxeición artigo 73 c) Lei 7/2022, do 8 de abril"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -225,7 +232,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_acquirer__e
 #, python-format
 msgid "(E) Exemption article 75 a) 2º Law 7/2022, of April 8"
-msgstr ""
+msgstr "(E) Exención artigo 75 a) 2º Lei 7/2022, do 8 de abril"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -234,7 +241,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_manufacturer__e
 #, python-format
 msgid "(E) Not subject to article 73 d) Law 7/2022, of April 8"
-msgstr ""
+msgstr "(E) Non suxeición artigo 73 d) Lei 7/2022, do 8 de abril"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -243,7 +250,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_manufacturer__f
 #, python-format
 msgid "(F) Exemption article 75 a) 1º Law 7/2022, of April 8"
-msgstr ""
+msgstr "(F) Exención artigo 75 a) 1º Lei 7/2022, do 8 de abril"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -252,7 +259,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_acquirer__f
 #, python-format
 msgid "(F) Exemption article 75 a) 3º Law 7/2022, of April 8"
-msgstr ""
+msgstr "(F) Exención artigo 75 a) 3º Lei 7/2022, do 8 de abril"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -261,7 +268,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_manufacturer__g
 #, python-format
 msgid "(G) Exemption article 75 a) 2º Law 7/2022, of April 8"
-msgstr ""
+msgstr "(G) Exención artigo 75 a) 2º Lei 7/2022, do 8 de abril"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -270,7 +277,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_acquirer__g
 #, python-format
 msgid "(G) Exemption article 75 b) Law 7/2022, of April 8"
-msgstr ""
+msgstr "(G) Exención artigo 75 b) Lei 7/2022, do 8 de abril"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -279,7 +286,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_manufacturer__h
 #, python-format
 msgid "(H) Exemption article 75 a) 3º Law 7/2022, of April 8"
-msgstr ""
+msgstr "(H) Exención artigo 75 a) 3º Lei 7/2022, do 8 de abril"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -288,7 +295,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_acquirer__h
 #, python-format
 msgid "(H) Exemption article 75 c) Law 7/2022, of April 8"
-msgstr ""
+msgstr "(H) Exención artigo 75 c) Lei 7/2022, do 8 de abril"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -297,7 +304,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_manufacturer__i
 #, python-format
 msgid "(I) Exemption article 75 c) Law 7/2022, of April 8"
-msgstr ""
+msgstr "(I) Exención artigo 75 c) Lei 7/2022, do 8 de abril"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -306,7 +313,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_acquirer__i
 #, python-format
 msgid "(I) Exemption article 75 d) Law 7/2022, of April 8"
-msgstr ""
+msgstr "(I) Exención artigo 75 d) Lei 7/2022, do 8 de abril"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -315,7 +322,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_acquirer__j
 #, python-format
 msgid "(J) Exemption article 75 e) Law 7/2022, of April 8"
-msgstr ""
+msgstr "(J) Exención artigo 75 e) Lei 7/2022, do 8 de abril"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -324,7 +331,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_manufacturer__j
 #, python-format
 msgid "(J) Exemption article 75 g) 1º Law 7/2022, of April 8"
-msgstr ""
+msgstr "(J) Exención artigo 75 g) 1º Lei 7/2022, do 8 de abril"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -333,7 +340,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_acquirer__k
 #, python-format
 msgid "(K) Exemption article 75 f) Law 7/2022, of April 8"
-msgstr ""
+msgstr "(K) Exención artigo 75 f) Lei 7/2022, do 8 de abril"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -342,7 +349,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_manufacturer__k
 #, python-format
 msgid "(K) Exemption article 75 g) 2º Law 7/2022, of April 8"
-msgstr ""
+msgstr "(K) Exención artigo 75 g) 2º Lei 7/2022, do 8 de abril"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -351,7 +358,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_acquirer__l
 #, python-format
 msgid "(L) Exemption article 75 g) 1º Law 7/2022, of April 8"
-msgstr ""
+msgstr "(L) Exención artigo 75 g) 1º Lei 7/2022, do 8 de abril"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/misc.py:0
@@ -360,33 +367,33 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__plastic_tax_regime_acquirer__m
 #, python-format
 msgid "(M) Exemption article 75 g) 2º Law 7/2022, of April 8"
-msgstr ""
+msgstr "(M) Exención artigo 75 g) 2º Lei 7/2022, do 8 de abril"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.l10n_es_aeat_mod_592_acquirer_entries_view_form
 msgid "AEAT 592 Acquirer Entries record detail"
-msgstr ""
+msgstr "AEAT 592 Detalle de rexistro de adquirente"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model,name:l10n_es_aeat_mod592.model_l10n_es_aeat_mod592_report_line_acquirer
 msgid "AEAT 592 Acquirer report"
-msgstr ""
+msgstr "AEAT 592 Informe de adquirente"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.l10n_es_aeat_mod_592_manufacturer_entries_view_form
 msgid "AEAT 592 Manufacturer Entries record detail"
-msgstr ""
+msgstr "AEAT 592 Detalle de rexistro de fabricante"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model,name:l10n_es_aeat_mod592.model_l10n_es_aeat_mod592_report_line_manufacturer
 msgid "AEAT 592 Manufacturer report"
-msgstr ""
+msgstr "AEAT 592 Informe de fabricante"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod592.action_l10n_es_aeat_mod592_report
 #: model:ir.ui.menu,name:l10n_es_aeat_mod592.menu_aeat_mod592_report
 msgid "AEAT 592 Model"
-msgstr ""
+msgstr "Modelo 592"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.actions.report,name:l10n_es_aeat_mod592.l10n_es_aeat_mod592_csv_acquirer
@@ -401,37 +408,37 @@ msgstr ""
 #. module: l10n_es_aeat_mod592
 #: model:ir.actions.report,name:l10n_es_aeat_mod592.act_report_aeat_mod592_pdf
 msgid "AEAT 592 Model PDF"
-msgstr ""
+msgstr "Modelo 592 PDF"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.actions.report,name:l10n_es_aeat_mod592.l10n_es_aeat_mod592_xlsx_acquirer
 msgid "AEAT 592 Model XLSX Acquirer report"
-msgstr ""
+msgstr "Modelo 592 Informe de adquirente"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.actions.report,name:l10n_es_aeat_mod592.l10n_es_aeat_mod592_xlsx_man
 msgid "AEAT 592 Model XLSX Manufacturer report"
-msgstr ""
+msgstr "Modelo 592 Informe de fabricante"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model,name:l10n_es_aeat_mod592.model_l10n_es_aeat_mod592_report
 msgid "AEAT 592 report"
-msgstr ""
+msgstr "Informe AEAT 592"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model,name:l10n_es_aeat_mod592.model_l10n_es_aeat_mod592_report_line_mixin
 msgid "AEAT 592 report line Mixin"
-msgstr ""
+msgstr "Liña de Informe AEAT 592 Mixin"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.view_l10n_es_aeat_mod592_report_tree
 msgid "AEAT 592 reports"
-msgstr ""
+msgstr "Informes AEAT 592"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__move_id
 msgid "Account entry"
-msgstr ""
+msgstr "Asento contable"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/product_product.py:0
@@ -440,64 +447,64 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__tax_plastic_type__acquirer
 #, python-format
 msgid "Acquirer"
-msgstr ""
+msgstr "Adquirente"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/report/l10n_es_aeat_mod592_xlsx.py:0
 #, python-format
 msgid "Acquirer Items"
-msgstr ""
+msgstr "Rexistros de adquirente"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.view_l10n_es_aeat_mod592_report_form
 msgid "Acquirer Result"
-msgstr ""
+msgstr "Resultado de adquirente"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__acquirer_line_ids
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.view_l10n_es_aeat_mod592_report_form
 msgid "Acquirer entries"
-msgstr ""
+msgstr "Asentos de adquirente"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__show_error_acquirer
 msgid "Acquirer lines with error"
-msgstr ""
+msgstr "Línas de adquirente con erro"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.view_l10n_es_aeat_mod592_report_form
 msgid "Acquirer lines with errors"
-msgstr ""
+msgstr "Línas de adquirente con erros"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.report_aeat_mod592_document
 msgid "Acquirer records"
-msgstr ""
+msgstr "Rexistros de adquirente"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Acción necesaria"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "Actividades"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "Actividade de excepción de decoración"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "Estado de actividade"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "Tipo de icona de actividade"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/mod592.py:0
@@ -506,26 +513,28 @@ msgid ""
 "All entries records fields (Entrie number, VAT number Concept, Key product, "
 "Fiscal regime, etc must be filled."
 msgstr ""
+"Todos os campos de aséntelos (Nª asento, NIF, Concepto, crave produto, "
+"réxime fiscal...) deben estar enchidos."
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__allow_posting
 msgid "Allow Posting"
-msgstr ""
+msgstr "Permitir publicación"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__amount_plastic_tax
 msgid "Amount tax for non recyclable"
-msgstr ""
+msgstr "Importe imposto non reciclable"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Contador de adxuntos"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__partner_bank_id
 msgid "Bank account"
-msgstr ""
+msgstr "Conta bancaria"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/product_product.py:0
@@ -534,40 +543,40 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__tax_plastic_type__both
 #, python-format
 msgid "Both"
-msgstr ""
+msgstr "Ambos"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__calculation_date
 msgid "Calculation Date"
-msgstr ""
+msgstr "Data de cálculo"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__entries_ok
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__entries_ok
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_mixin__entries_ok
 msgid "Checked if record is OK"
-msgstr ""
+msgstr "Marcado se o rexistro é correcto"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model,name:l10n_es_aeat_mod592.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Compañías"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__company_id
 msgid "Company"
-msgstr ""
+msgstr "Compañía"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__partner_bank_id
 msgid "Company bank account used for the presentation"
-msgstr ""
+msgstr "Conta bancaria da compañía usada para a presentación"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_acquirer_summary
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_summary
 msgid "Company:"
-msgstr ""
+msgstr "Compañía:"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__concept
@@ -575,52 +584,52 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_acquirer_record_head
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_record_head
 msgid "Concept"
-msgstr ""
+msgstr "Concepto"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model,name:l10n_es_aeat_mod592.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__contact_email
 msgid "Contact Email"
-msgstr ""
+msgstr "Email contacto"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_acquirer_summary
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_summary
 msgid "Contact phone:"
-msgstr ""
+msgstr "Teléfono de contacto:"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__counterpart_account_id
 msgid "Counterpart account"
-msgstr ""
+msgstr "Conta contrapartida"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod592.action_l10n_es_aeat_mod592_report
 msgid "Create and query AEAT 592 Model reports"
-msgstr ""
+msgstr "Crear e consultar informes Modelo 592"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creación por"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__create_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__create_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creación en"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Moeda"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__date_done
@@ -629,45 +638,45 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_acquirer_record_head
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_record_head
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_acquirer_summary
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_summary
 msgid "Declaration number:"
-msgstr ""
+msgstr "Nº de declaración:"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome mostrado"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__date_end
 msgid "Ending date"
-msgstr ""
+msgstr "Data final"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_acquirer_record_head
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_record_head
 msgid "Entrie"
-msgstr ""
+msgstr "Rexistro"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__entry_number
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__entry_number
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_mixin__entry_number
 msgid "Entrie number"
-msgstr ""
+msgstr "Nº de asento"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__entries_ok
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__entries_ok
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_mixin__entries_ok
 msgid "Entries OK"
-msgstr ""
+msgstr "Rexistros OK"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__entry_note
@@ -676,203 +685,203 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_acquirer_record_head
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_record_head
 msgid "Entries observation"
-msgstr ""
+msgstr "Observacións do rexistro"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__error_count
 msgid "Error Count"
-msgstr ""
+msgstr "Contador de erros"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__error_text
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__error_text
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_mixin__error_text
 msgid "Error text"
-msgstr ""
+msgstr "Texto de erro"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.view_l10n_es_aeat_mod592_report_form
 msgid "Export CSV Acquirer"
-msgstr ""
+msgstr "Exportar CSV Adquirente"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.view_l10n_es_aeat_mod592_report_form
 msgid "Export CSV Manufacturer"
-msgstr ""
+msgstr "Exportar CSV Fabricante"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.view_l10n_es_aeat_mod592_report_form
 msgid "Export XLSX Acquirer"
-msgstr ""
+msgstr "Exportar XLSX Adquirente"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.view_l10n_es_aeat_mod592_report_form
 msgid "Export XLSX Manufacturer"
-msgstr ""
+msgstr "Exportar XLSX Fabricante"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__export_config_id
 msgid "Export config"
-msgstr ""
+msgstr "Exportar configuración"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_acquirer_summary
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_summary
 msgid "Fiscal Year:"
-msgstr ""
+msgstr "Ano fiscal:"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_acquirer_record_head
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_record_head
 msgid "Fiscal regime"
-msgstr ""
+msgstr "Régiem fiscal"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__fiscal_manufacturer
 msgid "Fiscal regime manufacturer"
-msgstr ""
+msgstr "Regimen fiscal fabricante"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__fiscal_acquirer
 msgid "Fiscal reginme acquirer"
-msgstr ""
+msgstr "Regimen fiscal adquirente"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Seguidores"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Seguidores (Contactos)"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Fonte de iconas impresionante, por exemplo, fa-tasks"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.report_aeat_mod592_document
 msgid "Form 592 Plastic tax"
-msgstr ""
+msgstr "Formulario 592 Imposto sobre o plástico"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__contact_name
 msgid "Full Name"
-msgstr ""
+msgstr "Nome completo"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.view_l10n_es_aeat_mod592_report_form
 msgid "General"
-msgstr ""
+msgstr "Xeneral"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.view_l10n_es_aeat_mod592_report_form
 msgid "Generic"
-msgstr ""
+msgstr "Xenérico"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "Ten mensaxe"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "Icona"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "Icona para indicar unha actividade de excepción."
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_needaction
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_unread
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Se está marcado, as novas mensaxes requiren a súa atención."
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Se está marcado, algunhas mensaxes teñen un erro de entrega."
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "É seguidor"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_product_product__is_plastic_tax
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_product_template__is_plastic_tax
 msgid "Is plastic tax?"
-msgstr ""
+msgstr "Ten imposto plástico?"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__journal_id
 msgid "Journal"
-msgstr ""
+msgstr "Diario"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__journal_id
 msgid "Journal in which post the move."
-msgstr ""
+msgstr "Diairo no que contabilizar o asento."
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_acquirer_record_head
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_record_head
 msgid "Key product"
-msgstr ""
+msgstr "Crave produto"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__representative_vat
 msgid "L.R. VAT number"
-msgstr ""
+msgstr "L.R. NIF"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación o"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última modificación por"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__write_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__write_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última modificación o"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__representative_vat
 msgid "Legal Representative VAT number."
-msgstr ""
+msgstr "Representante legal NIF."
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_acquirer_summary
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_summary
 msgid "Legal representative VAT:"
-msgstr ""
+msgstr "Representante legal NIF:"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "Adxunto principal"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/product_product.py:0
@@ -881,65 +890,65 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod592.selection__product_template__tax_plastic_type__manufacturer
 #, python-format
 msgid "Manufacturer"
-msgstr ""
+msgstr "Fabricante"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/report/l10n_es_aeat_mod592_xlsx.py:0
 #, python-format
 msgid "Manufacturer Items"
-msgstr ""
+msgstr "Rexistros do fabricante"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.view_l10n_es_aeat_mod592_report_form
 msgid "Manufacturer Result"
-msgstr ""
+msgstr "Resultado do fabricante"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__manufacturer_line_ids
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.view_l10n_es_aeat_mod592_report_form
 msgid "Manufacturer entries"
-msgstr ""
+msgstr "Rexistros do fabricante"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__show_error_manufacturer
 msgid "Manufacturer lines with error"
-msgstr ""
+msgstr "Línas de fabricante con erro"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.view_l10n_es_aeat_mod592_report_form
 msgid "Manufacturer lines with errors"
-msgstr ""
+msgstr "Liñas do fabricante con erros"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.report_aeat_mod592_document
 msgid "Manufacturer records"
-msgstr ""
+msgstr "Rexistros de fabricación"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Mensaxe de erro de entrega"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Mensaxe"
 
 #. module: l10n_es_aeat_mod592
 #: model:res.groups,name:l10n_es_aeat_mod592.group_mod592_acquirer
 msgid "Mod 592 (Acquirer)"
-msgstr ""
+msgstr "Modelo 592 (Adquirente)"
 
 #. module: l10n_es_aeat_mod592
 #: model:res.groups,name:l10n_es_aeat_mod592.group_mod592_manufacturer
 msgid "Mod 592 (Manufacturer)"
-msgstr ""
+msgstr "Modelo 592 (Fabricante)"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod592.action_l10n_es_aeat_mod592_report_line_acquirer
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod592.action_l10n_es_aeat_mod592_report_line_manufacturer
 msgid "Mod 592 Report Lines"
-msgstr ""
+msgstr "Liñas de informe Mod 592"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model,name:l10n_es_aeat_mod592.model_report_l10n_es_aeat_mod592_l10n_es_aeat_mod592_csv_acquirer
@@ -956,82 +965,82 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__report_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_mixin__report_id
 msgid "Mod592 Report"
-msgstr ""
+msgstr "Informe Mod592"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model,name:l10n_es_aeat_mod592.model_report_l10n_es_aeat_mod592_l10n_es_aeat_mod592_xlsx_acquirer
 msgid "Mod592 XLSX Acquirer"
-msgstr ""
+msgstr "XLSX do adquirente Mod592"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model,name:l10n_es_aeat_mod592.model_report_l10n_es_aeat_mod592_l10n_es_aeat_mod592_xlsx_man
 msgid "Mod592 XLSX Manufacturer"
-msgstr ""
+msgstr "XLSX do fabricante Mod592"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__number
 msgid "Model number"
-msgstr ""
+msgstr "Número de modelo"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__contact_name
 msgid "Must have name and surname."
-msgstr ""
+msgstr "Debe ter nome e apelidos."
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "A miña data límite de actividade"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "Seguinte data límite de actividade"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "Seguinte resumo de actividade"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "Seguinte tipo de actividade"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Nº de accións"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "Nº de erros"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__num_lines_acquirer
 msgid "Number of lines acquirer"
-msgstr ""
+msgstr "Nº de liñas do adquirente"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__num_lines_manufacturer
 msgid "Number of lines manufacturer"
-msgstr ""
+msgstr "Nº de liñas do fabricante"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr ""
+msgstr "Nº de mensaxes que requiren unha acción"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Nº de mensaxes con erro de entrega"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_unread_counter
 msgid "Number of unread messages"
-msgstr ""
+msgstr "Nº de mensaxes non lidas"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__partner_id
@@ -1039,82 +1048,82 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__partner_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_mixin__partner_id
 msgid "Partner"
-msgstr ""
+msgstr "Cliente"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__period_type
 msgid "Period Type"
-msgstr ""
+msgstr "Tipo de período"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_acquirer_summary
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_summary
 msgid "Period:"
-msgstr ""
+msgstr "Período:"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__contact_phone
 msgid "Phone"
-msgstr ""
+msgstr "Teléfono"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__company_plastic_acquirer
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_res_company__company_plastic_acquirer
 msgid "Plastic Acquirer"
-msgstr ""
+msgstr "Adquirente de plástico"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__company_plastic_manufacturer
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_res_company__company_plastic_manufacturer
 msgid "Plastic Manufacturer"
-msgstr ""
+msgstr "Fabricante de plástico"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.product_template_form_view_inherit_l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.product_variant_easy_edit_view_inherit_l10n_es_aeat_mod592
 msgid "Plastic Tax Parameters"
-msgstr ""
+msgstr "Parámetros de impostos de plástico"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_res_partner__plastic_document_type
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_res_users__plastic_document_type
 msgid "Plastic document type"
-msgstr ""
+msgstr "Tipo de documento de plástico"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_product_product__plastic_tax_regime_acquirer
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_product_template__plastic_tax_regime_acquirer
 msgid "Plastic tax regime acquirer"
-msgstr ""
+msgstr "Réxime fiscal do produto adquirido"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_product_product__plastic_tax_regime_manufacturer
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_product_template__plastic_tax_regime_manufacturer
 msgid "Plastic tax regime manufaturer"
-msgstr ""
+msgstr "Réxime fiscal do produto fabricado"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_product_product__plastic_type_key
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_product_template__plastic_type_key
 msgid "Plastic type key"
-msgstr ""
+msgstr "Tipo de clave de plástico"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_product_product__plastic_tax_weight
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_product_template__plastic_tax_weight
 msgid "Plastic weight"
-msgstr ""
+msgstr "Peso de plástico"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_product_product__plastic_weight_non_recyclable
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_product_template__plastic_weight_non_recyclable
 msgid "Plastic weight non recyclable"
-msgstr ""
+msgstr "Peso de plástico non reciclable"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__previous_number
 msgid "Previous declaration number"
-msgstr ""
+msgstr "Nº declaración anterior"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model,name:l10n_es_aeat_mod592.model_product_product
@@ -1122,19 +1131,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__product_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_mixin__product_id
 msgid "Product"
-msgstr ""
+msgstr "Produto"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__product_key
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__product_key
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_mixin__product_key
 msgid "Product Key"
-msgstr ""
+msgstr "Clave de produto"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model,name:l10n_es_aeat_mod592.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Modelo de produto"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__product_uom_qty
@@ -1149,45 +1158,45 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_mixin__product_description
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_record_head
 msgid "Product description"
-msgstr ""
+msgstr "Descrición produto"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_acquirer_record_head
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_record_head
 msgid "Proof document"
-msgstr ""
+msgstr "Xustificante"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__name
 msgid "Report identifier"
-msgstr ""
+msgstr "Identificador do informe"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "Usuario responsable"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__sequence
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__sequence
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_mixin__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Secuencia"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__date_start
 msgid "Starting date"
-msgstr ""
+msgstr "Data de inicio"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__state
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__statement_type
 msgid "Statement Type"
-msgstr ""
+msgstr "Tipo de declaración"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__activity_state
@@ -1197,13 +1206,17 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"Estado baseado en actividades\n"
+"Vencido: A data de vencemento xa pasou\n"
+"Hoxe: A data da actividade é hoxe\n"
+"Planificado: Actividades futuras."
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__stock_move_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__stock_move_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_mixin__stock_move_id
 msgid "Stock Move"
-msgstr ""
+msgstr "Movemento de existencias"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__supplier_document_number
@@ -1212,7 +1225,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_acquirer_record_head
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_record_head
 msgid "Supplier document number"
-msgstr ""
+msgstr "Nº de documento do provedor"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__supplier_document_type
@@ -1221,7 +1234,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_acquirer_record_head
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_record_head
 msgid "Supplier document type"
-msgstr ""
+msgstr "Tipo de documento do provedor"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__supplier_social_reason
@@ -1230,31 +1243,31 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_acquirer_record_head
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_record_head
 msgid "Supplier name"
-msgstr ""
+msgstr "Destinatario ou provedor"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_res_partner__plastic_document_type
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_res_users__plastic_document_type
 msgid "Supplier/Recipient Document Type Code"
-msgstr ""
+msgstr "Tipo de documento do provedor/destinatario"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__support_type
 msgid "Support Type"
-msgstr ""
+msgstr "Xustificante"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__proof
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__proof
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_mixin__proof
 msgid "Supporting document"
-msgstr ""
+msgstr "Xustificante"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_acquirer_summary
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_summary
 msgid "Surnames and name contact:"
-msgstr ""
+msgstr "Nome e apelidos do contacto:"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__tax_agency_ids
@@ -1265,14 +1278,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_product_product__tax_plastic_type
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_product_template__tax_plastic_type
 msgid "Tax Plastic Type"
-msgstr ""
+msgstr "Tipo imposto plásticos"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/product_product.py:0
 #: code:addons/l10n_es_aeat_mod592/models/product_template.py:0
 #, python-format
 msgid "The non-recyclable weight must be equal to or less than"
-msgstr ""
+msgstr "O peso non reciclable debe ser igual ou menor que"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__counterpart_account_id
@@ -1280,238 +1293,240 @@ msgid ""
 "This account will be the counterpart for all the journal items that are "
 "regularized when posting the report."
 msgstr ""
+"Esta conta será a contrapartida de todos os asentos que se regularicen ao "
+"contabilizar o informe."
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__total_acquirer_entries
 msgid "Total acquirer entries"
-msgstr ""
+msgstr "Total entradas de adquiriente"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.view_l10n_es_aeat_mod592_report_form
 msgid "Total amount"
-msgstr ""
+msgstr "Importe Total"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__total_amount_acquirer
 msgid "Total amount acquirer"
-msgstr ""
+msgstr "Importe total adquirente"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__total_amount_manufacturer
 msgid "Total amount manufacturer"
-msgstr ""
+msgstr "Importe total fabricante"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.view_l10n_es_aeat_mod592_report_form
 msgid "Total entries"
-msgstr ""
+msgstr "Total rexistros"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.view_l10n_es_aeat_mod592_report_tree
 msgid "Total entries (Acquirer)"
-msgstr ""
+msgstr "Total rexistros (Adquiriente)"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.view_l10n_es_aeat_mod592_report_tree
 msgid "Total entries (Manufacturer)"
-msgstr ""
+msgstr "Total rexistros (Fabricante)"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__total_manufacturer_entries
 msgid "Total manufacturer entries"
-msgstr ""
+msgstr "Total entradas de fabricante"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_acquirer_summary
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_summary
 msgid "Total number of records:"
-msgstr ""
+msgstr "Nº de asentos:"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.view_l10n_es_aeat_mod592_report_form
 msgid "Total weight"
-msgstr ""
+msgstr "Peso total"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.view_l10n_es_aeat_mod592_report_tree
 msgid "Total weight (Acquirer)"
-msgstr ""
+msgstr "Peso total (Adquiriente)"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.view_l10n_es_aeat_mod592_report_tree
 msgid "Total weight (Manufacturer)"
-msgstr ""
+msgstr "Peso total (Fabricante)"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.view_l10n_es_aeat_mod592_report_form
 msgid "Total weight (non reclyclable)"
-msgstr ""
+msgstr "Peso total (non reciclable)"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__total_weight_acquirer
 msgid "Total weight acquirer"
-msgstr ""
+msgstr "Total peso adquiriente"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__total_weight_acquirer_non_reclyclable
 msgid "Total weight acquirer non reclyclable"
-msgstr ""
+msgstr "Total peso adquiriente non reciclable"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__total_weight_manufacturer
 msgid "Total weight manufacturer"
-msgstr ""
+msgstr "Total peso fabricante"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__total_weight_manufacturer_non_reclyclable
 msgid "Total weight manufacturer non reclyclable"
-msgstr ""
+msgstr "Total peso fabricante non reciclable"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_acquirer_summary
 msgid "Total weight of non reclyclable:"
-msgstr ""
+msgstr "Peso total non reciclable:"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_summary
 msgid "Total weight of records non reclyclable:"
-msgstr ""
+msgstr "Peso total de rexistros non reciclable:"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_acquirer_summary
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_summary
 msgid "Total weight:"
-msgstr ""
+msgstr "Peso total:"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__picking_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__picking_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_mixin__picking_id
 msgid "Transfer"
-msgstr ""
+msgstr "Transferencia"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Tipo de actividade da excepción no rexistro."
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_unread
 msgid "Unread Messages"
-msgstr ""
+msgstr "Mensaxes non lidas"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__message_unread_counter
 msgid "Unread Messages Counter"
-msgstr ""
+msgstr "Contador de mensaxes non lidas"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__company_vat
 msgid "VAT number"
-msgstr ""
+msgstr "NIF"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_acquirer_summary
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_summary
 msgid "VAT:"
-msgstr ""
+msgstr "NIF:"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Mensaxes da web"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,help:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Comunicación histórica da web"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__kgs
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__kgs
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_mixin__kgs
 msgid "Weight"
-msgstr ""
+msgstr "Peso"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer__no_recycling_kgs
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer__no_recycling_kgs
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_mixin__no_recycling_kgs
 msgid "Weight non reclycable"
-msgstr ""
+msgstr "Peso non reciclados"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_acquirer_record_head
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_record_head
 msgid "Weiht"
-msgstr ""
+msgstr "Quilogramos"
 
 #. module: l10n_es_aeat_mod592
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_acquirer_record_head
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod592.mod592_manufacturer_record_head
 msgid "Weiht non reclycable"
-msgstr ""
+msgstr "Quilogramos non reciclados"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/mod592_acquirer.py:0
 #, python-format
 msgid "Without VAT"
-msgstr ""
+msgstr "Sen NIF"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/mod592_line_mixin.py:0
 #, python-format
 msgid "Without Weiht"
-msgstr ""
+msgstr "Sen Quilogramos"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/mod592_line_mixin.py:0
 #, python-format
 msgid "Without Weiht non recyclable"
-msgstr ""
+msgstr "Sen quilogramos non reciclados"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/mod592_manufacturer.py:0
 #, python-format
 msgid "Without document number"
-msgstr ""
+msgstr "Sen número documento"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/mod592_line_mixin.py:0
 #, python-format
 msgid "Without entrie number"
-msgstr ""
+msgstr "Sen numero de rexistro"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/mod592_line_mixin.py:0
 #, python-format
 msgid "Without product key"
-msgstr ""
+msgstr "Sen clave de produto"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/mod592_acquirer.py:0
 #: code:addons/l10n_es_aeat_mod592/models/mod592_manufacturer.py:0
 #, python-format
 msgid "Without regime"
-msgstr ""
+msgstr "Sen regimen"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/mod592_manufacturer.py:0
 #, python-format
 msgid "Without supplier document"
-msgstr ""
+msgstr "Sen documento de provedor"
 
 #. module: l10n_es_aeat_mod592
 #: code:addons/l10n_es_aeat_mod592/models/mod592_acquirer.py:0
 #: code:addons/l10n_es_aeat_mod592/models/mod592_manufacturer.py:0
 #, python-format
 msgid "Without supplier name"
-msgstr ""
+msgstr "Sen nome do provedor"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__year
 msgid "Year"
-msgstr ""
+msgstr "Ano"
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.actions.report,print_report_name:l10n_es_aeat_mod592.l10n_es_aeat_mod592_csv_acquirer
@@ -1519,4 +1534,4 @@ msgstr ""
 #: model:ir.actions.report,print_report_name:l10n_es_aeat_mod592.l10n_es_aeat_mod592_xlsx_acquirer
 #: model:ir.actions.report,print_report_name:l10n_es_aeat_mod592.l10n_es_aeat_mod592_xlsx_man
 msgid "object.get_report_file_name()"
-msgstr ""
+msgstr "object.get_report_file_name()"
