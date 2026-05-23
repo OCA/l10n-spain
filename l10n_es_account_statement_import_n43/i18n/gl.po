@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-29 03:40+0000\n"
-"PO-Revision-Date: 2019-02-05 14:50+0000\n"
-"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
+"PO-Revision-Date: 2026-05-23 04:26+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_account_statement_import_n43
 #: model_terms:ir.ui.view,arch_db:l10n_es_account_statement_import_n43.account_statement_import_form
@@ -68,9 +68,8 @@ msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
 #: model:ir.model,name:l10n_es_account_statement_import_n43.model_account_statement_import
-#, fuzzy
 msgid "Import Bank Statement Files"
-msgstr "Importar extracto bancario"
+msgstr "Importar extracto(s) bancario(s)"
 
 #. module: l10n_es_account_statement_import_n43
 #: model:ir.model,name:l10n_es_account_statement_import_n43.model_account_journal
