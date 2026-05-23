@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 05:08+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: delivery_dhl_parcel
 #: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
@@ -25,47 +27,47 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__all_customer_accounts
 msgid "All customer accounts"
-msgstr ""
+msgstr "Todas as contas de clientes"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_product__b2b
 msgid "B2B Product"
-msgstr ""
+msgstr "Produto B2B"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_product__b2c
 msgid "B2C Product"
-msgstr ""
+msgstr "Produto B2"
 
 #. module: delivery_dhl_parcel
 #: model_terms:ir.ui.view,arch_db:delivery_dhl_parcel.delivery_endday_wizard_form
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_cash_on_delivery
 msgid "Cash on delivery"
-msgstr ""
+msgstr "Contra reembolso"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado o"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__customer_accounts
 msgid "Customer codes to end day for"
-msgstr ""
+msgstr "Códigos de cliente para pechar o día"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__delivery_type__dhl_parcel
 msgid "DHL Parcel"
-msgstr ""
+msgstr "Paquete DHL"
 
 #. module: delivery_dhl_parcel
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
@@ -76,49 +78,53 @@ msgid ""
 "                you should rely on another price method instead or override this\n"
 "                one in your custom code."
 msgstr ""
+"A API de DHL Parcel non proporciona métodos para calcular as tarifas de "
+"entrega, polo que\n"
+"                polo que debe utilizar outro método de cálculo de prezos ou\n"
+"                no seu código personalizado."
 
 #. module: delivery_dhl_parcel
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
 #, python-format
 msgid "DHL Parcel Cancellation failed with reason: %s"
-msgstr ""
+msgstr "Cancelación DHL Parcel fallado por: %s"
 
 #. module: delivery_dhl_parcel
 #: model_terms:ir.ui.view,arch_db:delivery_dhl_parcel.view_delivery_carrier_form
 msgid "DHL Parcel Configuration"
-msgstr ""
+msgstr "Configuración DHL Parcel"
 
 #. module: delivery_dhl_parcel
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
 #, python-format
 msgid "DHL Parcel End Day"
-msgstr ""
+msgstr "Pechar o día (DHL Parcel)"
 
 #. module: delivery_dhl_parcel
 #: model_terms:ir.ui.view,arch_db:delivery_dhl_parcel.delivery_endday_wizard_form
 msgid "DHL Parcel End day"
-msgstr ""
+msgstr "Pechar o día (DHL Parcel)"
 
 #. module: delivery_dhl_parcel
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
 #, python-format
 msgid "DHL Parcel Expedition with reference %s cancelled"
-msgstr ""
+msgstr "Expedición DHL Parcel con referencia %s cancelado"
 
 #. module: delivery_dhl_parcel
 #: model_terms:ir.ui.view,arch_db:delivery_dhl_parcel.view_picking_withcarrier_out_form
 msgid "DHL Parcel Label"
-msgstr ""
+msgstr "Etiqueta DHL Parcel"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_password
 msgid "DHL Parcel Password"
-msgstr ""
+msgstr "Contrasinal DHL Parcel"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__carrier_id
 msgid "DHL Parcel Service"
-msgstr ""
+msgstr "Servizo DHL Parcel"
 
 #. module: delivery_dhl_parcel
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
@@ -127,79 +133,81 @@ msgid ""
 "DHL Parcel Shipping extra info:\n"
 "Origin: %(origin)s, Customer: %(customer)s, AWB: %(awb)s, LP: %(lp)s"
 msgstr ""
+"Información adicional do envío DHL Parcel:\n"
+"Orígen: %(origin)s, Cliente: %(customer)s, AWB: %(awb)s, LP: %(lp)s"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_uid
 msgid "DHL Parcel UID"
-msgstr ""
+msgstr "UID DHL Parcel"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_customer_code
 msgid "DHL Parcel customer code"
-msgstr ""
+msgstr "Código de cliente DHL Parcel"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_incoterm
 msgid "DHL Parcel incoterms"
-msgstr ""
+msgstr "Servizo DHL Parcel"
 
 #. module: delivery_dhl_parcel
 #: code:addons/delivery_dhl_parcel/models/stock_picking.py:0
 #, python-format
 msgid "DHL Parcel label for %s"
-msgstr ""
+msgstr "Etiqueta DHL Parcel para %s"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_last_end_day_report
 msgid "DHL Parcel last manual end day report"
-msgstr ""
+msgstr "Último informe DHL Parcel de pecho de día"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_stock_picking__dhl_parcel_shipment_held
 msgid "DHL Parcel shipment on hold"
-msgstr ""
+msgstr "Envío DHL Parcel retido"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_product
 msgid "DHL Product"
-msgstr ""
+msgstr "Produto DHL"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome mostrado"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_label_format__epl
 msgid "EPL"
-msgstr ""
+msgstr "EPL"
 
 #. module: delivery_dhl_parcel
 #: model_terms:ir.ui.view,arch_db:delivery_dhl_parcel.delivery_endday_wizard_form
 #: model_terms:ir.ui.view,arch_db:delivery_dhl_parcel.view_delivery_carrier_form
 msgid "End day"
-msgstr ""
+msgstr "Pechar o día"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_last_end_day_report_name
 msgid "Filename"
-msgstr ""
+msgstr "Nomee ficheiro"
 
 #. module: delivery_dhl_parcel
 #: code:addons/delivery_dhl_parcel/models/stock_picking.py:0
 #, python-format
 msgid "Held shipment for {}"
-msgstr ""
+msgstr "Envío {} retido"
 
 #. module: delivery_dhl_parcel
 #: model_terms:ir.ui.view,arch_db:delivery_dhl_parcel.view_picking_withcarrier_out_form
 msgid "Hold DHL Parcel shipment"
-msgstr ""
+msgstr "Reter envío DHL Parcel"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,help:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_cash_on_delivery
@@ -208,6 +216,10 @@ msgid ""
 " a sale order linked and it will use that total amount as the value to be "
 "paid. It will also exclude this carrier from the e-commerce checkout."
 msgstr ""
+"Se está marcado, significa que o transportista se paga á hora de entregar. "
+"Asume que hai un pedido de venda relacionado do cal usará a cantidade total "
+"como o valor para pagar. Tamén excluirá este método de envío dos dispoñibles "
+"na web."
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,help:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__customer_accounts
@@ -216,72 +228,75 @@ msgid ""
 "i.e. '001-000001,002-000002'\n"
 "You can also use 'ALL' to end all of them"
 msgstr ""
+"Se se están pechando vários, introducelos separados por comas sen espazos\n"
+"i.e. '001-000001,002-000002'\n"
+"Tamén se pode usar 'ALL' para pechalos todos"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,help:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_product
 msgid "If the product is not specified, it is considered B2B"
-msgstr ""
+msgstr "Se non se especifica o produto, considérase produto B2B"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_label_format
 msgid "Label format"
-msgstr ""
+msgstr "Formato de etiqueta"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación o"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última modificación por"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última modificación o"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model,name:delivery_dhl_parcel.model_dhl_parcel_endday_wizard
 msgid "Manually end the day"
-msgstr ""
+msgstr "Pechar o día manualmente"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_incoterm__exw
 msgid "Owed transport"
-msgstr ""
+msgstr "Transporte debido"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_label_format__pdf
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_incoterm__cpt
 msgid "Paid transport"
-msgstr ""
+msgstr "Transporte pago"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__delivery_type
 msgid "Provider"
-msgstr ""
+msgstr "Provedor"
 
 #. module: delivery_dhl_parcel
 #: model_terms:ir.ui.view,arch_db:delivery_dhl_parcel.view_picking_withcarrier_out_form
 msgid "Release DHL Parcel shipment"
-msgstr ""
+msgstr "Liberar envío DHL Parcel"
 
 #. module: delivery_dhl_parcel
 #: code:addons/delivery_dhl_parcel/models/stock_picking.py:0
 #, python-format
 msgid "Released shipment for {}"
-msgstr ""
+msgstr "Envío {} liberado"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model,name:delivery_dhl_parcel.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Orde de venda"
 
 #. module: delivery_dhl_parcel
 #: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
@@ -294,7 +309,7 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #: model:ir.model,name:delivery_dhl_parcel.model_delivery_carrier
 msgid "Shipping Methods"
-msgstr ""
+msgstr "Métodos de envío"
 
 #. module: delivery_dhl_parcel
 #: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
@@ -307,15 +322,15 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #: model:ir.model,name:delivery_dhl_parcel.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Albará"
 
 #. module: delivery_dhl_parcel
 #: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
 #, python-format
 msgid "Unsupported request type, please only use 'GET' or 'POST'"
-msgstr ""
+msgstr "Tipo de resposta non soportado, por favor só usa 'GET' ou 'POST'"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_label_format__zpl
 msgid "ZPL"
-msgstr ""
+msgstr "ZPL"
