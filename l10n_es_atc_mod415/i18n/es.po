@@ -1,0 +1,1687 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_atc_mod415
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0-20230418\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-08 12:30+0000\n"
+"PO-Revision-Date: 2023-05-08 13:34+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.4.3\n"
+
+#. module: l10n_es_atc_mod415
+#: model:mail.template,body_html:l10n_es_atc_mod415.email_template_415
+#, fuzzy
+msgid ""
+"\n"
+"<p>Estimado/a <t t-out=\"object.partner_id.name\" />\n"
+"</p>\n"
+"<p>Le comunicamos que a efectos de comprobación del modelo 415:</p>\n"
+"<p>Nuestros datos en dicha declaración son:</p>\n"
+"<p>\n"
+"  <strong>Nombre:</strong> <t t-out=\"object.report_id.company_id.name\"/"
+"><br/>\n"
+"  <strong>NIF:</strong> <t t-out=\"object.report_id.company_id.vat or ''\"/"
+"><br/>\n"
+"  <strong>Provincia:</strong> <t t-out=\"object.report_id.company_id."
+"state_id.name or ''\"/><br/>\n"
+"</p>\n"
+"<p>Los datos que vamos a declarar en relación a las operaciones habidas con "
+"su empresa son:</p>\n"
+"<p>\n"
+"  <strong>Nombre:</strong> <t t-out=\"object.partner_id.name\"/><br/>\n"
+"  <strong>NIF:</strong> <t t-out=\"object.partner_vat\"/><br/>\n"
+"  <strong>Código de país:</strong> <t t-out=\"object.partner_country_code\"/"
+"><br/>\n"
+"  <strong>Código de provincia:</strong> <t t-out=\"object."
+"partner_state_code\"/><br/>\n"
+"</p>\n"
+"<p>\n"
+"  <strong>Tipo de operación:</strong> <t t-out=\"object.operation_key\"/>\n"
+"</p>\n"
+"\n"
+"  <t t-if=\"object.amount\">\n"
+"  <p>\n"
+"  <strong>Importe de las operaciones:</strong> <t t-out=\"object.amount\"/"
+"><br/>\n"
+"  <strong>Operaciones primer trimestre:</strong> <t t-out=\"object."
+"first_quarter\"/><br/>\n"
+"  <strong>Operaciones segundo trimestre:</strong> <t t-out=\"object."
+"second_quarter\"/><br/>\n"
+"  <strong>Operaciones tercer trimestre:</strong> <t t-out=\"object."
+"third_quarter\"/><br/>\n"
+"  <strong>Operaciones cuarto trimestre:</strong> <t t-out=\"object."
+"fourth_quarter\"/><br/>\n"
+"  </p>\n"
+"  </t>\n"
+"  <t t-if=\"object.cash_amount\">\n"
+"  <p>\n"
+"  <strong>Importe recibido en efectivo:</strong> <t t-out=\"object."
+"cash_amount\"/><br/>\n"
+"  </p>\n"
+"</t>\n"
+"  <t t-if=\"object.real_estate_transmissions_amount\">\n"
+"  <p>\n"
+"  <strong>Importe de transmisión de inmueble:</strong> <t t-out=\"object."
+"real_estate_transmissions_amount\"/><br/>\n"
+"  <strong>Inmuebles primer trimestre:</strong> <t t-out=\"object."
+"first_quarter_real_estate_transmission\"/><br/>\n"
+"  <strong>Inmuebles segundo trimestre:</strong> <t t-out=\"object."
+"second_quarter_real_estate_transmission\"/><br/>\n"
+"  <strong>Inmuebles tercer trimestre:</strong> <t t-out=\"object."
+"third_quarter_real_estate_transmission\"/><br/>\n"
+"  <strong>Inmuebles cuarto trimestre:</strong> <t t-out=\"object."
+"fourth_quarter_real_estate_transmission\"/><br/>\n"
+"  </p>\n"
+"</t>\n"
+"  <p>En el documento adjunto se incluyen las facturas en base a las cuales "
+"se obtienen los importes anteriores.</p>\n"
+"  <p>Si los datos son correctos puede indicar su conformidad en el siguiente "
+"botón:</p>\n"
+"  <br><br>\n"
+"  <center>\n"
+"      <a style=\"background-color: #1abc9c; padding: 20px; text-decoration: "
+"none; color: #fff; border-radius: 5px; font-size: 16px;\" "
+"class=\"o_default_snippet_text\" t-att-href=\"object.get_confirm_url()\">\n"
+"          Aceptar datos del 415\n"
+"      </a>\n"
+"  </center>\n"
+"  <br><br>\n"
+"  <p>Si los importes no son correctos, puede pulsar en este botón para que "
+"nos pongamos en contacto posteriormente, o responder a este correo indicando "
+"el problema:</p>\n"
+"  <br><br>\n"
+"  <center>\n"
+"      <a style=\"background-color: #d55937; padding: 20px; text-decoration: "
+"none; color: #fff; border-radius: 5px; font-size: 16px;\" "
+"class=\"o_default_snippet_text\" t-att-href=\"object.get_reject_url()\">\n"
+"          Rechazar datos del 415\n"
+"      </a>\n"
+"  </center>\n"
+"  <br><br>\n"
+"  <p>Para cualquier otra pregunta, no dude en contactar con nosotros "
+"respondiendo a este correo.</p>\n"
+"<p style=\"color:#888888\">\n"
+"    <t t-if=\"user and user.signature\">\n"
+"    <t t-out=\"user.signature\"/>\n"
+"    </t>\n"
+"</p>\n"
+"\n"
+"    "
+msgstr ""
+"\n"
+"<p>Estimado/a ${object.partner_id.name}</p>\n"
+"<p>Le comunicamos que a efectos de comprobación del modelo 415:</p>\n"
+"<p>Nuestros datos en dicha declaración son:</p>\n"
+"<p>\n"
+"  <strong>Nombre:</strong> ${object.report_id.company_id.name}<br/>\n"
+"  <strong>NIF:</strong> ${object.report_id.company_id.vat o ''}<br/>\n"
+"  <strong>Provincia:</strong> ${object.report_id.company_id.state_id.name o "
+"''}<br/>\n"
+"</p>\n"
+"<p>Los datos que vamos a declarar en relación a las operaciones habidas con "
+"su empresa son:</p>\n"
+"<p>\n"
+"  <strong>Nombre:</strong> ${object.partner_id.name}<br/>\n"
+"  <strong>NIF:</strong> ${object.partner_vat}<br/>\n"
+"  <strong>Código de país:</strong> ${object.partner_country_code}<br/>\n"
+"  <strong>Código de provincia:</strong> ${object.partner_state_code}<br/>\n"
+"</p>\n"
+"<p>\n"
+"  <strong>Tipo de operación:</strong> ${object.operation_key}</p>\n"
+"\n"
+"  % if objeto.importe:  <p>\n"
+"  <strong>Importe de las operaciones:</strong> ${object.amount}<br/>\n"
+"  <strong>Operaciones primer trimestre:</strong> ${object.first_quarter}<br/"
+">\n"
+"  <strong>Operaciones segundo trimestre:</strong> ${object.second_quarter}"
+"<br/>\n"
+"  <strong>Operaciones tercer trimestre:</strong> ${object.third_quarter}<br/"
+">\n"
+"  <strong>Operaciones cuarto trimestre:</strong> ${object.fourth_quarter}<br/"
+">\n"
+"  </p>\n"
+"  % endif\n"
+"  % if object.cash_amount:  <p>\n"
+"  <strong>Importe recibido en efectivo:</strong> ${object.cash_amount}<br/>\n"
+"  </p>\n"
+"  % endif\n"
+"  % if object.real_estate_transmissions_amount:  <p>\n"
+"  <strong>Importe de transmisión de inmueble:</strong> ${object."
+"real_estate_transmissions_amount}<br/>\n"
+"  <strong>Inmuebles primer trimestre:</strong> ${object."
+"first_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Inmuebles segundo trimestre:</strong> ${object."
+"second_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Inmuebles tercer trimestre:</strong> ${object."
+"third_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Inmuebles cuarto trimestre:</strong> ${object."
+"fourth_quarter_real_estate_transmission}<br/>\n"
+"  </p>\n"
+"  % endif  <p>En el documento adjunto se incluyen las facturas en base a las "
+"cuales se obtienen los importes anteriores.</p>\n"
+"  <p>Si los datos son correctos puede indicar su conformidad en el siguiente "
+"botón:</p>\n"
+"  <br><br>\n"
+"  <center>\n"
+"      <a style=\"background-color: #1abc9c; padding: 20px; text-decoration: "
+"none; color: #fff; border-radius: 5px; font-size: 16px;\"\n"
+"              class=\"o_default_snippet_text\"\n"
+"              href=\"${object.get_confirm_url()}\">Aceptar datos del "
+"415      </a>\n"
+"  </center>\n"
+"  <br><br>\n"
+"  <p>Si los importes no son correctos, puede pulsar en este botón para que "
+"nos pongamos en contacto posteriormente, o responder a este correo indicando "
+"el problema:</p>\n"
+"  <br><br>\n"
+"  <center>\n"
+"      <a style=\"background-color: #d55937; padding: 20px; text-decoration: "
+"none; color: #fff; border-radius: 5px; font-size: 16px;\"\n"
+"              class=\"o_default_snippet_text\"\n"
+"              href=\"${object.get_reject_url()}\">Rechazar datos del "
+"415      </a>\n"
+"  </center>\n"
+"  <br><br>\n"
+"  <p>Para cualquier otra pregunta, no dude en contactar con nosotros "
+"respondiendo a este correo.</p>\n"
+"<p style=\"color:#888888\">\n"
+"% if usuario y usuario.firma:\n"
+"    ${user.signature | seguro}\n"
+"% endif</p>\n"
+"\n"
+"        "
+
+#. module: l10n_es_atc_mod415
+#: model:ir.actions.report,name:l10n_es_atc_mod415.415_partner
+#, fuzzy
+msgid "415 Partner Detail"
+msgstr "415 Detalle del socio"
+
+#. module: l10n_es_atc_mod415
+#: model:mail.template,report_name:l10n_es_atc_mod415.email_template_415
+#, fuzzy
+msgid "415_details"
+msgstr "415_details"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model,name:l10n_es_atc_mod415.model_l10n_es_atc_mod415_report
+#, fuzzy
+msgid "ATC 415 Report"
+msgstr "Informe ATC 415"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__access_warning
+msgid "Access warning"
+msgstr "Advertencia de acceso"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__move_id
+#, fuzzy
+msgid "Account entry"
+msgstr "Entrada de cuenta"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_needaction
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_needaction
+msgid "Action Needed"
+msgstr "Acción requerida"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_ids
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_exception_decoration
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoración de Actividad  de Excepción"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_state
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_state
+msgid "Activity State"
+msgstr "Estado de la actividad"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_type_icon
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Ícono de tipo de actividad"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__address
+msgid "Address"
+msgstr "Dirección"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__address_type
+#, fuzzy
+msgid "Address Type"
+msgstr "Tipo de dirección"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__allow_posting
+#, fuzzy
+msgid "Allow Posting"
+msgstr "Permitir publicación"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_move_record__amount
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__amount
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__total_amount
+msgid "Amount"
+msgstr "Cantidad"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_attachment_count
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_attachment_count
+msgid "Attachment Count"
+msgstr "Nº de archivos adjuntos"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__partner_bank_id
+msgid "Bank account"
+msgstr "Cuenta Bancaria"
+
+#. module: l10n_es_atc_mod415
+#: model_terms:ir.actions.act_window,help:l10n_es_atc_mod415.action_l10n_es_atc_mod415_report
+#, fuzzy
+msgid ""
+"Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban\n"
+"                los diseños físicos y lógicos del 415."
+msgstr ""
+"Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban\n"
+"            los diseños físicos y lógicos del 415."
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__block
+msgid "Block"
+msgstr "Bloque"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__bussiness_real_estate_rent
+#, fuzzy
+msgid "Bussiness Real Estate Rent"
+msgstr "Alquiler de Bienes Raíces de Negocios"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__calculation_date
+#, fuzzy
+msgid "Calculation Date"
+msgstr "Fecha de cálculo"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__total_cash_amount
+msgid "Cash Amount"
+msgstr "Cantidad Efectivo"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__cash_basis_operation
+#, fuzzy
+msgid "Cash Basis Operation"
+msgstr "Operación de base de efectivo"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__cash_record_ids
+#, fuzzy
+msgid "Cash payments"
+msgstr "Pagos en efectivo"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__reference
+#, fuzzy
+msgid "Catastral Reference"
+msgstr "Referencia Catastral"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__check_ok
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__check_ok
+#, fuzzy
+msgid "Checked if this record is OK"
+msgstr "Comprobado si este registro es correcto"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__city
+msgid "City"
+msgstr "Ciudad"
+
+#. module: l10n_es_atc_mod415
+#: model_terms:ir.actions.act_window,help:l10n_es_atc_mod415.action_l10n_es_atc_mod415_report
+#, fuzzy
+msgid "Click to create a Modelo ATC 415 Reports."
+msgstr "Haga clic para crear un informe ATC modelo 415."
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__community_vat
+#, fuzzy
+msgid "Community vat number"
+msgstr "Número de IVA comunitario"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__company_id
+msgid "Company"
+msgstr "Empresa"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__partner_bank_id
+#, fuzzy
+msgid "Company bank account used for the presentation"
+msgstr "Cuenta bancaria de la empresa utilizada para la presentación"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__complement
+msgid "Complement"
+msgstr "Complemento"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__complement
+#, fuzzy
+msgid "Complement (urbanization, industrial park...)"
+msgstr "Complemento (urbanización, polígono industrial...)"
+
+#. module: l10n_es_atc_mod415
+#: model:mail.template,subject:l10n_es_atc_mod415.email_template_415
+#, fuzzy
+msgid ""
+"Comprobación datos de modelo 415 año {{object.report_id.year}} de {{user."
+"company_id.name}}"
+msgstr ""
+"Comprobación datos de modelo 415 año ${object.report_id.year} de ${user."
+"company_id.name}"
+
+#. module: l10n_es_atc_mod415
+#: model:mail.template,name:l10n_es_atc_mod415.email_template_415
+msgid "Comprobación datos modelo 415"
+msgstr ""
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model,name:l10n_es_atc_mod415.model_res_partner
+#, fuzzy
+msgid "Contact"
+msgstr "Email de contacto"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__contact_email
+#, fuzzy
+msgid "Contact Email"
+msgstr "Email de contacto"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__counterpart_account_id
+#, fuzzy
+msgid "Counterpart account"
+msgstr "Cuenta de contrapartida"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__partner_country_code
+msgid "Country Code"
+msgstr "Código de país"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_move_record__create_uid
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__create_uid
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__create_uid
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_move_record__create_date
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__create_date
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__create_date
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__access_url
+msgid "Customer Portal URL"
+msgstr "URL para cliente"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_move_record__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_move_record__display_name
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__display_name
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__display_name
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__door
+msgid "Door"
+msgstr "Puerta"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__date_end
+msgid "Ending date"
+msgstr "Fecha de finalización"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__error_count
+#, fuzzy
+msgid "Error Count"
+msgstr "Recuento de errores"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__error_text
+#, fuzzy
+msgid "Error Text"
+msgstr "Error en el texto"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__error_text
+msgid "Errors"
+msgstr "Errores"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__export_config_id
+#, fuzzy
+msgid "Export config"
+msgstr "Exportar configuración"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__first_quarter
+#, fuzzy
+msgid "First quarter operations"
+msgstr "Operaciones del primer trimestre"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__first_quarter_real_estate_transmission
+#, fuzzy
+msgid "First quarter real estate"
+msgstr "Inmobiliaria del primer trimestre"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__floor
+msgid "Floor"
+msgstr "Piso"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_follower_ids
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_partner_ids
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Contactos)"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_type_icon
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icono de Font Awesome ej. fa-tasks"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_account_bank_statement_line__not_in_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_account_move__not_in_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_account_payment__not_in_mod415
+#, fuzzy
+msgid "Force not included in 415 report"
+msgstr "Fuerza no incluida en el informe 415"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__fourth_quarter
+#, fuzzy
+msgid "Fourth quarter operations"
+msgstr "Operaciones del cuarto trimestre"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__fourth_quarter_real_estate_transmission
+#, fuzzy
+msgid "Fourth quarter real estate"
+msgstr "Inmobiliaria del cuarto trimestre"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__contact_name
+msgid "Full Name"
+msgstr "Nombre completo"
+
+#. module: l10n_es_atc_mod415
+#: model_terms:ir.ui.view,arch_db:l10n_es_atc_mod415.communication_failed
+#, fuzzy
+msgid "Ha habido un error registrando la comunicación."
+msgstr "Ha habido un error registrando la comunicación."
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__has_message
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__has_message
+#, fuzzy
+msgid "Has Message"
+msgstr "Mensajes"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_move_record__id
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__id
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__id
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_exception_icon
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_exception_icon
+msgid "Icon"
+msgstr "Icono"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_exception_icon
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icono para indicar una actividad de excepción."
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_needaction
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, hay nuevos mensajes que requieren tu atención."
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_has_error
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si se encuentra seleccionado, algunos mensajes tienen error de envío."
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_account_bank_statement_line__not_in_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_account_move__not_in_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_account_payment__not_in_mod415
+#, fuzzy
+msgid ""
+"If you mark this field, this invoice will not be included in any ATC 415 "
+"model report."
+msgstr ""
+"Si marca este campo, esta factura no se incluirá en ningún informe de modelo "
+"ATC 415."
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_res_partner__not_in_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_res_users__not_in_mod415
+#, fuzzy
+msgid ""
+"If you mark this field, this partner will not be included in any ATC 415 "
+"model report, independently from the total amount of its operations."
+msgstr ""
+"Si marca este campo, este socio no se incluirá en ningún informe del modelo "
+"ATC 415, independientemente del importe total de sus operaciones."
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__insurance_operation
+#, fuzzy
+msgid "Insurance Operation"
+msgstr "Operación de seguros"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_move_record__move_id
+#, fuzzy
+msgid "Invoice / Journal entry"
+msgstr "Entrada de factura / Diario"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__operations_limit
+#, fuzzy
+msgid "Invoiced Limit (1)"
+msgstr "Límite facturado (1)"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_is_follower
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_is_follower
+msgid "Is Follower"
+msgstr "Es un seguidor"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__journal_id
+msgid "Journal"
+msgstr "Diario"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model,name:l10n_es_atc_mod415.model_account_move
+msgid "Journal Entry"
+msgstr "Asiento contable"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__journal_id
+#, fuzzy
+msgid "Journal in which post the move."
+msgstr "Diario en el que publicar la mudanza."
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__representative_vat
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__representative_vat
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__representative_vat
+#, fuzzy
+msgid "L.R. VAT number"
+msgstr "Número de IVA L.R."
+
+#. module: l10n_es_atc_mod415
+#: model_terms:ir.ui.view,arch_db:l10n_es_atc_mod415.communication_success
+#, fuzzy
+msgid "La comunicación se ha registrado correctamente."
+msgstr "La comunicación se ha registrado correctamente."
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_move_record____last_update
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record____last_update
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record____last_update
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_move_record__write_uid
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__write_uid
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__write_uid
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__write_uid
+msgid "Last Updated by"
+msgstr "Actualizado por"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_move_record__write_date
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__write_date
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__write_date
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__write_date
+msgid "Last Updated on"
+msgstr "Actualizado el"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__representative_vat
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__representative_vat
+#, fuzzy
+msgid "Legal Representative VAT number"
+msgstr "Número de IVA del representante legal"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__representative_vat
+#, fuzzy
+msgid "Legal Representative VAT number."
+msgstr "Número de IVA de representante legal."
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_main_attachment_id
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Adjunto principal"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_has_error
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Envío de Mensaje"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_ids
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__number
+#, fuzzy
+msgid "Model number"
+msgstr "Número de modelo"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__report_id
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__report_id
+#: model:ir.ui.menu,name:l10n_es_atc_mod415.menu_atc_mod415_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_atc_mod415.communication_failed
+#: model_terms:ir.ui.view,arch_db:l10n_es_atc_mod415.communication_success
+#: model_terms:ir.ui.view,arch_db:l10n_es_atc_mod415.view_partner_form_mod415
+#, fuzzy
+msgid "Modelo 415"
+msgstr "Modelo 415"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.actions.act_window,name:l10n_es_atc_mod415.action_l10n_es_atc_mod415_report
+#, fuzzy
+msgid "Modelo ATC 415"
+msgstr "ATC Modelo 415"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model,name:l10n_es_atc_mod415.model_l10n_es_atc_mod415_move_record
+#, fuzzy
+msgid "Move Record"
+msgstr "Mover registro"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__move_record_ids
+#, fuzzy
+msgid "Move records"
+msgstr "Mover registros"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__contact_name
+#, fuzzy
+msgid "Must have name and surname."
+msgstr "Debe tener nombre y apellidos."
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__my_activity_date_deadline
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Mi fecha límite de actividad"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_date_deadline
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Fecha límite de la siguiente actividad"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_summary
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de la siguiente actividad"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_type_id
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_type_id
+msgid "Next Activity Type"
+msgstr "Siguiente tipo de actividad"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_res_partner__not_in_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_res_users__not_in_mod415
+#, fuzzy
+msgid "Not included in 415 report"
+msgstr "No incluido en el informe 415"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__number
+msgid "Number"
+msgstr "Número"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__number_calification
+#, fuzzy
+msgid "Number Calification"
+msgstr "Clasificación numérica"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__number_type
+#, fuzzy
+msgid "Number Type"
+msgstr "Tipo de número"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_needaction_counter
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de acciones"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_has_error_counter
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_needaction_counter
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_needaction_counter
+#, fuzzy
+msgid "Number of messages requiring action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_has_error_counter
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de envío"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__cash_basis_operation
+#, fuzzy
+msgid ""
+"Only for cash basis operations. Set to identify cash basis operations aside "
+"from the rest."
+msgstr ""
+"Sólo para operaciones en efectivo. Establecido para identificar las "
+"operaciones de base de efectivo aparte del resto."
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__insurance_operation
+#, fuzzy
+msgid ""
+"Only for insurance companies. Set to identify insurance operations aside "
+"from the rest."
+msgstr ""
+"Solo para compañías de seguros. Establecer para identificar las operaciones "
+"de seguro aparte del resto."
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__related_goods_operation
+#, fuzzy
+msgid ""
+"Only for related goods operations. Set to identify related goods operations "
+"aside from the rest."
+msgstr ""
+"Sólo para operaciones de bienes relacionados. Conjunto para identificar "
+"operaciones de bienes relacionados aparte del resto."
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__tax_person_operation
+#, fuzzy
+msgid ""
+"Only for taxable person operations. Set to identify taxable person "
+"operations aside from the rest."
+msgstr ""
+"Sólo para operaciones sujetas a impuestos. Establecido para identificar las "
+"operaciones de sujetos pasivos aparte del resto."
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__operation_key
+#, fuzzy
+msgid "Operation Key"
+msgstr "Clave de operación"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__amount
+#, fuzzy
+msgid "Operations amount"
+msgstr "Importe de las operaciones"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__origin_year
+#, fuzzy
+msgid "Origin Year"
+msgstr "Año de origen"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__origin_year
+#, fuzzy
+msgid "Origin cash operation year"
+msgstr "Origen efectivo operación año"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__partner_id
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__partner_id
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__partner_id
+msgid "Partner"
+msgstr "Socio"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model,name:l10n_es_atc_mod415.model_l10n_es_atc_mod415_partner_record
+#, fuzzy
+msgid "Partner Record"
+msgstr "Registro de socios"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__partner_record_ids
+#, fuzzy
+msgid "Partner Records"
+msgstr "Registros de socios"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_move_record__partner_record_id
+#, fuzzy
+msgid "Partner record"
+msgstr "Récord de socios"
+
+#. module: l10n_es_atc_mod415
+#. odoo-python
+#: code:addons/l10n_es_atc_mod415/models/mod415.py:0
+#, fuzzy, python-format
+msgid "Partner records"
+msgstr "Registros de socios"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__total_partner_records
+#, fuzzy
+msgid "Partners records"
+msgstr "Registros de socios"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__period_type
+#, fuzzy
+msgid "Period Type"
+msgstr "Tipo de período"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__contact_phone
+msgid "Phone"
+msgstr "Teléfono"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__portal
+msgid "Portal"
+msgstr "Portal"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__access_url
+msgid "Portal Access URL"
+msgstr "URL de acceso al portal"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__postal_code
+#, fuzzy
+msgid "Postal Code"
+msgstr "Código postal"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__previous_number
+#, fuzzy
+msgid "Previous declaration number"
+msgstr "Número de declaración anterior"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__total_real_estate_amount
+#, fuzzy
+msgid "Real Estate Amount"
+msgstr "Monto de Bienes Raíces"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model,name:l10n_es_atc_mod415.model_l10n_es_atc_mod415_real_estate_record
+#, fuzzy
+msgid "Real Estate Record"
+msgstr "Registro Inmobiliario"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__real_estate_record_ids
+#, fuzzy
+msgid "Real Estate Records"
+msgstr "Registros de bienes raíces"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__real_estate_transmissions_amount
+#, fuzzy
+msgid "Real Estate Transmisions amount"
+msgstr "Importe de las Transmisiones Inmobiliarias"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__total_real_estate_transmissions_amount
+#, fuzzy
+msgid "Real Estate Transmissions Amount"
+msgstr "Monto de Transmisiones Inmobiliarias"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__situation
+#, fuzzy
+msgid "Real estate Situation"
+msgstr "Situación Inmobiliaria"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__total_real_estate_records
+#, fuzzy
+msgid "Real estate records"
+msgstr "Registros inmobiliarios"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__received_cash_limit
+#, fuzzy
+msgid "Received cash Limit (2)"
+msgstr "Límite de efectivo recibido (2)"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__cash_amount
+#, fuzzy
+msgid "Received cash amount"
+msgstr "Cantidad en efectivo recibida"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__check_ok
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__check_ok
+#, fuzzy
+msgid "Record is OK"
+msgstr "El registro está bien"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__related_goods_operation
+#, fuzzy
+msgid "Related Goods Operation"
+msgstr "Operación de Bienes Relacionados"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__name
+#, fuzzy
+msgid "Report identifier"
+msgstr "Identificador de informe"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_user_id
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario responsable"
+
+#. module: l10n_es_atc_mod415
+#: model_terms:ir.ui.view,arch_db:l10n_es_atc_mod415.communication_failed
+#, fuzzy
+msgid ""
+"Revíselo y vuelva a intentarlo, o pongase en contacto por correo con "
+"nosotros."
+msgstr ""
+"Revíselo y vuelva a intentarlo, o pongase en contacto por correo con "
+"nosotros."
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__user_id
+msgid "Salesperson"
+msgstr "Comercial"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__second_quarter
+#, fuzzy
+msgid "Second quarter operations"
+msgstr "Operaciones del segundo trimestre"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__second_quarter_real_estate_transmission
+#, fuzzy
+msgid "Second quarter real estate"
+msgstr "Inmobiliaria del segundo trimestre"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__access_token
+msgid "Security Token"
+msgstr "Token de seguridad"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__bussiness_real_estate_rent
+#, fuzzy
+msgid ""
+"Set to identify real estate rent operations aside from the rest. You'll need "
+"to fill in the real estate info only when you are the one that receives the "
+"money."
+msgstr ""
+"Establecer para identificar las operaciones de alquiler de bienes raíces "
+"aparte del resto. Deberá completar la información de bienes raíces solo "
+"cuando sea usted quien reciba el dinero."
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__stairway
+#, fuzzy
+msgid "Stairway"
+msgstr "Escalera"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__date_start
+msgid "Starting date"
+msgstr "Fecha de inicio"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__state
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__state
+msgid "State"
+msgstr "Estado"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__partner_state_code
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__state_code
+msgid "State Code"
+msgstr "Código de provincia"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__statement_type
+#, fuzzy
+msgid "Statement Type"
+msgstr "Tipo de instrucción"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_state
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estado basado en actividades\n"
+"Vencida: la fecha tope ya ha pasado\n"
+"Hoy: La fecha tope es hoy\n"
+"Planificada: futuras actividades."
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__support_type
+msgid "Support Type"
+msgstr "Tipo Soporte"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__tax_agency_ids
+msgid "Tax Agency"
+msgstr ""
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__tax_person_operation
+#, fuzzy
+msgid "Tax Person Operation"
+msgstr "Operación de sujetos pasivos"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__operations_limit
+#, fuzzy
+msgid ""
+"The declaration will include partners with the total of operations over this "
+"limit"
+msgstr ""
+"La declaración incluirá a los socios con el total de operaciones por encima "
+"de este límite"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__received_cash_limit
+#, fuzzy
+msgid "The declaration will show the total of cash operations over this limit"
+msgstr ""
+"La declaración mostrará el total de operaciones en efectivo por encima de "
+"este límite"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__third_quarter
+#, fuzzy
+msgid "Third quarter operations"
+msgstr "Operaciones del tercer trimestre"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__third_quarter_real_estate_transmission
+#, fuzzy
+msgid "Third quarter real estate"
+msgstr "Inmobiliaria del tercer trimestre"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__counterpart_account_id
+#, fuzzy
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
+"Esta cuenta será la contrapartida de todos los artículos del diario que se "
+"regularicen al publicar el informe."
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__first_quarter
+#, fuzzy
+msgid ""
+"Total amount of first quarter in, out and refund invoices for this partner"
+msgstr ""
+"Importe total de las facturas de entrada, salida y reembolso del primer "
+"trimestre para este socio"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__first_quarter_real_estate_transmission
+#, fuzzy
+msgid ""
+"Total amount of first quarter real estate transmissions for this partner"
+msgstr ""
+"Importe total de las transmisiones inmobiliarias del primer trimestre para "
+"este socio"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__fourth_quarter
+#, fuzzy
+msgid ""
+"Total amount of fourth quarter in, out and refund invoices for this partner"
+msgstr ""
+"Importe total de las facturas de entrada, salida y reembolso del cuarto "
+"trimestre para este socio"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__fourth_quarter_real_estate_transmission
+#, fuzzy
+msgid ""
+"Total amount of fourth quarter real estate transmissions for this partner"
+msgstr ""
+"Importe total de las transmisiones inmobiliarias del cuarto trimestre para "
+"este socio"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__second_quarter
+#, fuzzy
+msgid ""
+"Total amount of second quarter in, out and refund invoices for this partner"
+msgstr ""
+"Importe total de las facturas de entrada, salida y reembolso del segundo "
+"trimestre para este socio"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__second_quarter_real_estate_transmission
+#, fuzzy
+msgid ""
+"Total amount of second quarter real estate transmissions for this partner"
+msgstr ""
+"Importe total de las transmisiones inmobiliarias del segundo trimestre para "
+"este socio"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__third_quarter
+#, fuzzy
+msgid ""
+"Total amount of third quarter in, out and refund invoices for this partner"
+msgstr ""
+"Importe total de las facturas de entrada, salida y reembolso del tercer "
+"trimestre para este socio"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__third_quarter_real_estate_transmission
+#, fuzzy
+msgid ""
+"Total amount of third quarter real estate transmissions for this partner"
+msgstr ""
+"Importe total de las transmisiones inmobiliarias del tercer trimestre para "
+"este socio"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__township
+msgid "Township"
+msgstr "Municipio"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__township_code
+#, fuzzy
+msgid "Township Code"
+msgstr "Código del municipio"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__activity_exception_decoration
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo de actividad de excepción registrada."
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__partner_vat
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__partner_vat
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__company_vat
+msgid "VAT number"
+msgstr "Número de IVA"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__community_vat
+#, fuzzy
+msgid ""
+"VAT number for professionals established in other state member without "
+"national VAT"
+msgstr ""
+"Número de IVA para profesionales establecidos en otro estado miembro sin IVA "
+"nacional"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__website_message_ids
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__website_message_ids
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicaciones del sitio web"
+
+#. module: l10n_es_atc_mod415
+#: model_terms:ir.ui.view,arch_db:l10n_es_atc_mod415.communication_success
+#, fuzzy
+msgid "Ya puede cerrar esta página si así lo desea."
+msgstr "Ya puede cerrar esta página si así lo desea."
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__year
+msgid "Year"
+msgstr "Año"
+
+#, python-format
+#~ msgid "- %s (%s)"
+#~ msgstr "- %s (%s)"
+
+#, fuzzy, python-format
+#~ msgid "1 - Spain but Basque Country and Navarra"
+#~ msgstr "1 - España pero País Vasco y Navarra"
+
+#, fuzzy, python-format
+#~ msgid "2 - Basque Country and Navarra"
+#~ msgstr "2 - País Vasco y Navarra"
+
+#, fuzzy, python-format
+#~ msgid "3 - Spain, without catastral reference"
+#~ msgstr "3 - España, sin referencia catastral"
+
+#, fuzzy, python-format
+#~ msgid "4 - Foreign"
+#~ msgstr "4 - Extranjero"
+
+#, fuzzy
+#~ msgid "<strong>Amount 1Q:</strong>"
+#~ msgstr "<strong>Monto 1Q:</strong>"
+
+#, fuzzy
+#~ msgid "<strong>Amount 2Q:</strong>"
+#~ msgstr "<strong>Monto 2Q:</strong>"
+
+#, fuzzy
+#~ msgid "<strong>Amount 3Q:</strong>"
+#~ msgstr "<strong>Monto 3Q:</strong>"
+
+#, fuzzy
+#~ msgid "<strong>Amount 4Q:</strong>"
+#~ msgstr "<strong>Monto 4Q:</strong>"
+
+#, fuzzy
+#~ msgid "<strong>Amount:</strong>"
+#~ msgstr "<strong>Importe:</strong>"
+
+#, fuzzy
+#~ msgid ""
+#~ "<strong>Color codes: </strong> <span class=\"text-info\">Normal invoices</"
+#~ "span> - Refund invoices"
+#~ msgstr ""
+#~ "<strong>Códigos de colores: </strong> Facturas <span class=\"text-"
+#~ "info\">normales - Facturas</span> de reembolso"
+
+#, fuzzy
+#~ msgid ""
+#~ "<strong>Color codes: </strong> <span class=\"text-info\">Refund invoices</"
+#~ "span> - Normal invoices"
+#~ msgstr ""
+#~ "<strong>Códigos de color: </strong> Facturas <span class=\"text-info\">de "
+#~ "reembolso - Facturas</span> normales"
+
+#, fuzzy
+#~ msgid "<strong>Operation Key:</strong>"
+#~ msgstr "<strong>Clave de operación:</strong>"
+
+#, fuzzy, python-format
+#~ msgid "A - Adquisiciones de bienes y servicios superiores al límite (1)"
+#~ msgstr "A - Adquisiciones de bienes y servicios superiores al límite (1)"
+
+#~ msgid "Ant"
+#~ msgstr "Hormiga"
+
+#, fuzzy, python-format
+#~ msgid "B - Entregas de bienes y servicios superiores al límite (1)"
+#~ msgstr "B - Entregas de bienes y servicios superiores al límite (1)"
+
+#, fuzzy
+#~ msgid "Bis"
+#~ msgstr "Bis"
+
+#, fuzzy
+#~ msgid "Bloquear"
+#~ msgstr "Bloquear"
+
+#, fuzzy, python-format
+#~ msgid "C - Cobros por cuenta de terceros superiores al límite (3)"
+#~ msgstr "C - Cobros por cuenta de terceros superiores al límite (3)"
+
+#, fuzzy
+#~ msgid "Calculation parameters"
+#~ msgstr "Parámetros de cálculo"
+
+#, fuzzy
+#~ msgid "Carátula Sobre"
+#~ msgstr "Carátula Sobre"
+
+#~ msgid "Cash Register"
+#~ msgstr "Caja registradora"
+
+#, fuzzy
+#~ msgid "Cash records"
+#~ msgstr "Registros de efectivo"
+
+#, python-format
+#~ msgid "Compose Email"
+#~ msgstr "Redactar correo electrónico"
+
+#, fuzzy
+#~ msgid "Confirm as valid"
+#~ msgstr "Confirmar como válido"
+
+#, python-format
+#~ msgid "Confirmed"
+#~ msgstr "Confirmado"
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "D - Adquisiciones efectuadas por Entidades Públicas (...) superiores al "
+#~ "límite (1)"
+#~ msgstr ""
+#~ "D - Adquisiciones efectuadas por Entidades Públicas (...) superiores al "
+#~ "límite (1)"
+
+#~ msgid "Details"
+#~ msgstr "Detalles"
+
+#~ msgid "Dirección"
+#~ msgstr "Dirección"
+
+#, fuzzy
+#~ msgid "Dup"
+#~ msgstr "Dup"
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas "
+#~ "superiores al límite (1)"
+#~ msgstr ""
+#~ "E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas "
+#~ "superiores al límite (1)"
+
+#~ msgid "Empresa"
+#~ msgstr "Company"
+
+#, fuzzy
+#~ msgid "Enviado"
+#~ msgstr "Enviado"
+
+#, python-format
+#~ msgid "Exception"
+#~ msgstr "Excepción"
+
+#, fuzzy, python-format
+#~ msgid "F - Ventas agencia viaje"
+#~ msgstr "F - Ventas agencia viaje"
+
+#~ msgid "Fecha"
+#~ msgstr "Fecha"
+
+#~ msgid "Followers (Channels)"
+#~ msgstr "Seguidores (Canales)"
+
+#, fuzzy, python-format
+#~ msgid "G - Compras agencia viaje"
+#~ msgstr "G - Compras agencia viaje"
+
+#~ msgid "General"
+#~ msgstr "General"
+
+#~ msgid "Group by..."
+#~ msgstr "Agrupar por…"
+
+#, fuzzy
+#~ msgid "Invalid records"
+#~ msgstr "Registros no válidos"
+
+#~ msgid "Invoice"
+#~ msgstr "Factura"
+
+#~ msgid "Invoices"
+#~ msgstr "Facturas"
+
+#, python-format
+#~ msgid "Kilometer"
+#~ msgstr "Kilómetro"
+
+#, fuzzy
+#~ msgid "Mod"
+#~ msgstr "Mod"
+
+#~ msgid "Model"
+#~ msgstr "Modelo"
+
+#, fuzzy
+#~ msgid "Move record"
+#~ msgstr "Mover registro"
+
+#, fuzzy, python-format
+#~ msgid "No Tax Mapping was found"
+#~ msgstr "No se encontró mapeo de impuestos"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Número de mensajes no leídos"
+
+#, fuzzy
+#~ msgid "Operation key"
+#~ msgstr "Clave de operación"
+
+#, fuzzy
+#~ msgid "Partner info"
+#~ msgstr "Información del socio"
+
+#, fuzzy, python-format
+#~ msgid "Partner record errors:\n"
+#~ msgstr "Errores de registro de socios:\n"
+
+#, python-format
+#~ msgid "Pending"
+#~ msgstr "Pendiente"
+
+#, fuzzy
+#~ msgid "Pending records"
+#~ msgstr "Expedientes pendientes"
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "Please review partner and real estate records, some of them are in red "
+#~ "color:\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Por favor revise los registros de socios y bienes raíces, algunos de "
+#~ "ellos están en color rojo:\n"
+#~ "\n"
+
+#~ msgid "Print"
+#~ msgstr "Imprimir"
+
+#, fuzzy
+#~ msgid "Real Estate records"
+#~ msgstr "Registros inmobiliarios"
+
+#, fuzzy
+#~ msgid "Real State Transmissions"
+#~ msgstr "Transmisiones Inmobiliarias"
+
+#, fuzzy
+#~ msgid "Real estate address"
+#~ msgstr "Dirección inmobiliaria"
+
+#, fuzzy
+#~ msgid "Real estate info"
+#~ msgstr "Información inmobiliaria"
+
+#, fuzzy, python-format
+#~ msgid "Real estate record errors:\n"
+#~ msgstr "Errores de registro de bienes raíces:\n"
+
+#~ msgid "Recompute"
+#~ msgstr "Recalcular"
+
+#~ msgid "Record"
+#~ msgstr "Grabar"
+
+#~ msgid "Records"
+#~ msgstr "Registros"
+
+#, fuzzy
+#~ msgid "Records in exception"
+#~ msgstr "Registros en excepción"
+
+#, fuzzy
+#~ msgid "ResPartner"
+#~ msgstr "ResPartner"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error de entrega del SMS"
+
+#~ msgid "Send"
+#~ msgstr "Enviar"
+
+#~ msgid "Send email"
+#~ msgstr "Enviar email"
+
+#~ msgid "Send emails"
+#~ msgstr "Enviar emails"
+
+#, python-format
+#~ msgid "Sent"
+#~ msgstr "Enviado"
+
+#~ msgid "Set to Pending"
+#~ msgstr "Guardar como Pendiente"
+
+#, fuzzy
+#~ msgid "Set to invalid"
+#~ msgstr "Establecer en no válido"
+
+#, fuzzy, python-format
+#~ msgid "State code can only contain digits"
+#~ msgstr "El código de estado solo puede contener dígitos"
+
+#~ msgid "Summary"
+#~ msgstr "Resumen"
+
+#~ msgid "Tax ID"
+#~ msgstr "Impuesto"
+
+#, fuzzy
+#~ msgid ""
+#~ "This should be only filled in case the real state rents are exempted of "
+#~ "retentions and are not declared through model 115."
+#~ msgstr ""
+#~ "Esto solo debe llenarse en caso de que las rentas inmobiliarias estén "
+#~ "exentas de retenciones y no se declaren a través del modelo 115."
+
+#, fuzzy
+#~ msgid ""
+#~ "This will delete all records, and remove possible answers from partners. "
+#~ "Are you sure you want to continue?"
+#~ msgstr ""
+#~ "Esto eliminará todos los registros y eliminará las posibles respuestas de "
+#~ "los socios. ¿Está seguro de que desea continuar?"
+
+#, fuzzy
+#~ msgid ""
+#~ "This will enqueue all the pending confirmation emails for this report for "
+#~ "sending to the invoicing contact. Are you sure you want to continue?"
+#~ msgstr ""
+#~ "Esto pondrá en cola todos los correos electrónicos de confirmación "
+#~ "pendientes para este informe para enviarlos al contacto de facturación. "
+#~ "¿Está seguro de que desea continuar?"
+
+#~ msgid "Unread Messages"
+#~ msgstr "Mensajes sin leer"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Nº de mensajes sin leer"
+
+#, fuzzy, python-format
+#~ msgid "VAT must be defined for Spanish Contacts"
+#~ msgstr "El IVA debe definirse para los contactos españoles"
+
+#, fuzzy, python-format
+#~ msgid "Without country code"
+#~ msgstr "Sin código de país"
+
+#, fuzzy, python-format
+#~ msgid "Without number"
+#~ msgstr "Sin número"
+
+#, fuzzy, python-format
+#~ msgid "Without state code"
+#~ msgstr "Sin código de estado"
