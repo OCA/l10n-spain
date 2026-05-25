@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,10 +14,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_atc_mod415
+#: model:ir.actions.report,name:l10n_es_atc_mod415.415_partner
+msgid "415 Partner Detail"
+msgstr ""
+
+#. module: l10n_es_atc_mod415
 #: model:mail.template,body_html:l10n_es_atc_mod415.email_template_415
 msgid ""
-"\n"
-"<p>Estimado/a <t t-out=\"object.partner_id.name\" />\n"
+"<p>Estimado/a <t t-out=\"object.partner_id.name\"/>\n"
 "</p>\n"
 "<p>Le comunicamos que a efectos de comprobación del modelo 415:</p>\n"
 "<p>Nuestros datos en dicha declaración son:</p>\n"
@@ -62,21 +66,21 @@ msgid ""
 "</t>\n"
 "  <p>En el documento adjunto se incluyen las facturas en base a las cuales se obtienen los importes anteriores.</p>\n"
 "  <p>Si los datos son correctos puede indicar su conformidad en el siguiente botón:</p>\n"
-"  <br><br>\n"
+"  <br/><br/>\n"
 "  <center>\n"
 "      <a style=\"background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\" class=\"o_default_snippet_text\" t-att-href=\"object.get_confirm_url()\">\n"
 "          Aceptar datos del 415\n"
 "      </a>\n"
 "  </center>\n"
-"  <br><br>\n"
+"  <br/><br/>\n"
 "  <p>Si los importes no son correctos, puede pulsar en este botón para que nos pongamos en contacto posteriormente, o responder a este correo indicando el problema:</p>\n"
-"  <br><br>\n"
+"  <br/><br/>\n"
 "  <center>\n"
 "      <a style=\"background-color: #d55937; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\" class=\"o_default_snippet_text\" t-att-href=\"object.get_reject_url()\">\n"
 "          Rechazar datos del 415\n"
 "      </a>\n"
 "  </center>\n"
-"  <br><br>\n"
+"  <br/><br/>\n"
 "  <p>Para cualquier otra pregunta, no dude en contactar con nosotros respondiendo a este correo.</p>\n"
 "<p style=\"color:#888888\">\n"
 "    <t t-if=\"user and user.signature\">\n"
@@ -85,11 +89,6 @@ msgid ""
 "</p>\n"
 "\n"
 "    "
-msgstr ""
-
-#. module: l10n_es_atc_mod415
-#: model:ir.actions.report,name:l10n_es_atc_mod415.415_partner
-msgid "415 Partner Detail"
 msgstr ""
 
 #. module: l10n_es_atc_mod415
@@ -163,6 +162,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__message_attachment_count
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_report__message_attachment_count
 msgid "Attachment Count"
+msgstr ""
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__bdns_number
+msgid "BDNS Call Number"
 msgstr ""
 
 #. module: l10n_es_atc_mod415
@@ -390,7 +394,6 @@ msgstr ""
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_account_bank_statement_line__not_in_mod415
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_account_move__not_in_mod415
-#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_account_payment__not_in_mod415
 msgid "Force not included in 415 report"
 msgstr ""
 
@@ -455,7 +458,6 @@ msgstr ""
 #. module: l10n_es_atc_mod415
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_account_bank_statement_line__not_in_mod415
 #: model:ir.model.fields,help:l10n_es_atc_mod415.field_account_move__not_in_mod415
-#: model:ir.model.fields,help:l10n_es_atc_mod415.field_account_payment__not_in_mod415
 msgid ""
 "If you mark this field, this invoice will not be included in any ATC 415 "
 "model report."
@@ -733,7 +735,6 @@ msgstr ""
 #. module: l10n_es_atc_mod415
 #. odoo-python
 #: code:addons/l10n_es_atc_mod415/models/mod415.py:0
-#, python-format
 msgid "Partner records"
 msgstr ""
 
@@ -821,6 +822,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__check_ok
 #: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_real_estate_record__check_ok
 msgid "Record is OK"
+msgstr ""
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,help:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__bdns_number
+msgid ""
+"Reference of Call of the subsidy or assistance in National Grands Database "
+"(BDNS)."
 msgstr ""
 
 #. module: l10n_es_atc_mod415
@@ -1031,6 +1039,11 @@ msgstr ""
 msgid ""
 "VAT number for professionals established in other state member without "
 "national VAT"
+msgstr ""
+
+#. module: l10n_es_atc_mod415
+#: model:ir.model.fields,field_description:l10n_es_atc_mod415.field_l10n_es_atc_mod415_partner_record__visible_bdns_number
+msgid "Visible Bdns Number"
 msgstr ""
 
 #. module: l10n_es_atc_mod415
