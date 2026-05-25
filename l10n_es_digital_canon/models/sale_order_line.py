@@ -6,6 +6,9 @@ from odoo import api, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
+    def _get_digital_canon_partner(self):
+        return self.order_id.partner_shipping_id
+
     # pylint:disable=missing-return
     @api.depends("product_id", "company_id")
     def _compute_tax_id(self):
@@ -13,7 +16,7 @@ class SaleOrderLine(models.Model):
         for line in self:
             taxes = line.tax_id
             product = line.product_id
-            partner = line.order_id.partner_shipping_id
+            partner = line._get_digital_canon_partner()
             company = line.company_id
             if not taxes or not product or not partner:
                 continue
