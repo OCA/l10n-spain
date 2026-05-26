@@ -15,7 +15,6 @@
     "maintainers": ["pedrobaeza"],
     "depends": [
         "l10n_es_aeat_sii_oca",
-        "account_fiscal_position_partner_type",
         "l10n_eu_oss_oca",
     ],
     "data": ["data/aeat_sii_mapping_registration_keys_data.xml"],
