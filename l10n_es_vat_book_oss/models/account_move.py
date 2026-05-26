@@ -10,9 +10,13 @@ class AccountMoveLine(models.Model):
     def _process_aeat_tax_fee_info(self, res, tax, sign):
         # Nullify tax fee for OSS taxes
         result = super()._process_aeat_tax_fee_info(res, tax, sign)
-        oss_taxes = self.env["account.tax"].search(
-            [("oss_country_id", "!=", False), ("company_id", "=", self.company_id.id)]
-        )
-        if tax in oss_taxes:
-            res[tax]["amount"] = 0
+        if self.env.context.get("calculate_vat_book", False):
+            oss_taxes = self.env["account.tax"].search(
+                [
+                    ("oss_country_id", "!=", False),
+                    ("company_id", "=", self.company_id.id),
+                ]
+            )
+            if tax in oss_taxes:
+                res[tax]["amount"] = 0
         return result

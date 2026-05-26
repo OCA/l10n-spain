@@ -3,3 +3,4 @@
 
 from . import account_move
 from . import aeat_vat_book_map_lines
+from . import l10n_es_vat_book
