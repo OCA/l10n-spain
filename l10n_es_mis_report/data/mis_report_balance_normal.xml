@@ -786,7 +786,7 @@
         <field
             name="description"
         >6. Otros créditos con las Administraciones Públicas</field>
-        <field name="expression">+bale[4700%,4708%,471%,472%,473%]</field>
+        <field name="expression">+bale[4700%,4707%,4708%,471%,472%,473%]</field>
         <field name="auto_expand_accounts">True</field>
         <field
             name="auto_expand_accounts_style_id"
@@ -1972,7 +1972,7 @@
         <field
             name="description"
         >6. Otras deudas con las Administraciones Públicas</field>
-        <field name="expression">-bale[4750%,4751%,4758%,4759%,476%,477%]</field>
+        <field name="expression">-bale[4750%,4751%,4757%,4758%,4759%,476%,477%]</field>
         <field name="auto_expand_accounts">True</field>
         <field
             name="auto_expand_accounts_style_id"

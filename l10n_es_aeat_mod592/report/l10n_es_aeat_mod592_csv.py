@@ -21,7 +21,7 @@ class Mod592CsvManufacturer(models.AbstractModel):
         model = self.env["l10n.es.aeat.mod592.report.line.manufacturer"]
         res["fieldnames"] = model._get_csv_report_header()
         res["delimiter"] = ";"
-        res["quoting"] = csv.QUOTE_ALL
+        res["quoting"] = csv.QUOTE_NONE
         return res
 
 
@@ -41,5 +41,5 @@ class Mod592CsvAcquirer(models.AbstractModel):
         model = self.env["l10n.es.aeat.mod592.report.line.acquirer"]
         res["fieldnames"] = model._get_csv_report_header()
         res["delimiter"] = ";"
-        res["quoting"] = csv.QUOTE_ALL
+        res["quoting"] = csv.QUOTE_NONE
         return res

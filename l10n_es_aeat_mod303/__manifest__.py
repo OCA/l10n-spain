@@ -7,7 +7,7 @@
 
 {
     "name": "AEAT modelo 303",
-    "version": "17.0.1.10.0",
+    "version": "17.0.1.11.1",
     "category": "Accounting",
     "development_status": "Mature",
     "author": "Guadaltech,"
@@ -32,6 +32,8 @@
         "data/2024-10/l10n.es.aeat.map.tax.csv",
         "data/2024-10/l10n.es.aeat.map.tax.line.tax.csv",
         "data/2024-10/l10n.es.aeat.map.tax.line.csv",
+        "data/2026/aeat.model.export.config.csv",
+        "data/2026/aeat.model.export.config.line.csv",
         "data/l10n.es.aeat.mod303.report.activity.code.csv",
         "views/mod303_view.xml",
         "views/l10n_es_aeat_mod303_report_activity_code_data_views.xml",

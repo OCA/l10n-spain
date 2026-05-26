@@ -19,6 +19,16 @@ msgid "AEB norm 43 (.n43)"
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields.selection,name:l10n_es_account_statement_import_n43.selection__account_journal__n43_partner_search__all
+msgid "All"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields.selection,name:l10n_es_account_statement_import_n43.selection__account_journal__n43_partner_search__caixabank
+msgid "CaixaBank"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
 #. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
 #, python-format
@@ -40,6 +50,18 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_journal__n43_exclude_pattern
+msgid "Exclude pattern for N43 import"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,help:l10n_es_account_statement_import_n43.field_account_journal__n43_exclude_pattern
+msgid ""
+"Fill this field if you want to exclude some lines of the N43 according this "
+"regexp pattern."
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
 #. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
 #, python-format
@@ -56,6 +78,11 @@ msgstr ""
 #. module: l10n_es_account_statement_import_n43
 #: model:ir.model,name:l10n_es_account_statement_import_n43.model_account_journal
 msgid "Journal"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields.selection,name:l10n_es_account_statement_import_n43.selection__account_journal__n43_partner_search__none
+msgid "None"
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
@@ -94,10 +121,25 @@ msgid "Operation Date"
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_journal__n43_partner_search
+msgid "Partner search for N43 import"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
 #. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
 #, python-format
 msgid "Record type %s is not valid."
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields.selection,name:l10n_es_account_statement_import_n43.selection__account_journal__n43_partner_search__sabadell
+msgid "Sabadell"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields.selection,name:l10n_es_account_statement_import_n43.selection__account_journal__n43_partner_search__santander
+msgid "Santander"
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43

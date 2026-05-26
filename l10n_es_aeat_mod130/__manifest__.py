@@ -2,7 +2,7 @@
 # Copyright 2023-2024 Tecnativa - Carolina Fernandez
 {
     "name": "AEAT modelo 130",
-    "version": "17.0.1.0.1",
+    "version": "17.0.1.0.3",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/l10n-spain",

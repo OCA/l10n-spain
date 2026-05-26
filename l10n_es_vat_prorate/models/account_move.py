@@ -15,15 +15,15 @@ class AccountMove(models.Model):
         compute="_compute_prorate_id",
         ondelete="restrict",
         store=True,
+        copy=False,
     )
-    with_special_vat_prorate = fields.Boolean(compute="_compute_prorate_id", store=True)
+    with_special_vat_prorate = fields.Boolean(
+        compute="_compute_prorate_id",
+        store=True,
+        copy=False,
+    )
 
-    @api.depends(
-        "company_id.vat_prorate_ids",
-        "company_id.with_vat_prorate",
-        "date",
-        "invoice_date",
-    )
+    @api.depends("company_id", "date", "invoice_date")
     def _compute_prorate_id(self):
         for rec in self:
             if rec.company_id.with_vat_prorate:
@@ -38,15 +38,18 @@ class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
     vat_prorate = fields.Boolean(
-        string="Is vat prorate", help="The line is a vat prorate"
+        string="Is vat prorate",
+        help="The line is a vat prorate",
+        copy=False,
     )
 
     with_vat_prorate = fields.Boolean(
-        string="With Vat prorate",
+        string="With VAT Prorate",
         help="The line will create a vat prorate",
         compute="_compute_with_vat_prorate",
         store=True,
         readonly=False,
+        copy=False,
     )
 
     @api.depends("move_id.prorate_id", "company_id")

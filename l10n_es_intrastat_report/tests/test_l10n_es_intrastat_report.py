@@ -140,23 +140,66 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
                 cls.invoices[declaration_type][partner.country_id] += 1
 
     def test_post_init_hook(self):
-        fp = self.env["account.fiscal.position"].create(
+        """Simulate intra community fiscal positions and other positions from l10n_es
+        and other fiscal positions created with other chart templates."""
+        fp_es_b2b = self.fiscal_position_b2b
+        fp_es_b2b.intrastat = False
+        fp_es_b2c = self.fiscal_position_b2c
+        fp_es_b2c.intrastat = False
+        fp_model = self.env["account.fiscal.position"].sudo()
+        fp_not_es_ok = fp_model.create(
             {
-                "name": "Test FP",
-                "intrastat": False,
+                "name": "Test FP (not es)",
+                "company_id": self.env.ref("base.main_company").id,
             }
         )
-        item = self.env["ir.model.data"].create(
+        fp_es_ok = fp_model.create(
             {
-                "name": "l10n_es_intrastat_report_fp_intra_private",
-                "model": "account.fiscal.position",
-                "module": "l10n_es",
-                "res_id": fp.id,
+                "name": "Test FP (es)",
+                "company_id": self.env.company.id,
+            }
+        )
+        self.env["ir.model.data"].create(
+            {
+                "name": f"{self.env.company}_fp_intra_private",
+                "model": fp_es_b2c._name,
+                "module": "account",
+                "res_id": fp_es_b2c.id,
+            }
+        )
+        self.env["ir.model.data"].create(
+            {
+                "name": f"{self.env.company}_fp_intra",
+                "model": fp_es_b2b._name,
+                "module": "account",
+                "res_id": fp_es_b2b.id,
+            }
+        )
+        self.env["ir.model.data"].create(
+            {
+                "name": f"{fp_not_es_ok.company_id.id}_fp_custom",
+                "model": fp_not_es_ok._name,
+                "module": "account",
+                "res_id": fp_not_es_ok.id,
+            }
+        )
+        self.env["ir.model.data"].create(
+            {
+                "name": f"{self.env.company}_fp_custom",
+                "model": fp_es_ok._name,
+                "module": "account",
+                "res_id": fp_es_ok.id,
             }
         )
         post_init_hook(self.env)
-        fp = self.env["account.fiscal.position"].browse(item.res_id)
-        self.assertTrue(fp.intrastat)
+        self.assertEqual(fp_es_b2b.intrastat, "b2b")
+        self.assertTrue(fp_es_b2b.vat_required)
+        self.assertEqual(fp_es_b2c.intrastat, "b2c")
+        self.assertFalse(fp_es_b2c.vat_required)
+        self.assertEqual(fp_es_ok.intrastat, "no")
+        self.assertFalse(fp_es_ok.vat_required)
+        self.assertEqual(fp_not_es_ok.intrastat, "no")
+        self.assertFalse(fp_not_es_ok.vat_required)
 
     def _check_move_lines_present(self, original, target):
         for move in original:

@@ -24,6 +24,15 @@
                     />
                 </setting>
                 <setting
+                    id="offline_validation"
+                    invisible="not pos_iface_l10n_es_simplified_invoice"
+                >
+                    <field name="pos_iface_prevent_offline_validation" />
+                    <div class="text-muted">
+                            Prevent order validation when the POS is offline. This helps ensure data integrity and prevents synchronization issues.
+                        </div>
+                </setting>
+                <setting
                     id="l10n_es_pos_simp_limit"
                     invisible="not pos_iface_l10n_es_simplified_invoice"
                 >

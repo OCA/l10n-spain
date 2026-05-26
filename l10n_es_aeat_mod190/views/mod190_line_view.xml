@@ -133,7 +133,7 @@
                                         string="Movilidad geográfica"
                                     />
                                 </group>
-                                <!-- TODO: Limitar a las claves A, B.01, B.03 y C-->
+                                <!-- TODO: Limitar a las claves A, B.01, B.03, B.04, B.99 y C-->
                                 <group>
                                     <field
                                         name="situacion_familiar"
@@ -177,9 +177,12 @@
                                                     utilizando financiación ajena."
                                     />
                                 </group>
+                                <group>
+                                    <field name="rendimientos_obtenidos_fondos" />
+                                </group>
                             </group>
                         </page>
-                        <!-- TODO: Limitar a las claves A, B.01, B.03 y C-->
+                        <!-- TODO: Limitar a las claves A, B.01, B.03, B.04, B.99 y C-->
                         <page string="Decendents">
                             <group col="3">
                                 <group string="Lower than 3 years">
@@ -238,6 +241,25 @@
                                 <group string="Bigger than 65%">
                                     <field name="ascendientes_discapacidad_66" />
                                     <field name="ascendientes_discapacidad_entero_66" />
+                                </group>
+                            </group>
+                        </page>
+                        <page
+                            string="Tipos de prestaciones de la clave B.01 percibidas"
+                            invisible="not visible_key_b01"
+                        >
+                            <group>
+                                <group>
+                                    <field name="visible_key_b01" invisible="1" />
+                                    <field name="clave_b01_jubilacion" />
+                                    <field name="clave_b01_viudedad" />
+                                    <field name="clave_b01_incapacidad" />
+                                </group>
+                                <group>
+                                    <field
+                                        name="clave_b01_pensiones_no_contributivas"
+                                    />
+                                    <field name="clave_b01_resto" />
                                 </group>
                             </group>
                         </page>

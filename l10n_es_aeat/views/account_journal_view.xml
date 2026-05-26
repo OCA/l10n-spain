@@ -6,8 +6,21 @@
         <field name="model">account.journal</field>
         <field name="inherit_id" ref="account.view_account_journal_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='type'][last()]" position="after">
-                <field name="thirdparty_invoice" invisible="1" />
+            <xpath expr="//page[@name='advanced_settings']" position="before">
+                <page
+                    name="page_aeat"
+                    string="Localization Settings"
+                    invisible="country_code != 'ES' or type not in ['sale', 'purchase']"
+                >
+                    <group>
+                        <group>
+                            <field name="thirdparty_invoice" invisible="1" />
+                        </group>
+                        <group>
+                            <field name="tax_agency_id" />
+                        </group>
+                    </group>
+                </page>
             </xpath>
         </field>
     </record>

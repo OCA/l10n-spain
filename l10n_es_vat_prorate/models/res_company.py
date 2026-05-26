@@ -14,7 +14,7 @@ class ResCompany(models.Model):
 
     with_vat_prorate = fields.Boolean(
         string="With VAT Prorate",
-        help="If this option is enabled, all invoice lines" "with VAT will be prorated",
+        help="If this option is enabled, all invoice lines with VAT will be prorated",
     )
     vat_prorate_ids = fields.One2many(
         "res.company.vat.prorate", inverse_name="company_id"
@@ -49,6 +49,12 @@ class ResCompany(models.Model):
         for rec in self.sudo():
             if rec.with_vat_prorate and not rec.vat_prorate_ids:
                 raise ValidationError(_("You must complete VAT prorate information"))
+            if (
+                rec.with_vat_prorate
+                and rec.chart_template
+                and not rec.chart_template.startswith("es_")
+            ):
+                raise ValidationError(_("The chart of accounts must be from Spain"))
 
 
 class ResCompanyVatProrate(models.Model):

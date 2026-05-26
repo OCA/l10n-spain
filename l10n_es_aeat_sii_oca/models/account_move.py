@@ -10,10 +10,13 @@
 # Copyright 2023 Aures Tic - Almudena de la Puente <almudena@aurestic.es>
 # Copyright 2023 Aures Tic - Jose Zambudio <jose@aurestic.es>
 # Copyright 2023 Moduon Team - Eduardo de Miguel
+# Copyright 2026 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import json
 import logging
+
+from unidecode import unidecode
 
 from odoo import _, api, exceptions, fields, models
 from odoo.modules.registry import Registry
@@ -63,7 +66,7 @@ class AccountMove(models.Model):
                 "[1]-Real property with cadastral code located within "
                 "the Spanish territory except Basque Country or Navarra",
             ),
-            ("2", "[2]-Real property located in the " "Basque Country or Navarra"),
+            ("2", "[2]-Real property located in the Basque Country or Navarra"),
             (
                 "3",
                 "[3]-Real property in any of the above situations "
@@ -213,138 +216,9 @@ class AccountMove(models.Model):
     def _get_document_amount_total(self):
         return self.amount_total_signed
 
-    def _get_sii_out_taxes(self):  # noqa: C901
-        """Get the taxes for sales invoices.
-
-        :param self: Single invoice record.
-        """
-        self.ensure_one()
-        taxes_dict = {}
-        taxes_sfesb = self._get_aeat_taxes_map(["SFESB"], self.date)
-        taxes_sfesbe = self._get_aeat_taxes_map(["SFESBE"], self.date)
-        taxes_sfesisp = self._get_aeat_taxes_map(["SFESISP"], self.date)
-        # taxes_sfesisps = self._get_taxes_map(['SFESISPS'])
-        taxes_sfens = self._get_aeat_taxes_map(["SFENS"], self.date)
-        taxes_sfess = self._get_aeat_taxes_map(["SFESS"], self.date)
-        taxes_sfesse = self._get_aeat_taxes_map(["SFESSE"], self.date)
-        taxes_sfesns = self._get_aeat_taxes_map(["SFESNS"], self.date)
-        taxes_not_in_total = self._get_aeat_taxes_map(["NotIncludedInTotal"], self.date)
-        taxes_not_in_total_neg = self._get_aeat_taxes_map(
-            ["NotIncludedInTotalNegative"], self.date
-        )
-        base_not_in_total = self._get_aeat_taxes_map(
-            ["BaseNotIncludedInTotal"], self.date
-        )
-        not_in_amount_total = 0
-        exempt_cause = self._get_sii_exempt_cause(taxes_sfesbe + taxes_sfesse)
-        tax_lines = self._get_aeat_tax_info()
-        for tax_line in tax_lines.values():
-            tax = tax_line["tax"]
-            breakdown_taxes = taxes_sfesb + taxes_sfesisp + taxes_sfens + taxes_sfesbe
-            if tax in taxes_not_in_total:
-                not_in_amount_total += tax_line["amount"]
-            elif tax in taxes_not_in_total_neg:
-                not_in_amount_total -= tax_line["amount"]
-            elif tax in base_not_in_total:
-                not_in_amount_total += tax_line["base"]
-            if tax in breakdown_taxes:
-                tax_breakdown = taxes_dict.setdefault("DesgloseFactura", {})
-            if tax in (taxes_sfesb + taxes_sfesbe + taxes_sfesisp):
-                sub_dict = tax_breakdown.setdefault("Sujeta", {})
-                # TODO l10n_es no tiene impuesto exento de bienes
-                # corrientes nacionales
-                if tax in taxes_sfesbe:
-                    exempt_dict = sub_dict.setdefault(
-                        "Exenta",
-                        {"DetalleExenta": [{"BaseImponible": 0}]},
-                    )
-                    det_dict = exempt_dict["DetalleExenta"][0]
-                    if exempt_cause:
-                        det_dict["CausaExencion"] = exempt_cause
-                    det_dict["BaseImponible"] += tax_line["base"]
-                else:
-                    sub_dict.setdefault(
-                        "NoExenta",
-                        {
-                            "TipoNoExenta": ("S2" if tax in taxes_sfesisp else "S1"),
-                            "DesgloseIVA": {"DetalleIVA": []},
-                        },
-                    )
-                    not_ex_type = sub_dict["NoExenta"]["TipoNoExenta"]
-                    if tax in taxes_sfesisp:
-                        is_s3 = not_ex_type == "S1"
-                    else:
-                        is_s3 = not_ex_type == "S2"
-                    if is_s3:
-                        sub_dict["NoExenta"]["TipoNoExenta"] = "S3"
-                    sub_dict["NoExenta"]["DesgloseIVA"]["DetalleIVA"].append(
-                        self._get_sii_tax_dict(tax_line, tax_lines),
-                    )
-            # No sujetas
-            if tax in taxes_sfens:
-                # ImporteTAIReglasLocalizacion or ImportePorArticulos7_14_Otros
-                default_no_taxable_cause = self._get_no_taxable_cause()
-                nsub_dict = tax_breakdown.setdefault(
-                    "NoSujeta",
-                    {default_no_taxable_cause: 0},
-                )
-                nsub_dict[default_no_taxable_cause] += tax_line["base"]
-            if tax in (taxes_sfess + taxes_sfesse + taxes_sfesns):
-                type_breakdown = taxes_dict.setdefault(
-                    "DesgloseTipoOperacion",
-                    {"PrestacionServicios": {}},
-                )
-                if tax in (taxes_sfesse + taxes_sfess):
-                    type_breakdown["PrestacionServicios"].setdefault("Sujeta", {})
-                service_dict = type_breakdown["PrestacionServicios"]
-                if tax in taxes_sfesse:
-                    exempt_dict = service_dict["Sujeta"].setdefault(
-                        "Exenta",
-                        {"DetalleExenta": [{"BaseImponible": 0}]},
-                    )
-                    det_dict = exempt_dict["DetalleExenta"][0]
-                    if exempt_cause:
-                        det_dict["CausaExencion"] = exempt_cause
-                    det_dict["BaseImponible"] += tax_line["base"]
-                if tax in taxes_sfess:
-                    # TODO l10n_es_ no tiene impuesto ISP de servicios
-                    # if tax in taxes_sfesisps:
-                    #     TipoNoExenta = 'S2'
-                    # else:
-                    service_dict["Sujeta"].setdefault(
-                        "NoExenta",
-                        {"TipoNoExenta": "S1", "DesgloseIVA": {"DetalleIVA": []}},
-                    )
-                    sub = type_breakdown["PrestacionServicios"]["Sujeta"]["NoExenta"][
-                        "DesgloseIVA"
-                    ]["DetalleIVA"]
-                    sub.append(self._get_sii_tax_dict(tax_line, tax_lines))
-                if tax in taxes_sfesns:
-                    nsub_dict = service_dict.setdefault(
-                        "NoSujeta",
-                        {"ImporteTAIReglasLocalizacion": 0},
-                    )
-                    nsub_dict["ImporteTAIReglasLocalizacion"] += tax_line["base"]
-        # Ajustes finales breakdown
-        # - DesgloseFactura y DesgloseTipoOperacion son excluyentes
-        # - Ciertos condicionantes obligan DesgloseTipoOperacion
-        if self._is_sii_type_breakdown_required(taxes_dict):
-            taxes_dict.setdefault("DesgloseTipoOperacion", {})
-            taxes_dict["DesgloseTipoOperacion"]["Entrega"] = taxes_dict[
-                "DesgloseFactura"
-            ]
-            del taxes_dict["DesgloseFactura"]
-        return taxes_dict, not_in_amount_total
-
-    @api.model
-    def _merge_tax_dict(self, vat_list, tax_dict, comp_key, merge_keys):
-        """Helper method for merging values in an existing tax dictionary."""
-        for existing_dict in vat_list:
-            if existing_dict.get(comp_key, "-99") == tax_dict.get(comp_key, "-99"):
-                for key in merge_keys:
-                    existing_dict[key] += tax_dict[key]
-                return True
-        return False
+    def _get_tax_info(self):
+        # Use the method at l10n_es_aeat that returns the needed info
+        return self._get_aeat_tax_info()
 
     def _get_sii_in_taxes(self):
         """Get the taxes for purchase invoices.
@@ -403,7 +277,7 @@ class AccountMove(models.Model):
                 if not self._merge_tax_dict(
                     base_dict["DetalleIVA"],
                     tax_dict,
-                    "TipoImpositivo",
+                    ["TipoImpositivo", "BienInversion"],
                     ["BaseImponible", "CuotaSoportada"],
                 ):
                     base_dict["DetalleIVA"].append(tax_dict)
@@ -428,7 +302,10 @@ class AccountMove(models.Model):
         if self.sii_lc_operation:
             return "LC"
         if self.move_type in ["in_invoice", "in_refund"]:
-            invoice_type = "R4" if self.move_type == "in_refund" else "F1"
+            if self.move_type == "in_refund":
+                invoice_type = self.sii_refund_specific_invoice_type or "R4"
+            else:
+                invoice_type = "F1"
         elif self.move_type in ["out_invoice", "out_refund"]:
             is_simplified = self._is_aeat_simplified_invoice()
             invoice_type = "F2" if is_simplified else "F1"
@@ -638,11 +515,13 @@ class AccountMove(models.Model):
 
     def _cancel_invoice_to_sii(self):
         for invoice in self.filtered(lambda i: i.state in ["cancel"]):
+            # TODO: Move communication code to sii.mixin
             serv = invoice._connect_aeat(invoice.move_type)
             header = invoice._get_aeat_header(cancellation=True)
             inv_vals = {
                 "aeat_send_failed": True,
                 "aeat_send_error": False,
+                "sii_send_date": False,
             }
             try:
                 inv_dict = invoice._get_cancel_sii_invoice_dict()
@@ -680,6 +559,7 @@ class AccountMove(models.Model):
                     {
                         "aeat_send_failed": True,
                         "aeat_send_error": repr(fault)[:60],
+                        "sii_send_date": False,
                         "sii_return": repr(fault),
                     }
                 )
@@ -794,17 +674,20 @@ class AccountMove(models.Model):
                     names = invoice.mapped("invoice_line_ids.name") or invoice.mapped(
                         "invoice_line_ids.ref"
                     )
+                    names = [unidecode(x) for x in names if x]  # Avoid "ugly" chars
                     description += " - ".join(filter(None, names))
             invoice.sii_description = (description or "")[:500] or "/"
 
     @api.depends(
         "company_id",
         "company_id.sii_enabled",
+        "company_id.sii_start_date",
         "journal_id",
         "journal_id.sii_enabled",
         "move_type",
         "fiscal_position_id",
         "fiscal_position_id.aeat_active",
+        "date",
         "invoice_line_ids",
     )
     def _compute_sii_enabled(self):
@@ -818,16 +701,24 @@ class AccountMove(models.Model):
             ):
                 invoice.sii_enabled = (
                     (
-                        invoice.fiscal_position_id
-                        and invoice.fiscal_position_id.aeat_active
-                    )
-                    or not invoice.fiscal_position_id
-                ) and (
-                    not dua_sii_exempt_taxes
-                    or not invoice.invoice_line_ids.filtered(
-                        lambda x, dua_taxes=dua_sii_exempt_taxes: any(
-                            [tax.id in dua_taxes for tax in x.tax_ids]
+                        (
+                            invoice.fiscal_position_id
+                            and invoice.fiscal_position_id.aeat_active
                         )
+                        or not invoice.fiscal_position_id
+                    )
+                    and (
+                        not dua_sii_exempt_taxes
+                        or not invoice.invoice_line_ids.filtered(
+                            lambda x, dua_taxes=dua_sii_exempt_taxes: any(
+                                [tax.id in dua_taxes for tax in x.tax_ids]
+                            )
+                        )
+                    )
+                    and (
+                        not invoice.company_id.sii_start_date
+                        or not invoice.date
+                        or invoice.date >= invoice.company_id.sii_start_date
                     )
                 )
             else:
@@ -841,12 +732,25 @@ class AccountMove(models.Model):
         condition_2 = [("fiscal_position_id.aeat_active", operator, value)]
         search_ko = (operator == "=" and not value) or (operator == "!=" and value)
         exp_condition = OR if search_ko else AND
+        condition_3 = []
         if not search_ko:
+            for company in self.env.companies.filtered("sii_enabled"):
+                if company.sii_start_date:
+                    condition_3.append(
+                        [
+                            ("company_id", "=", company.id),
+                            ("date", ">=", company.sii_start_date),
+                        ]
+                    )
+                else:
+                    condition_3.append([("company_id", "=", company.id)])
+            if condition_3:
+                condition_3 = OR(condition_3)
             condition_2 = OR([condition_2, [("fiscal_position_id", "=", False)]])
         return AND(
             [
                 [("move_type", "in", invoice_types)],
-                exp_condition([domain, exp_condition([condition_1, condition_2])]),
+                exp_condition([domain, condition_1, condition_2, condition_3]),
             ]
         )
 
@@ -907,11 +811,13 @@ class AccountMove(models.Model):
                 ("sii_send_date", "<=", fields.Datetime.now()),
             ]
         )
-        if documents:
-            batch = self._get_sii_batch()
-            documents = all_documents[:batch]
-            remaining_documents = all_documents - documents
-            documents.confirm_one_document()
+        if not documents:
+            return remaining_documents
+        batch = self._get_sii_batch()
+        documents = all_documents[:batch]
+        remaining_documents = all_documents - documents
+        for doc in documents:
+            doc.confirm_one_document()
         return remaining_documents
 
     @api.model
@@ -946,3 +852,8 @@ class AccountMove(models.Model):
             self.env["ir.cron.trigger"].sudo().create(
                 {"cron_id": sii_send_cron.id, "call_at": fields.Datetime.now()}
             )
+
+    def _get_sii_tax_agency(self):
+        if not self.journal_id.tax_agency_id:
+            return super()._get_sii_tax_agency()
+        return self.journal_id.tax_agency_id

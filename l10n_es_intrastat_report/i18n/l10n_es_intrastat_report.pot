@@ -24,11 +24,6 @@ msgid "Action Needed"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration_line__amount_company_currency
-msgid "Amount Company Currency"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__message_attachment_count
 msgid "Attachment Count"
 msgstr ""
@@ -247,20 +242,6 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_intrastat_report
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_search
-msgid "Search Spanish Intrastat Product Declaration"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: model:ir.actions.act_window,name:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_action
-#: model:ir.ui.menu,name:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_menu
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_graph
-#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_declaration_view_tree
-msgid "Spanish Intrastat Product Declaration"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
 #. odoo-python
 #: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
 #, python-format
@@ -329,9 +310,4 @@ msgstr ""
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,help:l10n_es_intrastat_report.field_intrastat_product_declaration__website_message_ids
 msgid "Website communication history"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration_line__weight
-msgid "Weight"
 msgstr ""

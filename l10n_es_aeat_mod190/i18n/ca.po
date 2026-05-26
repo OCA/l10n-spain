@@ -24,20 +24,13 @@ msgstr ""
 msgid ""
 "\n"
 "        Solo para percepciones correspondientes a las claves A,\n"
-"        B.01, B.03 y C.\n"
+"        B.01, B.03, B.04, B.99 y C.\n"
 "        Datos referidos a los hijos y demás descendientes del\n"
 "        perceptor por los que éste tenga derecho a la aplicación\n"
 "        del mínimo por descendientes previsto en el artículo 58 de\n"
 "        la Ley del Impuesto.\n"
 "        "
 msgstr ""
-"\n"
-"        Solo para percepciones corresponsals a las claves A,\n"
-"B.01, B.03 y C. Datos referidos a los hijos y demás descendientes del\n"
-"Perceptor por los que éste tenga derecho a la aplicación\n"
-"del mínimo por descendientes previsto en el artículo 58 de\n"
-"La Ley del Impuesto.\n"
-"        "
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__discapacidad__0
@@ -567,7 +560,7 @@ msgstr "Moneda"
 msgid ""
 "CÓMPUTO DE LOS 3 PRIMEROS HIJOS.\n"
 "            Solo para percepciones correspondientes a las claves A,\n"
-"            B.01, B.03 y C.\n"
+"            B.01, B.03, B.04, B.99 y C.\n"
 "            Datos referidos a la proporción en la que ha sido\n"
 "            computado a efectos de determinar el tipo de retención\n"
 "            cada uno de los tres primeros hijos o descendientes del\n"
@@ -578,18 +571,6 @@ msgid ""
 "            0: En cualquier otro caso.\n"
 "             "
 msgstr ""
-"CÒMPUT DELS 3 PRIMERS FILLS.\n"
-"             Només per a percepcions corresponents a les claus A,\n"
-"             B.01, B.03 i C.\n"
-"             Dades referides a la proporció en què ha estat\n"
-"             computat a efectes de determinar el tipus de retenció\n"
-"             cadascun dels tres primers fills o descendents del\n"
-"             perceptor, ordenats de major a menor segons la seva edat,\n"
-"             d'acord amb els valors següents:\n"
-"             1: Computat completament\n"
-"             2: Computat per meitat\n"
-"             0: En qualsevol altre cas.\n"
-"             "
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_partner__computo_primeros_hijos_1
@@ -1192,6 +1173,60 @@ msgid "Phone"
 msgstr "Telèfon"
 
 #. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__clave_b01_resto
+msgid "Prestacion no incluida en el resto"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__clave_b01_incapacidad
+msgid "Prestación de incapacidad permanente total o parcial"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__clave_b01_incapacidad
+msgid ""
+"Prestación de incapacidad permanente total o parcial percibida en el "
+"ejercicio"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__clave_b01_jubilacion
+msgid "Prestación de jubilación"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__clave_b01_jubilacion
+msgid "Prestación de jubilación percibida en el ejercicio"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__clave_b01_pensiones_no_contributivas
+msgid "Prestación de pensiones no contributivas por invalidez o jubilación"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__clave_b01_pensiones_no_contributivas
+msgid ""
+"Prestación de pensiones no contributivas por invalidez o jubilación "
+"percibida en el ejercicio"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__clave_b01_viudedad
+msgid "Prestación de viudedad"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__clave_b01_viudedad
+msgid "Prestación de viudedad percibida en el ejercicio"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__clave_b01_resto
+msgid "Prestación no incluida en el resto en el ejercicio"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__previous_number
 msgid "Previous declaration number"
 msgstr "Número de declaració anterior"
@@ -1228,6 +1263,13 @@ msgstr "Reduccions aplicables"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_form_inherit_l10n_es_aeat_mod190
 msgid "Reduced mobility"
 msgstr "Mobilitat reduïda"
+
+#. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__rendimientos_obtenidos_fondos
+msgid ""
+"Rendimientos del trabajo obtenidos por la gestión de fondos vinculados al "
+"emprendimiento, a la innovación y al desarrollo de la actividad económica"
+msgstr ""
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__name
@@ -1359,6 +1401,18 @@ msgid "Situación familiar"
 msgstr "Situació familiar"
 
 #. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__rendimientos_obtenidos_fondos
+msgid ""
+"Solo marcar si la cuantía total de la percepción dineraria o la cuantía "
+"total de la valoración de la percepción en especie incluye, aunque sea de "
+"forma parcial, rendimientos del trabajo derivados directa o indirectamente "
+"de participaciones, acciones u otros derechos, incluidas comisiones de "
+"éxito, que otorguen derechos económicos especiales a los que se haya "
+"aplicado lo dispuesto en el apartado 3 de la Disposición adicional "
+"quincuagésima tercera a las que se refiere la Ley 35/2006, de 28 de noviembre"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__contrato_o_relacion
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_users__contrato_o_relacion
 msgid ""
@@ -1379,36 +1433,24 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_users__discapacidad
 msgid ""
 "Solo para percepciones correspondientes a las claves A,\n"
-"            B.01, B.03 y C.\n"
+"            B.01, B.03, B.04, B.99 y C.\n"
 "            Si el perceptor es una persona con discapacidad que tiene\n"
 "            acreditado un grado de minusvalía igual o superior al 33\n"
 "            por 100, se hará constar en este campo el código\n"
 "            numérico indicativo de dicho grado"
 msgstr ""
-"Només per a percepcions corresponents a les claus A,\n"
-"             B.01, B.03 i C.\n"
-"             Si el perceptor és una persona amb discapacitat que té\n"
-"             acreditat un grau de minusvalidesa igual o superior al 33\n"
-"             per 100, es farà constar en aquest camp el codi\n"
-"             numèric indicatiu del grau esmentat"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_partner__nif_conyuge
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_res_users__nif_conyuge
 msgid ""
 "Solo para percepciones correspondientes a las claves A,\n"
-"            B.01, B.03 y C.\n"
+"            B.01, B.03, B.04, B.99 y C.\n"
 "            Únicamente en el supuesto de que la «SITUACIÓN\n"
 "            FAMILIAR» del perceptor sea la señalada con el número\n"
 "            2, se hará constar el número de identificación fiscal de su\n"
 "            cónyuge."
 msgstr ""
-"Només per a percepcions corresponents a les claus A,\n"
-"             B.01, B.03 i C.\n"
-"             Únicament en cas que la «SITUACIÓ\n"
-"             FAMILIAR» del perceptor sigui l'assenyalada amb el número\n"
-"             2, es farà constar el número didentificació fiscal de la seva\n"
-"             cònjuge."
 
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_form_inherit_l10n_es_aeat_mod190
@@ -1497,6 +1539,15 @@ msgstr "La clau de percepció de la parella, %(partner)s. S'ha d'omplir."
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
 #, python-format
+msgid ""
+"The perceptor %s has key B.01, you must check any type of benefit for key "
+"B.01"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
+#, python-format
 msgid "The state is not defined in the partner, %s"
 msgstr "L'estat no està definit al soci, %s"
 
@@ -1508,6 +1559,11 @@ msgid ""
 msgstr ""
 "Aquest compte serà la contrapartida de tots els ítems de la revista que es "
 "regularitzin en publicar l'informe."
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
+msgid "Tipos de prestaciones de la clave B.01 percibidas"
+msgstr ""
 
 #. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_form
@@ -1668,6 +1724,11 @@ msgid "Valued tax lines"
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__visible_key_b01
+msgid "Visible Key B01"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__website_message_ids
 msgid "Website Messages"
 msgstr "Missatges del lloc web"
@@ -1706,6 +1767,82 @@ msgstr "[03] Import de les retencions"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__ejercicio_devengo
 msgid "year"
 msgstr "Any"
+
+#~ msgid ""
+#~ "\n"
+#~ "        Solo para percepciones correspondientes a las claves A,\n"
+#~ "        B.01, B.03 y C.\n"
+#~ "        Datos referidos a los hijos y demás descendientes del\n"
+#~ "        perceptor por los que éste tenga derecho a la aplicación\n"
+#~ "        del mínimo por descendientes previsto en el artículo 58 de\n"
+#~ "        la Ley del Impuesto.\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "        Solo para percepciones corresponsals a las claves A,\n"
+#~ "B.01, B.03 y C. Datos referidos a los hijos y demás descendientes del\n"
+#~ "Perceptor por los que éste tenga derecho a la aplicación\n"
+#~ "del mínimo por descendientes previsto en el artículo 58 de\n"
+#~ "La Ley del Impuesto.\n"
+#~ "        "
+
+#~ msgid ""
+#~ "CÓMPUTO DE LOS 3 PRIMEROS HIJOS.\n"
+#~ "            Solo para percepciones correspondientes a las claves A,\n"
+#~ "            B.01, B.03 y C.\n"
+#~ "            Datos referidos a la proporción en la que ha sido\n"
+#~ "            computado a efectos de determinar el tipo de retención\n"
+#~ "            cada uno de los tres primeros hijos o descendientes del\n"
+#~ "            perceptor, ordenados de mayor a menor según su edad,\n"
+#~ "            de acuerdo a los siguientes valores:\n"
+#~ "            1: Computado por entero\n"
+#~ "            2: Computado por mitad\n"
+#~ "            0: En cualquier otro caso.\n"
+#~ "             "
+#~ msgstr ""
+#~ "CÒMPUT DELS 3 PRIMERS FILLS.\n"
+#~ "             Només per a percepcions corresponents a les claus A,\n"
+#~ "             B.01, B.03 i C.\n"
+#~ "             Dades referides a la proporció en què ha estat\n"
+#~ "             computat a efectes de determinar el tipus de retenció\n"
+#~ "             cadascun dels tres primers fills o descendents del\n"
+#~ "             perceptor, ordenats de major a menor segons la seva edat,\n"
+#~ "             d'acord amb els valors següents:\n"
+#~ "             1: Computat completament\n"
+#~ "             2: Computat per meitat\n"
+#~ "             0: En qualsevol altre cas.\n"
+#~ "             "
+
+#~ msgid ""
+#~ "Solo para percepciones correspondientes a las claves A,\n"
+#~ "            B.01, B.03 y C.\n"
+#~ "            Si el perceptor es una persona con discapacidad que tiene\n"
+#~ "            acreditado un grado de minusvalía igual o superior al 33\n"
+#~ "            por 100, se hará constar en este campo el código\n"
+#~ "            numérico indicativo de dicho grado"
+#~ msgstr ""
+#~ "Només per a percepcions corresponents a les claus A,\n"
+#~ "             B.01, B.03 i C.\n"
+#~ "             Si el perceptor és una persona amb discapacitat que té\n"
+#~ "             acreditat un grau de minusvalidesa igual o superior al 33\n"
+#~ "             per 100, es farà constar en aquest camp el codi\n"
+#~ "             numèric indicatiu del grau esmentat"
+
+#~ msgid ""
+#~ "Solo para percepciones correspondientes a las claves A,\n"
+#~ "            B.01, B.03 y C.\n"
+#~ "            Únicamente en el supuesto de que la «SITUACIÓN\n"
+#~ "            FAMILIAR» del perceptor sea la señalada con el número\n"
+#~ "            2, se hará constar el número de identificación fiscal de su\n"
+#~ "            cónyuge."
+#~ msgstr ""
+#~ "Només per a percepcions corresponents a les claus A,\n"
+#~ "             B.01, B.03 i C.\n"
+#~ "             Únicament en cas que la «SITUACIÓ\n"
+#~ "             FAMILIAR» del perceptor sigui l'assenyalada amb el número\n"
+#~ "             2, es farà constar el número didentificació fiscal de la "
+#~ "seva\n"
+#~ "             cònjuge."
 
 #~ msgid "Last Modified on"
 #~ msgstr "Última modificació el"

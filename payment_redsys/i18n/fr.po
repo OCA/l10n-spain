@@ -51,11 +51,6 @@ msgid "Code"
 msgstr ""
 
 #. module: payment_redsys
-#: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_currency
-msgid "Currency"
-msgstr "Devise"
-
-#. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_pay_method__d
 msgid "Domiciliacion"
 msgstr ""
@@ -182,6 +177,11 @@ msgid "Redsys"
 msgstr ""
 
 #. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_currency
+msgid "Redsys Currency"
+msgstr ""
+
+#. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_signature_version
 #, fuzzy
 msgid "Redsys Signature Version"
@@ -255,8 +255,11 @@ msgstr ""
 
 #. module: payment_redsys
 #: model_terms:payment.provider,done_msg:payment_redsys.payment_provider_redsys
-msgid "Your payment has been successfully processed. Thank you!"
+msgid "Your payment has been successfully processed."
 msgstr ""
+
+#~ msgid "Currency"
+#~ msgstr "Devise"
 
 #~ msgid "Payment Acquirer"
 #~ msgstr "Paiement acquéreur"

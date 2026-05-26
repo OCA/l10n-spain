@@ -29,7 +29,10 @@ patch(Order.prototype, {
             })
             .catch((error) => {
                 // We'll only consider network errors
-                if (!error instanceof ConnectionLostError) {
+                if (
+                    !error instanceof ConnectionLostError ||
+                    this.pos.config.prevent_offline_validation
+                ) {
                     throw error;
                 }
             })

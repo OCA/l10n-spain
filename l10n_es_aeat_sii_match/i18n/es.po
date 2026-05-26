@@ -453,10 +453,14 @@ msgid "Records only in SII"
 msgstr "Registros solo en el SII"
 
 #. module: l10n_es_aeat_sii_match
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__number_records_partially
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__number_records_partially_contrasted
 msgid "Records partially contrasted"
 msgstr "Registros parcialmente contrastados"
+
+#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__number_records_partially
+msgid "Records partially correct"
+msgstr "Registros parcialmente correctos"
 
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__number_records_no_exist
@@ -573,7 +577,8 @@ msgid ""
 "The invoices must be posted and have a CSV in order to be matched.\n"
 "Non-matchable invoices: %(invoice_names)s"
 msgstr ""
-"Las facturas tienen que estar enviadas y con CSV para poder ser contrastadas.\n"
+"Las facturas tienen que estar enviadas y con CSV para poder ser "
+"contrastadas.\n"
 "Facturas no contrastables: %(invoice_names)s"
 
 #. module: l10n_es_aeat_sii_match
@@ -594,5 +599,5 @@ msgid ""
 "You have not installed deepdiff library, please install it in order to use "
 "this feature"
 msgstr ""
-"La librería deepdiff no esta instalada, por favor tienes que instalarla para"
-" utilizar esta característica"
+"La librería deepdiff no esta instalada, por favor tienes que instalarla para "
+"utilizar esta característica"

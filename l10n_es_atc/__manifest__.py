@@ -3,7 +3,7 @@
 {
     "name": "ATC Menú",
     "summary": "Modulo 'glue' de la AEAT para el menú de la ATC",
-    "version": "17.0.1.0.1",
+    "version": "17.0.1.0.4",
     "author": "Binhex System Solutions," "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/l10n-spain",
@@ -11,8 +11,10 @@
     "depends": ["l10n_es_aeat"],
     "data": [
         "security/atc_security.xml",
+        "data/config_parameter_data.xml",
         "views/atc_menuitem.xml",
         "data/atc_partner.xml",
+        "views/res_company_views.xml",
     ],
     "installable": True,
     "auto_install": False,

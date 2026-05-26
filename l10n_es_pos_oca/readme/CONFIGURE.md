@@ -4,8 +4,12 @@ sección *Facturación y recibos* activaremos la opción *Secuencia de
 Factura Simplificada*. Podemos configurar el límite a partir del cual no
 se considera factura simplificada, que por defecto es 3.000,00 €.
 
-Si entramos en la configuración del TPV en modo debug, podremos también
-configurar la sequencia asociada al TPV.
+En caso de utilizar múltiples dispositivos para el mismo TPV se puede activar el campo
+"Prevenir validación offline" evitando posibles duplicidades en los números de factura
+simplificada, en caso de que algún dispositivo pierda conexión momentáneamente.
+
+Si entramos en la configuración del TPV en modo debug, podremos también configurar la
+sequencia asociada al TPV.
 
 [Ver enlace de la
 AEAT](https://www.agenciatributaria.es/AEAT.internet/Inicio/_Segmentos_/Empresas_y_profesionales/Empresas/IVA/Obligaciones_de_facturacion/Tipos_de_factura.shtml)

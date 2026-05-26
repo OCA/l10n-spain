@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrw_view_delivery_carrier_form" model="ir.ui.view">
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[1]" position='before'>
+                <page string="MRW Configuration" invisible="delivery_type != 'mrw'">
+                    <group>
+                        <group string="Connection">
+                            <field
+                                name="mrw_username"
+                                required="delivery_type == 'mrw'"
+                            />
+                            <field
+                                name="mrw_password"
+                                password="True"
+                                required="delivery_type == 'mrw'"
+                            />
+                            <field
+                                name="mrw_client_code"
+                                required="delivery_type == 'mrw'"
+                            />
+                            <field name="mrw_department_code" />
+                            <field
+                                name="mrw_franquicia_code"
+                                required="delivery_type == 'mrw'"
+                            />
+                        </group>
+                        <group string="Service">
+<!--                            we make international shipping invisible because it's not supported-->
+                            <field
+                                name="international_shipping"
+                                invisible="1"
+                                required="delivery_type == 'mrw'"
+                            />
+                            <field
+                                name="mrw_national_service"
+                                invisible="international_shipping"
+                                required="delivery_type == 'mrw' and not international_shipping"
+                            />
+                            <field
+                                name="mrw_international_service"
+                                invisible="not international_shipping"
+                                required="delivery_type == 'mrw' and international_shipping"
+                            />
+                            <label
+                                for="mrw_horario_from"
+                                string="Time Frame"
+                                invisible="international_shipping"
+                            />
+                            <div invisible="international_shipping">
+                                <field
+                                    name="mrw_horario_from"
+                                    class="oe_inline"
+                                    widget="float_time"
+                                    invisible="international_shipping"
+                                    required="delivery_type == 'mrw' and not international_shipping"
+                                />
+                                a
+                             <field
+                                    name="mrw_horario_to"
+                                    class="oe_inline"
+                                    widget="float_time"
+                                    invisible="international_shipping"
+                                    required="delivery_type == 'mrw' and not international_shipping"
+                                />
+                            </div>
+                            <field
+                                name="mrw_en_franquicia"
+                                string="En Franquicia"
+                                invisible="international_shipping"
+                                required="delivery_type == 'mrw'"
+                            />
+                            <field
+                                name="mrw_reembolso"
+                                string="Reembolso"
+                                invisible="international_shipping"
+                                required="delivery_type == 'mrw'"
+                            />
+                            <field
+                                name="mrw_retorno"
+                                string="Retorno"
+                                invisible="international_shipping"
+                                required="delivery_type == 'mrw'"
+                            />
+                        </group>
+                        <group string="Notifications">
+                            <field name="mrw_notification_channel" />
+                            <field
+                                name="mrw_notification_type"
+                                required="mrw_notification_channel"
+                            />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//button[@name='toggle_prod_environment']" position="before">
+                <button
+                    name="action_get_manifest"
+                    string="Manifest"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-file-text-o"
+                    invisible="delivery_type != 'mrw'"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

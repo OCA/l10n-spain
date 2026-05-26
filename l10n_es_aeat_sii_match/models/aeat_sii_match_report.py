@@ -4,6 +4,7 @@
 
 import copy
 import json
+from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
 from zeep.helpers import serialize_object
@@ -11,6 +12,8 @@ from zeep.helpers import serialize_object
 from odoo import _, api, exceptions, fields, models
 from odoo.exceptions import UserError
 from odoo.modules.registry import Registry
+
+from odoo.addons.l10n_es_aeat.models.aeat_mixin import AEAT_DATE_FORMAT
 
 SII_VERSION = "1.1"
 
@@ -98,7 +101,7 @@ class SiiMatchReport(models.Model):
         readonly=True,
     )
     number_records_partially = fields.Integer(
-        string="Records partially contrasted",
+        string="Records partially correct",
         readonly=True,
     )
     number_records_no_test = fields.Integer(
@@ -162,13 +165,23 @@ class SiiMatchReport(models.Model):
                     limit=1,
                 )
             else:
+                invoice_date = invoice["IDFactura"]["FechaExpedicionFacturaEmisor"]
+                invoice_date = datetime.strptime(invoice_date, AEAT_DATE_FORMAT)
                 odoo_invoice = self.env["account.move"].search(
                     [
                         ("ref", "=", name),
+                        ("invoice_date", "=", invoice_date),
                         ("move_type", "in", ["in_invoice", "in_refund"]),
                     ],
-                    limit=1,
                 )
+                if len(odoo_invoice) > 1:
+                    vat = invoice["IDFactura"]["IDEmisorFactura"].get("NIF", "NO_VALID")
+                    for rec in odoo_invoice:
+                        if vat in rec.partner_id.vat:
+                            odoo_invoice = rec
+                            break
+                    else:
+                        odoo_invoice = False  # Don't match with any of them
             if odoo_invoice and odoo_invoice.id not in list(matched_invoices.keys()):
                 matched_invoices[odoo_invoice.id] = invoice
             else:
@@ -423,7 +436,7 @@ class SiiMatchReport(models.Model):
             "IDVersionSii": SII_VERSION,
             "Titular": {
                 "NombreRazon": self.company_id.name[0:120],
-                "NIF": self.company_id.vat[2:],
+                "NIF": self.company_id.partner_id._parse_aeat_vat_info()[2],
             },
         }
         return header

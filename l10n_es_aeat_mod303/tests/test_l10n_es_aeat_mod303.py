@@ -30,13 +30,12 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         "S_REQ05": (1700, 8.5),
         "S_REQ014": (1800, 25.2),
         "S_REQ52": (1900, 98.8),
-        "S_IVA0_G_E": (2000, 0),
+        "S_IVA0_G_E": (4600, 0),
         "S_IVA_E": (2100, 0),
         "S_IVA_NS": (2200, 0),
         "S_IVA0_ISP": (2300, 0),
         "S_IVA0_G_I": (2400, 0),
         "S_IVA0_SP_I": (2500, 0),
-        "S_IVA0_E": (2600, 0),
     }
     taxes_purchase = {
         # tax code: (base, tax_amount)
@@ -371,7 +370,7 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         # Entregas intra. de bienes y servicios - Base ventas
         "59": (2 * 2400) + (2 * 2500),  # S_IVA0_G_I, S_IVA0_SP_I
         # Exportaciones y operaciones asimiladas - Base ventas
-        "60": (2 * 2000) + (2 * 2600),  # S_IVA0_G_E + S_IVA0
+        "60": (2 * 4600),  # S_IVA0_G_E
         # Importes de las entregas de bienes y prestaciones de servicios
         # a las que habiéndoles sido aplicado el régimen especial del
         # criterio de caja hubieran resultado devengadas conforme a la regla
@@ -523,6 +522,7 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         export_config_xml_ids = [
             "l10n_es_aeat_mod303.aeat_mod303_2023_main_export_config",
             "l10n_es_aeat_mod303.aeat_mod303_2024_10_main_export_config",
+            "l10n_es_aeat_mod303.aeat_mod303_2026_02_main_export_config",
         ]
         for xml_id in export_config_xml_ids:
             export_config = self.env.ref(xml_id)

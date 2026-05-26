@@ -43,6 +43,19 @@ class ResPartner(models.Model):
                 }
         return name
 
+    @api.depends("comercial")
+    def _compute_complete_name(self):
+        # We are enforcing the new context,
+        # because complete name field will remove the context
+        res = super()._compute_complete_name()
+        for partner in self:
+            partner.complete_name = partner.with_context(
+                display_commercial=not self.env.context.get(
+                    "no_display_commercial", False
+                )
+            )._get_complete_name()
+        return res
+
     @api.model
     def _commercial_fields(self):
         res = super()._commercial_fields()
@@ -53,3 +66,14 @@ class ResPartner(models.Model):
     def _rec_names_search(self):
         # Inject the field comercial in _rec_names_search
         return list(set(super()._rec_names_search + ["comercial"]))
+
+    @api.model
+    def get_views(self, views, options=None):
+        res = super().get_views(views, options)
+        # Inject the commercial field into the domain when searching by complete_name
+        if "search" in res["views"]:
+            res["views"]["search"]["arch"] = res["views"]["search"]["arch"].replace(
+                "'|', ('complete_name', 'ilike', self)",
+                "'|','|',('complete_name','ilike',self),('comercial','ilike',self)",
+            )
+        return res
