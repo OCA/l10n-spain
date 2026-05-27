@@ -2,9 +2,10 @@
 # Copyright 2024 Tecnativa - David Vidal
 from unittest.mock import patch
 
-from odoo.tests import Form, common
+from odoo.tests import Form
 from odoo.tools import mute_logger
 
+from odoo.addons.base.tests.common import BaseCommon
 from odoo.addons.delivery_seur_atlas.models.seur_request_atlas import SeurAtlasRequest
 
 
@@ -12,7 +13,7 @@ def mock_set_token(self):
     self.token = "test"
 
 
-class TestDeliverySeurAtlas(common.TransactionCase):
+class TestDeliverySeurAtlas(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
