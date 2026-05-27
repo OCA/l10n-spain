@@ -21,13 +21,13 @@ Delivery SEUR Atlas
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/18.0/delivery_seur_atlas
+    :target: https://github.com/OCA/l10n-spain/tree/19.0/delivery_seur_atlas
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-18-0/l10n-spain-18-0-delivery_seur_atlas
+    :target: https://translation.odoo-community.org/projects/l10n-spain-19-0/l10n-spain-19-0-delivery_seur_atlas
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -60,8 +60,8 @@ en OCA/delivery-carrier.
 Los siguientes puertos y hosts necesitan ser visibles desde tu
 despliegue de Odoo:
 
-- Test: ``servicios.apipre.seur.io:443``
-- Production: ``servicios.api.seur.io:443``
+-  Test: ``servicios.apipre.seur.io:443``
+-  Production: ``servicios.api.seur.io:443``
 
 Configuration
 =============
@@ -87,9 +87,9 @@ Para configurar tus servicios SEUR, debes ir a:
 4. Configura el servicio y producto SEUR que necesites.
 5. Configura el formato de etiqueta que necesites:
 
-   - ZPL
-   - PDF
-   - A4 troquelado
+   -  ZPL
+   -  PDF
+   -  A4 troquelado
 
 6. Configura la plantilla de etiqueta y el tipo de salida.
 
@@ -115,10 +115,10 @@ de envío*.
 Known issues / Roadmap
 ======================
 
-- Implementar el cálculo de tarifas de envío. Ahora el API tiene soporte
-  para ello, aunque hace necesario implementar de forma correcta la
-  gestión de paquetes de envío, así como un uso correcto por parte de
-  los usuarios.
+-  Implementar el cálculo de tarifas de envío. Ahora el API tiene
+   soporte para ello, aunque hace necesario implementar de forma
+   correcta la gestión de paquetes de envío, así como un uso correcto
+   por parte de los usuarios.
 
 Bug Tracker
 ===========
@@ -126,7 +126,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20delivery_seur_atlas%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20delivery_seur_atlas%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -143,9 +143,13 @@ Contributors
 
 `Tecnativa <https://www.tecnativa.com>`__
 
-- Pedro M. Baeza
-- David Vidal
-- Víctor Martínez
+-  Pedro M. Baeza
+-  David Vidal
+-  Víctor Martínez
+
+`Studio73 <https://www.studio73.es>`__
+
+-  Sergio Martínez
 
 Maintainers
 -----------
@@ -160,6 +164,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/18.0/delivery_seur_atlas>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/19.0/delivery_seur_atlas>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

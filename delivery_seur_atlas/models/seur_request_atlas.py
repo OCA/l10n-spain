@@ -1,11 +1,11 @@
 # Copyright 2022 Tecnativa - David Vidal
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import logging
-from urllib.parse import urljoin
 
 import requests
 
 from odoo.exceptions import UserError
+from odoo.tools.urls import urljoin
 
 _logger = logging.getLogger(__name__)
 
@@ -94,7 +94,7 @@ class SeurAtlasRequest:
         self._log_request()
         if not self.response.ok:
             self.error = self.response.json()
-            return
+            raise UserError(f"SEUR TOKEN ERROR: \n\n{self.error}")  # pylint: disable=translation-required
         self.token = self.response.json()["access_token"]
 
     def request(self, request_method, seur_method, **kwargs):
@@ -124,7 +124,7 @@ class SeurAtlasRequest:
                     for error in self.response.json().get("errors")
                 ]
             )
-            raise UserError(f"SEUR ERROR: \n\n{self.error}")
+            raise UserError(f"SEUR ERROR: \n\n{self.error}")  # pylint: disable=translation-required
 
     # SEUR ATLAS API METHODS
 

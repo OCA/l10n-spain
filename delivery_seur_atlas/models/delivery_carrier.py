@@ -6,7 +6,7 @@ import logging
 
 from dateutil.parser import isoparse
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 from .seur_master_data import PRODUCT_CODES, SERVICE_CODES, TRACKING_STATES_MAP
 from .seur_request_atlas import SeurAtlasRequest
@@ -119,7 +119,6 @@ class DeliveryCarrier(models.Model):
         )
         company = picking.company_id
         phone = partner.phone and partner.phone.replace(" ", "") or ""
-        mobile = partner.mobile and partner.mobile.replace(" ", "") or ""
         weight_by_parcel = picking.shipping_weight / (picking.number_of_packages or 1)
         return {
             "serviceCode": int(self.seur_atlas_service_code),
@@ -132,7 +131,7 @@ class DeliveryCarrier(models.Model):
             "receiver": {
                 "name": partner_name,
                 "email": partner.email or "",
-                "phone": phone or mobile,
+                "phone": phone,
                 "contactName": partner_att,
                 "address": {
                     "streetName": " ".join(
@@ -293,4 +292,4 @@ class DeliveryCarrier(models.Model):
 
     def seur_atlas_rate_shipment(self, order):
         """TODO: Implement rate shipments with ATLAS API"""
-        raise NotImplementedError(_("To be implemented"))
+        raise NotImplementedError(self.env._("To be implemented"))
