@@ -26,6 +26,16 @@ msgid "%(number)s_report_%(date)s.txt"
 msgstr "%(number)s_informe_%(date)s.txt"
 
 #. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_real_estate_form
+msgid "1234567AB1234A0001OJ"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_real_estate_form
+msgid "<b>Errors</b>:"
+msgstr ""
+
+#. module: l10n_es_aeat
 #. odoo-python
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:0
 msgid "<blank>"
@@ -71,6 +81,11 @@ msgstr "Tipus d'identificació amb AEAT"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax__model
 msgid "AEAT Model"
 msgstr "Declaració AEAT"
+
+#. module: l10n_es_aeat
+#: model:ir.actions.act_window,name:l10n_es_aeat.l10n_es_aeat_real_estate_action
+msgid "AEAT Real Estates"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_soap
@@ -190,6 +205,16 @@ msgid "Accepted with errors"
 msgstr "Acceptat amb errors"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__acce
+msgid "Acces"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__acces
+msgid "Acceso"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__account_xmlid_ids
 msgid "Account Template"
 msgstr "Plantilla de compte"
@@ -201,6 +226,17 @@ msgid "Account entry"
 msgstr "Assentament comptable"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__aceq
+msgid "Acequia"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__acera
+msgid "Acera"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__message_needaction
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_needaction
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_needaction
 msgid "Action Needed"
@@ -208,33 +244,49 @@ msgstr "Acció necessària"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__active
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__active
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_certificate__state__active
 msgid "Active"
 msgstr "Actiu"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__activity_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_ids
 msgid "Activities"
 msgstr "Activitats"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__activity_exception_decoration
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_exception_decoration
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_exception_decoration
 msgid "Activity Exception Decoration"
 msgstr "Decoració d'excepció d'activitat"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__activity_state
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_state
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_state
 msgid "Activity State"
 msgstr "Estat de l'activitat"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__activity_type_icon
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_type_icon
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_type_icon
 msgid "Activity Type Icon"
 msgstr "Icona del tipus d'activitat"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__address
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_real_estate_form
+msgid "Address"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__address_type
+msgid "Address Type"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_line_form
@@ -264,6 +316,21 @@ msgid "Aeat Tax Agency"
 msgstr "Agència Tributària AEAT"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__alam
+msgid "Alameda"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__aldap
+msgid "Aldapa"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__aldea
+msgid "Aldea"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__alignment
 msgid "Alignment"
 msgstr "Alineació"
@@ -290,6 +357,16 @@ msgid "Alphanumeric"
 msgstr "Alfanumèric"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__alque
+msgid "Alqueria"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__alto
+msgid "Alto"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__content_float
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line__amount
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__field_type__amount
@@ -297,9 +374,39 @@ msgid "Amount"
 msgstr "Import"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__andad
+msgid "Andador"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__angta
+msgid "Angosta"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__res_partner__aeat_identification_type__06
 msgid "Another document"
 msgstr "Altre document"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__number_calification__ant
+msgid "Ant"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__aptos
+msgid "Apartamentos"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__aptes
+msgid "Apartaments"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__apdro
+msgid "Apeadero"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__apply_sign
@@ -312,16 +419,118 @@ msgid "Aquí está el archivo BOE de la AEAT exportado:"
 msgstr "Aquí està l'arxiu BOE de l'AEAT exportat:"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__arb
+msgid "Arboleda"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_real_estate_form
+msgid "Archived"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__arral
+msgid "Arrabal"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__arry
+msgid "Arroyo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__asseg
+msgid "Assegador"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__atajo
+msgid "Atajo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__atal
+msgid "Atall"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__atall
+msgid "Atallo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__message_attachment_count
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_attachment_count
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_attachment_count
 msgid "Attachment Count"
 msgstr "Recompte d'adjunts"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__atzuc
+msgid "Atzucat"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__auto
+msgid "Autopista"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__autov
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__avia
+msgid "Autovia"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__auzo
+msgid "Auzo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__auzot
+msgid "Auzotegi"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__auzun
+msgid "Auzunea"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__av
+msgid "Av"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__avda
+msgid "Avenida"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__avgda
+msgid "Avinguda"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.ui.menu,name:l10n_es_aeat.menu_aeat_export_config
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_form
 msgid "BOE export configuration"
 msgstr "Configuració d'exportació a BOE"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__bda
+msgid "Baixada"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__bjada
+msgid "Bajada"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__balnr
+msgid "Balneario"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_res_partner_bank
@@ -343,14 +552,85 @@ msgstr ""
 "Tipus de compte bancari: Normal o IBAN. Deduït del número de compte bancari."
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__branc
+msgid "Barranco"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__bqllo
+msgid "Barranquil"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__brdla
+msgid "Barreduela"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__barri
+msgid "Barri"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__barda
+msgid "Barriada"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__barro
+msgid "Barrio"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__field_type__base
 msgid "Base"
 msgstr "Base"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__bsria
+msgid "Baserria"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_line_form
 msgid "Basic configuration"
 msgstr "Configuració bàsica"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__belna
+msgid "Belena"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__bide
+msgid "Bide"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__bideb
+msgid "Bidebieta"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__number_calification__bis
+msgid "Bis"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__bloc
+msgid "Bloc"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__block
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_real_estate_form
+msgid "Block"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__blque
+msgid "Bloque"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_model_export_config_line__export_type__boolean
@@ -373,6 +653,27 @@ msgid "Both exigible and non-exigible amounts"
 msgstr "Ambdós (exigible i no exigible)"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__brzal
+msgid "Brazal"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__bulev
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__bv
+msgid "Bulevar"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__c
+msgid "C"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__c/
+msgid "C/"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Calculate"
 msgstr "Calcular"
@@ -382,6 +683,101 @@ msgstr "Calcular"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__calculation_date
 msgid "Calculation Date"
 msgstr "Data de càlcul"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cxon
+msgid "Calexon"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cleya
+msgid "Caleya"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__clyon
+msgid "Caleyon"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__calle
+msgid "Calle"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cllja
+msgid "Calleja"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cllon
+msgid "Callejon"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cjla
+msgid "Callejuela"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cllzo
+msgid "Callizo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__czada
+msgid "Calzada"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__czads
+msgid "Calzadas"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cami
+msgid "Cami"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__camin
+msgid "Camin"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cmnet
+msgid "Caminet"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cmno
+msgid "Camino"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cmño
+msgid "Camiño"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__campa
+msgid "Campa"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__campg
+msgid "Camping"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__campo
+msgid "Campo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__canal
+msgid "Canal"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_password_wizard_view
@@ -420,16 +816,128 @@ msgid "Cancelled models"
 msgstr "Declaracions cancel·lades"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cella
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cnlla
+msgid "Canella"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cantr
+msgid "Cantera"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__canti
+msgid "Cantina"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__canño
+msgid "Cantiño"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__canto
+msgid "Canto"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cant
+msgid "Canton"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__carre
+msgid "Carrer"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cra
+msgid "Carrera"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__carra
+msgid "Carrerada"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__carry
+msgid "Carrerany"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cro
+msgid "Carrero"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__ctra
+msgid "Carretera"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__ctrin
+msgid "Carreterin"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__crtil
+msgid "Carretil"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__crril
+msgid "Carril"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__casa
+msgid "Casa"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__csrio
+msgid "Caserio"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__reference
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_real_estate_form
+msgid "Catastral Reference"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cñada
+msgid "Cañada"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cerro
+msgid "Cerro"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.actions.act_window,name:l10n_es_aeat.l10n_es_certificate_action
 #: model:ir.ui.menu,name:l10n_es_aeat.l10n_es_aeat_certificate_menu
 msgid "Certificates AEAT"
 msgstr "Certificats AEAT"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__chlet
+msgid "Chalet"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_res_partner__aeat_anonymous_cash_customer
 #: model:ir.model.fields,help:l10n_es_aeat.field_res_users__aeat_anonymous_cash_customer
 msgid "Check this for anonymous cash customer. AEAT communication"
 msgstr "Marqueu això per a clients de caixa anònims. Comunicació amb AEAT"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_real_estate__check_ok
+msgid "Checked if this record is OK"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_res_partner__aeat_simplified_invoice
@@ -442,10 +950,62 @@ msgstr ""
 "l'AEAT com a factures simplificades."
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cint
+msgid "Cinturon"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__ciny
+msgid "Cinyell"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__ccvcn
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__circu
+msgid "Circunvalacion"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__city
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_real_estate_form
+msgid "City"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__city_id
+msgid "City ID"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_compare_boe_file
 msgid "Close"
 msgstr "Tancar"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__c_h_
+msgid "Cmno Hondo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__c_n_
+msgid "Cmno Nuevo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__c_v_
+msgid "Cmno Viejo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cbtiz
+msgid "Cobertizo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__col
+msgid "Colonia"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_res_company
@@ -454,6 +1014,7 @@ msgstr "Companyies"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__company_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__company_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__company_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__company_id
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -486,6 +1047,22 @@ msgstr "Assistent per comparar arxiu BOE"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_form
 msgid "Compare file"
 msgstr "Comparar arxiu"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__compj
+msgid "Complejo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__complement
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_real_estate_form
+msgid "Complement"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_real_estate__complement
+msgid "Complement (urbanization, industrial park...)"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__statement_type__c
@@ -540,6 +1117,11 @@ msgid "Confirmed models"
 msgstr "Declaracions confirmades"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cjto
+msgid "Conjunto"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_res_partner
 msgid "Contact"
 msgstr "Contacte"
@@ -561,10 +1143,90 @@ msgid "Content"
 msgstr "Contingut"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cnvt
+msgid "Convent"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cnvto
+msgid "Convento"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__coop
+msgid "Cooperativa"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__crrlo
+msgid "Corralillo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__crral
+msgid "Corralo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__crrde
+msgid "Corredera"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__crrda
+msgid "Corredoira"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__crrdo
+msgid "Corredor"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__crrci
+msgid "Corredorcillo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__crllo
+msgid "Corrillo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__crrol
+msgid "Corriol"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__crtjo
+msgid "Cortijo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__costa
+msgid "Costa"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cstan
+msgid "Costanilla"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__coste
+msgid "Costera"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__counterpart_account_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__counterpart_account_id
 msgid "Counterpart account"
 msgstr "Compte de contrapartida"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__country_id
+msgid "Country"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
@@ -581,6 +1243,7 @@ msgstr "Crear assentament"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line_account__create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line_tax__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file__create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_export_to_boe__create_uid
@@ -599,6 +1262,7 @@ msgstr "Creat per"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__create_date
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line_account__create_date
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line_tax__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__create_date
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file__create_date
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__create_date
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_export_to_boe__create_date
@@ -611,6 +1275,26 @@ msgstr "Creat el"
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__sum_type__credit
 msgid "Credit"
 msgstr "Haver"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__crcro
+msgid "Cruceiro"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cuadr
+msgid "Cuadra"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__custa
+msgid "Cuesta"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__cueva
+msgid "Cueva(s)"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__currency_id
@@ -666,6 +1350,21 @@ msgid "Declaración"
 msgstr "Declaració"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__dhsa
+msgid "Dehesa"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__demar
+msgid "Demarcacion"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__disem
+msgid "Diseminado"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_tax_agency__display_name
@@ -675,6 +1374,7 @@ msgstr "Declaració"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line_account__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line_tax__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_export_to_boe__display_name
@@ -682,6 +1382,11 @@ msgstr "Declaració"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line__display_name
 msgid "Display Name"
 msgstr "Nom a mostrar"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__disse
+msgid "Disseminat"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__state__done
@@ -705,6 +1410,12 @@ msgstr "Nom a mostrar"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
 msgid "Done"
 msgstr "Fet"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__door
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_real_estate_form
+msgid "Door"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_certificate__state__draft
@@ -737,6 +1448,31 @@ msgid "Draft models"
 msgstr "Declaracions esborrany"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__drera
+msgid "Dreçera"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__number_calification__dup
+msgid "Dup"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__edifc
+msgid "Edificio(s)"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__eirad
+msgid "Eirado"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__empr
+msgid "Empresa"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_account_fiscal_position__aeat_active
 msgid "Enable AEAT communication for this fiscal position?"
 msgstr "Habilitar la comunicació AEAT per a aquesta posició fiscal?"
@@ -752,6 +1488,36 @@ msgstr "Data fi"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__date_end
 msgid "Ending date"
 msgstr "Data final"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__eptza
+msgid "Enparantza"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__entd
+msgid "Entrada"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__erreb
+msgid "Errebal"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__arrek
+msgid "Erreka"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__errep
+msgid "Errepide"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__errib
+msgid "Erribera"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__error_count
@@ -772,6 +1538,26 @@ msgid "Error! There aren't certificates."
 msgstr "Error! No hi ha certificats."
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__error_text
+msgid "Errors"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__esc
+msgid "Escala(s)"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__esca
+msgid "Escalera(s)"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__escal
+msgid "Escalinata"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_compare_boe_file
 msgid ""
 "Escoja el archivo para comparar con el actual formato de exportación. NOTA: "
@@ -783,9 +1569,54 @@ msgstr ""
 "amb bucle de repetició."
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__eslda
+msgid "Espalda"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__espig
+msgid "Espigo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__estac
+msgid "Estacio"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__estcn
+msgid "Estacion"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__estda
+msgid "Estrada"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__etdea
+msgid "Etorbidea"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__etxad
+msgid "Etxadi"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__etxar
+msgid "Etxarte"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__exigible_type
 msgid "Exigibility"
 msgstr "Exigibilitat"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__expla
+msgid "Explanada"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
@@ -842,6 +1673,26 @@ msgid "Expression: "
 msgstr "Expressió: "
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__extrm
+msgid "Extramuros"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__extrr
+msgid "Extrarradio"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__fbrca
+msgid "Fabrica"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__falda
+msgid "Falda"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__field_number
 msgid "Field Number"
 msgstr "Nº de casella"
@@ -879,6 +1730,11 @@ msgid "File name"
 msgstr "Nom de l'arxiu"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__finca
+msgid "Finca"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_account_fiscal_position
 msgid "Fiscal Position"
 msgstr "Posició fiscal"
@@ -900,23 +1756,32 @@ msgid "Fixed: {}"
 msgstr "Fix: {}"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__floor
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_real_estate_form
+msgid "Floor"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__folder
 msgid "Folder Name"
 msgstr "Nom de la carpeta"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__message_follower_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_follower_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_follower_ids
 msgid "Followers"
 msgstr "Seguidors"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__message_partner_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_partner_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_partner_ids
 msgid "Followers (Partners)"
 msgstr "Seguidors (Empreses)"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_real_estate__activity_type_icon
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__activity_type_icon
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
@@ -934,10 +1799,81 @@ msgid "Full Name"
 msgstr "Nom complet"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__gain
+msgid "Gain"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__gale
+msgid "Galeria"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__gllzo
+msgid "Gallizo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__gta
+msgid "Glorieta"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__gorab
+msgid "Gorabide"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__g_v_
+msgid "Gran Via"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__granj
+msgid "Granja"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__grup
+msgid "Grup"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__grupo
+msgid "Grupo(s)"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__has_message
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__has_message
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__has_message
 msgid "Has Message"
 msgstr "Té un missatge"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__hegi
+msgid "Hegi"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__hipod
+msgid "Hipodromo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__hirib
+msgid "Hiribidea"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__honda
+msgid "Hondartza"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__hoya
+msgid "Hoya"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__id
@@ -949,6 +1885,7 @@ msgstr "Té un missatge"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line_account__id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line_tax__id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file__id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_export_to_boe__id
@@ -958,12 +1895,14 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__activity_exception_icon
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_exception_icon
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_exception_icon
 msgid "Icon"
 msgstr "Icona"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_real_estate__activity_exception_icon
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__activity_exception_icon
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_exception_icon
 msgid "Icon to indicate an exception activity."
@@ -976,12 +1915,14 @@ msgid "Identification for AEAT purposes"
 msgstr "Identificació a efectes de la AEAT"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_real_estate__message_needaction
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_needaction
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_needaction
 msgid "If checked, new messages require your attention."
 msgstr "Si està marcat, hi ha missatges que requereixen la vostra atenció."
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_real_estate__message_has_error
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_has_error
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_has_error
 msgid "If checked, some messages have a delivery error."
@@ -1015,6 +1956,11 @@ msgstr ""
 "un número de la declaració anterior."
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__illa
+msgid "Illa"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
 msgid "In process"
 msgstr "En procés"
@@ -1023,6 +1969,11 @@ msgstr "En procés"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
 msgid "In process models"
 msgstr "Declaracions en procés"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__inda
+msgid "Inda"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_aeat_mixin__aeat_send_failed
@@ -1050,6 +2001,11 @@ msgstr ""
 "qualsevol declaració AEAT"
 
 #. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_move_line_tree
+msgid "Inmueble"
+msgstr ""
+
+#. module: l10n_es_aeat
 #. odoo-python
 #: code:addons/l10n_es_aeat/models/aeat_certificate.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_password_wizard_view
@@ -1062,10 +2018,31 @@ msgid "Inverse summarize sign"
 msgstr "Invertir el signe de la suma"
 
 #. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_account_invoice_report
+msgid "Invoices Statistics"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__message_is_follower
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_is_follower
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_is_follower
 msgid "Is Follower"
 msgstr "És seguidor"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__jard
+msgid "Jardi"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__jdins
+msgid "Jardines"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__jdin
+msgid "Jardins"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_account_journal
@@ -1096,11 +2073,62 @@ msgid "Journal items"
 msgstr "Apunts comptables"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__kai
+msgid "Kai"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__kale
+msgid "Kalea"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__karre
+msgid "Karrera"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__karik
+msgid "Karrik"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__karri
+msgid "Karrika"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__krril
+msgid "Karril"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__number_type__km_
+msgid "Kilometer"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__kosta
+msgid "Kosta"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__representative_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__representative_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__representative_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_res_company__representative_vat
 msgid "L.R. VAT number"
 msgstr "NIF del representant legal"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__ldera
+msgid "Ladera"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__lago
+msgid "Lago"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__write_uid
@@ -1112,6 +2140,7 @@ msgstr "NIF del representant legal"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line_account__write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line_tax__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file__write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_export_to_boe__write_uid
@@ -1130,6 +2159,7 @@ msgstr "Última actualització per"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__write_date
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line_account__write_date
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line_tax__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__write_date
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file__write_date
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__write_date
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_export_to_boe__write_date
@@ -1139,9 +2169,19 @@ msgid "Last Updated on"
 msgstr "Última actualització el"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__laste
+msgid "Lasterbide"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_model_export_config_line__alignment__left
 msgid "Left"
 msgstr "Esquerra"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_real_estate_form
+msgid "Legal Representative"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_res_company__representative_vat
@@ -1152,16 +2192,36 @@ msgstr ""
 "companyia."
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_real_estate__representative_vat
+msgid "Legal Representative VAT number of the real estate"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__representative_vat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__representative_vat
 msgid "Legal Representative VAT number."
 msgstr "NIF del representant legal."
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__leku
+msgid "Leku"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__config_line_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file__line_ids
 msgid "Lines"
 msgstr "Línies"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__llnra
+msgid "Llanura"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__lloc
+msgid "Lloc"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_form_view
@@ -1172,6 +2232,36 @@ msgstr "Carregar certificat"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_account_journal_form
 msgid "Localization Settings"
 msgstr "Configuració de localització"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__loma
+msgid "Loma"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__lomo
+msgid "Lomo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__lorat
+msgid "Lorategi"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__lorak
+msgid "Lorategiak"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__lugar
+msgid "Lugar"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__malec
+msgid "Malecon"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__map_parent_id
@@ -1194,16 +2284,54 @@ msgid "Mapping Lines"
 msgstr "Línies de mapeig"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__masia
+msgid "Masia(s)"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__mazo
+msgid "Mazo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__mendi
+msgid "Mendi"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__merc
+msgid "Mercado"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__merct
+msgid "Mercat"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__message_has_error
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_has_error
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_has_error
 msgid "Message Delivery error"
 msgstr "Error d'enviament del missatge"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__message_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_ids
 msgid "Messages"
 msgstr "Missatges"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__mirad
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__mrdor
+msgid "Mirador"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__number_calification__mod
+msgid "Mod"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__model_number
@@ -1228,12 +2356,33 @@ msgid "Modelo no válido: %s. Debe declarar una variable '_aeat_number'"
 msgstr "Model no vàlid: %s. Ha de declarar una variable '_aeat_number'"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__moll
+msgid "Moll"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__mtrio
+msgid "Monasterio"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__monte
+msgid "Monte"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__muell
+msgid "Muelle"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__contact_name
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__contact_name
 msgid "Must have name and surname."
 msgstr "Ha de tenir cognoms i nom."
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__my_activity_date_deadline
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__my_activity_date_deadline
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__my_activity_date_deadline
 msgid "My Activity Deadline"
@@ -1247,10 +2396,21 @@ msgstr "Data límit de la meva activitat"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line_account__name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line_tax__name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line__name
 msgid "Name"
 msgstr "Nom"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_real_estate_form
+msgid "Name of the street"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__nave
+msgid "Nave(s)"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__negative_sign
@@ -1258,18 +2418,21 @@ msgid "Negative sign character"
 msgstr "Caràcter del signe negatiu"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__activity_date_deadline
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_date_deadline
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_date_deadline
 msgid "Next Activity Deadline"
 msgstr "Data límit de la següent activitat"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__activity_summary
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_summary
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_summary
 msgid "Next Activity Summary"
 msgstr "Resum de la següent activitat"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__activity_type_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_type_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_type_id
 msgid "Next Activity Type"
@@ -1313,6 +2476,33 @@ msgid "Not sent"
 msgstr "No enviat"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__ncleo
+msgid "Nucleo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__nudo
+msgid "Nudo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__number
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__number_type__num
+msgid "Number"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__number_calification
+msgid "Number Calification"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__number_type
+msgid "Number Type"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__message_needaction_counter
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_needaction_counter
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_needaction_counter
 msgid "Number of Actions"
@@ -1324,18 +2514,21 @@ msgid "Number of char for decimals"
 msgstr "Nombre de caràcters per als decimals"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__message_has_error_counter
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_has_error_counter
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_has_error_counter
 msgid "Number of errors"
 msgstr "Nombre d'errors"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_real_estate__message_needaction_counter
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_needaction_counter
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_needaction_counter
 msgid "Number of messages requiring action"
 msgstr "Nombre de missatges que requereixen una acció"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_real_estate__message_has_error_counter
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_has_error_counter
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_has_error_counter
 msgid "Number of messages with delivery error"
@@ -1369,6 +2562,11 @@ msgid "Odoo model"
 msgstr "Model Odoo"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__onda
+msgid "Ondartza"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__exigible_type__yes
 msgid "Only exigible amounts"
 msgstr "Només quantitats exigibles"
@@ -1396,10 +2594,137 @@ msgid "Other parameters"
 msgstr "Altres paràmetres"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pago
+msgid "Pago"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__palac
+msgid "Palacio"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pant
+msgid "Pantano"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__praje
+msgid "Paraje"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__prage
+msgid "Paratge"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__praxe
+msgid "Paraxe"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__parc
+msgid "Parc"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__parke
+msgid "Parke"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pque
+msgid "Parque"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__parti
+msgid "Particular"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__ptda
+msgid "Partida"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__partner_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__partner_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__partner_id
 msgid "Partner"
 msgstr "Empresa"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_real_estate__partner_id
+msgid "Partner that owns this real estate"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_real_estate_search
+msgid "Partners"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pas
+msgid "Pas"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pzo
+msgid "Pasadizo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pasai
+msgid "Pasaia"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__psaje
+msgid "Pasaje"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__psaxe
+msgid "Pasaxe"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pasea
+msgid "Pasealekua"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__paseo
+msgid "Paseo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__psmar
+msgid "Paseo Maritimo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pllop
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__psllo
+msgid "Pasillo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pdis
+msgid "Passadis"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__ptge
+msgid "Passatge"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__passe
+msgid "Passeig"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__res_partner__aeat_identification_type__03
@@ -1412,16 +2737,91 @@ msgid "Password"
 msgstr "Contrassenya"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__patio
+msgid "Patio"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__period_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__period_type
 msgid "Period Type"
 msgstr "Tipus de període"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pg
+msgid "Pg"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__contact_phone
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__contact_phone
 msgid "Phone"
 msgstr "Telèfon"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pinar
+msgid "Pinar"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pista
+msgid "Pista"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pl
+msgid "Pl"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pla
+msgid "Pla"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__plcet
+msgid "Placeta"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__playa
+msgid "Playa"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__plaza
+msgid "Plaza"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pzta
+msgid "Plazoleta"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__plzla
+msgid "Plazuela"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__plaça
+msgid "Plaça"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pbdo
+msgid "Poblado"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__polig
+msgid "Poligono"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pgind
+msgid "Poligono Indust"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
@@ -1436,6 +2836,38 @@ msgstr ""
 "Optatiu: Importar dades de fitxer </strong> en el formulari on-line."
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pont
+msgid "Pont"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__ponte
+msgid "Ponte"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__port
+msgid "Port"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__portal
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__prtal
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_real_estate_form
+msgid "Portal"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__prtco
+msgid "Portico"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__ptilo
+msgid "Portillo"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__position
 msgid "Position"
 msgstr "Posició"
@@ -1444,6 +2876,11 @@ msgstr "Posició"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__positive_sign
 msgid "Positive sign character"
 msgstr "Caràcter del signe positiu"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_real_estate_search
+msgid "Postal Codes"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__state__posted
@@ -1466,6 +2903,26 @@ msgstr "Caràcter del signe positiu"
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_vat_book__state__posted
 msgid "Posted"
 msgstr "Comptabilitzat"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__praña
+msgid "Praciña"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__praia
+msgid "Praia"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__praza
+msgid "Praza"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__przla
+msgid "Prazuela"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__previous_number
@@ -1501,9 +2958,49 @@ msgid "Processed"
 msgstr "Processada"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__prol
+msgid "Prolongacion"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__public_key
 msgid "Public Key"
 msgstr "Clau pública"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pblo
+msgid "Pueblo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pnte
+msgid "Puente"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pta
+msgid "Puerta"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__ptllo
+msgid "Puertilo"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pto
+msgid "Puerto"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pda
+msgid "Pujada"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__pjda
+msgid "Pujada, Subida"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
@@ -1515,9 +3012,79 @@ msgstr ""
 "de l'arxiu BOE de l'AEAT."
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__rabal
+msgid "Rabal"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__raco
+msgid "Raco"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__racda
+msgid "Raconada"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__ramal
+msgid "Ramal"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__rbla
+msgid "Rambla"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__rampa
+msgid "Rampla"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__raval
+msgid "Raval"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_account_invoice_report__l10n_es_aeat_real_estate_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_account_move_line__l10n_es_aeat_real_estate_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner__real_estate_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_users__real_estate_ids
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_move_form
+msgid "Real Estate"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__real_estate_situation
+msgid "Real Estate Situation"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_account_move_line__l10n_es_aeat_real_estate_id
+msgid "Real Estate related to this move line"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.ui.menu,name:l10n_es_aeat.l10n_es_aeat_real_estate_menu
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_partner_form
+msgid "Real Estates"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_real_estate
+msgid "Real Estates for AEAT"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Recalculate"
 msgstr "Recalcular"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__check_ok
+msgid "Record is OK"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__move_type__refund
@@ -1534,6 +3101,11 @@ msgstr "Regular"
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:0
 msgid "Regularization"
 msgstr "Regularització"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__rento
+msgid "Rento"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__repeat
@@ -1562,6 +3134,11 @@ msgid "Reports"
 msgstr "Declaracions"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__resid
+msgid "Residencial"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__res_partner__aeat_identification_type__05
 msgid "Residential certificate"
 msgstr "Certificat de residència"
@@ -1572,10 +3149,21 @@ msgid "Resource ID"
 msgstr "ID del recurs"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__activity_user_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_user_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_user_id
 msgid "Responsible User"
 msgstr "Usuari responsable"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__rbra
+msgid "Ribera"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__riera
+msgid "Riera"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_model_export_config_line__alignment__right
@@ -1583,9 +3171,89 @@ msgid "Right"
 msgstr "Dreta"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__rcon
+msgid "Rincon"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__rcda
+msgid "Rinconada"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__ronda
+msgid "Ronda"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__rtda
+msgid "Rotonda"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__rua
+msgid "Rua"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__ruero
+msgid "Rueiro"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__ruela
+msgid "Ruela"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_mixin__aeat_send_failed
 msgid "SII send failed"
 msgstr "Enviament SII fallit"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__sanat
+msgid "Sanatorio"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__santu
+msgid "Santuario"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__sarbi
+msgid "Sarbide"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__sect
+msgid "Sector"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__sekt
+msgid "Sektore"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__senda
+msgid "Senda"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__seder
+msgid "Sender"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__sedra
+msgid "Sendera"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__send
+msgid "Sendero"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__account_move__aeat_state__sent
@@ -1601,6 +3269,11 @@ msgstr "Enviat"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__sequence
 msgid "Sequence"
 msgstr "Seqüència"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__svtia
+msgid "Serventia"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_tax_line_tree
@@ -1619,6 +3292,12 @@ msgid "Simplified invoices in AEAT?"
 msgstr "Factures simplificades a AEAT?"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__stairway
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_real_estate_form
+msgid "Stairway"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__date_start
 msgid "Start Date"
 msgstr "Data d'inici"
@@ -1632,12 +3311,19 @@ msgstr "Data inicial"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__state
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__state_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__state
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file__state
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_export_to_boe__state
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__state
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_real_estate_search
 msgid "State"
 msgstr "Estat"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__state_code
+msgid "State Code"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__statement_type
@@ -1646,6 +3332,7 @@ msgid "Statement Type"
 msgstr "Tipus de declaració"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_real_estate__activity_state
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__activity_state
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_state
 msgid ""
@@ -1664,6 +3351,11 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_model_export_config_line__export_type__subconfig
 msgid "Sub-configuration"
 msgstr "Sub-configuració"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__sbida
+msgid "Subida"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_mod111_report__statement_type__s
@@ -1697,6 +3389,11 @@ msgstr "Tipus de suma"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__support_type
 msgid "Support Type"
 msgstr "Tipus de suport"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__talde
+msgid "Talde"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_account_tax
@@ -1771,6 +3468,12 @@ msgstr "Telemàtica"
 
 #. module: l10n_es_aeat
 #. odoo-python
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_real_estate.py:0
+msgid "The cadastral reference '%s' is not valid."
+msgstr ""
+
+#. module: l10n_es_aeat
+#. odoo-python
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:0
 msgid "The formated string must match the given length"
 msgstr "La cadena formatada ha de satisfer la mida donada"
@@ -1838,6 +3541,16 @@ msgid "To Regularize"
 msgstr "A regularitzar"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__toki
+msgid "Toki"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__trrnt
+msgid "Torrente"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_move_line_tree
 msgid "Total taxes (Taxable base)"
 msgstr "Total impostos (Base imposable)"
@@ -1846,6 +3559,36 @@ msgstr "Total impostos (Base imposable)"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_move_line_tree
 msgid "Total taxes (fee)"
 msgstr "Total impostos (Quota)"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__trans
+msgid "Transito"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__trval
+msgid "Transversal"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__tras
+msgid "Trasera"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__trva
+msgid "Travesia"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__trav
+msgid "Travessera"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__trssi
+msgid "Travessia"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_ir_cron_trigger
@@ -1859,10 +3602,31 @@ msgid "Type"
 msgstr "Tipus"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_real_estate__activity_exception_decoration
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__activity_exception_decoration
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_exception_decoration
 msgid "Type of the exception activity on record."
 msgstr "Tipus d'activitat d'excepció registrada."
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__urbat
+msgid "Urbanitzacio"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__urb
+msgid "Urbanizacion"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__urbaz
+msgid "Urbanizazio"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:res.groups,name:l10n_es_aeat.group_use_aeat_real_estates
+msgid "Use AEAT Real Estates"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_res_partner__aeat_identification_type
@@ -1891,6 +3655,16 @@ msgid "VAT number"
 msgstr "NIF"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_real_estate__address_type
+msgid "Valid AEAT Address type"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__valle
+msgid "Valle"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__value
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_line_form
 msgid "Value"
@@ -1912,16 +3686,89 @@ msgid "Valued tax lines"
 msgstr "Línies d'impostos valorades"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__vecin
+msgid "Vecindario"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__vega
+msgid "Vega"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__venat
+msgid "Veinat"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__venla
+msgid "Venela"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__vreda
+msgid "Vereda"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__via
+msgid "Via"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__vcte
+msgid "Viaducte"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__vcto
+msgid "Viaducto"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__vial
+msgid "Vial"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__viany
+msgid "Viarany"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__villa
+msgid "Villa"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__vvdas
+msgid "Viviendas"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__website_message_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__website_message_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__website_message_ids
 msgid "Website Messages"
 msgstr "Missatges del lloc web"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_real_estate__website_message_ids
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__website_message_ids
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__website_message_ids
 msgid "Website communication history"
 msgstr "Històric de comunicació del lloc web"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__number_type__s/n
+msgid "Without number"
+msgstr ""
+
+#. module: l10n_es_aeat
+#. odoo-python
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_real_estate.py:0
+msgid "Without state"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__wizard_id
@@ -1938,6 +3785,11 @@ msgstr "Assistent per carregar el certificat AEAT"
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:0
 msgid "Wrong align option. It should be < or >"
 msgstr "Opció d'alineament errònia. Hauria de ser < o >"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__xdin
+msgid "Xardin"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__year
@@ -1971,6 +3823,36 @@ msgstr ""
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:0
 msgid "You must fill both journal and counterpart account."
 msgstr "Ha d'omplir tant el diari com el compte de contrapartida."
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__zehar
+msgid "Zearkaleta"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__zip
+msgid "Zip"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__zona
+msgid "Zona"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__zubi
+msgid "Zubi"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__zuhai
+msgid "Zuhaizti"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_real_estate__address_type__zumar
+msgid "Zumardi"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_compare_boe_file__state__compare
