@@ -134,6 +134,9 @@ class DeliveryCarrier(models.Model):
         cash_amount = 0
         if self.gls_asm_cash_on_delivery:
             cash_amount = picking.sale_id.amount_total
+        recipient_phone = self._sanitize_phone_gls(
+            consignee.phone or consignee_entity.phone or ""
+        )
         return {
             "fecha": fields.Date.today().strftime("%d/%m/%Y"),
             "portes": self.gls_asm_postage_type,
@@ -175,11 +178,9 @@ class DeliveryCarrier(models.Model):
             "destinatario_cp": consignee.zip,
             # For certain destinations the consignee mobile and email are required to
             # make the expedition. Try to fallback to the commercial entity one
-            "destinatario_telefono": self._sanitize_phone_gls(
-                consignee.phone or consignee_entity.phone or ""
-            ),
+            "destinatario_telefono": recipient_phone,
             "destinatario_movil": self._sanitize_phone_gls(
-                consignee.mobile or consignee_entity.mobile or ""
+                consignee.mobile or consignee_entity.mobile or recipient_phone
             ),
             "destinatario_email": escape(
                 consignee.email or consignee_entity.email or ""
@@ -221,6 +222,9 @@ class DeliveryCarrier(models.Model):
             raise UserError(_("Couldn't find the sender street"))
         if not receiving_partner.street:
             raise UserError(_("Couldn't find the consignee street"))
+        recipient_phone = self._sanitize_phone_gls(
+            receiving_partner.phone or receiving_partner.parent_id.phone or ""
+        )
         return {
             "fecha": fields.Date.today().strftime("%d/%m/%Y"),
             "portes": self.gls_asm_postage_type,
@@ -255,11 +259,11 @@ class DeliveryCarrier(models.Model):
             "destinatario_provincia": receiving_partner.state_id.name or "",
             "destinatario_pais": (receiving_partner.country_id.code or ""),
             "destinatario_cp": receiving_partner.zip or "",
-            "destinatario_telefono": self._sanitize_phone_gls(
-                receiving_partner.phone or receiving_partner.parent_id.phone or ""
-            ),
+            "destinatario_telefono": recipient_phone,
             "destinatario_movil": self._sanitize_phone_gls(
-                receiving_partner.mobile or receiving_partner.parent_id.mobile or ""
+                receiving_partner.mobile
+                or receiving_partner.parent_id.mobile
+                or recipient_phone
             ),
             "destinatario_email": (
                 receiving_partner.email or receiving_partner.parent_id.email or ""
