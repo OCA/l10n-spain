@@ -142,11 +142,6 @@ msgid "9. Resultado liquidaciones"
 msgstr "9. Resultado liquidaciones"
 
 #. module: l10n_es_aeat_mod390
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod390.action_l10n_es_aeat_mod390_report
-msgid "<span>Create and query AEAT Model 390 reports.</span>"
-msgstr ""
-
-#. module: l10n_es_aeat_mod390
 #: model:ir.ui.menu,name:l10n_es_aeat_mod390.menu_aeat_mod390_report
 msgid "AEAT 390 model"
 msgstr "Modelo 390"
@@ -252,6 +247,11 @@ msgstr "Email de contacto"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__counterpart_account_id
 msgid "Counterpart account"
 msgstr "Cuenta contrapartida"
+
+#. module: l10n_es_aeat_mod390
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod390.action_l10n_es_aeat_mod390_report
+msgid "Create and query AEAT Model 390 reports."
+msgstr "Crea y consulta declaraciones 390 de la AEAT."
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__create_uid
@@ -1045,9 +1045,6 @@ msgstr "[98] Result. 303 último periodo a devolver"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__has_347
 msgid "¿Obligación del 347?"
 msgstr "¿Obligación del 347?"
-
-#~ msgid "Create and query AEAT Model 390 reports."
-#~ msgstr "Crea y consulta declaraciones 390 de la AEAT."
 
 #~ msgid ""
 #~ "Si en la autoliquidación del último período del ejercicio anterior "
