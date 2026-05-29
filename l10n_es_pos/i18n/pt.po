@@ -6,89 +6,92 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-29 08:23+0000\n"
+"Last-Translator: Daniel Duque <danieldqmrt@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.res_config_settings_view_form
 msgid "Above this limit the simplified invoice won't be made"
-msgstr ""
+msgstr "Acima deste limite, a fatura simplificada não será emitida"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,help:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_sequence_id
 #: model:ir.model.fields,help:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_sequence_id
 msgid "Autogenerate for each POS created"
-msgstr ""
+msgstr "Gerar automaticamente para cada ponto de venda criado"
 
 #. module: l10n_es_pos
 #: model:ir.model,name:l10n_es_pos.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Configurações"
 
 #. module: l10n_es_pos
 #. odoo-javascript
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
 #, python-format
 msgid "Customer:"
-msgstr ""
+msgstr "Cliente:"
 
 #. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
 msgid "Invoices"
-msgstr ""
+msgstr "Faturas"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__is_simplified_config
 msgid "Is Simplified Config"
-msgstr ""
+msgstr "É configuração simplificada"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,help:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_limit
 #: model:ir.model.fields,help:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_limit
 msgid "Over this amount is not legally posible to create a simplified invoice"
 msgstr ""
+"Acima deste valor não é legalmente possível criar uma fatura simplificada"
 
 #. module: l10n_es_pos
 #: model:ir.model,name:l10n_es_pos.model_pos_config
 msgid "Point of Sale Configuration"
-msgstr ""
+msgstr "Configuração do Ponto de Venda"
 
 #. module: l10n_es_pos
 #: model:ir.model,name:l10n_es_pos.model_pos_order
 msgid "Point of Sale Orders"
-msgstr ""
+msgstr "Ordens do Ponto de Venda"
 
 #. module: l10n_es_pos
 #: model:ir.model,name:l10n_es_pos.model_pos_session
 msgid "Point of Sale Session"
-msgstr ""
+msgstr "Sessão do Ponto de Venda"
 
 #. module: l10n_es_pos
 #: model:ir.model,name:l10n_es_pos.model_ir_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Sequência"
 
 #. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.res_config_settings_view_form
 msgid "Set simplified invoice sequence for this POS"
-msgstr ""
+msgstr "Definir sequência de fatura simplificada para este ponto de venda"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_limit
 #: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_limit
 msgid "Sim.Inv limit amount"
-msgstr ""
+msgstr "Valor limite fat. simpl."
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_number
 #: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_number
 msgid "Sim.Inv number"
-msgstr ""
+msgstr "Número fat. simpl."
 
 #. module: l10n_es_pos
 #. odoo-javascript
@@ -97,7 +100,7 @@ msgstr ""
 #: code:addons/l10n_es_pos/static/src/xml/Screens/OrderManagementScreen/TicketScreen.xml:0
 #, python-format
 msgid "Simplified Invoice"
-msgstr ""
+msgstr "Fatura simplificada"
 
 #. module: l10n_es_pos
 #. odoo-python
@@ -105,35 +108,35 @@ msgstr ""
 #: code:addons/l10n_es_pos/models/pos_config.py:0
 #, python-format
 msgid "Simplified Invoice %s"
-msgstr ""
+msgstr "Fatura simplificada %s"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_sequence_id
 #: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_sequence_id
 msgid "Simplified Invoice IDs Sequence"
-msgstr ""
+msgstr "Sequência de IDs de fatura simplificada"
 
 #. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.res_config_settings_view_form
 msgid "Simplified Invoice Limit"
-msgstr ""
+msgstr "Limite de fatura simplificada"
 
 #. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.res_config_settings_view_form
 msgid "Simplified Invoice Sequence"
-msgstr ""
+msgstr "Sequência de fatura simplificada"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_padding
 #: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_padding
 msgid "Simplified Invoice padding"
-msgstr ""
+msgstr "Preenchimento de fatura simplificada"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_prefix
 #: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_prefix
 msgid "Simplified Invoice prefix"
-msgstr ""
+msgstr "Prefixo de fatura simplificada"
 
 #. module: l10n_es_pos
 #. odoo-javascript
@@ -141,17 +144,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__is_l10n_es_simplified_invoice
 #, python-format
 msgid "Simplified invoice"
-msgstr ""
+msgstr "Fatura simplificada"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__l10n_es_unique_id
 msgid "Simplified invoice number"
-msgstr ""
+msgstr "Número de fatura simplificada"
 
 #. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
 msgid "Simplified invoices"
-msgstr ""
+msgstr "Faturas simplificadas"
 
 #. module: l10n_es_pos
 #. odoo-python
@@ -161,12 +164,14 @@ msgid ""
 "There is already a simplified invoice sequence with that prefix and it "
 "should be unique."
 msgstr ""
+"Já existe uma sequência de fatura simplificada com esse prefixo e deve ser "
+"única."
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__iface_l10n_es_simplified_invoice
 #: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_iface_l10n_es_simplified_invoice
 msgid "Use simplified invoices for this POS"
-msgstr ""
+msgstr "Usar faturas simplificadas neste ponto de venda"
 
 #. module: l10n_es_pos
 #. odoo-javascript
@@ -174,4 +179,4 @@ msgstr ""
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
 #, python-format
 msgid "on"
-msgstr ""
+msgstr "ativado"
