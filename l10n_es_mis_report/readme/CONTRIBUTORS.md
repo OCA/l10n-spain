@@ -6,3 +6,5 @@
   - Valentin Vinagre \<<valentin.vinagre@sygel.es>\>
 - [APSL - Nagarro](http://www.apsl.tech):
   - Miquel Pascual \<<mpascual@apsl.net>\>
+- [Vortex Dimensión Digital](https://www.dimensionvortex.com/):
+  - Wang Zhong Jiang \<<wang.zhong@dimensionvortex.com>\>
