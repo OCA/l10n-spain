@@ -20,11 +20,6 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: l10n_es_aeat_mod130
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod130.action_l10n_es_aeat_mod130_report
-msgid "<span>Create and query AEAT Model 130 reports</span>"
-msgstr ""
-
-#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod130.selection__l10n_es_aeat_mod130_report__tipo_declaracion__b
 msgid "A deducir"
 msgstr ""
@@ -228,6 +223,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__counterpart_account_id
 msgid "Counterpart account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod130.action_l10n_es_aeat_mod130_report
+msgid "Create and query AEAT Model 130 reports"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130

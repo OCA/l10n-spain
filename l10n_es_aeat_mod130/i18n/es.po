@@ -18,11 +18,6 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_aeat_mod130
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod130.action_l10n_es_aeat_mod130_report
-msgid "<span>Create and query AEAT Model 130 reports</span>"
-msgstr ""
-
-#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod130.selection__l10n_es_aeat_mod130_report__tipo_declaracion__b
 msgid "A deducir"
 msgstr "A deducir"
@@ -228,6 +223,11 @@ msgstr "Correo electrónico de contacto"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__counterpart_account_id
 msgid "Counterpart account"
 msgstr "Cuenta contrapartida"
+
+#. module: l10n_es_aeat_mod130
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod130.action_l10n_es_aeat_mod130_report
+msgid "Create and query AEAT Model 130 reports"
+msgstr "Crea y consulta declaración AEAT del modelo 130"
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__create_uid
@@ -726,9 +726,6 @@ msgstr "¿Deducción por art. 80 bis?"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__has_prestamo
 msgid "¿Préstamo para vivienda habitual?"
 msgstr "¿Préstamo para vivienda habitual?"
-
-#~ msgid "Create and query AEAT Model 130 reports"
-#~ msgstr "Crea y consulta declaración AEAT del modelo 130"
 
 #, python-format
 #~ msgid ""
