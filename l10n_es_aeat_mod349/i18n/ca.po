@@ -17,11 +17,6 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_aeat_mod349
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod349.action_l10n_es_aeat_mod349_report
-msgid "<span>Create and query AEAT Model 349 reports</span>"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod349.selection__account_move_line__l10n_es_aeat_349_operation_key__a
 msgid "A - Intra-Community acquisition"
 msgstr "A - Adquisició intracomunitària"
@@ -249,6 +244,11 @@ msgstr "País"
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 msgid "Country code not found in Europe"
 msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod349.action_l10n_es_aeat_mod349_report
+msgid "Create and query AEAT Model 349 reports"
+msgstr "Crear i consultar informes AEAT Model 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line__create_uid
@@ -967,9 +967,6 @@ msgstr "Any"
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod349.action_aeat_349_mapping
 msgid "aeat 349 Map"
 msgstr "Mapa AEAT 349"
-
-#~ msgid "Create and query AEAT Model 349 reports"
-#~ msgstr "Crear i consultar informes AEAT Model 349"
 
 #~ msgid "SMS Delivery error"
 #~ msgstr "Error d'entrega d'SMS"
