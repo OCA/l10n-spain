@@ -283,11 +283,6 @@ msgstr ""
 "gravamen."
 
 #. module: l10n_es_aeat_mod296
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod296.action_l10n_es_aeat_mod296_report
-msgid "<span>Create and query AEAT Model 296 reports.</span>"
-msgstr ""
-
-#. module: l10n_es_aeat_mod296
 #: model:ir.ui.menu,name:l10n_es_aeat_mod296.menu_aeat_mod296_report
 msgid "AEAT 296 model"
 msgstr "Modelo 296"
@@ -436,6 +431,11 @@ msgstr "País de nacimiento"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__pais_residencia_fiscal
 msgid "Country territory of fiscal residence"
 msgstr "Territorio del país de residencia fiscal"
+
+#. module: l10n_es_aeat_mod296
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod296.action_l10n_es_aeat_mod296_report
+msgid "Create and query AEAT Model 296 reports."
+msgstr "Crea informes AEAT modelo 296."
 
 #. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__create_uid
@@ -961,9 +961,6 @@ msgid ""
 msgstr ""
 "[04] Resumen de los datos incluidos en la declaración - Retenciones e "
 "ingresos a cuenta ingresados"
-
-#~ msgid "Create and query AEAT Model 296 reports."
-#~ msgstr "Crea informes AEAT modelo 296."
 
 #~ msgid "Last Modified on"
 #~ msgstr "Última modificación en"
