@@ -191,11 +191,6 @@ msgid "4 - Sporadic relationship of manual workers"
 msgstr "4 - Relació esporàdica dels treballadors manuals"
 
 #. module: l10n_es_aeat_mod190
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod190.action_l10n_es_aeat_mod190_report
-msgid "<span>Create and query AEAT Model 190 reports.</span>"
-msgstr ""
-
-#. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__report_id
 msgid "AEAT 190 Report ID"
 msgstr "ID de l'informe AEAT 190"
@@ -535,6 +530,11 @@ msgstr "Contracte o relació"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__counterpart_account_id
 msgid "Counterpart account"
 msgstr "Compte de contrapartida"
+
+#. module: l10n_es_aeat_mod190
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod190.action_l10n_es_aeat_mod190_report
+msgid "Create and query AEAT Model 190 reports."
+msgstr "Crear i consultar informes AEAT Model 190."
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__create_uid
@@ -1772,9 +1772,6 @@ msgstr "[03] Import de les retencions"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__ejercicio_devengo
 msgid "year"
 msgstr "Any"
-
-#~ msgid "Create and query AEAT Model 190 reports."
-#~ msgstr "Crear i consultar informes AEAT Model 190."
 
 #~ msgid "The state is not defined in the partner, %s"
 #~ msgstr "L'estat no està definit al soci, %s"
