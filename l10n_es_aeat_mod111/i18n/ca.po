@@ -20,11 +20,6 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_aeat_mod111
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod111.action_l10n_es_aeat_mod111_report
-msgid "<span>Create and query AEAT Model 111 reports.</span>"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
 #: model:ir.ui.menu,name:l10n_es_aeat_mod111.menu_aeat_mod111_report
 msgid "AEAT 111 model"
 msgstr "Model AEAT 111"
@@ -307,6 +302,11 @@ msgstr "Correu electrònic de contacte"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__counterpart_account_id
 msgid "Counterpart account"
 msgstr "Compte de contrapartida"
+
+#. module: l10n_es_aeat_mod111
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod111.action_l10n_es_aeat_mod111_report
+msgid "Create and query AEAT Model 111 reports."
+msgstr "Crear i consultar informes del model 111 de l'AEAT."
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__create_uid
@@ -856,9 +856,6 @@ msgstr "[29] Tarifes per compensar"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_30
 msgid "[30] Result"
 msgstr "[30] Resultat"
-
-#~ msgid "Create and query AEAT Model 111 reports."
-#~ msgstr "Crear i consultar informes del model 111 de l'AEAT."
 
 #~ msgid "To return"
 #~ msgstr "A retornar"

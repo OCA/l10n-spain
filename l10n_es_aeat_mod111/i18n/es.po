@@ -20,11 +20,6 @@ msgstr ""
 "X-Generator: Weblate 5.10.4\n"
 
 #. module: l10n_es_aeat_mod111
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod111.action_l10n_es_aeat_mod111_report
-msgid "<span>Create and query AEAT Model 111 reports.</span>"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
 #: model:ir.ui.menu,name:l10n_es_aeat_mod111.menu_aeat_mod111_report
 msgid "AEAT 111 model"
 msgstr "Modelo 111"
@@ -318,6 +313,11 @@ msgstr "Email de contacto"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__counterpart_account_id
 msgid "Counterpart account"
 msgstr "Cuenta de la contraparte"
+
+#. module: l10n_es_aeat_mod111
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod111.action_l10n_es_aeat_mod111_report
+msgid "Create and query AEAT Model 111 reports."
+msgstr "Crea y consulta las declaraciones del modelo 111 de la AEAT."
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__create_uid
@@ -867,9 +867,6 @@ msgstr "[29] Resultados a ingresar anteriores"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_30
 msgid "[30] Result"
 msgstr "[30] Resultado a ingresar"
-
-#~ msgid "Create and query AEAT Model 111 reports."
-#~ msgstr "Crea y consulta las declaraciones del modelo 111 de la AEAT."
 
 #~ msgid "To return"
 #~ msgstr "Negativa"
