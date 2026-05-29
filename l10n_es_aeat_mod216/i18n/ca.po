@@ -20,11 +20,6 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_aeat_mod216
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod216.action_l10n_es_aeat_mod216_report
-msgid "<span>Create and query AEAT Model 216 reports.</span>"
-msgstr ""
-
-#. module: l10n_es_aeat_mod216
 #: model:ir.ui.menu,name:l10n_es_aeat_mod216.menu_aeat_mod216_report
 msgid "AEAT 216 model"
 msgstr "Model AEAT 216"
@@ -113,6 +108,11 @@ msgstr "Correu electrònic de contacte"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__counterpart_account_id
 msgid "Counterpart account"
 msgstr "Compte de la contrapartida"
+
+#. module: l10n_es_aeat_mod216
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod216.action_l10n_es_aeat_mod216_report
+msgid "Create and query AEAT Model 216 reports."
+msgstr "Creeu i consulteu informes del Model AEAT 216."
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__create_uid
@@ -748,9 +748,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__casilla_21
 msgid "[21] Resultado a ingresar"
 msgstr ""
-
-#~ msgid "Create and query AEAT Model 216 reports."
-#~ msgstr "Creeu i consulteu informes del Model AEAT 216."
 
 #~ msgid "Last Modified on"
 #~ msgstr "Darrera modificació el"
