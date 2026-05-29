@@ -22,11 +22,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_mod130
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod130.action_l10n_es_aeat_mod130_report
-msgid "<span>Create and query AEAT Model 130 reports</span>"
-msgstr ""
-
-#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod130.selection__l10n_es_aeat_mod130_report__tipo_declaracion__b
 msgid "A deducir"
 msgstr "A deducir"
@@ -231,6 +226,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__counterpart_account_id
 msgid "Counterpart account"
 msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod130.action_l10n_es_aeat_mod130_report
+msgid "Create and query AEAT Model 130 reports"
+msgstr "Crea e consulta declaración AEAT do modelo 130"
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__create_uid
@@ -724,9 +724,6 @@ msgstr "¿Dedución por art. 80 bis?"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__has_prestamo
 msgid "¿Préstamo para vivienda habitual?"
 msgstr "¿Préstamo para vivenda habitual?"
-
-#~ msgid "Create and query AEAT Model 130 reports"
-#~ msgstr "Crea e consulta declaración AEAT do modelo 130"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Modificado por última vez o"
