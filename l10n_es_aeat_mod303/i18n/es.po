@@ -136,11 +136,6 @@ msgstr ""
 "6 - Sin epígrafe, correspondiente a: Otras actividades no sujetas al IAE"
 
 #. module: l10n_es_aeat_mod303
-#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod303.action_l10n_es_aeat_mod303_report
-msgid "<span>Create and query AEAT Model 303 reports</span>"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_A01
 msgid "A01 - Arrendadores de bienes inmuebles"
 msgstr "A01 - Arrendadores de bienes inmuebles"
@@ -343,6 +338,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__counterpart_account_id
 msgid "Counterpart account"
 msgstr "Cuenta contrapartida"
+
+#. module: l10n_es_aeat_mod303
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod303.action_l10n_es_aeat_mod303_report
+msgid "Create and query AEAT Model 303 reports"
+msgstr "Crea y consulta declaración AEAT del modelo 303"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__create_uid
@@ -1109,9 +1109,6 @@ msgstr "¿SII voluntario?"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__has_operation_volume
 msgid "¿Volumen de operaciones?"
 msgstr "¿Volumen de operaciones?"
-
-#~ msgid "Create and query AEAT Model 303 reports"
-#~ msgstr "Crea y consulta declaración AEAT del modelo 303"
 
 #~ msgid "[112] Payment on account for petrol deliveries"
 #~ msgstr ""
