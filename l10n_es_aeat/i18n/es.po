@@ -747,6 +747,11 @@ msgid "Ending date"
 msgstr "Fecha final"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_account_tax__aeat_equivalent_tax_id
+msgid "Equivalent Tax (for AEAT mapping purposes)"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__error_count
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__error_count
 msgid "Error Count"
@@ -1852,6 +1857,13 @@ msgstr ""
 msgid "This button creates the regularization move for the selected report"
 msgstr ""
 "Este botón crea el movimiento de regularización para el informe seleccionado"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_account_tax__aeat_equivalent_tax_id
+msgid ""
+"This field is for manually created taxes in order to allow to map them for "
+"AEAT reports"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_form_view
