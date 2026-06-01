@@ -175,7 +175,9 @@ msgid "AEAT tax mapping line - Tax"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__account_move__aeat_state__sent_w_errors
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_mixin__aeat_state__sent_w_errors
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__sii_mixin__aeat_state__sent_w_errors
 msgid "Accepted with errors"
 msgstr ""
 
@@ -738,6 +740,11 @@ msgid "Ending date"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_account_tax__aeat_equivalent_tax_id
+msgid "Equivalent Tax (for AEAT mapping purposes)"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__error_count
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__error_count
 msgid "Error Count"
@@ -1277,7 +1284,9 @@ msgid "Normal"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__account_move__aeat_state__not_sent
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_mixin__aeat_state__not_sent
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__sii_mixin__aeat_state__not_sent
 msgid "Not sent"
 msgstr ""
 
@@ -1556,7 +1565,9 @@ msgid "SII send failed"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__account_move__aeat_state__sent
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_mixin__aeat_state__sent
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__sii_mixin__aeat_state__sent
 msgid "Sent"
 msgstr ""
 
@@ -1769,6 +1780,13 @@ msgstr ""
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "This button creates the regularization move for the selected report"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_account_tax__aeat_equivalent_tax_id
+msgid ""
+"This field is for manually created taxes in order to allow to map them for "
+"AEAT reports"
 msgstr ""
 
 #. module: l10n_es_aeat
