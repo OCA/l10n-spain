@@ -85,28 +85,8 @@ class L10nEsAeatRealEstate(models.Model):
     )
     state_id = fields.Many2one(
         comodel_name="res.country.state",
-        compute="_compute_state_id",
-        readonly=False,
-        store=True,
-    )
-    state_code = fields.Char(
-        compute="_compute_state_code",
-        store=True,
-        readonly=False,
-        compute_sudo=True,
-    )
-    city_id = fields.Many2one(
-        comodel_name="res.city",
-        string="City ID",
-        index=True,
-        compute="_compute_city_id",
-        readonly=False,
-        store=True,
     )
     city = fields.Char(
-        compute="_compute_city",
-        store=True,
-        readonly=False,
         size=30,
         required=True,
     )
@@ -153,20 +133,12 @@ class L10nEsAeatRealEstate(models.Model):
         for record in self:
             record.representative_vat = record.partner_id.vat
 
-    @api.depends("city_id")
-    def _compute_city(self):
-        for record in self:
-            if record.city_id and record.city_id.name:
-                record.city = record.city_id.name
-            else:
-                record.city = ""
-
-    @api.depends("state_code")
+    @api.depends("state_id")
     def _compute_check_ok(self):
         self.update({"check_ok": False, "error_text": False})
         for record in self:
             errors = []
-            if not record.state_code:
+            if not record.state_id:
                 errors.append(self.env._("Without state"))
             record.check_ok = not bool(errors)
             record.error_text = bool(errors) and ", ".join(errors)
