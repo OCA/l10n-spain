@@ -13,7 +13,7 @@ from io import BytesIO
 
 import requests
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import ustr
 from odoo.tools.float_utils import float_is_zero, float_round
@@ -95,10 +95,12 @@ class L10nEsAtcReport(models.AbstractModel):
         messages = []
         partner_company = self.company_id.partner_id
         if not partner_company.street:
-            messages.append(_("- The company %s has no street") % partner_company.name)
+            messages.append(
+                self.env._("- The company %s has no street", partner_company.name)
+            )
         if not partner_company.zip:
             messages.append(
-                _("- The company %s has no zip code") % partner_company.name
+                self.env._("- The company %s has no zip code", partner_company.name)
             )
         return messages
 
@@ -109,14 +111,16 @@ class L10nEsAtcReport(models.AbstractModel):
         messages = self._atc_get_messages()
         if messages:
             raise UserError(
-                _("Please fix the following errors:\n%s") % "\n".join(messages)
+                self.env._("Please fix the following errors:\n%s", "\n".join(messages))
             )
 
     def _atc_get_country_state_code(self, country_state):
         codigo_provincia = SPANISH_STATES.get(country_state.code)
         if not codigo_provincia:
             raise UserError(
-                _("The state code is not mapped for state: %s", country_state.code)
+                self.env._(
+                    "The state code is not mapped for state: %s", country_state.code
+                )
             )
         return codigo_provincia
 
@@ -145,14 +149,19 @@ class L10nEsAtcReport(models.AbstractModel):
             )
             if result.returncode != 0:
                 raise UserError(
-                    f"Error al generar el modelo:\n"
-                    f"Código de salida: {result.returncode}\n"
-                    f"STDOUT:\n{result.stdout}\n"
-                    f"STDERR:\n{result.stderr}"
+                    self.env._(
+                        "Error al generar el modelo:\n"
+                        "Código de salida: %(returncode)s\n"
+                        "STDOUT:\n%(stdout)s\n"
+                        "STDERR:\n%(stderr)s",
+                        returncode=result.returncode,
+                        stdout=result.stdout,
+                        stderr=result.stderr,
+                    )
                 )
         except Exception as e:
             raise UserError(
-                _(f"Excepción durante la ejecución del comando:\n{ustr(e)}")
+                self.env._("Excepción durante la ejecución del comando:\n%s", ustr(e))
             ) from e
         # check if there are errors
         if os.path.exists(dir_paths["errores_path"]):
@@ -161,7 +170,7 @@ class L10nEsAtcReport(models.AbstractModel):
                 errores = f.read()
             if errores:
                 raise UserError(
-                    _(
+                    self.env._(
                         "No se pudo generar el archivo. Errores encontrados:\n %s",
                         errores,
                     )
@@ -233,7 +242,7 @@ class L10nEsAtcReport(models.AbstractModel):
         url = ATC_JAR_URL.get(self._aeat_number)
         if not url:
             raise UserError(
-                _(
+                self.env._(
                     "Please configure the JAR URL for %s "
                     "by inheriting the variable `ATC_JAR_URL`.",
                     self._aeat_number,
@@ -275,7 +284,7 @@ class L10nEsAtcReport(models.AbstractModel):
             response.raise_for_status()
         except Exception as error:
             raise UserError(
-                _(
+                self.env._(
                     "Error downloading the jar file from: %(url)s\n%(error)s",
                     url=url,
                     error=ustr(error),
@@ -284,7 +293,9 @@ class L10nEsAtcReport(models.AbstractModel):
         content = response.content
         if not content:
             raise UserError(
-                _("The HTTP response from %(url)s is empty (no content)", url=url)
+                self.env._(
+                    "The HTTP response from %(url)s is empty (no content)", url=url
+                )
             )
         jar_content = None
         with contextlib.suppress(zipfile.BadZipFile):
@@ -295,7 +306,7 @@ class L10nEsAtcReport(models.AbstractModel):
                         break
         if not jar_content:
             raise UserError(
-                _(
+                self.env._(
                     "The jar file: %(jar_filename)s "
                     "is not present in the zip file downloaded from: %(url)s",
                     jar_filename=jar_filename,
@@ -325,7 +336,7 @@ class L10nEsAtcReport(models.AbstractModel):
             file_path
         ):
             raise UserError(
-                _(
+                self.env._(
                     "Declaracion no generada. Revisa si el XML es válido y "
                     "los parámetros correctos."
                 )
