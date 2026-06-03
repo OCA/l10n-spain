@@ -973,11 +973,6 @@ msgid "City"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__city_id
-msgid "City ID"
-msgstr ""
-
-#. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_compare_boe_file
 msgid "Close"
@@ -3324,11 +3319,6 @@ msgstr "Fecha inicial"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_real_estate_search
 msgid "State"
 msgstr "Estado"
-
-#. module: l10n_es_aeat
-#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_real_estate__state_code
-msgid "State Code"
-msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__statement_type
