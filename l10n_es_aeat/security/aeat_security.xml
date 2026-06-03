@@ -16,10 +16,9 @@
     </record>
     <record model="res.groups" id="group_use_aeat_real_estates">
         <field name="name">Use AEAT Real Estates</field>
-        <field name="category_id" ref="base.module_category_hidden" />
         <field
-            name="users"
-            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+            name="user_ids"
+            eval="[Command.link(ref('base.user_root')), Command.link(ref('base.user_admin'))]"
         />
     </record>
     <record id="l10n_es_aeat_certificate_rule" model="ir.rule">
