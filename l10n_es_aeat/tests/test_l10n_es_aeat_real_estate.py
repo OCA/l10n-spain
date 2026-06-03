@@ -177,19 +177,18 @@ class TestL10nEsAeatRealEstate(TestL10nEsAeatModBase):
             )
 
     def test_compute_check_ok(self):
-        # Sin state_code → check_ok=False
+        # Sin state_id → check_ok=False
         rec_no_state = self.env["l10n.es.aeat.real_estate"].create(
             self._base_vals("Sin estado")
         )
         self.assertFalse(rec_no_state.check_ok)
         self.assertTrue(rec_no_state.error_text)
 
-        # Con state_code → check_ok=True
+        # Con state_id → check_ok=True
         rec_with_state = self.env["l10n.es.aeat.real_estate"].create(
             {
                 **self._base_vals("Con estado"),
                 "state_id": self.env.ref("base.state_es_m").id,
-                "state_code": "28",
             }
         )
         self.assertTrue(rec_with_state.check_ok)
