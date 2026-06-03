@@ -13,8 +13,6 @@
         <field name="model">l10n.es.aeat.real_estate</field>
         <field name="arch" type="xml">
             <form>
-                <field name="check_ok" invisible="1" />
-                <field name="active" invisible="1" />
                 <header />
                 <div
                     class="alert alert-danger"
@@ -105,7 +103,6 @@
                 <field name="representative_vat" optional="hide" />
                 <field name="reference" />
                 <field name="state_id" optional="hide" />
-                <field name="check_ok" column_invisible="1" />
                 <field name="company_id" groups="base.group_multi_company" />
             </list>
         </field>

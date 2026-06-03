@@ -5,7 +5,6 @@ import re
 
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
-from odoo.tools.translate import _
 
 from .aeat_address_types import AEAT_ADDRESS_TYPES
 
@@ -153,7 +152,10 @@ class L10nEsAeatRealEstate(models.Model):
             ref = self._normalize_reference(ref)
             if not self._is_valid_reference(ref):
                 raise ValidationError(
-                    _("The cadastral reference '%s' is not valid.") % record.reference
+                    self.env._(
+                        "The cadastral reference '%s' is not valid.",
+                        record.reference,
+                    )
                 )
 
     @api.model
