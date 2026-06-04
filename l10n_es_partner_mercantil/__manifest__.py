@@ -6,9 +6,7 @@
     "summary": "Añade los datos del registro mercantil a la empresa",
     "version": "18.0.1.0.0",
     "development_status": "Mature",
-    "author": "Spanish Localization Team, "
-    "Tecnativa, "
-    "Odoo Community Association (OCA)",
+    "author": "Spanish Localization Team, Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Localization/Europe",
     "license": "AGPL-3",
