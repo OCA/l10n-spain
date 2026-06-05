@@ -39,8 +39,8 @@ class TestL10nEsAeatVatBook(TestL10nEsAeatVatBookBase):
         sale = self._invoice_sale_create("2017-01-13")
         self._invoice_refund(sale, "2017-01-14")
         # Deactivate a tax for checking that everything continues working
-        tax_id = self.company._get_tax_id_from_xmlid("account_tax_template_p_iva21_sc")
-        self.env["account.tax"].browse(tax_id).active = False
+        tax = self.company._get_taxes_from_xmlids(["account_tax_template_p_iva21_sc"])
+        tax.active = False
         # Create model
         self.company.vat = "ES12345678Z"
         vat_book = self.env["l10n.es.vat.book"].create(
