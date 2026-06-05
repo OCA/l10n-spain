@@ -23,10 +23,11 @@ class AccountTax(models.Model):
     )
 
     def _taxes_without_operation_key(self):
-        map_349_lines = self.env["aeat.349.map.line"].search([])
-        all_349_taxes_xmlid = map_349_lines.mapped("tax_xmlid_ids")
-        all_349_taxes = map_349_lines._get_tax_ids_from_xmlids(all_349_taxes_xmlid)
-        return list(set(self.env["account.tax"].search([]).ids) - set(all_349_taxes))
+        xmlids = self.env["aeat.349.map.line"].search([]).tax_xmlid_ids.mapped("name")
+        taxes = self.env["account.tax"].search([])
+        for company in self.env.companies:
+            taxes -= company._get_taxes_from_xmlids(xmlids)
+        return taxes.ids
 
     def _search_l10n_es_aeat_349_operation_key(self, operator, value):
         tax_ids = []
@@ -40,10 +41,11 @@ class AccountTax(models.Model):
                 [("operation_key", operator, value)]
             )
             if map_349_lines:
-                taxes_xmlid = map_349_lines.mapped("tax_xmlid_ids")
-                tax_ids = map_349_lines._get_tax_ids_from_xmlids(
-                    taxes_xmlid, self.env.company
-                )
+                xmlids = map_349_lines.tax_xmlid_ids.mapped("name")
+                taxes = self.env["account.tax"]
+                for company in self.env.companies:
+                    taxes |= company._get_taxes_from_xmlids(xmlids)
+                tax_ids = taxes.ids
             if is_not_in:
                 tax_ids = list(
                     set(self.env["account.tax"].search([]).ids) - set(tax_ids)
@@ -54,14 +56,8 @@ class AccountTax(models.Model):
         return [("id", "in", tax_ids)]
 
     def _compute_l10n_es_aeat_349_operation_key(self):
-        # TODO: Improve performance
-        map_349 = self.env["aeat.349.map.line"].search([])
-        for tax in self:
-            tax.l10n_es_aeat_349_operation_key = False
-            for line in map_349:
-                taxes_ids = line._get_tax_ids_from_xmlids(
-                    line.tax_xmlid_ids, tax.company_id
-                )
-                if taxes_ids and tax.id in taxes_ids:
-                    tax.l10n_es_aeat_349_operation_key = line.operation_key
-                    break
+        self.l10n_es_aeat_349_operation_key = False
+        for company in self.company_id:
+            for rec in self.env["aeat.349.map.line"].search([]):
+                taxes = company._get_taxes_from_xmlids(rec.tax_xmlid_ids.mapped("name"))
+                (self & taxes).l10n_es_aeat_349_operation_key = rec.operation_key
