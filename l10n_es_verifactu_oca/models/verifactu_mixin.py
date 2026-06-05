@@ -445,14 +445,10 @@ class VerifactuMixin(models.AbstractModel):
         :return: Recordset with the corresponding codes
         """
         verifactu_map = self._get_verifactu_map(date)
-        tax_templates = verifactu_map.map_lines.filtered(
+        tax_xml_ids = verifactu_map.map_lines.filtered(
             lambda x: x.code in codes
-        ).tax_xmlid_ids
-        mapped_taxes = self.env["account.tax"]
-        for template in tax_templates:
-            tax_id = self.company_id._get_tax_id_from_xmlid(template.name)
-            mapped_taxes |= self.env["account.tax"].browse(tax_id)
-        return mapped_taxes
+        ).tax_xmlid_ids.mapped("name")
+        return self.company_id._get_taxes_from_xmlids(tax_xml_ids)
 
     def _raise_exception_verifactu(self, field_name):
         raise UserError(
