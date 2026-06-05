@@ -37,12 +37,7 @@ class AeatVatBookMapLines(models.Model):
     def get_taxes_for_company(self, company):
         """Obtain the taxes corresponding to this line according the given company."""
         self.ensure_one()
-        tax_ids = set()
-        for tax_xmlid in self.tax_xmlid_ids:
-            tax_id = company._get_tax_id_from_xmlid(tax_xmlid.name)
-            if tax_id:
-                tax_ids.add(tax_id)
-        return self.env["account.tax"].browse(list(tax_ids))
+        return company._get_taxes_from_xmlids(self.tax_xmlid_ids.mapped("name"))
 
     def get_accounts_for_company(self, company):
         """Obtain the accounts corresponding to the line according the given company."""
