@@ -2,7 +2,7 @@
 # Copyright 2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class Aeat349MapLines(models.Model):
@@ -28,17 +28,3 @@ class Aeat349MapLines(models.Model):
         selection=_selection_operation_key,
         required=True,
     )
-
-    @api.model
-    def _get_tax_ids_from_xmlids(self, tax_templates, company=False):
-        if not company:
-            companies = self.env.user.company_ids
-        else:
-            companies = company
-        taxes_ids = []
-        for tax_template in tax_templates:
-            for company in companies:
-                tax_id = company._get_tax_id_from_xmlid(tax_template.name)
-                if tax_id:
-                    taxes_ids.append(tax_id)
-        return taxes_ids
