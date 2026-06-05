@@ -39,7 +39,11 @@ class ResCompany(models.Model):
 
     @ormcache("self", "xmlid")
     def _get_tax_id_from_xmlid(self, xmlid):
-        """Low level cached search for a tax given its template XML-ID and company."""
+        """Low level cached search for a tax given its template XML-ID and company.
+
+        WARNING: It doesn't return equivalent taxes. Call `_get_taxes_from_xmlids` for
+        that.
+        """
         self.ensure_one()
         return (
             xmlid
@@ -59,6 +63,20 @@ class ResCompany(models.Model):
             .res_id
             or False
         )
+
+    def _get_taxes_from_xmlids(self, xmlids):
+        """Search for the taxes (direct or equivalent), given the company and the tax
+        template XML-IDs.
+
+        :returns: Company taxes recordset.
+        """
+        self.ensure_one()
+        tax_ids = set(self._get_tax_id_from_xmlid(x) for x in xmlids)
+        if False in tax_ids:  # for avoiding that incorrect XML-IDs breaks the rest
+            tax_ids.remove(False)
+        tax_obj = self.env["account.tax"]
+        extra_taxes = tax_obj.search([("aeat_equivalent_tax_id", "in", list(tax_ids))])
+        return tax_obj.browse(tax_ids) | extra_taxes
 
     @ormcache("self", "xmlid")
     def _get_account_id_from_xmlid(self, xmlid):
