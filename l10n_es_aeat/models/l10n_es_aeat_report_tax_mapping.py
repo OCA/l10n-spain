@@ -86,9 +86,7 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         return []
 
     def get_taxes_from_map(self, map_line):
-        taxes = self.get_taxes_from_templates(map_line.tax_ids)
-        tax_obj = self.env["account.tax"]
-        return taxes + tax_obj.search([("aeat_equivalent_tax_id", "in", taxes.ids)])
+        return self.get_taxes_from_templates(map_line.tax_ids)
 
     def _get_move_line_domain(self, date_start, date_end, map_line):
         self.ensure_one()
