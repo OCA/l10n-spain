@@ -16,7 +16,7 @@
                 <div class="p-2 mb-3 w-100 border border-secondary">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="me-3">
-                            <div>Tu dispositivo protegido, pase lo que pase</div>
+                            <div>Your device protected, no matter what</div>
                             <t t-if="caser_price_display">
                                 <div class="form-check">
                                     <input
@@ -30,7 +30,7 @@
                                         class="form-check-label"
                                         for="caser_insurance_checkbox"
                                     >
-                                        Seguro anual por <t
+                                        Annual insurance for <t
                                         t-esc="caser_price_display"
                                     />
                                     </label>
@@ -57,12 +57,12 @@
             <t t-if="line.is_caser_insurance">
                 <div class="small text-muted mt-1">
                     <t t-if="line.caser_insured_line_id">
-                        Dispositivo protegido: <t
+                        Protected device: <t
                         t-esc="line.caser_insured_line_id.product_id.display_name"
                     />
                     </t>
                     <t t-else="">
-                        Seguro Caser
+                        Caser Insurance
                     </t>
                 </div>
             </t>
@@ -80,12 +80,12 @@
             <t t-if="line.is_caser_insurance">
                 <div class="small text-muted mt-1">
                     <t t-if="line.caser_insured_line_id">
-                        Dispositivo protegido: <t
+                        Protected device: <t
                         t-esc="line.caser_insured_line_id.product_id.display_name"
                     />
                     </t>
                     <t t-else="">
-                        Seguro Caser
+                        Caser Insurance
                     </t>
                 </div>
             </t>
@@ -117,7 +117,7 @@
                                 type="button"
                                 class="btn btn-link me-auto d-none"
                                 id="toggleAllInsurance"
-                            >Marcar / Desmarcar todos</button>
+                            >Select / Deselect all</button>
                             <button
                                 type="button"
                                 class="btn btn-secondary"

@@ -12,17 +12,23 @@ class ProductTemplate(models.Model):
         compute="_compute_caser_insurance_ecommerce",
         store=True,
         readonly=False,
-        help="Si está activado, este producto podrá asegurarse con Caser "
-        "durante el proceso de compra en la tienda online.",
+        help="If enabled, this product can be insured with Caser during the "
+        "checkout process in the online shop.",
     )
 
-    @api.depends("categ_id.caser_asset_type")
+    @api.depends(
+        "categ_id.caser_asset_type",
+        "product_brand_id.caser_mobile_code",
+        "product_brand_id.caser_tablet_code",
+    )
     def _compute_caser_insurance_ecommerce(self):
+        # Insurable only if the brand has the Caser code for the category's asset
+        # type; otherwise the policy would fail at delivery (brand not admitted).
         for record in self:
-            if record.categ_id.caser_asset_type:
-                record.caser_insurance_ecommerce = True
-            else:
-                record.caser_insurance_ecommerce = False
+            asset_type = record.categ_id.caser_asset_type
+            record.caser_insurance_ecommerce = bool(
+                asset_type and record.product_brand_id._get_caser_code(asset_type)
+            )
 
     def get_caser_insurance_price_display(self, price):
         """Return the insurance price display string for the given product price.
