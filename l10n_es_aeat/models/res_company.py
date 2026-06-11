@@ -107,7 +107,10 @@ class ResCompany(models.Model):
             tax_id = self._get_tax_id_from_tax_template(tmpl, self)
             if tax_id:
                 tax_ids.append(tax_id)
-        return self.env["account.tax"].browse(tax_ids)
+        # Add equivalent taxes
+        tax_obj = self.env["account.tax"]
+        extra_taxes = tax_obj.search([("aeat_equivalent_tax_id", "in", tax_ids)])
+        return tax_obj.browse(tax_ids) + extra_taxes
 
     def get_account_from_template(self, account_template):
         """Return company account that match the given account template."""
