@@ -94,10 +94,7 @@ class SaleOrderLine(models.Model):
                 and line.caser_insure_quantity > 0
             )
             for sale_line in product_lines:
-                insurance_product = self._get_insurance_product_for_price(
-                    sale_line.price_reduce_taxinc,
-                    sale_line.product_id.categ_id.caser_asset_type,
-                )
+                insurance_product = sale_line._get_caser_insurance_product()
                 if not insurance_product:
                     continue
                 existing = order.order_line.filtered(
@@ -129,9 +126,12 @@ class SaleOrderLine(models.Model):
         picking = self.order_id.picking_ids.filtered(lambda p: p.state == "done")
         picking[0]._send_caser_insurance_request(self)
 
-    def _get_insurance_product_for_price(self, price, asset_type=None):
+    def _get_caser_insurance_product(self):
+        """Insurance product matching this line's price and asset type."""
+        self.ensure_one()
         return self.env["caser.price.range"].get_insurance_product_for_price(
-            price, asset_type
+            self.price_reduce_taxinc,
+            self.product_id.categ_id.caser_asset_type,
         )
 
     def _adjust_insurance_lines(

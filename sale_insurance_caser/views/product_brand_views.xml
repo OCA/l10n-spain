@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="product_brand.view_product_brand_form" />
         <field name="arch" type="xml">
             <page name="description" position="after">
-                <page name="caser_codes" string="Códigos Caser">
+                <page name="caser_codes" string="Caser Codes">
                     <group>
                         <field name="caser_mobile_code" />
                         <field name="caser_tablet_code" />

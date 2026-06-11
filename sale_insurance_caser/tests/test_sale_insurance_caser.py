@@ -336,6 +336,43 @@ class TestSaleInsuranceCaser(BaseCommon):
         self.assertTrue(insurance_line.caser_response_xml)
         self.assertFalse(insurance_line.caser_error_message)
 
+    def test_05_order_insurance_state(self):
+        order = self._create_sale_order_with_insurance(
+            [
+                Command.create(
+                    {
+                        "product_id": self.phone_product.id,
+                        "product_uom_qty": 1,
+                        "price_unit": 500.0,
+                        "caser_insure_quantity": 1,
+                    }
+                ),
+            ]
+        )
+        ins = order.order_line.filtered("is_caser_insurance")
+        self.assertTrue(ins)
+        self.assertEqual(order.caser_insurance_state, "to_send")
+        self.assertFalse(order.caser_has_error)
+        ins.caser_policy_number = "POLX"
+        self.assertEqual(order.caser_insurance_state, "done")
+        ins.caser_error_message = "Boom"
+        self.assertEqual(order.caser_insurance_state, "error")
+        self.assertTrue(order.caser_has_error)
+        self.assertIn("Boom", order.caser_error)
+        order2 = self._create_sale_order_with_insurance(
+            [
+                Command.create(
+                    {
+                        "product_id": self.phone_product.id,
+                        "product_uom_qty": 1,
+                        "price_unit": 500.0,
+                    }
+                ),
+            ]
+        )
+        self.assertEqual(order2.caser_insurance_state, "no")
+        self.assertFalse(order2.caser_has_error)
+
     def test_04_error_handling(self):
         # Test error handling for API errors and price mismatche
         self._create_stock_with_lot(self.phone_product, "SN_ERROR_001")
@@ -413,3 +450,6 @@ class TestSaleInsuranceCaser(BaseCommon):
         self.assertEqual(insurance_line.caser_insurance_price, 999.99)
         self.assertTrue(insurance_line.caser_response_xml)
         self.assertIn("Price mismatch", insurance_line.caser_error_message or "")
+        self.assertTrue(
+            order2.message_ids.filtered(lambda m: "Price mismatch" in (m.body or ""))
+        )

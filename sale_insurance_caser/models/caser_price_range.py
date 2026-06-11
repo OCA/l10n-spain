@@ -6,6 +6,8 @@ import re
 from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
+from .caser_asset_types import CASER_ASSET_TYPES, CASER_PROTOCOL_BY_ASSET_TYPE
+
 
 class CaserPriceRange(models.Model):
     _name = "caser.price.range"
@@ -14,10 +16,7 @@ class CaserPriceRange(models.Model):
     _order = "caser_asset_type, min_price"
 
     caser_asset_type = fields.Selection(
-        selection=[
-            ("200021", "Teléfono Móvil"),
-            ("262", "Tablet"),
-        ],
+        selection=CASER_ASSET_TYPES,
         string="Asset Type",
         required=True,
         default="200021",
@@ -134,7 +133,6 @@ class CaserPriceRange(models.Model):
                 % (self.code, str(e))
             ) from e
 
-    _PROTOCOL_BY_ASSET_TYPE = {"200021": "61680", "262": "61681"}
     _TARIF_BRAND_CODE_BY_ASSET_TYPE = {"200021": "479", "262": "396"}
 
     def _prepare_tarification_xml(self, price):
@@ -143,7 +141,7 @@ class CaserPriceRange(models.Model):
         config_params = self._get_caser_config_params()
         agency_code = config_params["agency_code"]
         asset_type = self.caser_asset_type or "200021"
-        protocol = self._PROTOCOL_BY_ASSET_TYPE[asset_type]
+        protocol = CASER_PROTOCOL_BY_ASSET_TYPE[asset_type]
         tarif_brand_code = self._TARIF_BRAND_CODE_BY_ASSET_TYPE[asset_type]
         schema_url = self._get_caser_schema_url()
         effective_date, expiration_date = self._get_caser_policy_dates()
@@ -216,7 +214,7 @@ class CaserPriceRange(models.Model):
     def _create_or_update_insurance_product(self, price):
         # Create or update insurance product for this price range.
         self.ensure_one()
-        product_name = self.env._("Seguro Caser")
+        product_name = self.env._("Caser Insurance")
         default_code = f"CASER_RANGE_{self.caser_asset_type}_{self.code}"
         product = self.env["product.product"].search(
             [

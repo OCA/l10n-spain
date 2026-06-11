@@ -20,7 +20,7 @@ class StockPicking(models.Model):
             for insurance_line in insurance_lines:
                 picking.with_delay(
                     channel="root.caser",
-                    description=self.env._("Seguro Caser %s")
+                    description=self.env._("Caser insurance %s")
                     % insurance_line.order_id.name,
                 )._send_caser_insurance_request(insurance_line)
         return res
@@ -39,9 +39,7 @@ class StockPicking(models.Model):
                 continue
             for sale_line in picking._get_product_lines_to_insure():
                 # Get the correct insurance product for this sale line's price
-                insurance_product = picking._get_insurance_product_for_sale_line(
-                    sale_line
-                )
+                insurance_product = sale_line._get_caser_insurance_product()
                 if not insurance_product:
                     continue
                 # Get available insurance lines for this specific insurance product
@@ -58,11 +56,6 @@ class StockPicking(models.Model):
                     available_lines[0].caser_lot_id = lot.id
                     available_lines = available_lines[1:]
 
-    def _get_available_insurance_lines(self):
-        return self.sale_id.order_line.filtered(
-            lambda line: line.is_caser_insurance and not line.caser_lot_id
-        )
-
     def _get_available_insurance_lines_for_product(self, insurance_product):
         return self.sale_id.order_line.filtered(
             lambda line: (
@@ -70,12 +63,6 @@ class StockPicking(models.Model):
                 and not line.caser_lot_id
                 and line.product_id == insurance_product
             )
-        )
-
-    def _get_insurance_product_for_sale_line(self, sale_line):
-        return self.env["caser.price.range"].get_insurance_product_for_price(
-            sale_line.price_reduce_taxinc,
-            sale_line.product_id.categ_id.caser_asset_type,
         )
 
     def _get_product_lines_to_insure(self):
@@ -98,27 +85,37 @@ class StockPicking(models.Model):
 
     def _send_caser_insurance_request(self, insurance_line):
         self.ensure_one()
-        if not self._validate_insurance_request(insurance_line):
-            return
-        self._validate_caser_required_fields(insurance_line)
-        endpoint = self._get_caser_endpoint()
-        soap_envelope = self._prepare_soap_request(insurance_line)
-        insurance_line.write(
-            {
-                "caser_request_xml": soap_envelope,
-            }
-        )
         try:
+            if not self._validate_insurance_request(insurance_line):
+                return
+            self._validate_caser_required_fields(insurance_line)
+            endpoint = self._get_caser_endpoint()
+            soap_envelope = self._prepare_soap_request(insurance_line)
+            insurance_line.write(
+                {
+                    "caser_request_xml": soap_envelope,
+                }
+            )
             response = self._send_caser_soap_request(endpoint, soap_envelope)
             self._process_caser_response(insurance_line, response)
         except Exception as e:
             self._handle_request_error(insurance_line, e)
+            self._caser_notify_failure(insurance_line, e)
             # Commit to preserve request/response XML and error message on the
             # insurance line even after the queue job rollback; Caser may have
             # already created the policy on their side.
             if not config["test_enable"]:
                 self.env.cr.commit()  # pylint: disable=invalid-commit
             raise
+
+    def _caser_notify_failure(self, insurance_line, error):
+        if not self.sale_id:
+            return
+        product = insurance_line.caser_lot_id.product_id or insurance_line.product_id
+        self.sale_id._caser_handle_failure(
+            self.env._("Caser insurance could not be issued for %(product)s: %(error)s")
+            % {"product": product.display_name, "error": str(error)}
+        )
 
     def _validate_insurance_request(self, insurance_line):
         if not self.sale_id:
@@ -155,8 +152,7 @@ class StockPicking(models.Model):
                 % product.display_name
             )
         else:
-            field_name = self._ASSET_TYPE_CODE_FIELD.get(asset_type)
-            if field_name and not product.product_brand_id[field_name]:
+            if not product.product_brand_id._get_caser_code(asset_type):
                 errors.append(
                     self.env._(
                         "Brand '%(brand)s' has no Caser code configured for asset "
@@ -273,7 +269,7 @@ class StockPicking(models.Model):
                 "Price mismatch: line price %(line)s but Caser returned %(caser)s"
             ) % {"line": line_price, "caser": caser_price}
             insurance_line.caser_error_message = msg
-            self.sale_id.message_post(body=msg)
+            self.sale_id._caser_handle_failure(msg)
 
     def _parse_caser_response(self, response_xml):
         # Extract P_TEXTO value if present
@@ -390,11 +386,6 @@ class StockPicking(models.Model):
 </SERVICIO>"""
         return xml_payload
 
-    _ASSET_TYPE_CODE_FIELD = {
-        "200021": "caser_mobile_code",
-        "262": "caser_tablet_code",
-    }
-
     def _get_brand_code(self, product, asset_type):
         brand = product.product_brand_id
         if not brand:
@@ -402,8 +393,7 @@ class StockPicking(models.Model):
                 self.env._("Product '%s' must have a brand assigned")
                 % product.display_name
             )
-        field_name = self._ASSET_TYPE_CODE_FIELD.get(asset_type)
-        code = brand[field_name] if field_name else False
+        code = brand._get_caser_code(asset_type)
         if not code:
             raise UserError(
                 self.env._(
