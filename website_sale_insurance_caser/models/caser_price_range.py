@@ -4,7 +4,7 @@
 import base64
 
 from odoo import models
-from odoo.modules.module import get_module_resource
+from odoo.tools.misc import file_path
 
 
 class CaserPriceRange(models.Model):
@@ -13,8 +13,8 @@ class CaserPriceRange(models.Model):
     def _create_or_update_insurance_product(self, price):
         product = super()._create_or_update_insurance_product(price)
         if not product.image_1920:
-            img_path = get_module_resource(
-                "website_sale_insurance_caser", "static/src/img", "logo-caser.png"
+            img_path = file_path(
+                "website_sale_insurance_caser/static/src/img/logo-caser.png"
             )
             if img_path:
                 with open(img_path, "rb") as f:
