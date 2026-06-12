@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,6 +14,16 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_digital_canon
+#: model_terms:ir.ui.view,arch_db:l10n_es_digital_canon.report_invoice_document_line_canon_manager
+msgid "<span>Canon</span>"
+msgstr ""
+
+#. module: l10n_es_digital_canon
+#: model:ir.model,name:l10n_es_digital_canon.model_account_chart_template
+msgid "Account Chart Template"
+msgstr ""
+
+#. module: l10n_es_digital_canon
 #: model:ir.model.fields.selection,name:l10n_es_digital_canon.selection__res_partner__digital_canon_exempt_type__administracion
 msgid "Administraciones Públicas"
 msgstr ""
@@ -21,11 +31,6 @@ msgstr ""
 #. module: l10n_es_digital_canon
 #: model:ir.model.fields.selection,name:l10n_es_digital_canon.selection__product_product__l10n_es_digital_canon__0_08_cd
 msgid "CD - 0,08"
-msgstr ""
-
-#. module: l10n_es_digital_canon
-#: model:account.tax.group,name:l10n_es_digital_canon.tax_group_digital_canon_template
-msgid "Canon digital"
 msgstr ""
 
 #. module: l10n_es_digital_canon
@@ -62,16 +67,6 @@ msgstr ""
 #. module: l10n_es_digital_canon
 #: model:ir.model.fields.selection,name:l10n_es_digital_canon.selection__product_product__l10n_es_digital_canon__4_sdd_periferico_1tb
 msgid "Disco duro periférico SSD hasta 1 Tb - 4"
-msgstr ""
-
-#. module: l10n_es_digital_canon
-#: model:ir.model.fields,field_description:l10n_es_digital_canon.field_account_fiscal_position__display_name
-#: model:ir.model.fields,field_description:l10n_es_digital_canon.field_account_move_line__display_name
-#: model:ir.model.fields,field_description:l10n_es_digital_canon.field_account_tax_template__display_name
-#: model:ir.model.fields,field_description:l10n_es_digital_canon.field_product_product__display_name
-#: model:ir.model.fields,field_description:l10n_es_digital_canon.field_product_template__display_name
-#: model:ir.model.fields,field_description:l10n_es_digital_canon.field_res_partner__display_name
-msgid "Display Name"
 msgstr ""
 
 #. module: l10n_es_digital_canon
@@ -130,11 +125,6 @@ msgid "Exemption type"
 msgstr ""
 
 #. module: l10n_es_digital_canon
-#: model:ir.model,name:l10n_es_digital_canon.model_account_fiscal_position
-msgid "Fiscal Position"
-msgstr ""
-
-#. module: l10n_es_digital_canon
 #: model:ir.model.fields.selection,name:l10n_es_digital_canon.selection__product_product__l10n_es_digital_canon__1_grabadora_cd_dvd
 msgid "Grabadora externa y para integrar CD/DVD - 1"
 msgstr ""
@@ -155,16 +145,6 @@ msgid "HDD Para integrar más de 6,01 Tb - 3"
 msgstr ""
 
 #. module: l10n_es_digital_canon
-#: model:ir.model.fields,field_description:l10n_es_digital_canon.field_account_fiscal_position__id
-#: model:ir.model.fields,field_description:l10n_es_digital_canon.field_account_move_line__id
-#: model:ir.model.fields,field_description:l10n_es_digital_canon.field_account_tax_template__id
-#: model:ir.model.fields,field_description:l10n_es_digital_canon.field_product_product__id
-#: model:ir.model.fields,field_description:l10n_es_digital_canon.field_product_template__id
-#: model:ir.model.fields,field_description:l10n_es_digital_canon.field_res_partner__id
-msgid "ID"
-msgstr ""
-
-#. module: l10n_es_digital_canon
 #: model:ir.model.fields.selection,name:l10n_es_digital_canon.selection__product_product__l10n_es_digital_canon__0_impresora_39_plus
 msgid "Impresora monofuncional de más de 39 copias - 0"
 msgstr ""
@@ -177,16 +157,6 @@ msgstr ""
 #. module: l10n_es_digital_canon
 #: model:ir.model,name:l10n_es_digital_canon.model_account_move_line
 msgid "Journal Item"
-msgstr ""
-
-#. module: l10n_es_digital_canon
-#: model:ir.model.fields,field_description:l10n_es_digital_canon.field_account_fiscal_position____last_update
-#: model:ir.model.fields,field_description:l10n_es_digital_canon.field_account_move_line____last_update
-#: model:ir.model.fields,field_description:l10n_es_digital_canon.field_account_tax_template____last_update
-#: model:ir.model.fields,field_description:l10n_es_digital_canon.field_product_product____last_update
-#: model:ir.model.fields,field_description:l10n_es_digital_canon.field_product_template____last_update
-#: model:ir.model.fields,field_description:l10n_es_digital_canon.field_res_partner____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: l10n_es_digital_canon
@@ -230,13 +200,13 @@ msgid "Personas jurídicas o físicas con certificado de exceptuación"
 msgstr ""
 
 #. module: l10n_es_digital_canon
-#: model:ir.model,name:l10n_es_digital_canon.model_product_product
+#: model:ir.model,name:l10n_es_digital_canon.model_product_template
 msgid "Product"
 msgstr ""
 
 #. module: l10n_es_digital_canon
-#: model:ir.model,name:l10n_es_digital_canon.model_product_template
-msgid "Product Template"
+#: model:ir.model,name:l10n_es_digital_canon.model_product_product
+msgid "Product Variant"
 msgstr ""
 
 #. module: l10n_es_digital_canon
@@ -247,6 +217,11 @@ msgstr ""
 #. module: l10n_es_digital_canon
 #: model:ir.model.fields.selection,name:l10n_es_digital_canon.selection__res_partner__digital_canon_exempt_type__no_desglosa
 msgid "Proveedor nacional que no desglosa el canon"
+msgstr ""
+
+#. module: l10n_es_digital_canon
+#: model:ir.model,name:l10n_es_digital_canon.model_purchase_order_line
+msgid "Purchase Order Line"
 msgstr ""
 
 #. module: l10n_es_digital_canon
@@ -282,6 +257,16 @@ msgstr ""
 #. module: l10n_es_digital_canon
 #: model:ir.model.fields.selection,name:l10n_es_digital_canon.selection__product_product__l10n_es_digital_canon__0_9_sdd_256gb
 msgid "SDD Para integrar hasta 256 Gb - 0,9"
+msgstr ""
+
+#. module: l10n_es_digital_canon
+#: model:ir.model,name:l10n_es_digital_canon.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: l10n_es_digital_canon
+#: model:ir.model,name:l10n_es_digital_canon.model_sale_order_line
+msgid "Sales Order Line"
 msgstr ""
 
 #. module: l10n_es_digital_canon
@@ -327,11 +312,6 @@ msgstr ""
 #. module: l10n_es_digital_canon
 #: model:ir.model.fields.selection,name:l10n_es_digital_canon.selection__product_product__l10n_es_digital_canon__1_1_phone_mp3
 msgid "Teléfono móvil no inteligente con MP3 - 1,1"
-msgstr ""
-
-#. module: l10n_es_digital_canon
-#: model:ir.model,name:l10n_es_digital_canon.model_account_tax_template
-msgid "Templates for Taxes"
 msgstr ""
 
 #. module: l10n_es_digital_canon
