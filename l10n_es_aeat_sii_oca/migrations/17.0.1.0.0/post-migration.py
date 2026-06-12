@@ -11,7 +11,7 @@ def migrate(env, version):
         UPDATE account_move am
         SET sii_send_date = job.eta,
             sii_needs_cancel = CASE
-                WHEN job.func_string LIKE '%cancel_one_invoice()' THEN True
+                WHEN job.func_string LIKE '%%cancel_one_invoice()' THEN True
             ELSE
                 False
             END
