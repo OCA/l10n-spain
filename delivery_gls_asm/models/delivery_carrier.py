@@ -500,7 +500,16 @@ class DeliveryCarrier(models.Model):
                 }
             )
         except requests.RequestException as ex:
-            picking.write({"pod_error": str(ex)})
+            # If GLS returns a 500 error,
+            # it means that the POD is not available yet.
+            # In that case, we set pod_error to False so it can be retried later.
+            if response.status_code == 500 and picking.gls_shipment_state in [
+                "parcelshop",
+                "parcelshop_confirm",
+            ]:
+                picking.write({"pod_error": False})
+            else:
+                picking.write({"pod_error": str(ex)})
             self.log_xml(
                 f"POD info: {str(pod_info)} Exception: {str(ex)}",
                 "GLS ASM POD Response",
