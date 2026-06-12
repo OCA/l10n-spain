@@ -111,16 +111,14 @@ class AccountMove(models.Model):
     @api.depends("company_id", "fiscal_position_id", "invoice_line_ids.tax_ids")
     def _compute_dua_invoice(self):
         for invoice in self:
-            taxes = self.env["account.tax"]
-            for template in [
+            xmlids = [
                 "account_tax_template_p_iva4_ibc_group",
                 "account_tax_template_p_iva10_ibc_group",
                 "account_tax_template_p_iva21_ibc_group",
-            ]:
-                tax_id = invoice.company_id._get_tax_id_from_xmlid(template)
-                taxes |= self.env["account.tax"].browse(tax_id)
+            ]
+            taxes = invoice.company_id._get_taxes_from_xmlids(xmlids)
             invoice.sii_dua_invoice = invoice.line_ids.filtered(
-                lambda x, taxes=taxes: any([tax in taxes for tax in x.tax_ids])
+                lambda x, taxes=taxes: bool(taxes & x.tax_ids)
             )
 
     def _aeat_get_partner(self):
@@ -693,7 +691,7 @@ class AccountMove(models.Model):
     def _compute_sii_enabled(self):
         """Compute if the invoice is enabled for the SII"""
         for invoice in self:
-            dua_sii_exempt_taxes = invoice._get_dua_sii_exempt_taxes()
+            dua_taxes = invoice._get_dua_sii_exempt_taxes()
             if (
                 invoice.company_id.sii_enabled
                 and invoice.journal_id.sii_enabled
@@ -708,11 +706,9 @@ class AccountMove(models.Model):
                         or not invoice.fiscal_position_id
                     )
                     and (
-                        not dua_sii_exempt_taxes
+                        not dua_taxes
                         or not invoice.invoice_line_ids.filtered(
-                            lambda x, dua_taxes=dua_sii_exempt_taxes: any(
-                                [tax.id in dua_taxes for tax in x.tax_ids]
-                            )
+                            lambda x, dua_taxes=dua_taxes: bool(dua_taxes & x.tax_ids)
                         )
                     )
                     and (

@@ -321,13 +321,10 @@ class Mod349(models.Model):
     def _get_taxes(self):
         """Obtain all the taxes to be considered for 349."""
         map_lines = self.env["aeat.349.map.line"].search([])
-        tax_templates = map_lines.mapped("tax_xmlid_ids")
+        tax_templates = map_lines.tax_xmlid_ids
         if not tax_templates:
             raise exceptions.UserError(_("No Tax Mapping was found"))
-        taxes_ids = self.env["aeat.349.map.line"]._get_tax_ids_from_xmlids(
-            tax_templates, self.company_id
-        )
-        return self.env["account.tax"].search([("id", "in", taxes_ids)])
+        return self.company_id._get_taxes_from_xmlids(tax_templates.mapped("name"))
 
     def _cleanup_report(self):
         """Remove previous partner records and partner refunds in report."""
