@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 QubiQ - Pol Reig <pol.reig@qubiq.es>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_wizard_send_sii" model="ir.ui.view">
+        <field name="name">Send SII Wizard</field>
+        <field name="model">wizard.send.sii</field>
+        <field name="arch" type="xml">
+            <form>
+                <p
+                    class="alert alert-info"
+                    role="alert"
+                    invisible="not_send_without_errors_number == 0"
+                >
+                    <field
+                        name="not_send_without_errors_number"
+                        widget="statinfo"
+                        string="of the selected invoices have not been sent to to the SII yet and will be sent."
+                    />
+                </p>
+                <p
+                    class="alert alert-warning"
+                    role="alert"
+                    invisible="moves_to_send == 0"
+                >
+                    <field
+                        name="moves_to_send"
+                        widget="statinfo"
+                        string="of the selected invoices are being processed to be sent to the SII. If you confirm, they will be sent."
+                    />
+                </p>
+                <p
+                    class="alert alert-info"
+                    role="alert"
+                    invisible="with_errors_number == 0"
+                >
+                    <field
+                        name="with_errors_number"
+                        widget="statinfo"
+                        string="of the selected invoices failed when trying to send them to the SII. If confirm, they will be resent"
+                    />
+                </p>
+                <p
+                    class="alert alert-info"
+                    role="alert"
+                    invisible="with_errors_number == 0"
+                >
+                    <field
+                        name="with_errors_number"
+                        widget="statinfo"
+                        string="of the selected invoices failed when trying to send them to the SII. If confirm, they will be resent"
+                    />
+                </p>
+                <p
+                    class="alert alert-info"
+                    role="alert"
+                    invisible="modified_number == 0"
+                >
+                    <field
+                        name="modified_number"
+                        widget="statinfo"
+                        string="of the selected invoices have changed but changes have not been sent to the SII yet. If you confirm, they will be sent to sii."
+                    />
+                </p>
+                <footer>
+                    <button
+                        name="action_confirm"
+                        string="Send to SII"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
