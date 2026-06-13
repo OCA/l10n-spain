@@ -50,12 +50,9 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
         vals = []
         tax_names = []
         for line in lines:
-            taxes = self.env["account.tax"]
-            for tax in line[1]:
-                xml_id = f"account_tax_template_{tax}"
-                tax_id = self.company._get_tax_id_from_xmlid(xml_id)
-                taxes += self.env["account.tax"].browse(tax_id)
-                tax_names.append(tax)
+            xml_ids = [f"account_tax_template_{x}" for x in line[1]]
+            taxes = self.company._get_taxes_from_xmlids(xml_ids)
+            tax_names += line[1]
             vals.append({"price_unit": line[0], "taxes": taxes})
         return self._compare_sii_dict(
             "sii_{}_{}_dict.json".format(inv_type, "_".join(tax_names)),
