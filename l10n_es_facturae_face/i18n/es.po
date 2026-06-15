@@ -77,6 +77,12 @@ msgid "Connection with FACe returned error %s - %s"
 msgstr "La conexión con FACe ha devuelto el error %s - %s"
 
 #. module: l10n_es_facturae_face
+#: code:addons/l10n_es_facturae_face/components/webservice_face.py:0
+#, python-format
+msgid "Connection with FACe returned error: %(error)s"
+msgstr ""
+
+#. module: l10n_es_facturae_face
 #: model:ir.model,name:l10n_es_facturae_face.model_res_partner
 msgid "Contact"
 msgstr "Contacto"
