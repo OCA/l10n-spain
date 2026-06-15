@@ -175,3 +175,10 @@ class ResCompany(models.Model):
                 ("Version", self.tbai_software_version),
             ]
         )
+
+    def is_operation_in_surcharge_equivalence_or_simplified_regime(self):
+        self.ensure_one()
+        return (
+            self.partner_id.property_account_position_id.tbai_vat_regime_key.code
+            in ("51", "52")
+        )

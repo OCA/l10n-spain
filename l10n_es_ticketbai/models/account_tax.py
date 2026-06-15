@@ -204,12 +204,10 @@ class AccountTax(models.Model):
         return res
 
     def tbai_get_value_op_recargo_equiv_o_reg_simpl(self, invoice_id):
-        re_invoice_tax = self.tbai_get_associated_re_tax(invoice_id)
-        if re_invoice_tax or invoice_id.company_id.tbai_vat_regime_simplified:
-            res = "S"
-        else:
-            res = "N"
-        return res
+        is_surcharge_or_simplified = (
+            invoice_id.company_id.is_operation_in_surcharge_equivalence_or_simplified_regime()  # noqa: B950
+        )
+        return "S" if is_surcharge_or_simplified else "N"
 
     def tbai_get_invoice_base_balace_for_tax_group(self, invoice_id):
         base = 0
