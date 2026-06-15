@@ -37,6 +37,7 @@ class SiiMixin(models.AbstractModel):
     sii_description = fields.Char(
         string="SII computed description",
         compute="_compute_sii_description",
+        size=500,
         default="/",
         store=True,
         readonly=False,
