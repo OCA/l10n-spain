@@ -96,7 +96,14 @@ class DeliveryCarrier(models.Model):
         }
 
     def _get_dhl_parcel_receiver_info(self, picking):
-        return self._prepare_dhl_parcel_address_info(picking.partner_id)
+        """Receiver address have a limit of 80 chars"""
+        res = self._prepare_dhl_parcel_address_info(picking.partner_id)
+        partner = picking.partner_id
+        address = partner.street or ""
+        if partner.street2:
+            address += " " + partner.street2
+        res["Address"] = address[:80]
+        return res
 
     def _get_dhl_parcel_sender_info(self, picking):
         """Optional, if the sender information is not
