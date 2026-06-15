@@ -72,4 +72,24 @@
             ref="l10n_es_verifactu_oca.verifactu_registration_keys_igic_01"
         />
     </record>
+    <record
+        id="l10n_es_igic.fp_purchase_local_retailer_canary"
+        model="account.fiscal.position.template"
+    >
+        <field name="verifactu_tax_key">03</field>
+        <field
+            name="verifactu_registration_key"
+            ref="l10n_es_verifactu_oca.verifactu_registration_keys_igic_01"
+        />
+    </record>
+    <record
+        id="l10n_es_igic.fp_purchase_import_retailer_canary"
+        model="account.fiscal.position.template"
+    >
+        <field name="verifactu_tax_key">03</field>
+        <field
+            name="verifactu_registration_key"
+            ref="l10n_es_verifactu_oca.verifactu_registration_keys_igic_01"
+        />
+    </record>
 </odoo>

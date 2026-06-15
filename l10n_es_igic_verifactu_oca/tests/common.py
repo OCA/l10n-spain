@@ -8,14 +8,52 @@ class TestVerifactuIgicCommon(TestVerifactuCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls._saved_verifactu_company_states = {
+            company.id: True
+            for company in cls.env["res.company"]
+            .sudo()
+            .search(
+                [
+                    ("verifactu_enabled", "=", True),
+                    ("id", "!=", cls.company.id),
+                ]
+            )
+        }
+        if cls._saved_verifactu_company_states:
+            cls.env["res.company"].browse(
+                list(cls._saved_verifactu_company_states)
+            ).sudo().write({"verifactu_enabled": False})
         cls.fp_nacional = cls.env.ref(f"l10n_es_igic.{cls.company.id}_fp_canary")
         cls.fp_registration_key_01 = cls.env.ref(
             "l10n_es_verifactu_oca.verifactu_registration_keys_igic_01"
+        )
+        cls.fp_registration_key_17 = cls.env.ref(
+            "l10n_es_verifactu_oca.verifactu_registration_keys_igic_17"
         )
         cls.fp_nacional.verifactu_registration_key = cls.fp_registration_key_01
         cls.fp_nacional.verifactu_tax_key = "03"  # IGIC"
         cls.fp_recargo = cls.env.ref(f"l10n_es_igic.{cls.company.id}_fp_recargo_canary")
         cls.fp_recargo.verifactu_registration_key = cls.fp_registration_key_01
+        cls.fp_retailer = cls.env.ref(
+            f"l10n_es_igic.{cls.company.id}_fp_retailer_canary"
+        )
+        cls.fp_retailer.verifactu_tax_key = "03"
+        cls.fp_retailer.verifactu_registration_key = cls.fp_registration_key_17
+        cls.tax_igic_r_7 = cls.env.ref(
+            f"l10n_es_igic.{cls.company.id}_account_tax_template_igic_r_7"
+        )
+        cls.tax_igic_r_3 = cls.env.ref(
+            f"l10n_es_igic.{cls.company.id}_account_tax_template_igic_r_3"
+        )
+        cls.product.taxes_id = [(6, 0, [cls.tax_igic_r_7.id])]
+
+    @classmethod
+    def tearDownClass(cls):
+        if getattr(cls, "_saved_verifactu_company_states", None):
+            cls.env["res.company"].browse(
+                list(cls._saved_verifactu_company_states)
+            ).sudo().write({"verifactu_enabled": True})
+        super().tearDownClass()
 
     def _create_test_company(
         self,
