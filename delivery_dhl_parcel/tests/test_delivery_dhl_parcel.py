@@ -13,6 +13,7 @@ from odoo.addons.delivery_dhl_parcel.models.dhl_parcel_request import DhlParcelR
 request_model = (
     "odoo.addons.delivery_dhl_parcel.models.dhl_parcel_request.DhlParcelRequest"
 )
+requests_model = "odoo.addons.delivery_dhl_parcel.models.dhl_parcel_request.requests"
 
 # There is also no public test user so we mock all API requests
 
@@ -82,6 +83,46 @@ class TestDeliveryDhlParcel(BaseCommon):
                 "dhl_parcel_label_format": "PDF",
                 "product_id": cls.shipping_product.id,
             }
+        )
+
+    def _dhl_api(self, get_answer=None):
+        """Mock the HTTP calls to the DHL Parcel API, nothing else"""
+
+        def answer(content):
+            response = Mock(status_code=200, text=str(content))
+            response.json.return_value = content
+            return response
+
+        def post(url, json=None, **kwargs):
+            if url.endswith("authenticate"):
+                return answer("12345")
+            return answer(
+                {
+                    "Origin": "08",
+                    "Customer": "001000",
+                    "Tracking": "0870002260",
+                    "AWB": "",
+                    "LP": ["JJD00006080070002260001"],
+                    "Label": "JVBERiasdasdsdcfnsdhfbasdf==",
+                }
+            )
+
+        requests_post = self.startPatcher(
+            mock.patch(f"{requests_model}.post", side_effect=post)
+        )
+        self.startPatcher(
+            mock.patch(
+                f"{requests_model}.get",
+                side_effect=lambda url, **kwargs: answer(get_answer),
+            )
+        )
+        return requests_post
+
+    def _sent_shipment(self, requests_post):
+        return next(
+            call.kwargs["json"]
+            for call in requests_post.call_args_list
+            if call.kwargs["url"].endswith("shipment")
         )
 
     def _check_label_attachment(self):
@@ -424,3 +465,15 @@ class TestDeliveryDhlParcel(BaseCommon):
     def test_13_dhl_parcel_held_no_tracking_ref(self, mock):
         res = self.carrier.dhl_parcel_release_shipment(False)
         self.assertFalse(res)
+
+    def test_14_receiver_address_up_to_80_chars(self):
+        """DHL accepts 80 characters in the receiver address (CIMAPI v13)"""
+        self.partner.street = "Avenida de la Constitución de Mil Ochocientos Doce, 33"
+        self.partner.street2 = "Escalera B, Planta 4, Puerta 12"
+        address = f"{self.partner.street} {self.partner.street2}"
+        requests_post = self._dhl_api()
+        self.picking.button_validate()
+        self.assertEqual(self.picking.carrier_tracking_ref, "0870002260")
+        vals = self._sent_shipment(requests_post)
+        self.assertEqual(vals["Receiver"]["Address"], address[:80])
+        self.assertEqual(len(vals["Receiver"]["Address"]), 80)
