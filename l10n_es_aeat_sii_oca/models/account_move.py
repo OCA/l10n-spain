@@ -673,7 +673,7 @@ class AccountMove(models.Model):
                     )
                     names = [unidecode(x) for x in names if x]  # Avoid "ugly" chars
                     description += " - ".join(filter(None, names)).replace("\n", " ")
-            invoice.sii_description = (description or "")[:500] or "/"
+            invoice.sii_description = description or "/"  # shrink to 500 by the field
 
     @api.depends(
         "company_id",
