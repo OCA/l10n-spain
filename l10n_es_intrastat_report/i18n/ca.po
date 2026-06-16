@@ -243,6 +243,11 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_intrastat_product_declaration__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
 #: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.view_l10n_es_intrastat_code_import
 msgid "Skip"
 msgstr ""
