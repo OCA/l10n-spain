@@ -135,8 +135,7 @@
     </template>
     <template id="mod417_report_xml">
         <t t-foreach="docs" t-as="doc">
-            <t t-call="l10n_es_atc_mod417.mod417_report_xml_doc">
-            </t>
+            <t t-call="l10n_es_atc_mod417.mod417_report_xml_doc" />
         </t>
     </template>
     <record id="mod417_xml_report" model="ir.actions.report">

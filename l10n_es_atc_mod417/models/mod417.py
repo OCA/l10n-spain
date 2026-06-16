@@ -7,9 +7,9 @@ from odoo import _, api, fields, models
 
 from odoo.addons.l10n_es_atc.models.l10n_es_atc_report import ATC_JAR_URL
 
-ATC_JAR_URL[
-    "417"
-] = "https://www3.gobiernodecanarias.org/tributos/atc/documents/d/agencia-tributaria-canaria/m417v231e26-zip-1"
+ATC_JAR_URL["417"] = (
+    "https://www3.gobiernodecanarias.org/tributos/atc/documents/d/agencia-tributaria-canaria/m417v231e26-zip-1"
+)
 
 
 class L10nEsAtcmod417Report(models.Model):
