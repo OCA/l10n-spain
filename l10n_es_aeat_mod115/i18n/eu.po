@@ -343,6 +343,11 @@ msgid "Previous declaration number"
 msgstr "Nº previo declaración"
 
 #. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__name
 msgid "Report identifier"
 msgstr "Identificador del informe"
@@ -383,14 +388,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
-#, python-format
 msgid "Select an account for making the charge"
 msgstr "Seleccione una cuenta bancaria para realizar el cargo"
 
 #. module: l10n_es_aeat_mod115
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
-#, python-format
 msgid "Select an account for receiving the money"
 msgstr "Seleccione una cuenta bancaria para recibir el dinero"
 
@@ -437,7 +440,6 @@ msgstr "Líneas de impuestos"
 #. module: l10n_es_aeat_mod115
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
-#, python-format
 msgid ""
 "The result of the declaration is negative. You should select another Result "
 "type"
@@ -446,7 +448,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
-#, python-format
 msgid ""
 "The result of the declaration is positive. You should select another Result "
 "type"

@@ -343,6 +343,11 @@ msgid "Previous declaration number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__name
 msgid "Report identifier"
 msgstr ""
@@ -381,14 +386,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
-#, python-format
 msgid "Select an account for making the charge"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
-#, python-format
 msgid "Select an account for receiving the money"
 msgstr ""
 
@@ -436,7 +439,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
-#, python-format
 msgid ""
 "The result of the declaration is negative. You should select another Result "
 "type"
@@ -445,7 +447,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
-#, python-format
 msgid ""
 "The result of the declaration is positive. You should select another Result "
 "type"
