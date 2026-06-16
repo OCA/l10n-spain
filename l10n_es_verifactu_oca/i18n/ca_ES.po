@@ -291,8 +291,8 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_move__verifactu_macrodata
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_macrodata
 msgid ""
-"Check to confirm that the document has an absolute amount greater o equal to"
-" 100 000 000,00 euros."
+"Check to confirm that the document has an absolute amount greater o equal to "
+"100 000 000,00 euros."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
@@ -610,8 +610,8 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_res_company__verifactu_start_date
 msgid ""
-"If this field is set, the VERI*FACTU won't be enabled on invoices with lower"
-" invoice date. If not set, it can be enabled on all invoice dates"
+"If this field is set, the VERI*FACTU won't be enabled on invoices with lower "
+"invoice date. If not set, it can be enabled on all invoice dates"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
@@ -902,8 +902,8 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_move__verifactu_cancel_reason
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_cancel_reason
 msgid ""
-"Optional internal reason to cancel this invoicein VERI*FACTU. This reason is"
-" not sent to VERI*FACTU"
+"Optional internal reason to cancel this invoicein VERI*FACTU. This reason is "
+"not sent to VERI*FACTU"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
@@ -942,6 +942,13 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
 msgid "QR URL value '{}' is not ASCII"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_chaining__rating_ids
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_developer__rating_ids
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response__rating_ids
+msgid "Ratings"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
