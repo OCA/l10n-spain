@@ -1,0 +1,1 @@
+Desglosar y mostrar por separado el Canon digital español en el total del carrito de compra del sitio web.
