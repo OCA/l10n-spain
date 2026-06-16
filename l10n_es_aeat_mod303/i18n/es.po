@@ -764,6 +764,11 @@ msgid "Previous declaration number"
 msgstr "Número de declaración anterior"
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_108
 #, fuzzy
 msgid ""
@@ -1016,7 +1021,8 @@ msgstr "[110] A compensar pendiente"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_112
 #, fuzzy
 msgid "[112] Pago a cuenta de entregas de gasolinas, gasóleos y biocarburantes"
-msgstr "[112] Pago a cuenta de entregas de gasolinas, gasóleos y biocarburantes"
+msgstr ""
+"[112] Pago a cuenta de entregas de gasolinas, gasóleos y biocarburantes"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__total_devengado
