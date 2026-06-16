@@ -1254,6 +1254,11 @@ msgid "Provincia no definida en el cliente"
 msgstr "Província no definida al client"
 
 #. module: l10n_es_aeat_mod190
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: l10n_es_aeat_mod190
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
 msgid "Razón social"
 msgstr "Raó social"
