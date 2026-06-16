@@ -944,6 +944,13 @@ msgid "QR URL value '{}' is not ASCII"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_chaining__rating_ids
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_developer__rating_ids
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_form
 msgid "Re-send to VERI*FACTU"
 msgstr ""
