@@ -175,8 +175,8 @@ msgstr ""
 #. module: l10n_es_aeat_mod296
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__codigo__3
 msgid ""
-"3. Emisor code corresponds to values foreign that have not been assigned I.S."
-"I.N., whose emisor does not have a NIF"
+"3. Emisor code corresponds to values foreign that have not been assigned "
+"I.S.I.N., whose emisor does not have a NIF"
 msgstr ""
 "3. El Código emisor corresponde a los valores extranjeros que no tienen "
 "asignado I.S.I.N., cuyo emisor no tiene un NIF"
@@ -622,12 +622,6 @@ msgid "L.R. VAT number"
 msgstr "Nombre del representante legal"
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
-
-#. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__write_uid
 msgid "Last Updated by"
@@ -653,11 +647,6 @@ msgstr "Persona jurídica o entidad"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__lines296
 msgid "Lines"
 msgstr "Líneas"
-
-#. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "Archivo Adjunto Principal"
 
 #. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__mediador
@@ -804,6 +793,11 @@ msgstr "Número de declaración anterior"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__provincia
 msgid "Province/Region/State"
 msgstr "Provincia / Región / Estado"
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__rating_ids
+msgid "Ratings"
+msgstr ""
 
 #. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__name
@@ -972,6 +966,12 @@ msgid ""
 msgstr ""
 "[04] Resumen de los datos incluidos en la declaración - Retenciones e "
 "ingresos a cuenta ingresados"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"
+
+#~ msgid "Main Attachment"
+#~ msgstr "Archivo Adjunto Principal"
 
 #~ msgid "SMS Delivery error"
 #~ msgstr "Error de Entrega SMS"
