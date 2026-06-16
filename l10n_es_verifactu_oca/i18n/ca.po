@@ -293,8 +293,8 @@ msgstr "Comprovar factures incorrectes de VERI*FACTU"
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_move__verifactu_macrodata
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_macrodata
 msgid ""
-"Check to confirm that the document has an absolute amount greater o equal to"
-" 100 000 000,00 euros."
+"Check to confirm that the document has an absolute amount greater o equal to "
+"100 000 000,00 euros."
 msgstr ""
 "Marca per confirmar que el document té un import absolut major o igual a "
 "100.000.000,00 euros."
@@ -609,7 +609,8 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_developer__message_needaction
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Si està marcat, hi ha nous missatges que requereixen la vostra atenció."
+msgstr ""
+"Si està marcat, hi ha nous missatges que requereixen la vostra atenció."
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_chaining__message_has_error
@@ -621,8 +622,8 @@ msgstr "Si està marcada, alguns missatges tenen un error d'enviament."
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_res_company__verifactu_start_date
 msgid ""
-"If this field is set, the VERI*FACTU won't be enabled on invoices with lower"
-" invoice date. If not set, it can be enabled on all invoice dates"
+"If this field is set, the VERI*FACTU won't be enabled on invoices with lower "
+"invoice date. If not set, it can be enabled on all invoice dates"
 msgstr ""
 "Si està establert, VERI*FACTU no estarà habilitat per a factures amb una "
 "data anterior a l'establerta. Si no, estarà habilitat per a totes les "
@@ -687,7 +688,8 @@ msgstr ""
 msgid ""
 "Indicates the state of this document in relation with the presentation at "
 "the AEAT"
-msgstr "Indica l'estat d'aquest document en relació amb la presentació a l'AEAT"
+msgstr ""
+"Indica l'estat d'aquest document en relació amb la presentació a l'AEAT"
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_invoice_entry__send_state
@@ -927,8 +929,8 @@ msgstr "Nombre de missatges amb un error d'enviament"
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_move__verifactu_cancel_reason
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_cancel_reason
 msgid ""
-"Optional internal reason to cancel this invoicein VERI*FACTU. This reason is"
-" not sent to VERI*FACTU"
+"Optional internal reason to cancel this invoicein VERI*FACTU. This reason is "
+"not sent to VERI*FACTU"
 msgstr ""
 "Motiu opcional per cancel·lar aquesta factura a VERI*FACTU. El motiu no "
 "s'envia a VERI*FACTU"
@@ -972,6 +974,13 @@ msgstr "QR Tributari"
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
 msgid "QR URL value '{}' is not ASCII"
 msgstr "El valor de la URL del QR '{}' no és ASCII"
+
+#. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_chaining__rating_ids
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_developer__rating_ids
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response__rating_ids
+msgid "Ratings"
+msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_form
@@ -1232,7 +1241,8 @@ msgstr "Hi ha un error amb una o més factures"
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
 msgid "There's a mismatch in taxes for RE. Check them."
-msgstr "Hi ha una barreja en els impostos per al RE. Si us plau, comproveu-los."
+msgstr ""
+"Hi ha una barreja en els impostos per al RE. Si us plau, comproveu-los."
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
@@ -1654,8 +1664,8 @@ msgid ""
 "You cannot change the %s of document already registered at VERI*FACTU. You "
 "must cancel the document and create a new one with the correct value."
 msgstr ""
-"No podeu canviar el %s del document ja registrat a VERI*FACTU. Heu de cancel·"
-"lar el document i crear-ne un de nou amb el valor correcte."
+"No podeu canviar el %s del document ja registrat a VERI*FACTU. Heu de "
+"cancel·lar el document i crear-ne un de nou amb el valor correcte."
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
