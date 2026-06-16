@@ -220,7 +220,6 @@ msgstr "Cuenta bancaria"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_account_bank_statement_line__is_bankrupcy_uncollectible_debt
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_account_move__is_bankrupcy_uncollectible_debt
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_account_payment__is_bankrupcy_uncollectible_debt
 msgid "Bankrupcy/uncollectible debt"
 msgstr "Bancarrota / Deuda Irrecuperable"
 
@@ -330,12 +329,9 @@ msgid "Código actividad principal (antiguo)"
 msgstr "Código actividad principal (antiguo)"
 
 #. module: l10n_es_aeat_mod390
-#. odoo-python
-#: code:addons/l10n_es_aeat_mod390/models/mod390.py:0
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__first_representative_notary
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__second_representative_notary
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__third_representative_notary
-#, python-format
 msgid ""
 "Código de la notaría en la que se concedió el poder de representación para "
 "esta persona."
@@ -601,12 +597,9 @@ msgid "Nombre del tercer representante"
 msgstr "Nombre del tercer representante"
 
 #. module: l10n_es_aeat_mod390
-#. odoo-python
-#: code:addons/l10n_es_aeat_mod390/models/mod390.py:0
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__first_representative_name
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__second_representative_name
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__third_representative_name
-#, python-format
 msgid "Nombre y apellidos del representante"
 msgstr "Nombre y apellidos del representante"
 
@@ -694,6 +687,11 @@ msgstr "Nº previo declaración"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390.view_l10n_es_aeat_mod390_report_form
 msgid "Primer representante"
 msgstr "Primer representante"
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__rating_ids
+msgid "Ratings"
+msgstr ""
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__name
@@ -809,7 +807,6 @@ msgstr "Tercer representante"
 #. module: l10n_es_aeat_mod390
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod390/models/mod390.py:0
-#, python-format
 msgid ""
 "The result of the manual 303 summary (fields [95], [97], [98] and [662] in "
 "the page '9. Resultado liquidaciones') doesn't match the field [86]. Please "
@@ -875,7 +872,6 @@ msgstr "Historial de comunicaciones del sitio web"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_account_bank_statement_line__is_bankrupcy_uncollectible_debt
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_account_move__is_bankrupcy_uncollectible_debt
-#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_account_payment__is_bankrupcy_uncollectible_debt
 msgid ""
 "When this is set, the tax base and rate will be reflected in fields 31, 32, "
 "45 and 46 of the AEAT 390 model"
@@ -891,7 +887,6 @@ msgstr "Año"
 #. module: l10n_es_aeat_mod390
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod390/models/mod390.py:0
-#, python-format
 msgid "You cannot make complementary reports for this model."
 msgstr "No puede realizar declaraciones complementarias para este modelo."
 
