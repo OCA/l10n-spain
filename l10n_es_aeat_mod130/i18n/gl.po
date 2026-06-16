@@ -255,7 +255,6 @@ msgstr "Datos a completar"
 #. module: l10n_es_aeat_mod130
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
-#, python-format
 msgid ""
 "Debe introducir una cantidad en la casilla 18 como ha marcado la casilla de "
 "declaración complementaria."
@@ -279,7 +278,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
-#, python-format
 msgid "Este tipo de actividad no está aún soportado por el módulo."
 msgstr ""
 
@@ -438,14 +436,13 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid "No implementado"
 msgstr "Complementaria"
 
 #. module: l10n_es_aeat_mod130
 #. odoo-python
 #: code:addons/l10n_es_aeat_mod130/models/mod130.py:0
-#, python-format
 msgid ""
 "No se pueden calcular por el momento declaraciones que contengan deducciones "
 "por el artículo 80 bis."
@@ -543,6 +540,11 @@ msgstr "Teléfono"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__previous_number
 msgid "Previous declaration number"
 msgstr "Nº da declaración anterior"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__rating_ids
+msgid "Ratings"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__name
