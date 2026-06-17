@@ -182,6 +182,7 @@ Contributors
 - `Tecnativa <https://www.tecnativa.com>`__:
 
   - Víctor Martínez
+  - Cristina Hidalgo
 
 Maintainers
 -----------
