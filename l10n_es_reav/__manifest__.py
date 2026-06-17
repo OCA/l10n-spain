@@ -3,7 +3,7 @@
 # See README.rst file on addon root folder for more details
 {
     "name": "REAV - Régimen Especial Agencias de Viajes",
-    "version": "17.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Localization/Account Charts",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Bilbonet, Odoo Community Association (OCA)",

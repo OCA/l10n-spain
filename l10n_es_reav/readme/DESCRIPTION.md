@@ -1,5 +1,5 @@
 Este addon añade a la contabilidad los impuestos y posiciones fiscales
-para ayudar en el cáluculo de la Base Imponible, que en el caso de las
+para ayudar en el cálculo de la Base Imponible, que en el caso de las
 agencias de viajes es el margen bruto, que se define como la diferencia
 entre la cantidad total cargada al cliente y el importe total impuestos
 incluidos de los bienes y servicios adquiridos para la realización del
