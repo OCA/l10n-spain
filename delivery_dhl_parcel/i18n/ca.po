@@ -26,6 +26,11 @@ msgid ""
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#: model:ir.model.fields,help:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_pre_1330
+msgid "Activates Feature 714 for Pre 13:30 time-definite delivery."
+msgstr ""
+
+#. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__all_customer_accounts
 msgid "All customer accounts"
 msgstr ""
@@ -220,6 +225,14 @@ msgid ""
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#: model:ir.model.fields,help:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_insurance
+msgid ""
+"If checked, the shipment will be declared as insured. It assumes there is a "
+"sale order linked and it will use the picking lines total as the declared "
+"insurance value."
+msgstr ""
+
+#. module: delivery_dhl_parcel
 #: model:ir.model.fields,help:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__customer_accounts
 msgid ""
 "If doing multiple, input them separated by commas without spaces.\n"
@@ -230,6 +243,16 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,help:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_product
 msgid "If the product is not specified, it is considered B2B"
+msgstr ""
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_insurance_expenses
+msgid "Insurance expenses"
+msgstr ""
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_insurance
+msgid "Insured shipment"
 msgstr ""
 
 #. module: delivery_dhl_parcel
@@ -263,8 +286,23 @@ msgid "PDF"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_insurance_expenses__d
+msgid "Paid by recipient"
+msgstr ""
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_insurance_expenses__p
+msgid "Paid by sender"
+msgstr ""
+
+#. module: delivery_dhl_parcel
 #: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_incoterm__cpt
 msgid "Paid transport"
+msgstr ""
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_pre_1330
+msgid "Pre 13:30"
 msgstr ""
 
 #. module: delivery_dhl_parcel

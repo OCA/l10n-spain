@@ -27,6 +27,11 @@ msgid ""
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#: model:ir.model.fields,help:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_pre_1330
+msgid "Activates Feature 714 for Pre 13:30 time-definite delivery."
+msgstr "Activa la Feature 714 para la entrega antes de las 13:30."
+
+#. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__all_customer_accounts
 msgid "All customer accounts"
 msgstr "Todas las cuentas de clientes"
@@ -232,6 +237,17 @@ msgstr ""
 "de los disponibles en la web."
 
 #. module: delivery_dhl_parcel
+#: model:ir.model.fields,help:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_insurance
+msgid ""
+"If checked, the shipment will be declared as insured. It assumes there is a "
+"sale order linked and it will use the picking lines total as the declared "
+"insurance value."
+msgstr ""
+"Si está marcado, el envío se declarará como asegurado. Se asume que hay un "
+"pedido de venta vinculado y se usará el total de las líneas del albarán como "
+"valor declarado del seguro."
+
+#. module: delivery_dhl_parcel
 #: model:ir.model.fields,help:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__customer_accounts
 msgid ""
 "If doing multiple, input them separated by commas without spaces.\n"
@@ -246,6 +262,16 @@ msgstr ""
 #: model:ir.model.fields,help:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_product
 msgid "If the product is not specified, it is considered B2B"
 msgstr "Si no se especifica el producto, se considera producto B2B"
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_insurance_expenses
+msgid "Insurance expenses"
+msgstr "Gastos del seguro"
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_insurance
+msgid "Insured shipment"
+msgstr "Envío asegurado"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_label_format
@@ -278,9 +304,24 @@ msgid "PDF"
 msgstr "PDF"
 
 #. module: delivery_dhl_parcel
+#: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_insurance_expenses__d
+msgid "Paid by recipient"
+msgstr "Pagados por el destinatario"
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_insurance_expenses__p
+msgid "Paid by sender"
+msgstr "Pagados por el remitente"
+
+#. module: delivery_dhl_parcel
 #: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_incoterm__cpt
 msgid "Paid transport"
 msgstr "Transporte pagado"
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_pre_1330
+msgid "Pre 13:30"
+msgstr "Pre 13:30"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__delivery_type
@@ -310,47 +351,6 @@ msgstr "Orden de venta"
 #, python-format
 msgid "Server not reachable, please try again later"
 msgstr "El servidor no responde, por favor vuelve a intentarlo más tarde"
-
-#. module: delivery_dhl_parcel
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_pre_1330
-msgid "Pre 13:30"
-msgstr "Pre 13:30"
-
-#. module: delivery_dhl_parcel
-#: model:ir.model.fields,help:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_pre_1330
-msgid "Activates Feature 714 for Pre 13:30 time-definite delivery."
-msgstr "Activa la Feature 714 para la entrega antes de las 13:30."
-
-#. module: delivery_dhl_parcel
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_insurance
-msgid "Insured shipment"
-msgstr "Envío asegurado"
-
-#. module: delivery_dhl_parcel
-#: model:ir.model.fields,help:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_insurance
-msgid ""
-"If checked, the shipment will be declared as insured. It assumes there is a "
-"sale order linked and it will use the picking lines total as the declared "
-"insurance value."
-msgstr ""
-"Si está marcado, el envío se declarará como asegurado. Se asume que hay un "
-"pedido de venta vinculado y se usará el total de las líneas del albarán como "
-"valor declarado del seguro."
-
-#. module: delivery_dhl_parcel
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_insurance_expenses
-msgid "Insurance expenses"
-msgstr "Gastos del seguro"
-
-#. module: delivery_dhl_parcel
-#: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_insurance_expenses__p
-msgid "Paid by sender"
-msgstr "Pagados por el remitente"
-
-#. module: delivery_dhl_parcel
-#: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_insurance_expenses__d
-msgid "Paid by recipient"
-msgstr "Pagados por el destinatario"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model,name:delivery_dhl_parcel.model_delivery_carrier
