@@ -2,3 +2,4 @@
   - Pedro M. Baeza
   - Sergio Teruel
   - Carlos Lopez
+  - Juan Carlos Oñate

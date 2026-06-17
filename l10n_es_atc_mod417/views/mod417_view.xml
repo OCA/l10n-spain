@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="view_l10n_es_atc_mod417_report_tree" model="ir.ui.view">
-        <field name="name">l10n_es_igic.atc.mod417.report.tree</field>
+        <field name="name">l10n.es.atc.mod417.report.tree</field>
         <field name="model">l10n.es.atc.mod417.report</field>
         <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree" />
         <field name="arch" type="xml">
-            <tree position="attributes">
-                <attribute name="string">Modelo ATC 417</attribute>= </tree>
+            <list position="attributes">
+                <attribute name="string">Modelo ATC 417</attribute>= </list>
             <field name="period_type" position="after">
                 <field name="total_devengado" />
                 <field name="total_deducir" />
@@ -16,7 +16,7 @@
         </field>
     </record>
     <record id="view_l10n_es_atc_mod417_report_form" model="ir.ui.view">
-        <field name="name">l10n_es_igic.ATC.mod417.report.form</field>
+        <field name="name">l10n.es.atc.mod417.report.form</field>
         <field name="model">l10n.es.atc.mod417.report</field>
         <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
         <field name="arch" type="xml">
@@ -106,22 +106,14 @@
                 />
             </group>
             <form position="inside">
-                <div class="oe_chatter">
-                    <field
-                        name="message_follower_ids"
-                        widget="mail_followers"
-                        groups="base.group_user"
-                    />
-                    <field name="activity_ids" widget="mail_activity" />
-                    <field name="message_ids" widget="mail_thread" />
-                </div>
+                <chatter />
             </form>
         </field>
     </record>
     <record id="action_l10n_es_atc_mod417_report" model="ir.actions.act_window">
         <field name="name">Modelo ATC 417</field>
         <field name="res_model">l10n.es.atc.mod417.report</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help">Crear y consultar declaraciones del modelo ATC 417</field>
     </record>
 
@@ -130,7 +122,7 @@
         id="action_l10n_es_atc_mod417_report_tree"
     >
         <field name="sequence" eval="2" />
-        <field name="view_mode">tree</field>
+        <field name="view_mode">list</field>
         <field name="view_id" ref="view_l10n_es_atc_mod417_report_tree" />
         <field name="act_window_id" ref="action_l10n_es_atc_mod417_report" />
     </record>

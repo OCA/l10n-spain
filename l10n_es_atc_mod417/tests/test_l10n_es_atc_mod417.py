@@ -399,7 +399,7 @@ class TestL10nEsAtcmod417Base(TestL10nEsAeatModBase):
             {"name": "Canary test company", "currency_id": cls.env.ref("base.EUR").id}
         )
         cls.env["account.chart.template"].try_loading(
-            "es_pymes_canary", company=cls.company, install_demo=False
+            "es_canary_pymes", company=cls.company, install_demo=False
         )
         cls.env.ref("base.group_multi_company").write({"users": [(4, cls.env.uid)]})
         cls.env.user.write(
@@ -453,7 +453,7 @@ class TestL10nEsAeatmod417(TestL10nEsAtcmod417Base):
 
     def _check_tax_lines(self):
         for field, result in iter(self.taxes_result.items()):
-            _logger.debug("Checking tax line: %s" % field)
+            _logger.debug(f"Checking tax line: {field}")
             lines = self.model417.tax_line_ids.filtered(
                 lambda x, field=field: x.field_number == int(field)
             )
@@ -461,7 +461,7 @@ class TestL10nEsAeatmod417(TestL10nEsAtcmod417Base):
                 sum(lines.mapped("amount")),
                 result,
                 2,
-                "Incorrect result in field %s" % field,
+                f"Incorrect result in field {field}",
             )
 
     @classmethod
@@ -477,12 +477,11 @@ class TestL10nEsAeatmod417(TestL10nEsAtcmod417Base):
             "700000",
             "430000",
             "410000",
-            "475700",
             "477700",
         }
         for code in codes:
             cls.accounts[code] = cls.env["account.account"].search(
-                [("company_id", "=", cls.company.id), ("code", "=", code)]
+                [("company_ids", "in", [cls.company.id]), ("code", "=", code)]
             )
         return True
 
@@ -508,12 +507,13 @@ class TestL10nEsAeatmod417(TestL10nEsAtcmod417Base):
             }
         )
 
+    @freeze_time("2026-01-01")
     def test_model_417(self):
         _logger.debug("Calculate ATC 417 01 2017")
         self.model417.button_calculate()
         # Test default counterpart.
         self.assertEqual(
-            self.model417.counterpart_account_id.id, self.accounts["475700"].id
+            self.model417.counterpart_account_id.id, self.accounts["475000"].id
         )
         self.assertEqual(self.model417.state, "calculated")
         # Fill manual fields
@@ -557,7 +557,7 @@ class TestL10nEsAeatmod417(TestL10nEsAtcmod417Base):
             self.env.ref("l10n_es_atc.res_partner_atc"),
         )
         codes = self.model417.move_id.mapped("line_ids.account_id.code")
-        self.assertIn("475700", codes)
+        self.assertIn("475000", codes)
         self.assertIn("477700", codes)
         self.assertIn("472700", codes)
         self.model417.button_unpost()
