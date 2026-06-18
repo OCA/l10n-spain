@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===================
 Delivery DHL Parcel
 ===================
@@ -17,7 +13,7 @@ Delivery DHL Parcel
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
@@ -149,10 +145,11 @@ Contrareembolso
 Known issues / Roadmap
 ======================
 
-- La API no facilita métodos para cotizar el coste real de los envíos,
-  por lo que siempre se cotizan a 0. Si la cotización de envíos es
-  necesaria, puede instalarse el módulo OCA delivery_price_method o bien
-  personalizar el método de cotización para este tipo de transportista.
+-  La API no facilita métodos para cotizar el coste real de los envíos,
+   por lo que siempre se cotizan a 0. Si la cotización de envíos es
+   necesaria, puede instalarse el módulo OCA delivery_price_method o
+   bien personalizar el método de cotización para este tipo de
+   transportista.
 
 Bug Tracker
 ===========
@@ -175,13 +172,14 @@ Authors
 Contributors
 ------------
 
-- `Studio73 <https://www.studio73.es>`__:
+-  `Studio73 <https://www.studio73.es>`__:
 
-  - Ethan Hildick
+   -  Ethan Hildick
 
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Víctor Martínez
+   -  Víctor Martínez
+   -  Cristina Hidalgo
 
 Maintainers
 -----------
