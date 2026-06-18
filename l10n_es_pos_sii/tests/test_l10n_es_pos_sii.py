@@ -6,6 +6,7 @@
 import json
 
 from odoo import Command
+from odoo.exceptions import UserError
 from odoo.tests import tagged
 from odoo.tools.misc import file_path
 
@@ -398,3 +399,47 @@ class TestSpainPosSii(TestPoSCommon, TestL10nEsAeatSiiBase):
         self.assertFalse(order.sii_enabled)
         self.assertTrue(PosOrder.search(false_domain))
         self.assertFalse(PosOrder.search(true_domain))
+        # l10n_es_exchange_invoiced set
+        order.l10n_es_exchange_invoiced = True
+        order.is_l10n_es_simplified_invoice = True
+        fp.aeat_active = True
+        self.assertFalse(order.sii_enabled)
+        self.assertTrue(PosOrder.search(false_domain))
+        self.assertFalse(PosOrder.search(true_domain))
+
+    def test_08_no_double_send(self):
+        cash = self.cash_pm1
+        self._start_pos_session(cash, 462.0)
+        order = self._create_orders(
+            [
+                {
+                    "pos_order_lines_ui_args": [(self.product21, 1)],
+                    "payments": [(cash, 121)],
+                    "customer": False,
+                    "is_invoiced": False,
+                    "uuid": "00100-010-0004",
+                },
+            ]
+        ).get("00100-010-0004")
+        # Mark it as sent, and assert that you cant generate invoices
+        order.write(
+            {
+                "l10n_es_unique_id": "Shop0006",
+                "is_l10n_es_simplified_invoice": True,
+                "aeat_state": "sent",
+            }
+        )
+        with self.assertRaises(UserError):
+            order.action_pos_order_invoice()
+        # Mark it as not sent.
+        # Assert that the send process is not duplicated if you invoice it
+        order.write(
+            {
+                "l10n_es_unique_id": "Shop0006",
+                "is_l10n_es_simplified_invoice": True,
+                "aeat_state": "not_sent",
+                "partner_id": self.customer.id,
+            }
+        )
+        order.action_pos_order_invoice()
+        self.assertEqual(order.sii_enabled, False)
