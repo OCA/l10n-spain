@@ -8,6 +8,7 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Domain
 
 from odoo.addons.l10n_es_aeat.models.spanish_states_mapping import SPANISH_STATES
 
@@ -72,13 +73,15 @@ class IntrastatProductDeclaration(models.Model):
         - credit notes with and without return
         - companies subject to arrivals or dispatches only
         """
-        domain = super()._prepare_invoice_domain()[:-1]
+        domain = super()._prepare_invoice_domain()
         if self.company_id.country_id.code != "ES":
-            return super()._prepare_invoice_domain()
+            return domain
+        conditions = list(domain.iter_conditions())[:-1]
+        domain = Domain.AND(conditions)
         if self.declaration_type == "arrivals":
-            domain.append(("move_type", "in", ("in_invoice", "out_refund")))
+            domain += Domain("move_type", "in", ("in_invoice", "out_refund"))
         elif self.declaration_type == "dispatches":
-            domain.append(("move_type", "in", ("out_invoice", "in_refund")))
+            domain += Domain("move_type", "in", ("out_invoice", "in_refund"))
         return domain
 
     def _generate_xml(self):

@@ -7,7 +7,6 @@ from odoo.tests import Form, tagged
 from odoo.tools import mute_logger
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
-from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
 
 from ..hooks import post_init_hook
 
@@ -58,7 +57,6 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
     @AccountTestInvoicingCommon.setup_chart_template("es_full")
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         # Set current company to Spanish
         intrastat_transport = cls.env["intrastat.transport_mode"].search([], limit=1)
         cls.env.user.company_id.write(
@@ -70,7 +68,7 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
                 "vat": "ESA12345674",
             }
         )
-        cls.env.user.groups_id += cls.env.ref("account.group_delivery_invoice_address")
+        cls.env.user.group_ids += cls.env.ref("account.group_delivery_invoice_address")
         cls.fiscal_position_b2b = cls.env["account.fiscal.position"].create(
             {
                 "name": "B2B FP",
