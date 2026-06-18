@@ -20,13 +20,17 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
-#, python-format
 msgid ""
 "%(error)s\n"
 "%(message)s"
 msgstr ""
 "%(error)s\n"
 "%(message)s"
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields,help:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_pre_1330
+msgid "Activates Feature 714 for Pre 13:30 time-definite delivery."
+msgstr "Activa la Feature 714 para la entrega antes de las 13:30."
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__all_customer_accounts
@@ -50,8 +54,8 @@ msgstr "Cancelar"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_cash_on_delivery
-msgid "Cash on delivery"
-msgstr "Contra reembolso"
+msgid "Cash on delivery DHL"
+msgstr ""
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__create_uid
@@ -76,7 +80,6 @@ msgstr "Paquete DHL"
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
-#, python-format
 msgid ""
 "DHL Parcel API doesn't provide methods to compute delivery rates, so\n"
 "                you should rely on another price method instead or override "
@@ -92,7 +95,6 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
-#, python-format
 msgid "DHL Parcel Cancellation failed with reason: %s"
 msgstr "Cancelación DHL Parcel fallado por: %s"
 
@@ -104,7 +106,6 @@ msgstr "Configuración DHL Parcel"
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
-#, python-format
 msgid "DHL Parcel End Day"
 msgstr "Cerrar el día (DHL Parcel)"
 
@@ -116,7 +117,6 @@ msgstr "Cerrar el día (DHL Parcel)"
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
-#, python-format
 msgid "DHL Parcel Expedition with reference %s cancelled"
 msgstr "Expedición DHL Parcel con referencia %s cancelado"
 
@@ -138,7 +138,6 @@ msgstr "Servicio DHL Parcel"
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/delivery_carrier.py:0
-#, python-format
 msgid ""
 "DHL Parcel Shipping extra info:\n"
 "Origin: %(origin)s, Customer: %(customer)s, AWB: %(awb)s, LP: %(lp)s"
@@ -164,7 +163,6 @@ msgstr "Servicio DHL Parcel"
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/stock_picking.py:0
-#, python-format
 msgid "DHL Parcel label for %s"
 msgstr "Etiqueta DHL Parcel para %s"
 
@@ -207,7 +205,6 @@ msgstr "Nombre fichero"
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/stock_picking.py:0
-#, python-format
 msgid "Held shipment for {}"
 msgstr "Envío {} retenido"
 
@@ -234,6 +231,17 @@ msgstr ""
 "de los disponibles en la web."
 
 #. module: delivery_dhl_parcel
+#: model:ir.model.fields,help:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_insurance
+msgid ""
+"If checked, the shipment will be declared as insured. It assumes there is a "
+"sale order linked and it will use the picking lines total as the declared "
+"insurance value."
+msgstr ""
+"Si está marcado, el envío se declarará como asegurado. Se asume que hay un "
+"pedido de venta vinculado y se usará el total de las líneas del albarán como "
+"valor declarado del seguro."
+
+#. module: delivery_dhl_parcel
 #: model:ir.model.fields,help:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__customer_accounts
 msgid ""
 "If doing multiple, input them separated by commas without spaces.\n"
@@ -248,6 +256,16 @@ msgstr ""
 #: model:ir.model.fields,help:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_product
 msgid "If the product is not specified, it is considered B2B"
 msgstr "Si no se especifica el producto, se considera producto B2B"
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_insurance_expenses
+msgid "Insurance expenses"
+msgstr "Gastos del seguro"
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_insurance
+msgid "Insured shipment"
+msgstr "Envío asegurado"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_label_format
@@ -280,9 +298,24 @@ msgid "PDF"
 msgstr "PDF"
 
 #. module: delivery_dhl_parcel
+#: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_insurance_expenses__d
+msgid "Paid by recipient"
+msgstr "Pagados por el destinatario"
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_insurance_expenses__p
+msgid "Paid by sender"
+msgstr "Pagados por el remitente"
+
+#. module: delivery_dhl_parcel
 #: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_incoterm__cpt
 msgid "Paid transport"
 msgstr "Transporte pagado"
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_pre_1330
+msgid "Pre 13:30"
+msgstr "Pre 13:30"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__delivery_type
@@ -297,7 +330,6 @@ msgstr "Liberar envío DHL Parcel"
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/stock_picking.py:0
-#, python-format
 msgid "Released shipment for {}"
 msgstr "Envío {} liberado"
 
@@ -309,50 +341,8 @@ msgstr "Orden de venta"
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
-#, python-format
 msgid "Server not reachable, please try again later"
 msgstr "El servidor no responde, por favor vuelve a intentarlo más tarde"
-
-#. module: delivery_dhl_parcel
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_pre_1330
-msgid "Pre 13:30"
-msgstr "Pre 13:30"
-
-#. module: delivery_dhl_parcel
-#: model:ir.model.fields,help:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_pre_1330
-msgid "Activates Feature 714 for Pre 13:30 time-definite delivery."
-msgstr "Activa la Feature 714 para la entrega antes de las 13:30."
-
-#. module: delivery_dhl_parcel
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_insurance
-msgid "Insured shipment"
-msgstr "Envío asegurado"
-
-#. module: delivery_dhl_parcel
-#: model:ir.model.fields,help:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_insurance
-msgid ""
-"If checked, the shipment will be declared as insured. It assumes there is a "
-"sale order linked and it will use the picking lines total as the declared "
-"insurance value."
-msgstr ""
-"Si está marcado, el envío se declarará como asegurado. Se asume que hay un "
-"pedido de venta vinculado y se usará el total de las líneas del albarán como "
-"valor declarado del seguro."
-
-#. module: delivery_dhl_parcel
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_insurance_expenses
-msgid "Insurance expenses"
-msgstr "Gastos del seguro"
-
-#. module: delivery_dhl_parcel
-#: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_insurance_expenses__p
-msgid "Paid by sender"
-msgstr "Pagados por el remitente"
-
-#. module: delivery_dhl_parcel
-#: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_insurance_expenses__d
-msgid "Paid by recipient"
-msgstr "Pagados por el destinatario"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model,name:delivery_dhl_parcel.model_delivery_carrier
@@ -362,7 +352,6 @@ msgstr "Métodos de envío"
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
-#, python-format
 msgid "Timeout: the server did not reply within 60s"
 msgstr "El servidor no ha contestado en 60s"
 
@@ -374,7 +363,6 @@ msgstr "Albarán"
 #. module: delivery_dhl_parcel
 #. odoo-python
 #: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
-#, python-format
 msgid "Unsupported request type, please only use 'GET' or 'POST'"
 msgstr "Tipo de respuesta no soportado, por favor solo usa 'GET' o 'POST'"
 
@@ -382,6 +370,9 @@ msgstr "Tipo de respuesta no soportado, por favor solo usa 'GET' o 'POST'"
 #: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_label_format__zpl
 msgid "ZPL"
 msgstr "ZPL"
+
+#~ msgid "Cash on delivery"
+#~ msgstr "Contra reembolso"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Última modificación el"
