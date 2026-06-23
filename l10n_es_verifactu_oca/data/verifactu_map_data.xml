@@ -24,10 +24,6 @@
                 ref('l10n_es.account_tax_template_s_iva4s'),
                 ref('l10n_es.account_tax_template_s_iva5s'),
                 ref('l10n_es.account_tax_template_s_iva7-5s'),
-                ref('l10n_es.account_tax_template_s_iva0_ic'),
-                ref('l10n_es.account_tax_template_s_iva0_sp_i'),
-                ref('l10n_es.account_tax_template_s_iva0_e'),
-                ref('l10n_es.account_tax_template_s_iva_e'),
                 ref('l10n_es.account_tax_template_s_iva0'),
             ])]"
         />
@@ -51,7 +47,13 @@
     </record>
     <record id="verifactu_map_line_N1" model="verifactu.map.line">
         <field name="code">N1</field>
-        <field name="taxes" eval="[(6, 0, [])]" />
+        <field
+            name="taxes"
+            eval="[(6, 0, [
+                ref('l10n_es.account_tax_template_s_iva_ns_b'),
+                ref('l10n_es.account_tax_template_s_iva_ns'),
+        ])]"
+        />
         <field name="verifactu_map_id" ref="verifactu_map" />
         <field name="name">Operación No Sujeta artículo 7, 14, otros.</field>
     </record>
@@ -61,8 +63,8 @@
         <field
             name="taxes"
             eval="[(6, 0, [
-                ref('l10n_es.account_tax_template_s_iva_ns_b'),
-                ref('l10n_es.account_tax_template_s_iva_ns'),
+                ref('l10n_es.account_tax_template_s_iva_e'),
+                ref('l10n_es.account_tax_template_s_iva0_sp_i'),
             ])]"
         />
         <field name="verifactu_map_id" ref="verifactu_map" />
@@ -124,5 +126,57 @@
         />
         <field name="verifactu_map_id" ref="verifactu_map" />
         <field name="name">Bases no incluidas en ImporteTotal</field>
+    </record>
+
+    <record id="verifactu_map_line_E1" model="verifactu.map.line">
+        <field name="code">E1</field>
+        <field name="taxes" eval="[]" />
+        <field name="verifactu_map_id" ref="verifactu_map" />
+        <field name="name">Exenta por el artículo 20</field>
+    </record>
+
+    <record id="verifactu_map_line_E2" model="verifactu.map.line">
+        <field name="code">E2</field>
+        <field
+            name="taxes"
+            eval="[(6, 0, [
+                ref('l10n_es.account_tax_template_s_iva0_e'),
+        ])]"
+        />
+        <field name="verifactu_map_id" ref="verifactu_map" />
+        <field name="name">Exenta por el artículo 21</field>
+    </record>
+
+    <record id="verifactu_map_line_E3" model="verifactu.map.line">
+        <field name="code">E3</field>
+        <field name="taxes" eval="[]" />
+        <field name="verifactu_map_id" ref="verifactu_map" />
+        <field name="name">Exenta por el artículo 22</field>
+    </record>
+
+    <record id="verifactu_map_line_E4" model="verifactu.map.line">
+        <field name="code">E4</field>
+        <field name="taxes" eval="[]" />
+        <field name="verifactu_map_id" ref="verifactu_map" />
+        <field name="name">Exenta por los artículos 23 y 24</field>
+    </record>
+
+    <record id="verifactu_map_line_E5" model="verifactu.map.line">
+        <field name="code">E5</field>
+        <field
+            name="taxes"
+            eval="[(6, 0, [
+                ref('l10n_es.account_tax_template_s_iva0_ic'),
+        ])]"
+        />
+        <field name="verifactu_map_id" ref="verifactu_map" />
+        <field name="name">Exenta por el artículo 25</field>
+    </record>
+
+    <record id="verifactu_map_line_E6" model="verifactu.map.line">
+        <field name="code">E6</field>
+        <field name="taxes" eval="[]" />
+        <field name="verifactu_map_id" ref="verifactu_map" />
+        <field name="name">Exenta por otros</field>
     </record>
 </odoo>

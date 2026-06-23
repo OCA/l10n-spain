@@ -324,7 +324,7 @@ class AccountMove(models.Model):
                 }
         return {"PrimerRegistro": "S"}
 
-    def _get_verifactu_tax_dict(self, tax_line, tax_lines):
+    def _get_verifactu_tax_dict(self, tax_line, tax_lines, operation_type):
         """Get the VERI*FACTU tax dictionary for the passed tax line.
 
         :param self: Single invoice record.
@@ -333,6 +333,11 @@ class AccountMove(models.Model):
             (like REQ).
         :return: A dictionary with the corresponding VERI*FACTU tax values.
         """
+        if operation_type in ("N1", "N2", "exempt"):
+            tax_dict = {
+                "BaseImponibleOimporteNoSujeto": tax_line["base"],
+            }
+            return tax_dict
         tax = tax_line["tax"]
         tax_base_amount = tax_line["base"]
         if tax.amount_type == "group":
@@ -350,19 +355,6 @@ class AccountMove(models.Model):
         if req_tax:
             tax_dict["TipoRecargoEquivalencia"] = req_tax.amount
             tax_dict["CuotaRecargoEquivalencia"] = tax_lines[req_tax]["amount"]
-        return tax_dict
-
-    def _get_verifactu_tax_dict_ns(self, tax_line):
-        """Get the VERI*FACTU tax dictionary for the passed tax line.
-
-        :param self: Single invoice record.
-        :param tax_line: Tax line that is being analyzed.
-        :return: A dictionary with the corresponding VERI*FACTU tax values.
-        """
-        tax_base_amount = tax_line["base"]
-        tax_dict = {
-            "BaseImponibleOimporteNoSujeto": tax_base_amount,
-        }
         return tax_dict
 
     def _get_verifactu_tax_req(self, tax):
@@ -394,6 +386,12 @@ class AccountMove(models.Model):
         taxes_N1 = self._get_verifactu_taxes_map(["N1"], document_date)
         taxes_N2 = self._get_verifactu_taxes_map(["N2"], document_date)
         taxes_RE = self._get_verifactu_taxes_map(["RE"], document_date)
+        taxes_E1 = self._get_verifactu_taxes_map(["E1"], document_date)
+        taxes_E2 = self._get_verifactu_taxes_map(["E2"], document_date)
+        taxes_E3 = self._get_verifactu_taxes_map(["E3"], document_date)
+        taxes_E4 = self._get_verifactu_taxes_map(["E4"], document_date)
+        taxes_E5 = self._get_verifactu_taxes_map(["E5"], document_date)
+        taxes_E6 = self._get_verifactu_taxes_map(["E6"], document_date)
         taxes_not_in_total = self._get_verifactu_taxes_map(
             ["TaxNotIncludedInTotal"], document_date
         )
@@ -404,26 +402,44 @@ class AccountMove(models.Model):
         breakdown_taxes = taxes_S1 + taxes_S2 + taxes_N1 + taxes_N2
         not_in_amount_total = 0.0
         not_in_taxes = 0.0
+        exempt_taxes = taxes_E1 + taxes_E2 + taxes_E3 + taxes_E4 + taxes_E5 + taxes_E6
         for tax_line in tax_lines.values():
             tax = tax_line["tax"]
             if tax in taxes_not_in_total:
                 not_in_amount_total += tax_line["amount"]
             elif tax in base_not_in_total:
                 not_in_amount_total += tax_line["base"]
-            if tax in breakdown_taxes:
-                operation_type = self._get_verifactu_operation_type(
-                    tax_line, taxes_S1, taxes_S2, taxes_N1, taxes_N2
-                )
+            if tax in breakdown_taxes or tax in exempt_taxes:
                 tax_dict = {
                     "Impuesto": self.verifactu_tax_key,
                     "ClaveRegimen": self.verifactu_registration_key_code,
-                    "CalificacionOperacion": operation_type,
                 }
-                if operation_type not in ("N1", "N2"):
-                    new_tax_dict = self._get_verifactu_tax_dict(tax_line, tax_lines)
-                    tax_dict.update(new_tax_dict)
+                operation_type = self._get_verifactu_operation_type(
+                    tax_line, taxes_S1, taxes_S2, taxes_N1, taxes_N2
+                )
+                if operation_type != "exempt":
+                    tax_dict.update(
+                        {
+                            "CalificacionOperacion": operation_type,
+                        }
+                    )
                 else:
-                    tax_dict.update(self._get_verifactu_tax_dict_ns(tax_line))
+                    tax_dict.update(
+                        {
+                            "OperacionExenta": self._get_verifactu_exempt_cause(
+                                tax_line,
+                                taxes_E1,
+                                taxes_E2,
+                                taxes_E3,
+                                taxes_E4,
+                                taxes_E5,
+                            )
+                        }
+                    )
+                new_tax_dict = self._get_verifactu_tax_dict(
+                    tax_line, tax_lines, operation_type
+                )
+                tax_dict.update(new_tax_dict)
                 taxes_dict["DetalleDesglose"].append(tax_dict)
             elif tax in excluded_taxes:
                 not_in_taxes += tax_line["amount"]
@@ -455,7 +471,31 @@ class AccountMove(models.Model):
             return "N1"
         elif tax in taxes_N2:
             return "N2"
-        return "S1"
+        return "exempt"
+
+    def _get_verifactu_exempt_cause(
+        self, tax_line, taxes_E1, taxes_E2, taxes_E3, taxes_E4, taxes_E5
+    ):
+        """
+        E1	Exenta por el artículo 20
+        E2	Exenta por el artículo 21
+        E3	Exenta por el artículo 22
+        E4	Exenta por los artículos 23 y 24
+        E5	Exenta por el artículo 25
+        E6	Exenta por otros
+        """
+        tax = tax_line["tax"]
+        if tax in taxes_E1:
+            return "E1"
+        elif tax in taxes_E2:
+            return "E2"
+        elif tax in taxes_E3:
+            return "E3"
+        elif tax in taxes_E4:
+            return "E4"
+        elif tax in taxes_E5:
+            return "E5"
+        return "E6"
 
     def _get_verifactu_receiver_dict(self):
         self.ensure_one()
