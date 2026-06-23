@@ -12,6 +12,15 @@ from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 VERIFACTU_VALID_INVOICE_STATES = ["posted"]
+VERIFACTU_OPERATION_MAPPING = {
+    "sujeto": "S1",
+    "sujeto_agricultura": "S1",
+    "sujeto_isp": "S2",
+    "no_sujeto": "N1",
+    "no_sujeto_loc": "N2",
+    "no_deducible": "S1",
+    # Not included here: exento, retencion, recargo, dua & ignore
+}
 
 
 class AccountMove(models.Model):
@@ -336,34 +345,25 @@ class AccountMove(models.Model):
         """
         tax = tax_line["tax"]
         tax_base_amount = tax_line["base"]
+        tax_dict = {"BaseImponibleOimporteNoSujeto": tax_base_amount}
+        operation_type = VERIFACTU_OPERATION_MAPPING.get(tax.l10n_es_type)
+        if tax.l10n_es_type == "exento":
+            tax_dict["OperacionExenta"] = tax.l10n_es_exempt_reason
+            return tax_dict
+        tax_dict["CalificacionOperacion"] = operation_type
+        if operation_type in ("N1", "N2"):
+            return tax_dict
         if tax.amount_type == "group":
-            tax_type = abs(tax.children_tax_ids.filtered("amount")[:1].amount)
+            tax_percentage = abs(tax.children_tax_ids.filtered("amount")[:1].amount)
         else:
-            tax_type = abs(tax.amount)
-        tax_dict = {
-            "TipoImpositivo": str(tax_type),
-            "BaseImponibleOimporteNoSujeto": tax_base_amount,
-        }
-        key = "CuotaRepercutida"
-        tax_dict[key] = tax_line["amount"]
+            tax_percentage = abs(tax.amount)
+        tax_dict["TipoImpositivo"] = str(tax_percentage)
+        tax_dict["CuotaRepercutida"] = tax_line["amount"]
         # Recargo de equivalencia
         req_tax = self._get_verifactu_tax_req(tax)
         if req_tax:
             tax_dict["TipoRecargoEquivalencia"] = req_tax.amount
             tax_dict["CuotaRecargoEquivalencia"] = tax_lines[req_tax]["amount"]
-        return tax_dict
-
-    def _get_verifactu_tax_dict_ns(self, tax_line):
-        """Get the VERI*FACTU tax dictionary for the passed tax line.
-
-        :param self: Single invoice record.
-        :param tax_line: Tax line that is being analyzed.
-        :return: A dictionary with the corresponding VERI*FACTU tax values.
-        """
-        tax_base_amount = tax_line["base"]
-        tax_dict = {
-            "BaseImponibleOimporteNoSujeto": tax_base_amount,
-        }
         return tax_dict
 
     def _get_verifactu_tax_req(self, tax):
@@ -405,26 +405,17 @@ class AccountMove(models.Model):
         breakdown_taxes = taxes_S1 + taxes_S2 + taxes_N1 + taxes_N2
         not_in_amount_total = 0.0
         not_in_taxes = 0.0
-        for tax_line in tax_lines.values():
-            tax = tax_line["tax"]
+        for tax, tax_line in tax_lines.items():
             if tax in taxes_not_in_total:
                 not_in_amount_total += tax_line["amount"]
             elif tax in base_not_in_total:
                 not_in_amount_total += tax_line["base"]
             if tax in breakdown_taxes:
-                operation_type = self._get_verifactu_operation_type(
-                    tax_line, taxes_S1, taxes_S2, taxes_N1, taxes_N2
-                )
                 tax_dict = {
                     "Impuesto": self.verifactu_tax_key,
                     "ClaveRegimen": self.verifactu_registration_key_code,
-                    "CalificacionOperacion": operation_type,
                 }
-                if operation_type not in ("N1", "N2"):
-                    new_tax_dict = self._get_verifactu_tax_dict(tax_line, tax_lines)
-                    tax_dict.update(new_tax_dict)
-                else:
-                    tax_dict.update(self._get_verifactu_tax_dict_ns(tax_line))
+                tax_dict.update(self._get_verifactu_tax_dict(tax_line, tax_lines))
                 taxes_dict["DetalleDesglose"].append(tax_dict)
             elif tax in excluded_taxes:
                 not_in_taxes += tax_line["amount"]
@@ -432,31 +423,7 @@ class AccountMove(models.Model):
                 raise UserError(_("%s tax is not mapped to VERI*FACTU.", tax.name))
         amount_tax = self.amount_tax_signed - not_in_taxes
         amount_total = self.amount_total_signed - not_in_amount_total
-        return (
-            taxes_dict,
-            amount_tax,
-            amount_total,
-        )
-
-    def _get_verifactu_operation_type(
-        self, tax_line, taxes_S1, taxes_S2, taxes_N1, taxes_N2
-    ):
-        """
-        S1	Operación Sujeta y No exenta - Sin inversión del sujeto pasivo.
-        S2	Operación Sujeta y No exenta - Con Inversión del sujeto pasivo
-        N1	Operación No Sujeta artículo 7, 14, otros.
-        N2	Operación No Sujeta por Reglas de localización.
-        """
-        tax = tax_line["tax"]
-        if tax in taxes_S1:
-            return "S1"
-        elif tax in taxes_S2:
-            return "S2"
-        elif tax in taxes_N1:
-            return "N1"
-        elif tax in taxes_N2:
-            return "N2"
-        return "S1"
+        return (taxes_dict, amount_tax, amount_total)
 
     def _get_verifactu_receiver_dict(self):
         self.ensure_one()
