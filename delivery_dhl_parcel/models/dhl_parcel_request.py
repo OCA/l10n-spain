@@ -67,11 +67,11 @@ class DhlParcelRequest:
                 self.env._("Server not reachable, please try again later")
             ) from None
         except requests.exceptions.HTTPError as e:
-            error_message = self.env._(
-                "%(error)s\n%(message)s",
-                error=str(e),
-                message=res.json().get("Message", "") if res and res.text else "",
+            error = str(e)
+            message = (
+                res.json().get("Message", "") if res is not None and res.text else ""
             )
+            error_message = f"{error}\n{message}"
             raise UserError(error_message) from None
         return res
 
