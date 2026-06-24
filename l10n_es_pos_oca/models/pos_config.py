@@ -144,3 +144,9 @@ class PosConfig(models.Model):
     def _get_l10n_es_sequence_name(self):
         """HACK: This is done for getting the proper translation."""
         return _("Simplified Invoice %s")
+
+    def next_l10n_es_sequence_number(self):
+        seq = self.l10n_es_simplified_invoice_sequence_id
+        number_actual = seq._get_current_sequence().number_next_actual
+        seq.next_by_id()
+        return number_actual
