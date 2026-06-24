@@ -85,14 +85,28 @@ patch(PosStore.prototype, {
     async getSimpleInvNextNumber() {
         // First, get the next number from the DB to be sure we have the latest
         try {
-            const config = await this.data.searchRead(
-                "pos.config",
-                [["id", "=", this.config.id]],
-                ["l10n_es_simplified_invoice_number"]
-            );
+            if (this.config.prevent_offline_validation) {
+                // Execute pos.l10n_es_simplified_invoice_sequence_id.next_by_id() directly
+                // as on this mode there should be no pending orders
+                var l10n_es_simplified_invoice_number = await this.data.call(
+                    "pos.config",
+                    "next_l10n_es_sequence_number",
+                    [this.config.id],
+                    {}
+                );
+            } else {
+                const config = await this.data.searchRead(
+                    "pos.config",
+                    [["id", "=", this.config.id]],
+                    ["l10n_es_simplified_invoice_number"]
+                );
+
+                var l10n_es_simplified_invoice_number =
+                    config[0]?.l10n_es_simplified_invoice_number || 1;
+            }
 
             this.config.l10n_es_simplified_invoice_number =
-                config[0]?.l10n_es_simplified_invoice_number || 1;
+                l10n_es_simplified_invoice_number || 1;
         } catch (error) {
             // Throw error if it's a connection lost error and we want to prevent offline validation
             if (
@@ -123,8 +137,6 @@ patch(PosStore.prototype, {
                 this.config.l10n_es_simplified_invoice_number =
                     simplifiedInvNumFromOrderPending;
             }
-
-            return Promise.reject(new ConnectionLostError());
         }
 
         return this.config.l10n_es_simplified_invoice_number;
