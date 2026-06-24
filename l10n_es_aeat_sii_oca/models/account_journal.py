@@ -23,7 +23,7 @@ class AccountJournal(models.Model):
             Domain("journal_id", "in", journals.ids)
             & Domain("sii_enabled", "=", True)
             & (
-                Domain("aeat_state", "=", "not_sent")
+                (Domain("aeat_state", "=", "not_sent") & Domain("state", "=", "posted"))
                 | Domain("aeat_send_failed", "=", True)
             )
         )
