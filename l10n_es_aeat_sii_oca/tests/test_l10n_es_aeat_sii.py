@@ -613,13 +613,16 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self.company.sii_start_date = "2018-01-01"
         invoice1 = self._create_invoice("out_invoice")
         invoice1.invoice_date = "2019-01-01"
+        invoice1._post()
         invoice2 = self._create_invoice("out_invoice")
         invoice2.invoice_date = "2017-01-01"
+        invoice2._post()
         invoice3 = self._create_invoice("out_invoice")
         invoice3.invoice_date = "2019-06-01"
         invoice3.aeat_send_failed = True
+        invoice3._post()
         dashboard_data = {invoice1.journal_id.id: {}}
         invoice1.journal_id._fill_sale_purchase_dashboard_data(dashboard_data)
         data = dashboard_data.get(invoice1.journal_id.id, {})
-        self.assertEqual(data.get("number_not_sent"), 4)
+        self.assertEqual(data.get("number_not_sent"), 3)
         self.assertEqual(data.get("number_aeat_failed"), 1)

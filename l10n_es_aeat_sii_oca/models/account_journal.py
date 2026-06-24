@@ -22,7 +22,9 @@ class AccountJournal(models.Model):
             ("journal_id", "in", journals.ids),
             ("sii_enabled", "=", True),
             "|",
+            "&",
             ("aeat_state", "=", "not_sent"),
+            ("state", "=", "posted"),
             ("aeat_send_failed", "=", True),
         ]
         all_data = AccountMove._read_group(
