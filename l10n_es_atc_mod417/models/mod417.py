@@ -130,9 +130,6 @@ class L10nEsAtcmod417Report(models.Model):
         string="Result type",
         compute="_compute_result_type",
     )
-    bank_account_id = fields.Many2one(
-        comodel_name="res.partner.bank",
-    )
     counterpart_account_id = fields.Many2one(
         comodel_name="account.account",
         string="Counterpart account",
@@ -193,16 +190,8 @@ class L10nEsAtcmod417Report(models.Model):
 
     def button_confirm(self):
         """Check records"""
-        msg = ""
         for mod417 in self:
-            if mod417.result_type == "I" and not mod417.bank_account_id:
-                msg = self.env._("Select an account for making the charge")
-            if mod417.result_type == "D" and not mod417.bank_account_id:
-                msg = self.env._("Select an account for receiving the money")
-        if msg:
-            # Don't raise error, because data is not used
-            # raise exceptions.UserError(msg)
-            pass
+            mod417._atc_validate_fields()
         return super().button_confirm()
 
     @api.model
@@ -237,7 +226,11 @@ class L10nEsAtcmod417Report(models.Model):
         messages = super()._atc_get_messages()
         if not self.payment_type and self.resultado_autoliquidacion > 0:
             messages.append(self.env._("- Select a payment type"))
-        if self.output_type == "T" and self.payment_type and self.payment_type != "5":
+        if (
+            self.output_type == "T"
+            and self.payment_type
+            and self.payment_type not in ["4", "5"]
+        ):
             messages.append(
                 self.env._(
                     "- The selected payment type "
@@ -245,4 +238,9 @@ class L10nEsAtcmod417Report(models.Model):
                     "Please select a different payment type."
                 )
             )
+        if self._is_partner_bank_required() and not self.partner_bank_id:
+            messages.append(self.env._("- Select a bank account"))
         return messages
+
+    def _is_partner_bank_required(self):
+        return self.payment_type == "4" and self.result_type in ["I", "D"]
