@@ -1,7 +1,7 @@
 # Copyright 2013-2018 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class L10nEsAeatMapTaxLine(models.Model):
@@ -94,6 +94,20 @@ class L10nEsAeatMapTaxLineTax(models.Model):
     _description = "AEAT tax mapping line - Tax"
 
     name = fields.Char()
+
+    @api.depends("name")
+    @api.depends_context("allowed_company_ids")
+    def _compute_display_name(self):
+        company = self.env.company
+        self.display_name = False
+        for rec in self.filtered("name"):
+            tax_id = company._get_tax_id_from_xmlid(rec.name)
+            if tax_id:
+                tax = self.env["account.tax"].browse(tax_id)
+                rec.display_name = f"{tax.name} [{rec.name}]"
+            else:
+                clean = rec.name.replace("account_tax_template_", "")
+                rec.display_name = clean
 
 
 class L10nEsAeatMapTaxLineAccount(models.Model):
