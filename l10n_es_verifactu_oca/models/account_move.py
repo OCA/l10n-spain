@@ -97,6 +97,14 @@ class AccountMove(models.Model):
                     domain, limit=1
                 )
 
+    # pylint: disable=missing-return
+    def _compute_show_reset_to_draft_button(self):
+        """Allow reset to draft only for incorrect AEAT state."""
+        super()._compute_show_reset_to_draft_button()
+        for document in self:
+            if document.aeat_state == "incorrect" and document.state == "cancel":
+                document.show_reset_to_draft_button = True
+
     def _get_verifactu_document_type(self):
         invoice_type = ""
         if self.move_type in ["out_invoice", "out_refund"]:
@@ -541,7 +549,10 @@ class AccountMove(models.Model):
     def _post(self, soft=True):
         res = super()._post(soft=soft)
         for record in self.sorted(lambda inv: inv.name):
-            if record.verifactu_enabled and record.aeat_state == "not_sent":
+            if record.verifactu_enabled and record.aeat_state in (
+                "not_sent",
+                "incorrect",
+            ):
                 record._check_verifactu_configuration()
                 record.verifactu_registration_date = datetime.now()
                 record._generate_verifactu_chaining()
@@ -617,9 +628,18 @@ class AccountMove(models.Model):
             self.verifactu_registration_date = datetime.now()
             self._generate_verifactu_chaining(entry_type=entry_type)
 
+    def _filter_verifactu_locked(self):
+        return self.filtered(
+            lambda inv: inv.verifactu_enabled
+            and (
+                inv.aeat_state not in ("not_sent", "incorrect")
+                or inv.verifactu_pending_to_send
+            )
+        )
+
     def write(self, vals):
         for invoice in self.filtered(
-            lambda x: x.is_invoice() and x.aeat_state != "not_sent"
+            lambda x: x.is_invoice() and x.aeat_state not in ("not_sent", "incorrect")
         ):
             if invoice.move_type in ["out_invoice", "out_refund"]:
                 if "invoice_date" in vals:
@@ -631,18 +651,14 @@ class AccountMove(models.Model):
         return super().write(vals)
 
     def button_cancel(self):
-        invoices_sent = self.filtered(
-            lambda inv: inv.verifactu_enabled and inv.aeat_state != "not_sent"
-        )
-        if invoices_sent and not self.env.context.get("verifactu_cancel"):
+        invoices_sent_or_pending = self._filter_verifactu_locked()
+        if invoices_sent_or_pending and not self.env.context.get("verifactu_cancel"):
             raise UserError(_("You can not cancel invoices sent to VERI*FACTU."))
         return super().button_cancel()
 
     def button_draft(self):
-        invoices_sent = self.filtered(
-            lambda inv: inv.verifactu_enabled and inv.aeat_state != "not_sent"
-        )
-        if invoices_sent:
+        invoices_sent_or_pending = self._filter_verifactu_locked()
+        if invoices_sent_or_pending:
             raise UserError(_("You can not set to draft invoices sent to VERI*FACTU."))
         return super().button_draft()
 
@@ -650,11 +666,16 @@ class AccountMove(models.Model):
         for rec in self:
             if (
                 rec.aeat_state in ("sent_w_errors", "incorrect")
-                and rec.last_verifactu_invoice_entry_id
-                and not rec.last_verifactu_invoice_entry_id.send_state == "not_sent"
+                and not rec.verifactu_pending_to_send
             ):
                 entry_type = (
                     "modify" if rec.aeat_state == "sent_w_errors" else "register"
                 )
                 rec.verifactu_registration_date = datetime.now()
                 rec._generate_verifactu_chaining(entry_type=entry_type)
+
+    def unlink(self):
+        for rec in self:
+            if rec.verifactu_enabled:
+                raise UserError(_("You can not delete VERI*FACTU enabled invoices"))
+        return super().unlink()
