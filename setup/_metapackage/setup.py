@@ -82,6 +82,7 @@ setuptools.setup(
         'odoo-addon-l10n_es_verifactu_oca>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_verifactu_oca_operation_date>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_verifactu_oca_oss>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_es_verifactu_pos_oca>=16.0dev,<16.1dev',
         'odoo-addon-payment_redsys>=16.0dev,<16.1dev',
     ],
     classifiers=[
