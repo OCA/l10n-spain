@@ -216,6 +216,7 @@ msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__account_move__verifactu_refund_type__i
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__pos_order__verifactu_refund_type__i
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_mixin__verifactu_refund_type__i
 msgid "By differences"
 msgstr ""
@@ -253,12 +254,14 @@ msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__account_move__aeat_state__cancel
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__pos_order__aeat_state__cancel
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_mixin__aeat_state__cancel
 msgid "Cancelled in VERI*FACTU"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__account_move__aeat_state__cancel_w_errors
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__pos_order__aeat_state__cancel_w_errors
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_mixin__aeat_state__cancel_w_errors
 msgid "Cancelled in VERI*FACTU with Errors"
 msgstr ""
@@ -641,6 +644,7 @@ msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__account_move__aeat_state__incorrect
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__pos_order__aeat_state__incorrect
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_mixin__aeat_state__incorrect
 msgid "Incorrect"
 msgstr ""
@@ -653,6 +657,7 @@ msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__account_move__aeat_state__cancel_incorrect
+#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__pos_order__aeat_state__cancel_incorrect
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_mixin__aeat_state__cancel_incorrect
 msgid "Incorrect cancellation in VERI*FACTU"
 msgstr ""
