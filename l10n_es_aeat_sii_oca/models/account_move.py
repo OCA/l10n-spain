@@ -743,6 +743,18 @@ class AccountMove(models.Model):
         conditions = [domain, condition_1, condition_2]
         if condition_3:
             conditions.append(condition_3)
+        if not search_ko:
+            dua_conditions = []
+            for company in self.env.companies.filtered("sii_enabled"):
+                dua_exempt_tax = company._get_tax_id_from_xmlid(
+                    "account_tax_template_p_dua_exempt"
+                )
+                if dua_exempt_tax:
+                    dua_conditions.append(dua_exempt_tax)
+            if dua_conditions:
+                conditions.append(
+                    [("invoice_line_ids.tax_ids", "not in", dua_conditions)]
+                )
         return Domain.AND(
             [[("move_type", "in", invoice_types)], exp_condition(conditions)]
         )
