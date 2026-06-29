@@ -126,3 +126,15 @@ class ResPartner(models.Model):
             self.aeat_identification_type or identifier_type,
             self.aeat_identification if self.aeat_identification_type else vat_number,
         )
+
+    def _has_valid_aeat_identification(self, allow_alternative_identification=True):
+        """Check whether a partner has a valid identification for AEAT reports."""
+        self.ensure_one()
+        return bool(
+            self.vat
+            or (
+                allow_alternative_identification
+                and self.aeat_identification_type
+                and self.aeat_identification
+            )
+        )
