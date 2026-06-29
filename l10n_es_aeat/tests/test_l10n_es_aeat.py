@@ -124,3 +124,51 @@ class TestL10nEsAeat(BaseCommon):
         iso_code = "ES"
         mapping_return = res_partner_obj._map_aeat_country_iso_code(spain_country)
         self.assertEqual(iso_code, mapping_return)
+
+    def test_has_valid_aeat_identification(self):
+        partner_with_vat = self.env["res.partner"].create(
+            {
+                "name": "Partner with VAT",
+                "vat": "ES12345678Z",
+            }
+        )
+        self.assertTrue(partner_with_vat._has_valid_aeat_identification())
+        partner_with_aeat_identification = self.env["res.partner"].create(
+            {
+                "name": "Partner with AEAT identification",
+                "aeat_identification_type": "06",
+                "aeat_identification": "ABC123456",
+            }
+        )
+        self.assertTrue(
+            partner_with_aeat_identification._has_valid_aeat_identification()
+        )
+        self.assertFalse(
+            partner_with_aeat_identification._has_valid_aeat_identification(
+                allow_alternative_identification=False
+            )
+        )
+        partner_without_identification = self.env["res.partner"].create(
+            {
+                "name": "Partner without identification",
+            }
+        )
+        self.assertFalse(
+            partner_without_identification._has_valid_aeat_identification()
+        )
+        partner_only_aeat_type = self.env["res.partner"].create(
+            {
+                "name": "Partner only AEAT type",
+                "aeat_identification_type": "06",
+            }
+        )
+        self.assertFalse(partner_only_aeat_type._has_valid_aeat_identification())
+        partner_only_aeat_identification = self.env["res.partner"].create(
+            {
+                "name": "Partner only AEAT identification",
+                "aeat_identification": "ABC123456",
+            }
+        )
+        self.assertFalse(
+            partner_only_aeat_identification._has_valid_aeat_identification()
+        )
