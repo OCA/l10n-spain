@@ -609,6 +609,11 @@ msgid "Counterpart account"
 msgstr "Cuenta contrapartida"
 
 #. module: l10n_es_aeat_mod592
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_res_company__mod592_counterpart_account_id
+msgid "Mod 592 counterpart account"
+msgstr "Cuenta de contrapartida Mod 592"
+
+#. module: l10n_es_aeat_mod592
 #: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod592.action_l10n_es_aeat_mod592_report
 msgid "Create and query AEAT 592 Model reports"
 msgstr "Crear y consultar informes Modelo 592"
@@ -848,6 +853,12 @@ msgid "L.R. VAT number"
 msgstr "L.R. NIF"
 
 #. module: l10n_es_aeat_mod592
+#: code:addons/l10n_es_aeat_mod592/models/mod592.py:0
+#, python-format
+msgid "It is not possible to create a move if the total amount is 0."
+msgstr "No es posible crear un asiento si el importe total es 0."
+
+#. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_acquirer____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report_line_manufacturer____last_update
@@ -952,6 +963,16 @@ msgid "Mod 592 Report Lines"
 msgstr "Líneas de informe Mod 592"
 
 #. module: l10n_es_aeat_mod592
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_res_company__mod592_payable_account_id
+msgid "Mod 592 payable account"
+msgstr "Cuenta a pagar Mod 592"
+
+#. module: l10n_es_aeat_mod592
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_res_company__mod592_receivable_account_id
+msgid "Mod 592 receivable account"
+msgstr "Cuenta a cobrar Mod 592"
+
+#. module: l10n_es_aeat_mod592
 #: model:ir.model,name:l10n_es_aeat_mod592.model_report_l10n_es_aeat_mod592_l10n_es_aeat_mod592_csv_acquirer
 msgid "Mod592 CSV Acquirer"
 msgstr "CSV del adquirente Mod592"
@@ -997,6 +1018,12 @@ msgstr "Mi fecha límite de actividad"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__activity_date_deadline
 msgid "Next Activity Deadline"
 msgstr "Siguiente fecha límite de actividad"
+
+#. module: l10n_es_aeat_mod592
+#: code:addons/l10n_es_aeat_mod592/models/mod592.py:0
+#, python-format
+msgid "No account found for Model 592 posting."
+msgstr "No se encontró una cuenta para contabilizar el Modelo 592."
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__activity_summary
@@ -1523,6 +1550,12 @@ msgstr "Sin nombre del proveedor"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod592.field_l10n_es_aeat_mod592_report__year
 msgid "Year"
 msgstr "Año"
+
+#. module: l10n_es_aeat_mod592
+#: code:addons/l10n_es_aeat_mod592/models/mod592.py:0
+#, python-format
+msgid "You must fill both journal and counterpart account."
+msgstr "Debe completar el diario y la cuenta de contrapartida."
 
 #. module: l10n_es_aeat_mod592
 #: model:ir.actions.report,print_report_name:l10n_es_aeat_mod592.l10n_es_aeat_mod592_csv_acquirer

@@ -14,6 +14,9 @@
                     name="company_plastic_manufacturer"
                     groups="l10n_es_aeat_mod592.group_mod592_manufacturer"
                 />
+                <field name="mod592_payable_account_id" />
+                <field name="mod592_receivable_account_id" />
+                <field name="mod592_counterpart_account_id" />
             </xpath>
         </field>
     </record>
