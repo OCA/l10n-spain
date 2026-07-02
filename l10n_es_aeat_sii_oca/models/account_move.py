@@ -753,7 +753,20 @@ class AccountMove(models.Model):
                     dua_conditions.append(dua_exempt_tax)
             if dua_conditions:
                 conditions.append(
-                    [("invoice_line_ids.tax_ids", "not in", dua_conditions)]
+                    [
+                        (
+                            "invoice_line_ids",
+                            "not any",
+                            [
+                                (
+                                    "display_type",
+                                    "not in",
+                                    ["line_section", "line_note"],
+                                ),
+                                ("tax_ids", "in", dua_conditions),
+                            ],
+                        )
+                    ]
                 )
         return Domain.AND(
             [[("move_type", "in", invoice_types)], exp_condition(conditions)]
