@@ -253,9 +253,8 @@ class PosOrder(models.Model):
 
     def tbai_get_value_num_factura(self):
         invoice_number_prefix = self.tbai_get_value_serie_factura()
-        if invoice_number_prefix and not self.l10n_es_unique_id.startswith(
-            invoice_number_prefix
-        ):
+        unique = self.l10n_es_unique_id or ""
+        if invoice_number_prefix and not unique.startswith(invoice_number_prefix):
             raise exceptions.ValidationError(
                 _("Simplified Invoice Number Prefix %s is not part of Number %s!")
                 % (invoice_number_prefix, self.l10n_es_unique_id)
