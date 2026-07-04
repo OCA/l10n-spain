@@ -21,6 +21,13 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_es_atc_mod417/models/mod417.py:0
 #, python-format
+msgid "- Select a bank account"
+msgstr ""
+
+#. module: l10n_es_atc_mod417
+#. odoo-python
+#: code:addons/l10n_es_atc_mod417/models/mod417.py:0
+#, python-format
 msgid "- Select a payment type"
 msgstr "- Seleccione un tipo de pago"
 
@@ -90,7 +97,6 @@ msgid "Attachment Count"
 msgstr "Nº de archivos adjuntos"
 
 #. module: l10n_es_atc_mod417
-#: model:ir.model.fields,field_description:l10n_es_atc_mod417.field_l10n_es_atc_mod417_report__bank_account_id
 #: model:ir.model.fields,field_description:l10n_es_atc_mod417.field_l10n_es_atc_mod417_report__partner_bank_id
 msgid "Bank account"
 msgstr "Cuenta Bancaria"
@@ -98,8 +104,7 @@ msgstr "Cuenta Bancaria"
 #. module: l10n_es_atc_mod417
 #: model:ir.model.fields,help:l10n_es_atc_mod417.field_l10n_es_atc_mod417_report__casilla_23
 msgid "Basis of the fee in the passenger regime made by the subject passive"
-msgstr ""
-"Base de la tasa en régimen de pasajeros realizada por el sujeto pasivo"
+msgstr "Base de la tasa en régimen de pasajeros realizada por el sujeto pasivo"
 
 #. module: l10n_es_atc_mod417
 #: model:ir.model.fields,field_description:l10n_es_atc_mod417.field_l10n_es_atc_mod417_report__calculation_date
@@ -149,11 +154,11 @@ msgstr "Moneda"
 #. module: l10n_es_atc_mod417
 #: model:ir.model.fields,help:l10n_es_atc_mod417.field_l10n_es_atc_mod417_report__diferencia
 msgid ""
-"Difference between the amounts of boxes 25-40, either its import positive "
-"or negative"
+"Difference between the amounts of boxes 25-40, either its import positive or "
+"negative"
 msgstr ""
-"Diferencia entre los importes de las casillas 25 a 40, ya sea su "
-"importación positiva o negativa"
+"Diferencia entre los importes de las casillas 25 a 40, ya sea su importación "
+"positiva o negativa"
 
 #. module: l10n_es_atc_mod417
 #: model:ir.model.fields,field_description:l10n_es_atc_mod417.field_l10n_es_atc_mod417_report__display_name
@@ -433,20 +438,6 @@ msgid "Resultado"
 msgstr ""
 
 #. module: l10n_es_atc_mod417
-#. odoo-python
-#: code:addons/l10n_es_atc_mod417/models/mod417.py:0
-#, python-format
-msgid "Select an account for making the charge"
-msgstr "Seleccione una cuenta para realizar el cargo"
-
-#. module: l10n_es_atc_mod417
-#. odoo-python
-#: code:addons/l10n_es_atc_mod417/models/mod417.py:0
-#, python-format
-msgid "Select an account for receiving the money"
-msgstr "Seleccione una cuenta para recibir el dinero"
-
-#. module: l10n_es_atc_mod417
 #: model:ir.model.fields,field_description:l10n_es_atc_mod417.field_l10n_es_atc_mod417_report__date_start
 msgid "Starting date"
 msgstr "Fecha de inicio"
@@ -510,8 +501,7 @@ msgstr ""
 #. module: l10n_es_atc_mod417
 #: model:ir.model.fields,help:l10n_es_atc_mod417.field_l10n_es_atc_mod417_report__a_deducir
 msgid ""
-"This box will only be completed in the event of complementary self-"
-"assessment"
+"This box will only be completed in the event of complementary self-assessment"
 msgstr ""
 "Esta casilla solo se completará en caso de autoevaluación complementaria"
 
@@ -638,3 +628,11 @@ msgstr "[44] Para deducir"
 #: model:ir.model.fields,field_description:l10n_es_atc_mod417.field_l10n_es_atc_mod417_report__resultado_autoliquidacion
 msgid "[45] Self-assessment result"
 msgstr "[45] Resultado de la autoevaluación"
+
+#, python-format
+#~ msgid "Select an account for making the charge"
+#~ msgstr "Seleccione una cuenta para realizar el cargo"
+
+#, python-format
+#~ msgid "Select an account for receiving the money"
+#~ msgstr "Seleccione una cuenta para recibir el dinero"
