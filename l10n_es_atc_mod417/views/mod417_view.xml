@@ -38,6 +38,9 @@
             <field name="export_config_id" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>
+            <xpath expr="//field[@name='partner_bank_id']" position="attributes">
+                <attribute name="readonly">state == 'done'</attribute>
+            </xpath>
             <field name="statement_type" position="after">
                 <field
                     name="output_type"
@@ -90,13 +93,6 @@
                     />
                     <field name="result_type" />
                     <field name="company_partner_id" invisible="1" />
-                    <field
-                        name="bank_account_id"
-                        domain="[('partner_id', '=', company_partner_id)]"
-                        invisible="result_type not in ('D', 'B', 'I')"
-                        required="result_type == 'D'"
-                        readonly="state == 'done'"
-                    />
                 </group>
                 <field
                     name="tax_line_ids"

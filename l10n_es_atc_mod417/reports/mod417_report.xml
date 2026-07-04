@@ -129,6 +129,7 @@
                 t-att-TIP="'S' if doc.result_type == 'N' else doc.result_type"
                 t-att-IMP="doc._format_amount(abs(doc.resultado_autoliquidacion))"
                 t-att-FPA="doc.payment_type"
+                t-att-IBAN="doc.partner_bank_id.sanitized_acc_number if doc._is_partner_bank_required() else None"
             />
             <!-- TODO: support for SAF, ACT_EST, OPE, ACT_PRO, ACT_DED? -->
         </DEC>

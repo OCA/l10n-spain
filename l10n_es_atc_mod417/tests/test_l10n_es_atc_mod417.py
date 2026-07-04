@@ -445,6 +445,12 @@ class TestL10nEsAeatmod417(TestL10nEsAtcmod417Base):
         cls._invoice_sale_create("2017-01-12")
         sale = cls._invoice_sale_create("2017-01-13")
         cls._invoice_refund(sale, "2017-01-14")
+        cls.bank_account = cls.env["res.partner.bank"].create(
+            {
+                "acc_number": "ES9121000418450200051332",
+                "partner_id": cls.model417.company_id.partner_id.id,
+            }
+        )
 
     @classmethod
     def _request_handler(cls, s, r, /, **kw):
@@ -615,6 +621,7 @@ class TestL10nEsAeatmod417(TestL10nEsAtcmod417Base):
         self.assertEqual(res_node[0].attrib["TIP"], "I")
         self.assertEqual(res_node[0].attrib["IMP"], "78385")
         self.assertEqual(res_node[0].attrib["FPA"], "5")
+        self.assertFalse(res_node[0].attrib.get("IBAN"))
 
     @freeze_time("2026-01-01")
     def test_model_417_declaration_pdf(self):
@@ -664,6 +671,22 @@ class TestL10nEsAeatmod417(TestL10nEsAtcmod417Base):
             UserError, r".*payment type is not compatible with the output type.*"
         ):
             self.model417.action_generar_mod417()
+        self.model417.payment_type = "4"  # Domiciliación bancaria
+        with self.assertRaisesRegex(UserError, r".*Select a bank account.*"):
+            self.model417.action_generar_mod417()
+        self.model417.partner_bank_id = self.bank_account
+        report_name = "l10n_es_atc_mod417.mod417_report_xml"
+        xml_data = self.env["ir.actions.report"]._render_qweb_xml(
+            report_name, self.model417.ids
+        )[0]
+        # Parse the XML data and check the values
+        doc = etree.XML(xml_data)
+        dec_node = doc.xpath("//DEC")
+        self.assertEqual(len(dec_node), 1)
+        dec_node = dec_node[0]
+        res_node = dec_node.xpath("//RES")
+        self.assertEqual(len(res_node), 1)
+        self.assertEqual(res_node[0].attrib["IBAN"], "ES9121000418450200051332")
         self.model417.payment_type = "5"  # Pago telemático
         # In oca-ci, we have an issue: https://github.com/OCA/oca-ci/issues/94
         # Read the ROADMAP for more information.
