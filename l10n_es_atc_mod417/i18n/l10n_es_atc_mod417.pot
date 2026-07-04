@@ -17,6 +17,13 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_es_atc_mod417/models/mod417.py:0
 #, python-format
+msgid "- Select a bank account"
+msgstr ""
+
+#. module: l10n_es_atc_mod417
+#. odoo-python
+#: code:addons/l10n_es_atc_mod417/models/mod417.py:0
+#, python-format
 msgid "- Select a payment type"
 msgstr ""
 
@@ -82,7 +89,6 @@ msgid "Attachment Count"
 msgstr ""
 
 #. module: l10n_es_atc_mod417
-#: model:ir.model.fields,field_description:l10n_es_atc_mod417.field_l10n_es_atc_mod417_report__bank_account_id
 #: model:ir.model.fields,field_description:l10n_es_atc_mod417.field_l10n_es_atc_mod417_report__partner_bank_id
 msgid "Bank account"
 msgstr ""
@@ -413,20 +419,6 @@ msgstr ""
 #. module: l10n_es_atc_mod417
 #: model_terms:ir.ui.view,arch_db:l10n_es_atc_mod417.view_l10n_es_atc_mod417_report_form
 msgid "Resultado"
-msgstr ""
-
-#. module: l10n_es_atc_mod417
-#. odoo-python
-#: code:addons/l10n_es_atc_mod417/models/mod417.py:0
-#, python-format
-msgid "Select an account for making the charge"
-msgstr ""
-
-#. module: l10n_es_atc_mod417
-#. odoo-python
-#: code:addons/l10n_es_atc_mod417/models/mod417.py:0
-#, python-format
-msgid "Select an account for receiving the money"
 msgstr ""
 
 #. module: l10n_es_atc_mod417
