@@ -1,0 +1,479 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_payment_period_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-07-06 19:35+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: l10n_es_payment_period_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+msgid ""
+"<br/>\n"
+"                            <strong>Fiscal year:</strong>"
+msgstr ""
+"<br/>\n"
+"                            <strong>Ejercicio fiscal:</strong>"
+
+#. module: l10n_es_payment_period_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+msgid ""
+"<br/>\n"
+"                            <strong>Legal payment days:</strong>"
+msgstr ""
+"<br/>\n"
+"                            <strong>Días legales de pago:</strong>"
+
+#. module: l10n_es_payment_period_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+msgid ""
+"<br/>\n"
+"                            <strong>Period:</strong>"
+msgstr ""
+"<br/>\n"
+"                            <strong>Periodo:</strong>"
+
+#. module: l10n_es_payment_period_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+msgid "<strong>Company:</strong>"
+msgstr "<strong>Compañía:</strong>"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line__accounting_date
+msgid "Accounting Date"
+msgstr "Fecha contable"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model.fields.selection,name:l10n_es_payment_period_report.selection__l10n_es_payment_period_report_wizard__date_start_type__date
+msgid "Accounting date"
+msgstr "Fecha contable"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+#, python-format
+msgid "Amount"
+msgstr "Importe"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__amount_within_percent
+msgid "Amount %"
+msgstr "% importe"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line__amount_total
+msgid "Amount Total"
+msgstr "Importe total"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__total_amount_paid_within
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+#, python-format
+msgid "Amount paid within legal period"
+msgstr "Importe pagado dentro del plazo legal"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+#, python-format
+msgid "Amount within legal period %"
+msgstr "% importe dentro del plazo legal"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__average_payment_period
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+#, python-format
+msgid "Average payment period"
+msgstr "Periodo medio de pago"
+
+#. module: l10n_es_payment_period_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_wizard_form
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__company_id
+#, python-format
+msgid "Company"
+msgstr "Compañía"
+
+#. module: l10n_es_payment_period_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_wizard_form
+msgid "Compute"
+msgstr "Calcular"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line__create_uid
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line__create_date
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line__currency_id
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__date_from
+msgid "Date From"
+msgstr "Fecha desde"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__date_to
+msgid "Date To"
+msgstr "Fecha hasta"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#, python-format
+msgid "Date from"
+msgstr "Fecha desde"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#, python-format
+msgid "Date to"
+msgstr "Fecha hasta"
+
+#. module: l10n_es_payment_period_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+msgid "Days"
+msgstr "Días"
+
+#. module: l10n_es_payment_period_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+msgid "Detail"
+msgstr "Detalle"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line__display_name
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model.fields.selection,name:l10n_es_payment_period_report.selection__l10n_es_payment_period_report_wizard__date_start_type__invoice_date_due
+msgid "Due date"
+msgstr "Fecha de vencimiento"
+
+#. module: l10n_es_payment_period_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_wizard_form
+msgid "Export PDF"
+msgstr "Exportar PDF"
+
+#. module: l10n_es_payment_period_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_wizard_form
+msgid "Export XLSX"
+msgstr "Exportar XLSX"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__year
+#, python-format
+msgid "Fiscal year"
+msgstr "Ejercicio fiscal"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line__id
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line__move_id
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+#, python-format
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line__invoice_date
+msgid "Invoice Date"
+msgstr "Fecha de factura"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#: model:ir.model.fields.selection,name:l10n_es_payment_period_report.selection__l10n_es_payment_period_report_wizard__date_start_type__invoice_date
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+#, python-format
+msgid "Invoice date"
+msgstr "Fecha de factura"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__invoice_within_percent
+msgid "Invoices %"
+msgstr "% facturas"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__invoice_count_within
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+#, python-format
+msgid "Invoices paid within legal period"
+msgstr "Facturas pagadas dentro del plazo legal"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+#, python-format
+msgid "Invoices within legal period %"
+msgstr "% facturas dentro del plazo legal"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model,name:l10n_es_payment_period_report.model_account_move
+msgid "Journal Entry"
+msgstr "Asiento contable"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line____last_update
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line__write_uid
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line__write_date
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__legal_payment_days
+msgid "Legal Payment Days"
+msgstr "Días legales de pago"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#, python-format
+msgid "Legal payment days"
+msgstr "Días legales de pago"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/wizards/payment_period_report_wizard.py:0
+#, python-format
+msgid "Legal payment days must be greater than zero."
+msgstr "Los días legales de pago deben ser mayores que cero."
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+#, python-format
+msgid "Monetary volume"
+msgstr "Volumen monetario"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+#, python-format
+msgid "No"
+msgstr ""
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__invoice_count
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+#, python-format
+msgid "Number of invoices"
+msgstr "Número de facturas"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__line_ids
+msgid "Paid supplier invoices"
+msgstr "Facturas de proveedor pagadas"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line__payment_date
+msgid "Payment Date"
+msgstr "Fecha de pago"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line__payment_days
+msgid "Payment Days"
+msgstr "Días de pago"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+#, python-format
+msgid "Payment date"
+msgstr "Fecha de pago"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#, python-format
+msgid "Payment days"
+msgstr "Días de pago"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#, python-format
+msgid "Payments"
+msgstr "Pagos"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#, python-format
+msgid "Payments to suppliers within %s days"
+msgstr "Pagos a proveedores en menos de %s días"
+
+#. module: l10n_es_payment_period_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+msgid "Payments to suppliers within legal period"
+msgstr "Pagos a proveedores dentro del plazo legal"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model,name:l10n_es_payment_period_report.model_report_l10n_es_payment_period_report_payment_period_report_xlsx
+msgid "Spanish supplier payment period report XLSX"
+msgstr "Informe XLSX español de periodo de pago a proveedores"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model,name:l10n_es_payment_period_report.model_l10n_es_payment_period_report_line
+msgid "Spanish supplier payment period report line"
+msgstr "Línea del informe español de periodo de pago a proveedores"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model,name:l10n_es_payment_period_report.model_l10n_es_payment_period_report_wizard
+msgid "Spanish supplier payment period report wizard"
+msgstr "Asistente del informe español de periodo de pago a proveedores"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line__date_start
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__date_start_type
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+#, python-format
+msgid "Start date"
+msgstr "Fecha de inicio"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/wizards/payment_period_report_wizard.py:0
+#, python-format
+msgid "Start date must be before end date."
+msgstr "La fecha de inicio debe ser anterior a la fecha final."
+
+#. module: l10n_es_payment_period_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+msgid "Summary"
+msgstr "Resumen"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line__partner_id
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+#, python-format
+msgid "Supplier"
+msgstr "Proveedor"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.ui.menu,name:l10n_es_payment_period_report.payment_period_report_menu
+msgid "Supplier Payment Period"
+msgstr "Periodo de pago a proveedores"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/wizards/payment_period_report_wizard.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_line_form
+#, python-format
+msgid "Supplier Payment Period Detail"
+msgstr "Detalle del periodo de pago a proveedores"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#: model:ir.actions.act_window,name:l10n_es_payment_period_report.payment_period_report_wizard_action
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_wizard_form
+#, python-format
+msgid "Supplier Payment Period Report"
+msgstr "Informe de periodo de pago a proveedores"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.actions.report,name:l10n_es_payment_period_report.payment_period_report_pdf
+msgid "Supplier payment period PDF report"
+msgstr "Informe PDF de periodo de pago a proveedores"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.actions.report,name:l10n_es_payment_period_report.payment_period_report_xlsx
+msgid "Supplier payment period XLSX report"
+msgstr "Informe XLSX de periodo de pago a proveedores"
+
+#. module: l10n_es_payment_period_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_wizard_form
+msgid "Supplier payments"
+msgstr "Pagos a proveedores"
+
+#. module: l10n_es_payment_period_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_line_tree
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_wizard_form
+msgid "Total"
+msgstr ""
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__total_amount_paid
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+#, python-format
+msgid "Total amount paid"
+msgstr "Importe total pagado"
+
+#. module: l10n_es_payment_period_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_wizard_form
+msgid "View Details"
+msgstr "Ver detalles"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line__within_legal_period
+msgid "Within Legal Period"
+msgstr "Dentro del plazo legal"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#, python-format
+msgid "Within legal period"
+msgstr "Dentro del plazo legal"
+
+#. module: l10n_es_payment_period_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+msgid "Within period"
+msgstr "Dentro del plazo"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line__wizard_id
+msgid "Wizard"
+msgstr "Asistente"
+
+#. module: l10n_es_payment_period_report
+#: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+#, python-format
+msgid "Yes"
+msgstr "Sí"
+
+#. module: l10n_es_payment_period_report
+#: model:ir.actions.report,print_report_name:l10n_es_payment_period_report.payment_period_report_pdf
+#: model:ir.actions.report,print_report_name:l10n_es_payment_period_report.payment_period_report_xlsx
+msgid "object.get_report_file_name()"
+msgstr ""
