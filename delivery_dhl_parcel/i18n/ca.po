@@ -17,14 +17,6 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: delivery_dhl_parcel
-#. odoo-python
-#: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
-msgid ""
-"%(error)s\n"
-"%(message)s"
-msgstr ""
-
-#. module: delivery_dhl_parcel
 #: model:ir.model.fields,help:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_pre_1330
 msgid "Activates Feature 714 for Pre 13:30 time-definite delivery."
 msgstr ""
