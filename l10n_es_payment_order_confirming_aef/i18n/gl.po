@@ -63,11 +63,9 @@ msgstr ""
 #: code:addons/l10n_es_payment_order_confirming_aef/models/confirming_aef.py:0
 #, python-format
 msgid ""
-"- La referencia de factura %s de proveedor no puede ocupar más de 15 "
+"- La referencia de factura %s de proveedor no puede ocupar más de 20 "
 "caracteres."
 msgstr ""
-"- A referencia de factura %s de provedor non pode ocupar máis de 15 "
-"caracteres."
 
 #. module: l10n_es_payment_order_confirming_aef
 #. odoo-python
@@ -159,3 +157,11 @@ msgstr "Tipo de pago"
 #: model:ir.model.fields.selection,name:l10n_es_payment_order_confirming_aef.selection__account_payment_mode__aef_confirming_type__t
 msgid "Transferencia"
 msgstr "Transferencia"
+
+#, python-format
+#~ msgid ""
+#~ "- La referencia de factura %s de proveedor no puede ocupar más de 15 "
+#~ "caracteres."
+#~ msgstr ""
+#~ "- A referencia de factura %s de provedor non pode ocupar máis de 15 "
+#~ "caracteres."
