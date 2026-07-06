@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="payment_period_report_wizard_form" model="ir.ui.view">
+        <field name="name">l10n.es.payment.period.report.wizard.form</field>
+        <field name="model">l10n.es.payment.period.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Supplier Payment Period Report">
+                <group>
+                    <group>
+                        <field name="company_id" />
+                        <field name="year" />
+                        <field name="date_from" />
+                        <field name="date_to" />
+                    </group>
+                    <group>
+                        <field name="date_start_type" />
+                        <field name="legal_payment_days" />
+                        <field name="currency_id" invisible="1" />
+                    </group>
+                </group>
+                <group string="Supplier payments">
+                    <group>
+                        <field name="total_amount_paid" />
+                        <field name="total_amount_paid_within" />
+                        <field name="amount_within_percent" />
+                    </group>
+                    <group>
+                        <field name="invoice_count" />
+                        <field name="invoice_count_within" />
+                        <field name="invoice_within_percent" />
+                        <field name="average_payment_period" />
+                    </group>
+                </group>
+                <field name="line_ids" nolabel="1">
+                    <tree>
+                        <field name="payment_date" />
+                        <field name="move_id" />
+                        <field name="partner_id" />
+                        <field name="invoice_date" />
+                        <field name="date_start" />
+                        <field name="amount_total" sum="Total" />
+                        <field name="payment_days" />
+                        <field name="within_legal_period" />
+                    </tree>
+                </field>
+                <footer>
+                    <button
+                        name="action_compute"
+                        string="Compute"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="action_export_xlsx"
+                        string="Export XLSX"
+                        type="object"
+                    />
+                    <button
+                        name="action_export_pdf"
+                        string="Export PDF"
+                        type="object"
+                    />
+                    <button
+                        name="action_view_lines"
+                        string="View Details"
+                        type="object"
+                    />
+                    <button special="cancel" string="Close" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="payment_period_report_line_tree" model="ir.ui.view">
+        <field name="name">l10n.es.payment.period.report.line.tree</field>
+        <field name="model">l10n.es.payment.period.report.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="payment_date" />
+                <field name="move_id" />
+                <field name="partner_id" />
+                <field name="invoice_date" />
+                <field name="accounting_date" />
+                <field name="date_start" />
+                <field name="amount_total" sum="Total" />
+                <field name="payment_days" />
+                <field name="within_legal_period" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="payment_period_report_line_form" model="ir.ui.view">
+        <field name="name">l10n.es.payment.period.report.line.form</field>
+        <field name="model">l10n.es.payment.period.report.line</field>
+        <field name="arch" type="xml">
+            <form string="Supplier Payment Period Detail">
+                <group>
+                    <group>
+                        <field name="move_id" />
+                        <field name="partner_id" />
+                        <field name="amount_total" />
+                    </group>
+                    <group>
+                        <field name="invoice_date" />
+                        <field name="accounting_date" />
+                        <field name="date_start" />
+                        <field name="payment_date" />
+                        <field name="payment_days" />
+                        <field name="within_legal_period" />
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="payment_period_report_wizard_action" model="ir.actions.act_window">
+        <field name="name">Supplier Payment Period Report</field>
+        <field name="res_model">l10n.es.payment.period.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="payment_period_report_menu"
+        name="Supplier Payment Period"
+        parent="account_financial_report.menu_oca_reports"
+        action="payment_period_report_wizard_action"
+        groups="account.group_account_readonly"
+        sequence="70"
+    />
+</odoo>

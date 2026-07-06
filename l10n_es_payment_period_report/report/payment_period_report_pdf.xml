@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="payment_period_report_pdf" model="ir.actions.report">
+        <field name="name">Supplier payment period PDF report</field>
+        <field name="model">l10n.es.payment.period.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >l10n_es_payment_period_report.payment_period_report_pdf_document</field>
+        <field
+            name="report_file"
+        >l10n_es_payment_period_report.payment_period_report_pdf_document</field>
+        <field name="print_report_name">object.get_report_file_name()</field>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="payment_period_report_pdf_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Supplier Payment Period Report</h2>
+                        <p>
+                            <strong>Company:</strong>
+                            <span t-field="o.company_id" />
+                            <br />
+                            <strong>Fiscal year:</strong>
+                            <span t-field="o.year" />
+                            <br />
+                            <strong>Period:</strong>
+                            <span t-field="o.date_from" />
+                            -
+                            <span t-field="o.date_to" />
+                            <br />
+                            <strong>Legal payment days:</strong>
+                            <span t-field="o.legal_payment_days" />
+                        </p>
+
+                        <h3>Summary</h3>
+                        <table class="table table-sm">
+                            <tbody>
+                                <tr>
+                                    <td>Total amount paid</td>
+                                    <td class="text-right">
+                                        <span t-field="o.total_amount_paid" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Amount paid within legal period</td>
+                                    <td class="text-right">
+                                        <span t-field="o.total_amount_paid_within" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Amount within legal period %</td>
+                                    <td class="text-right">
+                                        <span
+                                            t-esc="'%.2f' % o.amount_within_percent"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Number of invoices</td>
+                                    <td class="text-right">
+                                        <span t-field="o.invoice_count" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Invoices paid within legal period</td>
+                                    <td class="text-right">
+                                        <span t-field="o.invoice_count_within" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Invoices within legal period %</td>
+                                    <td class="text-right">
+                                        <span
+                                            t-esc="'%.2f' % o.invoice_within_percent"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Average payment period</td>
+                                    <td class="text-right">
+                                        <span
+                                            t-esc="'%.2f' % o.average_payment_period"
+                                        />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h3>Payments to suppliers within legal period</h3>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <span t-esc="o.year" />
+                                    </th>
+                                    <th class="text-right">Amount</th>
+                                    <th class="text-right">%</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Monetary volume</td>
+                                    <td class="text-right">
+                                        <span t-field="o.total_amount_paid_within" />
+                                    </td>
+                                    <td class="text-right">
+                                        <span
+                                            t-esc="'%.2f' % o.amount_within_percent"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Number of invoices</td>
+                                    <td class="text-right">
+                                        <span t-field="o.invoice_count_within" />
+                                    </td>
+                                    <td class="text-right">
+                                        <span
+                                            t-esc="'%.2f' % o.invoice_within_percent"
+                                        />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h3>Detail</h3>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Payment date</th>
+                                    <th>Invoice</th>
+                                    <th>Supplier</th>
+                                    <th>Invoice date</th>
+                                    <th>Start date</th>
+                                    <th class="text-right">Amount</th>
+                                    <th class="text-right">Days</th>
+                                    <th>Within period</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.line_ids" t-as="line">
+                                    <td>
+                                        <span t-field="line.payment_date" />
+                                    </td>
+                                    <td>
+                                        <span t-field="line.move_id" />
+                                    </td>
+                                    <td>
+                                        <span t-field="line.partner_id" />
+                                    </td>
+                                    <td>
+                                        <span t-field="line.invoice_date" />
+                                    </td>
+                                    <td>
+                                        <span t-field="line.date_start" />
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.amount_total" />
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.payment_days" />
+                                    </td>
+                                    <td>
+                                        <span t-if="line.within_legal_period">Yes</span>
+                                        <span
+                                            t-if="not line.within_legal_period"
+                                        >No</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
