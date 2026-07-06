@@ -19,60 +19,50 @@ msgstr ""
 #. module: l10n_es_payment_order_confirming_aef
 #. odoo-python
 #: code:addons/l10n_es_payment_order_confirming_aef/models/confirming_aef.py:0
-#, python-format
 msgid "- El proveedor %s no tiene establecida la ciudad."
 msgstr "- El proveedor %s no tiene establecida la ciudad."
 
 #. module: l10n_es_payment_order_confirming_aef
 #. odoo-python
 #: code:addons/l10n_es_payment_order_confirming_aef/models/confirming_aef.py:0
-#, python-format
 msgid "- El proveedor %s no tiene establecido el NIF."
 msgstr "- El proveedor %s no tiene establecido el NIF."
 
 #. module: l10n_es_payment_order_confirming_aef
 #. odoo-python
 #: code:addons/l10n_es_payment_order_confirming_aef/models/confirming_aef.py:0
-#, python-format
 msgid "- El proveedor %s no tiene establecido el domicilio."
 msgstr "- El proveedor %s no tiene establecido el domicilio."
 
 #. module: l10n_es_payment_order_confirming_aef
 #. odoo-python
 #: code:addons/l10n_es_payment_order_confirming_aef/models/confirming_aef.py:0
-#, python-format
 msgid "- El proveedor %s no tiene establecido el país."
 msgstr "- El proveedor %s no tiene establecido el país."
 
 #. module: l10n_es_payment_order_confirming_aef
 #. odoo-python
 #: code:addons/l10n_es_payment_order_confirming_aef/models/confirming_aef.py:0
-#, python-format
 msgid "- La cuenta bancaria del Proveedor %s no tiene establecido el SWIFT."
 msgstr "- La cuenta bancaria del Proveedor %s no tiene establecido el SWIFT."
 
 #. module: l10n_es_payment_order_confirming_aef
 #. odoo-python
 #: code:addons/l10n_es_payment_order_confirming_aef/models/confirming_aef.py:0
-#, python-format
 msgid ""
-"- La referencia de factura %s de proveedor no puede ocupar más de 15 "
+"- La referencia de factura %s de proveedor no puede ocupar más de 20 "
 "caracteres."
 msgstr ""
-"- La referencia de factura %s de proveedor no puede ocupar más de 15 "
-"caracteres."
 
 #. module: l10n_es_payment_order_confirming_aef
 #. odoo-python
 #: code:addons/l10n_es_payment_order_confirming_aef/models/confirming_aef.py:0
-#, python-format
 msgid "- País del propietario no establecido %s."
 msgstr "- País del propietario no establecido %s."
 
 #. module: l10n_es_payment_order_confirming_aef
 #. odoo-python
 #: code:addons/l10n_es_payment_order_confirming_aef/models/confirming_aef.py:0
-#, python-format
 msgid "- Propietario de la cuenta no establecido para la cuenta %s."
 msgstr "- Propietario de la cuenta no establecido para la cuenta %s."
 
@@ -144,7 +134,6 @@ msgstr "Pronto pago"
 #. module: l10n_es_payment_order_confirming_aef
 #. odoo-python
 #: code:addons/l10n_es_payment_order_confirming_aef/models/confirming_aef.py:0
-#, python-format
 msgid "Se han encontrado los siguientes errores:\n"
 msgstr "Se han encontrado los siguientes errores:\n"
 
@@ -163,3 +152,11 @@ msgstr "Tipo de pago (AEF)"
 #: model:ir.model.fields.selection,name:l10n_es_payment_order_confirming_aef.selection__account_payment_mode__aef_confirming_type__t
 msgid "Transferencia"
 msgstr "Transferencia"
+
+#, python-format
+#~ msgid ""
+#~ "- La referencia de factura %s de proveedor no puede ocupar más de 15 "
+#~ "caracteres."
+#~ msgstr ""
+#~ "- La referencia de factura %s de proveedor no puede ocupar más de 15 "
+#~ "caracteres."
