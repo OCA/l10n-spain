@@ -66,15 +66,16 @@
                             invisible="move_type not in ['out_invoice', 'out_refund'] or l10n_es_invoice_type not in ['F2', 'R5']"
                             readonly="state == 'posted'"
                         />
+                        <field name="sii_send_date_visible" invisible="1" />
                         <label
                             for="sii_send_date"
                             string="Send date"
-                            invisible="aeat_state in ['sent','cancelled'] or state != 'posted'"
+                            invisible="not sii_send_date_visible"
                         />
                         <div
                             name="sii_send_date"
                             string="Send date"
-                            invisible="aeat_state in ['sent','cancelled'] or state != 'posted'"
+                            invisible="not sii_send_date_visible"
                         >
                             <field name="sii_send_date" class="oe_inline text-break" />
                             <button
