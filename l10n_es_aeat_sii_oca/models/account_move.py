@@ -103,6 +103,7 @@ class AccountMove(models.Model):
         "not subject by location rules, such as distance sales to consumers of "
         "other member states. Unlike simplified invoices, it has no amount limit.",
     )
+    sii_send_date_visible = fields.Boolean(compute="_compute_sii_send_date_visible")
 
     @api.depends("move_type")
     def _compute_sii_refund_type(self):
@@ -262,6 +263,18 @@ class AccountMove(models.Model):
         for invoice in self:
             invoice.sii_dua_invoice = invoice.is_purchase_document() and (
                 invoice._l10n_es_is_dua()
+            )
+
+    @api.depends("state", "aeat_state", "sii_needs_cancel")
+    def _compute_sii_send_date_visible(self):
+        for invoice in self:
+            invoice.sii_send_date_visible = (
+                invoice.state == "posted"
+                and invoice.aeat_state not in ["sent", "cancelled"]
+            ) or (
+                invoice.state == "cancel"
+                and invoice.sii_needs_cancel
+                and invoice.aeat_state in ["sent", "sent_w_errors", "sent_modified"]
             )
 
     def _aeat_get_partner(self):

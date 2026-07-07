@@ -18,6 +18,7 @@
   - Pedro M. Baeza
   - João Marques
   - Carlos Dauden
+  - Sergio Teruel
 - Lois Rilo Antelo \<<lois.rilo@forgeflow.com>\>
 - Eduardo de Miguel (<edu@moduon.team>)
 - Jose Zambudio \<<jose@aurestic.es>\>
