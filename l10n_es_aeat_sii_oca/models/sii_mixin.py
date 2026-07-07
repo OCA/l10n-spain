@@ -249,17 +249,21 @@ class SiiMixin(models.AbstractModel):
 
     def _sii_filter_to_send(self):
         """Helper method to filter documents to send to SII."""
-        return self.filtered(
-            lambda document: (
-                document.sii_enabled
-                and document.state in self._get_valid_document_states()
-                and (
-                    (document.aeat_state != "sent" and not document.sii_needs_cancel)
-                    or (
-                        document.aeat_state != "cancelled" and document.sii_needs_cancel
-                    )
-                )
-            )
+        return self.filtered(lambda document: document._is_sii_document_to_send())
+
+    def _is_sii_document_to_send(self):
+        self.ensure_one()
+        if not self.sii_enabled:
+            return False
+        if self.sii_needs_cancel:
+            return self.state == "cancel" and self.aeat_state in [
+                "sent",
+                "sent_w_errors",
+                "sent_modified",
+            ]
+        return (
+            self.state in self._get_valid_document_states()
+            and self.aeat_state not in ["sent", "cancelled"]
         )
 
     def send_sii_now(self):
