@@ -26,11 +26,7 @@ class SendSIIWizard(models.TransientModel):
         modified = account_moves.filtered(
             lambda a: a.aeat_state in ["sent_modified", "cancelled_modified"]
         )
-        moves_to_send = account_moves.filtered(
-            lambda a: a.sii_enabled
-            and a.state in a._get_valid_document_states()
-            and a.aeat_state not in ["sent", "cancelled"]
-        )
+        moves_to_send = account_moves._sii_filter_to_send()
         res.update(
             {
                 "moves_to_send": len(moves_to_send),
