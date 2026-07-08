@@ -128,6 +128,11 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_pos_sii
+#: model:ir.model.fields,field_description:l10n_es_pos_sii.field_pos_order__l10n_es_exchange_invoiced
+msgid "L10N Es Exchange Invoiced"
+msgstr ""
+
+#. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
 msgid "Last content sent"
 msgstr ""
@@ -323,12 +328,6 @@ msgid "Sii Needs Cancel"
 msgstr ""
 
 #. module: l10n_es_pos_sii
-#. odoo-python
-#: code:addons/l10n_es_pos_sii/models/pos_order.py:0
-msgid "Simplified Invoice Partner not found. Please update l10n_es module."
-msgstr ""
-
-#. module: l10n_es_pos_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_sii.view_pos_pos_form_inherit_inh_l10n_es_pos_sii
 msgid "State"
 msgstr ""
@@ -349,9 +348,11 @@ msgid "The last attempt to sent to SII has failed"
 msgstr ""
 
 #. module: l10n_es_pos_sii
-#. odoo-python
-#: code:addons/l10n_es_pos_sii/models/pos_order.py:0
-msgid "There's a mismatch in taxes for RE. Check them."
+#: model:ir.model.fields,help:l10n_es_pos_sii.field_pos_order__l10n_es_exchange_invoiced
+msgid ""
+"This field is automatically set to True when an invoice is generated after "
+"the pos order has been created. It is used to disable sii_enabled and "
+"prevent the invoice from being sent to the SII more than once."
 msgstr ""
 
 #. module: l10n_es_pos_sii
