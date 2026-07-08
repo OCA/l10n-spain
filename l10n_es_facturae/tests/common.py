@@ -32,6 +32,7 @@ class CommonTest(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
                 "amount": 21,
                 "type_tax_use": "sale",
                 "facturae_code": "01",
+                "invoice_legal_notes": "Legal note for tax",
             }
         )
 
@@ -765,3 +766,16 @@ class CommonTest(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
             }
         )
         self.assertTrue(new_partner)
+
+    def test_facturae_legal_literals(self):
+        self.move.action_post()
+        self._activate_certificate(self.certificate_password)
+        self.move.name = "2999/99999"
+        generated_facturae = self._create_facturae_file(self.move)
+        self.assertEqual(
+            generated_facturae.xpath(
+                "/fe:Facturae/Invoices/Invoice/LegalLiterals/LegalReference",
+                namespaces={"fe": self.fe},
+            )[0].text,
+            "Legal note for tax",
+        )

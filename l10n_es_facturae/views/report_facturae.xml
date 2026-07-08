@@ -749,7 +749,13 @@
                             <DebitReconciliationReference />
                         </Installment>
                     </PaymentDetails>
-                    <LegalLiterals />
+                    <LegalLiterals>
+                        <LegalReference
+                            t-foreach="move.line_ids.tax_ids.get_invoice_legal_notes()"
+                            t-as="legal_reference"
+                            t-esc="legal_reference"
+                        />
+                    </LegalLiterals>
                     <t
                         t-set="attachments"
                         t-value="move._get_facturae_move_attachments()"
