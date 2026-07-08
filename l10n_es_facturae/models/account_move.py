@@ -130,7 +130,7 @@ class AccountMove(models.Model):
     def _get_valid_move_statuses(self):
         return ["posted"]
 
-    def validate_facturae_fields(self):
+    def validate_facturae_fields(self):  # noqa: C901
         lines = self.line_ids.filtered(
             lambda r: not r.display_type and not r.exclude_from_invoice_tab
         )
@@ -145,10 +145,26 @@ class AccountMove(models.Model):
             raise ValidationError(_("Company vat not provided"))
         if len(self.partner_id.vat) < 3:
             raise ValidationError(_("Partner vat is too small"))
-        if not self.partner_id.state_id:
-            raise ValidationError(_("Partner state not provided"))
         if len(self.company_id.vat) < 3:
             raise ValidationError(_("Company vat is too small"))
+        for kind, partner in [
+            (_("Partner"), self.partner_id),
+            (_("Company"), self.company_id.partner_id),
+        ]:
+            if not partner.country_id:
+                raise ValidationError(
+                    _("%(kind)s country not provided") % {"kind": kind}
+                )
+            if not partner.state_id:
+                raise ValidationError(_("%(kind)s state not provided") % {"kind": kind})
+            if not partner.street:
+                raise ValidationError(
+                    _("%(kind)s street not provided") % {"kind": kind}
+                )
+            if not partner.zip:
+                raise ValidationError(_("%(kind)s zip not provided") % {"kind": kind})
+            if not partner.city:
+                raise ValidationError(_("%(kind)s city not provided") % {"kind": kind})
         if not self.payment_mode_id:
             raise ValidationError(_("Payment mode is required"))
         if self.payment_mode_id.facturae_code:

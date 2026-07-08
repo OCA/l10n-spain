@@ -20,6 +20,23 @@ from odoo.exceptions import UserError
 _logger = logging.getLogger(__name__)
 
 
+class ReportFacturaeUnsigned(models.AbstractModel):
+    _name = "report.l10n_es_facturae.template_facturae"
+    _inherit = "report.report_xml.abstract"
+    _description = "Account Move Facturae"
+
+    def _get_report_values(self, docids, data=None):
+        result = super()._get_report_values(docids, data=data)
+        result["docs"] = self.env["account.move"].browse(docids)
+        return result
+
+    @api.model
+    def generate_report(self, ir_report, docids, data=None):
+        move = self.env["account.move"].browse(docids).ensure_one()
+        move.validate_facturae_fields()
+        return super().generate_report(ir_report, docids, data=data)
+
+
 class ReportFacturae(models.AbstractModel):
     _name = "report.l10n_es_facturae.facturae_signed"
     _inherit = "report.report_xml.abstract"
