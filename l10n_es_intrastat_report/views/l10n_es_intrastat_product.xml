@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record
+        id="l10n_es_intrastat_product_computation_line_view_form"
+        model="ir.ui.view"
+    >
+        <field name="name">intrastat.product.computation.line.form</field>
+        <field name="model">intrastat.product.computation.line</field>
+        <field
+            name="inherit_id"
+            ref="intrastat_product.intrastat_product_computation_line_view_form"
+        />
+        <field name="mode">extension</field>
+        <field name="arch" type="xml">
+            <field name="region_id" position="after">
+                <field
+                    name="intrastat_state_id"
+                    invisible="company_country_code != 'ES'"
+                />
+            </field>
+            <field name="incoterm_id" position="attributes">
+                <attribute
+                    name="invisible"
+                >reporting_level != 'extended' or company_country_code != 'ES'</attribute>
+                <attribute
+                    name="required"
+                >reporting_level == 'extended' and company_country_code == 'ES'</attribute>
+            </field>
+            <field name="invoice_id" position="after">
+                <field
+                    name="partner_vat"
+                    invisible="declaration_type != 'dispatches' or company_country_code != 'ES'"
+                />
+            </field>
+        </field>
+    </record>
+    <record
+        id="l10n_es_intrastat_product_computation_line_view_tree"
+        model="ir.ui.view"
+    >
+        <field name="name">intrastat.product.computation.line.list</field>
+        <field name="model">intrastat.product.computation.line</field>
+        <field name="mode">extension</field>
+        <field
+            name="inherit_id"
+            ref="intrastat_product.intrastat_product_computation_line_view_tree"
+        />
+        <field name="arch" type="xml">
+            <field name="region_id" position="after">
+                <field
+                    name="intrastat_state_id"
+                    column_invisible="parent.company_country_code != 'ES'"
+                />
+            </field>
+            <field name="amount_accessory_cost_company_currency" position="attributes">
+                <attribute
+                    name="column_invisible"
+                >parent.company_country_code == 'ES'</attribute>
+            </field>
+            <field name="invoice_id" position="after">
+                <field
+                    name="partner_vat"
+                    column_invisible="parent.company_country_code != 'ES'"
+                />
+            </field>
+        </field>
+    </record>
+    <record
+        id="l10n_es_intrastat_product_declaration_line_view_form"
+        model="ir.ui.view"
+    >
+        <field name="name">intrastat.product.declaration.line.form</field>
+        <field name="model">intrastat.product.declaration.line</field>
+        <field name="mode">extension</field>
+        <field
+            name="inherit_id"
+            ref="intrastat_product.intrastat_product_declaration_line_view_form"
+        />
+        <field name="arch" type="xml">
+            <field name="incoterm_id" position="attributes">
+                <attribute
+                    name="invisible"
+                >reporting_level != 'extended' or company_country_code != 'ES'</attribute>
+                <attribute
+                    name="required"
+                >reporting_level == 'extended' and company_country_code == 'ES'</attribute>
+            </field>
+            <field name="hs_code_id" position="after">
+                <field
+                    name="partner_vat"
+                    invisible="declaration_type != 'dispatches' or company_country_code != 'ES'"
+                />
+            </field>
+        </field>
+    </record>
+    <record
+        id="l10n_es_intrastat_product_declaration_line_view_tree"
+        model="ir.ui.view"
+    >
+        <field name="name">intrastat.product.declaration.line.list</field>
+        <field name="model">intrastat.product.declaration.line</field>
+        <field name="mode">extension</field>
+        <field
+            name="inherit_id"
+            ref="intrastat_product.intrastat_product_declaration_line_view_tree"
+        />
+        <field name="arch" type="xml">
+            <field name="region_code" position="after">
+                <field
+                    name="intrastat_state_id"
+                    column_invisible="parent.company_country_code != 'ES'"
+                />
+            </field>
+            <field name="hs_code_id" position="after">
+                <field
+                    name="partner_vat"
+                    column_invisible="parent.company_country_code != 'ES'"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
