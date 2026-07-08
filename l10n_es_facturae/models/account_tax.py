@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields, models
+from odoo.tools import html2plaintext
 
 
 class AccountTax(models.Model):
@@ -53,3 +54,8 @@ class AccountTax(models.Model):
             ("19", "REIPSI: Régimen especial de IPSI para agencias de viajes"),
         ],
     )
+
+    def get_invoice_legal_notes(self):
+        return [
+            html2plaintext(note) for note in self.mapped("invoice_legal_notes") if note
+        ]
