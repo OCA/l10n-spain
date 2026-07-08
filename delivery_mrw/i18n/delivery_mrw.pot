@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -41,13 +41,6 @@ msgstr ""
 #. module: delivery_mrw
 #: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
 msgid "<br/>(Packages)"
-msgstr ""
-
-#. module: delivery_mrw
-#. odoo-python
-#: code:addons/delivery_mrw/models/delivery_carrier.py:0
-#, python-format
-msgid "<br> MRW Shipping Label:"
 msgstr ""
 
 #. module: delivery_mrw
@@ -191,7 +184,6 @@ msgstr ""
 #. module: delivery_mrw
 #. odoo-python
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
-#, python-format
 msgid "Couldn't find partner %s street"
 msgstr ""
 
@@ -231,7 +223,9 @@ msgid "Department Code"
 msgstr ""
 
 #. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__display_name
 #: model:ir.model.fields,field_description:delivery_mrw.field_mrw_manifest_wizard__display_name
+#: model:ir.model.fields,field_description:delivery_mrw.field_stock_picking__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -308,7 +302,6 @@ msgstr ""
 #. module: delivery_mrw
 #. odoo-python
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
-#, python-format
 msgid ""
 "For the moment MRW only supports:\n"
 "- Sin recogida ni entrega en franquicia.\n"
@@ -331,7 +324,9 @@ msgid "Get the MRW Manifest for the given date"
 msgstr ""
 
 #. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__id
 #: model:ir.model.fields,field_description:delivery_mrw.field_mrw_manifest_wizard__id
+#: model:ir.model.fields,field_description:delivery_mrw.field_stock_picking__id
 msgid "ID"
 msgstr ""
 
@@ -366,7 +361,6 @@ msgstr ""
 #. module: delivery_mrw
 #. odoo-python
 #: code:addons/delivery_mrw/wizard/mrw_manifest_wizard.py:0
-#, python-format
 msgid ""
 "It wasn't possible to get the manifest. Maybe there aren'tdeliveries for the"
 " selected date."
@@ -395,8 +389,6 @@ msgstr ""
 #. module: delivery_mrw
 #. odoo-python
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
-#: code:addons/delivery_mrw/models/delivery_carrier.py:0
-#, python-format
 msgid ""
 "MRW API doesn't provide methods to compute delivery rates so you should rely on another price method instead or override this one in your custom code.\n"
 " Zero price can also be set in order to invoice it later to the customer: check the field 'Free if order amount is above' and put Import=0."
@@ -415,8 +407,12 @@ msgstr ""
 #. module: delivery_mrw
 #. odoo-python
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
-#, python-format
-msgid "MRW Error: %s)Mensaje"
+msgid "MRW Error: %s"
+msgstr ""
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_international_service
+msgid "MRW International Service"
 msgstr ""
 
 #. module: delivery_mrw
@@ -427,24 +423,27 @@ msgstr ""
 #. module: delivery_mrw
 #. odoo-python
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
+#: code:addons/delivery_mrw/tests/test_delivery_mrw.py:0
 #: model:ir.actions.act_window,name:delivery_mrw.action_delivery_mrw_manifest_wizard
 #: model:ir.actions.report,name:delivery_mrw.mrw_manifest_report
 #: model_terms:ir.ui.view,arch_db:delivery_mrw.delivery_mrw_manifest_wizard_form
-#, python-format
 msgid "MRW Manifest"
 msgstr ""
 
 #. module: delivery_mrw
-#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_international_service
 #: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_national_service
+msgid "MRW National Service"
+msgstr ""
+
+#. module: delivery_mrw
 #: model:ir.model.fields,field_description:delivery_mrw.field_mrw_manifest_wizard__carrier_id
 msgid "MRW Service"
 msgstr ""
 
 #. module: delivery_mrw
 #. odoo-python
+#: code:addons/delivery_mrw/models/delivery_carrier.py:0
 #: code:addons/delivery_mrw/models/stock_picking.py:0
-#, python-format
 msgid "MRW Shipping Label:"
 msgstr ""
 
@@ -476,7 +475,6 @@ msgstr ""
 #. module: delivery_mrw
 #. odoo-python
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
-#, python-format
 msgid "MensajeSeguimiento"
 msgstr ""
 
@@ -650,7 +648,6 @@ msgstr ""
 #. module: delivery_mrw
 #. odoo-python
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
-#, python-format
 msgid ""
 "Solamente se permiten caracteres numéricos en el campo número de la "
 "dirección. Número: %s"
@@ -739,4 +736,9 @@ msgstr ""
 #. module: delivery_mrw
 #: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_manifest_report_view
 msgid "ZIP Code"
+msgstr ""
+
+#. module: delivery_mrw
+#: model_terms:ir.ui.view,arch_db:delivery_mrw.mrw_view_delivery_carrier_form
+msgid "a"
 msgstr ""
