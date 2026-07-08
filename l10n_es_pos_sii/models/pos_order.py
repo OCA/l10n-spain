@@ -5,7 +5,7 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.osv.expression import AND, OR
+from odoo.osv.expression import AND, OR, TERM_OPERATORS_NEGATION
 
 SII_VALID_POS_ORDER_STATES = ["paid", "done"]
 
@@ -13,6 +13,13 @@ SII_VALID_POS_ORDER_STATES = ["paid", "done"]
 class PosOrder(models.Model):
     _name = "pos.order"
     _inherit = ["pos.order", "sii.mixin"]
+
+    l10n_es_exchange_invoiced = fields.Boolean(
+        help="This field is automatically set to True when an invoice is generated "
+        "after the pos order has been created. "
+        "It is used to disable sii_enabled and prevent the invoice from being "
+        "sent to the SII more than once."
+    )
 
     @api.depends("company_id", "state")
     def _compute_sii_description(self):
@@ -33,7 +40,11 @@ class PosOrder(models.Model):
     def _compute_sii_enabled(self):
         """Compute if the order is enabled for the SII"""
         for order in self:
-            if order.company_id.sii_enabled and order.is_l10n_es_simplified_invoice:
+            if (
+                order.company_id.sii_enabled
+                and order.is_l10n_es_simplified_invoice
+                and not order.l10n_es_exchange_invoiced
+            ):
                 order.sii_enabled = (
                     order.fiscal_position_id and order.fiscal_position_id.aeat_active
                 ) or not order.fiscal_position_id
@@ -46,10 +57,13 @@ class PosOrder(models.Model):
         domain = super()._search_sii_enabled(operator, value)
         condition_1 = [("is_l10n_es_simplified_invoice", operator, value)]
         condition_2 = [("fiscal_position_id.aeat_active", operator, value)]
+        condition_3 = [
+            ("l10n_es_exchange_invoiced", TERM_OPERATORS_NEGATION[operator], value)
+        ]
         search_ko = (operator == "=" and not value) or (operator == "!=" and value)
         if not search_ko:
             condition_2 = OR([condition_2, [("fiscal_position_id", "=", False)]])
-        conditions = [domain, condition_1, condition_2]
+        conditions = [domain, condition_1, condition_2, condition_3]
         exp_condition = OR if search_ko else AND
         return exp_condition(conditions)
 
@@ -67,6 +81,27 @@ class PosOrder(models.Model):
         if not existing_order:
             pos_order["aeat_state"] = "not_sent"
         return super()._process_order(pos_order, existing_order)
+
+    def action_pos_order_invoice(self):
+        invalid_sii_states = {
+            "sent",
+            "sent_w_errors",
+            "sent_modified",
+            "cancelled",
+            "cancelled_modified",
+        }
+        sii_sent_sales = self.filtered(lambda rec: rec.aeat_state in invalid_sii_states)
+        if sii_sent_sales:
+            raise UserError(
+                _(
+                    "The following orders cannot be invoiced "
+                    "because they have already been sent to the SII: "
+                    f"{', '.join(sii_sent_sales.mapped('name'))}"
+                )
+            )
+        else:
+            self.l10n_es_exchange_invoiced = True
+        return super().action_pos_order_invoice()
 
     def _is_sii_type_breakdown_required(self):
         """As these are simplified invoices, we don't break taxes.
