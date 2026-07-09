@@ -73,6 +73,7 @@ class AcquirerRedsys(models.Model):
             ("R", "Pago por Transferencia"),
             ("D", "Domiciliacion"),
             ("z", "Bizum"),
+            ("X", "Pago con Tarjeta, Google Pay o Apple Pay"),
         ],
         "Payment Method",
         default="T",
@@ -154,7 +155,9 @@ class AcquirerRedsys(models.Model):
             "Ds_Merchant_ConsumerLanguage": (self.redsys_merchant_lang or "001"),
             "Ds_Merchant_UrlOk": "%s/payment/redsys/result/redsys_result_ok" % base_url,
             "Ds_Merchant_UrlKo": "%s/payment/redsys/result/redsys_result_ko" % base_url,
-            "Ds_Merchant_Paymethods": self.redsys_pay_method or "T",
+            "Ds_Merchant_Paymethods": (
+                "" if self.redsys_pay_method == "X" else self.redsys_pay_method or "T",
+            ),
         }
         return self._url_encode64(json.dumps(values)).decode("utf-8")
 
