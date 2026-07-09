@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_digital_canon_report_wizard" model="ir.ui.view">
+        <field name="name">digital.canon.report.wizard.form</field>
+        <field name="model">digital.canon.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Exportar Canon Digital SGAE">
+                <group>
+                    <field name="date_start" />
+                    <field name="date_end" />
+                </group>
+                <footer>
+                    <button
+                        name="action_export_xls"
+                        string="Exportar Excel"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancelar" special="cancel" class="btn-secondary" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_digital_canon_report" model="ir.actions.act_window">
+        <field name="name">Digital Canon</field>
+        <field name="res_model">digital.canon.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem
+        id="menu_sgae_root"
+        name="SGAE"
+        parent="account.menu_finance_reports"
+        sequence="50"
+    />
+    <menuitem
+        id="menu_digital_canon_report"
+        name="Digital Canon"
+        parent="menu_sgae_root"
+        action="action_digital_canon_report"
+        sequence="10"
+    />
+</odoo>
