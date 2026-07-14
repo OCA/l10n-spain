@@ -455,6 +455,12 @@ class TestL10nEsAeatVerifactuQR(TestVerifactuCommon):
                 "Invoice should be marked as cancelled after VERI*FACTU processing.",
             )
 
+    def test_verifactu_macrodata(self):
+        """Test verifactu_macrodata computation."""
+        self.assertFalse(self.invoice.verifactu_macrodata)
+        self.invoice.invoice_line_ids.price_unit = 130000000
+        self.assertTrue(self.invoice.verifactu_macrodata)
+
 
 class TestVerifactuSendResponse(TestVerifactuCommon):
     def test_create_activity_on_exception(self):
