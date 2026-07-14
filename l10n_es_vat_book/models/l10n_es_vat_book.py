@@ -275,7 +275,7 @@ class L10nEsVatBook(models.Model):
             tax = move_line.tax_line_id
             move_line._process_aeat_tax_fee_info(res, tax, sign)
             key = self.get_book_line_tax_key(move_line, tax)
-            value = tax_lines.setdefault(key, default_dict | {"tax_id": tax.id})
+            value = tax_lines.setdefault(key, {**default_dict, "tax_id": tax.id})
             value["tax_amount"] += res[tax]["amount"]
             value["deductible_amount"] += res[tax]["deductible_amount"]
             value["move_line_ids"].append((4, move_line.id))
@@ -287,7 +287,7 @@ class L10nEsVatBook(models.Model):
             if tax not in implied_taxes:
                 continue
             key = self.get_book_line_tax_key(move_line, tax)
-            value = tax_lines.setdefault(key, default_dict | {"tax_id": tax.id})
+            value = tax_lines.setdefault(key, {**default_dict, "tax_id": tax.id})
             value["base_amount"] += res[tax]["base"]
             value["base_move_line_ids"].append((4, move_line.id))
             # For later matching special taxes
