@@ -305,8 +305,24 @@ class VerifactuInvoiceEntry(models.Model):
         try:
             serv = rec._connect_verifactu()
             res = serv.RegFactuSistemaFacturacion(header, registro_factura_list)
-        except Exception as AEATError:
-            res = {AEATError}
+        except Exception as fault:
+            # Capture the fault regardless of its type: SOAP faults expose a
+            # `message` (and sometimes a `path`) attribute, plain Python errors
+            # do not. Falling back to the exception itself keeps the traceback
+            # visible in the response instead of storing an empty payload.
+            fault_message = str(getattr(fault, "message", None) or fault)
+            if hasattr(fault, "path"):
+                fault_message += " | Path: %s" % fault.path
+            res = {fault_message}
+            for rec in self:
+                if rec.document and hasattr(rec.document, "message_post"):
+                    rec.document.message_post(
+                        body=_(
+                            "Error from VERI*FACTU: %(error_message)s",
+                            error_message=fault_message,
+                        ),
+                        message_type="comment",
+                    )
             create_exception = True
         response_name = ""
         response = (
@@ -357,39 +373,51 @@ class VerifactuInvoiceEntry(models.Model):
             ).sorted(lambda x: x.create_date, reverse=True)
             if not matching_entries:
                 continue
-            verifactu_invoice_entry = matching_entries[0]  # Assume one match
-            document = verifactu_invoice_entry.document
-            previous_response_line = document.last_verifactu_response_line_id
-            send_state = VERIFACTU_STATE_MAPPING[
-                verifactu_response_line["EstadoRegistro"]
-            ]
-            if verifactu_invoice_entry.entry_type == "cancel":
-                send_state = VERIFACTU_CANCEL_STATE_MAPPING[
-                    verifactu_response_line["EstadoRegistro"]
-                ]
-            vals = {
-                "entry_id": verifactu_invoice_entry.id,
-                "model": verifactu_invoice_entry.model,
-                "document_id": verifactu_invoice_entry.document_id,
-                "response": verifactu_response_line,
-                "entry_response_id": response.id,
-                "send_state": send_state,
-                "error_code": "CodigoErrorRegistro" in verifactu_response_line
-                and str(verifactu_response_line["CodigoErrorRegistro"])
-                or "",
-            }
-            response_line = (
-                self.env["verifactu.invoice.entry.response.line"].sudo().create(vals)
-            )
-            document.last_verifactu_response_line_id = response_line
-            verifactu_invoice_entry.last_response_line_id = response_line
-            self._process_response_line_doc_vals(
-                verifactu_response=verifactu_response,
-                verifactu_response_line=verifactu_response_line,
-                response_line=response_line,
-                previous_response_line=previous_response_line,
-                header_sent=header,
-            )
-            if send_state not in ("sent", "cancel"):
-                create_response_activity = True
+            try:
+                with self.env.cr.savepoint():
+                    verifactu_invoice_entry = matching_entries[0]
+                    document = verifactu_invoice_entry.document
+                    previous_response_line = document.last_verifactu_response_line_id
+                    send_state = VERIFACTU_STATE_MAPPING[
+                        verifactu_response_line["EstadoRegistro"]
+                    ]
+                    if verifactu_invoice_entry.entry_type == "cancel":
+                        send_state = VERIFACTU_CANCEL_STATE_MAPPING[
+                            verifactu_response_line["EstadoRegistro"]
+                        ]
+                    vals = {
+                        "entry_id": verifactu_invoice_entry.id,
+                        "model": verifactu_invoice_entry.model,
+                        "document_id": verifactu_invoice_entry.document_id,
+                        "response": verifactu_response_line,
+                        "entry_response_id": response.id,
+                        "send_state": send_state,
+                        "error_code": "CodigoErrorRegistro" in verifactu_response_line
+                        and str(verifactu_response_line["CodigoErrorRegistro"])
+                        or "",
+                    }
+                    response_line = (
+                        self.env["verifactu.invoice.entry.response.line"]
+                        .sudo()
+                        .create(vals)
+                    )
+                    document.last_verifactu_response_line_id = response_line
+                    verifactu_invoice_entry.last_response_line_id = response_line
+                    self._process_response_line_doc_vals(
+                        verifactu_response=verifactu_response,
+                        verifactu_response_line=verifactu_response_line,
+                        response_line=response_line,
+                        previous_response_line=previous_response_line,
+                        header_sent=header,
+                    )
+                    if send_state not in ("sent", "cancel"):
+                        create_response_activity = True
+            except Exception as fault:
+                document = matching_entries[0].document
+                msg = _(
+                    "Error on VERI*FACTU response processing: %(error_message)s",
+                    error_message=repr(fault)[:60],
+                )
+                if document and hasattr(document, "message_post"):
+                    document.message_post(body=msg, message_type="comment")
         return create_response_activity

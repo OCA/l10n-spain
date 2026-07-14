@@ -461,6 +461,97 @@ class TestL10nEsAeatVerifactuQR(TestVerifactuCommon):
         self.invoice.invoice_line_ids.price_unit = 130000000
         self.assertTrue(self.invoice.verifactu_macrodata)
 
+    def test_send_invoices_to_verifactu_with_fault_exception(self):
+        """
+        Test that when VERI*FACTU raises an exception with a path attribute,
+        the exception is caught and stored in invoice.
+        """
+        self._activate_certificate(self.certificate_password)
+        self.invoice.action_post()
+        with patch(
+            "odoo.addons.l10n_es_verifactu_oca.models."
+            "verifactu_invoice_entry.VerifactuInvoiceEntry._connect_verifactu"
+        ) as mock_connect:
+            mock_service = MagicMock()
+            # Create a mock exception with both message and path attributes
+            fault_exception = Exception("SOAP Fault")
+            fault_exception.message = (
+                "Expected at least 1 items (minOccurs check) 0 items found."
+            )
+            fault_exception.path = [
+                "RegFactuSistemaFacturacion",
+                "RegistroFactura",
+                "Desglose",
+                "DetalleDesglose",
+            ]
+
+            mock_service.RegFactuSistemaFacturacion.side_effect = fault_exception
+            mock_connect.return_value = mock_service
+
+            # Execute the cron job - this should catch the exception
+            self.env["verifactu.invoice.entry"]._cron_send_documents_to_verifactu()
+
+            # Verify that a response was created with the exception info
+            response = self.env["verifactu.invoice.entry.response"].search(
+                [], order="id desc", limit=1
+            )
+            self.assertTrue(
+                response, "A response should be created even when exception occurs"
+            )
+
+            # Check that the response contains the error message with path information
+            self.assertIn(
+                "Expected at least 1 items (minOccurs check) 0 items found.",
+                str(response.response),
+            )
+            self.assertIn("Path:", str(response.response))
+            self.assertIn("DetalleDesglose", str(response.response))
+
+            # Verify that the document has an error message posted
+            messages = self.invoice.message_ids.filtered(
+                lambda m: "Error from VERI*FACTU" in m.body
+            )
+            self.assertTrue(
+                messages, "An error message should be posted to the invoice"
+            )
+            self.assertIn("Path:", messages[0].body)
+
+    def test_send_invoices_to_verifactu_with_plain_exception(self):
+        """
+        Test that a plain Python exception (no `message`/`path` attribute,
+        e.g. a network error) is still captured in the response payload and
+        posted to the invoice chatter, instead of being silently dropped.
+        """
+        self._activate_certificate(self.certificate_password)
+        self.invoice.action_post()
+        with patch(
+            "odoo.addons.l10n_es_verifactu_oca.models."
+            "verifactu_invoice_entry.VerifactuInvoiceEntry._connect_verifactu"
+        ) as mock_connect:
+            mock_service = MagicMock()
+            mock_service.RegFactuSistemaFacturacion.side_effect = RuntimeError(
+                "connection reset by peer"
+            )
+            mock_connect.return_value = mock_service
+
+            self.env["verifactu.invoice.entry"]._cron_send_documents_to_verifactu()
+
+            response = self.env["verifactu.invoice.entry.response"].search(
+                [], order="id desc", limit=1
+            )
+            self.assertTrue(
+                response, "A response should be created even when exception occurs"
+            )
+            # The exception text is captured even without a `message` attribute
+            self.assertIn("connection reset by peer", str(response.response))
+
+            messages = self.invoice.message_ids.filtered(
+                lambda m: "Error from VERI*FACTU" in (m.body or "")
+            )
+            self.assertTrue(
+                messages, "An error message should be posted to the invoice"
+            )
+
 
 class TestVerifactuSendResponse(TestVerifactuCommon):
     def test_create_activity_on_exception(self):
@@ -570,4 +661,45 @@ class TestVerifactuSendResponse(TestVerifactuCommon):
         self.assertTrue(
             activity,
             "A warning activity should be created for 'AceptadoConErrores' response",
+        )
+
+    @patch(
+        "odoo.addons.l10n_es_verifactu_oca.models.verifactu_invoice_entry."
+        "VerifactuInvoiceEntry._connect_verifactu"
+    )
+    def test_response_line_processing_is_isolated(self, mock_connect):
+        """
+        A failure while processing one response line is isolated by a
+        savepoint: the batch does not crash, the error is posted to the
+        invoice chatter and the partially-created response line is rolled back.
+        """
+        self._activate_certificate(self.certificate_password)
+        self.invoice.action_post()
+        mock_service = MagicMock()
+        mock_service.RegFactuSistemaFacturacion.return_value = (
+            self.mock_verifactu_response("", "OK")
+        )
+        mock_connect.return_value = mock_service
+
+        with patch(
+            "odoo.addons.l10n_es_verifactu_oca.models.verifactu_invoice_entry."
+            "VerifactuInvoiceEntry._process_response_line_doc_vals",
+            side_effect=RuntimeError("boom while processing response line"),
+        ):
+            # Must not raise even though the line processing blows up.
+            self.env["verifactu.invoice.entry"]._cron_send_documents_to_verifactu()
+
+        messages = self.invoice.message_ids.filtered(
+            lambda m: "Error on VERI*FACTU response processing" in (m.body or "")
+        )
+        self.assertTrue(
+            messages,
+            "The processing error should be posted to the invoice chatter",
+        )
+        # The response line created inside the savepoint must be rolled back.
+        lines = self.env["verifactu.invoice.entry.response.line"].search(
+            [("document_id", "=", self.invoice.id)]
+        )
+        self.assertFalse(
+            lines, "The response line must be rolled back on processing failure"
         )
