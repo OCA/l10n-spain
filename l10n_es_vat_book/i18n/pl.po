@@ -214,6 +214,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax__display_name
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary__display_name
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary__display_name
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_report_l10n_es_vat_book_l10n_es_vat_book_xlsx__display_name
 msgid "Display Name"
 msgstr "Wyświetlana nazwa "
 
@@ -305,6 +306,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax__id
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary__id
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary__id
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_report_l10n_es_vat_book_l10n_es_vat_book_xlsx__id
 msgid "ID"
 msgstr "ID"
 
@@ -933,6 +935,7 @@ msgstr ""
 #. module: l10n_es_vat_book
 #. odoo-python
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
+#: code:addons/l10n_es_vat_book/tests/test_l10n_es_aeat_vat_book.py:0
 msgid "Without VAT"
 msgstr ""
 
