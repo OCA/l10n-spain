@@ -33,6 +33,14 @@ class TestL10nEsAeatVatBookBase(TestL10nEsAeatModBase):
 
 class TestL10nEsAeatVatBook(TestL10nEsAeatVatBookBase):
     def test_model_vat_book(self):
+        # Customer with alternative AEAT identification
+        self.customer.write(
+            {
+                "vat": False,
+                "aeat_identification_type": "06",
+                "aeat_identification": "ABC123456",
+            }
+        )
         # Purchase invoices
         self._invoice_purchase_create("2017-01-01")
         # Sale invoices
@@ -60,6 +68,11 @@ class TestL10nEsAeatVatBook(TestL10nEsAeatVatBookBase):
         )
         _logger.debug("Calculate VAT Book 1T 2017")
         vat_book.button_calculate()
+        # Check that the customer is not marked as "Without VAT"
+        for line in vat_book.issued_line_ids:
+            self.assertNotEqual(line.exception_text, self.env._("Without VAT"))
+        for line in vat_book.rectification_issued_line_ids:
+            self.assertNotEqual(line.exception_text, self.env._("Without VAT"))
         # Check issued invoices
         for line in vat_book.issued_line_ids:
             self.assertEqual(fields.Date.to_string(line.invoice_date), "2017-01-13")
