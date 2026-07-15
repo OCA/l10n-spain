@@ -21,7 +21,7 @@
         "data/aeat_sii_tax_agency_data.xml",
         "data/aeat_sii_mapping_registration_keys_data.xml",
         "data/l10n.es.aeat.map.tax.line.tax.csv",
-        "data/aeat_sii_map_data.xml",
+        "data/atc_sii_map_data.xml",
     ],
     "images": ["static/description/icon.png"],
 }

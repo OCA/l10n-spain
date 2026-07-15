@@ -11,20 +11,20 @@ class ResPartner(models.Model):
 
     @ormcache_context("self.vat, self.country_id", keys=("is_canary_tax_agency",))
     def _parse_aeat_vat_info(self):
-        # NOTE:
-        # The Canary Islands Tax Agency (ATC) SII-IGIC implementation does NOT support
-        # IDType "02" (EU VAT number / NIF-IVA) used by the Spanish AEAT SII (VAT).
+        # NOTA:
+        # El SII-IGIC de la Agencia Tributaria Canaria (ATC) NO admite
+        # IDType "02" (NIF-IVA / VAT intracomunitario) del SII estatal AEAT.
         #
-        # Although the data structure is similar, ATC does not validate intra-community
-        # operators nor VIES registrations, since IGIC is not VAT.
+        # Aunque la estructura de datos es similar, la ATC no valida operadores
+        # intracomunitarios ni registros VIES, porque el IGIC no es IVA.
         #
-        # As a result, foreign VAT numbers must be reported using IDType "04"
-        # ("Official identification document") instead of "02".
+        # Por ello, los NIF extranjeros deben informarse con IDType "04"
+        # ("Documento oficial de identificación") en lugar de "02".
         #
-        # Using IDType "02" causes ATC to reject the record with error code 1103
+        # Usar IDType "02" provoca el rechazo ATC con error 1103
         # ("Valor del campo IDType incorrecto").
         #
-        # This conversion is intentional and required for SII submissions to ATC.
+        # Esta conversión es intencionada y obligatoria en envíos SII a la ATC.
         country_code, identifier_type, identifier = super()._parse_aeat_vat_info()
         is_canary_tax_agency = self.env.context.get("is_canary_tax_agency")
         if is_canary_tax_agency and identifier_type == "02":
