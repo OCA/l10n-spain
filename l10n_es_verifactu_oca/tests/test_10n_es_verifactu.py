@@ -565,3 +565,17 @@ class TestVerifactuSendResponse(TestVerifactuCommon):
             activity,
             "A warning activity should be created for 'AceptadoConErrores' response",
         )
+
+    def test_check_verifactu_configuration_tax_agency(self):
+        # The default company uses the Spanish tax agency, which is accepted,
+        # so a fully configured invoice passes the configuration check.
+        self.invoice._check_verifactu_configuration()
+        # A tax agency that is not in the accepted list must be rejected.
+        # Regression: this branch used to reference the unbound method
+        # ``get_external_id`` and use ``in`` instead of ``not in``, so it never
+        # triggered regardless of the configured agency.
+        self.company.tax_agency_id = self.env.ref(
+            "l10n_es_aeat.aeat_tax_agency_bizkaia"
+        )
+        with self.assertRaises(UserError):
+            self.invoice._check_verifactu_configuration()
