@@ -137,16 +137,16 @@ class AccountMove(models.Model):
 
     def get_refund_reason_string(self):
         return dict(
-            self.fields_get(allfields=["facturae_refund_reason"])[
-                "facturae_refund_reason"
-            ]["selection"]
+            self.with_context(lang=None).fields_get(
+                allfields=["facturae_refund_reason"]
+            )["facturae_refund_reason"]["selection"]
         )[self.facturae_refund_reason]
 
     def get_correction_method_string(self):
         return dict(
-            self.fields_get(allfields=["correction_method"])["correction_method"][
-                "selection"
-            ]
+            self.with_context(lang=None).fields_get(allfields=["correction_method"])[
+                "correction_method"
+            ]["selection"]
         )[self.correction_method]
 
     def _get_valid_move_statuses(self):
