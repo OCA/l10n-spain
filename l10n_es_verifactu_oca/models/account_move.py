@@ -540,7 +540,7 @@ class AccountMove(models.Model):
 
     def _post(self, soft=True):
         res = super()._post(soft=soft)
-        for record in self.sorted(lambda inv: inv.name):
+        for record in self.sorted(lambda inv: inv.name or ""):
             if record.verifactu_enabled and record.aeat_state == "not_sent":
                 record._check_verifactu_configuration()
                 record.verifactu_registration_date = datetime.now()
