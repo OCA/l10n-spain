@@ -1,8 +1,9 @@
-- Sistemas de Datos S.L
-- [Comunitea](https://comunitea.com/):
-  - Omar Castiñeira \<<omar@comunitea.com>\>
-  - Mario Montes \<<mario@comunitea.com>\>
-- [Tecnativa](https://www.tecnativa.com):
-  - Sergio Teruel
-- [APSL-Nagarro](https://www.apsl.tech):
-  - Vicent Cubells \<<vcubells@apsl.net>\>
+* Sistemas de Datos S.L
+* [Comunitea](https://comunitea.com/):
+  * Omar Castiñeira \<<omar@comunitea.com>\>
+* [Tecnativa](https://www.tecnativa.com):
+  * Sergio Teruel
+* [APSL-Nagarro](https://www.apsl.tech):
+  * Vicent Cubells \<<vcubells@apsl.net>\>
+* BinhexTeam:
+  * Mario Montes

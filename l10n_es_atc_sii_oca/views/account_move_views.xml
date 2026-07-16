@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="invoice_sii_form_atc_art25" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.atc.art25</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="l10n_es_aeat_sii_oca.invoice_sii_form" />
+        <field name="arch" type="xml">
+            <field name="sii_property_cadastrial_code" position="after">
+                <field name="sii_registration_key_code" invisible="1" />
+                <field name="sii_art25_required" invisible="1" />
+                <group
+                    string="Art. 25 REF (ATC)"
+                    name="group_sii_art25"
+                    invisible="not sii_art25_required"
+                >
+                    <field name="sii_art25_prepayment" required="sii_art25_required" />
+                    <field name="sii_art25_document_id" required="sii_art25_required" />
+                    <field
+                        name="sii_art25_protocol_number"
+                        invisible="sii_art25_document_id != '01'"
+                        required="sii_art25_required and sii_art25_document_id == '01'"
+                    />
+                    <field
+                        name="sii_art25_notary_name"
+                        invisible="sii_art25_document_id != '01'"
+                        required="sii_art25_required and sii_art25_document_id == '01'"
+                    />
+                </group>
+            </field>
+        </field>
+    </record>
+</odoo>
