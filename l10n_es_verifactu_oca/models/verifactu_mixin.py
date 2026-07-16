@@ -403,9 +403,11 @@ class VerifactuMixin(models.AbstractModel):
             )
         if not self.company_id.tax_agency_id:
             suffixes.append(_("- Your company does not have a tax agency configured."))
-        if (
-            self.company_id.tax_agency_id.get_external_id
-            in self._get_verifactu_accepted_tax_agencies()
+        elif (
+            self.company_id.tax_agency_id.get_external_id().get(
+                self.company_id.tax_agency_id.id
+            )
+            not in self._get_verifactu_accepted_tax_agencies()
         ):
             suffixes.append(_("- Your company's tax agency is not supported."))
         if not self.company_id.verifactu_developer_id:
@@ -415,7 +417,7 @@ class VerifactuMixin(models.AbstractModel):
         if not self.company_id.country_code or self.company_id.country_code != "ES":
             suffixes.append(_("Your company is not registered in Spain."))
         if suffixes:
-            raise UserError((prefix + "\n".join(suffixes)) % self[self._rec_name])
+            raise UserError(prefix % self[self._rec_name] + "\n" + "\n".join(suffixes))
 
     @api.model
     def _get_verifactu_map(self, date):
