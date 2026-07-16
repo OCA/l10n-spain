@@ -38,6 +38,7 @@ def post_init_hook(cr, registry):
     key = env.ref("l10n_es_verifactu_oca.verifactu_registration_keys_01")
     cr.execute(
         "UPDATE account_move SET verifactu_registration_key = %s "
-        "WHERE move_type = 'out_refund' AND verifactu_registration_key IS NULL",
+        "WHERE move_type IN ('out_invoice', 'out_refund') "
+        "AND verifactu_registration_key IS NULL",
         (key.id,),
     )
