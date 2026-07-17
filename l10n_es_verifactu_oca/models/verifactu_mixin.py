@@ -147,11 +147,10 @@ class VerifactuMixin(models.AbstractModel):
 
     def _compute_verifactu_macrodata(self):
         for document in self:
+            amount_total = document._get_verifactu_taxes_and_total()[2]
             document.verifactu_macrodata = (
                 float_compare(
-                    abs(document._get_verifactu_amount_total()),
-                    VERIFACTU_MACRODATA_LIMIT,
-                    precision_digits=2,
+                    abs(amount_total), VERIFACTU_MACRODATA_LIMIT, precision_digits=2
                 )
                 >= 0
             )
