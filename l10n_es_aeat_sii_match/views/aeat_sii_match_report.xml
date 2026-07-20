@@ -197,7 +197,7 @@
                     string="Cancelled"
                     domain="[('state', '=', 'cancelled')]"
                 />
-                <group expand="0" string="Group By">
+                <group>
                     <filter
                         name="state"
                         string="State"
@@ -346,7 +346,7 @@
                     string="Partially correct"
                     domain="[('sii_contrast_state', '=', 'partially')]"
                 />
-                <group expand="0" string="Group By">
+                <group>
                     <filter
                         name="invoice_location"
                         string="Invoice location"

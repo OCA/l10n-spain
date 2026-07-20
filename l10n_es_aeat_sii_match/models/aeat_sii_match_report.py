@@ -8,7 +8,7 @@ from datetime import datetime
 
 from zeep.helpers import serialize_object
 
-from odoo import Command, _, api, exceptions, fields, models
+from odoo import Command, api, exceptions, fields, models
 from odoo.exceptions import UserError
 from odoo.modules.registry import Registry
 
@@ -319,7 +319,7 @@ class SiiMatchReport(models.Model):
                 )
             except OSError as e:
                 raise UserError(
-                    _("Error with AEAT certificates: %(error)s", error=e)
+                    self.env._("Error with AEAT certificates: %(error)s", error=e)
                 ) from e
             header = sii_match_report._get_aeat_header()
             match_vals = {}
@@ -380,7 +380,7 @@ class SiiMatchReport(models.Model):
         company = self.company_id
         if not company.vat:
             raise exceptions.UserError(
-                _("No VAT configured for the company '{}'").format(company.name)
+                self.env._("No VAT configured for the company '%s'", company.name)
             )
         header = {
             "IDVersionSii": SII_VERSION,
@@ -409,7 +409,7 @@ class SiiMatchReport(models.Model):
             "l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_tree"
         )
         return {
-            "name": _("Results"),
+            "name": self.env._("Results"),
             "view_mode": "list, form",
             "res_model": "l10n.es.aeat.sii.match.result",
             "views": [(tree_view and tree_view.id or False, "list"), (False, "form")],

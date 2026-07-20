@@ -1,7 +1,7 @@
 # Copyright 2026 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, exceptions, models
+from odoo import exceptions, models
 
 
 class AccountMove(models.Model):
@@ -16,7 +16,7 @@ class AccountMove(models.Model):
         )
         if invalid_invoices:
             raise exceptions.UserError(
-                _(
+                self.env._(
                     "The invoices must be posted and have a CSV in order to be matched."
                     "\nNon-matchable invoices: %(invoice_names)s",
                     invoice_names=", ".join(i.name for i in invalid_invoices),
