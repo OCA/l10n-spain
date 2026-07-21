@@ -72,7 +72,13 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
             }
         )
         cls.supplier_2 = cls.supplier.with_context(no_vat_validation=True).copy(
-            {"name": "Test supplier 2"}
+            {
+                "name": "Test supplier 2",
+                # partner_vat_unique compatibility: It is necessary to define the vat
+                # field because if partner_vat_unique is installed, the vat field
+                # will have copy=False
+                "vat": cls.supplier.vat,
+            }
         )
         # Invoice lower than the limit
         cls.taxes_sale = {
