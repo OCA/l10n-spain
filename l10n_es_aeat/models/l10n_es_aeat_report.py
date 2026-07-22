@@ -431,12 +431,6 @@ class L10nEsAeatReport(models.AbstractModel):
         self.write({"state": "draft", "calculation_date": False})
         return True
 
-    def button_export(self):
-        for report in self:
-            export_obj = self.env[f"l10n.es.aeat.report.{report.number}.export_to_boe"]
-            export_obj.export_boe_file(report)
-        return True
-
     def button_open_move(self):
         self.ensure_one()
         action = self.env.ref("account.action_move_line_form").sudo().read()[0]
