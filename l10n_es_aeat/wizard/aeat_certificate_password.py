@@ -111,8 +111,20 @@ class L10nEsAeatCertificatePassword(models.TransientModel):
         with pfx_to_crt(p12, directory) as public_key:
             vals["public_key"] = public_key
         certificate = p12[1]
-        vals["date_start"] = certificate.not_valid_before
-        vals["date_end"] = certificate.not_valid_after
+        # Use the timezone-aware certificate validity properties when available
+        # (introduced in cryptography 42.0.0) to avoid the corresponding
+        # CryptographyDeprecationWarning emitted by the legacy naive datetime
+        # properties.
+        vals["date_start"] = (
+            certificate.not_valid_before_utc
+            if hasattr(certificate, "not_valid_before_utc")
+            else certificate.not_valid_before
+        )
+        vals["date_end"] = (
+            certificate.not_valid_after_utc
+            if hasattr(certificate, "not_valid_after_utc")
+            else certificate.not_valid_after
+        )
         if not record.name:
             name = certificate.subject.get_attributes_for_oid(x509.NameOID.COMMON_NAME)
             if name:
