@@ -15,6 +15,26 @@ class TestPaymentOrderOutboundBaseAEF(TestPaymentOrderOutboundBase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.bank_la_banque_postale = cls.env["res.bank"].create(
+            {
+                "name": "La Banque Postale",
+                "bic": "PSSTFRPPXXX",
+                "country": cls.env.ref("base.fr").id,
+                "street": "115 rue de Sèvres",
+                "zip": "75006",
+                "city": "Paris",
+            }
+        )
+        cls.bank_societe_generale = cls.env["res.bank"].create(
+            {
+                "name": "Société Générale",
+                "bic": "SOGEFRPPXXX",
+                "country": cls.env.ref("base.fr").id,
+                "street": "1 avenue du Roi Fabien 1er",
+                "zip": "75009",
+                "city": "Paris",
+            }
+        )
 
     def order_creation(self, date_prefered):
         # Open invoice
@@ -68,9 +88,7 @@ class TestPaymentOrderOutboundBaseAEF(TestPaymentOrderOutboundBase):
         bank_journal = self.env["res.partner.bank"].create(
             {
                 "acc_number": "FR76 4242 4242 4242 4242 4242 424",
-                "bank_id": self.env.ref(
-                    "account_payment_mode.bank_la_banque_postale"
-                ).id,
+                "bank_id": self.bank_la_banque_postale.id,
                 "partner_id": self.company.partner_id.id,
             }
         )
@@ -96,9 +114,7 @@ class TestPaymentOrderOutboundBaseAEF(TestPaymentOrderOutboundBase):
                         0,
                         {
                             "acc_number": "FR20 1242 1242 1242 1242 1242 124",
-                            "bank_id": self.env.ref(
-                                "account_payment_mode.bank_societe_generale"
-                            ).id,
+                            "bank_id": self.bank_la_banque_postale.id,
                         },
                     )
                 ],

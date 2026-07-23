@@ -17,58 +17,69 @@ class ConfirmingAEF:
         # Nombre ordenante
         if not self.partner_bank:
             validation_errors.append(
-                self._("- Propietario de la cuenta no establecido para la cuenta %s.")
-                % self.record.company_partner_bank_id.acc_number
+                self._(
+                    "- Propietario de la cuenta no establecido para la cuenta %s.",
+                    self.record.company_partner_bank_id.acc_number,
+                )
             )
         if not self.partner_bank.country_id:
             validation_errors.append(
-                self._("- País del propietario no establecido %s.")
-                % self.partner_bank.name
+                self._(
+                    "- País del propietario no establecido %s.",
+                    self.partner_bank.name,
+                )
             )
         # Errores lineas
         for line in self.record.payment_line_ids:
             # Documento identificativo
             if not line.partner_id.vat:
                 validation_errors.append(
-                    self._("- El proveedor %s no tiene establecido el NIF.")
-                    % line.partner_id.name
+                    self._(
+                        "- El proveedor %s no tiene establecido el NIF.",
+                        line.partner_id.name,
+                    )
                 )
             # Domicilio
             if not line.partner_id.street:
                 validation_errors.append(
-                    self._("- El proveedor %s no tiene establecido el domicilio.")
-                    % line.partner_id.name
+                    self._(
+                        "- El proveedor %s no tiene establecido el domicilio.",
+                        line.partner_id.name,
+                    )
                 )
             # Num Factura
             if len(line.move_line_id.move_id.ref or line.communication or "") > 20:
                 validation_errors.append(
                     self._(
                         "- La referencia de factura %s de proveedor no puede ocupar "
-                        "más de 20 caracteres."
+                        "más de 20 caracteres.",
+                        line.move_line_id.move_id.ref or line.communication,
                     )
-                    % line.move_line_id.move_id.ref
-                    or line.communication
                 )
             # Ciudad
             if not line.partner_id.city:
                 validation_errors.append(
-                    self._("- El proveedor %s no tiene establecida la ciudad.")
-                    % line.partner_id.name
+                    self._(
+                        "- El proveedor %s no tiene establecida la ciudad.",
+                        line.partner_id.name,
+                    )
                 )
             # Codigo pais
             if not line.partner_id.country_id.code:
                 validation_errors.append(
-                    self._("- El proveedor %s no tiene establecido el país.")
-                    % line.partner_id.name
+                    self._(
+                        "- El proveedor %s no tiene establecido el país.",
+                        line.partner_id.name,
+                    )
                 )
             # SWIFT
             if not line.partner_bank_id.bank_bic:
                 validation_errors.append(
                     self._(
                         "- La cuenta bancaria del Proveedor %s no tiene establecido "
-                        "el SWIFT."
+                        "el SWIFT.",
+                        line.partner_id.name,
                     )
-                    % line.partner_id.name
                 )
         if validation_errors:
             error = self._("Se han encontrado los siguientes errores:\n")
@@ -117,9 +128,7 @@ class ConfirmingAEF:
         text += self._aef_convert_text(str(fecha_proceso).replace("-", ""), 8)
         # 75 - 82 Fecha remesa
         if self.record.date_prefered == "due":
-            fecha_planificada = fields.first(
-                self.record.payment_line_ids
-            ).ml_maturity_date
+            fecha_planificada = self.record.payment_line_ids[:1].ml_maturity_date
         elif self.record.date_prefered == "now":
             fecha_planificada = fields.Date.today()
         else:
