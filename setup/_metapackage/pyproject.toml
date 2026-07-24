@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-l10n-spain"
-version = "19.0.20260708.1"
+version = "19.0.20260724.0"
 dependencies = [
     "odoo-addon-delivery_dhl_parcel==19.0.*",
     "odoo-addon-delivery_mrw==19.0.*",
@@ -26,6 +26,7 @@ dependencies = [
     "odoo-addon-l10n_es_mis_report==19.0.*",
     "odoo-addon-l10n_es_partner==19.0.*",
     "odoo-addon-l10n_es_partner_mercantil==19.0.*",
+    "odoo-addon-l10n_es_payment_order_confirming_aef==19.0.*",
     "odoo-addon-l10n_es_toponyms==19.0.*",
     "odoo-addon-l10n_es_vat_book==19.0.*",
 ]
