@@ -484,11 +484,11 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
         self.model425.company_vat = "A58818501"
         self.model425.company_id.atc_public_way = "CL"
         self.model425.main_activity_code = (
-            "1"
-        )  # 1 - Actividades sujetas al Impuesto sobre Actividades Económicas
+            "1"  # 1 - Actividades sujetas al Impuesto sobre Actividades Económicas
+        )
         self.model425.main_activity_iae = (
-            "1011"
-        )  # 1011 - EXPLOTACIÓN EXTENSIVA GANADO BOVINO
+            "1011"  # 1011 - EXPLOTACIÓN EXTENSIVA GANADO BOVINO
+        )
         self.model425.main_regime_code = "1"  # 1 - Régimen ordinario
         self.model425.first_representative_name = "Primer Representante"
         self.model425.first_representative_vat = "B12345674"
