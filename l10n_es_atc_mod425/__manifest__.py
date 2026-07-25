@@ -4,16 +4,13 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 {
     "name": "ATC Modelo 425",
-    "version": "17.0.1.0.3",
+    "version": "18.0.1.0.0",
     "category": "Localisation/Accounting",
-    "author": "Tecnativa,"
-    "Binhex System Solutions,"
-    "Odoo Community Association (OCA)",
+    "author": "Tecnativa, Binhex System Solutions, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "depends": [
         "base_location",
-        "l10n_es_igic",
         "l10n_es_atc",
         "report_xml",
     ],

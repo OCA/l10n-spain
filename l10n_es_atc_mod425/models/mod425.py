@@ -46,11 +46,9 @@ REGIMEN_CODE_SELECTION = [
     ("10", "10: Régimen especial del pequeño empresario o profesional"),
     ("11", "11: Régimen especial del criterio de caja"),
 ]
-REPRESENTATIVE_HELP = _("Nombre y apellidos del representante")
-NOTARY_CODE_HELP = _(
-    "Código de la notaría en la que se concedió el poder de representación "
-    "para esta persona."
-)
+REPRESENTATIVE_HELP = "Nombre y apellidos del representante"
+NOTARY_CODE_HELP = """Código de la notaría en la que se concedió el
+poder de representación para esta persona."""
 
 
 class L10nEsAtcMod425Report(models.Model):
@@ -102,13 +100,13 @@ class L10nEsAtcMod425Report(models.Model):
     )
     # Prorrata Especial
     other_first_activity_pro_prorrata = fields.Integer(
-        "% Provisional de la prorrata genera"
+        "% Provisional de la prorrata genera (1)"
     )
     other_first_activity_def_prorrata = fields.Integer(
-        "% Definitivo de la prorrata genera"
+        "% Definitivo de la prorrata genera (1)"
     )
     other_first_activity_esp_prorrata = fields.Boolean(
-        "% Especial de la prorrata genera"
+        "% Especial de la prorrata genera (1)"
     )
     other_second_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
@@ -124,13 +122,13 @@ class L10nEsAtcMod425Report(models.Model):
     )
     # Prorrata Especial
     other_second_activity_pro_prorrata = fields.Integer(
-        "% Provisional de la prorrata genera"
+        "% Provisional de la prorrata genera (2)"
     )
     other_second_activity_def_prorrata = fields.Integer(
-        "% Definitivo de la prorrata genera"
+        "% Definitivo de la prorrata genera (2)"
     )
     other_second_activity_esp_prorrata = fields.Boolean(
-        "% Especial de la prorrata genera"
+        "% Especial de la prorrata genera (2)"
     )
     other_third_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
@@ -143,13 +141,13 @@ class L10nEsAtcMod425Report(models.Model):
     other_third_activity_iae = fields.Char(string="Epígrafe I.A.E. 3ª régimen", size=4)
     # Prorrata Especial
     other_third_activity_pro_prorrata = fields.Integer(
-        "% Provisional de la prorrata genera"
+        "% Provisional de la prorrata genera (3)"
     )
     other_third_activity_def_prorrata = fields.Integer(
-        "% Definitivo de la prorrata genera"
+        "% Definitivo de la prorrata genera (3)"
     )
     other_third_activity_esp_prorrata = fields.Boolean(
-        "% Especial de la prorrata genera"
+        "% Especial de la prorrata genera (3)"
     )
     other_fourth_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
@@ -162,13 +160,13 @@ class L10nEsAtcMod425Report(models.Model):
     other_fourth_activity_iae = fields.Char(string="Epígrafe I.A.E. 4ª régimen", size=4)
     # Prorrata Especial
     other_fourth_activity_pro_prorrata = fields.Integer(
-        "% Provisional de la prorrata genera"
+        "% Provisional de la prorrata genera (4)"
     )
     other_fourth_activity_def_prorrata = fields.Integer(
-        "% Definitivo de la prorrata genera"
+        "% Definitivo de la prorrata genera (4)"
     )
     other_fourth_activity_esp_prorrata = fields.Boolean(
-        "% Especial de la prorrata genera"
+        "% Especial de la prorrata genera (4)"
     )
     other_fifth_activity = fields.Char(
         string="5ª actividad",
@@ -188,13 +186,13 @@ class L10nEsAtcMod425Report(models.Model):
     )
     # Prorrata Especial
     other_fifth_activity_pro_prorrata = fields.Integer(
-        "% Provisional de la prorrata genera"
+        "% Provisional de la prorrata genera (5)"
     )
     other_fifth_activity_def_prorrata = fields.Integer(
-        "% Definitivo de la prorrata genera"
+        "% Definitivo de la prorrata genera (5)"
     )
     other_fifth_activity_esp_prorrata = fields.Boolean(
-        "% Especial de la prorrata genera"
+        "% Especial de la prorrata genera (5)"
     )
     # 4. Representantes
     first_representative_name = fields.Char(
