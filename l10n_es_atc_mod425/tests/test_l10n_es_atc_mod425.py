@@ -378,7 +378,7 @@ class TestL10nEsAtcMod425Base(TestL10nEsAeatModBase):
             {"name": "Canary test company", "currency_id": cls.env.ref("base.EUR").id}
         )
         cls.env["account.chart.template"].try_loading(
-            "es_pymes_canary", company=cls.company, install_demo=False
+            "es_canary_pymes", company=cls.company, install_demo=False
         )
         cls.env.ref("base.group_multi_company").write({"users": [(4, cls.env.uid)]})
         cls.env.user.write(
@@ -446,7 +446,7 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
 
     def _check_tax_lines(self):
         for field, result in iter(self.taxes_result.items()):
-            _logger.debug("Checking tax line: %s" % field)
+            _logger.debug(f"Checking tax line: {field}")
             lines = self.model425.tax_line_ids.filtered(
                 lambda x, field=field: x.field_number == int(field)
             )
@@ -454,7 +454,7 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
                 sum(lines.mapped("amount")),
                 result,
                 2,
-                "Incorrect result in field %s" % field,
+                f"Incorrect result in field {field}",
             )
 
     @classmethod
@@ -475,7 +475,7 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
         }
         for code in codes:
             cls.accounts[code] = cls.env["account.account"].search(
-                [("company_id", "=", cls.company.id), ("code", "=", code)]
+                [("company_ids", "in", cls.company.id), ("code", "=", code)]
             )
         return True
 
