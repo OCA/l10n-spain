@@ -303,7 +303,6 @@
                                     name="casilla_93"
                                     readonly="state != 'calculated'"
                                 />
-
                             </group>
                         </group>
                         <group class="oe_subtotal_footer oe_right">
@@ -353,7 +352,7 @@
                         </group>
                     </page>
                 </notebook>
-                 <notebook invisible="state == 'draft'">
+                <notebook invisible="state == 'draft'">
                     <page string="Valued tax lines">
                         <field name="valued_tax_line_ids" nolabel="1" readonly="1" />
                     </page>
