@@ -46,7 +46,15 @@
         "NumSerieFactura": "TEST001"
       }
     },
-    "FacturasRectificadas": [],
+    "FacturasRectificadas": [
+      {
+        "IDFacturaRectificada": {
+          "IDEmisorFactura": "G87846952",
+          "NumSerieFactura": "ORIGIN001",
+          "FechaExpedicionFactura": "31-12-2025"
+        }
+      }
+    ],
     "SistemaInformatico": {
       "NombreRazon": "Odoo Developer",
       "NIF": "A12345674",
