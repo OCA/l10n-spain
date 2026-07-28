@@ -51,7 +51,6 @@ class PosOrder(models.Model):
         simplified_invoice_number = pos_order.get("l10n_es_unique_id", False)
         if not simplified_invoice_number:
             return super()._process_order(pos_order, existing_order)
-
         pos_order_obj = self.env["pos.order"]
         pos = self.env["pos.session"].browse(pos_order.get("session_id")).config_id
 
@@ -64,5 +63,6 @@ class PosOrder(models.Model):
                     "is_l10n_es_simplified_invoice": True,
                 }
             )
-            self._update_sequence_number(pos)
+            if not pos.prevent_offline_validation:
+                self._update_sequence_number(pos)
         return super()._process_order(pos_order, existing_order)
