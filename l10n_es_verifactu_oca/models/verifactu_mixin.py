@@ -54,6 +54,20 @@ class VerifactuMixin(models.AbstractModel):
         store=True,
         readonly=False,
     )
+    verifactu_original_document_number = fields.Char(
+        string="VERI*FACTU original document number",
+        copy=False,
+        help="Serial number of the rectified document, to be filled in when it "
+        "is not registered in the system. It is only taken into account if "
+        "there is no linked original document.",
+    )
+    verifactu_original_document_date = fields.Date(
+        string="VERI*FACTU original document date",
+        copy=False,
+        help="Issue date of the rectified document, to be filled in when it is "
+        "not registered in the system. It is only taken into account if there "
+        "is no linked original document.",
+    )
     verifactu_description = fields.Text(string="VERI*FACTU description", copy=False)
     verifactu_macrodata = fields.Boolean(
         string="VERI*FACTU macrodata?",
