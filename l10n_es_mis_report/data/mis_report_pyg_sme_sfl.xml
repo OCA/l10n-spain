@@ -15,7 +15,7 @@
         <field name="name">es40000</field>
         <field name="description">A) Excedente del ejercicio</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
-        <field name="expression"> +es41000 +es42000 +es43000 +es44000</field>
+        <field name="expression" />
     </record>
     <record id="mis_report_kpi_es_pyg_pyme_sfl_40100" model="mis.report.kpi">
         <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
@@ -82,7 +82,7 @@
         <field name="name">es40140</field>
         <field
             name="description"
-        >d) Subvenciones,donaciones y legados imputados al excedente del ejercicio</field>
+        >d) Subvenciones, donaciones y legados imputados al excedente del ejercicio</field>
         <field name="expression">-balp[740%,747%,748%]</field>
         <field name="auto_expand_accounts">True</field>
         <field
@@ -131,8 +131,8 @@
         <field name="compare_method">pct</field>
         <field name="sequence">90</field>
         <field name="name">es40300</field>
-        <field name="description">3. Gastos por ayudas y otros </field>
-        <field name="expression"> +es40310 + es40320 +es40330</field>
+        <field name="description">3. Gastos por ayudas y otros</field>
+        <field name="expression">+es40310 +es40320 +es40330 +es40340</field>
         <field name="auto_expand_accounts">True</field>
         <field
             name="auto_expand_accounts_style_id"
@@ -347,7 +347,7 @@
             name="auto_expand_accounts_style_id"
             ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
         />
-        <field name="expression">-balp[7951%,7952%,7955%,7956%]</field>
+        <field name="expression">-balp[7951%,7952%,7955%]</field>
     </record>
     <record id="mis_report_kpi_es_pyg_pyme_sfl_40D00" model="mis.report.kpi">
         <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
@@ -368,6 +368,21 @@
             name="expression"
         >-balp[670%,671%,672%,690%,691%,692%,770%,771%,772%,790%,791%,792%]</field>
     </record>
+    <record id="mis_report_kpi_es_pyg_pyme_sfl_40E00" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">235</field>
+        <field name="name">es40E00</field>
+        <field name="description">Otros resultados</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+        <field name="expression">-balp[678%,778%]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+        />
+    </record>
     <record id="mis_report_kpi_es_pyg_pyme_sfl_41000" model="mis.report.kpi">
         <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
         <field name="type">num</field>
@@ -383,7 +398,7 @@
         />
         <field
             name="expression"
-        > +es40100 +es40200 +es40300 +es40400 +es40500 +es40600 +es40700 +es40800 +es40900 +es40A00 +es40B00 +es40C00 +es40D00</field>
+        > +es40100 +es40200 +es40300 +es40400 +es40500 +es40600 +es40700 +es40800 +es40900 +es40A00 +es40B00 +es40C00 +es40D00 +es40E00</field>
     </record>
     <record id="mis_report_kpi_es_pyg_pyme_sfl_41100" model="mis.report.kpi">
         <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
@@ -590,7 +605,7 @@
             name="description"
         >B.1) Variación de patrimonio neto por ingresos y gastos reconocidos directamente en el patrimonio neto</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
-        <field name="expression" />
+        <field name="expression">+es45100 +es45200 +es45300 +es45400</field>
     </record>
     <record id="mis_report_kpi_es_pyg_pyme_sfl_47000" model="mis.report.kpi">
         <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
@@ -610,7 +625,7 @@
         <field name="compare_method">pct</field>
         <field name="sequence">410</field>
         <field name="name">es47100</field>
-        <field name="description">3. Subvenciones recibidas.</field>
+        <field name="description">1. Subvenciones recibidas.</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
         <field name="expression" />
     </record>
@@ -620,7 +635,7 @@
         <field name="compare_method">pct</field>
         <field name="sequence">420</field>
         <field name="name">es47200</field>
-        <field name="description">4. Donaciones y legados recibidos.</field>
+        <field name="description">2. Donaciones y legados recibidos.</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
         <field name="expression" />
     </record>
@@ -640,7 +655,7 @@
         <field name="compare_method">pct</field>
         <field name="sequence">440</field>
         <field name="name">es47400</field>
-        <field name="description">5. Efecto impositivo.</field>
+        <field name="description">4. Efecto impositivo.</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
         <field name="expression" />
     </record>
@@ -654,7 +669,7 @@
             name="description"
         >C.1) Variación de patrimonio neto por reclasificaciones al excedente del ejercicio</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
-        <field name="expression" />
+        <field name="expression">+es47100 +es47200 +es47300 +es47400</field>
     </record>
     <record id="mis_report_kpi_es_pyg_pyme_sfl_49000" model="mis.report.kpi">
         <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
@@ -664,9 +679,9 @@
         <field name="name">es49000</field>
         <field
             name="description"
-        >D)Variaciones de pratrimonio neto por ingresos y gastos imputados directamente patrimonio neto</field>
+        >D)Variaciones de patrimonio neto por ingresos y gastos imputados directamente al patrimonio neto</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
-        <field name="expression" />
+        <field name="expression">+es46000 +es48000</field>
     </record>
     <record id="mis_report_kpi_es_pyg_pyme_sfl_4A000" model="mis.report.kpi">
         <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
