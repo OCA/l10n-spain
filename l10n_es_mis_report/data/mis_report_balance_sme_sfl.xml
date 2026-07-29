@@ -189,7 +189,7 @@
     />
     <field
         name="expression"
-    >+bale[430%,431%,432%,433%434%,435%,436%,437%,490%,493%,440%,441%,446%,449%,460%,464%,470%,471%,472%,544%,558%]</field>
+    >+bale[430%,431%,432%,433%,434%,435%,436%,437%,490%,493%,440%,441%,446%,449%,460%,464%,470%,471%,472%,544%,558%]</field>
 </record>
   <record id="mis_report_kpi_es_balance_pymes_sfl_12500" model="mis.report.kpi">
     <field name="report_id" ref="mis_report_es_balance_pymes_sfl" />
@@ -360,7 +360,7 @@ PATRIMONIO NETO Y PASIVO:
     <field name="compare_method">pct</field>
     <field name="sequence">240</field>
     <field name="name">es21300</field>
-    <field name="description">III. Exedentes de ejercicios anteriores</field>
+    <field name="description">III. Excedentes de ejercicios anteriores</field>
     <field name="expression">-bale[120%,121%]</field>
     <field name="auto_expand_accounts">True</field>
     <field
