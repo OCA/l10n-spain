@@ -54,10 +54,27 @@ class TestL10nEsVatBookIgic(TestL10nEsAeatModBase):
         map_line = self.env.ref("l10n_es_vat_book.atc_vat_book_igic_map_line_s_igic")
         tax_names = map_line.tax_xmlid_ids.mapped("name")
         self.assertIn("account_tax_template_s_igic_ns", tax_names)
+        self.assertIn("account_tax_template_igic_r_5", tax_names)
         self.assertTrue(
             self.env.ref("l10n_es_vat_book.s_igic_ns", raise_if_not_found=False),
             "s_igic_ns must be loaded as AEAT map tax template",
         )
+
+    def test_igic_chart_taxes_mapped_in_received_book(self):
+        """Chart IGIC purchase rates (incl. 5%) must be in received VAT book maps."""
+        received = self.env.ref("l10n_es_vat_book.atc_vat_book_igic_map_line_p_igic")
+        req = self.env.ref("l10n_es_vat_book.atc_vat_book_igic_map_line_p_req")
+        received_names = received.tax_xmlid_ids.mapped("name")
+        req_names = req.tax_xmlid_ids.mapped("name")
+        for xmlid in (
+            "account_tax_template_igic_sop_5",
+            "account_tax_template_igic_sop_5_inv",
+            "account_tax_template_igic_sop_i_5",
+            "account_tax_template_igic_ISP5",
+            "account_tax_template_p_igic_ns",
+        ):
+            self.assertIn(xmlid, received_names)
+        self.assertIn("account_tax_template_igic_p_re05", req_names)
 
     def test_model_vat_book(self):
         # Purchase invoices
