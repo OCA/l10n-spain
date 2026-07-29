@@ -49,6 +49,16 @@ class TestL10nEsVatBookIgic(TestL10nEsAeatModBase):
         cls.with_context(company_id=cls.company.id)
         return True
 
+    def test_igic_ns_mapped_in_issued_book(self):
+        """IGIC sale not subject must be selectable in issued VAT book map."""
+        map_line = self.env.ref("l10n_es_vat_book.atc_vat_book_igic_map_line_s_igic")
+        tax_names = map_line.tax_xmlid_ids.mapped("name")
+        self.assertIn("account_tax_template_s_igic_ns", tax_names)
+        self.assertTrue(
+            self.env.ref("l10n_es_vat_book.s_igic_ns", raise_if_not_found=False),
+            "s_igic_ns must be loaded as AEAT map tax template",
+        )
+
     def test_model_vat_book(self):
         # Purchase invoices
         self._invoice_purchase_create("2024-01-01")
