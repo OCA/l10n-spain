@@ -22,6 +22,10 @@ _ATC_REGIME_07_FORBIDDEN_EXEMPT = frozenset({"E2", "E3", "E4", "E5"})
 _ATC_BI_FORBIDDEN_REGIMES = frozenset({"08", "18"})
 _ATC_ART25_PURCHASE_KEY = "17"
 _ATC_ART25_SALE_KEY = "19"
+# Claves compra ATC que no admiten CuotaSoportada / CuotaDeducible (REPEP, Art.25…).
+_ATC_NO_CUOTA_PURCHASE_KEYS = frozenset({"08", "16", "17", "18"})
+# Plantillas IGIC compra exenta: DesgloseIGIC solo con BaseImponible.
+_ATC_PURCHASE_EXEMPT_TAX_TEMPLATES = ("account_tax_template_igic_p_ex",)
 
 
 class AccountMove(models.Model):
@@ -101,9 +105,13 @@ class AccountMove(models.Model):
         taxes_dict, tax_amount, not_in_amount_total = super()._get_sii_in_taxes()
         if not self._is_atc_sii_agency() or self.move_type[:2] != "in":
             return taxes_dict, tax_amount, not_in_amount_total
-        return self._atc_patch_sfrbi_in_taxes(
+        taxes_dict, tax_amount, not_in_amount_total = self._atc_patch_sfrbi_in_taxes(
             taxes_dict, tax_amount, not_in_amount_total
         )
+        taxes_dict, tax_amount = self._atc_patch_exempt_purchase_in_taxes(
+            taxes_dict, tax_amount
+        )
+        return taxes_dict, tax_amount, not_in_amount_total
 
     def _atc_patch_sfrbi_in_taxes(self, taxes_dict, tax_amount, not_in_amount_total):
         """Añade líneas IGIC SFRBI omitidas en el desglose genérico de compras."""
@@ -130,6 +138,62 @@ class AccountMove(models.Model):
             detalle.append(tax_dict)
             tax_amount += tax_line["deductible_amount"]
         return taxes_dict, tax_amount, not_in_amount_total
+
+    def _atc_purchase_exempt_taxes(self):
+        """Impuestos IGIC de compra exenta (p.ej. EXENTO S / igic_p_ex)."""
+        self.ensure_one()
+        taxes = self.env["account.tax"]
+        for template_name in _ATC_PURCHASE_EXEMPT_TAX_TEMPLATES:
+            tax_id = self.company_id._get_tax_id_from_xmlid(template_name)
+            if tax_id:
+                taxes |= self.env["account.tax"].browse(tax_id)
+        return taxes
+
+    def _atc_patch_exempt_purchase_in_taxes(self, taxes_dict, tax_amount):
+        """ATC compras exentas: solo BaseImponible (sin Tipo/Cuota; 1322/1325).
+
+        El mapa SFRS incluye ``igic_p_ex`` para evitar DesgloseFactura vacío (1157).
+        El builder genérico emite TipoImpositivo/CuotaSoportada a 0; aquí se omiten.
+        """
+        self.ensure_one()
+        exempt_taxes = self._atc_purchase_exempt_taxes()
+        if not exempt_taxes:
+            return taxes_dict, tax_amount
+        tax_lines = self._get_aeat_tax_info()
+        exempt_lines = [
+            tax_line
+            for tax_line in tax_lines.values()
+            if tax_line["tax"] in exempt_taxes
+        ]
+        if not exempt_lines:
+            return taxes_dict, tax_amount
+        base_dict = taxes_dict.setdefault("DesgloseIVA", {"DetalleIVA": []})
+        detalle = base_dict["DetalleIVA"]
+        for tax_line in exempt_lines:
+            tax_dict = self._get_sii_tax_dict(tax_line, tax_lines)
+            base_val = tax_dict.get("BaseImponible")
+            matched = False
+            for idx, detail in enumerate(detalle):
+                if abs(float(detail.get("BaseImponible", 0)) - float(base_val or 0)) > (
+                    0.01
+                ):
+                    continue
+                # Misma base: o es la línea 0% del genérico, o ya estaba strippeada.
+                tipo = detail.get("TipoImpositivo")
+                if tipo is not None and abs(float(tipo)) > 0.01:
+                    continue
+                stripped = {"BaseImponible": detail["BaseImponible"]}
+                if detail.get("BienInversion"):
+                    stripped["BienInversion"] = detail["BienInversion"]
+                detalle[idx] = stripped
+                matched = True
+                break
+            if not matched:
+                detalle.append({"BaseImponible": base_val})
+            else:
+                # Super (SFRS) ya sumó deductible_amount; exento no debe aportar.
+                tax_amount -= tax_line.get("deductible_amount") or 0.0
+        return taxes_dict, tax_amount
 
     @api.model
     def _sii_atc_replace_tax_keys(self, invoice_dic):
@@ -176,6 +240,7 @@ class AccountMove(models.Model):
         if self._is_atc_sii_agency():
             inv_dict = self._sii_atc_replace_tax_keys(inv_dict)
             inv_dict = self._atc_prune_invoice_dict_in(inv_dict)
+            inv_dict = self._atc_force_cuota_deducible_no_cuota_keys(inv_dict)
             inv_dict = self._atc_inject_art25_datos(inv_dict, "FacturaRecibida")
         return inv_dict
 
@@ -192,6 +257,16 @@ class AccountMove(models.Model):
             block = desglose.get(block_key)
             if isinstance(block, dict) and not block.get(detail_key):
                 desglose.pop(block_key, None)
+        return inv_dict
+
+    def _atc_force_cuota_deducible_no_cuota_keys(self, inv_dict):
+        """Claves 08/16/17/18: CuotaDeducible = 0 (ATC no admite cuota)."""
+        self.ensure_one()
+        if self.sii_registration_key_code not in _ATC_NO_CUOTA_PURCHASE_KEYS:
+            return inv_dict
+        factura = inv_dict.get("FacturaRecibida")
+        if isinstance(factura, dict):
+            factura["CuotaDeducible"] = 0.0
         return inv_dict
 
     @api.depends("sii_registration_key_code", "move_type")

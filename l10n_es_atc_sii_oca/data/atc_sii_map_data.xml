@@ -73,6 +73,7 @@
         <field
             name="tax_xmlid_ids"
             eval="[(6, 0, [
+            ref('igic_p_ex'),
             ref('igic_sop_0'),
             ref('igic_sop_3'),
             ref('igic_sop_5'),

@@ -174,16 +174,43 @@ class TestAtcSiiPayloadPurchases(TestL10nEsAtcSiiPayloadBase):
             self.skipTest("CargaImpositivaImplicita not implemented yet")
 
     def test_purchase_repep_pequeño_empresario_clave_16(self):
-        """REPEP pequeño empresario (clave 16): CuotaRecargoMinorista."""
-        reg_key = self._reg_key("16", "in_invoice")
+        """REPEP 16 + EXENTO S: DesgloseIGIC solo BaseImponible (sin 1157/1325)."""
         move = self._create_atc_invoice(
             move_type="in_invoice",
-            taxes=self._tax("igic_sop_7"),
+            taxes=self._tax("igic_p_ex"),
+            price_unit=450.0,
             reg_key_code="16",
-            extra_vals={"sii_registration_key": reg_key.id, "ref": "REPEP-16"},
+            extra_vals={"ref": "REPEP-16-EX"},
         )
-        if "CuotaRecargoMinorista" not in self._payload_json(move):
-            self.skipTest("CuotaRecargoMinorista not implemented yet")
+        payload = self._payload(move)
+        self._assert_no_iva_keys(payload)
+        factura = self._factura_recibida(payload)
+        self.assertEqual(factura["ClaveRegimenEspecialOTrascendencia"], "16")
+        self.assertEqual(float(factura["CuotaDeducible"]), 0.0)
+        desglose = factura.get("DesgloseFactura") or {}
+        self.assertTrue(desglose.get("DesgloseIGIC"), "DesgloseFactura vacío (1157)")
+        details = self._detalle_igic(payload)
+        self.assertTrue(details)
+        detail = details[0]
+        self.assertAlmostEqual(float(detail["BaseImponible"]), 450.0, places=2)
+        self.assertNotIn("TipoImpositivo", detail)
+        self.assertNotIn("CuotaSoportada", detail)
+
+    def test_purchase_exempt_desglose_base_only(self):
+        """Compra EXENTO S (igic_p_ex): DetalleIGIC sin Tipo ni CuotaSoportada."""
+        move = self._create_atc_invoice(
+            move_type="in_invoice",
+            taxes=self._tax("igic_p_ex"),
+            price_unit=200.0,
+            extra_vals={"ref": "EX-PUR-001"},
+        )
+        payload = self._payload(move)
+        details = self._detalle_igic(payload)
+        self.assertTrue(details)
+        detail = details[0]
+        self.assertAlmostEqual(float(detail["BaseImponible"]), 200.0, places=2)
+        self.assertNotIn("TipoImpositivo", detail)
+        self.assertNotIn("CuotaSoportada", detail)
 
     def test_purchase_not_subject(self):
         """Compra no sujeta: bloque NoSujeta / SFRNS sin tipos impositivos."""
