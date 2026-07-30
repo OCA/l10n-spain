@@ -47,13 +47,7 @@
     </record>
     <record id="verifactu_map_line_N1" model="verifactu.map.line">
         <field name="code">N1</field>
-        <field
-            name="taxes"
-            eval="[(6, 0, [
-                ref('l10n_es.account_tax_template_s_iva_ns_b'),
-                ref('l10n_es.account_tax_template_s_iva_ns'),
-        ])]"
-        />
+        <field name="taxes" eval="[(6, 0, [])]" />
         <field name="verifactu_map_id" ref="verifactu_map" />
         <field name="name">Operación No Sujeta artículo 7, 14, otros.</field>
     </record>
@@ -65,6 +59,8 @@
             eval="[(6, 0, [
                 ref('l10n_es.account_tax_template_s_iva_e'),
                 ref('l10n_es.account_tax_template_s_iva0_sp_i'),
+                ref('l10n_es.account_tax_template_s_iva_ns_b'),
+                ref('l10n_es.account_tax_template_s_iva_ns'),
             ])]"
         />
         <field name="verifactu_map_id" ref="verifactu_map" />
