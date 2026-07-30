@@ -269,16 +269,26 @@ class AccountMove(models.Model):
             factura["CuotaDeducible"] = 0.0
         return inv_dict
 
-    @api.depends("sii_registration_key_code", "move_type")
+    @api.depends("sii_registration_key", "sii_registration_key.code", "move_type")
     def _compute_sii_art25_required(self):
         for move in self:
             move.sii_art25_required = move._atc_requires_art25_block()
+
+    @api.onchange("sii_registration_key")
+    def _onchange_sii_registration_key_art25(self):
+        """Clear Art. 25 fields when leaving claves 17 (compra) / 19 (venta)."""
+        if self._atc_requires_art25_block():
+            return
+        self.sii_art25_prepayment = False
+        self.sii_art25_document_id = False
+        self.sii_art25_protocol_number = False
+        self.sii_art25_notary_name = False
 
     def _atc_requires_art25_block(self):
         self.ensure_one()
         if not self._is_atc_sii_agency() or not self.is_invoice():
             return False
-        code = self.sii_registration_key_code
+        code = self.sii_registration_key.code if self.sii_registration_key else False
         if self.move_type.startswith("in_"):
             return code == _ATC_ART25_PURCHASE_KEY
         if self.move_type.startswith("out_"):

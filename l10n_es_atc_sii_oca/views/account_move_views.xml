@@ -5,29 +5,35 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="l10n_es_aeat_sii_oca.invoice_sii_form" />
         <field name="arch" type="xml">
-            <!-- Helper fields only: nesting a <group> inside group_sii_information
-                 breaks the outer col=2 label/field grid in the SII tab. -->
+            <!-- Helper: same pattern as AEAT property fields (12/13) — modifiers on
+                 sii_registration_key_code refresh when the clave changes. Do not use
+                 a second-level computed boolean (sii_art25_required) for invisible. -->
             <field name="sii_property_cadastrial_code" position="after">
                 <field name="sii_registration_key_code" invisible="1" />
-                <field name="sii_art25_required" invisible="1" />
             </field>
             <xpath expr="//group[@name='group_sii_information']" position="after">
                 <group
                     string="Art. 25 REF (ATC)"
                     name="group_sii_art25"
-                    invisible="not sii_art25_required"
+                    invisible="not ((move_type in ['in_invoice', 'in_refund'] and sii_registration_key_code == '17') or (move_type in ['out_invoice', 'out_refund'] and sii_registration_key_code == '19'))"
                 >
-                    <field name="sii_art25_prepayment" required="sii_art25_required" />
-                    <field name="sii_art25_document_id" required="sii_art25_required" />
+                    <field
+                        name="sii_art25_prepayment"
+                        required="(move_type in ['in_invoice', 'in_refund'] and sii_registration_key_code == '17') or (move_type in ['out_invoice', 'out_refund'] and sii_registration_key_code == '19')"
+                    />
+                    <field
+                        name="sii_art25_document_id"
+                        required="(move_type in ['in_invoice', 'in_refund'] and sii_registration_key_code == '17') or (move_type in ['out_invoice', 'out_refund'] and sii_registration_key_code == '19')"
+                    />
                     <field
                         name="sii_art25_protocol_number"
                         invisible="sii_art25_document_id != '01'"
-                        required="sii_art25_required and sii_art25_document_id == '01'"
+                        required="((move_type in ['in_invoice', 'in_refund'] and sii_registration_key_code == '17') or (move_type in ['out_invoice', 'out_refund'] and sii_registration_key_code == '19')) and sii_art25_document_id == '01'"
                     />
                     <field
                         name="sii_art25_notary_name"
                         invisible="sii_art25_document_id != '01'"
-                        required="sii_art25_required and sii_art25_document_id == '01'"
+                        required="((move_type in ['in_invoice', 'in_refund'] and sii_registration_key_code == '17') or (move_type in ['out_invoice', 'out_refund'] and sii_registration_key_code == '19')) and sii_art25_document_id == '01'"
                     />
                 </group>
             </xpath>
