@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===============================================================
 Sistema de comprobación y contraste de facturas enviadas al SII
 ===============================================================
@@ -17,7 +13,7 @@ Sistema de comprobación y contraste de facturas enviadas al SII
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
@@ -46,6 +42,12 @@ Sistema de comprobación y contraste de facturas enviadas al SII
   'Parcialmente contrastadas', es decir, las que la propia AEAT no haya
   podido cotejar entre el emisor de la factura y el receptor, siendo los
   dos obligados a declarar en el sistema SII.
+- El botón/acción "Contrast with AEAT" también puede lanzarse sobre
+  facturas cuyo envío al SII haya fallado (por ejemplo, con el error
+  "3000 \| Factura duplicada"). Si la AEAT confirma que la factura ya
+  está registrada, se recupera su CSV y se corrige el estado de envío en
+  Odoo, en lugar de dejarla bloqueada indefinidamente en estado de
+  error.
 
 **Table of contents**
 
@@ -87,6 +89,7 @@ Contributors
   - Víctor Martínez
   - David Bañón Gil
   - Pedro M. Baeza
+  - Sergio Teruel
 
 Maintainers
 -----------

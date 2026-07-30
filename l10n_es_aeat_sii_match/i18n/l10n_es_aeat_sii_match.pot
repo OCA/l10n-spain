@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-30 11:29+0000\n"
+"PO-Revision-Date: 2026-07-30 11:29+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -170,7 +172,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_match_state__5
-#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__pos_order__sii_match_state__5
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__sii_mixin__sii_match_state__5
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
 msgid "Contrasted"
@@ -179,7 +180,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_contrast_state__correct
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_result__sii_contrast_state__correct
-#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__pos_order__sii_contrast_state__correct
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__sii_mixin__sii_contrast_state__correct
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
 msgid "Correct"
@@ -215,7 +215,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_contrast_state__no_exist
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_result__sii_contrast_state__no_exist
-#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__pos_order__sii_contrast_state__no_exist
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__sii_mixin__sii_contrast_state__no_exist
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
 msgid "Doesn't exist"
@@ -271,7 +270,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_match_state__2
-#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__pos_order__sii_match_state__2
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__sii_mixin__sii_match_state__2
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
 msgid "In process of contrast"
@@ -368,7 +366,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_match_state__1
-#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__pos_order__sii_match_state__1
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__sii_mixin__sii_match_state__1
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
 msgid "No testable"
@@ -376,7 +373,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_match_state__3
-#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__pos_order__sii_match_state__3
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__sii_mixin__sii_match_state__3
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
 msgid "Not contrasted"
@@ -389,7 +385,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_match_state__4
-#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__pos_order__sii_match_state__4
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__sii_mixin__sii_match_state__4
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
 msgid "Partially contrasted"
@@ -398,7 +393,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_contrast_state__partially
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_result__sii_contrast_state__partially
-#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__pos_order__sii_contrast_state__partially
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__sii_mixin__sii_contrast_state__partially
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
 msgid "Partially correct"
@@ -574,7 +568,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_match/models/account_move.py:0
 msgid ""
-"The invoices must be posted and have a CSV in order to be matched.\n"
+"The invoices must be posted and either already sent to the SII or have a failed send, in order to be matched.\n"
 "Non-matchable invoices: %(invoice_names)s"
 msgstr ""
 
