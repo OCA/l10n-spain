@@ -446,7 +446,12 @@ class AccountMove(models.Model):
                 )
 
     def _aeat_check_importe_total(self):
-        """Error ATC 2042: ImporteTotal debe cuadrar con el desglose IGIC."""
+        """Error ATC 2042: ImporteTotal debe cuadrar con el desglose IGIC.
+
+        En compras con bloque ``InversionSujetoPasivo`` la cuota es
+        autorrepercutida: ``ImporteTotal`` es la base (importe al proveedor),
+        no base+cuota. Ver ``_atc_compute_breakdown_total``.
+        """
         self.ensure_one()
         if self.move_type.startswith("out_"):
             factura = self._atc_get_invoice_section("out")
@@ -516,7 +521,56 @@ class AccountMove(models.Model):
         walk(node)
         return found
 
+    @api.model
+    def _atc_iter_tax_details(self, factura):
+        """Yield ``(detalle, under_isp)`` for ``DetalleIGIC`` / ``DetalleIVA``.
+
+        ``under_isp`` is True when the detail lives under
+        ``InversionSujetoPasivo`` (purchase reverse charge).
+        """
+        found = []
+
+        def walk(item, under_isp=False):
+            if isinstance(item, dict):
+                if "InversionSujetoPasivo" in item:
+                    walk(item["InversionSujetoPasivo"], under_isp=True)
+                for detail_key in ("DetalleIGIC", "DetalleIVA"):
+                    if detail_key not in item:
+                        continue
+                    # Only count details at this level when we are inside ISP
+                    # or outside an ISP sibling (DesgloseIGIC / DesgloseFactura).
+                    if detail_key in item and (
+                        under_isp or "InversionSujetoPasivo" not in item
+                    ):
+                        value = item[detail_key]
+                        if isinstance(value, list):
+                            for detalle in value:
+                                if isinstance(detalle, dict):
+                                    found.append((detalle, under_isp))
+                        elif isinstance(value, dict):
+                            found.append((value, under_isp))
+                for key, value in item.items():
+                    if key in (
+                        "InversionSujetoPasivo",
+                        "DetalleIGIC",
+                        "DetalleIVA",
+                    ):
+                        continue
+                    walk(value, under_isp=under_isp)
+            elif isinstance(item, list):
+                for sub in item:
+                    walk(sub, under_isp=under_isp)
+
+        walk(factura)
+        return found
+
     def _atc_compute_breakdown_total(self, factura, primary_cuota_keys):
+        """Suma bases (+ cuotas) del desglose para contrastar con ImporteTotal.
+
+        En ``InversionSujetoPasivo`` solo cuenta la base: la cuota es
+        autorrepercutida y no forma parte del importe pagado al proveedor
+        (ni de ``amount_total`` / ``ImporteTotal`` en Odoo).
+        """
         total = 0.0
         detail_count = 0
         extra_cuota_keys = (
@@ -524,15 +578,16 @@ class AccountMove(models.Model):
             "CargaImpositivaImplicita",
             "CuotaRecargoMinorista",
         )
-        for detail_key in ("DetalleIGIC", "DetalleIVA"):
-            for detalle in self._atc_walk_nodes(factura, detail_key):
-                detail_count += 1
-                total += float(detalle.get("BaseImponible", 0))
-                for key in primary_cuota_keys + extra_cuota_keys:
-                    total += float(detalle.get(key, 0))
+        for detalle, under_isp in self._atc_iter_tax_details(factura):
+            detail_count += 1
+            total += float(detalle.get("BaseImponible", 0) or 0)
+            if under_isp:
+                continue
+            for key in primary_cuota_keys + extra_cuota_keys:
+                total += float(detalle.get(key, 0) or 0)
         for detalle in self._atc_walk_nodes(factura, "DetalleExenta"):
             detail_count += 1
-            total += float(detalle.get("BaseImponible", 0))
+            total += float(detalle.get("BaseImponible", 0) or 0)
         for block in self._atc_walk_nodes(factura, "NoSujeta"):
             for key, value in block.items():
                 if key.startswith("Importe"):

@@ -6,8 +6,36 @@ from .common import TestL10nEsAtcSiiPayloadBase
 class TestAtcSiiPayloadPurchases(TestL10nEsAtcSiiPayloadBase):
     """RegistroLRFacturasRecibidas — ISP, bienes de inversión, DUA y REPEP."""
 
+    def test_purchase_isp_importe_total_validation(self):
+        """ISP compra con cuota real: 2042 no falla (ImporteTotal = base)."""
+        move = self._create_atc_invoice(
+            move_type="in_invoice",
+            taxes=self._tax("igic_ISP7"),
+            price_unit=656.32,
+            extra_vals={"ref": "ISP-2042-001"},
+        )
+        payload = self._payload(move)
+        factura = self._factura_recibida(payload)
+        isp = self._walk_payload(payload, "InversionSujetoPasivo")
+        self.assertTrue(isp)
+        detalle = isp[0].get("DetalleIGIC") or isp[0].get("DetalleIVA")
+        if isinstance(detalle, list):
+            detail = detalle[0]
+        else:
+            detail = detalle
+        self.assertEqual(float(detail["TipoImpositivo"]), 7.0)
+        self.assertGreater(float(detail["CuotaSoportada"]), 0.0)
+        # ImporteTotal = base (cuota autorrepercutida no suma)
+        self.assertAlmostEqual(
+            float(factura["ImporteTotal"]),
+            float(detail["BaseImponible"]),
+            places=2,
+        )
+        # No debe lanzar UserError 2042
+        move._aeat_check_importe_total()
+
     def test_purchase_isp_s2_zero_rate(self):
-        """ISP compra total (S2): tipos y cuotas a cero en inversión del SP."""
+        """ISP compra 0%: tipos y cuotas a cero en inversión del SP."""
         move = self._create_atc_invoice(
             move_type="in_invoice",
             taxes=self._tax("igic_ISP0"),
