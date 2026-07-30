@@ -21,6 +21,7 @@ from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.fields import Domain
 from odoo.modules.registry import Registry
+from odoo.tools import groupby
 
 SII_VALID_INVOICE_STATES = ["posted"]
 # Types allowed with the marks of art. 7.2/7.3 and of art. 6.1.d RD 1619/2012
@@ -1026,8 +1027,9 @@ class AccountMove(models.Model):
         batch = self._get_sii_batch()
         documents = all_documents[:batch]
         remaining_documents = all_documents - documents
-        for doc in documents:
-            doc.confirm_one_document()
+        for _c, doc_list in groupby(documents, key=lambda r: r.company_id):
+            docs = self.env["account.move"].browse([doc.id for doc in doc_list])
+            docs.confirm_one_document()
         return remaining_documents
 
     @api.model
