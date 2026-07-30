@@ -21,6 +21,7 @@ from unidecode import unidecode
 from odoo import _, api, exceptions, fields, models
 from odoo.modules.registry import Registry
 from odoo.osv.expression import AND, OR
+from odoo.tools import groupby
 
 SII_VALID_INVOICE_STATES = ["posted"]
 _logger = logging.getLogger(__name__)
@@ -812,8 +813,9 @@ class AccountMove(models.Model):
         batch = self._get_sii_batch()
         documents = all_documents[:batch]
         remaining_documents = all_documents - documents
-        for doc in documents:
-            doc.confirm_one_document()
+        for _c, doc_list in groupby(documents, key=lambda r: r.company_id):
+            docs = self.env["account.move"].browse([doc.id for doc in doc_list])
+            docs.confirm_one_document()
         return remaining_documents
 
     @api.model

@@ -5,6 +5,7 @@
 # Copyright 2011,2024 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import json
+from pprint import pformat
 
 from unidecode import unidecode
 
@@ -808,77 +809,65 @@ class SiiMixin(models.AbstractModel):
         self.ensure_one()
         return self.sii_account_registration_date or fields.Date.today()
 
-    def _send_document_to_sii(self):
-        for document in self.filtered(
+    def _send_document_to_sii(self):  # noqa: C901
+        documents = self.filtered(
             lambda i: i.state in self._get_valid_document_states()
-        ):
+        )
+        headers = {}
+        grouped_data = {
+            "not_sent": {
+                "in": {"payload": {}, "documents": {}, "docs_vals": {}},
+                "out": {"payload": {}, "documents": {}, "docs_vals": {}},
+            },
+            "others": {
+                "in": {"payload": {}, "documents": {}, "docs_vals": {}},
+                "out": {"payload": {}, "documents": {}, "docs_vals": {}},
+            },
+        }
+        documents_not_sent = documents.filtered(lambda r: r.aeat_state == "not_sent")
+        other_documents = documents - documents_not_sent
+        if documents_not_sent:
+            headers.update(
+                {"not_sent": fields.first(documents_not_sent)._get_aeat_header("A0")}
+            )
+        if other_documents:
+            headers.update(
+                {"others": fields.first(other_documents)._get_aeat_header("A1")}
+            )
+        # Prepare grouped data to send and vals to update document record
+        for document in documents:
             # Filter the SII description for avoiding manual invalid inputs
             text = unidecode(document.sii_description)
             if text != document.sii_description:
                 document.sii_description = text
             if document.aeat_state == "not_sent":
-                tipo_comunicacion = "A0"
+                doc_vals = {
+                    "aeat_header_sent": json.dumps(headers["not_sent"], indent=4),
+                }
             else:
-                tipo_comunicacion = "A1"
-            header = document._get_aeat_header(tipo_comunicacion)
-            doc_vals = {
-                "aeat_header_sent": json.dumps(header, indent=4),
-            }
+                doc_vals = {
+                    "aeat_header_sent": json.dumps(headers["others"], indent=4),
+                }
             inv_dict = False
             try:
                 inv_dict = document._get_aeat_invoice_dict()
                 mapping_key = document._get_mapping_key()
-                serv = document._connect_aeat(mapping_key)
                 doc_vals["aeat_content_sent"] = json.dumps(inv_dict, indent=4)
+                communication_type = (
+                    "others"
+                    if document.aeat_state != "not_sent"
+                    else document.aeat_state
+                )
+                docs_group = grouped_data[communication_type]
                 if mapping_key in ["out_invoice", "out_refund"]:
-                    res = serv.SuministroLRFacturasEmitidas(header, inv_dict)
-                elif mapping_key in ["in_invoice", "in_refund"]:
-                    res = serv.SuministroLRFacturasRecibidas(header, inv_dict)
-                # TODO Facturas intracomunitarias 66 RIVA
-                # elif invoice.fiscal_position_id.id == self.env.ref(
-                #     'account.fp_intra').id:
-                #     res = serv.SuministroLRDetOperacionIntracomunitaria(
-                #         header, invoices)
-                res_line = res["RespuestaLinea"][0]
-                if res["EstadoEnvio"] == "Correcto":
-                    doc_vals.update(
-                        {
-                            "aeat_state": "sent",
-                            "sii_csv": res["CSV"],
-                            "aeat_send_failed": False,
-                        }
-                    )
-                elif (
-                    res["EstadoEnvio"] == "ParcialmenteCorrecto"
-                    and res_line["EstadoRegistro"] == "AceptadoConErrores"
-                ):
-                    doc_vals.update(
-                        {
-                            "aeat_state": "sent_w_errors",
-                            "sii_csv": res["CSV"],
-                            "aeat_send_failed": True,
-                        }
-                    )
-                else:
-                    doc_vals["aeat_send_failed"] = True
-                if (
-                    "aeat_state" in doc_vals
-                    and not document.sii_account_registration_date
-                    and mapping_key[:2] == "in"
-                ):
-                    doc_vals[
-                        "sii_account_registration_date"
-                    ] = document._get_account_registration_date()
-                doc_vals["sii_return"] = res
-                doc_vals["sii_send_date"] = False
-                send_error = False
-                if res_line["CodigoErrorRegistro"]:
-                    send_error = "{} | {}".format(
-                        str(res_line["CodigoErrorRegistro"]),
-                        str(res_line["DescripcionErrorRegistro"])[:60],
-                    )
-                doc_vals["aeat_send_error"] = send_error
-                document.write(doc_vals)
+                    invoice_type = "out"
+                if mapping_key in ["in_invoice", "in_refund"]:
+                    invoice_type = "in"
+                docs_group[invoice_type]["payload"].update({document.id: inv_dict})
+                docs_group[invoice_type]["documents"].update(
+                    {document._get_document_serial_number(): document}
+                )
+                docs_group[invoice_type]["docs_vals"].update({document.id: doc_vals})
             except Exception as fault:
                 new_cr = Registry(self.env.cr.dbname).cursor()
                 env = api.Environment(new_cr, self.env.uid, self.env.context)
@@ -896,6 +885,116 @@ class SiiMixin(models.AbstractModel):
                 document.write(doc_vals)
                 new_cr.commit()
                 new_cr.close()
+        # Start send documents to the AEAT
+        for status in ("not_sent", "others"):
+            header = headers.get(status)
+            if not header:
+                continue
+            docs_group = grouped_data.get(status)
+            for invoice_type in ("out", "in"):
+                payload = list(docs_group.get(invoice_type)["payload"].values())
+                if not payload:
+                    continue
+                first_document = list(
+                    docs_group.get(invoice_type)["documents"].values()
+                )[0]
+                try:
+                    serv = first_document._connect_aeat(
+                        first_document._get_mapping_key()
+                    )
+                    if invoice_type == "out":
+                        res = serv.SuministroLRFacturasEmitidas(header, payload)
+                    else:
+                        res = serv.SuministroLRFacturasRecibidas(header, payload)
+                    # TODO Facturas intracomunitarias 66 RIVA
+                    # elif invoice.fiscal_position_id.id == self.env.ref(
+                    #     'account.fp_intra').id:
+                    #     res = serv.SuministroLRDetOperacionIntracomunitaria(
+                    #         header, invoices)
+                except Exception as fault:
+                    new_cr = Registry(self.env.cr.dbname).cursor()
+                    env = api.Environment(new_cr, self.env.uid, self.env.context)
+                    doc_ids = list(docs_group[invoice_type]["docs_vals"].keys())
+                    docs_vals = docs_group[invoice_type]["docs_vals"]
+                    document_ids = env[first_document._name].browse(doc_ids)
+                    for document in document_ids:
+                        doc_vals = docs_vals.get(document.id, {})
+                        doc_vals.update(
+                            {
+                                "aeat_send_failed": True,
+                                "aeat_send_error": repr(fault)[:60],
+                                "sii_return": repr(fault),
+                                "sii_send_date": False,
+                            }
+                        )
+                        document.write(doc_vals)
+                    new_cr.commit()
+                    new_cr.close()
+                    continue
+                sii_returned_shared_data = {
+                    "DatosPresentacion": res["DatosPresentacion"],
+                    "Cabecera": res["Cabecera"],
+                    "EstadoEnvio": res["EstadoEnvio"],
+                }
+                for res_line in res["RespuestaLinea"]:
+                    csv = res.get("CSV") or res_line.get("CSV")
+                    res_line_state = res_line.get("EstadoRegistro")
+                    # Search invoice record
+                    document = docs_group.get(invoice_type)["documents"].get(
+                        res_line["IDFactura"]["NumSerieFacturaEmisor"], None
+                    )
+                    # Search invoice vals
+                    if not document:
+                        continue
+                    doc_vals = docs_group.get(invoice_type)["docs_vals"].get(
+                        document.id, None
+                    )
+                    if doc_vals is None:
+                        continue
+                    if res_line_state == "Correcto":
+                        doc_vals.update(
+                            {
+                                "aeat_state": "sent",
+                                "sii_csv": csv,
+                                "aeat_send_failed": False,
+                            }
+                        )
+                    elif res_line_state == "AceptadoConErrores":
+                        doc_vals.update(
+                            {
+                                "aeat_state": "sent_w_errors",
+                                "sii_csv": csv,
+                                "aeat_send_failed": True,
+                            }
+                        )
+                    else:
+                        doc_vals["aeat_send_failed"] = True
+                    if (
+                        "aeat_state" in doc_vals
+                        and not document.sii_account_registration_date
+                        and invoice_type == "in"
+                    ):
+                        doc_vals[
+                            "sii_account_registration_date"
+                        ] = document._get_account_registration_date()
+                    doc_vals["sii_return"] = pformat(
+                        {
+                            **sii_returned_shared_data,
+                            "CSV": csv,
+                            "RespuestaLinea": [res_line],
+                        },
+                        width=120,
+                        sort_dicts=False,
+                    )
+                    doc_vals["sii_send_date"] = False
+                    send_error = False
+                    if res_line["CodigoErrorRegistro"]:
+                        send_error = "{} | {}".format(
+                            str(res_line["CodigoErrorRegistro"]),
+                            str(res_line["DescripcionErrorRegistro"])[:60],
+                        )
+                    doc_vals["aeat_send_error"] = send_error
+                    document.write(doc_vals)
 
     def confirm_one_document(self):
         self.sudo()._send_document_to_sii()
