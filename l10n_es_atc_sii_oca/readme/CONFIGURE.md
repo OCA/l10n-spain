@@ -7,9 +7,9 @@ compañía cuya agencia tributaria sea la ATC. No se requiere configuración man
 adicional del mapa.
 
 **Versión del protocolo SII (`IDVersionSii`):** en la cabecera del XML enviado a la ATC
-el módulo usa **1.1 en producción** (versión vigente del protocolo) y **1.0 cuando está
-activo el modo de prueba SII**, porque el entorno de cautela de la ATC solo admite 1.0.
-Esto es independiente del nombre mostrado de la agencia en la configuración de la compañía.
+el módulo fija siempre **1.0** (modo prueba y producción). La ATC rechaza **1.1** con
+error 4100 en ambos entornos. Esto es independiente del nombre mostrado de la agencia
+en la configuración de la compañía.
 
 Para utilizar el entorno de pruebas, habilite la casilla **Modo de prueba
 SII** en los ajustes de la compañía. Todos los envíos se redirigirán entonces a los

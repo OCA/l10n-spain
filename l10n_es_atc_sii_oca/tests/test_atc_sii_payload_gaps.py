@@ -42,18 +42,18 @@ class TestAtcSiiPayloadNegative(TestL10nEsAtcSiiPayloadBase):
     """Pruebas negativas: cabecera IDVersionSii y coherencia aritmética."""
 
     def test_header_idversion_10_in_test_mode(self):
-        """Entorno cautela: IDVersionSii debe ser 1.0 (evita error ATC 4100)."""
+        """Modo prueba: IDVersionSii debe ser 1.0 (evita error ATC 4100)."""
         move = self._create_atc_invoice()
         header = move._get_aeat_header()
         self.assertEqual(header["IDVersionSii"], "1.0")
 
-    def test_header_idversion_11_in_test_mode_not_used_by_default(self):
-        """En cautela el módulo no debe enviar 1.1 por defecto (ATC error 4100)."""
+    def test_header_idversion_always_10_also_without_test_mode(self):
+        """Producción ATC: también 1.0 (1.1 provoca error 4100)."""
         move = self._create_atc_invoice()
         self.company.sii_test = True
         self.assertEqual(move._get_aeat_header()["IDVersionSii"], "1.0")
         self.company.sii_test = False
-        self.assertEqual(move._get_aeat_header()["IDVersionSii"], "1.1")
+        self.assertEqual(move._get_aeat_header()["IDVersionSii"], "1.0")
 
     def test_importe_total_matches_breakdown(self):
         """ImporteTotal coherente con bases y cuotas (tolerancia ±10 € ATC)."""

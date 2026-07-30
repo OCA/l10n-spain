@@ -3,8 +3,8 @@ Cuando se valida una factura automáticamente envía la comunicación al servido
 Se debe establecer en la configuración de la compañía la agencia tributaria:
 **Agencia Tributaria Canaria (1.0)**. En caso contrario, se enviará al SII de la **AEAT**.
 
-La cabecera del envío incluye ``IDVersionSii``: **1.1** en producción y **1.0** si la
-compañía tiene activado el **modo de prueba SII** (requisito del entorno de cautela ATC).
+La cabecera del envío incluye siempre ``IDVersionSii`` **1.0** (también en producción);
+la ATC no admite 1.1 (error 4100).
 
 **Art. 25 REF:** para facturas de compra con clave de régimen **17** o ventas con
 clave **19**, el módulo incluye automáticamente el bloque `DatosArticulo25` en el

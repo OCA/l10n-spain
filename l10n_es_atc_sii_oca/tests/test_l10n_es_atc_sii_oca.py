@@ -46,14 +46,14 @@ class TestL10nEsAtcSii(TransactionCase):
         self.assertEqual(identifier_type, "04", "For ATC, EU VAT must be 04")
 
     def test_02_get_aeat_header_version(self):
-        """IDVersionSii: 1.1 en producción y 1.0 en modo prueba SII (ATC)."""
+        """IDVersionSii: siempre 1.0 con ATC (prod y test; evita error 4100)."""
         with patch.object(
             self.account_move_model, "_get_sii_tax_agency"
         ) as mock_get_agency:
             mock_get_agency.return_value = self.atc_agency
             self.invoice.company_id.sii_test = False
             header = self.invoice._get_aeat_header()
-            self.assertEqual(header.get("IDVersionSii"), "1.1")
+            self.assertEqual(header.get("IDVersionSii"), "1.0")
 
             self.invoice.company_id.sii_test = True
             header_test = self.invoice._get_aeat_header()

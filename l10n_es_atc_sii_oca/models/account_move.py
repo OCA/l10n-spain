@@ -98,7 +98,8 @@ class AccountMove(models.Model):
             tipo_comunicacion=tipo_comunicacion, cancellation=cancellation
         )
         if self._is_atc_sii_agency():
-            header["IDVersionSii"] = "1.0" if self.company_id.sii_test else "1.1"
+            # ATC admite solo 1.0 (test y producción); 1.1 provoca error 4100.
+            header["IDVersionSii"] = "1.0"
         return header
 
     def _get_sii_in_taxes(self):

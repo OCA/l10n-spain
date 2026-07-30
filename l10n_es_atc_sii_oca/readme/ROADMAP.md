@@ -12,7 +12,7 @@ Referencias: [FAQ ATC SII](https://www3.gobiernodecanarias.org/tributos/atc/esta
 |----------|--------|---------|
 | Parches genéricos SII peninsular | Política del fork | `l10n_es_aeat_sii_oca` (solo con PR upstream) |
 | Impuestos especiales (`ClaveImpuestoEspecial`) | Sin impuestos Odoo equivalentes | Fase 2.7 (follow-up) |
-| Error 4100 (`IDVersionSii`) | **Ya resuelto** (1.0 en test) | — |
+| Error 4100 (`IDVersionSii`) | **Ya resuelto** (siempre 1.0; ATC no admite 1.1) | — |
 
 ## Entregado en PR actual (F3 + F4)
 
