@@ -5,9 +5,13 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="l10n_es_aeat_sii_oca.invoice_sii_form" />
         <field name="arch" type="xml">
+            <!-- Helper fields only: nesting a <group> inside group_sii_information
+                 breaks the outer col=2 label/field grid in the SII tab. -->
             <field name="sii_property_cadastrial_code" position="after">
                 <field name="sii_registration_key_code" invisible="1" />
                 <field name="sii_art25_required" invisible="1" />
+            </field>
+            <xpath expr="//group[@name='group_sii_information']" position="after">
                 <group
                     string="Art. 25 REF (ATC)"
                     name="group_sii_art25"
@@ -26,7 +30,7 @@
                         required="sii_art25_required and sii_art25_document_id == '01'"
                     />
                 </group>
-            </field>
+            </xpath>
         </field>
     </record>
 </odoo>

@@ -369,7 +369,7 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:0aaa7ce8da294f2cad3d81f552aaea64bfa5f6e58a6e1ea8cf3147c0d9e792c9
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_atc_sii_oca"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-18-0/l10n-spain-18-0-l10n_es_atc_sii_oca"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_atc_sii_oca"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-18-0/l10n-spain-18-0-l10n_es_atc_sii_oca"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <ul class="simple">
 <li><a class="reference external" href="https://www3.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/pdf/Preguntas_frecuentes_SII.pdf">FAQ de la ATC para el
 SII</a></li>
@@ -383,26 +383,541 @@ normativa</a></li>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#usage" id="toc-entry-1">Usage</a></li>
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-2">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-3">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-4">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-5">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-6">Maintainers</a></li>
+<li><a class="reference internal" href="#configuration" id="toc-entry-1">Configuration</a></li>
+<li><a class="reference internal" href="#usage" id="toc-entry-2">Usage</a></li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-3">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#roadmap-pr-l10n-es-atc-sii-oca" id="toc-entry-4">Roadmap PR <tt class="docutils literal">l10n_es_atc_sii_oca</tt></a><ul>
+<li><a class="reference internal" href="#fuera-de-este-pr-modulos-hermanos-o-upstream" id="toc-entry-5">Fuera de este PR (módulos hermanos o upstream)</a></li>
+<li><a class="reference internal" href="#entregado-en-pr-actual-f3-f4" id="toc-entry-6">Entregado en PR actual (F3 + F4)</a></li>
+<li><a class="reference internal" href="#fase-1-datos-igic-y-mapa-aplazada" id="toc-entry-7">Fase 1 — Datos IGIC y mapa (aplazada)</a></li>
+<li><a class="reference internal" href="#fase-2-nodos-de-payload-en-facturas-account-move-entregado-parcialmente" id="toc-entry-8">Fase 2 — Nodos de payload en facturas (<tt class="docutils literal">account.move</tt>) — entregado parcialmente</a></li>
+<li><a class="reference internal" href="#fase-3-validaciones-pre-envio-negativas-locales-hecho" id="toc-entry-9">Fase 3 — Validaciones pre-envío (negativas locales) — hecho</a></li>
+<li><a class="reference internal" href="#fase-4-rectificativas-atc-hecho" id="toc-entry-10">Fase 4 — Rectificativas ATC — hecho</a></li>
+<li><a class="reference internal" href="#fase-5-recc-criterio-de-caja-aplazada" id="toc-entry-11">Fase 5 — RECC (criterio de caja) — aplazada</a></li>
+<li><a class="reference internal" href="#fase-6-libro-anual-de-bienes-de-inversion-aplazada" id="toc-entry-12">Fase 6 — Libro anual de bienes de inversión — aplazada</a></li>
+<li><a class="reference internal" href="#orden-recomendado" id="toc-entry-13">Orden recomendado</a></li>
+<li><a class="reference internal" href="#criterio-de-cierre-del-pr-actual" id="toc-entry-14">Criterio de cierre del PR actual</a></li>
+<li><a class="reference internal" href="#estado-actual-baseline" id="toc-entry-15">Estado actual (baseline)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-16">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-17">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-18">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-19">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-20">Maintainers</a></li>
 </ul>
 </li>
 </ul>
 </div>
+<div class="section" id="configuration">
+<h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
+<p>Después de instalar el módulo, vaya a <strong>Contabilidad → Configuración →
+Ajustes</strong> y, para cada compañía que opere bajo IGIC, establezca el campo
+<strong>Agencia Tributaria</strong> como <strong>Agencia Tributaria Canaria (1.0)</strong>
+(registro definido por <tt class="docutils literal">l10n_es_aeat</tt>).</p>
+<p>El módulo seleccionará automáticamente el mapa de impuestos <strong>SII -
+ATC</strong> para cualquier compañía cuya agencia tributaria sea la ATC. No se
+requiere configuración manual adicional del mapa.</p>
+<p><strong>Versión del protocolo SII (``IDVersionSii``):</strong> en la cabecera del XML
+enviado a la ATC el módulo usa <strong>1.1 en producción</strong> (versión vigente
+del protocolo) y <strong>1.0 cuando está activo el modo de prueba SII</strong>,
+porque el entorno de cautela de la ATC solo admite 1.0. Esto es
+independiente del nombre mostrado de la agencia en la configuración de
+la compañía.</p>
+<p>Para utilizar el entorno de pruebas, habilite la casilla <strong>Modo de
+prueba SII</strong> en los ajustes de la compañía. Todos los envíos se
+redirigirán entonces a los puntos de conexión de <tt class="docutils literal">middlewarecaut</tt>.</p>
+<p>En producción se usan los endpoints de <tt class="docutils literal">sede.gobiernodecanarias.org</tt>
+definidos en los datos del módulo (sin sufijo <tt class="docutils literal"><span class="pre">?wsdl</span></tt>). Al conectar
+con zeep, el módulo añade <tt class="docutils literal"><span class="pre">?wsdl</span></tt> solo en la URL de descarga del WSDL;
+las llamadas SOAP usan el endpoint sin ese sufijo.</p>
+<p><strong>Causas de exención IGIC (E1–E8):</strong> el módulo añade las 8 causas de
+exención del IGIC canario, con los literales actualizados según la
+normativa vigente:</p>
+<ul class="simple">
+<li><strong>E1:</strong> Capítulo I del Decreto Legislativo 1/2025</li>
+<li><strong>E2:</strong> Artículo 11 de la Ley 20/1991 (exportaciones)</li>
+<li><strong>E3:</strong> Artículo 12 de la Ley 20/1991 (asimiladas a exportaciones)</li>
+<li><strong>E4:</strong> Artículo 13 de la Ley 20/1991 (zonas francas y depósitos)</li>
+<li><strong>E5:</strong> Artículo 25 de la Ley 19/1994, del IGIC (bienes de inversión
+REF)</li>
+<li><strong>E6:</strong> Artículo 47 de la Ley 19/1994 (ZEC)</li>
+<li><strong>E7:</strong> Artículo 90 del Decreto Legislativo 1/2025 (REPEP)</li>
+<li><strong>E8:</strong> Exenta Otros / Ley 20/1991</li>
+</ul>
+<p>Configure la causa en el producto o en la posición fiscal; el módulo no
+altera automáticamente la clave de régimen ni la causa de exención.</p>
+<p><strong>Art. 25 REF — Bienes de inversión (Lista L32):</strong> para operaciones con
+clave de régimen <strong>17</strong> (compras) o <strong>19</strong> (ventas), el módulo exige el
+bloque <tt class="docutils literal">DatosArticulo25</tt> en el payload SII. Configure:</p>
+<ol class="arabic simple">
+<li>En el producto o en la posición fiscal, seleccione la causa de
+exención <strong>E5</strong> y el <strong>Tipo de bien Art. 25 (L32)</strong> correspondiente.</li>
+<li>En la factura, en la pestaña SII, rellene los campos del grupo <strong>Art.
+25 REF</strong>:<ul>
+<li><strong>Pago anticipado</strong> (S/N)</li>
+<li><strong>Tipo de documento</strong> (notarial, privado u otros)</li>
+<li>Si es notarial, <strong>Nº de protocolo</strong> y <strong>Nombre del notario</strong>
+(obligatorios)</li>
+</ul>
+</li>
+</ol>
+<p>El módulo bloquea localmente los envíos sin estos datos (errores ATC
+2028/2031).</p>
+<p><strong>Validaciones pre-envío (F3):</strong> la ATC rechaza el envío (error 1295) si
+se informa la clave de régimen <strong>01</strong> (régimen general) junto con
+<tt class="docutils literal">CausaExencion</tt> <strong>E2</strong> o <strong>E3</strong> (exportaciones y asimiladas). Esas
+causas exigen la clave <strong>02</strong> (exportación). El módulo <strong>bloquea
+localmente</strong> esa combinación al validar o enviar la factura
+(<tt class="docutils literal">UserError</tt> con referencia al error 1295).</p>
+</div>
 <div class="section" id="usage">
-<h1><a class="toc-backref" href="#toc-entry-1">Usage</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-2">Usage</a></h1>
 <p>Cuando se valida una factura automáticamente envía la comunicación al
 servidor de la ATC.</p>
 <p>Se debe establecer en la configuración de la compañía la agencia
 tributaria: <strong>Agencia Tributaria Canaria (1.0)</strong>. En caso contrario, se
 enviará al SII de la <strong>AEAT</strong>.</p>
+<p>La cabecera del envío incluye <tt class="docutils literal">IDVersionSii</tt>: <strong>1.1</strong> en producción y
+<strong>1.0</strong> si la compañía tiene activado el <strong>modo de prueba SII</strong>
+(requisito del entorno de cautela ATC).</p>
+<p><strong>Art. 25 REF:</strong> para facturas de compra con clave de régimen <strong>17</strong> o
+ventas con clave <strong>19</strong>, el módulo incluye automáticamente el bloque
+<tt class="docutils literal">DatosArticulo25</tt> en el payload SII. Configure el tipo de bien (Lista
+L32) en el producto (pestaña SII) o en la posición fiscal, y los datos
+del documento en la pestaña SII de la factura.</p>
+</div>
+<div class="section" id="known-issues-roadmap">
+<h1><a class="toc-backref" href="#toc-entry-3">Known issues / Roadmap</a></h1>
+</div>
+<div class="section" id="roadmap-pr-l10n-es-atc-sii-oca">
+<h1><a class="toc-backref" href="#toc-entry-4">Roadmap PR <tt class="docutils literal">l10n_es_atc_sii_oca</tt></a></h1>
+<p>Alcance del PR ATC: <strong>completar payload, validaciones y libros SII
+autonómicos</strong> sin parchear <tt class="docutils literal">l10n_es_aeat_sii_oca</tt> salvo acuerdo
+explícito OCA. Cada ítem enlaza el test que hoy hace <tt class="docutils literal">skipTest</tt> y debe
+pasar al cerrarse.</p>
+<p>Referencias: <a class="reference external" href="https://www3.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/pdf/Preguntas_frecuentes_SII.pdf">FAQ ATC
+SII</a>,
+listas L8A/L8B, BOC.</p>
+<div class="section" id="fuera-de-este-pr-modulos-hermanos-o-upstream">
+<h2><a class="toc-backref" href="#toc-entry-5">Fuera de este PR (módulos hermanos o upstream)</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="29%" />
+<col width="34%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Elemento</th>
+<th class="head">Motivo</th>
+<th class="head">Destino</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Parches genéricos SII
+peninsular</td>
+<td>Política del fork</td>
+<td><tt class="docutils literal">l10n_es_aeat_sii_oca</tt>
+(solo con PR upstream)</td>
+</tr>
+<tr><td>Impuestos especiales
+(<tt class="docutils literal">ClaveImpuestoEspecial</tt>)</td>
+<td>Sin impuestos Odoo
+equivalentes</td>
+<td>Fase 2.7 (follow-up)</td>
+</tr>
+<tr><td>Error 4100
+(<tt class="docutils literal">IDVersionSii</tt>)</td>
+<td><strong>Ya resuelto</strong> (1.0
+en test)</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="entregado-en-pr-actual-f3-f4">
+<h2><a class="toc-backref" href="#toc-entry-6">Entregado en PR actual (F3 + F4)</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="71%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Fase</th>
+<th class="head">Entrega</th>
+<th class="head">Estado</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>3.1–3.5</td>
+<td>Validaciones pre-envío ATC (1295, 1349, 2042,
+régimen 07, F2 &gt; 3.000 €)</td>
+<td><strong>Hecho</strong></td>
+</tr>
+<tr><td>4.1</td>
+<td><tt class="docutils literal">TipoRectificativa = S</tt> +
+<tt class="docutils literal">ImporteRectificacion</tt> (solo inherit ATC)</td>
+<td><strong>Hecho</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="fase-1-datos-igic-y-mapa-aplazada">
+<h2><a class="toc-backref" href="#toc-entry-7">Fase 1 — Datos IGIC y mapa (aplazada)</a></h2>
+<p><strong>Motivo:</strong> cubierto por PR v16 en curso; no duplicar en 18.0 hasta
+alinear ramas.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="20%" />
+<col width="38%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">#</th>
+<th class="head">Entrega</th>
+<th class="head">Ficheros</th>
+<th class="head">Test a activar</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>1.1</td>
+<td>Añadir <tt class="docutils literal">depends</tt>:
+<tt class="docutils literal">l10n_es_igic</tt></td>
+<td><tt class="docutils literal">__manifest__.py</tt></td>
+<td><tt class="docutils literal">test_sale_igic_1_percent_petroleum</tt></td>
+</tr>
+<tr><td>1.2</td>
+<td>Mapa ATC:
+<tt class="docutils literal">igic_r_1</tt> →
+SFESB</td>
+<td><tt class="docutils literal">l10n.es.aeat.map.tax.line.tax.csv</tt>,
+<tt class="docutils literal">atc_sii_map_data.xml</tt></td>
+<td>idem</td>
+</tr>
+<tr><td>1.3</td>
+<td>Documentar
+requisito plan
+<tt class="docutils literal">es_canary_pymes</tt>
+en tests</td>
+<td><tt class="docutils literal">readme/CONFIGURE.md</tt></td>
+<td><tt class="docutils literal">TestL10nEsAtcSiiPayloadBase</tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="fase-2-nodos-de-payload-en-facturas-account-move-entregado-parcialmente">
+<h2><a class="toc-backref" href="#toc-entry-8">Fase 2 — Nodos de payload en facturas (<tt class="docutils literal">account.move</tt>) — entregado parcialmente</a></h2>
+<p><strong>Motivo:</strong> esperar port a 18.0 del bloque DUA e impuestos de
+<a class="reference external" href="https://github.com/OCA/l10n-spain/pull/5050">OCA/l10n-spain#5050</a>
+(rama 16.0).</p>
+<p><strong>Objetivo:</strong> XML/dict ATC completo en emisión y recepción.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="25%" />
+<col width="27%" />
+<col width="44%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">#</th>
+<th class="head">Entrega</th>
+<th class="head">Implementación</th>
+<th class="head">Test</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>2.1</td>
+<td>Régimen <strong>06</strong> →
+<tt class="docutils literal">BaseImponibleACoste</tt></td>
+<td>Campo en línea/ factura o
+coste en desglose; override
+<tt class="docutils literal">_get_aeat_invoice_dict_out</tt></td>
+<td><tt class="docutils literal">test_sale_regime_06_base_imponible_a_coste</tt></td>
+</tr>
+<tr><td>2.2</td>
+<td>Régimen <strong>14</strong> (obra AAPP) →
+<tt class="docutils literal">FechaOperacion</tt></td>
+<td>Campo <tt class="docutils literal">sii_operation_date</tt>
+(o reutilizar existente);
+validar NIF P/Q/S/V</td>
+<td><tt class="docutils literal">test_sale_regime_14_public_works</tt></td>
+</tr>
+<tr><td>2.3</td>
+<td><strong>F3</strong> +
+<tt class="docutils literal">FacturasSustituidas</tt></td>
+<td>Tipo factura + relación
+facturas simplificadas
+agrupadas</td>
+<td><tt class="docutils literal">test_sale_f3_substitution_not_implemented</tt></td>
+</tr>
+<tr><td>2.4</td>
+<td>REPEP compras <strong>15</strong> →
+<tt class="docutils literal">CargaImpositivaImplicita</tt>
++ <tt class="docutils literal">CuotaRecargoMinorista</tt></td>
+<td>Cálculo desde impuesto
+minorista (<tt class="docutils literal">igic_*_cmino</tt>)</td>
+<td><tt class="docutils literal">test_purchase_repep_minorista_clave_15</tt></td>
+</tr>
+<tr><td>2.5</td>
+<td>REPEP compras <strong>16</strong> /
+ventas <strong>18</strong></td>
+<td>Extensión
+<tt class="docutils literal">_get_sii_in_taxes</tt> / dict
+compra y venta</td>
+<td><tt class="docutils literal">test_purchase_repep_pequeño_empresario_clave_16</tt></td>
+</tr>
+<tr><td>2.6</td>
+<td>DUA / importación →
+<tt class="docutils literal">CuotaAIEM</tt></td>
+<td>Integrar con
+<tt class="docutils literal">l10n_es_dua_igic</tt> tras PR
+#5050 en 18.0</td>
+<td><tt class="docutils literal">test_purchase_dua_aiem_cuota</tt></td>
+</tr>
+<tr><td>2.7</td>
+<td>Impuestos especiales
+tabaco/combustibles</td>
+<td><tt class="docutils literal">ClaveImpuestoEspecial</tt></td>
+<td>follow-up posterior</td>
+</tr>
+<tr><td>2.8</td>
+<td>BI ampliado (<tt class="docutils literal">N</tt>,
+deducción diferida)</td>
+<td>Campos + payload compra</td>
+<td>tests gaps BI</td>
+</tr>
+<tr><td>2.9</td>
+<td><strong>Art. 25 REF</strong> —
+<tt class="docutils literal">DatosArticulo25</tt> claves
+17/19</td>
+<td>Campos <tt class="docutils literal">sii_art25_*</tt> + Lista
+L32 + inyección payload</td>
+<td><tt class="docutils literal">test_purchase_art25_clave_17_notarial</tt> y
+relacionados</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="fase-3-validaciones-pre-envio-negativas-locales-hecho">
+<h2><a class="toc-backref" href="#toc-entry-9">Fase 3 — Validaciones pre-envío (negativas locales) — hecho</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="15%" />
+<col width="29%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">#</th>
+<th class="head">Entrega</th>
+<th class="head">Implementación</th>
+<th class="head">Test</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>3.1</td>
+<td>F2 con
+<tt class="docutils literal">ImporteTotal</tt> &gt;
+3.000 €</td>
+<td><tt class="docutils literal">_aeat_check_simplified_limit</tt></td>
+<td><tt class="docutils literal">test_sale_simplified_f2_over_3000_not_allowed</tt></td>
+</tr>
+<tr><td>3.2</td>
+<td>Régimen <strong>07</strong>
+incompatible con
+ISP (S2/S3) y
+exentas E2–E5</td>
+<td><tt class="docutils literal">_aeat_check_regime_07</tt></td>
+<td><tt class="docutils literal">test_sale_regime_07_cash_criterion_isp_incompatible</tt></td>
+</tr>
+<tr><td>3.3</td>
+<td><tt class="docutils literal">BienInversion=S</tt>
+incompatible con
+régimen <strong>08</strong> /
+<strong>18</strong></td>
+<td><tt class="docutils literal">_aeat_check_bien_inversion_regime</tt></td>
+<td><tt class="docutils literal">test_purchase_investment_rejected_regime_08</tt></td>
+</tr>
+<tr><td>3.4</td>
+<td>Coherencia
+<tt class="docutils literal">ImporteTotal</tt> vs
+bases+cuotas
+(tolerancia 10 €)</td>
+<td><tt class="docutils literal">_aeat_check_importe_total</tt></td>
+<td><tt class="docutils literal">test_importe_total_mismatch_validation</tt></td>
+</tr>
+<tr><td>3.5</td>
+<td>Bloqueo local E2/E3
+con régimen <strong>01</strong>
+(error 1295)</td>
+<td><tt class="docutils literal">_aeat_check_regime_01_exempt_export</tt></td>
+<td><tt class="docutils literal">test_sale_export_e2_with_regime_01_payload_documents_atc_rejection</tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="fase-4-rectificativas-atc-hecho">
+<h2><a class="toc-backref" href="#toc-entry-10">Fase 4 — Rectificativas ATC — hecho</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="25%" />
+<col width="19%" />
+<col width="51%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">#</th>
+<th class="head">Entrega</th>
+<th class="head">Implementación</th>
+<th class="head">Test</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>4.1</td>
+<td><tt class="docutils literal">TipoRectificativa = S</tt>
++
+<tt class="docutils literal">ImporteRectificacion</tt></td>
+<td><tt class="docutils literal">selection_add</tt>
+en
+<tt class="docutils literal">account.move</tt>
+ATC</td>
+<td><tt class="docutils literal">test_refund_by_substitution_tipo_s_not_supported</tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="fase-5-recc-criterio-de-caja-aplazada">
+<h2><a class="toc-backref" href="#toc-entry-11">Fase 5 — RECC (criterio de caja) — aplazada</a></h2>
+<p><strong>Motivo:</strong> mismo bloque que Fase 2 (DUA / impuestos v18 vía PR #5050).</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="23%" />
+<col width="22%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">#</th>
+<th class="head">Entrega</th>
+<th class="head">Implementación</th>
+<th class="head">Test</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>5.1</td>
+<td>Cobros régimen 07 →
+<tt class="docutils literal">SiiFactCOBV1SOAP</tt></td>
+<td>Extensión
+<tt class="docutils literal">account.payment</tt></td>
+<td><tt class="docutils literal">test_recc_cobros_regime_07_not_implemented</tt></td>
+</tr>
+<tr><td>5.2</td>
+<td>Pagos régimen 07 →
+<tt class="docutils literal">SiiFactPAGV1SOAP</tt></td>
+<td>idem</td>
+<td><tt class="docutils literal">test_recc_pagos_regime_07_not_implemented</tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="fase-6-libro-anual-de-bienes-de-inversion-aplazada">
+<h2><a class="toc-backref" href="#toc-entry-12">Fase 6 — Libro anual de bienes de inversión — aplazada</a></h2>
+<p><strong>Motivo:</strong> sin equivalente OCA hoy; requiere modelo dedicado.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="15%" />
+<col width="36%" />
+<col width="45%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">#</th>
+<th class="head">Entrega</th>
+<th class="head">Implementación</th>
+<th class="head">Test</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>6.1</td>
+<td>Modelo + wizard
+asiento anual</td>
+<td><tt class="docutils literal">models/l10n_es_atc_sii_investment_book.py</tt></td>
+<td><tt class="docutils literal">test_investment_goods_annual_book_0a_not_implemented</tt></td>
+</tr>
+<tr><td>6.2</td>
+<td>Payload: periodo
+<tt class="docutils literal">0A</tt>, prorrata y
+regularización</td>
+<td><tt class="docutils literal">_get_aeat_book_dict</tt></td>
+<td>idem</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="orden-recomendado">
+<h2><a class="toc-backref" href="#toc-entry-13">Orden recomendado</a></h2>
+<pre class="literal-block">
+Fase 3 → Fase 4 (este PR) → Fase 2 + DUA (#5050) → Fase 5 → Fase 1 (igic_r_1) → Fase 6
+</pre>
+</div>
+<div class="section" id="criterio-de-cierre-del-pr-actual">
+<h2><a class="toc-backref" href="#toc-entry-14">Criterio de cierre del PR actual</a></h2>
+<ul class="simple">
+<li><tt class="docutils literal">invoke test <span class="pre">-m</span> l10n_es_atc_sii_oca</tt>: <strong>0 failed, 0 errors</strong></li>
+<li>Skips permitidos: Fases 1, 2, 5 y 6 (ítems anteriores)</li>
+</ul>
+</div>
+<div class="section" id="estado-actual-baseline">
+<h2><a class="toc-backref" href="#toc-entry-15">Estado actual (baseline)</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="85%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Área</th>
+<th class="head">Cubierto</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>IGIC 0, 3, 5, 7, 9.5, 15, 20 % ventas S1</td>
+<td>Sí</td>
+</tr>
+<tr><td>Exentas E1/E2/E3/E5, exportación régimen 02</td>
+<td>Sí</td>
+</tr>
+<tr><td>No sujetas N1/N2 (art. 9 / localización)</td>
+<td>Sí</td>
+</tr>
+<tr><td>F2 &lt; 3.000 €, bloqueo F2 &gt; 3.000 €</td>
+<td>Sí</td>
+</tr>
+<tr><td>Validaciones 1295, 1349, 2042, régimen 07</td>
+<td>Sí</td>
+</tr>
+<tr><td>Rectificativa S (sustitución)</td>
+<td>Sí</td>
+</tr>
+<tr><td>ISP, BienInversion compras</td>
+<td>Sí</td>
+</tr>
+<tr><td>Rectificativa I, R1–R4, R5 simplificada, bajas</td>
+<td>Sí</td>
+</tr>
+<tr><td><tt class="docutils literal">IDVersionSii</tt>, mapa ATC, WSDL, SFRBI patch</td>
+<td>Sí</td>
+</tr>
+<tr><td>Payload nodos F2, RECC, libro <tt class="docutils literal">0A</tt>, <tt class="docutils literal">igic_r_1</tt></td>
+<td>Pendiente</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="section" id="bug-tracker">
-<h1><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-16">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-spain/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
@@ -410,9 +925,9 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h1><a class="toc-backref" href="#toc-entry-3">Credits</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-17">Credits</a></h1>
 <div class="section" id="authors">
-<h2><a class="toc-backref" href="#toc-entry-4">Authors</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-18">Authors</a></h2>
 <ul class="simple">
 <li>Sistemas de Datos S.L</li>
 <li>Comunitea</li>
@@ -420,12 +935,11 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 </ul>
 </div>
 <div class="section" id="contributors">
-<h2><a class="toc-backref" href="#toc-entry-5">Contributors</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-19">Contributors</a></h2>
 <ul class="simple">
 <li>Sistemas de Datos S.L</li>
 <li><a class="reference external" href="https://comunitea.com/">Comunitea</a>:<ul>
 <li>Omar Castiñeira &lt;<a class="reference external" href="mailto:omar&#64;comunitea.com">omar&#64;comunitea.com</a>&gt;</li>
-<li>Mario Montes &lt;<a class="reference external" href="mailto:mario&#64;comunitea.com">mario&#64;comunitea.com</a>&gt;</li>
 </ul>
 </li>
 <li><a class="reference external" href="https://www.tecnativa.com">Tecnativa</a>:<ul>
@@ -436,10 +950,14 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <li>Vicent Cubells &lt;<a class="reference external" href="mailto:vcubells&#64;apsl.net">vcubells&#64;apsl.net</a>&gt;</li>
 </ul>
 </li>
+<li>BinhexTeam:<ul>
+<li>Mario Montes</li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#toc-entry-6">Maintainers</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-20">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
