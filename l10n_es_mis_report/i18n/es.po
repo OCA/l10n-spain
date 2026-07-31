@@ -118,6 +118,7 @@ msgstr "1. Reserva de capitalización"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_45100
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_47100
 msgid "1. Subvenciones recibidas."
 msgstr "1. Subvenciones recibidas."
 
@@ -351,6 +352,7 @@ msgstr "2. Deudas con entidades de crédito"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_45200
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_47200
 msgid "2. Donaciones y legados recibidos."
 msgstr "2. Donaciones y legados recibidos."
 
@@ -440,8 +442,8 @@ msgstr "3. Deudores varios"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_40300
-msgid "3. Gastos por ayudas y otros "
-msgstr "3. Gastos por ayudas y otros "
+msgid "3. Gastos por ayudas y otros"
+msgstr ""
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_11230
@@ -495,11 +497,6 @@ msgid "3. Reserva de capitalización"
 msgstr "3. Reserva de capitalización"
 
 #. module: l10n_es_mis_report
-#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_47100
-msgid "3. Subvenciones recibidas."
-msgstr "3. Subvenciones recibidas."
-
-#. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_abreviado_40300
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_normal_40300
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pymes_40300
@@ -532,12 +529,8 @@ msgid "4. Derivados"
 msgstr "4. Derivados"
 
 #. module: l10n_es_mis_report
-#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_47200
-msgid "4. Donaciones y legados recibidos."
-msgstr "4. Donaciones y legados recibidos."
-
-#. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_45400
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_47400
 msgid "4. Efecto impositivo."
 msgstr "4. Efecto impositivo."
 
@@ -582,11 +575,6 @@ msgstr "5. Activos por impuesto corriente"
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_11150
 msgid "5. Aplicaciones informáticas"
 msgstr "5. Aplicaciones informáticas"
-
-#. module: l10n_es_mis_report
-#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_47400
-msgid "5. Efecto impositivo."
-msgstr "5. Efecto impositivo."
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_11450
@@ -985,11 +973,9 @@ msgstr "D) RESULTADO DEL EJERCICIO (C + 20)"
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_49000
 msgid ""
-"D)Variaciones de pratrimonio neto por ingresos y gastos imputados "
-"directamente patrimonio neto"
-msgstr ""
 "D)Variaciones de patrimonio neto por ingresos y gastos imputados "
-"directamente patrimonio neto"
+"directamente al patrimonio neto"
+msgstr ""
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_4A000
@@ -1203,8 +1189,8 @@ msgstr "III. Deudores comerciales y otras cuentas a cobrar"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_pymes_sfl_21300
-msgid "III. Exedentes de ejercicios anteriores"
-msgstr "III. Excedentes de ejercicios anteriores"
+msgid "III. Excedentes de ejercicios anteriores"
+msgstr ""
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_pymes_sfl_11300
@@ -1319,6 +1305,11 @@ msgstr "IX. Otros instrumentos de patrimonio neto"
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_eiyg_normal_50090
 msgid "IX. Por coberturas de flujos de efectivo"
 msgstr "IX. Por coberturas de flujos de efectivo"
+
+#. module: l10n_es_mis_report
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_40E00
+msgid "Otros resultados"
+msgstr ""
 
 #. module: l10n_es_mis_report
 #: model:mis.report,name:l10n_es_mis_report.mis_report_es_pyg_pyme_sfl
@@ -1834,11 +1825,37 @@ msgstr "d) Reintegro de subvenciones, donaciones y legados"
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_40140
 msgid ""
-"d) Subvenciones,donaciones y legados imputados al excedente del ejercicio"
-msgstr ""
 "d) Subvenciones, donaciones y legados imputados al excedente del ejercicio"
+msgstr ""
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_40150
 msgid "e) Reintegro de ayudas y asignaciones"
 msgstr "e) Reintegro de ayudas y asignaciones"
+
+#~ msgid "3. Gastos por ayudas y otros "
+#~ msgstr "3. Gastos por ayudas y otros "
+
+#~ msgid "3. Subvenciones recibidas."
+#~ msgstr "3. Subvenciones recibidas."
+
+#~ msgid "4. Donaciones y legados recibidos."
+#~ msgstr "4. Donaciones y legados recibidos."
+
+#~ msgid "5. Efecto impositivo."
+#~ msgstr "5. Efecto impositivo."
+
+#~ msgid ""
+#~ "D)Variaciones de pratrimonio neto por ingresos y gastos imputados "
+#~ "directamente patrimonio neto"
+#~ msgstr ""
+#~ "D)Variaciones de patrimonio neto por ingresos y gastos imputados "
+#~ "directamente patrimonio neto"
+
+#~ msgid "III. Exedentes de ejercicios anteriores"
+#~ msgstr "III. Excedentes de ejercicios anteriores"
+
+#~ msgid ""
+#~ "d) Subvenciones,donaciones y legados imputados al excedente del ejercicio"
+#~ msgstr ""
+#~ "d) Subvenciones, donaciones y legados imputados al excedente del ejercicio"
