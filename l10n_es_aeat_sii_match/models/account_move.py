@@ -9,15 +9,15 @@ class AccountMove(models.Model):
 
     def contrast_aeat(self):
         invalid_invoices = self.filtered(
-            lambda invoice: not invoice.sii_csv
-            or not invoice.sii_enabled
-            or invoice.aeat_state != "sent"
+            lambda invoice: not invoice.sii_enabled
             or invoice.state != "posted"
+            or (invoice.aeat_state != "sent" and not invoice.aeat_send_failed)
         )
         if invalid_invoices:
             raise exceptions.UserError(
                 _(
-                    "The invoices must be posted and have a CSV in order to be matched."
+                    "The invoices must be posted and either already sent to the "
+                    "SII or have a failed send, in order to be matched."
                     "\nNon-matchable invoices: %(invoice_names)s",
                     invoice_names=", ".join(i.name for i in invalid_invoices),
                 )

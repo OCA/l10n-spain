@@ -1,6 +1,7 @@
 # Copyright 2018 Studio73 - Abraham Anes
 # Copyright 2019 Studio73 - Pablo Fuentes
 # Copyright 2022,2026 Tecnativa - Pedro M. Baeza
+# Copyright 2026 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import json
@@ -241,20 +242,37 @@ class SiiMixin(models.AbstractModel):
             inv_dict = document._get_contrast_invoice_dict()
             inv_vals = {"sii_match_sent": json.dumps(inv_dict, indent=4)}
             try:
-                res_line = False
                 if mapping_key in ["out_invoice", "out_refund"]:
                     res = serv.ConsultaLRFacturasEmitidas(header, inv_dict)
-                    res_line = res["RegistroRespuestaConsultaLRFacturasEmitidas"][0]
+                    res_lines = res["RegistroRespuestaConsultaLRFacturasEmitidas"]
                 elif mapping_key in ["in_invoice", "in_refund"]:
                     res = serv.ConsultaLRFacturasRecibidas(header, inv_dict)
-                    res_line = res["RegistroRespuestaConsultaLRFacturasRecibidas"][0]
-                match_vals = self._get_match_report_values(res_line)
-                inv_vals["sii_match_return"] = match_vals["sii_match_return"]
+                    res_lines = res["RegistroRespuestaConsultaLRFacturasRecibidas"]
+                res_line = res_lines[0] if res_lines else False
+                match_vals = document._get_match_report_values(res_line)
+                inv_vals["sii_match_return"] = match_vals.get("sii_match_return", False)
                 inv_vals["sii_match_state"] = match_vals["sii_match_state"]
                 inv_vals["sii_contrast_state"] = match_vals["sii_contrast_state"]
                 inv_vals["sii_match_difference_ids"] = [Command.clear()] + match_vals[
                     "sii_match_difference_ids"
                 ]
+                if (
+                    not document.sii_csv
+                    and match_vals["invoice_location"] == "both"
+                    and match_vals["csv"]
+                ):
+                    # The AEAT confirms this invoice is actually registered
+                    # (typical case: it was sent and accepted, but Odoo never
+                    # processed the response, e.g. a timeout) - recover the
+                    # real send state instead of leaving it stuck on error.
+                    inv_vals.update(
+                        {
+                            "sii_csv": match_vals["csv"],
+                            "aeat_state": "sent",
+                            "aeat_send_error": False,
+                            "aeat_send_failed": False,
+                        }
+                    )
                 document.write(inv_vals)
             except Exception as fault:
                 new_cr = Registry(self.env.cr.dbname).cursor()
