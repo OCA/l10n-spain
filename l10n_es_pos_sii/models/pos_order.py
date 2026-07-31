@@ -158,19 +158,24 @@ class PosOrder(models.Model):
         for line in self.lines:
             if not line.tax_ids_after_fiscal_position:
                 continue
+            if line.tax_ids_after_fiscal_position.filtered("price_include"):
+                # Due to the way Odoo computes taxes and totals in PoS orders, the
+                # most similar option for getting proper base and amount information
+                # is to round by line
+                rounding_method = "round_per_line"
+            else:
+                rounding_method = line.company_id.tax_calculation_rounding_method
             line_taxes = line.tax_ids_after_fiscal_position.sudo().compute_all(
                 line.price_unit * (1 - (line.discount or 0.0) / 100.0),
-                line.order_id.pricelist_id.currency_id or self.session_id.currency_id,
+                line.order_id.currency_id,
                 line.qty,
                 product=line.product_id,
                 partner=self._aeat_get_partner(),
+                rounding_method=rounding_method,
             )
             for line_tax in line_taxes["taxes"]:
                 tax = self.env["account.tax"].browse(line_tax["id"])
-                taxes.setdefault(
-                    tax,
-                    {"tax": tax, "amount": 0.0, "base": 0.0},
-                )
+                taxes.setdefault(tax, {"tax": tax, "amount": 0.0, "base": 0.0})
                 taxes[tax]["amount"] += line_tax["amount"]
                 taxes[tax]["base"] += line_tax["base"]
         return taxes
