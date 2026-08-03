@@ -1,7 +1,7 @@
 # Copyright 2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.tools import float_compare
 
 
@@ -17,7 +17,7 @@ class AccountAssetProfile(models.Model):
     @api.model
     def _selection_method_time(self):
         res = super()._selection_method_time()
-        res.append(("percentage", _("Fixed percentage")))
+        res.append(("percentage", self.env._("Fixed percentage")))
         return res
 
     annual_percentage = fields.Float(
@@ -57,10 +57,7 @@ class AccountAssetProfile(models.Model):
             if float_compare(new_percentage, profile.annual_percentage, 2) != 0:
                 profile.annual_percentage = new_percentage
 
-    _sql_constraints = [
-        (
-            "annual_percentage",
-            "CHECK (annual_percentage > 0 and annual_percentage <= 100)",
-            "Wrong percentage!",
-        ),
-    ]
+    _annual_percentage_check = models.Constraint(
+        "CHECK (annual_percentage > 0 and annual_percentage <= 100)",
+        "Wrong percentage!",
+    )

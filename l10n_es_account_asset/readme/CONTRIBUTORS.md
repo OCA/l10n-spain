@@ -2,6 +2,7 @@
   - Pedro M. Baeza
   - Antonio Espinosa
   - João Marques
+  - Carlos Lopez
 - [Sygel](https://www.sygel.es):
   - Valentin Vinagre
   - Manuel Regidor

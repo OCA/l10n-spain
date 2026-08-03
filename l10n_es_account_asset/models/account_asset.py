@@ -28,13 +28,10 @@ class AccountAssetAsset(models.Model):
         store=True,
     )
 
-    _sql_constraints = [
-        (
-            "annual_percentage",
-            "CHECK (annual_percentage > 0 and annual_percentage <= 100)",
-            "Wrong percentage!",
-        ),
-    ]
+    _annual_percentage_check = models.Constraint(
+        "CHECK (annual_percentage > 0 and annual_percentage <= 100)",
+        "Wrong percentage!",
+    )
 
     @api.depends("profile_id")
     def _compute_annual_percentage(self):
