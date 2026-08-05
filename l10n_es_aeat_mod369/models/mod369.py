@@ -144,10 +144,7 @@ class L10nEsAeatMod369Report(models.Model):
         oss_taxes = self.env["account.tax"].search(
             [("oss_country_id", "!=", False), ("company_id", "=", self.company_id.id)]
         )
-        oss_countries = {}
-        for tax in oss_taxes:
-            oss_countries.setdefault(tax.oss_country_id, self.env["account.tax"])
-            oss_countries[tax.oss_country_id] |= tax
+        oss_countries = oss_taxes.grouped("oss_country_id")
         oss_taxes_map = {}
         line_number = 1
         previous_country = False
