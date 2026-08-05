@@ -10,6 +10,7 @@ _logger = logging.getLogger(__name__)
 
 try:
     from zeep import Client
+    from zeep.cache import SqliteCache
     from zeep.plugins import HistoryPlugin
     from zeep.transports import Transport
 except (OSError, ImportError) as err:
@@ -29,11 +30,11 @@ class L10nEsAeatSoap(models.TransientModel):
             public_crt, private_key = self.env[
                 "l10n.es.aeat.certificate"
             ].get_certificates()
-
         session = Session()
         session.cert = (public_crt, private_key)
-        transport = Transport(session=session)
-
+        # The cache avoids hammering AEAT and W3 servers with WSDL and schema requests
+        cache = SqliteCache(timeout=7200)  # in seconds
+        transport = Transport(session=session, cache=cache)
         history = HistoryPlugin()
         client = Client(wsdl=wsdl, transport=transport, plugins=[history])
         return client
