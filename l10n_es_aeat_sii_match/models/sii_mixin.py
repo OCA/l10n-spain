@@ -287,3 +287,12 @@ class SiiMixin(models.AbstractModel):
                 new_cr.commit()
                 new_cr.close()
                 raise
+
+    def _send_document_to_sii(self):
+        res = super()._send_document_to_sii()
+        # Try match invoice data with SII info in this case
+        # TODO: Use other data like as a standard code instead of this string
+        self.filtered(
+            lambda am: am.aeat_send_error == "3000 | Factura duplicada"
+        )._contrast_invoice_to_aeat()
+        return res
