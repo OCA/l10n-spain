@@ -3,7 +3,7 @@
 # Copyright 2023 Factor Libre - Aritz Olea
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -361,5 +361,7 @@ class L10nEsAeatMod369Report(models.Model):
             return super().create_regularization_move()
         else:
             raise UserError(
-                _("It is not possible to create a move if the total amount is 0.")
+                self.env._(
+                    "It is not possible to create a move if the total amount is 0."
+                )
             )
