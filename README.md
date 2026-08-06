@@ -36,7 +36,7 @@ addon | version | maintainers | summary
 [l10n_es_aeat_mod190](l10n_es_aeat_mod190/) | 19.0.1.0.0 |  | AEAT modelo 190
 [l10n_es_aeat_mod216](l10n_es_aeat_mod216/) | 19.0.1.0.0 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | AEAT modelo 216
 [l10n_es_aeat_mod296](l10n_es_aeat_mod296/) | 19.0.1.0.0 |  | AEAT modelo 296
-[l10n_es_aeat_mod303](l10n_es_aeat_mod303/) | 19.0.1.0.0 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | AEAT modelo 303
+[l10n_es_aeat_mod303](l10n_es_aeat_mod303/) | 19.0.1.0.1 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | AEAT modelo 303
 [l10n_es_aeat_mod347](l10n_es_aeat_mod347/) | 19.0.1.0.3 |  | AEAT modelo 347
 [l10n_es_aeat_mod349](l10n_es_aeat_mod349/) | 19.0.1.1.2 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | AEAT modelo 349
 [l10n_es_aeat_mod390](l10n_es_aeat_mod390/) | 19.0.1.0.0 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | AEAT modelo 390
