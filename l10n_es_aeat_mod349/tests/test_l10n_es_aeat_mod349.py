@@ -461,6 +461,16 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         )
         self.assertTrue(partner_record.partner_record_ok)
 
+        # XI VAT (Northern Ireland) without GB prefix - should be valid
+        self.customer.write(
+            {"vat": "XI123456782", "country_id": self.env.ref("base.uk").id}
+        )
+        model349_errors.button_recalculate()
+        partner_record = model349_errors.partner_record_ids.filtered(
+            lambda x: x.partner_id == self.customer
+        )
+        self.assertTrue(partner_record.partner_record_ok)
+        self.assertEqual(partner_record.partner_vat, "XI123456782")
         # Reset vat and country
         self.customer.write(
             {"vat": "BE0411905847", "country_id": self.env.ref("base.be").id}

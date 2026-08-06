@@ -433,7 +433,8 @@ class Mod349PartnerRecord(models.Model):
         # and then to ISO code with _map_aeat_country_iso_code
         country_code = record.partner_id._map_aeat_country_code(country_code)
         country = self.env["res.country"].search([("code", "=", country_code)])
-        country_code = record.partner_id._map_aeat_country_iso_code(country)
+        if country:
+            country_code = record.partner_id._map_aeat_country_iso_code(country)
 
         # If country code is found, and it's not in the VAT, assign it
         if country_code and not record.partner_vat.startswith(country_code):
