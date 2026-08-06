@@ -89,15 +89,16 @@
                             groups="account.group_account_invoice"
                             invisible="1"
                         />
+                        <field name="sii_send_date_visible" invisible="1" />
                         <label
                             for="sii_send_date"
                             string="Send date"
-                            invisible="aeat_state in ['sent','cancelled'] or state != 'posted'"
+                            invisible="not sii_send_date_visible"
                         />
                         <div
                             name="sii_send_date"
                             string="Send date"
-                            invisible="aeat_state in ['sent','cancelled'] or state != 'posted'"
+                            invisible="not sii_send_date_visible"
                         >
                             <field name="sii_send_date" class="oe_inline text-break" />
                             <button

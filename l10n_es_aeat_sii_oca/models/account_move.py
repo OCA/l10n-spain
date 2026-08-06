@@ -87,6 +87,7 @@ class AccountMove(models.Model):
         copy=False,
     )
     sii_dua_invoice = fields.Boolean(compute="_compute_dua_invoice")
+    sii_send_date_visible = fields.Boolean(compute="_compute_sii_send_date_visible")
 
     @api.depends("move_type")
     def _compute_sii_refund_type(self):
@@ -119,6 +120,18 @@ class AccountMove(models.Model):
             taxes = invoice.company_id._get_taxes_from_xmlids(xmlids)
             invoice.sii_dua_invoice = invoice.line_ids.filtered(
                 lambda x, taxes=taxes: bool(taxes & x.tax_ids)
+            )
+
+    @api.depends("state", "aeat_state", "sii_needs_cancel")
+    def _compute_sii_send_date_visible(self):
+        for invoice in self:
+            invoice.sii_send_date_visible = (
+                invoice.state == "posted"
+                and invoice.aeat_state not in ["sent", "cancelled"]
+            ) or (
+                invoice.state == "cancel"
+                and invoice.sii_needs_cancel
+                and invoice.aeat_state in ["sent", "sent_w_errors", "sent_modified"]
             )
 
     def _aeat_get_partner(self):
