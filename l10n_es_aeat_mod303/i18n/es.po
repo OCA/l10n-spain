@@ -540,18 +540,6 @@ msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
 
 #. module: l10n_es_aeat_mod303
-#. odoo-python
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:0
-msgid ""
-"In previous declarations this year you reported a Result Type 'To "
-"Compensate'. You might need to fill field '[67] Fees to compensate' in this "
-"declaration."
-msgstr ""
-"En declaraciones anteriores de este año, informó un Tipo de Resultado 'Para "
-"compensar'. Es posible que deba completar el campo '[67] Tarifas para "
-"compensar' en esta declaración."
-
-#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__regularizacion_anual
 msgid ""
 "In the last auto settlement of the year, shall be recorded (the fourth "
@@ -1109,6 +1097,15 @@ msgstr "¿SII voluntario?"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__has_operation_volume
 msgid "¿Volumen de operaciones?"
 msgstr "¿Volumen de operaciones?"
+
+#~ msgid ""
+#~ "In previous declarations this year you reported a Result Type 'To "
+#~ "Compensate'. You might need to fill field '[67] Fees to compensate' in "
+#~ "this declaration."
+#~ msgstr ""
+#~ "En declaraciones anteriores de este año, informó un Tipo de Resultado "
+#~ "'Para compensar'. Es posible que deba completar el campo '[67] Tarifas "
+#~ "para compensar' en esta declaración."
 
 #~ msgid "[112] Payment on account for petrol deliveries"
 #~ msgstr ""
