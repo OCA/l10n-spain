@@ -384,6 +384,7 @@ class L10nEsAeatReport(models.AbstractModel):
         return self.search(
             Domain.AND(
                 [
+                    Domain("company_id", "=", self.company_id.id),
                     Domain("year", "=", self.year),
                     Domain("date_start", "<", date),
                 ]
