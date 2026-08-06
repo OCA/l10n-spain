@@ -1,6 +1,7 @@
 # Copyright 2018 Studio73 - Abraham Anes
 # Copyright 2019 Studio73 - Pablo Fuentes
 # Copyright 2022 Tecnativa - Pedro M. Baeza
+# Copyright 2026 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import json
@@ -118,15 +119,15 @@ class AccountMove(models.Model):
 
     def contrast_aeat(self):
         invalid_invoices = self.filtered(
-            lambda invoice: not invoice.sii_csv
-            or not invoice.sii_enabled
-            or invoice.aeat_state != "sent"
+            lambda invoice: not invoice.sii_enabled
             or invoice.state != "posted"
+            or (invoice.aeat_state != "sent" and not invoice.aeat_send_failed)
         )
         if invalid_invoices:
             raise exceptions.UserError(
                 _(
-                    "The invoices must be posted and have a CSV in order to be matched."
+                    "The invoices must be posted and either already sent to the "
+                    "SII or have a failed send, in order to be matched."
                     "\nNon-matchable invoices: %(invoice_names)s",
                     invoice_names=", ".join(i.name for i in invalid_invoices),
                 )
@@ -205,36 +206,53 @@ class AccountMove(models.Model):
             try:
                 inv_dict = invoice._get_contrast_invoice_dict()
                 inv_vals["sii_match_sent"] = json.dumps(inv_dict, indent=4)
-                res_line = False
                 if invoice.move_type in ["out_invoice", "out_refund"]:
                     res = serv.ConsultaLRFacturasEmitidas(header, inv_dict)
-                    res_line = res["RegistroRespuestaConsultaLRFacturasEmitidas"][0]
+                    res_lines = res["RegistroRespuestaConsultaLRFacturasEmitidas"]
                 elif invoice.move_type in ["in_invoice", "in_refund"]:
                     res = serv.ConsultaLRFacturasRecibidas(header, inv_dict)
-                    res_line = res["RegistroRespuestaConsultaLRFacturasRecibidas"][0]
+                    res_lines = res["RegistroRespuestaConsultaLRFacturasRecibidas"]
+                res_line = res_lines[0] if res_lines else False
                 inv_vals.update(
                     {"sii_contrast_state": "no_exist", "sii_match_state": False}
                 )
                 if res_line:
-                    if res_line["DatosPresentacion"]["CSV"] == self.sii_csv:
-                        cuadre_state = (
-                            res_line["EstadoFactura"]["EstadoCuadre"]
-                            if res_line["EstadoFactura"]
-                            else False
+                    sii_csv = invoice.sii_csv
+                    cuadre_state = (
+                        res_line["EstadoFactura"]["EstadoCuadre"]
+                        if res_line["EstadoFactura"]
+                        else False
+                    )
+                    if (
+                        not sii_csv
+                        and cuadre_state
+                        and res_line["DatosPresentacion"]["CSV"]
+                    ):
+                        # A failed send (e.g. "3000 | Factura duplicada")
+                        # usually means the AEAT already accepted an earlier
+                        # attempt whose response Odoo never processed -
+                        # recover the real send state instead of leaving the
+                        # invoice stuck on error.
+                        sii_csv = res_line["DatosPresentacion"]["CSV"]
+                        inv_vals.update(
+                            {
+                                "sii_csv": sii_csv,
+                                "aeat_state": "sent",
+                                "aeat_send_error": False,
+                                "aeat_send_failed": False,
+                            }
                         )
-                        if cuadre_state:
-                            inv_vals.update(
-                                {
-                                    "sii_match_state": res_line["EstadoFactura"][
-                                        "EstadoCuadre"
-                                    ],
-                                    "sii_contrast_state": "correct",
-                                }
-                            )
-                            diffs = invoice._get_diffs_values(res_line)
-                            if diffs:
-                                inv_vals["sii_match_difference_ids"] = diffs
-                                inv_vals.update({"sii_contrast_state": "partially"})
+                    if res_line["DatosPresentacion"]["CSV"] == sii_csv and cuadre_state:
+                        inv_vals.update(
+                            {
+                                "sii_match_state": cuadre_state,
+                                "sii_contrast_state": "correct",
+                            }
+                        )
+                        diffs = invoice._get_diffs_values(res_line)
+                        if diffs:
+                            inv_vals["sii_match_difference_ids"] = diffs
+                            inv_vals.update({"sii_contrast_state": "partially"})
                 invoice.sii_match_difference_ids.unlink()
                 inv_vals["sii_match_return"] = json.dumps(
                     serialize_object(res), indent=4

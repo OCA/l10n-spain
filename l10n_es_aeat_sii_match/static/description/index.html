@@ -390,6 +390,12 @@ Odoo y AEAT</li>
 ‘Parcialmente contrastadas’, es decir, las que la propia AEAT no haya
 podido cotejar entre el emisor de la factura y el receptor, siendo los
 dos obligados a declarar en el sistema SII.</li>
+<li>El botón/acción “Contrast with AEAT” también puede lanzarse sobre
+facturas cuyo envío al SII haya fallado (por ejemplo, con el error
+“3000 | Factura duplicada”). Si la AEAT confirma que la factura ya
+está registrada, se recupera su CSV y se corrige el estado de envío en
+Odoo, en lugar de dejarla bloqueada indefinidamente en estado de
+error.</li>
 </ul>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
@@ -433,6 +439,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <li><a class="reference external" href="https://www.tecnativa.com">Tecnativa</a>:<ul>
 <li>Víctor Martínez</li>
 <li>David Bañón Gil</li>
+<li>Sergio Teruel</li>
 </ul>
 </li>
 </ul>
