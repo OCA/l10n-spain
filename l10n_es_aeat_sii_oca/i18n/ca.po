@@ -976,6 +976,13 @@ msgid "Sii Refund Specific Invoice Type"
 msgstr "Tipus de factura específica d'abonament de SII"
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_send_date_visible
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_send_date_visible
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_send_date_visible
+msgid "Sii Send Date Visible"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_start_date
 msgid "Sii Start Date"
 msgstr ""
