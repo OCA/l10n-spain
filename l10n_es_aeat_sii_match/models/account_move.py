@@ -5,12 +5,14 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import json
+import logging
 
 from deepdiff import DeepDiff
 from zeep.helpers import serialize_object
 
-from odoo import _, api, exceptions, fields, models
-from odoo.modules.registry import Registry
+from odoo import _, exceptions, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class AccountMove(models.Model):
@@ -259,9 +261,9 @@ class AccountMove(models.Model):
                 )
                 invoice.write(inv_vals)
             except Exception as fault:
-                new_cr = Registry(self.env.cr.dbname).cursor()
-                env = api.Environment(new_cr, self.env.uid, self.env.context)
-                invoice = env["account.move"].browse(self.id)
+                _logger.exception(
+                    "Error contrasting invoice %s with AEAT", invoice.name
+                )
                 inv_vals.update(
                     {
                         "sii_match_return": repr(fault),
@@ -270,9 +272,6 @@ class AccountMove(models.Model):
                     }
                 )
                 invoice.write(inv_vals)
-                new_cr.commit()
-                new_cr.close()
-                raise
 
     def _send_document_to_sii(self):
         res = super()._send_document_to_sii()
