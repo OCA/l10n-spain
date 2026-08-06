@@ -10,8 +10,7 @@ import logging
 from deepdiff import DeepDiff
 from zeep.helpers import serialize_object
 
-from odoo import Command, api, fields, models
-from odoo.modules.registry import Registry
+from odoo import Command, fields, models
 from odoo.tools import float_compare
 
 _logger = logging.getLogger(__name__)
@@ -276,18 +275,17 @@ class SiiMixin(models.AbstractModel):
                     )
                 document.write(inv_vals)
             except Exception as fault:
-                new_cr = Registry(self.env.cr.dbname).cursor()
-                env = api.Environment(new_cr, self.env.uid, self.env.context)
-                document = env[document._name].browse(document.id)
-                inv_vals = {
-                    "sii_match_return": repr(fault),
-                    "sii_contrast_state": False,
-                    "sii_match_state": False,
-                }
-                document.write(inv_vals)
-                new_cr.commit()
-                new_cr.close()
-                raise
+                _logger.exception(
+                    "Error contrasting %s with AEAT", document.display_name
+                )
+                document.write(
+                    {
+                        "sii_match_sent": inv_vals["sii_match_sent"],
+                        "sii_match_return": repr(fault),
+                        "sii_contrast_state": False,
+                        "sii_match_state": False,
+                    }
+                )
 
     def _send_sii_locked_documents(self, book, communication_type):
         res = super()._send_sii_locked_documents(book, communication_type)
