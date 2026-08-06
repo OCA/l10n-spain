@@ -3,13 +3,17 @@
 # Copyright 2025 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import logging
 from collections import OrderedDict
 from datetime import datetime
+from textwrap import indent
 
 import pytz
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+
+_logger = logging.getLogger(__name__)
 
 VERIFACTU_VALID_INVOICE_STATES = ["posted"]
 
@@ -110,7 +114,12 @@ class AccountMove(models.Model):
         return invoice_type
 
     def _get_verifactu_description(self):
-        return self.verifactu_description or self.company_id.verifactu_description
+        description = (
+            self.verifactu_description or self.company_id.verifactu_description
+        )
+        # Truncated, like the issuer and receiver names: a description over the
+        # limit is set on the company and would otherwise block every invoice.
+        return description and description[:500]
 
     def _get_document_date(self):
         """
@@ -345,7 +354,10 @@ class AccountMove(models.Model):
         else:
             tax_type = abs(tax.amount)
         tax_dict = {
-            "TipoImpositivo": str(tax_type),
+            # The schema takes two decimals at most, and `amount` holds four:
+            # rounding here keeps a rate like 7.527 from blocking every invoice
+            # that carries that tax.
+            "TipoImpositivo": str(round(tax_type, 2)),
             "BaseImponibleOimporteNoSujeto": tax_base_amount,
         }
         key = "CuotaRepercutida"
@@ -507,7 +519,12 @@ class AccountMove(models.Model):
             identifier = "NO_DISPONIBLE"
             identifier_type = "06"
         if identifier_type == "":
-            return {"IDDestinatario": {"NombreRazon": receiver.name, "NIF": identifier}}
+            return {
+                "IDDestinatario": {
+                    "NombreRazon": receiver.name and receiver.name[:120],
+                    "NIF": identifier,
+                }
+            }
         if (
             receiver._map_aeat_country_code(country_code)
             in receiver._get_aeat_europe_codes()
@@ -515,7 +532,7 @@ class AccountMove(models.Model):
             identifier = country_code + identifier
         return {
             "IDDestinatario": {
-                "NombreRazon": receiver.name,
+                "NombreRazon": receiver.name and receiver.name[:120],
                 "IDOtro": {
                     "CodigoPais": receiver.country_id.code,
                     "IDType": identifier_type,
@@ -540,12 +557,58 @@ class AccountMove(models.Model):
 
     def _post(self, soft=True):
         res = super()._post(soft=soft)
+        schema_errors = {}
         for record in self.sorted(lambda inv: inv.name or ""):
             if record.verifactu_enabled and record.aeat_state == "not_sent":
                 record._check_verifactu_configuration()
                 record.verifactu_registration_date = datetime.now()
                 record._generate_verifactu_chaining()
+                if not record.company_id.verifactu_skip_schema_check:
+                    error = record._get_verifactu_schema_error()
+                    if error:
+                        schema_errors[record.name] = error
+        if schema_errors:
+            # Every offender at once: the whole posting is rolled back anyway,
+            # so reporting only the first would make a mass posting be repeated
+            # once per invoice.
+            raise UserError(
+                _(
+                    "The following invoices cannot be posted because their "
+                    "VERI*FACTU record could not be built or does not match "
+                    "the official schema:\n\n%(details)s",
+                    details="\n\n".join(
+                        "%s:\n%s" % (name, indent(error, "    "))
+                        for name, error in schema_errors.items()
+                    ),
+                )
+            )
         return res
+
+    def _get_verifactu_schema_error(self):
+        """Reason this record would not reach the Agency as it is, if any.
+
+        Checked after `_generate_verifactu_chaining` and not inside
+        `_check_verifactu_configuration`: that one runs earlier, when the
+        payload still has no registration date, hash or chaining block.
+        Posting is the last moment at which the invoice can be corrected.
+        """
+        self.ensure_one()
+        try:
+            return self._validate_verifactu_registro(self._get_verifactu_invoice_dict())
+        except UserError as fault:
+            # A record that cannot even be built will not reach the Agency
+            # either, so it is reported like a schema violation instead of
+            # raised: raising here would abort the whole posting at the first
+            # offender, which is what reporting every one of them avoids.
+            # The message is already translated and actionable.
+            return str(fault)
+        except Exception:
+            # Fail open: a failure of the check itself must not stop invoicing.
+            _logger.exception(
+                "VERI*FACTU: the schema of invoice %s could not be checked",
+                self.name,
+            )
+            return None
 
     def _check_verifactu_configuration(self, suffixes=None):
         if not suffixes:

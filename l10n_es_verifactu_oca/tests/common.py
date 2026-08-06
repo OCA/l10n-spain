@@ -1,5 +1,7 @@
 # Copyright 2024 FactorLibre - Luis J. Salvatierra
 # Copyright 2025 Tecnativa - Pedro M. Baeza
+from unittest.mock import MagicMock
+
 from odoo import Command, fields
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
@@ -279,3 +281,37 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
         """
         invoice._generate_verifactu_chaining()
         return invoice.last_verifactu_invoice_entry_id
+
+    def _mock_batch_response(self, documents, state="Correcto"):
+        """Build an AEAT response with one line per document of a batch.
+
+        The single-document helper rewrites `NumSerieFactura` with one invoice
+        name, so it cannot be used for a batch: a response line only matches an
+        entry when its number equals the document's, and unmatched lines are
+        skipped silently.
+        """
+        return {
+            "CSV": "A-Y23JP3582934",
+            "EstadoEnvio": state,
+            "RespuestaLinea": [
+                {
+                    "IDFactura": {
+                        "IDEmisorFactura": "89890001K",
+                        "NumSerieFactura": document._get_document_serial_number(),
+                        "FechaExpedicionFactura": "01-01-2026",
+                    },
+                    "Operacion": {"TipoOperacion": "Alta"},
+                    "EstadoRegistro": state,
+                }
+                for document in documents
+            ],
+        }
+
+    def _mock_batch_service(self, mock_connect, documents, state="Correcto"):
+        """Patch the connection so a batch send answers for `documents` only."""
+        mock_service = MagicMock()
+        mock_service.RegFactuSistemaFacturacion.return_value = (
+            self._mock_batch_response(documents, state=state)
+        )
+        mock_connect.return_value = mock_service
+        return mock_service

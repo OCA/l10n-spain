@@ -12,6 +12,15 @@ class ResCompany(models.Model):
     verifactu_test = fields.Boolean(
         string="VERI*FACTU test environment?", tracking=True
     )
+    verifactu_skip_schema_check = fields.Boolean(
+        string="VERI*FACTU skip the schema check when posting",
+        help="Stop refusing to post invoices whose VERI*FACTU record does not "
+        "match the official schema. It is an escape hatch to keep invoicing "
+        "while a wrong rejection is looked into, not a permanent setting.\n"
+        "It does not make those records reach the Agency: a record that does "
+        "not match the schema is still left out when the batch is sent.",
+        tracking=True,
+    )
     verifactu_description = fields.Text(
         string="VERI*FACTU description",
         default="/",
