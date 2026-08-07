@@ -15,6 +15,7 @@ _logger = logging.getLogger(__name__)
 
 try:
     from zeep import Client
+    from zeep.cache import SqliteCache
     from zeep.plugins import HistoryPlugin
     from zeep.transports import Transport
 except (OSError, ImportError) as err:
@@ -140,7 +141,9 @@ class AeatMixin(models.AbstractModel):
         params = self._connect_params_aeat(mapping_key)
         session = Session()
         session.cert = (public_crt, private_key)
-        transport = Transport(session=session)
+        # The cache avoids hammering AEAT and W3 servers with WSDL and schema requests
+        cache = SqliteCache(timeout=7200)  # in seconds
+        transport = Transport(session=session, cache=cache)
         history = HistoryPlugin()
         client = Client(wsdl=params["wsdl"], transport=transport, plugins=[history])
         return self._bind_service(client, params["port_name"], params["address"])
