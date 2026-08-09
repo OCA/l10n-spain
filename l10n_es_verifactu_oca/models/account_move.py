@@ -539,6 +539,22 @@ class AccountMove(models.Model):
         )
 
     def _post(self, soft=True):
+        invalid_moves = self.filtered(
+            lambda move: (
+                move.company_id.verifactu_enabled
+                and move.journal_id.type == "sale"
+                and move.move_type in ("out_invoice", "out_refund")
+                and not move.journal_id.verifactu_enabled
+                and not move.journal_id._is_verifactu_exempt()
+            )
+        )
+        if invalid_moves:
+            raise UserError(
+                _(
+                    "No se pueden validar facturas de venta en un diario sin "
+                    "Verifactu cuando la compañía tiene Verifactu activado."
+                )
+            )
         res = super()._post(soft=soft)
         for record in self.sorted(lambda inv: inv.name or ""):
             if record.verifactu_enabled and record.aeat_state == "not_sent":
