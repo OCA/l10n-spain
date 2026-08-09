@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="invoice_external_sif_form" model="ir.ui.view">
+        <field name="name">account.move.form - external SIF invoice</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="l10n_es_verifactu_oca.invoice_verifactu_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="before">
+                <field name="is_external_invoice" invisible="1" />
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page
+                    name="external_sif"
+                    string="External SIF"
+                    attrs="{'invisible': [('is_external_invoice', '=', False)]}"
+                >
+                    <group>
+                        <field name="external_sif_id" />
+                        <field name="external_sif_installation" />
+                        <field name="external_rf_identifier" />
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

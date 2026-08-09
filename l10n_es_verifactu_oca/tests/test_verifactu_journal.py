@@ -21,7 +21,7 @@ class TestVerifactuJournal(TestVerifactuCommon):
             )
 
         with self.assertRaises(ValidationError):
-            self.journal.write({"verifactu_enabled": False})
+            self.invoice.journal_id.write({"verifactu_enabled": False})
 
     def test_legacy_journal_cannot_post_customer_invoice(self):
         journal = self.env["account.journal"].create(

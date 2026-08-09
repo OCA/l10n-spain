@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_account_journal_form_inherit" model="ir.ui.view">
+        <field name="name">account.journal.form - external SIF invoices</field>
+        <field name="model">account.journal</field>
+        <field
+            name="inherit_id"
+            ref="l10n_es_verifactu_oca.view_account_journal_form_inherit"
+        />
+        <field name="arch" type="xml">
+            <field name="verifactu_enabled" position="before">
+                <field
+                    name="verifactu_import_journal"
+                    force_save="1"
+                    attrs="{'invisible': [('type', '!=', 'sale')], 'readonly': [('verifactu_import_journal', '=', True)]}"
+                />
+            </field>
+            <field name="verifactu_enabled" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': ['|', ('company_verifactu_enabled', '=', False), ('type', '!=', 'sale')], 'readonly': ['|', ('verifactu_import_journal', '=', True), '&amp;', ('company_verifactu_enabled', '=', True), ('verifactu_enabled', '=', True)]}</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
