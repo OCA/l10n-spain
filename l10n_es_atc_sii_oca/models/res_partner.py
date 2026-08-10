@@ -3,13 +3,11 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import models
-from odoo.tools import ormcache_context
 
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    @ormcache_context("self.vat, self.country_id", keys=("is_canary_tax_agency",))
     def _parse_aeat_vat_info(self):
         # NOTE:
         # The Canary Islands Tax Agency (ATC) SII-IGIC implementation does NOT support
