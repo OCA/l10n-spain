@@ -15,7 +15,10 @@
                     groups="l10n_es_aeat.group_account_aeat"
                 />
             </field>
-            <field name="aeat_state" position="after">
+            <xpath
+                expr="//page[@name='page_sii_result_general']//field[@name='aeat_state']"
+                position="after"
+            >
                 <field
                     name="sii_match_state"
                     groups="l10n_es_aeat.group_account_aeat"
@@ -24,7 +27,7 @@
                     name="sii_contrast_state"
                     groups="l10n_es_aeat.group_account_aeat"
                 />
-            </field>
+            </xpath>
             <page name="page_sii_result_general" position="inside">
                 <group
                     invisible="not sii_match_difference_ids"
