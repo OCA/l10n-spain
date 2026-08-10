@@ -46,17 +46,23 @@ class L10nEsFacturaeFaceBaseHandler(models.AbstractModel):
             ),
         )
 
+    def _get_wsdl_type(self, client, name):
+        for type_ in client.wsdl.types.types:
+            if type_.qname is not None and type_.qname.localname == name:
+                return type_
+        raise ValueError(f"Type {name} not found in WSDL")
+
     def send_webservice(
         self, public_crt, private_key, file_data, file_name, email, anexos_list=False
     ):
         client = self._get_client(public_crt, private_key)
-        invoice_file = client.get_type("ns0:FacturaFile")(
+        invoice_file = self._get_wsdl_type(client, "FacturaFile")(
             base64.b64encode(file_data.encode("UTF-8")),
             file_name,
             "application/xml",
         )
-        anexos = client.get_type("ns0:ArrayOfAnexoFile")(anexos_list or [])
-        invoice_call = client.get_type("ns0:EnviarFacturaRequest")(
+        anexos = self._get_wsdl_type(client, "ArrayOfAnexoFile")(anexos_list or [])
+        invoice_call = self._get_wsdl_type(client, "EnviarFacturaRequest")(
             email, invoice_file, anexos
         )
         try:
@@ -80,7 +86,9 @@ class L10nEsFacturaeFaceBaseHandler(models.AbstractModel):
 
     def consult_invoices(self, public_crt, private_key, invoices):
         client = self._get_client(public_crt, private_key)
-        request = client.get_type("ns0:ConsultarListadoFacturaRequest")(invoices)
+        request = self._get_wsdl_type(client, "ConsultarListadoFacturaRequest")(
+            invoices
+        )
         try:
             return client.service.consultarListadoFacturas(request)
         except zeep.exceptions.Fault as err:
