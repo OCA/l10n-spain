@@ -102,6 +102,38 @@ class TestL10nEsAeat(BaseCommon):
         self.assertEqual(identifier_type, "04")
         self.assertEqual(vat_number, "CU12345678Z")
 
+    def test_parse_vat_info_no_collision_between_partners(self):
+        """Two partners without VAT and the same country must not share their
+        AEAT identification. This guards against a caching regression where the
+        result was keyed only on (vat, country_id), so partners without VAT in
+        the same country returned another partner's aeat_identification.
+        """
+        portugal = self.env.ref("base.pt")
+        partner_a = self.env["res.partner"].create(
+            {
+                "name": "PT partner A",
+                "country_id": portugal.id,
+                "aeat_identification": "PT_IDENTIFICATION_A",
+                "aeat_identification_type": "06",
+            }
+        )
+        partner_b = self.env["res.partner"].create(
+            {
+                "name": "PT partner B",
+                "country_id": portugal.id,
+                "aeat_identification": "PT_IDENTIFICATION_B",
+                "aeat_identification_type": "06",
+            }
+        )
+        self.assertEqual(
+            partner_a._parse_aeat_vat_info(),
+            ("PT", "06", "PT_IDENTIFICATION_A"),
+        )
+        self.assertEqual(
+            partner_b._parse_aeat_vat_info(),
+            ("PT", "06", "PT_IDENTIFICATION_B"),
+        )
+
     def test_unique_date_range(self):
         self.env["l10n.es.aeat.map.tax"].create(
             {"date_from": "2020-01-01", "date_to": "2020-12-31", "model": 303}
