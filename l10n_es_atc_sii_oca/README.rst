@@ -13,7 +13,7 @@ Suministro Inmediato de Información en el IGIC
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
@@ -42,6 +42,75 @@ Suministro Inmediato de Información en el IGIC
 .. contents::
    :local:
 
+Configuration
+=============
+
+Después de instalar el módulo, vaya a **Contabilidad → Configuración →
+Ajustes** y, para cada compañía que opere bajo IGIC, establezca el campo
+**Agencia Tributaria** como **Agencia Tributaria Canaria (1.0)**
+(registro definido por ``l10n_es_aeat``).
+
+El módulo seleccionará automáticamente el mapa de impuestos **SII -
+ATC** para cualquier compañía cuya agencia tributaria sea la ATC. No se
+requiere configuración manual adicional del mapa.
+
+**Versión del protocolo SII (``IDVersionSii``):** en la cabecera del XML
+enviado a la ATC el módulo usa **1.1 en producción** (versión vigente
+del protocolo) y **1.0 cuando está activo el modo de prueba SII**,
+porque el entorno de cautela de la ATC solo admite 1.0. Esto es
+independiente del nombre mostrado de la agencia en la configuración de
+la compañía.
+
+Para utilizar el entorno de pruebas, habilite la casilla **Modo de
+prueba SII** en los ajustes de la compañía. Todos los envíos se
+redirigirán entonces a los puntos de conexión de ``middlewarecaut``.
+
+En producción se usan los endpoints de ``sede.gobiernodecanarias.org``
+definidos en los datos del módulo (sin sufijo ``?wsdl``). Al conectar
+con zeep, el módulo añade ``?wsdl`` solo en la URL de descarga del WSDL;
+las llamadas SOAP usan el endpoint sin ese sufijo.
+
+**Causas de exención IGIC (E1–E8):** el módulo añade las 8 causas de
+exención del IGIC canario, con los literales actualizados según la
+normativa vigente:
+
+- **E1:** Capítulo I del Decreto Legislativo 1/2025
+- **E2:** Artículo 11 de la Ley 20/1991 (exportaciones)
+- **E3:** Artículo 12 de la Ley 20/1991 (asimiladas a exportaciones)
+- **E4:** Artículo 13 de la Ley 20/1991 (zonas francas y depósitos)
+- **E5:** Artículo 25 de la Ley 19/1994, del IGIC (bienes de inversión
+  REF)
+- **E6:** Artículo 47 de la Ley 19/1994 (ZEC)
+- **E7:** Artículo 90 del Decreto Legislativo 1/2025 (REPEP)
+- **E8:** Exenta Otros / Ley 20/1991
+
+Configure la causa en el producto o en la posición fiscal; el módulo no
+altera automáticamente la clave de régimen ni la causa de exención.
+
+**Art. 25 REF — Bienes de inversión (Lista L32):** para operaciones con
+clave de régimen **17** (compras) o **19** (ventas), el módulo exige el
+bloque ``DatosArticulo25`` en el payload SII. Configure:
+
+1. En el producto o en la posición fiscal, seleccione la causa de
+   exención **E5** y el **Tipo de bien Art. 25 (L32)** correspondiente.
+2. En la factura, en la pestaña SII, rellene los campos del grupo **Art.
+   25 REF**:
+
+   - **Pago anticipado** (S/N)
+   - **Tipo de documento** (notarial, privado u otros)
+   - Si es notarial, **Nº de protocolo** y **Nombre del notario**
+     (obligatorios)
+
+El módulo bloquea localmente los envíos sin estos datos (errores ATC
+2028/2031).
+
+**Validaciones pre-envío (F3):** la ATC rechaza el envío (error 1295) si
+se informa la clave de régimen **01** (régimen general) junto con
+``CausaExencion`` **E2** o **E3** (exportaciones y asimiladas). Esas
+causas exigen la clave **02** (exportación). El módulo **bloquea
+localmente** esa combinación al validar o enviar la factura
+(``UserError`` con referencia al error 1295).
+
 Usage
 =====
 
@@ -51,6 +120,233 @@ servidor de la ATC.
 Se debe establecer en la configuración de la compañía la agencia
 tributaria: **Agencia Tributaria Canaria (1.0)**. En caso contrario, se
 enviará al SII de la **AEAT**.
+
+La cabecera del envío incluye ``IDVersionSii``: **1.1** en producción y
+**1.0** si la compañía tiene activado el **modo de prueba SII**
+(requisito del entorno de cautela ATC).
+
+**Art. 25 REF:** para facturas de compra con clave de régimen **17** o
+ventas con clave **19**, el módulo incluye automáticamente el bloque
+``DatosArticulo25`` en el payload SII. Configure el tipo de bien (Lista
+L32) en el producto (pestaña SII) o en la posición fiscal, y los datos
+del documento en la pestaña SII de la factura.
+
+Known issues / Roadmap
+======================
+
+Roadmap PR ``l10n_es_atc_sii_oca``
+==================================
+
+Alcance del PR ATC: **completar payload, validaciones y libros SII
+autonómicos** sin parchear ``l10n_es_aeat_sii_oca`` salvo acuerdo
+explícito OCA. Cada ítem enlaza el test que hoy hace ``skipTest`` y debe
+pasar al cerrarse.
+
+Referencias: `FAQ ATC
+SII <https://www3.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/pdf/Preguntas_frecuentes_SII.pdf>`__,
+listas L8A/L8B, BOC.
+
+Fuera de este PR (módulos hermanos o upstream)
+----------------------------------------------
+
++-----------------------------+----------------------+--------------------------+
+| Elemento                    | Motivo               | Destino                  |
++=============================+======================+==========================+
+| Parches genéricos SII       | Política del fork    | ``l10n_es_aeat_sii_oca`` |
+| peninsular                  |                      | (solo con PR upstream)   |
++-----------------------------+----------------------+--------------------------+
+| Impuestos especiales        | Sin impuestos Odoo   | Fase 2.7 (follow-up)     |
+| (``ClaveImpuestoEspecial``) | equivalentes         |                          |
++-----------------------------+----------------------+--------------------------+
+| Error 4100                  | **Ya resuelto** (1.0 | —                        |
+| (``IDVersionSii``)          | en test)             |                          |
++-----------------------------+----------------------+--------------------------+
+
+Entregado en PR actual (F3 + F4)
+--------------------------------
+
++---------+------------------------------------------------+-----------+
+| Fase    | Entrega                                        | Estado    |
++=========+================================================+===========+
+| 3.1–3.5 | Validaciones pre-envío ATC (1295, 1349, 2042,  | **Hecho** |
+|         | régimen 07, F2 > 3.000 €)                      |           |
++---------+------------------------------------------------+-----------+
+| 4.1     | ``TipoRectificativa = S`` +                    | **Hecho** |
+|         | ``ImporteRectificacion`` (solo inherit ATC)    |           |
++---------+------------------------------------------------+-----------+
+
+Fase 1 — Datos IGIC y mapa (aplazada)
+-------------------------------------
+
+**Motivo:** cubierto por PR v16 en curso; no duplicar en 18.0 hasta
+alinear ramas.
+
++-----+---------------------+----------------------------------------+----------------------------------------+
+| #   | Entrega             | Ficheros                               | Test a activar                         |
++=====+=====================+========================================+========================================+
+| 1.1 | Añadir ``depends``: | ``__manifest__.py``                    | ``test_sale_igic_1_percent_petroleum`` |
+|     | ``l10n_es_igic``    |                                        |                                        |
++-----+---------------------+----------------------------------------+----------------------------------------+
+| 1.2 | Mapa ATC:           | ``l10n.es.aeat.map.tax.line.tax.csv``, | idem                                   |
+|     | ``igic_r_1`` →      | ``atc_sii_map_data.xml``               |                                        |
+|     | SFESB               |                                        |                                        |
++-----+---------------------+----------------------------------------+----------------------------------------+
+| 1.3 | Documentar          | ``readme/CONFIGURE.md``                | ``TestL10nEsAtcSiiPayloadBase``        |
+|     | requisito plan      |                                        |                                        |
+|     | ``es_canary_pymes`` |                                        |                                        |
+|     | en tests            |                                        |                                        |
++-----+---------------------+----------------------------------------+----------------------------------------+
+
+Fase 2 — Nodos de payload en facturas (``account.move``) — entregado parcialmente
+---------------------------------------------------------------------------------
+
+**Motivo:** esperar port a 18.0 del bloque DUA e impuestos de
+`OCA/l10n-spain#5050 <https://github.com/OCA/l10n-spain/pull/5050>`__
+(rama 16.0).
+
+**Objetivo:** XML/dict ATC completo en emisión y recepción.
+
++-----+------------------------------+--------------------------------+-----------------------------------------------------+
+| #   | Entrega                      | Implementación                 | Test                                                |
++=====+==============================+================================+=====================================================+
+| 2.1 | Régimen **06** →             | Campo en línea/ factura o      | ``test_sale_regime_06_base_imponible_a_coste``      |
+|     | ``BaseImponibleACoste``      | coste en desglose; override    |                                                     |
+|     |                              | ``_get_aeat_invoice_dict_out`` |                                                     |
++-----+------------------------------+--------------------------------+-----------------------------------------------------+
+| 2.2 | Régimen **14** (obra AAPP) → | Campo ``sii_operation_date``   | ``test_sale_regime_14_public_works``                |
+|     | ``FechaOperacion``           | (o reutilizar existente);      |                                                     |
+|     |                              | validar NIF P/Q/S/V            |                                                     |
++-----+------------------------------+--------------------------------+-----------------------------------------------------+
+| 2.3 | **F3** +                     | Tipo factura + relación        | ``test_sale_f3_substitution_not_implemented``       |
+|     | ``FacturasSustituidas``      | facturas simplificadas         |                                                     |
+|     |                              | agrupadas                      |                                                     |
++-----+------------------------------+--------------------------------+-----------------------------------------------------+
+| 2.4 | REPEP compras **15** →       | Cálculo desde impuesto         | ``test_purchase_repep_minorista_clave_15``          |
+|     | ``CargaImpositivaImplicita`` | minorista (``igic_*_cmino``)   |                                                     |
+|     | + ``CuotaRecargoMinorista``  |                                |                                                     |
++-----+------------------------------+--------------------------------+-----------------------------------------------------+
+| 2.5 | REPEP compras **16** /       | Extensión                      | ``test_purchase_repep_pequeño_empresario_clave_16`` |
+|     | ventas **18**                | ``_get_sii_in_taxes`` / dict   |                                                     |
+|     |                              | compra y venta                 |                                                     |
++-----+------------------------------+--------------------------------+-----------------------------------------------------+
+| 2.6 | DUA / importación →          | Integrar con                   | ``test_purchase_dua_aiem_cuota``                    |
+|     | ``CuotaAIEM``                | ``l10n_es_dua_igic`` tras PR   |                                                     |
+|     |                              | #5050 en 18.0                  |                                                     |
++-----+------------------------------+--------------------------------+-----------------------------------------------------+
+| 2.7 | Impuestos especiales         | ``ClaveImpuestoEspecial``      | follow-up posterior                                 |
+|     | tabaco/combustibles          |                                |                                                     |
++-----+------------------------------+--------------------------------+-----------------------------------------------------+
+| 2.8 | BI ampliado (``N``,          | Campos + payload compra        | tests gaps BI                                       |
+|     | deducción diferida)          |                                |                                                     |
++-----+------------------------------+--------------------------------+-----------------------------------------------------+
+| 2.9 | **Art. 25 REF** —            | Campos ``sii_art25_*`` + Lista | ``test_purchase_art25_clave_17_notarial`` y         |
+|     | ``DatosArticulo25`` claves   | L32 + inyección payload        | relacionados                                        |
+|     | 17/19                        |                                |                                                     |
++-----+------------------------------+--------------------------------+-----------------------------------------------------+
+
+Fase 3 — Validaciones pre-envío (negativas locales) — hecho
+-----------------------------------------------------------
+
++-----+---------------------+-----------------------------------------+------------------------------------------------------------------------+
+| #   | Entrega             | Implementación                          | Test                                                                   |
++=====+=====================+=========================================+========================================================================+
+| 3.1 | F2 con              | ``_aeat_check_simplified_limit``        | ``test_sale_simplified_f2_over_3000_not_allowed``                      |
+|     | ``ImporteTotal`` >  |                                         |                                                                        |
+|     | 3.000 €             |                                         |                                                                        |
++-----+---------------------+-----------------------------------------+------------------------------------------------------------------------+
+| 3.2 | Régimen **07**      | ``_aeat_check_regime_07``               | ``test_sale_regime_07_cash_criterion_isp_incompatible``                |
+|     | incompatible con    |                                         |                                                                        |
+|     | ISP (S2/S3) y       |                                         |                                                                        |
+|     | exentas E2–E5       |                                         |                                                                        |
++-----+---------------------+-----------------------------------------+------------------------------------------------------------------------+
+| 3.3 | ``BienInversion=S`` | ``_aeat_check_bien_inversion_regime``   | ``test_purchase_investment_rejected_regime_08``                        |
+|     | incompatible con    |                                         |                                                                        |
+|     | régimen **08** /    |                                         |                                                                        |
+|     | **18**              |                                         |                                                                        |
++-----+---------------------+-----------------------------------------+------------------------------------------------------------------------+
+| 3.4 | Coherencia          | ``_aeat_check_importe_total``           | ``test_importe_total_mismatch_validation``                             |
+|     | ``ImporteTotal`` vs |                                         |                                                                        |
+|     | bases+cuotas        |                                         |                                                                        |
+|     | (tolerancia 10 €)   |                                         |                                                                        |
++-----+---------------------+-----------------------------------------+------------------------------------------------------------------------+
+| 3.5 | Bloqueo local E2/E3 | ``_aeat_check_regime_01_exempt_export`` | ``test_sale_export_e2_with_regime_01_payload_documents_atc_rejection`` |
+|     | con régimen **01**  |                                         |                                                                        |
+|     | (error 1295)        |                                         |                                                                        |
++-----+---------------------+-----------------------------------------+------------------------------------------------------------------------+
+
+Fase 4 — Rectificativas ATC — hecho
+-----------------------------------
+
++-----+---------------------------+--------------------+------------------------------------------------------+
+| #   | Entrega                   | Implementación     | Test                                                 |
++=====+===========================+====================+======================================================+
+| 4.1 | ``TipoRectificativa = S`` | ``selection_add``  | ``test_refund_by_substitution_tipo_s_not_supported`` |
+|     | +                         | en                 |                                                      |
+|     | ``ImporteRectificacion``  | ``account.move``   |                                                      |
+|     |                           | ATC                |                                                      |
++-----+---------------------------+--------------------+------------------------------------------------------+
+
+Fase 5 — RECC (criterio de caja) — aplazada
+-------------------------------------------
+
+**Motivo:** mismo bloque que Fase 2 (DUA / impuestos v18 vía PR #5050).
+
++-----+----------------------+---------------------+------------------------------------------------+
+| #   | Entrega              | Implementación      | Test                                           |
++=====+======================+=====================+================================================+
+| 5.1 | Cobros régimen 07 →  | Extensión           | ``test_recc_cobros_regime_07_not_implemented`` |
+|     | ``SiiFactCOBV1SOAP`` | ``account.payment`` |                                                |
++-----+----------------------+---------------------+------------------------------------------------+
+| 5.2 | Pagos régimen 07 →   | idem                | ``test_recc_pagos_regime_07_not_implemented``  |
+|     | ``SiiFactPAGV1SOAP`` |                     |                                                |
++-----+----------------------+---------------------+------------------------------------------------+
+
+Fase 6 — Libro anual de bienes de inversión — aplazada
+------------------------------------------------------
+
+**Motivo:** sin equivalente OCA hoy; requiere modelo dedicado.
+
++-----+--------------------+-----------------------------------------------+----------------------------------------------------------+
+| #   | Entrega            | Implementación                                | Test                                                     |
++=====+====================+===============================================+==========================================================+
+| 6.1 | Modelo + wizard    | ``models/l10n_es_atc_sii_investment_book.py`` | ``test_investment_goods_annual_book_0a_not_implemented`` |
+|     | asiento anual      |                                               |                                                          |
++-----+--------------------+-----------------------------------------------+----------------------------------------------------------+
+| 6.2 | Payload: periodo   | ``_get_aeat_book_dict``                       | idem                                                     |
+|     | ``0A``, prorrata y |                                               |                                                          |
+|     | regularización     |                                               |                                                          |
++-----+--------------------+-----------------------------------------------+----------------------------------------------------------+
+
+Orden recomendado
+-----------------
+
+::
+
+   Fase 3 → Fase 4 (este PR) → Fase 2 + DUA (#5050) → Fase 5 → Fase 1 (igic_r_1) → Fase 6
+
+Criterio de cierre del PR actual
+--------------------------------
+
+- ``invoke test -m l10n_es_atc_sii_oca``: **0 failed, 0 errors**
+- Skips permitidos: Fases 1, 2, 5 y 6 (ítems anteriores)
+
+Estado actual (baseline)
+------------------------
+
+================================================== =========
+Área                                               Cubierto
+================================================== =========
+IGIC 0, 3, 5, 7, 9.5, 15, 20 % ventas S1           Sí
+Exentas E1/E2/E3/E5, exportación régimen 02        Sí
+No sujetas N1/N2 (art. 9 / localización)           Sí
+F2 < 3.000 €, bloqueo F2 > 3.000 €                 Sí
+Validaciones 1295, 1349, 2042, régimen 07          Sí
+Rectificativa S (sustitución)                      Sí
+ISP, BienInversion compras                         Sí
+Rectificativa I, R1–R4, R5 simplificada, bajas     Sí
+``IDVersionSii``, mapa ATC, WSDL, SFRBI patch      Sí
+Payload nodos F2, RECC, libro ``0A``, ``igic_r_1`` Pendiente
+================================================== =========
 
 Bug Tracker
 ===========
@@ -79,7 +375,6 @@ Contributors
 - `Comunitea <https://comunitea.com/>`__:
 
   - Omar Castiñeira <omar@comunitea.com>
-  - Mario Montes <mario@comunitea.com>
 
 - `Tecnativa <https://www.tecnativa.com>`__:
 
@@ -88,6 +383,10 @@ Contributors
 - `APSL-Nagarro <https://www.apsl.tech>`__:
 
   - Vicent Cubells <vcubells@apsl.net>
+
+- BinhexTeam:
+
+  - Mario Montes
 
 Maintainers
 -----------

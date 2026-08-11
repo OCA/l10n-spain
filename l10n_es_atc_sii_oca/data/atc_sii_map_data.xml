@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- Mapa SII independiente para la Agencia Tributaria Canaria (IGIC) -->
+    <record id="atc_sii_map" model="aeat.sii.map">
+        <field name="name">SII - ATC</field>
+        <field name="tax_agency_id" ref="l10n_es_aeat.aeat_tax_agency_canarias" />
+    </record>
+
+    <!-- SFESB: SuministroFactEmitidas Sujetas Bienes -->
+    <record id="atc_sii_map_line_SFESB" model="aeat.sii.map.lines">
+        <field name="code">SFESB</field>
+        <field name="name">SuministroFactEmitidas Sujetas Bienes (IGIC)</field>
+        <field name="sii_map_id" ref="atc_sii_map" />
+        <field
+            name="tax_xmlid_ids"
+            eval="[(6, 0, [
+            ref('igic_r_7'),
+            ref('igic_r_0'),
+            ref('igic_r_3'),
+            ref('igic_r_5'),
+            ref('igic_r_9_5'),
+            ref('igic_r_15'),
+            ref('igic_r_20'),
+        ])]"
+        />
+    </record>
+
+    <!-- SFESISP: SuministroFactEmitidas Sujetas ISP -->
+    <record id="atc_sii_map_line_SFESISP" model="aeat.sii.map.lines">
+        <field name="code">SFESISP</field>
+        <field name="name">SuministroFactEmitidas Sujetas ISP (IGIC)</field>
+        <field name="sii_map_id" ref="atc_sii_map" />
+        <field name="tax_xmlid_ids" eval="[(6, 0, [ref('igic_s_ISP0')])]" />
+    </record>
+
+    <!-- SFESBE: SuministroFactEmitidas Bienes Exento -->
+    <record id="atc_sii_map_line_SFESBE" model="aeat.sii.map.lines">
+        <field name="code">SFESBE</field>
+        <field name="name">SuministroFactEmitidas Bienes Exento (IGIC)</field>
+        <field name="sii_map_id" ref="atc_sii_map" />
+        <field
+            name="tax_xmlid_ids"
+            eval="[(6, 0, [
+            ref('igic_ex_0'),
+            ref('igic_cmino'),
+            ref('igic_re_ex'),
+        ])]"
+        />
+    </record>
+
+    <!-- SFESSE: SuministroFactEmitidas Servicios Exento -->
+    <record id="atc_sii_map_line_SFESSE" model="aeat.sii.map.lines">
+        <field name="code">SFESSE</field>
+        <field name="name">SuministroFactEmitidas Servicios Exento (IGIC)</field>
+        <field name="sii_map_id" ref="atc_sii_map" />
+        <field name="tax_xmlid_ids" eval="[(6, 0, [ref('igic_re_ex')])]" />
+    </record>
+
+    <!-- SFENS: SuministroFactEmitidas No Sujeta -->
+    <record id="atc_sii_map_line_SFENS" model="aeat.sii.map.lines">
+        <field name="code">SFENS</field>
+        <field name="name">SuministroFactEmitidas Bienes No Sujeta (IGIC)</field>
+        <field name="sii_map_id" ref="atc_sii_map" />
+        <field name="tax_xmlid_ids" eval="[(6, 0, [ref('s_igic_ns')])]" />
+    </record>
+
+    <!-- SFRS: SuministroFactRecibidas Sujetas -->
+    <record id="atc_sii_map_line_SFRS" model="aeat.sii.map.lines">
+        <field name="code">SFRS</field>
+        <field name="name">SuministroFactRecibidas Sujetas (IGIC)</field>
+        <field name="sii_map_id" ref="atc_sii_map" />
+        <field
+            name="tax_xmlid_ids"
+            eval="[(6, 0, [
+            ref('igic_p_ex'),
+            ref('igic_sop_0'),
+            ref('igic_sop_3'),
+            ref('igic_sop_5'),
+            ref('igic_sop_7'),
+            ref('igic_sop_9_5'),
+            ref('igic_sop_15'),
+            ref('igic_sop_20'),
+            ref('igic_sop_0_s'),
+            ref('igic_sop_3_s'),
+            ref('igic_sop_5_s'),
+            ref('igic_sop_7_s'),
+            ref('igic_sop_9_5_s'),
+            ref('igic_sop_15_s'),
+            ref('igic_sop_20_s'),
+            ref('igic_sop_3_cmino'),
+            ref('igic_sop_5_cmino'),
+            ref('igic_sop_7_cmino'),
+            ref('igic_sop_9_5_cmino'),
+            ref('igic_sop_15_cmino'),
+            ref('igic_sop_20_cmino'),
+        ])]"
+        />
+    </record>
+
+    <!-- SFRISP: SuministroFactRecibidas ISP -->
+    <record id="atc_sii_map_line_SFRISP" model="aeat.sii.map.lines">
+        <field name="code">SFRISP</field>
+        <field name="name">SuministroFactRecibidas ISP (IGIC)</field>
+        <field name="sii_map_id" ref="atc_sii_map" />
+        <field
+            name="tax_xmlid_ids"
+            eval="[(6, 0, [
+            ref('igic_ISP0'),
+            ref('igic_ISP3'),
+            ref('igic_ISP5'),
+            ref('igic_ISP7'),
+            ref('igic_ISP95'),
+            ref('igic_ISP15'),
+            ref('igic_ISP20'),
+        ])]"
+        />
+    </record>
+
+    <!-- SFRBI: SuministroFactRecibidas Bienes de Inversión -->
+    <record id="atc_sii_map_line_SFRBI" model="aeat.sii.map.lines">
+        <field name="code">SFRBI</field>
+        <field name="name">SuministroFactRecibidas Bienes de Inversión (IGIC)</field>
+        <field name="sii_map_id" ref="atc_sii_map" />
+        <field
+            name="tax_xmlid_ids"
+            eval="[(6, 0, [
+            ref('igic_sop_0_inv'),
+            ref('igic_sop_3_inv'),
+            ref('igic_sop_5_inv'),
+            ref('igic_sop_7_inv'),
+            ref('igic_sop_9_5_inv'),
+            ref('igic_sop_15_inv'),
+            ref('igic_sop_20_inv'),
+            ref('igic_sop_i_0_inv'),
+            ref('igic_sop_i_3_inv'),
+            ref('igic_sop_i_5_inv'),
+            ref('igic_sop_i_7_inv'),
+            ref('igic_sop_i_9_5_inv'),
+            ref('igic_sop_i_15_inv'),
+            ref('igic_sop_i_20_inv'),
+        ])]"
+        />
+    </record>
+
+    <!-- SFRNS: SuministroFactRecibidas No Sujeta -->
+    <record id="atc_sii_map_line_SFRNS" model="aeat.sii.map.lines">
+        <field name="code">SFRNS</field>
+        <field name="name">SuministroFactRecibidas No Sujeta (IGIC)</field>
+        <field name="sii_map_id" ref="atc_sii_map" />
+        <field name="tax_xmlid_ids" eval="[(6, 0, [ref('p_igic_ns')])]" />
+    </record>
+
+    <!-- RE: Recargo de Equivalencia IGIC -->
+    <record id="atc_sii_map_line_RE" model="aeat.sii.map.lines">
+        <field name="code">RE</field>
+        <field name="name">SuministroFact Recargo Equivalencia (IGIC)</field>
+        <field name="sii_map_id" ref="atc_sii_map" />
+        <field
+            name="tax_xmlid_ids"
+            eval="[(6, 0, [
+            ref('igic_p_re0'),
+            ref('igic_p_re03'),
+            ref('igic_p_re05'),
+            ref('igic_p_re07'),
+            ref('igic_p_re095'),
+            ref('igic_p_re15'),
+            ref('igic_p_re20'),
+        ])]"
+        />
+    </record>
+
+    <!-- DUA: Importaciones -->
+    <record id="atc_sii_map_line_DUA" model="aeat.sii.map.lines">
+        <field name="code">DUA</field>
+        <field name="name">DUA (IGIC)</field>
+        <field name="sii_map_id" ref="atc_sii_map" />
+        <field
+            name="tax_xmlid_ids"
+            eval="[(6, 0, [
+            ref('igic_sop_i_0'),
+            ref('igic_sop_i_3'),
+            ref('igic_sop_i_5'),
+            ref('igic_sop_i_7'),
+            ref('igic_sop_i_9_5'),
+            ref('igic_sop_i_15'),
+            ref('igic_sop_i_20'),
+            ref('igic_sop_i_0_inv'),
+            ref('igic_sop_i_3_inv'),
+            ref('igic_sop_i_5_inv'),
+            ref('igic_sop_i_7_inv'),
+            ref('igic_sop_i_9_5_inv'),
+            ref('igic_sop_i_15_inv'),
+            ref('igic_sop_i_20_inv'),
+        ])]"
+        />
+    </record>
+</odoo>

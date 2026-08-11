@@ -1,19 +1,49 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="l10n_es_aeat.aeat_tax_agency_canarias" model="aeat.tax.agency">
-        <field name="sii_wsdl_out">
-            https://www.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/wsdl/SuministroFactEmitidas.wsdl</field>
-        <field name="sii_wsdl_in">
-            https://www.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/wsdl/SuministroFactRecibidas.wsdl</field>
-        <field name="sii_wsdl_pi">
-            https://www.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/wsdl/SuministroBienesInversion.wsdl</field>
-        <field name="sii_wsdl_ic">
-            https://www.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/wsdl/SuministroInmueblesAdicionales.wsdl</field>
-        <field name="sii_wsdl_pr">
-            https://www.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/wsdl/SuministroCobrosEmitidas.wsdl</field>
-        <field name="sii_wsdl_ott">
-            https://www.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/wsdl/SuministroOpTrascendTribu.wsdl</field>
-        <field name="sii_wsdl_ps">
-            https://www.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/wsdl/SuministroPagosRecibidas.wsdl</field>
+        <field
+            name="sii_wsdl_out"
+        >https://sede.gobiernodecanarias.org/tributos/middleware/services/sii/SiiFactFEV1SOAP</field>
+        <field
+            name="sii_wsdl_in"
+        >https://sede.gobiernodecanarias.org/tributos/middleware/services/sii/SiiFactFRV1SOAP</field>
+        <field
+            name="sii_wsdl_pi"
+        >https://sede.gobiernodecanarias.org/tributos/middleware/services/sii/SiiFactBIV1SOAP</field>
+        <field
+            name="sii_wsdl_ic"
+        >https://sede.gobiernodecanarias.org/tributos/middleware/services/sii/SiiFactINMV1SOAP</field>
+        <field
+            name="sii_wsdl_pr"
+        >https://sede.gobiernodecanarias.org/tributos/middleware/services/sii/SiiFactCOBV1SOAP</field>
+        <field
+            name="sii_wsdl_ott"
+        >https://sede.gobiernodecanarias.org/tributos/middleware/services/sii/SiiFactCMV1SOAP</field>
+        <field
+            name="sii_wsdl_ps"
+        >https://sede.gobiernodecanarias.org/tributos/middleware/services/sii/SiiFactPAGV1SOAP</field>
+        <!-- Cautela (test) endpoints — address overrides the production endpoint -->
+        <field
+            name="sii_wsdl_out_test_address"
+        >https://sede.gobiernodecanarias.org/tributos/middlewarecaut/services/sii/SiiFactFEV1SOAP</field>
+        <field
+            name="sii_wsdl_in_test_address"
+        >https://sede.gobiernodecanarias.org/tributos/middlewarecaut/services/sii/SiiFactFRV1SOAP</field>
+        <field
+            name="sii_wsdl_pi_test_address"
+        >https://sede.gobiernodecanarias.org/tributos/middlewarecaut/services/sii/SiiFactBIV1SOAP</field>
+        <field
+            name="sii_wsdl_ic_test_address"
+        >https://sede.gobiernodecanarias.org/tributos/middlewarecaut/services/sii/SiiFactINMV1SOAP</field>
+        <field
+            name="sii_wsdl_pr_test_address"
+        >https://sede.gobiernodecanarias.org/tributos/middlewarecaut/services/sii/SiiFactCOBV1SOAP</field>
+        <field
+            name="sii_wsdl_ps_test_address"
+        >https://sede.gobiernodecanarias.org/tributos/middlewarecaut/services/sii/SiiFactPAGV1SOAP</field>
+        <field
+            name="sii_wsdl_ott_test_address"
+        >https://sede.gobiernodecanarias.org/tributos/middlewarecaut/services/sii/SiiFactCMV1SOAP</field>
     </record>
 </odoo>
