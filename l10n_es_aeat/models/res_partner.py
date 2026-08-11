@@ -89,7 +89,6 @@ class ResPartner(models.Model):
             )
         return europe.country_ids.mapped("code") + ["XI"]
 
-    @ormcache("self.vat, self.country_id")
     def _parse_aeat_vat_info(self):
         """Return tuple with split info (country_code, identifier_type and
         vat_number) from vat and country partner
