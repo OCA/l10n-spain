@@ -30,7 +30,7 @@ addon | version | maintainers | summary
 [l10n_es_account_asset](l10n_es_account_asset/) | 18.0.2.0.0 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Gestión de activos fijos para España
 [l10n_es_account_banking_sepa_fsdd](l10n_es_account_banking_sepa_fsdd/) | 18.0.1.0.0 |  | Account Banking Sepa - FSDD (Anticipos de crédito)
 [l10n_es_account_statement_import_n43](l10n_es_account_statement_import_n43/) | 18.0.1.2.0 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Importación de extractos bancarios españoles (Norma 43)
-[l10n_es_aeat](l10n_es_aeat/) | 18.0.2.3.2 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Modulo base para declaraciones de la AEAT
+[l10n_es_aeat](l10n_es_aeat/) | 18.0.2.3.3 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Modulo base para declaraciones de la AEAT
 [l10n_es_aeat_mod111](l10n_es_aeat_mod111/) | 18.0.1.0.4 |  | AEAT modelo 111
 [l10n_es_aeat_mod115](l10n_es_aeat_mod115/) | 18.0.1.0.1 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | AEAT modelo 115
 [l10n_es_aeat_mod123](l10n_es_aeat_mod123/) | 18.0.1.0.3 |  | AEAT modelo 123
@@ -56,7 +56,7 @@ addon | version | maintainers | summary
 [l10n_es_atc_mod415](l10n_es_atc_mod415/) | 18.0.1.0.0 | <a href='https://github.com/Christian-RB'><img src='https://github.com/Christian-RB.png' width='32' height='32' style='border-radius:50%;' alt='Christian-RB'/></a> | ATC Modelo 415
 [l10n_es_atc_mod417](l10n_es_atc_mod417/) | 18.0.1.0.0 | <a href='https://github.com/carlos-lopez-tecnativa'><img src='https://github.com/carlos-lopez-tecnativa.png' width='32' height='32' style='border-radius:50%;' alt='carlos-lopez-tecnativa'/></a> | ATC Modelo 417
 [l10n_es_atc_mod420](l10n_es_atc_mod420/) | 18.0.1.1.0 | <a href='https://github.com/christian-ramos-tecnativa'><img src='https://github.com/christian-ramos-tecnativa.png' width='32' height='32' style='border-radius:50%;' alt='christian-ramos-tecnativa'/></a> <a href='https://github.com/carlos-lopez-tecnativa'><img src='https://github.com/carlos-lopez-tecnativa.png' width='32' height='32' style='border-radius:50%;' alt='carlos-lopez-tecnativa'/></a> | ATC Modelo 420
-[l10n_es_atc_sii_oca](l10n_es_atc_sii_oca/) | 18.0.1.0.0 |  | Suministro Inmediato de Información en el IGIC
+[l10n_es_atc_sii_oca](l10n_es_atc_sii_oca/) | 18.0.1.0.1 |  | Suministro Inmediato de Información en el IGIC
 [l10n_es_cnae](l10n_es_cnae/) | 18.0.1.0.0 |  | Extiende los códigos NACE europeos con los CNAE españoles
 [l10n_es_digital_canon](l10n_es_digital_canon/) | 18.0.1.0.0 |  | Aplicación automática del canon digital en facturas, ventas y compras
 [l10n_es_digital_canon_website_sale](l10n_es_digital_canon_website_sale/) | 18.0.1.0.0 |  | Display the Spanish digital canon separately in the website cart total
