@@ -5,7 +5,6 @@ import pytz
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools import config
 
 _logger = logging.getLogger(__name__)
 
@@ -105,20 +104,26 @@ class PosOrder(models.Model):
         return pos_order_id
 
     def _is_verifactu_order(self):
+        """Whether this order must be registered in VERI*FACTU.
+
+        The state check is part of the guard, not an afterthought: the chain is
+        append-only, so an order that is not a closed sale yet must never take
+        a link in it. Its hash string would be empty
+        (see _get_verifactu_hash_string) and the chain would carry the SHA-256
+        of an empty string for a sale that may never happen.
+        """
         self.ensure_one()
-        return self.exists() and not self.to_invoice and self.verifactu_enabled
+        return (
+            self.exists()
+            and not self.to_invoice
+            and self.verifactu_enabled
+            and self.state in VERIFACTU_VALID_POS_STATES
+        )
 
     def _is_refund_order(self):
         """Check if this POS order is a refund"""
         self.ensure_one()
         return self.amount_total < 0
-
-    def _should_send_to_verifactu(self, pos_order):
-        return (
-            pos_order._is_verifactu_order()
-            and not config["test_enable"]
-            and pos_order.state in VERIFACTU_VALID_POS_STATES
-        )
 
     def _get_verifactu_document_type(self):
         if self._is_refund_order():

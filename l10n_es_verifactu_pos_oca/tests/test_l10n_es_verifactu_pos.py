@@ -764,3 +764,73 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
         # Without partner, receiver dict is empty
         order.partner_id = False
         self.assertEqual(order._get_verifactu_receiver_dict(), {})
+
+    def test_draft_order_is_not_chained(self):
+        """An order synced as draft must stay out of the chain.
+
+        The chain is company-wide and shared with backend invoices, so a link
+        for an order that is not a fiscal document yet pollutes it for good:
+        the chain is append-only and the entry cannot be removed later.
+        """
+        orders_data = [self._create_ui_order_data()]
+        order_ids = self.env["pos.order"].create_from_ui(orders_data, draft=True)
+        order = self.env["pos.order"].browse(order_ids[0]["id"])
+
+        self.assertEqual(
+            order.state, "draft", "Syncing with draft=True must leave the order draft"
+        )
+        self.assertFalse(
+            order.last_verifactu_invoice_entry_id,
+            "A draft order must not get a chaining entry",
+        )
+        self.assertFalse(
+            order.verifactu_hash,
+            "A draft order must not get a hash: _get_verifactu_hash_string() "
+            "returns an empty string for it, and hashing that would chain the "
+            "SHA-256 of the empty string",
+        )
+
+    def test_unpaid_order_is_not_chained(self):
+        """An order the core could not mark as paid must stay out of the chain.
+
+        The core calls action_pos_order_paid() inside a bare `except
+        Exception`, so when the payment does not add up the order silently
+        stays in draft while the sync goes on and reports success.
+        """
+        self.assertFalse(
+            self.pos_config.cash_rounding,
+            "The test needs cash_rounding off so that action_pos_order_paid raises",
+        )
+        order_data = self._create_ui_order_data(amount=100)
+        # Half paid: action_pos_order_paid() raises "not fully paid"
+        order_data["data"]["amount_paid"] = 60.5
+        order_data["data"]["statement_ids"][0][2]["amount"] = 60.5
+
+        order_ids = self.env["pos.order"].create_from_ui([order_data])
+        order = self.env["pos.order"].browse(order_ids[0]["id"])
+
+        self.assertEqual(
+            order.state, "draft", "An underpaid order stays draft even with draft=False"
+        )
+        self.assertFalse(
+            order.last_verifactu_invoice_entry_id,
+            "An unpaid order must not get a chaining entry",
+        )
+
+    def test_order_chained_once_after_draft_sync(self):
+        """Syncing draft and then paid must produce exactly one entry."""
+        order_data = self._create_ui_order_data()
+        self.env["pos.order"].create_from_ui([order_data], draft=True)
+        # Same pos_reference: the core finds the draft order and updates it
+        order_ids = self.env["pos.order"].create_from_ui([order_data])
+        order = self.env["pos.order"].browse(order_ids[0]["id"])
+
+        self.assertEqual(order.state, "paid")
+        entries = self.env["verifactu.invoice.entry"].search(
+            [("model", "=", "pos.order"), ("document_id", "=", order.id)]
+        )
+        self.assertEqual(
+            len(entries),
+            1,
+            "The order must hold exactly one chain link, not one per sync",
+        )
