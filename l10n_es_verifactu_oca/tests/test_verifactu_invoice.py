@@ -2,12 +2,73 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 from datetime import date, timedelta
+from unittest.mock import patch
+
+import psycopg2
+from psycopg2 import errorcodes
+
+from odoo.exceptions import UserError
 
 from .common import TestVerifactuCommon
 
 
+class RetryableLockError(psycopg2.OperationalError):
+    @property
+    def pgcode(self):
+        return errorcodes.LOCK_NOT_AVAILABLE
+
+
 class TestVerifactuInvoice(TestVerifactuCommon):
     """Test class for VeriFactu Invoice functionality."""
+
+    def test_post_is_atomic_when_chaining_fails(self):
+        """The invoice posting is rolled back even if its error is caught."""
+        self._activate_certificate(self.certificate_password)
+        invoice = self.invoice.copy()
+        with patch.object(
+            type(invoice),
+            "_generate_verifactu_chaining",
+            side_effect=UserError("Forced chaining error"),
+        ):
+            with self.assertRaisesRegex(UserError, "Forced chaining error"):
+                invoice.action_post()
+        invoice.invalidate_recordset()
+        self.assertEqual(invoice.state, "draft")
+        self.assertFalse(invoice.last_verifactu_invoice_entry_id)
+        self.assertFalse(
+            self.env["verifactu.invoice.entry"].search_count(
+                [("model", "=", invoice._name), ("document_id", "=", invoice.id)]
+            )
+        )
+
+    def test_post_requires_verifactu_entry(self):
+        """A posted VERI*FACTU invoice must have a chaining entry."""
+        self._activate_certificate(self.certificate_password)
+        invoice = self.invoice.copy()
+        with patch.object(
+            type(invoice), "_generate_verifactu_chaining", return_value=None
+        ):
+            with self.assertRaisesRegex(UserError, "entry was not generated"):
+                invoice.action_post()
+        invoice.invalidate_recordset()
+        self.assertEqual(invoice.state, "draft")
+        self.assertFalse(invoice.last_verifactu_invoice_entry_id)
+
+    def test_lock_conflict_remains_retryable(self):
+        """A chain lock conflict reaches Odoo's retry mechanism unchanged."""
+        self._activate_certificate(self.certificate_password)
+        invoice = self.invoice.copy()
+        lock_error = RetryableLockError("Forced lock conflict")
+        with patch.object(
+            type(invoice), "_lock_verifactu_chaining", side_effect=lock_error
+        ):
+            with self.assertRaises(RetryableLockError) as raised:
+                invoice.action_post()
+        self.assertIs(raised.exception, lock_error)
+        self.assertEqual(raised.exception.pgcode, errorcodes.LOCK_NOT_AVAILABLE)
+        invoice.invalidate_recordset()
+        self.assertEqual(invoice.state, "draft")
+        self.assertFalse(invoice.last_verifactu_invoice_entry_id)
 
     def _generate_invoice_entry(self, invoice):
         """
