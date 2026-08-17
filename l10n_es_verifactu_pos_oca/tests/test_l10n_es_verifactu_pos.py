@@ -748,3 +748,72 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
         # Should raise NotImplementedError
         with self.assertRaises(NotImplementedError):
             order.cancel_verifactu()
+
+    def _create_registered_ticket(self, amount=100):
+        """A paid order already registered at VERI*FACTU as a simplified invoice."""
+        result = self.env["pos.order"].sync_from_ui(
+            [self._create_ui_order_data(amount=amount)]
+        )
+        order = self.env["pos.order"].browse(result["pos.order"][0]["id"])
+        self.assertEqual(order._get_verifactu_document_type(), "F2")
+        self.assertTrue(
+            order.last_verifactu_invoice_entry_id,
+            "The ticket must be registered for the substitution to apply",
+        )
+        return order
+
+    def test_invoicing_a_registered_ticket_is_a_substitution(self):
+        """Invoicing a ticket already sent as F2 must produce an F3, not a second F1.
+
+        Sending it as F1 would declare the same operation twice: the ticket was
+        already declared when it was issued.
+        """
+        order = self._create_registered_ticket()
+        order.action_pos_order_invoice()
+        invoice = order.account_move
+        self.assertTrue(invoice)
+        self.assertEqual(invoice._get_verifactu_document_type(), "F3")
+        self.assertEqual(invoice._get_verifactu_substituted_documents(), [order])
+        alta = invoice._get_verifactu_invoice_dict()["RegistroAlta"]
+        self.assertEqual(
+            alta["FacturasSustituidas"],
+            {
+                "IDFacturaSustituida": [
+                    {
+                        "IDEmisorFactura": order._get_verifactu_issuer(),
+                        "NumSerieFactura": order.l10n_es_unique_id,
+                        "FechaExpedicionFactura": order._get_verifactu_date(
+                            order.date_order
+                        ),
+                    }
+                ]
+            },
+        )
+        self.assertIn("Destinatarios", alta)
+        self.assertNotIn("FacturaSinIdentifDestinatarioArt61d", alta)
+        # The ticket is neither cancelled nor rectified by the substitution
+        self.assertEqual(order._get_verifactu_document_type(), "F2")
+        self.assertEqual(
+            order.last_verifactu_invoice_entry_id.entry_type,
+            "register",
+            "The substitution must not touch the ticket's own registration",
+        )
+
+    def test_invoicing_a_ticket_without_customer_vat_is_refused(self):
+        """An F3 must always identify the customer."""
+        order = self._create_registered_ticket()
+        order.partner_id.vat = False
+        with self.assertRaisesRegex(UserError, "must identify the customer"):
+            order.action_pos_order_invoice()
+
+    def test_order_invoiced_from_the_start_is_not_a_substitution(self):
+        """An order invoiced from the till never got a ticket, so it stays F1."""
+        result = self.env["pos.order"].sync_from_ui(
+            [self._create_ui_order_data(simplified=False)]
+        )
+        order = self.env["pos.order"].browse(result["pos.order"][0]["id"])
+        self.assertFalse(order.last_verifactu_invoice_entry_id)
+        order.action_pos_order_invoice()
+        invoice = order.account_move
+        self.assertEqual(invoice._get_verifactu_substituted_documents(), [])
+        self.assertEqual(invoice._get_verifactu_document_type(), "F1")

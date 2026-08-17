@@ -143,6 +143,43 @@ class PosOrder(models.Model):
         self.ensure_one()
         return self.amount_total < 0
 
+    def _is_verifactu_substituted_order(self):
+        """Whether invoicing this order is a substitution ("canje") of a ticket.
+
+        Only an order that actually reached the chain as a simplified invoice
+        has something to substitute. One that is already invoiced is skipped by
+        core, so it cannot be exchanged twice.
+        """
+        self.ensure_one()
+        return bool(not self.account_move and self.last_verifactu_invoice_entry_id)
+
+    def _check_verifactu_substitution(self):
+        """Refuse a substitution that could not produce a valid F3.
+
+        The invoice replacing a simplified one is registered as F3, and an F3
+        must always carry the destinatario, so an anonymous counter customer
+        has to be identified before the ticket can be exchanged.
+        """
+        for order in self.filtered(lambda x: x._is_verifactu_substituted_order()):
+            partner = order._verifactu_get_partner()
+            if not partner or not partner._is_valid_verifactu_receiver():
+                raise UserError(
+                    self.env._(
+                        "The order %(ref)s was already registered at VERI*FACTU "
+                        "as the simplified invoice %(number)s. Invoicing it now "
+                        "issues an invoice in substitution of it (F3), which "
+                        "must identify the customer, so first set a customer "
+                        "with a VAT number, and with a country when that "
+                        "number is not Spanish.",
+                        ref=order.pos_reference,
+                        number=order.l10n_es_unique_id,
+                    )
+                )
+
+    def action_pos_order_invoice(self):
+        self._check_verifactu_substitution()
+        return super().action_pos_order_invoice()
+
     def _should_send_to_verifactu(self, pos_order):
         return (
             pos_order._is_verifactu_order()
