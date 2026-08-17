@@ -3,7 +3,7 @@
 
 {
     "name": "Impresión de pagaré de Cajamar en A4",
-    "version": "15.0.1.0.0",
+    "version": "18.0.1.0.0",
     "license": "AGPL-3",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "maintainers": ["CarlosRoca13"],

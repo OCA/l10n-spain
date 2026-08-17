@@ -23,7 +23,7 @@
                 <div>
                     <span
                         style="position:absolute; top:229mm; left:190mm;"
-                        t-esc="o.amount"
+                        t-out="o.amount"
                         t-options="{'widget': 'float', 'precision': 2}"
                     />
                 </div>
@@ -35,7 +35,7 @@
                 </div>
                 <div style="position:absolute; left:65mm; top:245mm">
                     <strong>
-                        <span t-esc="fill_stars(num2words(o.amount))" />
+                        <span t-out="fill_stars(num2words(o.amount))" />
                     </strong>
                 </div>
                 <div>
