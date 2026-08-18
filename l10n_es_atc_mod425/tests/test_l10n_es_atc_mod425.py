@@ -9,7 +9,7 @@ from freezegun import freeze_time
 from lxml import etree
 
 from odoo.exceptions import UserError
-from odoo.tests import Form, tagged
+from odoo.tests import tagged
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
@@ -380,7 +380,7 @@ class TestL10nEsAtcMod425Base(TestL10nEsAeatModBase):
         cls.env["account.chart.template"].try_loading(
             "es_canary_pymes", company=cls.company, install_demo=False
         )
-        cls.env.ref("base.group_multi_company").write({"users": [(4, cls.env.uid)]})
+        cls.env.ref("base.group_multi_company").write({"user_ids": [(4, cls.env.uid)]})
         cls.env.user.write(
             {"company_ids": [(4, cls.company.id)], "company_id": cls.company.id}
         )
@@ -420,6 +420,14 @@ class TestL10nEsAtcMod425Base(TestL10nEsAeatModBase):
                 "name": "35001",
                 "city_id": cls.palmas_city.id,
             }
+        )
+        # The JVM reserves 1G of compressed class space by default, which
+        # strict-overcommit CI runners refuse; cap it so the ATC jar runs
+        # anywhere.
+        cls.env["ir.config_parameter"].sudo().set_param(
+            "l10n_es_atc.java_parameters",
+            "-Xms32M -Xmx256M -XX:MaxMetaspaceSize=128m"
+            " -XX:CompressedClassSpaceSize=64m",
         )
 
 
@@ -495,8 +503,19 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
         self.model425.first_representative_notary = "01"
         self.model425.first_representative_date = "2025-01-01"
         self.model425.casilla_118 = "1"  # Valor a compensar
-        with Form(self.model425.company_id) as company_form:
-            company_form.zip_id = self.palmas_zip
+        # One coherent write on the partner: writing through the company
+        # triggers zip_id/zip inverses in an order that trips base_location's
+        # consistency constraint on 19.0.
+        self.model425.company_id.partner_id.write(
+            {
+                "zip_id": self.palmas_zip.id,
+                "zip": self.palmas_zip.name,
+                "city_id": self.palmas_city.id,
+                "city": self.palmas_city.name,
+                "state_id": self.palmas_city.state_id.id,
+                "country_id": self.palmas_city.country_id.id,
+            }
+        )
 
     def test_model_425(self):
         _logger.debug("Calculate ATC 425 1T 2025")

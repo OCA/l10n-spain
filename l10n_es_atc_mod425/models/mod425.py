@@ -1,5 +1,5 @@
 # Copyright 2025 Tecnativa - Carlos Lopez
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 
 from odoo.addons.l10n_es_atc.models.l10n_es_atc_report import ATC_JAR_URL
 
@@ -274,10 +274,10 @@ class L10nEsAtcMod425Report(models.Model):
         store=True,
     )
     casilla_90 = fields.Monetary(
-        string="[90] Compensación régimen especial de agricultura, " "ganadería y pesca"
+        string="[90] Compensación régimen especial de agricultura, ganadería y pesca"
     )
     casilla_91 = fields.Monetary(
-        string="[91] Regularización de cuotas soportadas por bienes " "de inversión"
+        string="[91] Regularización de cuotas soportadas por bienes de inversión"
     )
     casilla_92 = fields.Monetary(
         string="[92] Regularización de cuotas soportadas antes del "
@@ -479,7 +479,7 @@ class L10nEsAtcMod425Report(models.Model):
     def _check_type(self):
         if "C" in self.mapped("statement_type"):
             raise exceptions.UserError(
-                _("You cannot make complementary reports for this model.")
+                self.env._("You cannot make complementary reports for this model.")
             )
 
     def button_modelo_sobre(self):
@@ -514,14 +514,14 @@ class L10nEsAtcMod425Report(models.Model):
         messages = super()._atc_get_messages()
         if not self.company_id.city_id.code:
             messages.append(
-                _(
+                self.env._(
                     "- Please set the code in the city: %s",
                     self.company_id.city_id.display_name,
                 )
             )
         if not self.company_id.atc_public_way:
             messages.append(
-                _(
+                self.env._(
                     "- Please set the Public Way in the company",
                 )
             )

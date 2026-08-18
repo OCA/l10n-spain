@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 {
     "name": "ATC Modelo 425",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Localisation/Accounting",
     "author": "Tecnativa, Binhex System Solutions, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
@@ -18,6 +18,7 @@
         "deb": ["openjdk-8-jdk", "ttf-mscorefonts-installer", "fontconfig"],
     },
     "data": [
+        "views/res_city_views.xml",
         "security/ir.model.access.csv",
         "security/l10n_es_atc_mod425_security.xml",
         "data/l10n.es.aeat.map.tax.csv",
