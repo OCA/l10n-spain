@@ -2,7 +2,7 @@
 # Copyright 2024 Binhex - Christian Ramos
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 from odoo.addons.l10n_es_atc.models.l10n_es_atc_report import ATC_JAR_URL
 
@@ -46,7 +46,7 @@ class L10nEsAtcMod420Report(models.Model):
     casilla_23 = fields.Monetary(
         string="[23] Traveler Base",
         default=0,
-        help="Basis of the fee in the passenger regime made by the subject " "passive",
+        help="Basis of the fee in the passenger regime made by the subject passive",
     )
     casilla_24 = fields.Monetary(
         string="[24] Traveler Fees",
@@ -135,7 +135,7 @@ class L10nEsAtcMod420Report(models.Model):
     counterpart_account_id = fields.Many2one(
         comodel_name="account.account",
         string="Counterpart account",
-        default=_default_counterpart_420,
+        default=lambda self: self._default_counterpart_420(),
     )
     allow_posting = fields.Boolean(string="Allow posting", default=True)
 
@@ -195,9 +195,9 @@ class L10nEsAtcMod420Report(models.Model):
         msg = ""
         for mod420 in self:
             if mod420.result_type == "I" and not mod420.bank_account_id:
-                msg = _("Select an account for making the charge")
+                msg = self.env._("Select an account for making the charge")
             if mod420.result_type == "D" and not mod420.bank_account_id:
-                msg = _("Select an account for receiving the money")
+                msg = self.env._("Select an account for receiving the money")
         if msg:
             # Don't raise error, because data is not used
             # raise exceptions.Warning(msg)
@@ -245,10 +245,10 @@ class L10nEsAtcMod420Report(models.Model):
     def _atc_get_messages(self):
         messages = super()._atc_get_messages()
         if not self.payment_type and self.resultado_autoliquidacion > 0:
-            messages.append(_("- Select a payment type"))
+            messages.append(self.env._("- Select a payment type"))
         if self.output_type == "T" and self.payment_type and self.payment_type != "5":
             messages.append(
-                _(
+                self.env._(
                     "- The selected payment type "
                     "is not compatible with the output type. "
                     "Please select a different payment type."
@@ -256,14 +256,14 @@ class L10nEsAtcMod420Report(models.Model):
             )
         if not self.company_id.city_id.code:
             messages.append(
-                _(
+                self.env._(
                     "- Please set the code in the city: %s",
                     self.company_id.city_id.display_name,
                 )
             )
         if not self.company_id.atc_public_way:
             messages.append(
-                _(
+                self.env._(
                     "- Please set the Public Way in the company",
                 )
             )

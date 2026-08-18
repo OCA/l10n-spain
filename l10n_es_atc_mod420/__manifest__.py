@@ -4,7 +4,7 @@
 
 {
     "name": "ATC Modelo 420",
-    "version": "18.0.1.1.0",
+    "version": "19.0.1.0.0",
     "author": "Binhex, Tecnativa, Odoo Community Association (OCA)",
     "category": "Accounting",
     "website": "https://github.com/OCA/l10n-spain",
@@ -19,6 +19,7 @@
         "deb": ["openjdk-8-jdk", "ttf-mscorefonts-installer", "fontconfig"],
     },
     "data": [
+        "views/res_city_views.xml",
         "security/l10n_es_atc_mod420_security.xml",
         "security/ir.model.access.csv",
         "data/l10n.es.aeat.map.tax.csv",
