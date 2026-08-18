@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 KEY_TAX_MAPPING = {
     "A": "l10n_es_atc_mod415.atc_mod415_map_a",
@@ -34,7 +34,7 @@ class L10nEsAtcMod415Report(models.Model):
     def btn_list_records(self):
         return {
             "domain": "[('report_id','in'," + str(self.ids) + ")]",
-            "name": _("Partner records"),
+            "name": self.env._("Partner records"),
             "view_mode": "list,form",
             "res_model": "l10n.es.atc.mod415.partner_record",
             "type": "ir.actions.act_window",
@@ -59,42 +59,41 @@ class L10nEsAtcMod415Report(models.Model):
     def _create_partner_records(self, key, map_ref, partner_record=None):
         sign = -1 if key == "B" else 1
         partner_record_obj = self.env["l10n.es.atc.mod415.partner_record"]
-        partner_obj = self.env["res.partner"]
         map_line = self.env.ref(map_ref)
         taxes = map_line.get_taxes_for_company(self.company_id)
         domain = self._account_move_line_domain(taxes)
         if partner_record:
             domain += [("partner_id", "=", partner_record.partner_id.id)]
-        groups = self.env["account.move.line"].read_group(
+        groups = self.env["account.move.line"]._read_group(
             domain,
-            ["partner_id", "balance"],
-            ["partner_id"],
+            groupby=["partner_id"],
+            aggregates=["balance:sum"],
         )
         filtered_groups = list(
-            filter(lambda d: abs(d["balance"]) > self.operations_limit, groups)
+            filter(lambda d: abs(d[1]) > self.operations_limit, groups)
         )
         for group in filtered_groups:
-            partner = partner_obj.browse(group["partner_id"][0])
+            partner = group[0]
             vals = {
                 "report_id": self.id,
                 "partner_id": partner.id,
                 "representative_vat": "",
                 "operation_key": key,
-                "amount": sign * group["balance"],
+                "amount": sign * group[1],
             }
             vals.update(self._get_partner_347_identification(partner))
-            move_groups = self.env["account.move.line"].read_group(
-                group["__domain"],
-                ["move_id", "balance"],
-                ["move_id"],
+            move_groups = self.env["account.move.line"]._read_group(
+                domain + [("partner_id", "=", partner.id)],
+                groupby=["move_id"],
+                aggregates=["balance:sum"],
             )
             vals["move_record_ids"] = [
                 (
                     0,
                     0,
                     {
-                        "move_id": move_group["move_id"][0],
-                        "amount": sign * move_group["balance"],
+                        "move_id": move_group[0].id,
+                        "amount": sign * move_group[1],
                     },
                 )
                 for move_group in move_groups
@@ -108,7 +107,6 @@ class L10nEsAtcMod415Report(models.Model):
                 partner_record_obj.create(vals)
 
     def _create_cash_moves(self):
-        partner_obj = self.env["res.partner"]
         move_line_obj = self.env["account.move.line"]
         cash_journals = self.env["account.journal"].search(
             [("type", "=", "cash")],
@@ -122,15 +120,17 @@ class L10nEsAtcMod415Report(models.Model):
             ("date", "<=", self.date_end),
             ("partner_id.not_in_mod415", "=", False),
         ]
-        cash_groups = move_line_obj.read_group(
-            domain, ["partner_id", "balance"], ["partner_id"]
+        cash_groups = move_line_obj._read_group(
+            domain, groupby=["partner_id"], aggregates=["balance:sum"]
         )
         for cash_group in cash_groups:
-            partner = partner_obj.browse(cash_group["partner_id"][0])
+            partner = cash_group[0]
             partner_record_obj = self.env["l10n.es.atc.mod415.partner_record"]
-            amount = abs(cash_group["balance"])
+            amount = abs(cash_group[1])
             if amount > self.received_cash_limit:
-                move_lines = move_line_obj.search(cash_group["__domain"])
+                move_lines = move_line_obj.search(
+                    domain + [("partner_id", "=", partner.id)]
+                )
                 partner_record = partner_record_obj.search(
                     [
                         ("partner_id", "=", partner.id),
@@ -185,7 +185,7 @@ class L10nEsAtcMod415PartnerRecord(models.Model):
         comodel_name="l10n.es.atc.mod415.report",
         string="Modelo 415",
         ondelete="cascade",
-        default=_default_record_id,
+        default=lambda self: self._default_record_id(),
     )
     move_record_ids = fields.One2many(
         comodel_name="l10n.es.atc.mod415.move.record",
@@ -217,7 +217,7 @@ class L10nEsAtcMod415RealStateRecord(models.Model):
         string="Modelo 415",
         ondelete="cascade",
         index=1,
-        default=_default_record_id,
+        default=lambda self: self._default_record_id(),
     )
 
 
@@ -236,5 +236,5 @@ class L10nEsAtcMod415MoveRecord(models.Model):
         required=True,
         ondelete="cascade",
         index=True,
-        default=_default_partner_record,
+        default=lambda self: self._default_partner_record(),
     )

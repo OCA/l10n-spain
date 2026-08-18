@@ -26,7 +26,7 @@ class TestL10nEsAtcMod415(TestL10nEsAeatModBase):
         cls.company = cls.env["res.company"].create(
             {"name": "Canary test company", "currency_id": cls.env.ref("base.EUR").id}
         )
-        cls.env.ref("base.group_multi_company").write({"users": [(4, cls.env.uid)]})
+        cls.env.ref("base.group_multi_company").write({"user_ids": [(4, cls.env.uid)]})
         cls.env.user.write(
             {"company_ids": [(4, cls.company.id)], "company_id": cls.company.id}
         )
