@@ -235,6 +235,37 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             },
         )
 
+    def test_intracomunitary_customer_vat_country_prefix_precedence(self):
+        """Check that the VAT's own country prefix wins over the partner's
+        address country when building the SII identifier.
+
+        Reproduces a real case: a third-party billing partner (e.g. Amazon)
+        registered with country Luxembourg but invoicing with an Italian VAT
+        number, since Amazon holds local VAT registrations per country. The
+        SII identifier must use the Italian prefix from the VAT, not the
+        Luxembourg one derived from the partner's address.
+        """
+        self._activate_certificate(self.certificate_password)
+        partner = self.env["res.partner"].create(
+            {
+                "name": "Amazon EU SARL",
+                "country_id": self.ref("base.lu"),
+                "vat": "IT12345670017",
+            }
+        )
+        invoice = self.invoice.copy(
+            {"partner_id": partner.id, "fiscal_position_id": self.fp_intra.id}
+        )
+        invoice.action_post()
+        sii_info = invoice._get_aeat_invoice_dict()
+        self.assertEqual(
+            sii_info["FacturaExpedida"]["Contraparte"],
+            {
+                "NombreRazon": "Amazon EU SARL",
+                "IDOtro": {"IDType": "02", "ID": "IT12345670017"},
+            },
+        )
+
     def test_partner_sii_enabled(self):
         company_02 = self.env["res.company"].create({"name": "Company 02"})
         self.env.user.company_ids += company_02
