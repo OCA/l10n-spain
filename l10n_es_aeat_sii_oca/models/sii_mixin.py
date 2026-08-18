@@ -3,6 +3,7 @@
 # Copyright 2023 Aures Tic - Almudena de la Puente <almudena@aurestic.es>
 # Copyright 2023 Aures Tic - Jose Zambudio <jose@aurestic.es>
 # Copyright 2011,2024 Tecnativa - Pedro M. Baeza
+# Copyright 2026 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import json
 
@@ -662,16 +663,30 @@ class SiiMixin(models.AbstractModel):
             identifier_type,
             identifier,
         ) = partner._parse_aeat_vat_info()
-        # Take into account some vats construction like Greece
-        vat_country_code = (
-            partner._map_aeat_country_iso_code(partner.country_id) or country_code
-        )
+        # Preserve the VAT country prefix when it is explicitly set, even if it
+        # differs from the partner's address country.
+        if partner.vat and len(partner.vat) > 1 and partner.vat[1].isalpha():
+            vat_country_code = partner.vat[:2]
+        else:
+            vat_country_code = (
+                partner._map_aeat_country_iso_code(partner.country_id) or country_code
+            )
         # Limpiar alfanum
         if identifier:
             identifier = "".join(e for e in identifier if e.isalnum()).upper()
         else:
             identifier = "NO_DISPONIBLE"
             identifier_type = "06"
+        full_eu_vat = identifier
+        if (
+            partner._map_aeat_country_code(vat_country_code)
+            in partner._get_aeat_europe_codes()
+        ):
+            full_eu_vat = (
+                identifier
+                if identifier.startswith(vat_country_code)
+                else vat_country_code + identifier
+            )
         if gen_type == 1:
             if "1117" in (self.aeat_send_error or ""):
                 return {
@@ -688,16 +703,11 @@ class SiiMixin(models.AbstractModel):
                     "IDOtro": {
                         "CodigoPais": country_code,
                         "IDType": identifier_type,
-                        "ID": vat_country_code + identifier
-                        if self._aeat_get_partner()._map_aeat_country_code(
-                            vat_country_code
-                        )
-                        in self._aeat_get_partner()._get_aeat_europe_codes()
-                        else identifier,
+                        "ID": full_eu_vat,
                     },
                 }
         elif gen_type == 2:
-            return {"IDOtro": {"IDType": "02", "ID": vat_country_code + identifier}}
+            return {"IDOtro": {"IDType": "02", "ID": full_eu_vat}}
         elif gen_type == 3 and identifier_type:
             # Si usamos identificador tipo 02 en exportaciones, el envío falla con:
             #   {'CodigoErrorRegistro': 1104,
